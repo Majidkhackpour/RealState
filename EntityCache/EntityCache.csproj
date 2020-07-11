@@ -87,7 +87,7 @@
     <Compile Include="Assistence\SqlProfile.cs" />
     <Compile Include="Assistence\UnitOfWork.cs" />
     <Compile Include="Core\IRepository.cs" />
-    <Compile Include="Persistence\GenericRepository.cs" />
+    <Compile Include="SqlServerPersistence\GenericRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

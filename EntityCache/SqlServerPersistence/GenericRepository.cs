@@ -11,7 +11,7 @@ using PacketParser.Interfaces;
 using PacketParser.Services;
 using Persistence.Model;
 
-namespace EntityCache.Persistence
+namespace EntityCache.SqlServerPersistence
 {
     public class GenericRepository<T, U> : IRepository<T> where U : class, IHasGuid, new()
          where T : class, IHasGuid, new()
