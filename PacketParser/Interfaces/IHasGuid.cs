@@ -6,5 +6,6 @@ namespace PacketParser.Interfaces
     {
         Guid Guid { get; set; }
         DateTime Modified { get; set; }
+        bool Status { get; set; }
     }
 }

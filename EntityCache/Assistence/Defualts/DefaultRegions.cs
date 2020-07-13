@@ -1,0 +1,321 @@
+﻿using System;
+using System.Collections.Generic;
+using EntityCache.Bussines;
+using PacketParser.Services;
+
+namespace EntityCache.Assistence.Defualts
+{
+    public static class DefaultRegions
+    {
+        private static List<RegionsBussines> list = new List<RegionsBussines>();
+        private static RegionsBussines SetDef(string name, string cityGuid)
+        {
+            try
+            {
+                var reg = new RegionsBussines()
+                {
+                    Name = name,
+                    Guid = Guid.NewGuid(),
+                    CityGuid = Guid.Parse(cityGuid)
+                };
+                return reg;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                return null;
+            }
+        }
+
+        public static List<RegionsBussines> SetDef()
+        {
+            try
+            {
+                list.Add(SetDef("آتشگاه", "6276c7a9-f6a9-4c0d-9e3c-53d59538bf94"));
+                list.Add(SetDef("ابن سینا", "6276c7a9-f6a9-4c0d-9e3c-53d59538bf94"));
+                list.Add(SetDef("بزرگمهر", "6276c7a9-f6a9-4c0d-9e3c-53d59538bf94"));
+                list.Add(SetDef("بهارستان", "6276c7a9-f6a9-4c0d-9e3c-53d59538bf94"));
+                list.Add(SetDef("بیدآباد", "6276c7a9-f6a9-4c0d-9e3c-53d59538bf94"));
+                list.Add(SetDef("پروین", "6276c7a9-f6a9-4c0d-9e3c-53d59538bf94"));
+                list.Add(SetDef("پل وحید", "6276c7a9-f6a9-4c0d-9e3c-53d59538bf94"));
+                list.Add(SetDef("طیران", "6276c7a9-f6a9-4c0d-9e3c-53d59538bf94"));
+                list.Add(SetDef("جلفا", "6276c7a9-f6a9-4c0d-9e3c-53d59538bf94"));
+                list.Add(SetDef("چهرباغ خواجو", "6276c7a9-f6a9-4c0d-9e3c-53d59538bf94"));
+                list.Add(SetDef("حسین آباد", "6276c7a9-f6a9-4c0d-9e3c-53d59538bf94"));
+                list.Add(SetDef("حکیم نظامی", "6276c7a9-f6a9-4c0d-9e3c-53d59538bf94"));
+                list.Add(SetDef("خاقانی", "6276c7a9-f6a9-4c0d-9e3c-53d59538bf94"));
+                list.Add(SetDef("خانه اصفهان", "6276c7a9-f6a9-4c0d-9e3c-53d59538bf94"));
+                list.Add(SetDef("خمینی شهر", "6276c7a9-f6a9-4c0d-9e3c-53d59538bf94"));
+                list.Add(SetDef("خیام", "6276c7a9-f6a9-4c0d-9e3c-53d59538bf94"));
+                list.Add(SetDef("دولت آباد", "6276c7a9-f6a9-4c0d-9e3c-53d59538bf94"));
+                list.Add(SetDef("رباط", "6276c7a9-f6a9-4c0d-9e3c-53d59538bf94"));
+                list.Add(SetDef("زرین شهر", "6276c7a9-f6a9-4c0d-9e3c-53d59538bf94"));
+                list.Add(SetDef("شاهین شهر", "6276c7a9-f6a9-4c0d-9e3c-53d59538bf94"));
+                list.Add(SetDef("شهرضا", "6276c7a9-f6a9-4c0d-9e3c-53d59538bf94"));
+                list.Add(SetDef("شیخ بهایی", "6276c7a9-f6a9-4c0d-9e3c-53d59538bf94"));
+                list.Add(SetDef("عباس آباد", "6276c7a9-f6a9-4c0d-9e3c-53d59538bf94"));
+                list.Add(SetDef("فولادشهر", "6276c7a9-f6a9-4c0d-9e3c-53d59538bf94"));
+                list.Add(SetDef("گز", "6276c7a9-f6a9-4c0d-9e3c-53d59538bf94"));
+                list.Add(SetDef("مبارکه", "6276c7a9-f6a9-4c0d-9e3c-53d59538bf94"));
+                list.Add(SetDef("مولوی", "6276c7a9-f6a9-4c0d-9e3c-53d59538bf94"));
+                list.Add(SetDef("میر", "6276c7a9-f6a9-4c0d-9e3c-53d59538bf94"));
+                list.Add(SetDef("نشاط", "6276c7a9-f6a9-4c0d-9e3c-53d59538bf94"));
+                list.Add(SetDef("هاتف", "6276c7a9-f6a9-4c0d-9e3c-53d59538bf94"));
+                list.Add(SetDef("پل شیری (صائب)", "6276c7a9-f6a9-4c0d-9e3c-53d59538bf94"));
+                list.Add(SetDef("آبشار", "2d89428b-4496-429c-8afe-f1b478e8c86b"));
+                list.Add(SetDef("آجودانیه", "2d89428b-4496-429c-8afe-f1b478e8c86b"));
+                list.Add(SetDef("آرارات", "2d89428b-4496-429c-8afe-f1b478e8c86b"));
+                list.Add(SetDef("آرژانتین", "2d89428b-4496-429c-8afe-f1b478e8c86b"));
+                list.Add(SetDef("اتابک", "2d89428b-4496-429c-8afe-f1b478e8c86b"));
+                list.Add(SetDef("اتحاد", "2d89428b-4496-429c-8afe-f1b478e8c86b"));
+                list.Add(SetDef("اختیارآباد", "2d89428b-4496-429c-8afe-f1b478e8c86b"));
+                list.Add(SetDef("ارامنه", "2d89428b-4496-429c-8afe-f1b478e8c86b"));
+                list.Add(SetDef("ارم", "2d89428b-4496-429c-8afe-f1b478e8c86b"));
+                list.Add(SetDef("ازگل", "2d89428b-4496-429c-8afe-f1b478e8c86b"));
+                list.Add(SetDef("استادمعین", "2d89428b-4496-429c-8afe-f1b478e8c86b"));
+                list.Add(SetDef("اسکندری", "2d89428b-4496-429c-8afe-f1b478e8c86b"));
+                list.Add(SetDef("افسریه", "2d89428b-4496-429c-8afe-f1b478e8c86b"));
+                list.Add(SetDef("اقدسیه", "2d89428b-4496-429c-8afe-f1b478e8c86b"));
+                list.Add(SetDef("اکباتان", "2d89428b-4496-429c-8afe-f1b478e8c86b"));
+                list.Add(SetDef("المهدی", "2d89428b-4496-429c-8afe-f1b478e8c86b"));
+                list.Add(SetDef("الهیه", "2d89428b-4496-429c-8afe-f1b478e8c86b"));
+                list.Add(SetDef("امامت", "2d89428b-4496-429c-8afe-f1b478e8c86b"));
+                list.Add(SetDef("امیریه", "2d89428b-4496-429c-8afe-f1b478e8c86b"));
+                list.Add(SetDef("اندیشه", "2d89428b-4496-429c-8afe-f1b478e8c86b"));
+                list.Add(SetDef("اوقاف", "2d89428b-4496-429c-8afe-f1b478e8c86b"));
+                list.Add(SetDef("اوین", "2d89428b-4496-429c-8afe-f1b478e8c86b"));
+                list.Add(SetDef("ایرانشهر", "2d89428b-4496-429c-8afe-f1b478e8c86b"));
+                list.Add(SetDef("باغ رضوان", "2d89428b-4496-429c-8afe-f1b478e8c86b"));
+                list.Add(SetDef("بازار", "2d89428b-4496-429c-8afe-f1b478e8c86b"));
+                list.Add(SetDef("باغ فردوس", "2d89428b-4496-429c-8afe-f1b478e8c86b"));
+                list.Add(SetDef("بومهن", "2d89428b-4496-429c-8afe-f1b478e8c86b"));
+                list.Add(SetDef("بهاران", "2d89428b-4496-429c-8afe-f1b478e8c86b"));
+                list.Add(SetDef("پاسداران", "2d89428b-4496-429c-8afe-f1b478e8c86b"));
+                list.Add(SetDef("پاکدشت", "2d89428b-4496-429c-8afe-f1b478e8c86b"));
+                list.Add(SetDef("پامنار", "2d89428b-4496-429c-8afe-f1b478e8c86b"));
+                list.Add(SetDef("پرستار", "2d89428b-4496-429c-8afe-f1b478e8c86b"));
+                list.Add(SetDef("پرند", "2d89428b-4496-429c-8afe-f1b478e8c86b"));
+                list.Add(SetDef("پونک", "2d89428b-4496-429c-8afe-f1b478e8c86b"));
+                list.Add(SetDef("پیروزی", "2d89428b-4496-429c-8afe-f1b478e8c86b"));
+                list.Add(SetDef("تجریش", "2d89428b-4496-429c-8afe-f1b478e8c86b"));
+                list.Add(SetDef("توحید", "2d89428b-4496-429c-8afe-f1b478e8c86b"));
+                list.Add(SetDef("تهرانسر", "2d89428b-4496-429c-8afe-f1b478e8c86b"));
+                list.Add(SetDef("تهران نو", "2d89428b-4496-429c-8afe-f1b478e8c86b"));
+                list.Add(SetDef("تهران پارس", "2d89428b-4496-429c-8afe-f1b478e8c86b"));
+                list.Add(SetDef("جردن", "2d89428b-4496-429c-8afe-f1b478e8c86b"));
+                list.Add(SetDef("جلفا", "2d89428b-4496-429c-8afe-f1b478e8c86b"));
+                list.Add(SetDef("جماران", "2d89428b-4496-429c-8afe-f1b478e8c86b"));
+                list.Add(SetDef("جمهوری", "2d89428b-4496-429c-8afe-f1b478e8c86b"));
+                list.Add(SetDef("جوادیه", "2d89428b-4496-429c-8afe-f1b478e8c86b"));
+                list.Add(SetDef("جیحون", "2d89428b-4496-429c-8afe-f1b478e8c86b"));
+                list.Add(SetDef("چهارصددستگاه", "2d89428b-4496-429c-8afe-f1b478e8c86b"));
+                list.Add(SetDef("چیتگر", "2d89428b-4496-429c-8afe-f1b478e8c86b"));
+                list.Add(SetDef("چیذر", "2d89428b-4496-429c-8afe-f1b478e8c86b"));
+                list.Add(SetDef("حصارک", "2d89428b-4496-429c-8afe-f1b478e8c86b"));
+                list.Add(SetDef("حکیمیه", "2d89428b-4496-429c-8afe-f1b478e8c86b"));
+                list.Add(SetDef("خاوران", "2d89428b-4496-429c-8afe-f1b478e8c86b"));
+                list.Add(SetDef("خزانه", "2d89428b-4496-429c-8afe-f1b478e8c86b"));
+                list.Add(SetDef("خلیج فارس", "2d89428b-4496-429c-8afe-f1b478e8c86b"));
+                list.Add(SetDef("دارآباد", "2d89428b-4496-429c-8afe-f1b478e8c86b"));
+                list.Add(SetDef("دانشگاه تهران", "2d89428b-4496-429c-8afe-f1b478e8c86b"));
+                list.Add(SetDef("دانشگاه شریف", "2d89428b-4496-429c-8afe-f1b478e8c86b"));
+                list.Add(SetDef("دربند", "2d89428b-4496-429c-8afe-f1b478e8c86b"));
+                list.Add(SetDef("درکه", "2d89428b-4496-429c-8afe-f1b478e8c86b"));
+                list.Add(SetDef("دروازه شمیران", "2d89428b-4496-429c-8afe-f1b478e8c86b"));
+                list.Add(SetDef("دروس", "2d89428b-4496-429c-8afe-f1b478e8c86b"));
+                list.Add(SetDef("دولاب", "2d89428b-4496-429c-8afe-f1b478e8c86b"));
+                list.Add(SetDef("دولت آباد", "2d89428b-4496-429c-8afe-f1b478e8c86b"));
+                list.Add(SetDef("دهکده المپیک", "2d89428b-4496-429c-8afe-f1b478e8c86b"));
+                list.Add(SetDef("رباط کریم", "2d89428b-4496-429c-8afe-f1b478e8c86b"));
+                list.Add(SetDef("رودهن", "2d89428b-4496-429c-8afe-f1b478e8c86b"));
+                list.Add(SetDef("زرکش", "2d89428b-4496-429c-8afe-f1b478e8c86b"));
+                list.Add(SetDef("زعفرانیه", "2d89428b-4496-429c-8afe-f1b478e8c86b"));
+                list.Add(SetDef("زمزم", "2d89428b-4496-429c-8afe-f1b478e8c86b"));
+                list.Add(SetDef("سبلان", "2d89428b-4496-429c-8afe-f1b478e8c86b"));
+                list.Add(SetDef("ستارخان", "2d89428b-4496-429c-8afe-f1b478e8c86b"));
+                list.Add(SetDef("سرخه حصار", "2d89428b-4496-429c-8afe-f1b478e8c86b"));
+                list.Add(SetDef("سعادت آباد", "2d89428b-4496-429c-8afe-f1b478e8c86b"));
+                list.Add(SetDef("سلسبیل", "2d89428b-4496-429c-8afe-f1b478e8c86b"));
+                list.Add(SetDef("سوهانک", "2d89428b-4496-429c-8afe-f1b478e8c86b"));
+                list.Add(SetDef("سیدخندان", "2d89428b-4496-429c-8afe-f1b478e8c86b"));
+                list.Add(SetDef("شاندیز", "2d89428b-4496-429c-8afe-f1b478e8c86b"));
+                list.Add(SetDef("شاهد", "2d89428b-4496-429c-8afe-f1b478e8c86b"));
+                list.Add(SetDef("شریف", "2d89428b-4496-429c-8afe-f1b478e8c86b"));
+                list.Add(SetDef("شوش", "2d89428b-4496-429c-8afe-f1b478e8c86b"));
+                list.Add(SetDef("شهرقدس", "2d89428b-4496-429c-8afe-f1b478e8c86b"));
+                list.Add(SetDef("شهریار", "2d89428b-4496-429c-8afe-f1b478e8c86b"));
+                list.Add(SetDef("شهید رجایی", "2d89428b-4496-429c-8afe-f1b478e8c86b"));
+                list.Add(SetDef("عبدل آباد", "2d89428b-4496-429c-8afe-f1b478e8c86b"));
+                list.Add(SetDef("فتح", "2d89428b-4496-429c-8afe-f1b478e8c86b"));
+                list.Add(SetDef("فدک", "2d89428b-4496-429c-8afe-f1b478e8c86b"));
+                list.Add(SetDef("فرحزاد", "2d89428b-4496-429c-8afe-f1b478e8c86b"));
+                list.Add(SetDef("فرمانیه", "2d89428b-4496-429c-8afe-f1b478e8c86b"));
+                list.Add(SetDef("فرودگاه مهرآباد", "2d89428b-4496-429c-8afe-f1b478e8c86b"));
+                list.Add(SetDef("فشم", "2d89428b-4496-429c-8afe-f1b478e8c86b"));
+                list.Add(SetDef("فلاح", "2d89428b-4496-429c-8afe-f1b478e8c86b"));
+                list.Add(SetDef("قرچک", "2d89428b-4496-429c-8afe-f1b478e8c86b"));
+                list.Add(SetDef("قلهک", "2d89428b-4496-429c-8afe-f1b478e8c86b"));
+                list.Add(SetDef("گاندی", "2d89428b-4496-429c-8afe-f1b478e8c86b"));
+                list.Add(SetDef("گمرک", "2d89428b-4496-429c-8afe-f1b478e8c86b"));
+                list.Add(SetDef("لواسان", "2d89428b-4496-429c-8afe-f1b478e8c86b"));
+                list.Add(SetDef("لویزان", "2d89428b-4496-429c-8afe-f1b478e8c86b"));
+                list.Add(SetDef("مجیدیه", "2d89428b-4496-429c-8afe-f1b478e8c86b"));
+                list.Add(SetDef("محمودیه", "2d89428b-4496-429c-8afe-f1b478e8c86b"));
+                list.Add(SetDef("منیریه", "2d89428b-4496-429c-8afe-f1b478e8c86b"));
+                list.Add(SetDef("مولوی", "2d89428b-4496-429c-8afe-f1b478e8c86b"));
+                list.Add(SetDef("میرداماد", "2d89428b-4496-429c-8afe-f1b478e8c86b"));
+                list.Add(SetDef("نارمک", "2d89428b-4496-429c-8afe-f1b478e8c86b"));
+                list.Add(SetDef("نازی آباد", "2d89428b-4496-429c-8afe-f1b478e8c86b"));
+                list.Add(SetDef("نواب", "2d89428b-4496-429c-8afe-f1b478e8c86b"));
+                list.Add(SetDef("نیاوران", "2d89428b-4496-429c-8afe-f1b478e8c86b"));
+                list.Add(SetDef("ورامین", "2d89428b-4496-429c-8afe-f1b478e8c86b"));
+                list.Add(SetDef("وردآورد", "2d89428b-4496-429c-8afe-f1b478e8c86b"));
+                list.Add(SetDef("ولنجک", "2d89428b-4496-429c-8afe-f1b478e8c86b"));
+                list.Add(SetDef("ونک", "2d89428b-4496-429c-8afe-f1b478e8c86b"));
+                list.Add(SetDef("هفت حوض", "2d89428b-4496-429c-8afe-f1b478e8c86b"));
+                list.Add(SetDef("آریاشهر", "bc6fced2-ba59-4abb-8f2b-c0d53b82eb27"));
+                list.Add(SetDef("امانیه", "bc6fced2-ba59-4abb-8f2b-c0d53b82eb27"));
+                list.Add(SetDef("باهنر", "bc6fced2-ba59-4abb-8f2b-c0d53b82eb27"));
+                list.Add(SetDef("بهارستان", "bc6fced2-ba59-4abb-8f2b-c0d53b82eb27"));
+                list.Add(SetDef("پردیس", "bc6fced2-ba59-4abb-8f2b-c0d53b82eb27"));
+                list.Add(SetDef("پیروزی", "bc6fced2-ba59-4abb-8f2b-c0d53b82eb27"));
+                list.Add(SetDef("رسالت", "bc6fced2-ba59-4abb-8f2b-c0d53b82eb27"));
+                list.Add(SetDef("زرگان", "bc6fced2-ba59-4abb-8f2b-c0d53b82eb27"));
+                list.Add(SetDef("زیباشهر", "bc6fced2-ba59-4abb-8f2b-c0d53b82eb27"));
+                list.Add(SetDef("سپیدار", "bc6fced2-ba59-4abb-8f2b-c0d53b82eb27"));
+                list.Add(SetDef("طاقانی", "bc6fced2-ba59-4abb-8f2b-c0d53b82eb27"));
+                list.Add(SetDef("فولادشهر", "bc6fced2-ba59-4abb-8f2b-c0d53b82eb27"));
+                list.Add(SetDef("کیاشهر", "bc6fced2-ba59-4abb-8f2b-c0d53b82eb27"));
+                list.Add(SetDef("گلستان", "bc6fced2-ba59-4abb-8f2b-c0d53b82eb27"));
+                list.Add(SetDef("نادری", "bc6fced2-ba59-4abb-8f2b-c0d53b82eb27"));
+                list.Add(SetDef("نیوسایت", "bc6fced2-ba59-4abb-8f2b-c0d53b82eb27"));
+                list.Add(SetDef("یوسفی", "bc6fced2-ba59-4abb-8f2b-c0d53b82eb27"));
+                list.Add(SetDef("17شهریور", "3d2f0a4c-a542-4863-9f1e-6c150ec1475f"));
+                list.Add(SetDef("آزادشهر", "3d2f0a4c-a542-4863-9f1e-6c150ec1475f"));
+                list.Add(SetDef("ابوطالب", "3d2f0a4c-a542-4863-9f1e-6c150ec1475f"));
+                list.Add(SetDef("احمدآباد", "3d2f0a4c-a542-4863-9f1e-6c150ec1475f"));
+                list.Add(SetDef("امامت", "3d2f0a4c-a542-4863-9f1e-6c150ec1475f"));
+                list.Add(SetDef("اندیشه", "3d2f0a4c-a542-4863-9f1e-6c150ec1475f"));
+                list.Add(SetDef("بلوار الهیه", "3d2f0a4c-a542-4863-9f1e-6c150ec1475f"));
+                list.Add(SetDef("بلوار توس", "3d2f0a4c-a542-4863-9f1e-6c150ec1475f"));
+                list.Add(SetDef("بلوار فردوسی", "3d2f0a4c-a542-4863-9f1e-6c150ec1475f"));
+                list.Add(SetDef("پیروزی", "3d2f0a4c-a542-4863-9f1e-6c150ec1475f"));
+                list.Add(SetDef("جانباز", "3d2f0a4c-a542-4863-9f1e-6c150ec1475f"));
+                list.Add(SetDef("چهراراه لشکر", "3d2f0a4c-a542-4863-9f1e-6c150ec1475f"));
+                list.Add(SetDef("حرم مطهر", "3d2f0a4c-a542-4863-9f1e-6c150ec1475f"));
+                list.Add(SetDef("خیام", "3d2f0a4c-a542-4863-9f1e-6c150ec1475f"));
+                list.Add(SetDef("دانش آموز", "3d2f0a4c-a542-4863-9f1e-6c150ec1475f"));
+                list.Add(SetDef("دانشجو", "3d2f0a4c-a542-4863-9f1e-6c150ec1475f"));
+                list.Add(SetDef("راهنمایی", "3d2f0a4c-a542-4863-9f1e-6c150ec1475f"));
+                list.Add(SetDef("رسالت", "3d2f0a4c-a542-4863-9f1e-6c150ec1475f"));
+                list.Add(SetDef("رضاشهر", "3d2f0a4c-a542-4863-9f1e-6c150ec1475f"));
+                list.Add(SetDef("سجادشهر", "3d2f0a4c-a542-4863-9f1e-6c150ec1475f"));
+                list.Add(SetDef("سرافرازان", "3d2f0a4c-a542-4863-9f1e-6c150ec1475f"));
+                list.Add(SetDef("سعدی", "3d2f0a4c-a542-4863-9f1e-6c150ec1475f"));
+                list.Add(SetDef("سناباد", "3d2f0a4c-a542-4863-9f1e-6c150ec1475f"));
+                list.Add(SetDef("سیدرضی", "3d2f0a4c-a542-4863-9f1e-6c150ec1475f"));
+                list.Add(SetDef("شاندیز", "3d2f0a4c-a542-4863-9f1e-6c150ec1475f"));
+                list.Add(SetDef("شهرک شهید رجایی", "3d2f0a4c-a542-4863-9f1e-6c150ec1475f"));
+                list.Add(SetDef("شهید بهشتی", "3d2f0a4c-a542-4863-9f1e-6c150ec1475f"));
+                list.Add(SetDef("صارمی", "3d2f0a4c-a542-4863-9f1e-6c150ec1475f"));
+                list.Add(SetDef("صیادشیرازی", "3d2f0a4c-a542-4863-9f1e-6c150ec1475f"));
+                list.Add(SetDef("طبرسی", "3d2f0a4c-a542-4863-9f1e-6c150ec1475f"));
+                list.Add(SetDef("طرق", "3d2f0a4c-a542-4863-9f1e-6c150ec1475f"));
+                list.Add(SetDef("طرقبه", "3d2f0a4c-a542-4863-9f1e-6c150ec1475f"));
+                list.Add(SetDef("طلاب", "3d2f0a4c-a542-4863-9f1e-6c150ec1475f"));
+                list.Add(SetDef("عبادی", "3d2f0a4c-a542-4863-9f1e-6c150ec1475f"));
+                list.Add(SetDef("عبدالمطلب", "3d2f0a4c-a542-4863-9f1e-6c150ec1475f"));
+                list.Add(SetDef("فرامرزعباسی", "3d2f0a4c-a542-4863-9f1e-6c150ec1475f"));
+                list.Add(SetDef("فلسطین", "3d2f0a4c-a542-4863-9f1e-6c150ec1475f"));
+                list.Add(SetDef("فلکه برق", "3d2f0a4c-a542-4863-9f1e-6c150ec1475f"));
+                list.Add(SetDef("فلکه ضد", "3d2f0a4c-a542-4863-9f1e-6c150ec1475f"));
+                list.Add(SetDef("قائم", "3d2f0a4c-a542-4863-9f1e-6c150ec1475f"));
+                list.Add(SetDef("قاسم آباد", "3d2f0a4c-a542-4863-9f1e-6c150ec1475f"));
+                list.Add(SetDef("کلاهدوز", "3d2f0a4c-a542-4863-9f1e-6c150ec1475f"));
+                list.Add(SetDef("کوثر", "3d2f0a4c-a542-4863-9f1e-6c150ec1475f"));
+                list.Add(SetDef("کوهسنگی", "3d2f0a4c-a542-4863-9f1e-6c150ec1475f"));
+                list.Add(SetDef("کوی مهدی", "3d2f0a4c-a542-4863-9f1e-6c150ec1475f"));
+                list.Add(SetDef("گاز شرقی", "3d2f0a4c-a542-4863-9f1e-6c150ec1475f"));
+                list.Add(SetDef("گنبدسبز", "3d2f0a4c-a542-4863-9f1e-6c150ec1475f"));
+                list.Add(SetDef("گوهرشاد", "3d2f0a4c-a542-4863-9f1e-6c150ec1475f"));
+                list.Add(SetDef("لادن", "3d2f0a4c-a542-4863-9f1e-6c150ec1475f"));
+                list.Add(SetDef("مصلی", "3d2f0a4c-a542-4863-9f1e-6c150ec1475f"));
+                list.Add(SetDef("مطهری جنوبی", "3d2f0a4c-a542-4863-9f1e-6c150ec1475f"));
+                list.Add(SetDef("مطهری شمالی", "3d2f0a4c-a542-4863-9f1e-6c150ec1475f"));
+                list.Add(SetDef("معلم", "3d2f0a4c-a542-4863-9f1e-6c150ec1475f"));
+                list.Add(SetDef("موسوی قوچانی", "3d2f0a4c-a542-4863-9f1e-6c150ec1475f"));
+                list.Add(SetDef("میدان شهدا", "3d2f0a4c-a542-4863-9f1e-6c150ec1475f"));
+                list.Add(SetDef("میدان عدل خمینی", "3d2f0a4c-a542-4863-9f1e-6c150ec1475f"));
+                list.Add(SetDef("نوفل لو", "3d2f0a4c-a542-4863-9f1e-6c150ec1475f"));
+                list.Add(SetDef("وکیل آباد", "3d2f0a4c-a542-4863-9f1e-6c150ec1475f"));
+                list.Add(SetDef("هاشمیه", "3d2f0a4c-a542-4863-9f1e-6c150ec1475f"));
+                list.Add(SetDef("هدایت", "3d2f0a4c-a542-4863-9f1e-6c150ec1475f"));
+                list.Add(SetDef("هفت تیر", "3d2f0a4c-a542-4863-9f1e-6c150ec1475f"));
+                list.Add(SetDef("هنرستان", "3d2f0a4c-a542-4863-9f1e-6c150ec1475f"));
+                list.Add(SetDef("آزادگان", "6a4b585e-bc15-4200-a53b-c7f314cd233e"));
+                list.Add(SetDef("باغستان", "6a4b585e-bc15-4200-a53b-c7f314cd233e"));
+                list.Add(SetDef("جهانشهر", "6a4b585e-bc15-4200-a53b-c7f314cd233e"));
+                list.Add(SetDef("حصارک", "6a4b585e-bc15-4200-a53b-c7f314cd233e"));
+                list.Add(SetDef("خرمدشت", "6a4b585e-bc15-4200-a53b-c7f314cd233e"));
+                list.Add(SetDef("درختی", "6a4b585e-bc15-4200-a53b-c7f314cd233e"));
+                list.Add(SetDef("ساسانی", "6a4b585e-bc15-4200-a53b-c7f314cd233e"));
+                list.Add(SetDef("شهریار", "6a4b585e-bc15-4200-a53b-c7f314cd233e"));
+                list.Add(SetDef("طالقانی", "6a4b585e-bc15-4200-a53b-c7f314cd233e"));
+                list.Add(SetDef("عظیمیه", "6a4b585e-bc15-4200-a53b-c7f314cd233e"));
+                list.Add(SetDef("فردیس", "6a4b585e-bc15-4200-a53b-c7f314cd233e"));
+                list.Add(SetDef("گلشهر", "6a4b585e-bc15-4200-a53b-c7f314cd233e"));
+                list.Add(SetDef("مارلیک", "6a4b585e-bc15-4200-a53b-c7f314cd233e"));
+                list.Add(SetDef("ملارد", "6a4b585e-bc15-4200-a53b-c7f314cd233e"));
+                list.Add(SetDef("هشتگرد", "6a4b585e-bc15-4200-a53b-c7f314cd233e"));
+                list.Add(SetDef("هفت تیر", "6a4b585e-bc15-4200-a53b-c7f314cd233e"));
+                list.Add(SetDef("ادبیات", "f152b99c-acb7-459e-841e-e83f85cf4e32"));
+                list.Add(SetDef("ارتش", "f152b99c-acb7-459e-841e-e83f85cf4e32"));
+                list.Add(SetDef("ارم", "f152b99c-acb7-459e-841e-e83f85cf4e32"));
+                list.Add(SetDef("امیرکبیر", "f152b99c-acb7-459e-841e-e83f85cf4e32"));
+                list.Add(SetDef("بعثت", "f152b99c-acb7-459e-841e-e83f85cf4e32"));
+                list.Add(SetDef("پاسارگاد", "f152b99c-acb7-459e-841e-e83f85cf4e32"));
+                list.Add(SetDef("پاسداران", "f152b99c-acb7-459e-841e-e83f85cf4e32"));
+                list.Add(SetDef("پل غدیر", "f152b99c-acb7-459e-841e-e83f85cf4e32"));
+                list.Add(SetDef("جمهوری", "f152b99c-acb7-459e-841e-e83f85cf4e32"));
+                list.Add(SetDef("چمران", "f152b99c-acb7-459e-841e-e83f85cf4e32"));
+                list.Add(SetDef("زند", "f152b99c-acb7-459e-841e-e83f85cf4e32"));
+                list.Add(SetDef("ستاد", "f152b99c-acb7-459e-841e-e83f85cf4e32"));
+                list.Add(SetDef("ستارخان", "f152b99c-acb7-459e-841e-e83f85cf4e32"));
+                list.Add(SetDef("فسا", "f152b99c-acb7-459e-841e-e83f85cf4e32"));
+                list.Add(SetDef("کازرون", "f152b99c-acb7-459e-841e-e83f85cf4e32"));
+                list.Add(SetDef("کلبه", "f152b99c-acb7-459e-841e-e83f85cf4e32"));
+                list.Add(SetDef("مرودشت", "f152b99c-acb7-459e-841e-e83f85cf4e32"));
+                list.Add(SetDef("مطهری", "f152b99c-acb7-459e-841e-e83f85cf4e32"));
+                list.Add(SetDef("نصر", "f152b99c-acb7-459e-841e-e83f85cf4e32"));
+                list.Add(SetDef("والفجر", "f152b99c-acb7-459e-841e-e83f85cf4e32"));
+                list.Add(SetDef("آذر", "03a5f19f-a1c8-468c-9729-a46e260fce0b"));
+                list.Add(SetDef("آزادگان", "03a5f19f-a1c8-468c-9729-a46e260fce0b"));
+                list.Add(SetDef("امام", "03a5f19f-a1c8-468c-9729-a46e260fce0b"));
+                list.Add(SetDef("انسجام", "03a5f19f-a1c8-468c-9729-a46e260fce0b"));
+                list.Add(SetDef("بنیاد", "03a5f19f-a1c8-468c-9729-a46e260fce0b"));
+                list.Add(SetDef("پردیسان", "03a5f19f-a1c8-468c-9729-a46e260fce0b"));
+                list.Add(SetDef("پلیس", "03a5f19f-a1c8-468c-9729-a46e260fce0b"));
+                list.Add(SetDef("پیام نور", "03a5f19f-a1c8-468c-9729-a46e260fce0b"));
+                list.Add(SetDef("توحید", "03a5f19f-a1c8-468c-9729-a46e260fce0b"));
+                list.Add(SetDef("جمهوری", "03a5f19f-a1c8-468c-9729-a46e260fce0b"));
+                list.Add(SetDef("حرم", "03a5f19f-a1c8-468c-9729-a46e260fce0b"));
+                list.Add(SetDef("دانیال", "03a5f19f-a1c8-468c-9729-a46e260fce0b"));
+                list.Add(SetDef("دورشهر", "03a5f19f-a1c8-468c-9729-a46e260fce0b"));
+                list.Add(SetDef("سالاریه", "03a5f19f-a1c8-468c-9729-a46e260fce0b"));
+                list.Add(SetDef("سمیه", "03a5f19f-a1c8-468c-9729-a46e260fce0b"));
+                list.Add(SetDef("صفائیه", "03a5f19f-a1c8-468c-9729-a46e260fce0b"));
+                list.Add(SetDef("عطاران", "03a5f19f-a1c8-468c-9729-a46e260fce0b"));
+                list.Add(SetDef("کلهری", "03a5f19f-a1c8-468c-9729-a46e260fce0b"));
+                list.Add(SetDef("گلزار", "03a5f19f-a1c8-468c-9729-a46e260fce0b"));
+                list.Add(SetDef("مدرس", "03a5f19f-a1c8-468c-9729-a46e260fce0b"));
+                list.Add(SetDef("هنرستان", "03a5f19f-a1c8-468c-9729-a46e260fce0b"));
+                return list;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                return null;
+            }
+        }
+    }
+}

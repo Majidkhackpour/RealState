@@ -160,5 +160,21 @@ namespace EntityCache.SqlServerPersistence
                 return new ReturnedSaveFuncInfo(ex);
             }
         }
+
+        public async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(T item, bool status, string tranName)
+        {
+            try
+            {
+                var ret = Mappings.Default.Map<U>(item);
+                ret.Status = status;
+                await _dbContext.SaveChangesAsync();
+                return new ReturnedSaveFuncInfo();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                return new ReturnedSaveFuncInfo(ex);
+            }
+        }
     }
 }

@@ -1,4 +1,6 @@
-﻿using Persistence.Model;
+﻿using EntityCache.Core;
+using EntityCache.SqlServerPersistence;
+using Persistence.Model;
 
 namespace EntityCache.Assistence
 {
@@ -6,7 +8,11 @@ namespace EntityCache.Assistence
     {
         private static readonly ModelContext db = new ModelContext();
 
-        //private static ICustomerGroupRepository _customerGroupRepository;
+        private static IUsersRepository _usersRepository;
+        private static IStatesRepository _statesRepository;
+        private static ICitiesRepository _citiesRepository;
+        private static IRegionsRepository _regionsRepository;
+        private static INaqzRepository _naqzRepository;
 
         public static void Dispose()
         {
@@ -18,9 +24,22 @@ namespace EntityCache.Assistence
         }
 
 
-        //public static ICustomerGroupRepository CustomerGroup => _customerGroupRepository ??
-        //                                                 (_customerGroupRepository =
-        //                                                     new CustomerGroupPersistenceRepository(db));
+        public static IUsersRepository Users => _usersRepository ??
+                                                         (_usersRepository =
+                                                             new UsersPersistenceRepository(db));
 
+        public static IStatesRepository States => _statesRepository ??
+                                                (_statesRepository =
+                                                    new StatesPersistenceRepository(db));
+        public static ICitiesRepository Cities => _citiesRepository ??
+                                                (_citiesRepository =
+                                                    new CitiesPersistenceRepository(db));
+        public static IRegionsRepository Regions => _regionsRepository ??
+                                                (_regionsRepository =
+                                                    new RegionsPersistenceRepository(db));
+
+        public static INaqzRepository Naqz => _naqzRepository ??
+                                                    (_naqzRepository =
+                                                        new NaqzPersistenceRepository(db));
     }
 }
