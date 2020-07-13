@@ -13,6 +13,14 @@ namespace EntityCache.Assistence
         private static ICitiesRepository _citiesRepository;
         private static IRegionsRepository _regionsRepository;
         private static INaqzRepository _naqzRepository;
+        private static IBuildingOptionRepository _buildingOptionRepository;
+        private static IBuildingAccountTypeRepository _buildingAccountTypeRepository;
+        private static IFloorCoverRepository _floorCoverRepository;
+        private static IKitchenServiceRepository _kitchenServiceRepository;
+        private static IDocumentTypeRepository _documentTypeRepository;
+        private static IRentalAuthorityRepository _rentalAuthorityRepository;
+        private static IBuildingViewRepository _buildingViewRepository;
+        private static IBuildingConditionRepository _buildingConditionRepository;
 
         public static void Dispose()
         {
@@ -41,5 +49,33 @@ namespace EntityCache.Assistence
         public static INaqzRepository Naqz => _naqzRepository ??
                                                     (_naqzRepository =
                                                         new NaqzPersistenceRepository(db));
+        public static IBuildingOptionRepository BuildingOption => _buildingOptionRepository ??
+                                                (_buildingOptionRepository =
+                                                    new BuildingOptionPersistenceRepository(db));
+
+        public static IBuildingAccountTypeRepository BuildingAccountType => _buildingAccountTypeRepository ??
+                                                  (_buildingAccountTypeRepository =
+                                                      new BuildingAccountTypePersistenceRepository(db));
+        public static IFloorCoverRepository FloorCover => _floorCoverRepository ??
+                                                  (_floorCoverRepository =
+                                                      new FloorCoverPersistenceRepository(db));
+        public static IKitchenServiceRepository KitchenService => _kitchenServiceRepository ??
+                                                    (_kitchenServiceRepository =
+                                                        new KitchenServicePersistenceRepository(db));
+
+        public static IDocumentTypeRepository DocumentType => _documentTypeRepository ??
+                                              (_documentTypeRepository =
+                                                  new DocumentTypePersistenceRepository(db));
+        public static IRentalAuthorityRepository RentalAuthority => _rentalAuthorityRepository ??
+                                                (_rentalAuthorityRepository =
+                                                    new RentalAuthorityPersistenceRepository(db));
+
+        public static IBuildingViewRepository BuildingView => _buildingViewRepository ??
+                                                  (_buildingViewRepository =
+                                                      new BuildingViewPersistenceRepository(db));
+        public static IBuildingConditionRepository BuildingCondition => _buildingConditionRepository ??
+                                                  (_buildingConditionRepository =
+                                                      new BuildingConditionPersistenceRepository(db));
+
     }
 }

@@ -53,10 +53,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Enums.cs" />
+    <Compile Include="Interfaces\IBuildingAccountType.cs" />
+    <Compile Include="Interfaces\IBuildingCondition.cs" />
+    <Compile Include="Interfaces\IBuildingOptions.cs" />
+    <Compile Include="Interfaces\IBuildingView.cs" />
     <Compile Include="Interfaces\ICities.cs" />
+    <Compile Include="Interfaces\IDocumentType.cs" />
+    <Compile Include="Interfaces\IFloorCover.cs" />
     <Compile Include="Interfaces\IHasGuid.cs" />
+    <Compile Include="Interfaces\IKitchenService.cs" />
     <Compile Include="Interfaces\INaqz.cs" />
     <Compile Include="Interfaces\IRegions.cs" />
+    <Compile Include="Interfaces\IRentalAuthority.cs" />
     <Compile Include="Interfaces\IStates.cs" />
     <Compile Include="Interfaces\IUsers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

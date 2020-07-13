@@ -54,11 +54,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\BuildingAccountType.cs" />
+    <Compile Include="Entities\BuildingCondition.cs" />
+    <Compile Include="Entities\BuildingOptions.cs" />
+    <Compile Include="Entities\BuildingView.cs" />
     <Compile Include="Entities\Cities.cs" />
+    <Compile Include="Entities\DocumentType.cs" />
+    <Compile Include="Entities\FloorCover.cs" />
+    <Compile Include="Entities\KitchenService.cs" />
     <Compile Include="Entities\Naqz.cs" />
     <Compile Include="Entities\Regions.cs" />
+    <Compile Include="Entities\RentalAuthority.cs" />
     <Compile Include="Entities\States.cs" />
     <Compile Include="Entities\Users.cs" />
+    <Compile Include="Migrations\202007131420071__1.cs" />
+    <Compile Include="Migrations\202007131420071__1.designer.cs">
+      <DependentUpon>202007131420071__1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\ModelContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -72,6 +84,11 @@
       <Project>{7e235f22-ae73-4698-9951-0f092ac91850}</Project>
       <Name>PacketParser</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202007131420071__1.resx">
+      <DependentUpon>202007131420071__1.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
