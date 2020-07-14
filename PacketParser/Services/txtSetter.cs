@@ -12,12 +12,21 @@ namespace PacketParser.Services
             txt.BackColor = Color.White;
             txt.ForeColor = Color.Black;
         }
-
+        public static void Focus(Label lbl)
+        {
+            
+            var colour = ColorTranslator.FromHtml("#50cbb0");
+            lbl.ForeColor = colour;
+        }
         public static void Follow(TextBox txt)
         {
-            var colour = ColorTranslator.FromHtml("#17212b");
+            var colour = ColorTranslator.FromHtml("#50cbb0");
             txt.BackColor = colour;
             txt.ForeColor = Color.White;
+        }
+        public static void Follow(Label lbl)
+        {
+            lbl.ForeColor = Color.Black;
         }
 
         public static void FocusMsk(MaskedTextBox txt)
