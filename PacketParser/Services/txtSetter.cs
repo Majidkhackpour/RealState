@@ -9,20 +9,20 @@ namespace PacketParser.Services
     {
         public static void Focus(TextBox txt)
         {
-            txt.BackColor = Color.White;
+            var colour = ColorTranslator.FromHtml("#50cbb0");
+            txt.BackColor = colour;
             txt.ForeColor = Color.Black;
         }
         public static void Focus(Label lbl)
         {
-            
             var colour = ColorTranslator.FromHtml("#50cbb0");
             lbl.ForeColor = colour;
         }
         public static void Follow(TextBox txt)
         {
-            var colour = ColorTranslator.FromHtml("#50cbb0");
-            txt.BackColor = colour;
-            txt.ForeColor = Color.White;
+            txt.BackColor = Color.White;
+            txt.ForeColor = Color.Black;
+
         }
         public static void Follow(Label lbl)
         {

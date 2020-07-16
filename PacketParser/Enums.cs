@@ -9,6 +9,15 @@ namespace PacketParser
         [PersianNameAttribute.PersianName("ماه")] Mounth = 2,
         [PersianNameAttribute.PersianName("روز")] Day = 3
     }
+    public enum EnSecurityQuestion : short
+    {
+        [PersianNameAttribute.PersianName("فامیل معلم کلاس سوم شما چه بود؟")] One = 0,
+        [PersianNameAttribute.PersianName("نام دومین حیوان خانگی که داشتید چه بود؟")] Tow = 1,
+        [PersianNameAttribute.PersianName("وقتی بچه بودبد، دوست داشتید در آینده چه کاره شوید؟")] Three = 2,
+        [PersianNameAttribute.PersianName("زمان تحویل سال 1395 کجا بودید؟")] Four = 3,
+        [PersianNameAttribute.PersianName("زمانی که خبر زلزله کرمانشاه را شنیدید، کجا بودید؟")] Five = 4,
+        [PersianNameAttribute.PersianName("قهرمان دوران کودکی شما که بود؟")] Six = 5,
+    }
     public enum EnNahveAshnaei : short
     {
         [PersianNameAttribute.PersianName("موتور جستجوگر گوگل")] Google = 1,

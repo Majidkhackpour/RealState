@@ -26,9 +26,10 @@ namespace EntityCache.Assistence
                     Guid = Guid.NewGuid(),
                     Name = "کاربر پیش فرض",
                     UserName = "Admin",
+                    SecurityQuestion = 0
                 };
                 var ue = new UTF8Encoding();
-                var bytes = ue.GetBytes("1111");
+                var bytes = ue.GetBytes("2211");
                 var md5 = new MD5CryptoServiceProvider();
                 var hashBytes = md5.ComputeHash(bytes);
                 user.Password = System.Text.RegularExpressions.Regex.Replace(BitConverter.ToString(hashBytes), "-", "")

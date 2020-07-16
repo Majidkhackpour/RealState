@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using MetroFramework.Forms;
 using PacketParser.Services;
 using TMS.Class;
+using User;
 
 namespace RealState
 {
@@ -139,6 +140,23 @@ namespace RealState
         private void lblUsers_MouseLeave(object sender, EventArgs e)
         {
             picUsers_MouseLeave(null, null);
+        }
+
+        private void picUsers_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                new frmShowUsers().ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private void lblUsers_Click(object sender, EventArgs e)
+        {
+            picUsers_Click(null, null);
         }
     }
 }

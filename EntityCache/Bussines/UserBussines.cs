@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using EntityCache.Assistence;
+using Nito.AsyncEx;
+using PacketParser;
 using PacketParser.Interfaces;
 using PacketParser.Services;
 
@@ -17,7 +19,7 @@ namespace EntityCache.Bussines
         public string UserName { get; set; }
         public string Password { get; set; }
         public string Access { get; set; }
-        public string SecurityQuestion { get; set; }
+        public EnSecurityQuestion SecurityQuestion { get; set; }
         public string AnswerQuestion { get; set; }
         public string Email { get; set; }
         public string Mobile { get; set; }
@@ -103,8 +105,11 @@ namespace EntityCache.Bussines
                     {
                         if (!string.IsNullOrEmpty(item) && item.Trim() != "")
                         {
-                            res = res.Where(x =>
-                                    x.Name.Contains(item))
+                            res = res.Where(x => (!string.IsNullOrEmpty(x.Email) && (!string.IsNullOrEmpty(x.Mobile)) &&
+                                                  (x.Name.ToLower().Contains(item.ToLower()) ||
+                                                   x.UserName.ToLower().Contains(item.ToLower()) ||
+                                                   x.Email.ToLower().Contains(item.ToLower()) ||
+                                                   x.Mobile.Contains(item))))
                                 ?.ToList();
                         }
                     }
@@ -120,5 +125,12 @@ namespace EntityCache.Bussines
                 return new List<UserBussines>();
             }
         }
+
+        public static List<UserBussines> GetAll(string search) => AsyncContext.Run(() => GetAllAsync(search));
+
+        public static UserBussines Get(Guid guid) => AsyncContext.Run(() => GetAsync(guid));
+
+        public static async Task<bool> CheckUserName(Guid guid, string userName) =>
+            await UnitOfWork.Users.CheckUserName(guid, userName);
     }
 }

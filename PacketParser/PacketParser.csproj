@@ -69,6 +69,7 @@
     <Compile Include="Interfaces\IUsers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Calendar.cs" />
+    <Compile Include="Services\CheckPerssonValidation.cs" />
     <Compile Include="Services\ContextMenuSetter.cs" />
     <Compile Include="Services\CurrencyText.cs" />
     <Compile Include="Services\Etentions.cs" />

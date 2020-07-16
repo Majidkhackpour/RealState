@@ -167,6 +167,7 @@ namespace EntityCache.SqlServerPersistence
             {
                 var ret = Mappings.Default.Map<U>(item);
                 ret.Status = status;
+                _dbContext.Set<U>().AddOrUpdate(ret);
                 await _dbContext.SaveChangesAsync();
                 return new ReturnedSaveFuncInfo();
             }
