@@ -13,6 +13,7 @@ namespace Notification
         public frmNotification()
         {
             InitializeComponent();
+            TopMost = true;
         }
         private class NestedPublicInfo
         {

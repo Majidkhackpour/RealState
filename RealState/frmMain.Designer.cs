@@ -48,11 +48,18 @@
             this.picUsers = new System.Windows.Forms.PictureBox();
             this.picBaseInfo = new System.Windows.Forms.PictureBox();
             this.pnlSubMenuBase = new DevComponents.DotNetBar.PanelEx();
+            this.lblRegion = new System.Windows.Forms.Label();
+            this.lblCities = new System.Windows.Forms.Label();
+            this.picRegion = new System.Windows.Forms.PictureBox();
+            this.picCities = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.picExit = new System.Windows.Forms.PictureBox();
             this.pnlMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picUsers)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBaseInfo)).BeginInit();
+            this.pnlSubMenuBase.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picRegion)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picCities)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picExit)).BeginInit();
             this.SuspendLayout();
@@ -236,6 +243,7 @@
             this.lblBaseInfo.Size = new System.Drawing.Size(66, 20);
             this.lblBaseInfo.TabIndex = 12;
             this.lblBaseInfo.Text = "اطلاعات پایه";
+            this.lblBaseInfo.Click += new System.EventHandler(this.lblBaseInfo_Click);
             this.lblBaseInfo.MouseEnter += new System.EventHandler(this.lblBaseInfo_MouseEnter);
             this.lblBaseInfo.MouseLeave += new System.EventHandler(this.lblBaseInfo_MouseLeave);
             // 
@@ -265,6 +273,7 @@
             this.picBaseInfo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.picBaseInfo.TabIndex = 12;
             this.picBaseInfo.TabStop = false;
+            this.picBaseInfo.Click += new System.EventHandler(this.picBaseInfo_Click);
             this.picBaseInfo.MouseEnter += new System.EventHandler(this.picBaseInfo_MouseEnter);
             this.picBaseInfo.MouseLeave += new System.EventHandler(this.picBaseInfo_MouseLeave);
             // 
@@ -274,6 +283,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlSubMenuBase.CanvasColor = System.Drawing.SystemColors.Control;
             this.pnlSubMenuBase.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.pnlSubMenuBase.Controls.Add(this.lblRegion);
+            this.pnlSubMenuBase.Controls.Add(this.lblCities);
+            this.pnlSubMenuBase.Controls.Add(this.picRegion);
+            this.pnlSubMenuBase.Controls.Add(this.picCities);
             this.pnlSubMenuBase.DisabledBackColor = System.Drawing.Color.Empty;
             this.pnlSubMenuBase.Location = new System.Drawing.Point(661, 85);
             this.pnlSubMenuBase.Name = "pnlSubMenuBase";
@@ -288,6 +301,64 @@
             this.pnlSubMenuBase.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText;
             this.pnlSubMenuBase.Style.GradientAngle = 90;
             this.pnlSubMenuBase.TabIndex = 5;
+            // 
+            // lblRegion
+            // 
+            this.lblRegion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblRegion.AutoSize = true;
+            this.lblRegion.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lblRegion.Location = new System.Drawing.Point(15, 114);
+            this.lblRegion.Name = "lblRegion";
+            this.lblRegion.Size = new System.Drawing.Size(36, 20);
+            this.lblRegion.TabIndex = 12;
+            this.lblRegion.Text = "مناطق";
+            this.lblRegion.Click += new System.EventHandler(this.lblRegion_Click);
+            this.lblRegion.MouseEnter += new System.EventHandler(this.lblRegion_MouseEnter);
+            this.lblRegion.MouseLeave += new System.EventHandler(this.lblRegion_MouseLeave);
+            // 
+            // lblCities
+            // 
+            this.lblCities.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblCities.AutoSize = true;
+            this.lblCities.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lblCities.Location = new System.Drawing.Point(12, 50);
+            this.lblCities.Name = "lblCities";
+            this.lblCities.Size = new System.Drawing.Size(39, 20);
+            this.lblCities.TabIndex = 12;
+            this.lblCities.Text = "شهرها";
+            this.lblCities.Click += new System.EventHandler(this.lblCities_Click);
+            this.lblCities.MouseEnter += new System.EventHandler(this.lblCities_MouseEnter);
+            this.lblCities.MouseLeave += new System.EventHandler(this.lblCities_MouseLeave);
+            // 
+            // picRegion
+            // 
+            this.picRegion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.picRegion.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.picRegion.Image = global::RealState.Properties.Resources.navigation;
+            this.picRegion.Location = new System.Drawing.Point(12, 73);
+            this.picRegion.Name = "picRegion";
+            this.picRegion.Size = new System.Drawing.Size(42, 39);
+            this.picRegion.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picRegion.TabIndex = 12;
+            this.picRegion.TabStop = false;
+            this.picRegion.Click += new System.EventHandler(this.picRegion_Click);
+            this.picRegion.MouseEnter += new System.EventHandler(this.picRegion_MouseEnter);
+            this.picRegion.MouseLeave += new System.EventHandler(this.picRegion_MouseLeave);
+            // 
+            // picCities
+            // 
+            this.picCities.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.picCities.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.picCities.Image = global::RealState.Properties.Resources.map;
+            this.picCities.Location = new System.Drawing.Point(10, 9);
+            this.picCities.Name = "picCities";
+            this.picCities.Size = new System.Drawing.Size(42, 39);
+            this.picCities.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picCities.TabIndex = 12;
+            this.picCities.TabStop = false;
+            this.picCities.Click += new System.EventHandler(this.picCities_Click);
+            this.picCities.MouseEnter += new System.EventHandler(this.picCities_MouseEnter);
+            this.picCities.MouseLeave += new System.EventHandler(this.picCities_MouseLeave);
             // 
             // pictureBox1
             // 
@@ -350,6 +421,10 @@
             this.pnlMenu.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picUsers)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBaseInfo)).EndInit();
+            this.pnlSubMenuBase.ResumeLayout(false);
+            this.pnlSubMenuBase.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picRegion)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picCities)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picExit)).EndInit();
             this.ResumeLayout(false);
@@ -379,6 +454,10 @@
         private System.Windows.Forms.Label lblBaseInfo;
         private System.Windows.Forms.Label lblUsers;
         private System.Windows.Forms.PictureBox picUsers;
+        private System.Windows.Forms.Label lblCities;
+        private System.Windows.Forms.PictureBox picCities;
+        private System.Windows.Forms.Label lblRegion;
+        private System.Windows.Forms.PictureBox picRegion;
     }
 }
 

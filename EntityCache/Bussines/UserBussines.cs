@@ -130,7 +130,7 @@ namespace EntityCache.Bussines
 
         public static UserBussines Get(Guid guid) => AsyncContext.Run(() => GetAsync(guid));
 
-        public static async Task<bool> CheckUserName(Guid guid, string userName) =>
-            await UnitOfWork.Users.CheckUserName(guid, userName);
+        public static async Task<bool> CheckUserNameAsync(Guid guid, string userName) =>
+            await UnitOfWork.Users.CheckUserNameAsync(guid, userName);
     }
 }

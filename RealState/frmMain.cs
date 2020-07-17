@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
+using Cities.City;
+using Cities.Region;
 using MetroFramework.Forms;
 using PacketParser.Services;
 using TMS.Class;
@@ -74,7 +76,6 @@ namespace RealState
             {
                 picBaseInfo.Image = Properties.Resources.menu_;
                 txtSetter.Focus(lblBaseInfo);
-                pnlSubMenuBase.Visible = true;
             }
             catch (Exception ex)
             {
@@ -93,7 +94,6 @@ namespace RealState
             {
                 picBaseInfo.Image = Properties.Resources.menu;
                 txtSetter.Follow(lblBaseInfo);
-                pnlSubMenuBase.Visible = false;
             }
             catch (Exception ex)
             {
@@ -157,6 +157,129 @@ namespace RealState
         private void lblUsers_Click(object sender, EventArgs e)
         {
             picUsers_Click(null, null);
+        }
+
+        private void picBaseInfo_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                pnlSubMenuBase.Visible = !pnlSubMenuBase.Visible;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private void lblBaseInfo_Click(object sender, EventArgs e)
+        {
+            picBaseInfo_Click(null, null);
+        }
+
+        private void picCities_MouseEnter(object sender, EventArgs e)
+        {
+            try
+            {
+                picCities.Image = Properties.Resources.map_;
+                txtSetter.Focus(lblCities);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private void picCities_MouseLeave(object sender, EventArgs e)
+        {
+            try
+            {
+                picCities.Image = Properties.Resources.map;
+                txtSetter.Follow(lblCities);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private void lblCities_MouseEnter(object sender, EventArgs e)
+        {
+            picCities_MouseEnter(null, null);
+        }
+
+        private void lblCities_MouseLeave(object sender, EventArgs e)
+        {
+            picCities_MouseLeave(null, null);
+        }
+
+        private void picRegion_MouseEnter(object sender, EventArgs e)
+        {
+            try
+            {
+                picRegion.Image = Properties.Resources.navigation_;
+                txtSetter.Focus(lblRegion);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private void picRegion_MouseLeave(object sender, EventArgs e)
+        {
+            try
+            {
+                picRegion.Image = Properties.Resources.navigation;
+                txtSetter.Follow(lblRegion);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private void lblRegion_MouseEnter(object sender, EventArgs e)
+        {
+            picRegion_MouseEnter(null, null);
+        }
+
+        private void lblRegion_MouseLeave(object sender, EventArgs e)
+        {
+            picRegion_MouseLeave(null, null);
+        }
+
+        private void picCities_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                new frmShowCities().ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private void lblCities_Click(object sender, EventArgs e)
+        {
+            picCities_Click(null, null);
+        }
+
+        private void picRegion_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                new frmShowRegions().ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private void lblRegion_Click(object sender, EventArgs e)
+        {
+            picRegion_Click(null, null);
         }
     }
 }

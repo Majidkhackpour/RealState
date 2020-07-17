@@ -5,19 +5,18 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{F200FD7F-ACEA-4B99-B8EF-63AC03F314DB}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
-    <RootNamespace>RealState</RootNamespace>
-    <AssemblyName>RealState</AssemblyName>
+    <ProjectGuid>{3B865C8F-F1A2-4362-8E0A-98C9139184AD}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Cities</RootNamespace>
+    <AssemblyName>Cities</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -27,7 +26,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -102,80 +100,80 @@
     <Reference Include="MetroFramework.Fonts, Version=1.4.0.0, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
       <HintPath>..\packages\MetroModernUI.1.4.0.0\lib\net\MetroFramework.Fonts.dll</HintPath>
     </Reference>
-    <Reference Include="persianCalender">
-      <HintPath>..\..\..\References\persianCalender.dll</HintPath>
-    </Reference>
-    <Reference Include="PersianDate">
-      <HintPath>..\..\..\References\PersianDate.dll</HintPath>
-    </Reference>
-    <Reference Include="PersianDateControls">
-      <HintPath>..\..\..\References\PersianDateControls.dll</HintPath>
+    <Reference Include="PacketParser">
+      <HintPath>..\..\..\References\PacketParser.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Deployment" />
-    <Reference Include="System.Drawing" />
     <Reference Include="System.Net.Http" />
-    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="frmMain.cs">
+    <Compile Include="City\frmCitiesMain.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmMain.Designer.cs">
-      <DependentUpon>frmMain.cs</DependentUpon>
+    <Compile Include="City\frmCitiesMain.Designer.cs">
+      <DependentUpon>frmCitiesMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="Program.cs" />
+    <Compile Include="City\frmShowCities.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="City\frmShowCities.Designer.cs">
+      <DependentUpon>frmShowCities.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="frmMain.resx">
-      <DependentUpon>frmMain.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <None Include="packages.config" />
-    <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
-    <Compile Include="Properties\Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Settings.settings</DependentUpon>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    <Compile Include="Region\frmRegionMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Region\frmRegionMain.Designer.cs">
+      <DependentUpon>frmRegionMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Region\frmShowRegions.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Region\frmShowRegions.Designer.cs">
+      <DependentUpon>frmShowRegions.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="packages.config" />
+    <None Include="Properties\DataSources\EntityCache.Bussines.CitiesBussines.datasource" />
+    <None Include="Properties\DataSources\EntityCache.Bussines.RegionsBussines.datasource" />
+    <None Include="Properties\DataSources\EntityCache.Bussines.StatesBussines.datasource" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="City\frmCitiesMain.resx">
+      <DependentUpon>frmCitiesMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="City\frmShowCities.resx">
+      <DependentUpon>frmShowCities.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Region\frmRegionMain.resx">
+      <DependentUpon>frmRegionMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Region\frmShowRegions.resx">
+      <DependentUpon>frmShowRegions.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\17.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Accounting\Accounting.csproj">
-      <Project>{f8a06d7c-6061-47f7-8e50-7f4ecf100cda}</Project>
-      <Name>Accounting</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Advertise\Advertise.csproj">
-      <Project>{8b34c014-5867-42f1-85c9-55ed88f3759d}</Project>
-      <Name>Advertise</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Cities\Cities.csproj">
-      <Project>{3b865c8f-f1a2-4362-8e0a-98c9139184ad}</Project>
-      <Name>Cities</Name>
-    </ProjectReference>
     <ProjectReference Include="..\EntityCache\EntityCache.csproj">
       <Project>{cc417799-f38c-4997-8491-510eb1c15f74}</Project>
       <Name>EntityCache</Name>
@@ -184,51 +182,52 @@
       <Project>{44a0f109-df64-482c-befb-df20038ee4df}</Project>
       <Name>Notification</Name>
     </ProjectReference>
-    <ProjectReference Include="..\PacketParser\PacketParser.csproj">
-      <Project>{7e235f22-ae73-4698-9951-0f092ac91850}</Project>
-      <Name>PacketParser</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Persistence\Persistence.csproj">
       <Project>{69dbdf3a-8578-44db-95cd-08a671de9e41}</Project>
       <Name>Persistence</Name>
     </ProjectReference>
-    <ProjectReference Include="..\User\User.csproj">
-      <Project>{ebed491e-32a3-4484-a5aa-e5ed61e8bb0b}</Project>
-      <Name>User</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Arad_Icon.ico" />
+    <None Include="Resources\add%281%29.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\close-icon-red.png" />
+    <None Include="Resources\add%282%29.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\BackGroud_.png" />
+    <None Include="Resources\add.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\menu.png" />
+    <None Include="Resources\article%281%29.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\menu_.png" />
+    <None Include="Resources\delete%281%29.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\notification-user_.png" />
+    <None Include="Resources\edit%281%29.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\notification-user.png" />
+    <None Include="Resources\printer.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\map_.png" />
+    <None Include="Resources\refresh-round-symbol.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\map.png" />
+    <None Include="Resources\sms-status.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\navigation.png" />
+    <None Include="Resources\tab-checkbox.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\navigation_.png" />
+    <None Include="Resources\tab-checkbox_.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tab-checkbox__.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tab-close_.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\toolbarbutton-print.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

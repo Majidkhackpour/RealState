@@ -19,7 +19,7 @@ namespace EntityCache.SqlServerPersistence
             _db = db;
         }
 
-        public async Task<bool> CheckUserName(Guid guid, string userName)
+        public async Task<bool> CheckUserNameAsync(Guid guid, string userName)
         {
             try
             {

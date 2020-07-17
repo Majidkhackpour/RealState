@@ -291,7 +291,9 @@
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(479, 430);
             this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(479, 430);
             this.Name = "frmUserMain";
             this.Padding = new System.Windows.Forms.Padding(27, 92, 27, 31);
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;

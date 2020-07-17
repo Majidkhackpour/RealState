@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "User", "User\User.csproj", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Notification", "Notification\Notification.csproj", "{44A0F109-DF64-482C-BEFB-DF20038EE4DF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cities", "Cities\Cities.csproj", "{3B865C8F-F1A2-4362-8E0A-98C9139184AD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -57,6 +59,10 @@ Global
 		{44A0F109-DF64-482C-BEFB-DF20038EE4DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{44A0F109-DF64-482C-BEFB-DF20038EE4DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{44A0F109-DF64-482C-BEFB-DF20038EE4DF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3B865C8F-F1A2-4362-8E0A-98C9139184AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B865C8F-F1A2-4362-8E0A-98C9139184AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B865C8F-F1A2-4362-8E0A-98C9139184AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B865C8F-F1A2-4362-8E0A-98C9139184AD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

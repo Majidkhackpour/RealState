@@ -176,31 +176,31 @@ namespace User
                 if (cls.Guid == Guid.Empty)
                     cls.Guid = Guid.NewGuid();
 
-                if (string.IsNullOrEmpty(txtName.Text))
+                if (string.IsNullOrWhiteSpace(txtName.Text))
                 {
                     frmNotification.PublicInfo.ShowMessage("نام و نام خانوادگی نمی تواند خالی باشد");
                     txtName.Focus();
                     return;
                 }
-                if (string.IsNullOrEmpty(txtUserName.Text))
+                if (string.IsNullOrWhiteSpace(txtUserName.Text))
                 {
                     frmNotification.PublicInfo.ShowMessage("نام کاربری نمی تواند خالی باشد");
                     txtUserName.Focus();
                     return;
                 }
-                if (!await UserBussines.CheckUserName(cls.Guid, txtUserName.Text))
+                if (!await UserBussines.CheckUserNameAsync(cls.Guid, txtUserName.Text))
                 {
                     frmNotification.PublicInfo.ShowMessage("نام کاربری تکراری می باشد");
                     txtUserName.Focus();
                     return;
                 }
-                if (string.IsNullOrEmpty(txtPass1.Text))
+                if (string.IsNullOrWhiteSpace(txtPass1.Text))
                 {
                     frmNotification.PublicInfo.ShowMessage("کلمه عبور نمی تواند خالی باشد");
                     txtPass1.Focus();
                     return;
                 }
-                if (string.IsNullOrEmpty(txtPass2.Text))
+                if (string.IsNullOrWhiteSpace(txtPass2.Text))
                 {
                     frmNotification.PublicInfo.ShowMessage("تکرار کلمه عبور نمی تواند خالی باشد");
                     txtPass2.Focus();

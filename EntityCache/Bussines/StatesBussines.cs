@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using EntityCache.Assistence;
+using Nito.AsyncEx;
 using PacketParser.Interfaces;
 using PacketParser.Services;
 
@@ -47,5 +48,11 @@ namespace EntityCache.Bussines
 
             return res;
         }
+
+        public static async Task<StatesBussines> GetAsync(Guid guid) => await UnitOfWork.States.GetAsync(guid);
+
+        public static StatesBussines Get(Guid guid) => AsyncContext.Run(() => GetAsync(guid));
+
+        public static List<StatesBussines> GetAll() => AsyncContext.Run(GetAllAsync);
     }
 }
