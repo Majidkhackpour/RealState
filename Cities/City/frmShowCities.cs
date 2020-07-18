@@ -12,12 +12,32 @@ namespace Cities.City
     public partial class frmShowCities : MetroForm
     {
         private bool _st = true;
-        private async Task LoadData(bool status, string search = "")
+
+        private async Task LoadState()
         {
             try
             {
-                var list = await CitiesBussines.GetAllAsync(search);
-                list=list.Where(q => q.Status == status).ToList();
+                var st = new StatesBussines()
+                {
+                    Name = "[همه استان ها]",
+                    Guid = Guid.Empty
+                };
+                var list = await StatesBussines.GetAllAsync();
+                list.Add(st);
+                list = list.OrderBy(q => q.Name).ToList();
+                stateBindingSource.DataSource = list;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private void LoadData(bool status, string search = "")
+        {
+            try
+            {
+                var list = CitiesBussines.GetAll(search, (Guid) cmbState.SelectedValue).Where(q => q.Status == status)
+                    .ToList();
                 CityBindingSource.DataSource =
                     list.ToSortableBindingList();
             }
@@ -52,10 +72,11 @@ namespace Cities.City
             InitializeComponent();
         }
 
-        private void frmShowCities_Load(object sender, EventArgs e)
+        private async void frmShowCities_Load(object sender, EventArgs e)
         {
             try
             {
+                await LoadState(); 
                 LoadData(ST);
             }
             catch (Exception ex)
@@ -69,11 +90,11 @@ namespace Cities.City
             DGrid.Rows[e.RowIndex].Cells["dgRadif"].Value = e.RowIndex + 1;
         }
 
-        private async void txtSearch_TextChanged(object sender, EventArgs e)
+        private void txtSearch_TextChanged(object sender, EventArgs e)
         {
             try
-            {
-                await LoadData(ST, txtSearch.Text);
+            { 
+                LoadData(ST, txtSearch.Text);
             }
             catch (Exception ex)
             {
@@ -209,6 +230,18 @@ namespace Cities.City
                 var frm = new frmCitiesMain(guid, true);
                 frm.ShowDialog();
                 LoadData(ST, txtSearch.Text);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private void cmbState_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                 LoadData(ST, txtSearch.Text);
             }
             catch (Exception ex)
             {

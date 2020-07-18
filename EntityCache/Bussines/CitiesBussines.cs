@@ -54,21 +54,24 @@ namespace EntityCache.Bussines
         }
 
 
-        public static async Task<List<CitiesBussines>> GetAllAsync(string search)
+        public static async Task<List<CitiesBussines>> GetAllAsync(string search, Guid stateGuid)
         {
             try
             {
                 if (string.IsNullOrEmpty(search))
                     search = "";
-                var res = await GetAllAsync();
+                var res = new List<CitiesBussines>();
+                if (stateGuid == Guid.Empty)
+                    res = await GetAllAsync();
+                else
+                    res = await GetAllAsync(stateGuid);
                 var searchItems = search.SplitString();
                 if (searchItems?.Count > 0)
                     foreach (var item in searchItems)
                     {
                         if (!string.IsNullOrEmpty(item) && item.Trim() != "")
                         {
-                            res = res.Where(x => (x.Name.ToLower().Contains(item.ToLower()) ||
-                                                  x.StateName.ToLower().Contains(item.ToLower())))
+                            res = res.Where(x => x.Name.ToLower().Contains(item.ToLower()))
                                 ?.ToList();
                         }
                     }
@@ -85,7 +88,6 @@ namespace EntityCache.Bussines
             }
         }
 
-        public static List<CitiesBussines> GetAll(string search) => AsyncContext.Run(() => GetAllAsync(search));
 
         public static async Task<CitiesBussines> GetAsync(Guid guid) => await UnitOfWork.Cities.GetAsync(guid);
 
@@ -160,5 +162,8 @@ namespace EntityCache.Bussines
 
         public static async Task<List<CitiesBussines>> GetAllAsync(Guid stateGuid) =>
             await UnitOfWork.Cities.GetAllAsync(stateGuid);
+
+        public static List<CitiesBussines> GetAll(string search, Guid stateGuid) =>
+            AsyncContext.Run(() => GetAllAsync(search, stateGuid));
     }
 }
