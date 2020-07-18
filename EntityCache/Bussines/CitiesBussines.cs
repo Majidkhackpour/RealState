@@ -16,7 +16,7 @@ namespace EntityCache.Bussines
         public bool Status { get; set; } = true;
         public string Name { get; set; }
         public Guid StateGuid { get; set; }
-        public string StateName => StatesBussines.Get(StateGuid).Name;
+        public string StateName => StatesBussines.Get(StateGuid)?.Name ?? "";
 
 
         public static async Task<List<CitiesBussines>> GetAllAsync() => await UnitOfWork.Cities.GetAllAsync();

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using EntityCache.Bussines;
 using MetroFramework.Forms;
@@ -11,13 +12,14 @@ namespace Cities.City
     public partial class frmShowCities : MetroForm
     {
         private bool _st = true;
-        private void LoadData(bool status, string search = "")
+        private async Task LoadData(bool status, string search = "")
         {
             try
             {
-                var list = CitiesBussines.GetAll(search).Where(q => q.Status == status).ToList();
+                var list = await CitiesBussines.GetAllAsync(search);
+                list=list.Where(q => q.Status == status).ToList();
                 CityBindingSource.DataSource =
-                    list.OrderBy(q => q.StateName).ThenBy(q => q.Name).ToSortableBindingList();
+                    list.ToSortableBindingList();
             }
             catch (Exception ex)
             {
@@ -67,11 +69,11 @@ namespace Cities.City
             DGrid.Rows[e.RowIndex].Cells["dgRadif"].Value = e.RowIndex + 1;
         }
 
-        private void txtSearch_TextChanged(object sender, EventArgs e)
+        private async void txtSearch_TextChanged(object sender, EventArgs e)
         {
             try
             {
-                LoadData(ST, txtSearch.Text);
+                await LoadData(ST, txtSearch.Text);
             }
             catch (Exception ex)
             {
