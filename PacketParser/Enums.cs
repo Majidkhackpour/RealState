@@ -9,6 +9,12 @@ namespace PacketParser
         [PersianNameAttribute.PersianName("ماه")] Mounth = 2,
         [PersianNameAttribute.PersianName("روز")] Day = 3
     }
+    public enum EnEconomyType:int
+    {
+        [PersianNameAttribute.PersianName("مشاور املاک")] Amlak = 0,
+        [PersianNameAttribute.PersianName("انبوه ساز")] AnbouhSaz = 1,
+        [PersianNameAttribute.PersianName("سایر")] Sayer = 2
+    }
     public enum EnSecurityQuestion : short
     {
         [PersianNameAttribute.PersianName("فامیل معلم کلاس سوم شما چه بود؟")] One = 0,

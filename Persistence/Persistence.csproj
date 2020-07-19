@@ -65,6 +65,7 @@
     <Compile Include="Entities\Naqz.cs" />
     <Compile Include="Entities\Regions.cs" />
     <Compile Include="Entities\RentalAuthority.cs" />
+    <Compile Include="Entities\Settings.cs" />
     <Compile Include="Entities\States.cs" />
     <Compile Include="Entities\Users.cs" />
     <Compile Include="Migrations\202007131420071__1.cs" />
@@ -74,6 +75,10 @@
     <Compile Include="Migrations\202007161506424__2.cs" />
     <Compile Include="Migrations\202007161506424__2.designer.cs">
       <DependentUpon>202007161506424__2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202007190635537__3.cs" />
+    <Compile Include="Migrations\202007190635537__3.designer.cs">
+      <DependentUpon>202007190635537__3.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\ModelContext.cs" />
@@ -95,6 +100,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202007161506424__2.resx">
       <DependentUpon>202007161506424__2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007190635537__3.resx">
+      <DependentUpon>202007190635537__3.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

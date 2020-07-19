@@ -49,6 +49,7 @@ namespace User
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
+
         public frmUserMain()
         {
             InitializeComponent();

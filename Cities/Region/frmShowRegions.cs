@@ -15,9 +15,10 @@ namespace Cities.Region
         {
             try
             {
-                var list = RegionsBussines.GetAll(search).Where(q => q.Status == status).ToList();
+                var cityGuid = Guid.Parse(SettingsBussines.EconomyCity);
+                var list = RegionsBussines.GetAll(search, cityGuid).Where(q => q.Status == status).ToList();
                 RegionBindingSource.DataSource =
-                    list.OrderBy(q => q.StateName).ThenBy(q => q.CityName).ThenBy(q => q.Name).ToSortableBindingList();
+                    list.OrderBy(q => q.Name).ToSortableBindingList();
             }
             catch (Exception ex)
             {

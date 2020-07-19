@@ -21,6 +21,7 @@ namespace EntityCache.Assistence
             CreateMap<RentalAuthorityBussines, RentalAuthority>().ReverseMap();
             CreateMap<BuildingViewBussines, BuildingView>().ReverseMap();
             CreateMap<BuildingConditionBussines, BuildingCondition>().ReverseMap();
+            CreateMap<SettingsBussines, Settings>().ReverseMap();
         }
     }
 }

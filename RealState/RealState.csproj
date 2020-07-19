@@ -192,6 +192,10 @@
       <Project>{69dbdf3a-8578-44db-95cd-08a671de9e41}</Project>
       <Name>Persistence</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Settings\Settings.csproj">
+      <Project>{5005cb62-16e0-4240-9a2d-8001adc9d990}</Project>
+      <Name>Settings</Name>
+    </ProjectReference>
     <ProjectReference Include="..\User\User.csproj">
       <Project>{ebed491e-32a3-4484-a5aa-e5ed61e8bb0b}</Project>
       <Name>User</Name>

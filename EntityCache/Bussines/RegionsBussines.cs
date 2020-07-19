@@ -58,22 +58,22 @@ namespace EntityCache.Bussines
 
         public static RegionsBussines Get(Guid guid) => AsyncContext.Run(() => GetAsync(guid));
 
-        public static async Task<List<RegionsBussines>> GetAllAsync(string search)
+        public static async Task<List<RegionsBussines>> GetAllAsync(string search,Guid cityGuid)
         {
             try
             {
-                if (string.IsNullOrEmpty(search))
-                    search = "";
-                var res = await GetAllAsync();
+                if (string.IsNullOrEmpty(search))  search = "";
+                var res=new List<RegionsBussines>();
+                if (cityGuid == Guid.Empty)
+                    res = await GetAllAsync();
+                else res = await GetAllAsync(cityGuid);
                 var searchItems = search.SplitString();
                 if (searchItems?.Count > 0)
                     foreach (var item in searchItems)
                     {
                         if (!string.IsNullOrEmpty(item) && item.Trim() != "")
                         {
-                            res = res.Where(x => (x.Name.ToLower().Contains(item.ToLower()) ||
-                                                  x.StateName.ToLower().Contains(item.ToLower()) ||
-                                                  x.CityName.ToLower().Contains(item.ToLower())))
+                            res = res.Where(x => x.Name.ToLower().Contains(item.ToLower()))
                                 ?.ToList();
                         }
                     }
@@ -90,7 +90,8 @@ namespace EntityCache.Bussines
             }
         }
 
-        public static List<RegionsBussines> GetAll(string search) => AsyncContext.Run(() => GetAllAsync(search));
+        public static List<RegionsBussines> GetAll(string search, Guid cityGuid) =>
+            AsyncContext.Run(() => GetAllAsync(search, cityGuid));
         public async Task<ReturnedSaveFuncInfo> SaveAsync(string tranName = "")
         {
             var res = new ReturnedSaveFuncInfo();
@@ -152,6 +153,9 @@ namespace EntityCache.Bussines
 
             return res;
         }
+
+        public static async Task<List<RegionsBussines>> GetAllAsync(Guid cityGuid) =>
+            await UnitOfWork.Regions.GetAllAsync(cityGuid);
 
     }
 }
