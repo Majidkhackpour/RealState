@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using Building.BuildingOptions;
 using Cities.City;
 using Cities.Region;
 using MetroFramework.Forms;
@@ -280,6 +281,59 @@ namespace RealState
         private void lblRegion_Click(object sender, EventArgs e)
         {
             picRegion_Click(null, null);
+        }
+
+        private void picBuildingOptions_MouseEnter(object sender, EventArgs e)
+        {
+            try
+            {
+                picBuildingOptions.Image = Properties.Resources.house_;
+                txtSetter.Focus(lblBuildingOptions);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private void picBuildingOptions_MouseLeave(object sender, EventArgs e)
+        {
+            try
+            {
+                picBuildingOptions.Image = Properties.Resources.house;
+                txtSetter.Follow(lblBuildingOptions);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private void picBuildingOptions_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                new frmShowBuildingOption().ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private void lblBuildingOptions_Click(object sender, EventArgs e)
+        {
+            picBuildingOptions_Click(null, null);
+        }
+
+        private void lblBuildingOptions_MouseEnter(object sender, EventArgs e)
+        {
+            picBuildingOptions_MouseEnter(null, null);
+        }
+
+        private void lblBuildingOptions_MouseLeave(object sender, EventArgs e)
+        {
+            picBuildingOptions_MouseLeave(null, null);
         }
     }
 }

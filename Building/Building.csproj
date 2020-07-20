@@ -5,11 +5,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{5005CB62-16E0-4240-9A2D-8001ADC9D990}</ProjectGuid>
+    <ProjectGuid>{ABA5AF2F-9908-48DE-9B75-53520A5B7970}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Settings</RootNamespace>
-    <AssemblyName>Settings</AssemblyName>
+    <RootNamespace>Building</RootNamespace>
+    <AssemblyName>Building</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -37,55 +37,51 @@
     <Reference Include="AutoMapper, Version=10.0.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
       <HintPath>..\packages\AutoMapper.10.0.0\lib\net461\AutoMapper.dll</HintPath>
     </Reference>
-    <Reference Include="DevComponents.Charts.Design, Version=14.1.0.35, Culture=neutral, PublicKeyToken=90f470f34c89ccaf, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="DevComponents.Charts.Design">
       <HintPath>..\..\..\References\DevComponents.Charts.Design.dll</HintPath>
     </Reference>
-    <Reference Include="DevComponents.DotNetBar.Charts, Version=14.1.0.35, Culture=neutral, PublicKeyToken=7eb7c3a35b91de04, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="DevComponents.DotNetBar.Charts">
       <HintPath>..\..\..\References\DevComponents.DotNetBar.Charts.dll</HintPath>
     </Reference>
-    <Reference Include="DevComponents.DotNetBar.Design, Version=14.1.0.35, Culture=neutral, PublicKeyToken=90f470f34c89ccaf, processorArchitecture=MSIL">
+    <Reference Include="DevComponents.DotNetBar.Design, Version=10.4.0.1, Culture=neutral, PublicKeyToken=90f470f34c89ccaf, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\References\DevComponents.DotNetBar.Design.dll</HintPath>
     </Reference>
-    <Reference Include="DevComponents.DotNetBar.Keyboard, Version=14.1.0.35, Culture=neutral, PublicKeyToken=7eb7c3a35b91de04, processorArchitecture=MSIL">
+    <Reference Include="DevComponents.DotNetBar.Keyboard, Version=10.4.0.1, Culture=neutral, PublicKeyToken=7eb7c3a35b91de04, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\References\DevComponents.DotNetBar.Keyboard.dll</HintPath>
     </Reference>
-    <Reference Include="DevComponents.DotNetBar.Layout, Version=14.1.0.35, Culture=neutral, PublicKeyToken=7eb7c3a35b91de04, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="DevComponents.DotNetBar.Layout">
       <HintPath>..\..\..\References\DevComponents.DotNetBar.Layout.dll</HintPath>
     </Reference>
-    <Reference Include="DevComponents.DotNetBar.Layout.Design, Version=14.1.0.35, Culture=neutral, PublicKeyToken=7eb7c3a35b91de04, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="DevComponents.DotNetBar.Layout.Design">
       <HintPath>..\..\..\References\DevComponents.DotNetBar.Layout.Design.dll</HintPath>
     </Reference>
-    <Reference Include="DevComponents.DotNetBar.Schedule, Version=14.1.0.35, Culture=neutral, PublicKeyToken=7eb7c3a35b91de04, processorArchitecture=MSIL">
+    <Reference Include="DevComponents.DotNetBar.Schedule, Version=10.4.0.1, Culture=neutral, PublicKeyToken=7eb7c3a35b91de04, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\References\DevComponents.DotNetBar.Schedule.dll</HintPath>
     </Reference>
-    <Reference Include="DevComponents.DotNetBar.SuperGrid, Version=14.1.0.35, Culture=neutral, PublicKeyToken=7eb7c3a35b91de04, processorArchitecture=MSIL">
+    <Reference Include="DevComponents.DotNetBar.SuperGrid, Version=10.4.0.1, Culture=neutral, PublicKeyToken=7eb7c3a35b91de04, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\References\DevComponents.DotNetBar.SuperGrid.dll</HintPath>
     </Reference>
-    <Reference Include="DevComponents.DotNetBar2, Version=14.1.0.35, Culture=neutral, PublicKeyToken=7eb7c3a35b91de04, processorArchitecture=MSIL">
+    <Reference Include="DevComponents.DotNetBar2, Version=10.4.0.1, Culture=neutral, PublicKeyToken=7eb7c3a35b91de04, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\References\DevComponents.DotNetBar2.dll</HintPath>
     </Reference>
-    <Reference Include="DevComponents.Instrumentation, Version=14.1.0.35, Culture=neutral, PublicKeyToken=f90dc37c26666a67, processorArchitecture=MSIL">
+    <Reference Include="DevComponents.Instrumentation, Version=10.4.0.1, Culture=neutral, PublicKeyToken=f90dc37c26666a67, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\References\DevComponents.Instrumentation.dll</HintPath>
     </Reference>
-    <Reference Include="DevComponents.Instrumentation.Design, Version=14.1.0.35, Culture=neutral, PublicKeyToken=76cb4c6eb576bca5, processorArchitecture=MSIL">
+    <Reference Include="DevComponents.Instrumentation.Design, Version=10.4.0.1, Culture=neutral, PublicKeyToken=76cb4c6eb576bca5, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\References\DevComponents.Instrumentation.Design.dll</HintPath>
     </Reference>
-    <Reference Include="DevComponents.SuperGrid.Design, Version=14.1.0.35, Culture=neutral, PublicKeyToken=26d81176cfa2b486, processorArchitecture=MSIL">
+    <Reference Include="DevComponents.SuperGrid.Design, Version=10.4.0.1, Culture=neutral, PublicKeyToken=26d81176cfa2b486, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\References\DevComponents.SuperGrid.Design.dll</HintPath>
     </Reference>
-    <Reference Include="DevComponents.TreeGX, Version=14.1.0.35, Culture=neutral, PublicKeyToken=055db68f670cfeab, processorArchitecture=MSIL">
+    <Reference Include="DevComponents.TreeGX, Version=10.4.0.1, Culture=neutral, PublicKeyToken=055db68f670cfeab, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\References\DevComponents.TreeGX.dll</HintPath>
     </Reference>
@@ -117,11 +113,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="frmEconomyUnit.cs">
+    <Compile Include="BuildingOptions\frmBuildingOptions.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmEconomyUnit.Designer.cs">
-      <DependentUpon>frmEconomyUnit.cs</DependentUpon>
+    <Compile Include="BuildingOptions\frmBuildingOptions.Designer.cs">
+      <DependentUpon>frmBuildingOptions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BuildingOptions\frmShowBuildingOption.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BuildingOptions\frmShowBuildingOption.Designer.cs">
+      <DependentUpon>frmShowBuildingOption.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -133,14 +135,16 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-    <None Include="Properties\DataSources\EntityCache.Bussines.CitiesBussines.datasource" />
-    <None Include="Properties\DataSources\EntityCache.Bussines.RegionsBussines.datasource" />
-    <None Include="Properties\DataSources\EntityCache.Bussines.StatesBussines.datasource" />
+    <None Include="Properties\DataSources\EntityCache.Bussines.BuildingConditionBussines.datasource" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\EntityCache\EntityCache.csproj">
       <Project>{cc417799-f38c-4997-8491-510eb1c15f74}</Project>
       <Name>EntityCache</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Notification\Notification.csproj">
+      <Project>{44a0f109-df64-482c-befb-df20038ee4df}</Project>
+      <Name>Notification</Name>
     </ProjectReference>
     <ProjectReference Include="..\PacketParser\PacketParser.csproj">
       <Project>{7e235f22-ae73-4698-9951-0f092ac91850}</Project>
@@ -152,8 +156,11 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="frmEconomyUnit.resx">
-      <DependentUpon>frmEconomyUnit.cs</DependentUpon>
+    <EmbeddedResource Include="BuildingOptions\frmBuildingOptions.resx">
+      <DependentUpon>frmBuildingOptions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BuildingOptions\frmShowBuildingOption.resx">
+      <DependentUpon>frmShowBuildingOption.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -161,11 +168,48 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add%281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add%282%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\article%281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\delete%281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\edit%281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\printer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\refresh-round-symbol.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sms-status.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tab-checkbox.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tab-checkbox_.png" />
+  </ItemGroup>
+  <ItemGroup>
     <None Include="Resources\tab-checkbox__.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\tab-close_.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\toolbarbutton-print.png" />
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

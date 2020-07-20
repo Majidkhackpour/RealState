@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace RealState.Properties {
+namespace Building.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace RealState.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("RealState.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Building.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -63,9 +63,9 @@ namespace RealState.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap _17 {
+        internal static System.Drawing.Bitmap add {
             get {
-                object obj = ResourceManager.GetObject("17", resourceCulture);
+                object obj = ResourceManager.GetObject("add", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -73,9 +73,9 @@ namespace RealState.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Arad_Icon {
+        internal static System.Drawing.Bitmap add_1_ {
             get {
-                object obj = ResourceManager.GetObject("Arad_Icon", resourceCulture);
+                object obj = ResourceManager.GetObject("add_1_", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -83,9 +83,9 @@ namespace RealState.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap BackGroud_ {
+        internal static System.Drawing.Bitmap add_2_ {
             get {
-                object obj = ResourceManager.GetObject("BackGroud_", resourceCulture);
+                object obj = ResourceManager.GetObject("add_2_", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -93,9 +93,9 @@ namespace RealState.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap close_icon_red {
+        internal static System.Drawing.Bitmap article_1_ {
             get {
-                object obj = ResourceManager.GetObject("close-icon-red", resourceCulture);
+                object obj = ResourceManager.GetObject("article_1_", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -103,9 +103,9 @@ namespace RealState.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap house {
+        internal static System.Drawing.Bitmap delete_1_ {
             get {
-                object obj = ResourceManager.GetObject("house", resourceCulture);
+                object obj = ResourceManager.GetObject("delete_1_", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -113,9 +113,9 @@ namespace RealState.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap house_ {
+        internal static System.Drawing.Bitmap edit_1_ {
             get {
-                object obj = ResourceManager.GetObject("house_", resourceCulture);
+                object obj = ResourceManager.GetObject("edit_1_", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -123,9 +123,9 @@ namespace RealState.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap map {
+        internal static System.Drawing.Bitmap printer {
             get {
-                object obj = ResourceManager.GetObject("map", resourceCulture);
+                object obj = ResourceManager.GetObject("printer", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -133,9 +133,9 @@ namespace RealState.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap map_ {
+        internal static System.Drawing.Bitmap refresh_round_symbol {
             get {
-                object obj = ResourceManager.GetObject("map_", resourceCulture);
+                object obj = ResourceManager.GetObject("refresh_round_symbol", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -143,9 +143,9 @@ namespace RealState.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap menu {
+        internal static System.Drawing.Bitmap sms_status {
             get {
-                object obj = ResourceManager.GetObject("menu", resourceCulture);
+                object obj = ResourceManager.GetObject("sms_status", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -153,9 +153,9 @@ namespace RealState.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap menu_ {
+        internal static System.Drawing.Bitmap tab_checkbox {
             get {
-                object obj = ResourceManager.GetObject("menu_", resourceCulture);
+                object obj = ResourceManager.GetObject("tab_checkbox", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -163,9 +163,9 @@ namespace RealState.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap navigation {
+        internal static System.Drawing.Bitmap tab_checkbox_ {
             get {
-                object obj = ResourceManager.GetObject("navigation", resourceCulture);
+                object obj = ResourceManager.GetObject("tab_checkbox_", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -173,9 +173,9 @@ namespace RealState.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap navigation_ {
+        internal static System.Drawing.Bitmap tab_checkbox__ {
             get {
-                object obj = ResourceManager.GetObject("navigation_", resourceCulture);
+                object obj = ResourceManager.GetObject("tab_checkbox__", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -183,9 +183,9 @@ namespace RealState.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap notification_user {
+        internal static System.Drawing.Bitmap tab_close_ {
             get {
-                object obj = ResourceManager.GetObject("notification_user", resourceCulture);
+                object obj = ResourceManager.GetObject("tab_close_", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -193,9 +193,9 @@ namespace RealState.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap notification_user_ {
+        internal static System.Drawing.Bitmap toolbarButton_print {
             get {
-                object obj = ResourceManager.GetObject("notification_user_", resourceCulture);
+                object obj = ResourceManager.GetObject("toolbarButton_print", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

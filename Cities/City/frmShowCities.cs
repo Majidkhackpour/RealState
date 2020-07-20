@@ -126,6 +126,9 @@ namespace Cities.City
                     case Keys.Escape:
                         Close();
                         break;
+                    case Keys.F:
+                        if (e.Control) txtSearch.Focus();
+                        break;
                 }
             }
             catch (Exception ex)

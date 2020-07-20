@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmEconomyUnit));
             this.btnFinish = new DevComponents.DotNetBar.ButtonX();
             this.txtManagerName = new System.Windows.Forms.TextBox();
@@ -45,12 +44,12 @@
             this.btnCancel = new DevComponents.DotNetBar.ButtonX();
             this.grp = new DevComponents.DotNetBar.PanelEx();
             this.cmbRegion = new System.Windows.Forms.ComboBox();
-            this.RegionBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.RegionBindingSource = new System.Windows.Forms.BindingSource();
             this.cmbCity = new System.Windows.Forms.ComboBox();
-            this.CityBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.CityBindingSource = new System.Windows.Forms.BindingSource();
             this.label13 = new System.Windows.Forms.Label();
             this.cmbState = new System.Windows.Forms.ComboBox();
-            this.StateBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.StateBindingSource = new System.Windows.Forms.BindingSource();
             this.label12 = new System.Windows.Forms.Label();
             this.txtEmail = new System.Windows.Forms.TextBox();
             this.txtMobile = new System.Windows.Forms.TextBox();
@@ -73,6 +72,7 @@
             this.btnFinish.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnFinish.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnFinish.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnFinish.Image = global::Settings.Properties.Resources.tab_checkbox__;
             this.btnFinish.Location = new System.Drawing.Point(326, 628);
             this.btnFinish.Name = "btnFinish";
             this.btnFinish.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
@@ -198,6 +198,7 @@
             this.btnCancel.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnCancel.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnCancel.Image = global::Settings.Properties.Resources.tab_close_;
             this.btnCancel.Location = new System.Drawing.Point(26, 628);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
@@ -411,6 +412,10 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(474, 666);
+            this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(474, 666);
             this.Name = "frmEconomyUnit";
             this.Padding = new System.Windows.Forms.Padding(27, 92, 27, 31);
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;

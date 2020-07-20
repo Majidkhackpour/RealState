@@ -48,8 +48,10 @@
             this.picUsers = new System.Windows.Forms.PictureBox();
             this.picBaseInfo = new System.Windows.Forms.PictureBox();
             this.pnlSubMenuBase = new DevComponents.DotNetBar.PanelEx();
+            this.lblBuildingOptions = new System.Windows.Forms.Label();
             this.lblRegion = new System.Windows.Forms.Label();
             this.lblCities = new System.Windows.Forms.Label();
+            this.picBuildingOptions = new System.Windows.Forms.PictureBox();
             this.picRegion = new System.Windows.Forms.PictureBox();
             this.picCities = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -58,6 +60,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.picUsers)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBaseInfo)).BeginInit();
             this.pnlSubMenuBase.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picBuildingOptions)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picRegion)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picCities)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -283,8 +286,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlSubMenuBase.CanvasColor = System.Drawing.SystemColors.Control;
             this.pnlSubMenuBase.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.pnlSubMenuBase.Controls.Add(this.lblBuildingOptions);
             this.pnlSubMenuBase.Controls.Add(this.lblRegion);
             this.pnlSubMenuBase.Controls.Add(this.lblCities);
+            this.pnlSubMenuBase.Controls.Add(this.picBuildingOptions);
             this.pnlSubMenuBase.Controls.Add(this.picRegion);
             this.pnlSubMenuBase.Controls.Add(this.picCities);
             this.pnlSubMenuBase.DisabledBackColor = System.Drawing.Color.Empty;
@@ -301,6 +306,20 @@
             this.pnlSubMenuBase.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText;
             this.pnlSubMenuBase.Style.GradientAngle = 90;
             this.pnlSubMenuBase.TabIndex = 5;
+            // 
+            // lblBuildingOptions
+            // 
+            this.lblBuildingOptions.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblBuildingOptions.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lblBuildingOptions.Location = new System.Drawing.Point(6, 178);
+            this.lblBuildingOptions.Name = "lblBuildingOptions";
+            this.lblBuildingOptions.Size = new System.Drawing.Size(54, 42);
+            this.lblBuildingOptions.TabIndex = 12;
+            this.lblBuildingOptions.Text = "امکانات ملک";
+            this.lblBuildingOptions.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.lblBuildingOptions.Click += new System.EventHandler(this.lblBuildingOptions_Click);
+            this.lblBuildingOptions.MouseEnter += new System.EventHandler(this.lblBuildingOptions_MouseEnter);
+            this.lblBuildingOptions.MouseLeave += new System.EventHandler(this.lblBuildingOptions_MouseLeave);
             // 
             // lblRegion
             // 
@@ -329,6 +348,21 @@
             this.lblCities.Click += new System.EventHandler(this.lblCities_Click);
             this.lblCities.MouseEnter += new System.EventHandler(this.lblCities_MouseEnter);
             this.lblCities.MouseLeave += new System.EventHandler(this.lblCities_MouseLeave);
+            // 
+            // picBuildingOptions
+            // 
+            this.picBuildingOptions.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.picBuildingOptions.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.picBuildingOptions.Image = global::RealState.Properties.Resources.house;
+            this.picBuildingOptions.Location = new System.Drawing.Point(12, 137);
+            this.picBuildingOptions.Name = "picBuildingOptions";
+            this.picBuildingOptions.Size = new System.Drawing.Size(42, 39);
+            this.picBuildingOptions.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picBuildingOptions.TabIndex = 12;
+            this.picBuildingOptions.TabStop = false;
+            this.picBuildingOptions.Click += new System.EventHandler(this.picBuildingOptions_Click);
+            this.picBuildingOptions.MouseEnter += new System.EventHandler(this.picBuildingOptions_MouseEnter);
+            this.picBuildingOptions.MouseLeave += new System.EventHandler(this.picBuildingOptions_MouseLeave);
             // 
             // picRegion
             // 
@@ -423,6 +457,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.picBaseInfo)).EndInit();
             this.pnlSubMenuBase.ResumeLayout(false);
             this.pnlSubMenuBase.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picBuildingOptions)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picRegion)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picCities)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -458,6 +493,8 @@
         private System.Windows.Forms.PictureBox picCities;
         private System.Windows.Forms.Label lblRegion;
         private System.Windows.Forms.PictureBox picRegion;
+        private System.Windows.Forms.Label lblBuildingOptions;
+        private System.Windows.Forms.PictureBox picBuildingOptions;
     }
 }
 
