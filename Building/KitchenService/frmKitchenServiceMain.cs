@@ -5,11 +5,11 @@ using MetroFramework.Forms;
 using Notification;
 using PacketParser.Services;
 
-namespace Building.BuildingOptions
+namespace Building.KitchenService
 {
-    public partial class frmBuildingOptions : MetroForm
+    public partial class frmKitchenServiceMain : MetroForm
     {
-        private BuildingOptionsBussines cls;
+        private KitchenServiceBussines cls;
         private void SetData()
         {
             try
@@ -21,15 +21,15 @@ namespace Building.BuildingOptions
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        public frmBuildingOptions()
+        public frmKitchenServiceMain()
         {
             InitializeComponent();
-            cls = new BuildingOptionsBussines();
+            cls = new KitchenServiceBussines();
         }
-        public frmBuildingOptions(Guid guid, bool isShowMode)
+        public frmKitchenServiceMain(Guid guid, bool isShowMode)
         {
             InitializeComponent();
-            cls = BuildingOptionsBussines.Get(guid);
+            cls = KitchenServiceBussines.Get(guid);
             grp.Enabled = !isShowMode;
             btnFinish.Enabled = !isShowMode;
         }
@@ -44,7 +44,7 @@ namespace Building.BuildingOptions
             txtSetter.Follow(txtName);
         }
 
-        private void frmBuildingOptions_Load(object sender, EventArgs e)
+        private void frmKitchenServiceMain_Load(object sender, EventArgs e)
         {
             SetData();
         }
@@ -55,7 +55,7 @@ namespace Building.BuildingOptions
             Close();
         }
 
-        private void frmBuildingOptions_KeyDown(object sender, KeyEventArgs e)
+        private void frmKitchenServiceMain_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
@@ -90,7 +90,7 @@ namespace Building.BuildingOptions
                     return;
                 }
 
-                if (!await BuildingOptionsBussines.CheckNameAsync(txtName.Text.Trim(), cls.Guid))
+                if (!await KitchenServiceBussines.CheckNameAsync(txtName.Text.Trim(), cls.Guid))
                 {
                     frmNotification.PublicInfo.ShowMessage("عنوان وارد شده تکراری است");
                     txtName.Focus();

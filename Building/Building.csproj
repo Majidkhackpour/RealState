@@ -113,6 +113,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BuildingAccountType\frmBuildingAccountType.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BuildingAccountType\frmBuildingAccountType.Designer.cs">
+      <DependentUpon>frmBuildingAccountType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BuildingAccountType\frmShowBuildingAccountType.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BuildingAccountType\frmShowBuildingAccountType.Designer.cs">
+      <DependentUpon>frmShowBuildingAccountType.cs</DependentUpon>
+    </Compile>
     <Compile Include="BuildingOptions\frmBuildingOptions.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -125,6 +137,36 @@
     <Compile Include="BuildingOptions\frmShowBuildingOption.Designer.cs">
       <DependentUpon>frmShowBuildingOption.cs</DependentUpon>
     </Compile>
+    <Compile Include="DocumentType\frmShowDocumentType.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DocumentType\frmShowDocumentType.Designer.cs">
+      <DependentUpon>frmShowDocumentType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FloorCover\frmFloorCoverMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FloorCover\frmFloorCoverMain.Designer.cs">
+      <DependentUpon>frmFloorCoverMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FloorCover\frmShowFloorCover.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FloorCover\frmShowFloorCover.Designer.cs">
+      <DependentUpon>frmShowFloorCover.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KitchenService\frmKitchenServiceMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="KitchenService\frmKitchenServiceMain.Designer.cs">
+      <DependentUpon>frmKitchenServiceMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KitchenService\frmShowKitchenService.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="KitchenService\frmShowKitchenService.Designer.cs">
+      <DependentUpon>frmShowKitchenService.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -135,6 +177,7 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\EntityCache.Bussines.BuildingAccountTypeBussines.datasource" />
     <None Include="Properties\DataSources\EntityCache.Bussines.BuildingConditionBussines.datasource" />
   </ItemGroup>
   <ItemGroup>
@@ -156,11 +199,32 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="BuildingAccountType\frmBuildingAccountType.resx">
+      <DependentUpon>frmBuildingAccountType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BuildingAccountType\frmShowBuildingAccountType.resx">
+      <DependentUpon>frmShowBuildingAccountType.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="BuildingOptions\frmBuildingOptions.resx">
       <DependentUpon>frmBuildingOptions.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="BuildingOptions\frmShowBuildingOption.resx">
       <DependentUpon>frmShowBuildingOption.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DocumentType\frmShowDocumentType.resx">
+      <DependentUpon>frmShowDocumentType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FloorCover\frmFloorCoverMain.resx">
+      <DependentUpon>frmFloorCoverMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FloorCover\frmShowFloorCover.resx">
+      <DependentUpon>frmShowFloorCover.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="KitchenService\frmKitchenServiceMain.resx">
+      <DependentUpon>frmKitchenServiceMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="KitchenService\frmShowKitchenService.resx">
+      <DependentUpon>frmShowKitchenService.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -168,6 +232,9 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Properties\DataSources\EntityCache.Bussines.BuildingOptionsBussines.datasource" />
+    <None Include="Properties\DataSources\EntityCache.Bussines.FloorCoverBussines.datasource" />
+    <None Include="Properties\DataSources\EntityCache.Bussines.KitchenServiceBussines.datasource" />
     <None Include="Resources\add.png" />
   </ItemGroup>
   <ItemGroup>

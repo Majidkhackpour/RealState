@@ -244,6 +244,66 @@
   <ItemGroup>
     <None Include="Resources\house_.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\crane.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\crane_.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\kitchen%281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\kitchen%281%29_.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\kitchen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\kitchen_.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tourism.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tourism_.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\villa.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\villa_.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\company.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\company_.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\floor.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\floor_.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\more.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\more_.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\upload.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\down-arrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\upload_.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\down-arrow_.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

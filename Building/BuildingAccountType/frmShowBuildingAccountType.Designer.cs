@@ -1,6 +1,6 @@
-﻿namespace Building.BuildingOptions
+﻿namespace Building.BuildingAccountType
 {
-    partial class frmShowBuildingOption
+    partial class frmShowBuildingAccountType
     {
         /// <summary>
         /// Required designer variable.
@@ -34,11 +34,11 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmShowBuildingOption));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmShowBuildingAccountType));
             this.btnView = new DevComponents.DotNetBar.ButtonX();
             this.btnChangeStatus = new DevComponents.DotNetBar.ButtonX();
             this.txtSearch = new DevComponents.DotNetBar.Controls.TextBoxX();
-            this.BOBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.BACBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.btnDelete = new DevComponents.DotNetBar.ButtonX();
             this.btnInsert = new DevComponents.DotNetBar.ButtonX();
             this.btnEdit = new DevComponents.DotNetBar.ButtonX();
@@ -49,7 +49,7 @@
             this.dgGuid = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.modifiedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.statusDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            ((System.ComponentModel.ISupportInitialize)(this.BOBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BACBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).BeginInit();
             this.SuspendLayout();
             // 
@@ -67,7 +67,7 @@
             this.btnView.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
             this.btnView.Size = new System.Drawing.Size(125, 31);
             this.btnView.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
-            this.btnView.TabIndex = 55730;
+            this.btnView.TabIndex = 55738;
             this.btnView.Text = "مشاهده (F12)";
             this.btnView.TextColor = System.Drawing.Color.Black;
             this.btnView.Click += new System.EventHandler(this.btnView_Click);
@@ -86,7 +86,7 @@
             this.btnChangeStatus.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
             this.btnChangeStatus.Size = new System.Drawing.Size(125, 31);
             this.btnChangeStatus.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
-            this.btnChangeStatus.TabIndex = 55732;
+            this.btnChangeStatus.TabIndex = 55740;
             this.btnChangeStatus.Text = "غیرفعال (Ctrl+S)";
             this.btnChangeStatus.TextColor = System.Drawing.Color.Black;
             this.btnChangeStatus.Click += new System.EventHandler(this.btnChangeStatus_Click);
@@ -105,14 +105,14 @@
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.PreventEnterBeep = true;
             this.txtSearch.Size = new System.Drawing.Size(701, 27);
-            this.txtSearch.TabIndex = 55729;
+            this.txtSearch.TabIndex = 55737;
             this.txtSearch.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtSearch.WatermarkText = "مورد جستجو را وارد نمایید ...";
             this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
             // 
-            // BOBindingSource
+            // BACBindingSource
             // 
-            this.BOBindingSource.DataSource = typeof(EntityCache.Bussines.BuildingOptionsBussines);
+            this.BACBindingSource.DataSource = typeof(EntityCache.Bussines.BuildingAccountTypeBussines);
             // 
             // btnDelete
             // 
@@ -128,7 +128,7 @@
             this.btnDelete.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
             this.btnDelete.Size = new System.Drawing.Size(125, 31);
             this.btnDelete.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
-            this.btnDelete.TabIndex = 55731;
+            this.btnDelete.TabIndex = 55739;
             this.btnDelete.Text = "حذف (Del)";
             this.btnDelete.TextColor = System.Drawing.Color.Black;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
@@ -147,7 +147,7 @@
             this.btnInsert.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
             this.btnInsert.Size = new System.Drawing.Size(125, 31);
             this.btnInsert.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
-            this.btnInsert.TabIndex = 55733;
+            this.btnInsert.TabIndex = 55741;
             this.btnInsert.Text = "افزودن (Ins)";
             this.btnInsert.TextColor = System.Drawing.Color.Black;
             this.btnInsert.Click += new System.EventHandler(this.btnInsert_Click);
@@ -166,7 +166,7 @@
             this.btnEdit.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
             this.btnEdit.Size = new System.Drawing.Size(125, 31);
             this.btnEdit.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
-            this.btnEdit.TabIndex = 55734;
+            this.btnEdit.TabIndex = 55742;
             this.btnEdit.Text = "ویرایش (F7)";
             this.btnEdit.TextColor = System.Drawing.Color.Black;
             this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
@@ -178,7 +178,7 @@
             this.line1.Location = new System.Drawing.Point(0, 538);
             this.line1.Name = "line1";
             this.line1.Size = new System.Drawing.Size(799, 23);
-            this.line1.TabIndex = 55727;
+            this.line1.TabIndex = 55735;
             this.line1.Text = "line1";
             this.line1.Thickness = 2;
             // 
@@ -214,7 +214,7 @@
             this.dgGuid,
             this.modifiedDataGridViewTextBoxColumn,
             this.statusDataGridViewCheckBoxColumn});
-            this.DGrid.DataSource = this.BOBindingSource;
+            this.DGrid.DataSource = this.BACBindingSource;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
             dataGridViewCellStyle3.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
@@ -247,7 +247,7 @@
             this.DGrid.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             this.DGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DGrid.Size = new System.Drawing.Size(795, 468);
-            this.DGrid.TabIndex = 55728;
+            this.DGrid.TabIndex = 55736;
             this.DGrid.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DGrid_CellFormatting);
             // 
             // dgRadif
@@ -285,7 +285,7 @@
             this.statusDataGridViewCheckBoxColumn.Name = "statusDataGridViewCheckBoxColumn";
             this.statusDataGridViewCheckBoxColumn.Visible = false;
             // 
-            // frmShowBuildingOption
+            // frmShowBuildingAccountType
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -303,24 +303,25 @@
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.MinimumSize = new System.Drawing.Size(800, 600);
-            this.Name = "frmShowBuildingOption";
+            this.Name = "frmShowBuildingAccountType";
             this.Padding = new System.Windows.Forms.Padding(27, 92, 27, 31);
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.Style = MetroFramework.MetroColorStyle.Green;
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.Load += new System.EventHandler(this.frmShowBuildingOption_Load);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmShowBuildingOption_KeyDown);
-            ((System.ComponentModel.ISupportInitialize)(this.BOBindingSource)).EndInit();
+            this.Load += new System.EventHandler(this.frmShowBuildingAccountType_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmShowBuildingAccountType_KeyDown);
+            ((System.ComponentModel.ISupportInitialize)(this.BACBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
+
         private DevComponents.DotNetBar.ButtonX btnView;
         private DevComponents.DotNetBar.ButtonX btnChangeStatus;
         private DevComponents.DotNetBar.Controls.TextBoxX txtSearch;
-        private System.Windows.Forms.BindingSource BOBindingSource;
+        private System.Windows.Forms.BindingSource BACBindingSource;
         private DevComponents.DotNetBar.ButtonX btnDelete;
         private DevComponents.DotNetBar.ButtonX btnInsert;
         private DevComponents.DotNetBar.ButtonX btnEdit;

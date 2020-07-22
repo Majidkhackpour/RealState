@@ -1,6 +1,10 @@
 ﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
+using Building.BuildingAccountType;
 using Building.BuildingOptions;
+using Building.FloorCover;
+using Building.KitchenService;
 using Cities.City;
 using Cities.Region;
 using MetroFramework.Forms;
@@ -334,6 +338,170 @@ namespace RealState
         private void lblBuildingOptions_MouseLeave(object sender, EventArgs e)
         {
             picBuildingOptions_MouseLeave(null, null);
+        }
+
+        private void picAccountType_MouseEnter(object sender, EventArgs e)
+        {
+            try
+            {
+                picAccountType.Image = Properties.Resources.company_;
+                txtSetter.Focus(lblAccountType);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private void picAccountType_MouseLeave(object sender, EventArgs e)
+        {
+            try
+            {
+                picAccountType.Image = Properties.Resources.company;
+                txtSetter.Follow(lblAccountType);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private void picAccountType_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                new frmShowBuildingAccountType().ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private void lblAccountType_Click(object sender, EventArgs e)
+        {
+            picAccountType_Click(null, null);
+        }
+
+        private void lblAccountType_MouseEnter(object sender, EventArgs e)
+        {
+            picAccountType_MouseEnter(null, null);
+        }
+
+        private void lblAccountType_MouseLeave(object sender, EventArgs e)
+        {
+            picAccountType_MouseLeave(null, null);
+        }
+
+        private void picFloor_MouseEnter(object sender, EventArgs e)
+        {
+            try
+            {
+                picFloor.Image = Properties.Resources.floor_;
+                txtSetter.Focus(lblFloor);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private void picFloor_MouseLeave(object sender, EventArgs e)
+        {
+            try
+            {
+                picFloor.Image = Properties.Resources.floor;
+                txtSetter.Follow(lblFloor);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private void picFloor_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                new frmShowFloorCover().ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private void lblFloor_Click(object sender, EventArgs e)
+        {
+            picFloor_Click(null, null);
+        }
+
+        private void lblFloor_MouseEnter(object sender, EventArgs e)
+        {
+            picFloor_MouseEnter(null, null);
+        }
+
+        private void lblFloor_MouseLeave(object sender, EventArgs e)
+        {
+            picFloor_MouseLeave(null, null);
+        }
+
+        private void picKitchen_MouseEnter(object sender, EventArgs e)
+        {
+            try
+            {
+                picKitchen.Image = Properties.Resources.kitchen_1__;
+                txtSetter.Focus(lblKitchen);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private void picKitchen_MouseLeave(object sender, EventArgs e)
+        {
+            try
+            {
+                picKitchen.Image = Properties.Resources.kitchen_1_;
+                txtSetter.Follow(lblKitchen);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private void picKitchen_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                new frmShowKitchenService().ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private void lblKitchen_MouseEnter(object sender, EventArgs e)
+        {
+            picKitchen_MouseEnter(null, null);
+        }
+
+        private void lblKitchen_MouseLeave(object sender, EventArgs e)
+        {
+            picKitchen_MouseLeave(null, null);
+        }
+
+        private void lblKitchen_Click(object sender, EventArgs e)
+        {
+            picKitchen_Click(null, null);
+        }
+
+        private void frmMain_Resize(object sender, EventArgs e)
+        {
+
         }
     }
 }
