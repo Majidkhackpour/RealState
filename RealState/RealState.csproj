@@ -164,6 +164,10 @@
     <None Include="Resources\17.jpg" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\BackUpDLL\BackUpDLL\BackUpDLL\BackUpDLL.csproj">
+      <Project>{f4b6a615-693a-41d4-b980-d40381404231}</Project>
+      <Name>BackUpDLL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Accounting\Accounting.csproj">
       <Project>{f8a06d7c-6061-47f7-8e50-7f4ecf100cda}</Project>
       <Name>Accounting</Name>
@@ -183,6 +187,10 @@
     <ProjectReference Include="..\EntityCache\EntityCache.csproj">
       <Project>{cc417799-f38c-4997-8491-510eb1c15f74}</Project>
       <Name>EntityCache</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Ertegha\Ertegha.csproj">
+      <Project>{5da0bf3c-deb8-4075-aa1b-8f5a17e17823}</Project>
+      <Name>Ertegha</Name>
     </ProjectReference>
     <ProjectReference Include="..\Notification\Notification.csproj">
       <Project>{44a0f109-df64-482c-befb-df20038ee4df}</Project>

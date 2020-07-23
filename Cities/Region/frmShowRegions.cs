@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 using EntityCache.Bussines;
@@ -15,8 +16,15 @@ namespace Cities.Region
         {
             try
             {
-                var cityGuid = Guid.Parse(SettingsBussines.EconomyCity);
-                var list = RegionsBussines.GetAll(search, cityGuid).Where(q => q.Status == status).ToList();
+                var list = new List<RegionsBussines>();
+                if (rbtnMyRegion.Checked)
+                {
+                    var cityGuid = Guid.Parse(SettingsBussines.EconomyCity); 
+                    list = RegionsBussines.GetAll(search, cityGuid).Where(q => q.Status == status).ToList();
+                }
+                else if (rbtnAll.Checked)
+                    list = RegionsBussines.GetAll(search, Guid.Empty).Where(q => q.Status == status).ToList();
+                
                 RegionBindingSource.DataSource =
                     list.OrderBy(q => q.Name).ToSortableBindingList();
             }
@@ -49,6 +57,7 @@ namespace Cities.Region
         public frmShowRegions()
         {
             InitializeComponent();
+            rbtnMyRegion.Checked = true;
         }
 
         private void frmShowRegions_Load(object sender, EventArgs e)
@@ -203,6 +212,30 @@ namespace Cities.Region
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
                 var frm = new frmRegionMain(guid, true);
                 frm.ShowDialog();
+                LoadData(ST, txtSearch.Text);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private void rbtnAll_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                LoadData(ST, txtSearch.Text);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private void rbtnMyRegion_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
                 LoadData(ST, txtSearch.Text);
             }
             catch (Exception ex)

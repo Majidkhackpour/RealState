@@ -41,13 +41,28 @@ namespace EntityCache.SqlServerPersistence
             try
             {
                 var acc = db.Cities.AsNoTracking()
-                    .Where(q => q.StateGuid == stateGuid )
+                    .Where(q => q.StateGuid == stateGuid)
                     .ToList();
                 return Mappings.Default.Map<List<CitiesBussines>>(acc);
             }
             catch (Exception exception)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(exception);
+                return null;
+            }
+        }
+
+        public async Task<List<CitiesBussines>> GetAllAsyncBySp()
+        {
+            try
+            {
+                var res = db.Database.SqlQuery<CitiesBussines>("sp_Cities_SelectAll");
+                var a = await res.ToListAsync();
+                return a;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
                 return null;
             }
         }

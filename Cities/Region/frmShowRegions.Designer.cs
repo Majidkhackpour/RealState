@@ -53,6 +53,8 @@
             this.statusDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.cityGuidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cityDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.rbtnAll = new System.Windows.Forms.RadioButton();
+            this.rbtnMyRegion = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.RegionBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).BeginInit();
             this.SuspendLayout();
@@ -180,7 +182,7 @@
             this.txtSearch.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.PreventEnterBeep = true;
-            this.txtSearch.Size = new System.Drawing.Size(701, 27);
+            this.txtSearch.Size = new System.Drawing.Size(499, 27);
             this.txtSearch.TabIndex = 55721;
             this.txtSearch.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtSearch.WatermarkText = "مورد جستجو را وارد نمایید ...";
@@ -324,11 +326,41 @@
             this.cityDataGridViewTextBoxColumn.ReadOnly = true;
             this.cityDataGridViewTextBoxColumn.Visible = false;
             // 
+            // rbtnAll
+            // 
+            this.rbtnAll.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.rbtnAll.AutoSize = true;
+            this.rbtnAll.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.rbtnAll.Location = new System.Drawing.Point(678, 35);
+            this.rbtnAll.Name = "rbtnAll";
+            this.rbtnAll.Size = new System.Drawing.Size(107, 24);
+            this.rbtnAll.TabIndex = 55727;
+            this.rbtnAll.TabStop = true;
+            this.rbtnAll.Text = "همه مناطق کشور";
+            this.rbtnAll.UseVisualStyleBackColor = true;
+            this.rbtnAll.CheckedChanged += new System.EventHandler(this.rbtnAll_CheckedChanged);
+            // 
+            // rbtnMyRegion
+            // 
+            this.rbtnMyRegion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.rbtnMyRegion.AutoSize = true;
+            this.rbtnMyRegion.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.rbtnMyRegion.Location = new System.Drawing.Point(565, 35);
+            this.rbtnMyRegion.Name = "rbtnMyRegion";
+            this.rbtnMyRegion.Size = new System.Drawing.Size(103, 24);
+            this.rbtnMyRegion.TabIndex = 55727;
+            this.rbtnMyRegion.TabStop = true;
+            this.rbtnMyRegion.Text = "مناطق استان من";
+            this.rbtnMyRegion.UseVisualStyleBackColor = true;
+            this.rbtnMyRegion.CheckedChanged += new System.EventHandler(this.rbtnMyRegion_CheckedChanged);
+            // 
             // frmShowRegions
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 600);
+            this.Controls.Add(this.rbtnMyRegion);
+            this.Controls.Add(this.rbtnAll);
             this.Controls.Add(this.btnView);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnInsert);
@@ -352,6 +384,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.RegionBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -375,5 +408,7 @@
         private System.Windows.Forms.DataGridViewCheckBoxColumn statusDataGridViewCheckBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn cityGuidDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn cityDataGridViewTextBoxColumn;
+        private System.Windows.Forms.RadioButton rbtnAll;
+        private System.Windows.Forms.RadioButton rbtnMyRegion;
     }
 }

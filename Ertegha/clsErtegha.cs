@@ -1,0 +1,28 @@
+﻿using System;
+using System.Data.SqlClient;
+using System.Threading.Tasks;
+using PacketParser.Services;
+
+namespace Ertegha
+{
+    public class clsErtegha
+    {
+        public static async Task<ReturnedSaveFuncInfo> StartErteghaAsync()
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                var cn = new SqlConnection(Settings.AppSettings.DefaultConnectionString);
+                res.AddReturnedValue(await BackUpDLL.RunScript.RunAsync(Properties.Resources.Ertegha, cn));
+                res.ThrowExceptionIfError();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+
+            return res;
+        }
+    }
+}

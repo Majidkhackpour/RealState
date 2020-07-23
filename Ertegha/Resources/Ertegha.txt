@@ -1,0 +1,52 @@
+IF NOT EXISTS (SELECT * FROM sys.foreign_keys WHERE object_id = OBJECT_ID(N'[dbo].[FK_Cities_States]') AND parent_object_id = OBJECT_ID(N'[dbo].[Cities]'))
+ALTER TABLE [dbo].[Cities]  WITH CHECK ADD  CONSTRAINT [FK_Cities_States] FOREIGN KEY([StateGuid])
+REFERENCES [dbo].[States] ([Guid])
+GO
+
+IF NOT EXISTS (SELECT * FROM sys.foreign_keys WHERE object_id = OBJECT_ID(N'[dbo].[FK_Regions_States]') AND parent_object_id = OBJECT_ID(N'[dbo].[Regions]'))
+ALTER TABLE [dbo].[Regions]  WITH CHECK ADD  CONSTRAINT [FK_Regions_States] FOREIGN KEY([CityGuid])
+REFERENCES [dbo].[Cities] ([Guid])
+GO
+
+-- ==========================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Cities_SelectAll]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Cities_SelectAll]	As Begin print 11 end')
+GO
+
+ALTER PROCEDURE [dbo].[sp_Cities_SelectAll] 
+AS
+BEGIN
+	select Cities.*,States.Name As StateName
+	from Cities inner join States 
+	on Cities.StateGuid=States.Guid
+	order by StateName, Cities.Name
+END
+GO
+-- ==========================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Regions_SelectAll]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Regions_SelectAll]	As Begin print 11 end')
+GO
+
+ALTER PROCEDURE [dbo].[sp_Regions_SelectAll] 
+AS
+BEGIN
+	select Regions.*,Cities.Name As CityName,States.Name As StateName
+	from Regions left outer join Cities on Regions.CityGuid=Cities.Guid
+	inner join States on Cities.StateGuid=States.Guid
+	order by StateName,CityName
+END
+GO
+-- ==========================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Regions_SelectAllByCityGuid]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Regions_SelectAllByCityGuid]	As Begin print 11 end')
+GO
+ALTER PROCEDURE [dbo].[sp_Regions_SelectAllByCityGuid] 
+	@cityGuid uniqueidentifier
+AS
+BEGIN
+	select Regions.*,Cities.Name As CityName,States.Name As StateName
+	from Regions inner join Cities on Regions.CityGuid=Cities.Guid
+	inner join States on Cities.StateGuid=States.Guid
+	where Regions.CityGuid=@cityGuid
+	order by StateName,CityName
+END

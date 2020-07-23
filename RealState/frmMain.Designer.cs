@@ -73,6 +73,8 @@
             this.picBuildingView = new System.Windows.Forms.PictureBox();
             this.picRental = new System.Windows.Forms.PictureBox();
             this.picDocType = new System.Windows.Forms.PictureBox();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.mnuRunScript = new System.Windows.Forms.ToolStripMenuItem();
             this.pnlMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picUsers)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBaseInfo)).BeginInit();
@@ -92,6 +94,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.picBuildingView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picRental)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picDocType)).BeginInit();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // line1
@@ -702,12 +705,29 @@
             this.picDocType.MouseEnter += new System.EventHandler(this.picDocType_MouseEnter);
             this.picDocType.MouseLeave += new System.EventHandler(this.picDocType_MouseLeave);
             // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnuRunScript});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 50);
+            // 
+            // mnuRunScript
+            // 
+            this.mnuRunScript.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.mnuRunScript.Name = "mnuRunScript";
+            this.mnuRunScript.Size = new System.Drawing.Size(180, 24);
+            this.mnuRunScript.Text = "بازسازی اطلاعات";
+            this.mnuRunScript.Click += new System.EventHandler(this.mnuRunScript_Click);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(800, 600);
+            this.ContextMenuStrip = this.contextMenuStrip1;
             this.Controls.Add(this.pnlSubMenuBase2);
             this.Controls.Add(this.pnlSubMenuBase);
             this.Controls.Add(this.pnlMenu);
@@ -758,6 +778,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.picBuildingView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picRental)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picDocType)).EndInit();
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -808,6 +829,8 @@
         private System.Windows.Forms.PictureBox picRental;
         private System.Windows.Forms.PictureBox picDocType;
         private System.Windows.Forms.PictureBox picReverse;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem mnuRunScript;
     }
 }
 

@@ -8,6 +8,7 @@ using Building.FloorCover;
 using Building.KitchenService;
 using Cities.City;
 using Cities.Region;
+using Ertegha;
 using MetroFramework.Forms;
 using PacketParser.Services;
 using TMS.Class;
@@ -640,6 +641,27 @@ namespace RealState
         private void lblDocType_Click(object sender, EventArgs e)
         {
             picDocType_Click(null, null);
+        }
+
+        private async void mnuRunScript_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var res = await clsErtegha.StartErteghaAsync();
+                if (!res.HasError)
+                {
+                    MessageBox.Show("بازسازی اطلاعات با موفقیت انجام شد", "پیغام سیستم", MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+                    return;
+                }
+
+                MessageBox.Show("خطا در بازسازی اطلاعات", "پیغام سیستم", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
         }
     }
 }

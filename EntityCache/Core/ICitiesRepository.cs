@@ -9,5 +9,6 @@ namespace EntityCache.Core
     {
         Task<bool> CheckNameAsync(Guid stateGuid, string name, Guid guid);
         Task<List<CitiesBussines>> GetAllAsync(Guid stateGuid);
+        Task<List<CitiesBussines>> GetAllAsyncBySp();
     }
 }

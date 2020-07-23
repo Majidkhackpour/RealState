@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 using EntityCache.Assistence;
@@ -24,14 +25,29 @@ namespace EntityCache.SqlServerPersistence
         {
             try
             {
-                var acc = db.Regions.AsNoTracking()
-                    .Where(q => q.CityGuid == cityGuid)
-                    .ToList();
-                return Mappings.Default.Map<List<RegionsBussines>>(acc);
+                var ctGuid = new SqlParameter("@cityGuid", cityGuid);
+                var res = db.Database.SqlQuery<RegionsBussines>("sp_Regions_SelectAllByCityGuid @cityGuid", ctGuid);
+                var a = await res.ToListAsync();
+                return a;
             }
             catch (Exception exception)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(exception);
+                return null;
+            }
+        }
+
+        public async Task<List<RegionsBussines>> GetAllAsyncBySp()
+        {
+            try
+            {
+                var res = db.Database.SqlQuery<RegionsBussines>("sp_Regions_SelectAll");
+                var a = await res.ToListAsync();
+                return a;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
                 return null;
             }
         }

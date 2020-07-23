@@ -16,11 +16,11 @@ namespace EntityCache.Bussines
         public bool Status { get; set; } = true;
         public string Name { get; set; }
         public Guid CityGuid { get; set; }
+        public string StateName { get; set; }
+        public string CityName { get; set; }
         public CitiesBussines City => CitiesBussines.Get(CityGuid);
-        public string StateName => City.StateName;
-        public string CityName => City.Name;
 
-        public static async Task<List<RegionsBussines>> GetAllAsync() => await UnitOfWork.Regions.GetAllAsync();
+        public static async Task<List<RegionsBussines>> GetAllAsync() => await UnitOfWork.Regions.GetAllAsyncBySp();
 
         public static async Task<ReturnedSaveFuncInfo> SaveRangeAsync(List<RegionsBussines> list,
             string tranName = "")
@@ -73,12 +73,13 @@ namespace EntityCache.Bussines
                     {
                         if (!string.IsNullOrEmpty(item) && item.Trim() != "")
                         {
-                            res = res.Where(x => x.Name.ToLower().Contains(item.ToLower()))
+                            res = res.Where(x => x.Name.ToLower().Contains(item.ToLower())||
+                                                 x.CityName.ToLower().Contains(item.ToLower())||
+                                                 x.StateName.ToLower().Contains(item.ToLower()))
                                 ?.ToList();
                         }
                     }
 
-                res = res?.OrderBy(o => o.Name).ToList();
                 return res;
             }
             catch (OperationCanceledException)

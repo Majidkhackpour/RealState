@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using EntityCache.Assistence;
+﻿using EntityCache.Assistence;
 using Nito.AsyncEx;
 using PacketParser.Interfaces;
 using PacketParser.Services;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace EntityCache.Bussines
 {
@@ -16,10 +16,10 @@ namespace EntityCache.Bussines
         public bool Status { get; set; } = true;
         public string Name { get; set; }
         public Guid StateGuid { get; set; }
-        public string StateName => StatesBussines.Get(StateGuid)?.Name ?? "";
+        public string StateName { get; set; }
 
 
-        public static async Task<List<CitiesBussines>> GetAllAsync() => await UnitOfWork.Cities.GetAllAsync();
+        public static async Task<List<CitiesBussines>> GetAllAsync() => await UnitOfWork.Cities.GetAllAsyncBySp();
 
         public static async Task<ReturnedSaveFuncInfo> SaveRangeAsync(List<CitiesBussines> list,
             string tranName = "")
@@ -71,12 +71,12 @@ namespace EntityCache.Bussines
                     {
                         if (!string.IsNullOrEmpty(item) && item.Trim() != "")
                         {
-                            res = res.Where(x => x.Name.ToLower().Contains(item.ToLower()))
+                            res = res.Where(x => x.Name.ToLower().Contains(item.ToLower()) ||
+                                                 x.StateName.ToLower().Contains(item.ToLower()))
                                 ?.ToList();
                         }
                     }
 
-                res = res?.OrderBy(o => o.Name).ToList();
                 return res;
             }
             catch (OperationCanceledException)
