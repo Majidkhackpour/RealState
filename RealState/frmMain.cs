@@ -3,6 +3,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using Building.BuildingAccountType;
 using Building.BuildingOptions;
+using Building.DocumentType;
 using Building.FloorCover;
 using Building.KitchenService;
 using Cities.City;
@@ -16,6 +17,7 @@ namespace RealState
 {
     public partial class frmMain : MetroForm
     {
+        private bool _baseInfoSetter = false;
         private void SetClock()
         {
             try
@@ -55,10 +57,14 @@ namespace RealState
         {
             lblSecond.Visible = true;
             pnlSubMenuBase.Visible = false;
+            pnlSubMenuBase2.Visible = false;
             var tt = new ToolTip();
             tt.SetToolTip(picExit, "خروج");
+            tt.SetToolTip(picMore, "ادامه لیست");
+            tt.SetToolTip(picReverse, "بازگشت به صفحه قبل");
             SetClock();
             SetCalendar();
+
         }
 
         private void picExit_Click(object sender, System.EventArgs e)
@@ -168,7 +174,17 @@ namespace RealState
         {
             try
             {
-                pnlSubMenuBase.Visible = !pnlSubMenuBase.Visible;
+                if (!_baseInfoSetter)
+                {
+                    pnlSubMenuBase.Visible = true;
+                    _baseInfoSetter = true;
+                }
+                else
+                {
+                    pnlSubMenuBase.Visible = false;
+                    pnlSubMenuBase2.Visible = false;
+                    _baseInfoSetter = false;
+                }
             }
             catch (Exception ex)
             {
@@ -499,9 +515,131 @@ namespace RealState
             picKitchen_Click(null, null);
         }
 
-        private void frmMain_Resize(object sender, EventArgs e)
+        private void picMore_MouseEnter(object sender, EventArgs e)
         {
+            try
+            {
+                picMore.Image = Properties.Resources.down_arrow_;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
 
+        private void picMore_MouseLeave(object sender, EventArgs e)
+        {
+            try
+            {
+                picMore.Image = Properties.Resources.down_arrow;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private void picReverse_MouseEnter(object sender, EventArgs e)
+        {
+            try
+            {
+                picReverse.Image = Properties.Resources.upload_;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private void picReverse_MouseLeave(object sender, EventArgs e)
+        {
+            try
+            {
+                picReverse.Image = Properties.Resources.upload;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private void picMore_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                pnlSubMenuBase.Visible = false;
+                pnlSubMenuBase2.Visible = true;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private void picReverse_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                pnlSubMenuBase.Visible = true;
+                pnlSubMenuBase2.Visible = false;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private void picDocType_MouseEnter(object sender, EventArgs e)
+        {
+            try
+            {
+                picDocType.Image = Properties.Resources.archived_;
+                txtSetter.Focus(lblDocType);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private void picDocType_MouseLeave(object sender, EventArgs e)
+        {
+            try
+            {
+                picDocType.Image = Properties.Resources.archived;
+                txtSetter.Follow(lblDocType);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private void picDocType_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                new frmShowDocumentType().ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private void lblDocType_MouseEnter(object sender, EventArgs e)
+        {
+            picDocType_MouseEnter(null, null);
+        }
+
+        private void lblDocType_MouseLeave(object sender, EventArgs e)
+        {
+            picDocType_MouseLeave(null, null);
+        }
+
+        private void lblDocType_Click(object sender, EventArgs e)
+        {
+            picDocType_Click(null, null);
         }
     }
 }

@@ -304,6 +304,12 @@
   <ItemGroup>
     <None Include="Resources\down-arrow_.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\archived.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\archived_.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

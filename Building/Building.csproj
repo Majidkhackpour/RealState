@@ -137,6 +137,12 @@
     <Compile Include="BuildingOptions\frmShowBuildingOption.Designer.cs">
       <DependentUpon>frmShowBuildingOption.cs</DependentUpon>
     </Compile>
+    <Compile Include="DocumentType\frmDocumentTypeMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DocumentType\frmDocumentTypeMain.Designer.cs">
+      <DependentUpon>frmDocumentTypeMain.cs</DependentUpon>
+    </Compile>
     <Compile Include="DocumentType\frmShowDocumentType.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -211,6 +217,9 @@
     <EmbeddedResource Include="BuildingOptions\frmShowBuildingOption.resx">
       <DependentUpon>frmShowBuildingOption.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="DocumentType\frmDocumentTypeMain.resx">
+      <DependentUpon>frmDocumentTypeMain.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DocumentType\frmShowDocumentType.resx">
       <DependentUpon>frmShowDocumentType.cs</DependentUpon>
     </EmbeddedResource>
@@ -233,6 +242,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\DataSources\EntityCache.Bussines.BuildingOptionsBussines.datasource" />
+    <None Include="Properties\DataSources\EntityCache.Bussines.DocumentTypeBussines.datasource" />
     <None Include="Properties\DataSources\EntityCache.Bussines.FloorCoverBussines.datasource" />
     <None Include="Properties\DataSources\EntityCache.Bussines.KitchenServiceBussines.datasource" />
     <None Include="Resources\add.png" />

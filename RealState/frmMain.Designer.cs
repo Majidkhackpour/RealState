@@ -48,6 +48,7 @@
             this.picUsers = new System.Windows.Forms.PictureBox();
             this.picBaseInfo = new System.Windows.Forms.PictureBox();
             this.pnlSubMenuBase = new DevComponents.DotNetBar.PanelEx();
+            this.picMore = new System.Windows.Forms.PictureBox();
             this.lblKitchen = new System.Windows.Forms.Label();
             this.lblFloor = new System.Windows.Forms.Label();
             this.lblAccountType = new System.Windows.Forms.Label();
@@ -62,10 +63,10 @@
             this.picCities = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.picExit = new System.Windows.Forms.PictureBox();
-            this.picMore = new System.Windows.Forms.PictureBox();
             this.picBuildingCondition = new System.Windows.Forms.PictureBox();
             this.lblBuildingCondition = new System.Windows.Forms.Label();
-            this.grpSubMenuBase2 = new DevComponents.DotNetBar.PanelEx();
+            this.pnlSubMenuBase2 = new DevComponents.DotNetBar.PanelEx();
+            this.picReverse = new System.Windows.Forms.PictureBox();
             this.lblBuildingView = new System.Windows.Forms.Label();
             this.lblRental = new System.Windows.Forms.Label();
             this.lblDocType = new System.Windows.Forms.Label();
@@ -76,6 +77,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.picUsers)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBaseInfo)).BeginInit();
             this.pnlSubMenuBase.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picMore)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picKitchen)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picFloor)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picAccountType)).BeginInit();
@@ -84,9 +86,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.picCities)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picExit)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picMore)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBuildingCondition)).BeginInit();
-            this.grpSubMenuBase2.SuspendLayout();
+            this.pnlSubMenuBase2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picReverse)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBuildingView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picRental)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picDocType)).BeginInit();
@@ -339,6 +341,21 @@
             this.pnlSubMenuBase.Style.GradientAngle = 90;
             this.pnlSubMenuBase.TabIndex = 5;
             // 
+            // picMore
+            // 
+            this.picMore.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.picMore.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.picMore.Image = global::RealState.Properties.Resources.down_arrow;
+            this.picMore.Location = new System.Drawing.Point(22, 444);
+            this.picMore.Name = "picMore";
+            this.picMore.Size = new System.Drawing.Size(27, 28);
+            this.picMore.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picMore.TabIndex = 12;
+            this.picMore.TabStop = false;
+            this.picMore.Click += new System.EventHandler(this.picMore_Click);
+            this.picMore.MouseEnter += new System.EventHandler(this.picMore_MouseEnter);
+            this.picMore.MouseLeave += new System.EventHandler(this.picMore_MouseLeave);
+            // 
             // lblKitchen
             // 
             this.lblKitchen.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -536,24 +553,12 @@
             this.picExit.TabStop = false;
             this.picExit.Click += new System.EventHandler(this.picExit_Click);
             // 
-            // picMore
-            // 
-            this.picMore.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.picMore.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.picMore.Image = global::RealState.Properties.Resources.more;
-            this.picMore.Location = new System.Drawing.Point(14, 440);
-            this.picMore.Name = "picMore";
-            this.picMore.Size = new System.Drawing.Size(40, 26);
-            this.picMore.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.picMore.TabIndex = 12;
-            this.picMore.TabStop = false;
-            // 
             // picBuildingCondition
             // 
             this.picBuildingCondition.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.picBuildingCondition.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.picBuildingCondition.Image = global::RealState.Properties.Resources._17;
-            this.picBuildingCondition.Location = new System.Drawing.Point(14, 206);
+            this.picBuildingCondition.Image = global::RealState.Properties.Resources.crane;
+            this.picBuildingCondition.Location = new System.Drawing.Point(12, 248);
             this.picBuildingCondition.Name = "picBuildingCondition";
             this.picBuildingCondition.Size = new System.Drawing.Size(42, 39);
             this.picBuildingCondition.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -567,7 +572,7 @@
             // 
             this.lblBuildingCondition.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblBuildingCondition.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.lblBuildingCondition.Location = new System.Drawing.Point(8, 247);
+            this.lblBuildingCondition.Location = new System.Drawing.Point(6, 289);
             this.lblBuildingCondition.Name = "lblBuildingCondition";
             this.lblBuildingCondition.Size = new System.Drawing.Size(54, 22);
             this.lblBuildingCondition.TabIndex = 12;
@@ -577,40 +582,56 @@
             this.lblBuildingCondition.MouseEnter += new System.EventHandler(this.lblKitchen_MouseEnter);
             this.lblBuildingCondition.MouseLeave += new System.EventHandler(this.lblKitchen_MouseLeave);
             // 
-            // grpSubMenuBase2
+            // pnlSubMenuBase2
             // 
-            this.grpSubMenuBase2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.pnlSubMenuBase2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.grpSubMenuBase2.CanvasColor = System.Drawing.SystemColors.Control;
-            this.grpSubMenuBase2.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.grpSubMenuBase2.Controls.Add(this.lblBuildingView);
-            this.grpSubMenuBase2.Controls.Add(this.lblRental);
-            this.grpSubMenuBase2.Controls.Add(this.lblDocType);
-            this.grpSubMenuBase2.Controls.Add(this.picBuildingView);
-            this.grpSubMenuBase2.Controls.Add(this.picRental);
-            this.grpSubMenuBase2.Controls.Add(this.picDocType);
-            this.grpSubMenuBase2.Controls.Add(this.lblBuildingCondition);
-            this.grpSubMenuBase2.Controls.Add(this.picBuildingCondition);
-            this.grpSubMenuBase2.DisabledBackColor = System.Drawing.Color.Empty;
-            this.grpSubMenuBase2.Location = new System.Drawing.Point(590, 85);
-            this.grpSubMenuBase2.Name = "grpSubMenuBase2";
-            this.grpSubMenuBase2.Size = new System.Drawing.Size(65, 481);
-            this.grpSubMenuBase2.Style.Alignment = System.Drawing.StringAlignment.Center;
-            this.grpSubMenuBase2.Style.BackColor1.Color = System.Drawing.Color.White;
-            this.grpSubMenuBase2.Style.BackColor2.Color = System.Drawing.Color.White;
-            this.grpSubMenuBase2.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
-            this.grpSubMenuBase2.Style.BorderColor.Color = System.Drawing.Color.Silver;
-            this.grpSubMenuBase2.Style.BorderWidth = 2;
-            this.grpSubMenuBase2.Style.CornerType = DevComponents.DotNetBar.eCornerType.Rounded;
-            this.grpSubMenuBase2.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText;
-            this.grpSubMenuBase2.Style.GradientAngle = 90;
-            this.grpSubMenuBase2.TabIndex = 5;
+            this.pnlSubMenuBase2.CanvasColor = System.Drawing.SystemColors.Control;
+            this.pnlSubMenuBase2.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.pnlSubMenuBase2.Controls.Add(this.picReverse);
+            this.pnlSubMenuBase2.Controls.Add(this.lblBuildingView);
+            this.pnlSubMenuBase2.Controls.Add(this.lblRental);
+            this.pnlSubMenuBase2.Controls.Add(this.lblDocType);
+            this.pnlSubMenuBase2.Controls.Add(this.picBuildingView);
+            this.pnlSubMenuBase2.Controls.Add(this.picRental);
+            this.pnlSubMenuBase2.Controls.Add(this.picDocType);
+            this.pnlSubMenuBase2.Controls.Add(this.lblBuildingCondition);
+            this.pnlSubMenuBase2.Controls.Add(this.picBuildingCondition);
+            this.pnlSubMenuBase2.DisabledBackColor = System.Drawing.Color.Empty;
+            this.pnlSubMenuBase2.Location = new System.Drawing.Point(662, 85);
+            this.pnlSubMenuBase2.Name = "pnlSubMenuBase2";
+            this.pnlSubMenuBase2.Size = new System.Drawing.Size(65, 481);
+            this.pnlSubMenuBase2.Style.Alignment = System.Drawing.StringAlignment.Center;
+            this.pnlSubMenuBase2.Style.BackColor1.Color = System.Drawing.Color.White;
+            this.pnlSubMenuBase2.Style.BackColor2.Color = System.Drawing.Color.White;
+            this.pnlSubMenuBase2.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
+            this.pnlSubMenuBase2.Style.BorderColor.Color = System.Drawing.Color.Silver;
+            this.pnlSubMenuBase2.Style.BorderWidth = 2;
+            this.pnlSubMenuBase2.Style.CornerType = DevComponents.DotNetBar.eCornerType.Rounded;
+            this.pnlSubMenuBase2.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText;
+            this.pnlSubMenuBase2.Style.GradientAngle = 90;
+            this.pnlSubMenuBase2.TabIndex = 5;
+            // 
+            // picReverse
+            // 
+            this.picReverse.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.picReverse.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.picReverse.Image = global::RealState.Properties.Resources.upload;
+            this.picReverse.Location = new System.Drawing.Point(20, 10);
+            this.picReverse.Name = "picReverse";
+            this.picReverse.Size = new System.Drawing.Size(27, 28);
+            this.picReverse.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picReverse.TabIndex = 12;
+            this.picReverse.TabStop = false;
+            this.picReverse.Click += new System.EventHandler(this.picReverse_Click);
+            this.picReverse.MouseEnter += new System.EventHandler(this.picReverse_MouseEnter);
+            this.picReverse.MouseLeave += new System.EventHandler(this.picReverse_MouseLeave);
             // 
             // lblBuildingView
             // 
             this.lblBuildingView.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblBuildingView.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.lblBuildingView.Location = new System.Drawing.Point(8, 181);
+            this.lblBuildingView.Location = new System.Drawing.Point(6, 223);
             this.lblBuildingView.Name = "lblBuildingView";
             this.lblBuildingView.Size = new System.Drawing.Size(54, 22);
             this.lblBuildingView.TabIndex = 13;
@@ -621,7 +642,7 @@
             // 
             this.lblRental.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblRental.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.lblRental.Location = new System.Drawing.Point(8, 117);
+            this.lblRental.Location = new System.Drawing.Point(6, 159);
             this.lblRental.Name = "lblRental";
             this.lblRental.Size = new System.Drawing.Size(54, 22);
             this.lblRental.TabIndex = 14;
@@ -632,19 +653,22 @@
             // 
             this.lblDocType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblDocType.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.lblDocType.Location = new System.Drawing.Point(8, 51);
+            this.lblDocType.Location = new System.Drawing.Point(6, 93);
             this.lblDocType.Name = "lblDocType";
             this.lblDocType.Size = new System.Drawing.Size(54, 22);
             this.lblDocType.TabIndex = 15;
             this.lblDocType.Text = "نوع سند";
             this.lblDocType.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.lblDocType.Click += new System.EventHandler(this.lblDocType_Click);
+            this.lblDocType.MouseEnter += new System.EventHandler(this.lblDocType_MouseEnter);
+            this.lblDocType.MouseLeave += new System.EventHandler(this.lblDocType_MouseLeave);
             // 
             // picBuildingView
             // 
             this.picBuildingView.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.picBuildingView.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.picBuildingView.Image = global::RealState.Properties.Resources._17;
-            this.picBuildingView.Location = new System.Drawing.Point(14, 140);
+            this.picBuildingView.Image = global::RealState.Properties.Resources.villa;
+            this.picBuildingView.Location = new System.Drawing.Point(12, 182);
             this.picBuildingView.Name = "picBuildingView";
             this.picBuildingView.Size = new System.Drawing.Size(42, 39);
             this.picBuildingView.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -655,8 +679,8 @@
             // 
             this.picRental.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.picRental.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.picRental.Image = global::RealState.Properties.Resources._17;
-            this.picRental.Location = new System.Drawing.Point(14, 76);
+            this.picRental.Image = global::RealState.Properties.Resources.tourism;
+            this.picRental.Location = new System.Drawing.Point(12, 118);
             this.picRental.Name = "picRental";
             this.picRental.Size = new System.Drawing.Size(42, 39);
             this.picRental.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -667,13 +691,16 @@
             // 
             this.picDocType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.picDocType.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.picDocType.Image = global::RealState.Properties.Resources._17;
-            this.picDocType.Location = new System.Drawing.Point(14, 10);
+            this.picDocType.Image = global::RealState.Properties.Resources.archived;
+            this.picDocType.Location = new System.Drawing.Point(12, 52);
             this.picDocType.Name = "picDocType";
             this.picDocType.Size = new System.Drawing.Size(42, 39);
             this.picDocType.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.picDocType.TabIndex = 18;
             this.picDocType.TabStop = false;
+            this.picDocType.Click += new System.EventHandler(this.picDocType_Click);
+            this.picDocType.MouseEnter += new System.EventHandler(this.picDocType_MouseEnter);
+            this.picDocType.MouseLeave += new System.EventHandler(this.picDocType_MouseLeave);
             // 
             // frmMain
             // 
@@ -681,7 +708,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(800, 600);
-            this.Controls.Add(this.grpSubMenuBase2);
+            this.Controls.Add(this.pnlSubMenuBase2);
             this.Controls.Add(this.pnlSubMenuBase);
             this.Controls.Add(this.pnlMenu);
             this.Controls.Add(this.pictureBox1);
@@ -716,6 +743,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.picBaseInfo)).EndInit();
             this.pnlSubMenuBase.ResumeLayout(false);
             this.pnlSubMenuBase.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picMore)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picKitchen)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picFloor)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picAccountType)).EndInit();
@@ -724,9 +752,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.picCities)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picExit)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picMore)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBuildingCondition)).EndInit();
-            this.grpSubMenuBase2.ResumeLayout(false);
+            this.pnlSubMenuBase2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.picReverse)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBuildingView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picRental)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picDocType)).EndInit();
@@ -772,13 +800,14 @@
         private System.Windows.Forms.PictureBox picMore;
         private System.Windows.Forms.Label lblBuildingCondition;
         private System.Windows.Forms.PictureBox picBuildingCondition;
-        private DevComponents.DotNetBar.PanelEx grpSubMenuBase2;
+        private DevComponents.DotNetBar.PanelEx pnlSubMenuBase2;
         private System.Windows.Forms.Label lblBuildingView;
         private System.Windows.Forms.Label lblRental;
         private System.Windows.Forms.Label lblDocType;
         private System.Windows.Forms.PictureBox picBuildingView;
         private System.Windows.Forms.PictureBox picRental;
         private System.Windows.Forms.PictureBox picDocType;
+        private System.Windows.Forms.PictureBox picReverse;
     }
 }
 
