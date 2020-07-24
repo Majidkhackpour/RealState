@@ -159,6 +159,16 @@ namespace EntityCache.Assistence
             }
             #endregion
 
+            #region BuildingType
+            var allbt = await BuildingTypeBussines.GetAllAsync();
+            if (allbt == null || allbt.Count <= 0)
+            {
+                var bo = DefaultBuildingType.SetDef();
+                res.AddReturnedValue(await BuildingTypeBussines.SaveRangeAsync(bo));
+                res.ThrowExceptionIfError();
+            }
+            #endregion
+
             await dbContext.SaveChangesAsync();
             dbContext.Dispose();
         }

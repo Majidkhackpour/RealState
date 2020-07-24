@@ -1,13 +1,19 @@
 ﻿using System;
 using System.Drawing;
+using System.Reflection;
 using System.Windows.Forms;
 using Building.BuildingAccountType;
+using Building.BuildingCondition;
 using Building.BuildingOptions;
+using Building.BuildingType;
+using Building.BuildingView;
 using Building.DocumentType;
 using Building.FloorCover;
 using Building.KitchenService;
+using Building.RentalAuthority;
 using Cities.City;
 using Cities.Region;
+using EntityCache.Bussines;
 using Ertegha;
 using MetroFramework.Forms;
 using PacketParser.Services;
@@ -33,7 +39,6 @@ namespace RealState
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-
         private void SetCalendar()
         {
             try
@@ -49,12 +54,26 @@ namespace RealState
             }
         }
 
+        private void SetButtomLables()
+        {
+            try
+            {
+                lblEconomyName.Text = SettingsBussines.EconomyName;
+                lblCurrentUser.Text = UserBussines.CurrentUser?.Name??"";
+                lblVersion.Text = Assembly.GetExecutingAssembly().GetName().Version.ToString();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
         public frmMain()
         {
             InitializeComponent();
         }
 
-        private void frmMain_Load(object sender, System.EventArgs e)
+        private async void frmMain_Load(object sender, System.EventArgs e)
         {
             lblSecond.Visible = true;
             pnlSubMenuBase.Visible = false;
@@ -65,7 +84,9 @@ namespace RealState
             tt.SetToolTip(picReverse, "بازگشت به صفحه قبل");
             SetClock();
             SetCalendar();
-
+            var naqz = await NaqzBussines.SetNaqz();
+            lblNaqz.Text = naqz;
+            SetButtomLables();
         }
 
         private void picExit_Click(object sender, System.EventArgs e)
@@ -657,6 +678,231 @@ namespace RealState
 
                 MessageBox.Show("خطا در بازسازی اطلاعات", "پیغام سیستم", MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private void picRental_MouseEnter(object sender, EventArgs e)
+        {
+            try
+            {
+                picRental.Image = Properties.Resources.tourism_;
+                txtSetter.Focus(lblRental);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private void picRental_MouseLeave(object sender, EventArgs e)
+        {
+            try
+            {
+                picRental.Image = Properties.Resources.tourism;
+                txtSetter.Follow(lblRental);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private void picRental_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                new frmShowRentalAuthority().ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private void lblRental_MouseEnter(object sender, EventArgs e)
+        {
+            picRental_MouseEnter(null, null);
+        }
+
+        private void lblRental_MouseLeave(object sender, EventArgs e)
+        {
+            picRental_MouseLeave(null, null);
+        }
+
+        private void lblRental_Click(object sender, EventArgs e)
+        {
+            picRental_Click(null, null);
+        }
+
+        private void picBuildingView_MouseEnter(object sender, EventArgs e)
+        {
+            try
+            {
+                picBuildingView.Image = Properties.Resources.villa_;
+                txtSetter.Focus(lblBuildingView);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private void picBuildingView_MouseLeave(object sender, EventArgs e)
+        {
+            try
+            {
+                picBuildingView.Image = Properties.Resources.villa;
+                txtSetter.Follow(lblBuildingView);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private void picBuildingView_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                new frmShowBuildingView().ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private void lblBuildingView_Click(object sender, EventArgs e)
+        {
+            picBuildingView_Click(null, null);
+        }
+
+        private void lblBuildingView_MouseEnter(object sender, EventArgs e)
+        {
+            picBuildingView_MouseEnter(null, null);
+        }
+
+        private void lblBuildingView_MouseLeave(object sender, EventArgs e)
+        {
+            picBuildingView_MouseLeave(null, null);
+        }
+
+        private void picBuildingCondition_MouseEnter(object sender, EventArgs e)
+        {
+            try
+            {
+                picBuildingCondition.Image = Properties.Resources.crane_;
+                txtSetter.Focus(lblBuildingCondition);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private void picBuildingCondition_MouseLeave(object sender, EventArgs e)
+        {
+            try
+            {
+                picBuildingCondition.Image = Properties.Resources.crane;
+                txtSetter.Follow(lblBuildingCondition);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private void picBuildingCondition_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                new frmShowBuildingCondition().ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private void lblBuildingCondition_MouseEnter(object sender, EventArgs e)
+        {
+            picBuildingCondition_MouseEnter(null, null);
+        }
+
+        private void lblBuildingCondition_MouseLeave(object sender, EventArgs e)
+        {
+            picBuildingCondition_MouseLeave(null, null);
+        }
+
+        private void lblBuildingCondition_Click(object sender, EventArgs e)
+        {
+            picBuildingCondition_Click(null, null);
+        }
+
+        private void picBuildingType_MouseEnter(object sender, EventArgs e)
+        {
+            try
+            {
+                picBuildingType.Image = Properties.Resources.lego_;
+                txtSetter.Focus(lblBuildingType);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private void picBuildingType_MouseLeave(object sender, EventArgs e)
+        {
+            try
+            {
+                picBuildingType.Image = Properties.Resources.lego;
+                txtSetter.Follow(lblBuildingType);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private void picBuildingType_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                new frmShowBuildingType().ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private void lblBuildingType_MouseEnter(object sender, EventArgs e)
+        {
+            picBuildingType_MouseEnter(null, null);
+        }
+
+        private void lblBuildingType_MouseLeave(object sender, EventArgs e)
+        {
+            picBuildingType_MouseLeave(null, null);
+        }
+
+        private void lblBuildingType_Click(object sender, EventArgs e)
+        {
+            picBuildingType_Click(null, null);
+        }
+
+        private async void TimerNaqz_Tick(object sender, EventArgs e)
+        {
+            try
+            {
+                var nqz = await NaqzBussines.SetNaqz();
+                lblNaqz.Text = nqz;
             }
             catch (Exception ex)
             {

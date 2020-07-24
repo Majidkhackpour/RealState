@@ -22,6 +22,7 @@ namespace EntityCache.Assistence
         private static IBuildingViewRepository _buildingViewRepository;
         private static IBuildingConditionRepository _buildingConditionRepository;
         private static ISettingsRepository _settingsRepository;
+        private static IBuildingTypeRepository _buildingTypeRepository;
 
         public static void Dispose()
         {
@@ -81,6 +82,10 @@ namespace EntityCache.Assistence
         public static ISettingsRepository Settings => _settingsRepository ??
                                                                         (_settingsRepository =
                                                                             new SettingsPersistenceRepository(db));
+
+        public static IBuildingTypeRepository BuildingType => _buildingTypeRepository ??
+                                                      (_buildingTypeRepository =
+                                                          new BuildingTypePersistenceRepository(db));
 
     }
 }

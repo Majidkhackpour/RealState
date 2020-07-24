@@ -29,5 +29,6 @@ namespace Persistence.Model
         public virtual DbSet<BuildingView> BuildingView { get; set; }
         public virtual DbSet<BuildingCondition> BuildingCondition { get; set; }
         public virtual DbSet<Settings> Settings { get; set; }
+        public virtual DbSet<BuildingType> BuildingType { get; set; }
     }
 }

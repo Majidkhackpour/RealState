@@ -57,6 +57,7 @@
     <Compile Include="Entities\BuildingAccountType.cs" />
     <Compile Include="Entities\BuildingCondition.cs" />
     <Compile Include="Entities\BuildingOptions.cs" />
+    <Compile Include="Entities\BuildingType.cs" />
     <Compile Include="Entities\BuildingView.cs" />
     <Compile Include="Entities\Cities.cs" />
     <Compile Include="Entities\DocumentType.cs" />
@@ -79,6 +80,10 @@
     <Compile Include="Migrations\202007190635537__3.cs" />
     <Compile Include="Migrations\202007190635537__3.designer.cs">
       <DependentUpon>202007190635537__3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202007240954438__4.cs" />
+    <Compile Include="Migrations\202007240954438__4.designer.cs">
+      <DependentUpon>202007240954438__4.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\ModelContext.cs" />
@@ -103,6 +108,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202007190635537__3.resx">
       <DependentUpon>202007190635537__3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007240954438__4.resx">
+      <DependentUpon>202007240954438__4.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

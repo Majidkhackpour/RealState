@@ -22,6 +22,7 @@ namespace EntityCache.Assistence
             CreateMap<BuildingViewBussines, BuildingView>().ReverseMap();
             CreateMap<BuildingConditionBussines, BuildingCondition>().ReverseMap();
             CreateMap<SettingsBussines, Settings>().ReverseMap();
+            CreateMap<BuildingTypeBussines, BuildingType>().ReverseMap();
         }
     }
 }

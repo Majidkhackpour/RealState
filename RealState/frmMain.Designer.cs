@@ -61,9 +61,6 @@
             this.picBuildingOptions = new System.Windows.Forms.PictureBox();
             this.picRegion = new System.Windows.Forms.PictureBox();
             this.picCities = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.picExit = new System.Windows.Forms.PictureBox();
-            this.picBuildingCondition = new System.Windows.Forms.PictureBox();
             this.lblBuildingCondition = new System.Windows.Forms.Label();
             this.pnlSubMenuBase2 = new DevComponents.DotNetBar.PanelEx();
             this.picReverse = new System.Windows.Forms.PictureBox();
@@ -73,8 +70,23 @@
             this.picBuildingView = new System.Windows.Forms.PictureBox();
             this.picRental = new System.Windows.Forms.PictureBox();
             this.picDocType = new System.Windows.Forms.PictureBox();
+            this.lblBuildingType = new System.Windows.Forms.Label();
+            this.picBuildingType = new System.Windows.Forms.PictureBox();
+            this.picBuildingCondition = new System.Windows.Forms.PictureBox();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.mnuRunScript = new System.Windows.Forms.ToolStripMenuItem();
+            this.TimerNaqz = new System.Windows.Forms.Timer(this.components);
+            this.label1 = new System.Windows.Forms.Label();
+            this.lblEconomyName = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.lblCurrentUser = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.lblVersion = new System.Windows.Forms.Label();
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.picExit = new System.Windows.Forms.PictureBox();
             this.pnlMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picUsers)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBaseInfo)).BeginInit();
@@ -86,15 +98,19 @@
             ((System.ComponentModel.ISupportInitialize)(this.picBuildingOptions)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picRegion)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picCities)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picExit)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picBuildingCondition)).BeginInit();
             this.pnlSubMenuBase2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picReverse)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBuildingView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picRental)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picDocType)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picBuildingType)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picBuildingCondition)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picExit)).BeginInit();
             this.SuspendLayout();
             // 
             // line1
@@ -533,44 +549,6 @@
             this.picCities.MouseEnter += new System.EventHandler(this.picCities_MouseEnter);
             this.picCities.MouseLeave += new System.EventHandler(this.picCities_MouseLeave);
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.pictureBox1.Image = global::RealState.Properties.Resources.BackGroud_;
-            this.pictureBox1.Location = new System.Drawing.Point(0, 397);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(196, 203);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 4;
-            this.pictureBox1.TabStop = false;
-            // 
-            // picExit
-            // 
-            this.picExit.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.picExit.Image = global::RealState.Properties.Resources.close_icon_red;
-            this.picExit.Location = new System.Drawing.Point(0, 9);
-            this.picExit.Name = "picExit";
-            this.picExit.Size = new System.Drawing.Size(17, 17);
-            this.picExit.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.picExit.TabIndex = 3;
-            this.picExit.TabStop = false;
-            this.picExit.Click += new System.EventHandler(this.picExit_Click);
-            // 
-            // picBuildingCondition
-            // 
-            this.picBuildingCondition.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.picBuildingCondition.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.picBuildingCondition.Image = global::RealState.Properties.Resources.crane;
-            this.picBuildingCondition.Location = new System.Drawing.Point(12, 248);
-            this.picBuildingCondition.Name = "picBuildingCondition";
-            this.picBuildingCondition.Size = new System.Drawing.Size(42, 39);
-            this.picBuildingCondition.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.picBuildingCondition.TabIndex = 12;
-            this.picBuildingCondition.TabStop = false;
-            this.picBuildingCondition.Click += new System.EventHandler(this.picKitchen_Click);
-            this.picBuildingCondition.MouseEnter += new System.EventHandler(this.picKitchen_MouseEnter);
-            this.picBuildingCondition.MouseLeave += new System.EventHandler(this.picKitchen_MouseLeave);
-            // 
             // lblBuildingCondition
             // 
             this.lblBuildingCondition.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -581,9 +559,9 @@
             this.lblBuildingCondition.TabIndex = 12;
             this.lblBuildingCondition.Text = "بنا";
             this.lblBuildingCondition.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.lblBuildingCondition.Click += new System.EventHandler(this.lblKitchen_Click);
-            this.lblBuildingCondition.MouseEnter += new System.EventHandler(this.lblKitchen_MouseEnter);
-            this.lblBuildingCondition.MouseLeave += new System.EventHandler(this.lblKitchen_MouseLeave);
+            this.lblBuildingCondition.Click += new System.EventHandler(this.lblBuildingCondition_Click);
+            this.lblBuildingCondition.MouseEnter += new System.EventHandler(this.lblBuildingCondition_MouseEnter);
+            this.lblBuildingCondition.MouseLeave += new System.EventHandler(this.lblBuildingCondition_MouseLeave);
             // 
             // pnlSubMenuBase2
             // 
@@ -598,7 +576,9 @@
             this.pnlSubMenuBase2.Controls.Add(this.picBuildingView);
             this.pnlSubMenuBase2.Controls.Add(this.picRental);
             this.pnlSubMenuBase2.Controls.Add(this.picDocType);
+            this.pnlSubMenuBase2.Controls.Add(this.lblBuildingType);
             this.pnlSubMenuBase2.Controls.Add(this.lblBuildingCondition);
+            this.pnlSubMenuBase2.Controls.Add(this.picBuildingType);
             this.pnlSubMenuBase2.Controls.Add(this.picBuildingCondition);
             this.pnlSubMenuBase2.DisabledBackColor = System.Drawing.Color.Empty;
             this.pnlSubMenuBase2.Location = new System.Drawing.Point(662, 85);
@@ -640,17 +620,23 @@
             this.lblBuildingView.TabIndex = 13;
             this.lblBuildingView.Text = "نما";
             this.lblBuildingView.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.lblBuildingView.Click += new System.EventHandler(this.lblBuildingView_Click);
+            this.lblBuildingView.MouseEnter += new System.EventHandler(this.lblBuildingView_MouseEnter);
+            this.lblBuildingView.MouseLeave += new System.EventHandler(this.lblBuildingView_MouseLeave);
             // 
             // lblRental
             // 
             this.lblRental.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblRental.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.lblRental.Location = new System.Drawing.Point(6, 159);
+            this.lblRental.Location = new System.Drawing.Point(7, 159);
             this.lblRental.Name = "lblRental";
             this.lblRental.Size = new System.Drawing.Size(54, 22);
             this.lblRental.TabIndex = 14;
-            this.lblRental.Text = "ارجعیت";
+            this.lblRental.Text = "ارجحیت";
             this.lblRental.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.lblRental.Click += new System.EventHandler(this.lblRental_Click);
+            this.lblRental.MouseEnter += new System.EventHandler(this.lblRental_MouseEnter);
+            this.lblRental.MouseLeave += new System.EventHandler(this.lblRental_MouseLeave);
             // 
             // lblDocType
             // 
@@ -677,6 +663,9 @@
             this.picBuildingView.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.picBuildingView.TabIndex = 16;
             this.picBuildingView.TabStop = false;
+            this.picBuildingView.Click += new System.EventHandler(this.picBuildingView_Click);
+            this.picBuildingView.MouseEnter += new System.EventHandler(this.picBuildingView_MouseEnter);
+            this.picBuildingView.MouseLeave += new System.EventHandler(this.picBuildingView_MouseLeave);
             // 
             // picRental
             // 
@@ -689,6 +678,9 @@
             this.picRental.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.picRental.TabIndex = 17;
             this.picRental.TabStop = false;
+            this.picRental.Click += new System.EventHandler(this.picRental_Click);
+            this.picRental.MouseEnter += new System.EventHandler(this.picRental_MouseEnter);
+            this.picRental.MouseLeave += new System.EventHandler(this.picRental_MouseLeave);
             // 
             // picDocType
             // 
@@ -705,21 +697,200 @@
             this.picDocType.MouseEnter += new System.EventHandler(this.picDocType_MouseEnter);
             this.picDocType.MouseLeave += new System.EventHandler(this.picDocType_MouseLeave);
             // 
+            // lblBuildingType
+            // 
+            this.lblBuildingType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblBuildingType.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lblBuildingType.Location = new System.Drawing.Point(5, 355);
+            this.lblBuildingType.Name = "lblBuildingType";
+            this.lblBuildingType.Size = new System.Drawing.Size(54, 22);
+            this.lblBuildingType.TabIndex = 12;
+            this.lblBuildingType.Text = "نوع ملک";
+            this.lblBuildingType.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.lblBuildingType.Click += new System.EventHandler(this.lblBuildingType_Click);
+            this.lblBuildingType.MouseEnter += new System.EventHandler(this.lblBuildingType_MouseEnter);
+            this.lblBuildingType.MouseLeave += new System.EventHandler(this.lblBuildingType_MouseLeave);
+            // 
+            // picBuildingType
+            // 
+            this.picBuildingType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.picBuildingType.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.picBuildingType.Image = global::RealState.Properties.Resources.lego;
+            this.picBuildingType.Location = new System.Drawing.Point(13, 314);
+            this.picBuildingType.Name = "picBuildingType";
+            this.picBuildingType.Size = new System.Drawing.Size(42, 39);
+            this.picBuildingType.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picBuildingType.TabIndex = 12;
+            this.picBuildingType.TabStop = false;
+            this.picBuildingType.Click += new System.EventHandler(this.picBuildingType_Click);
+            this.picBuildingType.MouseEnter += new System.EventHandler(this.picBuildingType_MouseEnter);
+            this.picBuildingType.MouseLeave += new System.EventHandler(this.picBuildingType_MouseLeave);
+            // 
+            // picBuildingCondition
+            // 
+            this.picBuildingCondition.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.picBuildingCondition.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.picBuildingCondition.Image = global::RealState.Properties.Resources.crane;
+            this.picBuildingCondition.Location = new System.Drawing.Point(12, 248);
+            this.picBuildingCondition.Name = "picBuildingCondition";
+            this.picBuildingCondition.Size = new System.Drawing.Size(42, 39);
+            this.picBuildingCondition.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picBuildingCondition.TabIndex = 12;
+            this.picBuildingCondition.TabStop = false;
+            this.picBuildingCondition.Click += new System.EventHandler(this.picBuildingCondition_Click);
+            this.picBuildingCondition.MouseEnter += new System.EventHandler(this.picBuildingCondition_MouseEnter);
+            this.picBuildingCondition.MouseLeave += new System.EventHandler(this.picBuildingCondition_MouseLeave);
+            // 
             // contextMenuStrip1
             // 
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mnuRunScript});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 50);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(155, 28);
             // 
             // mnuRunScript
             // 
             this.mnuRunScript.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.mnuRunScript.Name = "mnuRunScript";
-            this.mnuRunScript.Size = new System.Drawing.Size(180, 24);
+            this.mnuRunScript.Size = new System.Drawing.Size(154, 24);
             this.mnuRunScript.Text = "بازسازی اطلاعات";
             this.mnuRunScript.Click += new System.EventHandler(this.mnuRunScript_Click);
+            // 
+            // TimerNaqz
+            // 
+            this.TimerNaqz.Enabled = true;
+            this.TimerNaqz.Interval = 300000;
+            this.TimerNaqz.Tick += new System.EventHandler(this.TimerNaqz_Tick);
+            // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.AutoSize = true;
+            this.label1.Cursor = System.Windows.Forms.Cursors.Default;
+            this.label1.Font = new System.Drawing.Font("B Yekan", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.label1.Location = new System.Drawing.Point(672, 579);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(84, 17);
+            this.label1.TabIndex = 12;
+            this.label1.Text = "نام واحد اقتصادی:";
+            // 
+            // lblEconomyName
+            // 
+            this.lblEconomyName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblEconomyName.Cursor = System.Windows.Forms.Cursors.Default;
+            this.lblEconomyName.Font = new System.Drawing.Font("B Yekan", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.lblEconomyName.Location = new System.Drawing.Point(562, 579);
+            this.lblEconomyName.Name = "lblEconomyName";
+            this.lblEconomyName.Size = new System.Drawing.Size(108, 17);
+            this.lblEconomyName.TabIndex = 12;
+            this.lblEconomyName.Text = "نام واحد اقتصادی:";
+            // 
+            // label3
+            // 
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label3.AutoSize = true;
+            this.label3.Cursor = System.Windows.Forms.Cursors.Default;
+            this.label3.Font = new System.Drawing.Font("B Yekan", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.label3.Location = new System.Drawing.Point(471, 579);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(54, 17);
+            this.label3.TabIndex = 12;
+            this.label3.Text = "کاربر فعال:";
+            // 
+            // lblCurrentUser
+            // 
+            this.lblCurrentUser.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblCurrentUser.Cursor = System.Windows.Forms.Cursors.Default;
+            this.lblCurrentUser.Font = new System.Drawing.Font("B Yekan", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.lblCurrentUser.Location = new System.Drawing.Point(365, 579);
+            this.lblCurrentUser.Name = "lblCurrentUser";
+            this.lblCurrentUser.Size = new System.Drawing.Size(108, 17);
+            this.lblCurrentUser.TabIndex = 12;
+            this.lblCurrentUser.Text = "نام واحد اقتصادی:";
+            // 
+            // label5
+            // 
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label5.AutoSize = true;
+            this.label5.Cursor = System.Windows.Forms.Cursors.Default;
+            this.label5.Font = new System.Drawing.Font("B Yekan", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.label5.Location = new System.Drawing.Point(268, 579);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(61, 17);
+            this.label5.TabIndex = 12;
+            this.label5.Text = "ورژن برنامه:";
+            // 
+            // lblVersion
+            // 
+            this.lblVersion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblVersion.AutoSize = true;
+            this.lblVersion.Cursor = System.Windows.Forms.Cursors.Default;
+            this.lblVersion.Font = new System.Drawing.Font("B Yekan", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.lblVersion.Location = new System.Drawing.Point(225, 579);
+            this.lblVersion.Name = "lblVersion";
+            this.lblVersion.Size = new System.Drawing.Size(32, 17);
+            this.lblVersion.TabIndex = 12;
+            this.lblVersion.Text = "0000";
+            // 
+            // pictureBox4
+            // 
+            this.pictureBox4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBox4.Cursor = System.Windows.Forms.Cursors.Default;
+            this.pictureBox4.Image = global::RealState.Properties.Resources.version;
+            this.pictureBox4.Location = new System.Drawing.Point(333, 576);
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.Size = new System.Drawing.Size(26, 20);
+            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox4.TabIndex = 12;
+            this.pictureBox4.TabStop = false;
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBox3.Cursor = System.Windows.Forms.Cursors.Default;
+            this.pictureBox3.Image = global::RealState.Properties.Resources.customer;
+            this.pictureBox3.Location = new System.Drawing.Point(530, 576);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(26, 20);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox3.TabIndex = 12;
+            this.pictureBox3.TabStop = false;
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBox2.Cursor = System.Windows.Forms.Cursors.Default;
+            this.pictureBox2.Image = global::RealState.Properties.Resources.sell;
+            this.pictureBox2.Location = new System.Drawing.Point(758, 576);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(26, 20);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox2.TabIndex = 12;
+            this.pictureBox2.TabStop = false;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.pictureBox1.Image = global::RealState.Properties.Resources.BackGroud_;
+            this.pictureBox1.Location = new System.Drawing.Point(0, 397);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(196, 203);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 4;
+            this.pictureBox1.TabStop = false;
+            // 
+            // picExit
+            // 
+            this.picExit.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.picExit.Image = global::RealState.Properties.Resources.close_icon_red;
+            this.picExit.Location = new System.Drawing.Point(0, 9);
+            this.picExit.Name = "picExit";
+            this.picExit.Size = new System.Drawing.Size(17, 17);
+            this.picExit.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picExit.TabIndex = 3;
+            this.picExit.TabStop = false;
+            this.picExit.Click += new System.EventHandler(this.picExit_Click);
             // 
             // frmMain
             // 
@@ -728,7 +899,16 @@
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(800, 600);
             this.ContextMenuStrip = this.contextMenuStrip1;
+            this.Controls.Add(this.lblVersion);
+            this.Controls.Add(this.lblCurrentUser);
+            this.Controls.Add(this.lblEconomyName);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.pictureBox4);
+            this.Controls.Add(this.pictureBox3);
             this.Controls.Add(this.pnlSubMenuBase2);
+            this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.pnlSubMenuBase);
             this.Controls.Add(this.pnlMenu);
             this.Controls.Add(this.pictureBox1);
@@ -770,15 +950,19 @@
             ((System.ComponentModel.ISupportInitialize)(this.picBuildingOptions)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picRegion)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picCities)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picExit)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picBuildingCondition)).EndInit();
             this.pnlSubMenuBase2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.picReverse)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBuildingView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picRental)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picDocType)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picBuildingType)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picBuildingCondition)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picExit)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -831,6 +1015,18 @@
         private System.Windows.Forms.PictureBox picReverse;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem mnuRunScript;
+        private System.Windows.Forms.Label lblBuildingType;
+        private System.Windows.Forms.PictureBox picBuildingType;
+        private System.Windows.Forms.Timer TimerNaqz;
+        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblEconomyName;
+        private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lblCurrentUser;
+        private System.Windows.Forms.PictureBox pictureBox4;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label lblVersion;
     }
 }
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using EntityCache.Assistence;
 using PacketParser.Interfaces;
@@ -48,6 +49,32 @@ namespace EntityCache.Bussines
             }
 
             return res;
+        }
+
+        public static async Task<string> SetNaqz(string tranName = "")
+        {
+            var autoTran = string.IsNullOrEmpty(tranName);
+            if (autoTran) tranName = Guid.NewGuid().ToString();
+            try
+            {
+                var all = await GetAllAsync();
+                all = all.OrderBy(q => q.UseCount).ToList();
+                var one = all.First();
+
+                if (one.UseCount >= 32000) one.UseCount = 1;
+                else one.UseCount += 1;
+
+                var res = new ReturnedSaveFuncInfo();
+                res.AddReturnedValue(await UnitOfWork.Naqz.SaveAsync(one, tranName));
+                res.ThrowExceptionIfError();
+
+                return one.Message;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                return null;
+            }
         }
     }
 }

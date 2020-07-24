@@ -200,6 +200,10 @@
       <Project>{7e235f22-ae73-4698-9951-0f092ac91850}</Project>
       <Name>PacketParser</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Peoples\Peoples.csproj">
+      <Project>{38a2d24e-9123-4e7e-989d-36b49248a9fb}</Project>
+      <Name>Peoples</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Persistence\Persistence.csproj">
       <Project>{69dbdf3a-8578-44db-95cd-08a671de9e41}</Project>
       <Name>Persistence</Name>
@@ -230,9 +234,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\notification-user_.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\notification-user.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\map_.png" />
@@ -317,6 +318,24 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\archived_.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\lego.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\lego_.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\notification-user.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\version.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\customer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sell.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

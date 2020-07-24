@@ -86,6 +86,7 @@
     <Compile Include="Assistence\Defualts\DefaultBuildingAccountType.cs" />
     <Compile Include="Assistence\Defualts\DefaultBuildingCondition.cs" />
     <Compile Include="Assistence\Defualts\DefaultBuildingOptions.cs" />
+    <Compile Include="Assistence\Defualts\DefaultBuildingType.cs" />
     <Compile Include="Assistence\Defualts\DefaultBuildingView.cs" />
     <Compile Include="Assistence\Defualts\DefaultCities.cs" />
     <Compile Include="Assistence\Defualts\DefaultDocumentType.cs" />
@@ -101,6 +102,7 @@
     <Compile Include="Bussines\BuildingAccountTypeBussines.cs" />
     <Compile Include="Bussines\BuildingConditionBussines.cs" />
     <Compile Include="Bussines\BuildingOptionsBussines.cs" />
+    <Compile Include="Bussines\BuildingTypeBussines.cs" />
     <Compile Include="Bussines\BuildingViewBussines.cs" />
     <Compile Include="Bussines\CitiesBussines.cs" />
     <Compile Include="Bussines\DocumentTypeBussines.cs" />
@@ -115,6 +117,7 @@
     <Compile Include="Core\IBuildingAccountTypeRepository.cs" />
     <Compile Include="Core\IBuildingConditionRepository.cs" />
     <Compile Include="Core\IBuildingOptionRepository.cs" />
+    <Compile Include="Core\IBuildingTypeRepository.cs" />
     <Compile Include="Core\IBuildingViewRepository.cs" />
     <Compile Include="Core\ICitiesRepository.cs" />
     <Compile Include="Core\IDocumentTypeRepository.cs" />
@@ -130,6 +133,7 @@
     <Compile Include="SqlServerPersistence\BuildingAccountTypePersistenceRepository.cs" />
     <Compile Include="SqlServerPersistence\BuildingConditionPersistenceRepository.cs" />
     <Compile Include="SqlServerPersistence\BuildingOptionPersistenceRepository.cs" />
+    <Compile Include="SqlServerPersistence\BuildingTypePersistenceRepository.cs" />
     <Compile Include="SqlServerPersistence\BuildingViewPersistenceRepository.cs" />
     <Compile Include="SqlServerPersistence\CitiesPersistenceRepository.cs" />
     <Compile Include="SqlServerPersistence\DocumentTypePersistenceRepository.cs" />

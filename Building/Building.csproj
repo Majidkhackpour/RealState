@@ -125,6 +125,18 @@
     <Compile Include="BuildingAccountType\frmShowBuildingAccountType.Designer.cs">
       <DependentUpon>frmShowBuildingAccountType.cs</DependentUpon>
     </Compile>
+    <Compile Include="BuildingCondition\frmBuildingConditionMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BuildingCondition\frmBuildingConditionMain.Designer.cs">
+      <DependentUpon>frmBuildingConditionMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BuildingCondition\frmShowBuildingCondition.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BuildingCondition\frmShowBuildingCondition.Designer.cs">
+      <DependentUpon>frmShowBuildingCondition.cs</DependentUpon>
+    </Compile>
     <Compile Include="BuildingOptions\frmBuildingOptions.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -136,6 +148,30 @@
     </Compile>
     <Compile Include="BuildingOptions\frmShowBuildingOption.Designer.cs">
       <DependentUpon>frmShowBuildingOption.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BuildingType\frmBuildingTypeMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BuildingType\frmBuildingTypeMain.Designer.cs">
+      <DependentUpon>frmBuildingTypeMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BuildingType\frmShowBuildingType.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BuildingType\frmShowBuildingType.Designer.cs">
+      <DependentUpon>frmShowBuildingType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BuildingView\frmBuildingViewMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BuildingView\frmBuildingViewMain.Designer.cs">
+      <DependentUpon>frmBuildingViewMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BuildingView\frmShowBuildingView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BuildingView\frmShowBuildingView.Designer.cs">
+      <DependentUpon>frmShowBuildingView.cs</DependentUpon>
     </Compile>
     <Compile Include="DocumentType\frmDocumentTypeMain.cs">
       <SubType>Form</SubType>
@@ -179,6 +215,18 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="RentalAuthority\frmRentalAuthorityMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RentalAuthority\frmRentalAuthorityMain.Designer.cs">
+      <DependentUpon>frmRentalAuthorityMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RentalAuthority\frmShowRentalAuthority.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RentalAuthority\frmShowRentalAuthority.Designer.cs">
+      <DependentUpon>frmShowRentalAuthority.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -211,11 +259,29 @@
     <EmbeddedResource Include="BuildingAccountType\frmShowBuildingAccountType.resx">
       <DependentUpon>frmShowBuildingAccountType.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="BuildingCondition\frmBuildingConditionMain.resx">
+      <DependentUpon>frmBuildingConditionMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BuildingCondition\frmShowBuildingCondition.resx">
+      <DependentUpon>frmShowBuildingCondition.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="BuildingOptions\frmBuildingOptions.resx">
       <DependentUpon>frmBuildingOptions.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="BuildingOptions\frmShowBuildingOption.resx">
       <DependentUpon>frmShowBuildingOption.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BuildingType\frmBuildingTypeMain.resx">
+      <DependentUpon>frmBuildingTypeMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BuildingType\frmShowBuildingType.resx">
+      <DependentUpon>frmShowBuildingType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BuildingView\frmBuildingViewMain.resx">
+      <DependentUpon>frmBuildingViewMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BuildingView\frmShowBuildingView.resx">
+      <DependentUpon>frmShowBuildingView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DocumentType\frmDocumentTypeMain.resx">
       <DependentUpon>frmDocumentTypeMain.cs</DependentUpon>
@@ -239,12 +305,21 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="RentalAuthority\frmRentalAuthorityMain.resx">
+      <DependentUpon>frmRentalAuthorityMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RentalAuthority\frmShowRentalAuthority.resx">
+      <DependentUpon>frmShowRentalAuthority.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\DataSources\EntityCache.Bussines.BuildingOptionsBussines.datasource" />
+    <None Include="Properties\DataSources\EntityCache.Bussines.BuildingTypeBussines.datasource" />
+    <None Include="Properties\DataSources\EntityCache.Bussines.BuildingViewBussines.datasource" />
     <None Include="Properties\DataSources\EntityCache.Bussines.DocumentTypeBussines.datasource" />
     <None Include="Properties\DataSources\EntityCache.Bussines.FloorCoverBussines.datasource" />
     <None Include="Properties\DataSources\EntityCache.Bussines.KitchenServiceBussines.datasource" />
+    <None Include="Properties\DataSources\EntityCache.Bussines.RentalAuthorityBussines.datasource" />
     <None Include="Resources\add.png" />
   </ItemGroup>
   <ItemGroup>
