@@ -93,6 +93,7 @@
     <Compile Include="Assistence\Defualts\DefaultFloorCover.cs" />
     <Compile Include="Assistence\Defualts\DefaultKitchenService.cs" />
     <Compile Include="Assistence\Defualts\DefaultNaqz.cs" />
+    <Compile Include="Assistence\Defualts\DefaultPeopleGroup.cs" />
     <Compile Include="Assistence\Defualts\DefaultRegions.cs" />
     <Compile Include="Assistence\Defualts\DefaultRentalAuthority.cs" />
     <Compile Include="Assistence\Defualts\DefaultStates.cs" />
@@ -109,6 +110,10 @@
     <Compile Include="Bussines\FloorCoverBussines.cs" />
     <Compile Include="Bussines\KitchenServiceBussines.cs" />
     <Compile Include="Bussines\NaqzBussines.cs" />
+    <Compile Include="Bussines\PeopleGroupBussines.cs" />
+    <Compile Include="Bussines\PeoplesBankAccountBussines.cs" />
+    <Compile Include="Bussines\PeoplesBussines.cs" />
+    <Compile Include="Bussines\PhoneBookBussines.cs" />
     <Compile Include="Bussines\RegionsBussines.cs" />
     <Compile Include="Bussines\RentalAuthorityBussines.cs" />
     <Compile Include="Bussines\SettingsBussines.cs" />
@@ -124,6 +129,10 @@
     <Compile Include="Core\IFloorCoverRepository.cs" />
     <Compile Include="Core\IKitchenServiceRepository.cs" />
     <Compile Include="Core\INaqzRepository.cs" />
+    <Compile Include="Core\IPeopleGroupRepository.cs" />
+    <Compile Include="Core\IPeoplesBankAccountRepository.cs" />
+    <Compile Include="Core\IPeoplesRepository.cs" />
+    <Compile Include="Core\IPhoneBookRepository.cs" />
     <Compile Include="Core\IRegionsRepository.cs" />
     <Compile Include="Core\IRentalAuthorityRepository.cs" />
     <Compile Include="Core\IRepository.cs" />
@@ -142,6 +151,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SqlServerPersistence\KitchenServicePersistenceRepository.cs" />
     <Compile Include="SqlServerPersistence\NaqzPersistenceRepository.cs" />
+    <Compile Include="SqlServerPersistence\PeopleBankAccountPersistenceRepository.cs" />
+    <Compile Include="SqlServerPersistence\PeopleGroupPersistenceRepository.cs" />
+    <Compile Include="SqlServerPersistence\PeoplesPersistenceRepository.cs" />
+    <Compile Include="SqlServerPersistence\PhoneBookPersistenceRepository.cs" />
     <Compile Include="SqlServerPersistence\RegionsPersistenceRepository.cs" />
     <Compile Include="SqlServerPersistence\RentalAuthorityPersistenceRepository.cs" />
     <Compile Include="SqlServerPersistence\SettingsPersistenceRepository.cs" />

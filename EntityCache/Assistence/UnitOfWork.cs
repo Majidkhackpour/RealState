@@ -23,6 +23,10 @@ namespace EntityCache.Assistence
         private static IBuildingConditionRepository _buildingConditionRepository;
         private static ISettingsRepository _settingsRepository;
         private static IBuildingTypeRepository _buildingTypeRepository;
+        private static IPeopleGroupRepository _peopleGroupRepository;
+        private static IPeoplesRepository _peopleRepository;
+        private static IPhoneBookRepository _phoneBookRepository;
+        private static IPeoplesBankAccountRepository _peopleBankRepository;
 
         public static void Dispose()
         {
@@ -86,6 +90,25 @@ namespace EntityCache.Assistence
         public static IBuildingTypeRepository BuildingType => _buildingTypeRepository ??
                                                       (_buildingTypeRepository =
                                                           new BuildingTypePersistenceRepository(db));
+
+        public static IPeopleGroupRepository PeopleGroup => _peopleGroupRepository ??
+                                                              (_peopleGroupRepository =
+                                                                  new PeopleGroupPersistenceRepository(db));
+
+
+        public static IPeoplesRepository Peoples => _peopleRepository ??
+                                                            (_peopleRepository =
+                                                                new PeoplesPersistenceRepository(db));
+
+
+        public static IPhoneBookRepository PhoneBook => _phoneBookRepository ??
+                                                            (_phoneBookRepository =
+                                                                new PhoneBookPersistenceRepository(db));
+
+
+        public static IPeoplesBankAccountRepository PeopleBankAccount => _peopleBankRepository ??
+                                                            (_peopleBankRepository =
+                                                                new PeopleBankAccountPersistenceRepository(db));
 
     }
 }

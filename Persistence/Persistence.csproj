@@ -64,6 +64,10 @@
     <Compile Include="Entities\FloorCover.cs" />
     <Compile Include="Entities\KitchenService.cs" />
     <Compile Include="Entities\Naqz.cs" />
+    <Compile Include="Entities\PeopleBankAccount.cs" />
+    <Compile Include="Entities\PeopleGroup.cs" />
+    <Compile Include="Entities\Peoples.cs" />
+    <Compile Include="Entities\PhoneBook.cs" />
     <Compile Include="Entities\Regions.cs" />
     <Compile Include="Entities\RentalAuthority.cs" />
     <Compile Include="Entities\Settings.cs" />
@@ -84,6 +88,14 @@
     <Compile Include="Migrations\202007240954438__4.cs" />
     <Compile Include="Migrations\202007240954438__4.designer.cs">
       <DependentUpon>202007240954438__4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202007251510547__5.cs" />
+    <Compile Include="Migrations\202007251510547__5.designer.cs">
+      <DependentUpon>202007251510547__5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202007251641308__6.cs" />
+    <Compile Include="Migrations\202007251641308__6.designer.cs">
+      <DependentUpon>202007251641308__6.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\ModelContext.cs" />
@@ -111,6 +123,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202007240954438__4.resx">
       <DependentUpon>202007240954438__4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007251510547__5.resx">
+      <DependentUpon>202007251510547__5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007251641308__6.resx">
+      <DependentUpon>202007251641308__6.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

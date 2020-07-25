@@ -30,5 +30,9 @@ namespace Persistence.Model
         public virtual DbSet<BuildingCondition> BuildingCondition { get; set; }
         public virtual DbSet<Settings> Settings { get; set; }
         public virtual DbSet<BuildingType> BuildingType { get; set; }
+        public virtual DbSet<PeopleGroup> PeopleGroup { get; set; }
+        public virtual DbSet<Peoples> Peoples { get; set; }
+        public virtual DbSet<PeopleBankAccount> PeopleBankAccount { get; set; }
+        public virtual DbSet<PhoneBook> PhoneBook { get; set; }
     }
 }

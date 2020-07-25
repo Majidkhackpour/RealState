@@ -64,6 +64,10 @@
     <Compile Include="Interfaces\IHasGuid.cs" />
     <Compile Include="Interfaces\IKitchenService.cs" />
     <Compile Include="Interfaces\INaqz.cs" />
+    <Compile Include="Interfaces\IPeopleBankAccount.cs" />
+    <Compile Include="Interfaces\IPeopleGroup.cs" />
+    <Compile Include="Interfaces\IPeoples.cs" />
+    <Compile Include="Interfaces\IPhoneBook.cs" />
     <Compile Include="Interfaces\IRegions.cs" />
     <Compile Include="Interfaces\IRentalAuthority.cs" />
     <Compile Include="Interfaces\ISettings.cs" />

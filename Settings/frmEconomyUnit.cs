@@ -144,7 +144,7 @@ namespace Settings
             SettData();
         }
 
-        private void btnFinish_Click(object sender, EventArgs e)
+        private async void btnFinish_Click(object sender, EventArgs e)
         {
             try
             {
@@ -160,6 +160,7 @@ namespace Settings
                 SettingsBussines.EconomyState = cmbState.SelectedValue.ToString();
                 SettingsBussines.EconomyCity = cmbCity.SelectedValue.ToString();
 
+                
                 DialogResult = DialogResult.OK;
                 Close();
             }

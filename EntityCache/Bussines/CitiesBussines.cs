@@ -21,6 +21,7 @@ namespace EntityCache.Bussines
 
         public static async Task<List<CitiesBussines>> GetAllAsync() => await UnitOfWork.Cities.GetAllAsyncBySp();
 
+        public static async Task<List<CitiesBussines>> GetAllAsyncEf() => await UnitOfWork.Cities.GetAllAsync();
         public static async Task<ReturnedSaveFuncInfo> SaveRangeAsync(List<CitiesBussines> list,
             string tranName = "")
         {

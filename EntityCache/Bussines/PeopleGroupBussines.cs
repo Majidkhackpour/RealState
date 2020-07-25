@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using EntityCache.Assistence;
 using Nito.AsyncEx;
@@ -9,22 +8,18 @@ using PacketParser.Services;
 
 namespace EntityCache.Bussines
 {
-    public class RegionsBussines : IRegions
+    public class PeopleGroupBussines : IPeopleGroup
     {
         public Guid Guid { get; set; }
         public DateTime Modified { get; set; } = DateTime.Now;
         public bool Status { get; set; } = true;
         public string Name { get; set; }
-        public Guid CityGuid { get; set; }
-        public string StateName { get; set; }
-        public string CityName { get; set; }
-        public CitiesBussines City => CitiesBussines.Get(CityGuid);
+        public Guid ParentGuid { get; set; }
 
-        public static async Task<List<RegionsBussines>> GetAllAsync() => await UnitOfWork.Regions.GetAllAsyncBySp();
 
-        public static async Task<List<RegionsBussines>> GetAllAsyncEf() => await UnitOfWork.Regions.GetAllAsync();
+        public static async Task<List<PeopleGroupBussines>> GetAllAsync() => await UnitOfWork.PeopleGroup.GetAllAsync();
 
-        public static async Task<ReturnedSaveFuncInfo> SaveRangeAsync(List<RegionsBussines> list,
+        public static async Task<ReturnedSaveFuncInfo> SaveRangeAsync(List<PeopleGroupBussines> list,
             string tranName = "")
         {
             var res = new ReturnedSaveFuncInfo();
@@ -36,7 +31,7 @@ namespace EntityCache.Bussines
                 { //BeginTransaction
                 }
 
-                res.AddReturnedValue(await UnitOfWork.Regions.SaveRangeAsync(list, tranName));
+                res.AddReturnedValue(await UnitOfWork.PeopleGroup.SaveRangeAsync(list, tranName));
                 res.ThrowExceptionIfError();
                 if (autoTran)
                 {
@@ -56,45 +51,9 @@ namespace EntityCache.Bussines
             return res;
         }
 
-        public static async Task<RegionsBussines> GetAsync(Guid guid) => await UnitOfWork.Regions.GetAsync(guid);
+        public static async Task<PeopleGroupBussines> GetAsync(Guid guid) => await UnitOfWork.PeopleGroup.GetAsync(guid);
 
-        public static RegionsBussines Get(Guid guid) => AsyncContext.Run(() => GetAsync(guid));
 
-        public static async Task<List<RegionsBussines>> GetAllAsync(string search,Guid cityGuid)
-        {
-            try
-            {
-                if (string.IsNullOrEmpty(search))  search = "";
-                var res=new List<RegionsBussines>();
-                if (cityGuid == Guid.Empty)
-                    res = await GetAllAsync();
-                else res = await GetAllAsync(cityGuid);
-                var searchItems = search.SplitString();
-                if (searchItems?.Count > 0)
-                    foreach (var item in searchItems)
-                    {
-                        if (!string.IsNullOrEmpty(item) && item.Trim() != "")
-                        {
-                            res = res.Where(x => x.Name.ToLower().Contains(item.ToLower())||
-                                                 x.CityName.ToLower().Contains(item.ToLower())||
-                                                 x.StateName.ToLower().Contains(item.ToLower()))
-                                ?.ToList();
-                        }
-                    }
-
-                return res;
-            }
-            catch (OperationCanceledException)
-            { return null; }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-                return new List<RegionsBussines>();
-            }
-        }
-
-        public static List<RegionsBussines> GetAll(string search, Guid cityGuid) =>
-            AsyncContext.Run(() => GetAllAsync(search, cityGuid));
         public async Task<ReturnedSaveFuncInfo> SaveAsync(string tranName = "")
         {
             var res = new ReturnedSaveFuncInfo();
@@ -106,7 +65,7 @@ namespace EntityCache.Bussines
                 { //BeginTransaction
                 }
 
-                res.AddReturnedValue(await UnitOfWork.Regions.SaveAsync(this, tranName));
+                res.AddReturnedValue(await UnitOfWork.PeopleGroup.SaveAsync(this, tranName));
                 res.ThrowExceptionIfError();
                 if (autoTran)
                 {
@@ -137,7 +96,7 @@ namespace EntityCache.Bussines
                 { //BeginTransaction
                 }
 
-                res.AddReturnedValue(await UnitOfWork.Regions.ChangeStatusAsync(this, status, tranName));
+                res.AddReturnedValue(await UnitOfWork.PeopleGroup.ChangeStatusAsync(this, status, tranName));
                 res.ThrowExceptionIfError();
                 if (autoTran)
                 {
@@ -157,8 +116,10 @@ namespace EntityCache.Bussines
             return res;
         }
 
-        public static async Task<List<RegionsBussines>> GetAllAsync(Guid cityGuid) =>
-            await UnitOfWork.Regions.GetAllAsync(cityGuid);
+       
+        public static PeopleGroupBussines Get(Guid guid) => AsyncContext.Run(() => GetAsync(guid));
 
+        public static async Task<bool> CheckNameAsync(string name, Guid guid) =>
+            await UnitOfWork.PeopleGroup.CheckNameAsync(name, guid);
     }
 }

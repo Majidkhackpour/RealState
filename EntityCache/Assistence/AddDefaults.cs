@@ -50,7 +50,7 @@ namespace EntityCache.Assistence
             #endregion
 
             #region Cities
-            var allCities = await CitiesBussines.GetAllAsync();
+            var allCities = await CitiesBussines.GetAllAsyncEf();
             if (allCities == null || allCities.Count <= 0)
             {
                 var city = DefaultCities.SetDef();
@@ -60,7 +60,7 @@ namespace EntityCache.Assistence
             #endregion
 
             #region Regions
-            var allRegions = await RegionsBussines.GetAllAsync();
+            var allRegions = await RegionsBussines.GetAllAsyncEf();
             if (allRegions == null || allRegions.Count <= 0)
             {
                 var reg = DefaultRegions.SetDef();
@@ -165,6 +165,16 @@ namespace EntityCache.Assistence
             {
                 var bo = DefaultBuildingType.SetDef();
                 res.AddReturnedValue(await BuildingTypeBussines.SaveRangeAsync(bo));
+                res.ThrowExceptionIfError();
+            }
+            #endregion
+
+            #region PeopleGroup
+            var allpg = await PeopleGroupBussines.GetAllAsync();
+            if (allpg == null || allpg.Count <= 0)
+            {
+                var reg = DefaultPeopleGroup.SetDef();
+                res.AddReturnedValue(await PeopleGroupBussines.SaveRangeAsync(reg));
                 res.ThrowExceptionIfError();
             }
             #endregion

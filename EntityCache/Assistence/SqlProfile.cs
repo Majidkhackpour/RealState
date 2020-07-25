@@ -23,6 +23,10 @@ namespace EntityCache.Assistence
             CreateMap<BuildingConditionBussines, BuildingCondition>().ReverseMap();
             CreateMap<SettingsBussines, Settings>().ReverseMap();
             CreateMap<BuildingTypeBussines, BuildingType>().ReverseMap();
+            CreateMap<PeopleGroupBussines, PeopleGroup>().ReverseMap();
+            CreateMap<PeoplesBussines, Peoples>().ReverseMap();
+            CreateMap<PeoplesBankAccountBussines, PeopleBankAccount>().ReverseMap();
+            CreateMap<PhoneBookBussines, PhoneBook>().ReverseMap();
         }
     }
 }

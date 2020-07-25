@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data.SqlClient;
 using System.Threading.Tasks;
+using Nito.AsyncEx;
 using PacketParser.Services;
 
 namespace Ertegha
@@ -24,5 +25,7 @@ namespace Ertegha
 
             return res;
         }
+
+        public static ReturnedSaveFuncInfo StartErtegha() => AsyncContext.Run(StartErteghaAsync);
     }
 }

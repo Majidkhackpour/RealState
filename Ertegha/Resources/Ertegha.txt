@@ -50,3 +50,19 @@ BEGIN
 	where Regions.CityGuid=@cityGuid
 	order by StateName,CityName
 END
+GO
+-- ==========================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Cities_SelectAllByStateGuid]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Cities_SelectAllByStateGuid]	As Begin print 11 end')
+GO
+
+ALTER PROCEDURE [dbo].[sp_Cities_SelectAllByStateGuid] 
+	@stateGuid uniqueidentifier
+AS
+BEGIN
+	select Cities.*,States.Name As StateName
+	from Cities inner join States 
+	on Cities.StateGuid=States.Guid
+	where Cities.StateGuid=@stateGuid
+	order by StateName, Cities.Name
+END
