@@ -16,5 +16,6 @@ namespace Persistence.Entities
         public string AccountNumber { get; set; }
         [MaxLength(200)]
         public string Shobe { get; set; }
+        public Guid ParentGuid { get; set; }
     }
 }

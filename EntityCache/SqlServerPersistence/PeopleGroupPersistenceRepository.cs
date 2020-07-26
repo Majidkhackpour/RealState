@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
+using EntityCache.Assistence;
 using EntityCache.Bussines;
 using EntityCache.Core;
 using PacketParser.Services;
@@ -30,6 +31,36 @@ namespace EntityCache.SqlServerPersistence
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(exception);
                 return false;
+            }
+        }
+
+        public async Task<PeopleGroupBussines> GetAsync(string name)
+        {
+            try
+            {
+                var acc = db.PeopleGroup.AsNoTracking()
+                    .FirstOrDefault(q => q.Name == name.Trim());
+
+                return Mappings.Default.Map<PeopleGroupBussines>(acc);
+            }
+            catch (Exception exception)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(exception);
+                return null;
+            }
+        }
+
+        public async Task<int> ChildCountAsync(Guid guid)
+        {
+            try
+            {
+                var acc = db.PeopleGroup.AsNoTracking().Count(q => q.ParentGuid == guid && q.Status);
+                return acc;
+            }
+            catch (Exception exception)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(exception);
+                return 0;
             }
         }
     }

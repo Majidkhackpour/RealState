@@ -1,9 +1,12 @@
-﻿namespace PacketParser.Interfaces
+﻿using System;
+
+namespace PacketParser.Interfaces
 {
     public interface IPhoneBook : IHasGuid
     {
         string Name { get; set; }
         string Tell { get; set; }
-        bool IsSystem { get; set; }
+        EnPhoneBookGroup Group { get; set; }
+        Guid ParentGuid { get; set; }
     }
 }

@@ -15,6 +15,12 @@ namespace PacketParser
         [PersianNameAttribute.PersianName("انبوه ساز")] AnbouhSaz = 1,
         [PersianNameAttribute.PersianName("سایر")] Sayer = 2
     }
+    public enum EnPhoneBookGroup : short
+    {
+        [PersianNameAttribute.PersianName("اشخاص")] Peoples = 0,
+        [PersianNameAttribute.PersianName("کاربران")] Users = 1,
+        [PersianNameAttribute.PersianName("دیوار")] Divar = 2
+    }
     public enum EnSecurityQuestion : short
     {
         [PersianNameAttribute.PersianName("فامیل معلم کلاس سوم شما چه بود؟")] One = 0,
@@ -23,17 +29,6 @@ namespace PacketParser
         [PersianNameAttribute.PersianName("زمان تحویل سال 1395 کجا بودید؟")] Four = 3,
         [PersianNameAttribute.PersianName("زمانی که خبر زلزله کرمانشاه را شنیدید، کجا بودید؟")] Five = 4,
         [PersianNameAttribute.PersianName("قهرمان دوران کودکی شما که بود؟")] Six = 5,
-    }
-    public enum EnNahveAshnaei : short
-    {
-        [PersianNameAttribute.PersianName("موتور جستجوگر گوگل")] Google = 1,
-        [PersianNameAttribute.PersianName("دریافت پیامک تبلیغاتی")] SMS = 2,
-        [PersianNameAttribute.PersianName("تبلیغات در سایت های دیگر")] OtherSite = 3,
-        [PersianNameAttribute.PersianName("تراکت و بروشور تبلیغاتی")] Tracket = 4,
-        [PersianNameAttribute.PersianName("معرفی دوستان")] Introduction = 5,
-        [PersianNameAttribute.PersianName("کانال و گروه تلگرام")] Telegram = 6,
-        [PersianNameAttribute.PersianName("پیج اینستاگرام")] Instagram = 7,
-        [PersianNameAttribute.PersianName("سایر موراد")] Other = 8
     }
     public enum ReturnedState : short
     {

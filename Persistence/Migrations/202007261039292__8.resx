@@ -117,56 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="add" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\add.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Target" xml:space="preserve">
+    <value>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</value>
   </data>
-  <data name="add_1_" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\add(1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="add_2_" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\add(2).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="article_1_" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\article(1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="basic_information" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\basic-information.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="button_send_sms" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\button-send-sms.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="delete_1_" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\delete(1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="description" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\description.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="edit_1_" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\edit(1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="printer" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\printer.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="refresh_round_symbol" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\refresh-round-symbol.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="sms_status" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\sms-status.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="tab_checkbox" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\tab-checkbox.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="tab_checkbox_" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\tab-checkbox_.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="tab_checkbox__" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\tab-checkbox__.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="tab_close_" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\tab-close_.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="toolbarButton_print" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\toolbarbutton-print.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="DefaultSchema" xml:space="preserve">
+    <value>dbo</value>
   </data>
 </root>

@@ -96,6 +96,14 @@ namespace EntityCache.Bussines
                 { //BeginTransaction
                 }
 
+                var list = await PeoplesBussines.GetAllAsync(Guid, false);
+                foreach (var item in list)
+                {
+                    item.GroupGuid = Guid.Empty;
+                    res.AddReturnedValue(await UnitOfWork.Peoples.SaveAsync(item, tranName));
+                    res.ThrowExceptionIfError();
+                }
+
                 res.AddReturnedValue(await UnitOfWork.PeopleGroup.ChangeStatusAsync(this, status, tranName));
                 res.ThrowExceptionIfError();
                 if (autoTran)
@@ -116,10 +124,17 @@ namespace EntityCache.Bussines
             return res;
         }
 
-       
+
         public static PeopleGroupBussines Get(Guid guid) => AsyncContext.Run(() => GetAsync(guid));
 
         public static async Task<bool> CheckNameAsync(string name, Guid guid) =>
             await UnitOfWork.PeopleGroup.CheckNameAsync(name, guid);
+
+        public static List<PeopleGroupBussines> GetAll() => AsyncContext.Run(GetAllAsync);
+
+        public static async Task<PeopleGroupBussines> GetAsync(string name) =>
+            await UnitOfWork.PeopleGroup.GetAsync(name);
+
+        public static async Task<int> ChildCountAsync(Guid guid) => await UnitOfWork.PeopleGroup.ChildCountAsync(guid);
     }
 }

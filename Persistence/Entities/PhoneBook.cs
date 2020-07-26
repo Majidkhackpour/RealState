@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using PacketParser;
 using PacketParser.Interfaces;
 
 namespace Persistence.Entities
@@ -14,6 +15,7 @@ namespace Persistence.Entities
         public string Name { get; set; }
         [MaxLength(20)]
         public string Tell { get; set; }
-        public bool IsSystem { get; set; }
+        public EnPhoneBookGroup Group { get; set; }
+        public Guid ParentGuid { get; set; }
     }
 }
