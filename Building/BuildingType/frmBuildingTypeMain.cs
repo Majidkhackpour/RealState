@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Windows.Forms;
 using EntityCache.Bussines;
 using MetroFramework.Forms;
@@ -34,9 +35,21 @@ namespace Building.BuildingType
             btnFinish.Enabled = !isShowMode;
         }
 
-        private void frmBuildingTypeMain_Load(object sender, EventArgs e)
+        private async void frmBuildingTypeMain_Load(object sender, EventArgs e)
         {
-            SetData();
+            try
+            {
+                SetData();
+                var myCollection = new AutoCompleteStringCollection();
+                var list = await BuildingTypeBussines.GetAllAsync();
+                foreach (var item in list.ToList())
+                    myCollection.Add(item.Name);
+                txtName.AutoCompleteCustomSource = myCollection;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
         }
 
         private void txtName_Enter(object sender, EventArgs e)

@@ -34,13 +34,13 @@
             this.btnFinish = new DevComponents.DotNetBar.ButtonX();
             this.grp = new DevComponents.DotNetBar.PanelEx();
             this.cmbCity = new System.Windows.Forms.ComboBox();
+            this.CitiesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.cmbState = new System.Windows.Forms.ComboBox();
+            this.StateBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label1 = new System.Windows.Forms.Label();
             this.txtRegion = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.CitiesBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.StateBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.grp.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CitiesBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.StateBindingSource)).BeginInit();
@@ -120,6 +120,10 @@
             this.cmbCity.TabIndex = 1;
             this.cmbCity.ValueMember = "Guid";
             // 
+            // CitiesBindingSource
+            // 
+            this.CitiesBindingSource.DataSource = typeof(EntityCache.Bussines.CitiesBussines);
+            // 
             // cmbState
             // 
             this.cmbState.DataSource = this.StateBindingSource;
@@ -133,6 +137,10 @@
             this.cmbState.ValueMember = "Guid";
             this.cmbState.SelectedIndexChanged += new System.EventHandler(this.cmbState_SelectedIndexChanged);
             // 
+            // StateBindingSource
+            // 
+            this.StateBindingSource.DataSource = typeof(EntityCache.Bussines.StatesBussines);
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -145,6 +153,8 @@
             // 
             // txtRegion
             // 
+            this.txtRegion.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.txtRegion.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.txtRegion.Location = new System.Drawing.Point(22, 84);
             this.txtRegion.Name = "txtRegion";
             this.txtRegion.Size = new System.Drawing.Size(330, 27);
@@ -171,14 +181,6 @@
             this.label7.Size = new System.Drawing.Size(67, 20);
             this.label7.TabIndex = 4;
             this.label7.Text = "عنوان منطقه";
-            // 
-            // CitiesBindingSource
-            // 
-            this.CitiesBindingSource.DataSource = typeof(EntityCache.Bussines.CitiesBussines);
-            // 
-            // StateBindingSource
-            // 
-            this.StateBindingSource.DataSource = typeof(EntityCache.Bussines.StatesBussines);
             // 
             // frmRegionMain
             // 

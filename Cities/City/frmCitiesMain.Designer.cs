@@ -120,6 +120,8 @@
             // 
             // txtCity
             // 
+            this.txtCity.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.txtCity.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.txtCity.Location = new System.Drawing.Point(22, 52);
             this.txtCity.Name = "txtCity";
             this.txtCity.Size = new System.Drawing.Size(330, 27);

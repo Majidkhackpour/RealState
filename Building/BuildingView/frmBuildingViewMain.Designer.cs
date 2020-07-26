@@ -97,6 +97,8 @@
             // 
             // txtName
             // 
+            this.txtName.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.txtName.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.txtName.Location = new System.Drawing.Point(22, 14);
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(386, 27);

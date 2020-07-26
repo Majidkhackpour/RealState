@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Windows.Forms;
 using EntityCache.Bussines;
 using MetroFramework.Forms;
@@ -44,9 +45,21 @@ namespace Building.RentalAuthority
             txtSetter.Follow(txtName);
         }
 
-        private void frmRentalAuthorityMain_Load(object sender, EventArgs e)
+        private async void frmRentalAuthorityMain_Load(object sender, EventArgs e)
         {
-            SetData();
+            try
+            {
+                SetData();
+                var myCollection = new AutoCompleteStringCollection();
+                var list = await RentalAuthorityBussines.GetAllAsync();
+                foreach (var item in list.ToList())
+                    myCollection.Add(item.Name);
+                txtName.AutoCompleteCustomSource = myCollection;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
         }
 
         private void btnCancel_Click(object sender, EventArgs e)

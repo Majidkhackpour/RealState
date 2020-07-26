@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Windows.Forms;
 using EntityCache.Bussines;
 using MetroFramework.Forms;
@@ -44,9 +45,21 @@ namespace Building.BuildingOptions
             txtSetter.Follow(txtName);
         }
 
-        private void frmBuildingOptions_Load(object sender, EventArgs e)
+        private async void frmBuildingOptions_Load(object sender, EventArgs e)
         {
-            SetData();
+            try
+            {
+                SetData();
+                var myCollection = new AutoCompleteStringCollection();
+                var list = await BuildingOptionsBussines.GetAllAsync();
+                foreach (var item in list.ToList())
+                    myCollection.Add(item.Name);
+                txtName.AutoCompleteCustomSource = myCollection;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
         }
 
         private void btnCancel_Click(object sender, EventArgs e)

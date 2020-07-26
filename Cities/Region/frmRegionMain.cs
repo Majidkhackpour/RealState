@@ -55,9 +55,21 @@ namespace Cities.Region
             txtSetter.Follow(txtRegion);
         }
 
-        private void frmRegionMain_Load(object sender, EventArgs e)
+        private async void frmRegionMain_Load(object sender, EventArgs e)
         {
-            SetData();
+            try
+            {
+                SetData();
+                var myCollection = new AutoCompleteStringCollection();
+                var list = await RegionsBussines.GetAllAsync();
+                foreach (var item in list.ToList())
+                    myCollection.Add(item.Name);
+                txtRegion.AutoCompleteCustomSource = myCollection;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
         }
 
         private void btnCancel_Click(object sender, EventArgs e)

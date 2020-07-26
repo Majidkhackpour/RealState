@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using EntityCache.Bussines;
@@ -135,9 +136,21 @@ namespace User
         }
         #endregion
 
-        private void frmUserMain_Load(object sender, EventArgs e)
+        private async void frmUserMain_Load(object sender, EventArgs e)
         {
-            SetData();
+            try
+            {
+                SetData();
+                var myCollection = new AutoCompleteStringCollection();
+                var list = await UserBussines.GetAllAsync();
+                foreach (var item in list.ToList())
+                    myCollection.Add(item.Email);
+                txtName.AutoCompleteCustomSource = myCollection;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
