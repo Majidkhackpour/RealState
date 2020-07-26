@@ -10,7 +10,6 @@ namespace EntityCache.Bussines
         public bool Status { get; set; }
         public string Name { get; set; }
         public string Tell { get; set; }
-        public string Email { get; set; }
         public bool IsSystem { get; set; }
     }
 }

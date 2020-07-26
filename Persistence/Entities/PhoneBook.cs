@@ -14,8 +14,6 @@ namespace Persistence.Entities
         public string Name { get; set; }
         [MaxLength(20)]
         public string Tell { get; set; }
-        [MaxLength(50)]
-        public string Email { get; set; }
         public bool IsSystem { get; set; }
     }
 }

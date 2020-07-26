@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Drawing;
 using System.Reflection;
 using System.Windows.Forms;
 using Building.BuildingAccountType;
@@ -17,6 +16,7 @@ using EntityCache.Bussines;
 using Ertegha;
 using MetroFramework.Forms;
 using PacketParser.Services;
+using Peoples;
 using TMS.Class;
 using User;
 
@@ -908,6 +908,59 @@ namespace RealState
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
+        }
+
+        private void picPeoples_MouseEnter(object sender, EventArgs e)
+        {
+            try
+            {
+                picPeoples.Image = Properties.Resources.interview_;
+                txtSetter.Focus(lblPeoples);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private void picPeoples_MouseLeave(object sender, EventArgs e)
+        {
+            try
+            {
+                picPeoples.Image = Properties.Resources.interview;
+                txtSetter.Follow(lblPeoples);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private void picPeoples_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                new frmShowPeoples().ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private void lblPeoples_Click(object sender, EventArgs e)
+        {
+            picPeoples_Click(null, null);
+        }
+
+        private void lblPeoples_MouseEnter(object sender, EventArgs e)
+        {
+            picPeoples_MouseEnter(null, null);
+        }
+
+        private void lblPeoples_MouseLeave(object sender, EventArgs e)
+        {
+            picPeoples_MouseLeave(null, null);
         }
     }
 }

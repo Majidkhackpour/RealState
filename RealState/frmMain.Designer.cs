@@ -45,34 +45,19 @@
             this.pnlMenu = new DevComponents.DotNetBar.PanelEx();
             this.lblUsers = new System.Windows.Forms.Label();
             this.lblBaseInfo = new System.Windows.Forms.Label();
-            this.picUsers = new System.Windows.Forms.PictureBox();
-            this.picBaseInfo = new System.Windows.Forms.PictureBox();
             this.pnlSubMenuBase = new DevComponents.DotNetBar.PanelEx();
-            this.picMore = new System.Windows.Forms.PictureBox();
             this.lblKitchen = new System.Windows.Forms.Label();
             this.lblFloor = new System.Windows.Forms.Label();
             this.lblAccountType = new System.Windows.Forms.Label();
             this.lblBuildingOptions = new System.Windows.Forms.Label();
             this.lblRegion = new System.Windows.Forms.Label();
             this.lblCities = new System.Windows.Forms.Label();
-            this.picKitchen = new System.Windows.Forms.PictureBox();
-            this.picFloor = new System.Windows.Forms.PictureBox();
-            this.picAccountType = new System.Windows.Forms.PictureBox();
-            this.picBuildingOptions = new System.Windows.Forms.PictureBox();
-            this.picRegion = new System.Windows.Forms.PictureBox();
-            this.picCities = new System.Windows.Forms.PictureBox();
             this.lblBuildingCondition = new System.Windows.Forms.Label();
             this.pnlSubMenuBase2 = new DevComponents.DotNetBar.PanelEx();
-            this.picReverse = new System.Windows.Forms.PictureBox();
             this.lblBuildingView = new System.Windows.Forms.Label();
             this.lblRental = new System.Windows.Forms.Label();
             this.lblDocType = new System.Windows.Forms.Label();
-            this.picBuildingView = new System.Windows.Forms.PictureBox();
-            this.picRental = new System.Windows.Forms.PictureBox();
-            this.picDocType = new System.Windows.Forms.PictureBox();
             this.lblBuildingType = new System.Windows.Forms.Label();
-            this.picBuildingType = new System.Windows.Forms.PictureBox();
-            this.picBuildingCondition = new System.Windows.Forms.PictureBox();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.mnuRunScript = new System.Windows.Forms.ToolStripMenuItem();
             this.TimerNaqz = new System.Windows.Forms.Timer(this.components);
@@ -82,15 +67,41 @@
             this.lblCurrentUser = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.lblVersion = new System.Windows.Forms.Label();
+            this.lblPeoples = new System.Windows.Forms.Label();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.picReverse = new System.Windows.Forms.PictureBox();
+            this.picBuildingView = new System.Windows.Forms.PictureBox();
+            this.picRental = new System.Windows.Forms.PictureBox();
+            this.picDocType = new System.Windows.Forms.PictureBox();
+            this.picBuildingType = new System.Windows.Forms.PictureBox();
+            this.picBuildingCondition = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.picMore = new System.Windows.Forms.PictureBox();
+            this.picKitchen = new System.Windows.Forms.PictureBox();
+            this.picFloor = new System.Windows.Forms.PictureBox();
+            this.picAccountType = new System.Windows.Forms.PictureBox();
+            this.picBuildingOptions = new System.Windows.Forms.PictureBox();
+            this.picRegion = new System.Windows.Forms.PictureBox();
+            this.picCities = new System.Windows.Forms.PictureBox();
+            this.picPeoples = new System.Windows.Forms.PictureBox();
+            this.picUsers = new System.Windows.Forms.PictureBox();
+            this.picBaseInfo = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.picExit = new System.Windows.Forms.PictureBox();
             this.pnlMenu.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picUsers)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picBaseInfo)).BeginInit();
             this.pnlSubMenuBase.SuspendLayout();
+            this.pnlSubMenuBase2.SuspendLayout();
+            this.contextMenuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picReverse)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picBuildingView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picRental)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picDocType)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picBuildingType)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picBuildingCondition)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picMore)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picKitchen)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picFloor)).BeginInit();
@@ -98,17 +109,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.picBuildingOptions)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picRegion)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picCities)).BeginInit();
-            this.pnlSubMenuBase2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picReverse)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picBuildingView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picRental)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picDocType)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picBuildingType)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picBuildingCondition)).BeginInit();
-            this.contextMenuStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picPeoples)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picUsers)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picBaseInfo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picExit)).BeginInit();
             this.SuspendLayout();
@@ -249,8 +252,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlMenu.CanvasColor = System.Drawing.SystemColors.Control;
             this.pnlMenu.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.pnlMenu.Controls.Add(this.lblPeoples);
             this.pnlMenu.Controls.Add(this.lblUsers);
             this.pnlMenu.Controls.Add(this.lblBaseInfo);
+            this.pnlMenu.Controls.Add(this.picPeoples);
             this.pnlMenu.Controls.Add(this.picUsers);
             this.pnlMenu.Controls.Add(this.picBaseInfo);
             this.pnlMenu.DisabledBackColor = System.Drawing.Color.Empty;
@@ -296,36 +301,6 @@
             this.lblBaseInfo.MouseEnter += new System.EventHandler(this.lblBaseInfo_MouseEnter);
             this.lblBaseInfo.MouseLeave += new System.EventHandler(this.lblBaseInfo_MouseLeave);
             // 
-            // picUsers
-            // 
-            this.picUsers.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.picUsers.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.picUsers.Image = global::RealState.Properties.Resources.notification_user;
-            this.picUsers.Location = new System.Drawing.Point(11, 73);
-            this.picUsers.Name = "picUsers";
-            this.picUsers.Size = new System.Drawing.Size(42, 39);
-            this.picUsers.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.picUsers.TabIndex = 12;
-            this.picUsers.TabStop = false;
-            this.picUsers.Click += new System.EventHandler(this.picUsers_Click);
-            this.picUsers.MouseEnter += new System.EventHandler(this.picUsers_MouseEnter);
-            this.picUsers.MouseLeave += new System.EventHandler(this.picUsers_MouseLeave);
-            // 
-            // picBaseInfo
-            // 
-            this.picBaseInfo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.picBaseInfo.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.picBaseInfo.Image = global::RealState.Properties.Resources.menu;
-            this.picBaseInfo.Location = new System.Drawing.Point(11, 9);
-            this.picBaseInfo.Name = "picBaseInfo";
-            this.picBaseInfo.Size = new System.Drawing.Size(42, 39);
-            this.picBaseInfo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.picBaseInfo.TabIndex = 12;
-            this.picBaseInfo.TabStop = false;
-            this.picBaseInfo.Click += new System.EventHandler(this.picBaseInfo_Click);
-            this.picBaseInfo.MouseEnter += new System.EventHandler(this.picBaseInfo_MouseEnter);
-            this.picBaseInfo.MouseLeave += new System.EventHandler(this.picBaseInfo_MouseLeave);
-            // 
             // pnlSubMenuBase
             // 
             this.pnlSubMenuBase.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -359,21 +334,6 @@
             this.pnlSubMenuBase.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText;
             this.pnlSubMenuBase.Style.GradientAngle = 90;
             this.pnlSubMenuBase.TabIndex = 5;
-            // 
-            // picMore
-            // 
-            this.picMore.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.picMore.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.picMore.Image = global::RealState.Properties.Resources.down_arrow;
-            this.picMore.Location = new System.Drawing.Point(22, 444);
-            this.picMore.Name = "picMore";
-            this.picMore.Size = new System.Drawing.Size(27, 28);
-            this.picMore.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.picMore.TabIndex = 12;
-            this.picMore.TabStop = false;
-            this.picMore.Click += new System.EventHandler(this.picMore_Click);
-            this.picMore.MouseEnter += new System.EventHandler(this.picMore_MouseEnter);
-            this.picMore.MouseLeave += new System.EventHandler(this.picMore_MouseLeave);
             // 
             // lblKitchen
             // 
@@ -459,96 +419,6 @@
             this.lblCities.MouseEnter += new System.EventHandler(this.lblCities_MouseEnter);
             this.lblCities.MouseLeave += new System.EventHandler(this.lblCities_MouseLeave);
             // 
-            // picKitchen
-            // 
-            this.picKitchen.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.picKitchen.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.picKitchen.Image = global::RealState.Properties.Resources.kitchen_1_;
-            this.picKitchen.Location = new System.Drawing.Point(14, 372);
-            this.picKitchen.Name = "picKitchen";
-            this.picKitchen.Size = new System.Drawing.Size(42, 39);
-            this.picKitchen.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.picKitchen.TabIndex = 12;
-            this.picKitchen.TabStop = false;
-            this.picKitchen.Click += new System.EventHandler(this.picKitchen_Click);
-            this.picKitchen.MouseEnter += new System.EventHandler(this.picKitchen_MouseEnter);
-            this.picKitchen.MouseLeave += new System.EventHandler(this.picKitchen_MouseLeave);
-            // 
-            // picFloor
-            // 
-            this.picFloor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.picFloor.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.picFloor.Image = global::RealState.Properties.Resources.floor;
-            this.picFloor.Location = new System.Drawing.Point(12, 302);
-            this.picFloor.Name = "picFloor";
-            this.picFloor.Size = new System.Drawing.Size(42, 39);
-            this.picFloor.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.picFloor.TabIndex = 12;
-            this.picFloor.TabStop = false;
-            this.picFloor.Click += new System.EventHandler(this.picFloor_Click);
-            this.picFloor.MouseEnter += new System.EventHandler(this.picFloor_MouseEnter);
-            this.picFloor.MouseLeave += new System.EventHandler(this.picFloor_MouseLeave);
-            // 
-            // picAccountType
-            // 
-            this.picAccountType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.picAccountType.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.picAccountType.Image = global::RealState.Properties.Resources.company;
-            this.picAccountType.Location = new System.Drawing.Point(12, 232);
-            this.picAccountType.Name = "picAccountType";
-            this.picAccountType.Size = new System.Drawing.Size(42, 39);
-            this.picAccountType.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.picAccountType.TabIndex = 12;
-            this.picAccountType.TabStop = false;
-            this.picAccountType.Click += new System.EventHandler(this.picAccountType_Click);
-            this.picAccountType.MouseEnter += new System.EventHandler(this.picAccountType_MouseEnter);
-            this.picAccountType.MouseLeave += new System.EventHandler(this.picAccountType_MouseLeave);
-            // 
-            // picBuildingOptions
-            // 
-            this.picBuildingOptions.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.picBuildingOptions.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.picBuildingOptions.Image = global::RealState.Properties.Resources.house;
-            this.picBuildingOptions.Location = new System.Drawing.Point(12, 148);
-            this.picBuildingOptions.Name = "picBuildingOptions";
-            this.picBuildingOptions.Size = new System.Drawing.Size(42, 39);
-            this.picBuildingOptions.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.picBuildingOptions.TabIndex = 12;
-            this.picBuildingOptions.TabStop = false;
-            this.picBuildingOptions.Click += new System.EventHandler(this.picBuildingOptions_Click);
-            this.picBuildingOptions.MouseEnter += new System.EventHandler(this.picBuildingOptions_MouseEnter);
-            this.picBuildingOptions.MouseLeave += new System.EventHandler(this.picBuildingOptions_MouseLeave);
-            // 
-            // picRegion
-            // 
-            this.picRegion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.picRegion.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.picRegion.Image = global::RealState.Properties.Resources.navigation;
-            this.picRegion.Location = new System.Drawing.Point(12, 77);
-            this.picRegion.Name = "picRegion";
-            this.picRegion.Size = new System.Drawing.Size(42, 39);
-            this.picRegion.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.picRegion.TabIndex = 12;
-            this.picRegion.TabStop = false;
-            this.picRegion.Click += new System.EventHandler(this.picRegion_Click);
-            this.picRegion.MouseEnter += new System.EventHandler(this.picRegion_MouseEnter);
-            this.picRegion.MouseLeave += new System.EventHandler(this.picRegion_MouseLeave);
-            // 
-            // picCities
-            // 
-            this.picCities.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.picCities.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.picCities.Image = global::RealState.Properties.Resources.map;
-            this.picCities.Location = new System.Drawing.Point(10, 9);
-            this.picCities.Name = "picCities";
-            this.picCities.Size = new System.Drawing.Size(42, 39);
-            this.picCities.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.picCities.TabIndex = 12;
-            this.picCities.TabStop = false;
-            this.picCities.Click += new System.EventHandler(this.picCities_Click);
-            this.picCities.MouseEnter += new System.EventHandler(this.picCities_MouseEnter);
-            this.picCities.MouseLeave += new System.EventHandler(this.picCities_MouseLeave);
-            // 
             // lblBuildingCondition
             // 
             this.lblBuildingCondition.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -595,21 +465,6 @@
             this.pnlSubMenuBase2.Style.GradientAngle = 90;
             this.pnlSubMenuBase2.TabIndex = 5;
             // 
-            // picReverse
-            // 
-            this.picReverse.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.picReverse.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.picReverse.Image = global::RealState.Properties.Resources.upload;
-            this.picReverse.Location = new System.Drawing.Point(20, 10);
-            this.picReverse.Name = "picReverse";
-            this.picReverse.Size = new System.Drawing.Size(27, 28);
-            this.picReverse.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.picReverse.TabIndex = 12;
-            this.picReverse.TabStop = false;
-            this.picReverse.Click += new System.EventHandler(this.picReverse_Click);
-            this.picReverse.MouseEnter += new System.EventHandler(this.picReverse_MouseEnter);
-            this.picReverse.MouseLeave += new System.EventHandler(this.picReverse_MouseLeave);
-            // 
             // lblBuildingView
             // 
             this.lblBuildingView.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -652,51 +507,6 @@
             this.lblDocType.MouseEnter += new System.EventHandler(this.lblDocType_MouseEnter);
             this.lblDocType.MouseLeave += new System.EventHandler(this.lblDocType_MouseLeave);
             // 
-            // picBuildingView
-            // 
-            this.picBuildingView.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.picBuildingView.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.picBuildingView.Image = global::RealState.Properties.Resources.villa;
-            this.picBuildingView.Location = new System.Drawing.Point(12, 182);
-            this.picBuildingView.Name = "picBuildingView";
-            this.picBuildingView.Size = new System.Drawing.Size(42, 39);
-            this.picBuildingView.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.picBuildingView.TabIndex = 16;
-            this.picBuildingView.TabStop = false;
-            this.picBuildingView.Click += new System.EventHandler(this.picBuildingView_Click);
-            this.picBuildingView.MouseEnter += new System.EventHandler(this.picBuildingView_MouseEnter);
-            this.picBuildingView.MouseLeave += new System.EventHandler(this.picBuildingView_MouseLeave);
-            // 
-            // picRental
-            // 
-            this.picRental.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.picRental.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.picRental.Image = global::RealState.Properties.Resources.tourism;
-            this.picRental.Location = new System.Drawing.Point(12, 118);
-            this.picRental.Name = "picRental";
-            this.picRental.Size = new System.Drawing.Size(42, 39);
-            this.picRental.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.picRental.TabIndex = 17;
-            this.picRental.TabStop = false;
-            this.picRental.Click += new System.EventHandler(this.picRental_Click);
-            this.picRental.MouseEnter += new System.EventHandler(this.picRental_MouseEnter);
-            this.picRental.MouseLeave += new System.EventHandler(this.picRental_MouseLeave);
-            // 
-            // picDocType
-            // 
-            this.picDocType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.picDocType.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.picDocType.Image = global::RealState.Properties.Resources.archived;
-            this.picDocType.Location = new System.Drawing.Point(12, 52);
-            this.picDocType.Name = "picDocType";
-            this.picDocType.Size = new System.Drawing.Size(42, 39);
-            this.picDocType.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.picDocType.TabIndex = 18;
-            this.picDocType.TabStop = false;
-            this.picDocType.Click += new System.EventHandler(this.picDocType_Click);
-            this.picDocType.MouseEnter += new System.EventHandler(this.picDocType_MouseEnter);
-            this.picDocType.MouseLeave += new System.EventHandler(this.picDocType_MouseLeave);
-            // 
             // lblBuildingType
             // 
             this.lblBuildingType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -710,36 +520,6 @@
             this.lblBuildingType.Click += new System.EventHandler(this.lblBuildingType_Click);
             this.lblBuildingType.MouseEnter += new System.EventHandler(this.lblBuildingType_MouseEnter);
             this.lblBuildingType.MouseLeave += new System.EventHandler(this.lblBuildingType_MouseLeave);
-            // 
-            // picBuildingType
-            // 
-            this.picBuildingType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.picBuildingType.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.picBuildingType.Image = global::RealState.Properties.Resources.lego;
-            this.picBuildingType.Location = new System.Drawing.Point(13, 314);
-            this.picBuildingType.Name = "picBuildingType";
-            this.picBuildingType.Size = new System.Drawing.Size(42, 39);
-            this.picBuildingType.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.picBuildingType.TabIndex = 12;
-            this.picBuildingType.TabStop = false;
-            this.picBuildingType.Click += new System.EventHandler(this.picBuildingType_Click);
-            this.picBuildingType.MouseEnter += new System.EventHandler(this.picBuildingType_MouseEnter);
-            this.picBuildingType.MouseLeave += new System.EventHandler(this.picBuildingType_MouseLeave);
-            // 
-            // picBuildingCondition
-            // 
-            this.picBuildingCondition.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.picBuildingCondition.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.picBuildingCondition.Image = global::RealState.Properties.Resources.crane;
-            this.picBuildingCondition.Location = new System.Drawing.Point(12, 248);
-            this.picBuildingCondition.Name = "picBuildingCondition";
-            this.picBuildingCondition.Size = new System.Drawing.Size(42, 39);
-            this.picBuildingCondition.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.picBuildingCondition.TabIndex = 12;
-            this.picBuildingCondition.TabStop = false;
-            this.picBuildingCondition.Click += new System.EventHandler(this.picBuildingCondition_Click);
-            this.picBuildingCondition.MouseEnter += new System.EventHandler(this.picBuildingCondition_MouseEnter);
-            this.picBuildingCondition.MouseLeave += new System.EventHandler(this.picBuildingCondition_MouseLeave);
             // 
             // contextMenuStrip1
             // 
@@ -833,6 +613,20 @@
             this.lblVersion.TabIndex = 12;
             this.lblVersion.Text = "0000";
             // 
+            // lblPeoples
+            // 
+            this.lblPeoples.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblPeoples.AutoSize = true;
+            this.lblPeoples.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lblPeoples.Location = new System.Drawing.Point(9, 178);
+            this.lblPeoples.Name = "lblPeoples";
+            this.lblPeoples.Size = new System.Drawing.Size(46, 20);
+            this.lblPeoples.TabIndex = 12;
+            this.lblPeoples.Text = "اشخاص";
+            this.lblPeoples.Click += new System.EventHandler(this.lblPeoples_Click);
+            this.lblPeoples.MouseEnter += new System.EventHandler(this.lblPeoples_MouseEnter);
+            this.lblPeoples.MouseLeave += new System.EventHandler(this.lblPeoples_MouseLeave);
+            // 
             // pictureBox4
             // 
             this.pictureBox4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -857,6 +651,96 @@
             this.pictureBox3.TabIndex = 12;
             this.pictureBox3.TabStop = false;
             // 
+            // picReverse
+            // 
+            this.picReverse.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.picReverse.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.picReverse.Image = global::RealState.Properties.Resources.upload;
+            this.picReverse.Location = new System.Drawing.Point(20, 10);
+            this.picReverse.Name = "picReverse";
+            this.picReverse.Size = new System.Drawing.Size(27, 28);
+            this.picReverse.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picReverse.TabIndex = 12;
+            this.picReverse.TabStop = false;
+            this.picReverse.Click += new System.EventHandler(this.picReverse_Click);
+            this.picReverse.MouseEnter += new System.EventHandler(this.picReverse_MouseEnter);
+            this.picReverse.MouseLeave += new System.EventHandler(this.picReverse_MouseLeave);
+            // 
+            // picBuildingView
+            // 
+            this.picBuildingView.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.picBuildingView.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.picBuildingView.Image = global::RealState.Properties.Resources.villa;
+            this.picBuildingView.Location = new System.Drawing.Point(12, 182);
+            this.picBuildingView.Name = "picBuildingView";
+            this.picBuildingView.Size = new System.Drawing.Size(42, 39);
+            this.picBuildingView.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picBuildingView.TabIndex = 16;
+            this.picBuildingView.TabStop = false;
+            this.picBuildingView.Click += new System.EventHandler(this.picBuildingView_Click);
+            this.picBuildingView.MouseEnter += new System.EventHandler(this.picBuildingView_MouseEnter);
+            this.picBuildingView.MouseLeave += new System.EventHandler(this.picBuildingView_MouseLeave);
+            // 
+            // picRental
+            // 
+            this.picRental.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.picRental.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.picRental.Image = global::RealState.Properties.Resources.tourism;
+            this.picRental.Location = new System.Drawing.Point(12, 118);
+            this.picRental.Name = "picRental";
+            this.picRental.Size = new System.Drawing.Size(42, 39);
+            this.picRental.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picRental.TabIndex = 17;
+            this.picRental.TabStop = false;
+            this.picRental.Click += new System.EventHandler(this.picRental_Click);
+            this.picRental.MouseEnter += new System.EventHandler(this.picRental_MouseEnter);
+            this.picRental.MouseLeave += new System.EventHandler(this.picRental_MouseLeave);
+            // 
+            // picDocType
+            // 
+            this.picDocType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.picDocType.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.picDocType.Image = global::RealState.Properties.Resources.archived;
+            this.picDocType.Location = new System.Drawing.Point(12, 52);
+            this.picDocType.Name = "picDocType";
+            this.picDocType.Size = new System.Drawing.Size(42, 39);
+            this.picDocType.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picDocType.TabIndex = 18;
+            this.picDocType.TabStop = false;
+            this.picDocType.Click += new System.EventHandler(this.picDocType_Click);
+            this.picDocType.MouseEnter += new System.EventHandler(this.picDocType_MouseEnter);
+            this.picDocType.MouseLeave += new System.EventHandler(this.picDocType_MouseLeave);
+            // 
+            // picBuildingType
+            // 
+            this.picBuildingType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.picBuildingType.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.picBuildingType.Image = global::RealState.Properties.Resources.lego;
+            this.picBuildingType.Location = new System.Drawing.Point(13, 314);
+            this.picBuildingType.Name = "picBuildingType";
+            this.picBuildingType.Size = new System.Drawing.Size(42, 39);
+            this.picBuildingType.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picBuildingType.TabIndex = 12;
+            this.picBuildingType.TabStop = false;
+            this.picBuildingType.Click += new System.EventHandler(this.picBuildingType_Click);
+            this.picBuildingType.MouseEnter += new System.EventHandler(this.picBuildingType_MouseEnter);
+            this.picBuildingType.MouseLeave += new System.EventHandler(this.picBuildingType_MouseLeave);
+            // 
+            // picBuildingCondition
+            // 
+            this.picBuildingCondition.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.picBuildingCondition.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.picBuildingCondition.Image = global::RealState.Properties.Resources.crane;
+            this.picBuildingCondition.Location = new System.Drawing.Point(12, 248);
+            this.picBuildingCondition.Name = "picBuildingCondition";
+            this.picBuildingCondition.Size = new System.Drawing.Size(42, 39);
+            this.picBuildingCondition.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picBuildingCondition.TabIndex = 12;
+            this.picBuildingCondition.TabStop = false;
+            this.picBuildingCondition.Click += new System.EventHandler(this.picBuildingCondition_Click);
+            this.picBuildingCondition.MouseEnter += new System.EventHandler(this.picBuildingCondition_MouseEnter);
+            this.picBuildingCondition.MouseLeave += new System.EventHandler(this.picBuildingCondition_MouseLeave);
+            // 
             // pictureBox2
             // 
             this.pictureBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -868,6 +752,156 @@
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox2.TabIndex = 12;
             this.pictureBox2.TabStop = false;
+            // 
+            // picMore
+            // 
+            this.picMore.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.picMore.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.picMore.Image = global::RealState.Properties.Resources.down_arrow;
+            this.picMore.Location = new System.Drawing.Point(22, 444);
+            this.picMore.Name = "picMore";
+            this.picMore.Size = new System.Drawing.Size(27, 28);
+            this.picMore.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picMore.TabIndex = 12;
+            this.picMore.TabStop = false;
+            this.picMore.Click += new System.EventHandler(this.picMore_Click);
+            this.picMore.MouseEnter += new System.EventHandler(this.picMore_MouseEnter);
+            this.picMore.MouseLeave += new System.EventHandler(this.picMore_MouseLeave);
+            // 
+            // picKitchen
+            // 
+            this.picKitchen.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.picKitchen.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.picKitchen.Image = global::RealState.Properties.Resources.kitchen_1_;
+            this.picKitchen.Location = new System.Drawing.Point(14, 372);
+            this.picKitchen.Name = "picKitchen";
+            this.picKitchen.Size = new System.Drawing.Size(42, 39);
+            this.picKitchen.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picKitchen.TabIndex = 12;
+            this.picKitchen.TabStop = false;
+            this.picKitchen.Click += new System.EventHandler(this.picKitchen_Click);
+            this.picKitchen.MouseEnter += new System.EventHandler(this.picKitchen_MouseEnter);
+            this.picKitchen.MouseLeave += new System.EventHandler(this.picKitchen_MouseLeave);
+            // 
+            // picFloor
+            // 
+            this.picFloor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.picFloor.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.picFloor.Image = global::RealState.Properties.Resources.floor;
+            this.picFloor.Location = new System.Drawing.Point(12, 302);
+            this.picFloor.Name = "picFloor";
+            this.picFloor.Size = new System.Drawing.Size(42, 39);
+            this.picFloor.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picFloor.TabIndex = 12;
+            this.picFloor.TabStop = false;
+            this.picFloor.Click += new System.EventHandler(this.picFloor_Click);
+            this.picFloor.MouseEnter += new System.EventHandler(this.picFloor_MouseEnter);
+            this.picFloor.MouseLeave += new System.EventHandler(this.picFloor_MouseLeave);
+            // 
+            // picAccountType
+            // 
+            this.picAccountType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.picAccountType.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.picAccountType.Image = global::RealState.Properties.Resources.company;
+            this.picAccountType.Location = new System.Drawing.Point(12, 232);
+            this.picAccountType.Name = "picAccountType";
+            this.picAccountType.Size = new System.Drawing.Size(42, 39);
+            this.picAccountType.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picAccountType.TabIndex = 12;
+            this.picAccountType.TabStop = false;
+            this.picAccountType.Click += new System.EventHandler(this.picAccountType_Click);
+            this.picAccountType.MouseEnter += new System.EventHandler(this.picAccountType_MouseEnter);
+            this.picAccountType.MouseLeave += new System.EventHandler(this.picAccountType_MouseLeave);
+            // 
+            // picBuildingOptions
+            // 
+            this.picBuildingOptions.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.picBuildingOptions.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.picBuildingOptions.Image = global::RealState.Properties.Resources.house;
+            this.picBuildingOptions.Location = new System.Drawing.Point(12, 148);
+            this.picBuildingOptions.Name = "picBuildingOptions";
+            this.picBuildingOptions.Size = new System.Drawing.Size(42, 39);
+            this.picBuildingOptions.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picBuildingOptions.TabIndex = 12;
+            this.picBuildingOptions.TabStop = false;
+            this.picBuildingOptions.Click += new System.EventHandler(this.picBuildingOptions_Click);
+            this.picBuildingOptions.MouseEnter += new System.EventHandler(this.picBuildingOptions_MouseEnter);
+            this.picBuildingOptions.MouseLeave += new System.EventHandler(this.picBuildingOptions_MouseLeave);
+            // 
+            // picRegion
+            // 
+            this.picRegion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.picRegion.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.picRegion.Image = global::RealState.Properties.Resources.navigation;
+            this.picRegion.Location = new System.Drawing.Point(12, 77);
+            this.picRegion.Name = "picRegion";
+            this.picRegion.Size = new System.Drawing.Size(42, 39);
+            this.picRegion.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picRegion.TabIndex = 12;
+            this.picRegion.TabStop = false;
+            this.picRegion.Click += new System.EventHandler(this.picRegion_Click);
+            this.picRegion.MouseEnter += new System.EventHandler(this.picRegion_MouseEnter);
+            this.picRegion.MouseLeave += new System.EventHandler(this.picRegion_MouseLeave);
+            // 
+            // picCities
+            // 
+            this.picCities.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.picCities.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.picCities.Image = global::RealState.Properties.Resources.map;
+            this.picCities.Location = new System.Drawing.Point(10, 9);
+            this.picCities.Name = "picCities";
+            this.picCities.Size = new System.Drawing.Size(42, 39);
+            this.picCities.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picCities.TabIndex = 12;
+            this.picCities.TabStop = false;
+            this.picCities.Click += new System.EventHandler(this.picCities_Click);
+            this.picCities.MouseEnter += new System.EventHandler(this.picCities_MouseEnter);
+            this.picCities.MouseLeave += new System.EventHandler(this.picCities_MouseLeave);
+            // 
+            // picPeoples
+            // 
+            this.picPeoples.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.picPeoples.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.picPeoples.Image = global::RealState.Properties.Resources.interview;
+            this.picPeoples.Location = new System.Drawing.Point(11, 137);
+            this.picPeoples.Name = "picPeoples";
+            this.picPeoples.Size = new System.Drawing.Size(42, 39);
+            this.picPeoples.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picPeoples.TabIndex = 12;
+            this.picPeoples.TabStop = false;
+            this.picPeoples.Click += new System.EventHandler(this.picPeoples_Click);
+            this.picPeoples.MouseEnter += new System.EventHandler(this.picPeoples_MouseEnter);
+            this.picPeoples.MouseLeave += new System.EventHandler(this.picPeoples_MouseLeave);
+            // 
+            // picUsers
+            // 
+            this.picUsers.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.picUsers.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.picUsers.Image = global::RealState.Properties.Resources.notification_user;
+            this.picUsers.Location = new System.Drawing.Point(11, 73);
+            this.picUsers.Name = "picUsers";
+            this.picUsers.Size = new System.Drawing.Size(42, 39);
+            this.picUsers.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picUsers.TabIndex = 12;
+            this.picUsers.TabStop = false;
+            this.picUsers.Click += new System.EventHandler(this.picUsers_Click);
+            this.picUsers.MouseEnter += new System.EventHandler(this.picUsers_MouseEnter);
+            this.picUsers.MouseLeave += new System.EventHandler(this.picUsers_MouseLeave);
+            // 
+            // picBaseInfo
+            // 
+            this.picBaseInfo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.picBaseInfo.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.picBaseInfo.Image = global::RealState.Properties.Resources.menu;
+            this.picBaseInfo.Location = new System.Drawing.Point(11, 9);
+            this.picBaseInfo.Name = "picBaseInfo";
+            this.picBaseInfo.Size = new System.Drawing.Size(42, 39);
+            this.picBaseInfo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picBaseInfo.TabIndex = 12;
+            this.picBaseInfo.TabStop = false;
+            this.picBaseInfo.Click += new System.EventHandler(this.picBaseInfo_Click);
+            this.picBaseInfo.MouseEnter += new System.EventHandler(this.picBaseInfo_MouseEnter);
+            this.picBaseInfo.MouseLeave += new System.EventHandler(this.picBaseInfo_MouseLeave);
             // 
             // pictureBox1
             // 
@@ -939,10 +973,19 @@
             this.Load += new System.EventHandler(this.frmMain_Load);
             this.pnlMenu.ResumeLayout(false);
             this.pnlMenu.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picUsers)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picBaseInfo)).EndInit();
             this.pnlSubMenuBase.ResumeLayout(false);
             this.pnlSubMenuBase.PerformLayout();
+            this.pnlSubMenuBase2.ResumeLayout(false);
+            this.contextMenuStrip1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picReverse)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picBuildingView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picRental)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picDocType)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picBuildingType)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picBuildingCondition)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picMore)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picKitchen)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picFloor)).EndInit();
@@ -950,17 +993,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.picBuildingOptions)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picRegion)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picCities)).EndInit();
-            this.pnlSubMenuBase2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.picReverse)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picBuildingView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picRental)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picDocType)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picBuildingType)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picBuildingCondition)).EndInit();
-            this.contextMenuStrip1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picPeoples)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picUsers)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picBaseInfo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picExit)).EndInit();
             this.ResumeLayout(false);
@@ -1027,6 +1062,8 @@
         private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label lblVersion;
+        private System.Windows.Forms.Label lblPeoples;
+        private System.Windows.Forms.PictureBox picPeoples;
     }
 }
 
