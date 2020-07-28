@@ -59,7 +59,7 @@ namespace RealState
             try
             {
                 lblEconomyName.Text = SettingsBussines.EconomyName;
-                lblCurrentUser.Text = UserBussines.CurrentUser?.Name??"";
+                lblCurrentUser.Text = clsUser.CurrentUser?.Name ?? "";
                 lblVersion.Text = Assembly.GetExecutingAssembly().GetName().Version.ToString();
             }
             catch (Exception ex)

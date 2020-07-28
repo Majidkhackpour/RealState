@@ -4,6 +4,7 @@ using EntityCache.Assistence;
 using EntityCache.Bussines;
 using Ertegha;
 using Settings;
+using User;
 
 namespace RealState
 {
@@ -33,8 +34,13 @@ namespace RealState
                 var frm = new frmEconomyUnit();
                 if (frm.ShowDialog() == DialogResult.Cancel)  Application.Exit();
             }
-            Application.Run(new frmMain());
-            
+
+            var logForm = new frmLogin();
+            if (logForm.ShowDialog() != DialogResult.OK) return;
+
+            var frmMain = new frmMain();
+            frmMain.ShowDialog();
+
         }
     }
 }

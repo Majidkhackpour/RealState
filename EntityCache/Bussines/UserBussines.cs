@@ -23,7 +23,6 @@ namespace EntityCache.Bussines
         public string AnswerQuestion { get; set; }
         public string Email { get; set; }
         public string Mobile { get; set; }
-        public static UserBussines CurrentUser { get; set; }
 
 
 
@@ -133,5 +132,7 @@ namespace EntityCache.Bussines
 
         public static async Task<bool> CheckUserNameAsync(Guid guid, string userName) =>
             await UnitOfWork.Users.CheckUserNameAsync(guid, userName);
+
+        public static async Task<UserBussines> GetAsync(string userName) => await UnitOfWork.Users.GetAsync(userName);
     }
 }
