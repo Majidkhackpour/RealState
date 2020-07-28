@@ -197,6 +197,7 @@
             this.DGrid.Location = new System.Drawing.Point(4, 70);
             this.DGrid.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.DGrid.Name = "DGrid";
+            this.DGrid.ReadOnly = true;
             this.DGrid.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.DGrid.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
@@ -219,6 +220,7 @@
             this.DGrid.Size = new System.Drawing.Size(795, 468);
             this.DGrid.TabIndex = 55711;
             this.DGrid.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DGrid_CellFormatting);
+            this.DGrid.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.DGrid_KeyPress);
             // 
             // dgRadif
             // 
@@ -241,12 +243,14 @@
             this.dgName.DataPropertyName = "Name";
             this.dgName.HeaderText = "شهرستان";
             this.dgName.Name = "dgName";
+            this.dgName.ReadOnly = true;
             // 
             // dgGuid
             // 
             this.dgGuid.DataPropertyName = "Guid";
             this.dgGuid.HeaderText = "Guid";
             this.dgGuid.Name = "dgGuid";
+            this.dgGuid.ReadOnly = true;
             this.dgGuid.Visible = false;
             // 
             // modifiedDataGridViewTextBoxColumn1
@@ -254,6 +258,7 @@
             this.modifiedDataGridViewTextBoxColumn1.DataPropertyName = "Modified";
             this.modifiedDataGridViewTextBoxColumn1.HeaderText = "Modified";
             this.modifiedDataGridViewTextBoxColumn1.Name = "modifiedDataGridViewTextBoxColumn1";
+            this.modifiedDataGridViewTextBoxColumn1.ReadOnly = true;
             this.modifiedDataGridViewTextBoxColumn1.Visible = false;
             // 
             // statusDataGridViewCheckBoxColumn1
@@ -261,6 +266,7 @@
             this.statusDataGridViewCheckBoxColumn1.DataPropertyName = "Status";
             this.statusDataGridViewCheckBoxColumn1.HeaderText = "Status";
             this.statusDataGridViewCheckBoxColumn1.Name = "statusDataGridViewCheckBoxColumn1";
+            this.statusDataGridViewCheckBoxColumn1.ReadOnly = true;
             this.statusDataGridViewCheckBoxColumn1.Visible = false;
             // 
             // stateGuidDataGridViewTextBoxColumn
@@ -268,6 +274,7 @@
             this.stateGuidDataGridViewTextBoxColumn.DataPropertyName = "StateGuid";
             this.stateGuidDataGridViewTextBoxColumn.HeaderText = "StateGuid";
             this.stateGuidDataGridViewTextBoxColumn.Name = "stateGuidDataGridViewTextBoxColumn";
+            this.stateGuidDataGridViewTextBoxColumn.ReadOnly = true;
             this.stateGuidDataGridViewTextBoxColumn.Visible = false;
             // 
             // CityBindingSource

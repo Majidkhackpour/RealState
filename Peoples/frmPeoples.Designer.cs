@@ -63,7 +63,7 @@
             this.splitContainer4 = new System.Windows.Forms.SplitContainer();
             this.txtPlaceBirth = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.txtDateBirth = new BPersianCalender.BPersianCalenderTextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.txtIssuesFrom = new System.Windows.Forms.TextBox();
             this.txtName = new System.Windows.Forms.TextBox();
@@ -71,14 +71,14 @@
             this.label2 = new System.Windows.Forms.Label();
             this.superTabItem1 = new DevComponents.DotNetBar.SuperTabItem();
             this.superTabControlPanel2 = new DevComponents.DotNetBar.SuperTabControlPanel();
-            this.buttonX2 = new DevComponents.DotNetBar.ButtonX();
-            this.buttonX1 = new DevComponents.DotNetBar.ButtonX();
+            this.btnDelTell = new DevComponents.DotNetBar.ButtonX();
+            this.btnInsTell = new DevComponents.DotNetBar.ButtonX();
             this.txtTell = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
-            this.DGrid = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.Radif = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DGridTell = new DevComponents.DotNetBar.Controls.DataGridViewX();
+            this.tRadif = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tellDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.guidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgTellGuid = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.modifiedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.statusDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -92,14 +92,14 @@
             this.label14 = new System.Windows.Forms.Label();
             this.txtBank = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
-            this.buttonX3 = new DevComponents.DotNetBar.ButtonX();
-            this.buttonX4 = new DevComponents.DotNetBar.ButtonX();
-            this.dataGridViewX1 = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnDelBank = new DevComponents.DotNetBar.ButtonX();
+            this.btnInsBank = new DevComponents.DotNetBar.ButtonX();
+            this.dgBankAccount = new DevComponents.DotNetBar.Controls.DataGridViewX();
+            this.bRadif = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bankNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.accountNumberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.shobeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.guidDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgBankGuid = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.modifiedDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.statusDataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.bankAccountBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -127,10 +127,10 @@
             this.splitContainer4.Panel2.SuspendLayout();
             this.splitContainer4.SuspendLayout();
             this.superTabControlPanel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.DGrid)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DGridTell)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.phoneBookBindingSource)).BeginInit();
             this.superTabControlPanel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewX1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgBankAccount)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bankAccountBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -182,7 +182,7 @@
             this.superTabControlPanel1.Location = new System.Drawing.Point(0, 40);
             this.superTabControlPanel1.Name = "superTabControlPanel1";
             this.superTabControlPanel1.Size = new System.Drawing.Size(789, 479);
-            this.superTabControlPanel1.TabIndex = 1;
+            this.superTabControlPanel1.TabIndex = 0;
             this.superTabControlPanel1.TabItem = this.superTabItem1;
             // 
             // txtAddress
@@ -195,7 +195,7 @@
             this.txtAddress.Name = "txtAddress";
             this.txtAddress.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.txtAddress.Size = new System.Drawing.Size(683, 283);
-            this.txtAddress.TabIndex = 11;
+            this.txtAddress.TabIndex = 0;
             // 
             // label11
             // 
@@ -235,7 +235,7 @@
             this.splitContainer1.Panel2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.splitContainer1.Size = new System.Drawing.Size(783, 170);
             this.splitContainer1.SplitterDistance = 383;
-            this.splitContainer1.TabIndex = 0;
+            this.splitContainer1.TabIndex = 2;
             // 
             // cmbGroup
             // 
@@ -248,7 +248,7 @@
             this.cmbGroup.Location = new System.Drawing.Point(15, 97);
             this.cmbGroup.Name = "cmbGroup";
             this.cmbGroup.Size = new System.Drawing.Size(285, 28);
-            this.cmbGroup.TabIndex = 12;
+            this.cmbGroup.TabIndex = 1;
             this.cmbGroup.ValueMember = "Guid";
             // 
             // groupBundingSource
@@ -262,7 +262,7 @@
             this.txtPostalCode.Location = new System.Drawing.Point(15, 131);
             this.txtPostalCode.Name = "txtPostalCode";
             this.txtPostalCode.Size = new System.Drawing.Size(285, 27);
-            this.txtPostalCode.TabIndex = 9;
+            this.txtPostalCode.TabIndex = 2;
             this.txtPostalCode.Enter += new System.EventHandler(this.txtPostalCode_Enter);
             this.txtPostalCode.Leave += new System.EventHandler(this.txtPostalCode_Leave);
             // 
@@ -308,7 +308,7 @@
             this.splitContainer3.Panel2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.splitContainer3.Size = new System.Drawing.Size(361, 39);
             this.splitContainer3.SplitterDistance = 155;
-            this.splitContainer3.TabIndex = 11;
+            this.splitContainer3.TabIndex = 0;
             // 
             // txtIdCode
             // 
@@ -317,7 +317,7 @@
             this.txtIdCode.Location = new System.Drawing.Point(3, 6);
             this.txtIdCode.Name = "txtIdCode";
             this.txtIdCode.Size = new System.Drawing.Size(74, 27);
-            this.txtIdCode.TabIndex = 9;
+            this.txtIdCode.TabIndex = 0;
             this.txtIdCode.Enter += new System.EventHandler(this.txtIdCode_Enter);
             this.txtIdCode.Leave += new System.EventHandler(this.txtIdCode_Leave);
             // 
@@ -339,7 +339,7 @@
             this.txtFatherName.Location = new System.Drawing.Point(12, 6);
             this.txtFatherName.Name = "txtFatherName";
             this.txtFatherName.Size = new System.Drawing.Size(140, 27);
-            this.txtFatherName.TabIndex = 9;
+            this.txtFatherName.TabIndex = 0;
             this.txtFatherName.Enter += new System.EventHandler(this.txtFatherName_Enter);
             this.txtFatherName.Leave += new System.EventHandler(this.txtFatherName_Leave);
             // 
@@ -383,7 +383,7 @@
             this.txtCode.Location = new System.Drawing.Point(3, 6);
             this.txtCode.Name = "txtCode";
             this.txtCode.Size = new System.Drawing.Size(118, 27);
-            this.txtCode.TabIndex = 9;
+            this.txtCode.TabIndex = 0;
             this.txtCode.Enter += new System.EventHandler(this.txtCode_Enter);
             this.txtCode.Leave += new System.EventHandler(this.txtCode_Leave);
             // 
@@ -405,7 +405,7 @@
             this.txtNationalCode.Location = new System.Drawing.Point(12, 6);
             this.txtNationalCode.Name = "txtNationalCode";
             this.txtNationalCode.Size = new System.Drawing.Size(140, 27);
-            this.txtNationalCode.TabIndex = 9;
+            this.txtNationalCode.TabIndex = 0;
             this.txtNationalCode.Enter += new System.EventHandler(this.txtNationalCode_Enter);
             this.txtNationalCode.Leave += new System.EventHandler(this.txtNationalCode_Leave);
             // 
@@ -435,12 +435,12 @@
             // 
             // splitContainer4.Panel2
             // 
-            this.splitContainer4.Panel2.Controls.Add(this.textBox6);
+            this.splitContainer4.Panel2.Controls.Add(this.txtDateBirth);
             this.splitContainer4.Panel2.Controls.Add(this.label7);
             this.splitContainer4.Panel2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.splitContainer4.Size = new System.Drawing.Size(375, 39);
             this.splitContainer4.SplitterDistance = 161;
-            this.splitContainer4.TabIndex = 11;
+            this.splitContainer4.TabIndex = 1;
             // 
             // txtPlaceBirth
             // 
@@ -449,7 +449,7 @@
             this.txtPlaceBirth.Location = new System.Drawing.Point(3, 6);
             this.txtPlaceBirth.Name = "txtPlaceBirth";
             this.txtPlaceBirth.Size = new System.Drawing.Size(47, 27);
-            this.txtPlaceBirth.TabIndex = 9;
+            this.txtPlaceBirth.TabIndex = 0;
             this.txtPlaceBirth.Enter += new System.EventHandler(this.txtPlaceBirth_Enter);
             this.txtPlaceBirth.Leave += new System.EventHandler(this.txtPlaceBirth_Leave);
             // 
@@ -464,14 +464,19 @@
             this.label6.TabIndex = 10;
             this.label6.Text = "محل تولد";
             // 
-            // textBox6
+            // txtDateBirth
             // 
-            this.textBox6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.txtDateBirth.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox6.Location = new System.Drawing.Point(5, 6);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(140, 27);
-            this.textBox6.TabIndex = 9;
+            this.txtDateBirth.Location = new System.Drawing.Point(5, 6);
+            this.txtDateBirth.Miladi = new System.DateTime(((long)(0)));
+            this.txtDateBirth.Name = "txtDateBirth";
+            this.txtDateBirth.NowDateSelected = false;
+            this.txtDateBirth.ReadOnly = true;
+            this.txtDateBirth.SelectedDate = null;
+            this.txtDateBirth.Shamsi = null;
+            this.txtDateBirth.Size = new System.Drawing.Size(140, 27);
+            this.txtDateBirth.TabIndex = 0;
             // 
             // label7
             // 
@@ -491,7 +496,7 @@
             this.txtIssuesFrom.Location = new System.Drawing.Point(23, 97);
             this.txtIssuesFrom.Name = "txtIssuesFrom";
             this.txtIssuesFrom.Size = new System.Drawing.Size(259, 27);
-            this.txtIssuesFrom.TabIndex = 9;
+            this.txtIssuesFrom.TabIndex = 2;
             this.txtIssuesFrom.Enter += new System.EventHandler(this.txtIssuesFrom_Enter);
             this.txtIssuesFrom.Leave += new System.EventHandler(this.txtIssuesFrom_Leave);
             // 
@@ -502,7 +507,7 @@
             this.txtName.Location = new System.Drawing.Point(23, 13);
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(259, 27);
-            this.txtName.TabIndex = 9;
+            this.txtName.TabIndex = 0;
             this.txtName.Enter += new System.EventHandler(this.txtName_Enter);
             this.txtName.Leave += new System.EventHandler(this.txtName_Leave);
             // 
@@ -537,11 +542,11 @@
             // 
             // superTabControlPanel2
             // 
-            this.superTabControlPanel2.Controls.Add(this.buttonX2);
-            this.superTabControlPanel2.Controls.Add(this.buttonX1);
+            this.superTabControlPanel2.Controls.Add(this.btnDelTell);
+            this.superTabControlPanel2.Controls.Add(this.btnInsTell);
             this.superTabControlPanel2.Controls.Add(this.txtTell);
             this.superTabControlPanel2.Controls.Add(this.label12);
-            this.superTabControlPanel2.Controls.Add(this.DGrid);
+            this.superTabControlPanel2.Controls.Add(this.DGridTell);
             this.superTabControlPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.superTabControlPanel2.Location = new System.Drawing.Point(0, 40);
             this.superTabControlPanel2.Name = "superTabControlPanel2";
@@ -549,39 +554,41 @@
             this.superTabControlPanel2.TabIndex = 0;
             this.superTabControlPanel2.TabItem = this.superTabItem2;
             // 
-            // buttonX2
+            // btnDelTell
             // 
-            this.buttonX2.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.buttonX2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.buttonX2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.buttonX2.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
-            this.buttonX2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.buttonX2.Image = global::Peoples.Properties.Resources.tab_close_;
-            this.buttonX2.Location = new System.Drawing.Point(3, 10);
-            this.buttonX2.Name = "buttonX2";
-            this.buttonX2.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
-            this.buttonX2.Size = new System.Drawing.Size(125, 27);
-            this.buttonX2.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
-            this.buttonX2.TabIndex = 55712;
-            this.buttonX2.Text = "حذف از لیست";
-            this.buttonX2.TextColor = System.Drawing.Color.Black;
+            this.btnDelTell.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnDelTell.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.btnDelTell.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnDelTell.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.btnDelTell.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnDelTell.Image = global::Peoples.Properties.Resources.tab_close_;
+            this.btnDelTell.Location = new System.Drawing.Point(3, 10);
+            this.btnDelTell.Name = "btnDelTell";
+            this.btnDelTell.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
+            this.btnDelTell.Size = new System.Drawing.Size(125, 27);
+            this.btnDelTell.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
+            this.btnDelTell.TabIndex = 55712;
+            this.btnDelTell.Text = "حذف از لیست";
+            this.btnDelTell.TextColor = System.Drawing.Color.Black;
+            this.btnDelTell.Click += new System.EventHandler(this.btnDelTell_Click);
             // 
-            // buttonX1
+            // btnInsTell
             // 
-            this.buttonX1.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.buttonX1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.buttonX1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.buttonX1.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
-            this.buttonX1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.buttonX1.Image = global::Peoples.Properties.Resources.tab_checkbox__;
-            this.buttonX1.Location = new System.Drawing.Point(134, 10);
-            this.buttonX1.Name = "buttonX1";
-            this.buttonX1.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
-            this.buttonX1.Size = new System.Drawing.Size(125, 27);
-            this.buttonX1.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
-            this.buttonX1.TabIndex = 55711;
-            this.buttonX1.Text = "افزودن شماره تماس";
-            this.buttonX1.TextColor = System.Drawing.Color.Black;
+            this.btnInsTell.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnInsTell.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.btnInsTell.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnInsTell.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.btnInsTell.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnInsTell.Image = global::Peoples.Properties.Resources.tab_checkbox__;
+            this.btnInsTell.Location = new System.Drawing.Point(134, 10);
+            this.btnInsTell.Name = "btnInsTell";
+            this.btnInsTell.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
+            this.btnInsTell.Size = new System.Drawing.Size(125, 27);
+            this.btnInsTell.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
+            this.btnInsTell.TabIndex = 55710;
+            this.btnInsTell.Text = "افزودن شماره تماس";
+            this.btnInsTell.TextColor = System.Drawing.Color.Black;
+            this.btnInsTell.Click += new System.EventHandler(this.btnInsTell_Click);
             // 
             // txtTell
             // 
@@ -605,23 +612,23 @@
             this.label12.TabIndex = 55710;
             this.label12.Text = "شماره تماس";
             // 
-            // DGrid
+            // DGridTell
             // 
-            this.DGrid.AllowUserToAddRows = false;
-            this.DGrid.AllowUserToDeleteRows = false;
-            this.DGrid.AllowUserToResizeColumns = false;
-            this.DGrid.AllowUserToResizeRows = false;
+            this.DGridTell.AllowUserToAddRows = false;
+            this.DGridTell.AllowUserToDeleteRows = false;
+            this.DGridTell.AllowUserToResizeColumns = false;
+            this.DGridTell.AllowUserToResizeRows = false;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.Gainsboro;
             dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Gainsboro;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
-            this.DGrid.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.DGrid.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.DGridTell.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.DGridTell.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.DGrid.AutoGenerateColumns = false;
-            this.DGrid.BackgroundColor = System.Drawing.Color.White;
+            this.DGridTell.AutoGenerateColumns = false;
+            this.DGridTell.BackgroundColor = System.Drawing.Color.White;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
@@ -629,17 +636,17 @@
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Silver;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            this.DGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Radif,
+            this.DGridTell.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.DGridTell.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DGridTell.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.tRadif,
             this.tellDataGridViewTextBoxColumn,
-            this.guidDataGridViewTextBoxColumn,
+            this.dgTellGuid,
             this.modifiedDataGridViewTextBoxColumn,
             this.statusDataGridViewCheckBoxColumn,
             this.nameDataGridViewTextBoxColumn,
             this.groupDataGridViewTextBoxColumn});
-            this.DGrid.DataSource = this.phoneBookBindingSource;
+            this.DGridTell.DataSource = this.phoneBookBindingSource;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
             dataGridViewCellStyle3.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
@@ -647,13 +654,13 @@
             dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.Silver;
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DGrid.DefaultCellStyle = dataGridViewCellStyle3;
-            this.DGrid.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
-            this.DGrid.Location = new System.Drawing.Point(3, 45);
-            this.DGrid.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.DGrid.Name = "DGrid";
-            this.DGrid.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.DGrid.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.DGridTell.DefaultCellStyle = dataGridViewCellStyle3;
+            this.DGridTell.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
+            this.DGridTell.Location = new System.Drawing.Point(3, 45);
+            this.DGridTell.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.DGridTell.Name = "DGridTell";
+            this.DGridTell.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.DGridTell.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
             dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
             dataGridViewCellStyle4.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
@@ -661,25 +668,26 @@
             dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DGrid.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
-            this.DGrid.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.DGridTell.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            this.DGridTell.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
             dataGridViewCellStyle5.BackColor = System.Drawing.Color.White;
             dataGridViewCellStyle5.ForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.Silver;
             dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.Black;
-            this.DGrid.RowsDefaultCellStyle = dataGridViewCellStyle5;
-            this.DGrid.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            this.DGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DGrid.Size = new System.Drawing.Size(783, 428);
-            this.DGrid.TabIndex = 55708;
+            this.DGridTell.RowsDefaultCellStyle = dataGridViewCellStyle5;
+            this.DGridTell.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            this.DGridTell.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.DGridTell.Size = new System.Drawing.Size(783, 428);
+            this.DGridTell.TabIndex = 55708;
+            this.DGridTell.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DGridTell_CellFormatting);
             // 
-            // Radif
+            // tRadif
             // 
-            this.Radif.HeaderText = "ردیف";
-            this.Radif.Name = "Radif";
-            this.Radif.ReadOnly = true;
-            this.Radif.Width = 50;
+            this.tRadif.HeaderText = "ردیف";
+            this.tRadif.Name = "tRadif";
+            this.tRadif.ReadOnly = true;
+            this.tRadif.Width = 50;
             // 
             // tellDataGridViewTextBoxColumn
             // 
@@ -688,12 +696,12 @@
             this.tellDataGridViewTextBoxColumn.HeaderText = "شماره تماس";
             this.tellDataGridViewTextBoxColumn.Name = "tellDataGridViewTextBoxColumn";
             // 
-            // guidDataGridViewTextBoxColumn
+            // dgTellGuid
             // 
-            this.guidDataGridViewTextBoxColumn.DataPropertyName = "Guid";
-            this.guidDataGridViewTextBoxColumn.HeaderText = "Guid";
-            this.guidDataGridViewTextBoxColumn.Name = "guidDataGridViewTextBoxColumn";
-            this.guidDataGridViewTextBoxColumn.Visible = false;
+            this.dgTellGuid.DataPropertyName = "Guid";
+            this.dgTellGuid.HeaderText = "Guid";
+            this.dgTellGuid.Name = "dgTellGuid";
+            this.dgTellGuid.Visible = false;
             // 
             // modifiedDataGridViewTextBoxColumn
             // 
@@ -742,9 +750,9 @@
             this.superTabControlPanel3.Controls.Add(this.label14);
             this.superTabControlPanel3.Controls.Add(this.txtBank);
             this.superTabControlPanel3.Controls.Add(this.label13);
-            this.superTabControlPanel3.Controls.Add(this.buttonX3);
-            this.superTabControlPanel3.Controls.Add(this.buttonX4);
-            this.superTabControlPanel3.Controls.Add(this.dataGridViewX1);
+            this.superTabControlPanel3.Controls.Add(this.btnDelBank);
+            this.superTabControlPanel3.Controls.Add(this.btnInsBank);
+            this.superTabControlPanel3.Controls.Add(this.dgBankAccount);
             this.superTabControlPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.superTabControlPanel3.Location = new System.Drawing.Point(0, 40);
             this.superTabControlPanel3.Name = "superTabControlPanel3";
@@ -759,7 +767,7 @@
             this.txtShobe.Location = new System.Drawing.Point(265, 10);
             this.txtShobe.Name = "txtShobe";
             this.txtShobe.Size = new System.Drawing.Size(104, 27);
-            this.txtShobe.TabIndex = 55715;
+            this.txtShobe.TabIndex = 55717;
             this.txtShobe.Enter += new System.EventHandler(this.txtShobe_Enter);
             this.txtShobe.Leave += new System.EventHandler(this.txtShobe_Leave);
             // 
@@ -780,7 +788,7 @@
             this.txtAccountNumber.Location = new System.Drawing.Point(415, 10);
             this.txtAccountNumber.Name = "txtAccountNumber";
             this.txtAccountNumber.Size = new System.Drawing.Size(121, 27);
-            this.txtAccountNumber.TabIndex = 55715;
+            this.txtAccountNumber.TabIndex = 55716;
             this.txtAccountNumber.Enter += new System.EventHandler(this.txtAccountNumber_Enter);
             this.txtAccountNumber.Leave += new System.EventHandler(this.txtAccountNumber_Leave);
             // 
@@ -816,57 +824,59 @@
             this.label13.TabIndex = 55716;
             this.label13.Text = "بانک";
             // 
-            // buttonX3
+            // btnDelBank
             // 
-            this.buttonX3.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.buttonX3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.buttonX3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.buttonX3.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
-            this.buttonX3.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.buttonX3.Image = global::Peoples.Properties.Resources.tab_close_;
-            this.buttonX3.Location = new System.Drawing.Point(3, 10);
-            this.buttonX3.Name = "buttonX3";
-            this.buttonX3.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
-            this.buttonX3.Size = new System.Drawing.Size(125, 27);
-            this.buttonX3.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
-            this.buttonX3.TabIndex = 55714;
-            this.buttonX3.Text = "حذف از لیست";
-            this.buttonX3.TextColor = System.Drawing.Color.Black;
+            this.btnDelBank.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnDelBank.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.btnDelBank.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnDelBank.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.btnDelBank.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnDelBank.Image = global::Peoples.Properties.Resources.tab_close_;
+            this.btnDelBank.Location = new System.Drawing.Point(3, 10);
+            this.btnDelBank.Name = "btnDelBank";
+            this.btnDelBank.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
+            this.btnDelBank.Size = new System.Drawing.Size(125, 27);
+            this.btnDelBank.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
+            this.btnDelBank.TabIndex = 55714;
+            this.btnDelBank.Text = "حذف از لیست";
+            this.btnDelBank.TextColor = System.Drawing.Color.Black;
+            this.btnDelBank.Click += new System.EventHandler(this.btnDelBank_Click);
             // 
-            // buttonX4
+            // btnInsBank
             // 
-            this.buttonX4.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.buttonX4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.buttonX4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.buttonX4.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
-            this.buttonX4.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.buttonX4.Image = global::Peoples.Properties.Resources.tab_checkbox__;
-            this.buttonX4.Location = new System.Drawing.Point(134, 10);
-            this.buttonX4.Name = "buttonX4";
-            this.buttonX4.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
-            this.buttonX4.Size = new System.Drawing.Size(125, 27);
-            this.buttonX4.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
-            this.buttonX4.TabIndex = 55713;
-            this.buttonX4.Text = "افزودن حساب بانکی";
-            this.buttonX4.TextColor = System.Drawing.Color.Black;
+            this.btnInsBank.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnInsBank.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.btnInsBank.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnInsBank.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.btnInsBank.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnInsBank.Image = global::Peoples.Properties.Resources.tab_checkbox__;
+            this.btnInsBank.Location = new System.Drawing.Point(134, 10);
+            this.btnInsBank.Name = "btnInsBank";
+            this.btnInsBank.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
+            this.btnInsBank.Size = new System.Drawing.Size(125, 27);
+            this.btnInsBank.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
+            this.btnInsBank.TabIndex = 55718;
+            this.btnInsBank.Text = "افزودن حساب بانکی";
+            this.btnInsBank.TextColor = System.Drawing.Color.Black;
+            this.btnInsBank.Click += new System.EventHandler(this.btnInsBank_Click);
             // 
-            // dataGridViewX1
+            // dgBankAccount
             // 
-            this.dataGridViewX1.AllowUserToAddRows = false;
-            this.dataGridViewX1.AllowUserToDeleteRows = false;
-            this.dataGridViewX1.AllowUserToResizeColumns = false;
-            this.dataGridViewX1.AllowUserToResizeRows = false;
+            this.dgBankAccount.AllowUserToAddRows = false;
+            this.dgBankAccount.AllowUserToDeleteRows = false;
+            this.dgBankAccount.AllowUserToResizeColumns = false;
+            this.dgBankAccount.AllowUserToResizeRows = false;
             dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle6.BackColor = System.Drawing.Color.Gainsboro;
             dataGridViewCellStyle6.ForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.Gainsboro;
             dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black;
-            this.dataGridViewX1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle6;
-            this.dataGridViewX1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.dgBankAccount.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle6;
+            this.dgBankAccount.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridViewX1.AutoGenerateColumns = false;
-            this.dataGridViewX1.BackgroundColor = System.Drawing.Color.White;
+            this.dgBankAccount.AutoGenerateColumns = false;
+            this.dgBankAccount.BackgroundColor = System.Drawing.Color.White;
             dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle7.BackColor = System.Drawing.Color.White;
             dataGridViewCellStyle7.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
@@ -874,17 +884,17 @@
             dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.Silver;
             dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewX1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
-            this.dataGridViewX1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewX1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn1,
+            this.dgBankAccount.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            this.dgBankAccount.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgBankAccount.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.bRadif,
             this.bankNameDataGridViewTextBoxColumn,
             this.accountNumberDataGridViewTextBoxColumn,
             this.shobeDataGridViewTextBoxColumn,
-            this.guidDataGridViewTextBoxColumn1,
+            this.dgBankGuid,
             this.modifiedDataGridViewTextBoxColumn1,
             this.statusDataGridViewCheckBoxColumn1});
-            this.dataGridViewX1.DataSource = this.bankAccountBindingSource;
+            this.dgBankAccount.DataSource = this.bankAccountBindingSource;
             dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
             dataGridViewCellStyle8.BackColor = System.Drawing.Color.White;
             dataGridViewCellStyle8.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
@@ -892,13 +902,13 @@
             dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.Silver;
             dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewX1.DefaultCellStyle = dataGridViewCellStyle8;
-            this.dataGridViewX1.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
-            this.dataGridViewX1.Location = new System.Drawing.Point(3, 45);
-            this.dataGridViewX1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.dataGridViewX1.Name = "dataGridViewX1";
-            this.dataGridViewX1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.dataGridViewX1.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.dgBankAccount.DefaultCellStyle = dataGridViewCellStyle8;
+            this.dgBankAccount.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
+            this.dgBankAccount.Location = new System.Drawing.Point(3, 45);
+            this.dgBankAccount.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.dgBankAccount.Name = "dgBankAccount";
+            this.dgBankAccount.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.dgBankAccount.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
             dataGridViewCellStyle9.BackColor = System.Drawing.Color.White;
             dataGridViewCellStyle9.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
@@ -906,25 +916,26 @@
             dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewX1.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
-            this.dataGridViewX1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.dgBankAccount.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            this.dgBankAccount.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
             dataGridViewCellStyle10.BackColor = System.Drawing.Color.White;
             dataGridViewCellStyle10.ForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.Silver;
             dataGridViewCellStyle10.SelectionForeColor = System.Drawing.Color.Black;
-            this.dataGridViewX1.RowsDefaultCellStyle = dataGridViewCellStyle10;
-            this.dataGridViewX1.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            this.dataGridViewX1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewX1.Size = new System.Drawing.Size(783, 430);
-            this.dataGridViewX1.TabIndex = 55709;
+            this.dgBankAccount.RowsDefaultCellStyle = dataGridViewCellStyle10;
+            this.dgBankAccount.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            this.dgBankAccount.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgBankAccount.Size = new System.Drawing.Size(783, 430);
+            this.dgBankAccount.TabIndex = 55709;
+            this.dgBankAccount.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgBankAccount_CellFormatting);
             // 
-            // dataGridViewTextBoxColumn1
+            // bRadif
             // 
-            this.dataGridViewTextBoxColumn1.HeaderText = "ردیف";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            this.dataGridViewTextBoxColumn1.Width = 50;
+            this.bRadif.HeaderText = "ردیف";
+            this.bRadif.Name = "bRadif";
+            this.bRadif.ReadOnly = true;
+            this.bRadif.Width = 50;
             // 
             // bankNameDataGridViewTextBoxColumn
             // 
@@ -946,12 +957,12 @@
             this.shobeDataGridViewTextBoxColumn.HeaderText = "شعبه";
             this.shobeDataGridViewTextBoxColumn.Name = "shobeDataGridViewTextBoxColumn";
             // 
-            // guidDataGridViewTextBoxColumn1
+            // dgBankGuid
             // 
-            this.guidDataGridViewTextBoxColumn1.DataPropertyName = "Guid";
-            this.guidDataGridViewTextBoxColumn1.HeaderText = "Guid";
-            this.guidDataGridViewTextBoxColumn1.Name = "guidDataGridViewTextBoxColumn1";
-            this.guidDataGridViewTextBoxColumn1.Visible = false;
+            this.dgBankGuid.DataPropertyName = "Guid";
+            this.dgBankGuid.HeaderText = "Guid";
+            this.dgBankGuid.Name = "dgBankGuid";
+            this.dgBankGuid.Visible = false;
             // 
             // modifiedDataGridViewTextBoxColumn1
             // 
@@ -1015,6 +1026,7 @@
             this.btnFinish.TabIndex = 9;
             this.btnFinish.Text = "تایید (F5)";
             this.btnFinish.TextColor = System.Drawing.Color.Black;
+            this.btnFinish.Click += new System.EventHandler(this.btnFinish_Click);
             // 
             // frmPeoples
             // 
@@ -1067,11 +1079,11 @@
             this.splitContainer4.ResumeLayout(false);
             this.superTabControlPanel2.ResumeLayout(false);
             this.superTabControlPanel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.DGrid)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DGridTell)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.phoneBookBindingSource)).EndInit();
             this.superTabControlPanel3.ResumeLayout(false);
             this.superTabControlPanel3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewX1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgBankAccount)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bankAccountBindingSource)).EndInit();
             this.ResumeLayout(false);
 
@@ -1104,7 +1116,6 @@
         private System.Windows.Forms.SplitContainer splitContainer4;
         private System.Windows.Forms.TextBox txtPlaceBirth;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox textBox6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.ComboBox cmbGroup;
         private System.Windows.Forms.Label label8;
@@ -1115,22 +1126,15 @@
         private System.Windows.Forms.BindingSource groupBundingSource;
         private System.Windows.Forms.TextBox txtAddress;
         private System.Windows.Forms.Label label11;
-        private DevComponents.DotNetBar.Controls.DataGridViewX DGrid;
+        private DevComponents.DotNetBar.Controls.DataGridViewX DGridTell;
         private System.Windows.Forms.BindingSource phoneBookBindingSource;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Radif;
-        private System.Windows.Forms.DataGridViewTextBoxColumn tellDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn guidDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn modifiedDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn statusDataGridViewCheckBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn groupDataGridViewTextBoxColumn;
-        private DevComponents.DotNetBar.ButtonX buttonX2;
-        private DevComponents.DotNetBar.ButtonX buttonX1;
+        private DevComponents.DotNetBar.ButtonX btnDelTell;
+        private DevComponents.DotNetBar.ButtonX btnInsTell;
         private System.Windows.Forms.TextBox txtTell;
         private System.Windows.Forms.Label label12;
-        private DevComponents.DotNetBar.Controls.DataGridViewX dataGridViewX1;
-        private DevComponents.DotNetBar.ButtonX buttonX3;
-        private DevComponents.DotNetBar.ButtonX buttonX4;
+        private DevComponents.DotNetBar.Controls.DataGridViewX dgBankAccount;
+        private DevComponents.DotNetBar.ButtonX btnDelBank;
+        private DevComponents.DotNetBar.ButtonX btnInsBank;
         private System.Windows.Forms.BindingSource bankAccountBindingSource;
         private System.Windows.Forms.TextBox txtShobe;
         private System.Windows.Forms.Label label15;
@@ -1138,11 +1142,19 @@
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.TextBox txtBank;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private BPersianCalender.BPersianCalenderTextBox txtDateBirth;
+        private System.Windows.Forms.DataGridViewTextBoxColumn tRadif;
+        private System.Windows.Forms.DataGridViewTextBoxColumn tellDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgTellGuid;
+        private System.Windows.Forms.DataGridViewTextBoxColumn modifiedDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn statusDataGridViewCheckBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn groupDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn bRadif;
         private System.Windows.Forms.DataGridViewTextBoxColumn bankNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn accountNumberDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn shobeDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn guidDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgBankGuid;
         private System.Windows.Forms.DataGridViewTextBoxColumn modifiedDataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewCheckBoxColumn statusDataGridViewCheckBoxColumn1;
     }

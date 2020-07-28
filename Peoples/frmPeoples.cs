@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using EntityCache.Bussines;
 using MetroFramework.Forms;
+using Notification;
+using PacketParser;
 using PacketParser.Services;
+using User;
 
 namespace Peoples
 {
@@ -28,9 +30,14 @@ namespace Peoples
                 txtIssuesFrom.Text = cls?.IssuedFrom;
                 txtPostalCode.Text = cls?.PostalCode;
                 txtAddress.Text = cls?.Address;
+                txtDateBirth.Text = cls?.DateBirth;
+                cmbGroup.SelectedValue = (Guid)cls?.GroupGuid;
 
                 if (cls?.Guid == Guid.Empty)
+                {
                     NextCode();
+                    cmbGroup.SelectedIndex = 1;
+                }
             }
             catch (Exception ex)
             {
@@ -64,6 +71,7 @@ namespace Peoples
         {
             try
             {
+                txtTell.Text = "";
                 phoneBookBindingSource.DataSource = cls?.TellList.ToList();
             }
             catch (Exception ex)
@@ -75,6 +83,7 @@ namespace Peoples
         {
             try
             {
+                txtAccountNumber.Text = txtBank.Text = txtShobe.Text = "";
                 bankAccountBindingSource.DataSource = cls?.BankList.ToList();
             }
             catch (Exception ex)
@@ -95,6 +104,8 @@ namespace Peoples
             cls = PeoplesBussines.Get(guid);
             superTabControl1.Enabled = !isShowMode;
             btnFinish.Enabled = !isShowMode;
+            superTabControl1.SelectedTab = superTabItem1;
+            WindowState = FormWindowState.Maximized;
         }
         private void frmPeoples_Load(object sender, EventArgs e)
         {
@@ -246,6 +257,158 @@ namespace Peoples
                         btnCancel.PerformClick();
                         break;
                 }
+            }
+            catch (Exception exception)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(exception);
+            }
+        }
+
+        private void btnInsTell_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(txtTell.Text)) return;
+                foreach (var item in cls.TellList)
+                    if (txtTell.Text.Trim() == item.Tell) return;
+                cls.TellList.Add(new PhoneBookBussines()
+                {
+                    Guid = Guid.NewGuid(),
+                    Modified = DateTime.Now,
+                    Tell = txtTell.Text,
+                    Group = EnPhoneBookGroup.Peoples,
+                    Name = txtName.Text
+                });
+                LoadTells();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private void btnDelTell_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (DGridTell.RowCount <= 0) return;
+                if (DGridTell.CurrentRow == null) return;
+                var tagGuid = (Guid)DGridTell[dgTellGuid.Index, DGridTell.CurrentRow.Index].Value;
+                var index = cls.TellList.FindIndex(q => q.Guid == tagGuid);
+                cls.TellList.RemoveAt(index);
+                LoadTells();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private void btnInsBank_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(txtBank.Text) ||
+                    string.IsNullOrEmpty(txtAccountNumber.Text) ||
+                    string.IsNullOrEmpty(txtShobe.Text)) return;
+                cls.BankList.Add(new PeoplesBankAccountBussines()
+                {
+                    Guid = Guid.NewGuid(),
+                    Modified = DateTime.Now,
+                    AccountNumber = txtAccountNumber.Text.Trim().FixString(),
+                    BankName = txtBank.Text,
+                    Shobe = txtShobe.Text
+                });
+                LoadBanks();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private void btnDelBank_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (dgBankAccount.RowCount <= 0) return;
+                if (dgBankAccount.CurrentRow == null) return;
+                var tagGuid = (Guid)dgBankAccount[dgBankGuid.Index, dgBankAccount.CurrentRow.Index].Value;
+                var index = cls.BankList.FindIndex(q => q.Guid == tagGuid);
+                cls.BankList.RemoveAt(index);
+                LoadBanks();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private void DGridTell_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            DGridTell.Rows[e.RowIndex].Cells["tRadif"].Value = e.RowIndex + 1;
+        }
+
+        private void dgBankAccount_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            dgBankAccount.Rows[e.RowIndex].Cells["bRadif"].Value = e.RowIndex + 1;
+        }
+
+        private async void btnFinish_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (cls.Guid == Guid.Empty)
+                    cls.Guid = Guid.NewGuid();
+
+                if (string.IsNullOrWhiteSpace(txtName.Text))
+                {
+                    frmNotification.PublicInfo.ShowMessage("نام و نام خانوادگی نمی تواند خالی باشد");
+                    txtName.Focus();
+                    return;
+                }
+                if (string.IsNullOrWhiteSpace(txtCode.Text))
+                {
+                    frmNotification.PublicInfo.ShowMessage("کد شخص نمی تواند خالی باشد");
+                    txtCode.Focus();
+                    return;
+                }
+
+                if (!await PeoplesBussines.CheckCodeAsync(txtCode.Text.Trim(), cls.Guid))
+                {
+                    frmNotification.PublicInfo.ShowMessage("کد وارد شده تکراری است");
+                    txtCode.Focus();
+                    return;
+                }
+
+                if (txtCode.Text.Trim().ParseToLong() > 1000000 || txtCode.Text.Trim().ParseToLong() < 1000)
+                {
+                    frmNotification.PublicInfo.ShowMessage("کد وارد شده در بازه معتبر نمی باشد");
+                    txtCode.Focus();
+                    return;
+                }
+
+                cls.Name = txtName.Text.Trim();
+                cls.Code = txtCode.Text.Trim();
+                cls.NationalCode = txtNationalCode.Text.Trim();
+                cls.IdCode = txtIdCode.Text.Trim();
+                cls.FatherName = txtFatherName.Text;
+                cls.GroupGuid = (Guid)cmbGroup.SelectedValue;
+                cls.PlaceBirth = txtPlaceBirth.Text;
+                cls.DateBirth = txtDateBirth.Text;
+                cls.IssuedFrom = txtIssuesFrom.Text;
+                cls.PostalCode = txtPostalCode.Text;
+                cls.Address = txtAddress.Text;
+                cls.UserGuid = clsUser.CurrentUser.Guid;
+
+                var res = await cls.SaveAsync();
+                if (res.HasError)
+                {
+                    frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);
+                    return;
+                }
+                DialogResult = DialogResult.OK;
+                Close();
             }
             catch (Exception exception)
             {

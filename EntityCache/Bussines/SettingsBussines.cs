@@ -280,5 +280,22 @@ namespace EntityCache.Bussines
             }
         }
         #endregion
+
+
+        private static string _lastUser = "";
+        public static string LastUser
+        {
+            get
+            {
+                if (!string.IsNullOrEmpty(_lastUser)) return _lastUser;
+                var mem = Get("LastUser");
+                return mem == null ? "" : mem.Value;
+            }
+            set
+            {
+                _lastUser = value;
+                Save("LastUser", _lastUser);
+            }
+        }
     }
 }

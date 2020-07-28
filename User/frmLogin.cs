@@ -69,6 +69,10 @@ namespace User
                 foreach (var item in list.ToList())
                     myCollection.Add(item.UserName);
                 txtUserName.AutoCompleteCustomSource = myCollection;
+
+
+                txtUserName.Text = SettingsBussines.LastUser;
+                if (!string.IsNullOrEmpty(txtUserName.Text)) txtPass1.Focus();
             }
             catch (Exception ex)
             {
@@ -97,12 +101,14 @@ namespace User
                 {
                     frmNotification.PublicInfo.ShowMessage("نام کاربری نمی تواند خالی باشد");
                     txtUserName.Focus();
+                    txtUserName.SelectAll();
                     return;
                 }
                 if (string.IsNullOrWhiteSpace(txtPass1.Text))
                 {
                     frmNotification.PublicInfo.ShowMessage("کلمه عبور نمی تواند خالی باشد");
                     txtPass1.Focus();
+                    txtPass1.SelectAll();
                     return;
                 }
 
@@ -110,7 +116,8 @@ namespace User
                 if (user == null)
                 {
                     frmNotification.PublicInfo.ShowMessage($"کاربر با نام کاربری {txtUserName.Text} یافت نشد");
-                    txtPass1.Focus();
+                    txtUserName.Focus();
+                    txtUserName.SelectAll();
                     return;
                 }
 
@@ -124,11 +131,14 @@ namespace User
                 {
                     frmNotification.PublicInfo.ShowMessage("رمز عبور اشتباه است");
                     txtPass1.Focus();
+                    txtPass1.SelectAll();
                     return;
                 }
 
                 clsUser.CurrentUser = user;
                 clsUser.DateVorrod = DateTime.Now;
+
+                SettingsBussines.LastUser = user.UserName;
 
                 DialogResult = DialogResult.OK;
                 Close();

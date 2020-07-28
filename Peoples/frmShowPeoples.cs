@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using EntityCache.Bussines;
 using MetroFramework.Forms;
@@ -74,7 +73,8 @@ namespace Peoples
         {
             try
             {
-
+                var list = PeoplesBussines.GetAll(search, GroupGuid).Where(q => q.Status == status).ToList();
+                peopleBindingSource.DataSource = list;
             }
             catch (Exception ex)
             {
@@ -243,6 +243,72 @@ namespace Peoples
                 var frm = new frmPeoples();
                 if (frm.ShowDialog() == DialogResult.OK)
                     LoadPeoples(ST, txtSearch.Text);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private void DGrid_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                txtSearch.Focus();
+                txtSearch.Text = e.KeyChar.ToString();
+                txtSearch.SelectionStart = 9999;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (DGrid.RowCount <= 0) return;
+                if (DGrid.CurrentRow == null) return;
+                if (!ST)
+                {
+                    frmNotification.PublicInfo.ShowMessage(
+                        "شما مجاز به ویرایش داده حذف شده نمی باشید \r\n برای این منظور، ابتدا فیلد موردنظر را از حالت حذف شده به فعال، تغییر وضعیت دهید");
+                    return;
+                }
+                var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
+                var frm = new frmPeoples(guid, false);
+                if (frm.ShowDialog() == DialogResult.OK)
+                    LoadPeoples(ST, txtSearch.Text);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private void btnView_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (DGrid.RowCount <= 0) return;
+                if (DGrid.CurrentRow == null) return;
+                var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
+                var frm = new frmPeoples(guid, true);
+                frm.ShowDialog();
+                LoadPeoples(ST, txtSearch.Text);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                LoadPeoples(ST, txtSearch.Text);
             }
             catch (Exception ex)
             {

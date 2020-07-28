@@ -215,5 +215,19 @@ namespace User
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
+
+        private void DGrid_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                txtSearch.Focus();
+                txtSearch.Text = e.KeyChar.ToString();
+                txtSearch.SelectionStart = 9999;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
     }
 }

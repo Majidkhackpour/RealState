@@ -41,7 +41,7 @@
             this.dgRadif = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.codeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.guidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgGuid = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.modifiedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.statusDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.nationalCodeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -95,6 +95,7 @@
             this.txtSearch.TabIndex = 55753;
             this.txtSearch.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtSearch.WatermarkText = "مورد جستجو را وارد نمایید ...";
+            this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
             // 
             // line1
             // 
@@ -137,7 +138,7 @@
             this.dgRadif,
             this.codeDataGridViewTextBoxColumn,
             this.nameDataGridViewTextBoxColumn,
-            this.guidDataGridViewTextBoxColumn,
+            this.dgGuid,
             this.modifiedDataGridViewTextBoxColumn,
             this.statusDataGridViewCheckBoxColumn,
             this.nationalCodeDataGridViewTextBoxColumn,
@@ -164,6 +165,7 @@
             this.DGrid.Location = new System.Drawing.Point(4, 70);
             this.DGrid.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.DGrid.Name = "DGrid";
+            this.DGrid.ReadOnly = true;
             this.DGrid.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.DGrid.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
@@ -186,6 +188,7 @@
             this.DGrid.Size = new System.Drawing.Size(654, 468);
             this.DGrid.TabIndex = 55752;
             this.DGrid.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DGrid_CellFormatting);
+            this.DGrid.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.DGrid_KeyPress);
             // 
             // dgRadif
             // 
@@ -199,6 +202,7 @@
             this.codeDataGridViewTextBoxColumn.DataPropertyName = "Code";
             this.codeDataGridViewTextBoxColumn.HeaderText = "کد";
             this.codeDataGridViewTextBoxColumn.Name = "codeDataGridViewTextBoxColumn";
+            this.codeDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // nameDataGridViewTextBoxColumn
             // 
@@ -206,19 +210,22 @@
             this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
             this.nameDataGridViewTextBoxColumn.HeaderText = "عنوان";
             this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
             // 
-            // guidDataGridViewTextBoxColumn
+            // dgGuid
             // 
-            this.guidDataGridViewTextBoxColumn.DataPropertyName = "Guid";
-            this.guidDataGridViewTextBoxColumn.HeaderText = "Guid";
-            this.guidDataGridViewTextBoxColumn.Name = "guidDataGridViewTextBoxColumn";
-            this.guidDataGridViewTextBoxColumn.Visible = false;
+            this.dgGuid.DataPropertyName = "Guid";
+            this.dgGuid.HeaderText = "Guid";
+            this.dgGuid.Name = "dgGuid";
+            this.dgGuid.ReadOnly = true;
+            this.dgGuid.Visible = false;
             // 
             // modifiedDataGridViewTextBoxColumn
             // 
             this.modifiedDataGridViewTextBoxColumn.DataPropertyName = "Modified";
             this.modifiedDataGridViewTextBoxColumn.HeaderText = "Modified";
             this.modifiedDataGridViewTextBoxColumn.Name = "modifiedDataGridViewTextBoxColumn";
+            this.modifiedDataGridViewTextBoxColumn.ReadOnly = true;
             this.modifiedDataGridViewTextBoxColumn.Visible = false;
             // 
             // statusDataGridViewCheckBoxColumn
@@ -226,6 +233,7 @@
             this.statusDataGridViewCheckBoxColumn.DataPropertyName = "Status";
             this.statusDataGridViewCheckBoxColumn.HeaderText = "Status";
             this.statusDataGridViewCheckBoxColumn.Name = "statusDataGridViewCheckBoxColumn";
+            this.statusDataGridViewCheckBoxColumn.ReadOnly = true;
             this.statusDataGridViewCheckBoxColumn.Visible = false;
             // 
             // nationalCodeDataGridViewTextBoxColumn
@@ -233,6 +241,7 @@
             this.nationalCodeDataGridViewTextBoxColumn.DataPropertyName = "NationalCode";
             this.nationalCodeDataGridViewTextBoxColumn.HeaderText = "NationalCode";
             this.nationalCodeDataGridViewTextBoxColumn.Name = "nationalCodeDataGridViewTextBoxColumn";
+            this.nationalCodeDataGridViewTextBoxColumn.ReadOnly = true;
             this.nationalCodeDataGridViewTextBoxColumn.Visible = false;
             // 
             // idCodeDataGridViewTextBoxColumn
@@ -240,6 +249,7 @@
             this.idCodeDataGridViewTextBoxColumn.DataPropertyName = "IdCode";
             this.idCodeDataGridViewTextBoxColumn.HeaderText = "IdCode";
             this.idCodeDataGridViewTextBoxColumn.Name = "idCodeDataGridViewTextBoxColumn";
+            this.idCodeDataGridViewTextBoxColumn.ReadOnly = true;
             this.idCodeDataGridViewTextBoxColumn.Visible = false;
             // 
             // fatherNameDataGridViewTextBoxColumn
@@ -247,6 +257,7 @@
             this.fatherNameDataGridViewTextBoxColumn.DataPropertyName = "FatherName";
             this.fatherNameDataGridViewTextBoxColumn.HeaderText = "FatherName";
             this.fatherNameDataGridViewTextBoxColumn.Name = "fatherNameDataGridViewTextBoxColumn";
+            this.fatherNameDataGridViewTextBoxColumn.ReadOnly = true;
             this.fatherNameDataGridViewTextBoxColumn.Visible = false;
             // 
             // placeBirthDataGridViewTextBoxColumn
@@ -254,6 +265,7 @@
             this.placeBirthDataGridViewTextBoxColumn.DataPropertyName = "PlaceBirth";
             this.placeBirthDataGridViewTextBoxColumn.HeaderText = "PlaceBirth";
             this.placeBirthDataGridViewTextBoxColumn.Name = "placeBirthDataGridViewTextBoxColumn";
+            this.placeBirthDataGridViewTextBoxColumn.ReadOnly = true;
             this.placeBirthDataGridViewTextBoxColumn.Visible = false;
             // 
             // dateBirthDataGridViewTextBoxColumn
@@ -261,6 +273,7 @@
             this.dateBirthDataGridViewTextBoxColumn.DataPropertyName = "DateBirth";
             this.dateBirthDataGridViewTextBoxColumn.HeaderText = "DateBirth";
             this.dateBirthDataGridViewTextBoxColumn.Name = "dateBirthDataGridViewTextBoxColumn";
+            this.dateBirthDataGridViewTextBoxColumn.ReadOnly = true;
             this.dateBirthDataGridViewTextBoxColumn.Visible = false;
             // 
             // addressDataGridViewTextBoxColumn
@@ -268,6 +281,7 @@
             this.addressDataGridViewTextBoxColumn.DataPropertyName = "Address";
             this.addressDataGridViewTextBoxColumn.HeaderText = "Address";
             this.addressDataGridViewTextBoxColumn.Name = "addressDataGridViewTextBoxColumn";
+            this.addressDataGridViewTextBoxColumn.ReadOnly = true;
             this.addressDataGridViewTextBoxColumn.Visible = false;
             // 
             // issuedFromDataGridViewTextBoxColumn
@@ -275,6 +289,7 @@
             this.issuedFromDataGridViewTextBoxColumn.DataPropertyName = "IssuedFrom";
             this.issuedFromDataGridViewTextBoxColumn.HeaderText = "IssuedFrom";
             this.issuedFromDataGridViewTextBoxColumn.Name = "issuedFromDataGridViewTextBoxColumn";
+            this.issuedFromDataGridViewTextBoxColumn.ReadOnly = true;
             this.issuedFromDataGridViewTextBoxColumn.Visible = false;
             // 
             // postalCodeDataGridViewTextBoxColumn
@@ -282,6 +297,7 @@
             this.postalCodeDataGridViewTextBoxColumn.DataPropertyName = "PostalCode";
             this.postalCodeDataGridViewTextBoxColumn.HeaderText = "PostalCode";
             this.postalCodeDataGridViewTextBoxColumn.Name = "postalCodeDataGridViewTextBoxColumn";
+            this.postalCodeDataGridViewTextBoxColumn.ReadOnly = true;
             this.postalCodeDataGridViewTextBoxColumn.Visible = false;
             // 
             // userGuidDataGridViewTextBoxColumn
@@ -289,6 +305,7 @@
             this.userGuidDataGridViewTextBoxColumn.DataPropertyName = "UserGuid";
             this.userGuidDataGridViewTextBoxColumn.HeaderText = "UserGuid";
             this.userGuidDataGridViewTextBoxColumn.Name = "userGuidDataGridViewTextBoxColumn";
+            this.userGuidDataGridViewTextBoxColumn.ReadOnly = true;
             this.userGuidDataGridViewTextBoxColumn.Visible = false;
             // 
             // groupGuidDataGridViewTextBoxColumn
@@ -296,6 +313,7 @@
             this.groupGuidDataGridViewTextBoxColumn.DataPropertyName = "GroupGuid";
             this.groupGuidDataGridViewTextBoxColumn.HeaderText = "GroupGuid";
             this.groupGuidDataGridViewTextBoxColumn.Name = "groupGuidDataGridViewTextBoxColumn";
+            this.groupGuidDataGridViewTextBoxColumn.ReadOnly = true;
             this.groupGuidDataGridViewTextBoxColumn.Visible = false;
             // 
             // cmPeoples
@@ -406,6 +424,7 @@
             this.btnView.TabIndex = 55754;
             this.btnView.Text = "مشاهده (F12)";
             this.btnView.TextColor = System.Drawing.Color.Black;
+            this.btnView.Click += new System.EventHandler(this.btnView_Click);
             // 
             // btnChangeStatus
             // 
@@ -479,6 +498,7 @@
             this.btnEdit.TabIndex = 55758;
             this.btnEdit.Text = "ویرایش (F7)";
             this.btnEdit.TextColor = System.Drawing.Color.Black;
+            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
             // 
             // groupBindingSource
             // 
@@ -532,10 +552,19 @@
         private DevComponents.DotNetBar.Controls.DataGridViewX DGrid;
         private System.Windows.Forms.TreeView trvGroup;
         private System.Windows.Forms.BindingSource groupBindingSource;
+        private System.Windows.Forms.ContextMenuStrip cmGroup;
+        private System.Windows.Forms.ContextMenuStrip cmPeoples;
+        private System.Windows.Forms.ToolStripMenuItem mnuPhone;
+        private System.Windows.Forms.ToolStripMenuItem mnuBank;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem mnuSms;
+        private System.Windows.Forms.ToolStripMenuItem mnuAdd;
+        private System.Windows.Forms.ToolStripMenuItem mnuEdit;
+        private System.Windows.Forms.ToolStripMenuItem mnuDelete;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgRadif;
         private System.Windows.Forms.DataGridViewTextBoxColumn codeDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn guidDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgGuid;
         private System.Windows.Forms.DataGridViewTextBoxColumn modifiedDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewCheckBoxColumn statusDataGridViewCheckBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn nationalCodeDataGridViewTextBoxColumn;
@@ -548,14 +577,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn postalCodeDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn userGuidDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn groupGuidDataGridViewTextBoxColumn;
-        private System.Windows.Forms.ContextMenuStrip cmGroup;
-        private System.Windows.Forms.ContextMenuStrip cmPeoples;
-        private System.Windows.Forms.ToolStripMenuItem mnuPhone;
-        private System.Windows.Forms.ToolStripMenuItem mnuBank;
-        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem mnuSms;
-        private System.Windows.Forms.ToolStripMenuItem mnuAdd;
-        private System.Windows.Forms.ToolStripMenuItem mnuEdit;
-        private System.Windows.Forms.ToolStripMenuItem mnuDelete;
     }
 }

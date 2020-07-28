@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using EntityCache.Assistence;
 using Nito.AsyncEx;
@@ -66,6 +67,39 @@ namespace EntityCache.Bussines
                 { //BeginTransaction
                 }
 
+                if (TellList.Count > 0)
+                {
+                    var list = await PhoneBookBussines.GetAllAsync(Guid);
+                    res.AddReturnedValue(
+                        await UnitOfWork.PhoneBook.RemoveRangeAsync(list.Select(q => q.Guid).ToList(),
+                            tranName));
+                    res.ThrowExceptionIfError();
+
+                    foreach (var item in TellList)
+                    {
+                        item.ParentGuid = Guid;
+                        item.Name = Name;
+                    }
+                    res.AddReturnedValue(
+                        await UnitOfWork.PhoneBook.SaveRangeAsync(TellList, tranName));
+                    res.ThrowExceptionIfError();
+                }
+
+                if (BankList.Count > 0)
+                {
+                    var list = await PeoplesBankAccountBussines.GetAllAsync(Guid);
+                    res.AddReturnedValue(
+                        await UnitOfWork.PeopleBankAccount.RemoveRangeAsync(list.Select(q => q.Guid).ToList(),
+                            tranName));
+                    res.ThrowExceptionIfError();
+
+                    foreach (var item in BankList)
+                        item.ParentGuid = Guid;
+                    res.AddReturnedValue(
+                        await UnitOfWork.PeopleBankAccount.SaveRangeAsync(BankList, tranName));
+                    res.ThrowExceptionIfError();
+                }
+
                 res.AddReturnedValue(await UnitOfWork.Peoples.SaveAsync(this, tranName));
                 res.ThrowExceptionIfError();
                 if (autoTran)
@@ -124,5 +158,43 @@ namespace EntityCache.Bussines
         public static async Task<string> NextCodeAsync() => await UnitOfWork.Peoples.NextCodeAsync();
 
         public static string NextCode() => AsyncContext.Run(NextCodeAsync);
+
+        public static async Task<bool> CheckCodeAsync(string code, Guid guid) =>
+            await UnitOfWork.Peoples.CheckCodeAsync(code, guid);
+
+        public static async Task<List<PeoplesBussines>> GetAllAsync(string search, Guid groupGuid)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(search)) search = "";
+                var res = new List<PeoplesBussines>();
+                if (groupGuid == Guid.Empty)
+                    res = await GetAllAsync();
+                else res = await GetAllAsync(groupGuid, true);
+                var searchItems = search.SplitString();
+                if (searchItems?.Count > 0)
+                    foreach (var item in searchItems)
+                    {
+                        if (!string.IsNullOrEmpty(item) && item.Trim() != "")
+                        {
+                            res = res.Where(x => x.Name.ToLower().Contains(item.ToLower()) ||
+                                                 x.Code.ToLower().Contains(item.ToLower()))
+                                ?.ToList();
+                        }
+                    }
+
+                return res;
+            }
+            catch (OperationCanceledException)
+            { return null; }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                return new List<PeoplesBussines>();
+            }
+        }
+
+        public static List<PeoplesBussines> GetAll(string search, Guid groupGuid) =>
+            AsyncContext.Run(() => GetAllAsync(search, groupGuid));
     }
 }

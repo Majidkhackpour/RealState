@@ -227,6 +227,7 @@
             this.DGrid.Location = new System.Drawing.Point(4, 70);
             this.DGrid.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.DGrid.Name = "DGrid";
+            this.DGrid.ReadOnly = true;
             this.DGrid.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.DGrid.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
@@ -249,6 +250,7 @@
             this.DGrid.Size = new System.Drawing.Size(795, 468);
             this.DGrid.TabIndex = 55736;
             this.DGrid.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DGrid_CellFormatting);
+            this.DGrid.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.DGrid_KeyPress);
             // 
             // dgRadif
             // 
@@ -263,12 +265,14 @@
             this.dgName.DataPropertyName = "Name";
             this.dgName.HeaderText = "عنوان";
             this.dgName.Name = "dgName";
+            this.dgName.ReadOnly = true;
             // 
             // dgGuid
             // 
             this.dgGuid.DataPropertyName = "Guid";
             this.dgGuid.HeaderText = "Guid";
             this.dgGuid.Name = "dgGuid";
+            this.dgGuid.ReadOnly = true;
             this.dgGuid.Visible = false;
             // 
             // modifiedDataGridViewTextBoxColumn
@@ -276,6 +280,7 @@
             this.modifiedDataGridViewTextBoxColumn.DataPropertyName = "Modified";
             this.modifiedDataGridViewTextBoxColumn.HeaderText = "Modified";
             this.modifiedDataGridViewTextBoxColumn.Name = "modifiedDataGridViewTextBoxColumn";
+            this.modifiedDataGridViewTextBoxColumn.ReadOnly = true;
             this.modifiedDataGridViewTextBoxColumn.Visible = false;
             // 
             // statusDataGridViewCheckBoxColumn
@@ -283,6 +288,7 @@
             this.statusDataGridViewCheckBoxColumn.DataPropertyName = "Status";
             this.statusDataGridViewCheckBoxColumn.HeaderText = "Status";
             this.statusDataGridViewCheckBoxColumn.Name = "statusDataGridViewCheckBoxColumn";
+            this.statusDataGridViewCheckBoxColumn.ReadOnly = true;
             this.statusDataGridViewCheckBoxColumn.Visible = false;
             // 
             // frmShowBuildingAccountType

@@ -80,7 +80,23 @@ namespace EntityCache.SqlServerPersistence
             catch (Exception exception)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(exception);
-                return "1001";
+                return "001001";
+            }
+        }
+
+        public async Task<bool> CheckCodeAsync(string code, Guid guid)
+        {
+            try
+            {
+                var acc = db.Peoples.AsNoTracking()
+                    .Where(q => q.Code == code && q.Guid != guid)
+                    .ToList();
+                return acc.Count == 0;
+            }
+            catch (Exception exception)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(exception);
+                return false;
             }
         }
     }

@@ -9,5 +9,6 @@ namespace EntityCache.Core
     {
         Task<List<PeoplesBussines>> GetAllAsync(Guid parentGuid, bool status);
         Task<string> NextCodeAsync();
+        Task<bool> CheckCodeAsync(string code, Guid guid);
     }
 }

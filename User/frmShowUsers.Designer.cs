@@ -124,6 +124,7 @@
             this.DGrid.Location = new System.Drawing.Point(4, 70);
             this.DGrid.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.DGrid.Name = "DGrid";
+            this.DGrid.ReadOnly = true;
             this.DGrid.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.DGrid.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
@@ -146,6 +147,7 @@
             this.DGrid.Size = new System.Drawing.Size(795, 468);
             this.DGrid.TabIndex = 55707;
             this.DGrid.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DGrid_CellFormatting);
+            this.DGrid.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.DGrid_KeyPress);
             // 
             // Radif
             // 
@@ -160,12 +162,14 @@
             this.dgName.DataPropertyName = "Name";
             this.dgName.HeaderText = "عنوان";
             this.dgName.Name = "dgName";
+            this.dgName.ReadOnly = true;
             // 
             // emailDataGridViewTextBoxColumn
             // 
             this.emailDataGridViewTextBoxColumn.DataPropertyName = "Email";
             this.emailDataGridViewTextBoxColumn.HeaderText = "ایمیل";
             this.emailDataGridViewTextBoxColumn.Name = "emailDataGridViewTextBoxColumn";
+            this.emailDataGridViewTextBoxColumn.ReadOnly = true;
             this.emailDataGridViewTextBoxColumn.Width = 200;
             // 
             // mobileDataGridViewTextBoxColumn
@@ -173,6 +177,7 @@
             this.mobileDataGridViewTextBoxColumn.DataPropertyName = "Mobile";
             this.mobileDataGridViewTextBoxColumn.HeaderText = "همراه";
             this.mobileDataGridViewTextBoxColumn.Name = "mobileDataGridViewTextBoxColumn";
+            this.mobileDataGridViewTextBoxColumn.ReadOnly = true;
             this.mobileDataGridViewTextBoxColumn.Width = 200;
             // 
             // dgGuid
@@ -180,6 +185,7 @@
             this.dgGuid.DataPropertyName = "Guid";
             this.dgGuid.HeaderText = "Guid";
             this.dgGuid.Name = "dgGuid";
+            this.dgGuid.ReadOnly = true;
             this.dgGuid.Visible = false;
             // 
             // modifiedDataGridViewTextBoxColumn
@@ -187,6 +193,7 @@
             this.modifiedDataGridViewTextBoxColumn.DataPropertyName = "Modified";
             this.modifiedDataGridViewTextBoxColumn.HeaderText = "Modified";
             this.modifiedDataGridViewTextBoxColumn.Name = "modifiedDataGridViewTextBoxColumn";
+            this.modifiedDataGridViewTextBoxColumn.ReadOnly = true;
             this.modifiedDataGridViewTextBoxColumn.Visible = false;
             // 
             // statusDataGridViewCheckBoxColumn
@@ -194,6 +201,7 @@
             this.statusDataGridViewCheckBoxColumn.DataPropertyName = "Status";
             this.statusDataGridViewCheckBoxColumn.HeaderText = "Status";
             this.statusDataGridViewCheckBoxColumn.Name = "statusDataGridViewCheckBoxColumn";
+            this.statusDataGridViewCheckBoxColumn.ReadOnly = true;
             this.statusDataGridViewCheckBoxColumn.Visible = false;
             // 
             // userNameDataGridViewTextBoxColumn
@@ -201,6 +209,7 @@
             this.userNameDataGridViewTextBoxColumn.DataPropertyName = "UserName";
             this.userNameDataGridViewTextBoxColumn.HeaderText = "UserName";
             this.userNameDataGridViewTextBoxColumn.Name = "userNameDataGridViewTextBoxColumn";
+            this.userNameDataGridViewTextBoxColumn.ReadOnly = true;
             this.userNameDataGridViewTextBoxColumn.Visible = false;
             // 
             // passwordDataGridViewTextBoxColumn
@@ -208,6 +217,7 @@
             this.passwordDataGridViewTextBoxColumn.DataPropertyName = "Password";
             this.passwordDataGridViewTextBoxColumn.HeaderText = "Password";
             this.passwordDataGridViewTextBoxColumn.Name = "passwordDataGridViewTextBoxColumn";
+            this.passwordDataGridViewTextBoxColumn.ReadOnly = true;
             this.passwordDataGridViewTextBoxColumn.Visible = false;
             // 
             // accessDataGridViewTextBoxColumn
@@ -215,6 +225,7 @@
             this.accessDataGridViewTextBoxColumn.DataPropertyName = "Access";
             this.accessDataGridViewTextBoxColumn.HeaderText = "Access";
             this.accessDataGridViewTextBoxColumn.Name = "accessDataGridViewTextBoxColumn";
+            this.accessDataGridViewTextBoxColumn.ReadOnly = true;
             this.accessDataGridViewTextBoxColumn.Visible = false;
             // 
             // securityQuestionDataGridViewTextBoxColumn
@@ -222,6 +233,7 @@
             this.securityQuestionDataGridViewTextBoxColumn.DataPropertyName = "SecurityQuestion";
             this.securityQuestionDataGridViewTextBoxColumn.HeaderText = "SecurityQuestion";
             this.securityQuestionDataGridViewTextBoxColumn.Name = "securityQuestionDataGridViewTextBoxColumn";
+            this.securityQuestionDataGridViewTextBoxColumn.ReadOnly = true;
             this.securityQuestionDataGridViewTextBoxColumn.Visible = false;
             // 
             // answerQuestionDataGridViewTextBoxColumn
@@ -229,6 +241,7 @@
             this.answerQuestionDataGridViewTextBoxColumn.DataPropertyName = "AnswerQuestion";
             this.answerQuestionDataGridViewTextBoxColumn.HeaderText = "AnswerQuestion";
             this.answerQuestionDataGridViewTextBoxColumn.Name = "answerQuestionDataGridViewTextBoxColumn";
+            this.answerQuestionDataGridViewTextBoxColumn.ReadOnly = true;
             this.answerQuestionDataGridViewTextBoxColumn.Visible = false;
             // 
             // UserBindingSource

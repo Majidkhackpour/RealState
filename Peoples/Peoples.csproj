@@ -37,6 +37,9 @@
     <Reference Include="AutoMapper, Version=10.0.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
       <HintPath>..\packages\AutoMapper.10.0.0\lib\net461\AutoMapper.dll</HintPath>
     </Reference>
+    <Reference Include="BPersianCalender">
+      <HintPath>..\..\..\References\BPersianCalender.dll</HintPath>
+    </Reference>
     <Reference Include="DevComponents.Charts.Design, Version=14.1.0.35, Culture=neutral, PublicKeyToken=90f470f34c89ccaf, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\References\DevComponents.Charts.Design.dll</HintPath>
@@ -223,6 +226,10 @@
     <ProjectReference Include="..\Persistence\Persistence.csproj">
       <Project>{69dbdf3a-8578-44db-95cd-08a671de9e41}</Project>
       <Name>Persistence</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\User\User.csproj">
+      <Project>{ebed491e-32a3-4484-a5aa-e5ed61e8bb0b}</Project>
+      <Name>User</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
