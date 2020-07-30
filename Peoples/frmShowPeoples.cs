@@ -5,6 +5,7 @@ using EntityCache.Bussines;
 using MetroFramework.Forms;
 using Notification;
 using PacketParser.Services;
+using Payamak.PhoneBook;
 
 namespace Peoples
 {
@@ -22,13 +23,13 @@ namespace Peoples
                 if (_st)
                 {
                     btnChangeStatus.Text = "غیرفعال (Ctrl+S)";
-                    LoadData();
+                    LoadPeoples(ST, txtSearch.Text);
                     btnDelete.Text = "حذف (Del)";
                 }
                 else
                 {
                     btnChangeStatus.Text = "فعال (Ctrl+S)";
-                    LoadData();
+                    LoadPeoples(ST, txtSearch.Text);
                     btnDelete.Text = "فعال کردن";
                 }
             }
@@ -309,6 +310,108 @@ namespace Peoples
             try
             {
                 LoadPeoples(ST, txtSearch.Text);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private void btnChangeStatus_Click(object sender, EventArgs e)
+        {
+            ST = !ST;
+        }
+
+        private async void btnDelete_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (DGrid.RowCount <= 0) return;
+                if (DGrid.CurrentRow == null) return;
+                var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
+                if (ST)
+                {
+                    if (MessageBox.Show(
+                            $@"آیا از حذف {DGrid[dgName.Index, DGrid.CurrentRow.Index].Value} اطمینان دارید؟", "حذف",
+                            MessageBoxButtons.YesNo,
+                            MessageBoxIcon.Question) == DialogResult.No) return;
+                    var prd = await PeoplesBussines.GetAsync(guid);
+                    var res = await prd.ChangeStatusAsync(false);
+                    if (res.HasError)
+                    {
+                        frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);
+                        return;
+                    }
+
+                    if (MessageBox.Show(
+                            $@"آیا شماره های شخص نیز از دفترچه تلفن حذف شود؟", "حذف",
+                            MessageBoxButtons.YesNo,
+                            MessageBoxIcon.Question) == DialogResult.Yes)
+                    {
+                        var prd2 = await PhoneBookBussines.GetAllAsync(guid, true);
+                        foreach (var item in prd2)
+                            await item.ChangeStatusAsync(false);
+                    }
+                }
+                else
+                {
+                    if (MessageBox.Show(
+                            $@"آیا از فعال کردن {DGrid[dgName.Index, DGrid.CurrentRow.Index].Value} اطمینان دارید؟", "حذف",
+                            MessageBoxButtons.YesNo,
+                            MessageBoxIcon.Question) == DialogResult.No) return;
+                    var prd = await PeoplesBussines.GetAsync(guid);
+
+                    if (prd.GroupGuid == Guid.Empty)
+                    {
+                        var frm = new frmChangeGroup(prd);
+                        if (frm.ShowDialog() != DialogResult.OK) return;
+                    }
+
+                    var res = await prd.ChangeStatusAsync(true);
+                    if (res.HasError)
+                    {
+                        frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);
+                        return;
+                    }
+
+                    var prd2 = await PhoneBookBussines.GetAllAsync(guid, false);
+                    foreach (var item in prd2)
+                        await item.ChangeStatusAsync(true);
+                }
+
+                LoadPeoples(ST, txtSearch.Text);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private void mnuBank_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (DGrid.RowCount <= 0) return;
+                if (DGrid.CurrentRow == null) return;
+                var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
+                var frm = new frmPeoplesBankAccount(guid);
+                frm.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private void mnuPhone_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (DGrid.RowCount <= 0) return;
+                if (DGrid.CurrentRow == null) return;
+                var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
+                var frm = new frmShowPhoneBook(guid);
+                frm.ShowDialog();
             }
             catch (Exception ex)
             {

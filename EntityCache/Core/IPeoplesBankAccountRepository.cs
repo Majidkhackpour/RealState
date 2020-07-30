@@ -7,6 +7,6 @@ namespace EntityCache.Core
 {
     public interface IPeoplesBankAccountRepository : IRepository<PeoplesBankAccountBussines>
     {
-        Task<List<PeoplesBankAccountBussines>> GetAllAsync(Guid parentGuid);
+        Task<List<PeoplesBankAccountBussines>> GetAllAsync(Guid parentGuid,bool status);
     }
 }

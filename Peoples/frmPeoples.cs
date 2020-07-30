@@ -102,14 +102,48 @@ namespace Peoples
         {
             InitializeComponent();
             cls = PeoplesBussines.Get(guid);
-            superTabControl1.Enabled = !isShowMode;
+            superTabControlPanel1.Enabled = !isShowMode;
+            superTabControlPanel2.Enabled = !isShowMode;
+            superTabControlPanel3.Enabled = !isShowMode;
             btnFinish.Enabled = !isShowMode;
             superTabControl1.SelectedTab = superTabItem1;
             WindowState = FormWindowState.Maximized;
         }
-        private void frmPeoples_Load(object sender, EventArgs e)
+        private async void frmPeoples_Load(object sender, EventArgs e)
         {
             SetData();
+
+            var nameCollection = new AutoCompleteStringCollection();
+            var fNameCollection = new AutoCompleteStringCollection();
+            var bankCollection = new AutoCompleteStringCollection();
+            var shobeCollection = new AutoCompleteStringCollection();
+            var nCodeCollection = new AutoCompleteStringCollection();
+            var placeCollection = new AutoCompleteStringCollection();
+            var issuedCollection = new AutoCompleteStringCollection();
+            var list = await PeoplesBussines.GetAllAsync();
+            foreach (var item in list.ToList())
+            {
+                nameCollection.Add(item.Name);
+                fNameCollection.Add(item.FatherName);
+                placeCollection.Add(item.PlaceBirth); 
+                issuedCollection.Add(item.IssuedFrom);
+                nCodeCollection.Add(item.NationalCode);
+            }
+
+            var bList = await PeoplesBankAccountBussines.GetAllAsync();
+            foreach (var item in bList.ToList())
+            {
+                bankCollection.Add(item.BankName);
+                shobeCollection.Add(item.Shobe);
+            }
+
+            txtName.AutoCompleteCustomSource = nameCollection;
+            txtFatherName.AutoCompleteCustomSource = fNameCollection;
+            txtNationalCode.AutoCompleteCustomSource = nCodeCollection;
+            txtPlaceBirth.AutoCompleteCustomSource = placeCollection;
+            txtIssuesFrom.AutoCompleteCustomSource = issuedCollection;
+            txtShobe.AutoCompleteCustomSource = shobeCollection;
+            txtBank.AutoCompleteCustomSource = bankCollection;
         }
 
         #region TxtSetter
@@ -247,8 +281,21 @@ namespace Peoples
                 switch (e.KeyCode)
                 {
                     case Keys.Enter:
+                        if (txtShobe.Focused)
+                        {
+                            btnInsBank.PerformClick();
+                            txtBank.Focus();
+                            return;
+                        }
+
+                        if (txtTell.Focused)
+                        {
+                            btnInsTell.PerformClick();
+                            return;
+                        }
+
                         if (!btnFinish.Focused && !btnCancel.Focused)
-                            SendKeys.Send("{Tab}");
+                                SendKeys.Send("{Tab}");
                         break;
                     case Keys.F5:
                         btnFinish.PerformClick();
@@ -381,13 +428,6 @@ namespace Peoples
                     return;
                 }
 
-                if (txtCode.Text.Trim().ParseToLong() > 1000000 || txtCode.Text.Trim().ParseToLong() < 1000)
-                {
-                    frmNotification.PublicInfo.ShowMessage("کد وارد شده در بازه معتبر نمی باشد");
-                    txtCode.Focus();
-                    return;
-                }
-
                 cls.Name = txtName.Text.Trim();
                 cls.Code = txtCode.Text.Trim();
                 cls.NationalCode = txtNationalCode.Text.Trim();
@@ -414,6 +454,36 @@ namespace Peoples
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(exception);
             }
+        }
+
+        private void txtCode_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != (char)Keys.Back)
+                e.Handled = true;
+        }
+
+        private void txtName_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsLetter(e.KeyChar) && e.KeyChar != (char)Keys.Back)
+                e.Handled = true;
+        }
+
+        private void txtNationalCode_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != (char)Keys.Back)
+                e.Handled = true;
+        }
+
+        private void txtAccountNumber_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != (char)Keys.Back)
+                e.Handled = true;
+        }
+
+        private void txtBank_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsLetter(e.KeyChar) && e.KeyChar != (char)Keys.Back)
+                e.Handled = true;
         }
     }
 }

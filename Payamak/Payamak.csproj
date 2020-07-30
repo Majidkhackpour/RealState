@@ -5,11 +5,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{38A2D24E-9123-4E7E-989D-36B49248A9FB}</ProjectGuid>
+    <ProjectGuid>{C8268C19-4E5C-4369-8FD4-CF89E3F16F24}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Peoples</RootNamespace>
-    <AssemblyName>Peoples</AssemblyName>
+    <RootNamespace>Payamak</RootNamespace>
+    <AssemblyName>Payamak</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -40,55 +40,51 @@
     <Reference Include="BPersianCalender">
       <HintPath>..\..\..\References\BPersianCalender.dll</HintPath>
     </Reference>
-    <Reference Include="DevComponents.Charts.Design, Version=14.1.0.35, Culture=neutral, PublicKeyToken=90f470f34c89ccaf, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="DevComponents.Charts.Design">
       <HintPath>..\..\..\References\DevComponents.Charts.Design.dll</HintPath>
     </Reference>
-    <Reference Include="DevComponents.DotNetBar.Charts, Version=14.1.0.35, Culture=neutral, PublicKeyToken=7eb7c3a35b91de04, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="DevComponents.DotNetBar.Charts">
       <HintPath>..\..\..\References\DevComponents.DotNetBar.Charts.dll</HintPath>
     </Reference>
-    <Reference Include="DevComponents.DotNetBar.Design, Version=14.1.0.35, Culture=neutral, PublicKeyToken=90f470f34c89ccaf, processorArchitecture=MSIL">
+    <Reference Include="DevComponents.DotNetBar.Design, Version=10.4.0.1, Culture=neutral, PublicKeyToken=90f470f34c89ccaf, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\References\DevComponents.DotNetBar.Design.dll</HintPath>
     </Reference>
-    <Reference Include="DevComponents.DotNetBar.Keyboard, Version=14.1.0.35, Culture=neutral, PublicKeyToken=7eb7c3a35b91de04, processorArchitecture=MSIL">
+    <Reference Include="DevComponents.DotNetBar.Keyboard, Version=10.4.0.1, Culture=neutral, PublicKeyToken=7eb7c3a35b91de04, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\References\DevComponents.DotNetBar.Keyboard.dll</HintPath>
     </Reference>
-    <Reference Include="DevComponents.DotNetBar.Layout, Version=14.1.0.35, Culture=neutral, PublicKeyToken=7eb7c3a35b91de04, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="DevComponents.DotNetBar.Layout">
       <HintPath>..\..\..\References\DevComponents.DotNetBar.Layout.dll</HintPath>
     </Reference>
-    <Reference Include="DevComponents.DotNetBar.Layout.Design, Version=14.1.0.35, Culture=neutral, PublicKeyToken=7eb7c3a35b91de04, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="DevComponents.DotNetBar.Layout.Design">
       <HintPath>..\..\..\References\DevComponents.DotNetBar.Layout.Design.dll</HintPath>
     </Reference>
-    <Reference Include="DevComponents.DotNetBar.Schedule, Version=14.1.0.35, Culture=neutral, PublicKeyToken=7eb7c3a35b91de04, processorArchitecture=MSIL">
+    <Reference Include="DevComponents.DotNetBar.Schedule, Version=10.4.0.1, Culture=neutral, PublicKeyToken=7eb7c3a35b91de04, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\References\DevComponents.DotNetBar.Schedule.dll</HintPath>
     </Reference>
-    <Reference Include="DevComponents.DotNetBar.SuperGrid, Version=14.1.0.35, Culture=neutral, PublicKeyToken=7eb7c3a35b91de04, processorArchitecture=MSIL">
+    <Reference Include="DevComponents.DotNetBar.SuperGrid, Version=10.4.0.1, Culture=neutral, PublicKeyToken=7eb7c3a35b91de04, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\References\DevComponents.DotNetBar.SuperGrid.dll</HintPath>
     </Reference>
-    <Reference Include="DevComponents.DotNetBar2, Version=14.1.0.35, Culture=neutral, PublicKeyToken=7eb7c3a35b91de04, processorArchitecture=MSIL">
+    <Reference Include="DevComponents.DotNetBar2, Version=10.4.0.1, Culture=neutral, PublicKeyToken=7eb7c3a35b91de04, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\References\DevComponents.DotNetBar2.dll</HintPath>
     </Reference>
-    <Reference Include="DevComponents.Instrumentation, Version=14.1.0.35, Culture=neutral, PublicKeyToken=f90dc37c26666a67, processorArchitecture=MSIL">
+    <Reference Include="DevComponents.Instrumentation, Version=10.4.0.1, Culture=neutral, PublicKeyToken=f90dc37c26666a67, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\References\DevComponents.Instrumentation.dll</HintPath>
     </Reference>
-    <Reference Include="DevComponents.Instrumentation.Design, Version=14.1.0.35, Culture=neutral, PublicKeyToken=76cb4c6eb576bca5, processorArchitecture=MSIL">
+    <Reference Include="DevComponents.Instrumentation.Design, Version=10.4.0.1, Culture=neutral, PublicKeyToken=76cb4c6eb576bca5, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\References\DevComponents.Instrumentation.Design.dll</HintPath>
     </Reference>
-    <Reference Include="DevComponents.SuperGrid.Design, Version=14.1.0.35, Culture=neutral, PublicKeyToken=26d81176cfa2b486, processorArchitecture=MSIL">
+    <Reference Include="DevComponents.SuperGrid.Design, Version=10.4.0.1, Culture=neutral, PublicKeyToken=26d81176cfa2b486, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\References\DevComponents.SuperGrid.Design.dll</HintPath>
     </Reference>
-    <Reference Include="DevComponents.TreeGX, Version=14.1.0.35, Culture=neutral, PublicKeyToken=055db68f670cfeab, processorArchitecture=MSIL">
+    <Reference Include="DevComponents.TreeGX, Version=10.4.0.1, Culture=neutral, PublicKeyToken=055db68f670cfeab, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\References\DevComponents.TreeGX.dll</HintPath>
     </Reference>
@@ -120,35 +116,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="frmChangeGroup.cs">
+    <Compile Include="PhoneBook\frmShowPhoneBook.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmChangeGroup.Designer.cs">
-      <DependentUpon>frmChangeGroup.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frmPeoples.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmPeoples.Designer.cs">
-      <DependentUpon>frmPeoples.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frmPeoplesBankAccount.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmPeoplesBankAccount.Designer.cs">
-      <DependentUpon>frmPeoplesBankAccount.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frmPropleGroup.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmPropleGroup.Designer.cs">
-      <DependentUpon>frmPropleGroup.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frmShowPeoples.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmShowPeoples.Designer.cs">
-      <DependentUpon>frmShowPeoples.cs</DependentUpon>
+    <Compile Include="PhoneBook\frmShowPhoneBook.Designer.cs">
+      <DependentUpon>frmShowPhoneBook.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -158,24 +130,31 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
-    <None Include="packages.config" />
+    <ProjectReference Include="..\EntityCache\EntityCache.csproj">
+      <Project>{cc417799-f38c-4997-8491-510eb1c15f74}</Project>
+      <Name>EntityCache</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PacketParser\PacketParser.csproj">
+      <Project>{7e235f22-ae73-4698-9951-0f092ac91850}</Project>
+      <Name>PacketParser</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Persistence\Persistence.csproj">
+      <Project>{69dbdf3a-8578-44db-95cd-08a671de9e41}</Project>
+      <Name>Persistence</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="frmChangeGroup.resx">
-      <DependentUpon>frmChangeGroup.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmPeoples.resx">
-      <DependentUpon>frmPeoples.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmPeoplesBankAccount.resx">
-      <DependentUpon>frmPeoplesBankAccount.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmPropleGroup.resx">
-      <DependentUpon>frmPropleGroup.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmShowPeoples.resx">
-      <DependentUpon>frmShowPeoples.cs</DependentUpon>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+    <None Include="Properties\DataSources\EntityCache.Bussines.PhoneBookBussines.datasource" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Panel\" />
+    <Folder Include="SMS\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="PhoneBook\frmShowPhoneBook.resx">
+      <DependentUpon>frmShowPhoneBook.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -183,10 +162,6 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Properties\DataSources\EntityCache.Bussines.PeopleGroupBussines.datasource" />
-    <None Include="Properties\DataSources\EntityCache.Bussines.PeoplesBankAccountBussines.datasource" />
-    <None Include="Properties\DataSources\EntityCache.Bussines.PeoplesBussines.datasource" />
-    <None Include="Properties\DataSources\EntityCache.Bussines.PhoneBookBussines.datasource" />
     <None Include="Resources\add.png" />
   </ItemGroup>
   <ItemGroup>
@@ -227,41 +202,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\toolbarbutton-print.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\EntityCache\EntityCache.csproj">
-      <Project>{cc417799-f38c-4997-8491-510eb1c15f74}</Project>
-      <Name>EntityCache</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Notification\Notification.csproj">
-      <Project>{44a0f109-df64-482c-befb-df20038ee4df}</Project>
-      <Name>Notification</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\PacketParser\PacketParser.csproj">
-      <Project>{7e235f22-ae73-4698-9951-0f092ac91850}</Project>
-      <Name>PacketParser</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Payamak\Payamak.csproj">
-      <Project>{c8268c19-4e5c-4369-8fd4-cf89e3f16f24}</Project>
-      <Name>Payamak</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Persistence\Persistence.csproj">
-      <Project>{69dbdf3a-8578-44db-95cd-08a671de9e41}</Project>
-      <Name>Persistence</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\User\User.csproj">
-      <Project>{ebed491e-32a3-4484-a5aa-e5ed61e8bb0b}</Project>
-      <Name>User</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\basic-information.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\description.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\button-send-sms.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

@@ -70,21 +70,6 @@
             this.label9 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.superTabItem1 = new DevComponents.DotNetBar.SuperTabItem();
-            this.superTabControlPanel2 = new DevComponents.DotNetBar.SuperTabControlPanel();
-            this.btnDelTell = new DevComponents.DotNetBar.ButtonX();
-            this.btnInsTell = new DevComponents.DotNetBar.ButtonX();
-            this.txtTell = new System.Windows.Forms.TextBox();
-            this.label12 = new System.Windows.Forms.Label();
-            this.DGridTell = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.tRadif = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tellDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgTellGuid = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.modifiedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.statusDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.groupDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.phoneBookBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.superTabItem2 = new DevComponents.DotNetBar.SuperTabItem();
             this.superTabControlPanel3 = new DevComponents.DotNetBar.SuperTabControlPanel();
             this.txtShobe = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
@@ -104,6 +89,21 @@
             this.statusDataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.bankAccountBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.superTabItem3 = new DevComponents.DotNetBar.SuperTabItem();
+            this.superTabControlPanel2 = new DevComponents.DotNetBar.SuperTabControlPanel();
+            this.btnDelTell = new DevComponents.DotNetBar.ButtonX();
+            this.btnInsTell = new DevComponents.DotNetBar.ButtonX();
+            this.txtTell = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.DGridTell = new DevComponents.DotNetBar.Controls.DataGridViewX();
+            this.tRadif = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tellDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgTellGuid = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.modifiedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.statusDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.groupDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.phoneBookBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.superTabItem2 = new DevComponents.DotNetBar.SuperTabItem();
             this.btnCancel = new DevComponents.DotNetBar.ButtonX();
             this.btnFinish = new DevComponents.DotNetBar.ButtonX();
             ((System.ComponentModel.ISupportInitialize)(this.superTabControl1)).BeginInit();
@@ -126,12 +126,12 @@
             this.splitContainer4.Panel1.SuspendLayout();
             this.splitContainer4.Panel2.SuspendLayout();
             this.splitContainer4.SuspendLayout();
-            this.superTabControlPanel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.DGridTell)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.phoneBookBindingSource)).BeginInit();
             this.superTabControlPanel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgBankAccount)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bankAccountBindingSource)).BeginInit();
+            this.superTabControlPanel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DGridTell)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.phoneBookBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // superTabControl1
@@ -155,8 +155,8 @@
             this.superTabControl1.ControlBox.CloseBox,
             this.superTabControl1.ControlBox.MenuBox});
             this.superTabControl1.Controls.Add(this.superTabControlPanel1);
-            this.superTabControl1.Controls.Add(this.superTabControlPanel2);
             this.superTabControl1.Controls.Add(this.superTabControlPanel3);
+            this.superTabControl1.Controls.Add(this.superTabControlPanel2);
             this.superTabControl1.Location = new System.Drawing.Point(7, 36);
             this.superTabControl1.Name = "superTabControl1";
             this.superTabControl1.ReorderTabsEnabled = true;
@@ -195,7 +195,7 @@
             this.txtAddress.Name = "txtAddress";
             this.txtAddress.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.txtAddress.Size = new System.Drawing.Size(683, 283);
-            this.txtAddress.TabIndex = 0;
+            this.txtAddress.TabIndex = 2;
             // 
             // label11
             // 
@@ -234,8 +234,8 @@
             this.splitContainer1.Panel2.Controls.Add(this.label2);
             this.splitContainer1.Panel2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.splitContainer1.Size = new System.Drawing.Size(783, 170);
-            this.splitContainer1.SplitterDistance = 383;
-            this.splitContainer1.TabIndex = 2;
+            this.splitContainer1.SplitterDistance = 382;
+            this.splitContainer1.TabIndex = 1;
             // 
             // cmbGroup
             // 
@@ -247,8 +247,8 @@
             this.cmbGroup.FormattingEnabled = true;
             this.cmbGroup.Location = new System.Drawing.Point(15, 97);
             this.cmbGroup.Name = "cmbGroup";
-            this.cmbGroup.Size = new System.Drawing.Size(285, 28);
-            this.cmbGroup.TabIndex = 1;
+            this.cmbGroup.Size = new System.Drawing.Size(284, 28);
+            this.cmbGroup.TabIndex = 2;
             this.cmbGroup.ValueMember = "Guid";
             // 
             // groupBundingSource
@@ -261,8 +261,8 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtPostalCode.Location = new System.Drawing.Point(15, 131);
             this.txtPostalCode.Name = "txtPostalCode";
-            this.txtPostalCode.Size = new System.Drawing.Size(285, 27);
-            this.txtPostalCode.TabIndex = 2;
+            this.txtPostalCode.Size = new System.Drawing.Size(284, 27);
+            this.txtPostalCode.TabIndex = 3;
             this.txtPostalCode.Enter += new System.EventHandler(this.txtPostalCode_Enter);
             this.txtPostalCode.Leave += new System.EventHandler(this.txtPostalCode_Leave);
             // 
@@ -271,7 +271,7 @@
             this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label8.AutoSize = true;
             this.label8.BackColor = System.Drawing.Color.Transparent;
-            this.label8.Location = new System.Drawing.Point(326, 100);
+            this.label8.Location = new System.Drawing.Point(325, 100);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(31, 20);
             this.label8.TabIndex = 10;
@@ -282,7 +282,7 @@
             this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label10.AutoSize = true;
             this.label10.BackColor = System.Drawing.Color.Transparent;
-            this.label10.Location = new System.Drawing.Point(306, 134);
+            this.label10.Location = new System.Drawing.Point(305, 134);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(51, 20);
             this.label10.TabIndex = 10;
@@ -306,9 +306,9 @@
             this.splitContainer3.Panel2.Controls.Add(this.txtFatherName);
             this.splitContainer3.Panel2.Controls.Add(this.label5);
             this.splitContainer3.Panel2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.splitContainer3.Size = new System.Drawing.Size(361, 39);
-            this.splitContainer3.SplitterDistance = 155;
-            this.splitContainer3.TabIndex = 0;
+            this.splitContainer3.Size = new System.Drawing.Size(360, 39);
+            this.splitContainer3.SplitterDistance = 154;
+            this.splitContainer3.TabIndex = 1;
             // 
             // txtIdCode
             // 
@@ -316,7 +316,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtIdCode.Location = new System.Drawing.Point(3, 6);
             this.txtIdCode.Name = "txtIdCode";
-            this.txtIdCode.Size = new System.Drawing.Size(74, 27);
+            this.txtIdCode.Size = new System.Drawing.Size(73, 27);
             this.txtIdCode.TabIndex = 0;
             this.txtIdCode.Enter += new System.EventHandler(this.txtIdCode_Enter);
             this.txtIdCode.Leave += new System.EventHandler(this.txtIdCode_Leave);
@@ -326,7 +326,7 @@
             this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label4.AutoSize = true;
             this.label4.BackColor = System.Drawing.Color.Transparent;
-            this.label4.Location = new System.Drawing.Point(78, 9);
+            this.label4.Location = new System.Drawing.Point(77, 9);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(70, 20);
             this.label4.TabIndex = 10;
@@ -336,6 +336,8 @@
             // 
             this.txtFatherName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtFatherName.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.txtFatherName.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.txtFatherName.Location = new System.Drawing.Point(12, 6);
             this.txtFatherName.Name = "txtFatherName";
             this.txtFatherName.Size = new System.Drawing.Size(140, 27);
@@ -372,9 +374,9 @@
             this.splitContainer2.Panel2.Controls.Add(this.txtNationalCode);
             this.splitContainer2.Panel2.Controls.Add(this.label3);
             this.splitContainer2.Panel2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.splitContainer2.Size = new System.Drawing.Size(361, 39);
-            this.splitContainer2.SplitterDistance = 155;
-            this.splitContainer2.TabIndex = 11;
+            this.splitContainer2.Size = new System.Drawing.Size(360, 39);
+            this.splitContainer2.SplitterDistance = 154;
+            this.splitContainer2.TabIndex = 0;
             // 
             // txtCode
             // 
@@ -382,9 +384,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtCode.Location = new System.Drawing.Point(3, 6);
             this.txtCode.Name = "txtCode";
-            this.txtCode.Size = new System.Drawing.Size(118, 27);
+            this.txtCode.Size = new System.Drawing.Size(117, 27);
             this.txtCode.TabIndex = 0;
             this.txtCode.Enter += new System.EventHandler(this.txtCode_Enter);
+            this.txtCode.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCode_KeyPress);
             this.txtCode.Leave += new System.EventHandler(this.txtCode_Leave);
             // 
             // label1
@@ -392,7 +395,7 @@
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Location = new System.Drawing.Point(127, 9);
+            this.label1.Location = new System.Drawing.Point(126, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(21, 20);
             this.label1.TabIndex = 10;
@@ -402,11 +405,14 @@
             // 
             this.txtNationalCode.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtNationalCode.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.txtNationalCode.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.txtNationalCode.Location = new System.Drawing.Point(12, 6);
             this.txtNationalCode.Name = "txtNationalCode";
             this.txtNationalCode.Size = new System.Drawing.Size(140, 27);
             this.txtNationalCode.TabIndex = 0;
             this.txtNationalCode.Enter += new System.EventHandler(this.txtNationalCode_Enter);
+            this.txtNationalCode.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNationalCode_KeyPress);
             this.txtNationalCode.Leave += new System.EventHandler(this.txtNationalCode_Leave);
             // 
             // label3
@@ -438,17 +444,19 @@
             this.splitContainer4.Panel2.Controls.Add(this.txtDateBirth);
             this.splitContainer4.Panel2.Controls.Add(this.label7);
             this.splitContainer4.Panel2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.splitContainer4.Size = new System.Drawing.Size(375, 39);
-            this.splitContainer4.SplitterDistance = 161;
+            this.splitContainer4.Size = new System.Drawing.Size(376, 39);
+            this.splitContainer4.SplitterDistance = 160;
             this.splitContainer4.TabIndex = 1;
             // 
             // txtPlaceBirth
             // 
             this.txtPlaceBirth.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtPlaceBirth.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.txtPlaceBirth.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.txtPlaceBirth.Location = new System.Drawing.Point(3, 6);
             this.txtPlaceBirth.Name = "txtPlaceBirth";
-            this.txtPlaceBirth.Size = new System.Drawing.Size(47, 27);
+            this.txtPlaceBirth.Size = new System.Drawing.Size(46, 27);
             this.txtPlaceBirth.TabIndex = 0;
             this.txtPlaceBirth.Enter += new System.EventHandler(this.txtPlaceBirth_Enter);
             this.txtPlaceBirth.Leave += new System.EventHandler(this.txtPlaceBirth_Leave);
@@ -458,7 +466,7 @@
             this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label6.AutoSize = true;
             this.label6.BackColor = System.Drawing.Color.Transparent;
-            this.label6.Location = new System.Drawing.Point(96, 9);
+            this.label6.Location = new System.Drawing.Point(95, 9);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(53, 20);
             this.label6.TabIndex = 10;
@@ -475,7 +483,7 @@
             this.txtDateBirth.ReadOnly = true;
             this.txtDateBirth.SelectedDate = null;
             this.txtDateBirth.Shamsi = null;
-            this.txtDateBirth.Size = new System.Drawing.Size(140, 27);
+            this.txtDateBirth.Size = new System.Drawing.Size(142, 27);
             this.txtDateBirth.TabIndex = 0;
             // 
             // label7
@@ -483,7 +491,7 @@
             this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label7.AutoSize = true;
             this.label7.BackColor = System.Drawing.Color.Transparent;
-            this.label7.Location = new System.Drawing.Point(151, 9);
+            this.label7.Location = new System.Drawing.Point(153, 9);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(56, 20);
             this.label7.TabIndex = 10;
@@ -493,9 +501,11 @@
             // 
             this.txtIssuesFrom.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtIssuesFrom.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.txtIssuesFrom.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.txtIssuesFrom.Location = new System.Drawing.Point(23, 97);
             this.txtIssuesFrom.Name = "txtIssuesFrom";
-            this.txtIssuesFrom.Size = new System.Drawing.Size(259, 27);
+            this.txtIssuesFrom.Size = new System.Drawing.Size(260, 27);
             this.txtIssuesFrom.TabIndex = 2;
             this.txtIssuesFrom.Enter += new System.EventHandler(this.txtIssuesFrom_Enter);
             this.txtIssuesFrom.Leave += new System.EventHandler(this.txtIssuesFrom_Leave);
@@ -504,11 +514,14 @@
             // 
             this.txtName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtName.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.txtName.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.txtName.Location = new System.Drawing.Point(23, 13);
             this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(259, 27);
+            this.txtName.Size = new System.Drawing.Size(260, 27);
             this.txtName.TabIndex = 0;
             this.txtName.Enter += new System.EventHandler(this.txtName_Enter);
+            this.txtName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtName_KeyPress);
             this.txtName.Leave += new System.EventHandler(this.txtName_Leave);
             // 
             // label9
@@ -516,7 +529,7 @@
             this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label9.AutoSize = true;
             this.label9.BackColor = System.Drawing.Color.Transparent;
-            this.label9.Location = new System.Drawing.Point(286, 100);
+            this.label9.Location = new System.Drawing.Point(287, 100);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(109, 20);
             this.label9.TabIndex = 10;
@@ -527,7 +540,7 @@
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Location = new System.Drawing.Point(286, 16);
+            this.label2.Location = new System.Drawing.Point(287, 16);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(95, 20);
             this.label2.TabIndex = 10;
@@ -539,6 +552,259 @@
             this.superTabItem1.GlobalItem = false;
             this.superTabItem1.Name = "superTabItem1";
             this.superTabItem1.Text = "اطلاعات شخصی";
+            // 
+            // superTabControlPanel3
+            // 
+            this.superTabControlPanel3.Controls.Add(this.txtShobe);
+            this.superTabControlPanel3.Controls.Add(this.label15);
+            this.superTabControlPanel3.Controls.Add(this.txtAccountNumber);
+            this.superTabControlPanel3.Controls.Add(this.label14);
+            this.superTabControlPanel3.Controls.Add(this.txtBank);
+            this.superTabControlPanel3.Controls.Add(this.label13);
+            this.superTabControlPanel3.Controls.Add(this.btnDelBank);
+            this.superTabControlPanel3.Controls.Add(this.btnInsBank);
+            this.superTabControlPanel3.Controls.Add(this.dgBankAccount);
+            this.superTabControlPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.superTabControlPanel3.Location = new System.Drawing.Point(0, 40);
+            this.superTabControlPanel3.Name = "superTabControlPanel3";
+            this.superTabControlPanel3.Size = new System.Drawing.Size(789, 479);
+            this.superTabControlPanel3.TabIndex = 0;
+            this.superTabControlPanel3.TabItem = this.superTabItem3;
+            // 
+            // txtShobe
+            // 
+            this.txtShobe.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtShobe.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.txtShobe.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.txtShobe.Location = new System.Drawing.Point(265, 10);
+            this.txtShobe.Name = "txtShobe";
+            this.txtShobe.Size = new System.Drawing.Size(104, 27);
+            this.txtShobe.TabIndex = 55717;
+            this.txtShobe.Enter += new System.EventHandler(this.txtShobe_Enter);
+            this.txtShobe.Leave += new System.EventHandler(this.txtShobe_Leave);
+            // 
+            // label15
+            // 
+            this.label15.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label15.AutoSize = true;
+            this.label15.BackColor = System.Drawing.Color.Transparent;
+            this.label15.Location = new System.Drawing.Point(375, 13);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(34, 20);
+            this.label15.TabIndex = 55716;
+            this.label15.Text = "شعبه";
+            // 
+            // txtAccountNumber
+            // 
+            this.txtAccountNumber.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtAccountNumber.Location = new System.Drawing.Point(415, 10);
+            this.txtAccountNumber.Name = "txtAccountNumber";
+            this.txtAccountNumber.Size = new System.Drawing.Size(121, 27);
+            this.txtAccountNumber.TabIndex = 55716;
+            this.txtAccountNumber.Enter += new System.EventHandler(this.txtAccountNumber_Enter);
+            this.txtAccountNumber.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtAccountNumber_KeyPress);
+            this.txtAccountNumber.Leave += new System.EventHandler(this.txtAccountNumber_Leave);
+            // 
+            // label14
+            // 
+            this.label14.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label14.AutoSize = true;
+            this.label14.BackColor = System.Drawing.Color.Transparent;
+            this.label14.Location = new System.Drawing.Point(542, 13);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(71, 20);
+            this.label14.TabIndex = 55716;
+            this.label14.Text = "شماره حساب";
+            // 
+            // txtBank
+            // 
+            this.txtBank.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtBank.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.txtBank.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.txtBank.Location = new System.Drawing.Point(619, 10);
+            this.txtBank.Name = "txtBank";
+            this.txtBank.Size = new System.Drawing.Size(121, 27);
+            this.txtBank.TabIndex = 55715;
+            this.txtBank.Enter += new System.EventHandler(this.txtBank_Enter);
+            this.txtBank.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBank_KeyPress);
+            this.txtBank.Leave += new System.EventHandler(this.txtBank_Leave);
+            // 
+            // label13
+            // 
+            this.label13.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label13.AutoSize = true;
+            this.label13.BackColor = System.Drawing.Color.Transparent;
+            this.label13.Location = new System.Drawing.Point(746, 13);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(31, 20);
+            this.label13.TabIndex = 55716;
+            this.label13.Text = "بانک";
+            // 
+            // btnDelBank
+            // 
+            this.btnDelBank.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnDelBank.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.btnDelBank.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnDelBank.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.btnDelBank.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnDelBank.Image = global::Peoples.Properties.Resources.tab_close_;
+            this.btnDelBank.Location = new System.Drawing.Point(3, 10);
+            this.btnDelBank.Name = "btnDelBank";
+            this.btnDelBank.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
+            this.btnDelBank.Size = new System.Drawing.Size(125, 27);
+            this.btnDelBank.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
+            this.btnDelBank.TabIndex = 55714;
+            this.btnDelBank.Text = "حذف از لیست";
+            this.btnDelBank.TextColor = System.Drawing.Color.Black;
+            this.btnDelBank.Click += new System.EventHandler(this.btnDelBank_Click);
+            // 
+            // btnInsBank
+            // 
+            this.btnInsBank.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnInsBank.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.btnInsBank.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnInsBank.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.btnInsBank.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnInsBank.Image = global::Peoples.Properties.Resources.tab_checkbox__;
+            this.btnInsBank.Location = new System.Drawing.Point(134, 10);
+            this.btnInsBank.Name = "btnInsBank";
+            this.btnInsBank.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
+            this.btnInsBank.Size = new System.Drawing.Size(125, 27);
+            this.btnInsBank.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
+            this.btnInsBank.TabIndex = 55718;
+            this.btnInsBank.Text = "افزودن حساب بانکی";
+            this.btnInsBank.TextColor = System.Drawing.Color.Black;
+            this.btnInsBank.Click += new System.EventHandler(this.btnInsBank_Click);
+            // 
+            // dgBankAccount
+            // 
+            this.dgBankAccount.AllowUserToAddRows = false;
+            this.dgBankAccount.AllowUserToDeleteRows = false;
+            this.dgBankAccount.AllowUserToResizeColumns = false;
+            this.dgBankAccount.AllowUserToResizeRows = false;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Gainsboro;
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Gainsboro;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
+            this.dgBankAccount.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgBankAccount.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgBankAccount.AutoGenerateColumns = false;
+            this.dgBankAccount.BackgroundColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Silver;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgBankAccount.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.dgBankAccount.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgBankAccount.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.bRadif,
+            this.bankNameDataGridViewTextBoxColumn,
+            this.accountNumberDataGridViewTextBoxColumn,
+            this.shobeDataGridViewTextBoxColumn,
+            this.dgBankGuid,
+            this.modifiedDataGridViewTextBoxColumn1,
+            this.statusDataGridViewCheckBoxColumn1});
+            this.dgBankAccount.DataSource = this.bankAccountBindingSource;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.Silver;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgBankAccount.DefaultCellStyle = dataGridViewCellStyle3;
+            this.dgBankAccount.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
+            this.dgBankAccount.Location = new System.Drawing.Point(3, 45);
+            this.dgBankAccount.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.dgBankAccount.Name = "dgBankAccount";
+            this.dgBankAccount.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.dgBankAccount.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgBankAccount.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            this.dgBankAccount.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.Silver;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.Black;
+            this.dgBankAccount.RowsDefaultCellStyle = dataGridViewCellStyle5;
+            this.dgBankAccount.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            this.dgBankAccount.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgBankAccount.Size = new System.Drawing.Size(783, 430);
+            this.dgBankAccount.TabIndex = 55709;
+            this.dgBankAccount.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgBankAccount_CellFormatting);
+            // 
+            // bRadif
+            // 
+            this.bRadif.HeaderText = "ردیف";
+            this.bRadif.Name = "bRadif";
+            this.bRadif.ReadOnly = true;
+            this.bRadif.Width = 50;
+            // 
+            // bankNameDataGridViewTextBoxColumn
+            // 
+            this.bankNameDataGridViewTextBoxColumn.DataPropertyName = "BankName";
+            this.bankNameDataGridViewTextBoxColumn.HeaderText = "بانک";
+            this.bankNameDataGridViewTextBoxColumn.Name = "bankNameDataGridViewTextBoxColumn";
+            this.bankNameDataGridViewTextBoxColumn.Width = 250;
+            // 
+            // accountNumberDataGridViewTextBoxColumn
+            // 
+            this.accountNumberDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.accountNumberDataGridViewTextBoxColumn.DataPropertyName = "AccountNumber";
+            this.accountNumberDataGridViewTextBoxColumn.HeaderText = "شماره حساب";
+            this.accountNumberDataGridViewTextBoxColumn.Name = "accountNumberDataGridViewTextBoxColumn";
+            // 
+            // shobeDataGridViewTextBoxColumn
+            // 
+            this.shobeDataGridViewTextBoxColumn.DataPropertyName = "Shobe";
+            this.shobeDataGridViewTextBoxColumn.HeaderText = "شعبه";
+            this.shobeDataGridViewTextBoxColumn.Name = "shobeDataGridViewTextBoxColumn";
+            // 
+            // dgBankGuid
+            // 
+            this.dgBankGuid.DataPropertyName = "Guid";
+            this.dgBankGuid.HeaderText = "Guid";
+            this.dgBankGuid.Name = "dgBankGuid";
+            this.dgBankGuid.Visible = false;
+            // 
+            // modifiedDataGridViewTextBoxColumn1
+            // 
+            this.modifiedDataGridViewTextBoxColumn1.DataPropertyName = "Modified";
+            this.modifiedDataGridViewTextBoxColumn1.HeaderText = "Modified";
+            this.modifiedDataGridViewTextBoxColumn1.Name = "modifiedDataGridViewTextBoxColumn1";
+            this.modifiedDataGridViewTextBoxColumn1.Visible = false;
+            // 
+            // statusDataGridViewCheckBoxColumn1
+            // 
+            this.statusDataGridViewCheckBoxColumn1.DataPropertyName = "Status";
+            this.statusDataGridViewCheckBoxColumn1.HeaderText = "Status";
+            this.statusDataGridViewCheckBoxColumn1.Name = "statusDataGridViewCheckBoxColumn1";
+            this.statusDataGridViewCheckBoxColumn1.Visible = false;
+            // 
+            // bankAccountBindingSource
+            // 
+            this.bankAccountBindingSource.DataSource = typeof(EntityCache.Bussines.PeoplesBankAccountBussines);
+            // 
+            // superTabItem3
+            // 
+            this.superTabItem3.AttachedControl = this.superTabControlPanel3;
+            this.superTabItem3.GlobalItem = false;
+            this.superTabItem3.Name = "superTabItem3";
+            this.superTabItem3.Text = "اطلاعات حساب های بانکی";
             // 
             // superTabControlPanel2
             // 
@@ -618,25 +884,25 @@
             this.DGridTell.AllowUserToDeleteRows = false;
             this.DGridTell.AllowUserToResizeColumns = false;
             this.DGridTell.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Gainsboro;
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Gainsboro;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
-            this.DGridTell.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.Gainsboro;
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.Gainsboro;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black;
+            this.DGridTell.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle6;
             this.DGridTell.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.DGridTell.AutoGenerateColumns = false;
             this.DGridTell.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Silver;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DGridTell.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.Silver;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DGridTell.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.DGridTell.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DGridTell.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.tRadif,
@@ -647,35 +913,35 @@
             this.nameDataGridViewTextBoxColumn,
             this.groupDataGridViewTextBoxColumn});
             this.DGridTell.DataSource = this.phoneBookBindingSource;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.Silver;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DGridTell.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.Silver;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DGridTell.DefaultCellStyle = dataGridViewCellStyle8;
             this.DGridTell.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
             this.DGridTell.Location = new System.Drawing.Point(3, 45);
             this.DGridTell.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.DGridTell.Name = "DGridTell";
             this.DGridTell.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.DGridTell.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DGridTell.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DGridTell.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
             this.DGridTell.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.Silver;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.Black;
-            this.DGridTell.RowsDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle10.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.Silver;
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.Color.Black;
+            this.DGridTell.RowsDefaultCellStyle = dataGridViewCellStyle10;
             this.DGridTell.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             this.DGridTell.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DGridTell.Size = new System.Drawing.Size(783, 428);
@@ -741,253 +1007,6 @@
             this.superTabItem2.GlobalItem = false;
             this.superTabItem2.Name = "superTabItem2";
             this.superTabItem2.Text = "اطلاعات تماس";
-            // 
-            // superTabControlPanel3
-            // 
-            this.superTabControlPanel3.Controls.Add(this.txtShobe);
-            this.superTabControlPanel3.Controls.Add(this.label15);
-            this.superTabControlPanel3.Controls.Add(this.txtAccountNumber);
-            this.superTabControlPanel3.Controls.Add(this.label14);
-            this.superTabControlPanel3.Controls.Add(this.txtBank);
-            this.superTabControlPanel3.Controls.Add(this.label13);
-            this.superTabControlPanel3.Controls.Add(this.btnDelBank);
-            this.superTabControlPanel3.Controls.Add(this.btnInsBank);
-            this.superTabControlPanel3.Controls.Add(this.dgBankAccount);
-            this.superTabControlPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.superTabControlPanel3.Location = new System.Drawing.Point(0, 40);
-            this.superTabControlPanel3.Name = "superTabControlPanel3";
-            this.superTabControlPanel3.Size = new System.Drawing.Size(789, 479);
-            this.superTabControlPanel3.TabIndex = 0;
-            this.superTabControlPanel3.TabItem = this.superTabItem3;
-            // 
-            // txtShobe
-            // 
-            this.txtShobe.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtShobe.Location = new System.Drawing.Point(265, 10);
-            this.txtShobe.Name = "txtShobe";
-            this.txtShobe.Size = new System.Drawing.Size(104, 27);
-            this.txtShobe.TabIndex = 55717;
-            this.txtShobe.Enter += new System.EventHandler(this.txtShobe_Enter);
-            this.txtShobe.Leave += new System.EventHandler(this.txtShobe_Leave);
-            // 
-            // label15
-            // 
-            this.label15.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label15.AutoSize = true;
-            this.label15.BackColor = System.Drawing.Color.Transparent;
-            this.label15.Location = new System.Drawing.Point(375, 13);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(34, 20);
-            this.label15.TabIndex = 55716;
-            this.label15.Text = "شعبه";
-            // 
-            // txtAccountNumber
-            // 
-            this.txtAccountNumber.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtAccountNumber.Location = new System.Drawing.Point(415, 10);
-            this.txtAccountNumber.Name = "txtAccountNumber";
-            this.txtAccountNumber.Size = new System.Drawing.Size(121, 27);
-            this.txtAccountNumber.TabIndex = 55716;
-            this.txtAccountNumber.Enter += new System.EventHandler(this.txtAccountNumber_Enter);
-            this.txtAccountNumber.Leave += new System.EventHandler(this.txtAccountNumber_Leave);
-            // 
-            // label14
-            // 
-            this.label14.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label14.AutoSize = true;
-            this.label14.BackColor = System.Drawing.Color.Transparent;
-            this.label14.Location = new System.Drawing.Point(542, 13);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(71, 20);
-            this.label14.TabIndex = 55716;
-            this.label14.Text = "شماره حساب";
-            // 
-            // txtBank
-            // 
-            this.txtBank.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBank.Location = new System.Drawing.Point(619, 10);
-            this.txtBank.Name = "txtBank";
-            this.txtBank.Size = new System.Drawing.Size(121, 27);
-            this.txtBank.TabIndex = 55715;
-            this.txtBank.Enter += new System.EventHandler(this.txtBank_Enter);
-            this.txtBank.Leave += new System.EventHandler(this.txtBank_Leave);
-            // 
-            // label13
-            // 
-            this.label13.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label13.AutoSize = true;
-            this.label13.BackColor = System.Drawing.Color.Transparent;
-            this.label13.Location = new System.Drawing.Point(746, 13);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(31, 20);
-            this.label13.TabIndex = 55716;
-            this.label13.Text = "بانک";
-            // 
-            // btnDelBank
-            // 
-            this.btnDelBank.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnDelBank.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.btnDelBank.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnDelBank.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
-            this.btnDelBank.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnDelBank.Image = global::Peoples.Properties.Resources.tab_close_;
-            this.btnDelBank.Location = new System.Drawing.Point(3, 10);
-            this.btnDelBank.Name = "btnDelBank";
-            this.btnDelBank.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
-            this.btnDelBank.Size = new System.Drawing.Size(125, 27);
-            this.btnDelBank.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
-            this.btnDelBank.TabIndex = 55714;
-            this.btnDelBank.Text = "حذف از لیست";
-            this.btnDelBank.TextColor = System.Drawing.Color.Black;
-            this.btnDelBank.Click += new System.EventHandler(this.btnDelBank_Click);
-            // 
-            // btnInsBank
-            // 
-            this.btnInsBank.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnInsBank.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.btnInsBank.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnInsBank.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
-            this.btnInsBank.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnInsBank.Image = global::Peoples.Properties.Resources.tab_checkbox__;
-            this.btnInsBank.Location = new System.Drawing.Point(134, 10);
-            this.btnInsBank.Name = "btnInsBank";
-            this.btnInsBank.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
-            this.btnInsBank.Size = new System.Drawing.Size(125, 27);
-            this.btnInsBank.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
-            this.btnInsBank.TabIndex = 55718;
-            this.btnInsBank.Text = "افزودن حساب بانکی";
-            this.btnInsBank.TextColor = System.Drawing.Color.Black;
-            this.btnInsBank.Click += new System.EventHandler(this.btnInsBank_Click);
-            // 
-            // dgBankAccount
-            // 
-            this.dgBankAccount.AllowUserToAddRows = false;
-            this.dgBankAccount.AllowUserToDeleteRows = false;
-            this.dgBankAccount.AllowUserToResizeColumns = false;
-            this.dgBankAccount.AllowUserToResizeRows = false;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.Gainsboro;
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.Gainsboro;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black;
-            this.dgBankAccount.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle6;
-            this.dgBankAccount.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgBankAccount.AutoGenerateColumns = false;
-            this.dgBankAccount.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.Silver;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgBankAccount.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
-            this.dgBankAccount.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgBankAccount.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.bRadif,
-            this.bankNameDataGridViewTextBoxColumn,
-            this.accountNumberDataGridViewTextBoxColumn,
-            this.shobeDataGridViewTextBoxColumn,
-            this.dgBankGuid,
-            this.modifiedDataGridViewTextBoxColumn1,
-            this.statusDataGridViewCheckBoxColumn1});
-            this.dgBankAccount.DataSource = this.bankAccountBindingSource;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle8.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.Silver;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgBankAccount.DefaultCellStyle = dataGridViewCellStyle8;
-            this.dgBankAccount.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
-            this.dgBankAccount.Location = new System.Drawing.Point(3, 45);
-            this.dgBankAccount.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.dgBankAccount.Name = "dgBankAccount";
-            this.dgBankAccount.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.dgBankAccount.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle9.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgBankAccount.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
-            this.dgBankAccount.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle10.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.Silver;
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.Color.Black;
-            this.dgBankAccount.RowsDefaultCellStyle = dataGridViewCellStyle10;
-            this.dgBankAccount.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            this.dgBankAccount.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgBankAccount.Size = new System.Drawing.Size(783, 430);
-            this.dgBankAccount.TabIndex = 55709;
-            this.dgBankAccount.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgBankAccount_CellFormatting);
-            // 
-            // bRadif
-            // 
-            this.bRadif.HeaderText = "ردیف";
-            this.bRadif.Name = "bRadif";
-            this.bRadif.ReadOnly = true;
-            this.bRadif.Width = 50;
-            // 
-            // bankNameDataGridViewTextBoxColumn
-            // 
-            this.bankNameDataGridViewTextBoxColumn.DataPropertyName = "BankName";
-            this.bankNameDataGridViewTextBoxColumn.HeaderText = "بانک";
-            this.bankNameDataGridViewTextBoxColumn.Name = "bankNameDataGridViewTextBoxColumn";
-            this.bankNameDataGridViewTextBoxColumn.Width = 250;
-            // 
-            // accountNumberDataGridViewTextBoxColumn
-            // 
-            this.accountNumberDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.accountNumberDataGridViewTextBoxColumn.DataPropertyName = "AccountNumber";
-            this.accountNumberDataGridViewTextBoxColumn.HeaderText = "شماره حساب";
-            this.accountNumberDataGridViewTextBoxColumn.Name = "accountNumberDataGridViewTextBoxColumn";
-            // 
-            // shobeDataGridViewTextBoxColumn
-            // 
-            this.shobeDataGridViewTextBoxColumn.DataPropertyName = "Shobe";
-            this.shobeDataGridViewTextBoxColumn.HeaderText = "شعبه";
-            this.shobeDataGridViewTextBoxColumn.Name = "shobeDataGridViewTextBoxColumn";
-            // 
-            // dgBankGuid
-            // 
-            this.dgBankGuid.DataPropertyName = "Guid";
-            this.dgBankGuid.HeaderText = "Guid";
-            this.dgBankGuid.Name = "dgBankGuid";
-            this.dgBankGuid.Visible = false;
-            // 
-            // modifiedDataGridViewTextBoxColumn1
-            // 
-            this.modifiedDataGridViewTextBoxColumn1.DataPropertyName = "Modified";
-            this.modifiedDataGridViewTextBoxColumn1.HeaderText = "Modified";
-            this.modifiedDataGridViewTextBoxColumn1.Name = "modifiedDataGridViewTextBoxColumn1";
-            this.modifiedDataGridViewTextBoxColumn1.Visible = false;
-            // 
-            // statusDataGridViewCheckBoxColumn1
-            // 
-            this.statusDataGridViewCheckBoxColumn1.DataPropertyName = "Status";
-            this.statusDataGridViewCheckBoxColumn1.HeaderText = "Status";
-            this.statusDataGridViewCheckBoxColumn1.Name = "statusDataGridViewCheckBoxColumn1";
-            this.statusDataGridViewCheckBoxColumn1.Visible = false;
-            // 
-            // bankAccountBindingSource
-            // 
-            this.bankAccountBindingSource.DataSource = typeof(EntityCache.Bussines.PeoplesBankAccountBussines);
-            // 
-            // superTabItem3
-            // 
-            this.superTabItem3.AttachedControl = this.superTabControlPanel3;
-            this.superTabItem3.GlobalItem = false;
-            this.superTabItem3.Name = "superTabItem3";
-            this.superTabItem3.Text = "اطلاعات حساب های بانکی";
             // 
             // btnCancel
             // 
@@ -1077,14 +1096,14 @@
             this.splitContainer4.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer4)).EndInit();
             this.splitContainer4.ResumeLayout(false);
-            this.superTabControlPanel2.ResumeLayout(false);
-            this.superTabControlPanel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.DGridTell)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.phoneBookBindingSource)).EndInit();
             this.superTabControlPanel3.ResumeLayout(false);
             this.superTabControlPanel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgBankAccount)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bankAccountBindingSource)).EndInit();
+            this.superTabControlPanel2.ResumeLayout(false);
+            this.superTabControlPanel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DGridTell)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.phoneBookBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }

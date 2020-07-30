@@ -79,7 +79,7 @@ namespace EntityCache.SqlServerPersistence
             }
             catch (Exception exception)
             {
-                WebErrorLog.ErrorInstence.StartErrorLog(exception);
+                //WebErrorLog.ErrorInstence.StartErrorLog(exception);
                 return "001001";
             }
         }

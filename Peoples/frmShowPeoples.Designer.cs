@@ -40,7 +40,7 @@
             this.DGrid = new DevComponents.DotNetBar.Controls.DataGridViewX();
             this.dgRadif = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.codeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgGuid = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.modifiedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.statusDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
@@ -137,7 +137,7 @@
             this.DGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dgRadif,
             this.codeDataGridViewTextBoxColumn,
-            this.nameDataGridViewTextBoxColumn,
+            this.dgName,
             this.dgGuid,
             this.modifiedDataGridViewTextBoxColumn,
             this.statusDataGridViewCheckBoxColumn,
@@ -204,13 +204,13 @@
             this.codeDataGridViewTextBoxColumn.Name = "codeDataGridViewTextBoxColumn";
             this.codeDataGridViewTextBoxColumn.ReadOnly = true;
             // 
-            // nameDataGridViewTextBoxColumn
+            // dgName
             // 
-            this.nameDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
-            this.nameDataGridViewTextBoxColumn.HeaderText = "عنوان";
-            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
-            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
+            this.dgName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dgName.DataPropertyName = "Name";
+            this.dgName.HeaderText = "عنوان";
+            this.dgName.Name = "dgName";
+            this.dgName.ReadOnly = true;
             // 
             // dgGuid
             // 
@@ -326,7 +326,7 @@
             this.mnuSms});
             this.cmPeoples.Name = "cmPeoples";
             this.cmPeoples.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.cmPeoples.Size = new System.Drawing.Size(237, 82);
+            this.cmPeoples.Size = new System.Drawing.Size(237, 104);
             // 
             // mnuPhone
             // 
@@ -334,6 +334,7 @@
             this.mnuPhone.Name = "mnuPhone";
             this.mnuPhone.Size = new System.Drawing.Size(236, 24);
             this.mnuPhone.Text = "مشاهده اطلاعات تماس";
+            this.mnuPhone.Click += new System.EventHandler(this.mnuPhone_Click);
             // 
             // mnuBank
             // 
@@ -341,6 +342,7 @@
             this.mnuBank.Name = "mnuBank";
             this.mnuBank.Size = new System.Drawing.Size(236, 24);
             this.mnuBank.Text = "مشاهده اطلاعات حساب های بانکی";
+            this.mnuBank.Click += new System.EventHandler(this.mnuBank_Click);
             // 
             // toolStripMenuItem1
             // 
@@ -443,6 +445,7 @@
             this.btnChangeStatus.TabIndex = 55756;
             this.btnChangeStatus.Text = "غیرفعال (Ctrl+S)";
             this.btnChangeStatus.TextColor = System.Drawing.Color.Black;
+            this.btnChangeStatus.Click += new System.EventHandler(this.btnChangeStatus_Click);
             // 
             // btnDelete
             // 
@@ -461,6 +464,7 @@
             this.btnDelete.TabIndex = 55755;
             this.btnDelete.Text = "حذف (Del)";
             this.btnDelete.TextColor = System.Drawing.Color.Black;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // btnInsert
             // 
@@ -563,7 +567,7 @@
         private System.Windows.Forms.ToolStripMenuItem mnuDelete;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgRadif;
         private System.Windows.Forms.DataGridViewTextBoxColumn codeDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgName;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgGuid;
         private System.Windows.Forms.DataGridViewTextBoxColumn modifiedDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewCheckBoxColumn statusDataGridViewCheckBoxColumn;

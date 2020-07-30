@@ -32,7 +32,7 @@ namespace EntityCache.Bussines
             get
             {
                 if (_tellList != null) return _tellList;
-                _tellList = PhoneBookBussines.GetAll(Guid);
+                _tellList = PhoneBookBussines.GetAll(Guid, Status);
                 return _tellList;
             }
             set => _tellList = value;
@@ -43,7 +43,7 @@ namespace EntityCache.Bussines
             get
             {
                 if (_bankList != null) return _bankList;
-                _bankList = PeoplesBankAccountBussines.GetAll(Guid);
+                _bankList = PeoplesBankAccountBussines.GetAll(Guid, Status);
                 return _bankList;
             }
             set => _bankList = value;
@@ -69,7 +69,7 @@ namespace EntityCache.Bussines
 
                 if (TellList.Count > 0)
                 {
-                    var list = await PhoneBookBussines.GetAllAsync(Guid);
+                    var list = await PhoneBookBussines.GetAllAsync(Guid, Status);
                     res.AddReturnedValue(
                         await UnitOfWork.PhoneBook.RemoveRangeAsync(list.Select(q => q.Guid).ToList(),
                             tranName));
@@ -87,7 +87,7 @@ namespace EntityCache.Bussines
 
                 if (BankList.Count > 0)
                 {
-                    var list = await PeoplesBankAccountBussines.GetAllAsync(Guid);
+                    var list = await PeoplesBankAccountBussines.GetAllAsync(Guid, Status);
                     res.AddReturnedValue(
                         await UnitOfWork.PeopleBankAccount.RemoveRangeAsync(list.Select(q => q.Guid).ToList(),
                             tranName));
@@ -130,6 +130,17 @@ namespace EntityCache.Bussines
                 if (autoTran)
                 { //BeginTransaction
                 }
+
+                if (BankList.Count > 0)
+                {
+                    foreach (var item in BankList)
+                    {
+                        res.AddReturnedValue(
+                            await item.ChangeStatusAsync(status, tranName));
+                        res.ThrowExceptionIfError();
+                    }
+                }
+
 
                 res.AddReturnedValue(await UnitOfWork.Peoples.ChangeStatusAsync(this, status, tranName));
                 res.ThrowExceptionIfError();

@@ -7,6 +7,6 @@ namespace EntityCache.Core
 {
     public interface IPhoneBookRepository : IRepository<PhoneBookBussines>
     {
-        Task<List<PhoneBookBussines>> GetAllAsync(Guid parentGuid);
+        Task<List<PhoneBookBussines>> GetAllAsync(Guid parentGuid,bool status);
     }
 }

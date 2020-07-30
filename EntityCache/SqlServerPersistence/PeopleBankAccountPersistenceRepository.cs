@@ -19,12 +19,12 @@ namespace EntityCache.SqlServerPersistence
             db = _db;
         }
 
-        public async Task<List<PeoplesBankAccountBussines>> GetAllAsync(Guid parentGuid)
+        public async Task<List<PeoplesBankAccountBussines>> GetAllAsync(Guid parentGuid, bool status)
         {
             try
             {
                 var acc = db.PeopleBankAccount.AsNoTracking()
-                    .Where(q => q.ParentGuid == parentGuid && q.Status).ToList();
+                    .Where(q => q.ParentGuid == parentGuid && q.Status == status).ToList();
 
                 return Mappings.Default.Map<List<PeoplesBankAccountBussines>>(acc);
             }

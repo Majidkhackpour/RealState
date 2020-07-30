@@ -17,9 +17,10 @@ namespace PacketParser
     }
     public enum EnPhoneBookGroup : short
     {
-        [PersianNameAttribute.PersianName("اشخاص")] Peoples = 0,
-        [PersianNameAttribute.PersianName("کاربران")] Users = 1,
-        [PersianNameAttribute.PersianName("دیوار")] Divar = 2
+        [PersianNameAttribute.PersianName("[همه گروه ها]")] All = 0,
+        [PersianNameAttribute.PersianName("اشخاص")] Peoples = 1,
+        [PersianNameAttribute.PersianName("کاربران")] Users = 2,
+        [PersianNameAttribute.PersianName("دریافت شده از دیوار")] Divar = 3
     }
     public enum EnSecurityQuestion : short
     {

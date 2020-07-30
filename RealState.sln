@@ -31,6 +31,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BackUpDLL", "..\..\BackUpDL
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Peoples", "Peoples\Peoples.csproj", "{38A2D24E-9123-4E7E-989D-36B49248A9FB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Payamak", "Payamak\Payamak.csproj", "{C8268C19-4E5C-4369-8FD4-CF89E3F16F24}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -93,6 +95,10 @@ Global
 		{38A2D24E-9123-4E7E-989D-36B49248A9FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{38A2D24E-9123-4E7E-989D-36B49248A9FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{38A2D24E-9123-4E7E-989D-36B49248A9FB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C8268C19-4E5C-4369-8FD4-CF89E3F16F24}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C8268C19-4E5C-4369-8FD4-CF89E3F16F24}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C8268C19-4E5C-4369-8FD4-CF89E3F16F24}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C8268C19-4E5C-4369-8FD4-CF89E3F16F24}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
