@@ -71,6 +71,7 @@
     <Compile Include="Entities\Regions.cs" />
     <Compile Include="Entities\RentalAuthority.cs" />
     <Compile Include="Entities\Settings.cs" />
+    <Compile Include="Entities\SmsPanels.cs" />
     <Compile Include="Entities\States.cs" />
     <Compile Include="Entities\Users.cs" />
     <Compile Include="Migrations\202007131420071__1.cs" />
@@ -108,6 +109,14 @@
     <Compile Include="Migrations\202007261212243__9.cs" />
     <Compile Include="Migrations\202007261212243__9.designer.cs">
       <DependentUpon>202007261212243__9.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202007301622069__10.cs" />
+    <Compile Include="Migrations\202007301622069__10.designer.cs">
+      <DependentUpon>202007301622069__10.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202007301628034__11.cs" />
+    <Compile Include="Migrations\202007301628034__11.designer.cs">
+      <DependentUpon>202007301628034__11.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\ModelContext.cs" />
@@ -150,6 +159,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202007261212243__9.resx">
       <DependentUpon>202007261212243__9.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007301622069__10.resx">
+      <DependentUpon>202007301622069__10.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007301628034__11.resx">
+      <DependentUpon>202007301628034__11.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -439,7 +439,6 @@ namespace Peoples
                 cls.IssuedFrom = txtIssuesFrom.Text;
                 cls.PostalCode = txtPostalCode.Text;
                 cls.Address = txtAddress.Text;
-                cls.UserGuid = clsUser.CurrentUser.Guid;
 
                 var res = await cls.SaveAsync();
                 if (res.HasError)

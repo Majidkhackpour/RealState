@@ -27,6 +27,7 @@ namespace EntityCache.Assistence
             CreateMap<PeoplesBussines, Peoples>().ReverseMap();
             CreateMap<PeoplesBankAccountBussines, PeopleBankAccount>().ReverseMap();
             CreateMap<PhoneBookBussines, PhoneBook>().ReverseMap();
+            CreateMap<SmsPanelsBussines, SmsPanels>().ReverseMap();
         }
     }
 }

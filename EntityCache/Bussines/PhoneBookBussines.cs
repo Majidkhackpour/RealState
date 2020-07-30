@@ -100,5 +100,39 @@ namespace EntityCache.Bussines
 
         public static List<PhoneBookBussines> GetAll(Guid parentGuid, string search, EnPhoneBookGroup group) =>
             AsyncContext.Run(() => GetAllAsync(parentGuid, search, group));
+
+        public static async Task<PhoneBookBussines> GetAsync(Guid guid) => await UnitOfWork.PhoneBook.GetAsync(guid);
+        public static PhoneBookBussines Get(Guid guid) => AsyncContext.Run(() => GetAsync(guid));
+
+        public async Task<ReturnedSaveFuncInfo> SaveAsync(string tranName = "")
+        {
+            var res = new ReturnedSaveFuncInfo();
+            var autoTran = string.IsNullOrEmpty(tranName);
+            if (autoTran) tranName = Guid.NewGuid().ToString();
+            try
+            {
+                if (autoTran)
+                { //BeginTransaction
+                }
+
+                res.AddReturnedValue(await UnitOfWork.PhoneBook.SaveAsync(this, tranName));
+                res.ThrowExceptionIfError();
+                if (autoTran)
+                {
+                    //CommitTransAction
+                }
+            }
+            catch (Exception ex)
+            {
+                if (autoTran)
+                {
+                    //RollBackTransAction
+                }
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+
+            return res;
+        }
     }
 }

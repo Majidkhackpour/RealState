@@ -14,7 +14,6 @@ namespace PacketParser.Interfaces
         string Address { get; set; }
         string IssuedFrom { get; set; }
         string PostalCode { get; set; }
-        Guid UserGuid { get; set; }
         Guid GroupGuid { get; set; }
     }
 }

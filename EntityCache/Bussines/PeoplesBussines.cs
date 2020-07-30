@@ -24,7 +24,6 @@ namespace EntityCache.Bussines
         public string Address { get; set; }
         public string IssuedFrom { get; set; }
         public string PostalCode { get; set; }
-        public Guid UserGuid { get; set; }
         public Guid GroupGuid { get; set; }
         private List<PhoneBookBussines> _tellList;
         public List<PhoneBookBussines> TellList

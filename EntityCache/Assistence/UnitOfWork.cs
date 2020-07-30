@@ -27,6 +27,7 @@ namespace EntityCache.Assistence
         private static IPeoplesRepository _peopleRepository;
         private static IPhoneBookRepository _phoneBookRepository;
         private static IPeoplesBankAccountRepository _peopleBankRepository;
+        private static ISmsPanelsRepository _smsPanelsRepository;
 
         public static void Dispose()
         {
@@ -109,6 +110,11 @@ namespace EntityCache.Assistence
         public static IPeoplesBankAccountRepository PeopleBankAccount => _peopleBankRepository ??
                                                             (_peopleBankRepository =
                                                                 new PeopleBankAccountPersistenceRepository(db));
+
+
+        public static ISmsPanelsRepository SmsPanels => _smsPanelsRepository ??
+                                                        (_smsPanelsRepository =
+                                                            new SmsPanelsPersistenceRepository(db));
 
     }
 }

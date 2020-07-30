@@ -29,7 +29,6 @@ namespace Persistence.Entities
         public string IssuedFrom { get; set; }
         [MaxLength(50)]
         public string PostalCode { get; set; }
-        public Guid UserGuid { get; set; }
         public Guid GroupGuid { get; set; }
     }
 }

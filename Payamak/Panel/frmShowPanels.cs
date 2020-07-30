@@ -1,26 +1,22 @@
 ﻿using System;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using EntityCache.Bussines;
 using MetroFramework.Forms;
 using Notification;
-using PacketParser;
 using PacketParser.Services;
 
-namespace Payamak.PhoneBook
+namespace Payamak.Panel
 {
-    public partial class frmShowPhoneBook : MetroForm
+    public partial class frmShowPanels : MetroForm
     {
-        public Guid ParentGuid { get; set; }
         private bool _st = true;
         private void LoadData(bool status, string search = "")
         {
             try
             {
-                var list = PhoneBookBussines.GetAll(ParentGuid, search, (EnPhoneBookGroup) cmbGroup.SelectedIndex)
-                    .Where(q => q.Status == status).ToList();
-                phoneBookBindingSource.DataSource =
+                var list = SmsPanelsBussines.GetAll(search).Where(q => q.Status == status).ToList();
+                pnlBindingSource.DataSource =
                     list.OrderBy(q => q.Name).ToSortableBindingList();
             }
             catch (Exception ex)
@@ -28,21 +24,7 @@ namespace Payamak.PhoneBook
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void LoadGroups()
-        {
-            try
-            {
-                cmbGroup.Items.Add(EnPhoneBookGroup.All.GetDisplay());
-                cmbGroup.Items.Add(EnPhoneBookGroup.Peoples.GetDisplay());
-                cmbGroup.Items.Add(EnPhoneBookGroup.Users.GetDisplay());
-                cmbGroup.Items.Add(EnPhoneBookGroup.Divar.GetDisplay());
-                cmbGroup.SelectedIndex = 0;
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
+
         public bool ST
         {
             get => _st;
@@ -63,28 +45,13 @@ namespace Payamak.PhoneBook
                 }
             }
         }
-        public frmShowPhoneBook(Guid guid)
+        public frmShowPanels()
         {
             InitializeComponent();
-            ParentGuid = guid;
-            line1.Visible = false;
-            btnDelete.Visible = false;
-            btnChangeStatus.Visible = false;
-            btnEdit.Visible = false;
-            btnInsert.Visible = false;
-            btnView.Visible = false;
-            cmbGroup.Enabled = false;
         }
 
-        public frmShowPhoneBook()
+        private void frmShowPanels_Load(object sender, EventArgs e)
         {
-            InitializeComponent();
-            ParentGuid = Guid.Empty;
-        }
-
-        private void frmShowPhoneBook_Load(object sender, EventArgs e)
-        {
-            LoadGroups();
             LoadData(ST);
         }
 
@@ -105,7 +72,7 @@ namespace Payamak.PhoneBook
             }
         }
 
-        private void frmShowPhoneBook_KeyDown(object sender, KeyEventArgs e)
+        private void frmShowPanels_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
@@ -145,18 +112,6 @@ namespace Payamak.PhoneBook
             ST = !ST;
         }
 
-        private void cmbGroup_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                LoadData(ST, txtSearch.Text);
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-
         private async void btnDelete_Click(object sender, EventArgs e)
         {
             try
@@ -170,7 +125,7 @@ namespace Payamak.PhoneBook
                             $@"آیا از حذف {DGrid[dgName.Index, DGrid.CurrentRow.Index].Value} اطمینان دارید؟", "حذف",
                             MessageBoxButtons.YesNo,
                             MessageBoxIcon.Question) == DialogResult.No) return;
-                    var prd = await PhoneBookBussines.GetAsync(guid);
+                    var prd = await SmsPanelsBussines.GetAsync(guid);
                     var res = await prd.ChangeStatusAsync(false);
                     if (res.HasError)
                     {
@@ -184,7 +139,7 @@ namespace Payamak.PhoneBook
                             $@"آیا از فعال کردن {DGrid[dgName.Index, DGrid.CurrentRow.Index].Value} اطمینان دارید؟", "حذف",
                             MessageBoxButtons.YesNo,
                             MessageBoxIcon.Question) == DialogResult.No) return;
-                    var prd = await PhoneBookBussines.GetAsync(guid);
+                    var prd = await SmsPanelsBussines.GetAsync(guid);
                     var res = await prd.ChangeStatusAsync(true);
                     if (res.HasError)
                     {
@@ -194,74 +149,6 @@ namespace Payamak.PhoneBook
                 }
 
                 LoadData(ST, txtSearch.Text);
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-
-        private void btnInsert_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                var frm = new frmPhoneBookMain();
-                if (frm.ShowDialog() == DialogResult.OK)
-                    LoadData(ST);
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-
-        private void btnEdit_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (DGrid.RowCount <= 0) return;
-                if (DGrid.CurrentRow == null) return;
-                if (!ST)
-                {
-                    frmNotification.PublicInfo.ShowMessage(
-                        "شما مجاز به ویرایش داده حذف شده نمی باشید \r\n برای این منظور، ابتدا فیلد موردنظر را از حالت حذف شده به فعال، تغییر وضعیت دهید");
-                    return;
-                }
-                var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
-                var frm = new frmPhoneBookMain(guid, false);
-                if (frm.ShowDialog() == DialogResult.OK)
-                    LoadData(ST, txtSearch.Text);
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-
-        private void btnView_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (DGrid.RowCount <= 0) return;
-                if (DGrid.CurrentRow == null) return;
-                var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
-                var frm = new frmPhoneBookMain(guid, true);
-                frm.ShowDialog();
-                LoadData(ST, txtSearch.Text);
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-
-        private void DGrid_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            try
-            {
-                txtSearch.Focus();
-                txtSearch.Text = e.KeyChar.ToString();
-                txtSearch.SelectionStart = 9999;
             }
             catch (Exception ex)
             {

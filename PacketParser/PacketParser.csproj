@@ -71,6 +71,7 @@
     <Compile Include="Interfaces\IRegions.cs" />
     <Compile Include="Interfaces\IRentalAuthority.cs" />
     <Compile Include="Interfaces\ISettings.cs" />
+    <Compile Include="Interfaces\ISmsPanels.cs" />
     <Compile Include="Interfaces\IStates.cs" />
     <Compile Include="Interfaces\IUsers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

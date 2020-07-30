@@ -116,6 +116,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Panel\frmShowPanels.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Panel\frmShowPanels.Designer.cs">
+      <DependentUpon>frmShowPanels.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PhoneBook\frmPhoneBookMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PhoneBook\frmPhoneBookMain.Designer.cs">
+      <DependentUpon>frmPhoneBookMain.cs</DependentUpon>
+    </Compile>
     <Compile Include="PhoneBook\frmShowPhoneBook.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -134,6 +146,10 @@
       <Project>{cc417799-f38c-4997-8491-510eb1c15f74}</Project>
       <Name>EntityCache</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Notification\Notification.csproj">
+      <Project>{44a0f109-df64-482c-befb-df20038ee4df}</Project>
+      <Name>Notification</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PacketParser\PacketParser.csproj">
       <Project>{7e235f22-ae73-4698-9951-0f092ac91850}</Project>
       <Name>PacketParser</Name>
@@ -147,12 +163,18 @@
     <None Include="App.config" />
     <None Include="packages.config" />
     <None Include="Properties\DataSources\EntityCache.Bussines.PhoneBookBussines.datasource" />
+    <None Include="Properties\DataSources\EntityCache.Bussines.SmsPanelsBussines.datasource" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Panel\" />
     <Folder Include="SMS\" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Panel\frmShowPanels.resx">
+      <DependentUpon>frmShowPanels.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PhoneBook\frmPhoneBookMain.resx">
+      <DependentUpon>frmPhoneBookMain.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PhoneBook\frmShowPhoneBook.resx">
       <DependentUpon>frmShowPhoneBook.cs</DependentUpon>
     </EmbeddedResource>

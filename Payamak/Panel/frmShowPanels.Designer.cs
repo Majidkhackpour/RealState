@@ -1,6 +1,6 @@
-﻿namespace Payamak.PhoneBook
+﻿namespace Payamak.Panel
 {
-    partial class frmShowPhoneBook
+    partial class frmShowPanels
     {
         /// <summary>
         /// Required designer variable.
@@ -34,7 +34,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmShowPhoneBook));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmShowPanels));
             this.btnView = new DevComponents.DotNetBar.ButtonX();
             this.btnChangeStatus = new DevComponents.DotNetBar.ButtonX();
             this.txtSearch = new DevComponents.DotNetBar.Controls.TextBoxX();
@@ -43,20 +43,18 @@
             this.btnEdit = new DevComponents.DotNetBar.ButtonX();
             this.line1 = new DevComponents.DotNetBar.Controls.Line();
             this.DGrid = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.label5 = new System.Windows.Forms.Label();
-            this.cmbGroup = new System.Windows.Forms.ComboBox();
-            this.phoneBookBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.pnlBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dgRadif = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tellDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.GroupName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.groupDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.senderDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgGuid = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.modifiedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.statusDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.parentGuidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.userNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.passwordDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.aPIDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.phoneBookBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pnlBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // btnView
@@ -76,7 +74,6 @@
             this.btnView.TabIndex = 55746;
             this.btnView.Text = "مشاهده (F12)";
             this.btnView.TextColor = System.Drawing.Color.Black;
-            this.btnView.Click += new System.EventHandler(this.btnView_Click);
             // 
             // btnChangeStatus
             // 
@@ -110,7 +107,7 @@
             this.txtSearch.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.PreventEnterBeep = true;
-            this.txtSearch.Size = new System.Drawing.Size(530, 27);
+            this.txtSearch.Size = new System.Drawing.Size(701, 27);
             this.txtSearch.TabIndex = 55745;
             this.txtSearch.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtSearch.WatermarkText = "مورد جستجو را وارد نمایید ...";
@@ -152,7 +149,6 @@
             this.btnInsert.TabIndex = 55749;
             this.btnInsert.Text = "افزودن (Ins)";
             this.btnInsert.TextColor = System.Drawing.Color.Black;
-            this.btnInsert.Click += new System.EventHandler(this.btnInsert_Click);
             // 
             // btnEdit
             // 
@@ -171,7 +167,6 @@
             this.btnEdit.TabIndex = 55750;
             this.btnEdit.Text = "ویرایش (F7)";
             this.btnEdit.TextColor = System.Drawing.Color.Black;
-            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
             // 
             // line1
             // 
@@ -213,14 +208,14 @@
             this.DGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dgRadif,
             this.dgName,
-            this.tellDataGridViewTextBoxColumn,
-            this.GroupName,
-            this.groupDataGridViewTextBoxColumn,
+            this.senderDataGridViewTextBoxColumn,
             this.dgGuid,
             this.modifiedDataGridViewTextBoxColumn,
             this.statusDataGridViewCheckBoxColumn,
-            this.parentGuidDataGridViewTextBoxColumn});
-            this.DGrid.DataSource = this.phoneBookBindingSource;
+            this.userNameDataGridViewTextBoxColumn,
+            this.passwordDataGridViewTextBoxColumn,
+            this.aPIDataGridViewTextBoxColumn});
+            this.DGrid.DataSource = this.pnlBindingSource;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
             dataGridViewCellStyle3.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
@@ -256,35 +251,10 @@
             this.DGrid.Size = new System.Drawing.Size(795, 468);
             this.DGrid.TabIndex = 55744;
             this.DGrid.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DGrid_CellFormatting);
-            this.DGrid.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.DGrid_KeyPress);
             // 
-            // label5
+            // pnlBindingSource
             // 
-            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label5.AutoSize = true;
-            this.label5.BackColor = System.Drawing.Color.Transparent;
-            this.label5.Location = new System.Drawing.Point(753, 37);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(31, 20);
-            this.label5.TabIndex = 55752;
-            this.label5.Text = "گروه";
-            // 
-            // cmbGroup
-            // 
-            this.cmbGroup.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.cmbGroup.DisplayMember = "Name";
-            this.cmbGroup.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbGroup.FormattingEnabled = true;
-            this.cmbGroup.Location = new System.Drawing.Point(582, 34);
-            this.cmbGroup.Name = "cmbGroup";
-            this.cmbGroup.Size = new System.Drawing.Size(165, 28);
-            this.cmbGroup.TabIndex = 55751;
-            this.cmbGroup.ValueMember = "Guid";
-            this.cmbGroup.SelectedIndexChanged += new System.EventHandler(this.cmbGroup_SelectedIndexChanged);
-            // 
-            // phoneBookBindingSource
-            // 
-            this.phoneBookBindingSource.DataSource = typeof(EntityCache.Bussines.PhoneBookBussines);
+            this.pnlBindingSource.DataSource = typeof(EntityCache.Bussines.SmsPanelsBussines);
             // 
             // dgRadif
             // 
@@ -301,30 +271,13 @@
             this.dgName.Name = "dgName";
             this.dgName.ReadOnly = true;
             // 
-            // tellDataGridViewTextBoxColumn
+            // senderDataGridViewTextBoxColumn
             // 
-            this.tellDataGridViewTextBoxColumn.DataPropertyName = "Tell";
-            this.tellDataGridViewTextBoxColumn.HeaderText = "شماره";
-            this.tellDataGridViewTextBoxColumn.Name = "tellDataGridViewTextBoxColumn";
-            this.tellDataGridViewTextBoxColumn.ReadOnly = true;
-            this.tellDataGridViewTextBoxColumn.Width = 200;
-            // 
-            // GroupName
-            // 
-            this.GroupName.DataPropertyName = "GroupName";
-            this.GroupName.HeaderText = "گروه";
-            this.GroupName.Name = "GroupName";
-            this.GroupName.ReadOnly = true;
-            this.GroupName.Width = 200;
-            // 
-            // groupDataGridViewTextBoxColumn
-            // 
-            this.groupDataGridViewTextBoxColumn.DataPropertyName = "Group";
-            this.groupDataGridViewTextBoxColumn.HeaderText = "Group";
-            this.groupDataGridViewTextBoxColumn.Name = "groupDataGridViewTextBoxColumn";
-            this.groupDataGridViewTextBoxColumn.ReadOnly = true;
-            this.groupDataGridViewTextBoxColumn.Visible = false;
-            this.groupDataGridViewTextBoxColumn.Width = 150;
+            this.senderDataGridViewTextBoxColumn.DataPropertyName = "Sender";
+            this.senderDataGridViewTextBoxColumn.HeaderText = "شماره خط فرستنده";
+            this.senderDataGridViewTextBoxColumn.Name = "senderDataGridViewTextBoxColumn";
+            this.senderDataGridViewTextBoxColumn.ReadOnly = true;
+            this.senderDataGridViewTextBoxColumn.Width = 200;
             // 
             // dgGuid
             // 
@@ -350,21 +303,35 @@
             this.statusDataGridViewCheckBoxColumn.ReadOnly = true;
             this.statusDataGridViewCheckBoxColumn.Visible = false;
             // 
-            // parentGuidDataGridViewTextBoxColumn
+            // userNameDataGridViewTextBoxColumn
             // 
-            this.parentGuidDataGridViewTextBoxColumn.DataPropertyName = "ParentGuid";
-            this.parentGuidDataGridViewTextBoxColumn.HeaderText = "ParentGuid";
-            this.parentGuidDataGridViewTextBoxColumn.Name = "parentGuidDataGridViewTextBoxColumn";
-            this.parentGuidDataGridViewTextBoxColumn.ReadOnly = true;
-            this.parentGuidDataGridViewTextBoxColumn.Visible = false;
+            this.userNameDataGridViewTextBoxColumn.DataPropertyName = "UserName";
+            this.userNameDataGridViewTextBoxColumn.HeaderText = "UserName";
+            this.userNameDataGridViewTextBoxColumn.Name = "userNameDataGridViewTextBoxColumn";
+            this.userNameDataGridViewTextBoxColumn.ReadOnly = true;
+            this.userNameDataGridViewTextBoxColumn.Visible = false;
             // 
-            // frmShowPhoneBook
+            // passwordDataGridViewTextBoxColumn
+            // 
+            this.passwordDataGridViewTextBoxColumn.DataPropertyName = "Password";
+            this.passwordDataGridViewTextBoxColumn.HeaderText = "Password";
+            this.passwordDataGridViewTextBoxColumn.Name = "passwordDataGridViewTextBoxColumn";
+            this.passwordDataGridViewTextBoxColumn.ReadOnly = true;
+            this.passwordDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // aPIDataGridViewTextBoxColumn
+            // 
+            this.aPIDataGridViewTextBoxColumn.DataPropertyName = "API";
+            this.aPIDataGridViewTextBoxColumn.HeaderText = "API";
+            this.aPIDataGridViewTextBoxColumn.Name = "aPIDataGridViewTextBoxColumn";
+            this.aPIDataGridViewTextBoxColumn.ReadOnly = true;
+            this.aPIDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // frmShowPanels
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 600);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.cmbGroup);
             this.Controls.Add(this.btnView);
             this.Controls.Add(this.btnChangeStatus);
             this.Controls.Add(this.txtSearch);
@@ -378,17 +345,16 @@
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.MinimumSize = new System.Drawing.Size(800, 600);
-            this.Name = "frmShowPhoneBook";
+            this.Name = "frmShowPanels";
             this.Padding = new System.Windows.Forms.Padding(27, 92, 27, 31);
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.Style = MetroFramework.MetroColorStyle.Green;
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.Load += new System.EventHandler(this.frmShowPhoneBook_Load);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmShowPhoneBook_KeyDown);
+            this.Load += new System.EventHandler(this.frmShowPanels_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmShowPanels_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.phoneBookBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pnlBindingSource)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -397,22 +363,20 @@
         private DevComponents.DotNetBar.ButtonX btnView;
         private DevComponents.DotNetBar.ButtonX btnChangeStatus;
         private DevComponents.DotNetBar.Controls.TextBoxX txtSearch;
-        private System.Windows.Forms.BindingSource phoneBookBindingSource;
+        private System.Windows.Forms.BindingSource pnlBindingSource;
         private DevComponents.DotNetBar.ButtonX btnDelete;
         private DevComponents.DotNetBar.ButtonX btnInsert;
         private DevComponents.DotNetBar.ButtonX btnEdit;
         private DevComponents.DotNetBar.Controls.Line line1;
         private DevComponents.DotNetBar.Controls.DataGridViewX DGrid;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.ComboBox cmbGroup;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgRadif;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn tellDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn GroupName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn groupDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn senderDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgGuid;
         private System.Windows.Forms.DataGridViewTextBoxColumn modifiedDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewCheckBoxColumn statusDataGridViewCheckBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn parentGuidDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn userNameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn passwordDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn aPIDataGridViewTextBoxColumn;
     }
 }

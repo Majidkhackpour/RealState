@@ -161,9 +161,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\17.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\..\..\BackUpDLL\BackUpDLL\BackUpDLL\BackUpDLL.csproj">
       <Project>{f4b6a615-693a-41d4-b980-d40381404231}</Project>
       <Name>BackUpDLL</Name>
@@ -200,6 +197,10 @@
       <Project>{7e235f22-ae73-4698-9951-0f092ac91850}</Project>
       <Name>PacketParser</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Payamak\Payamak.csproj">
+      <Project>{c8268c19-4e5c-4369-8fd4-cf89e3f16f24}</Project>
+      <Name>Payamak</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Peoples\Peoples.csproj">
       <Project>{38a2d24e-9123-4e7e-989d-36b49248a9fb}</Project>
       <Name>Peoples</Name>
@@ -227,121 +228,13 @@
     <None Include="Resources\BackGroud_.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\menu.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\menu_.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\notification-user_.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\map_.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\map.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\navigation.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\navigation_.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\house.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\house_.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\crane.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\crane_.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\kitchen%281%29.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\kitchen%281%29_.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\kitchen.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\kitchen_.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\tourism.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\tourism_.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\villa.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\villa_.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\company.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\company_.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\floor.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\floor_.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\more.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\more_.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\upload.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\down-arrow.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\upload_.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\down-arrow_.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\archived.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\archived_.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\lego.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\lego_.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\notification-user.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\version.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\customer.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\sell.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\interview.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\interview_.png" />
+    <None Include="Resources\version.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
