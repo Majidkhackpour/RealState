@@ -19,6 +19,7 @@ using PacketParser.Services;
 using Payamak.Panel;
 using Payamak.PhoneBook;
 using Peoples;
+using Settings.Classes;
 using TMS.Class;
 using User;
 
@@ -60,7 +61,7 @@ namespace RealState
         {
             try
             {
-                lblEconomyName.Text = SettingsBussines.EconomyName;
+                lblEconomyName.Text = clsEconomyUnit.EconomyName;
                 lblCurrentUser.Text = clsUser.CurrentUser?.Name ?? "";
                 lblVersion.Text = Assembly.GetExecutingAssembly().GetName().Version.ToString();
             }

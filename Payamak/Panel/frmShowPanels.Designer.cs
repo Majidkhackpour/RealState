@@ -43,7 +43,6 @@
             this.btnEdit = new DevComponents.DotNetBar.ButtonX();
             this.line1 = new DevComponents.DotNetBar.Controls.Line();
             this.DGrid = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.pnlBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dgRadif = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.senderDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -53,6 +52,7 @@
             this.userNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.passwordDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.aPIDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pnlBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -74,6 +74,7 @@
             this.btnView.TabIndex = 55746;
             this.btnView.Text = "مشاهده (F12)";
             this.btnView.TextColor = System.Drawing.Color.Black;
+            this.btnView.Click += new System.EventHandler(this.btnView_Click);
             // 
             // btnChangeStatus
             // 
@@ -149,6 +150,7 @@
             this.btnInsert.TabIndex = 55749;
             this.btnInsert.Text = "افزودن (Ins)";
             this.btnInsert.TextColor = System.Drawing.Color.Black;
+            this.btnInsert.Click += new System.EventHandler(this.btnInsert_Click);
             // 
             // btnEdit
             // 
@@ -167,6 +169,7 @@
             this.btnEdit.TabIndex = 55750;
             this.btnEdit.Text = "ویرایش (F7)";
             this.btnEdit.TextColor = System.Drawing.Color.Black;
+            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
             // 
             // line1
             // 
@@ -251,10 +254,7 @@
             this.DGrid.Size = new System.Drawing.Size(795, 468);
             this.DGrid.TabIndex = 55744;
             this.DGrid.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DGrid_CellFormatting);
-            // 
-            // pnlBindingSource
-            // 
-            this.pnlBindingSource.DataSource = typeof(EntityCache.Bussines.SmsPanelsBussines);
+            this.DGrid.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.DGrid_KeyPress);
             // 
             // dgRadif
             // 
@@ -326,6 +326,10 @@
             this.aPIDataGridViewTextBoxColumn.Name = "aPIDataGridViewTextBoxColumn";
             this.aPIDataGridViewTextBoxColumn.ReadOnly = true;
             this.aPIDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // pnlBindingSource
+            // 
+            this.pnlBindingSource.DataSource = typeof(EntityCache.Bussines.SmsPanelsBussines);
             // 
             // frmShowPanels
             // 

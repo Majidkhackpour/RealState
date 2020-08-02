@@ -118,6 +118,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppSettings.cs" />
+    <Compile Include="Classes\clsEconomyUnit.cs" />
+    <Compile Include="Classes\clsGlobalSetting.cs" />
     <Compile Include="frmEconomyUnit.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -167,6 +169,7 @@
   <ItemGroup>
     <None Include="Resources\tab-close_.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

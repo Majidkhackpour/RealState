@@ -6,6 +6,7 @@ using EntityCache.Bussines;
 using MetroFramework.Forms;
 using Notification;
 using PacketParser.Services;
+using Settings.Classes;
 
 namespace Cities.Region
 {
@@ -19,7 +20,7 @@ namespace Cities.Region
                 var list = new List<RegionsBussines>();
                 if (rbtnMyRegion.Checked)
                 {
-                    var cityGuid = Guid.Parse(SettingsBussines.EconomyCity); 
+                    var cityGuid = Guid.Parse(clsEconomyUnit.EconomyCity); 
                     list = RegionsBussines.GetAll(search, cityGuid).Where(q => q.Status == status).ToList();
                 }
                 else if (rbtnAll.Checked)
