@@ -100,6 +100,7 @@
     <Compile Include="Assistence\Mappings.cs" />
     <Compile Include="Assistence\SqlProfile.cs" />
     <Compile Include="Assistence\UnitOfWork.cs" />
+    <Compile Include="Bussines\AdvertiseLogBussines.cs" />
     <Compile Include="Bussines\BuildingAccountTypeBussines.cs" />
     <Compile Include="Bussines\BuildingConditionBussines.cs" />
     <Compile Include="Bussines\BuildingOptionsBussines.cs" />
@@ -117,9 +118,11 @@
     <Compile Include="Bussines\RegionsBussines.cs" />
     <Compile Include="Bussines\RentalAuthorityBussines.cs" />
     <Compile Include="Bussines\SettingsBussines.cs" />
+    <Compile Include="Bussines\SimcardBussines.cs" />
     <Compile Include="Bussines\SmsPanelsBussines.cs" />
     <Compile Include="Bussines\StatesBussines.cs" />
     <Compile Include="Bussines\UserBussines.cs" />
+    <Compile Include="Core\IAdvertiseLogRepository.cs" />
     <Compile Include="Core\IBuildingAccountTypeRepository.cs" />
     <Compile Include="Core\IBuildingConditionRepository.cs" />
     <Compile Include="Core\IBuildingOptionRepository.cs" />
@@ -138,9 +141,11 @@
     <Compile Include="Core\IRentalAuthorityRepository.cs" />
     <Compile Include="Core\IRepository.cs" />
     <Compile Include="Core\ISettingsRepository.cs" />
+    <Compile Include="Core\ISimcardRepository.cs" />
     <Compile Include="Core\ISmsPanelsRepository.cs" />
     <Compile Include="Core\IStatesRepository.cs" />
     <Compile Include="Core\IUsersRepository.cs" />
+    <Compile Include="SqlServerPersistence\AdvertiseLogPersistenceRepository.cs" />
     <Compile Include="SqlServerPersistence\BuildingAccountTypePersistenceRepository.cs" />
     <Compile Include="SqlServerPersistence\BuildingConditionPersistenceRepository.cs" />
     <Compile Include="SqlServerPersistence\BuildingOptionPersistenceRepository.cs" />
@@ -160,6 +165,7 @@
     <Compile Include="SqlServerPersistence\RegionsPersistenceRepository.cs" />
     <Compile Include="SqlServerPersistence\RentalAuthorityPersistenceRepository.cs" />
     <Compile Include="SqlServerPersistence\SettingsPersistenceRepository.cs" />
+    <Compile Include="SqlServerPersistence\SimcardPersistenceRepository.cs" />
     <Compile Include="SqlServerPersistence\SmsPanelsPersistenceRepository.cs" />
     <Compile Include="SqlServerPersistence\StatesPersistenceRepository.cs" />
     <Compile Include="SqlServerPersistence\UsersPersistenceRepository.cs" />

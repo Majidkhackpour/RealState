@@ -118,6 +118,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppSettings.cs" />
+    <Compile Include="Classes\clsAdvertise.cs" />
     <Compile Include="Classes\clsEconomyUnit.cs" />
     <Compile Include="Classes\clsGlobalSetting.cs" />
     <Compile Include="frmEconomyUnit.cs">

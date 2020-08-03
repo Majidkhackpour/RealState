@@ -53,6 +53,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Enums.cs" />
+    <Compile Include="Interfaces\IAdvertiseLog.cs" />
     <Compile Include="Interfaces\IBuildingAccountType.cs" />
     <Compile Include="Interfaces\IBuildingCondition.cs" />
     <Compile Include="Interfaces\IBuildingOptions.cs" />
@@ -71,6 +72,7 @@
     <Compile Include="Interfaces\IRegions.cs" />
     <Compile Include="Interfaces\IRentalAuthority.cs" />
     <Compile Include="Interfaces\ISettings.cs" />
+    <Compile Include="Interfaces\ISimcard.cs" />
     <Compile Include="Interfaces\ISmsPanels.cs" />
     <Compile Include="Interfaces\IStates.cs" />
     <Compile Include="Interfaces\IUsers.cs" />

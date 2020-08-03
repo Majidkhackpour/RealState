@@ -35,5 +35,7 @@ namespace Persistence.Model
         public virtual DbSet<PeopleBankAccount> PeopleBankAccount { get; set; }
         public virtual DbSet<PhoneBook> PhoneBook { get; set; }
         public virtual DbSet<SmsPanels> SmsPanels { get; set; }
+        public virtual DbSet<Simcard> Simcard { get; set; }
+        public virtual DbSet<AdvertiseLog> AdvertiseLog { get; set; }
     }
 }
