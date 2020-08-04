@@ -12,8 +12,8 @@ namespace EntityCache.Bussines
     public class SmsPanelsBussines : ISmsPanels
     {
         public Guid Guid { get; set; }
-        public DateTime Modified { get; set; }
-        public bool Status { get; set; }
+        public DateTime Modified { get; set; } = DateTime.Now;
+        public bool Status { get; set; } = true;
         public string Name { get; set; }
         public string UserName { get; set; }
         public string Password { get; set; }
@@ -100,7 +100,8 @@ namespace EntityCache.Bussines
                     {
                         if (!string.IsNullOrEmpty(item) && item.Trim() != "")
                         {
-                            res = res.Where(x => x.Name.ToLower().Contains(item.ToLower()))
+                            res = res.Where(x => x.Name.ToLower().Contains(item.ToLower()) ||
+                                                 x.Sender.ToLower().Contains(item.ToLower()))
                                 ?.ToList();
                         }
                     }

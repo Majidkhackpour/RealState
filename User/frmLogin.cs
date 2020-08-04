@@ -7,6 +7,7 @@ using System.Windows.Forms;
 using EntityCache.Bussines;
 using Notification;
 using PacketParser.Services;
+using Settings.Classes;
 
 namespace User
 {
@@ -71,7 +72,7 @@ namespace User
                 txtUserName.AutoCompleteCustomSource = myCollection;
 
 
-                txtUserName.Text = SettingsBussines.LastUser;
+                txtUserName.Text = clsGlobalSetting.LastUser;
                 if (!string.IsNullOrEmpty(txtUserName.Text)) txtPass1.Focus();
             }
             catch (Exception ex)
@@ -138,7 +139,7 @@ namespace User
                 clsUser.CurrentUser = user;
                 clsUser.DateVorrod = DateTime.Now;
 
-                SettingsBussines.LastUser = user.UserName;
+                clsGlobalSetting.LastUser = user.UserName;
 
                 DialogResult = DialogResult.OK;
                 Close();

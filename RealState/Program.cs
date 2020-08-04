@@ -1,25 +1,61 @@
 ﻿using System;
+using System.Security.Principal;
 using System.Windows.Forms;
 using EntityCache.Assistence;
 using EntityCache.Bussines;
 using Ertegha;
+using PacketParser.Services;
 using Settings;
+using Settings.Classes;
 using User;
 
 namespace RealState
 {
     static class Program
     {
+        private static bool isAdmin()
+        {
+            var identity = WindowsIdentity.GetCurrent();
+            var principal = new WindowsPrincipal(identity);
+            return principal.IsInRole(WindowsBuiltInRole.Administrator);
+        }
+
         [STAThread]
         static void Main()
         {
+            if (!isAdmin())
+            {
+                MessageBox.Show("اجرا نمایید Run As Adminstrator لطفا برنامه را در حالت");
+                return;
+            }
+
+
             ClsCache.Init();
 
+
+            var currentVersion = AccGlobalSettings.AppVersion.ParseToInt();
+            var dbVersion = clsGlobalSetting.ApplicationVersion.ParseToInt();
+
+            if (dbVersion <= 0)
+            {
+                dbVersion = currentVersion;
+                clsGlobalSetting.ApplicationVersion = dbVersion.ToString();
+            }
+
+            if (currentVersion < dbVersion)
+            {
+                MessageBox.Show($"نسخه فایل اجرایی {currentVersion} و نسخه بانک اطلاعاتی {dbVersion} می باشد. \r\n" +
+                                $"لطفا جهت بروزرسانی نسخه اجرایی خود، با تیم پشتیبانی تماس حاصل فرمایید");
+                return;
+            }
+
+            if (currentVersion > dbVersion)
+                clsGlobalSetting.ApplicationVersion = currentVersion.ToString();
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            if (string.IsNullOrEmpty(SettingsBussines.EconomyName))
+            if (string.IsNullOrEmpty(clsEconomyUnit.EconomyName))
             {
                 var res = clsErtegha.StartErtegha();
                 if (res.HasError)
@@ -32,7 +68,7 @@ namespace RealState
                     MessageBoxIcon.Information);
 
                 var frm = new frmEconomyUnit();
-                if (frm.ShowDialog() == DialogResult.Cancel)  Application.Exit();
+                if (frm.ShowDialog() == DialogResult.Cancel) Application.Exit();
             }
 
             var logForm = new frmLogin();

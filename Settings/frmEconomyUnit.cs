@@ -5,6 +5,7 @@ using EntityCache.Bussines;
 using MetroFramework.Forms;
 using PacketParser;
 using PacketParser.Services;
+using Settings.Classes;
 
 namespace Settings
 {
@@ -99,22 +100,22 @@ namespace Settings
             {
                 FillCmb();
 
-                txtName.Text = SettingsBussines.EconomyName;
-                txtMobile.Text = SettingsBussines.ManagerMobile;
-                txtTell.Text = SettingsBussines.ManagerTell;
-                txtFax.Text = SettingsBussines.ManagerFax;
-                txtManagerName.Text = SettingsBussines.ManagerName;
-                txtEmail.Text = SettingsBussines.ManagerEmail;
-                txtAddress.Text = SettingsBussines.ManagerAddress;
-                if (string.IsNullOrEmpty(SettingsBussines.EconomyType)) cmbType.SelectedIndex = 0;
+                txtName.Text = clsEconomyUnit.EconomyName;
+                txtMobile.Text = clsEconomyUnit.ManagerMobile;
+                txtTell.Text = clsEconomyUnit.ManagerTell;
+                txtFax.Text = clsEconomyUnit.ManagerFax;
+                txtManagerName.Text = clsEconomyUnit.ManagerName;
+                txtEmail.Text = clsEconomyUnit.ManagerEmail;
+                txtAddress.Text = clsEconomyUnit.ManagerAddress;
+                if (string.IsNullOrEmpty(clsEconomyUnit.EconomyType)) cmbType.SelectedIndex = 0;
                 else
-                    cmbType.Text = SettingsBussines.EconomyType;
-                if (string.IsNullOrEmpty(SettingsBussines.EconomyState))
+                    cmbType.Text = clsEconomyUnit.EconomyType;
+                if (string.IsNullOrEmpty(clsEconomyUnit.EconomyState))
                     cmbState.SelectedIndex = 0;
                 else
-                    cmbState.SelectedValue = Guid.Parse(SettingsBussines.EconomyState);
-                cmbCity.SelectedValue = Guid.Parse(SettingsBussines.EconomyCity);
-                cmbRegion.SelectedValue = Guid.Parse(SettingsBussines.ManagerRegion);
+                    cmbState.SelectedValue = Guid.Parse(clsEconomyUnit.EconomyState);
+                cmbCity.SelectedValue = Guid.Parse(clsEconomyUnit.EconomyCity);
+                cmbRegion.SelectedValue = Guid.Parse(clsEconomyUnit.ManagerRegion);
             }
             catch (Exception ex)
             {
@@ -144,21 +145,21 @@ namespace Settings
             SettData();
         }
 
-        private async void btnFinish_Click(object sender, EventArgs e)
+        private void btnFinish_Click(object sender, EventArgs e)
         {
             try
             {
-                SettingsBussines.EconomyName = txtName.Text;
-                SettingsBussines.ManagerMobile = txtMobile.Text;
-                SettingsBussines.ManagerTell = txtTell.Text;
-                SettingsBussines.ManagerFax = txtFax.Text;
-                SettingsBussines.ManagerName = txtManagerName.Text;
-                SettingsBussines.ManagerEmail = txtEmail.Text;
-                SettingsBussines.ManagerRegion = cmbRegion.SelectedValue.ToString();
-                SettingsBussines.ManagerAddress = txtAddress.Text;
-                SettingsBussines.EconomyType = cmbType.Text;
-                SettingsBussines.EconomyState = cmbState.SelectedValue.ToString();
-                SettingsBussines.EconomyCity = cmbCity.SelectedValue.ToString();
+                clsEconomyUnit.EconomyName = txtName.Text;
+                clsEconomyUnit.ManagerMobile = txtMobile.Text;
+                clsEconomyUnit.ManagerTell = txtTell.Text;
+                clsEconomyUnit.ManagerFax = txtFax.Text;
+                clsEconomyUnit.ManagerName = txtManagerName.Text;
+                clsEconomyUnit.ManagerEmail = txtEmail.Text;
+                clsEconomyUnit.ManagerRegion = cmbRegion.SelectedValue.ToString();
+                clsEconomyUnit.ManagerAddress = txtAddress.Text;
+                clsEconomyUnit.EconomyType = cmbType.Text;
+                clsEconomyUnit.EconomyState = cmbState.SelectedValue.ToString();
+                clsEconomyUnit.EconomyCity = cmbCity.SelectedValue.ToString();
 
                 
                 DialogResult = DialogResult.OK;

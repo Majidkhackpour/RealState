@@ -9,7 +9,19 @@ namespace PacketParser
         [PersianNameAttribute.PersianName("ماه")] Mounth = 2,
         [PersianNameAttribute.PersianName("روز")] Day = 3
     }
-    public enum EnEconomyType:int
+    public enum StatusCode
+    {
+        InPublishQueue = 1, //  در صف انتشار,
+        Published = 2,//  منتشر شده,
+        EditNeeded = 3,// "نیاز به اصلاح"
+        WaitForPayment = 4,//  "منتظر پرداخت"
+        Failed = 5,//  "رد شده"
+        Deleted = 6,//  "حذف شده"
+        Expired = 7,//  "منقضی شده"
+        InsertError = 10,//  "خطای درج"
+        Unknown = 0//  "نامشخص"
+    }
+    public enum EnEconomyType : int
     {
         [PersianNameAttribute.PersianName("مشاور املاک")] Amlak = 0,
         [PersianNameAttribute.PersianName("انبوه ساز")] AnbouhSaz = 1,
