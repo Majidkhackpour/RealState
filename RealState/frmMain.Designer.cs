@@ -62,9 +62,15 @@
             treeNode16,
             treeNode17,
             treeNode18});
-            System.Windows.Forms.TreeNode treeNode20 = new System.Windows.Forms.TreeNode("امکانات برنامه", new System.Windows.Forms.TreeNode[] {
+            System.Windows.Forms.TreeNode treeNode20 = new System.Windows.Forms.TreeNode("مدیریت سیم کارت ها");
+            System.Windows.Forms.TreeNode treeNode21 = new System.Windows.Forms.TreeNode("گزارش آگهی های ارسال شده");
+            System.Windows.Forms.TreeNode treeNode22 = new System.Windows.Forms.TreeNode("ربات دیوار", new System.Windows.Forms.TreeNode[] {
+            treeNode20,
+            treeNode21});
+            System.Windows.Forms.TreeNode treeNode23 = new System.Windows.Forms.TreeNode("امکانات برنامه", new System.Windows.Forms.TreeNode[] {
             treeNode15,
-            treeNode19});
+            treeNode19,
+            treeNode22});
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.line1 = new DevComponents.DotNetBar.Controls.Line();
             this.lblHour = new System.Windows.Forms.Label();
@@ -447,14 +453,23 @@
             treeNode19.Name = "nPayamak";
             treeNode19.NodeFont = new System.Drawing.Font("B Yekan", 9.75F);
             treeNode19.Text = "پیامک";
-            treeNode20.Name = "nInformation";
-            treeNode20.NodeFont = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            treeNode20.Text = "امکانات برنامه";
+            treeNode20.Name = "nSimcard";
+            treeNode20.NodeFont = new System.Drawing.Font("B Yekan", 8.25F);
+            treeNode20.Text = "مدیریت سیم کارت ها";
+            treeNode21.Name = "nAdvertiseLog";
+            treeNode21.NodeFont = new System.Drawing.Font("B Yekan", 8.25F);
+            treeNode21.Text = "گزارش آگهی های ارسال شده";
+            treeNode22.Name = "nDivar";
+            treeNode22.NodeFont = new System.Drawing.Font("B Yekan", 9.75F);
+            treeNode22.Text = "ربات دیوار";
+            treeNode23.Name = "nInformation";
+            treeNode23.NodeFont = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            treeNode23.Text = "امکانات برنامه";
             this.trvGroup.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
             treeNode12,
             treeNode13,
             treeNode14,
-            treeNode20});
+            treeNode23});
             this.trvGroup.RightToLeftLayout = true;
             this.trvGroup.Size = new System.Drawing.Size(201, 483);
             this.trvGroup.TabIndex = 55760;

@@ -10,7 +10,7 @@ using Persistence.Model;
 
 namespace EntityCache.SqlServerPersistence
 {
-    public class SimcardPersistenceRepository:GenericRepository<SimcardBussines,Simcard>,ISimcardRepository
+    public class SimcardPersistenceRepository : GenericRepository<SimcardBussines, Simcard>, ISimcardRepository
     {
         private ModelContext db;
         public SimcardPersistenceRepository(ModelContext _db) : base(_db)
@@ -31,6 +31,22 @@ namespace EntityCache.SqlServerPersistence
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(exception);
                 return null;
+            }
+        }
+
+        public async Task<bool> CheckNumberAsync(long number, Guid guid)
+        {
+            try
+            {
+                var acc = db.Simcard.AsNoTracking()
+                    .Where(q => q.Number == number && q.Guid != guid)
+                    .ToList();
+                return acc.Count == 0;
+            }
+            catch (Exception exception)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(exception);
+                return false;
             }
         }
     }

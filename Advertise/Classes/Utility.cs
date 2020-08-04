@@ -270,7 +270,7 @@ namespace Advertise.Classes
                 var thr = new Thread(async () => await DeleteTemp());
                 thr.Start();
 
-                var divar = await DivarAdv.GetInstance();
+                var divar = DivarAdv.GetInstance();
                 await divar.UpdateAllAdvStatus(500, dayCount);
 
                 var thr1 = new Thread(async () => await DeleteTemp());

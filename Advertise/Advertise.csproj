@@ -37,6 +37,58 @@
     <Reference Include="AutoMapper, Version=10.0.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
       <HintPath>..\packages\AutoMapper.10.0.0\lib\net461\AutoMapper.dll</HintPath>
     </Reference>
+    <Reference Include="DevComponents.Charts.Design, Version=14.1.0.35, Culture=neutral, PublicKeyToken=90f470f34c89ccaf, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\References\DevComponents.Charts.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="DevComponents.DotNetBar.Charts, Version=14.1.0.35, Culture=neutral, PublicKeyToken=7eb7c3a35b91de04, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\References\DevComponents.DotNetBar.Charts.dll</HintPath>
+    </Reference>
+    <Reference Include="DevComponents.DotNetBar.Design, Version=14.1.0.35, Culture=neutral, PublicKeyToken=90f470f34c89ccaf, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\References\DevComponents.DotNetBar.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="DevComponents.DotNetBar.Keyboard, Version=14.1.0.35, Culture=neutral, PublicKeyToken=7eb7c3a35b91de04, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\References\DevComponents.DotNetBar.Keyboard.dll</HintPath>
+    </Reference>
+    <Reference Include="DevComponents.DotNetBar.Layout, Version=14.1.0.35, Culture=neutral, PublicKeyToken=7eb7c3a35b91de04, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\References\DevComponents.DotNetBar.Layout.dll</HintPath>
+    </Reference>
+    <Reference Include="DevComponents.DotNetBar.Layout.Design, Version=14.1.0.35, Culture=neutral, PublicKeyToken=7eb7c3a35b91de04, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\References\DevComponents.DotNetBar.Layout.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="DevComponents.DotNetBar.Schedule, Version=14.1.0.35, Culture=neutral, PublicKeyToken=7eb7c3a35b91de04, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\References\DevComponents.DotNetBar.Schedule.dll</HintPath>
+    </Reference>
+    <Reference Include="DevComponents.DotNetBar.SuperGrid, Version=14.1.0.35, Culture=neutral, PublicKeyToken=7eb7c3a35b91de04, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\References\DevComponents.DotNetBar.SuperGrid.dll</HintPath>
+    </Reference>
+    <Reference Include="DevComponents.DotNetBar2, Version=14.1.0.35, Culture=neutral, PublicKeyToken=7eb7c3a35b91de04, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\References\DevComponents.DotNetBar2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevComponents.Instrumentation, Version=14.1.0.35, Culture=neutral, PublicKeyToken=f90dc37c26666a67, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\References\DevComponents.Instrumentation.dll</HintPath>
+    </Reference>
+    <Reference Include="DevComponents.Instrumentation.Design, Version=14.1.0.35, Culture=neutral, PublicKeyToken=76cb4c6eb576bca5, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\References\DevComponents.Instrumentation.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="DevComponents.SuperGrid.Design, Version=14.1.0.35, Culture=neutral, PublicKeyToken=26d81176cfa2b486, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\References\DevComponents.SuperGrid.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="DevComponents.TreeGX, Version=14.1.0.35, Culture=neutral, PublicKeyToken=055db68f670cfeab, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\References\DevComponents.TreeGX.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -74,16 +126,38 @@
     <Compile Include="Classes\DivarAdv.cs" />
     <Compile Include="Classes\ImageManager.cs" />
     <Compile Include="Classes\Utility.cs" />
+    <Compile Include="Forms\Simcard\frmShowSimcard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Simcard\frmShowSimcard.Designer.cs">
+      <DependentUpon>frmShowSimcard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Simcard\frmSimcardMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Simcard\frmSimcardMain.Designer.cs">
+      <DependentUpon>frmSimcardMain.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\EntityCache.Bussines.SimcardBussines.datasource" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\EntityCache\EntityCache.csproj">
       <Project>{cc417799-f38c-4997-8491-510eb1c15f74}</Project>
       <Name>EntityCache</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Notification\Notification.csproj">
+      <Project>{44a0f109-df64-482c-befb-df20038ee4df}</Project>
+      <Name>Notification</Name>
     </ProjectReference>
     <ProjectReference Include="..\PacketParser\PacketParser.csproj">
       <Project>{7e235f22-ae73-4698-9951-0f092ac91850}</Project>
@@ -97,6 +171,60 @@
       <Project>{5005cb62-16e0-4240-9a2d-8001adc9d990}</Project>
       <Name>Settings</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Forms\Simcard\frmShowSimcard.resx">
+      <DependentUpon>frmShowSimcard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Simcard\frmSimcardMain.resx">
+      <DependentUpon>frmSimcardMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add%281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add%282%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\article%281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\delete%281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\edit%281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\printer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\refresh-round-symbol.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sms-status.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tab-checkbox.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tab-checkbox_.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tab-checkbox__.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tab-close_.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\toolbarbutton-print.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

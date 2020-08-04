@@ -52,7 +52,6 @@
             this.addressDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.issuedFromDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.postalCodeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.userGuidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupGuidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cmPeoples = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.mnuPhone = new System.Windows.Forms.ToolStripMenuItem();
@@ -149,7 +148,6 @@
             this.addressDataGridViewTextBoxColumn,
             this.issuedFromDataGridViewTextBoxColumn,
             this.postalCodeDataGridViewTextBoxColumn,
-            this.userGuidDataGridViewTextBoxColumn,
             this.groupGuidDataGridViewTextBoxColumn});
             this.DGrid.ContextMenuStrip = this.cmPeoples;
             this.DGrid.DataSource = this.peopleBindingSource;
@@ -299,14 +297,6 @@
             this.postalCodeDataGridViewTextBoxColumn.Name = "postalCodeDataGridViewTextBoxColumn";
             this.postalCodeDataGridViewTextBoxColumn.ReadOnly = true;
             this.postalCodeDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // userGuidDataGridViewTextBoxColumn
-            // 
-            this.userGuidDataGridViewTextBoxColumn.DataPropertyName = "UserGuid";
-            this.userGuidDataGridViewTextBoxColumn.HeaderText = "UserGuid";
-            this.userGuidDataGridViewTextBoxColumn.Name = "userGuidDataGridViewTextBoxColumn";
-            this.userGuidDataGridViewTextBoxColumn.ReadOnly = true;
-            this.userGuidDataGridViewTextBoxColumn.Visible = false;
             // 
             // groupGuidDataGridViewTextBoxColumn
             // 
