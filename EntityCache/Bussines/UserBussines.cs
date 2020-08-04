@@ -41,6 +41,18 @@ namespace EntityCache.Bussines
                 { //BeginTransaction
                 }
 
+                var tel = new PhoneBookBussines()
+                {
+                    Guid = Guid.NewGuid(),
+                    Group = EnPhoneBookGroup.Users,
+                    Name = Name,
+                    ParentGuid = Guid,
+                    Tell = Mobile
+                };
+
+                res.AddReturnedValue(await UnitOfWork.PhoneBook.SaveAsync(tel, tranName));
+                res.ThrowExceptionIfError();
+
                 res.AddReturnedValue(await UnitOfWork.Users.SaveAsync(this, tranName));
                 res.ThrowExceptionIfError();
                 if (autoTran)
@@ -70,6 +82,14 @@ namespace EntityCache.Bussines
             {
                 if (autoTran)
                 { //BeginTransaction
+                }
+
+                var tel = await PhoneBookBussines.GetAllAsync(Guid, !status);
+                foreach (var item in tel.ToList())
+                {
+                    res.AddReturnedValue(
+                        await item.ChangeStatusAsync(status, tranName));
+                    res.ThrowExceptionIfError();
                 }
 
                 res.AddReturnedValue(await UnitOfWork.Users.ChangeStatusAsync(this, status, tranName));
