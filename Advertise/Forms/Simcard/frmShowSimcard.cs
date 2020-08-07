@@ -252,5 +252,17 @@ namespace Advertise.Forms.Simcard
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
+
+        private void btnLogin_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                mnuGetToken_Click(null, null);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
     }
 }

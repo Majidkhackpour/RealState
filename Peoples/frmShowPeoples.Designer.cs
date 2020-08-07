@@ -70,6 +70,14 @@
             this.btnInsert = new DevComponents.DotNetBar.ButtonX();
             this.btnEdit = new DevComponents.DotNetBar.ButtonX();
             this.groupBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.btnGroups = new DevComponents.DotNetBar.ButtonX();
+            this.btnInsGroup = new DevComponents.DotNetBar.ButtonItem();
+            this.btnUpGroup = new DevComponents.DotNetBar.ButtonItem();
+            this.btnDelGroup = new DevComponents.DotNetBar.ButtonItem();
+            this.btnOther = new DevComponents.DotNetBar.ButtonX();
+            this.btnTell = new DevComponents.DotNetBar.ButtonItem();
+            this.btnBank = new DevComponents.DotNetBar.ButtonItem();
+            this.btnSendSMS = new DevComponents.DotNetBar.ButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).BeginInit();
             this.cmPeoples.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.peopleBindingSource)).BeginInit();
@@ -316,7 +324,7 @@
             this.mnuSms});
             this.cmPeoples.Name = "cmPeoples";
             this.cmPeoples.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.cmPeoples.Size = new System.Drawing.Size(237, 104);
+            this.cmPeoples.Size = new System.Drawing.Size(237, 82);
             // 
             // mnuPhone
             // 
@@ -498,6 +506,93 @@
             // 
             this.groupBindingSource.DataSource = typeof(EntityCache.Bussines.PeopleGroupBussines);
             // 
+            // btnGroups
+            // 
+            this.btnGroups.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnGroups.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnGroups.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.btnGroups.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnGroups.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.btnGroups.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnGroups.ImagePosition = DevComponents.DotNetBar.eImagePosition.Right;
+            this.btnGroups.Location = new System.Drawing.Point(726, 559);
+            this.btnGroups.Name = "btnGroups";
+            this.btnGroups.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
+            this.btnGroups.Size = new System.Drawing.Size(69, 31);
+            this.btnGroups.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
+            this.btnGroups.SubItems.AddRange(new DevComponents.DotNetBar.BaseItem[] {
+            this.btnInsGroup,
+            this.btnUpGroup,
+            this.btnDelGroup});
+            this.btnGroups.TabIndex = 55757;
+            this.btnGroups.Text = "گروه ها";
+            this.btnGroups.TextAlignment = DevComponents.DotNetBar.eButtonTextAlignment.Left;
+            this.btnGroups.TextColor = System.Drawing.Color.Black;
+            // 
+            // btnInsGroup
+            // 
+            this.btnInsGroup.GlobalItem = false;
+            this.btnInsGroup.Name = "btnInsGroup";
+            this.btnInsGroup.Text = "افزودن گروه جدید";
+            this.btnInsGroup.Click += new System.EventHandler(this.btnInsGroup_Click);
+            // 
+            // btnUpGroup
+            // 
+            this.btnUpGroup.GlobalItem = false;
+            this.btnUpGroup.Name = "btnUpGroup";
+            this.btnUpGroup.Text = "ویرایش گروه جاری";
+            this.btnUpGroup.Click += new System.EventHandler(this.btnUpGroup_Click);
+            // 
+            // btnDelGroup
+            // 
+            this.btnDelGroup.GlobalItem = false;
+            this.btnDelGroup.Name = "btnDelGroup";
+            this.btnDelGroup.Text = "حذف گروه جاری";
+            this.btnDelGroup.Click += new System.EventHandler(this.btnDelGroup_Click);
+            // 
+            // btnOther
+            // 
+            this.btnOther.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnOther.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnOther.BackColor = System.Drawing.Color.Silver;
+            this.btnOther.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnOther.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.btnOther.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnOther.Location = new System.Drawing.Point(4, 559);
+            this.btnOther.Name = "btnOther";
+            this.btnOther.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
+            this.btnOther.Size = new System.Drawing.Size(61, 31);
+            this.btnOther.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
+            this.btnOther.SubItems.AddRange(new DevComponents.DotNetBar.BaseItem[] {
+            this.btnTell,
+            this.btnBank,
+            this.btnSendSMS});
+            this.btnOther.TabIndex = 55756;
+            this.btnOther.Text = "سایر";
+            this.btnOther.TextAlignment = DevComponents.DotNetBar.eButtonTextAlignment.Left;
+            this.btnOther.TextColor = System.Drawing.Color.Black;
+            // 
+            // btnTell
+            // 
+            this.btnTell.GlobalItem = false;
+            this.btnTell.Name = "btnTell";
+            this.btnTell.Text = "مشاهده اطلاعات تماس";
+            this.btnTell.Click += new System.EventHandler(this.btnTell_Click);
+            // 
+            // btnBank
+            // 
+            this.btnBank.GlobalItem = false;
+            this.btnBank.Name = "btnBank";
+            this.btnBank.Text = "مشاهده اطلاعات حساب های بانکی";
+            this.btnBank.Click += new System.EventHandler(this.btnBank_Click);
+            // 
+            // btnSendSMS
+            // 
+            this.btnSendSMS.GlobalItem = false;
+            this.btnSendSMS.Name = "btnSendSMS";
+            this.btnSendSMS.Text = "ارسال پیامک";
+            this.btnSendSMS.Click += new System.EventHandler(this.btnSendSMS_Click);
+            // 
             // frmShowPeoples
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -505,9 +600,11 @@
             this.ClientSize = new System.Drawing.Size(800, 600);
             this.Controls.Add(this.trvGroup);
             this.Controls.Add(this.btnView);
+            this.Controls.Add(this.btnOther);
             this.Controls.Add(this.btnChangeStatus);
             this.Controls.Add(this.txtSearch);
             this.Controls.Add(this.btnDelete);
+            this.Controls.Add(this.btnGroups);
             this.Controls.Add(this.btnInsert);
             this.Controls.Add(this.btnEdit);
             this.Controls.Add(this.line1);
@@ -571,5 +668,13 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn postalCodeDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn userGuidDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn groupGuidDataGridViewTextBoxColumn;
+        private DevComponents.DotNetBar.ButtonX btnGroups;
+        private DevComponents.DotNetBar.ButtonItem btnInsGroup;
+        private DevComponents.DotNetBar.ButtonItem btnUpGroup;
+        private DevComponents.DotNetBar.ButtonItem btnDelGroup;
+        private DevComponents.DotNetBar.ButtonX btnOther;
+        private DevComponents.DotNetBar.ButtonItem btnTell;
+        private DevComponents.DotNetBar.ButtonItem btnBank;
+        private DevComponents.DotNetBar.ButtonItem btnSendSMS;
     }
 }

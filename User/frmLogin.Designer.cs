@@ -174,6 +174,7 @@
             this.lblRecoveryPassword.Size = new System.Drawing.Size(184, 20);
             this.lblRecoveryPassword.TabIndex = 11;
             this.lblRecoveryPassword.Text = "رمز عبور خود را فراموش کرده ام...!";
+            this.lblRecoveryPassword.Click += new System.EventHandler(this.lblRecoveryPassword_Click);
             this.lblRecoveryPassword.MouseEnter += new System.EventHandler(this.lblRecoveryPassword_MouseEnter);
             this.lblRecoveryPassword.MouseLeave += new System.EventHandler(this.lblRecoveryPassword_MouseLeave);
             // 

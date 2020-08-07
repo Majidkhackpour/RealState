@@ -55,6 +55,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entities\AdvertiseLog.cs" />
+    <Compile Include="Entities\Building.cs" />
     <Compile Include="Entities\BuildingAccountType.cs" />
     <Compile Include="Entities\BuildingCondition.cs" />
     <Compile Include="Entities\BuildingOptions.cs" />
@@ -124,6 +125,18 @@
     <Compile Include="Migrations\202008041420129__12.designer.cs">
       <DependentUpon>202008041420129__12.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202008071346096__13.cs" />
+    <Compile Include="Migrations\202008071346096__13.designer.cs">
+      <DependentUpon>202008071346096__13.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202008071521558__14.cs" />
+    <Compile Include="Migrations\202008071521558__14.designer.cs">
+      <DependentUpon>202008071521558__14.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202008071529515__15.cs" />
+    <Compile Include="Migrations\202008071529515__15.designer.cs">
+      <DependentUpon>202008071529515__15.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\ModelContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -178,6 +191,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202008041420129__12.resx">
       <DependentUpon>202008041420129__12.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202008071346096__13.resx">
+      <DependentUpon>202008071346096__13.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202008071521558__14.resx">
+      <DependentUpon>202008071521558__14.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202008071529515__15.resx">
+      <DependentUpon>202008071529515__15.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

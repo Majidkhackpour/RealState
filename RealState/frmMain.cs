@@ -2,6 +2,7 @@
 using System.Reflection;
 using System.Windows.Forms;
 using Advertise.Forms.Simcard;
+using Building.Building;
 using Building.BuildingAccountType;
 using Building.BuildingCondition;
 using Building.BuildingOptions;
@@ -189,6 +190,9 @@ namespace RealState
                         break;
                     case "nSimcard":
                         frm = new frmShowSimcard();
+                        break;
+                    case "nBuildingManage":
+                        frm = new frmShowBuildings();
                         break;
                 }
 

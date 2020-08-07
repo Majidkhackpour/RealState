@@ -154,5 +154,12 @@ namespace EntityCache.Bussines
             await UnitOfWork.Users.CheckUserNameAsync(guid, userName);
 
         public static async Task<UserBussines> GetAsync(string userName) => await UnitOfWork.Users.GetAsync(userName);
+
+        public static async Task<UserBussines> GetByEmailAsync(string email) => await UnitOfWork.Users.GetByEmailAsync(email);
+
+        public static async Task<UserBussines> GetByMobileAsync(string mobile) => await UnitOfWork.Users.GetByMobilAsync(mobile);
+
+        public static async Task<List<UserBussines>> GetAllAsync(EnSecurityQuestion question, string answer) =>
+            await UnitOfWork.Users.GetAllAsync(question, answer);
     }
 }

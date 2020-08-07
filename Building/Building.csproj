@@ -173,6 +173,12 @@
     <Compile Include="BuildingView\frmShowBuildingView.Designer.cs">
       <DependentUpon>frmShowBuildingView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Building\frmShowBuildings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Building\frmShowBuildings.Designer.cs">
+      <DependentUpon>frmShowBuildings.cs</DependentUpon>
+    </Compile>
     <Compile Include="DocumentType\frmDocumentTypeMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -232,6 +238,7 @@
     <None Include="App.config" />
     <None Include="packages.config" />
     <None Include="Properties\DataSources\EntityCache.Bussines.BuildingAccountTypeBussines.datasource" />
+    <None Include="Properties\DataSources\EntityCache.Bussines.BuildingBussines.datasource" />
     <None Include="Properties\DataSources\EntityCache.Bussines.BuildingConditionBussines.datasource" />
   </ItemGroup>
   <ItemGroup>
@@ -287,6 +294,9 @@
     <EmbeddedResource Include="BuildingView\frmShowBuildingView.resx">
       <DependentUpon>frmShowBuildingView.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Building\frmShowBuildings.resx">
+      <DependentUpon>frmShowBuildings.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DocumentType\frmDocumentTypeMain.resx">
       <DependentUpon>frmDocumentTypeMain.cs</DependentUpon>
     </EmbeddedResource>
@@ -323,7 +333,9 @@
     <None Include="Properties\DataSources\EntityCache.Bussines.DocumentTypeBussines.datasource" />
     <None Include="Properties\DataSources\EntityCache.Bussines.FloorCoverBussines.datasource" />
     <None Include="Properties\DataSources\EntityCache.Bussines.KitchenServiceBussines.datasource" />
+    <None Include="Properties\DataSources\EntityCache.Bussines.PhoneBookBussines.datasource" />
     <None Include="Properties\DataSources\EntityCache.Bussines.RentalAuthorityBussines.datasource" />
+    <None Include="Properties\DataSources\EntityCache.Bussines.UserBussines.datasource" />
     <None Include="Resources\add.png" />
   </ItemGroup>
   <ItemGroup>

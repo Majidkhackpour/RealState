@@ -128,7 +128,7 @@ namespace User
                 var hashBytes = md5.ComputeHash(bytes);
                 var password = System.Text.RegularExpressions.Regex.Replace(BitConverter.ToString(hashBytes), "-", "")
                     .ToLower();
-                if (password == user.Password)
+                if (password != user.Password)
                 {
                     frmNotification.PublicInfo.ShowMessage("رمز عبور اشتباه است");
                     txtPass1.Focus();
@@ -158,6 +158,18 @@ namespace User
         private void lblRecoveryPassword_MouseLeave(object sender, EventArgs e)
         {
             lblRecoveryPassword.ForeColor = Color.Black;
+        }
+
+        private void lblRecoveryPassword_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                new frmForgetPassword().ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
         }
     }
 }

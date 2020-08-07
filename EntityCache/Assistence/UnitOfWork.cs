@@ -30,6 +30,7 @@ namespace EntityCache.Assistence
         private static ISmsPanelsRepository _smsPanelsRepository;
         private static ISimcardRepository _simcardRepository;
         private static IAdvertiseLogRepository _advertiseLogRepository;
+        private static IBuildingRepository _buildingRepository;
 
         public static void Dispose()
         {
@@ -128,6 +129,11 @@ namespace EntityCache.Assistence
         public static IAdvertiseLogRepository AdvertiseLog => _advertiseLogRepository ??
                                                         (_advertiseLogRepository =
                                                             new AdvertiseLogPersistenceRepository(db));
+
+
+        public static IBuildingRepository Building => _buildingRepository ??
+                                                              (_buildingRepository =
+                                                                  new BuildingPersistenceRepository(db));
 
     }
 }

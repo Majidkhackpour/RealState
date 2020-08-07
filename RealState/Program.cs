@@ -22,11 +22,11 @@ namespace RealState
         [STAThread]
         static void Main()
         {
-            if (!isAdmin())
-            {
-                MessageBox.Show("اجرا نمایید Run As Adminstrator لطفا برنامه را در حالت");
-                return;
-            }
+            //if (!isAdmin())
+            //{
+            //    MessageBox.Show("اجرا نمایید Run As Adminstrator لطفا برنامه را در حالت");
+            //    return;
+            //}
 
 
             ClsCache.Init();

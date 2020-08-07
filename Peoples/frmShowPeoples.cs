@@ -430,5 +430,70 @@ namespace Peoples
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
+
+        private void btnInsGroup_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                mnuAdd_Click(null, null);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private void btnUpGroup_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                mnuEdit_Click(null, null);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private void btnDelGroup_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                mnuDelete_Click(null, null);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private void btnTell_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                mnuPhone_Click(null, null);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private void btnBank_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                mnuBank_Click(null, null);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private void btnSendSMS_Click(object sender, EventArgs e)
+        {
+            
+        }
     }
 }

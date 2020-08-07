@@ -117,11 +117,23 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="clsUser.cs" />
+    <Compile Include="frmForgetPassword.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmForgetPassword.Designer.cs">
+      <DependentUpon>frmForgetPassword.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmLogin.Designer.cs">
       <DependentUpon>frmLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmRegisterPassword.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmRegisterPassword.Designer.cs">
+      <DependentUpon>frmRegisterPassword.cs</DependentUpon>
     </Compile>
     <Compile Include="frmShowUsers.cs">
       <SubType>Form</SubType>
@@ -147,8 +159,14 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="frmForgetPassword.resx">
+      <DependentUpon>frmForgetPassword.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmRegisterPassword.resx">
+      <DependentUpon>frmRegisterPassword.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmShowUsers.resx">
       <DependentUpon>frmShowUsers.cs</DependentUpon>
