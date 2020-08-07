@@ -148,6 +148,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Services\Services\Services\Services.csproj">
+      <Project>{dcb5bde2-6238-422d-ad4e-f53afce9bf30}</Project>
+      <Name>Services</Name>
+    </ProjectReference>
     <ProjectReference Include="..\EntityCache\EntityCache.csproj">
       <Project>{cc417799-f38c-4997-8491-510eb1c15f74}</Project>
       <Name>EntityCache</Name>

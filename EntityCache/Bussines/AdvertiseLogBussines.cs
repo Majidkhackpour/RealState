@@ -4,9 +4,8 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 using EntityCache.Assistence;
-using PacketParser;
 using PacketParser.Interfaces;
-using PacketParser.Services;
+using Services;
 
 namespace EntityCache.Bussines
 {

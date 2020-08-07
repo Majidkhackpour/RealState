@@ -5,7 +5,7 @@ using System.Windows.Forms;
 using EntityCache.Bussines;
 using MetroFramework.Forms;
 using Notification;
-using PacketParser.Services;
+using Services;
 
 namespace Cities.City
 {

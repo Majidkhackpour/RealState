@@ -3,8 +3,7 @@ using System.Linq;
 using System.Windows.Forms;
 using EntityCache.Bussines;
 using MetroFramework.Forms;
-using PacketParser;
-using PacketParser.Services;
+using Services;
 using Settings.Classes;
 
 namespace Settings

@@ -5,7 +5,7 @@ using Advertise.Classes;
 using EntityCache.Bussines;
 using MetroFramework.Forms;
 using Notification;
-using PacketParser.Services;
+using Services;
 
 namespace Advertise.Forms.Simcard
 {

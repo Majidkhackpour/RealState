@@ -4,10 +4,9 @@ using System.Security.Cryptography;
 using System.Text;
 using EntityCache.Bussines;
 using MetroFramework.Forms;
-using PacketParser;
-using PacketParser.Services;
 using System.Windows.Forms;
 using Notification;
+using Services;
 
 namespace User
 {

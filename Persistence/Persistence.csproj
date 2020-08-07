@@ -133,6 +133,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Services\Services\Services\Services.csproj">
+      <Project>{dcb5bde2-6238-422d-ad4e-f53afce9bf30}</Project>
+      <Name>Services</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PacketParser\PacketParser.csproj">
       <Project>{7e235f22-ae73-4698-9951-0f092ac91850}</Project>
       <Name>PacketParser</Name>

@@ -3,7 +3,7 @@ using System.Drawing;
 using System.Media;
 using System.Windows.Forms;
 using Notification.Properties;
-using PacketParser.Services;
+using Services;
 
 namespace Notification
 {

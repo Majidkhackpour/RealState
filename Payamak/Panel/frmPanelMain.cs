@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Security.Cryptography;
-using System.Text;
 using System.Windows.Forms;
 using EntityCache.Bussines;
 using MetroFramework.Forms;
 using Notification;
-using PacketParser;
-using PacketParser.Services;
+using Services;
 
 namespace Payamak.Panel
 {

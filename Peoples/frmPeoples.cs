@@ -4,9 +4,7 @@ using System.Windows.Forms;
 using EntityCache.Bussines;
 using MetroFramework.Forms;
 using Notification;
-using PacketParser;
-using PacketParser.Services;
-using User;
+using Services;
 
 namespace Peoples
 {

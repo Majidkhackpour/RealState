@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Windows.Forms;
 using EntityCache.Bussines;
 using MetroFramework.Forms;
-using PacketParser.Services;
-using Persistence.Entities;
+using Services;
 
 namespace Peoples
 {

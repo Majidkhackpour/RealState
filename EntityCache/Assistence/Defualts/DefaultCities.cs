@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using EntityCache.Bussines;
-using PacketParser.Services;
+using Services;
 
 namespace EntityCache.Assistence.Defualts
 {

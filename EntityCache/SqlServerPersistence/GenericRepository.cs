@@ -8,8 +8,8 @@ using System.Threading.Tasks;
 using EntityCache.Assistence;
 using EntityCache.Core;
 using PacketParser.Interfaces;
-using PacketParser.Services;
 using Persistence.Model;
+using Services;
 
 namespace EntityCache.SqlServerPersistence
 {

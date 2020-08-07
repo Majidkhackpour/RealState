@@ -1,4 +1,5 @@
 ﻿using System;
+using Services;
 
 namespace PacketParser.Interfaces
 {

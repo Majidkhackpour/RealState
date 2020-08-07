@@ -7,9 +7,9 @@ using EntityCache.Assistence;
 using EntityCache.Bussines;
 using EntityCache.Core;
 using PacketParser.Interfaces;
-using PacketParser.Services;
 using Persistence.Entities;
 using Persistence.Model;
+using Services;
 
 namespace EntityCache.SqlServerPersistence
 {

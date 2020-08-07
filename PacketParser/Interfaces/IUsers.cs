@@ -1,4 +1,6 @@
-﻿namespace PacketParser.Interfaces
+﻿using Services;
+
+namespace PacketParser.Interfaces
 {
     public interface IUsers : IHasGuid
     {

@@ -1,13 +1,10 @@
 ﻿using System;
 using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
 using System.Windows.Forms;
 using EntityCache.Bussines;
 using MetroFramework.Forms;
 using Notification;
-using PacketParser;
-using PacketParser.Services;
+using Services;
 
 namespace Advertise.Forms.Simcard
 {

@@ -6,7 +6,7 @@ using System.Text;
 using System.Windows.Forms;
 using EntityCache.Bussines;
 using Notification;
-using PacketParser.Services;
+using Services;
 using Settings.Classes;
 
 namespace User

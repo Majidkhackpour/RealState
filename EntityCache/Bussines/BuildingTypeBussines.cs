@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using EntityCache.Assistence;
 using Nito.AsyncEx;
 using PacketParser.Interfaces;
-using PacketParser.Services;
+using Services;
 
 namespace EntityCache.Bussines
 {

@@ -52,7 +52,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Enums.cs" />
     <Compile Include="Interfaces\IAdvertiseLog.cs" />
     <Compile Include="Interfaces\IBuildingAccountType.cs" />
     <Compile Include="Interfaces\IBuildingCondition.cs" />
@@ -77,21 +76,13 @@
     <Compile Include="Interfaces\IStates.cs" />
     <Compile Include="Interfaces\IUsers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\Calendar.cs" />
-    <Compile Include="Services\CheckPerssonValidation.cs" />
-    <Compile Include="Services\ContextMenuSetter.cs" />
-    <Compile Include="Services\CurrencyText.cs" />
-    <Compile Include="Services\Etentions.cs" />
-    <Compile Include="Services\PersianNameAttribute.cs" />
-    <Compile Include="Services\PropertyComparer.cs" />
-    <Compile Include="Services\ReturnedSaveFuncInfo.cs" />
-    <Compile Include="Services\SendEmail.cs" />
-    <Compile Include="Services\SendErrorToTelegram.cs" />
-    <Compile Include="Services\SortableBindingList.cs" />
-    <Compile Include="Services\txtSetter.cs" />
-    <Compile Include="Services\WebErrorLog.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Services\Services\Services\Services.csproj">
+      <Project>{dcb5bde2-6238-422d-ad4e-f53afce9bf30}</Project>
+      <Name>Services</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />

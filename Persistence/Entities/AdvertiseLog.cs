@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using PacketParser;
 using PacketParser.Interfaces;
+using Services;
 
 namespace Persistence.Entities
 {
