@@ -15,6 +15,7 @@ namespace EntityCache.Bussines
         public DateTime Modified { get; set; } = DateTime.Now;
         public bool Status { get; set; } = true;
         public string Name { get; set; }
+        public bool Checked { get; set; }
 
 
         public static async Task<List<BuildingOptionsBussines>> GetAllAsync() => await UnitOfWork.BuildingOption.GetAllAsync();

@@ -11,6 +11,7 @@ namespace Peoples
     public partial class frmPeoples : MetroForm
     {
         private PeoplesBussines cls;
+        public Guid SelectedGuid { get; set; }
         private void SetData()
         {
             try
@@ -123,7 +124,7 @@ namespace Peoples
             {
                 nameCollection.Add(item.Name);
                 fNameCollection.Add(item.FatherName);
-                placeCollection.Add(item.PlaceBirth); 
+                placeCollection.Add(item.PlaceBirth);
                 issuedCollection.Add(item.IssuedFrom);
                 nCodeCollection.Add(item.NationalCode);
             }
@@ -293,7 +294,7 @@ namespace Peoples
                         }
 
                         if (!btnFinish.Focused && !btnCancel.Focused)
-                                SendKeys.Send("{Tab}");
+                            SendKeys.Send("{Tab}");
                         break;
                     case Keys.F5:
                         btnFinish.PerformClick();
@@ -444,6 +445,8 @@ namespace Peoples
                     frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);
                     return;
                 }
+
+                SelectedGuid = cls.Guid;
                 DialogResult = DialogResult.OK;
                 Close();
             }
@@ -461,7 +464,7 @@ namespace Peoples
 
         private void txtName_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!char.IsLetter(e.KeyChar) && e.KeyChar != (char)Keys.Back)
+            if (!char.IsLetter(e.KeyChar) && e.KeyChar != (char)Keys.Back && e.KeyChar != (char)Keys.Space)
                 e.Handled = true;
         }
 
@@ -479,7 +482,7 @@ namespace Peoples
 
         private void txtBank_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!char.IsLetter(e.KeyChar) && e.KeyChar != (char)Keys.Back)
+            if (!char.IsLetter(e.KeyChar) && e.KeyChar != (char)Keys.Back && e.KeyChar != (char)Keys.Space)
                 e.Handled = true;
         }
     }

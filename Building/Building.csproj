@@ -37,6 +37,9 @@
     <Reference Include="AutoMapper, Version=10.0.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
       <HintPath>..\packages\AutoMapper.10.0.0\lib\net461\AutoMapper.dll</HintPath>
     </Reference>
+    <Reference Include="BPersianCalender">
+      <HintPath>..\..\..\References\BPersianCalender.dll</HintPath>
+    </Reference>
     <Reference Include="DevComponents.Charts.Design">
       <HintPath>..\..\..\References\DevComponents.Charts.Design.dll</HintPath>
     </Reference>
@@ -173,6 +176,12 @@
     <Compile Include="BuildingView\frmShowBuildingView.Designer.cs">
       <DependentUpon>frmShowBuildingView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Building\frmBuildingMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Building\frmBuildingMain.Designer.cs">
+      <DependentUpon>frmBuildingMain.cs</DependentUpon>
+    </Compile>
     <Compile Include="Building\frmShowBuildings.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -258,9 +267,17 @@
       <Project>{7e235f22-ae73-4698-9951-0f092ac91850}</Project>
       <Name>PacketParser</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Peoples\Peoples.csproj">
+      <Project>{38a2d24e-9123-4e7e-989d-36b49248a9fb}</Project>
+      <Name>Peoples</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Persistence\Persistence.csproj">
       <Project>{69dbdf3a-8578-44db-95cd-08a671de9e41}</Project>
       <Name>Persistence</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\User\User.csproj">
+      <Project>{ebed491e-32a3-4484-a5aa-e5ed61e8bb0b}</Project>
+      <Name>User</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -293,6 +310,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="BuildingView\frmShowBuildingView.resx">
       <DependentUpon>frmShowBuildingView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Building\frmBuildingMain.resx">
+      <DependentUpon>frmBuildingMain.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Building\frmShowBuildings.resx">
       <DependentUpon>frmShowBuildings.cs</DependentUpon>

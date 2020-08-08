@@ -43,15 +43,17 @@
             this.btnEdit = new DevComponents.DotNetBar.ButtonX();
             this.line1 = new DevComponents.DotNetBar.Controls.Line();
             this.DGrid = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.BuildingBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dgRadif = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DateSh = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ownerNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.buildingTypeNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.RoomCount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.masahatDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.zirBanaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UserName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.addressDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.guidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgGuid = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.modifiedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.statusDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.ownerGuidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -101,6 +103,7 @@
             this.parvaneSerialDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bonBastDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.mamarJodaDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.BuildingBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BuildingBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -114,7 +117,7 @@
             this.btnView.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnView.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnView.Image = global::Building.Properties.Resources.article_1_;
-            this.btnView.Location = new System.Drawing.Point(202, 559);
+            this.btnView.Location = new System.Drawing.Point(423, 559);
             this.btnView.Name = "btnView";
             this.btnView.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
             this.btnView.Size = new System.Drawing.Size(125, 31);
@@ -122,6 +125,7 @@
             this.btnView.TabIndex = 55746;
             this.btnView.Text = "مشاهده (F12)";
             this.btnView.TextColor = System.Drawing.Color.Black;
+            this.btnView.Click += new System.EventHandler(this.btnView_Click);
             // 
             // btnChangeStatus
             // 
@@ -140,6 +144,7 @@
             this.btnChangeStatus.TabIndex = 55748;
             this.btnChangeStatus.Text = "غیرفعال (Ctrl+S)";
             this.btnChangeStatus.TextColor = System.Drawing.Color.Black;
+            this.btnChangeStatus.Click += new System.EventHandler(this.btnChangeStatus_Click);
             // 
             // txtSearch
             // 
@@ -154,10 +159,11 @@
             this.txtSearch.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.PreventEnterBeep = true;
-            this.txtSearch.Size = new System.Drawing.Size(701, 27);
+            this.txtSearch.Size = new System.Drawing.Size(922, 27);
             this.txtSearch.TabIndex = 55745;
             this.txtSearch.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtSearch.WatermarkText = "مورد جستجو را وارد نمایید ...";
+            this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
             // 
             // btnDelete
             // 
@@ -168,7 +174,7 @@
             this.btnDelete.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnDelete.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnDelete.Image = global::Building.Properties.Resources.delete_1_;
-            this.btnDelete.Location = new System.Drawing.Point(333, 559);
+            this.btnDelete.Location = new System.Drawing.Point(554, 559);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
             this.btnDelete.Size = new System.Drawing.Size(125, 31);
@@ -176,6 +182,7 @@
             this.btnDelete.TabIndex = 55747;
             this.btnDelete.Text = "حذف (Del)";
             this.btnDelete.TextColor = System.Drawing.Color.Black;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // btnInsert
             // 
@@ -186,7 +193,7 @@
             this.btnInsert.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnInsert.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnInsert.Image = global::Building.Properties.Resources.add_1_;
-            this.btnInsert.Location = new System.Drawing.Point(595, 559);
+            this.btnInsert.Location = new System.Drawing.Point(816, 559);
             this.btnInsert.Name = "btnInsert";
             this.btnInsert.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
             this.btnInsert.Size = new System.Drawing.Size(125, 31);
@@ -194,6 +201,7 @@
             this.btnInsert.TabIndex = 55749;
             this.btnInsert.Text = "افزودن (Ins)";
             this.btnInsert.TextColor = System.Drawing.Color.Black;
+            this.btnInsert.Click += new System.EventHandler(this.btnInsert_Click);
             // 
             // btnEdit
             // 
@@ -204,7 +212,7 @@
             this.btnEdit.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnEdit.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnEdit.Image = global::Building.Properties.Resources.edit_1_;
-            this.btnEdit.Location = new System.Drawing.Point(464, 559);
+            this.btnEdit.Location = new System.Drawing.Point(685, 559);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
             this.btnEdit.Size = new System.Drawing.Size(125, 31);
@@ -212,6 +220,7 @@
             this.btnEdit.TabIndex = 55750;
             this.btnEdit.Text = "ویرایش (F7)";
             this.btnEdit.TextColor = System.Drawing.Color.Black;
+            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
             // 
             // line1
             // 
@@ -219,7 +228,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.line1.Location = new System.Drawing.Point(0, 538);
             this.line1.Name = "line1";
-            this.line1.Size = new System.Drawing.Size(799, 23);
+            this.line1.Size = new System.Drawing.Size(1020, 23);
             this.line1.TabIndex = 55743;
             this.line1.Text = "line1";
             this.line1.Thickness = 2;
@@ -252,13 +261,16 @@
             this.DGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dgRadif,
+            this.dgCode,
+            this.DateSh,
             this.ownerNameDataGridViewTextBoxColumn,
             this.buildingTypeNameDataGridViewTextBoxColumn,
             this.RoomCount,
             this.masahatDataGridViewTextBoxColumn,
             this.zirBanaDataGridViewTextBoxColumn,
+            this.UserName,
             this.addressDataGridViewTextBoxColumn,
-            this.guidDataGridViewTextBoxColumn,
+            this.dgGuid,
             this.modifiedDataGridViewTextBoxColumn,
             this.statusDataGridViewCheckBoxColumn,
             this.ownerGuidDataGridViewTextBoxColumn,
@@ -341,12 +353,10 @@
             this.DGrid.RowsDefaultCellStyle = dataGridViewCellStyle5;
             this.DGrid.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             this.DGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DGrid.Size = new System.Drawing.Size(795, 468);
+            this.DGrid.Size = new System.Drawing.Size(1016, 468);
             this.DGrid.TabIndex = 55744;
-            // 
-            // BuildingBindingSource
-            // 
-            this.BuildingBindingSource.DataSource = typeof(EntityCache.Bussines.BuildingBussines);
+            this.DGrid.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DGrid_CellFormatting);
+            this.DGrid.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.DGrid_KeyPress);
             // 
             // dgRadif
             // 
@@ -355,13 +365,28 @@
             this.dgRadif.ReadOnly = true;
             this.dgRadif.Width = 50;
             // 
+            // dgCode
+            // 
+            this.dgCode.DataPropertyName = "Code";
+            this.dgCode.HeaderText = "کد ملک";
+            this.dgCode.Name = "dgCode";
+            this.dgCode.ReadOnly = true;
+            this.dgCode.Width = 70;
+            // 
+            // DateSh
+            // 
+            this.DateSh.DataPropertyName = "DateSh";
+            this.DateSh.HeaderText = "ت ایجاد";
+            this.DateSh.Name = "DateSh";
+            this.DateSh.ReadOnly = true;
+            // 
             // ownerNameDataGridViewTextBoxColumn
             // 
             this.ownerNameDataGridViewTextBoxColumn.DataPropertyName = "OwnerName";
             this.ownerNameDataGridViewTextBoxColumn.HeaderText = "مالک";
             this.ownerNameDataGridViewTextBoxColumn.Name = "ownerNameDataGridViewTextBoxColumn";
             this.ownerNameDataGridViewTextBoxColumn.ReadOnly = true;
-            this.ownerNameDataGridViewTextBoxColumn.Width = 200;
+            this.ownerNameDataGridViewTextBoxColumn.Width = 150;
             // 
             // buildingTypeNameDataGridViewTextBoxColumn
             // 
@@ -392,6 +417,13 @@
             this.zirBanaDataGridViewTextBoxColumn.Name = "zirBanaDataGridViewTextBoxColumn";
             this.zirBanaDataGridViewTextBoxColumn.ReadOnly = true;
             // 
+            // UserName
+            // 
+            this.UserName.DataPropertyName = "UserName";
+            this.UserName.HeaderText = "مشاور";
+            this.UserName.Name = "UserName";
+            this.UserName.ReadOnly = true;
+            // 
             // addressDataGridViewTextBoxColumn
             // 
             this.addressDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
@@ -400,13 +432,13 @@
             this.addressDataGridViewTextBoxColumn.Name = "addressDataGridViewTextBoxColumn";
             this.addressDataGridViewTextBoxColumn.ReadOnly = true;
             // 
-            // guidDataGridViewTextBoxColumn
+            // dgGuid
             // 
-            this.guidDataGridViewTextBoxColumn.DataPropertyName = "Guid";
-            this.guidDataGridViewTextBoxColumn.HeaderText = "Guid";
-            this.guidDataGridViewTextBoxColumn.Name = "guidDataGridViewTextBoxColumn";
-            this.guidDataGridViewTextBoxColumn.ReadOnly = true;
-            this.guidDataGridViewTextBoxColumn.Visible = false;
+            this.dgGuid.DataPropertyName = "Guid";
+            this.dgGuid.HeaderText = "Guid";
+            this.dgGuid.Name = "dgGuid";
+            this.dgGuid.ReadOnly = true;
+            this.dgGuid.Visible = false;
             // 
             // modifiedDataGridViewTextBoxColumn
             // 
@@ -800,11 +832,15 @@
             this.mamarJodaDataGridViewCheckBoxColumn.ReadOnly = true;
             this.mamarJodaDataGridViewCheckBoxColumn.Visible = false;
             // 
+            // BuildingBindingSource
+            // 
+            this.BuildingBindingSource.DataSource = typeof(EntityCache.Bussines.BuildingBussines);
+            // 
             // frmShowBuildings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 600);
+            this.ClientSize = new System.Drawing.Size(1021, 600);
             this.Controls.Add(this.btnView);
             this.Controls.Add(this.btnChangeStatus);
             this.Controls.Add(this.txtSearch);
@@ -817,12 +853,14 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.MinimumSize = new System.Drawing.Size(800, 600);
+            this.MinimumSize = new System.Drawing.Size(924, 600);
             this.Name = "frmShowBuildings";
             this.Padding = new System.Windows.Forms.Padding(27, 92, 27, 31);
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.Style = MetroFramework.MetroColorStyle.Green;
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.frmShowBuildings_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmShowBuildings_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.BuildingBindingSource)).EndInit();
             this.ResumeLayout(false);
@@ -841,13 +879,16 @@
         private DevComponents.DotNetBar.Controls.Line line1;
         private DevComponents.DotNetBar.Controls.DataGridViewX DGrid;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgRadif;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgCode;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DateSh;
         private System.Windows.Forms.DataGridViewTextBoxColumn ownerNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn buildingTypeNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn RoomCount;
         private System.Windows.Forms.DataGridViewTextBoxColumn masahatDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn zirBanaDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn UserName;
         private System.Windows.Forms.DataGridViewTextBoxColumn addressDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn guidDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgGuid;
         private System.Windows.Forms.DataGridViewTextBoxColumn modifiedDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewCheckBoxColumn statusDataGridViewCheckBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn ownerGuidDataGridViewTextBoxColumn;

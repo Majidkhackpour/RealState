@@ -30,6 +30,8 @@ namespace EntityCache.Bussines
 
         public static async Task<List<UserBussines>> GetAllAsync() => await UnitOfWork.Users.GetAllAsync();
 
+        public static List<UserBussines> GetAll() => AsyncContext.Run(GetAllAsync);
+
         public async Task<ReturnedSaveFuncInfo> SaveAsync(string tranName = "")
         {
             var res = new ReturnedSaveFuncInfo();

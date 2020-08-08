@@ -40,6 +40,7 @@ namespace EntityCache.SqlServerPersistence
             try
             {
                 var all = await GetAllAsync();
+                if (all.Count <= 0) return "001001";
                 var code = all.ToList()?.Max(q => long.Parse(q.Code)) ?? 0;
                 code += 1;
                 var new_code = code.ToString();
@@ -79,7 +80,7 @@ namespace EntityCache.SqlServerPersistence
             }
             catch (Exception exception)
             {
-                //WebErrorLog.ErrorInstence.StartErrorLog(exception);
+                WebErrorLog.ErrorInstence.StartErrorLog(exception);
                 return "001001";
             }
         }

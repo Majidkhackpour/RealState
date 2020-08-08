@@ -5,8 +5,10 @@ namespace PacketParser.Interfaces
 {
     public interface IBuilding : IHasGuid
     {
+        DateTime CreateDate { get; set; }
         string Code { get; set; }
         Guid OwnerGuid { get; set; }
+        Guid UserGuid { get; set; }
         decimal SellPrice { get; set; }
         decimal VamPrice { get; set; }
         decimal QestPrice { get; set; }

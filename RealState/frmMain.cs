@@ -153,7 +153,7 @@ namespace RealState
                         frm = new frmShowUsers();
                         break;
                     case "nPeoples":
-                        frm = new frmShowPeoples();
+                        frm = new frmShowPeoples(false);
                         break;
                     case "nBuildingOption":
                         frm = new frmShowBuildingOption();

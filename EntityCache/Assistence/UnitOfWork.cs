@@ -31,15 +31,11 @@ namespace EntityCache.Assistence
         private static ISimcardRepository _simcardRepository;
         private static IAdvertiseLogRepository _advertiseLogRepository;
         private static IBuildingRepository _buildingRepository;
+        private static IBuildingRelatedOptionsRepository _buildingRelatedOptionsRepository;
+        private static IBuildingGalleryRepository _buildingGalleryRepository;
 
-        public static void Dispose()
-        {
-            db?.Dispose();
-        }
-        public static void Set_Save()
-        {
-            db.SaveChanges();
-        }
+        public static void Dispose() => db?.Dispose();
+        public static void Set_Save() => db.SaveChanges();
 
 
         public static IUsersRepository Users => _usersRepository ??
@@ -134,6 +130,16 @@ namespace EntityCache.Assistence
         public static IBuildingRepository Building => _buildingRepository ??
                                                               (_buildingRepository =
                                                                   new BuildingPersistenceRepository(db));
+
+
+        public static IBuildingRelatedOptionsRepository BuildingRelatedOptions => _buildingRelatedOptionsRepository ??
+                                                      (_buildingRelatedOptionsRepository =
+                                                          new BuildingRelatedOptionsPersistenceRepository(db));
+
+
+        public static IBuildingGalleryRepository BuildingGallery => _buildingGalleryRepository ??
+                                                      (_buildingGalleryRepository =
+                                                          new BuildingGalleryPersistenceRepository(db));
 
     }
 }

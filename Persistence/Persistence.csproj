@@ -58,7 +58,9 @@
     <Compile Include="Entities\Building.cs" />
     <Compile Include="Entities\BuildingAccountType.cs" />
     <Compile Include="Entities\BuildingCondition.cs" />
+    <Compile Include="Entities\BuildingGallery.cs" />
     <Compile Include="Entities\BuildingOptions.cs" />
+    <Compile Include="Entities\BuildingRelatedOptions.cs" />
     <Compile Include="Entities\BuildingType.cs" />
     <Compile Include="Entities\BuildingView.cs" />
     <Compile Include="Entities\Cities.cs" />
@@ -137,6 +139,18 @@
     <Compile Include="Migrations\202008071529515__15.designer.cs">
       <DependentUpon>202008071529515__15.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202008081007474__16.cs" />
+    <Compile Include="Migrations\202008081007474__16.designer.cs">
+      <DependentUpon>202008081007474__16.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202008081137137__17.cs" />
+    <Compile Include="Migrations\202008081137137__17.designer.cs">
+      <DependentUpon>202008081137137__17.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202008081202076__18.cs" />
+    <Compile Include="Migrations\202008081202076__18.designer.cs">
+      <DependentUpon>202008081202076__18.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\ModelContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -200,6 +214,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202008071529515__15.resx">
       <DependentUpon>202008071529515__15.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202008081007474__16.resx">
+      <DependentUpon>202008081007474__16.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202008081137137__17.resx">
+      <DependentUpon>202008081137137__17.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202008081202076__18.resx">
+      <DependentUpon>202008081202076__18.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

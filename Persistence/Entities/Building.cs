@@ -11,9 +11,12 @@ namespace Persistence.Entities
         public Guid Guid { get; set; }
         public DateTime Modified { get; set; }
         public bool Status { get; set; }
+        public DateTime CreateDate { get; set; }
+
         [MaxLength(50)]
         public string Code { get; set; }
         public Guid OwnerGuid { get; set; }
+        public Guid UserGuid { get; set; }
         public decimal SellPrice { get; set; }
         public decimal VamPrice { get; set; }
         public decimal QestPrice { get; set; }

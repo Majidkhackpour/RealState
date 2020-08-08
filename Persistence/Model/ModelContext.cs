@@ -38,5 +38,7 @@ namespace Persistence.Model
         public virtual DbSet<Simcard> Simcard { get; set; }
         public virtual DbSet<AdvertiseLog> AdvertiseLog { get; set; }
         public virtual DbSet<Building> Building { get; set; }
+        public virtual DbSet<BuildingRelatedOptions> BuildingRelatedOptions { get; set; }
+        public virtual DbSet<BuildingGallery> BuildingGallery { get; set; }
     }
 }

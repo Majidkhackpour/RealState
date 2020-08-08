@@ -1,4 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using EntityCache.Assistence;
+using Nito.AsyncEx;
 using PacketParser.Interfaces;
 using Services;
 
@@ -6,12 +11,17 @@ namespace EntityCache.Bussines
 {
     public class BuildingBussines : IBuilding
     {
+        #region Properties
         public Guid Guid { get; set; }
-        public DateTime Modified { get; set; }
-        public bool Status { get; set; }
+        public DateTime Modified { get; set; } = DateTime.Now;
+        public bool Status { get; set; } = true;
+        public DateTime CreateDate { get; set; } = DateTime.Now;
+        public string DateSh => Calendar.MiladiToShamsi(CreateDate);
         public string Code { get; set; }
         public Guid OwnerGuid { get; set; }
         public string OwnerName { get; set; }
+        public Guid UserGuid { get; set; }
+        public string UserName { get; set; }
         public decimal SellPrice { get; set; }
         public decimal VamPrice { get; set; }
         public decimal QestPrice { get; set; }
@@ -63,5 +73,168 @@ namespace EntityCache.Bussines
         public bool BonBast { get; set; }
         public bool MamarJoda { get; set; }
         public int RoomCount { get; set; }
+        private List<BuildingRelatedOptionsBussines> _optionList;
+        public List<BuildingRelatedOptionsBussines> OptionList
+        {
+            get
+            {
+                if (_optionList != null) return _optionList;
+                _optionList = BuildingRelatedOptionsBussines.GetAll(Guid, Status);
+                return _optionList;
+            }
+            set => _optionList = value;
+        }
+        private List<BuildingGalleryBussines> _galleryList;
+        public List<BuildingGalleryBussines> GalleryList
+        {
+            get
+            {
+                if (_galleryList != null) return _galleryList;
+                _galleryList = BuildingGalleryBussines.GetAll(Guid, Status);
+                return _galleryList;
+            }
+            set => _galleryList = value;
+        }
+        #endregion
+
+        public static async Task<List<BuildingBussines>> GetAllAsync() => await UnitOfWork.Building.GetAllAsyncBySp();
+
+        public static async Task<BuildingBussines> GetAsync(Guid guid) => await UnitOfWork.Building.GetAsync(guid);
+
+        public static BuildingBussines Get(Guid guid) => AsyncContext.Run(() => GetAsync(guid));
+
+        public async Task<ReturnedSaveFuncInfo> SaveAsync(string tranName = "")
+        {
+            var res = new ReturnedSaveFuncInfo();
+            var autoTran = string.IsNullOrEmpty(tranName);
+            if (autoTran) tranName = Guid.NewGuid().ToString();
+            try
+            {
+                if (autoTran)
+                { //BeginTransaction
+                }
+
+                if (OptionList.Count > 0)
+                {
+                    var list = await BuildingRelatedOptionsBussines.GetAllAsync(Guid, Status);
+                    res.AddReturnedValue(
+                        await UnitOfWork.BuildingRelatedOptions.RemoveRangeAsync(list.Select(q => q.Guid).ToList(),
+                            tranName));
+                    res.ThrowExceptionIfError();
+
+                    foreach (var item in OptionList)
+                        item.BuildinGuid = Guid;
+                    res.AddReturnedValue(
+                        await UnitOfWork.BuildingRelatedOptions.SaveRangeAsync(OptionList, tranName));
+                    res.ThrowExceptionIfError();
+                }
+
+                if (GalleryList.Count > 0)
+                {
+                    var list = await BuildingGalleryBussines.GetAllAsync(Guid, Status);
+                    res.AddReturnedValue(
+                        await UnitOfWork.BuildingGallery.RemoveRangeAsync(list.Select(q => q.Guid).ToList(),
+                            tranName));
+                    res.ThrowExceptionIfError();
+
+                    foreach (var item in GalleryList)
+                        item.BuildingGuid = Guid;
+                    res.AddReturnedValue(
+                        await UnitOfWork.BuildingGallery.SaveRangeAsync(GalleryList, tranName));
+                    res.ThrowExceptionIfError();
+                }
+
+
+                res.AddReturnedValue(await UnitOfWork.Building.SaveAsync(this, tranName));
+                res.ThrowExceptionIfError();
+                if (autoTran)
+                {
+                    //CommitTransAction
+                }
+            }
+            catch (Exception ex)
+            {
+                if (autoTran)
+                {
+                    //RollBackTransAction
+                }
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+
+            return res;
+        }
+
+        public async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(bool status, string tranName = "")
+        {
+            var res = new ReturnedSaveFuncInfo();
+            var autoTran = string.IsNullOrEmpty(tranName);
+            if (autoTran) tranName = Guid.NewGuid().ToString();
+            try
+            {
+                if (autoTran)
+                { //BeginTransaction
+                }
+
+                res.AddReturnedValue(await UnitOfWork.Building.ChangeStatusAsync(this, status, tranName));
+                res.ThrowExceptionIfError();
+                if (autoTran)
+                {
+                    //CommitTransAction
+                }
+            }
+            catch (Exception ex)
+            {
+                if (autoTran)
+                {
+                    //RollBackTransAction
+                }
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+
+            return res;
+        }
+
+        public static async Task<List<BuildingBussines>> GetAllAsync(string search)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(search))
+                    search = "";
+                var res = await GetAllAsync();
+                var searchItems = search.SplitString();
+                if (searchItems?.Count > 0)
+                    foreach (var item in searchItems)
+                    {
+                        if (!string.IsNullOrEmpty(item) && item.Trim() != "")
+                        {
+                            res = res.Where(x => x.Code.ToLower().Contains(item.ToLower()) ||
+                                                 x.OwnerName.ToLower().Contains(item.ToLower()) ||
+                                                 x.BuildingTypeName.ToLower().Contains(item.ToLower()) ||
+                                                 x.Masahat.ToString().ToLower().Contains(item.ToLower()) ||
+                                                 x.ZirBana.ToString().ToLower().Contains(item.ToLower()) ||
+                                                 x.UserName.ToLower().Contains(item.ToLower()) ||
+                                                 x.Address.ToLower().Contains(item.ToLower()))
+                                ?.ToList();
+                        }
+                    }
+
+                return res;
+            }
+            catch (OperationCanceledException)
+            { return null; }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                return new List<BuildingBussines>();
+            }
+        }
+
+        public static List<BuildingBussines> GetAll(string search) => AsyncContext.Run(() => GetAllAsync(search));
+
+        public static async Task<string> NextCodeAsync() => await UnitOfWork.Building.NextCodeAsync();
+
+        public static string NextCode() => AsyncContext.Run(NextCodeAsync);
     }
 }

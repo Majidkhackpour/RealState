@@ -39,6 +39,21 @@
             this.line1 = new DevComponents.DotNetBar.Controls.Line();
             this.DGrid = new DevComponents.DotNetBar.Controls.DataGridViewX();
             this.dgRadif = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.trvGroup = new System.Windows.Forms.TreeView();
+            this.btnView = new DevComponents.DotNetBar.ButtonX();
+            this.btnChangeStatus = new DevComponents.DotNetBar.ButtonX();
+            this.btnDelete = new DevComponents.DotNetBar.ButtonX();
+            this.btnInsert = new DevComponents.DotNetBar.ButtonX();
+            this.btnEdit = new DevComponents.DotNetBar.ButtonX();
+            this.btnGroups = new DevComponents.DotNetBar.ButtonX();
+            this.btnInsGroup = new DevComponents.DotNetBar.ButtonItem();
+            this.btnUpGroup = new DevComponents.DotNetBar.ButtonItem();
+            this.btnDelGroup = new DevComponents.DotNetBar.ButtonItem();
+            this.btnOther = new DevComponents.DotNetBar.ButtonX();
+            this.btnTell = new DevComponents.DotNetBar.ButtonItem();
+            this.btnBank = new DevComponents.DotNetBar.ButtonItem();
+            this.btnSendSMS = new DevComponents.DotNetBar.ButtonItem();
+            this.btnSelect = new DevComponents.DotNetBar.ButtonX();
             this.codeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgGuid = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -53,35 +68,10 @@
             this.issuedFromDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.postalCodeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupGuidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cmPeoples = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.mnuPhone = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuBank = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
-            this.mnuSms = new System.Windows.Forms.ToolStripMenuItem();
             this.peopleBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.trvGroup = new System.Windows.Forms.TreeView();
-            this.cmGroup = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.mnuAdd = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuEdit = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuDelete = new System.Windows.Forms.ToolStripMenuItem();
-            this.btnView = new DevComponents.DotNetBar.ButtonX();
-            this.btnChangeStatus = new DevComponents.DotNetBar.ButtonX();
-            this.btnDelete = new DevComponents.DotNetBar.ButtonX();
-            this.btnInsert = new DevComponents.DotNetBar.ButtonX();
-            this.btnEdit = new DevComponents.DotNetBar.ButtonX();
             this.groupBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.btnGroups = new DevComponents.DotNetBar.ButtonX();
-            this.btnInsGroup = new DevComponents.DotNetBar.ButtonItem();
-            this.btnUpGroup = new DevComponents.DotNetBar.ButtonItem();
-            this.btnDelGroup = new DevComponents.DotNetBar.ButtonItem();
-            this.btnOther = new DevComponents.DotNetBar.ButtonX();
-            this.btnTell = new DevComponents.DotNetBar.ButtonItem();
-            this.btnBank = new DevComponents.DotNetBar.ButtonItem();
-            this.btnSendSMS = new DevComponents.DotNetBar.ButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).BeginInit();
-            this.cmPeoples.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.peopleBindingSource)).BeginInit();
-            this.cmGroup.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -157,7 +147,6 @@
             this.issuedFromDataGridViewTextBoxColumn,
             this.postalCodeDataGridViewTextBoxColumn,
             this.groupGuidDataGridViewTextBoxColumn});
-            this.DGrid.ContextMenuStrip = this.cmPeoples;
             this.DGrid.DataSource = this.peopleBindingSource;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
@@ -194,6 +183,7 @@
             this.DGrid.Size = new System.Drawing.Size(654, 468);
             this.DGrid.TabIndex = 55752;
             this.DGrid.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DGrid_CellFormatting);
+            this.DGrid.DoubleClick += new System.EventHandler(this.DGrid_DoubleClick);
             this.DGrid.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.DGrid_KeyPress);
             // 
             // dgRadif
@@ -202,6 +192,221 @@
             this.dgRadif.Name = "dgRadif";
             this.dgRadif.ReadOnly = true;
             this.dgRadif.Width = 50;
+            // 
+            // trvGroup
+            // 
+            this.trvGroup.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.trvGroup.BackColor = System.Drawing.Color.White;
+            this.trvGroup.ForeColor = System.Drawing.Color.Black;
+            this.trvGroup.Location = new System.Drawing.Point(660, 70);
+            this.trvGroup.Name = "trvGroup";
+            this.trvGroup.RightToLeftLayout = true;
+            this.trvGroup.Size = new System.Drawing.Size(135, 468);
+            this.trvGroup.TabIndex = 55759;
+            this.trvGroup.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.trvGroup_AfterSelect);
+            // 
+            // btnView
+            // 
+            this.btnView.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnView.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnView.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.btnView.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnView.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.btnView.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnView.Image = global::Peoples.Properties.Resources.article_1_;
+            this.btnView.Location = new System.Drawing.Point(202, 559);
+            this.btnView.Name = "btnView";
+            this.btnView.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
+            this.btnView.Size = new System.Drawing.Size(125, 31);
+            this.btnView.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
+            this.btnView.TabIndex = 55754;
+            this.btnView.Text = "مشاهده (F12)";
+            this.btnView.TextColor = System.Drawing.Color.Black;
+            this.btnView.Click += new System.EventHandler(this.btnView_Click);
+            // 
+            // btnChangeStatus
+            // 
+            this.btnChangeStatus.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnChangeStatus.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnChangeStatus.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.btnChangeStatus.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnChangeStatus.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.btnChangeStatus.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnChangeStatus.Image = global::Peoples.Properties.Resources.refresh_round_symbol;
+            this.btnChangeStatus.Location = new System.Drawing.Point(71, 559);
+            this.btnChangeStatus.Name = "btnChangeStatus";
+            this.btnChangeStatus.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
+            this.btnChangeStatus.Size = new System.Drawing.Size(125, 31);
+            this.btnChangeStatus.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
+            this.btnChangeStatus.TabIndex = 55756;
+            this.btnChangeStatus.Text = "غیرفعال (Ctrl+S)";
+            this.btnChangeStatus.TextColor = System.Drawing.Color.Black;
+            this.btnChangeStatus.Click += new System.EventHandler(this.btnChangeStatus_Click);
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnDelete.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.btnDelete.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnDelete.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.btnDelete.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnDelete.Image = global::Peoples.Properties.Resources.delete_1_;
+            this.btnDelete.Location = new System.Drawing.Point(333, 559);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
+            this.btnDelete.Size = new System.Drawing.Size(125, 31);
+            this.btnDelete.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
+            this.btnDelete.TabIndex = 55755;
+            this.btnDelete.Text = "حذف (Del)";
+            this.btnDelete.TextColor = System.Drawing.Color.Black;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
+            // btnInsert
+            // 
+            this.btnInsert.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnInsert.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnInsert.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.btnInsert.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnInsert.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.btnInsert.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnInsert.Image = global::Peoples.Properties.Resources.add_1_;
+            this.btnInsert.Location = new System.Drawing.Point(595, 559);
+            this.btnInsert.Name = "btnInsert";
+            this.btnInsert.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
+            this.btnInsert.Size = new System.Drawing.Size(125, 31);
+            this.btnInsert.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
+            this.btnInsert.TabIndex = 55757;
+            this.btnInsert.Text = "افزودن (Ins)";
+            this.btnInsert.TextColor = System.Drawing.Color.Black;
+            this.btnInsert.Click += new System.EventHandler(this.btnInsert_Click);
+            // 
+            // btnEdit
+            // 
+            this.btnEdit.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnEdit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.btnEdit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnEdit.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.btnEdit.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnEdit.Image = global::Peoples.Properties.Resources.edit_1_;
+            this.btnEdit.Location = new System.Drawing.Point(464, 559);
+            this.btnEdit.Name = "btnEdit";
+            this.btnEdit.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
+            this.btnEdit.Size = new System.Drawing.Size(125, 31);
+            this.btnEdit.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
+            this.btnEdit.TabIndex = 55758;
+            this.btnEdit.Text = "ویرایش (F7)";
+            this.btnEdit.TextColor = System.Drawing.Color.Black;
+            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
+            // 
+            // btnGroups
+            // 
+            this.btnGroups.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnGroups.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnGroups.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.btnGroups.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnGroups.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.btnGroups.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnGroups.ImagePosition = DevComponents.DotNetBar.eImagePosition.Right;
+            this.btnGroups.Location = new System.Drawing.Point(726, 559);
+            this.btnGroups.Name = "btnGroups";
+            this.btnGroups.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
+            this.btnGroups.Size = new System.Drawing.Size(69, 31);
+            this.btnGroups.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
+            this.btnGroups.SubItems.AddRange(new DevComponents.DotNetBar.BaseItem[] {
+            this.btnInsGroup,
+            this.btnUpGroup,
+            this.btnDelGroup});
+            this.btnGroups.TabIndex = 55757;
+            this.btnGroups.Text = "گروه ها";
+            this.btnGroups.TextAlignment = DevComponents.DotNetBar.eButtonTextAlignment.Left;
+            this.btnGroups.TextColor = System.Drawing.Color.Black;
+            // 
+            // btnInsGroup
+            // 
+            this.btnInsGroup.GlobalItem = false;
+            this.btnInsGroup.Name = "btnInsGroup";
+            this.btnInsGroup.Text = "افزودن گروه جدید";
+            this.btnInsGroup.Click += new System.EventHandler(this.btnInsGroup_Click);
+            // 
+            // btnUpGroup
+            // 
+            this.btnUpGroup.GlobalItem = false;
+            this.btnUpGroup.Name = "btnUpGroup";
+            this.btnUpGroup.Text = "ویرایش گروه جاری";
+            this.btnUpGroup.Click += new System.EventHandler(this.btnUpGroup_Click);
+            // 
+            // btnDelGroup
+            // 
+            this.btnDelGroup.GlobalItem = false;
+            this.btnDelGroup.Name = "btnDelGroup";
+            this.btnDelGroup.Text = "حذف گروه جاری";
+            this.btnDelGroup.Click += new System.EventHandler(this.btnDelGroup_Click);
+            // 
+            // btnOther
+            // 
+            this.btnOther.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnOther.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnOther.BackColor = System.Drawing.Color.Silver;
+            this.btnOther.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnOther.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.btnOther.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnOther.Location = new System.Drawing.Point(4, 559);
+            this.btnOther.Name = "btnOther";
+            this.btnOther.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
+            this.btnOther.Size = new System.Drawing.Size(61, 31);
+            this.btnOther.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
+            this.btnOther.SubItems.AddRange(new DevComponents.DotNetBar.BaseItem[] {
+            this.btnTell,
+            this.btnBank,
+            this.btnSendSMS});
+            this.btnOther.TabIndex = 55756;
+            this.btnOther.Text = "سایر";
+            this.btnOther.TextAlignment = DevComponents.DotNetBar.eButtonTextAlignment.Left;
+            this.btnOther.TextColor = System.Drawing.Color.Black;
+            // 
+            // btnTell
+            // 
+            this.btnTell.GlobalItem = false;
+            this.btnTell.Name = "btnTell";
+            this.btnTell.Text = "مشاهده اطلاعات تماس";
+            this.btnTell.Click += new System.EventHandler(this.btnTell_Click);
+            // 
+            // btnBank
+            // 
+            this.btnBank.GlobalItem = false;
+            this.btnBank.Name = "btnBank";
+            this.btnBank.Text = "مشاهده اطلاعات حساب های بانکی";
+            this.btnBank.Click += new System.EventHandler(this.btnBank_Click);
+            // 
+            // btnSendSMS
+            // 
+            this.btnSendSMS.GlobalItem = false;
+            this.btnSendSMS.Name = "btnSendSMS";
+            this.btnSendSMS.Text = "ارسال پیامک";
+            this.btnSendSMS.Click += new System.EventHandler(this.btnSendSMS_Click);
+            // 
+            // btnSelect
+            // 
+            this.btnSelect.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnSelect.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSelect.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.btnSelect.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnSelect.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.btnSelect.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSelect.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.btnSelect.Location = new System.Drawing.Point(217, 559);
+            this.btnSelect.Name = "btnSelect";
+            this.btnSelect.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
+            this.btnSelect.Size = new System.Drawing.Size(414, 31);
+            this.btnSelect.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
+            this.btnSelect.TabIndex = 55760;
+            this.btnSelect.Text = "انتخاب";
+            this.btnSelect.TextColor = System.Drawing.Color.White;
+            this.btnSelect.Click += new System.EventHandler(this.btnSelect_Click);
             // 
             // codeDataGridViewTextBoxColumn
             // 
@@ -314,290 +519,20 @@
             this.groupGuidDataGridViewTextBoxColumn.ReadOnly = true;
             this.groupGuidDataGridViewTextBoxColumn.Visible = false;
             // 
-            // cmPeoples
-            // 
-            this.cmPeoples.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.cmPeoples.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mnuPhone,
-            this.mnuBank,
-            this.toolStripMenuItem1,
-            this.mnuSms});
-            this.cmPeoples.Name = "cmPeoples";
-            this.cmPeoples.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.cmPeoples.Size = new System.Drawing.Size(237, 82);
-            // 
-            // mnuPhone
-            // 
-            this.mnuPhone.Image = global::Peoples.Properties.Resources.description;
-            this.mnuPhone.Name = "mnuPhone";
-            this.mnuPhone.Size = new System.Drawing.Size(236, 24);
-            this.mnuPhone.Text = "مشاهده اطلاعات تماس";
-            this.mnuPhone.Click += new System.EventHandler(this.mnuPhone_Click);
-            // 
-            // mnuBank
-            // 
-            this.mnuBank.Image = global::Peoples.Properties.Resources.basic_information;
-            this.mnuBank.Name = "mnuBank";
-            this.mnuBank.Size = new System.Drawing.Size(236, 24);
-            this.mnuBank.Text = "مشاهده اطلاعات حساب های بانکی";
-            this.mnuBank.Click += new System.EventHandler(this.mnuBank_Click);
-            // 
-            // toolStripMenuItem1
-            // 
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(233, 6);
-            // 
-            // mnuSms
-            // 
-            this.mnuSms.Image = global::Peoples.Properties.Resources.button_send_sms;
-            this.mnuSms.Name = "mnuSms";
-            this.mnuSms.Size = new System.Drawing.Size(236, 24);
-            this.mnuSms.Text = "ارسال پیامک";
-            // 
             // peopleBindingSource
             // 
             this.peopleBindingSource.DataSource = typeof(EntityCache.Bussines.PeoplesBussines);
             // 
-            // trvGroup
-            // 
-            this.trvGroup.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.trvGroup.BackColor = System.Drawing.Color.White;
-            this.trvGroup.ContextMenuStrip = this.cmGroup;
-            this.trvGroup.ForeColor = System.Drawing.Color.Black;
-            this.trvGroup.Location = new System.Drawing.Point(660, 70);
-            this.trvGroup.Name = "trvGroup";
-            this.trvGroup.RightToLeftLayout = true;
-            this.trvGroup.Size = new System.Drawing.Size(135, 468);
-            this.trvGroup.TabIndex = 55759;
-            this.trvGroup.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.trvGroup_AfterSelect);
-            // 
-            // cmGroup
-            // 
-            this.cmGroup.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.cmGroup.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mnuAdd,
-            this.mnuEdit,
-            this.mnuDelete});
-            this.cmGroup.Name = "cmGroup";
-            this.cmGroup.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.cmGroup.Size = new System.Drawing.Size(170, 76);
-            // 
-            // mnuAdd
-            // 
-            this.mnuAdd.Image = global::Peoples.Properties.Resources.add_1_;
-            this.mnuAdd.Name = "mnuAdd";
-            this.mnuAdd.Size = new System.Drawing.Size(169, 24);
-            this.mnuAdd.Text = "افزودن گروه جدید";
-            this.mnuAdd.Click += new System.EventHandler(this.mnuAdd_Click);
-            // 
-            // mnuEdit
-            // 
-            this.mnuEdit.Image = global::Peoples.Properties.Resources.edit_1_;
-            this.mnuEdit.Name = "mnuEdit";
-            this.mnuEdit.Size = new System.Drawing.Size(169, 24);
-            this.mnuEdit.Text = "ویرایش گروه جاری";
-            this.mnuEdit.Click += new System.EventHandler(this.mnuEdit_Click);
-            // 
-            // mnuDelete
-            // 
-            this.mnuDelete.Image = global::Peoples.Properties.Resources.delete_1_;
-            this.mnuDelete.Name = "mnuDelete";
-            this.mnuDelete.Size = new System.Drawing.Size(169, 24);
-            this.mnuDelete.Text = "حذف گروه جاری";
-            this.mnuDelete.Click += new System.EventHandler(this.mnuDelete_Click);
-            // 
-            // btnView
-            // 
-            this.btnView.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnView.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnView.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.btnView.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnView.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
-            this.btnView.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnView.Image = global::Peoples.Properties.Resources.article_1_;
-            this.btnView.Location = new System.Drawing.Point(202, 559);
-            this.btnView.Name = "btnView";
-            this.btnView.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
-            this.btnView.Size = new System.Drawing.Size(125, 31);
-            this.btnView.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
-            this.btnView.TabIndex = 55754;
-            this.btnView.Text = "مشاهده (F12)";
-            this.btnView.TextColor = System.Drawing.Color.Black;
-            this.btnView.Click += new System.EventHandler(this.btnView_Click);
-            // 
-            // btnChangeStatus
-            // 
-            this.btnChangeStatus.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnChangeStatus.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnChangeStatus.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.btnChangeStatus.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnChangeStatus.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
-            this.btnChangeStatus.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnChangeStatus.Image = global::Peoples.Properties.Resources.refresh_round_symbol;
-            this.btnChangeStatus.Location = new System.Drawing.Point(71, 559);
-            this.btnChangeStatus.Name = "btnChangeStatus";
-            this.btnChangeStatus.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
-            this.btnChangeStatus.Size = new System.Drawing.Size(125, 31);
-            this.btnChangeStatus.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
-            this.btnChangeStatus.TabIndex = 55756;
-            this.btnChangeStatus.Text = "غیرفعال (Ctrl+S)";
-            this.btnChangeStatus.TextColor = System.Drawing.Color.Black;
-            this.btnChangeStatus.Click += new System.EventHandler(this.btnChangeStatus_Click);
-            // 
-            // btnDelete
-            // 
-            this.btnDelete.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnDelete.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.btnDelete.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnDelete.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
-            this.btnDelete.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnDelete.Image = global::Peoples.Properties.Resources.delete_1_;
-            this.btnDelete.Location = new System.Drawing.Point(333, 559);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
-            this.btnDelete.Size = new System.Drawing.Size(125, 31);
-            this.btnDelete.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
-            this.btnDelete.TabIndex = 55755;
-            this.btnDelete.Text = "حذف (Del)";
-            this.btnDelete.TextColor = System.Drawing.Color.Black;
-            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
-            // 
-            // btnInsert
-            // 
-            this.btnInsert.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnInsert.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnInsert.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.btnInsert.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnInsert.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
-            this.btnInsert.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnInsert.Image = global::Peoples.Properties.Resources.add_1_;
-            this.btnInsert.Location = new System.Drawing.Point(595, 559);
-            this.btnInsert.Name = "btnInsert";
-            this.btnInsert.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
-            this.btnInsert.Size = new System.Drawing.Size(125, 31);
-            this.btnInsert.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
-            this.btnInsert.TabIndex = 55757;
-            this.btnInsert.Text = "افزودن (Ins)";
-            this.btnInsert.TextColor = System.Drawing.Color.Black;
-            this.btnInsert.Click += new System.EventHandler(this.btnInsert_Click);
-            // 
-            // btnEdit
-            // 
-            this.btnEdit.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnEdit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.btnEdit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnEdit.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
-            this.btnEdit.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnEdit.Image = global::Peoples.Properties.Resources.edit_1_;
-            this.btnEdit.Location = new System.Drawing.Point(464, 559);
-            this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
-            this.btnEdit.Size = new System.Drawing.Size(125, 31);
-            this.btnEdit.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
-            this.btnEdit.TabIndex = 55758;
-            this.btnEdit.Text = "ویرایش (F7)";
-            this.btnEdit.TextColor = System.Drawing.Color.Black;
-            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
-            // 
             // groupBindingSource
             // 
             this.groupBindingSource.DataSource = typeof(EntityCache.Bussines.PeopleGroupBussines);
-            // 
-            // btnGroups
-            // 
-            this.btnGroups.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnGroups.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnGroups.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.btnGroups.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnGroups.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
-            this.btnGroups.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnGroups.ImagePosition = DevComponents.DotNetBar.eImagePosition.Right;
-            this.btnGroups.Location = new System.Drawing.Point(726, 559);
-            this.btnGroups.Name = "btnGroups";
-            this.btnGroups.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
-            this.btnGroups.Size = new System.Drawing.Size(69, 31);
-            this.btnGroups.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
-            this.btnGroups.SubItems.AddRange(new DevComponents.DotNetBar.BaseItem[] {
-            this.btnInsGroup,
-            this.btnUpGroup,
-            this.btnDelGroup});
-            this.btnGroups.TabIndex = 55757;
-            this.btnGroups.Text = "گروه ها";
-            this.btnGroups.TextAlignment = DevComponents.DotNetBar.eButtonTextAlignment.Left;
-            this.btnGroups.TextColor = System.Drawing.Color.Black;
-            // 
-            // btnInsGroup
-            // 
-            this.btnInsGroup.GlobalItem = false;
-            this.btnInsGroup.Name = "btnInsGroup";
-            this.btnInsGroup.Text = "افزودن گروه جدید";
-            this.btnInsGroup.Click += new System.EventHandler(this.btnInsGroup_Click);
-            // 
-            // btnUpGroup
-            // 
-            this.btnUpGroup.GlobalItem = false;
-            this.btnUpGroup.Name = "btnUpGroup";
-            this.btnUpGroup.Text = "ویرایش گروه جاری";
-            this.btnUpGroup.Click += new System.EventHandler(this.btnUpGroup_Click);
-            // 
-            // btnDelGroup
-            // 
-            this.btnDelGroup.GlobalItem = false;
-            this.btnDelGroup.Name = "btnDelGroup";
-            this.btnDelGroup.Text = "حذف گروه جاری";
-            this.btnDelGroup.Click += new System.EventHandler(this.btnDelGroup_Click);
-            // 
-            // btnOther
-            // 
-            this.btnOther.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnOther.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnOther.BackColor = System.Drawing.Color.Silver;
-            this.btnOther.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnOther.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
-            this.btnOther.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnOther.Location = new System.Drawing.Point(4, 559);
-            this.btnOther.Name = "btnOther";
-            this.btnOther.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
-            this.btnOther.Size = new System.Drawing.Size(61, 31);
-            this.btnOther.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
-            this.btnOther.SubItems.AddRange(new DevComponents.DotNetBar.BaseItem[] {
-            this.btnTell,
-            this.btnBank,
-            this.btnSendSMS});
-            this.btnOther.TabIndex = 55756;
-            this.btnOther.Text = "سایر";
-            this.btnOther.TextAlignment = DevComponents.DotNetBar.eButtonTextAlignment.Left;
-            this.btnOther.TextColor = System.Drawing.Color.Black;
-            // 
-            // btnTell
-            // 
-            this.btnTell.GlobalItem = false;
-            this.btnTell.Name = "btnTell";
-            this.btnTell.Text = "مشاهده اطلاعات تماس";
-            this.btnTell.Click += new System.EventHandler(this.btnTell_Click);
-            // 
-            // btnBank
-            // 
-            this.btnBank.GlobalItem = false;
-            this.btnBank.Name = "btnBank";
-            this.btnBank.Text = "مشاهده اطلاعات حساب های بانکی";
-            this.btnBank.Click += new System.EventHandler(this.btnBank_Click);
-            // 
-            // btnSendSMS
-            // 
-            this.btnSendSMS.GlobalItem = false;
-            this.btnSendSMS.Name = "btnSendSMS";
-            this.btnSendSMS.Text = "ارسال پیامک";
-            this.btnSendSMS.Click += new System.EventHandler(this.btnSendSMS_Click);
             // 
             // frmShowPeoples
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 600);
+            this.Controls.Add(this.btnSelect);
             this.Controls.Add(this.trvGroup);
             this.Controls.Add(this.btnView);
             this.Controls.Add(this.btnOther);
@@ -622,9 +557,7 @@
             this.Load += new System.EventHandler(this.frmShowPeoples_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmShowPeoples_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).EndInit();
-            this.cmPeoples.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.peopleBindingSource)).EndInit();
-            this.cmGroup.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.groupBindingSource)).EndInit();
             this.ResumeLayout(false);
 
@@ -643,15 +576,6 @@
         private DevComponents.DotNetBar.Controls.DataGridViewX DGrid;
         private System.Windows.Forms.TreeView trvGroup;
         private System.Windows.Forms.BindingSource groupBindingSource;
-        private System.Windows.Forms.ContextMenuStrip cmGroup;
-        private System.Windows.Forms.ContextMenuStrip cmPeoples;
-        private System.Windows.Forms.ToolStripMenuItem mnuPhone;
-        private System.Windows.Forms.ToolStripMenuItem mnuBank;
-        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem mnuSms;
-        private System.Windows.Forms.ToolStripMenuItem mnuAdd;
-        private System.Windows.Forms.ToolStripMenuItem mnuEdit;
-        private System.Windows.Forms.ToolStripMenuItem mnuDelete;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgRadif;
         private System.Windows.Forms.DataGridViewTextBoxColumn codeDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgName;
@@ -676,5 +600,6 @@
         private DevComponents.DotNetBar.ButtonItem btnTell;
         private DevComponents.DotNetBar.ButtonItem btnBank;
         private DevComponents.DotNetBar.ButtonItem btnSendSMS;
+        private DevComponents.DotNetBar.ButtonX btnSelect;
     }
 }

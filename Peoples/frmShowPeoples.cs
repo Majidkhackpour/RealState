@@ -13,6 +13,8 @@ namespace Peoples
     {
         private Guid _groupGuid = Guid.Empty;
         public Guid GroupGuid { get => _groupGuid; set => _groupGuid = value; }
+        public Guid SelectedGuid { get; set; }
+        private bool isShowMode = false;
         private bool _st = true;
         public bool ST
         {
@@ -95,9 +97,32 @@ namespace Peoples
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        public frmShowPeoples()
+        public frmShowPeoples(bool _isShowMode)
         {
             InitializeComponent();
+            isShowMode = _isShowMode;
+            if (isShowMode)
+            {
+                btnDelete.Visible = false;
+                btnInsert.Visible = false;
+                btnEdit.Visible = false;
+                btnGroups.Visible = false;
+                btnView.Visible = false;
+                btnChangeStatus.Visible = false;
+                btnOther.Visible = false;
+                btnSelect.Visible = true;
+            }
+            else
+            {
+                btnDelete.Visible = true;
+                btnInsert.Visible = true;
+                btnEdit.Visible = true;
+                btnGroups.Visible = true;
+                btnView.Visible = true;
+                btnChangeStatus.Visible = true;
+                btnOther.Visible = true;
+                btnSelect.Visible = false;
+            }
         }
 
         private void frmShowPeoples_Load(object sender, EventArgs e)
@@ -145,36 +170,6 @@ namespace Peoples
             }
         }
 
-        private void mnuAdd_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                var frm = new frmPropleGroup();
-                if (frm.ShowDialog() == DialogResult.OK)
-                    LoadGroups();
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-
-        private void mnuEdit_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (trvGroup.SelectedNode == null) return;
-                if (trvGroup.SelectedNode.Text == "همه گروه ها") return;
-                var frm = new frmPropleGroup(GroupGuid);
-                if (frm.ShowDialog() == DialogResult.OK)
-                    LoadGroups();
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-
         private async void trvGroup_AfterSelect(object sender, TreeViewEventArgs e)
         {
             try
@@ -197,46 +192,7 @@ namespace Peoples
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-
-        private async void mnuDelete_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (trvGroup.SelectedNode == null) return;
-                if (trvGroup.SelectedNode.Text == "همه گروه ها") return;
-
-                var counter = await PeopleGroupBussines.ChildCountAsync(GroupGuid);
-                if (counter > 0)
-                {
-                    frmNotification.PublicInfo.ShowMessage(
-                        $"گروه {trvGroup.SelectedNode.Text} بدلیل داشتن {counter} زیرگروه فعال، قادر به حذف نیست");
-                    return;
-                }
-
-                var childes = await PeoplesBussines.GetAllAsync(GroupGuid, true);
-                if (childes != null && childes.Count > 0)
-                {
-                    frmNotification.PublicInfo.ShowMessage(
-                        $"گروه {trvGroup.SelectedNode.Text} بدلیل داشتن {childes.Count} شخص فعال، قادر به حذف نیست");
-                    return;
-                }
-                if (MessageBox.Show($@"آیا از حذف گروه {trvGroup.SelectedNode.Text} اطمینان دارید؟", "حذف", MessageBoxButtons.YesNo,
-                        MessageBoxIcon.Question) == DialogResult.No) return;
-                var group = await PeopleGroupBussines.GetAsync(GroupGuid);
-                var res = await group.ChangeStatusAsync(false);
-                if (res.HasError)
-                {
-                    frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);
-                    return;
-                }
-                LoadGroups();
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-
+        
         private void btnInsert_Click(object sender, EventArgs e)
         {
             try
@@ -387,15 +343,13 @@ namespace Peoples
             }
         }
 
-        private void mnuBank_Click(object sender, EventArgs e)
+        private void btnInsGroup_Click(object sender, EventArgs e)
         {
             try
             {
-                if (DGrid.RowCount <= 0) return;
-                if (DGrid.CurrentRow == null) return;
-                var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
-                var frm = new frmPeoplesBankAccount(guid);
-                frm.ShowDialog();
+                var frm = new frmPropleGroup();
+                if (frm.ShowDialog() == DialogResult.OK)
+                    LoadGroups();
             }
             catch (Exception ex)
             {
@@ -403,7 +357,62 @@ namespace Peoples
             }
         }
 
-        private void mnuPhone_Click(object sender, EventArgs e)
+        private void btnUpGroup_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (trvGroup.SelectedNode == null) return;
+                if (trvGroup.SelectedNode.Text == "همه گروه ها") return;
+                var frm = new frmPropleGroup(GroupGuid);
+                if (frm.ShowDialog() == DialogResult.OK)
+                    LoadGroups();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private async void btnDelGroup_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (trvGroup.SelectedNode == null) return;
+                if (trvGroup.SelectedNode.Text == "همه گروه ها") return;
+
+                var counter = await PeopleGroupBussines.ChildCountAsync(GroupGuid);
+                if (counter > 0)
+                {
+                    frmNotification.PublicInfo.ShowMessage(
+                        $"گروه {trvGroup.SelectedNode.Text} بدلیل داشتن {counter} زیرگروه فعال، قادر به حذف نیست");
+                    return;
+                }
+
+                var childes = await PeoplesBussines.GetAllAsync(GroupGuid, true);
+                if (childes != null && childes.Count > 0)
+                {
+                    frmNotification.PublicInfo.ShowMessage(
+                        $"گروه {trvGroup.SelectedNode.Text} بدلیل داشتن {childes.Count} شخص فعال، قادر به حذف نیست");
+                    return;
+                }
+                if (MessageBox.Show($@"آیا از حذف گروه {trvGroup.SelectedNode.Text} اطمینان دارید؟", "حذف", MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Question) == DialogResult.No) return;
+                var group = await PeopleGroupBussines.GetAsync(GroupGuid);
+                var res = await group.ChangeStatusAsync(false);
+                if (res.HasError)
+                {
+                    frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);
+                    return;
+                }
+                LoadGroups();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private void btnTell_Click(object sender, EventArgs e)
         {
             try
             {
@@ -419,71 +428,15 @@ namespace Peoples
             }
         }
 
-        private void lblMore_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            try
-            {
-                cmPeoples.Visible = true;
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-
-        private void btnInsGroup_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                mnuAdd_Click(null, null);
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-
-        private void btnUpGroup_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                mnuEdit_Click(null, null);
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-
-        private void btnDelGroup_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                mnuDelete_Click(null, null);
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-
-        private void btnTell_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                mnuPhone_Click(null, null);
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-
         private void btnBank_Click(object sender, EventArgs e)
         {
             try
             {
-                mnuBank_Click(null, null);
+                if (DGrid.RowCount <= 0) return;
+                if (DGrid.CurrentRow == null) return;
+                var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
+                var frm = new frmPeoplesBankAccount(guid);
+                frm.ShowDialog();
             }
             catch (Exception ex)
             {
@@ -494,6 +447,35 @@ namespace Peoples
         private void btnSendSMS_Click(object sender, EventArgs e)
         {
             
+        }
+
+        private void btnSelect_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (DGrid.RowCount <= 0) return;
+                if (DGrid.CurrentRow == null) return;
+                SelectedGuid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
+                DialogResult = DialogResult.OK;
+                Close();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private void DGrid_DoubleClick(object sender, EventArgs e)
+        {
+            try
+            {
+                if (!isShowMode) return;
+                btnSelect.PerformClick();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
         }
     }
 }

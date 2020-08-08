@@ -31,6 +31,8 @@ namespace EntityCache.Assistence
             CreateMap<SimcardBussines, Simcard>().ReverseMap();
             CreateMap<AdvertiseLogBussines, AdvertiseLog>().ReverseMap();
             CreateMap<BuildingBussines, Building>().ReverseMap();
+            CreateMap<BuildingRelatedOptionsBussines, BuildingRelatedOptions>().ReverseMap();
+            CreateMap<BuildingGalleryBussines, BuildingGallery>().ReverseMap();
         }
     }
 }

@@ -8,6 +8,51 @@ ALTER TABLE [dbo].[Regions]  WITH CHECK ADD  CONSTRAINT [FK_Regions_States] FORE
 REFERENCES [dbo].[Cities] ([Guid])
 GO
 
+IF NOT EXISTS (SELECT * FROM sys.foreign_keys WHERE object_id = OBJECT_ID(N'[dbo].[FK_Buildings_Peoples]') AND parent_object_id = OBJECT_ID(N'[dbo].[Buildings]'))
+ALTER TABLE [dbo].[Buildings]  WITH CHECK ADD  CONSTRAINT [FK_Buildings_Peoples] FOREIGN KEY([OwnerGuid])
+REFERENCES [dbo].[Peoples] ([Guid])
+GO
+
+IF NOT EXISTS (SELECT * FROM sys.foreign_keys WHERE object_id = OBJECT_ID(N'[dbo].[FK_Buildings_Users]') AND parent_object_id = OBJECT_ID(N'[dbo].[Buildings]'))
+ALTER TABLE [dbo].[Buildings]  WITH CHECK ADD  CONSTRAINT [FK_Buildings_Users] FOREIGN KEY([UserGuid])
+REFERENCES [dbo].[Users] ([Guid])
+GO
+
+IF NOT EXISTS (SELECT * FROM sys.foreign_keys WHERE object_id = OBJECT_ID(N'[dbo].[FK_Buildings_Cities]') AND parent_object_id = OBJECT_ID(N'[dbo].[Buildings]'))
+ALTER TABLE [dbo].[Buildings]  WITH CHECK ADD  CONSTRAINT [FK_Buildings_Cities] FOREIGN KEY([CityGuid])
+REFERENCES [dbo].[Cities] ([Guid])
+GO
+
+IF NOT EXISTS (SELECT * FROM sys.foreign_keys WHERE object_id = OBJECT_ID(N'[dbo].[FK_Buildings_Regions]') AND parent_object_id = OBJECT_ID(N'[dbo].[Buildings]'))
+ALTER TABLE [dbo].[Buildings]  WITH CHECK ADD  CONSTRAINT [FK_Buildings_Regions] FOREIGN KEY([RegionGuid])
+REFERENCES [dbo].[Regions] ([Guid])
+GO
+
+IF NOT EXISTS (SELECT * FROM sys.foreign_keys WHERE object_id = OBJECT_ID(N'[dbo].[FK_Buildings_BuildingType]') AND parent_object_id = OBJECT_ID(N'[dbo].[Buildings]'))
+ALTER TABLE [dbo].[Buildings]  WITH CHECK ADD  CONSTRAINT [FK_Buildings_BuildingType] FOREIGN KEY([BuildingTypeGuid])
+REFERENCES [dbo].[BuildingTypes] ([Guid])
+GO
+
+IF NOT EXISTS (SELECT * FROM sys.foreign_keys WHERE object_id = OBJECT_ID(N'[dbo].[FK_Buildings_BuildingAccountType]') AND parent_object_id = OBJECT_ID(N'[dbo].[Buildings]'))
+ALTER TABLE [dbo].[Buildings]  WITH CHECK ADD  CONSTRAINT [FK_Buildings_BuildingAccountType] FOREIGN KEY([BuildingAccountTypeGuid])
+REFERENCES [dbo].[BuildingAccountTypes] ([Guid])
+GO
+
+IF NOT EXISTS (SELECT * FROM sys.foreign_keys WHERE object_id = OBJECT_ID(N'[dbo].[FK_Buildings_BuildingView]') AND parent_object_id = OBJECT_ID(N'[dbo].[Buildings]'))
+ALTER TABLE [dbo].[Buildings]  WITH CHECK ADD  CONSTRAINT [FK_Buildings_BuildingView] FOREIGN KEY([BuildingViewGuid])
+REFERENCES [dbo].[BuildingViews] ([Guid])
+GO
+
+IF NOT EXISTS (SELECT * FROM sys.foreign_keys WHERE object_id = OBJECT_ID(N'[dbo].[FK_Buildings_FloorCover]') AND parent_object_id = OBJECT_ID(N'[dbo].[Buildings]'))
+ALTER TABLE [dbo].[Buildings]  WITH CHECK ADD  CONSTRAINT [FK_Buildings_FloorCover] FOREIGN KEY([FloorCoverGuid])
+REFERENCES [dbo].[FloorCovers] ([Guid])
+GO
+
+IF NOT EXISTS (SELECT * FROM sys.foreign_keys WHERE object_id = OBJECT_ID(N'[dbo].[FK_Buildings_KitchenService]') AND parent_object_id = OBJECT_ID(N'[dbo].[Buildings]'))
+ALTER TABLE [dbo].[Buildings]  WITH CHECK ADD  CONSTRAINT [FK_Buildings_KitchenService] FOREIGN KEY([KitchenServiceGuid])
+REFERENCES [dbo].[KitchenServices] ([Guid])
+GO
+
 -- ==========================================================================================
 IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Cities_SelectAll]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
 	exec('Create Procedure [dbo].[sp_Cities_SelectAll]	As Begin print 11 end')
@@ -65,4 +110,20 @@ BEGIN
 	on Cities.StateGuid=States.Guid
 	where Cities.StateGuid=@stateGuid
 	order by StateName, Cities.Name
+END
+GO
+-- ==========================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Buildings_SelectAll]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Buildings_SelectAll]	As Begin print 11 end')
+GO
+
+ALTER PROCEDURE [dbo].[sp_Buildings_SelectAll] 
+AS
+BEGIN
+select [dbo].[Buildings].*,[dbo].[Peoples].Name As OwnerName,
+       [dbo].[BuildingTypes].Name As BuildingTypeName,
+	   [dbo].[Users].Name As UserName
+From [dbo].[Buildings] inner join [dbo].[Peoples] on [dbo].[Buildings].OwnerGuid=[dbo].[Peoples].Guid
+	 inner join [dbo].[BuildingTypes] on [dbo].[Buildings].BuildingTypeGuid=[dbo].[BuildingTypes].Guid
+	 inner join [dbo].[Users] on [dbo].[Buildings].UserGuid=[dbo].[Users].Guid
 END
