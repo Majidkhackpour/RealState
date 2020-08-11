@@ -60,8 +60,10 @@ namespace Persistence.Entities
         public int MetrazhKouche { get; set; }
         public int ErtefaSaqf { get; set; }
         public int Hashie { get; set; }
-        public DateTime? SaleSakht { get; set; }
-        public DateTime? DateParvane { get; set; }
+        [MaxLength(10)]
+        public string SaleSakht { get; set; }
+        [MaxLength(10)]
+        public string DateParvane { get; set; }
         [MaxLength(200)]
         public string ParvaneSerial { get; set; }
         public bool BonBast { get; set; }

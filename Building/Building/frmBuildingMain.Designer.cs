@@ -62,138 +62,174 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.superTabControl2 = new DevComponents.DotNetBar.SuperTabControl();
-            this.superTabControlPanel8 = new DevComponents.DotNetBar.SuperTabControlPanel();
-            this.checkBoxX2 = new DevComponents.DotNetBar.Controls.CheckBoxX();
-            this.checkBoxX1 = new DevComponents.DotNetBar.Controls.CheckBoxX();
-            this.numericUpDown4 = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
-            this.comboBox5 = new System.Windows.Forms.ComboBox();
-            this.comboBox4 = new System.Windows.Forms.ComboBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.numericUpDown3 = new System.Windows.Forms.NumericUpDown();
-            this.label19 = new System.Windows.Forms.Label();
-            this.label18 = new System.Windows.Forms.Label();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
-            this.label16 = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.label13 = new System.Windows.Forms.Label();
-            this.superTabItem8 = new DevComponents.DotNetBar.SuperTabItem();
+            this.superTabControlPanel10 = new DevComponents.DotNetBar.SuperTabControlPanel();
+            this.cmbMosharekatSanadType = new System.Windows.Forms.ComboBox();
+            this.sanadTypeBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.label11 = new System.Windows.Forms.Label();
+            this.txtMosharekatDong = new System.Windows.Forms.NumericUpDown();
+            this.cmbMosharekatTarakom = new System.Windows.Forms.ComboBox();
+            this.label61 = new System.Windows.Forms.Label();
+            this.label62 = new System.Windows.Forms.Label();
+            this.txtMosharekatDesc = new System.Windows.Forms.TextBox();
+            this.label63 = new System.Windows.Forms.Label();
+            this.superTabItem10 = new DevComponents.DotNetBar.SuperTabItem();
+            this.superTabControlPanel9 = new DevComponents.DotNetBar.SuperTabControlPanel();
+            this.cmbMoavezeSanadType = new System.Windows.Forms.ComboBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.txtMoavezeDong = new System.Windows.Forms.NumericUpDown();
+            this.cmbMoavezeTarakom = new System.Windows.Forms.ComboBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.txtMoavezeDesc = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.superTabItem9 = new DevComponents.DotNetBar.SuperTabItem();
             this.superTabControlPanel11 = new DevComponents.DotNetBar.SuperTabControlPanel();
-            this.txtAddress = new System.Windows.Forms.TextBox();
-            this.txtDateBirth = new BPersianCalender.BPersianCalenderTextBox();
-            this.comboBox13 = new System.Windows.Forms.ComboBox();
+            this.txtPishDesc = new System.Windows.Forms.TextBox();
+            this.txtDeliveryDate = new BPersianCalender.BPersianCalenderTextBox();
+            this.cmbPishSanadType = new System.Windows.Forms.ComboBox();
             this.label31 = new System.Windows.Forms.Label();
             this.label30 = new System.Windows.Forms.Label();
-            this.numericUpDown11 = new System.Windows.Forms.NumericUpDown();
+            this.txtPishDong = new System.Windows.Forms.NumericUpDown();
             this.label29 = new System.Windows.Forms.Label();
-            this.numericUpDown9 = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDown10 = new System.Windows.Forms.NumericUpDown();
-            this.comboBox11 = new System.Windows.Forms.ComboBox();
+            this.txtPishPrice = new System.Windows.Forms.NumericUpDown();
+            this.txtPishTotalPrice = new System.Windows.Forms.NumericUpDown();
+            this.cmbPishPrice = new System.Windows.Forms.ComboBox();
             this.label27 = new System.Windows.Forms.Label();
-            this.comboBox12 = new System.Windows.Forms.ComboBox();
+            this.cmbPishTotalPrice = new System.Windows.Forms.ComboBox();
             this.label28 = new System.Windows.Forms.Label();
             this.label26 = new System.Windows.Forms.Label();
             this.superTabItem11 = new DevComponents.DotNetBar.SuperTabItem();
             this.superTabControlPanel7 = new DevComponents.DotNetBar.SuperTabControlPanel();
-            this.comboBox10 = new System.Windows.Forms.ComboBox();
+            this.cmbSellSanadType = new System.Windows.Forms.ComboBox();
             this.label24 = new System.Windows.Forms.Label();
-            this.numericUpDown5 = new System.Windows.Forms.NumericUpDown();
-            this.comboBox6 = new System.Windows.Forms.ComboBox();
-            this.numericUpDown8 = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDown6 = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDown7 = new System.Windows.Forms.NumericUpDown();
-            this.comboBox9 = new System.Windows.Forms.ComboBox();
-            this.comboBox7 = new System.Windows.Forms.ComboBox();
+            this.txtVamPrice = new System.Windows.Forms.NumericUpDown();
+            this.cmbVamPrice = new System.Windows.Forms.ComboBox();
+            this.txtDong = new System.Windows.Forms.NumericUpDown();
+            this.txtQestPrice = new System.Windows.Forms.NumericUpDown();
+            this.txtSellPrice = new System.Windows.Forms.NumericUpDown();
+            this.cmbSellTarakom = new System.Windows.Forms.ComboBox();
+            this.cmbQestPrice = new System.Windows.Forms.ComboBox();
             this.label25 = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
-            this.comboBox8 = new System.Windows.Forms.ComboBox();
+            this.cmbSellPrice = new System.Windows.Forms.ComboBox();
             this.label22 = new System.Windows.Forms.Label();
             this.superTabItem7 = new DevComponents.DotNetBar.SuperTabItem();
-            this.superTabControlPanel10 = new DevComponents.DotNetBar.SuperTabControlPanel();
-            this.superTabItem10 = new DevComponents.DotNetBar.SuperTabItem();
-            this.superTabControlPanel9 = new DevComponents.DotNetBar.SuperTabControlPanel();
-            this.superTabItem9 = new DevComponents.DotNetBar.SuperTabItem();
+            this.superTabControlPanel8 = new DevComponents.DotNetBar.SuperTabControlPanel();
+            this.chbShortRent = new DevComponents.DotNetBar.Controls.CheckBoxX();
+            this.chbOwnerHere = new DevComponents.DotNetBar.Controls.CheckBoxX();
+            this.txtEjarePrice2 = new System.Windows.Forms.NumericUpDown();
+            this.txtEjarePrice1 = new System.Windows.Forms.NumericUpDown();
+            this.cmbRentalAuthority = new System.Windows.Forms.ComboBox();
+            this.rentalBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.cmbEjare2 = new System.Windows.Forms.ComboBox();
+            this.cmbEjare1 = new System.Windows.Forms.ComboBox();
+            this.txtRahnPrice2 = new System.Windows.Forms.NumericUpDown();
+            this.label19 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.txtRahnPrice1 = new System.Windows.Forms.NumericUpDown();
+            this.cmbRahn2 = new System.Windows.Forms.ComboBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.cmbRahn1 = new System.Windows.Forms.ComboBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.superTabItem8 = new DevComponents.DotNetBar.SuperTabItem();
             this.superTabItem1 = new DevComponents.DotNetBar.SuperTabItem();
-            this.superTabControlPanel4 = new DevComponents.DotNetBar.SuperTabControlPanel();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.label60 = new System.Windows.Forms.Label();
-            this.comboBox32 = new System.Windows.Forms.ComboBox();
-            this.label59 = new System.Windows.Forms.Label();
-            this.comboBox31 = new System.Windows.Forms.ComboBox();
-            this.label58 = new System.Windows.Forms.Label();
-            this.checkBoxX3 = new DevComponents.DotNetBar.Controls.CheckBoxX();
-            this.checkBoxX4 = new DevComponents.DotNetBar.Controls.CheckBoxX();
-            this.label57 = new System.Windows.Forms.Label();
-            this.textBoxX4 = new DevComponents.DotNetBar.Controls.TextBoxX();
-            this.label56 = new System.Windows.Forms.Label();
-            this.textBoxX3 = new DevComponents.DotNetBar.Controls.TextBoxX();
-            this.label55 = new System.Windows.Forms.Label();
-            this.textBoxX2 = new DevComponents.DotNetBar.Controls.TextBoxX();
-            this.label54 = new System.Windows.Forms.Label();
-            this.textBoxX1 = new DevComponents.DotNetBar.Controls.TextBoxX();
-            this.superTabItem4 = new DevComponents.DotNetBar.SuperTabItem();
             this.superTabControlPanel3 = new DevComponents.DotNetBar.SuperTabControlPanel();
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txtShortDesc = new System.Windows.Forms.TextBox();
             this.label41 = new System.Windows.Forms.Label();
-            this.comboBox25 = new System.Windows.Forms.ComboBox();
+            this.cmbKitchenService = new System.Windows.Forms.ComboBox();
+            this.KitchenServiceBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label45 = new System.Windows.Forms.Label();
-            this.comboBox24 = new System.Windows.Forms.ComboBox();
+            this.cmbBFloorCover = new System.Windows.Forms.ComboBox();
+            this.FloorCoverBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label44 = new System.Windows.Forms.Label();
-            this.comboBox23 = new System.Windows.Forms.ComboBox();
+            this.cmbBView = new System.Windows.Forms.ComboBox();
+            this.BuildingViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label43 = new System.Windows.Forms.Label();
-            this.comboBox22 = new System.Windows.Forms.ComboBox();
+            this.cmbBAccountType = new System.Windows.Forms.ComboBox();
+            this.batBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label42 = new System.Windows.Forms.Label();
-            this.comboBox21 = new System.Windows.Forms.ComboBox();
+            this.cmbBuildingType = new System.Windows.Forms.ComboBox();
+            this.bTypeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label40 = new System.Windows.Forms.Label();
-            this.numericUpDown14 = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDown15 = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDown16 = new System.Windows.Forms.NumericUpDown();
+            this.txtTedadVahed = new System.Windows.Forms.NumericUpDown();
+            this.txtTedadTabaqe = new System.Windows.Forms.NumericUpDown();
+            this.txtTedadOtaq = new System.Windows.Forms.NumericUpDown();
             this.label50 = new System.Windows.Forms.Label();
             this.label51 = new System.Windows.Forms.Label();
             this.label52 = new System.Windows.Forms.Label();
-            this.comboBox26 = new System.Windows.Forms.ComboBox();
+            this.cmbWater = new System.Windows.Forms.ComboBox();
             this.label46 = new System.Windows.Forms.Label();
-            this.comboBox30 = new System.Windows.Forms.ComboBox();
-            this.comboBox29 = new System.Windows.Forms.ComboBox();
+            this.cmbTabaqeNo = new System.Windows.Forms.ComboBox();
+            this.cmbTell = new System.Windows.Forms.ComboBox();
             this.label53 = new System.Windows.Forms.Label();
-            this.comboBox28 = new System.Windows.Forms.ComboBox();
+            this.cmbGas = new System.Windows.Forms.ComboBox();
             this.label49 = new System.Windows.Forms.Label();
             this.label47 = new System.Windows.Forms.Label();
             this.label48 = new System.Windows.Forms.Label();
-            this.comboBox27 = new System.Windows.Forms.ComboBox();
+            this.cmbBarq = new System.Windows.Forms.ComboBox();
             this.superTabItem3 = new DevComponents.DotNetBar.SuperTabItem();
-            this.superTabControlPanel2 = new DevComponents.DotNetBar.SuperTabControlPanel();
-            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.comboBox18 = new System.Windows.Forms.ComboBox();
-            this.label37 = new System.Windows.Forms.Label();
-            this.comboBox20 = new System.Windows.Forms.ComboBox();
-            this.comboBox17 = new System.Windows.Forms.ComboBox();
-            this.comboBox19 = new System.Windows.Forms.ComboBox();
-            this.comboBox16 = new System.Windows.Forms.ComboBox();
-            this.comboBox15 = new System.Windows.Forms.ComboBox();
-            this.label36 = new System.Windows.Forms.Label();
-            this.label39 = new System.Windows.Forms.Label();
-            this.numericUpDown13 = new System.Windows.Forms.NumericUpDown();
-            this.label35 = new System.Windows.Forms.Label();
-            this.label38 = new System.Windows.Forms.Label();
-            this.comboBox14 = new System.Windows.Forms.ComboBox();
-            this.label34 = new System.Windows.Forms.Label();
-            this.label33 = new System.Windows.Forms.Label();
-            this.numericUpDown12 = new System.Windows.Forms.NumericUpDown();
-            this.label32 = new System.Windows.Forms.Label();
-            this.superTabItem2 = new DevComponents.DotNetBar.SuperTabItem();
             this.superTabControlPanel5 = new DevComponents.DotNetBar.SuperTabControlPanel();
             this.txtSearch = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.DGrid = new DevComponents.DotNetBar.Controls.DataGridViewX();
+            this.dgChecked = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgOptionGuid = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.modifiedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.statusDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.BuildingOptionBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.superTabItem5 = new DevComponents.DotNetBar.SuperTabItem();
             this.superTabControlPanel6 = new DevComponents.DotNetBar.SuperTabControlPanel();
+            this.btnDelImage = new DevComponents.DotNetBar.ButtonX();
+            this.btnInsImage = new DevComponents.DotNetBar.ButtonX();
+            this.fPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.superTabItem6 = new DevComponents.DotNetBar.SuperTabItem();
+            this.superTabControlPanel4 = new DevComponents.DotNetBar.SuperTabControlPanel();
+            this.txtSaleParvane = new System.Windows.Forms.TextBox();
+            this.txtSaleSakht = new System.Windows.Forms.TextBox();
+            this.txtSerialParvane = new System.Windows.Forms.TextBox();
+            this.label60 = new System.Windows.Forms.Label();
+            this.label59 = new System.Windows.Forms.Label();
+            this.label58 = new System.Windows.Forms.Label();
+            this.chbIsMamarJoda = new DevComponents.DotNetBar.Controls.CheckBoxX();
+            this.chbIsBonBast = new DevComponents.DotNetBar.Controls.CheckBoxX();
+            this.label57 = new System.Windows.Forms.Label();
+            this.txtMetrazhTejari = new DevComponents.DotNetBar.Controls.TextBoxX();
+            this.label56 = new System.Windows.Forms.Label();
+            this.txtHashie = new DevComponents.DotNetBar.Controls.TextBoxX();
+            this.label55 = new System.Windows.Forms.Label();
+            this.txtErtrfaSaqf = new DevComponents.DotNetBar.Controls.TextBoxX();
+            this.label54 = new System.Windows.Forms.Label();
+            this.txtMetrazhKouche = new DevComponents.DotNetBar.Controls.TextBoxX();
+            this.superTabItem4 = new DevComponents.DotNetBar.SuperTabItem();
+            this.superTabControlPanel2 = new DevComponents.DotNetBar.SuperTabControlPanel();
+            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+            this.txtAddress = new System.Windows.Forms.TextBox();
+            this.cmbRegion = new System.Windows.Forms.ComboBox();
+            this.RegionBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.label37 = new System.Windows.Forms.Label();
+            this.cmbSide = new System.Windows.Forms.ComboBox();
+            this.cmbCity = new System.Windows.Forms.ComboBox();
+            this.CityBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.cmbBuildingCondition = new System.Windows.Forms.ComboBox();
+            this.bConditionBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.cmbState = new System.Windows.Forms.ComboBox();
+            this.StateBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.cmbZirBana = new System.Windows.Forms.ComboBox();
+            this.label36 = new System.Windows.Forms.Label();
+            this.label39 = new System.Windows.Forms.Label();
+            this.txtZirBana = new System.Windows.Forms.NumericUpDown();
+            this.label35 = new System.Windows.Forms.Label();
+            this.label38 = new System.Windows.Forms.Label();
+            this.cmbMasahat = new System.Windows.Forms.ComboBox();
+            this.label34 = new System.Windows.Forms.Label();
+            this.label33 = new System.Windows.Forms.Label();
+            this.txtMasahat = new System.Windows.Forms.NumericUpDown();
+            this.label32 = new System.Windows.Forms.Label();
+            this.superTabItem2 = new DevComponents.DotNetBar.SuperTabItem();
             this.btnCancel = new DevComponents.DotNetBar.ButtonX();
             this.btnFinish = new DevComponents.DotNetBar.ButtonX();
             ((System.ComponentModel.ISupportInitialize)(this.superTabControl1)).BeginInit();
@@ -208,37 +244,54 @@
             this.groupPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.superTabControl2)).BeginInit();
             this.superTabControl2.SuspendLayout();
-            this.superTabControlPanel8.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            this.superTabControlPanel10.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.sanadTypeBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtMosharekatDong)).BeginInit();
+            this.superTabControlPanel9.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtMoavezeDong)).BeginInit();
             this.superTabControlPanel11.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown11)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown9)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown10)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtPishDong)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtPishPrice)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtPishTotalPrice)).BeginInit();
             this.superTabControlPanel7.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown8)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown7)).BeginInit();
-            this.superTabControlPanel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtVamPrice)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtDong)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtQestPrice)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtSellPrice)).BeginInit();
+            this.superTabControlPanel8.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtEjarePrice2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtEjarePrice1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rentalBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtRahnPrice2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtRahnPrice1)).BeginInit();
             this.superTabControlPanel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).BeginInit();
             this.splitContainer3.Panel1.SuspendLayout();
             this.splitContainer3.Panel2.SuspendLayout();
             this.splitContainer3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown14)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown15)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown16)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.KitchenServiceBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.FloorCoverBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BuildingViewBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.batBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bTypeBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtTedadVahed)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtTedadTabaqe)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtTedadOtaq)).BeginInit();
+            this.superTabControlPanel5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DGrid)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BuildingOptionBindingSource)).BeginInit();
+            this.superTabControlPanel6.SuspendLayout();
+            this.superTabControlPanel4.SuspendLayout();
             this.superTabControlPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown13)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown12)).BeginInit();
-            this.superTabControlPanel5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.DGrid)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RegionBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CityBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bConditionBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.StateBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtZirBana)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtMasahat)).BeginInit();
             this.SuspendLayout();
             // 
             // superTabControl1
@@ -262,11 +315,11 @@
             this.superTabControl1.ControlBox.CloseBox,
             this.superTabControl1.ControlBox.MenuBox});
             this.superTabControl1.Controls.Add(this.superTabControlPanel1);
-            this.superTabControl1.Controls.Add(this.superTabControlPanel4);
             this.superTabControl1.Controls.Add(this.superTabControlPanel3);
-            this.superTabControl1.Controls.Add(this.superTabControlPanel2);
             this.superTabControl1.Controls.Add(this.superTabControlPanel5);
             this.superTabControl1.Controls.Add(this.superTabControlPanel6);
+            this.superTabControl1.Controls.Add(this.superTabControlPanel4);
+            this.superTabControl1.Controls.Add(this.superTabControlPanel2);
             this.superTabControl1.Location = new System.Drawing.Point(7, 36);
             this.superTabControl1.Name = "superTabControl1";
             this.superTabControl1.ReorderTabsEnabled = true;
@@ -370,7 +423,7 @@
             this.lblDateNow.BackColor = System.Drawing.Color.Transparent;
             this.lblDateNow.Location = new System.Drawing.Point(3, 114);
             this.lblDateNow.Name = "lblDateNow";
-            this.lblDateNow.Size = new System.Drawing.Size(179, 20);
+            this.lblDateNow.Size = new System.Drawing.Size(137, 20);
             this.lblDateNow.TabIndex = 13;
             // 
             // cmbUser
@@ -384,7 +437,7 @@
             this.cmbUser.FormattingEnabled = true;
             this.cmbUser.Location = new System.Drawing.Point(3, 61);
             this.cmbUser.Name = "cmbUser";
-            this.cmbUser.Size = new System.Drawing.Size(175, 28);
+            this.cmbUser.Size = new System.Drawing.Size(133, 28);
             this.cmbUser.TabIndex = 11;
             this.cmbUser.ValueMember = "Guid";
             // 
@@ -398,7 +451,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtCode.Location = new System.Drawing.Point(3, 13);
             this.txtCode.Name = "txtCode";
-            this.txtCode.Size = new System.Drawing.Size(175, 27);
+            this.txtCode.Size = new System.Drawing.Size(133, 27);
             this.txtCode.TabIndex = 11;
             // 
             // label15
@@ -406,7 +459,7 @@
             this.label15.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label15.AutoSize = true;
             this.label15.BackColor = System.Drawing.Color.Transparent;
-            this.label15.Location = new System.Drawing.Point(194, 114);
+            this.label15.Location = new System.Drawing.Point(152, 114);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(55, 20);
             this.label15.TabIndex = 12;
@@ -417,7 +470,7 @@
             this.label14.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label14.AutoSize = true;
             this.label14.BackColor = System.Drawing.Color.Transparent;
-            this.label14.Location = new System.Drawing.Point(209, 64);
+            this.label14.Location = new System.Drawing.Point(167, 64);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(39, 20);
             this.label14.TabIndex = 12;
@@ -428,7 +481,7 @@
             this.label12.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label12.AutoSize = true;
             this.label12.BackColor = System.Drawing.Color.Transparent;
-            this.label12.Location = new System.Drawing.Point(204, 16);
+            this.label12.Location = new System.Drawing.Point(162, 16);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(44, 20);
             this.label12.TabIndex = 12;
@@ -534,7 +587,7 @@
             this.txttxtOwnerCode.Location = new System.Drawing.Point(118, 9);
             this.txttxtOwnerCode.Name = "txttxtOwnerCode";
             this.txttxtOwnerCode.ReadOnly = true;
-            this.txttxtOwnerCode.Size = new System.Drawing.Size(60, 27);
+            this.txttxtOwnerCode.Size = new System.Drawing.Size(18, 27);
             this.txttxtOwnerCode.TabIndex = 10;
             // 
             // label6
@@ -542,7 +595,7 @@
             this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label6.AutoSize = true;
             this.label6.BackColor = System.Drawing.Color.Transparent;
-            this.label6.Location = new System.Drawing.Point(209, 197);
+            this.label6.Location = new System.Drawing.Point(167, 197);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(39, 20);
             this.label6.TabIndex = 9;
@@ -553,7 +606,7 @@
             this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label5.AutoSize = true;
             this.label5.BackColor = System.Drawing.Color.Transparent;
-            this.label5.Location = new System.Drawing.Point(192, 160);
+            this.label5.Location = new System.Drawing.Point(150, 160);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(56, 20);
             this.label5.TabIndex = 9;
@@ -564,7 +617,7 @@
             this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label4.AutoSize = true;
             this.label4.BackColor = System.Drawing.Color.Transparent;
-            this.label4.Location = new System.Drawing.Point(190, 123);
+            this.label4.Location = new System.Drawing.Point(148, 123);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(58, 20);
             this.label4.TabIndex = 9;
@@ -575,7 +628,7 @@
             this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.Transparent;
-            this.label3.Location = new System.Drawing.Point(205, 86);
+            this.label3.Location = new System.Drawing.Point(163, 86);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(43, 20);
             this.label3.TabIndex = 9;
@@ -588,7 +641,7 @@
             this.lblOwnerAddress.BackColor = System.Drawing.Color.Transparent;
             this.lblOwnerAddress.Location = new System.Drawing.Point(3, 197);
             this.lblOwnerAddress.Name = "lblOwnerAddress";
-            this.lblOwnerAddress.Size = new System.Drawing.Size(150, 83);
+            this.lblOwnerAddress.Size = new System.Drawing.Size(108, 83);
             this.lblOwnerAddress.TabIndex = 9;
             // 
             // lblOwnerDateBirth
@@ -598,7 +651,7 @@
             this.lblOwnerDateBirth.BackColor = System.Drawing.Color.Transparent;
             this.lblOwnerDateBirth.Location = new System.Drawing.Point(3, 160);
             this.lblOwnerDateBirth.Name = "lblOwnerDateBirth";
-            this.lblOwnerDateBirth.Size = new System.Drawing.Size(150, 20);
+            this.lblOwnerDateBirth.Size = new System.Drawing.Size(108, 20);
             this.lblOwnerDateBirth.TabIndex = 9;
             // 
             // lblOwnerNCode
@@ -608,7 +661,7 @@
             this.lblOwnerNCode.BackColor = System.Drawing.Color.Transparent;
             this.lblOwnerNCode.Location = new System.Drawing.Point(3, 123);
             this.lblOwnerNCode.Name = "lblOwnerNCode";
-            this.lblOwnerNCode.Size = new System.Drawing.Size(150, 20);
+            this.lblOwnerNCode.Size = new System.Drawing.Size(108, 20);
             this.lblOwnerNCode.TabIndex = 9;
             // 
             // lblOwnerFatherName
@@ -618,7 +671,7 @@
             this.lblOwnerFatherName.BackColor = System.Drawing.Color.Transparent;
             this.lblOwnerFatherName.Location = new System.Drawing.Point(3, 86);
             this.lblOwnerFatherName.Name = "lblOwnerFatherName";
-            this.lblOwnerFatherName.Size = new System.Drawing.Size(150, 20);
+            this.lblOwnerFatherName.Size = new System.Drawing.Size(108, 20);
             this.lblOwnerFatherName.TabIndex = 9;
             // 
             // lblOwnerName
@@ -628,7 +681,7 @@
             this.lblOwnerName.BackColor = System.Drawing.Color.Transparent;
             this.lblOwnerName.Location = new System.Drawing.Point(3, 49);
             this.lblOwnerName.Name = "lblOwnerName";
-            this.lblOwnerName.Size = new System.Drawing.Size(150, 20);
+            this.lblOwnerName.Size = new System.Drawing.Size(108, 20);
             this.lblOwnerName.TabIndex = 9;
             // 
             // label2
@@ -636,7 +689,7 @@
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Location = new System.Drawing.Point(153, 49);
+            this.label2.Location = new System.Drawing.Point(111, 49);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(95, 20);
             this.label2.TabIndex = 9;
@@ -647,7 +700,7 @@
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Location = new System.Drawing.Point(184, 12);
+            this.label1.Location = new System.Drawing.Point(142, 12);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(64, 20);
             this.label1.TabIndex = 9;
@@ -671,10 +724,10 @@
             this.superTabControl2.ControlBox.CloseBox,
             this.superTabControl2.ControlBox.MenuBox});
             this.superTabControl2.Controls.Add(this.superTabControlPanel8);
-            this.superTabControl2.Controls.Add(this.superTabControlPanel11);
-            this.superTabControl2.Controls.Add(this.superTabControlPanel7);
             this.superTabControl2.Controls.Add(this.superTabControlPanel10);
             this.superTabControl2.Controls.Add(this.superTabControlPanel9);
+            this.superTabControl2.Controls.Add(this.superTabControlPanel11);
+            this.superTabControl2.Controls.Add(this.superTabControlPanel7);
             this.superTabControl2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.superTabControl2.Location = new System.Drawing.Point(0, 0);
             this.superTabControl2.Name = "superTabControl2";
@@ -693,255 +746,294 @@
             this.superTabControl2.TabStyle = DevComponents.DotNetBar.eSuperTabStyle.WinMediaPlayer12;
             this.superTabControl2.Text = "superTabControl2";
             // 
-            // superTabControlPanel8
+            // superTabControlPanel10
             // 
-            this.superTabControlPanel8.Controls.Add(this.checkBoxX2);
-            this.superTabControlPanel8.Controls.Add(this.checkBoxX1);
-            this.superTabControlPanel8.Controls.Add(this.numericUpDown4);
-            this.superTabControlPanel8.Controls.Add(this.numericUpDown2);
-            this.superTabControlPanel8.Controls.Add(this.comboBox5);
-            this.superTabControlPanel8.Controls.Add(this.comboBox4);
-            this.superTabControlPanel8.Controls.Add(this.comboBox2);
-            this.superTabControlPanel8.Controls.Add(this.numericUpDown3);
-            this.superTabControlPanel8.Controls.Add(this.label19);
-            this.superTabControlPanel8.Controls.Add(this.label18);
-            this.superTabControlPanel8.Controls.Add(this.numericUpDown1);
-            this.superTabControlPanel8.Controls.Add(this.comboBox3);
-            this.superTabControlPanel8.Controls.Add(this.label16);
-            this.superTabControlPanel8.Controls.Add(this.label17);
-            this.superTabControlPanel8.Controls.Add(this.comboBox1);
-            this.superTabControlPanel8.Controls.Add(this.label13);
-            this.superTabControlPanel8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.superTabControlPanel8.Location = new System.Drawing.Point(0, 30);
-            this.superTabControlPanel8.Name = "superTabControlPanel8";
-            this.superTabControlPanel8.Size = new System.Drawing.Size(497, 449);
-            this.superTabControlPanel8.TabIndex = 0;
-            this.superTabControlPanel8.TabItem = this.superTabItem8;
+            this.superTabControlPanel10.Controls.Add(this.cmbMosharekatSanadType);
+            this.superTabControlPanel10.Controls.Add(this.label11);
+            this.superTabControlPanel10.Controls.Add(this.txtMosharekatDong);
+            this.superTabControlPanel10.Controls.Add(this.cmbMosharekatTarakom);
+            this.superTabControlPanel10.Controls.Add(this.label61);
+            this.superTabControlPanel10.Controls.Add(this.label62);
+            this.superTabControlPanel10.Controls.Add(this.txtMosharekatDesc);
+            this.superTabControlPanel10.Controls.Add(this.label63);
+            this.superTabControlPanel10.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.superTabControlPanel10.Location = new System.Drawing.Point(0, 30);
+            this.superTabControlPanel10.Name = "superTabControlPanel10";
+            this.superTabControlPanel10.Size = new System.Drawing.Size(497, 449);
+            this.superTabControlPanel10.TabIndex = 0;
+            this.superTabControlPanel10.TabItem = this.superTabItem10;
             // 
-            // checkBoxX2
+            // cmbMosharekatSanadType
             // 
-            this.checkBoxX2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            // 
-            // 
-            // 
-            this.checkBoxX2.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.checkBoxX2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.checkBoxX2.Location = new System.Drawing.Point(211, 221);
-            this.checkBoxX2.Name = "checkBoxX2";
-            this.checkBoxX2.Size = new System.Drawing.Size(263, 23);
-            this.checkBoxX2.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.checkBoxX2.TabIndex = 15;
-            this.checkBoxX2.Text = "اجاره کوتاه مدت";
-            // 
-            // checkBoxX1
-            // 
-            this.checkBoxX1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            // 
-            // 
-            // 
-            this.checkBoxX1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.checkBoxX1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.checkBoxX1.Location = new System.Drawing.Point(211, 192);
-            this.checkBoxX1.Name = "checkBoxX1";
-            this.checkBoxX1.Size = new System.Drawing.Size(263, 23);
-            this.checkBoxX1.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.checkBoxX1.TabIndex = 15;
-            this.checkBoxX1.Text = "مالک در آن محل ساکن است";
-            // 
-            // numericUpDown4
-            // 
-            this.numericUpDown4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.cmbMosharekatSanadType.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.numericUpDown4.Location = new System.Drawing.Point(235, 120);
-            this.numericUpDown4.Maximum = new decimal(new int[] {
-            10000,
+            this.cmbMosharekatSanadType.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cmbMosharekatSanadType.DataSource = this.sanadTypeBindingSource;
+            this.cmbMosharekatSanadType.DisplayMember = "Name";
+            this.cmbMosharekatSanadType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbMosharekatSanadType.FormattingEnabled = true;
+            this.cmbMosharekatSanadType.Location = new System.Drawing.Point(22, 245);
+            this.cmbMosharekatSanadType.Name = "cmbMosharekatSanadType";
+            this.cmbMosharekatSanadType.Size = new System.Drawing.Size(370, 28);
+            this.cmbMosharekatSanadType.TabIndex = 50;
+            this.cmbMosharekatSanadType.ValueMember = "Guid";
+            this.cmbMosharekatSanadType.SelectedIndexChanged += new System.EventHandler(this.cmbMosharekatSanadType_SelectedIndexChanged);
+            // 
+            // sanadTypeBindingSource
+            // 
+            this.sanadTypeBindingSource.DataSource = typeof(EntityCache.Bussines.DocumentTypeBussines);
+            // 
+            // label11
+            // 
+            this.label11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label11.AutoSize = true;
+            this.label11.BackColor = System.Drawing.Color.Transparent;
+            this.label11.Location = new System.Drawing.Point(431, 248);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(49, 20);
+            this.label11.TabIndex = 51;
+            this.label11.Text = "نوع سند";
+            // 
+            // txtMosharekatDong
+            // 
+            this.txtMosharekatDong.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtMosharekatDong.Location = new System.Drawing.Point(234, 210);
+            this.txtMosharekatDong.Maximum = new decimal(new int[] {
+            6,
             0,
             0,
             0});
-            this.numericUpDown4.Name = "numericUpDown4";
-            this.numericUpDown4.Size = new System.Drawing.Size(160, 27);
-            this.numericUpDown4.TabIndex = 14;
-            // 
-            // numericUpDown2
-            // 
-            this.numericUpDown2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.numericUpDown2.Location = new System.Drawing.Point(235, 53);
-            this.numericUpDown2.Maximum = new decimal(new int[] {
-            10000,
+            this.txtMosharekatDong.Minimum = new decimal(new int[] {
+            1,
             0,
             0,
             0});
-            this.numericUpDown2.Name = "numericUpDown2";
-            this.numericUpDown2.Size = new System.Drawing.Size(160, 27);
-            this.numericUpDown2.TabIndex = 14;
-            // 
-            // comboBox5
-            // 
-            this.comboBox5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.comboBox5.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.comboBox5.DisplayMember = "Name";
-            this.comboBox5.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox5.FormattingEnabled = true;
-            this.comboBox5.Location = new System.Drawing.Point(23, 155);
-            this.comboBox5.Name = "comboBox5";
-            this.comboBox5.Size = new System.Drawing.Size(372, 28);
-            this.comboBox5.TabIndex = 11;
-            this.comboBox5.ValueMember = "Guid";
-            // 
-            // comboBox4
-            // 
-            this.comboBox4.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.comboBox4.DisplayMember = "Name";
-            this.comboBox4.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox4.FormattingEnabled = true;
-            this.comboBox4.Location = new System.Drawing.Point(23, 119);
-            this.comboBox4.Name = "comboBox4";
-            this.comboBox4.Size = new System.Drawing.Size(199, 28);
-            this.comboBox4.TabIndex = 11;
-            this.comboBox4.ValueMember = "Guid";
-            // 
-            // comboBox2
-            // 
-            this.comboBox2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.comboBox2.DisplayMember = "Name";
-            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(23, 52);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(199, 28);
-            this.comboBox2.TabIndex = 11;
-            this.comboBox2.ValueMember = "Guid";
-            // 
-            // numericUpDown3
-            // 
-            this.numericUpDown3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.numericUpDown3.Location = new System.Drawing.Point(235, 87);
-            this.numericUpDown3.Maximum = new decimal(new int[] {
-            10000,
+            this.txtMosharekatDong.Name = "txtMosharekatDong";
+            this.txtMosharekatDong.Size = new System.Drawing.Size(160, 27);
+            this.txtMosharekatDong.TabIndex = 49;
+            this.txtMosharekatDong.Value = new decimal(new int[] {
+            1,
             0,
             0,
             0});
-            this.numericUpDown3.Name = "numericUpDown3";
-            this.numericUpDown3.Size = new System.Drawing.Size(160, 27);
-            this.numericUpDown3.TabIndex = 14;
+            this.txtMosharekatDong.ValueChanged += new System.EventHandler(this.txtMosharekatDong_ValueChanged);
             // 
-            // label19
+            // cmbMosharekatTarakom
             // 
-            this.label19.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label19.AutoSize = true;
-            this.label19.BackColor = System.Drawing.Color.Transparent;
-            this.label19.Location = new System.Drawing.Point(401, 158);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(77, 20);
-            this.label19.TabIndex = 13;
-            this.label19.Text = "ارجحیت اجاره";
-            // 
-            // label18
-            // 
-            this.label18.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label18.AutoSize = true;
-            this.label18.BackColor = System.Drawing.Color.Transparent;
-            this.label18.Location = new System.Drawing.Point(410, 122);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(68, 20);
-            this.label18.TabIndex = 13;
-            this.label18.Text = "مبلغ اجاره 2";
-            // 
-            // numericUpDown1
-            // 
-            this.numericUpDown1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.cmbMosharekatTarakom.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.numericUpDown1.Location = new System.Drawing.Point(235, 20);
-            this.numericUpDown1.Maximum = new decimal(new int[] {
-            10000,
+            this.cmbMosharekatTarakom.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cmbMosharekatTarakom.DisplayMember = "Name";
+            this.cmbMosharekatTarakom.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbMosharekatTarakom.FormattingEnabled = true;
+            this.cmbMosharekatTarakom.Location = new System.Drawing.Point(22, 209);
+            this.cmbMosharekatTarakom.Name = "cmbMosharekatTarakom";
+            this.cmbMosharekatTarakom.Size = new System.Drawing.Size(161, 28);
+            this.cmbMosharekatTarakom.TabIndex = 46;
+            this.cmbMosharekatTarakom.ValueMember = "Guid";
+            this.cmbMosharekatTarakom.SelectedIndexChanged += new System.EventHandler(this.cmbMosharekatTarakom_SelectedIndexChanged);
+            // 
+            // label61
+            // 
+            this.label61.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label61.AutoSize = true;
+            this.label61.BackColor = System.Drawing.Color.Transparent;
+            this.label61.Location = new System.Drawing.Point(189, 212);
+            this.label61.Name = "label61";
+            this.label61.Size = new System.Drawing.Size(36, 20);
+            this.label61.TabIndex = 47;
+            this.label61.Text = "تراکم";
+            // 
+            // label62
+            // 
+            this.label62.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label62.AutoSize = true;
+            this.label62.BackColor = System.Drawing.Color.Transparent;
+            this.label62.Location = new System.Drawing.Point(417, 212);
+            this.label62.Name = "label62";
+            this.label62.Size = new System.Drawing.Size(63, 20);
+            this.label62.TabIndex = 48;
+            this.label62.Text = "تعداد دانگ";
+            // 
+            // txtMosharekatDesc
+            // 
+            this.txtMosharekatDesc.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtMosharekatDesc.Location = new System.Drawing.Point(24, 13);
+            this.txtMosharekatDesc.Multiline = true;
+            this.txtMosharekatDesc.Name = "txtMosharekatDesc";
+            this.txtMosharekatDesc.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtMosharekatDesc.Size = new System.Drawing.Size(370, 186);
+            this.txtMosharekatDesc.TabIndex = 45;
+            // 
+            // label63
+            // 
+            this.label63.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label63.AutoSize = true;
+            this.label63.BackColor = System.Drawing.Color.Transparent;
+            this.label63.Location = new System.Drawing.Point(428, 13);
+            this.label63.Name = "label63";
+            this.label63.Size = new System.Drawing.Size(54, 20);
+            this.label63.TabIndex = 44;
+            this.label63.Text = "توضیحات";
+            // 
+            // superTabItem10
+            // 
+            this.superTabItem10.AttachedControl = this.superTabControlPanel10;
+            this.superTabItem10.GlobalItem = false;
+            this.superTabItem10.Name = "superTabItem10";
+            this.superTabItem10.Text = "مشارکت در ساخت";
+            // 
+            // superTabControlPanel9
+            // 
+            this.superTabControlPanel9.Controls.Add(this.cmbMoavezeSanadType);
+            this.superTabControlPanel9.Controls.Add(this.label8);
+            this.superTabControlPanel9.Controls.Add(this.txtMoavezeDong);
+            this.superTabControlPanel9.Controls.Add(this.cmbMoavezeTarakom);
+            this.superTabControlPanel9.Controls.Add(this.label9);
+            this.superTabControlPanel9.Controls.Add(this.label10);
+            this.superTabControlPanel9.Controls.Add(this.txtMoavezeDesc);
+            this.superTabControlPanel9.Controls.Add(this.label7);
+            this.superTabControlPanel9.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.superTabControlPanel9.Location = new System.Drawing.Point(0, 30);
+            this.superTabControlPanel9.Name = "superTabControlPanel9";
+            this.superTabControlPanel9.Size = new System.Drawing.Size(497, 449);
+            this.superTabControlPanel9.TabIndex = 0;
+            this.superTabControlPanel9.TabItem = this.superTabItem9;
+            // 
+            // cmbMoavezeSanadType
+            // 
+            this.cmbMoavezeSanadType.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmbMoavezeSanadType.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cmbMoavezeSanadType.DataSource = this.sanadTypeBindingSource;
+            this.cmbMoavezeSanadType.DisplayMember = "Name";
+            this.cmbMoavezeSanadType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbMoavezeSanadType.FormattingEnabled = true;
+            this.cmbMoavezeSanadType.Location = new System.Drawing.Point(22, 245);
+            this.cmbMoavezeSanadType.Name = "cmbMoavezeSanadType";
+            this.cmbMoavezeSanadType.Size = new System.Drawing.Size(370, 28);
+            this.cmbMoavezeSanadType.TabIndex = 42;
+            this.cmbMoavezeSanadType.ValueMember = "Guid";
+            this.cmbMoavezeSanadType.SelectedIndexChanged += new System.EventHandler(this.cmbMoavezeSanadType_SelectedIndexChanged);
+            // 
+            // label8
+            // 
+            this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label8.AutoSize = true;
+            this.label8.BackColor = System.Drawing.Color.Transparent;
+            this.label8.Location = new System.Drawing.Point(431, 248);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(49, 20);
+            this.label8.TabIndex = 43;
+            this.label8.Text = "نوع سند";
+            // 
+            // txtMoavezeDong
+            // 
+            this.txtMoavezeDong.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtMoavezeDong.Location = new System.Drawing.Point(234, 210);
+            this.txtMoavezeDong.Maximum = new decimal(new int[] {
+            6,
             0,
             0,
             0});
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(160, 27);
-            this.numericUpDown1.TabIndex = 14;
+            this.txtMoavezeDong.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.txtMoavezeDong.Name = "txtMoavezeDong";
+            this.txtMoavezeDong.Size = new System.Drawing.Size(160, 27);
+            this.txtMoavezeDong.TabIndex = 41;
+            this.txtMoavezeDong.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.txtMoavezeDong.ValueChanged += new System.EventHandler(this.txtMoavezeDong_ValueChanged);
             // 
-            // comboBox3
+            // cmbMoavezeTarakom
             // 
-            this.comboBox3.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.comboBox3.DisplayMember = "Name";
-            this.comboBox3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(23, 86);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(199, 28);
-            this.comboBox3.TabIndex = 11;
-            this.comboBox3.ValueMember = "Guid";
+            this.cmbMoavezeTarakom.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmbMoavezeTarakom.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cmbMoavezeTarakom.DisplayMember = "Name";
+            this.cmbMoavezeTarakom.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbMoavezeTarakom.FormattingEnabled = true;
+            this.cmbMoavezeTarakom.Location = new System.Drawing.Point(22, 209);
+            this.cmbMoavezeTarakom.Name = "cmbMoavezeTarakom";
+            this.cmbMoavezeTarakom.Size = new System.Drawing.Size(161, 28);
+            this.cmbMoavezeTarakom.TabIndex = 38;
+            this.cmbMoavezeTarakom.ValueMember = "Guid";
+            this.cmbMoavezeTarakom.SelectedIndexChanged += new System.EventHandler(this.cmbMoavezeTarakom_SelectedIndexChanged);
             // 
-            // label16
+            // label9
             // 
-            this.label16.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label16.AutoSize = true;
-            this.label16.BackColor = System.Drawing.Color.Transparent;
-            this.label16.Location = new System.Drawing.Point(410, 55);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(68, 20);
-            this.label16.TabIndex = 13;
-            this.label16.Text = "مبلغ اجاره 1";
+            this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label9.AutoSize = true;
+            this.label9.BackColor = System.Drawing.Color.Transparent;
+            this.label9.Location = new System.Drawing.Point(189, 212);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(36, 20);
+            this.label9.TabIndex = 39;
+            this.label9.Text = "تراکم";
             // 
-            // label17
+            // label10
             // 
-            this.label17.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label17.AutoSize = true;
-            this.label17.BackColor = System.Drawing.Color.Transparent;
-            this.label17.Location = new System.Drawing.Point(410, 89);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(65, 20);
-            this.label17.TabIndex = 13;
-            this.label17.Text = "مبلغ رهن 2";
+            this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label10.AutoSize = true;
+            this.label10.BackColor = System.Drawing.Color.Transparent;
+            this.label10.Location = new System.Drawing.Point(417, 212);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(63, 20);
+            this.label10.TabIndex = 40;
+            this.label10.Text = "تعداد دانگ";
             // 
-            // comboBox1
+            // txtMoavezeDesc
             // 
-            this.comboBox1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.comboBox1.DisplayMember = "Name";
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(23, 19);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(199, 28);
-            this.comboBox1.TabIndex = 11;
-            this.comboBox1.ValueMember = "Guid";
+            this.txtMoavezeDesc.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtMoavezeDesc.Location = new System.Drawing.Point(24, 13);
+            this.txtMoavezeDesc.Multiline = true;
+            this.txtMoavezeDesc.Name = "txtMoavezeDesc";
+            this.txtMoavezeDesc.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtMoavezeDesc.Size = new System.Drawing.Size(370, 186);
+            this.txtMoavezeDesc.TabIndex = 37;
             // 
-            // label13
+            // label7
             // 
-            this.label13.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label13.AutoSize = true;
-            this.label13.BackColor = System.Drawing.Color.Transparent;
-            this.label13.Location = new System.Drawing.Point(410, 22);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(65, 20);
-            this.label13.TabIndex = 13;
-            this.label13.Text = "مبلغ رهن 1";
+            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label7.AutoSize = true;
+            this.label7.BackColor = System.Drawing.Color.Transparent;
+            this.label7.Location = new System.Drawing.Point(428, 13);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(54, 20);
+            this.label7.TabIndex = 36;
+            this.label7.Text = "توضیحات";
             // 
-            // superTabItem8
+            // superTabItem9
             // 
-            this.superTabItem8.AttachedControl = this.superTabControlPanel8;
-            this.superTabItem8.GlobalItem = false;
-            this.superTabItem8.Name = "superTabItem8";
-            this.superTabItem8.Text = "رهن و اجاره";
+            this.superTabItem9.AttachedControl = this.superTabControlPanel9;
+            this.superTabItem9.GlobalItem = false;
+            this.superTabItem9.Name = "superTabItem9";
+            this.superTabItem9.Text = "معاوضه";
             // 
             // superTabControlPanel11
             // 
-            this.superTabControlPanel11.Controls.Add(this.txtAddress);
-            this.superTabControlPanel11.Controls.Add(this.txtDateBirth);
-            this.superTabControlPanel11.Controls.Add(this.comboBox13);
+            this.superTabControlPanel11.Controls.Add(this.txtPishDesc);
+            this.superTabControlPanel11.Controls.Add(this.txtDeliveryDate);
+            this.superTabControlPanel11.Controls.Add(this.cmbPishSanadType);
             this.superTabControlPanel11.Controls.Add(this.label31);
             this.superTabControlPanel11.Controls.Add(this.label30);
-            this.superTabControlPanel11.Controls.Add(this.numericUpDown11);
+            this.superTabControlPanel11.Controls.Add(this.txtPishDong);
             this.superTabControlPanel11.Controls.Add(this.label29);
-            this.superTabControlPanel11.Controls.Add(this.numericUpDown9);
-            this.superTabControlPanel11.Controls.Add(this.numericUpDown10);
-            this.superTabControlPanel11.Controls.Add(this.comboBox11);
+            this.superTabControlPanel11.Controls.Add(this.txtPishPrice);
+            this.superTabControlPanel11.Controls.Add(this.txtPishTotalPrice);
+            this.superTabControlPanel11.Controls.Add(this.cmbPishPrice);
             this.superTabControlPanel11.Controls.Add(this.label27);
-            this.superTabControlPanel11.Controls.Add(this.comboBox12);
+            this.superTabControlPanel11.Controls.Add(this.cmbPishTotalPrice);
             this.superTabControlPanel11.Controls.Add(this.label28);
             this.superTabControlPanel11.Controls.Add(this.label26);
             this.superTabControlPanel11.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -951,44 +1043,46 @@
             this.superTabControlPanel11.TabIndex = 0;
             this.superTabControlPanel11.TabItem = this.superTabItem11;
             // 
-            // txtAddress
+            // txtPishDesc
             // 
-            this.txtAddress.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.txtPishDesc.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtAddress.Location = new System.Drawing.Point(25, 202);
-            this.txtAddress.Multiline = true;
-            this.txtAddress.Name = "txtAddress";
-            this.txtAddress.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtAddress.Size = new System.Drawing.Size(370, 186);
-            this.txtAddress.TabIndex = 35;
+            this.txtPishDesc.Location = new System.Drawing.Point(25, 202);
+            this.txtPishDesc.Multiline = true;
+            this.txtPishDesc.Name = "txtPishDesc";
+            this.txtPishDesc.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtPishDesc.Size = new System.Drawing.Size(370, 186);
+            this.txtPishDesc.TabIndex = 35;
             // 
-            // txtDateBirth
+            // txtDeliveryDate
             // 
-            this.txtDateBirth.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtDateBirth.Location = new System.Drawing.Point(235, 91);
-            this.txtDateBirth.Miladi = new System.DateTime(((long)(0)));
-            this.txtDateBirth.Name = "txtDateBirth";
-            this.txtDateBirth.NowDateSelected = false;
-            this.txtDateBirth.ReadOnly = true;
-            this.txtDateBirth.SelectedDate = null;
-            this.txtDateBirth.Shamsi = null;
-            this.txtDateBirth.Size = new System.Drawing.Size(160, 27);
-            this.txtDateBirth.TabIndex = 34;
+            this.txtDeliveryDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtDeliveryDate.Location = new System.Drawing.Point(235, 91);
+            this.txtDeliveryDate.Miladi = new System.DateTime(((long)(0)));
+            this.txtDeliveryDate.Name = "txtDeliveryDate";
+            this.txtDeliveryDate.NowDateSelected = false;
+            this.txtDeliveryDate.ReadOnly = true;
+            this.txtDeliveryDate.SelectedDate = null;
+            this.txtDeliveryDate.Shamsi = null;
+            this.txtDeliveryDate.Size = new System.Drawing.Size(160, 27);
+            this.txtDeliveryDate.TabIndex = 34;
             // 
-            // comboBox13
+            // cmbPishSanadType
             // 
-            this.comboBox13.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.cmbPishSanadType.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.comboBox13.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.comboBox13.DisplayMember = "Name";
-            this.comboBox13.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox13.FormattingEnabled = true;
-            this.comboBox13.Location = new System.Drawing.Point(25, 161);
-            this.comboBox13.Name = "comboBox13";
-            this.comboBox13.Size = new System.Drawing.Size(370, 28);
-            this.comboBox13.TabIndex = 32;
-            this.comboBox13.ValueMember = "Guid";
+            this.cmbPishSanadType.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cmbPishSanadType.DataSource = this.sanadTypeBindingSource;
+            this.cmbPishSanadType.DisplayMember = "Name";
+            this.cmbPishSanadType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbPishSanadType.FormattingEnabled = true;
+            this.cmbPishSanadType.Location = new System.Drawing.Point(25, 161);
+            this.cmbPishSanadType.Name = "cmbPishSanadType";
+            this.cmbPishSanadType.Size = new System.Drawing.Size(370, 28);
+            this.cmbPishSanadType.TabIndex = 32;
+            this.cmbPishSanadType.ValueMember = "Guid";
+            this.cmbPishSanadType.SelectedIndexChanged += new System.EventHandler(this.cmbPishSanadType_SelectedIndexChanged);
             // 
             // label31
             // 
@@ -1012,28 +1106,29 @@
             this.label30.TabIndex = 33;
             this.label30.Text = "نوع سند";
             // 
-            // numericUpDown11
+            // txtPishDong
             // 
-            this.numericUpDown11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.numericUpDown11.Location = new System.Drawing.Point(235, 126);
-            this.numericUpDown11.Maximum = new decimal(new int[] {
+            this.txtPishDong.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtPishDong.Location = new System.Drawing.Point(235, 126);
+            this.txtPishDong.Maximum = new decimal(new int[] {
             6,
             0,
             0,
             0});
-            this.numericUpDown11.Minimum = new decimal(new int[] {
+            this.txtPishDong.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             0});
-            this.numericUpDown11.Name = "numericUpDown11";
-            this.numericUpDown11.Size = new System.Drawing.Size(160, 27);
-            this.numericUpDown11.TabIndex = 31;
-            this.numericUpDown11.Value = new decimal(new int[] {
+            this.txtPishDong.Name = "txtPishDong";
+            this.txtPishDong.Size = new System.Drawing.Size(160, 27);
+            this.txtPishDong.TabIndex = 31;
+            this.txtPishDong.Value = new decimal(new int[] {
             1,
             0,
             0,
             0});
+            this.txtPishDong.ValueChanged += new System.EventHandler(this.txtPishDong_ValueChanged);
             // 
             // label29
             // 
@@ -1046,45 +1141,45 @@
             this.label29.TabIndex = 30;
             this.label29.Text = "تعداد دانگ";
             // 
-            // numericUpDown9
+            // txtPishPrice
             // 
-            this.numericUpDown9.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.txtPishPrice.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.numericUpDown9.Location = new System.Drawing.Point(235, 55);
-            this.numericUpDown9.Maximum = new decimal(new int[] {
+            this.txtPishPrice.Location = new System.Drawing.Point(235, 55);
+            this.txtPishPrice.Maximum = new decimal(new int[] {
             10000,
             0,
             0,
             0});
-            this.numericUpDown9.Name = "numericUpDown9";
-            this.numericUpDown9.Size = new System.Drawing.Size(160, 27);
-            this.numericUpDown9.TabIndex = 28;
+            this.txtPishPrice.Name = "txtPishPrice";
+            this.txtPishPrice.Size = new System.Drawing.Size(160, 27);
+            this.txtPishPrice.TabIndex = 28;
             // 
-            // numericUpDown10
+            // txtPishTotalPrice
             // 
-            this.numericUpDown10.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.txtPishTotalPrice.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.numericUpDown10.Location = new System.Drawing.Point(235, 22);
-            this.numericUpDown10.Maximum = new decimal(new int[] {
+            this.txtPishTotalPrice.Location = new System.Drawing.Point(235, 22);
+            this.txtPishTotalPrice.Maximum = new decimal(new int[] {
             10000,
             0,
             0,
             0});
-            this.numericUpDown10.Name = "numericUpDown10";
-            this.numericUpDown10.Size = new System.Drawing.Size(160, 27);
-            this.numericUpDown10.TabIndex = 29;
+            this.txtPishTotalPrice.Name = "txtPishTotalPrice";
+            this.txtPishTotalPrice.Size = new System.Drawing.Size(160, 27);
+            this.txtPishTotalPrice.TabIndex = 29;
             // 
-            // comboBox11
+            // cmbPishPrice
             // 
-            this.comboBox11.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.comboBox11.DisplayMember = "Name";
-            this.comboBox11.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox11.FormattingEnabled = true;
-            this.comboBox11.Location = new System.Drawing.Point(23, 54);
-            this.comboBox11.Name = "comboBox11";
-            this.comboBox11.Size = new System.Drawing.Size(199, 28);
-            this.comboBox11.TabIndex = 24;
-            this.comboBox11.ValueMember = "Guid";
+            this.cmbPishPrice.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cmbPishPrice.DisplayMember = "Name";
+            this.cmbPishPrice.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbPishPrice.FormattingEnabled = true;
+            this.cmbPishPrice.Location = new System.Drawing.Point(23, 54);
+            this.cmbPishPrice.Name = "cmbPishPrice";
+            this.cmbPishPrice.Size = new System.Drawing.Size(199, 28);
+            this.cmbPishPrice.TabIndex = 24;
+            this.cmbPishPrice.ValueMember = "Guid";
             // 
             // label27
             // 
@@ -1097,17 +1192,17 @@
             this.label27.TabIndex = 27;
             this.label27.Text = "مبلغ کل";
             // 
-            // comboBox12
+            // cmbPishTotalPrice
             // 
-            this.comboBox12.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.comboBox12.DisplayMember = "Name";
-            this.comboBox12.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox12.FormattingEnabled = true;
-            this.comboBox12.Location = new System.Drawing.Point(23, 21);
-            this.comboBox12.Name = "comboBox12";
-            this.comboBox12.Size = new System.Drawing.Size(199, 28);
-            this.comboBox12.TabIndex = 25;
-            this.comboBox12.ValueMember = "Guid";
+            this.cmbPishTotalPrice.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cmbPishTotalPrice.DisplayMember = "Name";
+            this.cmbPishTotalPrice.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbPishTotalPrice.FormattingEnabled = true;
+            this.cmbPishTotalPrice.Location = new System.Drawing.Point(23, 21);
+            this.cmbPishTotalPrice.Name = "cmbPishTotalPrice";
+            this.cmbPishTotalPrice.Size = new System.Drawing.Size(199, 28);
+            this.cmbPishTotalPrice.TabIndex = 25;
+            this.cmbPishTotalPrice.ValueMember = "Guid";
             // 
             // label28
             // 
@@ -1140,20 +1235,20 @@
             // 
             // superTabControlPanel7
             // 
-            this.superTabControlPanel7.Controls.Add(this.comboBox10);
+            this.superTabControlPanel7.Controls.Add(this.cmbSellSanadType);
             this.superTabControlPanel7.Controls.Add(this.label24);
-            this.superTabControlPanel7.Controls.Add(this.numericUpDown5);
-            this.superTabControlPanel7.Controls.Add(this.comboBox6);
-            this.superTabControlPanel7.Controls.Add(this.numericUpDown8);
-            this.superTabControlPanel7.Controls.Add(this.numericUpDown6);
-            this.superTabControlPanel7.Controls.Add(this.numericUpDown7);
-            this.superTabControlPanel7.Controls.Add(this.comboBox9);
-            this.superTabControlPanel7.Controls.Add(this.comboBox7);
+            this.superTabControlPanel7.Controls.Add(this.txtVamPrice);
+            this.superTabControlPanel7.Controls.Add(this.cmbVamPrice);
+            this.superTabControlPanel7.Controls.Add(this.txtDong);
+            this.superTabControlPanel7.Controls.Add(this.txtQestPrice);
+            this.superTabControlPanel7.Controls.Add(this.txtSellPrice);
+            this.superTabControlPanel7.Controls.Add(this.cmbSellTarakom);
+            this.superTabControlPanel7.Controls.Add(this.cmbQestPrice);
             this.superTabControlPanel7.Controls.Add(this.label25);
             this.superTabControlPanel7.Controls.Add(this.label23);
             this.superTabControlPanel7.Controls.Add(this.label20);
             this.superTabControlPanel7.Controls.Add(this.label21);
-            this.superTabControlPanel7.Controls.Add(this.comboBox8);
+            this.superTabControlPanel7.Controls.Add(this.cmbSellPrice);
             this.superTabControlPanel7.Controls.Add(this.label22);
             this.superTabControlPanel7.Dock = System.Windows.Forms.DockStyle.Fill;
             this.superTabControlPanel7.Location = new System.Drawing.Point(0, 30);
@@ -1162,19 +1257,21 @@
             this.superTabControlPanel7.TabIndex = 1;
             this.superTabControlPanel7.TabItem = this.superTabItem7;
             // 
-            // comboBox10
+            // cmbSellSanadType
             // 
-            this.comboBox10.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.cmbSellSanadType.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.comboBox10.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.comboBox10.DisplayMember = "Name";
-            this.comboBox10.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox10.FormattingEnabled = true;
-            this.comboBox10.Location = new System.Drawing.Point(23, 158);
-            this.comboBox10.Name = "comboBox10";
-            this.comboBox10.Size = new System.Drawing.Size(370, 28);
-            this.comboBox10.TabIndex = 24;
-            this.comboBox10.ValueMember = "Guid";
+            this.cmbSellSanadType.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cmbSellSanadType.DataSource = this.sanadTypeBindingSource;
+            this.cmbSellSanadType.DisplayMember = "Name";
+            this.cmbSellSanadType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbSellSanadType.FormattingEnabled = true;
+            this.cmbSellSanadType.Location = new System.Drawing.Point(23, 158);
+            this.cmbSellSanadType.Name = "cmbSellSanadType";
+            this.cmbSellSanadType.Size = new System.Drawing.Size(370, 28);
+            this.cmbSellSanadType.TabIndex = 24;
+            this.cmbSellSanadType.ValueMember = "Guid";
+            this.cmbSellSanadType.SelectedIndexChanged += new System.EventHandler(this.cmbSellSanadType_SelectedIndexChanged);
             // 
             // label24
             // 
@@ -1187,108 +1284,110 @@
             this.label24.TabIndex = 25;
             this.label24.Text = "نوع سند";
             // 
-            // numericUpDown5
+            // txtVamPrice
             // 
-            this.numericUpDown5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.txtVamPrice.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.numericUpDown5.Location = new System.Drawing.Point(235, 54);
-            this.numericUpDown5.Maximum = new decimal(new int[] {
+            this.txtVamPrice.Location = new System.Drawing.Point(235, 54);
+            this.txtVamPrice.Maximum = new decimal(new int[] {
             10000,
             0,
             0,
             0});
-            this.numericUpDown5.Name = "numericUpDown5";
-            this.numericUpDown5.Size = new System.Drawing.Size(160, 27);
-            this.numericUpDown5.TabIndex = 21;
+            this.txtVamPrice.Name = "txtVamPrice";
+            this.txtVamPrice.Size = new System.Drawing.Size(160, 27);
+            this.txtVamPrice.TabIndex = 21;
             // 
-            // comboBox6
+            // cmbVamPrice
             // 
-            this.comboBox6.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.comboBox6.DisplayMember = "Name";
-            this.comboBox6.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox6.FormattingEnabled = true;
-            this.comboBox6.Location = new System.Drawing.Point(23, 53);
-            this.comboBox6.Name = "comboBox6";
-            this.comboBox6.Size = new System.Drawing.Size(199, 28);
-            this.comboBox6.TabIndex = 15;
-            this.comboBox6.ValueMember = "Guid";
+            this.cmbVamPrice.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cmbVamPrice.DisplayMember = "Name";
+            this.cmbVamPrice.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbVamPrice.FormattingEnabled = true;
+            this.cmbVamPrice.Location = new System.Drawing.Point(23, 53);
+            this.cmbVamPrice.Name = "cmbVamPrice";
+            this.cmbVamPrice.Size = new System.Drawing.Size(199, 28);
+            this.cmbVamPrice.TabIndex = 15;
+            this.cmbVamPrice.ValueMember = "Guid";
             // 
-            // numericUpDown8
+            // txtDong
             // 
-            this.numericUpDown8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.numericUpDown8.Location = new System.Drawing.Point(235, 123);
-            this.numericUpDown8.Maximum = new decimal(new int[] {
+            this.txtDong.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtDong.Location = new System.Drawing.Point(235, 123);
+            this.txtDong.Maximum = new decimal(new int[] {
             6,
             0,
             0,
             0});
-            this.numericUpDown8.Minimum = new decimal(new int[] {
+            this.txtDong.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             0});
-            this.numericUpDown8.Name = "numericUpDown8";
-            this.numericUpDown8.Size = new System.Drawing.Size(160, 27);
-            this.numericUpDown8.TabIndex = 22;
-            this.numericUpDown8.Value = new decimal(new int[] {
+            this.txtDong.Name = "txtDong";
+            this.txtDong.Size = new System.Drawing.Size(160, 27);
+            this.txtDong.TabIndex = 22;
+            this.txtDong.Value = new decimal(new int[] {
             1,
             0,
             0,
             0});
+            this.txtDong.ValueChanged += new System.EventHandler(this.txtDong_ValueChanged);
             // 
-            // numericUpDown6
+            // txtQestPrice
             // 
-            this.numericUpDown6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.txtQestPrice.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.numericUpDown6.Location = new System.Drawing.Point(235, 88);
-            this.numericUpDown6.Maximum = new decimal(new int[] {
+            this.txtQestPrice.Location = new System.Drawing.Point(235, 88);
+            this.txtQestPrice.Maximum = new decimal(new int[] {
             10000,
             0,
             0,
             0});
-            this.numericUpDown6.Name = "numericUpDown6";
-            this.numericUpDown6.Size = new System.Drawing.Size(160, 27);
-            this.numericUpDown6.TabIndex = 22;
+            this.txtQestPrice.Name = "txtQestPrice";
+            this.txtQestPrice.Size = new System.Drawing.Size(160, 27);
+            this.txtQestPrice.TabIndex = 22;
             // 
-            // numericUpDown7
+            // txtSellPrice
             // 
-            this.numericUpDown7.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.txtSellPrice.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.numericUpDown7.Location = new System.Drawing.Point(235, 21);
-            this.numericUpDown7.Maximum = new decimal(new int[] {
+            this.txtSellPrice.Location = new System.Drawing.Point(235, 21);
+            this.txtSellPrice.Maximum = new decimal(new int[] {
             10000,
             0,
             0,
             0});
-            this.numericUpDown7.Name = "numericUpDown7";
-            this.numericUpDown7.Size = new System.Drawing.Size(160, 27);
-            this.numericUpDown7.TabIndex = 23;
+            this.txtSellPrice.Name = "txtSellPrice";
+            this.txtSellPrice.Size = new System.Drawing.Size(160, 27);
+            this.txtSellPrice.TabIndex = 23;
             // 
-            // comboBox9
+            // cmbSellTarakom
             // 
-            this.comboBox9.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.cmbSellTarakom.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.comboBox9.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.comboBox9.DisplayMember = "Name";
-            this.comboBox9.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox9.FormattingEnabled = true;
-            this.comboBox9.Location = new System.Drawing.Point(23, 122);
-            this.comboBox9.Name = "comboBox9";
-            this.comboBox9.Size = new System.Drawing.Size(161, 28);
-            this.comboBox9.TabIndex = 16;
-            this.comboBox9.ValueMember = "Guid";
+            this.cmbSellTarakom.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cmbSellTarakom.DisplayMember = "Name";
+            this.cmbSellTarakom.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbSellTarakom.FormattingEnabled = true;
+            this.cmbSellTarakom.Location = new System.Drawing.Point(23, 122);
+            this.cmbSellTarakom.Name = "cmbSellTarakom";
+            this.cmbSellTarakom.Size = new System.Drawing.Size(161, 28);
+            this.cmbSellTarakom.TabIndex = 16;
+            this.cmbSellTarakom.ValueMember = "Guid";
+            this.cmbSellTarakom.SelectedIndexChanged += new System.EventHandler(this.cmbSellTarakom_SelectedIndexChanged);
             // 
-            // comboBox7
+            // cmbQestPrice
             // 
-            this.comboBox7.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.comboBox7.DisplayMember = "Name";
-            this.comboBox7.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox7.FormattingEnabled = true;
-            this.comboBox7.Location = new System.Drawing.Point(23, 87);
-            this.comboBox7.Name = "comboBox7";
-            this.comboBox7.Size = new System.Drawing.Size(199, 28);
-            this.comboBox7.TabIndex = 16;
-            this.comboBox7.ValueMember = "Guid";
+            this.cmbQestPrice.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cmbQestPrice.DisplayMember = "Name";
+            this.cmbQestPrice.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbQestPrice.FormattingEnabled = true;
+            this.cmbQestPrice.Location = new System.Drawing.Point(23, 87);
+            this.cmbQestPrice.Name = "cmbQestPrice";
+            this.cmbQestPrice.Size = new System.Drawing.Size(199, 28);
+            this.cmbQestPrice.TabIndex = 16;
+            this.cmbQestPrice.ValueMember = "Guid";
             // 
             // label25
             // 
@@ -1334,17 +1433,17 @@
             this.label21.TabIndex = 19;
             this.label21.Text = "مبلغ هر قسط";
             // 
-            // comboBox8
+            // cmbSellPrice
             // 
-            this.comboBox8.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.comboBox8.DisplayMember = "Name";
-            this.comboBox8.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox8.FormattingEnabled = true;
-            this.comboBox8.Location = new System.Drawing.Point(23, 20);
-            this.comboBox8.Name = "comboBox8";
-            this.comboBox8.Size = new System.Drawing.Size(199, 28);
-            this.comboBox8.TabIndex = 17;
-            this.comboBox8.ValueMember = "Guid";
+            this.cmbSellPrice.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cmbSellPrice.DisplayMember = "Name";
+            this.cmbSellPrice.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbSellPrice.FormattingEnabled = true;
+            this.cmbSellPrice.Location = new System.Drawing.Point(23, 20);
+            this.cmbSellPrice.Name = "cmbSellPrice";
+            this.cmbSellPrice.Size = new System.Drawing.Size(199, 28);
+            this.cmbSellPrice.TabIndex = 17;
+            this.cmbSellPrice.ValueMember = "Guid";
             // 
             // label22
             // 
@@ -1364,37 +1463,247 @@
             this.superTabItem7.Name = "superTabItem7";
             this.superTabItem7.Text = "فروش";
             // 
-            // superTabControlPanel10
+            // superTabControlPanel8
             // 
-            this.superTabControlPanel10.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.superTabControlPanel10.Location = new System.Drawing.Point(0, 40);
-            this.superTabControlPanel10.Name = "superTabControlPanel10";
-            this.superTabControlPanel10.Size = new System.Drawing.Size(497, 439);
-            this.superTabControlPanel10.TabIndex = 0;
-            this.superTabControlPanel10.TabItem = this.superTabItem10;
+            this.superTabControlPanel8.Controls.Add(this.chbShortRent);
+            this.superTabControlPanel8.Controls.Add(this.chbOwnerHere);
+            this.superTabControlPanel8.Controls.Add(this.txtEjarePrice2);
+            this.superTabControlPanel8.Controls.Add(this.txtEjarePrice1);
+            this.superTabControlPanel8.Controls.Add(this.cmbRentalAuthority);
+            this.superTabControlPanel8.Controls.Add(this.cmbEjare2);
+            this.superTabControlPanel8.Controls.Add(this.cmbEjare1);
+            this.superTabControlPanel8.Controls.Add(this.txtRahnPrice2);
+            this.superTabControlPanel8.Controls.Add(this.label19);
+            this.superTabControlPanel8.Controls.Add(this.label18);
+            this.superTabControlPanel8.Controls.Add(this.txtRahnPrice1);
+            this.superTabControlPanel8.Controls.Add(this.cmbRahn2);
+            this.superTabControlPanel8.Controls.Add(this.label16);
+            this.superTabControlPanel8.Controls.Add(this.label17);
+            this.superTabControlPanel8.Controls.Add(this.cmbRahn1);
+            this.superTabControlPanel8.Controls.Add(this.label13);
+            this.superTabControlPanel8.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.superTabControlPanel8.Location = new System.Drawing.Point(0, 30);
+            this.superTabControlPanel8.Name = "superTabControlPanel8";
+            this.superTabControlPanel8.Size = new System.Drawing.Size(497, 449);
+            this.superTabControlPanel8.TabIndex = 0;
+            this.superTabControlPanel8.TabItem = this.superTabItem8;
             // 
-            // superTabItem10
+            // chbShortRent
             // 
-            this.superTabItem10.AttachedControl = this.superTabControlPanel10;
-            this.superTabItem10.GlobalItem = false;
-            this.superTabItem10.Name = "superTabItem10";
-            this.superTabItem10.Text = "مشارکت در ساخت";
+            this.chbShortRent.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.chbShortRent.BackColor = System.Drawing.Color.Transparent;
             // 
-            // superTabControlPanel9
             // 
-            this.superTabControlPanel9.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.superTabControlPanel9.Location = new System.Drawing.Point(0, 40);
-            this.superTabControlPanel9.Name = "superTabControlPanel9";
-            this.superTabControlPanel9.Size = new System.Drawing.Size(497, 439);
-            this.superTabControlPanel9.TabIndex = 0;
-            this.superTabControlPanel9.TabItem = this.superTabItem9;
             // 
-            // superTabItem9
+            this.chbShortRent.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.chbShortRent.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.chbShortRent.Location = new System.Drawing.Point(211, 221);
+            this.chbShortRent.Name = "chbShortRent";
+            this.chbShortRent.Size = new System.Drawing.Size(263, 23);
+            this.chbShortRent.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.chbShortRent.TabIndex = 15;
+            this.chbShortRent.Text = "اجاره کوتاه مدت";
             // 
-            this.superTabItem9.AttachedControl = this.superTabControlPanel9;
-            this.superTabItem9.GlobalItem = false;
-            this.superTabItem9.Name = "superTabItem9";
-            this.superTabItem9.Text = "معاوضه";
+            // chbOwnerHere
+            // 
+            this.chbOwnerHere.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.chbOwnerHere.BackColor = System.Drawing.Color.Transparent;
+            // 
+            // 
+            // 
+            this.chbOwnerHere.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.chbOwnerHere.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.chbOwnerHere.Location = new System.Drawing.Point(211, 192);
+            this.chbOwnerHere.Name = "chbOwnerHere";
+            this.chbOwnerHere.Size = new System.Drawing.Size(263, 23);
+            this.chbOwnerHere.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.chbOwnerHere.TabIndex = 15;
+            this.chbOwnerHere.Text = "مالک در آن محل ساکن است";
+            // 
+            // txtEjarePrice2
+            // 
+            this.txtEjarePrice2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtEjarePrice2.Location = new System.Drawing.Point(235, 120);
+            this.txtEjarePrice2.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.txtEjarePrice2.Name = "txtEjarePrice2";
+            this.txtEjarePrice2.Size = new System.Drawing.Size(160, 27);
+            this.txtEjarePrice2.TabIndex = 14;
+            // 
+            // txtEjarePrice1
+            // 
+            this.txtEjarePrice1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtEjarePrice1.Location = new System.Drawing.Point(235, 53);
+            this.txtEjarePrice1.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.txtEjarePrice1.Name = "txtEjarePrice1";
+            this.txtEjarePrice1.Size = new System.Drawing.Size(160, 27);
+            this.txtEjarePrice1.TabIndex = 14;
+            // 
+            // cmbRentalAuthority
+            // 
+            this.cmbRentalAuthority.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmbRentalAuthority.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cmbRentalAuthority.DataSource = this.rentalBindingSource;
+            this.cmbRentalAuthority.DisplayMember = "Name";
+            this.cmbRentalAuthority.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbRentalAuthority.FormattingEnabled = true;
+            this.cmbRentalAuthority.Location = new System.Drawing.Point(23, 155);
+            this.cmbRentalAuthority.Name = "cmbRentalAuthority";
+            this.cmbRentalAuthority.Size = new System.Drawing.Size(372, 28);
+            this.cmbRentalAuthority.TabIndex = 11;
+            this.cmbRentalAuthority.ValueMember = "Guid";
+            // 
+            // rentalBindingSource
+            // 
+            this.rentalBindingSource.DataSource = typeof(EntityCache.Bussines.RentalAuthorityBussines);
+            // 
+            // cmbEjare2
+            // 
+            this.cmbEjare2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cmbEjare2.DisplayMember = "Name";
+            this.cmbEjare2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbEjare2.FormattingEnabled = true;
+            this.cmbEjare2.Location = new System.Drawing.Point(23, 119);
+            this.cmbEjare2.Name = "cmbEjare2";
+            this.cmbEjare2.Size = new System.Drawing.Size(199, 28);
+            this.cmbEjare2.TabIndex = 11;
+            this.cmbEjare2.ValueMember = "Guid";
+            // 
+            // cmbEjare1
+            // 
+            this.cmbEjare1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cmbEjare1.DisplayMember = "Name";
+            this.cmbEjare1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbEjare1.FormattingEnabled = true;
+            this.cmbEjare1.Location = new System.Drawing.Point(23, 52);
+            this.cmbEjare1.Name = "cmbEjare1";
+            this.cmbEjare1.Size = new System.Drawing.Size(199, 28);
+            this.cmbEjare1.TabIndex = 11;
+            this.cmbEjare1.ValueMember = "Guid";
+            // 
+            // txtRahnPrice2
+            // 
+            this.txtRahnPrice2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtRahnPrice2.Location = new System.Drawing.Point(235, 87);
+            this.txtRahnPrice2.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.txtRahnPrice2.Name = "txtRahnPrice2";
+            this.txtRahnPrice2.Size = new System.Drawing.Size(160, 27);
+            this.txtRahnPrice2.TabIndex = 14;
+            // 
+            // label19
+            // 
+            this.label19.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label19.AutoSize = true;
+            this.label19.BackColor = System.Drawing.Color.Transparent;
+            this.label19.Location = new System.Drawing.Point(401, 158);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(77, 20);
+            this.label19.TabIndex = 13;
+            this.label19.Text = "ارجحیت اجاره";
+            // 
+            // label18
+            // 
+            this.label18.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label18.AutoSize = true;
+            this.label18.BackColor = System.Drawing.Color.Transparent;
+            this.label18.Location = new System.Drawing.Point(410, 122);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(68, 20);
+            this.label18.TabIndex = 13;
+            this.label18.Text = "مبلغ اجاره 2";
+            // 
+            // txtRahnPrice1
+            // 
+            this.txtRahnPrice1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtRahnPrice1.Location = new System.Drawing.Point(235, 20);
+            this.txtRahnPrice1.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.txtRahnPrice1.Name = "txtRahnPrice1";
+            this.txtRahnPrice1.Size = new System.Drawing.Size(160, 27);
+            this.txtRahnPrice1.TabIndex = 14;
+            // 
+            // cmbRahn2
+            // 
+            this.cmbRahn2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cmbRahn2.DisplayMember = "Name";
+            this.cmbRahn2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbRahn2.FormattingEnabled = true;
+            this.cmbRahn2.Location = new System.Drawing.Point(23, 86);
+            this.cmbRahn2.Name = "cmbRahn2";
+            this.cmbRahn2.Size = new System.Drawing.Size(199, 28);
+            this.cmbRahn2.TabIndex = 11;
+            this.cmbRahn2.ValueMember = "Guid";
+            // 
+            // label16
+            // 
+            this.label16.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label16.AutoSize = true;
+            this.label16.BackColor = System.Drawing.Color.Transparent;
+            this.label16.Location = new System.Drawing.Point(410, 55);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(68, 20);
+            this.label16.TabIndex = 13;
+            this.label16.Text = "مبلغ اجاره 1";
+            // 
+            // label17
+            // 
+            this.label17.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label17.AutoSize = true;
+            this.label17.BackColor = System.Drawing.Color.Transparent;
+            this.label17.Location = new System.Drawing.Point(410, 89);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(65, 20);
+            this.label17.TabIndex = 13;
+            this.label17.Text = "مبلغ رهن 2";
+            // 
+            // cmbRahn1
+            // 
+            this.cmbRahn1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cmbRahn1.DisplayMember = "Name";
+            this.cmbRahn1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbRahn1.FormattingEnabled = true;
+            this.cmbRahn1.Location = new System.Drawing.Point(23, 19);
+            this.cmbRahn1.Name = "cmbRahn1";
+            this.cmbRahn1.Size = new System.Drawing.Size(199, 28);
+            this.cmbRahn1.TabIndex = 11;
+            this.cmbRahn1.ValueMember = "Guid";
+            // 
+            // label13
+            // 
+            this.label13.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label13.AutoSize = true;
+            this.label13.BackColor = System.Drawing.Color.Transparent;
+            this.label13.Location = new System.Drawing.Point(410, 22);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(65, 20);
+            this.label13.TabIndex = 13;
+            this.label13.Text = "مبلغ رهن 1";
+            // 
+            // superTabItem8
+            // 
+            this.superTabItem8.AttachedControl = this.superTabControlPanel8;
+            this.superTabItem8.GlobalItem = false;
+            this.superTabItem8.Name = "superTabItem8";
+            this.superTabItem8.Text = "رهن و اجاره";
             // 
             // superTabItem1
             // 
@@ -1402,254 +1711,6 @@
             this.superTabItem1.GlobalItem = false;
             this.superTabItem1.Name = "superTabItem1";
             this.superTabItem1.Text = "اطلاعات اصلی";
-            // 
-            // superTabControlPanel4
-            // 
-            this.superTabControlPanel4.Controls.Add(this.textBox3);
-            this.superTabControlPanel4.Controls.Add(this.label60);
-            this.superTabControlPanel4.Controls.Add(this.comboBox32);
-            this.superTabControlPanel4.Controls.Add(this.label59);
-            this.superTabControlPanel4.Controls.Add(this.comboBox31);
-            this.superTabControlPanel4.Controls.Add(this.label58);
-            this.superTabControlPanel4.Controls.Add(this.checkBoxX3);
-            this.superTabControlPanel4.Controls.Add(this.checkBoxX4);
-            this.superTabControlPanel4.Controls.Add(this.label57);
-            this.superTabControlPanel4.Controls.Add(this.textBoxX4);
-            this.superTabControlPanel4.Controls.Add(this.label56);
-            this.superTabControlPanel4.Controls.Add(this.textBoxX3);
-            this.superTabControlPanel4.Controls.Add(this.label55);
-            this.superTabControlPanel4.Controls.Add(this.textBoxX2);
-            this.superTabControlPanel4.Controls.Add(this.label54);
-            this.superTabControlPanel4.Controls.Add(this.textBoxX1);
-            this.superTabControlPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.superTabControlPanel4.Location = new System.Drawing.Point(0, 40);
-            this.superTabControlPanel4.Name = "superTabControlPanel4";
-            this.superTabControlPanel4.Size = new System.Drawing.Size(789, 479);
-            this.superTabControlPanel4.TabIndex = 0;
-            this.superTabControlPanel4.TabItem = this.superTabItem4;
-            // 
-            // textBox3
-            // 
-            this.textBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox3.Location = new System.Drawing.Point(400, 322);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(286, 27);
-            this.textBox3.TabIndex = 55737;
-            // 
-            // label60
-            // 
-            this.label60.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label60.AutoSize = true;
-            this.label60.BackColor = System.Drawing.Color.Transparent;
-            this.label60.Location = new System.Drawing.Point(699, 325);
-            this.label60.Name = "label60";
-            this.label60.Size = new System.Drawing.Size(74, 20);
-            this.label60.TabIndex = 55738;
-            this.label60.Text = "سریال پروانه";
-            // 
-            // comboBox32
-            // 
-            this.comboBox32.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.comboBox32.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.comboBox32.DisplayMember = "Name";
-            this.comboBox32.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox32.FormattingEnabled = true;
-            this.comboBox32.Location = new System.Drawing.Point(400, 279);
-            this.comboBox32.Name = "comboBox32";
-            this.comboBox32.Size = new System.Drawing.Size(286, 28);
-            this.comboBox32.TabIndex = 55735;
-            this.comboBox32.ValueMember = "Guid";
-            // 
-            // label59
-            // 
-            this.label59.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label59.AutoSize = true;
-            this.label59.BackColor = System.Drawing.Color.Transparent;
-            this.label59.Location = new System.Drawing.Point(692, 282);
-            this.label59.Name = "label59";
-            this.label59.Size = new System.Drawing.Size(85, 20);
-            this.label59.TabIndex = 55736;
-            this.label59.Text = "سال اخذ پروانه";
-            // 
-            // comboBox31
-            // 
-            this.comboBox31.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.comboBox31.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.comboBox31.DisplayMember = "Name";
-            this.comboBox31.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox31.FormattingEnabled = true;
-            this.comboBox31.Location = new System.Drawing.Point(400, 239);
-            this.comboBox31.Name = "comboBox31";
-            this.comboBox31.Size = new System.Drawing.Size(286, 28);
-            this.comboBox31.TabIndex = 55735;
-            this.comboBox31.ValueMember = "Guid";
-            // 
-            // label58
-            // 
-            this.label58.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label58.AutoSize = true;
-            this.label58.BackColor = System.Drawing.Color.Transparent;
-            this.label58.Location = new System.Drawing.Point(708, 242);
-            this.label58.Name = "label58";
-            this.label58.Size = new System.Drawing.Size(63, 20);
-            this.label58.TabIndex = 55736;
-            this.label58.Text = "سال ساخت";
-            // 
-            // checkBoxX3
-            // 
-            this.checkBoxX3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            // 
-            // 
-            // 
-            this.checkBoxX3.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.checkBoxX3.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.checkBoxX3.Location = new System.Drawing.Point(423, 205);
-            this.checkBoxX3.Name = "checkBoxX3";
-            this.checkBoxX3.Size = new System.Drawing.Size(263, 23);
-            this.checkBoxX3.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.checkBoxX3.TabIndex = 55733;
-            this.checkBoxX3.Text = "ملک دارای ورودی جدا می باشد";
-            // 
-            // checkBoxX4
-            // 
-            this.checkBoxX4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            // 
-            // 
-            // 
-            this.checkBoxX4.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.checkBoxX4.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.checkBoxX4.Location = new System.Drawing.Point(423, 176);
-            this.checkBoxX4.Name = "checkBoxX4";
-            this.checkBoxX4.Size = new System.Drawing.Size(263, 23);
-            this.checkBoxX4.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.checkBoxX4.TabIndex = 55734;
-            this.checkBoxX4.Text = "کوچه بن بست است";
-            // 
-            // label57
-            // 
-            this.label57.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label57.AutoSize = true;
-            this.label57.BackColor = System.Drawing.Color.Transparent;
-            this.label57.Location = new System.Drawing.Point(705, 135);
-            this.label57.Name = "label57";
-            this.label57.Size = new System.Drawing.Size(66, 20);
-            this.label57.TabIndex = 55732;
-            this.label57.Text = "متراژ تجاری";
-            // 
-            // textBoxX4
-            // 
-            this.textBoxX4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            // 
-            // 
-            // 
-            this.textBoxX4.Border.Class = "TextBoxBorder";
-            this.textBoxX4.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.textBoxX4.Location = new System.Drawing.Point(400, 133);
-            this.textBoxX4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.textBoxX4.Name = "textBoxX4";
-            this.textBoxX4.PreventEnterBeep = true;
-            this.textBoxX4.Size = new System.Drawing.Size(286, 27);
-            this.textBoxX4.TabIndex = 55731;
-            this.textBoxX4.WatermarkImageAlignment = System.Drawing.ContentAlignment.BottomRight;
-            this.textBoxX4.WatermarkText = "بر حسب متر";
-            // 
-            // label56
-            // 
-            this.label56.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label56.AutoSize = true;
-            this.label56.BackColor = System.Drawing.Color.Transparent;
-            this.label56.Location = new System.Drawing.Point(731, 94);
-            this.label56.Name = "label56";
-            this.label56.Size = new System.Drawing.Size(40, 20);
-            this.label56.TabIndex = 55732;
-            this.label56.Text = "حاشیه";
-            // 
-            // textBoxX3
-            // 
-            this.textBoxX3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            // 
-            // 
-            // 
-            this.textBoxX3.Border.Class = "TextBoxBorder";
-            this.textBoxX3.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.textBoxX3.Location = new System.Drawing.Point(400, 92);
-            this.textBoxX3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.textBoxX3.Name = "textBoxX3";
-            this.textBoxX3.PreventEnterBeep = true;
-            this.textBoxX3.Size = new System.Drawing.Size(284, 27);
-            this.textBoxX3.TabIndex = 55731;
-            this.textBoxX3.WatermarkImageAlignment = System.Drawing.ContentAlignment.BottomRight;
-            this.textBoxX3.WatermarkText = "بر حسب متر";
-            // 
-            // label55
-            // 
-            this.label55.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label55.AutoSize = true;
-            this.label55.BackColor = System.Drawing.Color.Transparent;
-            this.label55.Location = new System.Drawing.Point(708, 54);
-            this.label55.Name = "label55";
-            this.label55.Size = new System.Drawing.Size(65, 20);
-            this.label55.TabIndex = 55732;
-            this.label55.Text = "ارتفاع سقف";
-            // 
-            // textBoxX2
-            // 
-            this.textBoxX2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            // 
-            // 
-            // 
-            this.textBoxX2.Border.Class = "TextBoxBorder";
-            this.textBoxX2.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.textBoxX2.Location = new System.Drawing.Point(400, 52);
-            this.textBoxX2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.textBoxX2.Name = "textBoxX2";
-            this.textBoxX2.PreventEnterBeep = true;
-            this.textBoxX2.Size = new System.Drawing.Size(284, 27);
-            this.textBoxX2.TabIndex = 55731;
-            this.textBoxX2.WatermarkImageAlignment = System.Drawing.ContentAlignment.BottomRight;
-            this.textBoxX2.WatermarkText = "بر حسب متر";
-            // 
-            // label54
-            // 
-            this.label54.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label54.AutoSize = true;
-            this.label54.BackColor = System.Drawing.Color.Transparent;
-            this.label54.Location = new System.Drawing.Point(708, 16);
-            this.label54.Name = "label54";
-            this.label54.Size = new System.Drawing.Size(63, 20);
-            this.label54.TabIndex = 55732;
-            this.label54.Text = "متراژ کوچه";
-            // 
-            // textBoxX1
-            // 
-            this.textBoxX1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            // 
-            // 
-            // 
-            this.textBoxX1.Border.Class = "TextBoxBorder";
-            this.textBoxX1.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.textBoxX1.Location = new System.Drawing.Point(400, 14);
-            this.textBoxX1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.textBoxX1.Name = "textBoxX1";
-            this.textBoxX1.PreventEnterBeep = true;
-            this.textBoxX1.Size = new System.Drawing.Size(284, 27);
-            this.textBoxX1.TabIndex = 55731;
-            this.textBoxX1.WatermarkImageAlignment = System.Drawing.ContentAlignment.BottomRight;
-            this.textBoxX1.WatermarkText = "بر حسب متر";
-            // 
-            // superTabItem4
-            // 
-            this.superTabItem4.AttachedControl = this.superTabControlPanel4;
-            this.superTabItem4.GlobalItem = false;
-            this.superTabItem4.Name = "superTabItem4";
-            this.superTabItem4.Text = "سایر";
             // 
             // superTabControlPanel3
             // 
@@ -1669,54 +1730,54 @@
             // 
             // splitContainer3.Panel1
             // 
-            this.splitContainer3.Panel1.Controls.Add(this.textBox2);
+            this.splitContainer3.Panel1.Controls.Add(this.txtShortDesc);
             this.splitContainer3.Panel1.Controls.Add(this.label41);
-            this.splitContainer3.Panel1.Controls.Add(this.comboBox25);
+            this.splitContainer3.Panel1.Controls.Add(this.cmbKitchenService);
             this.splitContainer3.Panel1.Controls.Add(this.label45);
-            this.splitContainer3.Panel1.Controls.Add(this.comboBox24);
+            this.splitContainer3.Panel1.Controls.Add(this.cmbBFloorCover);
             this.splitContainer3.Panel1.Controls.Add(this.label44);
-            this.splitContainer3.Panel1.Controls.Add(this.comboBox23);
+            this.splitContainer3.Panel1.Controls.Add(this.cmbBView);
             this.splitContainer3.Panel1.Controls.Add(this.label43);
-            this.splitContainer3.Panel1.Controls.Add(this.comboBox22);
+            this.splitContainer3.Panel1.Controls.Add(this.cmbBAccountType);
             this.splitContainer3.Panel1.Controls.Add(this.label42);
-            this.splitContainer3.Panel1.Controls.Add(this.comboBox21);
+            this.splitContainer3.Panel1.Controls.Add(this.cmbBuildingType);
             this.splitContainer3.Panel1.Controls.Add(this.label40);
             this.splitContainer3.Panel1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             // 
             // splitContainer3.Panel2
             // 
-            this.splitContainer3.Panel2.Controls.Add(this.numericUpDown14);
-            this.splitContainer3.Panel2.Controls.Add(this.numericUpDown15);
-            this.splitContainer3.Panel2.Controls.Add(this.numericUpDown16);
+            this.splitContainer3.Panel2.Controls.Add(this.txtTedadVahed);
+            this.splitContainer3.Panel2.Controls.Add(this.txtTedadTabaqe);
+            this.splitContainer3.Panel2.Controls.Add(this.txtTedadOtaq);
             this.splitContainer3.Panel2.Controls.Add(this.label50);
             this.splitContainer3.Panel2.Controls.Add(this.label51);
             this.splitContainer3.Panel2.Controls.Add(this.label52);
-            this.splitContainer3.Panel2.Controls.Add(this.comboBox26);
+            this.splitContainer3.Panel2.Controls.Add(this.cmbWater);
             this.splitContainer3.Panel2.Controls.Add(this.label46);
-            this.splitContainer3.Panel2.Controls.Add(this.comboBox30);
-            this.splitContainer3.Panel2.Controls.Add(this.comboBox29);
+            this.splitContainer3.Panel2.Controls.Add(this.cmbTabaqeNo);
+            this.splitContainer3.Panel2.Controls.Add(this.cmbTell);
             this.splitContainer3.Panel2.Controls.Add(this.label53);
-            this.splitContainer3.Panel2.Controls.Add(this.comboBox28);
+            this.splitContainer3.Panel2.Controls.Add(this.cmbGas);
             this.splitContainer3.Panel2.Controls.Add(this.label49);
             this.splitContainer3.Panel2.Controls.Add(this.label47);
             this.splitContainer3.Panel2.Controls.Add(this.label48);
-            this.splitContainer3.Panel2.Controls.Add(this.comboBox27);
+            this.splitContainer3.Panel2.Controls.Add(this.cmbBarq);
             this.splitContainer3.Panel2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.splitContainer3.Size = new System.Drawing.Size(789, 479);
             this.splitContainer3.SplitterDistance = 372;
             this.splitContainer3.TabIndex = 0;
             // 
-            // textBox2
+            // txtShortDesc
             // 
-            this.textBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.txtShortDesc.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox2.Location = new System.Drawing.Point(5, 57);
-            this.textBox2.Multiline = true;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox2.Size = new System.Drawing.Size(312, 186);
-            this.textBox2.TabIndex = 39;
+            this.txtShortDesc.Location = new System.Drawing.Point(5, 57);
+            this.txtShortDesc.Multiline = true;
+            this.txtShortDesc.Name = "txtShortDesc";
+            this.txtShortDesc.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtShortDesc.Size = new System.Drawing.Size(312, 186);
+            this.txtShortDesc.TabIndex = 39;
             // 
             // label41
             // 
@@ -1729,19 +1790,24 @@
             this.label41.TabIndex = 38;
             this.label41.Text = "توصیف";
             // 
-            // comboBox25
+            // cmbKitchenService
             // 
-            this.comboBox25.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.cmbKitchenService.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.comboBox25.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.comboBox25.DisplayMember = "Name";
-            this.comboBox25.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox25.FormattingEnabled = true;
-            this.comboBox25.Location = new System.Drawing.Point(5, 357);
-            this.comboBox25.Name = "comboBox25";
-            this.comboBox25.Size = new System.Drawing.Size(312, 28);
-            this.comboBox25.TabIndex = 32;
-            this.comboBox25.ValueMember = "Guid";
+            this.cmbKitchenService.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cmbKitchenService.DataSource = this.KitchenServiceBindingSource;
+            this.cmbKitchenService.DisplayMember = "Name";
+            this.cmbKitchenService.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbKitchenService.FormattingEnabled = true;
+            this.cmbKitchenService.Location = new System.Drawing.Point(5, 357);
+            this.cmbKitchenService.Name = "cmbKitchenService";
+            this.cmbKitchenService.Size = new System.Drawing.Size(312, 28);
+            this.cmbKitchenService.TabIndex = 32;
+            this.cmbKitchenService.ValueMember = "Guid";
+            // 
+            // KitchenServiceBindingSource
+            // 
+            this.KitchenServiceBindingSource.DataSource = typeof(EntityCache.Bussines.KitchenServiceBussines);
             // 
             // label45
             // 
@@ -1754,19 +1820,24 @@
             this.label45.TabIndex = 33;
             this.label45.Text = "آشپزخانه";
             // 
-            // comboBox24
+            // cmbBFloorCover
             // 
-            this.comboBox24.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.cmbBFloorCover.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.comboBox24.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.comboBox24.DisplayMember = "Name";
-            this.comboBox24.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox24.FormattingEnabled = true;
-            this.comboBox24.Location = new System.Drawing.Point(5, 323);
-            this.comboBox24.Name = "comboBox24";
-            this.comboBox24.Size = new System.Drawing.Size(312, 28);
-            this.comboBox24.TabIndex = 32;
-            this.comboBox24.ValueMember = "Guid";
+            this.cmbBFloorCover.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cmbBFloorCover.DataSource = this.FloorCoverBindingSource;
+            this.cmbBFloorCover.DisplayMember = "Name";
+            this.cmbBFloorCover.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbBFloorCover.FormattingEnabled = true;
+            this.cmbBFloorCover.Location = new System.Drawing.Point(5, 323);
+            this.cmbBFloorCover.Name = "cmbBFloorCover";
+            this.cmbBFloorCover.Size = new System.Drawing.Size(312, 28);
+            this.cmbBFloorCover.TabIndex = 32;
+            this.cmbBFloorCover.ValueMember = "Guid";
+            // 
+            // FloorCoverBindingSource
+            // 
+            this.FloorCoverBindingSource.DataSource = typeof(EntityCache.Bussines.FloorCoverBussines);
             // 
             // label44
             // 
@@ -1779,19 +1850,24 @@
             this.label44.TabIndex = 33;
             this.label44.Text = "کفپوش";
             // 
-            // comboBox23
+            // cmbBView
             // 
-            this.comboBox23.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.cmbBView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.comboBox23.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.comboBox23.DisplayMember = "Name";
-            this.comboBox23.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox23.FormattingEnabled = true;
-            this.comboBox23.Location = new System.Drawing.Point(5, 289);
-            this.comboBox23.Name = "comboBox23";
-            this.comboBox23.Size = new System.Drawing.Size(312, 28);
-            this.comboBox23.TabIndex = 32;
-            this.comboBox23.ValueMember = "Guid";
+            this.cmbBView.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cmbBView.DataSource = this.BuildingViewBindingSource;
+            this.cmbBView.DisplayMember = "Name";
+            this.cmbBView.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbBView.FormattingEnabled = true;
+            this.cmbBView.Location = new System.Drawing.Point(5, 289);
+            this.cmbBView.Name = "cmbBView";
+            this.cmbBView.Size = new System.Drawing.Size(312, 28);
+            this.cmbBView.TabIndex = 32;
+            this.cmbBView.ValueMember = "Guid";
+            // 
+            // BuildingViewBindingSource
+            // 
+            this.BuildingViewBindingSource.DataSource = typeof(EntityCache.Bussines.BuildingViewBussines);
             // 
             // label43
             // 
@@ -1804,19 +1880,24 @@
             this.label43.TabIndex = 33;
             this.label43.Text = "نما";
             // 
-            // comboBox22
+            // cmbBAccountType
             // 
-            this.comboBox22.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.cmbBAccountType.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.comboBox22.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.comboBox22.DisplayMember = "Name";
-            this.comboBox22.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox22.FormattingEnabled = true;
-            this.comboBox22.Location = new System.Drawing.Point(5, 255);
-            this.comboBox22.Name = "comboBox22";
-            this.comboBox22.Size = new System.Drawing.Size(312, 28);
-            this.comboBox22.TabIndex = 32;
-            this.comboBox22.ValueMember = "Guid";
+            this.cmbBAccountType.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cmbBAccountType.DataSource = this.batBindingSource;
+            this.cmbBAccountType.DisplayMember = "Name";
+            this.cmbBAccountType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbBAccountType.FormattingEnabled = true;
+            this.cmbBAccountType.Location = new System.Drawing.Point(5, 255);
+            this.cmbBAccountType.Name = "cmbBAccountType";
+            this.cmbBAccountType.Size = new System.Drawing.Size(312, 28);
+            this.cmbBAccountType.TabIndex = 32;
+            this.cmbBAccountType.ValueMember = "Guid";
+            // 
+            // batBindingSource
+            // 
+            this.batBindingSource.DataSource = typeof(EntityCache.Bussines.BuildingAccountTypeBussines);
             // 
             // label42
             // 
@@ -1829,19 +1910,24 @@
             this.label42.TabIndex = 33;
             this.label42.Text = "کاربری";
             // 
-            // comboBox21
+            // cmbBuildingType
             // 
-            this.comboBox21.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.cmbBuildingType.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.comboBox21.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.comboBox21.DisplayMember = "Name";
-            this.comboBox21.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox21.FormattingEnabled = true;
-            this.comboBox21.Location = new System.Drawing.Point(5, 19);
-            this.comboBox21.Name = "comboBox21";
-            this.comboBox21.Size = new System.Drawing.Size(312, 28);
-            this.comboBox21.TabIndex = 32;
-            this.comboBox21.ValueMember = "Guid";
+            this.cmbBuildingType.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cmbBuildingType.DataSource = this.bTypeBindingSource;
+            this.cmbBuildingType.DisplayMember = "Name";
+            this.cmbBuildingType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbBuildingType.FormattingEnabled = true;
+            this.cmbBuildingType.Location = new System.Drawing.Point(5, 19);
+            this.cmbBuildingType.Name = "cmbBuildingType";
+            this.cmbBuildingType.Size = new System.Drawing.Size(312, 28);
+            this.cmbBuildingType.TabIndex = 32;
+            this.cmbBuildingType.ValueMember = "Guid";
+            // 
+            // bTypeBindingSource
+            // 
+            this.bTypeBindingSource.DataSource = typeof(EntityCache.Bussines.BuildingTypeBussines);
             // 
             // label40
             // 
@@ -1854,47 +1940,47 @@
             this.label40.TabIndex = 33;
             this.label40.Text = "نوع ملک";
             // 
-            // numericUpDown14
+            // txtTedadVahed
             // 
-            this.numericUpDown14.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.txtTedadVahed.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.numericUpDown14.Location = new System.Drawing.Point(23, 225);
-            this.numericUpDown14.Maximum = new decimal(new int[] {
+            this.txtTedadVahed.Location = new System.Drawing.Point(23, 225);
+            this.txtTedadVahed.Maximum = new decimal(new int[] {
             10000,
             0,
             0,
             0});
-            this.numericUpDown14.Name = "numericUpDown14";
-            this.numericUpDown14.Size = new System.Drawing.Size(232, 27);
-            this.numericUpDown14.TabIndex = 37;
+            this.txtTedadVahed.Name = "txtTedadVahed";
+            this.txtTedadVahed.Size = new System.Drawing.Size(232, 27);
+            this.txtTedadVahed.TabIndex = 37;
             // 
-            // numericUpDown15
+            // txtTedadTabaqe
             // 
-            this.numericUpDown15.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.txtTedadTabaqe.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.numericUpDown15.Location = new System.Drawing.Point(23, 158);
-            this.numericUpDown15.Maximum = new decimal(new int[] {
+            this.txtTedadTabaqe.Location = new System.Drawing.Point(23, 158);
+            this.txtTedadTabaqe.Maximum = new decimal(new int[] {
             10000,
             0,
             0,
             0});
-            this.numericUpDown15.Name = "numericUpDown15";
-            this.numericUpDown15.Size = new System.Drawing.Size(232, 27);
-            this.numericUpDown15.TabIndex = 38;
+            this.txtTedadTabaqe.Name = "txtTedadTabaqe";
+            this.txtTedadTabaqe.Size = new System.Drawing.Size(232, 27);
+            this.txtTedadTabaqe.TabIndex = 38;
             // 
-            // numericUpDown16
+            // txtTedadOtaq
             // 
-            this.numericUpDown16.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.txtTedadOtaq.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.numericUpDown16.Location = new System.Drawing.Point(23, 192);
-            this.numericUpDown16.Maximum = new decimal(new int[] {
+            this.txtTedadOtaq.Location = new System.Drawing.Point(23, 192);
+            this.txtTedadOtaq.Maximum = new decimal(new int[] {
             10000,
             0,
             0,
             0});
-            this.numericUpDown16.Name = "numericUpDown16";
-            this.numericUpDown16.Size = new System.Drawing.Size(232, 27);
-            this.numericUpDown16.TabIndex = 39;
+            this.txtTedadOtaq.Name = "txtTedadOtaq";
+            this.txtTedadOtaq.Size = new System.Drawing.Size(232, 27);
+            this.txtTedadOtaq.TabIndex = 39;
             // 
             // label50
             // 
@@ -1929,19 +2015,19 @@
             this.label52.TabIndex = 36;
             this.label52.Text = "تعداد اتاق";
             // 
-            // comboBox26
+            // cmbWater
             // 
-            this.comboBox26.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.cmbWater.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.comboBox26.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.comboBox26.DisplayMember = "Name";
-            this.comboBox26.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox26.FormattingEnabled = true;
-            this.comboBox26.Location = new System.Drawing.Point(23, 19);
-            this.comboBox26.Name = "comboBox26";
-            this.comboBox26.Size = new System.Drawing.Size(232, 28);
-            this.comboBox26.TabIndex = 32;
-            this.comboBox26.ValueMember = "Guid";
+            this.cmbWater.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cmbWater.DisplayMember = "Name";
+            this.cmbWater.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbWater.FormattingEnabled = true;
+            this.cmbWater.Location = new System.Drawing.Point(23, 19);
+            this.cmbWater.Name = "cmbWater";
+            this.cmbWater.Size = new System.Drawing.Size(232, 28);
+            this.cmbWater.TabIndex = 32;
+            this.cmbWater.ValueMember = "Guid";
             // 
             // label46
             // 
@@ -1954,33 +2040,68 @@
             this.label46.TabIndex = 33;
             this.label46.Text = "آب";
             // 
-            // comboBox30
+            // cmbTabaqeNo
             // 
-            this.comboBox30.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.cmbTabaqeNo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.comboBox30.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.comboBox30.DisplayMember = "Name";
-            this.comboBox30.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox30.FormattingEnabled = true;
-            this.comboBox30.Location = new System.Drawing.Point(23, 258);
-            this.comboBox30.Name = "comboBox30";
-            this.comboBox30.Size = new System.Drawing.Size(232, 28);
-            this.comboBox30.TabIndex = 32;
-            this.comboBox30.ValueMember = "Guid";
+            this.cmbTabaqeNo.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cmbTabaqeNo.DisplayMember = "Name";
+            this.cmbTabaqeNo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbTabaqeNo.FormattingEnabled = true;
+            this.cmbTabaqeNo.Items.AddRange(new object[] {
+            "-3",
+            "-2",
+            "-1",
+            "همکف",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19",
+            "20",
+            "21",
+            "22",
+            "23",
+            "24",
+            "25",
+            "26",
+            "27",
+            "28",
+            "29",
+            "30"});
+            this.cmbTabaqeNo.Location = new System.Drawing.Point(23, 258);
+            this.cmbTabaqeNo.Name = "cmbTabaqeNo";
+            this.cmbTabaqeNo.Size = new System.Drawing.Size(232, 28);
+            this.cmbTabaqeNo.TabIndex = 32;
+            this.cmbTabaqeNo.ValueMember = "Guid";
             // 
-            // comboBox29
+            // cmbTell
             // 
-            this.comboBox29.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.cmbTell.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.comboBox29.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.comboBox29.DisplayMember = "Name";
-            this.comboBox29.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox29.FormattingEnabled = true;
-            this.comboBox29.Location = new System.Drawing.Point(23, 121);
-            this.comboBox29.Name = "comboBox29";
-            this.comboBox29.Size = new System.Drawing.Size(232, 28);
-            this.comboBox29.TabIndex = 32;
-            this.comboBox29.ValueMember = "Guid";
+            this.cmbTell.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cmbTell.DisplayMember = "Name";
+            this.cmbTell.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbTell.FormattingEnabled = true;
+            this.cmbTell.Location = new System.Drawing.Point(23, 121);
+            this.cmbTell.Name = "cmbTell";
+            this.cmbTell.Size = new System.Drawing.Size(232, 28);
+            this.cmbTell.TabIndex = 32;
+            this.cmbTell.ValueMember = "Guid";
             // 
             // label53
             // 
@@ -1993,19 +2114,19 @@
             this.label53.TabIndex = 33;
             this.label53.Text = "شماره طبقه";
             // 
-            // comboBox28
+            // cmbGas
             // 
-            this.comboBox28.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.cmbGas.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.comboBox28.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.comboBox28.DisplayMember = "Name";
-            this.comboBox28.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox28.FormattingEnabled = true;
-            this.comboBox28.Location = new System.Drawing.Point(23, 87);
-            this.comboBox28.Name = "comboBox28";
-            this.comboBox28.Size = new System.Drawing.Size(232, 28);
-            this.comboBox28.TabIndex = 32;
-            this.comboBox28.ValueMember = "Guid";
+            this.cmbGas.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cmbGas.DisplayMember = "Name";
+            this.cmbGas.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbGas.FormattingEnabled = true;
+            this.cmbGas.Location = new System.Drawing.Point(23, 87);
+            this.cmbGas.Name = "cmbGas";
+            this.cmbGas.Size = new System.Drawing.Size(232, 28);
+            this.cmbGas.TabIndex = 32;
+            this.cmbGas.ValueMember = "Guid";
             // 
             // label49
             // 
@@ -2040,19 +2161,19 @@
             this.label48.TabIndex = 33;
             this.label48.Text = "گاز";
             // 
-            // comboBox27
+            // cmbBarq
             // 
-            this.comboBox27.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.cmbBarq.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.comboBox27.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.comboBox27.DisplayMember = "Name";
-            this.comboBox27.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox27.FormattingEnabled = true;
-            this.comboBox27.Location = new System.Drawing.Point(23, 53);
-            this.comboBox27.Name = "comboBox27";
-            this.comboBox27.Size = new System.Drawing.Size(232, 28);
-            this.comboBox27.TabIndex = 32;
-            this.comboBox27.ValueMember = "Guid";
+            this.cmbBarq.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cmbBarq.DisplayMember = "Name";
+            this.cmbBarq.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbBarq.FormattingEnabled = true;
+            this.cmbBarq.Location = new System.Drawing.Point(23, 53);
+            this.cmbBarq.Name = "cmbBarq";
+            this.cmbBarq.Size = new System.Drawing.Size(232, 28);
+            this.cmbBarq.TabIndex = 32;
+            this.cmbBarq.ValueMember = "Guid";
             // 
             // superTabItem3
             // 
@@ -2060,280 +2181,6 @@
             this.superTabItem3.GlobalItem = false;
             this.superTabItem3.Name = "superTabItem3";
             this.superTabItem3.Text = "نوع ملک";
-            // 
-            // superTabControlPanel2
-            // 
-            this.superTabControlPanel2.Controls.Add(this.splitContainer2);
-            this.superTabControlPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.superTabControlPanel2.Location = new System.Drawing.Point(0, 40);
-            this.superTabControlPanel2.Name = "superTabControlPanel2";
-            this.superTabControlPanel2.Size = new System.Drawing.Size(789, 479);
-            this.superTabControlPanel2.TabIndex = 0;
-            this.superTabControlPanel2.TabItem = this.superTabItem2;
-            // 
-            // splitContainer2
-            // 
-            this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer2.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer2.Name = "splitContainer2";
-            // 
-            // splitContainer2.Panel1
-            // 
-            this.splitContainer2.Panel1.Controls.Add(this.textBox1);
-            this.splitContainer2.Panel1.Controls.Add(this.comboBox18);
-            this.splitContainer2.Panel1.Controls.Add(this.label37);
-            this.splitContainer2.Panel1.Controls.Add(this.comboBox20);
-            this.splitContainer2.Panel1.Controls.Add(this.comboBox17);
-            this.splitContainer2.Panel1.Controls.Add(this.comboBox19);
-            this.splitContainer2.Panel1.Controls.Add(this.comboBox16);
-            this.splitContainer2.Panel1.Controls.Add(this.comboBox15);
-            this.splitContainer2.Panel1.Controls.Add(this.label36);
-            this.splitContainer2.Panel1.Controls.Add(this.label39);
-            this.splitContainer2.Panel1.Controls.Add(this.numericUpDown13);
-            this.splitContainer2.Panel1.Controls.Add(this.label35);
-            this.splitContainer2.Panel1.Controls.Add(this.label38);
-            this.splitContainer2.Panel1.Controls.Add(this.comboBox14);
-            this.splitContainer2.Panel1.Controls.Add(this.label34);
-            this.splitContainer2.Panel1.Controls.Add(this.label33);
-            this.splitContainer2.Panel1.Controls.Add(this.numericUpDown12);
-            this.splitContainer2.Panel1.Controls.Add(this.label32);
-            this.splitContainer2.Panel1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            // 
-            // splitContainer2.Panel2
-            // 
-            this.splitContainer2.Panel2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.splitContainer2.Size = new System.Drawing.Size(789, 479);
-            this.splitContainer2.SplitterDistance = 282;
-            this.splitContainer2.TabIndex = 0;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox1.Location = new System.Drawing.Point(3, 193);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox1.Size = new System.Drawing.Size(220, 186);
-            this.textBox1.TabIndex = 37;
-            // 
-            // comboBox18
-            // 
-            this.comboBox18.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.comboBox18.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.comboBox18.DisplayMember = "Name";
-            this.comboBox18.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox18.FormattingEnabled = true;
-            this.comboBox18.Location = new System.Drawing.Point(3, 158);
-            this.comboBox18.Name = "comboBox18";
-            this.comboBox18.Size = new System.Drawing.Size(220, 28);
-            this.comboBox18.TabIndex = 30;
-            this.comboBox18.ValueMember = "Guid";
-            // 
-            // label37
-            // 
-            this.label37.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label37.AutoSize = true;
-            this.label37.BackColor = System.Drawing.Color.Transparent;
-            this.label37.Location = new System.Drawing.Point(239, 196);
-            this.label37.Name = "label37";
-            this.label37.Size = new System.Drawing.Size(39, 20);
-            this.label37.TabIndex = 36;
-            this.label37.Text = "آدرس";
-            // 
-            // comboBox20
-            // 
-            this.comboBox20.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.comboBox20.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.comboBox20.DisplayMember = "Name";
-            this.comboBox20.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox20.FormattingEnabled = true;
-            this.comboBox20.Location = new System.Drawing.Point(3, 421);
-            this.comboBox20.Name = "comboBox20";
-            this.comboBox20.Size = new System.Drawing.Size(220, 28);
-            this.comboBox20.TabIndex = 30;
-            this.comboBox20.ValueMember = "Guid";
-            // 
-            // comboBox17
-            // 
-            this.comboBox17.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.comboBox17.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.comboBox17.DisplayMember = "Name";
-            this.comboBox17.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox17.FormattingEnabled = true;
-            this.comboBox17.Location = new System.Drawing.Point(3, 124);
-            this.comboBox17.Name = "comboBox17";
-            this.comboBox17.Size = new System.Drawing.Size(220, 28);
-            this.comboBox17.TabIndex = 30;
-            this.comboBox17.ValueMember = "Guid";
-            // 
-            // comboBox19
-            // 
-            this.comboBox19.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.comboBox19.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.comboBox19.DisplayMember = "Name";
-            this.comboBox19.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox19.FormattingEnabled = true;
-            this.comboBox19.Location = new System.Drawing.Point(3, 387);
-            this.comboBox19.Name = "comboBox19";
-            this.comboBox19.Size = new System.Drawing.Size(220, 28);
-            this.comboBox19.TabIndex = 30;
-            this.comboBox19.ValueMember = "Guid";
-            // 
-            // comboBox16
-            // 
-            this.comboBox16.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.comboBox16.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.comboBox16.DisplayMember = "Name";
-            this.comboBox16.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox16.FormattingEnabled = true;
-            this.comboBox16.Location = new System.Drawing.Point(3, 90);
-            this.comboBox16.Name = "comboBox16";
-            this.comboBox16.Size = new System.Drawing.Size(220, 28);
-            this.comboBox16.TabIndex = 30;
-            this.comboBox16.ValueMember = "Guid";
-            // 
-            // comboBox15
-            // 
-            this.comboBox15.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.comboBox15.DisplayMember = "Name";
-            this.comboBox15.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox15.FormattingEnabled = true;
-            this.comboBox15.Location = new System.Drawing.Point(3, 55);
-            this.comboBox15.Name = "comboBox15";
-            this.comboBox15.Size = new System.Drawing.Size(147, 28);
-            this.comboBox15.TabIndex = 30;
-            this.comboBox15.ValueMember = "Guid";
-            // 
-            // label36
-            // 
-            this.label36.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label36.AutoSize = true;
-            this.label36.BackColor = System.Drawing.Color.Transparent;
-            this.label36.Location = new System.Drawing.Point(234, 161);
-            this.label36.Name = "label36";
-            this.label36.Size = new System.Drawing.Size(45, 20);
-            this.label36.TabIndex = 31;
-            this.label36.Text = "محدوده";
-            // 
-            // label39
-            // 
-            this.label39.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.label39.AutoSize = true;
-            this.label39.BackColor = System.Drawing.Color.Transparent;
-            this.label39.Location = new System.Drawing.Point(242, 424);
-            this.label39.Name = "label39";
-            this.label39.Size = new System.Drawing.Size(32, 20);
-            this.label39.TabIndex = 31;
-            this.label39.Text = "جهت";
-            // 
-            // numericUpDown13
-            // 
-            this.numericUpDown13.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.numericUpDown13.Location = new System.Drawing.Point(156, 56);
-            this.numericUpDown13.Maximum = new decimal(new int[] {
-            10000,
-            0,
-            0,
-            0});
-            this.numericUpDown13.Name = "numericUpDown13";
-            this.numericUpDown13.Size = new System.Drawing.Size(67, 27);
-            this.numericUpDown13.TabIndex = 32;
-            // 
-            // label35
-            // 
-            this.label35.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label35.AutoSize = true;
-            this.label35.BackColor = System.Drawing.Color.Transparent;
-            this.label35.Location = new System.Drawing.Point(225, 127);
-            this.label35.Name = "label35";
-            this.label35.Size = new System.Drawing.Size(54, 20);
-            this.label35.TabIndex = 31;
-            this.label35.Text = "شهرستان";
-            // 
-            // label38
-            // 
-            this.label38.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.label38.AutoSize = true;
-            this.label38.BackColor = System.Drawing.Color.Transparent;
-            this.label38.Location = new System.Drawing.Point(221, 390);
-            this.label38.Name = "label38";
-            this.label38.Size = new System.Drawing.Size(60, 20);
-            this.label38.TabIndex = 31;
-            this.label38.Text = "وضعیت بنا";
-            // 
-            // comboBox14
-            // 
-            this.comboBox14.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.comboBox14.DisplayMember = "Name";
-            this.comboBox14.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox14.FormattingEnabled = true;
-            this.comboBox14.Location = new System.Drawing.Point(3, 21);
-            this.comboBox14.Name = "comboBox14";
-            this.comboBox14.Size = new System.Drawing.Size(147, 28);
-            this.comboBox14.TabIndex = 30;
-            this.comboBox14.ValueMember = "Guid";
-            // 
-            // label34
-            // 
-            this.label34.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label34.AutoSize = true;
-            this.label34.BackColor = System.Drawing.Color.Transparent;
-            this.label34.Location = new System.Drawing.Point(236, 93);
-            this.label34.Name = "label34";
-            this.label34.Size = new System.Drawing.Size(38, 20);
-            this.label34.TabIndex = 31;
-            this.label34.Text = "استان";
-            // 
-            // label33
-            // 
-            this.label33.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label33.AutoSize = true;
-            this.label33.BackColor = System.Drawing.Color.Transparent;
-            this.label33.Location = new System.Drawing.Point(238, 58);
-            this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(36, 20);
-            this.label33.TabIndex = 31;
-            this.label33.Text = "زیربنا";
-            // 
-            // numericUpDown12
-            // 
-            this.numericUpDown12.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.numericUpDown12.Location = new System.Drawing.Point(156, 22);
-            this.numericUpDown12.Maximum = new decimal(new int[] {
-            10000,
-            0,
-            0,
-            0});
-            this.numericUpDown12.Name = "numericUpDown12";
-            this.numericUpDown12.Size = new System.Drawing.Size(67, 27);
-            this.numericUpDown12.TabIndex = 32;
-            // 
-            // label32
-            // 
-            this.label32.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label32.AutoSize = true;
-            this.label32.BackColor = System.Drawing.Color.Transparent;
-            this.label32.Location = new System.Drawing.Point(229, 24);
-            this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(45, 20);
-            this.label32.TabIndex = 31;
-            this.label32.Text = "مساحت";
-            // 
-            // superTabItem2
-            // 
-            this.superTabItem2.AttachedControl = this.superTabControlPanel2;
-            this.superTabItem2.GlobalItem = false;
-            this.superTabItem2.Name = "superTabItem2";
-            this.superTabItem2.Text = "وضعیت ملک";
             // 
             // superTabControlPanel5
             // 
@@ -2363,6 +2210,7 @@
             this.txtSearch.TabIndex = 55730;
             this.txtSearch.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtSearch.WatermarkText = "مورد جستجو را وارد نمایید ...";
+            this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
             // 
             // DGrid
             // 
@@ -2379,6 +2227,7 @@
             this.DGrid.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.DGrid.AutoGenerateColumns = false;
             this.DGrid.BackgroundColor = System.Drawing.Color.White;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
@@ -2389,6 +2238,13 @@
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.DGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.DGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dgChecked,
+            this.nameDataGridViewTextBoxColumn,
+            this.dgOptionGuid,
+            this.modifiedDataGridViewTextBoxColumn,
+            this.statusDataGridViewCheckBoxColumn});
+            this.DGrid.DataSource = this.BuildingOptionBindingSource;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
             dataGridViewCellStyle3.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
@@ -2401,7 +2257,6 @@
             this.DGrid.Location = new System.Drawing.Point(7, 44);
             this.DGrid.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.DGrid.Name = "DGrid";
-            this.DGrid.ReadOnly = true;
             this.DGrid.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.DGrid.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
@@ -2424,6 +2279,46 @@
             this.DGrid.Size = new System.Drawing.Size(779, 429);
             this.DGrid.TabIndex = 55729;
             // 
+            // dgChecked
+            // 
+            this.dgChecked.DataPropertyName = "Checked";
+            this.dgChecked.HeaderText = "";
+            this.dgChecked.Name = "dgChecked";
+            this.dgChecked.Width = 30;
+            // 
+            // nameDataGridViewTextBoxColumn
+            // 
+            this.nameDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
+            this.nameDataGridViewTextBoxColumn.HeaderText = "عنوان";
+            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // dgOptionGuid
+            // 
+            this.dgOptionGuid.DataPropertyName = "Guid";
+            this.dgOptionGuid.HeaderText = "Guid";
+            this.dgOptionGuid.Name = "dgOptionGuid";
+            this.dgOptionGuid.Visible = false;
+            // 
+            // modifiedDataGridViewTextBoxColumn
+            // 
+            this.modifiedDataGridViewTextBoxColumn.DataPropertyName = "Modified";
+            this.modifiedDataGridViewTextBoxColumn.HeaderText = "Modified";
+            this.modifiedDataGridViewTextBoxColumn.Name = "modifiedDataGridViewTextBoxColumn";
+            this.modifiedDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // statusDataGridViewCheckBoxColumn
+            // 
+            this.statusDataGridViewCheckBoxColumn.DataPropertyName = "Status";
+            this.statusDataGridViewCheckBoxColumn.HeaderText = "Status";
+            this.statusDataGridViewCheckBoxColumn.Name = "statusDataGridViewCheckBoxColumn";
+            this.statusDataGridViewCheckBoxColumn.Visible = false;
+            // 
+            // BuildingOptionBindingSource
+            // 
+            this.BuildingOptionBindingSource.DataSource = typeof(EntityCache.Bussines.BuildingOptionsBussines);
+            // 
             // superTabItem5
             // 
             this.superTabItem5.AttachedControl = this.superTabControlPanel5;
@@ -2433,6 +2328,9 @@
             // 
             // superTabControlPanel6
             // 
+            this.superTabControlPanel6.Controls.Add(this.btnDelImage);
+            this.superTabControlPanel6.Controls.Add(this.btnInsImage);
+            this.superTabControlPanel6.Controls.Add(this.fPanel);
             this.superTabControlPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.superTabControlPanel6.Location = new System.Drawing.Point(0, 40);
             this.superTabControlPanel6.Name = "superTabControlPanel6";
@@ -2440,12 +2338,594 @@
             this.superTabControlPanel6.TabIndex = 0;
             this.superTabControlPanel6.TabItem = this.superTabItem6;
             // 
+            // btnDelImage
+            // 
+            this.btnDelImage.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnDelImage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnDelImage.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.btnDelImage.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnDelImage.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.btnDelImage.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnDelImage.Font = new System.Drawing.Font("B Yekan", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.btnDelImage.Location = new System.Drawing.Point(515, 447);
+            this.btnDelImage.Name = "btnDelImage";
+            this.btnDelImage.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
+            this.btnDelImage.Size = new System.Drawing.Size(265, 27);
+            this.btnDelImage.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
+            this.btnDelImage.TabIndex = 13;
+            this.btnDelImage.Text = "حذف تصویر(های) انتخاب شده";
+            this.btnDelImage.TextColor = System.Drawing.Color.White;
+            this.btnDelImage.Click += new System.EventHandler(this.btnDelImage_Click);
+            // 
+            // btnInsImage
+            // 
+            this.btnInsImage.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnInsImage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnInsImage.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.btnInsImage.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnInsImage.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.btnInsImage.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnInsImage.Font = new System.Drawing.Font("B Yekan", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.btnInsImage.Location = new System.Drawing.Point(515, 418);
+            this.btnInsImage.Name = "btnInsImage";
+            this.btnInsImage.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
+            this.btnInsImage.Size = new System.Drawing.Size(265, 27);
+            this.btnInsImage.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
+            this.btnInsImage.TabIndex = 13;
+            this.btnInsImage.Text = "افزودن تصویر(های) جدید";
+            this.btnInsImage.TextColor = System.Drawing.Color.White;
+            this.btnInsImage.Click += new System.EventHandler(this.btnInsImage_Click);
+            // 
+            // fPanel
+            // 
+            this.fPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.fPanel.BackColor = System.Drawing.Color.Transparent;
+            this.fPanel.Location = new System.Drawing.Point(7, 3);
+            this.fPanel.Name = "fPanel";
+            this.fPanel.Size = new System.Drawing.Size(779, 411);
+            this.fPanel.TabIndex = 2;
+            // 
             // superTabItem6
             // 
             this.superTabItem6.AttachedControl = this.superTabControlPanel6;
             this.superTabItem6.GlobalItem = false;
             this.superTabItem6.Name = "superTabItem6";
             this.superTabItem6.Text = "گالری تصاویر";
+            // 
+            // superTabControlPanel4
+            // 
+            this.superTabControlPanel4.Controls.Add(this.txtSaleParvane);
+            this.superTabControlPanel4.Controls.Add(this.txtSaleSakht);
+            this.superTabControlPanel4.Controls.Add(this.txtSerialParvane);
+            this.superTabControlPanel4.Controls.Add(this.label60);
+            this.superTabControlPanel4.Controls.Add(this.label59);
+            this.superTabControlPanel4.Controls.Add(this.label58);
+            this.superTabControlPanel4.Controls.Add(this.chbIsMamarJoda);
+            this.superTabControlPanel4.Controls.Add(this.chbIsBonBast);
+            this.superTabControlPanel4.Controls.Add(this.label57);
+            this.superTabControlPanel4.Controls.Add(this.txtMetrazhTejari);
+            this.superTabControlPanel4.Controls.Add(this.label56);
+            this.superTabControlPanel4.Controls.Add(this.txtHashie);
+            this.superTabControlPanel4.Controls.Add(this.label55);
+            this.superTabControlPanel4.Controls.Add(this.txtErtrfaSaqf);
+            this.superTabControlPanel4.Controls.Add(this.label54);
+            this.superTabControlPanel4.Controls.Add(this.txtMetrazhKouche);
+            this.superTabControlPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.superTabControlPanel4.Location = new System.Drawing.Point(0, 40);
+            this.superTabControlPanel4.Name = "superTabControlPanel4";
+            this.superTabControlPanel4.Size = new System.Drawing.Size(789, 479);
+            this.superTabControlPanel4.TabIndex = 0;
+            this.superTabControlPanel4.TabItem = this.superTabItem4;
+            // 
+            // txtSaleParvane
+            // 
+            this.txtSaleParvane.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtSaleParvane.Location = new System.Drawing.Point(400, 279);
+            this.txtSaleParvane.Name = "txtSaleParvane";
+            this.txtSaleParvane.Size = new System.Drawing.Size(286, 27);
+            this.txtSaleParvane.TabIndex = 55737;
+            // 
+            // txtSaleSakht
+            // 
+            this.txtSaleSakht.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtSaleSakht.Location = new System.Drawing.Point(400, 239);
+            this.txtSaleSakht.Name = "txtSaleSakht";
+            this.txtSaleSakht.Size = new System.Drawing.Size(286, 27);
+            this.txtSaleSakht.TabIndex = 55737;
+            // 
+            // txtSerialParvane
+            // 
+            this.txtSerialParvane.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtSerialParvane.Location = new System.Drawing.Point(400, 322);
+            this.txtSerialParvane.Name = "txtSerialParvane";
+            this.txtSerialParvane.Size = new System.Drawing.Size(286, 27);
+            this.txtSerialParvane.TabIndex = 55737;
+            // 
+            // label60
+            // 
+            this.label60.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label60.AutoSize = true;
+            this.label60.BackColor = System.Drawing.Color.Transparent;
+            this.label60.Location = new System.Drawing.Point(699, 325);
+            this.label60.Name = "label60";
+            this.label60.Size = new System.Drawing.Size(74, 20);
+            this.label60.TabIndex = 55738;
+            this.label60.Text = "سریال پروانه";
+            // 
+            // label59
+            // 
+            this.label59.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label59.AutoSize = true;
+            this.label59.BackColor = System.Drawing.Color.Transparent;
+            this.label59.Location = new System.Drawing.Point(692, 282);
+            this.label59.Name = "label59";
+            this.label59.Size = new System.Drawing.Size(85, 20);
+            this.label59.TabIndex = 55736;
+            this.label59.Text = "سال اخذ پروانه";
+            // 
+            // label58
+            // 
+            this.label58.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label58.AutoSize = true;
+            this.label58.BackColor = System.Drawing.Color.Transparent;
+            this.label58.Location = new System.Drawing.Point(708, 242);
+            this.label58.Name = "label58";
+            this.label58.Size = new System.Drawing.Size(63, 20);
+            this.label58.TabIndex = 55736;
+            this.label58.Text = "سال ساخت";
+            // 
+            // chbIsMamarJoda
+            // 
+            this.chbIsMamarJoda.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            // 
+            // 
+            // 
+            this.chbIsMamarJoda.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.chbIsMamarJoda.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.chbIsMamarJoda.Location = new System.Drawing.Point(423, 205);
+            this.chbIsMamarJoda.Name = "chbIsMamarJoda";
+            this.chbIsMamarJoda.Size = new System.Drawing.Size(263, 23);
+            this.chbIsMamarJoda.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.chbIsMamarJoda.TabIndex = 55733;
+            this.chbIsMamarJoda.Text = "ملک دارای ورودی جدا می باشد";
+            // 
+            // chbIsBonBast
+            // 
+            this.chbIsBonBast.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            // 
+            // 
+            // 
+            this.chbIsBonBast.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.chbIsBonBast.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.chbIsBonBast.Location = new System.Drawing.Point(423, 176);
+            this.chbIsBonBast.Name = "chbIsBonBast";
+            this.chbIsBonBast.Size = new System.Drawing.Size(263, 23);
+            this.chbIsBonBast.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.chbIsBonBast.TabIndex = 55734;
+            this.chbIsBonBast.Text = "کوچه بن بست است";
+            // 
+            // label57
+            // 
+            this.label57.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label57.AutoSize = true;
+            this.label57.BackColor = System.Drawing.Color.Transparent;
+            this.label57.Location = new System.Drawing.Point(705, 135);
+            this.label57.Name = "label57";
+            this.label57.Size = new System.Drawing.Size(66, 20);
+            this.label57.TabIndex = 55732;
+            this.label57.Text = "متراژ تجاری";
+            // 
+            // txtMetrazhTejari
+            // 
+            this.txtMetrazhTejari.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            // 
+            // 
+            // 
+            this.txtMetrazhTejari.Border.Class = "TextBoxBorder";
+            this.txtMetrazhTejari.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.txtMetrazhTejari.Location = new System.Drawing.Point(400, 133);
+            this.txtMetrazhTejari.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtMetrazhTejari.Name = "txtMetrazhTejari";
+            this.txtMetrazhTejari.PreventEnterBeep = true;
+            this.txtMetrazhTejari.Size = new System.Drawing.Size(286, 27);
+            this.txtMetrazhTejari.TabIndex = 55731;
+            this.txtMetrazhTejari.WatermarkImageAlignment = System.Drawing.ContentAlignment.BottomRight;
+            this.txtMetrazhTejari.WatermarkText = "بر حسب متر";
+            // 
+            // label56
+            // 
+            this.label56.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label56.AutoSize = true;
+            this.label56.BackColor = System.Drawing.Color.Transparent;
+            this.label56.Location = new System.Drawing.Point(731, 94);
+            this.label56.Name = "label56";
+            this.label56.Size = new System.Drawing.Size(40, 20);
+            this.label56.TabIndex = 55732;
+            this.label56.Text = "حاشیه";
+            // 
+            // txtHashie
+            // 
+            this.txtHashie.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            // 
+            // 
+            // 
+            this.txtHashie.Border.Class = "TextBoxBorder";
+            this.txtHashie.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.txtHashie.Location = new System.Drawing.Point(400, 92);
+            this.txtHashie.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtHashie.Name = "txtHashie";
+            this.txtHashie.PreventEnterBeep = true;
+            this.txtHashie.Size = new System.Drawing.Size(284, 27);
+            this.txtHashie.TabIndex = 55731;
+            this.txtHashie.WatermarkImageAlignment = System.Drawing.ContentAlignment.BottomRight;
+            this.txtHashie.WatermarkText = "بر حسب متر";
+            // 
+            // label55
+            // 
+            this.label55.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label55.AutoSize = true;
+            this.label55.BackColor = System.Drawing.Color.Transparent;
+            this.label55.Location = new System.Drawing.Point(708, 54);
+            this.label55.Name = "label55";
+            this.label55.Size = new System.Drawing.Size(65, 20);
+            this.label55.TabIndex = 55732;
+            this.label55.Text = "ارتفاع سقف";
+            // 
+            // txtErtrfaSaqf
+            // 
+            this.txtErtrfaSaqf.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            // 
+            // 
+            // 
+            this.txtErtrfaSaqf.Border.Class = "TextBoxBorder";
+            this.txtErtrfaSaqf.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.txtErtrfaSaqf.Location = new System.Drawing.Point(400, 52);
+            this.txtErtrfaSaqf.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtErtrfaSaqf.Name = "txtErtrfaSaqf";
+            this.txtErtrfaSaqf.PreventEnterBeep = true;
+            this.txtErtrfaSaqf.Size = new System.Drawing.Size(284, 27);
+            this.txtErtrfaSaqf.TabIndex = 55731;
+            this.txtErtrfaSaqf.WatermarkImageAlignment = System.Drawing.ContentAlignment.BottomRight;
+            this.txtErtrfaSaqf.WatermarkText = "بر حسب متر";
+            // 
+            // label54
+            // 
+            this.label54.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label54.AutoSize = true;
+            this.label54.BackColor = System.Drawing.Color.Transparent;
+            this.label54.Location = new System.Drawing.Point(708, 16);
+            this.label54.Name = "label54";
+            this.label54.Size = new System.Drawing.Size(63, 20);
+            this.label54.TabIndex = 55732;
+            this.label54.Text = "متراژ کوچه";
+            // 
+            // txtMetrazhKouche
+            // 
+            this.txtMetrazhKouche.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            // 
+            // 
+            // 
+            this.txtMetrazhKouche.Border.Class = "TextBoxBorder";
+            this.txtMetrazhKouche.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.txtMetrazhKouche.Location = new System.Drawing.Point(400, 14);
+            this.txtMetrazhKouche.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtMetrazhKouche.Name = "txtMetrazhKouche";
+            this.txtMetrazhKouche.PreventEnterBeep = true;
+            this.txtMetrazhKouche.Size = new System.Drawing.Size(284, 27);
+            this.txtMetrazhKouche.TabIndex = 55731;
+            this.txtMetrazhKouche.WatermarkImageAlignment = System.Drawing.ContentAlignment.BottomRight;
+            this.txtMetrazhKouche.WatermarkText = "بر حسب متر";
+            // 
+            // superTabItem4
+            // 
+            this.superTabItem4.AttachedControl = this.superTabControlPanel4;
+            this.superTabItem4.GlobalItem = false;
+            this.superTabItem4.Name = "superTabItem4";
+            this.superTabItem4.Text = "سایر";
+            // 
+            // superTabControlPanel2
+            // 
+            this.superTabControlPanel2.Controls.Add(this.splitContainer2);
+            this.superTabControlPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.superTabControlPanel2.Location = new System.Drawing.Point(0, 40);
+            this.superTabControlPanel2.Name = "superTabControlPanel2";
+            this.superTabControlPanel2.Size = new System.Drawing.Size(789, 479);
+            this.superTabControlPanel2.TabIndex = 0;
+            this.superTabControlPanel2.TabItem = this.superTabItem2;
+            // 
+            // splitContainer2
+            // 
+            this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer2.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer2.Name = "splitContainer2";
+            // 
+            // splitContainer2.Panel1
+            // 
+            this.splitContainer2.Panel1.Controls.Add(this.txtAddress);
+            this.splitContainer2.Panel1.Controls.Add(this.cmbRegion);
+            this.splitContainer2.Panel1.Controls.Add(this.label37);
+            this.splitContainer2.Panel1.Controls.Add(this.cmbSide);
+            this.splitContainer2.Panel1.Controls.Add(this.cmbCity);
+            this.splitContainer2.Panel1.Controls.Add(this.cmbBuildingCondition);
+            this.splitContainer2.Panel1.Controls.Add(this.cmbState);
+            this.splitContainer2.Panel1.Controls.Add(this.cmbZirBana);
+            this.splitContainer2.Panel1.Controls.Add(this.label36);
+            this.splitContainer2.Panel1.Controls.Add(this.label39);
+            this.splitContainer2.Panel1.Controls.Add(this.txtZirBana);
+            this.splitContainer2.Panel1.Controls.Add(this.label35);
+            this.splitContainer2.Panel1.Controls.Add(this.label38);
+            this.splitContainer2.Panel1.Controls.Add(this.cmbMasahat);
+            this.splitContainer2.Panel1.Controls.Add(this.label34);
+            this.splitContainer2.Panel1.Controls.Add(this.label33);
+            this.splitContainer2.Panel1.Controls.Add(this.txtMasahat);
+            this.splitContainer2.Panel1.Controls.Add(this.label32);
+            this.splitContainer2.Panel1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            // 
+            // splitContainer2.Panel2
+            // 
+            this.splitContainer2.Panel2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.splitContainer2.Size = new System.Drawing.Size(789, 479);
+            this.splitContainer2.SplitterDistance = 282;
+            this.splitContainer2.TabIndex = 0;
+            // 
+            // txtAddress
+            // 
+            this.txtAddress.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtAddress.Location = new System.Drawing.Point(3, 193);
+            this.txtAddress.Multiline = true;
+            this.txtAddress.Name = "txtAddress";
+            this.txtAddress.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtAddress.Size = new System.Drawing.Size(220, 186);
+            this.txtAddress.TabIndex = 37;
+            // 
+            // cmbRegion
+            // 
+            this.cmbRegion.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmbRegion.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cmbRegion.DataSource = this.RegionBindingSource;
+            this.cmbRegion.DisplayMember = "Name";
+            this.cmbRegion.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbRegion.FormattingEnabled = true;
+            this.cmbRegion.Location = new System.Drawing.Point(3, 158);
+            this.cmbRegion.Name = "cmbRegion";
+            this.cmbRegion.Size = new System.Drawing.Size(220, 28);
+            this.cmbRegion.TabIndex = 30;
+            this.cmbRegion.ValueMember = "Guid";
+            // 
+            // RegionBindingSource
+            // 
+            this.RegionBindingSource.DataSource = typeof(EntityCache.Bussines.RegionsBussines);
+            // 
+            // label37
+            // 
+            this.label37.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label37.AutoSize = true;
+            this.label37.BackColor = System.Drawing.Color.Transparent;
+            this.label37.Location = new System.Drawing.Point(239, 196);
+            this.label37.Name = "label37";
+            this.label37.Size = new System.Drawing.Size(39, 20);
+            this.label37.TabIndex = 36;
+            this.label37.Text = "آدرس";
+            // 
+            // cmbSide
+            // 
+            this.cmbSide.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmbSide.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cmbSide.DisplayMember = "Name";
+            this.cmbSide.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbSide.FormattingEnabled = true;
+            this.cmbSide.Location = new System.Drawing.Point(3, 421);
+            this.cmbSide.Name = "cmbSide";
+            this.cmbSide.Size = new System.Drawing.Size(220, 28);
+            this.cmbSide.TabIndex = 30;
+            this.cmbSide.ValueMember = "Guid";
+            // 
+            // cmbCity
+            // 
+            this.cmbCity.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmbCity.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cmbCity.DataSource = this.CityBindingSource;
+            this.cmbCity.DisplayMember = "Name";
+            this.cmbCity.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbCity.FormattingEnabled = true;
+            this.cmbCity.Location = new System.Drawing.Point(3, 124);
+            this.cmbCity.Name = "cmbCity";
+            this.cmbCity.Size = new System.Drawing.Size(220, 28);
+            this.cmbCity.TabIndex = 30;
+            this.cmbCity.ValueMember = "Guid";
+            this.cmbCity.SelectedIndexChanged += new System.EventHandler(this.cmbCity_SelectedIndexChanged);
+            // 
+            // CityBindingSource
+            // 
+            this.CityBindingSource.DataSource = typeof(EntityCache.Bussines.CitiesBussines);
+            // 
+            // cmbBuildingCondition
+            // 
+            this.cmbBuildingCondition.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmbBuildingCondition.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cmbBuildingCondition.DataSource = this.bConditionBindingSource;
+            this.cmbBuildingCondition.DisplayMember = "Name";
+            this.cmbBuildingCondition.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbBuildingCondition.FormattingEnabled = true;
+            this.cmbBuildingCondition.Location = new System.Drawing.Point(3, 387);
+            this.cmbBuildingCondition.Name = "cmbBuildingCondition";
+            this.cmbBuildingCondition.Size = new System.Drawing.Size(220, 28);
+            this.cmbBuildingCondition.TabIndex = 30;
+            this.cmbBuildingCondition.ValueMember = "Guid";
+            // 
+            // bConditionBindingSource
+            // 
+            this.bConditionBindingSource.DataSource = typeof(EntityCache.Bussines.BuildingConditionBussines);
+            // 
+            // cmbState
+            // 
+            this.cmbState.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmbState.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cmbState.DataSource = this.StateBindingSource;
+            this.cmbState.DisplayMember = "Name";
+            this.cmbState.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbState.FormattingEnabled = true;
+            this.cmbState.Location = new System.Drawing.Point(3, 90);
+            this.cmbState.Name = "cmbState";
+            this.cmbState.Size = new System.Drawing.Size(220, 28);
+            this.cmbState.TabIndex = 30;
+            this.cmbState.ValueMember = "Guid";
+            this.cmbState.SelectedIndexChanged += new System.EventHandler(this.cmbState_SelectedIndexChanged);
+            // 
+            // StateBindingSource
+            // 
+            this.StateBindingSource.DataSource = typeof(EntityCache.Bussines.StatesBussines);
+            // 
+            // cmbZirBana
+            // 
+            this.cmbZirBana.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cmbZirBana.DisplayMember = "Name";
+            this.cmbZirBana.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbZirBana.FormattingEnabled = true;
+            this.cmbZirBana.Location = new System.Drawing.Point(3, 55);
+            this.cmbZirBana.Name = "cmbZirBana";
+            this.cmbZirBana.Size = new System.Drawing.Size(147, 28);
+            this.cmbZirBana.TabIndex = 30;
+            this.cmbZirBana.ValueMember = "Guid";
+            // 
+            // label36
+            // 
+            this.label36.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label36.AutoSize = true;
+            this.label36.BackColor = System.Drawing.Color.Transparent;
+            this.label36.Location = new System.Drawing.Point(234, 161);
+            this.label36.Name = "label36";
+            this.label36.Size = new System.Drawing.Size(45, 20);
+            this.label36.TabIndex = 31;
+            this.label36.Text = "محدوده";
+            // 
+            // label39
+            // 
+            this.label39.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label39.AutoSize = true;
+            this.label39.BackColor = System.Drawing.Color.Transparent;
+            this.label39.Location = new System.Drawing.Point(242, 424);
+            this.label39.Name = "label39";
+            this.label39.Size = new System.Drawing.Size(32, 20);
+            this.label39.TabIndex = 31;
+            this.label39.Text = "جهت";
+            // 
+            // txtZirBana
+            // 
+            this.txtZirBana.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtZirBana.Location = new System.Drawing.Point(156, 56);
+            this.txtZirBana.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.txtZirBana.Name = "txtZirBana";
+            this.txtZirBana.Size = new System.Drawing.Size(67, 27);
+            this.txtZirBana.TabIndex = 32;
+            // 
+            // label35
+            // 
+            this.label35.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label35.AutoSize = true;
+            this.label35.BackColor = System.Drawing.Color.Transparent;
+            this.label35.Location = new System.Drawing.Point(225, 127);
+            this.label35.Name = "label35";
+            this.label35.Size = new System.Drawing.Size(54, 20);
+            this.label35.TabIndex = 31;
+            this.label35.Text = "شهرستان";
+            // 
+            // label38
+            // 
+            this.label38.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label38.AutoSize = true;
+            this.label38.BackColor = System.Drawing.Color.Transparent;
+            this.label38.Location = new System.Drawing.Point(221, 390);
+            this.label38.Name = "label38";
+            this.label38.Size = new System.Drawing.Size(60, 20);
+            this.label38.TabIndex = 31;
+            this.label38.Text = "وضعیت بنا";
+            // 
+            // cmbMasahat
+            // 
+            this.cmbMasahat.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cmbMasahat.DisplayMember = "Name";
+            this.cmbMasahat.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbMasahat.FormattingEnabled = true;
+            this.cmbMasahat.Location = new System.Drawing.Point(3, 21);
+            this.cmbMasahat.Name = "cmbMasahat";
+            this.cmbMasahat.Size = new System.Drawing.Size(147, 28);
+            this.cmbMasahat.TabIndex = 30;
+            this.cmbMasahat.ValueMember = "Guid";
+            // 
+            // label34
+            // 
+            this.label34.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label34.AutoSize = true;
+            this.label34.BackColor = System.Drawing.Color.Transparent;
+            this.label34.Location = new System.Drawing.Point(236, 93);
+            this.label34.Name = "label34";
+            this.label34.Size = new System.Drawing.Size(38, 20);
+            this.label34.TabIndex = 31;
+            this.label34.Text = "استان";
+            // 
+            // label33
+            // 
+            this.label33.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label33.AutoSize = true;
+            this.label33.BackColor = System.Drawing.Color.Transparent;
+            this.label33.Location = new System.Drawing.Point(238, 58);
+            this.label33.Name = "label33";
+            this.label33.Size = new System.Drawing.Size(36, 20);
+            this.label33.TabIndex = 31;
+            this.label33.Text = "زیربنا";
+            // 
+            // txtMasahat
+            // 
+            this.txtMasahat.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtMasahat.Location = new System.Drawing.Point(156, 22);
+            this.txtMasahat.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.txtMasahat.Name = "txtMasahat";
+            this.txtMasahat.Size = new System.Drawing.Size(67, 27);
+            this.txtMasahat.TabIndex = 32;
+            // 
+            // label32
+            // 
+            this.label32.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label32.AutoSize = true;
+            this.label32.BackColor = System.Drawing.Color.Transparent;
+            this.label32.Location = new System.Drawing.Point(229, 24);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(45, 20);
+            this.label32.TabIndex = 31;
+            this.label32.Text = "مساحت";
+            // 
+            // superTabItem2
+            // 
+            this.superTabItem2.AttachedControl = this.superTabControlPanel2;
+            this.superTabItem2.GlobalItem = false;
+            this.superTabItem2.Name = "superTabItem2";
+            this.superTabItem2.Text = "وضعیت ملک";
             // 
             // btnCancel
             // 
@@ -2465,6 +2945,7 @@
             this.btnCancel.TabIndex = 12;
             this.btnCancel.Text = "انصراف (Esc)";
             this.btnCancel.TextColor = System.Drawing.Color.Black;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // btnFinish
             // 
@@ -2483,6 +2964,7 @@
             this.btnFinish.TabIndex = 11;
             this.btnFinish.Text = "تایید (F5)";
             this.btnFinish.TextColor = System.Drawing.Color.Black;
+            this.btnFinish.Click += new System.EventHandler(this.btnFinish_Click);
             // 
             // frmBuildingMain
             // 
@@ -2503,6 +2985,7 @@
             this.Style = MetroFramework.MetroColorStyle.Green;
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmBuildingMain_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmBuildingMain_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.superTabControl1)).EndInit();
             this.superTabControl1.ResumeLayout(false);
             this.superTabControlPanel1.ResumeLayout(false);
@@ -2517,25 +3000,31 @@
             this.groupPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.superTabControl2)).EndInit();
             this.superTabControl2.ResumeLayout(false);
-            this.superTabControlPanel8.ResumeLayout(false);
-            this.superTabControlPanel8.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            this.superTabControlPanel10.ResumeLayout(false);
+            this.superTabControlPanel10.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.sanadTypeBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtMosharekatDong)).EndInit();
+            this.superTabControlPanel9.ResumeLayout(false);
+            this.superTabControlPanel9.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtMoavezeDong)).EndInit();
             this.superTabControlPanel11.ResumeLayout(false);
             this.superTabControlPanel11.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown11)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown9)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown10)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtPishDong)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtPishPrice)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtPishTotalPrice)).EndInit();
             this.superTabControlPanel7.ResumeLayout(false);
             this.superTabControlPanel7.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown8)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown7)).EndInit();
-            this.superTabControlPanel4.ResumeLayout(false);
-            this.superTabControlPanel4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtVamPrice)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtDong)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtQestPrice)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtSellPrice)).EndInit();
+            this.superTabControlPanel8.ResumeLayout(false);
+            this.superTabControlPanel8.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtEjarePrice2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtEjarePrice1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rentalBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtRahnPrice2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtRahnPrice1)).EndInit();
             this.superTabControlPanel3.ResumeLayout(false);
             this.splitContainer3.Panel1.ResumeLayout(false);
             this.splitContainer3.Panel1.PerformLayout();
@@ -2543,18 +3032,31 @@
             this.splitContainer3.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).EndInit();
             this.splitContainer3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown14)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown15)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown16)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.KitchenServiceBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.FloorCoverBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BuildingViewBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.batBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bTypeBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtTedadVahed)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtTedadTabaqe)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtTedadOtaq)).EndInit();
+            this.superTabControlPanel5.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.DGrid)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BuildingOptionBindingSource)).EndInit();
+            this.superTabControlPanel6.ResumeLayout(false);
+            this.superTabControlPanel4.ResumeLayout(false);
+            this.superTabControlPanel4.PerformLayout();
             this.superTabControlPanel2.ResumeLayout(false);
             this.splitContainer2.Panel1.ResumeLayout(false);
             this.splitContainer2.Panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
             this.splitContainer2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown13)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown12)).EndInit();
-            this.superTabControlPanel5.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.DGrid)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RegionBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CityBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bConditionBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.StateBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtZirBana)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtMasahat)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -2610,117 +3112,153 @@
         private DevComponents.DotNetBar.SuperTabItem superTabItem9;
         private DevComponents.DotNetBar.SuperTabControlPanel superTabControlPanel7;
         private DevComponents.DotNetBar.SuperTabItem superTabItem7;
-        private System.Windows.Forms.NumericUpDown numericUpDown4;
-        private System.Windows.Forms.NumericUpDown numericUpDown2;
-        private System.Windows.Forms.ComboBox comboBox5;
-        private System.Windows.Forms.ComboBox comboBox4;
-        private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.NumericUpDown numericUpDown3;
+        private System.Windows.Forms.NumericUpDown txtEjarePrice2;
+        private System.Windows.Forms.NumericUpDown txtEjarePrice1;
+        private System.Windows.Forms.ComboBox cmbRentalAuthority;
+        private System.Windows.Forms.ComboBox cmbEjare2;
+        private System.Windows.Forms.ComboBox cmbEjare1;
+        private System.Windows.Forms.NumericUpDown txtRahnPrice2;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
-        private System.Windows.Forms.ComboBox comboBox3;
+        private System.Windows.Forms.NumericUpDown txtRahnPrice1;
+        private System.Windows.Forms.ComboBox cmbRahn2;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cmbRahn1;
         private System.Windows.Forms.Label label13;
-        private DevComponents.DotNetBar.Controls.CheckBoxX checkBoxX2;
-        private DevComponents.DotNetBar.Controls.CheckBoxX checkBoxX1;
-        private System.Windows.Forms.NumericUpDown numericUpDown5;
-        private System.Windows.Forms.ComboBox comboBox6;
-        private System.Windows.Forms.NumericUpDown numericUpDown6;
-        private System.Windows.Forms.NumericUpDown numericUpDown7;
-        private System.Windows.Forms.ComboBox comboBox7;
+        private DevComponents.DotNetBar.Controls.CheckBoxX chbShortRent;
+        private DevComponents.DotNetBar.Controls.CheckBoxX chbOwnerHere;
+        private System.Windows.Forms.NumericUpDown txtVamPrice;
+        private System.Windows.Forms.ComboBox cmbVamPrice;
+        private System.Windows.Forms.NumericUpDown txtQestPrice;
+        private System.Windows.Forms.NumericUpDown txtSellPrice;
+        private System.Windows.Forms.ComboBox cmbQestPrice;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Label label21;
-        private System.Windows.Forms.ComboBox comboBox8;
+        private System.Windows.Forms.ComboBox cmbSellPrice;
         private System.Windows.Forms.Label label22;
-        private System.Windows.Forms.ComboBox comboBox10;
+        private System.Windows.Forms.ComboBox cmbSellSanadType;
         private System.Windows.Forms.Label label24;
-        private System.Windows.Forms.NumericUpDown numericUpDown8;
-        private System.Windows.Forms.ComboBox comboBox9;
+        private System.Windows.Forms.NumericUpDown txtDong;
+        private System.Windows.Forms.ComboBox cmbSellTarakom;
         private System.Windows.Forms.Label label25;
         private System.Windows.Forms.Label label23;
-        private System.Windows.Forms.NumericUpDown numericUpDown11;
+        private System.Windows.Forms.NumericUpDown txtPishDong;
         private System.Windows.Forms.Label label29;
-        private System.Windows.Forms.NumericUpDown numericUpDown9;
-        private System.Windows.Forms.NumericUpDown numericUpDown10;
-        private System.Windows.Forms.ComboBox comboBox11;
+        private System.Windows.Forms.NumericUpDown txtPishPrice;
+        private System.Windows.Forms.NumericUpDown txtPishTotalPrice;
+        private System.Windows.Forms.ComboBox cmbPishPrice;
         private System.Windows.Forms.Label label27;
-        private System.Windows.Forms.ComboBox comboBox12;
+        private System.Windows.Forms.ComboBox cmbPishTotalPrice;
         private System.Windows.Forms.Label label28;
         private System.Windows.Forms.Label label26;
-        private System.Windows.Forms.ComboBox comboBox13;
+        private System.Windows.Forms.ComboBox cmbPishSanadType;
         private System.Windows.Forms.Label label31;
         private System.Windows.Forms.Label label30;
-        private BPersianCalender.BPersianCalenderTextBox txtDateBirth;
-        private System.Windows.Forms.TextBox txtAddress;
+        private BPersianCalender.BPersianCalenderTextBox txtDeliveryDate;
+        private System.Windows.Forms.TextBox txtPishDesc;
         private System.Windows.Forms.SplitContainer splitContainer2;
-        private System.Windows.Forms.ComboBox comboBox15;
-        private System.Windows.Forms.NumericUpDown numericUpDown13;
-        private System.Windows.Forms.ComboBox comboBox14;
+        private System.Windows.Forms.ComboBox cmbZirBana;
+        private System.Windows.Forms.NumericUpDown txtZirBana;
+        private System.Windows.Forms.ComboBox cmbMasahat;
         private System.Windows.Forms.Label label33;
-        private System.Windows.Forms.NumericUpDown numericUpDown12;
+        private System.Windows.Forms.NumericUpDown txtMasahat;
         private System.Windows.Forms.Label label32;
-        private System.Windows.Forms.ComboBox comboBox18;
-        private System.Windows.Forms.ComboBox comboBox17;
-        private System.Windows.Forms.ComboBox comboBox16;
+        private System.Windows.Forms.ComboBox cmbRegion;
+        private System.Windows.Forms.ComboBox cmbCity;
+        private System.Windows.Forms.ComboBox cmbState;
         private System.Windows.Forms.Label label36;
         private System.Windows.Forms.Label label35;
         private System.Windows.Forms.Label label34;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtAddress;
         private System.Windows.Forms.Label label37;
-        private System.Windows.Forms.ComboBox comboBox20;
-        private System.Windows.Forms.ComboBox comboBox19;
+        private System.Windows.Forms.ComboBox cmbSide;
+        private System.Windows.Forms.ComboBox cmbBuildingCondition;
         private System.Windows.Forms.Label label39;
         private System.Windows.Forms.Label label38;
         private System.Windows.Forms.SplitContainer splitContainer3;
-        private System.Windows.Forms.ComboBox comboBox21;
+        private System.Windows.Forms.ComboBox cmbBuildingType;
         private System.Windows.Forms.Label label40;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txtShortDesc;
         private System.Windows.Forms.Label label41;
-        private System.Windows.Forms.ComboBox comboBox22;
+        private System.Windows.Forms.ComboBox cmbBAccountType;
         private System.Windows.Forms.Label label42;
-        private System.Windows.Forms.ComboBox comboBox25;
+        private System.Windows.Forms.ComboBox cmbKitchenService;
         private System.Windows.Forms.Label label45;
-        private System.Windows.Forms.ComboBox comboBox24;
+        private System.Windows.Forms.ComboBox cmbBFloorCover;
         private System.Windows.Forms.Label label44;
-        private System.Windows.Forms.ComboBox comboBox23;
+        private System.Windows.Forms.ComboBox cmbBView;
         private System.Windows.Forms.Label label43;
-        private System.Windows.Forms.ComboBox comboBox26;
+        private System.Windows.Forms.ComboBox cmbWater;
         private System.Windows.Forms.Label label46;
-        private System.Windows.Forms.ComboBox comboBox29;
-        private System.Windows.Forms.ComboBox comboBox28;
+        private System.Windows.Forms.ComboBox cmbTell;
+        private System.Windows.Forms.ComboBox cmbGas;
         private System.Windows.Forms.Label label49;
         private System.Windows.Forms.Label label47;
         private System.Windows.Forms.Label label48;
-        private System.Windows.Forms.ComboBox comboBox27;
-        private System.Windows.Forms.NumericUpDown numericUpDown14;
-        private System.Windows.Forms.NumericUpDown numericUpDown15;
-        private System.Windows.Forms.NumericUpDown numericUpDown16;
+        private System.Windows.Forms.ComboBox cmbBarq;
+        private System.Windows.Forms.NumericUpDown txtTedadVahed;
+        private System.Windows.Forms.NumericUpDown txtTedadTabaqe;
+        private System.Windows.Forms.NumericUpDown txtTedadOtaq;
         private System.Windows.Forms.Label label50;
         private System.Windows.Forms.Label label51;
         private System.Windows.Forms.Label label52;
-        private System.Windows.Forms.ComboBox comboBox30;
+        private System.Windows.Forms.ComboBox cmbTabaqeNo;
         private System.Windows.Forms.Label label53;
         private DevComponents.DotNetBar.Controls.DataGridViewX DGrid;
         private DevComponents.DotNetBar.Controls.TextBoxX txtSearch;
         private System.Windows.Forms.Label label57;
-        private DevComponents.DotNetBar.Controls.TextBoxX textBoxX4;
+        private DevComponents.DotNetBar.Controls.TextBoxX txtMetrazhTejari;
         private System.Windows.Forms.Label label56;
-        private DevComponents.DotNetBar.Controls.TextBoxX textBoxX3;
+        private DevComponents.DotNetBar.Controls.TextBoxX txtHashie;
         private System.Windows.Forms.Label label55;
-        private DevComponents.DotNetBar.Controls.TextBoxX textBoxX2;
+        private DevComponents.DotNetBar.Controls.TextBoxX txtErtrfaSaqf;
         private System.Windows.Forms.Label label54;
-        private DevComponents.DotNetBar.Controls.TextBoxX textBoxX1;
-        private DevComponents.DotNetBar.Controls.CheckBoxX checkBoxX3;
-        private DevComponents.DotNetBar.Controls.CheckBoxX checkBoxX4;
-        private System.Windows.Forms.ComboBox comboBox31;
+        private DevComponents.DotNetBar.Controls.TextBoxX txtMetrazhKouche;
+        private DevComponents.DotNetBar.Controls.CheckBoxX chbIsMamarJoda;
+        private DevComponents.DotNetBar.Controls.CheckBoxX chbIsBonBast;
         private System.Windows.Forms.Label label58;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox txtSerialParvane;
         private System.Windows.Forms.Label label60;
-        private System.Windows.Forms.ComboBox comboBox32;
         private System.Windows.Forms.Label label59;
         private System.Windows.Forms.BindingSource userBindingSource;
+        private System.Windows.Forms.ComboBox cmbMoavezeSanadType;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.NumericUpDown txtMoavezeDong;
+        private System.Windows.Forms.ComboBox cmbMoavezeTarakom;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.TextBox txtMoavezeDesc;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.ComboBox cmbMosharekatSanadType;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.NumericUpDown txtMosharekatDong;
+        private System.Windows.Forms.ComboBox cmbMosharekatTarakom;
+        private System.Windows.Forms.Label label61;
+        private System.Windows.Forms.Label label62;
+        private System.Windows.Forms.TextBox txtMosharekatDesc;
+        private System.Windows.Forms.Label label63;
+        private System.Windows.Forms.BindingSource rentalBindingSource;
+        private System.Windows.Forms.BindingSource sanadTypeBindingSource;
+        private System.Windows.Forms.BindingSource RegionBindingSource;
+        private System.Windows.Forms.BindingSource CityBindingSource;
+        private System.Windows.Forms.BindingSource StateBindingSource;
+        private System.Windows.Forms.BindingSource bConditionBindingSource;
+        private System.Windows.Forms.BindingSource bTypeBindingSource;
+        private System.Windows.Forms.BindingSource batBindingSource;
+        private System.Windows.Forms.BindingSource BuildingViewBindingSource;
+        private System.Windows.Forms.BindingSource KitchenServiceBindingSource;
+        private System.Windows.Forms.BindingSource FloorCoverBindingSource;
+        private System.Windows.Forms.BindingSource BuildingOptionBindingSource;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn dgChecked;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgOptionGuid;
+        private System.Windows.Forms.DataGridViewTextBoxColumn modifiedDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn statusDataGridViewCheckBoxColumn;
+        private System.Windows.Forms.TextBox txtSaleParvane;
+        private System.Windows.Forms.TextBox txtSaleSakht;
+        private System.Windows.Forms.FlowLayoutPanel fPanel;
+        private DevComponents.DotNetBar.ButtonX btnInsImage;
+        private DevComponents.DotNetBar.ButtonX btnDelImage;
     }
 }

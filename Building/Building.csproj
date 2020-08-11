@@ -94,6 +94,12 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="GMap.NET.Core">
+      <HintPath>..\..\..\References\GMap.NET.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="GMap.NET.WindowsForms">
+      <HintPath>..\..\..\References\GMap.NET.WindowsForms.dll</HintPath>
+    </Reference>
     <Reference Include="MetroFramework, Version=1.4.0.0, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
       <HintPath>..\packages\MetroModernUI.1.4.0.0\lib\net\MetroFramework.dll</HintPath>
     </Reference>
@@ -275,6 +281,10 @@
       <Project>{69dbdf3a-8578-44db-95cd-08a671de9e41}</Project>
       <Name>Persistence</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Settings\Settings.csproj">
+      <Project>{5005cb62-16e0-4240-9a2d-8001adc9d990}</Project>
+      <Name>Settings</Name>
+    </ProjectReference>
     <ProjectReference Include="..\User\User.csproj">
       <Project>{ebed491e-32a3-4484-a5aa-e5ed61e8bb0b}</Project>
       <Name>User</Name>
@@ -348,6 +358,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\DataSources\EntityCache.Bussines.BuildingOptionsBussines.datasource" />
+    <None Include="Properties\DataSources\EntityCache.Bussines.BuildingRelatedOptionsBussines.datasource" />
     <None Include="Properties\DataSources\EntityCache.Bussines.BuildingTypeBussines.datasource" />
     <None Include="Properties\DataSources\EntityCache.Bussines.BuildingViewBussines.datasource" />
     <None Include="Properties\DataSources\EntityCache.Bussines.DocumentTypeBussines.datasource" />

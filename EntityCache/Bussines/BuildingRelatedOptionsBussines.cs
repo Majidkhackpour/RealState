@@ -26,6 +26,7 @@ namespace EntityCache.Bussines
         public static async Task<List<BuildingRelatedOptionsBussines>> GetAllAsync() =>
             await UnitOfWork.BuildingRelatedOptions.GetAllAsync();
 
+        public static List<BuildingRelatedOptionsBussines> GetAll() => AsyncContext.Run(GetAllAsync);
 
         public async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(bool status, string tranName = "")
         {

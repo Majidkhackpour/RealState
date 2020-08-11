@@ -37,7 +37,7 @@ namespace EntityCache.Bussines
         public bool? IsOwnerHere { get; set; }
         public decimal PishTotalPrice { get; set; }
         public decimal PishPrice { get; set; }
-        public DateTime? DeliveryDate { get; set; }
+        public DateTime? DeliveryDate { get; set; } = DateTime.Now;
         public string PishDesc { get; set; }
         public string MoavezeDesc { get; set; }
         public string MosharekatDesc { get; set; }
@@ -67,8 +67,8 @@ namespace EntityCache.Bussines
         public int MetrazhKouche { get; set; }
         public int ErtefaSaqf { get; set; }
         public int Hashie { get; set; }
-        public DateTime? SaleSakht { get; set; }
-        public DateTime? DateParvane { get; set; }
+        public string SaleSakht { get; set; }
+        public string DateParvane { get; set; }
         public string ParvaneSerial { get; set; }
         public bool BonBast { get; set; }
         public bool MamarJoda { get; set; }

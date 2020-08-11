@@ -52,8 +52,8 @@ namespace PacketParser.Interfaces
         int MetrazhKouche { get; set; }
         int ErtefaSaqf { get; set; }
         int Hashie { get; set; }
-        DateTime? SaleSakht { get; set; }
-        DateTime? DateParvane { get; set; }
+        string SaleSakht { get; set; }
+        string DateParvane { get; set; }
         string ParvaneSerial { get; set; }
         bool BonBast { get; set; }
         bool MamarJoda { get; set; }
