@@ -115,7 +115,7 @@ namespace Building.Building
                 if (cls.GalleryList != null && cls.GalleryList.Count != 0)
                     foreach (var image in cls.GalleryList)
                     {
-                        var a = Path.Combine(Application.StartupPath, "AdvertiseImage");
+                        var a = Path.Combine(Application.StartupPath, "Images");
                         var b = Path.Combine(a, image.ImageName + ".jpg");
                         lstList.Add(b);
                     }
@@ -813,7 +813,12 @@ namespace Building.Building
             owner = PeoplesBussines.Get(cls.OwnerGuid);
             superTabControl1.SelectedTab = superTabItem1;
             superTabControl2.SelectedTab = superTabItem8;
-            //grp.Enabled = !isShowMode;
+            superTabControlPanel1.Enabled = !isShowMode;
+            superTabControlPanel2.Enabled = !isShowMode;
+            superTabControlPanel3.Enabled = !isShowMode;
+            superTabControlPanel4.Enabled = !isShowMode;
+            superTabControlPanel5.Enabled = !isShowMode;
+            superTabControlPanel6.Enabled = !isShowMode;
             btnFinish.Enabled = !isShowMode;
         }
 
