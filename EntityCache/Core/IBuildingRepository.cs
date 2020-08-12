@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using EntityCache.Bussines;
 
@@ -8,5 +9,6 @@ namespace EntityCache.Core
     {
         Task<List<BuildingBussines>> GetAllAsyncBySp();
         Task<string> NextCodeAsync();
+        Task<bool> CheckCodeAsync(string code, Guid guid);
     }
 }

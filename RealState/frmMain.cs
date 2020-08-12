@@ -29,7 +29,6 @@ namespace RealState
 {
     public partial class frmMain : MetroForm
     {
-        private bool _baseInfoSetter = false;
         private void SetClock()
         {
             try

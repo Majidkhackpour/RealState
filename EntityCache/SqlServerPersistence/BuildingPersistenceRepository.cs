@@ -82,5 +82,21 @@ namespace EntityCache.SqlServerPersistence
                 return "001001";
             }
         }
+
+        public async Task<bool> CheckCodeAsync(string code, Guid guid)
+        {
+            try
+            {
+                var acc = db.Building.AsNoTracking()
+                    .Where(q => q.Code == code.Trim() && q.Guid != guid)
+                    .ToList();
+                return acc.Count == 0;
+            }
+            catch (Exception exception)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(exception);
+                return false;
+            }
+        }
     }
 }

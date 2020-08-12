@@ -53,7 +53,7 @@ namespace EntityCache.Bussines
         public string ShortDesc { get; set; }
         public Guid BuildingAccountTypeGuid { get; set; }
         public string BuildingAccountTypeName { get; set; }
-        public int MetrazhTejari { get; set; }
+        public float MetrazhTejari { get; set; }
         public Guid BuildingViewGuid { get; set; }
         public Guid FloorCoverGuid { get; set; }
         public Guid KitchenServiceGuid { get; set; }
@@ -64,9 +64,9 @@ namespace EntityCache.Bussines
         public int TedadTabaqe { get; set; }
         public int TabaqeNo { get; set; }
         public int VahedPerTabaqe { get; set; }
-        public int MetrazhKouche { get; set; }
-        public int ErtefaSaqf { get; set; }
-        public int Hashie { get; set; }
+        public float MetrazhKouche { get; set; }
+        public float ErtefaSaqf { get; set; }
+        public float Hashie { get; set; }
         public string SaleSakht { get; set; }
         public string DateParvane { get; set; }
         public string ParvaneSerial { get; set; }
@@ -236,5 +236,8 @@ namespace EntityCache.Bussines
         public static async Task<string> NextCodeAsync() => await UnitOfWork.Building.NextCodeAsync();
 
         public static string NextCode() => AsyncContext.Run(NextCodeAsync);
+
+        public static async Task<bool> CheckCodeAsync(string code, Guid guid) =>
+            await UnitOfWork.Building.CheckCodeAsync(code, guid);
     }
 }

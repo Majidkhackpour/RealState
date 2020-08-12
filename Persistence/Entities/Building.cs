@@ -46,7 +46,7 @@ namespace Persistence.Entities
         public Guid BuildingTypeGuid { get; set; }
         public string ShortDesc { get; set; }
         public Guid BuildingAccountTypeGuid { get; set; }
-        public int MetrazhTejari { get; set; }
+        public float MetrazhTejari { get; set; }
         public Guid BuildingViewGuid { get; set; }
         public Guid FloorCoverGuid { get; set; }
         public Guid KitchenServiceGuid { get; set; }
@@ -57,9 +57,9 @@ namespace Persistence.Entities
         public int TedadTabaqe { get; set; }
         public int TabaqeNo { get; set; }
         public int VahedPerTabaqe { get; set; }
-        public int MetrazhKouche { get; set; }
-        public int ErtefaSaqf { get; set; }
-        public int Hashie { get; set; }
+        public float MetrazhKouche { get; set; }
+        public float ErtefaSaqf { get; set; }
+        public float Hashie { get; set; }
         [MaxLength(10)]
         public string SaleSakht { get; set; }
         [MaxLength(10)]

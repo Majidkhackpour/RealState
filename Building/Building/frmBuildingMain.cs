@@ -685,7 +685,7 @@ namespace Building.Building
                     for (var i = 0; i < DGrid.RowCount; i++)
                         if (item.Guid == ((Guid?)DGrid[dgOptionGuid.Index, i].Value ?? Guid.Empty))
                         {
-                            if (!(bool) DGrid[dgChecked.Index, i].Value) continue;
+                            if (!(bool)DGrid[dgChecked.Index, i].Value) continue;
                             cls.OptionList.Add(new BuildingRelatedOptionsBussines()
                             {
                                 Guid = Guid.NewGuid(),
@@ -810,6 +810,7 @@ namespace Building.Building
             InitializeComponent();
             WindowState = FormWindowState.Maximized;
             cls = BuildingBussines.Get(guid);
+            owner = PeoplesBussines.Get(cls.OwnerGuid);
             superTabControl1.SelectedTab = superTabItem1;
             superTabControl2.SelectedTab = superTabItem8;
             //grp.Enabled = !isShowMode;
@@ -991,8 +992,56 @@ namespace Building.Building
             {
                 if (cls.Guid == Guid.Empty) cls.Guid = Guid.NewGuid();
 
+                if (string.IsNullOrWhiteSpace(txtCode.Text))
+                {
+                    frmNotification.PublicInfo.ShowMessage("کد ملک نمی تواند خالی باشد");
+                    txtCode.Focus();
+                    return;
+                }
+
+                if (!await BuildingBussines.CheckCodeAsync(txtCode.Text.Trim(), cls.Guid))
+                {
+                    frmNotification.PublicInfo.ShowMessage("کد ملک وارد شده تکراری است");
+                    txtCode.Focus();
+                    return;
+                }
+
+                if (owner == null)
+                {
+                    frmNotification.PublicInfo.ShowMessage("لطفا مالک را انتخاب نمایید");
+                    btnSearchOwner.Focus();
+                    return;
+                }
 
 
+                if (txtRahnPrice1.Text == "0" && txtRahnPrice2.Text == "0" && txtEjarePrice1.Text == "0" &&
+                    txtEjarePrice2.Text == "0" && txtSellPrice.Text == "0" && txtPishTotalPrice.Text == "0")
+                {
+                    frmNotification.PublicInfo.ShowMessage("لطفا یکی از فیلدهای مبلغ را وارد نمایید");
+                    btnSearchOwner.Focus();
+                    return;
+                }
+
+                if (txtZirBana.Text == "0" && txtMasahat.Text == "0")
+                {
+                    frmNotification.PublicInfo.ShowMessage("لطفا مساحت و زیربنا را وارد نمایید");
+                    btnSearchOwner.Focus();
+                    return;
+                }
+
+                if (cmbRegion.SelectedValue == null)
+                {
+                    frmNotification.PublicInfo.ShowMessage("لطفا محدوده ملک را وارد نمایید");
+                    btnSearchOwner.Focus();
+                    return;
+                }
+
+                if (txtSaleSakht.Text.ParseToInt() > txtSaleParvane.Text.ParseToInt())
+                {
+                    frmNotification.PublicInfo.ShowMessage("سال ساخت نمی تواند از سال اخذ پروانه بزرگتر باشد");
+                    btnSearchOwner.Focus();
+                    return;
+                }
 
                 cls.Code = txtCode.Text;
                 cls.OwnerGuid = owner.Guid;
@@ -1092,7 +1141,7 @@ namespace Building.Building
                 cls.BuildingTypeGuid = (Guid)cmbBuildingType.SelectedValue;
                 cls.ShortDesc = txtShortDesc.Text;
                 cls.BuildingAccountTypeGuid = (Guid)cmbBAccountType.SelectedValue;
-                cls.MetrazhTejari = txtMetrazhTejari.Text.ParseToInt();
+                cls.MetrazhTejari = txtMetrazhTejari.Text.ParseTofloat();
                 cls.BuildingViewGuid = (Guid)cmbBView.SelectedValue;
                 cls.FloorCoverGuid = (Guid)cmbBFloorCover.SelectedValue;
                 cls.KitchenServiceGuid = (Guid)cmbKitchenService.SelectedValue;
@@ -1103,9 +1152,9 @@ namespace Building.Building
                 cls.TedadTabaqe = txtTedadTabaqe.Text.ParseToInt();
                 cls.TabaqeNo = cmbTabaqeNo.Text.ParseToInt();
                 cls.VahedPerTabaqe = txtTedadVahed.Text.ParseToInt();
-                cls.MetrazhKouche = txtMetrazhKouche.Text.ParseToInt();
-                cls.Hashie = txtHashie.Text.ParseToInt();
-                cls.ErtefaSaqf = txtErtrfaSaqf.Text.ParseToInt();
+                cls.MetrazhKouche = txtMetrazhKouche.Text.ParseTofloat();
+                cls.Hashie = txtHashie.Text.ParseTofloat();
+                cls.ErtefaSaqf = txtErtrfaSaqf.Text.ParseTofloat();
                 cls.SaleSakht = txtSaleSakht.Text;
                 cls.DateParvane = txtSaleParvane.Text;
                 cls.ParvaneSerial = txtSerialParvane.Text;
@@ -1114,6 +1163,36 @@ namespace Building.Building
                 cls.RoomCount = txtTedadOtaq.Text.ParseToInt();
 
                 SetOptions(cls.Guid);
+
+                for (var i = fPanel.Controls.Count - 1; i >= 0; i--)
+                    fPanel.Controls[i].Dispose();
+
+
+                foreach (var item in lstList)
+                {
+                    var imagePath = Path.Combine(Application.StartupPath, "Images");
+                    if (!Directory.Exists(imagePath)) Directory.CreateDirectory(imagePath);
+                    var name = Guid.NewGuid().ToString();
+                    var fileName = Path.Combine(imagePath, name + ".jpg");
+                    try
+                    {
+                        File.Copy(item, fileName);
+                    }
+                    catch
+                    {
+                    }
+
+
+                    var a = new BuildingGalleryBussines()
+                    {
+                        Guid = Guid.NewGuid(),
+                        Status = true,
+                        ImageName = name,
+                        BuildingGuid = cls.Guid,
+                        Modified = DateTime.Now
+                    };
+                    cls.GalleryList.Add(a);
+                }
 
 
                 var res = await cls.SaveAsync();
@@ -1280,6 +1359,46 @@ namespace Building.Building
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
+        }
+
+        private void txtCode_Enter(object sender, EventArgs e)
+        {
+            txtSetter.Focus(txtCode);
+        }
+
+        private void txtSaleSakht_Enter(object sender, EventArgs e)
+        {
+            txtSetter.Focus(txtSaleSakht);
+        }
+
+        private void txtSaleParvane_Enter(object sender, EventArgs e)
+        {
+            txtSetter.Focus(txtSaleParvane);
+        }
+
+        private void txtSerialParvane_Enter(object sender, EventArgs e)
+        {
+            txtSetter.Focus(txtSerialParvane);
+        }
+
+        private void txtSerialParvane_Leave(object sender, EventArgs e)
+        {
+            txtSetter.Follow(txtSerialParvane);
+        }
+
+        private void txtSaleParvane_Leave(object sender, EventArgs e)
+        {
+            txtSetter.Follow(txtSaleParvane);
+        }
+
+        private void txtSaleSakht_Leave(object sender, EventArgs e)
+        {
+            txtSetter.Follow(txtSaleSakht);
+        }
+
+        private void txtCode_Leave(object sender, EventArgs e)
+        {
+            txtSetter.Follow(txtCode);
         }
     }
 }

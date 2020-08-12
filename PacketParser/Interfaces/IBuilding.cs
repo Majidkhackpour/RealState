@@ -38,7 +38,7 @@ namespace PacketParser.Interfaces
         Guid BuildingTypeGuid { get; set; }
         string ShortDesc { get; set; }
         Guid BuildingAccountTypeGuid { get; set; }
-        int MetrazhTejari { get; set; }
+        float MetrazhTejari { get; set; }
         Guid BuildingViewGuid { get; set; }
         Guid FloorCoverGuid { get; set; }
         Guid KitchenServiceGuid { get; set; }
@@ -49,9 +49,9 @@ namespace PacketParser.Interfaces
         int TedadTabaqe { get; set; }
         int TabaqeNo { get; set; }
         int VahedPerTabaqe { get; set; }
-        int MetrazhKouche { get; set; }
-        int ErtefaSaqf { get; set; }
-        int Hashie { get; set; }
+        float MetrazhKouche { get; set; }
+        float ErtefaSaqf { get; set; }
+        float Hashie { get; set; }
         string SaleSakht { get; set; }
         string DateParvane { get; set; }
         string ParvaneSerial { get; set; }
