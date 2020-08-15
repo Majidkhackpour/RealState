@@ -178,6 +178,7 @@
     <Compile Include="SqlServerPersistence\SmsPanelsPersistenceRepository.cs" />
     <Compile Include="SqlServerPersistence\StatesPersistenceRepository.cs" />
     <Compile Include="SqlServerPersistence\UsersPersistenceRepository.cs" />
+    <Compile Include="ViewModels\BuildingViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Services\Services\Services\Services.csproj">
@@ -197,9 +198,7 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ViewModels\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

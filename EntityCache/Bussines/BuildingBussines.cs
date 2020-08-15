@@ -176,6 +176,27 @@ namespace EntityCache.Bussines
                 { //BeginTransaction
                 }
 
+                if (OptionList.Count > 0)
+                {
+                    foreach (var item in OptionList)
+                    {
+                        res.AddReturnedValue(
+                            await item.ChangeStatusAsync(status, tranName));
+                        res.ThrowExceptionIfError();
+                    }
+                }
+
+                if (GalleryList.Count > 0)
+                {
+                    foreach (var item in GalleryList)
+                    {
+                        res.AddReturnedValue(
+                            await item.ChangeStatusAsync(status, tranName));
+                        res.ThrowExceptionIfError();
+                    }
+                }
+
+
                 res.AddReturnedValue(await UnitOfWork.Building.ChangeStatusAsync(this, status, tranName));
                 res.ThrowExceptionIfError();
                 if (autoTran)

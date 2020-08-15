@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Linq;
 using System.Threading.Tasks;
 using EntityCache.Bussines;
 using EntityCache.Core;
@@ -25,7 +26,7 @@ namespace EntityCache.SqlServerPersistence
             {
                 var ctGuid = new SqlParameter("@cityGuid", cityGuid);
                 var res = db.Database.SqlQuery<RegionsBussines>("sp_Regions_SelectAllByCityGuid @cityGuid", ctGuid);
-                var a = await res.ToListAsync();
+                var a = res.ToList();
                 return a;
             }
             catch (Exception exception)

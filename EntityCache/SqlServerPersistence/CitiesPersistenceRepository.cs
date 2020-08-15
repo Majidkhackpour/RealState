@@ -42,7 +42,7 @@ namespace EntityCache.SqlServerPersistence
             {
                 var ctGuid = new SqlParameter("@stateGuid", stateGuid);
                 var res = db.Database.SqlQuery<CitiesBussines>("sp_Cities_SelectAllByStateGuid @stateGuid", ctGuid);
-                var a = await res.ToListAsync();
+                var a = res.ToList();
                 return a;
             }
             catch (Exception exception)

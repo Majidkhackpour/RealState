@@ -182,6 +182,12 @@
     <Compile Include="BuildingView\frmShowBuildingView.Designer.cs">
       <DependentUpon>frmShowBuildingView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Building\frmBuildingAdvanceSearch.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Building\frmBuildingAdvanceSearch.Designer.cs">
+      <DependentUpon>frmBuildingAdvanceSearch.cs</DependentUpon>
+    </Compile>
     <Compile Include="Building\frmBuildingMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -247,6 +253,12 @@
     </Compile>
     <Compile Include="RentalAuthority\frmShowRentalAuthority.Designer.cs">
       <DependentUpon>frmShowRentalAuthority.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UcBuildingSearch.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UcBuildingSearch.designer.cs">
+      <DependentUpon>UcBuildingSearch.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -321,6 +333,9 @@
     <EmbeddedResource Include="BuildingView\frmShowBuildingView.resx">
       <DependentUpon>frmShowBuildingView.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Building\frmBuildingAdvanceSearch.resx">
+      <DependentUpon>frmBuildingAdvanceSearch.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Building\frmBuildingMain.resx">
       <DependentUpon>frmBuildingMain.cs</DependentUpon>
     </EmbeddedResource>
@@ -354,6 +369,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="RentalAuthority\frmShowRentalAuthority.resx">
       <DependentUpon>frmShowRentalAuthority.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UcBuildingSearch.resx">
+      <DependentUpon>UcBuildingSearch.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

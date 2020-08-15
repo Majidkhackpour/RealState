@@ -49,6 +49,7 @@ namespace Building.Building
                 FillKitchenService();
                 FillCmbKhadamt();
                 FillOptions();
+                SetRelatedOptions(cls.Guid);
 
                 lblDateNow.Text = cls?.DateSh;
                 txtCode.Text = cls?.Code;
@@ -79,7 +80,11 @@ namespace Building.Building
 
                 var city = CitiesBussines.Get(cls?.CityGuid ?? Guid.Empty);
                 cmbState.SelectedValue = city?.StateGuid ?? Guid.Empty;
-                cmbState.SelectedValue = cls?.CityGuid;
+                if (cmbState.SelectedValue != null && (Guid)cmbState.SelectedValue != Guid.Empty)
+                    cmbState_SelectedIndexChanged(null, null);
+                cmbCity.SelectedValue = cls?.CityGuid;
+                if (cmbCity.SelectedValue != null && (Guid)cmbCity.SelectedValue != Guid.Empty)
+                    cmbCity_SelectedIndexChanged(null, null);
                 cmbRegion.SelectedValue = cls?.RegionGuid;
                 txtAddress.Text = cls?.Address;
                 cmbBuildingCondition.SelectedValue = cls?.BuildingConditionGuid;
@@ -115,7 +120,7 @@ namespace Building.Building
                 if (cls.GalleryList != null && cls.GalleryList.Count != 0)
                     foreach (var image in cls.GalleryList)
                     {
-                        var a = Path.Combine(Application.StartupPath, "Images");
+                        var a = Path.Combine(Application.StartupPath, "Temp");
                         var b = Path.Combine(a, image.ImageName + ".jpg");
                         lstList.Add(b);
                     }
@@ -678,6 +683,7 @@ namespace Building.Building
         {
             try
             {
+                cls.OptionList = new List<BuildingRelatedOptionsBussines>();
                 if (buildingGuid == Guid.Empty) return;
                 var list = BuildingOptionsBussines.GetAll("");
                 if (list.Count <= 0) return;
@@ -707,6 +713,22 @@ namespace Building.Building
             {
                 var list = BuildingOptionsBussines.GetAll(search).Where(q => q.Status).OrderBy(q => q.Name).ToList();
                 BuildingOptionBindingSource.DataSource = list;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private void SetRelatedOptions(Guid buildingGuid)
+        {
+            try
+            {
+                if (buildingGuid == Guid.Empty) return;
+                var op = BuildingRelatedOptionsBussines.GetAll(buildingGuid, true);
+                foreach (var item in op)
+                    for (var i = 0; i < DGrid.RowCount; i++)
+                        if (item.BuildingOptionGuid == ((Guid?)DGrid[dgOptionGuid.Index, i].Value ?? Guid.Empty))
+                            DGrid[dgChecked.Index, i].Value = true;
             }
             catch (Exception ex)
             {
@@ -811,6 +833,7 @@ namespace Building.Building
             WindowState = FormWindowState.Maximized;
             cls = BuildingBussines.Get(guid);
             owner = PeoplesBussines.Get(cls.OwnerGuid);
+            SaveImageToTemp();
             superTabControl1.SelectedTab = superTabItem1;
             superTabControl2.SelectedTab = superTabItem8;
             superTabControlPanel1.Enabled = !isShowMode;
@@ -820,6 +843,32 @@ namespace Building.Building
             superTabControlPanel5.Enabled = !isShowMode;
             superTabControlPanel6.Enabled = !isShowMode;
             btnFinish.Enabled = !isShowMode;
+        }
+
+        private void SaveImageToTemp()
+        {
+            try
+            {
+                var imagePath = Path.Combine(Application.StartupPath, "Temp");
+                if (!Directory.Exists(imagePath)) Directory.CreateDirectory(imagePath);
+                foreach (var item in cls.GalleryList)
+                {
+                    var fileName = Path.Combine(imagePath, item.ImageName + ".jpg");
+                    try
+                    {
+                        var path = Path.Combine(Application.StartupPath, "Images");
+                        var path_ = Path.Combine(path, item.ImageName + ".jpg");
+                        File.Copy(path_, fileName);
+                    }
+                    catch
+                    {
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
         }
 
         private void frmBuildingMain_Load(object sender, EventArgs e)
@@ -1173,9 +1222,24 @@ namespace Building.Building
                     fPanel.Controls[i].Dispose();
 
 
+                var img = Path.Combine(Application.StartupPath, "Images");
+                foreach (var item in cls.GalleryList)
+                {
+                    var path = Path.Combine(img, item.ImageName + ".jpg");
+                    try
+                    {
+                        File.Delete(path);
+                    }
+                    catch
+                    {
+                    }
+                }
+
+                cls.GalleryList = new List<BuildingGalleryBussines>();
+
                 foreach (var item in lstList)
                 {
-                    var imagePath = Path.Combine(Application.StartupPath, "Images");
+                    var imagePath = Path.Combine(Application.StartupPath, "Temp");
                     if (!Directory.Exists(imagePath)) Directory.CreateDirectory(imagePath);
                     var name = Guid.NewGuid().ToString();
                     var fileName = Path.Combine(imagePath, name + ".jpg");
@@ -1188,6 +1252,19 @@ namespace Building.Building
                     }
 
 
+                    var imagePath_ = Path.Combine(Application.StartupPath, "Images");
+                    if (!Directory.Exists(imagePath_)) Directory.CreateDirectory(imagePath_);
+
+                    var fileName_ = Path.Combine(imagePath_, name + ".jpg");
+                    try
+                    {
+                        File.Copy(item, fileName_);
+                    }
+                    catch
+                    {
+                    }
+
+                    
                     var a = new BuildingGalleryBussines()
                     {
                         Guid = Guid.NewGuid(),
@@ -1199,6 +1276,14 @@ namespace Building.Building
                     cls.GalleryList.Add(a);
                 }
 
+                try
+                {
+                    var imagePath = Path.Combine(Application.StartupPath, "Temp");
+                    Directory.Delete(imagePath, true);
+                }
+                catch 
+                {
+                }
 
                 var res = await cls.SaveAsync();
                 if (res.HasError)

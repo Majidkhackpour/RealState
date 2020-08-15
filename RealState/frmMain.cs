@@ -193,6 +193,9 @@ namespace RealState
                     case "nBuildingManage":
                         frm = new frmShowBuildings();
                         break;
+                    case "nBuildingSearch":
+                        frm = new frmBuildingAdvanceSearch();
+                        break;
                 }
 
                 frm?.ShowDialog();
