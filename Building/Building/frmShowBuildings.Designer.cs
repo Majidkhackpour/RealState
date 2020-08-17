@@ -43,6 +43,7 @@
             this.btnEdit = new DevComponents.DotNetBar.ButtonX();
             this.line1 = new DevComponents.DotNetBar.Controls.Line();
             this.DGrid = new DevComponents.DotNetBar.Controls.DataGridViewX();
+            this.BuildingBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dgRadif = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DateSh = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -52,6 +53,7 @@
             this.masahatDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.zirBanaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.UserName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.RegionName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.addressDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgGuid = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.modifiedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -103,7 +105,6 @@
             this.parvaneSerialDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bonBastDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.mamarJodaDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.BuildingBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BuildingBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -269,6 +270,7 @@
             this.masahatDataGridViewTextBoxColumn,
             this.zirBanaDataGridViewTextBoxColumn,
             this.UserName,
+            this.RegionName,
             this.addressDataGridViewTextBoxColumn,
             this.dgGuid,
             this.modifiedDataGridViewTextBoxColumn,
@@ -358,6 +360,10 @@
             this.DGrid.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DGrid_CellFormatting);
             this.DGrid.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.DGrid_KeyPress);
             // 
+            // BuildingBindingSource
+            // 
+            this.BuildingBindingSource.DataSource = typeof(EntityCache.Bussines.BuildingBussines);
+            // 
             // dgRadif
             // 
             this.dgRadif.HeaderText = "ردیف";
@@ -423,6 +429,13 @@
             this.UserName.HeaderText = "مشاور";
             this.UserName.Name = "UserName";
             this.UserName.ReadOnly = true;
+            // 
+            // RegionName
+            // 
+            this.RegionName.DataPropertyName = "RegionName";
+            this.RegionName.HeaderText = "محدوده";
+            this.RegionName.Name = "RegionName";
+            this.RegionName.ReadOnly = true;
             // 
             // addressDataGridViewTextBoxColumn
             // 
@@ -832,10 +845,6 @@
             this.mamarJodaDataGridViewCheckBoxColumn.ReadOnly = true;
             this.mamarJodaDataGridViewCheckBoxColumn.Visible = false;
             // 
-            // BuildingBindingSource
-            // 
-            this.BuildingBindingSource.DataSource = typeof(EntityCache.Bussines.BuildingBussines);
-            // 
             // frmShowBuildings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -887,6 +896,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn masahatDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn zirBanaDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn UserName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn RegionName;
         private System.Windows.Forms.DataGridViewTextBoxColumn addressDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgGuid;
         private System.Windows.Forms.DataGridViewTextBoxColumn modifiedDataGridViewTextBoxColumn;

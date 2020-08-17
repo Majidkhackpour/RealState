@@ -29,33 +29,33 @@
         private void InitializeComponent()
         {
             this.grp = new DevComponents.DotNetBar.PanelEx();
-            this.label26 = new System.Windows.Forms.Label();
-            this.label28 = new System.Windows.Forms.Label();
+            this.lblDesc = new System.Windows.Forms.Label();
+            this.lblParent = new System.Windows.Forms.Label();
             this.label27 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
-            this.label25 = new System.Windows.Forms.Label();
+            this.lblStore = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
-            this.label20 = new System.Windows.Forms.Label();
-            this.label18 = new System.Windows.Forms.Label();
+            this.lblTabaqeCount = new System.Windows.Forms.Label();
+            this.lblTabaqeNo = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.label22 = new System.Windows.Forms.Label();
+            this.lblPrice2 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.label24 = new System.Windows.Forms.Label();
+            this.lblParcking = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
+            this.lblRentalAuthority = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.label21 = new System.Windows.Forms.Label();
+            this.lblPrice1 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.label23 = new System.Windows.Forms.Label();
+            this.lblEvelator = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
+            this.lblSaleSakht = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
+            this.lblRoomCount = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
+            this.lblMetrazh = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
+            this.lblRegion = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.grp.SuspendLayout();
             this.SuspendLayout();
@@ -66,33 +66,33 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.grp.CanvasColor = System.Drawing.SystemColors.Control;
             this.grp.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.grp.Controls.Add(this.label26);
-            this.grp.Controls.Add(this.label28);
+            this.grp.Controls.Add(this.lblDesc);
+            this.grp.Controls.Add(this.lblParent);
             this.grp.Controls.Add(this.label27);
             this.grp.Controls.Add(this.label12);
-            this.grp.Controls.Add(this.label25);
+            this.grp.Controls.Add(this.lblStore);
             this.grp.Controls.Add(this.label11);
             this.grp.Controls.Add(this.label19);
-            this.grp.Controls.Add(this.label20);
-            this.grp.Controls.Add(this.label18);
+            this.grp.Controls.Add(this.lblTabaqeCount);
+            this.grp.Controls.Add(this.lblTabaqeNo);
             this.grp.Controls.Add(this.label8);
-            this.grp.Controls.Add(this.label22);
+            this.grp.Controls.Add(this.lblPrice2);
             this.grp.Controls.Add(this.label7);
-            this.grp.Controls.Add(this.label24);
+            this.grp.Controls.Add(this.lblParcking);
             this.grp.Controls.Add(this.label10);
-            this.grp.Controls.Add(this.label16);
+            this.grp.Controls.Add(this.lblRentalAuthority);
             this.grp.Controls.Add(this.label4);
-            this.grp.Controls.Add(this.label21);
+            this.grp.Controls.Add(this.lblPrice1);
             this.grp.Controls.Add(this.label6);
-            this.grp.Controls.Add(this.label23);
+            this.grp.Controls.Add(this.lblEvelator);
             this.grp.Controls.Add(this.label9);
-            this.grp.Controls.Add(this.label15);
+            this.grp.Controls.Add(this.lblSaleSakht);
             this.grp.Controls.Add(this.label3);
-            this.grp.Controls.Add(this.label17);
+            this.grp.Controls.Add(this.lblRoomCount);
             this.grp.Controls.Add(this.label5);
-            this.grp.Controls.Add(this.label14);
+            this.grp.Controls.Add(this.lblMetrazh);
             this.grp.Controls.Add(this.label2);
-            this.grp.Controls.Add(this.label13);
+            this.grp.Controls.Add(this.lblRegion);
             this.grp.Controls.Add(this.label1);
             this.grp.DisabledBackColor = System.Drawing.Color.Empty;
             this.grp.Location = new System.Drawing.Point(1, 1);
@@ -109,21 +109,21 @@
             this.grp.Style.GradientAngle = 90;
             this.grp.TabIndex = 14;
             // 
-            // label26
+            // lblDesc
             // 
-            this.label26.Location = new System.Drawing.Point(3, 112);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(704, 20);
-            this.label26.TabIndex = 1;
-            this.label26.Text = "توضیحات:";
+            this.lblDesc.Location = new System.Drawing.Point(3, 112);
+            this.lblDesc.Name = "lblDesc";
+            this.lblDesc.Size = new System.Drawing.Size(704, 20);
+            this.lblDesc.TabIndex = 1;
+            this.lblDesc.Text = "توضیحات:";
             // 
-            // label28
+            // lblParent
             // 
-            this.label28.Location = new System.Drawing.Point(601, 144);
-            this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(126, 20);
-            this.label28.TabIndex = 1;
-            this.label28.Text = "مرجع:";
+            this.lblParent.Location = new System.Drawing.Point(447, 144);
+            this.lblParent.Name = "lblParent";
+            this.lblParent.Size = new System.Drawing.Size(280, 20);
+            this.lblParent.TabIndex = 1;
+            this.lblParent.Text = "مرجع:";
             // 
             // label27
             // 
@@ -143,14 +143,14 @@
             this.label12.TabIndex = 1;
             this.label12.Text = "توضیحات:";
             // 
-            // label25
+            // lblStore
             // 
-            this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(48, 79);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(42, 20);
-            this.label25.TabIndex = 0;
-            this.label25.Text = "انباری:";
+            this.lblStore.AutoSize = true;
+            this.lblStore.Location = new System.Drawing.Point(48, 79);
+            this.lblStore.Name = "lblStore";
+            this.lblStore.Size = new System.Drawing.Size(42, 20);
+            this.lblStore.TabIndex = 0;
+            this.lblStore.Text = "انباری:";
             // 
             // label11
             // 
@@ -170,23 +170,23 @@
             this.label19.TabIndex = 1;
             this.label19.Text = "از";
             // 
-            // label20
+            // lblTabaqeCount
             // 
-            this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(103, 49);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(35, 20);
-            this.label20.TabIndex = 1;
-            this.label20.Text = "طبقه:";
+            this.lblTabaqeCount.AutoSize = true;
+            this.lblTabaqeCount.Location = new System.Drawing.Point(103, 49);
+            this.lblTabaqeCount.Name = "lblTabaqeCount";
+            this.lblTabaqeCount.Size = new System.Drawing.Size(35, 20);
+            this.lblTabaqeCount.TabIndex = 1;
+            this.lblTabaqeCount.Text = "طبقه:";
             // 
-            // label18
+            // lblTabaqeNo
             // 
-            this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(169, 49);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(35, 20);
-            this.label18.TabIndex = 1;
-            this.label18.Text = "طبقه:";
+            this.lblTabaqeNo.AutoSize = true;
+            this.lblTabaqeNo.Location = new System.Drawing.Point(169, 49);
+            this.lblTabaqeNo.Name = "lblTabaqeNo";
+            this.lblTabaqeNo.Size = new System.Drawing.Size(35, 20);
+            this.lblTabaqeNo.TabIndex = 1;
+            this.lblTabaqeNo.Text = "طبقه:";
             // 
             // label8
             // 
@@ -197,13 +197,13 @@
             this.label8.TabIndex = 1;
             this.label8.Text = "طبقه:";
             // 
-            // label22
+            // lblPrice2
             // 
-            this.label22.Location = new System.Drawing.Point(420, 79);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(120, 20);
-            this.label22.TabIndex = 0;
-            this.label22.Text = "اجاره:";
+            this.lblPrice2.Location = new System.Drawing.Point(420, 79);
+            this.lblPrice2.Name = "lblPrice2";
+            this.lblPrice2.Size = new System.Drawing.Size(120, 20);
+            this.lblPrice2.TabIndex = 0;
+            this.lblPrice2.Text = "اجاره:";
             // 
             // label7
             // 
@@ -214,14 +214,14 @@
             this.label7.TabIndex = 0;
             this.label7.Text = "اجاره:";
             // 
-            // label24
+            // lblParcking
             // 
-            this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(168, 79);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(51, 20);
-            this.label24.TabIndex = 1;
-            this.label24.Text = "پارکینگ:";
+            this.lblParcking.AutoSize = true;
+            this.lblParcking.Location = new System.Drawing.Point(168, 79);
+            this.lblParcking.Name = "lblParcking";
+            this.lblParcking.Size = new System.Drawing.Size(51, 20);
+            this.lblParcking.TabIndex = 1;
+            this.lblParcking.Text = "پارکینگ:";
             // 
             // label10
             // 
@@ -232,13 +232,13 @@
             this.label10.TabIndex = 1;
             this.label10.Text = "پارکینگ:";
             // 
-            // label16
+            // lblRentalAuthority
             // 
-            this.label16.Location = new System.Drawing.Point(414, 49);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(281, 20);
-            this.label16.TabIndex = 1;
-            this.label16.Text = "مناسب برای:";
+            this.lblRentalAuthority.Location = new System.Drawing.Point(414, 49);
+            this.lblRentalAuthority.Name = "lblRentalAuthority";
+            this.lblRentalAuthority.Size = new System.Drawing.Size(281, 20);
+            this.lblRentalAuthority.TabIndex = 1;
+            this.lblRentalAuthority.Text = "مناسب برای:";
             // 
             // label4
             // 
@@ -249,13 +249,13 @@
             this.label4.TabIndex = 1;
             this.label4.Text = "مناسب برای:";
             // 
-            // label21
+            // lblPrice1
             // 
-            this.label21.Location = new System.Drawing.Point(601, 79);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(130, 20);
-            this.label21.TabIndex = 1;
-            this.label21.Text = "ودیعه:";
+            this.lblPrice1.Location = new System.Drawing.Point(601, 79);
+            this.lblPrice1.Name = "lblPrice1";
+            this.lblPrice1.Size = new System.Drawing.Size(130, 20);
+            this.lblPrice1.TabIndex = 1;
+            this.lblPrice1.Text = "ودیعه:";
             // 
             // label6
             // 
@@ -266,14 +266,14 @@
             this.label6.TabIndex = 1;
             this.label6.Text = "ودیعه:";
             // 
-            // label23
+            // lblEvelator
             // 
-            this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(292, 79);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(55, 20);
-            this.label23.TabIndex = 0;
-            this.label23.Text = "آسانسور:";
+            this.lblEvelator.AutoSize = true;
+            this.lblEvelator.Location = new System.Drawing.Point(292, 79);
+            this.lblEvelator.Name = "lblEvelator";
+            this.lblEvelator.Size = new System.Drawing.Size(55, 20);
+            this.lblEvelator.TabIndex = 0;
+            this.lblEvelator.Text = "آسانسور:";
             // 
             // label9
             // 
@@ -284,13 +284,13 @@
             this.label9.TabIndex = 0;
             this.label9.Text = "آسانسور:";
             // 
-            // label15
+            // lblSaleSakht
             // 
-            this.label15.Location = new System.Drawing.Point(3, 18);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(169, 20);
-            this.label15.TabIndex = 0;
-            this.label15.Text = "سال ساخت:";
+            this.lblSaleSakht.Location = new System.Drawing.Point(3, 18);
+            this.lblSaleSakht.Name = "lblSaleSakht";
+            this.lblSaleSakht.Size = new System.Drawing.Size(169, 20);
+            this.lblSaleSakht.TabIndex = 0;
+            this.lblSaleSakht.Text = "سال ساخت:";
             // 
             // label3
             // 
@@ -301,13 +301,13 @@
             this.label3.TabIndex = 0;
             this.label3.Text = "سال ساخت:";
             // 
-            // label17
+            // lblRoomCount
             // 
-            this.label17.Location = new System.Drawing.Point(280, 49);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(61, 20);
-            this.label17.TabIndex = 0;
-            this.label17.Text = "تعداد اتاق:";
+            this.lblRoomCount.Location = new System.Drawing.Point(280, 49);
+            this.lblRoomCount.Name = "lblRoomCount";
+            this.lblRoomCount.Size = new System.Drawing.Size(61, 20);
+            this.lblRoomCount.TabIndex = 0;
+            this.lblRoomCount.Text = "تعداد اتاق:";
             // 
             // label5
             // 
@@ -318,13 +318,13 @@
             this.label5.TabIndex = 0;
             this.label5.Text = "تعداد اتاق:";
             // 
-            // label14
+            // lblMetrazh
             // 
-            this.label14.Location = new System.Drawing.Point(244, 18);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(119, 20);
-            this.label14.TabIndex = 1;
-            this.label14.Text = "متراژ:";
+            this.lblMetrazh.Location = new System.Drawing.Point(244, 18);
+            this.lblMetrazh.Name = "lblMetrazh";
+            this.lblMetrazh.Size = new System.Drawing.Size(119, 20);
+            this.lblMetrazh.TabIndex = 1;
+            this.lblMetrazh.Text = "متراژ:";
             // 
             // label2
             // 
@@ -335,13 +335,13 @@
             this.label2.TabIndex = 1;
             this.label2.Text = "متراژ:";
             // 
-            // label13
+            // lblRegion
             // 
-            this.label13.Location = new System.Drawing.Point(414, 18);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(317, 20);
-            this.label13.TabIndex = 0;
-            this.label13.Text = "محل:";
+            this.lblRegion.Location = new System.Drawing.Point(414, 18);
+            this.lblRegion.Name = "lblRegion";
+            this.lblRegion.Size = new System.Drawing.Size(317, 20);
+            this.lblRegion.TabIndex = 0;
+            this.lblRegion.Text = "محل:";
             // 
             // label1
             // 
@@ -384,21 +384,21 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label lblSaleSakht;
+        private System.Windows.Forms.Label lblMetrazh;
+        private System.Windows.Forms.Label lblRegion;
+        private System.Windows.Forms.Label lblRentalAuthority;
         private System.Windows.Forms.Label label19;
-        private System.Windows.Forms.Label label20;
-        private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.Label label22;
-        private System.Windows.Forms.Label label21;
-        private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.Label label25;
-        private System.Windows.Forms.Label label24;
-        private System.Windows.Forms.Label label23;
-        private System.Windows.Forms.Label label26;
-        private System.Windows.Forms.Label label28;
+        private System.Windows.Forms.Label lblTabaqeCount;
+        private System.Windows.Forms.Label lblTabaqeNo;
+        private System.Windows.Forms.Label lblPrice2;
+        private System.Windows.Forms.Label lblPrice1;
+        private System.Windows.Forms.Label lblRoomCount;
+        private System.Windows.Forms.Label lblStore;
+        private System.Windows.Forms.Label lblParcking;
+        private System.Windows.Forms.Label lblEvelator;
+        private System.Windows.Forms.Label lblDesc;
+        private System.Windows.Forms.Label lblParent;
         private System.Windows.Forms.Label label27;
     }
 }

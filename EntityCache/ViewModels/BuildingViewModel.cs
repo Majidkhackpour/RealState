@@ -15,5 +15,6 @@
         public bool Evelator { get; set; }
         public bool Parcking { get; set; }
         public bool Store { get; set; }
+        public string Parent { get; set; }
     }
 }

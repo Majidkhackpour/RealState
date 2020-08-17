@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Drawing;
 using System.Security.Principal;
 using System.Windows.Forms;
 using EntityCache.Assistence;
 using Ertegha;
+using Notification;
 using Services;
 using Settings;
 using Settings.Classes;
@@ -30,7 +32,8 @@ namespace RealState
 
 
             ClsCache.Init();
-
+            var color = Color.FromArgb(255, 192, 128);
+            clsNotification.Init(color);
 
             var currentVersion = AccGlobalSettings.AppVersion.ParseToInt();
             var dbVersion = clsGlobalSetting.ApplicationVersion.ParseToInt();

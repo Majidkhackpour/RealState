@@ -14,6 +14,7 @@ namespace Notification
         {
             InitializeComponent();
             TopMost = true;
+            BackColor = clsNotification.Color;
         }
         private class NestedPublicInfo
         {

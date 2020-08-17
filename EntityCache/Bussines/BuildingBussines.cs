@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using EntityCache.Assistence;
+using EntityCache.ViewModels;
 using Nito.AsyncEx;
 using PacketParser.Interfaces;
 using Services;
@@ -33,6 +34,7 @@ namespace EntityCache.Bussines
         public decimal EjarePrice1 { get; set; }
         public decimal EjarePrice2 { get; set; }
         public Guid? RentalAutorityGuid { get; set; }
+        public string RentalAuthorityName { get; set; }
         public bool? IsShortTime { get; set; }
         public bool? IsOwnerHere { get; set; }
         public decimal PishTotalPrice { get; set; }
@@ -45,6 +47,7 @@ namespace EntityCache.Bussines
         public int ZirBana { get; set; }
         public Guid CityGuid { get; set; }
         public Guid RegionGuid { get; set; }
+        public string RegionName { get; set; }
         public string Address { get; set; }
         public Guid BuildingConditionGuid { get; set; }
         public EnBuildingSide Side { get; set; }
@@ -236,7 +239,8 @@ namespace EntityCache.Bussines
                                                  x.Masahat.ToString().ToLower().Contains(item.ToLower()) ||
                                                  x.ZirBana.ToString().ToLower().Contains(item.ToLower()) ||
                                                  x.UserName.ToLower().Contains(item.ToLower()) ||
-                                                 x.Address.ToLower().Contains(item.ToLower()))
+                                                 x.Address.ToLower().Contains(item.ToLower()) ||
+                                                 x.RegionName.ToLower().Contains(item.ToLower()))
                                 ?.ToList();
                         }
                     }
@@ -260,5 +264,75 @@ namespace EntityCache.Bussines
 
         public static async Task<bool> CheckCodeAsync(string code, Guid guid) =>
             await UnitOfWork.Building.CheckCodeAsync(code, guid);
+
+        public static async Task<List<BuildingViewModel>> GetAllAsync(string code, Guid buildingGuid,
+            Guid buildingAccountTypeGuid, int fMasahat, int lMasahat, int roomCount, decimal fPrice1, decimal lPrice1,
+            decimal fPrice2, decimal lPrice2, EnRequestType type)
+        {
+            try
+            {
+                var res = await GetAllAsync();
+                if (!string.IsNullOrEmpty(code)) res = res.Where(q => q.Code.Contains(code)).ToList();
+                if (buildingGuid != Guid.Empty) res = res.Where(q => q.BuildingTypeGuid == buildingGuid).ToList();
+                if (buildingAccountTypeGuid != Guid.Empty)
+                    res = res.Where(q => q.BuildingAccountTypeGuid == buildingAccountTypeGuid).ToList();
+                if (fMasahat != 0) res = res.Where(q => q.Masahat >= fMasahat).ToList();
+                if (lMasahat != 0) res = res.Where(q => q.Masahat <= lMasahat).ToList();
+                if (roomCount != 0) res = res.Where(q => q.RoomCount <= roomCount).ToList();
+                if (type == EnRequestType.Rahn)
+                {
+                    if (fPrice1 != 0) res = res.Where(q => q.RahnPrice1 >= fPrice1).ToList();
+                    if (fPrice2 != 0) res = res.Where(q => q.RahnPrice2 >= fPrice2).ToList();
+
+                    if (lPrice1 != 0) res = res.Where(q => q.EjarePrice1 >= lPrice1).ToList();
+                    if (lPrice2 != 0) res = res.Where(q => q.EjarePrice1 >= lPrice2).ToList();
+                }
+                else
+                {
+                    if (fPrice1 != 0) res = res.Where(q => q.SellPrice >= fPrice1).ToList();
+                    if (fPrice2 != 0) res = res.Where(q => q.SellPrice >= fPrice2).ToList();
+                }
+
+                var val = new List<BuildingViewModel>();
+
+                foreach (var item in res)
+                {
+                    var a = new BuildingViewModel()
+                    {
+                        RoomCount = item.RoomCount,
+                        SaleSakht = item.SaleSakht,
+                        TabaqeNo = item.TabaqeNo,
+                        Description = item.ShortDesc,
+                        Metrazh = item.Masahat,
+                        Region = item.RegionName,
+                        RentalAuthority = item.RentalAuthorityName,
+                        TabaqeCount = item.TedadTabaqe,
+                        Parent = $"فایل های سیستم کد {item.Code}"
+                    };
+                    if (type == EnRequestType.Rahn)
+                    {
+                        a.Price1 = item.RahnPrice1;
+                        a.Price2 = item.EjarePrice1;
+                    }
+                    else
+                    {
+                        a.Price1 = item.SellPrice;
+                        a.Price2 = 0;
+                    }
+                    val.Add(a);
+                }
+
+                return val;
+            }
+            catch (OperationCanceledException)
+            {
+                return null;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                return new List<BuildingViewModel>();
+            }
+        }
     }
 }

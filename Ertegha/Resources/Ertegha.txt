@@ -122,8 +122,12 @@ AS
 BEGIN
 select [dbo].[Buildings].*,[dbo].[Peoples].Name As OwnerName,
        [dbo].[BuildingTypes].Name As BuildingTypeName,
-	   [dbo].[Users].Name As UserName
-From [dbo].[Buildings] inner join [dbo].[Peoples] on [dbo].[Buildings].OwnerGuid=[dbo].[Peoples].Guid
+	   [dbo].[Users].Name As UserName,
+	   [dbo].[Regions].Name As RegionName,
+	   [dbo].[RentalAuthorities].Name As RentalAuthorityName
+From [dbo].[Buildings] 
+     inner join [dbo].[Peoples] on [dbo].[Buildings].OwnerGuid=[dbo].[Peoples].Guid
 	 inner join [dbo].[BuildingTypes] on [dbo].[Buildings].BuildingTypeGuid=[dbo].[BuildingTypes].Guid
 	 inner join [dbo].[Users] on [dbo].[Buildings].UserGuid=[dbo].[Users].Guid
-END
+	 inner join [dbo].[Regions] on [dbo].[Buildings].RegionGuid=[dbo].[Regions].Guid
+	 left outer join [dbo].[RentalAuthorities] on [dbo].[Buildings].RentalAutorityGuid=[dbo].[RentalAuthorities].Guid
