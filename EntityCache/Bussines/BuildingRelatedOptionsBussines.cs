@@ -15,6 +15,7 @@ namespace EntityCache.Bussines
         public bool Status { get; set; }
         public Guid BuildinGuid { get; set; }
         public Guid BuildingOptionGuid { get; set; }
+        public string OptionName => BuildingOptionsBussines.Get(BuildingOptionGuid).Name;
 
 
         public static async Task<List<BuildingRelatedOptionsBussines>> GetAllAsync(Guid parentGuid, bool status) =>
@@ -58,5 +59,6 @@ namespace EntityCache.Bussines
 
             return res;
         }
+
     }
 }

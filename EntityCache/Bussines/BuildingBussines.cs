@@ -307,12 +307,19 @@ namespace EntityCache.Bussines
                         Region = item.RegionName,
                         RentalAuthority = item.RentalAuthorityName,
                         TabaqeCount = item.TedadTabaqe,
-                        Parent = $"فایل های سیستم کد {item.Code}"
+                        Parent = $"فایل های سیستم کد {item.Code}",
+                        Options = item.OptionList.Select(q => q.OptionName).ToList(),
+                        Address = item.Address,
+                        Mobile = PeoplesBussines.Get(item.OwnerGuid).FirstNumber
                     };
                     if (type == EnRequestType.Rahn)
                     {
                         a.Price1 = item.RahnPrice1;
                         a.Price2 = item.EjarePrice1;
+                        if (item.RahnPrice2 != 0) a.Tabdil = item.RahnPrice2 + "ریال ودیعه";
+                        if (item.EjarePrice2 != 0) a.Tabdil = a.Tabdil + item.EjarePrice2 + "ریال ودیعه";
+                        if (item.RahnPrice2 == 0 && item.EjarePrice2 == 0) a.Tabdil = "غیرقابل تبدیل";
+                        a.Type = EnRequestType.Rahn;
                     }
                     else
                     {

@@ -25,6 +25,7 @@ namespace EntityCache.Bussines
         public string IssuedFrom { get; set; }
         public string PostalCode { get; set; }
         public Guid GroupGuid { get; set; }
+        public string FirstNumber => PhoneBookBussines.GetAll(Guid, true)?.FirstOrDefault()?.Tell ?? "";
         private List<PhoneBookBussines> _tellList;
         public List<PhoneBookBussines> TellList
         {

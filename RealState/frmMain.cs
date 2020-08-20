@@ -194,7 +194,7 @@ namespace RealState
                         frm = new frmShowBuildings();
                         break;
                     case "nBuildingSearch":
-                        frm = new frmBuildingAdvanceSearch();
+                        frm = new frmFilterForm();
                         break;
                 }
 
