@@ -33,6 +33,8 @@ namespace EntityCache.Assistence
         private static IBuildingRepository _buildingRepository;
         private static IBuildingRelatedOptionsRepository _buildingRelatedOptionsRepository;
         private static IBuildingGalleryRepository _buildingGalleryRepository;
+        private static IBuildingRequestRepository _buildingRequestRepository;
+        private static IBuildingRequestRegionRepository _buildingRequestRegionRepository;
 
         public static void Dispose() => db?.Dispose();
         public static void Set_Save() => db.SaveChanges();
@@ -140,6 +142,16 @@ namespace EntityCache.Assistence
         public static IBuildingGalleryRepository BuildingGallery => _buildingGalleryRepository ??
                                                       (_buildingGalleryRepository =
                                                           new BuildingGalleryPersistenceRepository(db));
+
+
+        public static IBuildingRequestRepository BuildingRequest => _buildingRequestRepository ??
+                                                                                  (_buildingRequestRepository =
+                                                                                      new BuildingRequestPersistenceRepository(db));
+
+
+        public static IBuildingRequestRegionRepository BuildingRequestRegion => _buildingRequestRegionRepository ??
+                                                                    (_buildingRequestRegionRepository =
+                                                                        new BuildingRequestRegionPersistenceRepository(db));
 
     }
 }

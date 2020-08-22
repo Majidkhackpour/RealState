@@ -5,17 +5,56 @@ using EntityCache.Bussines;
 using MetroFramework.Forms;
 using Notification;
 using Services;
+using User;
 
 namespace Building.Building
 {
     public partial class frmShowBuildings : MetroForm
     {
         private bool _st = true;
+
+        private void FillCmb()
+        {
+            try
+            {
+                cmbStatus.Items.Add(EnBuildingStatus.All.GetDisplay());
+                cmbStatus.Items.Add(EnBuildingStatus.Mojod.GetDisplay());
+                cmbStatus.Items.Add(EnBuildingStatus.Vagozar.GetDisplay());
+
+                var list = BuildingTypeBussines.GetAll("");
+                list.Add(new BuildingTypeBussines()
+                {
+                    Guid = Guid.Empty,
+                    Name = "[همه]"
+                });
+                btBindingSource.DataSource = list.OrderBy(q => q.Name).ToList();
+
+
+                var list2 = UserBussines.GetAll();
+                list2.Add(new UserBussines()
+                {
+                    Guid = Guid.Empty,
+                    Name = "[همه]"
+                });
+                userBindingSource.DataSource = list2.OrderBy(q => q.Name).ToList();
+
+                cmbStatus.SelectedIndex = 0;
+                cmbBuildingType.SelectedIndex = 0;
+                cmbUser.SelectedValue = clsUser.CurrentUser.Guid;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
         private void LoadData(bool status, string search = "")
         {
             try
             {
-                var list = BuildingBussines.GetAll(search).Where(q => q.Status == status).ToList();
+                var list = BuildingBussines
+                    .GetAll(search, (EnBuildingStatus) cmbStatus.SelectedIndex - 1,
+                        (Guid) cmbBuildingType.SelectedValue,
+                        (Guid) cmbUser.SelectedValue).Where(q => q.Status == status).ToList();
                 BuildingBindingSource.DataSource =
                     list.OrderByDescending(q => q.CreateDate).ToSortableBindingList();
             }
@@ -52,12 +91,13 @@ namespace Building.Building
 
         private void frmShowBuildings_Load(object sender, EventArgs e)
         {
+            FillCmb();
             LoadData(ST);
         }
 
         private void DGrid_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            DGrid.Rows[e.RowIndex].Cells["dgRadif"].Value = e.RowIndex + 1;
+
         }
 
         private void txtSearch_TextChanged(object sender, EventArgs e)
@@ -217,6 +257,113 @@ namespace Building.Building
                 txtSearch.Focus();
                 txtSearch.Text = e.KeyChar.ToString();
                 txtSearch.SelectionStart = 9999;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private async void btnMojod_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (DGrid.RowCount <= 0) return;
+                if (DGrid.CurrentRow == null) return;
+                var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
+                var bu = await BuildingBussines.GetAsync(guid);
+                if (bu == null) return;
+                if (bu.BuildingStatus == EnBuildingStatus.Mojod)
+                {
+                    frmNotification.PublicInfo.ShowMessage(
+                        "وضعیت ملک هم اکنون موجود می باشد");
+                    return;
+                }
+                if (MessageBox.Show(
+                        $@"آیا از اعمال تغییرات اطمینان دارید؟", "تغییر وضعیت ملک",
+                        MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Question) == DialogResult.No) return;
+
+                bu.BuildingStatus = EnBuildingStatus.Mojod;
+                var res = await bu.SaveAsync();
+                if (res.HasError)
+                {
+                    frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);
+                    return;
+                }
+
+                LoadData(ST, txtSearch.Text);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private async void btnVagozar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (DGrid.RowCount <= 0) return;
+                if (DGrid.CurrentRow == null) return;
+                var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
+                var bu = await BuildingBussines.GetAsync(guid);
+                if (bu == null) return;
+                if (bu.BuildingStatus == EnBuildingStatus.Vagozar)
+                {
+                    frmNotification.PublicInfo.ShowMessage(
+                        "وضعیت ملک هم اکنون واگذارشده می باشد");
+                    return;
+                }
+                if (MessageBox.Show(
+                        $@"آیا از اعمال تغییرات اطمینان دارید؟", "تغییر وضعیت ملک",
+                        MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Question) == DialogResult.No) return;
+
+                bu.BuildingStatus = EnBuildingStatus.Vagozar;
+                var res = await bu.SaveAsync();
+                if (res.HasError)
+                {
+                    frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);
+                    return;
+                }
+                LoadData(ST, txtSearch.Text);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private void cmbStatus_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                LoadData(ST, txtSearch.Text);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private void cmbBuildingType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                LoadData(ST, txtSearch.Text);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private void cmbUser_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                LoadData(ST, txtSearch.Text);
             }
             catch (Exception ex)
             {

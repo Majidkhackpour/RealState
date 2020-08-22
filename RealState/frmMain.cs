@@ -6,6 +6,7 @@ using Building.Building;
 using Building.BuildingAccountType;
 using Building.BuildingCondition;
 using Building.BuildingOptions;
+using Building.BuildingRequest;
 using Building.BuildingType;
 using Building.BuildingView;
 using Building.DocumentType;
@@ -195,6 +196,9 @@ namespace RealState
                         break;
                     case "nBuildingSearch":
                         frm = new frmFilterForm();
+                        break;
+                    case "nBuildingRequest":
+                        frm = new frmShowRequest();
                         break;
                 }
 

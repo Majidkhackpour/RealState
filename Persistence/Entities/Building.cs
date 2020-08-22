@@ -69,5 +69,6 @@ namespace Persistence.Entities
         public bool BonBast { get; set; }
         public bool MamarJoda { get; set; }
         public int RoomCount { get; set; }
+        public EnBuildingStatus BuildingStatus { get; set; }
     }
 }

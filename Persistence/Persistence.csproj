@@ -61,6 +61,8 @@
     <Compile Include="Entities\BuildingGallery.cs" />
     <Compile Include="Entities\BuildingOptions.cs" />
     <Compile Include="Entities\BuildingRelatedOptions.cs" />
+    <Compile Include="Entities\BuildingRequest.cs" />
+    <Compile Include="Entities\BuildingRequestRegion.cs" />
     <Compile Include="Entities\BuildingType.cs" />
     <Compile Include="Entities\BuildingView.cs" />
     <Compile Include="Entities\Cities.cs" />
@@ -159,6 +161,14 @@
     <Compile Include="Migrations\202008121419447__20.designer.cs">
       <DependentUpon>202008121419447__20.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202008221318273__21.cs" />
+    <Compile Include="Migrations\202008221318273__21.designer.cs">
+      <DependentUpon>202008221318273__21.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202008221439086__22.cs" />
+    <Compile Include="Migrations\202008221439086__22.designer.cs">
+      <DependentUpon>202008221439086__22.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\ModelContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -237,6 +247,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202008121419447__20.resx">
       <DependentUpon>202008121419447__20.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202008221318273__21.resx">
+      <DependentUpon>202008221318273__21.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202008221439086__22.resx">
+      <DependentUpon>202008221439086__22.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

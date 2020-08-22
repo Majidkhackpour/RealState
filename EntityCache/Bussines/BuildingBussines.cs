@@ -76,6 +76,8 @@ namespace EntityCache.Bussines
         public bool BonBast { get; set; }
         public bool MamarJoda { get; set; }
         public int RoomCount { get; set; }
+        public EnBuildingStatus BuildingStatus { get; set; }
+        public string BuildingStatusName => BuildingStatus.GetDisplay();
         private List<BuildingRelatedOptionsBussines> _optionList;
         public List<BuildingRelatedOptionsBussines> OptionList
         {
@@ -220,13 +222,20 @@ namespace EntityCache.Bussines
             return res;
         }
 
-        public static async Task<List<BuildingBussines>> GetAllAsync(string search)
+        public static async Task<List<BuildingBussines>> GetAllAsync(string search, EnBuildingStatus status,
+            Guid buildingTypeGuid, Guid userGuid)
         {
             try
             {
-                if (string.IsNullOrEmpty(search))
-                    search = "";
+                if (string.IsNullOrEmpty(search)) search = "";
                 var res = await GetAllAsync();
+
+                if (status != EnBuildingStatus.All) res = res.Where(q => q.BuildingStatus == status).ToList();
+                if (buildingTypeGuid != Guid.Empty)
+                    res = res.Where(q => q.BuildingTypeGuid == buildingTypeGuid).ToList();
+                if (userGuid != Guid.Empty)
+                    res = res.Where(q => q.UserGuid == userGuid).ToList();
+
                 var searchItems = search.SplitString();
                 if (searchItems?.Count > 0)
                     foreach (var item in searchItems)
@@ -248,7 +257,9 @@ namespace EntityCache.Bussines
                 return res;
             }
             catch (OperationCanceledException)
-            { return null; }
+            {
+                return null;
+            }
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
@@ -256,7 +267,9 @@ namespace EntityCache.Bussines
             }
         }
 
-        public static List<BuildingBussines> GetAll(string search) => AsyncContext.Run(() => GetAllAsync(search));
+        public static List<BuildingBussines> GetAll(string search, EnBuildingStatus status,
+            Guid buildingTypeGuid, Guid userGuid) =>
+            AsyncContext.Run(() => GetAllAsync(search, status, buildingTypeGuid, userGuid));
 
         public static async Task<string> NextCodeAsync() => await UnitOfWork.Building.NextCodeAsync();
 
@@ -272,6 +285,7 @@ namespace EntityCache.Bussines
             try
             {
                 var res = await GetAllAsync();
+                res = res.Where(q => q.BuildingStatus == EnBuildingStatus.Mojod).ToList();
                 if (!string.IsNullOrEmpty(code)) res = res.Where(q => q.Code.Contains(code)).ToList();
                 if (buildingGuid != Guid.Empty) res = res.Where(q => q.BuildingTypeGuid == buildingGuid).ToList();
                 if (buildingAccountTypeGuid != Guid.Empty)

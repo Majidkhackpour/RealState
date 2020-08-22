@@ -59,6 +59,8 @@
     <Compile Include="Interfaces\IBuildingGallery.cs" />
     <Compile Include="Interfaces\IBuildingOptions.cs" />
     <Compile Include="Interfaces\IBuildingRelatedOptions.cs" />
+    <Compile Include="Interfaces\IBuildingRequest.cs" />
+    <Compile Include="Interfaces\IBuildingRequestRegion.cs" />
     <Compile Include="Interfaces\IBuildingType.cs" />
     <Compile Include="Interfaces\IBuildingView.cs" />
     <Compile Include="Interfaces\ICities.cs" />

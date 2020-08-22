@@ -58,5 +58,6 @@ namespace PacketParser.Interfaces
         bool BonBast { get; set; }
         bool MamarJoda { get; set; }
         int RoomCount { get; set; }
+        EnBuildingStatus BuildingStatus { get; set; }
     }
 }

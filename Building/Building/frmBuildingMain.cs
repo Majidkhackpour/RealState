@@ -1100,6 +1100,7 @@ namespace Building.Building
                 cls.Code = txtCode.Text;
                 cls.OwnerGuid = owner.Guid;
                 cls.UserGuid = (Guid)cmbUser.SelectedValue;
+                cls.BuildingStatus = EnBuildingStatus.Mojod;
 
                 if (cmbSellPrice.SelectedIndex == 0)
                     cls.SellPrice = txtSellPrice.Text.ParseToDecimal() * 10000;
