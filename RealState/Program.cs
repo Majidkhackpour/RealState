@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Security.Principal;
 using System.Windows.Forms;
+using BackUpDLL;
 using EntityCache.Assistence;
 using Ertegha;
 using Notification;
@@ -29,6 +30,16 @@ namespace RealState
             //    MessageBox.Show("اجرا نمایید Run As Adminstrator لطفا برنامه را در حالت");
             //    return;
             //}
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+
+            var reg = clsRegistery.GetRegistery("BuildingCn");
+            if (string.IsNullOrEmpty(reg.value))
+            {
+                var frm = new frmSetConnectionString(ENSource.Building, AppSettings.DefaultConnectionString);
+                if (frm.ShowDialog() != DialogResult.OK) return;
+            }
+
 
 
             ClsCache.Init();
@@ -54,8 +65,7 @@ namespace RealState
             if (currentVersion > dbVersion)
                 clsGlobalSetting.ApplicationVersion = currentVersion.ToString();
 
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
+
 
             if (string.IsNullOrEmpty(clsEconomyUnit.EconomyName))
             {
