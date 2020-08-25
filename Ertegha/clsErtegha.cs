@@ -14,7 +14,7 @@ namespace Ertegha
             try
             {
                 var cn = new SqlConnection(Settings.AppSettings.DefaultConnectionString);
-                res.AddReturnedValue(await BackUpDLL.RunScript.RunAsync(Properties.Resources.Ertegha, cn));
+                res.AddReturnedValue(await DataBaseUtilities.RunScript.RunAsync(Properties.Resources.Ertegha, cn));
                 res.ThrowExceptionIfError();
             }
             catch (Exception ex)
