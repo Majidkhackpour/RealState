@@ -42,7 +42,7 @@ namespace RealState
 
 
 
-            ClsCache.Init();
+            ClsCache.Init(AppSettings.DefaultConnectionString);
             var color = Color.FromArgb(255, 192, 128);
             clsNotification.Init(color);
 

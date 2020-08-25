@@ -6,8 +6,12 @@ namespace Persistence.Model
 {
     public class ModelContext : DbContext
     {
-        public ModelContext()
-            : base("name=ModelContext")
+        public ModelContext(string connectionString) : base(connectionString)
+        {
+            Database.SetInitializer(
+                new MigrateDatabaseToLatestVersion<ModelContext, Configuration>());
+        }
+        public ModelContext() : base(Cache.ConnectionString)
         {
             Database.SetInitializer(
                 new MigrateDatabaseToLatestVersion<ModelContext, Configuration>());

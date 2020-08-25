@@ -8,9 +8,12 @@
         {
             get
             {
-                if (string.IsNullOrEmpty(_defCn))
-                    _defCn =
-                        "data source=.;initial catalog=AradRealStatedb;integrated security=True;MultipleActiveResultSets=True;";
+                var res = clsRegistery.GetRegistery("BuildingCn");
+                _defCn = string.IsNullOrEmpty(res.value)
+                    ? "data source=.;initial catalog=AradRealStatedb;integrated security=True;MultipleActiveResultSets=True;"
+                    : res.value;
+
+
                 return _defCn;
             }
             set => _defCn = value;

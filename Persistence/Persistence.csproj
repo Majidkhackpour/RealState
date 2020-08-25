@@ -54,6 +54,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Cache.cs" />
     <Compile Include="Entities\AdvertiseLog.cs" />
     <Compile Include="Entities\Building.cs" />
     <Compile Include="Entities\BuildingAccountType.cs" />
