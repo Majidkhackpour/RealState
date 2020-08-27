@@ -11,7 +11,7 @@ using Services;
 
 namespace EntityCache.SqlServerPersistence
 {
-    public class BuildingRequestRegionPersistenceRepository : GenericRepository<BuildingRequestRegionBussines, BuildingRequest>, IBuildingRequestRegionRepository
+    public class BuildingRequestRegionPersistenceRepository : GenericRepository<BuildingRequestRegionBussines, BuildingRequestRegion>, IBuildingRequestRegionRepository
     {
         private ModelContext db;
         public BuildingRequestRegionPersistenceRepository(ModelContext _db) : base(_db)

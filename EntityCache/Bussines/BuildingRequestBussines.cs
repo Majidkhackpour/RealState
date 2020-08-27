@@ -13,9 +13,10 @@ namespace EntityCache.Bussines
     {
         #region Properties
         public Guid Guid { get; set; }
-        public DateTime Modified { get; set; }
-        public bool Status { get; set; }
-        public DateTime CreateDate { get; set; }
+        public DateTime Modified { get; set; } = DateTime.Now;
+        public bool Status { get; set; } = true;
+        public DateTime CreateDate { get; set; } = DateTime.Now;
+        public string DateSh => Calendar.MiladiToShamsi(CreateDate);
         public Guid AskerGuid { get; set; }
         public string AskerName { get; set; }
         public Guid UserGuid { get; set; }
@@ -73,7 +74,7 @@ namespace EntityCache.Bussines
                 {
                     var list = await BuildingRequestRegionBussines.GetAllAsync(Guid, Status);
                     res.AddReturnedValue(
-                        await UnitOfWork.BuildingRelatedOptions.RemoveRangeAsync(list.Select(q => q.Guid).ToList(),
+                        await UnitOfWork.BuildingRequestRegion.RemoveRangeAsync(list.Select(q => q.Guid).ToList(),
                             tranName));
                     res.ThrowExceptionIfError();
 

@@ -30,5 +30,6 @@ namespace Persistence.Entities
         [MaxLength(50)]
         public string PostalCode { get; set; }
         public Guid GroupGuid { get; set; }
+        public decimal Account { get; set; }
     }
 }

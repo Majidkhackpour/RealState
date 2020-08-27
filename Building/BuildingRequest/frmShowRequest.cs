@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Windows.Forms;
+using Building.Building;
 using EntityCache.Bussines;
 using MetroFramework.Forms;
 using Notification;
@@ -149,6 +150,99 @@ namespace Building.BuildingRequest
                 }
 
                 LoadData(ST, txtSearch.Text);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private void btnInsert_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var frm = new frmRequestMain();
+                if (frm.ShowDialog() == DialogResult.OK)
+                    LoadData(ST);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (DGrid.RowCount <= 0) return;
+                if (DGrid.CurrentRow == null) return;
+                if (!ST)
+                {
+                    frmNotification.PublicInfo.ShowMessage(
+                        "شما مجاز به ویرایش داده حذف شده نمی باشید \r\n برای این منظور، ابتدا فیلد موردنظر را از حالت حذف شده به فعال، تغییر وضعیت دهید");
+                    return;
+                }
+                var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
+                var frm = new frmRequestMain(guid, false);
+                if (frm.ShowDialog() == DialogResult.OK)
+                    LoadData(ST, txtSearch.Text);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private void btnView_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (DGrid.RowCount <= 0) return;
+                if (DGrid.CurrentRow == null) return;
+                var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
+                var frm = new frmRequestMain(guid, true);
+                frm.ShowDialog();
+                LoadData(ST, txtSearch.Text);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private void btnShowBuilding_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (DGrid.RowCount <= 0) return;
+                if (DGrid.CurrentRow == null) return;
+                var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
+                var req = BuildingRequestBussines.Get(guid);
+                if (req == null) return;
+                
+                var type = EnRequestType.Rahn;
+                decimal fPrice1 = 0, sPrice1 = 0, fPrice2 = 0, sPrice2 = 0;
+
+                if (req.SellPrice1 > 0) type = EnRequestType.Forush;
+                if (req.RahnPrice1 > 0) type = EnRequestType.Rahn;
+
+                if (type == EnRequestType.Forush)
+                {
+                    fPrice1 = req.SellPrice1;
+                    sPrice1 = req.SellPrice2;
+                }
+                else
+                {
+                    fPrice1 = req.RahnPrice1;
+                    sPrice1 = req.RahnPrice2;
+                    fPrice2 = req.EjarePrice1;
+                    sPrice2 = req.EjarePrice2;
+                }
+
+                var frm = new frmFilterForm(type, req.BuildingTypeGuid, req.BuildingAccountTypeGuid, req.RoomCount,
+                    req.Masahat1, req.Masahat2, fPrice1, sPrice1, fPrice2, sPrice2);
+                frm.ShowDialog();
             }
             catch (Exception ex)
             {

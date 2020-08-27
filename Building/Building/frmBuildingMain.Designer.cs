@@ -421,9 +421,9 @@
             this.lblDateNow.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblDateNow.BackColor = System.Drawing.Color.Transparent;
-            this.lblDateNow.Location = new System.Drawing.Point(15, 109);
+            this.lblDateNow.Location = new System.Drawing.Point(45, 110);
             this.lblDateNow.Name = "lblDateNow";
-            this.lblDateNow.Size = new System.Drawing.Size(150, 20);
+            this.lblDateNow.Size = new System.Drawing.Size(144, 20);
             this.lblDateNow.TabIndex = 13;
             // 
             // cmbUser
@@ -435,9 +435,9 @@
             this.cmbUser.DisplayMember = "Name";
             this.cmbUser.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbUser.FormattingEnabled = true;
-            this.cmbUser.Location = new System.Drawing.Point(15, 56);
+            this.cmbUser.Location = new System.Drawing.Point(45, 57);
             this.cmbUser.Name = "cmbUser";
-            this.cmbUser.Size = new System.Drawing.Size(146, 28);
+            this.cmbUser.Size = new System.Drawing.Size(140, 28);
             this.cmbUser.TabIndex = 3;
             this.cmbUser.ValueMember = "Guid";
             // 
@@ -449,9 +449,9 @@
             // 
             this.txtCode.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtCode.Location = new System.Drawing.Point(15, 8);
+            this.txtCode.Location = new System.Drawing.Point(45, 9);
             this.txtCode.Name = "txtCode";
-            this.txtCode.Size = new System.Drawing.Size(146, 27);
+            this.txtCode.Size = new System.Drawing.Size(140, 27);
             this.txtCode.TabIndex = 2;
             this.txtCode.Enter += new System.EventHandler(this.txtCode_Enter);
             this.txtCode.Leave += new System.EventHandler(this.txtCode_Leave);
@@ -461,7 +461,7 @@
             this.label15.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label15.AutoSize = true;
             this.label15.BackColor = System.Drawing.Color.Transparent;
-            this.label15.Location = new System.Drawing.Point(177, 109);
+            this.label15.Location = new System.Drawing.Point(201, 110);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(55, 20);
             this.label15.TabIndex = 12;
@@ -472,7 +472,7 @@
             this.label14.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label14.AutoSize = true;
             this.label14.BackColor = System.Drawing.Color.Transparent;
-            this.label14.Location = new System.Drawing.Point(192, 59);
+            this.label14.Location = new System.Drawing.Point(216, 60);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(39, 20);
             this.label14.TabIndex = 12;
@@ -483,7 +483,7 @@
             this.label12.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label12.AutoSize = true;
             this.label12.BackColor = System.Drawing.Color.Transparent;
-            this.label12.Location = new System.Drawing.Point(187, 11);
+            this.label12.Location = new System.Drawing.Point(211, 12);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(44, 20);
             this.label12.TabIndex = 12;
@@ -554,7 +554,7 @@
             this.btnCreateOwner.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnCreateOwner.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCreateOwner.Font = new System.Drawing.Font("B Yekan", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.btnCreateOwner.Location = new System.Drawing.Point(3, 9);
+            this.btnCreateOwner.Location = new System.Drawing.Point(33, 6);
             this.btnCreateOwner.Name = "btnCreateOwner";
             this.btnCreateOwner.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
             this.btnCreateOwner.Size = new System.Drawing.Size(77, 27);
@@ -571,7 +571,7 @@
             this.btnSearchOwner.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnSearchOwner.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnSearchOwner.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnSearchOwner.Location = new System.Drawing.Point(82, 9);
+            this.btnSearchOwner.Location = new System.Drawing.Point(112, 6);
             this.btnSearchOwner.Name = "btnSearchOwner";
             this.btnSearchOwner.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
             this.btnSearchOwner.Size = new System.Drawing.Size(30, 27);
@@ -586,10 +586,10 @@
             this.txttxtOwnerCode.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txttxtOwnerCode.Enabled = false;
-            this.txttxtOwnerCode.Location = new System.Drawing.Point(118, 9);
+            this.txttxtOwnerCode.Location = new System.Drawing.Point(148, 6);
             this.txttxtOwnerCode.Name = "txttxtOwnerCode";
             this.txttxtOwnerCode.ReadOnly = true;
-            this.txttxtOwnerCode.Size = new System.Drawing.Size(43, 27);
+            this.txttxtOwnerCode.Size = new System.Drawing.Size(37, 27);
             this.txttxtOwnerCode.TabIndex = 10;
             // 
             // label6
@@ -597,7 +597,7 @@
             this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label6.AutoSize = true;
             this.label6.BackColor = System.Drawing.Color.Transparent;
-            this.label6.Location = new System.Drawing.Point(192, 197);
+            this.label6.Location = new System.Drawing.Point(216, 194);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(39, 20);
             this.label6.TabIndex = 9;
@@ -608,7 +608,7 @@
             this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label5.AutoSize = true;
             this.label5.BackColor = System.Drawing.Color.Transparent;
-            this.label5.Location = new System.Drawing.Point(175, 160);
+            this.label5.Location = new System.Drawing.Point(199, 157);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(56, 20);
             this.label5.TabIndex = 9;
@@ -619,7 +619,7 @@
             this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label4.AutoSize = true;
             this.label4.BackColor = System.Drawing.Color.Transparent;
-            this.label4.Location = new System.Drawing.Point(173, 123);
+            this.label4.Location = new System.Drawing.Point(197, 120);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(58, 20);
             this.label4.TabIndex = 9;
@@ -630,7 +630,7 @@
             this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.Transparent;
-            this.label3.Location = new System.Drawing.Point(188, 86);
+            this.label3.Location = new System.Drawing.Point(212, 83);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(43, 20);
             this.label3.TabIndex = 9;
@@ -641,9 +641,9 @@
             this.lblOwnerAddress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblOwnerAddress.BackColor = System.Drawing.Color.Transparent;
-            this.lblOwnerAddress.Location = new System.Drawing.Point(3, 197);
+            this.lblOwnerAddress.Location = new System.Drawing.Point(33, 194);
             this.lblOwnerAddress.Name = "lblOwnerAddress";
-            this.lblOwnerAddress.Size = new System.Drawing.Size(78, 83);
+            this.lblOwnerAddress.Size = new System.Drawing.Size(125, 83);
             this.lblOwnerAddress.TabIndex = 9;
             // 
             // lblOwnerDateBirth
@@ -651,9 +651,9 @@
             this.lblOwnerDateBirth.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblOwnerDateBirth.BackColor = System.Drawing.Color.Transparent;
-            this.lblOwnerDateBirth.Location = new System.Drawing.Point(3, 160);
+            this.lblOwnerDateBirth.Location = new System.Drawing.Point(33, 157);
             this.lblOwnerDateBirth.Name = "lblOwnerDateBirth";
-            this.lblOwnerDateBirth.Size = new System.Drawing.Size(78, 20);
+            this.lblOwnerDateBirth.Size = new System.Drawing.Size(125, 20);
             this.lblOwnerDateBirth.TabIndex = 9;
             // 
             // lblOwnerNCode
@@ -661,9 +661,9 @@
             this.lblOwnerNCode.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblOwnerNCode.BackColor = System.Drawing.Color.Transparent;
-            this.lblOwnerNCode.Location = new System.Drawing.Point(3, 123);
+            this.lblOwnerNCode.Location = new System.Drawing.Point(33, 120);
             this.lblOwnerNCode.Name = "lblOwnerNCode";
-            this.lblOwnerNCode.Size = new System.Drawing.Size(78, 20);
+            this.lblOwnerNCode.Size = new System.Drawing.Size(125, 20);
             this.lblOwnerNCode.TabIndex = 9;
             // 
             // lblOwnerFatherName
@@ -671,9 +671,9 @@
             this.lblOwnerFatherName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblOwnerFatherName.BackColor = System.Drawing.Color.Transparent;
-            this.lblOwnerFatherName.Location = new System.Drawing.Point(3, 86);
+            this.lblOwnerFatherName.Location = new System.Drawing.Point(33, 83);
             this.lblOwnerFatherName.Name = "lblOwnerFatherName";
-            this.lblOwnerFatherName.Size = new System.Drawing.Size(78, 20);
+            this.lblOwnerFatherName.Size = new System.Drawing.Size(125, 20);
             this.lblOwnerFatherName.TabIndex = 9;
             // 
             // lblOwnerName
@@ -681,9 +681,9 @@
             this.lblOwnerName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblOwnerName.BackColor = System.Drawing.Color.Transparent;
-            this.lblOwnerName.Location = new System.Drawing.Point(3, 49);
+            this.lblOwnerName.Location = new System.Drawing.Point(33, 46);
             this.lblOwnerName.Name = "lblOwnerName";
-            this.lblOwnerName.Size = new System.Drawing.Size(78, 20);
+            this.lblOwnerName.Size = new System.Drawing.Size(125, 20);
             this.lblOwnerName.TabIndex = 9;
             // 
             // label2
@@ -691,7 +691,7 @@
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Location = new System.Drawing.Point(136, 49);
+            this.label2.Location = new System.Drawing.Point(160, 46);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(95, 20);
             this.label2.TabIndex = 9;
@@ -702,7 +702,7 @@
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Location = new System.Drawing.Point(167, 12);
+            this.label1.Location = new System.Drawing.Point(191, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(64, 20);
             this.label1.TabIndex = 9;
@@ -725,11 +725,11 @@
             this.superTabControl2.ControlBox.SubItems.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.superTabControl2.ControlBox.CloseBox,
             this.superTabControl2.ControlBox.MenuBox});
+            this.superTabControl2.Controls.Add(this.superTabControlPanel7);
             this.superTabControl2.Controls.Add(this.superTabControlPanel8);
             this.superTabControl2.Controls.Add(this.superTabControlPanel10);
             this.superTabControl2.Controls.Add(this.superTabControlPanel9);
             this.superTabControl2.Controls.Add(this.superTabControlPanel11);
-            this.superTabControl2.Controls.Add(this.superTabControlPanel7);
             this.superTabControl2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.superTabControl2.Location = new System.Drawing.Point(0, 0);
             this.superTabControl2.Name = "superTabControl2";

@@ -19,6 +19,8 @@ namespace Peoples
                 LoadGroups();
                 LoadTells();
                 LoadBanks();
+                FillCmbPrice();
+                SetTxtPrice();
 
                 txtCode.Text = cls?.Code;
                 txtNationalCode.Text = cls?.NationalCode;
@@ -84,6 +86,46 @@ namespace Peoples
             {
                 txtAccountNumber.Text = txtBank.Text = txtShobe.Text = "";
                 bankAccountBindingSource.DataSource = cls?.BankList.ToList();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private void FillCmbPrice()
+        {
+            try
+            {
+                cmbAccount.Items.Add(EnAccountType.BiHesab.GetDisplay());
+                cmbAccount.Items.Add(EnAccountType.Bed.GetDisplay());
+                cmbAccount.Items.Add(EnAccountType.Bes.GetDisplay());
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private void SetTxtPrice()
+        {
+            try
+            {
+                if (cls?.Account == 0)
+                {
+                    txtAccount.Text = cls?.Account.ToString();
+                    cmbAccount.SelectedIndex = 0;
+                }
+
+                if (cls?.Account < 0)
+                {
+                    txtAccount.Text = cls?.Account_.ToString();
+                    cmbAccount.SelectedIndex = 2;
+                }
+
+                if (cls?.Account > 0)
+                {
+                    txtAccount.Text = cls?.Account_.ToString();
+                    cmbAccount.SelectedIndex = 1;
+                }
             }
             catch (Exception ex)
             {
@@ -427,6 +469,13 @@ namespace Peoples
                     return;
                 }
 
+                if (txtAccount.Text != "0" && cmbAccount.SelectedIndex == 0)
+                {
+                    frmNotification.PublicInfo.ShowMessage("مانده حساب وارد شده صحیح نمی باشد");
+                    txtCode.Focus();
+                    return;
+                }
+
                 cls.Name = txtName.Text.Trim();
                 cls.Code = txtCode.Text.Trim();
                 cls.NationalCode = txtNationalCode.Text.Trim();
@@ -438,7 +487,9 @@ namespace Peoples
                 cls.IssuedFrom = txtIssuesFrom.Text;
                 cls.PostalCode = txtPostalCode.Text;
                 cls.Address = txtAddress.Text;
-
+                var acc = txtAccount.Text.ParseToDecimal();
+                if (cmbAccount.SelectedIndex == 1) cls.Account = acc;
+                else cls.Account = -acc;
                 var res = await cls.SaveAsync();
                 if (res.HasError)
                 {

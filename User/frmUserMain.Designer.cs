@@ -48,13 +48,20 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnCancel = new DevComponents.DotNetBar.ButtonX();
             this.btnFinish = new DevComponents.DotNetBar.ButtonX();
+            this.txtAccount = new System.Windows.Forms.NumericUpDown();
+            this.label16 = new System.Windows.Forms.Label();
+            this.cmbAccount = new System.Windows.Forms.ComboBox();
             this.grp.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtAccount)).BeginInit();
             this.SuspendLayout();
             // 
             // grp
             // 
             this.grp.CanvasColor = System.Drawing.SystemColors.Control;
             this.grp.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.grp.Controls.Add(this.cmbAccount);
+            this.grp.Controls.Add(this.txtAccount);
+            this.grp.Controls.Add(this.label16);
             this.grp.Controls.Add(this.cmbQuestion);
             this.grp.Controls.Add(this.txtAnswer);
             this.grp.Controls.Add(this.txtMobile);
@@ -74,7 +81,7 @@
             this.grp.DisabledBackColor = System.Drawing.Color.Empty;
             this.grp.Location = new System.Drawing.Point(8, 37);
             this.grp.Name = "grp";
-            this.grp.Size = new System.Drawing.Size(463, 337);
+            this.grp.Size = new System.Drawing.Size(463, 363);
             this.grp.Style.Alignment = System.Drawing.StringAlignment.Center;
             this.grp.Style.BackColor1.Color = System.Drawing.Color.White;
             this.grp.Style.BackColor2.Color = System.Drawing.Color.White;
@@ -251,7 +258,7 @@
             this.btnCancel.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Image = global::User.Properties.Resources.tab_close_;
-            this.btnCancel.Location = new System.Drawing.Point(30, 385);
+            this.btnCancel.Location = new System.Drawing.Point(30, 411);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
             this.btnCancel.Size = new System.Drawing.Size(125, 31);
@@ -269,7 +276,7 @@
             this.btnFinish.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnFinish.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnFinish.Image = global::User.Properties.Resources.tab_checkbox__;
-            this.btnFinish.Location = new System.Drawing.Point(330, 385);
+            this.btnFinish.Location = new System.Drawing.Point(330, 411);
             this.btnFinish.Name = "btnFinish";
             this.btnFinish.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
             this.btnFinish.Size = new System.Drawing.Size(125, 31);
@@ -279,12 +286,49 @@
             this.btnFinish.TextColor = System.Drawing.Color.Black;
             this.btnFinish.Click += new System.EventHandler(this.btnFinish_Click);
             // 
+            // txtAccount
+            // 
+            this.txtAccount.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtAccount.Location = new System.Drawing.Point(170, 318);
+            this.txtAccount.Maximum = new decimal(new int[] {
+            -1530494976,
+            232830,
+            0,
+            0});
+            this.txtAccount.Name = "txtAccount";
+            this.txtAccount.Size = new System.Drawing.Size(182, 27);
+            this.txtAccount.TabIndex = 13;
+            // 
+            // label16
+            // 
+            this.label16.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label16.AutoSize = true;
+            this.label16.BackColor = System.Drawing.Color.Transparent;
+            this.label16.Location = new System.Drawing.Point(385, 320);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(66, 20);
+            this.label16.TabIndex = 12;
+            this.label16.Text = "مانده حساب";
+            // 
+            // cmbAccount
+            // 
+            this.cmbAccount.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cmbAccount.DisplayMember = "Name";
+            this.cmbAccount.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbAccount.FormattingEnabled = true;
+            this.cmbAccount.Location = new System.Drawing.Point(22, 317);
+            this.cmbAccount.Name = "cmbAccount";
+            this.cmbAccount.Size = new System.Drawing.Size(142, 28);
+            this.cmbAccount.TabIndex = 14;
+            this.cmbAccount.ValueMember = "Guid";
+            // 
             // frmUserMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(479, 430);
+            this.ClientSize = new System.Drawing.Size(479, 453);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnFinish);
             this.Controls.Add(this.grp);
@@ -293,9 +337,7 @@
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(479, 430);
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(479, 430);
             this.Name = "frmUserMain";
             this.Padding = new System.Windows.Forms.Padding(27, 92, 27, 31);
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -304,6 +346,7 @@
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmUserMain_KeyDown);
             this.grp.ResumeLayout(false);
             this.grp.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtAccount)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -329,5 +372,8 @@
         private System.Windows.Forms.ComboBox cmbQuestion;
         private DevComponents.DotNetBar.ButtonX btnFinish;
         private DevComponents.DotNetBar.ButtonX btnCancel;
+        private System.Windows.Forms.NumericUpDown txtAccount;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.ComboBox cmbAccount;
     }
 }

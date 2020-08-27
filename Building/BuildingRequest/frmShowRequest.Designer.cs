@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -38,7 +37,7 @@
             this.btnView = new DevComponents.DotNetBar.ButtonX();
             this.btnChangeStatus = new DevComponents.DotNetBar.ButtonX();
             this.txtSearch = new DevComponents.DotNetBar.Controls.TextBoxX();
-            this.reqBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.reqBindingSource = new System.Windows.Forms.BindingSource();
             this.btnDelete = new DevComponents.DotNetBar.ButtonX();
             this.btnInsert = new DevComponents.DotNetBar.ButtonX();
             this.btnEdit = new DevComponents.DotNetBar.ButtonX();
@@ -72,6 +71,9 @@
             this.roomCountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.buildingAccountTypeGuidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.buildingConditionGuidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnOther = new DevComponents.DotNetBar.ButtonX();
+            this.btnSendSms = new DevComponents.DotNetBar.ButtonItem();
+            this.btnShowBuilding = new DevComponents.DotNetBar.ButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.reqBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).BeginInit();
             this.SuspendLayout();
@@ -93,6 +95,7 @@
             this.btnView.TabIndex = 55762;
             this.btnView.Text = "مشاهده (F12)";
             this.btnView.TextColor = System.Drawing.Color.Black;
+            this.btnView.Click += new System.EventHandler(this.btnView_Click);
             // 
             // btnChangeStatus
             // 
@@ -172,6 +175,7 @@
             this.btnInsert.TabIndex = 55765;
             this.btnInsert.Text = "افزودن (Ins)";
             this.btnInsert.TextColor = System.Drawing.Color.Black;
+            this.btnInsert.Click += new System.EventHandler(this.btnInsert_Click);
             // 
             // btnEdit
             // 
@@ -190,6 +194,7 @@
             this.btnEdit.TabIndex = 55766;
             this.btnEdit.Text = "ویرایش (F7)";
             this.btnEdit.TextColor = System.Drawing.Color.Black;
+            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
             // 
             // line1
             // 
@@ -517,11 +522,44 @@
             this.buildingConditionGuidDataGridViewTextBoxColumn.ReadOnly = true;
             this.buildingConditionGuidDataGridViewTextBoxColumn.Visible = false;
             // 
+            // btnOther
+            // 
+            this.btnOther.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnOther.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnOther.BackColor = System.Drawing.Color.Silver;
+            this.btnOther.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnOther.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.btnOther.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnOther.Location = new System.Drawing.Point(4, 559);
+            this.btnOther.Name = "btnOther";
+            this.btnOther.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
+            this.btnOther.Size = new System.Drawing.Size(61, 31);
+            this.btnOther.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
+            this.btnOther.SubItems.AddRange(new DevComponents.DotNetBar.BaseItem[] {
+            this.btnSendSms,
+            this.btnShowBuilding});
+            this.btnOther.TabIndex = 55767;
+            this.btnOther.Text = "سایر";
+            this.btnOther.TextAlignment = DevComponents.DotNetBar.eButtonTextAlignment.Left;
+            this.btnOther.TextColor = System.Drawing.Color.Black;
+            // 
+            // btnSendSms
+            // 
+            this.btnSendSms.Name = "btnSendSms";
+            this.btnSendSms.Text = "ارسال پیامک به متقاضی";
+            // 
+            // btnShowBuilding
+            // 
+            this.btnShowBuilding.Name = "btnShowBuilding";
+            this.btnShowBuilding.Text = "نمایش فایل های مطابق با درخواست";
+            this.btnShowBuilding.Click += new System.EventHandler(this.btnShowBuilding_Click);
+            // 
             // frmShowRequest
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 600);
+            this.Controls.Add(this.btnOther);
             this.Controls.Add(this.btnView);
             this.Controls.Add(this.btnChangeStatus);
             this.Controls.Add(this.txtSearch);
@@ -587,5 +625,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn roomCountDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn buildingAccountTypeGuidDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn buildingConditionGuidDataGridViewTextBoxColumn;
+        private DevComponents.DotNetBar.ButtonX btnOther;
+        private DevComponents.DotNetBar.ButtonItem btnSendSms;
+        private DevComponents.DotNetBar.ButtonItem btnShowBuilding;
     }
 }

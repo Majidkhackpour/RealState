@@ -339,8 +339,9 @@
             this.btnPrint.Size = new System.Drawing.Size(125, 31);
             this.btnPrint.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
             this.btnPrint.TabIndex = 55709;
-            this.btnPrint.Text = "گزارش (Ctrl+P)";
+            this.btnPrint.Text = "گردش (Ctrl+P)";
             this.btnPrint.TextColor = System.Drawing.Color.Black;
+            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
             // 
             // btnEdit
             // 

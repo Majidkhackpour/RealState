@@ -60,24 +60,39 @@
             treeNode14,
             treeNode15});
             System.Windows.Forms.TreeNode treeNode17 = new System.Windows.Forms.TreeNode("مدیریت کاربران");
-            System.Windows.Forms.TreeNode treeNode18 = new System.Windows.Forms.TreeNode("مدیریت اشخاص");
-            System.Windows.Forms.TreeNode treeNode19 = new System.Windows.Forms.TreeNode("دفترچه تلفن");
-            System.Windows.Forms.TreeNode treeNode20 = new System.Windows.Forms.TreeNode("مدیریت پنل های ارسال پیامک");
-            System.Windows.Forms.TreeNode treeNode21 = new System.Windows.Forms.TreeNode("ارسال پیامک");
-            System.Windows.Forms.TreeNode treeNode22 = new System.Windows.Forms.TreeNode("گزارش پیامک های ارسال شده");
-            System.Windows.Forms.TreeNode treeNode23 = new System.Windows.Forms.TreeNode("پیامک", new System.Windows.Forms.TreeNode[] {
-            treeNode20,
-            treeNode21,
-            treeNode22});
-            System.Windows.Forms.TreeNode treeNode24 = new System.Windows.Forms.TreeNode("مدیریت سیم کارت ها");
-            System.Windows.Forms.TreeNode treeNode25 = new System.Windows.Forms.TreeNode("گزارش آگهی های ارسال شده");
-            System.Windows.Forms.TreeNode treeNode26 = new System.Windows.Forms.TreeNode("ربات دیوار", new System.Windows.Forms.TreeNode[] {
+            System.Windows.Forms.TreeNode treeNode18 = new System.Windows.Forms.TreeNode("سطوح دسترسی");
+            System.Windows.Forms.TreeNode treeNode19 = new System.Windows.Forms.TreeNode("گزارش عملکرد");
+            System.Windows.Forms.TreeNode treeNode20 = new System.Windows.Forms.TreeNode("کاربران", new System.Windows.Forms.TreeNode[] {
+            treeNode17,
+            treeNode18,
+            treeNode19});
+            System.Windows.Forms.TreeNode treeNode21 = new System.Windows.Forms.TreeNode("مدیریت اشخاص");
+            System.Windows.Forms.TreeNode treeNode22 = new System.Windows.Forms.TreeNode("مدیریت هزینه ها");
+            System.Windows.Forms.TreeNode treeNode23 = new System.Windows.Forms.TreeNode("حساب ها");
+            System.Windows.Forms.TreeNode treeNode24 = new System.Windows.Forms.TreeNode("دریافت");
+            System.Windows.Forms.TreeNode treeNode25 = new System.Windows.Forms.TreeNode("پرداخت");
+            System.Windows.Forms.TreeNode treeNode26 = new System.Windows.Forms.TreeNode("حسابداری", new System.Windows.Forms.TreeNode[] {
+            treeNode22,
+            treeNode23,
             treeNode24,
             treeNode25});
-            System.Windows.Forms.TreeNode treeNode27 = new System.Windows.Forms.TreeNode("امکانات برنامه", new System.Windows.Forms.TreeNode[] {
-            treeNode19,
-            treeNode23,
-            treeNode26});
+            System.Windows.Forms.TreeNode treeNode27 = new System.Windows.Forms.TreeNode("دفترچه تلفن");
+            System.Windows.Forms.TreeNode treeNode28 = new System.Windows.Forms.TreeNode("مدیریت پنل های ارسال پیامک");
+            System.Windows.Forms.TreeNode treeNode29 = new System.Windows.Forms.TreeNode("ارسال پیامک");
+            System.Windows.Forms.TreeNode treeNode30 = new System.Windows.Forms.TreeNode("گزارش پیامک های ارسال شده");
+            System.Windows.Forms.TreeNode treeNode31 = new System.Windows.Forms.TreeNode("پیامک", new System.Windows.Forms.TreeNode[] {
+            treeNode28,
+            treeNode29,
+            treeNode30});
+            System.Windows.Forms.TreeNode treeNode32 = new System.Windows.Forms.TreeNode("مدیریت سیم کارت ها");
+            System.Windows.Forms.TreeNode treeNode33 = new System.Windows.Forms.TreeNode("گزارش آگهی های ارسال شده");
+            System.Windows.Forms.TreeNode treeNode34 = new System.Windows.Forms.TreeNode("ربات دیوار", new System.Windows.Forms.TreeNode[] {
+            treeNode32,
+            treeNode33});
+            System.Windows.Forms.TreeNode treeNode35 = new System.Windows.Forms.TreeNode("امکانات برنامه", new System.Windows.Forms.TreeNode[] {
+            treeNode27,
+            treeNode31,
+            treeNode34});
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.line1 = new DevComponents.DotNetBar.Controls.Line();
             this.lblHour = new System.Windows.Forms.Label();
@@ -186,7 +201,7 @@
             this.lblMounth.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblMounth.AutoSize = true;
             this.lblMounth.Font = new System.Drawing.Font("B Yekan", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.lblMounth.Location = new System.Drawing.Point(642, 9);
+            this.lblMounth.Location = new System.Drawing.Point(638, 9);
             this.lblMounth.Name = "lblMounth";
             this.lblMounth.Size = new System.Drawing.Size(27, 17);
             this.lblMounth.TabIndex = 1;
@@ -452,44 +467,69 @@
             treeNode16.NodeFont = new System.Drawing.Font("B Yekan", 10F);
             treeNode16.Text = "املاک";
             treeNode17.Name = "nUsers";
-            treeNode17.NodeFont = new System.Drawing.Font("B Yekan", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            treeNode17.NodeFont = new System.Drawing.Font("B Yekan", 10F);
             treeNode17.Text = "مدیریت کاربران";
-            treeNode18.Name = "nPeoples";
-            treeNode18.NodeFont = new System.Drawing.Font("B Yekan", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            treeNode18.Text = "مدیریت اشخاص";
-            treeNode19.Name = "nPhoneBook";
-            treeNode19.NodeFont = new System.Drawing.Font("B Yekan", 9.75F);
-            treeNode19.Text = "دفترچه تلفن";
-            treeNode20.Name = "nPanels";
-            treeNode20.NodeFont = new System.Drawing.Font("B Yekan", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            treeNode20.Text = "مدیریت پنل های ارسال پیامک";
-            treeNode21.Name = "nSendSMS";
-            treeNode21.NodeFont = new System.Drawing.Font("B Yekan", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            treeNode21.Text = "ارسال پیامک";
-            treeNode22.Name = "nSMSReport";
-            treeNode22.NodeFont = new System.Drawing.Font("B Yekan", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            treeNode22.Text = "گزارش پیامک های ارسال شده";
-            treeNode23.Name = "nPayamak";
+            treeNode18.Name = "nUserAccess";
+            treeNode18.NodeFont = new System.Drawing.Font("B Yekan", 10F);
+            treeNode18.Text = "سطوح دسترسی";
+            treeNode19.Name = "nUserReport";
+            treeNode19.NodeFont = new System.Drawing.Font("B Yekan", 10F);
+            treeNode19.Text = "گزارش عملکرد";
+            treeNode20.Name = "Node20";
+            treeNode20.NodeFont = new System.Drawing.Font("B Yekan", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            treeNode20.Text = "کاربران";
+            treeNode21.Name = "nPeoples";
+            treeNode21.NodeFont = new System.Drawing.Font("B Yekan", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            treeNode21.Text = "مدیریت اشخاص";
+            treeNode22.Name = "nHazine";
+            treeNode22.NodeFont = new System.Drawing.Font("B Yekan", 9.75F);
+            treeNode22.Text = "مدیریت هزینه ها";
+            treeNode23.Name = "nAccounts";
             treeNode23.NodeFont = new System.Drawing.Font("B Yekan", 9.75F);
-            treeNode23.Text = "پیامک";
-            treeNode24.Name = "nSimcard";
-            treeNode24.NodeFont = new System.Drawing.Font("B Yekan", 8.25F);
-            treeNode24.Text = "مدیریت سیم کارت ها";
-            treeNode25.Name = "nAdvertiseLog";
-            treeNode25.NodeFont = new System.Drawing.Font("B Yekan", 8.25F);
-            treeNode25.Text = "گزارش آگهی های ارسال شده";
-            treeNode26.Name = "nDivar";
-            treeNode26.NodeFont = new System.Drawing.Font("B Yekan", 9.75F);
-            treeNode26.Text = "ربات دیوار";
-            treeNode27.Name = "nInformation";
-            treeNode27.NodeFont = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            treeNode27.Text = "امکانات برنامه";
+            treeNode23.Text = "حساب ها";
+            treeNode24.Name = "nReception";
+            treeNode24.NodeFont = new System.Drawing.Font("B Yekan", 9.75F);
+            treeNode24.Text = "دریافت";
+            treeNode25.Name = "nPay";
+            treeNode25.NodeFont = new System.Drawing.Font("B Yekan", 9.75F);
+            treeNode25.Text = "پرداخت";
+            treeNode26.Name = "nAccounting";
+            treeNode26.NodeFont = new System.Drawing.Font("B Yekan", 10F);
+            treeNode26.Text = "حسابداری";
+            treeNode27.Name = "nPhoneBook";
+            treeNode27.NodeFont = new System.Drawing.Font("B Yekan", 9.75F);
+            treeNode27.Text = "دفترچه تلفن";
+            treeNode28.Name = "nPanels";
+            treeNode28.NodeFont = new System.Drawing.Font("B Yekan", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            treeNode28.Text = "مدیریت پنل های ارسال پیامک";
+            treeNode29.Name = "nSendSMS";
+            treeNode29.NodeFont = new System.Drawing.Font("B Yekan", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            treeNode29.Text = "ارسال پیامک";
+            treeNode30.Name = "nSMSReport";
+            treeNode30.NodeFont = new System.Drawing.Font("B Yekan", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            treeNode30.Text = "گزارش پیامک های ارسال شده";
+            treeNode31.Name = "nPayamak";
+            treeNode31.NodeFont = new System.Drawing.Font("B Yekan", 9.75F);
+            treeNode31.Text = "پیامک";
+            treeNode32.Name = "nSimcard";
+            treeNode32.NodeFont = new System.Drawing.Font("B Yekan", 8.25F);
+            treeNode32.Text = "مدیریت سیم کارت ها";
+            treeNode33.Name = "nAdvertiseLog";
+            treeNode33.NodeFont = new System.Drawing.Font("B Yekan", 8.25F);
+            treeNode33.Text = "گزارش آگهی های ارسال شده";
+            treeNode34.Name = "nDivar";
+            treeNode34.NodeFont = new System.Drawing.Font("B Yekan", 9.75F);
+            treeNode34.Text = "ربات دیوار";
+            treeNode35.Name = "nInformation";
+            treeNode35.NodeFont = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            treeNode35.Text = "امکانات برنامه";
             this.trvGroup.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
             treeNode12,
             treeNode16,
-            treeNode17,
-            treeNode18,
-            treeNode27});
+            treeNode20,
+            treeNode21,
+            treeNode26,
+            treeNode35});
             this.trvGroup.RightToLeftLayout = true;
             this.trvGroup.Size = new System.Drawing.Size(201, 483);
             this.trvGroup.TabIndex = 55760;

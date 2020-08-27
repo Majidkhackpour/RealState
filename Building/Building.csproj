@@ -390,6 +390,12 @@
     <Compile Include="BuildingOptions\frmShowBuildingOption.Designer.cs">
       <DependentUpon>frmShowBuildingOption.cs</DependentUpon>
     </Compile>
+    <Compile Include="BuildingRequest\frmRequestMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BuildingRequest\frmRequestMain.Designer.cs">
+      <DependentUpon>frmRequestMain.cs</DependentUpon>
+    </Compile>
     <Compile Include="BuildingRequest\frmShowRequest.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -565,6 +571,9 @@
     <EmbeddedResource Include="BuildingOptions\frmShowBuildingOption.resx">
       <DependentUpon>frmShowBuildingOption.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="BuildingRequest\frmRequestMain.resx">
+      <DependentUpon>frmRequestMain.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="BuildingRequest\frmShowRequest.resx">
       <DependentUpon>frmShowRequest.cs</DependentUpon>
     </EmbeddedResource>
@@ -631,11 +640,14 @@
     <None Include="Properties\DataSources\EntityCache.Bussines.BuildingRequestBussines.datasource" />
     <None Include="Properties\DataSources\EntityCache.Bussines.BuildingTypeBussines.datasource" />
     <None Include="Properties\DataSources\EntityCache.Bussines.BuildingViewBussines.datasource" />
+    <None Include="Properties\DataSources\EntityCache.Bussines.CitiesBussines.datasource" />
     <None Include="Properties\DataSources\EntityCache.Bussines.DocumentTypeBussines.datasource" />
     <None Include="Properties\DataSources\EntityCache.Bussines.FloorCoverBussines.datasource" />
     <None Include="Properties\DataSources\EntityCache.Bussines.KitchenServiceBussines.datasource" />
     <None Include="Properties\DataSources\EntityCache.Bussines.PhoneBookBussines.datasource" />
+    <None Include="Properties\DataSources\EntityCache.Bussines.RegionsBussines.datasource" />
     <None Include="Properties\DataSources\EntityCache.Bussines.RentalAuthorityBussines.datasource" />
+    <None Include="Properties\DataSources\EntityCache.Bussines.StatesBussines.datasource" />
     <None Include="Properties\DataSources\EntityCache.Bussines.UserBussines.datasource" />
     <None Include="Resources\add.png" />
   </ItemGroup>
@@ -688,4 +700,7 @@
     <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
   </Target>
   <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
+  <PropertyGroup>
+    <PostBuildEvent>if $(Configuration) == Release  echo F| xcopy /Y "$(TargetPath)" "D:\Projects\References\RealState\$(TargetFileName)"</PostBuildEvent>
+  </PropertyGroup>
 </Project>

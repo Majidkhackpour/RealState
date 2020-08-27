@@ -18,6 +18,7 @@ namespace EntityCache.Bussines
         public Guid CityGuid { get; set; }
         public string StateName { get; set; }
         public string CityName { get; set; }
+        public bool IsChecked { get; set; }
         public CitiesBussines City => CitiesBussines.Get(CityGuid);
 
         public static async Task<List<RegionsBussines>> GetAllAsync() => await UnitOfWork.Regions.GetAllAsyncBySp();

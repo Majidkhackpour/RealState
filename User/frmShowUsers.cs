@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Windows.Forms;
+using Accounting;
 using EntityCache.Bussines;
 using MetroFramework.Forms;
 using Notification;
@@ -221,6 +222,22 @@ namespace User
                 txtSearch.Focus();
                 txtSearch.Text = e.KeyChar.ToString();
                 txtSearch.SelectionStart = 9999;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private void btnPrint_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (DGrid.RowCount <= 0) return;
+                if (DGrid.CurrentRow == null) return;
+                var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
+                var frm = new frmGardeshHesab(guid, EnAccountingType.Users);
+                frm.ShowDialog();
             }
             catch (Exception ex)
             {

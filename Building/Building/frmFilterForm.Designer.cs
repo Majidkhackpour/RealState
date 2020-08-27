@@ -43,6 +43,7 @@
             this.cmbEjare2 = new System.Windows.Forms.ComboBox();
             this.cmbRahn2 = new System.Windows.Forms.ComboBox();
             this.cmbBuildingType = new System.Windows.Forms.ComboBox();
+            this.bTypeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.cmbEjare1 = new System.Windows.Forms.ComboBox();
             this.cmbRahn1 = new System.Windows.Forms.ComboBox();
             this.txtSMasahat = new System.Windows.Forms.NumericUpDown();
@@ -55,24 +56,23 @@
             this.cmbReqType = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.cmbBuildingAccountType = new System.Windows.Forms.ComboBox();
+            this.batBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.lblFPrice1 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.txtFPrice1 = new System.Windows.Forms.NumericUpDown();
             this.label3 = new System.Windows.Forms.Label();
             this.txtFPrice2 = new System.Windows.Forms.NumericUpDown();
             this.btnSeach = new DevComponents.DotNetBar.ButtonX();
-            this.bTypeBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.batBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.grp.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtSPrice2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtRoomCount)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSPrice1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bTypeBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSMasahat)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtFMasahat)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.batBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtFPrice1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtFPrice2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bTypeBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.batBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // grp
@@ -278,6 +278,10 @@
             this.cmbBuildingType.TabIndex = 2;
             this.cmbBuildingType.ValueMember = "Guid";
             // 
+            // bTypeBindingSource
+            // 
+            this.bTypeBindingSource.DataSource = typeof(EntityCache.Bussines.DocumentTypeBussines);
+            // 
             // cmbEjare1
             // 
             this.cmbEjare1.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -418,6 +422,10 @@
             this.cmbBuildingAccountType.TabIndex = 3;
             this.cmbBuildingAccountType.ValueMember = "Guid";
             // 
+            // batBindingSource
+            // 
+            this.batBindingSource.DataSource = typeof(EntityCache.Bussines.BuildingAccountTypeBussines);
+            // 
             // lblFPrice1
             // 
             this.lblFPrice1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -495,14 +503,6 @@
             this.btnSeach.TextColor = System.Drawing.Color.White;
             this.btnSeach.Click += new System.EventHandler(this.btnSeach_Click);
             // 
-            // bTypeBindingSource
-            // 
-            this.bTypeBindingSource.DataSource = typeof(EntityCache.Bussines.DocumentTypeBussines);
-            // 
-            // batBindingSource
-            // 
-            this.batBindingSource.DataSource = typeof(EntityCache.Bussines.BuildingAccountTypeBussines);
-            // 
             // frmFilterForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -521,18 +521,17 @@
             this.Padding = new System.Windows.Forms.Padding(27, 92, 27, 31);
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.Style = MetroFramework.MetroColorStyle.Green;
-            this.Load += new System.EventHandler(this.frmFilterForm_Load);
             this.grp.ResumeLayout(false);
             this.grp.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtSPrice2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtRoomCount)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSPrice1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bTypeBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSMasahat)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtFMasahat)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.batBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtFPrice1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtFPrice2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bTypeBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.batBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }

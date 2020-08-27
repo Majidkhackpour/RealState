@@ -11,7 +11,8 @@ namespace Persistence.Model
             Database.SetInitializer(
                 new MigrateDatabaseToLatestVersion<ModelContext, Configuration>());
         }
-        public ModelContext() : base(Cache.ConnectionString)
+
+        public ModelContext() : base("name=ModelContext")
         {
             Database.SetInitializer(
                 new MigrateDatabaseToLatestVersion<ModelContext, Configuration>());
@@ -46,5 +47,8 @@ namespace Persistence.Model
         public virtual DbSet<BuildingGallery> BuildingGallery { get; set; }
         public virtual DbSet<BuildingRequest> BuildingRequest { get; set; }
         public virtual DbSet<BuildingRequestRegion> BuildingRequestRegions { get; set; }
+        public virtual DbSet<GardeshHesab> GardeshHesab { get; set; }
+        public virtual DbSet<Hazine> Hazine { get; set; }
+        public virtual DbSet<Reception> Reception { get; set; }
     }
 }

@@ -80,4 +80,7 @@
     <None Include="Resources\alarm.wav" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>if $(Configuration) == Release  echo F| xcopy /Y "$(TargetPath)" "D:\Projects\References\RealState\$(TargetFileName)"</PostBuildEvent>
+  </PropertyGroup>
 </Project>

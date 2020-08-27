@@ -19,6 +19,8 @@ namespace User
             try
             {
                 FillCmb();
+                FillCmbPrice();
+                SetTxtPrice();
                 txtName.Text = cls?.Name;
                 txtUserName.Text = cls?.UserName;
                 txtEmail.Text = cls?.Email;
@@ -32,7 +34,6 @@ namespace User
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-
         private void FillCmb()
         {
             try
@@ -49,7 +50,46 @@ namespace User
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
+        private void FillCmbPrice()
+        {
+            try
+            {
+                cmbAccount.Items.Add(EnAccountType.BiHesab.GetDisplay());
+                cmbAccount.Items.Add(EnAccountType.Bed.GetDisplay());
+                cmbAccount.Items.Add(EnAccountType.Bes.GetDisplay());
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private void SetTxtPrice()
+        {
+            try
+            {
+                if (cls?.Account == 0)
+                {
+                    txtAccount.Text = cls?.Account.ToString();
+                    cmbAccount.SelectedIndex = 0;
+                }
 
+                if (cls?.Account < 0)
+                {
+                    txtAccount.Text = cls?.Account_.ToString();
+                    cmbAccount.SelectedIndex = 2;
+                }
+
+                if (cls?.Account > 0)
+                {
+                    txtAccount.Text = cls?.Account_.ToString();
+                    cmbAccount.SelectedIndex = 1;
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
         public frmUserMain()
         {
             InitializeComponent();
@@ -238,7 +278,12 @@ namespace User
                     txtMobile.Focus();
                     return;
                 }
-
+                if (txtAccount.Text != "0" && cmbAccount.SelectedIndex == 0)
+                {
+                    frmNotification.PublicInfo.ShowMessage("مانده حساب وارد شده صحیح نمی باشد");
+                    txtAccount.Focus();
+                    return;
+                }
 
                 cls.Name = txtName.Text.Trim();
                 cls.UserName = txtUserName.Text.Trim();
@@ -252,6 +297,9 @@ namespace User
                 cls.Mobile = txtMobile.Text.Trim();
                 cls.AnswerQuestion = txtAnswer.Text;
                 cls.SecurityQuestion = (EnSecurityQuestion)cmbQuestion.SelectedIndex;
+                var acc = txtAccount.Text.ParseToDecimal();
+                if (cmbAccount.SelectedIndex == 1) cls.Account = acc;
+                else cls.Account = -acc;
 
                 var res = await cls.SaveAsync();
                 if (res.HasError)

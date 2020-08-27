@@ -287,6 +287,14 @@ namespace Peoples
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
                 if (ST)
                 {
+                    var p = await PeoplesBussines.GetAsync(guid);
+                    if (p == null) return;
+                    if (p.Account!=0)
+                    {
+                        frmNotification.PublicInfo.ShowMessage(
+                            "به دلیل داشتن گردش حساب، شما مجاز به حذف شخص نمی باشید");
+                        return;
+                    }
                     if (MessageBox.Show(
                             $@"آیا از حذف {DGrid[dgName.Index, DGrid.CurrentRow.Index].Value} اطمینان دارید؟", "حذف",
                             MessageBoxButtons.YesNo,

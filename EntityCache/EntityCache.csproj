@@ -91,6 +91,7 @@
     <Compile Include="Assistence\Defualts\DefaultCities.cs" />
     <Compile Include="Assistence\Defualts\DefaultDocumentType.cs" />
     <Compile Include="Assistence\Defualts\DefaultFloorCover.cs" />
+    <Compile Include="Assistence\Defualts\DefaultHazine.cs" />
     <Compile Include="Assistence\Defualts\DefaultKitchenService.cs" />
     <Compile Include="Assistence\Defualts\DefaultNaqz.cs" />
     <Compile Include="Assistence\Defualts\DefaultPeopleGroup.cs" />
@@ -114,12 +115,15 @@
     <Compile Include="Bussines\CitiesBussines.cs" />
     <Compile Include="Bussines\DocumentTypeBussines.cs" />
     <Compile Include="Bussines\FloorCoverBussines.cs" />
+    <Compile Include="Bussines\GardeshHesabBussines.cs" />
+    <Compile Include="Bussines\HazineBussines.cs" />
     <Compile Include="Bussines\KitchenServiceBussines.cs" />
     <Compile Include="Bussines\NaqzBussines.cs" />
     <Compile Include="Bussines\PeopleGroupBussines.cs" />
     <Compile Include="Bussines\PeoplesBankAccountBussines.cs" />
     <Compile Include="Bussines\PeoplesBussines.cs" />
     <Compile Include="Bussines\PhoneBookBussines.cs" />
+    <Compile Include="Bussines\ReceptionBussines.cs" />
     <Compile Include="Bussines\RegionsBussines.cs" />
     <Compile Include="Bussines\RentalAuthorityBussines.cs" />
     <Compile Include="Bussines\SettingsBussines.cs" />
@@ -141,12 +145,15 @@
     <Compile Include="Core\ICitiesRepository.cs" />
     <Compile Include="Core\IDocumentTypeRepository.cs" />
     <Compile Include="Core\IFloorCoverRepository.cs" />
+    <Compile Include="Core\IGardeshHesabRepository.cs" />
+    <Compile Include="Core\IHazineRepository.cs" />
     <Compile Include="Core\IKitchenServiceRepository.cs" />
     <Compile Include="Core\INaqzRepository.cs" />
     <Compile Include="Core\IPeopleGroupRepository.cs" />
     <Compile Include="Core\IPeoplesBankAccountRepository.cs" />
     <Compile Include="Core\IPeoplesRepository.cs" />
     <Compile Include="Core\IPhoneBookRepository.cs" />
+    <Compile Include="Core\IReceptionRepository.cs" />
     <Compile Include="Core\IRegionsRepository.cs" />
     <Compile Include="Core\IRentalAuthorityRepository.cs" />
     <Compile Include="Core\IRepository.cs" />
@@ -169,14 +176,17 @@
     <Compile Include="SqlServerPersistence\CitiesPersistenceRepository.cs" />
     <Compile Include="SqlServerPersistence\DocumentTypePersistenceRepository.cs" />
     <Compile Include="SqlServerPersistence\FloorCoverPersistenceRepository.cs" />
+    <Compile Include="SqlServerPersistence\GardeshHesabPersistenceRepository.cs" />
     <Compile Include="SqlServerPersistence\GenericRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SqlServerPersistence\HazinePersistenceRepository.cs" />
     <Compile Include="SqlServerPersistence\KitchenServicePersistenceRepository.cs" />
     <Compile Include="SqlServerPersistence\NaqzPersistenceRepository.cs" />
     <Compile Include="SqlServerPersistence\PeopleBankAccountPersistenceRepository.cs" />
     <Compile Include="SqlServerPersistence\PeopleGroupPersistenceRepository.cs" />
     <Compile Include="SqlServerPersistence\PeoplesPersistenceRepository.cs" />
     <Compile Include="SqlServerPersistence\PhoneBookPersistenceRepository.cs" />
+    <Compile Include="SqlServerPersistence\ReceptionPersistenceRepository.cs" />
     <Compile Include="SqlServerPersistence\RegionsPersistenceRepository.cs" />
     <Compile Include="SqlServerPersistence\RentalAuthorityPersistenceRepository.cs" />
     <Compile Include="SqlServerPersistence\SettingsPersistenceRepository.cs" />
@@ -214,4 +224,7 @@
     <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
   </Target>
   <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
+  <PropertyGroup>
+    <PostBuildEvent>if $(Configuration) == Release  echo F| xcopy /Y "$(TargetPath)" "D:\Projects\References\RealState\$(TargetFileName)"</PostBuildEvent>
+  </PropertyGroup>
 </Project>

@@ -109,6 +109,16 @@ namespace Building.Building
         public frmFilterForm()
         {
             InitializeComponent();
+            SetData();
+        }
+
+        public frmFilterForm(EnRequestType type, Guid buildingType, Guid accountType, int roomCount, int fMasahat,
+            int sMasahat, decimal fPrice1, decimal sPrice1, decimal fPrice2, decimal sPrice2)
+        {
+            InitializeComponent();
+            SetData();
+            SetFormControl(type, buildingType, accountType, roomCount, fMasahat, sMasahat, fPrice1, sPrice1, fPrice2,
+                sPrice2);
         }
 
         private void cmbReqType_SelectedIndexChanged(object sender, EventArgs e)
@@ -177,11 +187,11 @@ namespace Building.Building
 
                 if (chbSystem.Checked)
                 {
-                    list = await BuildingBussines.GetAllAsync(txtCode.Text, (Guid) cmbBuildingType.SelectedValue,
-                        (Guid) cmbBuildingAccountType.SelectedValue, txtFMasahat.Text.ParseToInt(),
+                    list = await BuildingBussines.GetAllAsync(txtCode.Text, (Guid)cmbBuildingType.SelectedValue,
+                        (Guid)cmbBuildingAccountType.SelectedValue, txtFMasahat.Text.ParseToInt(),
                         txtSMasahat.Text.ParseToInt(), txtRoomCount.Text.ParseToInt(), fPrice1,
                         sPrice1, fPrice2,
-                        sPrice2, (EnRequestType) cmbReqType.SelectedIndex);
+                        sPrice2, (EnRequestType)cmbReqType.SelectedIndex);
                 }
 
                 var frm = new frmBuildingAdvanceSearch(list);
@@ -194,9 +204,145 @@ namespace Building.Building
             }
         }
 
-        private void frmFilterForm_Load(object sender, EventArgs e)
+        private void SetFormControl(EnRequestType type, Guid buildingType, Guid accountType, int roomCount, int fMasahat,
+            int sMasahat, decimal fPrice1, decimal sPrice1, decimal fPrice2, decimal sPrice2)
         {
-            SetData();
+            try
+            {
+                cmbReqType.SelectedIndex = (int)type;
+                cmbBuildingType.SelectedValue = buildingType;
+                cmbBuildingAccountType.SelectedValue = accountType;
+                txtRoomCount.Text = roomCount.ToString();
+
+                if (fMasahat == 0)
+                    txtFMasahat.Text = fMasahat.ToString();
+                if (fMasahat != 0)
+                {
+                    if (fMasahat >= 10000)
+                        txtFMasahat.Text = (fMasahat / 10000).ToString();
+                    if (fMasahat <= 9999)
+                        txtFMasahat.Text = fMasahat.ToString();
+                }
+
+
+                if (sMasahat == 0)
+                    txtSMasahat.Text = sMasahat.ToString();
+                if (sMasahat != 0)
+                {
+                    if (sMasahat >= 10000)
+                        txtSMasahat.Text = (sMasahat / 10000).ToString();
+                    if (sMasahat <= 9999)
+                        txtSMasahat.Text = sMasahat.ToString();
+                }
+
+
+
+                if (fPrice1 == 0)
+                {
+                    txtFPrice1.Text = fPrice1.ToString();
+                    cmbRahn1.SelectedIndex = 0;
+                }
+                if (fPrice1 != 0)
+                {
+                    if (fPrice1 >= 10000 && fPrice1 >= 9999)
+                    {
+                        txtFPrice1.Text = (fPrice1 / 10000).ToString();
+                        cmbRahn1.SelectedIndex = 0;
+                    }
+                    if (fPrice1 >= 10000000 && fPrice1 >= 9999999)
+                    {
+                        txtFPrice1.Text = (fPrice1 / 10000000).ToString();
+                        cmbRahn1.SelectedIndex = 1;
+                    }
+                    if (fPrice1 >= 10000000000 && fPrice1 >= 9999999999)
+                    {
+                        txtFPrice1.Text = (fPrice1 / 10000000000).ToString();
+                        cmbRahn1.SelectedIndex = 2;
+                    }
+                }
+
+
+                if (sPrice1 == 0)
+                {
+                    txtSPrice1.Text = sPrice1.ToString();
+                    cmbRahn2.SelectedIndex = 0;
+                }
+                if (sPrice1 != 0)
+                {
+                    if (sPrice1 >= 10000 && sPrice1 >= 9999)
+                    {
+                        txtSPrice1.Text = (sPrice1 / 10000).ToString();
+                        cmbRahn2.SelectedIndex = 0;
+                    }
+                    if (sPrice1 >= 10000000 && sPrice1 >= 9999999)
+                    {
+                        txtSPrice1.Text = (sPrice1 / 10000000).ToString();
+                        cmbRahn2.SelectedIndex = 1;
+                    }
+                    if (sPrice1 >= 10000000000 && sPrice1 >= 9999999999)
+                    {
+                        txtSPrice1.Text = (sPrice1 / 10000000000).ToString();
+                        cmbRahn2.SelectedIndex = 2;
+                    }
+                }
+
+
+
+                if (fPrice2 == 0)
+                {
+                    txtFPrice2.Text = fPrice2.ToString();
+                    cmbEjare1.SelectedIndex = 0;
+                }
+                if (fPrice2 != 0)
+                {
+                    if (fPrice2 >= 10000 && fPrice2 >= 9999)
+                    {
+                        txtFPrice2.Text = (fPrice2 / 10000).ToString();
+                        cmbEjare1.SelectedIndex = 0;
+                    }
+                    if (fPrice2 >= 10000000 && fPrice2 >= 9999999)
+                    {
+                        txtFPrice2.Text = (fPrice2 / 10000000).ToString();
+                        cmbEjare1.SelectedIndex = 1;
+                    }
+                    if (fPrice2 >= 10000000000 && fPrice2 >= 9999999999)
+                    {
+                        txtFPrice2.Text = (fPrice2 / 10000000000).ToString();
+                        cmbEjare1.SelectedIndex = 2;
+                    }
+                }
+
+
+                if (sPrice2 == 0)
+                {
+                    txtSPrice2.Text = sPrice2.ToString();
+                    cmbEjare2.SelectedIndex = 0;
+                }
+                if (sPrice2 != 0)
+                {
+                    if (sPrice2 >= 10000 && sPrice2 >= 9999)
+                    {
+                        txtSPrice2.Text = (sPrice2 / 10000).ToString();
+                        cmbEjare2.SelectedIndex = 0;
+                    }
+                    if (sPrice2 >= 10000000 && sPrice2 >= 9999999)
+                    {
+                        txtSPrice2.Text = (sPrice2 / 10000000).ToString();
+                        cmbEjare2.SelectedIndex = 1;
+                    }
+                    if (sPrice2 >= 10000000000 && sPrice2 >= 9999999999)
+                    {
+                        txtSPrice2.Text = (sPrice2 / 10000000000).ToString();
+                        cmbEjare2.SelectedIndex = 2;
+                    }
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
         }
     }
 }

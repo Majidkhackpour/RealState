@@ -927,7 +927,7 @@ namespace Building.Building
             {
                 if (cmbState.SelectedValue == null) return;
                 var list = await CitiesBussines.GetAllAsync((Guid)cmbState.SelectedValue);
-                CityBindingSource.DataSource = list.OrderBy(q => q.Name).ToList();
+                CityBindingSource.DataSource = list.Where(q => q.Status).OrderBy(q => q.Name).ToList();
             }
             catch (Exception ex)
             {
@@ -941,7 +941,7 @@ namespace Building.Building
             {
                 if (cmbCity.SelectedValue == null) return;
                 var list = await RegionsBussines.GetAllAsync((Guid)cmbCity.SelectedValue);
-                RegionBindingSource.DataSource = list.OrderBy(q => q.Name).ToList();
+                RegionBindingSource.DataSource = list.Where(q => q.Status).OrderBy(q => q.Name).ToList();
             }
             catch (Exception ex)
             {

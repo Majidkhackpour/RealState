@@ -23,7 +23,8 @@ namespace EntityCache.Bussines
         public string AnswerQuestion { get; set; }
         public string Email { get; set; }
         public string Mobile { get; set; }
-
+        public decimal Account { get; set; }
+        public decimal Account_ => Math.Abs(Account);
 
 
         public static async Task<UserBussines> GetAsync(Guid guid) => await UnitOfWork.Users.GetAsync(guid);
@@ -51,6 +52,25 @@ namespace EntityCache.Bussines
                     ParentGuid = Guid,
                     Tell = Mobile
                 };
+
+                var count = await GardeshHesabBussines.GardeshCountAsync(Guid);
+                if (count <= 0)
+                {
+                    var g = new GardeshHesabBussines()
+                    {
+                        Guid = Guid.NewGuid(),
+                        Babat = EnAccountBabat.Ins,
+                        Description = "افتتاح حساب",
+                        PeopleGuid = Guid,
+                        Price = Account_,
+                    };
+                    if (Account == 0) g.Type = EnAccountType.BiHesab;
+                    if (Account > 0) g.Type = EnAccountType.Bed;
+                    if (Account < 0) g.Type = EnAccountType.Bes;
+                    res.AddReturnedValue(
+                        await UnitOfWork.GardeshHesab.SaveAsync(g, tranName));
+                    res.ThrowExceptionIfError();
+                }
 
                 res.AddReturnedValue(await UnitOfWork.PhoneBook.SaveAsync(tel, tranName));
                 res.ThrowExceptionIfError();

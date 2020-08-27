@@ -35,6 +35,9 @@ namespace EntityCache.Assistence
             CreateMap<BuildingGalleryBussines, BuildingGallery>().ReverseMap();
             CreateMap<BuildingRequestBussines, BuildingRequest>().ReverseMap();
             CreateMap<BuildingRequestRegionBussines, BuildingRequestRegion>().ReverseMap();
+            CreateMap<GardeshHesabBussines, GardeshHesab>().ReverseMap();
+            CreateMap<HazineBussines, Hazine>().ReverseMap();
+            CreateMap<ReceptionBussines, Reception>().ReverseMap();
         }
     }
 }

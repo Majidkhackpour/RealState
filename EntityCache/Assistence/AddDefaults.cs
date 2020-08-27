@@ -179,6 +179,16 @@ namespace EntityCache.Assistence
             }
             #endregion
 
+            #region Hazine
+            var allhazine = await HazineBussines.GetAllAsync();
+            if (allhazine == null || allhazine.Count <= 0)
+            {
+                var reg = DefaultHazine.SetDef();
+                res.AddReturnedValue(await HazineBussines.SaveRangeAsync(reg));
+                res.ThrowExceptionIfError();
+            }
+            #endregion
+
             await dbContext.SaveChangesAsync();
             dbContext.Dispose();
         }

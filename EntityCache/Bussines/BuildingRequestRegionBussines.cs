@@ -11,8 +11,8 @@ namespace EntityCache.Bussines
     public class BuildingRequestRegionBussines : IBuildingRequestRegion
     {
         public Guid Guid { get; set; }
-        public DateTime Modified { get; set; }
-        public bool Status { get; set; }
+        public DateTime Modified { get; set; } = DateTime.Now;
+        public bool Status { get; set; } = true;
         public Guid RequestGuid { get; set; }
         public Guid RegionGuid { get; set; }
 
@@ -26,6 +26,7 @@ namespace EntityCache.Bussines
         public static async Task<List<BuildingRequestRegionBussines>> GetAllAsync() =>
             await UnitOfWork.BuildingRequestRegion.GetAllAsync();
 
+        public static List<BuildingRequestRegionBussines> GetAll() => AsyncContext.Run(GetAllAsync);
 
         public async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(bool status, string tranName = "")
         {

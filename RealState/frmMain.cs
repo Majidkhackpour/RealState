@@ -1,6 +1,10 @@
 ﻿using System;
 using System.Reflection;
 using System.Windows.Forms;
+using Accounting;
+using Accounting.Hazine;
+using Accounting.Payement;
+using Accounting.Reception;
 using Advertise.Forms.Simcard;
 using Building.Building;
 using Building.BuildingAccountType;
@@ -199,6 +203,18 @@ namespace RealState
                         break;
                     case "nBuildingRequest":
                         frm = new frmShowRequest();
+                        break;
+                    case "nAccounts":
+                        frm = new frmShowAccounts();
+                        break;
+                    case "nHazine":
+                        frm = new frmShowHazine();
+                        break;
+                    case "nReception":
+                        frm = new frmReceptionFilter();
+                        break;
+                    case "nPay":
+                        frm = new frmPayeMentFilter();
                         break;
                 }
 
