@@ -73,6 +73,7 @@
     <Compile Include="Entities\Hazine.cs" />
     <Compile Include="Entities\KitchenService.cs" />
     <Compile Include="Entities\Naqz.cs" />
+    <Compile Include="Entities\Pardakht.cs" />
     <Compile Include="Entities\PeopleBankAccount.cs" />
     <Compile Include="Entities\PeopleGroup.cs" />
     <Compile Include="Entities\Peoples.cs" />
@@ -189,6 +190,22 @@
     <Compile Include="Migrations\202008270918262__26.designer.cs">
       <DependentUpon>202008270918262__26.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202008271226383__27.cs" />
+    <Compile Include="Migrations\202008271226383__27.designer.cs">
+      <DependentUpon>202008271226383__27.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202008271250509__28.cs" />
+    <Compile Include="Migrations\202008271250509__28.designer.cs">
+      <DependentUpon>202008271250509__28.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202008281237058__29.cs" />
+    <Compile Include="Migrations\202008281237058__29.designer.cs">
+      <DependentUpon>202008281237058__29.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202008281352347__30.cs" />
+    <Compile Include="Migrations\202008281352347__30.designer.cs">
+      <DependentUpon>202008281352347__30.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\ModelContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -285,6 +302,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202008270918262__26.resx">
       <DependentUpon>202008270918262__26.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202008271226383__27.resx">
+      <DependentUpon>202008271226383__27.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202008271250509__28.resx">
+      <DependentUpon>202008271250509__28.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202008281237058__29.resx">
+      <DependentUpon>202008281237058__29.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202008281352347__30.resx">
+      <DependentUpon>202008281352347__30.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

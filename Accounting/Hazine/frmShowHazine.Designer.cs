@@ -34,27 +34,27 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmShowHazine));
             this.txtSearch = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.line1 = new DevComponents.DotNetBar.Controls.Line();
             this.DGrid = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.dgRadif = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.hazineBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.btnView = new DevComponents.DotNetBar.ButtonX();
             this.btnDelete = new DevComponents.DotNetBar.ButtonX();
             this.btnChangeStatus = new DevComponents.DotNetBar.ButtonX();
             this.btnPrint = new DevComponents.DotNetBar.ButtonX();
             this.btnEdit = new DevComponents.DotNetBar.ButtonX();
             this.btnInsert = new DevComponents.DotNetBar.ButtonX();
+            this.dgRadif = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.accountDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgGuid = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.modifiedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.statusDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.accountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.hazineBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.hazineBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -161,22 +161,9 @@
             this.DGrid.TabIndex = 55744;
             this.DGrid.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DGrid_CellFormatting);
             // 
-            // dgRadif
+            // hazineBindingSource
             // 
-            this.dgRadif.HeaderText = "ردیف";
-            this.dgRadif.Name = "dgRadif";
-            this.dgRadif.ReadOnly = true;
-            this.dgRadif.Width = 50;
-            // 
-            // Column1
-            // 
-            this.Column1.DataPropertyName = "Account";
-            dataGridViewCellStyle4.Format = "بستانکار;بدهکار;بی حساب";
-            this.Column1.DefaultCellStyle = dataGridViewCellStyle4;
-            this.Column1.HeaderText = "";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            this.Column1.Width = 70;
+            this.hazineBindingSource.DataSource = typeof(EntityCache.Bussines.HazineBussines);
             // 
             // btnView
             // 
@@ -292,6 +279,13 @@
             this.btnInsert.TextColor = System.Drawing.Color.Black;
             this.btnInsert.Click += new System.EventHandler(this.btnInsert_Click);
             // 
+            // dgRadif
+            // 
+            this.dgRadif.HeaderText = "ردیف";
+            this.dgRadif.Name = "dgRadif";
+            this.dgRadif.ReadOnly = true;
+            this.dgRadif.Width = 50;
+            // 
             // dgName
             // 
             this.dgName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
@@ -309,6 +303,16 @@
             this.accountDataGridViewTextBoxColumn1.HeaderText = "حساب";
             this.accountDataGridViewTextBoxColumn1.Name = "accountDataGridViewTextBoxColumn1";
             this.accountDataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // Column1
+            // 
+            this.Column1.DataPropertyName = "Account";
+            dataGridViewCellStyle4.Format = "بدهکار;بستانکار;بی حساب;";
+            this.Column1.DefaultCellStyle = dataGridViewCellStyle4;
+            this.Column1.HeaderText = "";
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            this.Column1.Width = 70;
             // 
             // dgGuid
             // 
@@ -341,10 +345,6 @@
             this.accountDataGridViewTextBoxColumn.Name = "accountDataGridViewTextBoxColumn";
             this.accountDataGridViewTextBoxColumn.ReadOnly = true;
             this.accountDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // hazineBindingSource
-            // 
-            this.hazineBindingSource.DataSource = typeof(EntityCache.Bussines.HazineBussines);
             // 
             // frmShowHazine
             // 

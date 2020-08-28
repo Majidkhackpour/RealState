@@ -108,6 +108,7 @@
             this.Padding = new System.Windows.Forms.Padding(27, 92, 27, 31);
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.Style = MetroFramework.MetroColorStyle.Green;
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmReceptionFilter_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.picUsers)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picPeoples)).EndInit();
             this.ResumeLayout(false);

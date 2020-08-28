@@ -16,6 +16,7 @@ namespace EntityCache.Bussines
         public bool Status { get; set; } = true;
         public string Name { get; set; }
         public decimal Account { get; set; }
+        public decimal AccountFirst { get; set; }
         public decimal Account_ => Math.Abs(Account);
 
 
@@ -56,7 +57,7 @@ namespace EntityCache.Bussines
         public static async Task<HazineBussines> GetAsync(Guid guid) => await UnitOfWork.Hazine.GetAsync(guid);
 
 
-        public async Task<ReturnedSaveFuncInfo> SaveAsync(string tranName = "")
+        public async Task<ReturnedSaveFuncInfo> SaveAsync(bool setEftetah,string tranName = "")
         {
             var res = new ReturnedSaveFuncInfo();
             var autoTran = string.IsNullOrEmpty(tranName);
@@ -67,24 +68,39 @@ namespace EntityCache.Bussines
                 { //BeginTransaction
                 }
 
-                var count = await GardeshHesabBussines.GardeshCountAsync(Guid);
-                if (count <= 0)
+                var gardesh = await GardeshHesabBussines.GetAsync(Guid, Guid.Empty, true);
+                if (setEftetah)
                 {
-                    var g = new GardeshHesabBussines()
+                    if (gardesh == null)
                     {
-                        Guid = Guid.NewGuid(),
-                        Babat = EnAccountBabat.Ins,
-                        Description = "افتتاح حساب",
-                        PeopleGuid = Guid,
-                        Price = Account_,
-                    };
-                    if (Account == 0) g.Type = EnAccountType.BiHesab;
-                    if (Account > 0) g.Type = EnAccountType.Bed;
-                    if (Account < 0) g.Type = EnAccountType.Bes;
-                    res.AddReturnedValue(
-                        await UnitOfWork.GardeshHesab.SaveAsync(g, tranName));
-                    res.ThrowExceptionIfError();
+                        var g = new GardeshHesabBussines()
+                        {
+                            Guid = Guid.NewGuid(),
+                            Babat = EnAccountBabat.Ins,
+                            Description = "افتتاح حساب",
+                            PeopleGuid = Guid,
+                            Price = Account_,
+                            ParentGuid = Guid.Empty
+                        };
+                        if (Account == 0) g.Type = EnAccountType.BiHesab;
+                        if (Account > 0) g.Type = EnAccountType.Bed;
+                        if (Account < 0) g.Type = EnAccountType.Bes;
+                        res.AddReturnedValue(
+                            await UnitOfWork.GardeshHesab.SaveAsync(g, tranName));
+                        res.ThrowExceptionIfError();
+                    }
+                    else
+                    {
+                        gardesh.Price = Math.Abs(AccountFirst);
+                        if (Account == 0) gardesh.Type = EnAccountType.BiHesab;
+                        if (Account > 0) gardesh.Type = EnAccountType.Bed;
+                        if (Account < 0) gardesh.Type = EnAccountType.Bes;
+                        res.AddReturnedValue(
+                            await UnitOfWork.GardeshHesab.SaveAsync(gardesh, tranName));
+                        res.ThrowExceptionIfError();
+                    }
                 }
+                
 
                 res.AddReturnedValue(await UnitOfWork.Hazine.SaveAsync(this, tranName));
                 res.ThrowExceptionIfError();
@@ -150,7 +166,7 @@ namespace EntityCache.Bussines
                     {
                         if (!string.IsNullOrEmpty(item) && item.Trim() != "")
                         {
-                            res = res.Where(x => x.Name.ToLower().Contains(item.ToLower())||
+                            res = res.Where(x => x.Name.ToLower().Contains(item.ToLower()) ||
                                                  x.Account.ToString().ToLower().Contains(item.ToLower()))
                                 ?.ToList();
                         }

@@ -223,7 +223,7 @@
             // Column1
             // 
             this.Column1.DataPropertyName = "Account";
-            dataGridViewCellStyle4.Format = "بستانکار;بدهکار;بی حساب";
+            dataGridViewCellStyle4.Format = "بدهکار;بستانکار;بی حساب;";
             this.Column1.DefaultCellStyle = dataGridViewCellStyle4;
             this.Column1.HeaderText = "";
             this.Column1.Name = "Column1";

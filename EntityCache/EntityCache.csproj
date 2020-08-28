@@ -119,6 +119,7 @@
     <Compile Include="Bussines\HazineBussines.cs" />
     <Compile Include="Bussines\KitchenServiceBussines.cs" />
     <Compile Include="Bussines\NaqzBussines.cs" />
+    <Compile Include="Bussines\PardakhtBussines.cs" />
     <Compile Include="Bussines\PeopleGroupBussines.cs" />
     <Compile Include="Bussines\PeoplesBankAccountBussines.cs" />
     <Compile Include="Bussines\PeoplesBussines.cs" />
@@ -149,6 +150,7 @@
     <Compile Include="Core\IHazineRepository.cs" />
     <Compile Include="Core\IKitchenServiceRepository.cs" />
     <Compile Include="Core\INaqzRepository.cs" />
+    <Compile Include="Core\IPardakhtRepository.cs" />
     <Compile Include="Core\IPeopleGroupRepository.cs" />
     <Compile Include="Core\IPeoplesBankAccountRepository.cs" />
     <Compile Include="Core\IPeoplesRepository.cs" />
@@ -182,6 +184,7 @@
     <Compile Include="SqlServerPersistence\HazinePersistenceRepository.cs" />
     <Compile Include="SqlServerPersistence\KitchenServicePersistenceRepository.cs" />
     <Compile Include="SqlServerPersistence\NaqzPersistenceRepository.cs" />
+    <Compile Include="SqlServerPersistence\PardakhtPersistenceRepository.cs" />
     <Compile Include="SqlServerPersistence\PeopleBankAccountPersistenceRepository.cs" />
     <Compile Include="SqlServerPersistence\PeopleGroupPersistenceRepository.cs" />
     <Compile Include="SqlServerPersistence\PeoplesPersistenceRepository.cs" />

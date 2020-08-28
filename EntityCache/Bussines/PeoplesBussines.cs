@@ -26,6 +26,7 @@ namespace EntityCache.Bussines
         public string PostalCode { get; set; }
         public Guid GroupGuid { get; set; }
         public decimal Account { get; set; }
+        public decimal AccountFirst { get; set; }
         public decimal Account_ => Math.Abs(Account);
 
         public string FirstNumber => PhoneBookBussines.GetAll(Guid, true)?.FirstOrDefault()?.Tell ?? "";
@@ -103,8 +104,8 @@ namespace EntityCache.Bussines
                     res.ThrowExceptionIfError();
                 }
 
-                var count = await GardeshHesabBussines.GardeshCountAsync(Guid);
-                if (count <= 0)
+                var gardesh = await GardeshHesabBussines.GetAsync(Guid, Guid.Empty, true);
+                if (gardesh == null)
                 {
                     var g = new GardeshHesabBussines()
                     {
@@ -113,12 +114,24 @@ namespace EntityCache.Bussines
                         Description = "افتتاح حساب",
                         PeopleGuid = Guid,
                         Price = Account_,
+                        ParentGuid = Guid.Empty
                     };
+
                     if (Account == 0) g.Type = EnAccountType.BiHesab;
                     if (Account > 0) g.Type = EnAccountType.Bed;
                     if (Account < 0) g.Type = EnAccountType.Bes;
                     res.AddReturnedValue(
                         await UnitOfWork.GardeshHesab.SaveAsync(g, tranName));
+                    res.ThrowExceptionIfError();
+                }
+                else
+                {
+                    gardesh.Price = Math.Abs(AccountFirst);
+                    if (Account == 0) gardesh.Type = EnAccountType.BiHesab;
+                    if (Account > 0) gardesh.Type = EnAccountType.Bed;
+                    if (Account < 0) gardesh.Type = EnAccountType.Bes;
+                    res.AddReturnedValue(
+                        await UnitOfWork.GardeshHesab.SaveAsync(gardesh, tranName));
                     res.ThrowExceptionIfError();
                 }
 

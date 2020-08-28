@@ -13,5 +13,6 @@ namespace PacketParser.Interfaces
         string Email { get; set; }
         string Mobile { get; set; }
         decimal Account { get; set; }
+        decimal AccountFirst { get; set; }
     }
 }

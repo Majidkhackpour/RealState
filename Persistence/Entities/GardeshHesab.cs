@@ -16,5 +16,6 @@ namespace Persistence.Entities
         public EnAccountType Type { get; set; }
         public EnAccountBabat Babat { get; set; }
         public string Description { get; set; }
+        public Guid ParentGuid { get; set; }
     }
 }

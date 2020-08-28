@@ -7,7 +7,7 @@ namespace EntityCache.Core
 {
     public interface IGardeshHesabRepository : IRepository<GardeshHesabBussines>
     {
-        Task<int> GardeshCountAsync(Guid hesabGuid);
+        Task<GardeshHesabBussines> GetAsync(Guid hesabGuid, Guid parentGuid, bool status);
         Task<List<GardeshHesabBussines>> GetAllAsync(Guid hesabGuid);
     }
 }

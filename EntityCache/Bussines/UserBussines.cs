@@ -24,6 +24,7 @@ namespace EntityCache.Bussines
         public string Email { get; set; }
         public string Mobile { get; set; }
         public decimal Account { get; set; }
+        public decimal AccountFirst { get; set; }
         public decimal Account_ => Math.Abs(Account);
 
 
@@ -33,7 +34,7 @@ namespace EntityCache.Bussines
 
         public static List<UserBussines> GetAll() => AsyncContext.Run(GetAllAsync);
 
-        public async Task<ReturnedSaveFuncInfo> SaveAsync(string tranName = "")
+        public async Task<ReturnedSaveFuncInfo> SaveAsync(bool setEftetah, string tranName = "")
         {
             var res = new ReturnedSaveFuncInfo();
             var autoTran = string.IsNullOrEmpty(tranName);
@@ -53,24 +54,39 @@ namespace EntityCache.Bussines
                     Tell = Mobile
                 };
 
-                var count = await GardeshHesabBussines.GardeshCountAsync(Guid);
-                if (count <= 0)
+                var gardesh = await GardeshHesabBussines.GetAsync(Guid, Guid.Empty, true);
+                if (setEftetah)
                 {
-                    var g = new GardeshHesabBussines()
+                    if (gardesh == null)
                     {
-                        Guid = Guid.NewGuid(),
-                        Babat = EnAccountBabat.Ins,
-                        Description = "افتتاح حساب",
-                        PeopleGuid = Guid,
-                        Price = Account_,
-                    };
-                    if (Account == 0) g.Type = EnAccountType.BiHesab;
-                    if (Account > 0) g.Type = EnAccountType.Bed;
-                    if (Account < 0) g.Type = EnAccountType.Bes;
-                    res.AddReturnedValue(
-                        await UnitOfWork.GardeshHesab.SaveAsync(g, tranName));
-                    res.ThrowExceptionIfError();
+                        var g = new GardeshHesabBussines()
+                        {
+                            Guid = Guid.NewGuid(),
+                            Babat = EnAccountBabat.Ins,
+                            Description = "افتتاح حساب",
+                            PeopleGuid = Guid,
+                            Price = Account_,
+                            ParentGuid = Guid.Empty
+                        };
+                        if (Account == 0) g.Type = EnAccountType.BiHesab;
+                        if (Account > 0) g.Type = EnAccountType.Bed;
+                        if (Account < 0) g.Type = EnAccountType.Bes;
+                        res.AddReturnedValue(
+                            await UnitOfWork.GardeshHesab.SaveAsync(g, tranName));
+                        res.ThrowExceptionIfError();
+                    }
+                    else
+                    {
+                        gardesh.Price = Math.Abs(AccountFirst);
+                        if (Account == 0) gardesh.Type = EnAccountType.BiHesab;
+                        if (Account > 0) gardesh.Type = EnAccountType.Bed;
+                        if (Account < 0) gardesh.Type = EnAccountType.Bes;
+                        res.AddReturnedValue(
+                            await UnitOfWork.GardeshHesab.SaveAsync(gardesh, tranName));
+                        res.ThrowExceptionIfError();
+                    }
                 }
+
 
                 res.AddReturnedValue(await UnitOfWork.PhoneBook.SaveAsync(tel, tranName));
                 res.ThrowExceptionIfError();

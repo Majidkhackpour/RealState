@@ -19,17 +19,19 @@ namespace EntityCache.SqlServerPersistence
             db = _db;
         }
 
-        public async Task<int> GardeshCountAsync(Guid hesabGuid)
+        public async Task<GardeshHesabBussines> GetAsync(Guid hesabGuid, Guid parentGuid,bool status)
         {
             try
             {
-                var acc = db.GardeshHesab.AsNoTracking().Count(q => q.PeopleGuid == hesabGuid && q.Status);
-                return acc;
+                var acc = db.GardeshHesab.AsNoTracking().FirstOrDefault(q =>
+                    q.ParentGuid == parentGuid && q.PeopleGuid == hesabGuid && q.Status == status);
+
+                return Mappings.Default.Map<GardeshHesabBussines>(acc);
             }
             catch (Exception exception)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(exception);
-                return 0;
+                return null;
             }
         }
 

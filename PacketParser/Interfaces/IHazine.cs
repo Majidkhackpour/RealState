@@ -4,5 +4,6 @@
     {
         string Name { get; set; }
         decimal Account { get; set; }
+        decimal AccountFirst { get; set; }
     }
 }

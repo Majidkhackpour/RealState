@@ -13,6 +13,7 @@ namespace User
     public partial class frmUserMain : MetroForm
     {
         private UserBussines cls;
+        private decimal fAccount;
 
         private void SetData()
         {
@@ -28,6 +29,7 @@ namespace User
                 txtAnswer.Text = cls?.AnswerQuestion;
                 if (cls?.Guid == Guid.Empty) cmbQuestion.SelectedIndex = 0;
                 else cmbQuestion.SelectedIndex = (int)cls?.SecurityQuestion;
+                fAccount = cls.AccountFirst;
             }
             catch (Exception ex)
             {
@@ -67,21 +69,21 @@ namespace User
         {
             try
             {
-                if (cls?.Account == 0)
+                if (cls?.AccountFirst == 0)
                 {
-                    txtAccount.Text = cls?.Account.ToString();
+                    txtAccount.Text = cls?.AccountFirst.ToString();
                     cmbAccount.SelectedIndex = 0;
                 }
 
-                if (cls?.Account < 0)
+                if (cls?.AccountFirst < 0)
                 {
-                    txtAccount.Text = cls?.Account_.ToString();
+                    txtAccount.Text = Math.Abs(cls.AccountFirst).ToString();
                     cmbAccount.SelectedIndex = 2;
                 }
 
-                if (cls?.Account > 0)
+                if (cls?.AccountFirst > 0)
                 {
-                    txtAccount.Text = cls?.Account_.ToString();
+                    txtAccount.Text = Math.Abs(cls.AccountFirst).ToString();
                     cmbAccount.SelectedIndex = 1;
                 }
             }
@@ -298,10 +300,17 @@ namespace User
                 cls.AnswerQuestion = txtAnswer.Text;
                 cls.SecurityQuestion = (EnSecurityQuestion)cmbQuestion.SelectedIndex;
                 var acc = txtAccount.Text.ParseToDecimal();
-                if (cmbAccount.SelectedIndex == 1) cls.Account = acc;
-                else cls.Account = -acc;
+                if (cmbAccount.SelectedIndex == 1) cls.AccountFirst = acc;
+                else cls.AccountFirst = -acc;
 
-                var res = await cls.SaveAsync();
+                if (cls.Account == 0) cls.Account = cls.AccountFirst;
+                else
+                {
+                    cls.Account -= fAccount;
+                    cls.Account += cls.AccountFirst;
+                }
+
+                var res = await cls.SaveAsync(true);
                 if (res.HasError)
                 {
                     frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);

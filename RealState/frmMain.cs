@@ -154,7 +154,7 @@ namespace RealState
                         frm = new frmShowRegions();
                         break;
                     case "nUsers":
-                        frm = new frmShowUsers();
+                        frm = new frmShowUsers(false);
                         break;
                     case "nPeoples":
                         frm = new frmShowPeoples(false);

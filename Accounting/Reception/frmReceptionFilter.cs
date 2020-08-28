@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using MetroFramework.Forms;
 using Peoples;
 using Services;
+using User;
 
 namespace Accounting.Reception
 {
@@ -42,7 +43,8 @@ namespace Accounting.Reception
             {
                 var frm = new frmShowPeoples(true);
                 if (frm.ShowDialog() != DialogResult.OK) return;
-
+                var frm1 = new frmShowReception(frm.SelectedGuid, EnAccountingType.Peoples);
+                frm1.ShowDialog();
             }
             catch (Exception ex)
             {
@@ -52,7 +54,17 @@ namespace Accounting.Reception
 
         private void Users()
         {
-
+            try
+            {
+                var frm = new frmShowUsers(true);
+                if (frm.ShowDialog() != DialogResult.OK) return;
+                var frm1 = new frmShowReception(frm.SelectedGuid, EnAccountingType.Users);
+                frm1.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
         }
 
         private void lblPeoples_Click(object sender, System.EventArgs e)
@@ -101,6 +113,11 @@ namespace Accounting.Reception
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
+        }
+
+        private void frmReceptionFilter_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape) Close();
         }
     }
 }

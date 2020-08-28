@@ -16,5 +16,6 @@ namespace PacketParser.Interfaces
         string PostalCode { get; set; }
         Guid GroupGuid { get; set; }
         decimal Account { get; set; }
+        decimal AccountFirst { get; set; }
     }
 }

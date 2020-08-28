@@ -13,5 +13,6 @@ namespace Persistence.Entities
         [MaxLength(200)]
         public string Name { get; set; }
         public decimal Account { get; set; }
+        public decimal AccountFirst { get; set; }
     }
 }

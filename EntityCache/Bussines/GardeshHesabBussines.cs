@@ -23,6 +23,7 @@ namespace EntityCache.Bussines
         public EnAccountBabat Babat { get; set; }
         public string BabatName => Babat.GetDisplay();
         public string Description { get; set; }
+        public Guid ParentGuid { get; set; }
 
 
         public static async Task<List<GardeshHesabBussines>> GetAllAsync() => await UnitOfWork.GardeshHesab.GetAllAsync();
@@ -128,8 +129,8 @@ namespace EntityCache.Bussines
 
         public static GardeshHesabBussines Get(Guid guid) => AsyncContext.Run(() => GetAsync(guid));
 
-        public static async Task<int> GardeshCountAsync(Guid hesabGuid) =>
-            await UnitOfWork.GardeshHesab.GardeshCountAsync(hesabGuid);
+        public static async Task<GardeshHesabBussines> GetAsync(Guid hesabGuid, Guid parentGuid,bool status) =>
+            await UnitOfWork.GardeshHesab.GetAsync(hesabGuid, parentGuid, status);
 
         public static async Task<List<GardeshHesabBussines>> GetAllAsync(Guid hesabGuid) =>
             await UnitOfWork.GardeshHesab.GetAllAsync(hesabGuid);

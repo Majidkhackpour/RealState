@@ -12,6 +12,7 @@ namespace Peoples
     {
         private PeoplesBussines cls;
         public Guid SelectedGuid { get; set; }
+        private decimal fAccount;
         private void SetData()
         {
             try
@@ -33,6 +34,7 @@ namespace Peoples
                 txtAddress.Text = cls?.Address;
                 txtDateBirth.Text = cls?.DateBirth;
                 cmbGroup.SelectedValue = (Guid)cls?.GroupGuid;
+                fAccount = cls.AccountFirst;
 
                 if (cls?.Guid == Guid.Empty)
                 {
@@ -109,21 +111,21 @@ namespace Peoples
         {
             try
             {
-                if (cls?.Account == 0)
+                if (cls?.AccountFirst == 0)
                 {
-                    txtAccount.Text = cls?.Account.ToString();
+                    txtAccount.Text = cls?.AccountFirst.ToString();
                     cmbAccount.SelectedIndex = 0;
                 }
 
-                if (cls?.Account < 0)
+                if (cls?.AccountFirst < 0)
                 {
-                    txtAccount.Text = cls?.Account_.ToString();
+                    txtAccount.Text = Math.Abs(cls.AccountFirst).ToString();
                     cmbAccount.SelectedIndex = 2;
                 }
 
-                if (cls?.Account > 0)
+                if (cls?.AccountFirst > 0)
                 {
-                    txtAccount.Text = cls?.Account_.ToString();
+                    txtAccount.Text = Math.Abs(cls.AccountFirst).ToString();
                     cmbAccount.SelectedIndex = 1;
                 }
             }
@@ -488,8 +490,16 @@ namespace Peoples
                 cls.PostalCode = txtPostalCode.Text;
                 cls.Address = txtAddress.Text;
                 var acc = txtAccount.Text.ParseToDecimal();
-                if (cmbAccount.SelectedIndex == 1) cls.Account = acc;
-                else cls.Account = -acc;
+                if (cmbAccount.SelectedIndex == 1) cls.AccountFirst = acc;
+                else cls.AccountFirst = -acc;
+
+                if (cls.Account == 0) cls.Account = cls.AccountFirst;
+                else
+                {
+                    cls.Account -= fAccount;
+                    cls.Account += cls.AccountFirst;
+                }
+
                 var res = await cls.SaveAsync();
                 if (res.HasError)
                 {

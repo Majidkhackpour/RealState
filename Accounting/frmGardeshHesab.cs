@@ -11,7 +11,6 @@ namespace Accounting
     public partial class frmGardeshHesab : MetroForm
     {
         private Guid _hesabGuid;
-        private EnAccountingType _type;
 
         private void LoadData(Guid hesabGuid, string search = "")
         {
@@ -26,7 +25,7 @@ namespace Accounting
             }
         }
 
-        private void SetLabels()
+        private void SetLabels(EnAccountingType _type)
         {
             try
             {
@@ -106,12 +105,11 @@ namespace Accounting
         {
             InitializeComponent();
             _hesabGuid = hesabGuid;
-            _type = type;
+            SetLabels(type);
         }
 
         private void frmGardeshHesab_Load(object sender, EventArgs e)
         {
-            SetLabels();
             LoadData(_hesabGuid);
         }
 

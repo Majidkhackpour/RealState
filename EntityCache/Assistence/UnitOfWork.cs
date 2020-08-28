@@ -38,6 +38,7 @@ namespace EntityCache.Assistence
         private static IGardeshHesabRepository _gardeshHesabRepository;
         private static IHazineRepository _hazineRepository;
         private static IReceptionRepository _receptionRepository;
+        private static IPardakhtRepository _pardakhtRepository;
 
         public static void Dispose() => db?.Dispose();
         public static void Set_Save() => db.SaveChanges();
@@ -170,6 +171,11 @@ namespace EntityCache.Assistence
         public static IReceptionRepository Reception => _receptionRepository ??
                                                   (_receptionRepository =
                                                       new ReceptionPersistenceRepository(db));
+
+
+        public static IPardakhtRepository Pardakht => _pardakhtRepository ??
+                                                        (_pardakhtRepository =
+                                                            new PardakhtPersistenceRepository(db));
 
     }
 }

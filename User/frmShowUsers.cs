@@ -11,6 +11,8 @@ namespace User
 {
     public partial class frmShowUsers : MetroForm
     {
+        public Guid SelectedGuid { get; set; }
+        private bool isShowMode = false;
         private bool _st = true;
         private void LoadData(bool status, string search = "")
         {
@@ -45,9 +47,30 @@ namespace User
                 }
             }
         }
-        public frmShowUsers()
+        public frmShowUsers(bool _isShowMode)
         {
             InitializeComponent();
+            isShowMode = _isShowMode;
+            if (isShowMode)
+            {
+                btnDelete.Visible = false;
+                btnInsert.Visible = false;
+                btnEdit.Visible = false;
+                btnView.Visible = false;
+                btnChangeStatus.Visible = false;
+                btnSelect.Visible = true;
+                btnPrint.Visible = false;
+            }
+            else
+            {
+                btnDelete.Visible = true;
+                btnInsert.Visible = true;
+                btnEdit.Visible = true;
+                btnView.Visible = true;
+                btnChangeStatus.Visible = true;
+                btnSelect.Visible = false;
+                btnPrint.Visible = true;
+            }
         }
 
         private void frmShowUsers_Load(object sender, EventArgs e)
@@ -238,6 +261,35 @@ namespace User
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
                 var frm = new frmGardeshHesab(guid, EnAccountingType.Users);
                 frm.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private void DGrid_DoubleClick(object sender, EventArgs e)
+        {
+            try
+            {
+                if (!isShowMode) return;
+                btnSelect.PerformClick();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private void btnSelect_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (DGrid.RowCount <= 0) return;
+                if (DGrid.CurrentRow == null) return;
+                SelectedGuid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
+                DialogResult = DialogResult.OK;
+                Close();
             }
             catch (Exception ex)
             {
