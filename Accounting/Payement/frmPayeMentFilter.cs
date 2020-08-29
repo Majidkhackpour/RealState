@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
+using Accounting.Hazine;
 using MetroFramework.Forms;
 using Peoples;
 using Services;
@@ -10,9 +11,13 @@ namespace Accounting.Payement
 {
     public partial class frmPayeMentFilter : MetroForm
     {
-        public frmPayeMentFilter()
+        private EnSanadType type;
+        public Guid SelectedGuid { get; set; }
+        public EnAccountingType AccountingType { get; set; }
+        public frmPayeMentFilter(EnSanadType _type)
         {
             InitializeComponent();
+            type = _type;
         }
 
         #region LblSetter
@@ -53,8 +58,17 @@ namespace Accounting.Payement
             {
                 var frm = new frmShowPeoples(true);
                 if (frm.ShowDialog() != DialogResult.OK) return;
-                var frm1 = new frmShowPardakht(frm.SelectedGuid, EnAccountingType.Peoples);
-                frm1.ShowDialog();
+                SelectedGuid = frm.SelectedGuid;
+                AccountingType = EnAccountingType.Peoples;
+                if (type == EnSanadType.Auto)
+                {
+                    var frm1 = new frmShowPardakht(frm.SelectedGuid, EnAccountingType.Peoples);
+                    frm1.ShowDialog();
+                    return;
+                }
+
+                DialogResult = DialogResult.OK;
+                Close();
             }
             catch (Exception ex)
             {
@@ -68,8 +82,38 @@ namespace Accounting.Payement
             {
                 var frm = new frmShowUsers(true);
                 if (frm.ShowDialog() != DialogResult.OK) return;
-                var frm1 = new frmShowPardakht(frm.SelectedGuid, EnAccountingType.Users);
-                frm1.ShowDialog();
+                SelectedGuid = frm.SelectedGuid;
+                AccountingType = EnAccountingType.Users;
+                if (type == EnSanadType.Auto)
+                {
+                    var frm1 = new frmShowPardakht(frm.SelectedGuid, EnAccountingType.Users);
+                    frm1.ShowDialog();
+                    return;
+                }
+                DialogResult = DialogResult.OK;
+                Close();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private void Hazine()
+        {
+            try
+            {
+                var frm = new frmShowHazine(true);
+                if (frm.ShowDialog() != DialogResult.OK) return;
+                SelectedGuid = frm.SelectedGuid;
+                AccountingType = EnAccountingType.Hazine;
+                if (type == EnSanadType.Auto)
+                {
+                    var frm1 = new frmShowPardakht(frm.SelectedGuid, EnAccountingType.Hazine);
+                    frm1.ShowDialog();
+                }
+                DialogResult = DialogResult.OK;
+                Close();
             }
             catch (Exception ex)
             {
@@ -118,6 +162,35 @@ namespace Accounting.Payement
             try
             {
                 Users();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private void frmPayeMentFilter_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape) Close();
+        }
+
+        private void picHazine_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Hazine();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private void lblHazine_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Hazine();
             }
             catch (Exception ex)
             {

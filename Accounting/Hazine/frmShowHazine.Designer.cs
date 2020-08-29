@@ -40,13 +40,6 @@
             this.txtSearch = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.line1 = new DevComponents.DotNetBar.Controls.Line();
             this.DGrid = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.hazineBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.btnView = new DevComponents.DotNetBar.ButtonX();
-            this.btnDelete = new DevComponents.DotNetBar.ButtonX();
-            this.btnChangeStatus = new DevComponents.DotNetBar.ButtonX();
-            this.btnPrint = new DevComponents.DotNetBar.ButtonX();
-            this.btnEdit = new DevComponents.DotNetBar.ButtonX();
-            this.btnInsert = new DevComponents.DotNetBar.ButtonX();
             this.dgRadif = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.accountDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -55,6 +48,14 @@
             this.modifiedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.statusDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.accountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.hazineBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.btnView = new DevComponents.DotNetBar.ButtonX();
+            this.btnDelete = new DevComponents.DotNetBar.ButtonX();
+            this.btnChangeStatus = new DevComponents.DotNetBar.ButtonX();
+            this.btnPrint = new DevComponents.DotNetBar.ButtonX();
+            this.btnEdit = new DevComponents.DotNetBar.ButtonX();
+            this.btnInsert = new DevComponents.DotNetBar.ButtonX();
+            this.btnSelect = new DevComponents.DotNetBar.ButtonX();
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.hazineBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -160,6 +161,74 @@
             this.DGrid.Size = new System.Drawing.Size(795, 468);
             this.DGrid.TabIndex = 55744;
             this.DGrid.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DGrid_CellFormatting);
+            this.DGrid.DoubleClick += new System.EventHandler(this.DGrid_DoubleClick);
+            // 
+            // dgRadif
+            // 
+            this.dgRadif.HeaderText = "ردیف";
+            this.dgRadif.Name = "dgRadif";
+            this.dgRadif.ReadOnly = true;
+            this.dgRadif.Width = 50;
+            // 
+            // dgName
+            // 
+            this.dgName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dgName.DataPropertyName = "Name";
+            this.dgName.HeaderText = "عنوان";
+            this.dgName.Name = "dgName";
+            this.dgName.ReadOnly = true;
+            // 
+            // accountDataGridViewTextBoxColumn1
+            // 
+            this.accountDataGridViewTextBoxColumn1.DataPropertyName = "Account_";
+            dataGridViewCellStyle3.Format = "N0";
+            dataGridViewCellStyle3.NullValue = null;
+            this.accountDataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle3;
+            this.accountDataGridViewTextBoxColumn1.HeaderText = "حساب";
+            this.accountDataGridViewTextBoxColumn1.Name = "accountDataGridViewTextBoxColumn1";
+            this.accountDataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // Column1
+            // 
+            this.Column1.DataPropertyName = "Account";
+            dataGridViewCellStyle4.Format = "بدهکار;بستانکار;بی حساب;";
+            this.Column1.DefaultCellStyle = dataGridViewCellStyle4;
+            this.Column1.HeaderText = "";
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            this.Column1.Width = 70;
+            // 
+            // dgGuid
+            // 
+            this.dgGuid.DataPropertyName = "Guid";
+            this.dgGuid.HeaderText = "Guid";
+            this.dgGuid.Name = "dgGuid";
+            this.dgGuid.ReadOnly = true;
+            this.dgGuid.Visible = false;
+            // 
+            // modifiedDataGridViewTextBoxColumn
+            // 
+            this.modifiedDataGridViewTextBoxColumn.DataPropertyName = "Modified";
+            this.modifiedDataGridViewTextBoxColumn.HeaderText = "Modified";
+            this.modifiedDataGridViewTextBoxColumn.Name = "modifiedDataGridViewTextBoxColumn";
+            this.modifiedDataGridViewTextBoxColumn.ReadOnly = true;
+            this.modifiedDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // statusDataGridViewCheckBoxColumn
+            // 
+            this.statusDataGridViewCheckBoxColumn.DataPropertyName = "Status";
+            this.statusDataGridViewCheckBoxColumn.HeaderText = "Status";
+            this.statusDataGridViewCheckBoxColumn.Name = "statusDataGridViewCheckBoxColumn";
+            this.statusDataGridViewCheckBoxColumn.ReadOnly = true;
+            this.statusDataGridViewCheckBoxColumn.Visible = false;
+            // 
+            // accountDataGridViewTextBoxColumn
+            // 
+            this.accountDataGridViewTextBoxColumn.DataPropertyName = "Account";
+            this.accountDataGridViewTextBoxColumn.HeaderText = "Account";
+            this.accountDataGridViewTextBoxColumn.Name = "accountDataGridViewTextBoxColumn";
+            this.accountDataGridViewTextBoxColumn.ReadOnly = true;
+            this.accountDataGridViewTextBoxColumn.Visible = false;
             // 
             // hazineBindingSource
             // 
@@ -279,78 +348,32 @@
             this.btnInsert.TextColor = System.Drawing.Color.Black;
             this.btnInsert.Click += new System.EventHandler(this.btnInsert_Click);
             // 
-            // dgRadif
+            // btnSelect
             // 
-            this.dgRadif.HeaderText = "ردیف";
-            this.dgRadif.Name = "dgRadif";
-            this.dgRadif.ReadOnly = true;
-            this.dgRadif.Width = 50;
-            // 
-            // dgName
-            // 
-            this.dgName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dgName.DataPropertyName = "Name";
-            this.dgName.HeaderText = "عنوان";
-            this.dgName.Name = "dgName";
-            this.dgName.ReadOnly = true;
-            // 
-            // accountDataGridViewTextBoxColumn1
-            // 
-            this.accountDataGridViewTextBoxColumn1.DataPropertyName = "Account_";
-            dataGridViewCellStyle3.Format = "N0";
-            dataGridViewCellStyle3.NullValue = null;
-            this.accountDataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle3;
-            this.accountDataGridViewTextBoxColumn1.HeaderText = "حساب";
-            this.accountDataGridViewTextBoxColumn1.Name = "accountDataGridViewTextBoxColumn1";
-            this.accountDataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // Column1
-            // 
-            this.Column1.DataPropertyName = "Account";
-            dataGridViewCellStyle4.Format = "بدهکار;بستانکار;بی حساب;";
-            this.Column1.DefaultCellStyle = dataGridViewCellStyle4;
-            this.Column1.HeaderText = "";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            this.Column1.Width = 70;
-            // 
-            // dgGuid
-            // 
-            this.dgGuid.DataPropertyName = "Guid";
-            this.dgGuid.HeaderText = "Guid";
-            this.dgGuid.Name = "dgGuid";
-            this.dgGuid.ReadOnly = true;
-            this.dgGuid.Visible = false;
-            // 
-            // modifiedDataGridViewTextBoxColumn
-            // 
-            this.modifiedDataGridViewTextBoxColumn.DataPropertyName = "Modified";
-            this.modifiedDataGridViewTextBoxColumn.HeaderText = "Modified";
-            this.modifiedDataGridViewTextBoxColumn.Name = "modifiedDataGridViewTextBoxColumn";
-            this.modifiedDataGridViewTextBoxColumn.ReadOnly = true;
-            this.modifiedDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // statusDataGridViewCheckBoxColumn
-            // 
-            this.statusDataGridViewCheckBoxColumn.DataPropertyName = "Status";
-            this.statusDataGridViewCheckBoxColumn.HeaderText = "Status";
-            this.statusDataGridViewCheckBoxColumn.Name = "statusDataGridViewCheckBoxColumn";
-            this.statusDataGridViewCheckBoxColumn.ReadOnly = true;
-            this.statusDataGridViewCheckBoxColumn.Visible = false;
-            // 
-            // accountDataGridViewTextBoxColumn
-            // 
-            this.accountDataGridViewTextBoxColumn.DataPropertyName = "Account";
-            this.accountDataGridViewTextBoxColumn.HeaderText = "Account";
-            this.accountDataGridViewTextBoxColumn.Name = "accountDataGridViewTextBoxColumn";
-            this.accountDataGridViewTextBoxColumn.ReadOnly = true;
-            this.accountDataGridViewTextBoxColumn.Visible = false;
+            this.btnSelect.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnSelect.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSelect.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.btnSelect.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnSelect.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.btnSelect.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSelect.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.btnSelect.Location = new System.Drawing.Point(193, 557);
+            this.btnSelect.Name = "btnSelect";
+            this.btnSelect.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
+            this.btnSelect.Size = new System.Drawing.Size(414, 31);
+            this.btnSelect.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
+            this.btnSelect.TabIndex = 55762;
+            this.btnSelect.Text = "انتخاب";
+            this.btnSelect.TextColor = System.Drawing.Color.White;
+            this.btnSelect.Click += new System.EventHandler(this.btnSelect_Click);
             // 
             // frmShowHazine
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 600);
+            this.Controls.Add(this.btnSelect);
             this.Controls.Add(this.btnView);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnChangeStatus);
@@ -397,5 +420,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn modifiedDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewCheckBoxColumn statusDataGridViewCheckBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn accountDataGridViewTextBoxColumn;
+        private DevComponents.DotNetBar.ButtonX btnSelect;
     }
 }

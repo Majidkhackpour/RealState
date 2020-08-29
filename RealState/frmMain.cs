@@ -208,13 +208,16 @@ namespace RealState
                         frm = new frmShowAccounts();
                         break;
                     case "nHazine":
-                        frm = new frmShowHazine();
+                        frm = new frmShowHazine(false);
                         break;
                     case "nReception":
-                        frm = new frmReceptionFilter();
+                        frm = new frmReceptionFilter(EnSanadType.Auto);
                         break;
                     case "nPay":
-                        frm = new frmPayeMentFilter();
+                        frm = new frmPayeMentFilter(EnSanadType.Auto);
+                        break;
+                    case "nSanad":
+                        frm = new frmSanad();
                         break;
                 }
 

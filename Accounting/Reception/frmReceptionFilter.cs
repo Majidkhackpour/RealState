@@ -10,9 +10,13 @@ namespace Accounting.Reception
 {
     public partial class frmReceptionFilter : MetroForm
     {
-        public frmReceptionFilter()
+        private EnSanadType type;
+        public Guid SelectedGuid { get; set; }
+        public EnAccountingType AccountingType { get; set; }
+        public frmReceptionFilter(EnSanadType _type)
         {
             InitializeComponent();
+            type = _type;
         }
 
         #region LblSetter
@@ -43,8 +47,16 @@ namespace Accounting.Reception
             {
                 var frm = new frmShowPeoples(true);
                 if (frm.ShowDialog() != DialogResult.OK) return;
-                var frm1 = new frmShowReception(frm.SelectedGuid, EnAccountingType.Peoples);
-                frm1.ShowDialog();
+                SelectedGuid = frm.SelectedGuid;
+                AccountingType = EnAccountingType.Peoples;
+                if (type == EnSanadType.Auto)
+                {
+                    var frm1 = new frmShowReception(frm.SelectedGuid, EnAccountingType.Peoples);
+                    frm1.ShowDialog();
+                    return;
+                }
+                DialogResult = DialogResult.OK;
+                Close();
             }
             catch (Exception ex)
             {
@@ -58,8 +70,16 @@ namespace Accounting.Reception
             {
                 var frm = new frmShowUsers(true);
                 if (frm.ShowDialog() != DialogResult.OK) return;
-                var frm1 = new frmShowReception(frm.SelectedGuid, EnAccountingType.Users);
-                frm1.ShowDialog();
+                SelectedGuid = frm.SelectedGuid;
+                AccountingType = EnAccountingType.Users;
+                if (type == EnSanadType.Auto)
+                {
+                    var frm1 = new frmShowReception(frm.SelectedGuid, EnAccountingType.Users);
+                    frm1.ShowDialog();
+                    return;
+                }
+                DialogResult = DialogResult.OK;
+                Close();
             }
             catch (Exception ex)
             {

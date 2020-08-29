@@ -31,33 +31,16 @@
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmShowPardakht));
             this.label7 = new System.Windows.Forms.Label();
-            this.receptionBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.bankNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.sarResidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.checkNoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fishNoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.createDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.receptorDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.statusDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.modifiedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgGuid = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.descriptionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.totalPriceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.checkDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.bankPriceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.naqdPriceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.timeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dateShDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgRadif = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pardakhtBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.lblName = new System.Windows.Forms.Label();
             this.btnView = new DevComponents.DotNetBar.ButtonX();
             this.btnDelete = new DevComponents.DotNetBar.ButtonX();
@@ -67,7 +50,24 @@
             this.txtSearch = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.line1 = new DevComponents.DotNetBar.Controls.Line();
             this.DGrid = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            ((System.ComponentModel.ISupportInitialize)(this.receptionBindingSource)).BeginInit();
+            this.dgRadif = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dateShDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.timeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.naqdPriceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bankPriceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.checkDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.totalPriceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.descriptionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgGuid = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.modifiedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.statusDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.payerDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.createDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fishNoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.checkNoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.sarResidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bankNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            ((System.ComponentModel.ISupportInitialize)(this.pardakhtBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).BeginInit();
             this.SuspendLayout();
             // 
@@ -78,155 +78,13 @@
             this.label7.BackColor = System.Drawing.Color.Transparent;
             this.label7.Location = new System.Drawing.Point(673, 38);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(123, 20);
+            this.label7.Size = new System.Drawing.Size(126, 20);
             this.label7.TabIndex = 55778;
-            this.label7.Text = "لیست وجوه دریافتی از:";
+            this.label7.Text = "لیست وجوه پرداختی به:";
             // 
-            // receptionBindingSource
+            // pardakhtBindingSource
             // 
-            this.receptionBindingSource.DataSource = typeof(EntityCache.Bussines.ReceptionBussines);
-            // 
-            // bankNameDataGridViewTextBoxColumn
-            // 
-            this.bankNameDataGridViewTextBoxColumn.DataPropertyName = "BankName";
-            this.bankNameDataGridViewTextBoxColumn.HeaderText = "BankName";
-            this.bankNameDataGridViewTextBoxColumn.Name = "bankNameDataGridViewTextBoxColumn";
-            this.bankNameDataGridViewTextBoxColumn.ReadOnly = true;
-            this.bankNameDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // sarResidDataGridViewTextBoxColumn
-            // 
-            this.sarResidDataGridViewTextBoxColumn.DataPropertyName = "SarResid";
-            this.sarResidDataGridViewTextBoxColumn.HeaderText = "SarResid";
-            this.sarResidDataGridViewTextBoxColumn.Name = "sarResidDataGridViewTextBoxColumn";
-            this.sarResidDataGridViewTextBoxColumn.ReadOnly = true;
-            this.sarResidDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // checkNoDataGridViewTextBoxColumn
-            // 
-            this.checkNoDataGridViewTextBoxColumn.DataPropertyName = "CheckNo";
-            this.checkNoDataGridViewTextBoxColumn.HeaderText = "CheckNo";
-            this.checkNoDataGridViewTextBoxColumn.Name = "checkNoDataGridViewTextBoxColumn";
-            this.checkNoDataGridViewTextBoxColumn.ReadOnly = true;
-            this.checkNoDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // fishNoDataGridViewTextBoxColumn
-            // 
-            this.fishNoDataGridViewTextBoxColumn.DataPropertyName = "FishNo";
-            this.fishNoDataGridViewTextBoxColumn.HeaderText = "FishNo";
-            this.fishNoDataGridViewTextBoxColumn.Name = "fishNoDataGridViewTextBoxColumn";
-            this.fishNoDataGridViewTextBoxColumn.ReadOnly = true;
-            this.fishNoDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // createDateDataGridViewTextBoxColumn
-            // 
-            this.createDateDataGridViewTextBoxColumn.DataPropertyName = "CreateDate";
-            this.createDateDataGridViewTextBoxColumn.HeaderText = "CreateDate";
-            this.createDateDataGridViewTextBoxColumn.Name = "createDateDataGridViewTextBoxColumn";
-            this.createDateDataGridViewTextBoxColumn.ReadOnly = true;
-            this.createDateDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // receptorDataGridViewTextBoxColumn
-            // 
-            this.receptorDataGridViewTextBoxColumn.DataPropertyName = "Receptor";
-            this.receptorDataGridViewTextBoxColumn.HeaderText = "Receptor";
-            this.receptorDataGridViewTextBoxColumn.Name = "receptorDataGridViewTextBoxColumn";
-            this.receptorDataGridViewTextBoxColumn.ReadOnly = true;
-            this.receptorDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // statusDataGridViewCheckBoxColumn
-            // 
-            this.statusDataGridViewCheckBoxColumn.DataPropertyName = "Status";
-            this.statusDataGridViewCheckBoxColumn.HeaderText = "Status";
-            this.statusDataGridViewCheckBoxColumn.Name = "statusDataGridViewCheckBoxColumn";
-            this.statusDataGridViewCheckBoxColumn.ReadOnly = true;
-            this.statusDataGridViewCheckBoxColumn.Visible = false;
-            // 
-            // modifiedDataGridViewTextBoxColumn
-            // 
-            this.modifiedDataGridViewTextBoxColumn.DataPropertyName = "Modified";
-            this.modifiedDataGridViewTextBoxColumn.HeaderText = "Modified";
-            this.modifiedDataGridViewTextBoxColumn.Name = "modifiedDataGridViewTextBoxColumn";
-            this.modifiedDataGridViewTextBoxColumn.ReadOnly = true;
-            this.modifiedDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // dgGuid
-            // 
-            this.dgGuid.DataPropertyName = "Guid";
-            this.dgGuid.HeaderText = "Guid";
-            this.dgGuid.Name = "dgGuid";
-            this.dgGuid.ReadOnly = true;
-            this.dgGuid.Visible = false;
-            // 
-            // descriptionDataGridViewTextBoxColumn
-            // 
-            this.descriptionDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.descriptionDataGridViewTextBoxColumn.DataPropertyName = "Description";
-            this.descriptionDataGridViewTextBoxColumn.HeaderText = "توضیحات";
-            this.descriptionDataGridViewTextBoxColumn.Name = "descriptionDataGridViewTextBoxColumn";
-            this.descriptionDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // totalPriceDataGridViewTextBoxColumn
-            // 
-            this.totalPriceDataGridViewTextBoxColumn.DataPropertyName = "TotalPrice";
-            dataGridViewCellStyle1.Format = "N0";
-            dataGridViewCellStyle1.NullValue = null;
-            this.totalPriceDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle1;
-            this.totalPriceDataGridViewTextBoxColumn.HeaderText = "جمع کل پرداخت";
-            this.totalPriceDataGridViewTextBoxColumn.Name = "totalPriceDataGridViewTextBoxColumn";
-            this.totalPriceDataGridViewTextBoxColumn.ReadOnly = true;
-            this.totalPriceDataGridViewTextBoxColumn.Width = 150;
-            // 
-            // checkDataGridViewTextBoxColumn
-            // 
-            this.checkDataGridViewTextBoxColumn.DataPropertyName = "Check";
-            dataGridViewCellStyle2.Format = "N0";
-            dataGridViewCellStyle2.NullValue = null;
-            this.checkDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle2;
-            this.checkDataGridViewTextBoxColumn.HeaderText = "پرداخت چکی";
-            this.checkDataGridViewTextBoxColumn.Name = "checkDataGridViewTextBoxColumn";
-            this.checkDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // bankPriceDataGridViewTextBoxColumn
-            // 
-            this.bankPriceDataGridViewTextBoxColumn.DataPropertyName = "BankPrice";
-            dataGridViewCellStyle3.Format = "N0";
-            dataGridViewCellStyle3.NullValue = null;
-            this.bankPriceDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle3;
-            this.bankPriceDataGridViewTextBoxColumn.HeaderText = "پرداخت بانکی";
-            this.bankPriceDataGridViewTextBoxColumn.Name = "bankPriceDataGridViewTextBoxColumn";
-            this.bankPriceDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // naqdPriceDataGridViewTextBoxColumn
-            // 
-            this.naqdPriceDataGridViewTextBoxColumn.DataPropertyName = "NaqdPrice";
-            dataGridViewCellStyle4.Format = "N0";
-            dataGridViewCellStyle4.NullValue = null;
-            this.naqdPriceDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle4;
-            this.naqdPriceDataGridViewTextBoxColumn.HeaderText = "پرداخت نقدی";
-            this.naqdPriceDataGridViewTextBoxColumn.Name = "naqdPriceDataGridViewTextBoxColumn";
-            this.naqdPriceDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // timeDataGridViewTextBoxColumn
-            // 
-            this.timeDataGridViewTextBoxColumn.DataPropertyName = "Time";
-            this.timeDataGridViewTextBoxColumn.HeaderText = "زمان";
-            this.timeDataGridViewTextBoxColumn.Name = "timeDataGridViewTextBoxColumn";
-            this.timeDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // dateShDataGridViewTextBoxColumn
-            // 
-            this.dateShDataGridViewTextBoxColumn.DataPropertyName = "DateSh";
-            this.dateShDataGridViewTextBoxColumn.HeaderText = "تاریخ";
-            this.dateShDataGridViewTextBoxColumn.Name = "dateShDataGridViewTextBoxColumn";
-            this.dateShDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // dgRadif
-            // 
-            this.dgRadif.HeaderText = "ردیف";
-            this.dgRadif.Name = "dgRadif";
-            this.dgRadif.ReadOnly = true;
-            this.dgRadif.Width = 50;
+            this.pardakhtBindingSource.DataSource = typeof(EntityCache.Bussines.PardakhtBussines);
             // 
             // lblName
             // 
@@ -254,6 +112,7 @@
             this.btnView.TabIndex = 55772;
             this.btnView.Text = "مشاهده (F12)";
             this.btnView.TextColor = System.Drawing.Color.Black;
+            this.btnView.Click += new System.EventHandler(this.btnView_Click);
             // 
             // btnDelete
             // 
@@ -272,6 +131,7 @@
             this.btnDelete.TabIndex = 55773;
             this.btnDelete.Text = "حذف (Del)";
             this.btnDelete.TextColor = System.Drawing.Color.Black;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // btnChangeStatus
             // 
@@ -290,6 +150,7 @@
             this.btnChangeStatus.TabIndex = 55774;
             this.btnChangeStatus.Text = "غیرفعال (Ctrl+S)";
             this.btnChangeStatus.TextColor = System.Drawing.Color.Black;
+            this.btnChangeStatus.Click += new System.EventHandler(this.btnChangeStatus_Click);
             // 
             // btnInsert
             // 
@@ -308,6 +169,7 @@
             this.btnInsert.TabIndex = 55776;
             this.btnInsert.Text = "افزودن (Ins)";
             this.btnInsert.TextColor = System.Drawing.Color.Black;
+            this.btnInsert.Click += new System.EventHandler(this.btnInsert_Click);
             // 
             // btnEdit
             // 
@@ -326,6 +188,7 @@
             this.btnEdit.TabIndex = 55775;
             this.btnEdit.Text = "ویرایش (F7)";
             this.btnEdit.TextColor = System.Drawing.Color.Black;
+            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
             // 
             // txtSearch
             // 
@@ -344,6 +207,7 @@
             this.txtSearch.TabIndex = 55771;
             this.txtSearch.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtSearch.WatermarkText = "مورد جستجو را وارد نمایید ...";
+            this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
             // 
             // line1
             // 
@@ -362,25 +226,25 @@
             this.DGrid.AllowUserToDeleteRows = false;
             this.DGrid.AllowUserToResizeColumns = false;
             this.DGrid.AllowUserToResizeRows = false;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.Gainsboro;
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.Gainsboro;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.Black;
-            this.DGrid.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Gainsboro;
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Gainsboro;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
+            this.DGrid.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.DGrid.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.DGrid.AutoGenerateColumns = false;
             this.DGrid.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.Silver;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Silver;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.DGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dgRadif,
@@ -394,13 +258,13 @@
             this.dgGuid,
             this.modifiedDataGridViewTextBoxColumn,
             this.statusDataGridViewCheckBoxColumn,
-            this.receptorDataGridViewTextBoxColumn,
+            this.payerDataGridViewTextBoxColumn,
             this.createDateDataGridViewTextBoxColumn,
             this.fishNoDataGridViewTextBoxColumn,
             this.checkNoDataGridViewTextBoxColumn,
             this.sarResidDataGridViewTextBoxColumn,
             this.bankNameDataGridViewTextBoxColumn});
-            this.DGrid.DataSource = this.receptionBindingSource;
+            this.DGrid.DataSource = this.pardakhtBindingSource;
             dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
             dataGridViewCellStyle7.BackColor = System.Drawing.Color.White;
             dataGridViewCellStyle7.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
@@ -435,6 +299,149 @@
             this.DGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DGrid.Size = new System.Drawing.Size(795, 468);
             this.DGrid.TabIndex = 55770;
+            this.DGrid.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DGrid_CellFormatting);
+            // 
+            // dgRadif
+            // 
+            this.dgRadif.HeaderText = "ردیف";
+            this.dgRadif.Name = "dgRadif";
+            this.dgRadif.ReadOnly = true;
+            this.dgRadif.Width = 50;
+            // 
+            // dateShDataGridViewTextBoxColumn
+            // 
+            this.dateShDataGridViewTextBoxColumn.DataPropertyName = "DateSh";
+            this.dateShDataGridViewTextBoxColumn.HeaderText = "تاریخ";
+            this.dateShDataGridViewTextBoxColumn.Name = "dateShDataGridViewTextBoxColumn";
+            this.dateShDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // timeDataGridViewTextBoxColumn
+            // 
+            this.timeDataGridViewTextBoxColumn.DataPropertyName = "Time";
+            this.timeDataGridViewTextBoxColumn.HeaderText = "زمان";
+            this.timeDataGridViewTextBoxColumn.Name = "timeDataGridViewTextBoxColumn";
+            this.timeDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // naqdPriceDataGridViewTextBoxColumn
+            // 
+            this.naqdPriceDataGridViewTextBoxColumn.DataPropertyName = "NaqdPrice";
+            dataGridViewCellStyle3.Format = "N0";
+            dataGridViewCellStyle3.NullValue = null;
+            this.naqdPriceDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle3;
+            this.naqdPriceDataGridViewTextBoxColumn.HeaderText = "پرداخت نقدی";
+            this.naqdPriceDataGridViewTextBoxColumn.Name = "naqdPriceDataGridViewTextBoxColumn";
+            this.naqdPriceDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // bankPriceDataGridViewTextBoxColumn
+            // 
+            this.bankPriceDataGridViewTextBoxColumn.DataPropertyName = "BankPrice";
+            dataGridViewCellStyle4.Format = "N0";
+            dataGridViewCellStyle4.NullValue = null;
+            this.bankPriceDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle4;
+            this.bankPriceDataGridViewTextBoxColumn.HeaderText = "پرداخت بانکی";
+            this.bankPriceDataGridViewTextBoxColumn.Name = "bankPriceDataGridViewTextBoxColumn";
+            this.bankPriceDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // checkDataGridViewTextBoxColumn
+            // 
+            this.checkDataGridViewTextBoxColumn.DataPropertyName = "Check";
+            dataGridViewCellStyle5.Format = "N0";
+            dataGridViewCellStyle5.NullValue = null;
+            this.checkDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle5;
+            this.checkDataGridViewTextBoxColumn.HeaderText = "پرداخت چکی";
+            this.checkDataGridViewTextBoxColumn.Name = "checkDataGridViewTextBoxColumn";
+            this.checkDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // totalPriceDataGridViewTextBoxColumn
+            // 
+            this.totalPriceDataGridViewTextBoxColumn.DataPropertyName = "TotalPrice";
+            dataGridViewCellStyle6.Format = "N0";
+            dataGridViewCellStyle6.NullValue = null;
+            this.totalPriceDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle6;
+            this.totalPriceDataGridViewTextBoxColumn.HeaderText = "جمع کل پرداخت";
+            this.totalPriceDataGridViewTextBoxColumn.Name = "totalPriceDataGridViewTextBoxColumn";
+            this.totalPriceDataGridViewTextBoxColumn.ReadOnly = true;
+            this.totalPriceDataGridViewTextBoxColumn.Width = 150;
+            // 
+            // descriptionDataGridViewTextBoxColumn
+            // 
+            this.descriptionDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.descriptionDataGridViewTextBoxColumn.DataPropertyName = "Description";
+            this.descriptionDataGridViewTextBoxColumn.HeaderText = "توضیحات";
+            this.descriptionDataGridViewTextBoxColumn.Name = "descriptionDataGridViewTextBoxColumn";
+            this.descriptionDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // dgGuid
+            // 
+            this.dgGuid.DataPropertyName = "Guid";
+            this.dgGuid.HeaderText = "Guid";
+            this.dgGuid.Name = "dgGuid";
+            this.dgGuid.ReadOnly = true;
+            this.dgGuid.Visible = false;
+            // 
+            // modifiedDataGridViewTextBoxColumn
+            // 
+            this.modifiedDataGridViewTextBoxColumn.DataPropertyName = "Modified";
+            this.modifiedDataGridViewTextBoxColumn.HeaderText = "Modified";
+            this.modifiedDataGridViewTextBoxColumn.Name = "modifiedDataGridViewTextBoxColumn";
+            this.modifiedDataGridViewTextBoxColumn.ReadOnly = true;
+            this.modifiedDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // statusDataGridViewCheckBoxColumn
+            // 
+            this.statusDataGridViewCheckBoxColumn.DataPropertyName = "Status";
+            this.statusDataGridViewCheckBoxColumn.HeaderText = "Status";
+            this.statusDataGridViewCheckBoxColumn.Name = "statusDataGridViewCheckBoxColumn";
+            this.statusDataGridViewCheckBoxColumn.ReadOnly = true;
+            this.statusDataGridViewCheckBoxColumn.Visible = false;
+            // 
+            // payerDataGridViewTextBoxColumn
+            // 
+            this.payerDataGridViewTextBoxColumn.DataPropertyName = "Payer";
+            this.payerDataGridViewTextBoxColumn.HeaderText = "Payer";
+            this.payerDataGridViewTextBoxColumn.Name = "payerDataGridViewTextBoxColumn";
+            this.payerDataGridViewTextBoxColumn.ReadOnly = true;
+            this.payerDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // createDateDataGridViewTextBoxColumn
+            // 
+            this.createDateDataGridViewTextBoxColumn.DataPropertyName = "CreateDate";
+            this.createDateDataGridViewTextBoxColumn.HeaderText = "CreateDate";
+            this.createDateDataGridViewTextBoxColumn.Name = "createDateDataGridViewTextBoxColumn";
+            this.createDateDataGridViewTextBoxColumn.ReadOnly = true;
+            this.createDateDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // fishNoDataGridViewTextBoxColumn
+            // 
+            this.fishNoDataGridViewTextBoxColumn.DataPropertyName = "FishNo";
+            this.fishNoDataGridViewTextBoxColumn.HeaderText = "FishNo";
+            this.fishNoDataGridViewTextBoxColumn.Name = "fishNoDataGridViewTextBoxColumn";
+            this.fishNoDataGridViewTextBoxColumn.ReadOnly = true;
+            this.fishNoDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // checkNoDataGridViewTextBoxColumn
+            // 
+            this.checkNoDataGridViewTextBoxColumn.DataPropertyName = "CheckNo";
+            this.checkNoDataGridViewTextBoxColumn.HeaderText = "CheckNo";
+            this.checkNoDataGridViewTextBoxColumn.Name = "checkNoDataGridViewTextBoxColumn";
+            this.checkNoDataGridViewTextBoxColumn.ReadOnly = true;
+            this.checkNoDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // sarResidDataGridViewTextBoxColumn
+            // 
+            this.sarResidDataGridViewTextBoxColumn.DataPropertyName = "SarResid";
+            this.sarResidDataGridViewTextBoxColumn.HeaderText = "SarResid";
+            this.sarResidDataGridViewTextBoxColumn.Name = "sarResidDataGridViewTextBoxColumn";
+            this.sarResidDataGridViewTextBoxColumn.ReadOnly = true;
+            this.sarResidDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // bankNameDataGridViewTextBoxColumn
+            // 
+            this.bankNameDataGridViewTextBoxColumn.DataPropertyName = "BankName";
+            this.bankNameDataGridViewTextBoxColumn.HeaderText = "BankName";
+            this.bankNameDataGridViewTextBoxColumn.Name = "bankNameDataGridViewTextBoxColumn";
+            this.bankNameDataGridViewTextBoxColumn.ReadOnly = true;
+            this.bankNameDataGridViewTextBoxColumn.Visible = false;
             // 
             // frmShowPardakht
             // 
@@ -461,7 +468,9 @@
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.Style = MetroFramework.MetroColorStyle.Green;
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            ((System.ComponentModel.ISupportInitialize)(this.receptionBindingSource)).EndInit();
+            this.Load += new System.EventHandler(this.frmShowPardakht_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmShowPardakht_KeyDown);
+            ((System.ComponentModel.ISupportInitialize)(this.pardakhtBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -471,24 +480,7 @@
         #endregion
 
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.BindingSource receptionBindingSource;
-        private System.Windows.Forms.DataGridViewTextBoxColumn bankNameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn sarResidDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn checkNoDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn fishNoDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn createDateDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn receptorDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn statusDataGridViewCheckBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn modifiedDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgGuid;
-        private System.Windows.Forms.DataGridViewTextBoxColumn descriptionDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn totalPriceDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn checkDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn bankPriceDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn naqdPriceDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn timeDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dateShDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgRadif;
+        private System.Windows.Forms.BindingSource pardakhtBindingSource;
         private System.Windows.Forms.Label lblName;
         private DevComponents.DotNetBar.ButtonX btnView;
         private DevComponents.DotNetBar.ButtonX btnDelete;
@@ -498,5 +490,22 @@
         private DevComponents.DotNetBar.Controls.TextBoxX txtSearch;
         private DevComponents.DotNetBar.Controls.Line line1;
         private DevComponents.DotNetBar.Controls.DataGridViewX DGrid;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgRadif;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dateShDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn timeDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn naqdPriceDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn bankPriceDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn checkDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn totalPriceDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn descriptionDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgGuid;
+        private System.Windows.Forms.DataGridViewTextBoxColumn modifiedDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn statusDataGridViewCheckBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn payerDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn createDateDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn fishNoDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn checkNoDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn sarResidDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn bankNameDataGridViewTextBoxColumn;
     }
 }

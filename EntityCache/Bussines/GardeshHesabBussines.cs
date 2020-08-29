@@ -137,5 +137,37 @@ namespace EntityCache.Bussines
 
         public static List<GardeshHesabBussines> GetAll(Guid hesabGuid) =>
             AsyncContext.Run(() => GetAllAsync(hesabGuid));
+
+        public static async Task<ReturnedSaveFuncInfo> SaveRangeAsync(List<GardeshHesabBussines> list,
+            string tranName = "")
+        {
+            var res = new ReturnedSaveFuncInfo();
+            var autoTran = string.IsNullOrEmpty(tranName);
+            if (autoTran) tranName = Guid.NewGuid().ToString();
+            try
+            {
+                if (autoTran)
+                { //BeginTransaction
+                }
+
+                res.AddReturnedValue(await UnitOfWork.GardeshHesab.SaveRangeAsync(list, tranName));
+                res.ThrowExceptionIfError();
+                if (autoTran)
+                {
+                    //CommitTransAction
+                }
+            }
+            catch (Exception ex)
+            {
+                if (autoTran)
+                {
+                    //RollBackTransAction
+                }
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+
+            return res;
+        }
     }
 }

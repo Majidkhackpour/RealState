@@ -132,6 +132,12 @@
     <Compile Include="frmGardeshHesab.Designer.cs">
       <DependentUpon>frmGardeshHesab.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmSanad.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSanad.Designer.cs">
+      <DependentUpon>frmSanad.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmShowAccounts.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -149,6 +155,12 @@
     </Compile>
     <Compile Include="Hazine\frmShowHazine.Designer.cs">
       <DependentUpon>frmShowHazine.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Payement\frmPardakhtMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Payement\frmPardakhtMain.Designer.cs">
+      <DependentUpon>frmPardakhtMain.cs</DependentUpon>
     </Compile>
     <Compile Include="Payement\frmPayeMentFilter.cs">
       <SubType>Form</SubType>
@@ -192,12 +204,16 @@
     <None Include="packages.config" />
     <None Include="Properties\DataSources\EntityCache.Bussines.GardeshHesabBussines.datasource" />
     <None Include="Properties\DataSources\EntityCache.Bussines.HazineBussines.datasource" />
+    <None Include="Properties\DataSources\EntityCache.Bussines.PardakhtBussines.datasource" />
     <None Include="Properties\DataSources\EntityCache.Bussines.PeoplesBussines.datasource" />
     <None Include="Properties\DataSources\EntityCache.Bussines.ReceptionBussines.datasource" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="frmGardeshHesab.resx">
       <DependentUpon>frmGardeshHesab.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSanad.resx">
+      <DependentUpon>frmSanad.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmShowAccounts.resx">
       <DependentUpon>frmShowAccounts.cs</DependentUpon>
@@ -207,6 +223,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Hazine\frmShowHazine.resx">
       <DependentUpon>frmShowHazine.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Payement\frmPardakhtMain.resx">
+      <DependentUpon>frmPardakhtMain.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Payement\frmPayeMentFilter.resx">
       <DependentUpon>frmPayeMentFilter.cs</DependentUpon>
@@ -301,6 +320,7 @@
   <ItemGroup>
     <None Include="Resources\P-1-99.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

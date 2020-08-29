@@ -50,6 +50,7 @@
             this.lblHazine.Size = new System.Drawing.Size(74, 29);
             this.lblHazine.TabIndex = 5;
             this.lblHazine.Text = "هزینه ها";
+            this.lblHazine.Click += new System.EventHandler(this.lblHazine_Click);
             this.lblHazine.MouseEnter += new System.EventHandler(this.lblHazine_MouseEnter);
             this.lblHazine.MouseLeave += new System.EventHandler(this.lblHazine_MouseLeave);
             // 
@@ -91,6 +92,7 @@
             this.picHazine.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.picHazine.TabIndex = 2;
             this.picHazine.TabStop = false;
+            this.picHazine.Click += new System.EventHandler(this.picHazine_Click);
             // 
             // picUsers
             // 
@@ -139,6 +141,7 @@
             this.Padding = new System.Windows.Forms.Padding(27, 92, 27, 31);
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.Style = MetroFramework.MetroColorStyle.Green;
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmPayeMentFilter_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.picHazine)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picUsers)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picPeoples)).EndInit();
