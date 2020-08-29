@@ -4,7 +4,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using EntityCache.Assistence;
 using Nito.AsyncEx;
-using PacketParser;
 using PacketParser.Interfaces;
 using Services;
 
@@ -45,6 +44,13 @@ namespace EntityCache.Bussines
                 { //BeginTransaction
                 }
 
+
+                var list = await PhoneBookBussines.GetAllAsync(Guid, Status);
+                res.AddReturnedValue(
+                    await UnitOfWork.PhoneBook.RemoveRangeAsync(list.Select(q => q.Guid).ToList(),
+                        tranName));
+                res.ThrowExceptionIfError();
+
                 var tel = new PhoneBookBussines()
                 {
                     Guid = Guid.NewGuid(),
@@ -53,6 +59,10 @@ namespace EntityCache.Bussines
                     ParentGuid = Guid,
                     Tell = Mobile
                 };
+
+
+                res.AddReturnedValue(await UnitOfWork.PhoneBook.SaveAsync(tel, tranName));
+                res.ThrowExceptionIfError();
 
                 var gardesh = await GardeshHesabBussines.GetAsync(Guid, Guid.Empty, true);
                 if (setEftetah)
@@ -86,10 +96,6 @@ namespace EntityCache.Bussines
                         res.ThrowExceptionIfError();
                     }
                 }
-
-
-                res.AddReturnedValue(await UnitOfWork.PhoneBook.SaveAsync(tel, tranName));
-                res.ThrowExceptionIfError();
 
                 res.AddReturnedValue(await UnitOfWork.Users.SaveAsync(this, tranName));
                 res.ThrowExceptionIfError();
