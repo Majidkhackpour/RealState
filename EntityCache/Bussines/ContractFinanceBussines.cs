@@ -28,5 +28,36 @@ namespace EntityCache.Bussines
 
         public static ContractFinanceBussines Get(Guid parentGuid, bool status) =>
             AsyncContext.Run(() => GetAsync(parentGuid, status));
+
+        public async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(bool status, string tranName = "")
+        {
+            var res = new ReturnedSaveFuncInfo();
+            var autoTran = string.IsNullOrEmpty(tranName);
+            if (autoTran) tranName = Guid.NewGuid().ToString();
+            try
+            {
+                if (autoTran)
+                { //BeginTransaction
+                }
+
+                res.AddReturnedValue(await UnitOfWork.ContractFinance.ChangeStatusAsync(this, status, tranName));
+                res.ThrowExceptionIfError();
+                if (autoTran)
+                {
+                    //CommitTransAction
+                }
+            }
+            catch (Exception ex)
+            {
+                if (autoTran)
+                {
+                    //RollBackTransAction
+                }
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+
+            return res;
+        }
     }
 }

@@ -101,6 +101,19 @@ namespace EntityCache.Bussines
                 { //BeginTransaction
                 }
 
+                if (Finance != null)
+                {
+                    var list = await ContractFinanceBussines.GetAsync(Guid, Status);
+                    res.AddReturnedValue(
+                        await UnitOfWork.ContractFinance.RemoveAsync(list.Guid,
+                            tranName));
+                    res.ThrowExceptionIfError();
+
+                    res.AddReturnedValue(
+                        await UnitOfWork.ContractFinance.SaveAsync(Finance, tranName));
+                    res.ThrowExceptionIfError();
+                }
+
                 res.AddReturnedValue(await UnitOfWork.Contract.SaveAsync(this, tranName));
                 res.ThrowExceptionIfError();
                 if (autoTran)
@@ -130,6 +143,13 @@ namespace EntityCache.Bussines
             {
                 if (autoTran)
                 { //BeginTransaction
+                }
+
+                if (Finance != null)
+                {
+                    res.AddReturnedValue(
+                        await Finance.ChangeStatusAsync(status, tranName));
+                    res.ThrowExceptionIfError();
                 }
 
                 res.AddReturnedValue(await UnitOfWork.Contract.ChangeStatusAsync(this, status, tranName));

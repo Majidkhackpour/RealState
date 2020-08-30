@@ -46,6 +46,7 @@
             this.btnEdit = new DevComponents.DotNetBar.ButtonX();
             this.line1 = new DevComponents.DotNetBar.Controls.Line();
             this.DGrid = new DevComponents.DotNetBar.Controls.DataGridViewX();
+            this.conBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dgRadif = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DateSh = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.codeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -73,7 +74,6 @@
             this.sarQofliDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.delayDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.descriptionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.conBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.conBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -321,6 +321,10 @@
             this.DGrid.TabIndex = 55769;
             this.DGrid.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DGrid_CellFormatting);
             // 
+            // conBindingSource
+            // 
+            this.conBindingSource.DataSource = typeof(EntityCache.Bussines.ContractBussines);
+            // 
             // dgRadif
             // 
             this.dgRadif.HeaderText = "ردیف";
@@ -369,7 +373,7 @@
             // isTempDataGridViewCheckBoxColumn
             // 
             this.isTempDataGridViewCheckBoxColumn.DataPropertyName = "IsTemp";
-            this.isTempDataGridViewCheckBoxColumn.HeaderText = "نهایی شده";
+            this.isTempDataGridViewCheckBoxColumn.HeaderText = "موقت";
             this.isTempDataGridViewCheckBoxColumn.Name = "isTempDataGridViewCheckBoxColumn";
             this.isTempDataGridViewCheckBoxColumn.ReadOnly = true;
             // 
@@ -532,10 +536,6 @@
             this.descriptionDataGridViewTextBoxColumn.Name = "descriptionDataGridViewTextBoxColumn";
             this.descriptionDataGridViewTextBoxColumn.ReadOnly = true;
             this.descriptionDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // conBindingSource
-            // 
-            this.conBindingSource.DataSource = typeof(EntityCache.Bussines.ContractBussines);
             // 
             // frmShowContract
             // 
