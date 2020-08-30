@@ -108,6 +108,7 @@
             this.btnOther = new DevComponents.DotNetBar.ButtonX();
             this.btnMojod = new DevComponents.DotNetBar.ButtonItem();
             this.btnVagozar = new DevComponents.DotNetBar.ButtonItem();
+            this.btnSendSms = new DevComponents.DotNetBar.ButtonItem();
             this.btnSendToDivar = new DevComponents.DotNetBar.ButtonItem();
             this.btnSendToTelegram = new DevComponents.DotNetBar.ButtonItem();
             this.btnMatchRequest = new DevComponents.DotNetBar.ButtonItem();
@@ -125,7 +126,7 @@
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnSendSms = new DevComponents.DotNetBar.ButtonItem();
+            this.btnSelect = new DevComponents.DotNetBar.ButtonX();
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BuildingBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btBindingSource)).BeginInit();
@@ -381,6 +382,7 @@
             this.DGrid.Size = new System.Drawing.Size(1016, 468);
             this.DGrid.TabIndex = 55744;
             this.DGrid.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DGrid_CellFormatting);
+            this.DGrid.DoubleClick += new System.EventHandler(this.DGrid_DoubleClick);
             this.DGrid.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.DGrid_KeyPress);
             // 
             // dgCode
@@ -905,6 +907,11 @@
             this.btnVagozar.Text = "تغییر وضعیت به واگذار شده";
             this.btnVagozar.Click += new System.EventHandler(this.btnVagozar_Click);
             // 
+            // btnSendSms
+            // 
+            this.btnSendSms.Name = "btnSendSms";
+            this.btnSendSms.Text = "ارسال پیامک به مالک";
+            // 
             // btnSendToDivar
             // 
             this.btnSendToDivar.Name = "btnSendToDivar";
@@ -1053,16 +1060,32 @@
             this.dataGridViewTextBoxColumn6.ReadOnly = true;
             this.dataGridViewTextBoxColumn6.Visible = false;
             // 
-            // btnSendSms
+            // btnSelect
             // 
-            this.btnSendSms.Name = "btnSendSms";
-            this.btnSendSms.Text = "ارسال پیامک به مالک";
+            this.btnSelect.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnSelect.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSelect.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.btnSelect.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnSelect.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.btnSelect.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSelect.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.btnSelect.Location = new System.Drawing.Point(303, 559);
+            this.btnSelect.Name = "btnSelect";
+            this.btnSelect.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
+            this.btnSelect.Size = new System.Drawing.Size(414, 31);
+            this.btnSelect.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
+            this.btnSelect.TabIndex = 55763;
+            this.btnSelect.Text = "انتخاب";
+            this.btnSelect.TextColor = System.Drawing.Color.White;
+            this.btnSelect.Click += new System.EventHandler(this.btnSelect_Click);
             // 
             // frmShowBuildings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1021, 600);
+            this.Controls.Add(this.btnSelect);
             this.Controls.Add(this.cmbUser);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.cmbBuildingType);
@@ -1192,5 +1215,6 @@
         private System.Windows.Forms.BindingSource btBindingSource;
         private System.Windows.Forms.BindingSource userBindingSource;
         private DevComponents.DotNetBar.ButtonItem btnSendSms;
+        private DevComponents.DotNetBar.ButtonX btnSelect;
     }
 }

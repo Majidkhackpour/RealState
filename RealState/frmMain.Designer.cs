@@ -124,6 +124,8 @@
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.lblContract = new System.Windows.Forms.Label();
+            this.line23 = new DevComponents.DotNetBar.Controls.Line();
             this.grpBaseInfo.SuspendLayout();
             this.grpBuilding.SuspendLayout();
             this.grpUsers.SuspendLayout();
@@ -746,15 +748,17 @@
             this.grpBuilding.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.grpBuilding.CanvasColor = System.Drawing.SystemColors.Control;
             this.grpBuilding.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
+            this.grpBuilding.Controls.Add(this.line23);
             this.grpBuilding.Controls.Add(this.line9);
             this.grpBuilding.Controls.Add(this.line8);
+            this.grpBuilding.Controls.Add(this.lblContract);
             this.grpBuilding.Controls.Add(this.lblBuildingSearch);
             this.grpBuilding.Controls.Add(this.lblBuildingRequest);
             this.grpBuilding.Controls.Add(this.lblBuilding);
             this.grpBuilding.DisabledBackColor = System.Drawing.Color.Empty;
-            this.grpBuilding.Location = new System.Drawing.Point(548, 193);
+            this.grpBuilding.Location = new System.Drawing.Point(549, 195);
             this.grpBuilding.Name = "grpBuilding";
-            this.grpBuilding.Size = new System.Drawing.Size(144, 97);
+            this.grpBuilding.Size = new System.Drawing.Size(144, 132);
             // 
             // 
             // 
@@ -1438,6 +1442,29 @@
             this.pictureBox1.TabIndex = 4;
             this.pictureBox1.TabStop = false;
             // 
+            // lblContract
+            // 
+            this.lblContract.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblContract.AutoSize = true;
+            this.lblContract.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lblContract.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.lblContract.Location = new System.Drawing.Point(34, 94);
+            this.lblContract.Name = "lblContract";
+            this.lblContract.Size = new System.Drawing.Size(96, 20);
+            this.lblContract.TabIndex = 55762;
+            this.lblContract.Text = "مدیریت قولنامه ها";
+            this.lblContract.Click += new System.EventHandler(this.lblContract_Click);
+            this.lblContract.MouseEnter += new System.EventHandler(this.lblContract_MouseEnter);
+            this.lblContract.MouseLeave += new System.EventHandler(this.lblContract_MouseLeave);
+            // 
+            // line23
+            // 
+            this.line23.Location = new System.Drawing.Point(8, 84);
+            this.line23.Name = "line23";
+            this.line23.Size = new System.Drawing.Size(127, 12);
+            this.line23.TabIndex = 55763;
+            this.line23.Text = "line4";
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -1613,6 +1640,8 @@
         private System.Windows.Forms.Label lblSmsReport;
         private System.Windows.Forms.Label lblBazsazi;
         private System.Windows.Forms.PictureBox picSetting;
+        private DevComponents.DotNetBar.Controls.Line line23;
+        private System.Windows.Forms.Label lblContract;
     }
 }
 

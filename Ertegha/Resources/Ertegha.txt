@@ -157,3 +157,20 @@ select [dbo].[BuildingRequests].*,[dbo].[Peoples].Name As AskerName,
 	   inner join [dbo].[Peoples] on [dbo].[BuildingRequests].AskerGuid=[dbo].[Peoples].Guid
 	   inner join [dbo].[Users] on [dbo].[BuildingRequests].UserGuid=[dbo].[Users].Guid
 End
+GO
+-- ==========================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Contract_SelectAll]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Contract_SelectAll]	As Begin print 11 end')
+GO
+
+ALTER PROCEDURE [dbo].[sp_Contract_SelectAll] 
+AS
+BEGIN
+	select [dbo].[Contracts].*,[dbo].[Peoples].Name as fName,
+	(select [dbo].[Peoples].Name from [dbo].[Peoples] where Guid=[dbo].[Contracts].SecondSideGuid) as sName,
+	[dbo].[Users].Name as UserName
+	from [dbo].[Contracts] left Outer join [dbo].[Peoples]
+	on [dbo].[Contracts].FirstSideGuid=[dbo].[Peoples].Guid
+	left outer join [dbo].[Users]
+	on [dbo].[Contracts].UserGuid=[dbo].[Users].Guid
+End

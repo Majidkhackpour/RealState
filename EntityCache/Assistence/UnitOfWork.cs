@@ -39,6 +39,8 @@ namespace EntityCache.Assistence
         private static IHazineRepository _hazineRepository;
         private static IReceptionRepository _receptionRepository;
         private static IPardakhtRepository _pardakhtRepository;
+        private static IContractRepository _contractRepository;
+        private static IContractFinanceRepository _contractFinanceRepository;
 
         public static void Dispose() => db?.Dispose();
         public static void Set_Save() => db.SaveChanges();
@@ -176,6 +178,16 @@ namespace EntityCache.Assistence
         public static IPardakhtRepository Pardakht => _pardakhtRepository ??
                                                         (_pardakhtRepository =
                                                             new PardakhtPersistenceRepository(db));
+
+
+        public static IContractRepository Contract => _contractRepository ??
+                                                        (_contractRepository =
+                                                            new ContractPersistenceRepository(db));
+
+
+        public static IContractFinanceRepository ContractFinance => _contractFinanceRepository ??
+                                                      (_contractFinanceRepository =
+                                                          new ContractFinancePersisteceRepository(db));
 
     }
 }

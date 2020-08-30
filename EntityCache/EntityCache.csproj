@@ -113,6 +113,8 @@
     <Compile Include="Bussines\BuildingTypeBussines.cs" />
     <Compile Include="Bussines\BuildingViewBussines.cs" />
     <Compile Include="Bussines\CitiesBussines.cs" />
+    <Compile Include="Bussines\ContractBussines.cs" />
+    <Compile Include="Bussines\ContractFinanceBussines.cs" />
     <Compile Include="Bussines\DocumentTypeBussines.cs" />
     <Compile Include="Bussines\FloorCoverBussines.cs" />
     <Compile Include="Bussines\GardeshHesabBussines.cs" />
@@ -144,6 +146,8 @@
     <Compile Include="Core\IBuildingTypeRepository.cs" />
     <Compile Include="Core\IBuildingViewRepository.cs" />
     <Compile Include="Core\ICitiesRepository.cs" />
+    <Compile Include="Core\IContractFinanceRepository.cs" />
+    <Compile Include="Core\IContractRepository.cs" />
     <Compile Include="Core\IDocumentTypeRepository.cs" />
     <Compile Include="Core\IFloorCoverRepository.cs" />
     <Compile Include="Core\IGardeshHesabRepository.cs" />
@@ -176,6 +180,8 @@
     <Compile Include="SqlServerPersistence\BuildingTypePersistenceRepository.cs" />
     <Compile Include="SqlServerPersistence\BuildingViewPersistenceRepository.cs" />
     <Compile Include="SqlServerPersistence\CitiesPersistenceRepository.cs" />
+    <Compile Include="SqlServerPersistence\ContractFinancePersisteceRepository.cs" />
+    <Compile Include="SqlServerPersistence\ContractPersistenceRepository.cs" />
     <Compile Include="SqlServerPersistence\DocumentTypePersistenceRepository.cs" />
     <Compile Include="SqlServerPersistence\FloorCoverPersistenceRepository.cs" />
     <Compile Include="SqlServerPersistence\GardeshHesabPersistenceRepository.cs" />

@@ -39,6 +39,8 @@ namespace EntityCache.Assistence
             CreateMap<HazineBussines, Hazine>().ReverseMap();
             CreateMap<ReceptionBussines, Reception>().ReverseMap();
             CreateMap<PardakhtBussines, Pardakht>().ReverseMap();
+            CreateMap<ContractBussines, Contract>().ReverseMap();
+            CreateMap<ContractFinanceBussines, ContractFinance>().ReverseMap();
         }
     }
 }

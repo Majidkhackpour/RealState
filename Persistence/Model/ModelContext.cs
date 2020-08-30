@@ -51,5 +51,7 @@ namespace Persistence.Model
         public virtual DbSet<Hazine> Hazine { get; set; }
         public virtual DbSet<Reception> Reception { get; set; }
         public virtual DbSet<Pardakht> Pardakht { get; set; }
+        public virtual DbSet<Contract> Contract { get; set; }
+        public virtual DbSet<ContractFinance> ContractFinance { get; set; }
     }
 }

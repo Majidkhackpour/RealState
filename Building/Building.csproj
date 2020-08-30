@@ -450,6 +450,18 @@
     <Compile Include="Building\frmShowBuildings.Designer.cs">
       <DependentUpon>frmShowBuildings.cs</DependentUpon>
     </Compile>
+    <Compile Include="Contract\frmContractMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Contract\frmContractMain.Designer.cs">
+      <DependentUpon>frmContractMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Contract\frmShowContract.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Contract\frmShowContract.Designer.cs">
+      <DependentUpon>frmShowContract.cs</DependentUpon>
+    </Compile>
     <Compile Include="DocumentType\frmDocumentTypeMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -601,6 +613,12 @@
     <EmbeddedResource Include="Building\frmShowBuildings.resx">
       <DependentUpon>frmShowBuildings.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Contract\frmContractMain.resx">
+      <DependentUpon>frmContractMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Contract\frmShowContract.resx">
+      <DependentUpon>frmShowContract.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DocumentType\frmDocumentTypeMain.resx">
       <DependentUpon>frmDocumentTypeMain.cs</DependentUpon>
     </EmbeddedResource>
@@ -641,6 +659,7 @@
     <None Include="Properties\DataSources\EntityCache.Bussines.BuildingTypeBussines.datasource" />
     <None Include="Properties\DataSources\EntityCache.Bussines.BuildingViewBussines.datasource" />
     <None Include="Properties\DataSources\EntityCache.Bussines.CitiesBussines.datasource" />
+    <None Include="Properties\DataSources\EntityCache.Bussines.ContractBussines.datasource" />
     <None Include="Properties\DataSources\EntityCache.Bussines.DocumentTypeBussines.datasource" />
     <None Include="Properties\DataSources\EntityCache.Bussines.FloorCoverBussines.datasource" />
     <None Include="Properties\DataSources\EntityCache.Bussines.KitchenServiceBussines.datasource" />

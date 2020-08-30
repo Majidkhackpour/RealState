@@ -14,6 +14,7 @@ using Building.BuildingOptions;
 using Building.BuildingRequest;
 using Building.BuildingType;
 using Building.BuildingView;
+using Building.Contract;
 using Building.DocumentType;
 using Building.FloorCover;
 using Building.KitchenService;
@@ -662,7 +663,7 @@ namespace RealState
         {
             try
             {
-                var frm = new frmShowBuildings();
+                var frm = new frmShowBuildings(false);
                 frm.ShowDialog();
             }
             catch (Exception ex)
@@ -928,6 +929,29 @@ namespace RealState
 
                 MessageBox.Show("خطا در بازسازی اطلاعات", "پیغام سیستم", MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private void lblContract_MouseEnter(object sender, EventArgs e)
+        {
+            lblContract.ForeColor = Color.Red;
+        }
+
+        private void lblContract_MouseLeave(object sender, EventArgs e)
+        {
+            lblContract.ForeColor = Color.Black;
+        }
+
+        private void lblContract_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var frm = new frmShowContract();
+                frm.ShowDialog();
             }
             catch (Exception ex)
             {

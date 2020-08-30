@@ -64,6 +64,8 @@
     <Compile Include="Interfaces\IBuildingType.cs" />
     <Compile Include="Interfaces\IBuildingView.cs" />
     <Compile Include="Interfaces\ICities.cs" />
+    <Compile Include="Interfaces\IContract.cs" />
+    <Compile Include="Interfaces\IContractFinance.cs" />
     <Compile Include="Interfaces\IDocumentType.cs" />
     <Compile Include="Interfaces\IFloorCover.cs" />
     <Compile Include="Interfaces\IGardeshHesab.cs" />
