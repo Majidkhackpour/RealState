@@ -25,10 +25,12 @@ using Cities.Region;
 using EntityCache.Bussines;
 using Ertegha;
 using MetroFramework.Forms;
+using Notification;
 using Payamak.Panel;
 using Payamak.PhoneBook;
 using Peoples;
 using Services;
+using Settings;
 using Settings.Classes;
 using TMS.Class;
 using User;
@@ -74,6 +76,9 @@ namespace RealState
                 var cn = new SqlConnection(Settings.AppSettings.DefaultConnectionString);
                 lblDbName.Text = cn?.Database ?? "";
                 lblVersion.Text = Assembly.GetExecutingAssembly().GetName().Version.ToString();
+                lblSerial.Text = clsRegistery.GetRegistery("U1001ML");
+                var exDate = clsRegistery.GetRegistery("U1001MD").ParseToDate();
+                lblExDate.Text = Calendar.MiladiToShamsi(exDate);
             }
             catch (Exception ex)
             {
@@ -93,7 +98,7 @@ namespace RealState
             SetClock();
             SetCalendar();
             var naqz = await NaqzBussines.SetNaqz();
-            lblNaqz.Text = naqz;
+            new frmNaqz(naqz).ShowDialog();
             SetButtomLables();
             var tt = new ToolTip();
             tt.SetToolTip(picSetting, "تنظیمات برنامه");
@@ -105,18 +110,6 @@ namespace RealState
                 lblSecond.Visible = false;
             else if (!lblSecond.Visible)
                 lblSecond.Visible = true;
-        }
-        private async void TimerNaqz_Tick(object sender, EventArgs e)
-        {
-            try
-            {
-                var nqz = await NaqzBussines.SetNaqz();
-                lblNaqz.Text = nqz;
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
         }
         private void UnsetGroupBox()
         {

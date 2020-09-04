@@ -38,10 +38,7 @@
             this.lblMounth = new System.Windows.Forms.Label();
             this.lblYear = new System.Windows.Forms.Label();
             this.lblDay = new System.Windows.Forms.Label();
-            this.line3 = new DevComponents.DotNetBar.Controls.Line();
-            this.lblNaqz = new System.Windows.Forms.Label();
             this.timerSecond = new System.Windows.Forms.Timer(this.components);
-            this.TimerNaqz = new System.Windows.Forms.Timer(this.components);
             this.lblEconomyName = new System.Windows.Forms.Label();
             this.lblDbName = new System.Windows.Forms.Label();
             this.lblVersion = new System.Windows.Forms.Label();
@@ -50,7 +47,6 @@
             this.lblUsers = new System.Windows.Forms.Label();
             this.lblAccountiong = new System.Windows.Forms.Label();
             this.lblInfornation = new System.Windows.Forms.Label();
-            this.line1 = new DevComponents.DotNetBar.Controls.Line();
             this.grpBaseInfo = new DevComponents.DotNetBar.Controls.GroupPanel();
             this.lblBuildingType = new System.Windows.Forms.Label();
             this.lblDocumentType = new System.Windows.Forms.Label();
@@ -121,6 +117,10 @@
             this.picSetting = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.lblSerial = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.lblExDate = new System.Windows.Forms.Label();
             this.grpBaseInfo.SuspendLayout();
             this.grpBuilding.SuspendLayout();
             this.grpUsers.SuspendLayout();
@@ -140,7 +140,7 @@
             // 
             this.lblHour.AutoSize = true;
             this.lblHour.Font = new System.Drawing.Font("B Yekan", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.lblHour.Location = new System.Drawing.Point(95, 11);
+            this.lblHour.Location = new System.Drawing.Point(125, 19);
             this.lblHour.Name = "lblHour";
             this.lblHour.Size = new System.Drawing.Size(35, 29);
             this.lblHour.TabIndex = 1;
@@ -150,7 +150,7 @@
             // 
             this.lblSecond.AutoSize = true;
             this.lblSecond.Font = new System.Drawing.Font("B Yekan", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.lblSecond.Location = new System.Drawing.Point(122, 11);
+            this.lblSecond.Location = new System.Drawing.Point(152, 19);
             this.lblSecond.Name = "lblSecond";
             this.lblSecond.Size = new System.Drawing.Size(18, 29);
             this.lblSecond.TabIndex = 1;
@@ -160,7 +160,7 @@
             // 
             this.lblMinute.AutoSize = true;
             this.lblMinute.Font = new System.Drawing.Font("B Yekan", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.lblMinute.Location = new System.Drawing.Point(136, 11);
+            this.lblMinute.Location = new System.Drawing.Point(166, 19);
             this.lblMinute.Name = "lblMinute";
             this.lblMinute.Size = new System.Drawing.Size(35, 29);
             this.lblMinute.TabIndex = 1;
@@ -168,7 +168,7 @@
             // 
             // line2
             // 
-            this.line2.Location = new System.Drawing.Point(75, 17);
+            this.line2.Location = new System.Drawing.Point(105, 25);
             this.line2.Name = "line2";
             this.line2.Size = new System.Drawing.Size(26, 23);
             this.line2.TabIndex = 2;
@@ -179,10 +179,10 @@
             // 
             this.lblTitle.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblTitle.Font = new System.Drawing.Font("B Yekan", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.lblTitle.Location = new System.Drawing.Point(181, 11);
+            this.lblTitle.Font = new System.Drawing.Font("B Titr", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.lblTitle.Location = new System.Drawing.Point(252, 11);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(438, 29);
+            this.lblTitle.Size = new System.Drawing.Size(269, 40);
             this.lblTitle.TabIndex = 1;
             this.lblTitle.Text = "نرم افزار جامع مدیریت املاک آراد";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -191,7 +191,7 @@
             // 
             this.lblMounth.AutoSize = true;
             this.lblMounth.Font = new System.Drawing.Font("B Yekan", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.lblMounth.Location = new System.Drawing.Point(13, 9);
+            this.lblMounth.Location = new System.Drawing.Point(43, 17);
             this.lblMounth.Name = "lblMounth";
             this.lblMounth.Size = new System.Drawing.Size(27, 17);
             this.lblMounth.TabIndex = 1;
@@ -201,7 +201,7 @@
             // 
             this.lblYear.AutoSize = true;
             this.lblYear.Font = new System.Drawing.Font("B Yekan", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.lblYear.Location = new System.Drawing.Point(13, 25);
+            this.lblYear.Location = new System.Drawing.Point(43, 33);
             this.lblYear.Name = "lblYear";
             this.lblYear.Size = new System.Drawing.Size(32, 17);
             this.lblYear.TabIndex = 1;
@@ -211,47 +211,17 @@
             // 
             this.lblDay.AutoSize = true;
             this.lblDay.Font = new System.Drawing.Font("B Yekan", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.lblDay.Location = new System.Drawing.Point(46, 11);
+            this.lblDay.Location = new System.Drawing.Point(76, 19);
             this.lblDay.Name = "lblDay";
             this.lblDay.Size = new System.Drawing.Size(35, 29);
             this.lblDay.TabIndex = 1;
             this.lblDay.Text = "25";
-            // 
-            // line3
-            // 
-            this.line3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.line3.BackColor = System.Drawing.Color.Transparent;
-            this.line3.Location = new System.Drawing.Point(160, 79);
-            this.line3.Name = "line3";
-            this.line3.Size = new System.Drawing.Size(410, 23);
-            this.line3.TabIndex = 0;
-            this.line3.Text = "line1";
-            this.line3.Thickness = 2;
-            // 
-            // lblNaqz
-            // 
-            this.lblNaqz.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblNaqz.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.lblNaqz.Location = new System.Drawing.Point(75, 55);
-            this.lblNaqz.Name = "lblNaqz";
-            this.lblNaqz.Size = new System.Drawing.Size(620, 29);
-            this.lblNaqz.TabIndex = 1;
-            this.lblNaqz.Text = "جمله قصار";
-            this.lblNaqz.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // timerSecond
             // 
             this.timerSecond.Enabled = true;
             this.timerSecond.Interval = 1000;
             this.timerSecond.Tick += new System.EventHandler(this.timerSecond_Tick);
-            // 
-            // TimerNaqz
-            // 
-            this.TimerNaqz.Enabled = true;
-            this.TimerNaqz.Interval = 300000;
-            this.TimerNaqz.Tick += new System.EventHandler(this.TimerNaqz_Tick);
             // 
             // lblEconomyName
             // 
@@ -363,18 +333,6 @@
             this.lblInfornation.Text = "امکانات برنامه";
             this.lblInfornation.MouseEnter += new System.EventHandler(this.lblInfornation_MouseEnter);
             this.lblInfornation.MouseLeave += new System.EventHandler(this.lblInfornation_MouseLeave);
-            // 
-            // line1
-            // 
-            this.line1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.line1.BackColor = System.Drawing.Color.Transparent;
-            this.line1.Location = new System.Drawing.Point(0, 43);
-            this.line1.Name = "line1";
-            this.line1.Size = new System.Drawing.Size(800, 23);
-            this.line1.TabIndex = 0;
-            this.line1.Text = "line1";
-            this.line1.Thickness = 2;
             // 
             // grpBaseInfo
             // 
@@ -1375,7 +1333,7 @@
             // 
             this.picSetting.Cursor = System.Windows.Forms.Cursors.Hand;
             this.picSetting.Image = global::RealState.Properties.Resources.settings;
-            this.picSetting.Location = new System.Drawing.Point(13, 79);
+            this.picSetting.Location = new System.Drawing.Point(4, 23);
             this.picSetting.Name = "picSetting";
             this.picSetting.Size = new System.Drawing.Size(29, 23);
             this.picSetting.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -1403,6 +1361,50 @@
             this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox5.TabIndex = 55764;
             this.pictureBox5.TabStop = false;
+            // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.Font = new System.Drawing.Font("B Titr", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.label1.Location = new System.Drawing.Point(696, 46);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(96, 29);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "سریال نرم افزار";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblSerial
+            // 
+            this.lblSerial.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblSerial.Font = new System.Drawing.Font("B Titr", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.lblSerial.Location = new System.Drawing.Point(548, 46);
+            this.lblSerial.Name = "lblSerial";
+            this.lblSerial.Size = new System.Drawing.Size(155, 29);
+            this.lblSerial.TabIndex = 1;
+            this.lblSerial.Text = "36525985625552";
+            this.lblSerial.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label2
+            // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label2.Font = new System.Drawing.Font("B Titr", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.label2.Location = new System.Drawing.Point(672, 21);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(120, 29);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "تاریخ اتمام پشتیبانی";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblExDate
+            // 
+            this.lblExDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblExDate.Font = new System.Drawing.Font("B Titr", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.lblExDate.Location = new System.Drawing.Point(581, 23);
+            this.lblExDate.Name = "lblExDate";
+            this.lblExDate.Size = new System.Drawing.Size(102, 29);
+            this.lblExDate.TabIndex = 1;
+            this.lblExDate.Text = "1402/05/12";
+            this.lblExDate.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // frmMain
             // 
@@ -1435,12 +1437,13 @@
             this.Controls.Add(this.lblMinute);
             this.Controls.Add(this.lblYear);
             this.Controls.Add(this.lblMounth);
-            this.Controls.Add(this.lblNaqz);
+            this.Controls.Add(this.lblExDate);
+            this.Controls.Add(this.lblSerial);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.lblDay);
             this.Controls.Add(this.lblHour);
-            this.Controls.Add(this.line1);
-            this.Controls.Add(this.line3);
             this.Controls.Add(this.pictureBox5);
             this.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -1486,11 +1489,8 @@
         private System.Windows.Forms.Label lblMounth;
         private System.Windows.Forms.Label lblYear;
         private System.Windows.Forms.Label lblDay;
-        private DevComponents.DotNetBar.Controls.Line line3;
-        private System.Windows.Forms.Label lblNaqz;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Timer timerSecond;
-        private System.Windows.Forms.Timer TimerNaqz;
         private System.Windows.Forms.Label lblEconomyName;
         private System.Windows.Forms.Label lblDbName;
         private System.Windows.Forms.Label lblVersion;
@@ -1504,7 +1504,6 @@
         private System.Windows.Forms.Label lblAccountiong;
         private System.Windows.Forms.PictureBox picInformation;
         private System.Windows.Forms.Label lblInfornation;
-        private DevComponents.DotNetBar.Controls.Line line1;
         private DevComponents.DotNetBar.Controls.GroupPanel grpBaseInfo;
         private System.Windows.Forms.Label lblBuildingType;
         private System.Windows.Forms.Label lblDocumentType;
@@ -1569,6 +1568,10 @@
         private DevComponents.DotNetBar.Controls.Line line23;
         private System.Windows.Forms.Label lblContract;
         private System.Windows.Forms.PictureBox pictureBox5;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblSerial;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblExDate;
     }
 }
 

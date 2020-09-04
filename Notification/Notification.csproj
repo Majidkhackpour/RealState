@@ -44,6 +44,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="clsNotification.cs" />
+    <Compile Include="frmNaqz.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmNaqz.Designer.cs">
+      <DependentUpon>frmNaqz.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmNotification.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -58,6 +64,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="frmNaqz.resx">
+      <DependentUpon>frmNaqz.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmNotification.resx">
       <DependentUpon>frmNotification.cs</DependentUpon>
     </EmbeddedResource>
