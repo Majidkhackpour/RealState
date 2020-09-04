@@ -82,7 +82,7 @@ namespace RealState
                 if (fDate < DateTime.Now)
                 {
                     //Expire Free Time
-                    MessageBox.Show("مهلت استفاده 10 روزه رایگاه شما از نرم افزار به اتمام رسیده است");
+                    MessageBox.Show("مهلت استفاده 10 روزه رایگان شما از نرم افزار به اتمام رسیده است");
                     var frm = new SoftwareLock.frmClient("", false);
                     if (frm.ShowDialog() != DialogResult.OK) return;
                 }
