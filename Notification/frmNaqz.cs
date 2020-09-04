@@ -41,7 +41,7 @@ namespace Notification
             {
                 x += 20;
                 var workingArea = Screen.GetWorkingArea(this);
-                Location = new Point(workingArea.Right - x, workingArea.Bottom - Size.Height - 10);
+                Location = new Point(workingArea.Right - x, workingArea.Bottom - Size.Height);
                 if (Location.X == workingArea.Right - Size.Width
                     || Location.X < workingArea.Right - Size.Width)
                     Styler.Stop();

@@ -97,11 +97,11 @@ namespace RealState
             lblSecond.Visible = true;
             SetClock();
             SetCalendar();
-            var naqz = await NaqzBussines.SetNaqz();
-            new frmNaqz(naqz).ShowDialog();
             SetButtomLables();
             var tt = new ToolTip();
             tt.SetToolTip(picSetting, "تنظیمات برنامه");
+            var naqz = await NaqzBussines.SetNaqz();
+            new frmNaqz(naqz).ShowDialog();
         }
         private void timerSecond_Tick(object sender, EventArgs e)
         {
