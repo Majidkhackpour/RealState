@@ -42,11 +42,8 @@
             this.lblNaqz = new System.Windows.Forms.Label();
             this.timerSecond = new System.Windows.Forms.Timer(this.components);
             this.TimerNaqz = new System.Windows.Forms.Timer(this.components);
-            this.label1 = new System.Windows.Forms.Label();
             this.lblEconomyName = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.lblCurrentUser = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
+            this.lblDbName = new System.Windows.Forms.Label();
             this.lblVersion = new System.Windows.Forms.Label();
             this.lblBaseInfo = new System.Windows.Forms.Label();
             this.lblBuildingInfo = new System.Windows.Forms.Label();
@@ -79,8 +76,10 @@
             this.lblBuildingAccType = new System.Windows.Forms.Label();
             this.lblPeoples = new System.Windows.Forms.Label();
             this.grpBuilding = new DevComponents.DotNetBar.Controls.GroupPanel();
+            this.line23 = new DevComponents.DotNetBar.Controls.Line();
             this.line9 = new DevComponents.DotNetBar.Controls.Line();
             this.line8 = new DevComponents.DotNetBar.Controls.Line();
+            this.lblContract = new System.Windows.Forms.Label();
             this.lblBuildingSearch = new System.Windows.Forms.Label();
             this.lblBuildingRequest = new System.Windows.Forms.Label();
             this.lblBuilding = new System.Windows.Forms.Label();
@@ -120,12 +119,8 @@
             this.picBuilding = new System.Windows.Forms.PictureBox();
             this.picBaseInfo = new System.Windows.Forms.PictureBox();
             this.picSetting = new System.Windows.Forms.PictureBox();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.lblContract = new System.Windows.Forms.Label();
-            this.line23 = new DevComponents.DotNetBar.Controls.Line();
+            this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.grpBaseInfo.SuspendLayout();
             this.grpBuilding.SuspendLayout();
             this.grpUsers.SuspendLayout();
@@ -137,10 +132,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.picBuilding)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBaseInfo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picSetting)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             this.SuspendLayout();
             // 
             // lblHour
@@ -260,75 +253,46 @@
             this.TimerNaqz.Interval = 300000;
             this.TimerNaqz.Tick += new System.EventHandler(this.TimerNaqz_Tick);
             // 
-            // label1
-            // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.label1.AutoSize = true;
-            this.label1.Cursor = System.Windows.Forms.Cursors.Default;
-            this.label1.Font = new System.Drawing.Font("B Yekan", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.label1.Location = new System.Drawing.Point(672, 579);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(84, 17);
-            this.label1.TabIndex = 12;
-            this.label1.Text = "نام واحد اقتصادی:";
-            // 
             // lblEconomyName
             // 
             this.lblEconomyName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblEconomyName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(146)))), ((int)(((byte)(112)))), ((int)(((byte)(50)))));
             this.lblEconomyName.Cursor = System.Windows.Forms.Cursors.Default;
-            this.lblEconomyName.Font = new System.Drawing.Font("B Yekan", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.lblEconomyName.Location = new System.Drawing.Point(562, 579);
+            this.lblEconomyName.Font = new System.Drawing.Font("B Titr", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.lblEconomyName.Location = new System.Drawing.Point(650, 648);
             this.lblEconomyName.Name = "lblEconomyName";
-            this.lblEconomyName.Size = new System.Drawing.Size(108, 17);
+            this.lblEconomyName.Size = new System.Drawing.Size(90, 17);
             this.lblEconomyName.TabIndex = 12;
             this.lblEconomyName.Text = "نام واحد اقتصادی:";
+            this.lblEconomyName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label3
+            // lblDbName
             // 
-            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.label3.AutoSize = true;
-            this.label3.Cursor = System.Windows.Forms.Cursors.Default;
-            this.label3.Font = new System.Drawing.Font("B Yekan", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.label3.Location = new System.Drawing.Point(471, 579);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(54, 17);
-            this.label3.TabIndex = 12;
-            this.label3.Text = "کاربر فعال:";
-            // 
-            // lblCurrentUser
-            // 
-            this.lblCurrentUser.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblCurrentUser.Cursor = System.Windows.Forms.Cursors.Default;
-            this.lblCurrentUser.Font = new System.Drawing.Font("B Yekan", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.lblCurrentUser.Location = new System.Drawing.Point(365, 579);
-            this.lblCurrentUser.Name = "lblCurrentUser";
-            this.lblCurrentUser.Size = new System.Drawing.Size(108, 17);
-            this.lblCurrentUser.TabIndex = 12;
-            this.lblCurrentUser.Text = "نام واحد اقتصادی:";
-            // 
-            // label5
-            // 
-            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.label5.AutoSize = true;
-            this.label5.Cursor = System.Windows.Forms.Cursors.Default;
-            this.label5.Font = new System.Drawing.Font("B Yekan", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.label5.Location = new System.Drawing.Point(268, 579);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(61, 17);
-            this.label5.TabIndex = 12;
-            this.label5.Text = "ورژن برنامه:";
+            this.lblDbName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblDbName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(94)))), ((int)(((byte)(94)))));
+            this.lblDbName.Cursor = System.Windows.Forms.Cursors.Default;
+            this.lblDbName.Font = new System.Drawing.Font("B Titr", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.lblDbName.Location = new System.Drawing.Point(472, 648);
+            this.lblDbName.Name = "lblDbName";
+            this.lblDbName.Size = new System.Drawing.Size(88, 17);
+            this.lblDbName.TabIndex = 12;
+            this.lblDbName.Text = "نام واحد اقتصادی:";
+            this.lblDbName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblVersion
             // 
             this.lblVersion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lblVersion.AutoSize = true;
+            this.lblVersion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(49)))), ((int)(((byte)(75)))));
             this.lblVersion.Cursor = System.Windows.Forms.Cursors.Default;
-            this.lblVersion.Font = new System.Drawing.Font("B Yekan", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.lblVersion.Location = new System.Drawing.Point(225, 579);
+            this.lblVersion.Font = new System.Drawing.Font("B Titr", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.lblVersion.ForeColor = System.Drawing.Color.White;
+            this.lblVersion.Location = new System.Drawing.Point(322, 646);
             this.lblVersion.Name = "lblVersion";
-            this.lblVersion.Size = new System.Drawing.Size(32, 17);
+            this.lblVersion.Size = new System.Drawing.Size(29, 20);
             this.lblVersion.TabIndex = 12;
             this.lblVersion.Text = "0000";
+            this.lblVersion.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblBaseInfo
             // 
@@ -790,6 +754,14 @@
             this.grpBuilding.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.grpBuilding.TabIndex = 55763;
             // 
+            // line23
+            // 
+            this.line23.Location = new System.Drawing.Point(8, 84);
+            this.line23.Name = "line23";
+            this.line23.Size = new System.Drawing.Size(127, 12);
+            this.line23.TabIndex = 55763;
+            this.line23.Text = "line4";
+            // 
             // line9
             // 
             this.line9.Location = new System.Drawing.Point(8, 53);
@@ -805,6 +777,21 @@
             this.line8.Size = new System.Drawing.Size(127, 12);
             this.line8.TabIndex = 55763;
             this.line8.Text = "line4";
+            // 
+            // lblContract
+            // 
+            this.lblContract.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblContract.AutoSize = true;
+            this.lblContract.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lblContract.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.lblContract.Location = new System.Drawing.Point(34, 94);
+            this.lblContract.Name = "lblContract";
+            this.lblContract.Size = new System.Drawing.Size(96, 20);
+            this.lblContract.TabIndex = 55762;
+            this.lblContract.Text = "مدیریت قولنامه ها";
+            this.lblContract.Click += new System.EventHandler(this.lblContract_Click);
+            this.lblContract.MouseEnter += new System.EventHandler(this.lblContract_MouseEnter);
+            this.lblContract.MouseLeave += new System.EventHandler(this.lblContract_MouseLeave);
             // 
             // lblBuildingSearch
             // 
@@ -1395,82 +1382,34 @@
             this.picSetting.TabIndex = 12;
             this.picSetting.TabStop = false;
             // 
-            // pictureBox4
-            // 
-            this.pictureBox4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox4.Cursor = System.Windows.Forms.Cursors.Default;
-            this.pictureBox4.Image = global::RealState.Properties.Resources.version;
-            this.pictureBox4.Location = new System.Drawing.Point(333, 576);
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(26, 20);
-            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox4.TabIndex = 12;
-            this.pictureBox4.TabStop = false;
-            // 
-            // pictureBox3
-            // 
-            this.pictureBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox3.Cursor = System.Windows.Forms.Cursors.Default;
-            this.pictureBox3.Image = global::RealState.Properties.Resources.customer;
-            this.pictureBox3.Location = new System.Drawing.Point(530, 576);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(26, 20);
-            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox3.TabIndex = 12;
-            this.pictureBox3.TabStop = false;
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox2.Cursor = System.Windows.Forms.Cursors.Default;
-            this.pictureBox2.Image = global::RealState.Properties.Resources.sell;
-            this.pictureBox2.Location = new System.Drawing.Point(758, 576);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(26, 20);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox2.TabIndex = 12;
-            this.pictureBox2.TabStop = false;
-            // 
             // pictureBox1
             // 
             this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.pictureBox1.Image = global::RealState.Properties.Resources.BackGroud_;
-            this.pictureBox1.Location = new System.Drawing.Point(0, 397);
+            this.pictureBox1.Location = new System.Drawing.Point(0, 466);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(196, 203);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 4;
             this.pictureBox1.TabStop = false;
             // 
-            // lblContract
+            // pictureBox5
             // 
-            this.lblContract.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblContract.AutoSize = true;
-            this.lblContract.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.lblContract.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.lblContract.Location = new System.Drawing.Point(34, 94);
-            this.lblContract.Name = "lblContract";
-            this.lblContract.Size = new System.Drawing.Size(96, 20);
-            this.lblContract.TabIndex = 55762;
-            this.lblContract.Text = "مدیریت قولنامه ها";
-            this.lblContract.Click += new System.EventHandler(this.lblContract_Click);
-            this.lblContract.MouseEnter += new System.EventHandler(this.lblContract_MouseEnter);
-            this.lblContract.MouseLeave += new System.EventHandler(this.lblContract_MouseLeave);
-            // 
-            // line23
-            // 
-            this.line23.Location = new System.Drawing.Point(8, 84);
-            this.line23.Name = "line23";
-            this.line23.Size = new System.Drawing.Size(127, 12);
-            this.line23.TabIndex = 55763;
-            this.line23.Text = "line4";
+            this.pictureBox5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBox5.Image = global::RealState.Properties.Resources.Untitled_11;
+            this.pictureBox5.Location = new System.Drawing.Point(287, 624);
+            this.pictureBox5.Name = "pictureBox5";
+            this.pictureBox5.Size = new System.Drawing.Size(513, 45);
+            this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox5.TabIndex = 55764;
+            this.pictureBox5.TabStop = false;
             // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(800, 600);
+            this.ClientSize = new System.Drawing.Size(800, 669);
             this.Controls.Add(this.grpInformation);
             this.Controls.Add(this.grpAccounting);
             this.Controls.Add(this.grpUsers);
@@ -1487,15 +1426,9 @@
             this.Controls.Add(this.picBuilding);
             this.Controls.Add(this.picBaseInfo);
             this.Controls.Add(this.lblVersion);
-            this.Controls.Add(this.lblCurrentUser);
+            this.Controls.Add(this.lblDbName);
             this.Controls.Add(this.lblEconomyName);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.picSetting);
-            this.Controls.Add(this.pictureBox4);
-            this.Controls.Add(this.pictureBox3);
-            this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.line2);
             this.Controls.Add(this.lblSecond);
@@ -1508,6 +1441,7 @@
             this.Controls.Add(this.lblHour);
             this.Controls.Add(this.line1);
             this.Controls.Add(this.line3);
+            this.Controls.Add(this.pictureBox5);
             this.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
@@ -1536,10 +1470,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.picBuilding)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBaseInfo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picSetting)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1559,14 +1491,8 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Timer timerSecond;
         private System.Windows.Forms.Timer TimerNaqz;
-        private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblEconomyName;
-        private System.Windows.Forms.PictureBox pictureBox3;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label lblCurrentUser;
-        private System.Windows.Forms.PictureBox pictureBox4;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label lblDbName;
         private System.Windows.Forms.Label lblVersion;
         private System.Windows.Forms.PictureBox picBaseInfo;
         private System.Windows.Forms.Label lblBaseInfo;
@@ -1642,6 +1568,7 @@
         private System.Windows.Forms.PictureBox picSetting;
         private DevComponents.DotNetBar.Controls.Line line23;
         private System.Windows.Forms.Label lblContract;
+        private System.Windows.Forms.PictureBox pictureBox5;
     }
 }
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Reflection;
 using System.Windows.Forms;
@@ -70,7 +71,8 @@ namespace RealState
             try
             {
                 lblEconomyName.Text = clsEconomyUnit.EconomyName;
-                lblCurrentUser.Text = clsUser.CurrentUser?.Name ?? "";
+                var cn = new SqlConnection(Settings.AppSettings.DefaultConnectionString);
+                lblDbName.Text = cn?.Database ?? "";
                 lblVersion.Text = Assembly.GetExecutingAssembly().GetName().Version.ToString();
             }
             catch (Exception ex)
