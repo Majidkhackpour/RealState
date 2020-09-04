@@ -36,6 +36,24 @@ namespace Settings.Classes
                 SettingsBussines.Save("AppVersion", _applicationVersion);
             }
         }
-        
+
+
+
+        private static string _hardDriveSerial = "";
+        public static string HardDriveSerial
+        {
+            get
+            {
+                if (!string.IsNullOrEmpty(_hardDriveSerial)) return _hardDriveSerial;
+                var mem = SettingsBussines.Get("U1001HS");
+                return mem == null ? "" : mem.Value;
+            }
+            set
+            {
+                _hardDriveSerial = value;
+                SettingsBussines.Save("U1001HS", _hardDriveSerial);
+            }
+        }
+
     }
 }

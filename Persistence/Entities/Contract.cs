@@ -14,6 +14,7 @@ namespace Persistence.Entities
         public bool IsTemp { get; set; }
         public Guid FirstSideGuid { get; set; }
         public Guid SecondSideGuid { get; set; }
+        public Guid BuildingGuid { get; set; }
         public Guid UserGuid { get; set; }
         public int? Term { get; set; }
         public DateTime? FromDate { get; set; }

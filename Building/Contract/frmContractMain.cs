@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -18,6 +21,8 @@ namespace Building.Contract
         private PeoplesBussines fSide;
         private PeoplesBussines sSide;
         private BuildingBussines building;
+        private decimal fPrice = 0, sPrice = 0;
+        readonly List<string> lstList = new List<string>();
         private void SetData()
         {
             try
@@ -25,9 +30,9 @@ namespace Building.Contract
                 LoadUsers();
                 LoadfSide();
                 LoadsSide();
-                LoadBuilding();
                 FillCmbPrice();
                 SetTxtPrice();
+                LoadBuilding();
                 FillCmbBabat();
 
                 txtCode.Text = cls?.Code.ToString();
@@ -48,6 +53,38 @@ namespace Building.Contract
 
                 txtDesc.Text = cls?.Description;
 
+                if (cls?.Finance != null)
+                {
+                    fPrice = (cls.Finance.FirstTotalPrice + cls.Finance.FirstAddedValue) -
+                            cls.Finance.FirstDiscount;
+
+                    sPrice = (cls.Finance.SecondTotalPrice + cls.Finance.SecondAddedValue) -
+                             cls.Finance.SecondDiscount;
+
+                    cmbfBabat.SelectedIndex = (int)cls?.Finance?.fBabat;
+                    cmbsBabat.SelectedIndex = (int)cls?.Finance?.sBabat;
+                }
+                else
+                {
+                    cmbfBabat.SelectedIndex = 0;
+                    cmbsBabat.SelectedIndex = 0;
+                }
+
+
+                fPanel.Controls.Clear();
+                lstList.Clear();
+                if (building?.GalleryList != null && building?.GalleryList.Count != 0)
+                {
+                    foreach (var image in building.GalleryList)
+                    {
+                        var a = Path.Combine(Application.StartupPath, "Images");
+                        var b = Path.Combine(a, image.ImageName + ".jpg");
+                        lstList.Add(b);
+                    }
+
+                    Make_Picture_Boxes(lstList);
+                }
+
 
                 if (cls?.Guid == Guid.Empty)
                 {
@@ -55,6 +92,8 @@ namespace Building.Contract
                     cmbUser.SelectedValue = clsUser.CurrentUser?.Guid;
                     cmbfBabat.SelectedIndex = 0;
                     cmbsBabat.SelectedIndex = 0;
+                    txtTerm.Text = "12";
+                    txtfDate.Text = Calendar.MiladiToShamsi(DateTime.Now);
                 }
             }
             catch (Exception ex)
@@ -124,91 +163,108 @@ namespace Building.Contract
                 lblMasahat.Text = building?.Masahat.ToString();
                 lblZirBana.Text = building?.ZirBana.ToString();
                 lblBuildingAddress.Text = building?.Address;
-                if (building?.SellPrice == 0)
+                if (cls.TotalPrice == 0 && cls.MinorPrice == 0)
                 {
-                    //Rahn
-                    lblfPrice.Text = building?.RahnPrice1.ToString("N0");
-                    lblsPrice.Text = building?.EjarePrice1.ToString("N0");
-
-                    if (building?.EjarePrice1 == 0)
-                    {
-                        txtEjare.Text = building?.EjarePrice1.ToString();
-                        cmbRahn1.SelectedIndex = 0;
-                    }
-                    if (building?.EjarePrice1 != 0)
-                    {
-                        if (building?.EjarePrice1 >= 10000 && building?.EjarePrice1 >= 9999)
-                        {
-                            txtEjare.Text = (building?.EjarePrice1 / 10000).ToString();
-                            cmbEjare.SelectedIndex = 0;
-                        }
-                        if (building?.EjarePrice1 >= 10000000 && building?.EjarePrice1 >= 9999999)
-                        {
-                            txtEjare.Text = (building?.EjarePrice1 / 10000000).ToString();
-                            cmbEjare.SelectedIndex = 1;
-                        }
-                        if (building?.EjarePrice1 >= 10000000000 && building?.EjarePrice1 >= 9999999999)
-                        {
-                            txtEjare.Text = (building?.EjarePrice1 / 10000000000).ToString();
-                            cmbEjare.SelectedIndex = 2;
-                        }
-                    }
-
-
-                    if (building?.RahnPrice1 == 0)
-                    {
-                        txtRahn.Text = building?.RahnPrice1.ToString();
-                        cmbRahn.SelectedIndex = 0;
-                    }
-                    if (building?.RahnPrice1 != 0)
-                    {
-                        if (building?.RahnPrice1 >= 10000 && building?.RahnPrice1 >= 9999)
-                        {
-                            txtRahn.Text = (building?.RahnPrice1 / 10000).ToString();
-                            cmbRahn.SelectedIndex = 0;
-                        }
-                        if (building?.RahnPrice1 >= 10000000 && building?.RahnPrice1 >= 9999999)
-                        {
-                            txtRahn.Text = (building?.RahnPrice1 / 10000000).ToString();
-                            cmbRahn.SelectedIndex = 1;
-                        }
-                        if (building?.RahnPrice1 >= 10000000000 && building?.RahnPrice1 >= 9999999999)
-                        {
-                            txtRahn.Text = (building?.RahnPrice1 / 10000000000).ToString();
-                            cmbRahn.SelectedIndex = 2;
-                        }
-                    }
-                }
-                else
-                {
-                    //Foroush
-                    lblfPrice.Text = building?.SellPrice.ToString("N0");
-                    lblsPrice.Text = "0";
-
                     if (building?.SellPrice == 0)
                     {
-                        txtSellPrice.Text = building?.SellPrice.ToString();
-                        cmbSellPrice.SelectedIndex = 0;
-                    }
-                    if (building?.SellPrice != 0)
-                    {
-                        if (building?.SellPrice >= 10000 && building?.SellPrice >= 9999)
+                        //Rahn
+                        lblfPrice.Text = building?.RahnPrice1.ToString("N0");
+                        lblsPrice.Text = building?.EjarePrice1.ToString("N0");
+
+                        if (building?.EjarePrice1 == 0)
                         {
-                            txtSellPrice.Text = (building?.SellPrice / 10000).ToString();
+                            txtEjare.Text = building?.EjarePrice1.ToString();
+                            cmbEjare.SelectedIndex = 0;
+                        }
+                        if (building?.EjarePrice1 != 0)
+                        {
+                            if (building?.EjarePrice1 >= 10000 && building?.EjarePrice1 >= 9999)
+                            {
+                                txtEjare.Text = (building?.EjarePrice1 / 10000).ToString();
+                                cmbEjare.SelectedIndex = 0;
+                            }
+                            if (building?.EjarePrice1 >= 10000000 && building?.EjarePrice1 >= 9999999)
+                            {
+                                txtEjare.Text = (building?.EjarePrice1 / 10000000).ToString();
+                                cmbEjare.SelectedIndex = 1;
+                            }
+                            if (building?.EjarePrice1 >= 10000000000 && building?.EjarePrice1 >= 9999999999)
+                            {
+                                txtEjare.Text = (building?.EjarePrice1 / 10000000000).ToString();
+                                cmbEjare.SelectedIndex = 2;
+                            }
+                        }
+
+
+                        if (building?.RahnPrice1 == 0)
+                        {
+                            txtRahn.Text = building?.RahnPrice1.ToString();
+                            cmbRahn.SelectedIndex = 0;
+                        }
+                        if (building?.RahnPrice1 != 0)
+                        {
+                            if (building?.RahnPrice1 >= 10000 && building?.RahnPrice1 >= 9999)
+                            {
+                                txtRahn.Text = (building?.RahnPrice1 / 10000).ToString();
+                                cmbRahn.SelectedIndex = 0;
+                            }
+                            if (building?.RahnPrice1 >= 10000000 && building?.RahnPrice1 >= 9999999)
+                            {
+                                txtRahn.Text = (building?.RahnPrice1 / 10000000).ToString();
+                                cmbRahn.SelectedIndex = 1;
+                            }
+                            if (building?.RahnPrice1 >= 10000000000 && building?.RahnPrice1 >= 9999999999)
+                            {
+                                txtRahn.Text = (building?.RahnPrice1 / 10000000000).ToString();
+                                cmbRahn.SelectedIndex = 2;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        //Foroush
+                        lblfPrice.Text = building?.SellPrice.ToString("N0");
+                        lblsPrice.Text = "0";
+
+                        if (building?.SellPrice == 0)
+                        {
+                            txtSellPrice.Text = building?.SellPrice.ToString();
                             cmbSellPrice.SelectedIndex = 0;
                         }
-                        if (building?.SellPrice >= 10000000 && building?.SellPrice >= 9999999)
+                        if (building?.SellPrice != 0)
                         {
-                            txtSellPrice.Text = (building?.SellPrice / 10000000).ToString();
-                            cmbSellPrice.SelectedIndex = 1;
-                        }
-                        if (building?.SellPrice >= 10000000000 && building?.SellPrice >= 9999999999)
-                        {
-                            txtSellPrice.Text = (building?.SellPrice / 10000000000).ToString();
-                            cmbSellPrice.SelectedIndex = 2;
+                            if (building?.SellPrice >= 10000 && building?.SellPrice >= 9999)
+                            {
+                                txtSellPrice.Text = (building?.SellPrice / 10000).ToString();
+                                cmbSellPrice.SelectedIndex = 0;
+                            }
+                            if (building?.SellPrice >= 10000000 && building?.SellPrice >= 9999999)
+                            {
+                                txtSellPrice.Text = (building?.SellPrice / 10000000).ToString();
+                                cmbSellPrice.SelectedIndex = 1;
+                            }
+                            if (building?.SellPrice >= 10000000000 && building?.SellPrice >= 9999999999)
+                            {
+                                txtSellPrice.Text = (building?.SellPrice / 10000000000).ToString();
+                                cmbSellPrice.SelectedIndex = 2;
+                            }
                         }
                     }
                 }
+
+
+                fPanel.Controls.Clear();
+                lstList.Clear();
+                if (building?.GalleryList == null || building.GalleryList.Count == 0) return;
+
+                foreach (var image in building.GalleryList)
+                {
+                    var a = Path.Combine(Application.StartupPath, "Images");
+                    var b = Path.Combine(a, image.ImageName + ".jpg");
+                    lstList.Add(b);
+                }
+
+                Make_Picture_Boxes(lstList);
             }
             catch (Exception ex)
             {
@@ -619,6 +675,9 @@ namespace Building.Contract
                     cmbfBabat.Items.Add(item.GetDisplay());
                     cmbsBabat.Items.Add(item.GetDisplay());
                 }
+
+                //cmbfBabat.SelectedIndex = 0;
+                //cmbsBabat.SelectedIndex = 0;
             }
             catch (Exception ex)
             {
@@ -630,6 +689,30 @@ namespace Building.Contract
             InitializeComponent();
             WindowState = FormWindowState.Maximized;
             cls = new ContractBussines();
+            superTabControl1.SelectedTab = superTabItem5;
+            superTabControl2.SelectedTab = superTabItem8;
+        }
+        public frmContractMain(Guid guid, bool isShowMode)
+        {
+            InitializeComponent();
+            WindowState = FormWindowState.Maximized;
+            cls = ContractBussines.Get(guid);
+            fSide = PeoplesBussines.Get(cls.FirstSideGuid);
+            sSide = PeoplesBussines.Get(cls.SecondSideGuid);
+            building = BuildingBussines.Get(cls.BuildingGuid);
+            superTabControl1.SelectedTab = superTabItem5;
+            superTabControl2.SelectedTab = superTabItem8;
+            superTabControlPanel1.Enabled = !isShowMode;
+            superTabControlPanel2.Enabled = !isShowMode;
+            superTabControlPanel3.Enabled = !isShowMode;
+            superTabControlPanel4.Enabled = !isShowMode;
+            superTabControlPanel5.Enabled = !isShowMode;
+            superTabControlPanel6.Enabled = !isShowMode;
+            superTabControlPanel7.Enabled = !isShowMode;
+            superTabControlPanel10.Enabled = !isShowMode;
+            superTabControlPanel8.Enabled = !isShowMode;
+            superTabControlPanel11.Enabled = !isShowMode;
+            btnFinish.Enabled = !isShowMode;
         }
 
         private void frmContractMain_Load(object sender, EventArgs e)
@@ -674,6 +757,12 @@ namespace Building.Contract
                 var frm = new frmShowBuildings(true);
                 if (frm.ShowDialog() != DialogResult.OK) return;
                 building = BuildingBussines.Get(frm.SelectedGuid);
+                if (building.BuildingStatus == EnBuildingStatus.Vagozar)
+                {
+                    frmNotification.PublicInfo.ShowMessage("این ملک در وضعین واگذار شده قرارداد و شما قادر به ثبت قرارداد برای این ملک نمی باشید");
+                    btnBuildingSearch.Focus();
+                    return;
+                }
                 LoadBuilding();
             }
             catch (Exception ex)
@@ -787,6 +876,7 @@ namespace Building.Contract
                 cls.UserGuid = (Guid)cmbUser.SelectedValue;
                 cls.FirstSideGuid = fSide.Guid;
                 cls.SecondSideGuid = sSide.Guid;
+                cls.BuildingGuid = building.Guid;
 
                 cls.Term = txtTerm.Text.ParseToInt();
                 cls.FromDate = Calendar.ShamsiToMiladi(txtfDate.Text);
@@ -831,7 +921,9 @@ namespace Building.Contract
                 cls.BankName = txtBankName.Text;
                 cls.SarResid = txtSarResid.Text;
                 cls.Shobe = txtShobe.Text;
-                cls.DischargeDate = Calendar.ShamsiToMiladi(txtDisCharge.Text);
+                cls.DischargeDate = string.IsNullOrEmpty(txtDisCharge.Text)
+                    ? DateTime.Now.AddYears(1)
+                    : Calendar.ShamsiToMiladi(txtDisCharge.Text);
                 cls.SetDocPlace = txtSetDocAddress.Text;
                 cls.SetDocDate = Calendar.ShamsiToMiladi(txtSetDocDate.Text);
 
@@ -852,7 +944,7 @@ namespace Building.Contract
                     cls.Delay = txtDelay.Text.ParseToDecimal() * 10000000000;
 
                 if (cls.Finance == null)
-                    cls.Finance = new ContractFinanceBussines {Guid = Guid.NewGuid()};
+                    cls.Finance = new ContractFinanceBussines { Guid = Guid.NewGuid() };
 
                 if (cmbfAddedValue.SelectedIndex == 0)
                     cls.Finance.FirstAddedValue = txtfAddedValue.Text.ParseToDecimal() * 10000;
@@ -900,6 +992,53 @@ namespace Building.Contract
                 cls.Finance.sBabat = (EnContractBabat)cmbsBabat.SelectedIndex;
                 cls.Finance.ConGuid = cls.Guid;
 
+                var fSidePrice = (cls.Finance.FirstTotalPrice + cls.Finance.FirstAddedValue) -
+                                 cls.Finance.FirstDiscount;
+                fSide.Account -= fPrice;
+                fSide.Account += fSidePrice;
+                await fSide.SaveAsync();
+
+                var sSidePrice = (cls.Finance.SecondTotalPrice + cls.Finance.SecondAddedValue) -
+                                cls.Finance.SecondDiscount;
+                sSide.Account -= sPrice;
+                sSide.Account += sSidePrice;
+                await sSide.SaveAsync();
+
+                var perGardesh = await GardeshHesabBussines.GetAllAsync(cls.Guid, true);
+                if (perGardesh != null && perGardesh.Count > 0)
+                    await GardeshHesabBussines.RemoveRangeAsync(perGardesh.Select(q => q.Guid).ToList());
+
+
+                var gardeshList = new List<GardeshHesabBussines>
+                {
+                    new GardeshHesabBussines()
+                    {
+                        Guid = Guid.NewGuid(),
+                        ParentGuid = cls.Guid,
+                        Babat = EnAccountBabat.InsContract,
+                        PeopleGuid = fSide.Guid,
+                        Price = fSidePrice,
+                        Type = EnAccountType.Bed,
+                        Description =
+                            $"عقد قرارداد به شماره {cls.Code} در تاریخ {Calendar.MiladiToShamsi(DateTime.Now)}"
+                    },
+                    new GardeshHesabBussines()
+                    {
+                        Guid = Guid.NewGuid(),
+                        ParentGuid = cls.Guid,
+                        Babat = EnAccountBabat.InsContract,
+                        PeopleGuid = sSide.Guid,
+                        Price = sSidePrice,
+                        Type = EnAccountType.Bed,
+                        Description =
+                            $"عقد قرارداد به شماره {cls.Code} در تاریخ {Calendar.MiladiToShamsi(DateTime.Now)}"
+                    }
+                };
+
+                await GardeshHesabBussines.SaveRangeAsync(gardeshList);
+
+                building.BuildingStatus = EnBuildingStatus.Vagozar;
+                await building.SaveAsync();
 
                 var res = await cls.SaveAsync();
                 if (res.HasError)
@@ -954,6 +1093,345 @@ namespace Building.Contract
         private void txtShobe_Leave(object sender, EventArgs e)
         {
             txtSetter.Follow(txtShobe);
+        }
+
+        private void txtfTotalPrice_ValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                SetFirstSallary();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private void cmbfTotalPrice_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                SetFirstSallary();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private void txtfDiscount_ValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                SetFirstSallary();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private void cmbfDiscount_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                SetFirstSallary();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private void txtfAddedValue_ValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                SetFirstSallary();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private void cmbfAddedValue_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                SetFirstSallary();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private void txtsTotalPrice_ValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                SetSecondSallary();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private void cmbsTotalPrice_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                SetSecondSallary();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private void txtsDiscount_ValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                SetSecondSallary();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private void cmbsDiscount_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                SetSecondSallary();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private void txtsAddedValue_ValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                SetSecondSallary();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private void cmbsAddedValue_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                SetSecondSallary();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+
+        private void SetFirstSallary()
+        {
+            try
+            {
+                decimal fTotal = 0, fDis = 0, fAdd = 0;
+
+                if (cmbfAddedValue.SelectedIndex == 0)
+                    fAdd = txtfAddedValue.Value.ToString().ParseToDecimal() * 10000;
+                if (cmbfAddedValue.SelectedIndex == 1)
+                    fAdd = txtfAddedValue.Value.ToString().ParseToDecimal() * 10000000;
+                if (cmbfAddedValue.SelectedIndex == 2)
+                    fAdd = txtfAddedValue.Value.ToString().ParseToDecimal() * 10000000000;
+
+                if (cmbfDiscount.SelectedIndex == 0)
+                    fDis = txtfDiscount.Value.ToString().ParseToDecimal() * 10000;
+                if (cmbfDiscount.SelectedIndex == 1)
+                    fDis = txtfDiscount.Value.ToString().ParseToDecimal() * 10000000;
+                if (cmbfDiscount.SelectedIndex == 2)
+                    fDis = txtfDiscount.Value.ToString().ParseToDecimal() * 10000000000;
+
+                if (cmbfTotalPrice.SelectedIndex == 0)
+                    fTotal = txtfTotalPrice.Value.ToString().ParseToDecimal() * 10000;
+                if (cmbfTotalPrice.SelectedIndex == 1)
+                    fTotal = txtfTotalPrice.Value.ToString().ParseToDecimal() * 10000000;
+                if (cmbfTotalPrice.SelectedIndex == 2)
+                    fTotal = txtfTotalPrice.Value.ToString().ParseToDecimal() * 10000000000;
+
+
+
+                lblfSallary.Text = (fTotal - fDis).ToString("N0") + " ریال";
+
+                lblfTotal.Text = ((fTotal + fAdd) - fDis).ToString("N0") + " ریال";
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private void SetSecondSallary()
+        {
+            try
+            {
+                decimal sTotal = 0, sDis = 0, sAdd = 0;
+
+                if (cmbsAddedValue.SelectedIndex == 0)
+                    sAdd = txtsAddedValue.Value.ToString().ParseToDecimal() * 10000;
+                if (cmbsAddedValue.SelectedIndex == 1)
+                    sAdd = txtsAddedValue.Value.ToString().ParseToDecimal() * 10000000;
+                if (cmbsAddedValue.SelectedIndex == 2)
+                    sAdd = txtsAddedValue.Value.ToString().ParseToDecimal() * 10000000000;
+
+                if (cmbsDiscount.SelectedIndex == 0)
+                    sDis = txtsDiscount.Value.ToString().ParseToDecimal() * 10000;
+                if (cmbsDiscount.SelectedIndex == 1)
+                    sDis = txtsDiscount.Value.ToString().ParseToDecimal() * 10000000;
+                if (cmbsDiscount.SelectedIndex == 2)
+                    sDis = txtsDiscount.Value.ToString().ParseToDecimal() * 10000000000;
+
+                if (cmbsTotalPrice.SelectedIndex == 0)
+                    sTotal = txtsTotalPrice.Value.ToString().ParseToDecimal() * 10000;
+                if (cmbsTotalPrice.SelectedIndex == 1)
+                    sTotal = txtsTotalPrice.Value.ToString().ParseToDecimal() * 10000000;
+                if (cmbsTotalPrice.SelectedIndex == 2)
+                    sTotal = txtsTotalPrice.Value.ToString().ParseToDecimal() * 10000000000;
+
+
+
+                lblsSallary.Text = (sTotal - sDis).ToString("N0") + " ریال";
+
+                lblsTotal.Text = ((sTotal + sAdd) - sDis).ToString("N0") + " ریال";
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private void txtfDate_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                SetMaxDate();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private void txtTerm_ValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                SetMaxDate();
+                SetFullPrice();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private void SetMaxDate()
+        {
+            try
+            {
+                var date = Calendar.ShamsiToMiladi(txtfDate.Text);
+                lblsDate.Text = Calendar.MiladiToShamsi(date.AddMonths((int)txtTerm.Value));
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private void txtEjare_ValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                SetFullPrice();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private void cmbEjare_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                SetFullPrice();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private void SetFullPrice()
+        {
+            try
+            {
+                decimal price = 0;
+
+                if (cmbEjare.SelectedIndex == 0)
+                    price = txtEjare.Text.ParseToDecimal() * 10000;
+                if (cmbEjare.SelectedIndex == 1)
+                    price = txtEjare.Text.ParseToDecimal() * 10000000;
+                if (cmbEjare.SelectedIndex == 2)
+                    price = txtEjare.Text.ParseToDecimal() * 10000000000;
+
+                lblEjareFull.Text = (price * txtTerm.Value).ToString("N0") + " ریال";
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private void Make_Picture_Boxes(List<string> lst)
+        {
+            try
+            {
+                if (lst == null || lst.Count == 0)
+                    return;
+                fPanel.AutoScroll = true;
+                for (var i = fPanel.Controls.Count - 1; i >= 0; i--)
+                    fPanel.Controls[i].Dispose();
+                for (var i = 0; i < lst.Count; i++)
+                {
+                    try
+                    {
+                        var picbox = new PictureBox();
+                        Controls.Add(picbox);
+                        picbox.Size = new Size(62, 63);
+                        picbox.Load(lst[i]);
+                        picbox.Name = "pic" + i;
+                        picbox.Cursor = Cursors.Hand;
+                        picbox.SizeMode = PictureBoxSizeMode.StretchImage;
+                        fPanel.Controls.Add(picbox);
+                    }
+                    catch (Exception)
+                    {
+                        lst.RemoveAt(i);
+                    }
+                }
+            }
+            catch (Exception exception)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(exception);
+            }
         }
     }
 }

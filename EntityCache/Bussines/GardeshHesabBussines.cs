@@ -169,5 +169,40 @@ namespace EntityCache.Bussines
 
             return res;
         }
+
+        public static async Task<List<GardeshHesabBussines>> GetAllAsync(Guid parentGuid, bool status) =>
+            await UnitOfWork.GardeshHesab.GetAllAsync(parentGuid, status);
+
+        public static async Task<ReturnedSaveFuncInfo> RemoveRangeAsync(List<Guid> list,
+            string tranName = "")
+        {
+            var res = new ReturnedSaveFuncInfo();
+            var autoTran = string.IsNullOrEmpty(tranName);
+            if (autoTran) tranName = Guid.NewGuid().ToString();
+            try
+            {
+                if (autoTran)
+                { //BeginTransaction
+                }
+
+                res.AddReturnedValue(await UnitOfWork.GardeshHesab.RemoveRangeAsync(list, tranName));
+                res.ThrowExceptionIfError();
+                if (autoTran)
+                {
+                    //CommitTransAction
+                }
+            }
+            catch (Exception ex)
+            {
+                if (autoTran)
+                {
+                    //RollBackTransAction
+                }
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+
+            return res;
+        }
     }
 }

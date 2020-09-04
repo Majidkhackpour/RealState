@@ -8,7 +8,7 @@
         {
             get
             {
-                var res = clsRegistery.GetRegistery("BuildingCn");
+                var res = clsRegistery.GetConnectionRegistery("BuildingCn");
                 _defCn = string.IsNullOrEmpty(res.value)
                     ? "data source=.;initial catalog=AradRealStatedb;integrated security=True;MultipleActiveResultSets=True;"
                     : res.value;

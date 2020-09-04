@@ -87,6 +87,7 @@
     <Compile Include="Entities\Simcard.cs" />
     <Compile Include="Entities\SmsPanels.cs" />
     <Compile Include="Entities\States.cs" />
+    <Compile Include="Entities\UserLog.cs" />
     <Compile Include="Entities\Users.cs" />
     <Compile Include="Migrations\202007131420071__1.cs" />
     <Compile Include="Migrations\202007131420071__1.designer.cs">
@@ -220,6 +221,14 @@
     <Compile Include="Migrations\202008301504276__33.designer.cs">
       <DependentUpon>202008301504276__33.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202008311553254__34.cs" />
+    <Compile Include="Migrations\202008311553254__34.designer.cs">
+      <DependentUpon>202008311553254__34.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202008311657026__35.cs" />
+    <Compile Include="Migrations\202008311657026__35.designer.cs">
+      <DependentUpon>202008311657026__35.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\ModelContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -337,6 +346,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202008301504276__33.resx">
       <DependentUpon>202008301504276__33.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202008311553254__34.resx">
+      <DependentUpon>202008311553254__34.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202008311657026__35.resx">
+      <DependentUpon>202008311657026__35.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

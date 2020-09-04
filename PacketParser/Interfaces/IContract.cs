@@ -8,6 +8,7 @@ namespace PacketParser.Interfaces
         bool IsTemp { get; set; }
         Guid FirstSideGuid { get; set; }
         Guid SecondSideGuid { get; set; }
+        Guid BuildingGuid { get; set; }
         Guid UserGuid { get; set; }
         int? Term { get; set; }
         DateTime? FromDate { get; set; }

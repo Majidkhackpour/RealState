@@ -9,5 +9,6 @@ namespace EntityCache.Core
     {
         Task<GardeshHesabBussines> GetAsync(Guid hesabGuid, Guid parentGuid, bool status);
         Task<List<GardeshHesabBussines>> GetAllAsync(Guid hesabGuid);
+        Task<List<GardeshHesabBussines>> GetAllAsync(Guid parentGuid, bool status);
     }
 }

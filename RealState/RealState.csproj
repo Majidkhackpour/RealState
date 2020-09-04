@@ -170,6 +170,10 @@
       <Project>{dcb5bde2-6238-422d-ad4e-f53afce9bf30}</Project>
       <Name>Services</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\SoftwareLock\SoftwareLock\SoftwareLock\SoftwareLock.csproj">
+      <Project>{00d987f6-802c-45e1-a81c-f12ff68265a2}</Project>
+      <Name>SoftwareLock</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Accounting\Accounting.csproj">
       <Project>{f8a06d7c-6061-47f7-8e50-7f4ecf100cda}</Project>
       <Name>Accounting</Name>

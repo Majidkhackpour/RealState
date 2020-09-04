@@ -20,6 +20,7 @@ namespace EntityCache.Bussines
         public Guid FirstSideGuid { get; set; }
         public string fName { get; set; }
         public Guid SecondSideGuid { get; set; }
+        public Guid BuildingGuid { get; set; }
         public Guid UserGuid { get; set; }
         public string UserName { get; set; }
         public string sName { get; set; }
@@ -31,7 +32,7 @@ namespace EntityCache.Bussines
         public string BankName { get; set; }
         public string Shobe { get; set; }
         public string SarResid { get; set; }
-        public DateTime DischargeDate { get; set; } = DateTime.Now.AddYears(1);
+        public DateTime DischargeDate { get; set; }
         public DateTime? SetDocDate { get; set; }
         public string SetDocPlace { get; set; }
         public decimal SarQofli { get; set; }
@@ -104,10 +105,13 @@ namespace EntityCache.Bussines
                 if (Finance != null)
                 {
                     var list = await ContractFinanceBussines.GetAsync(Guid, Status);
-                    res.AddReturnedValue(
-                        await UnitOfWork.ContractFinance.RemoveAsync(list.Guid,
-                            tranName));
-                    res.ThrowExceptionIfError();
+                    if (list != null)
+                    {
+                        res.AddReturnedValue(
+                            await UnitOfWork.ContractFinance.RemoveAsync(list.Guid,
+                                tranName));
+                        res.ThrowExceptionIfError();
+                    }
 
                     res.AddReturnedValue(
                         await UnitOfWork.ContractFinance.SaveAsync(Finance, tranName));
@@ -150,6 +154,16 @@ namespace EntityCache.Bussines
                     res.AddReturnedValue(
                         await Finance.ChangeStatusAsync(status, tranName));
                     res.ThrowExceptionIfError();
+                }
+
+                var gardeshList = await GardeshHesabBussines.GetAllAsync(Guid, !status);
+                if (gardeshList != null && gardeshList.Count > 0)
+                {
+                    foreach (var item in gardeshList)
+                    {
+                        res.AddReturnedValue(await item.ChangeStatusAsync(status));
+                        res.ThrowExceptionIfError();
+                    }
                 }
 
                 res.AddReturnedValue(await UnitOfWork.Contract.ChangeStatusAsync(this, status, tranName));

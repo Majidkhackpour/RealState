@@ -134,6 +134,7 @@
     <Compile Include="Bussines\SmsPanelsBussines.cs" />
     <Compile Include="Bussines\StatesBussines.cs" />
     <Compile Include="Bussines\UserBussines.cs" />
+    <Compile Include="Bussines\UserLogBussines.cs" />
     <Compile Include="Core\IAdvertiseLogRepository.cs" />
     <Compile Include="Core\IBuildingAccountTypeRepository.cs" />
     <Compile Include="Core\IBuildingConditionRepository.cs" />
@@ -167,6 +168,7 @@
     <Compile Include="Core\ISimcardRepository.cs" />
     <Compile Include="Core\ISmsPanelsRepository.cs" />
     <Compile Include="Core\IStatesRepository.cs" />
+    <Compile Include="Core\IUserLogRepository.cs" />
     <Compile Include="Core\IUsersRepository.cs" />
     <Compile Include="SqlServerPersistence\AdvertiseLogPersistenceRepository.cs" />
     <Compile Include="SqlServerPersistence\BuildingAccountTypePersistenceRepository.cs" />
@@ -202,6 +204,7 @@
     <Compile Include="SqlServerPersistence\SimcardPersistenceRepository.cs" />
     <Compile Include="SqlServerPersistence\SmsPanelsPersistenceRepository.cs" />
     <Compile Include="SqlServerPersistence\StatesPersistenceRepository.cs" />
+    <Compile Include="SqlServerPersistence\UserLogPersistenceRepository.cs" />
     <Compile Include="SqlServerPersistence\UsersPersistenceRepository.cs" />
     <Compile Include="ViewModels\BuildingViewModel.cs" />
   </ItemGroup>

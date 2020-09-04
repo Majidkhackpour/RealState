@@ -85,6 +85,7 @@
     <Compile Include="Interfaces\ISimcard.cs" />
     <Compile Include="Interfaces\ISmsPanels.cs" />
     <Compile Include="Interfaces\IStates.cs" />
+    <Compile Include="Interfaces\IUserLog.cs" />
     <Compile Include="Interfaces\IUsers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

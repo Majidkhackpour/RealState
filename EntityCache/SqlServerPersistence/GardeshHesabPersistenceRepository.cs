@@ -50,5 +50,21 @@ namespace EntityCache.SqlServerPersistence
                 return null;
             }
         }
+
+        public async Task<List<GardeshHesabBussines>> GetAllAsync(Guid parentGuid, bool status)
+        {
+            try
+            {
+                var acc = db.GardeshHesab.AsNoTracking()
+                    .Where(q => q.ParentGuid == parentGuid && q.Status == status).ToList();
+
+                return Mappings.Default.Map<List<GardeshHesabBussines>>(acc);
+            }
+            catch (Exception exception)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(exception);
+                return null;
+            }
+        }
     }
 }

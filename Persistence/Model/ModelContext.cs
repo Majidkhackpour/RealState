@@ -53,5 +53,6 @@ namespace Persistence.Model
         public virtual DbSet<Pardakht> Pardakht { get; set; }
         public virtual DbSet<Contract> Contract { get; set; }
         public virtual DbSet<ContractFinance> ContractFinance { get; set; }
+        public virtual DbSet<UserLog> UserLog { get; set; }
     }
 }

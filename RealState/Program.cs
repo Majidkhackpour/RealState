@@ -33,7 +33,9 @@ namespace RealState
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            var reg = clsRegistery.GetRegistery("BuildingCn");
+
+            //ConfigConnectionString
+            var reg = clsRegistery.GetConnectionRegistery("BuildingCn");
             if (string.IsNullOrEmpty(reg.value))
             {
                 var frm = new frmSetConnectionString(ENSource.Building, AppSettings.DefaultConnectionString);
@@ -41,10 +43,51 @@ namespace RealState
             }
 
 
-
+            //Config Cache
             ClsCache.Init(AppSettings.DefaultConnectionString);
             var color = Color.FromArgb(255, 192, 128);
             clsNotification.Init(color);
+
+            var free = clsRegistery.GetRegistery("U1008FD");
+            if (string.IsNullOrEmpty(free))
+            {
+                //Register
+                var serialNumber = clsRegistery.GetRegistery("U1001ML");
+                var codeHdd = SoftwareLock.GenerateActivationCodeClient.ActivationCode();
+                var codeDb = clsGlobalSetting.HardDriveSerial;
+                if (string.IsNullOrEmpty(codeDb))
+                {
+                    clsGlobalSetting.HardDriveSerial = codeHdd;
+                    codeDb = clsGlobalSetting.HardDriveSerial;
+                }
+
+                if (codeDb != codeHdd)
+                {
+                    var frm = new SoftwareLock.frmClient(serialNumber, true);
+                    if (frm.ShowDialog() != DialogResult.OK) return;
+                    serialNumber = clsRegistery.GetRegistery("U1001ML");
+                }
+
+                if (string.IsNullOrEmpty(serialNumber))
+                {
+                    var frm = new SoftwareLock.frmClient(serialNumber, true);
+                    if (frm.ShowDialog() != DialogResult.OK) return;
+                }
+
+            }
+            else
+            {
+                //10 Days Free
+                var fDate = free.ParseToDate();
+                if (fDate < DateTime.Now)
+                {
+                    //Expire Free Time
+                    MessageBox.Show("مهلت استفاده 10 روزه رایگاه شما از نرم افزار به اتمام رسیده است");
+                    var frm = new SoftwareLock.frmClient("", false);
+                    if (frm.ShowDialog() != DialogResult.OK) return;
+                }
+            }
+
 
             var currentVersion = AccGlobalSettings.AppVersion.ParseToInt();
             var dbVersion = clsGlobalSetting.ApplicationVersion.ParseToInt();
