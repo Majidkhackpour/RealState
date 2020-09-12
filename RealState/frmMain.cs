@@ -594,17 +594,6 @@ namespace RealState
         {
             lblHazine.ForeColor = Color.Black;
         }
-
-        private void lblUserReport_MouseEnter(object sender, EventArgs e)
-        {
-            lblUserReport.ForeColor = Color.Red;
-        }
-
-        private void lblUserReport_MouseLeave(object sender, EventArgs e)
-        {
-            lblUserReport.ForeColor = Color.Black;
-        }
-
         private void lblAccessLevel_MouseEnter(object sender, EventArgs e)
         {
             lblAccessLevel.ForeColor = Color.Red;
@@ -708,11 +697,6 @@ namespace RealState
         }
 
         private void lblAccessLevel_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lblUserReport_Click(object sender, EventArgs e)
         {
 
         }
@@ -826,17 +810,6 @@ namespace RealState
         {
             lblSendSms.ForeColor = Color.Black;
         }
-
-        private void lblSmsReport_MouseEnter(object sender, EventArgs e)
-        {
-            lblSmsReport.ForeColor = Color.Red;
-        }
-
-        private void lblSmsReport_MouseLeave(object sender, EventArgs e)
-        {
-            lblSmsReport.ForeColor = Color.Black;
-        }
-
         private void lblSimcard_MouseEnter(object sender, EventArgs e)
         {
             lblSimcard.ForeColor = Color.Red;
@@ -845,21 +818,6 @@ namespace RealState
         private void lblSimcard_MouseLeave(object sender, EventArgs e)
         {
             lblSimcard.ForeColor = Color.Black;
-        }
-
-        private void lblAdvertiseReport_MouseEnter(object sender, EventArgs e)
-        {
-            lblAdvertiseReport.ForeColor = Color.Red;
-        }
-
-        private void lblAdvertiseReport_MouseLeave(object sender, EventArgs e)
-        {
-            lblAdvertiseReport.ForeColor = Color.Black;
-        }
-
-        private void lblAdvertiseReport_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void lblSimcard_Click(object sender, EventArgs e)
@@ -875,10 +833,6 @@ namespace RealState
             }
         }
 
-        private void lblSmsReport_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void lblSendSms_Click(object sender, EventArgs e)
         {
@@ -961,6 +915,196 @@ namespace RealState
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
+        }
+
+        private void PicPeoples_Click(object sender, EventArgs e)
+        {
+            lblPeoples_Click(null, null);
+        }
+
+        private void picCity_Click(object sender, EventArgs e)
+        {
+            lblCities_Click(null, null);
+        }
+
+        private void picRegion_Click(object sender, EventArgs e)
+        {
+            lblRegions_Click(null, null);
+        }
+
+        private void picBuildingOption_Click(object sender, EventArgs e)
+        {
+            lblBuildingOptions_Click(null, null);
+        }
+
+        private void picBuildingAccType_Click(object sender, EventArgs e)
+        {
+            lblBuildingAccType_Click(null, null);
+        }
+
+        private void picFloor_Click(object sender, EventArgs e)
+        {
+            lblFloorCover_Click(null, null);
+        }
+
+        private void picKitchen_Click(object sender, EventArgs e)
+        {
+            lblKitchenService_Click(null, null);
+        }
+
+        private void picDocType_Click(object sender, EventArgs e)
+        {
+            lblDocumentType_Click(null, null);
+        }
+
+        private void picRental_Click(object sender, EventArgs e)
+        {
+            lblRental_Click(null, null);
+        }
+
+        private void picView_Click(object sender, EventArgs e)
+        {
+            lblBuildingView_Click(null, null);
+        }
+
+        private void picCondition_Click(object sender, EventArgs e)
+        {
+            lblBuildingCondition_Click(null, null);
+        }
+
+        private void picType_Click(object sender, EventArgs e)
+        {
+            lblBuildingType_Click(null, null);
+        }
+
+        private void picBuildingInfo_Click(object sender, EventArgs e)
+        {
+            lblBuilding_Click(null, null);
+        }
+
+        private void picBuildingSearch_Click(object sender, EventArgs e)
+        {
+            lblBuildingSearch_Click(null, null);
+        }
+
+        private void picRequest_Click(object sender, EventArgs e)
+        {
+            lblBuildingRequest_Click(null, null);
+        }
+
+        private void picContract_Click(object sender, EventArgs e)
+        {
+            lblContract_Click(null, null);
+        }
+
+        private void picUserMng_Click(object sender, EventArgs e)
+        {
+            lblUserMng_Click(null, null);
+        }
+
+        private void picAccessLevel_Click(object sender, EventArgs e)
+        {
+            lblAccessLevel_Click(null, null);
+        }
+
+        private void picHazine_Click(object sender, EventArgs e)
+        {
+            lblHazine_Click(null, null);
+        }
+
+        private void picAccPerformence_Click(object sender, EventArgs e)
+        {
+            lblAccountPerformence_Click(null, null);
+        }
+
+        private void picDaryaft_Click(object sender, EventArgs e)
+        {
+            lblReception_Click(null, null);
+        }
+
+        private void picPardakht_Click(object sender, EventArgs e)
+        {
+            lblPardakht_Click(null, null);
+        }
+
+        private void picSanad_Click(object sender, EventArgs e)
+        {
+            lblSanad_Click(null, null);
+        }
+
+        private void picBazsazi_Click(object sender, EventArgs e)
+        {
+            lblBazsazi_Click(null, null);
+        }
+
+        private void picPhoneBook_Click(object sender, EventArgs e)
+        {
+            lblPhoneBook_Click(null, null);
+        }
+
+        private void picPanel_Click(object sender, EventArgs e)
+        {
+            lblSmsPanel_Click(null, null);
+        }
+
+        private void picSms_Click(object sender, EventArgs e)
+        {
+            lblSendSms_Click(null, null);
+        }
+
+        private void picSimcard_Click(object sender, EventArgs e)
+        {
+            lblSimcard_Click(null, null);
+        }
+
+        private void lblDashBoard_MouseEnter(object sender, EventArgs e)
+        {
+            lblDashBoard.ForeColor = Color.Red;
+        }
+
+        private void lblDashBoard_MouseLeave(object sender, EventArgs e)
+        {
+            lblDashBoard.ForeColor = Color.Black;
+        }
+
+        private void lblSetting_MouseEnter(object sender, EventArgs e)
+        {
+            lblSetting.ForeColor = Color.Red;
+        }
+
+        private void lblSetting_MouseLeave(object sender, EventArgs e)
+        {
+            lblSetting.ForeColor = Color.Black;
+        }
+
+        private void lblBackUp_MouseEnter(object sender, EventArgs e)
+        {
+            lblDashBoard.ForeColor = Color.Red;
+        }
+
+        private void lblRestore_MouseLeave(object sender, EventArgs e)
+        {
+            lblRestore.ForeColor = Color.Black;
+        }
+
+        private void lblBackUp_MouseLeave(object sender, EventArgs e)
+        {
+            lblBackUp.ForeColor = Color.Black;
+        }
+
+        private void lblRestore_MouseEnter(object sender, EventArgs e)
+        {
+            lblBackUp.ForeColor = Color.Red;
+        }
+
+        private void lblErtegha_MouseEnter(object sender, EventArgs e)
+        {
+            lblErtegha.ForeColor = Color.Red;
+        }
+
+        private void lblErtegha_MouseLeave(object sender, EventArgs e)
+        {
+            lblErtegha.ForeColor = Color.Black;
         }
     }
 }
