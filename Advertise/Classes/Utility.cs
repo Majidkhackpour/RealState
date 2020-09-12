@@ -5,7 +5,6 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Net;
-using System.Net.Mime;
 using System.Net.NetworkInformation;
 using System.Net.Sockets;
 using System.Runtime.InteropServices;
@@ -211,29 +210,6 @@ namespace Advertise.Classes
             }
         }
 
-        public static async Task<bool> PingHost(string nameOrAddress)
-        {
-            var pingable = false;
-            Ping pinger = null;
-
-            try
-            {
-                pinger = new Ping();
-                var reply = pinger.Send(nameOrAddress);
-                pingable = reply?.Status == IPStatus.Success;
-            }
-            catch (PingException)
-            {
-                pingable = false;
-            }
-            finally
-            {
-                pinger?.Dispose();
-            }
-
-            return pingable;
-        }
-
         public static void ShowBalloon(string title, List<string> body)
         {
             var notifyIcon = new NotifyIcon { Visible = true, Icon = SystemIcons.Application };
@@ -255,10 +231,6 @@ namespace Advertise.Classes
                 notifyIcon.Dispose();
             }
         }
-
-
-
-
 
         private static List<string> lstMessage = new List<string>();
 

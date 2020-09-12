@@ -42,6 +42,7 @@ namespace EntityCache.Assistence
         private static IContractRepository _contractRepository;
         private static IContractFinanceRepository _contractFinanceRepository;
         private static IUserLogRepository _userLogRepository;
+        private static ISmsLogRepository _smsLogRepository;
 
         public static void Dispose() => db?.Dispose();
         public static void Set_Save() => db.SaveChanges();
@@ -194,6 +195,11 @@ namespace EntityCache.Assistence
         public static IUserLogRepository UserLog => _userLogRepository ??
                                                       (_userLogRepository =
                                                           new UserLogPersistenceRepository(db));
+
+
+        public static ISmsLogRepository SmsLog => _smsLogRepository ??
+                                                    (_smsLogRepository =
+                                                        new SmsLogPersistenceRepository(db));
 
     }
 }

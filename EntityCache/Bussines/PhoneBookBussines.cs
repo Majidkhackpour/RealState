@@ -19,6 +19,7 @@ namespace EntityCache.Bussines
         public EnPhoneBookGroup Group { get; set; }
         public string GroupName => Group.GetDisplay();
         public Guid ParentGuid { get; set; }
+        public bool IsChecked { get; set; }
 
 
         public static async Task<List<PhoneBookBussines>> GetAllAsync(Guid parentGuid, bool status) =>
@@ -79,7 +80,8 @@ namespace EntityCache.Bussines
                         if (!string.IsNullOrEmpty(item) && item.Trim() != "")
                         {
                             res = res.Where(x => x.Name.ToLower().Contains(item.ToLower()) ||
-                                                 x.Tell.ToLower().Contains(item.ToLower()) ||
+                                                 (!string.IsNullOrEmpty(x.Tell) &&
+                                                  x.Tell.ToLower().Contains(item.ToLower())) ||
                                                  x.GroupName.ToLower().Contains(item.ToLower()))
                                 ?.ToList();
                         }

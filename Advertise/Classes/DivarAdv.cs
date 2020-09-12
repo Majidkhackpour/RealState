@@ -57,13 +57,15 @@ namespace Advertise.Classes
             var counter = 0;
             try
             {
-                while (await Utility.PingHost("www.google.com") == false)
+                var res = await Utilities.PingHost("www.google.com");
+                while (res.HasError)
                 {
                     await Utility.Wait(10);
                     lstMessage.Clear();
                     lstMessage.Add("خطای اتصال به شبکه");
                     Utility.ShowBalloon("لطفا اتصال به شبکه را چک نمایید", lstMessage);
                     counter++;
+                    res = await Utilities.PingHost("www.google.com");
                 }
 
 
@@ -451,7 +453,7 @@ namespace Advertise.Classes
 
 
             //    getUrlertiseLogBusiness.Content = Adv.Content;
-                
+
 
             //    if (string.IsNullOrEmpty(getUrlertiseLogBusiness.Content)) return null;
 

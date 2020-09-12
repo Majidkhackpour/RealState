@@ -121,6 +121,7 @@
     <Compile Include="Classes\clsAdvertise.cs" />
     <Compile Include="Classes\clsEconomyUnit.cs" />
     <Compile Include="Classes\clsGlobalSetting.cs" />
+    <Compile Include="Classes\Payamak.cs" />
     <Compile Include="clsRegistery.cs" />
     <Compile Include="frmEconomyUnit.cs">
       <SubType>Form</SubType>

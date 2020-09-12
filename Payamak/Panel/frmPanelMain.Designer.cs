@@ -31,17 +31,13 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPanelMain));
             this.btnFinish = new DevComponents.DotNetBar.ButtonX();
             this.txtSender = new System.Windows.Forms.TextBox();
-            this.txtPassword = new System.Windows.Forms.TextBox();
-            this.txtUserName = new System.Windows.Forms.TextBox();
             this.txtName = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.btnCancel = new DevComponents.DotNetBar.ButtonX();
             this.grp = new DevComponents.DotNetBar.PanelEx();
-            this.label3 = new System.Windows.Forms.Label();
             this.txtApi = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.grp.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -65,32 +61,12 @@
             // 
             // txtSender
             // 
-            this.txtSender.Location = new System.Drawing.Point(22, 140);
+            this.txtSender.Location = new System.Drawing.Point(22, 62);
             this.txtSender.Name = "txtSender";
             this.txtSender.Size = new System.Drawing.Size(330, 27);
             this.txtSender.TabIndex = 3;
             this.txtSender.Enter += new System.EventHandler(this.txtSender_Enter);
             this.txtSender.Leave += new System.EventHandler(this.txtSender_Leave);
-            // 
-            // txtPassword
-            // 
-            this.txtPassword.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.txtPassword.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.txtPassword.Location = new System.Drawing.Point(22, 104);
-            this.txtPassword.Name = "txtPassword";
-            this.txtPassword.Size = new System.Drawing.Size(330, 27);
-            this.txtPassword.TabIndex = 2;
-            this.txtPassword.Enter += new System.EventHandler(this.txtPassword_Enter);
-            this.txtPassword.Leave += new System.EventHandler(this.txtPassword_Leave);
-            // 
-            // txtUserName
-            // 
-            this.txtUserName.Location = new System.Drawing.Point(22, 65);
-            this.txtUserName.Name = "txtUserName";
-            this.txtUserName.Size = new System.Drawing.Size(330, 27);
-            this.txtUserName.TabIndex = 1;
-            this.txtUserName.Enter += new System.EventHandler(this.txtUserName_Enter);
-            this.txtUserName.Leave += new System.EventHandler(this.txtUserName_Leave);
             // 
             // txtName
             // 
@@ -105,31 +81,11 @@
             // 
             this.label8.AutoSize = true;
             this.label8.BackColor = System.Drawing.Color.Transparent;
-            this.label8.Location = new System.Drawing.Point(351, 143);
+            this.label8.Location = new System.Drawing.Point(351, 65);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(100, 20);
             this.label8.TabIndex = 1;
             this.label8.Text = "شماره خط فرستنده";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Location = new System.Drawing.Point(393, 68);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(58, 20);
-            this.label2.TabIndex = 5;
-            this.label2.Text = "نام کاربری";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.BackColor = System.Drawing.Color.Transparent;
-            this.label6.Location = new System.Drawing.Point(400, 107);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(51, 20);
-            this.label6.TabIndex = 6;
-            this.label6.Text = "رمز عبور";
             // 
             // label1
             // 
@@ -166,13 +122,9 @@
             this.grp.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.grp.Controls.Add(this.txtApi);
             this.grp.Controls.Add(this.txtSender);
-            this.grp.Controls.Add(this.txtPassword);
-            this.grp.Controls.Add(this.txtUserName);
             this.grp.Controls.Add(this.label3);
             this.grp.Controls.Add(this.txtName);
             this.grp.Controls.Add(this.label8);
-            this.grp.Controls.Add(this.label2);
-            this.grp.Controls.Add(this.label6);
             this.grp.Controls.Add(this.label1);
             this.grp.DisabledBackColor = System.Drawing.Color.Empty;
             this.grp.Location = new System.Drawing.Point(8, 37);
@@ -189,26 +141,26 @@
             this.grp.Style.GradientAngle = 90;
             this.grp.TabIndex = 0;
             // 
+            // txtApi
+            // 
+            this.txtApi.Location = new System.Drawing.Point(22, 95);
+            this.txtApi.Multiline = true;
+            this.txtApi.Name = "txtApi";
+            this.txtApi.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtApi.Size = new System.Drawing.Size(330, 228);
+            this.txtApi.TabIndex = 4;
+            this.txtApi.Enter += new System.EventHandler(this.txtApi_Enter);
+            this.txtApi.Leave += new System.EventHandler(this.txtApi_Leave);
+            // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.Transparent;
-            this.label3.Location = new System.Drawing.Point(367, 176);
+            this.label3.Location = new System.Drawing.Point(367, 98);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(84, 20);
             this.label3.TabIndex = 1;
             this.label3.Text = "WebService";
-            // 
-            // txtApi
-            // 
-            this.txtApi.Location = new System.Drawing.Point(22, 173);
-            this.txtApi.Multiline = true;
-            this.txtApi.Name = "txtApi";
-            this.txtApi.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtApi.Size = new System.Drawing.Size(330, 150);
-            this.txtApi.TabIndex = 4;
-            this.txtApi.Enter += new System.EventHandler(this.txtApi_Enter);
-            this.txtApi.Leave += new System.EventHandler(this.txtApi_Leave);
             // 
             // frmPanelMain
             // 
@@ -240,12 +192,8 @@
 
         private DevComponents.DotNetBar.ButtonX btnFinish;
         private System.Windows.Forms.TextBox txtSender;
-        private System.Windows.Forms.TextBox txtPassword;
-        private System.Windows.Forms.TextBox txtUserName;
         private System.Windows.Forms.TextBox txtName;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label1;
         private DevComponents.DotNetBar.ButtonX btnCancel;
         private DevComponents.DotNetBar.PanelEx grp;

@@ -223,5 +223,72 @@ namespace Payamak.Panel
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
+
+        private void btnDef_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (DGrid.RowCount <= 0) return;
+                if (DGrid.CurrentRow == null) return;
+                var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
+
+                Settings.Classes.Payamak.DefaultPanelGuid = guid.ToString();
+
+                frmNotification.PublicInfo.ShowMessage("پنل پیش فرض با موفقیت تغییر کرد");
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private async void btnRemain_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (DGrid.RowCount <= 0) return;
+                if (DGrid.CurrentRow == null) return;
+
+                var ret = await Utilities.PingHost("www.google.com");
+                if (ret.HasError)
+                {
+                    frmNotification.PublicInfo.ShowMessage(ret.ErrorMessage);
+                    return;
+                }
+
+
+                var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
+                var panel = await SmsPanelsBussines.GetAsync(guid);
+                if (panel == null) return;
+
+                var api = new Sms.Api(panel.API.Trim());
+                var res = api.AccountInfo();
+
+                MessageBox.Show($"مانده حساب پنل {panel.Name} {res.RemainCredit} ریال می باشد");
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private void btnLog_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (DGrid.RowCount <= 0) return;
+                if (DGrid.CurrentRow == null) return;
+                var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
+                var panel = SmsPanelsBussines.Get(guid);
+                if (panel == null) return;
+
+                var frm = new frmSmsLog(panel);
+                frm.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
     }
 }

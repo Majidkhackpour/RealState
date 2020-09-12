@@ -26,6 +26,7 @@ using EntityCache.Bussines;
 using Ertegha;
 using MetroFramework.Forms;
 using Notification;
+using Payamak;
 using Payamak.Panel;
 using Payamak.PhoneBook;
 using Peoples;
@@ -881,7 +882,15 @@ namespace RealState
 
         private void lblSendSms_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                var frm = new frmSendSms();
+                frm.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
         }
 
         private void lblSmsPanel_Click(object sender, EventArgs e)

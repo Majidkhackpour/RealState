@@ -208,6 +208,7 @@ namespace EntityCache.Bussines
         public static async Task<bool> CheckCodeAsync(string code, Guid guid) =>
             await UnitOfWork.Peoples.CheckCodeAsync(code, guid);
 
+        public static bool CheckCode(string code, Guid guid) => AsyncContext.Run(() => CheckCodeAsync(code, guid));
         public static async Task<List<PeoplesBussines>> GetAllAsync(string search, Guid groupGuid)
         {
             try
@@ -242,5 +243,10 @@ namespace EntityCache.Bussines
 
         public static List<PeoplesBussines> GetAll(string search, Guid groupGuid) =>
             AsyncContext.Run(() => GetAllAsync(search, groupGuid));
+
+        public static async Task<bool> CheckNameAsync(string name) =>
+            await UnitOfWork.Peoples.CheckNameAsync(name);
+
+        public static bool CheckName(string name) => AsyncContext.Run(() => CheckNameAsync(name));
     }
 }

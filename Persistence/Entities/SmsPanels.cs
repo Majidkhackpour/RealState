@@ -13,10 +13,6 @@ namespace Persistence.Entities
         [MaxLength(200)]
         public string Name { get; set; }
         [MaxLength(200)]
-        public string UserName { get; set; }
-        [MaxLength(200)]
-        public string Password { get; set; }
-        [MaxLength(200)]
         public string Sender { get; set; }
         public string API { get; set; }
     }

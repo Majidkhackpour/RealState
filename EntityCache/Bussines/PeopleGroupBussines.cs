@@ -135,6 +135,8 @@ namespace EntityCache.Bussines
         public static async Task<PeopleGroupBussines> GetAsync(string name) =>
             await UnitOfWork.PeopleGroup.GetAsync(name);
 
+        public static PeopleGroupBussines Get(string name) => AsyncContext.Run(() => GetAsync(name));
+
         public static async Task<int> ChildCountAsync(Guid guid) => await UnitOfWork.PeopleGroup.ChildCountAsync(guid);
     }
 }

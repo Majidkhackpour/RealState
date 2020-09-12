@@ -39,21 +39,6 @@
             this.line1 = new DevComponents.DotNetBar.Controls.Line();
             this.DGrid = new DevComponents.DotNetBar.Controls.DataGridViewX();
             this.dgRadif = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.trvGroup = new System.Windows.Forms.TreeView();
-            this.btnView = new DevComponents.DotNetBar.ButtonX();
-            this.btnChangeStatus = new DevComponents.DotNetBar.ButtonX();
-            this.btnDelete = new DevComponents.DotNetBar.ButtonX();
-            this.btnInsert = new DevComponents.DotNetBar.ButtonX();
-            this.btnEdit = new DevComponents.DotNetBar.ButtonX();
-            this.btnGroups = new DevComponents.DotNetBar.ButtonX();
-            this.btnInsGroup = new DevComponents.DotNetBar.ButtonItem();
-            this.btnUpGroup = new DevComponents.DotNetBar.ButtonItem();
-            this.btnDelGroup = new DevComponents.DotNetBar.ButtonItem();
-            this.btnOther = new DevComponents.DotNetBar.ButtonX();
-            this.btnTell = new DevComponents.DotNetBar.ButtonItem();
-            this.btnBank = new DevComponents.DotNetBar.ButtonItem();
-            this.btnSendSMS = new DevComponents.DotNetBar.ButtonItem();
-            this.btnSelect = new DevComponents.DotNetBar.ButtonX();
             this.codeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgGuid = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -69,6 +54,23 @@
             this.postalCodeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupGuidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.peopleBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.trvGroup = new System.Windows.Forms.TreeView();
+            this.btnView = new DevComponents.DotNetBar.ButtonX();
+            this.btnChangeStatus = new DevComponents.DotNetBar.ButtonX();
+            this.btnDelete = new DevComponents.DotNetBar.ButtonX();
+            this.btnInsert = new DevComponents.DotNetBar.ButtonX();
+            this.btnEdit = new DevComponents.DotNetBar.ButtonX();
+            this.btnGroups = new DevComponents.DotNetBar.ButtonX();
+            this.btnInsGroup = new DevComponents.DotNetBar.ButtonItem();
+            this.btnUpGroup = new DevComponents.DotNetBar.ButtonItem();
+            this.btnDelGroup = new DevComponents.DotNetBar.ButtonItem();
+            this.btnOther = new DevComponents.DotNetBar.ButtonX();
+            this.btnTell = new DevComponents.DotNetBar.ButtonItem();
+            this.btnBank = new DevComponents.DotNetBar.ButtonItem();
+            this.btnSendSMS = new DevComponents.DotNetBar.ButtonItem();
+            this.btnIpmortFromExcel = new DevComponents.DotNetBar.ButtonItem();
+            this.btnExportToExcel = new DevComponents.DotNetBar.ButtonItem();
+            this.btnSelect = new DevComponents.DotNetBar.ButtonX();
             this.groupBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.peopleBindingSource)).BeginInit();
@@ -192,6 +194,121 @@
             this.dgRadif.Name = "dgRadif";
             this.dgRadif.ReadOnly = true;
             this.dgRadif.Width = 50;
+            // 
+            // codeDataGridViewTextBoxColumn
+            // 
+            this.codeDataGridViewTextBoxColumn.DataPropertyName = "Code";
+            this.codeDataGridViewTextBoxColumn.HeaderText = "کد";
+            this.codeDataGridViewTextBoxColumn.Name = "codeDataGridViewTextBoxColumn";
+            this.codeDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // dgName
+            // 
+            this.dgName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dgName.DataPropertyName = "Name";
+            this.dgName.HeaderText = "عنوان";
+            this.dgName.Name = "dgName";
+            this.dgName.ReadOnly = true;
+            // 
+            // dgGuid
+            // 
+            this.dgGuid.DataPropertyName = "Guid";
+            this.dgGuid.HeaderText = "Guid";
+            this.dgGuid.Name = "dgGuid";
+            this.dgGuid.ReadOnly = true;
+            this.dgGuid.Visible = false;
+            // 
+            // modifiedDataGridViewTextBoxColumn
+            // 
+            this.modifiedDataGridViewTextBoxColumn.DataPropertyName = "Modified";
+            this.modifiedDataGridViewTextBoxColumn.HeaderText = "Modified";
+            this.modifiedDataGridViewTextBoxColumn.Name = "modifiedDataGridViewTextBoxColumn";
+            this.modifiedDataGridViewTextBoxColumn.ReadOnly = true;
+            this.modifiedDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // statusDataGridViewCheckBoxColumn
+            // 
+            this.statusDataGridViewCheckBoxColumn.DataPropertyName = "Status";
+            this.statusDataGridViewCheckBoxColumn.HeaderText = "Status";
+            this.statusDataGridViewCheckBoxColumn.Name = "statusDataGridViewCheckBoxColumn";
+            this.statusDataGridViewCheckBoxColumn.ReadOnly = true;
+            this.statusDataGridViewCheckBoxColumn.Visible = false;
+            // 
+            // nationalCodeDataGridViewTextBoxColumn
+            // 
+            this.nationalCodeDataGridViewTextBoxColumn.DataPropertyName = "NationalCode";
+            this.nationalCodeDataGridViewTextBoxColumn.HeaderText = "NationalCode";
+            this.nationalCodeDataGridViewTextBoxColumn.Name = "nationalCodeDataGridViewTextBoxColumn";
+            this.nationalCodeDataGridViewTextBoxColumn.ReadOnly = true;
+            this.nationalCodeDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // idCodeDataGridViewTextBoxColumn
+            // 
+            this.idCodeDataGridViewTextBoxColumn.DataPropertyName = "IdCode";
+            this.idCodeDataGridViewTextBoxColumn.HeaderText = "IdCode";
+            this.idCodeDataGridViewTextBoxColumn.Name = "idCodeDataGridViewTextBoxColumn";
+            this.idCodeDataGridViewTextBoxColumn.ReadOnly = true;
+            this.idCodeDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // fatherNameDataGridViewTextBoxColumn
+            // 
+            this.fatherNameDataGridViewTextBoxColumn.DataPropertyName = "FatherName";
+            this.fatherNameDataGridViewTextBoxColumn.HeaderText = "FatherName";
+            this.fatherNameDataGridViewTextBoxColumn.Name = "fatherNameDataGridViewTextBoxColumn";
+            this.fatherNameDataGridViewTextBoxColumn.ReadOnly = true;
+            this.fatherNameDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // placeBirthDataGridViewTextBoxColumn
+            // 
+            this.placeBirthDataGridViewTextBoxColumn.DataPropertyName = "PlaceBirth";
+            this.placeBirthDataGridViewTextBoxColumn.HeaderText = "PlaceBirth";
+            this.placeBirthDataGridViewTextBoxColumn.Name = "placeBirthDataGridViewTextBoxColumn";
+            this.placeBirthDataGridViewTextBoxColumn.ReadOnly = true;
+            this.placeBirthDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // dateBirthDataGridViewTextBoxColumn
+            // 
+            this.dateBirthDataGridViewTextBoxColumn.DataPropertyName = "DateBirth";
+            this.dateBirthDataGridViewTextBoxColumn.HeaderText = "DateBirth";
+            this.dateBirthDataGridViewTextBoxColumn.Name = "dateBirthDataGridViewTextBoxColumn";
+            this.dateBirthDataGridViewTextBoxColumn.ReadOnly = true;
+            this.dateBirthDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // addressDataGridViewTextBoxColumn
+            // 
+            this.addressDataGridViewTextBoxColumn.DataPropertyName = "Address";
+            this.addressDataGridViewTextBoxColumn.HeaderText = "Address";
+            this.addressDataGridViewTextBoxColumn.Name = "addressDataGridViewTextBoxColumn";
+            this.addressDataGridViewTextBoxColumn.ReadOnly = true;
+            this.addressDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // issuedFromDataGridViewTextBoxColumn
+            // 
+            this.issuedFromDataGridViewTextBoxColumn.DataPropertyName = "IssuedFrom";
+            this.issuedFromDataGridViewTextBoxColumn.HeaderText = "IssuedFrom";
+            this.issuedFromDataGridViewTextBoxColumn.Name = "issuedFromDataGridViewTextBoxColumn";
+            this.issuedFromDataGridViewTextBoxColumn.ReadOnly = true;
+            this.issuedFromDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // postalCodeDataGridViewTextBoxColumn
+            // 
+            this.postalCodeDataGridViewTextBoxColumn.DataPropertyName = "PostalCode";
+            this.postalCodeDataGridViewTextBoxColumn.HeaderText = "PostalCode";
+            this.postalCodeDataGridViewTextBoxColumn.Name = "postalCodeDataGridViewTextBoxColumn";
+            this.postalCodeDataGridViewTextBoxColumn.ReadOnly = true;
+            this.postalCodeDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // groupGuidDataGridViewTextBoxColumn
+            // 
+            this.groupGuidDataGridViewTextBoxColumn.DataPropertyName = "GroupGuid";
+            this.groupGuidDataGridViewTextBoxColumn.HeaderText = "GroupGuid";
+            this.groupGuidDataGridViewTextBoxColumn.Name = "groupGuidDataGridViewTextBoxColumn";
+            this.groupGuidDataGridViewTextBoxColumn.ReadOnly = true;
+            this.groupGuidDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // peopleBindingSource
+            // 
+            this.peopleBindingSource.DataSource = typeof(EntityCache.Bussines.PeoplesBussines);
             // 
             // trvGroup
             // 
@@ -361,7 +478,9 @@
             this.btnOther.SubItems.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.btnTell,
             this.btnBank,
-            this.btnSendSMS});
+            this.btnSendSMS,
+            this.btnIpmortFromExcel,
+            this.btnExportToExcel});
             this.btnOther.TabIndex = 55756;
             this.btnOther.Text = "سایر";
             this.btnOther.TextAlignment = DevComponents.DotNetBar.eButtonTextAlignment.Left;
@@ -388,6 +507,18 @@
             this.btnSendSMS.Text = "ارسال پیامک";
             this.btnSendSMS.Click += new System.EventHandler(this.btnSendSMS_Click);
             // 
+            // btnIpmortFromExcel
+            // 
+            this.btnIpmortFromExcel.Name = "btnIpmortFromExcel";
+            this.btnIpmortFromExcel.Text = "دریافت داده ها از فایل اکسل";
+            this.btnIpmortFromExcel.Click += new System.EventHandler(this.btnIpmortFromExcel_Click);
+            // 
+            // btnExportToExcel
+            // 
+            this.btnExportToExcel.Name = "btnExportToExcel";
+            this.btnExportToExcel.Text = "ارسال داده ها به فایل اکسل";
+            this.btnExportToExcel.Click += new System.EventHandler(this.btnExportToExcel_Click);
+            // 
             // btnSelect
             // 
             this.btnSelect.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
@@ -407,121 +538,6 @@
             this.btnSelect.Text = "انتخاب";
             this.btnSelect.TextColor = System.Drawing.Color.White;
             this.btnSelect.Click += new System.EventHandler(this.btnSelect_Click);
-            // 
-            // codeDataGridViewTextBoxColumn
-            // 
-            this.codeDataGridViewTextBoxColumn.DataPropertyName = "Code";
-            this.codeDataGridViewTextBoxColumn.HeaderText = "کد";
-            this.codeDataGridViewTextBoxColumn.Name = "codeDataGridViewTextBoxColumn";
-            this.codeDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // dgName
-            // 
-            this.dgName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dgName.DataPropertyName = "Name";
-            this.dgName.HeaderText = "عنوان";
-            this.dgName.Name = "dgName";
-            this.dgName.ReadOnly = true;
-            // 
-            // dgGuid
-            // 
-            this.dgGuid.DataPropertyName = "Guid";
-            this.dgGuid.HeaderText = "Guid";
-            this.dgGuid.Name = "dgGuid";
-            this.dgGuid.ReadOnly = true;
-            this.dgGuid.Visible = false;
-            // 
-            // modifiedDataGridViewTextBoxColumn
-            // 
-            this.modifiedDataGridViewTextBoxColumn.DataPropertyName = "Modified";
-            this.modifiedDataGridViewTextBoxColumn.HeaderText = "Modified";
-            this.modifiedDataGridViewTextBoxColumn.Name = "modifiedDataGridViewTextBoxColumn";
-            this.modifiedDataGridViewTextBoxColumn.ReadOnly = true;
-            this.modifiedDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // statusDataGridViewCheckBoxColumn
-            // 
-            this.statusDataGridViewCheckBoxColumn.DataPropertyName = "Status";
-            this.statusDataGridViewCheckBoxColumn.HeaderText = "Status";
-            this.statusDataGridViewCheckBoxColumn.Name = "statusDataGridViewCheckBoxColumn";
-            this.statusDataGridViewCheckBoxColumn.ReadOnly = true;
-            this.statusDataGridViewCheckBoxColumn.Visible = false;
-            // 
-            // nationalCodeDataGridViewTextBoxColumn
-            // 
-            this.nationalCodeDataGridViewTextBoxColumn.DataPropertyName = "NationalCode";
-            this.nationalCodeDataGridViewTextBoxColumn.HeaderText = "NationalCode";
-            this.nationalCodeDataGridViewTextBoxColumn.Name = "nationalCodeDataGridViewTextBoxColumn";
-            this.nationalCodeDataGridViewTextBoxColumn.ReadOnly = true;
-            this.nationalCodeDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // idCodeDataGridViewTextBoxColumn
-            // 
-            this.idCodeDataGridViewTextBoxColumn.DataPropertyName = "IdCode";
-            this.idCodeDataGridViewTextBoxColumn.HeaderText = "IdCode";
-            this.idCodeDataGridViewTextBoxColumn.Name = "idCodeDataGridViewTextBoxColumn";
-            this.idCodeDataGridViewTextBoxColumn.ReadOnly = true;
-            this.idCodeDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // fatherNameDataGridViewTextBoxColumn
-            // 
-            this.fatherNameDataGridViewTextBoxColumn.DataPropertyName = "FatherName";
-            this.fatherNameDataGridViewTextBoxColumn.HeaderText = "FatherName";
-            this.fatherNameDataGridViewTextBoxColumn.Name = "fatherNameDataGridViewTextBoxColumn";
-            this.fatherNameDataGridViewTextBoxColumn.ReadOnly = true;
-            this.fatherNameDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // placeBirthDataGridViewTextBoxColumn
-            // 
-            this.placeBirthDataGridViewTextBoxColumn.DataPropertyName = "PlaceBirth";
-            this.placeBirthDataGridViewTextBoxColumn.HeaderText = "PlaceBirth";
-            this.placeBirthDataGridViewTextBoxColumn.Name = "placeBirthDataGridViewTextBoxColumn";
-            this.placeBirthDataGridViewTextBoxColumn.ReadOnly = true;
-            this.placeBirthDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // dateBirthDataGridViewTextBoxColumn
-            // 
-            this.dateBirthDataGridViewTextBoxColumn.DataPropertyName = "DateBirth";
-            this.dateBirthDataGridViewTextBoxColumn.HeaderText = "DateBirth";
-            this.dateBirthDataGridViewTextBoxColumn.Name = "dateBirthDataGridViewTextBoxColumn";
-            this.dateBirthDataGridViewTextBoxColumn.ReadOnly = true;
-            this.dateBirthDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // addressDataGridViewTextBoxColumn
-            // 
-            this.addressDataGridViewTextBoxColumn.DataPropertyName = "Address";
-            this.addressDataGridViewTextBoxColumn.HeaderText = "Address";
-            this.addressDataGridViewTextBoxColumn.Name = "addressDataGridViewTextBoxColumn";
-            this.addressDataGridViewTextBoxColumn.ReadOnly = true;
-            this.addressDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // issuedFromDataGridViewTextBoxColumn
-            // 
-            this.issuedFromDataGridViewTextBoxColumn.DataPropertyName = "IssuedFrom";
-            this.issuedFromDataGridViewTextBoxColumn.HeaderText = "IssuedFrom";
-            this.issuedFromDataGridViewTextBoxColumn.Name = "issuedFromDataGridViewTextBoxColumn";
-            this.issuedFromDataGridViewTextBoxColumn.ReadOnly = true;
-            this.issuedFromDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // postalCodeDataGridViewTextBoxColumn
-            // 
-            this.postalCodeDataGridViewTextBoxColumn.DataPropertyName = "PostalCode";
-            this.postalCodeDataGridViewTextBoxColumn.HeaderText = "PostalCode";
-            this.postalCodeDataGridViewTextBoxColumn.Name = "postalCodeDataGridViewTextBoxColumn";
-            this.postalCodeDataGridViewTextBoxColumn.ReadOnly = true;
-            this.postalCodeDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // groupGuidDataGridViewTextBoxColumn
-            // 
-            this.groupGuidDataGridViewTextBoxColumn.DataPropertyName = "GroupGuid";
-            this.groupGuidDataGridViewTextBoxColumn.HeaderText = "GroupGuid";
-            this.groupGuidDataGridViewTextBoxColumn.Name = "groupGuidDataGridViewTextBoxColumn";
-            this.groupGuidDataGridViewTextBoxColumn.ReadOnly = true;
-            this.groupGuidDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // peopleBindingSource
-            // 
-            this.peopleBindingSource.DataSource = typeof(EntityCache.Bussines.PeoplesBussines);
             // 
             // groupBindingSource
             // 
@@ -601,5 +617,7 @@
         private DevComponents.DotNetBar.ButtonItem btnBank;
         private DevComponents.DotNetBar.ButtonItem btnSendSMS;
         private DevComponents.DotNetBar.ButtonX btnSelect;
+        private DevComponents.DotNetBar.ButtonItem btnIpmortFromExcel;
+        private DevComponents.DotNetBar.ButtonItem btnExportToExcel;
     }
 }

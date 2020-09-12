@@ -100,5 +100,21 @@ namespace EntityCache.SqlServerPersistence
                 return false;
             }
         }
+
+        public async Task<bool> CheckNameAsync(string name)
+        {
+            try
+            {
+                var acc = db.Peoples.AsNoTracking()
+                    .Where(q => q.Name == name.Trim())
+                    .ToList();
+                return acc.Count == 0;
+            }
+            catch (Exception exception)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(exception);
+                return false;
+            }
+        }
     }
 }

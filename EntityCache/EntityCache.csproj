@@ -131,6 +131,7 @@
     <Compile Include="Bussines\RentalAuthorityBussines.cs" />
     <Compile Include="Bussines\SettingsBussines.cs" />
     <Compile Include="Bussines\SimcardBussines.cs" />
+    <Compile Include="Bussines\SmsLogBussines.cs" />
     <Compile Include="Bussines\SmsPanelsBussines.cs" />
     <Compile Include="Bussines\StatesBussines.cs" />
     <Compile Include="Bussines\UserBussines.cs" />
@@ -166,6 +167,7 @@
     <Compile Include="Core\IRepository.cs" />
     <Compile Include="Core\ISettingsRepository.cs" />
     <Compile Include="Core\ISimcardRepository.cs" />
+    <Compile Include="Core\ISmsLogRepository.cs" />
     <Compile Include="Core\ISmsPanelsRepository.cs" />
     <Compile Include="Core\IStatesRepository.cs" />
     <Compile Include="Core\IUserLogRepository.cs" />
@@ -202,6 +204,7 @@
     <Compile Include="SqlServerPersistence\RentalAuthorityPersistenceRepository.cs" />
     <Compile Include="SqlServerPersistence\SettingsPersistenceRepository.cs" />
     <Compile Include="SqlServerPersistence\SimcardPersistenceRepository.cs" />
+    <Compile Include="SqlServerPersistence\SmsLogPersistenceRepository.cs" />
     <Compile Include="SqlServerPersistence\SmsPanelsPersistenceRepository.cs" />
     <Compile Include="SqlServerPersistence\StatesPersistenceRepository.cs" />
     <Compile Include="SqlServerPersistence\UserLogPersistenceRepository.cs" />

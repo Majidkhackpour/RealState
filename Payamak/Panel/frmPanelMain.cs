@@ -15,8 +15,6 @@ namespace Payamak.Panel
             try
             {
                 txtName.Text = cls?.Name;
-                txtUserName.Text = cls?.UserName;
-                txtPassword.Text = cls?.Password;
                 txtSender.Text = cls?.Sender;
                 txtApi.Text = cls?.API;
             }
@@ -49,16 +47,6 @@ namespace Payamak.Panel
             txtSetter.Focus(txtName);
         }
 
-        private void txtUserName_Enter(object sender, EventArgs e)
-        {
-            txtSetter.Focus(txtUserName);
-        }
-
-        private void txtPassword_Enter(object sender, EventArgs e)
-        {
-            txtSetter.Focus(txtPassword);
-        }
-
         private void txtSender_Enter(object sender, EventArgs e)
         {
             txtSetter.Focus(txtSender);
@@ -77,16 +65,6 @@ namespace Payamak.Panel
         private void txtSender_Leave(object sender, EventArgs e)
         {
             txtSetter.Follow(txtSender);
-        }
-
-        private void txtPassword_Leave(object sender, EventArgs e)
-        {
-            txtSetter.Follow(txtPassword);
-        }
-
-        private void txtUserName_Leave(object sender, EventArgs e)
-        {
-            txtSetter.Follow(txtUserName);
         }
 
         private void txtName_Leave(object sender, EventArgs e)
@@ -139,18 +117,8 @@ namespace Payamak.Panel
                     txtName.Focus();
                     return;
                 }
-                if (string.IsNullOrWhiteSpace(txtUserName.Text))
-                {
-                    frmNotification.PublicInfo.ShowMessage("نام کاربری نمی تواند خالی باشد");
-                    txtUserName.Focus();
-                    return;
-                }
-                if (string.IsNullOrWhiteSpace(txtPassword.Text))
-                {
-                    frmNotification.PublicInfo.ShowMessage("کلمه عبور نمی تواند خالی باشد");
-                    txtPassword.Focus();
-                    return;
-                }
+               
+               
                 if (string.IsNullOrWhiteSpace(txtSender.Text))
                 {
                     frmNotification.PublicInfo.ShowMessage("شماره خط فرستنده عبور نمی تواند خالی باشد");
@@ -165,8 +133,6 @@ namespace Payamak.Panel
                 }
 
                 cls.Name = txtName.Text.Trim();
-                cls.UserName = txtUserName.Text.Trim();
-                cls.Password = txtPassword.Text.Trim();
                 cls.Sender = txtSender.Text.Trim();
                 cls.API = txtApi.Text.Trim();
 

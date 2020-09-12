@@ -9,20 +9,24 @@ using Services;
 
 namespace EntityCache.Bussines
 {
-    public class SmsPanelsBussines : ISmsPanels
+    public class SmsLogBussines : ISmsLog
     {
         public Guid Guid { get; set; }
         public DateTime Modified { get; set; } = DateTime.Now;
         public bool Status { get; set; } = true;
-        public string Name { get; set; }
+        public DateTime Date { get; set; } = DateTime.Now;
+        public string DateSh => Calendar.MiladiToShamsi(Date);
+        public Guid UserGuid { get; set; }
+        public string UserName => UserBussines.Get(UserGuid).Name;
         public string Sender { get; set; }
-        public string API { get; set; }
+        public string Reciver { get; set; }
+        public string Message { get; set; }
+        public decimal Cost { get; set; }
+        public long MessageId { get; set; }
+        public string StatusText { get; set; }
 
 
 
-        public static async Task<SmsPanelsBussines> GetAsync(Guid guid) => await UnitOfWork.SmsPanels.GetAsync(guid);
-
-        public static async Task<List<SmsPanelsBussines>> GetAllAsync() => await UnitOfWork.SmsPanels.GetAllAsync();
         public async Task<ReturnedSaveFuncInfo> SaveAsync(string tranName = "")
         {
             var res = new ReturnedSaveFuncInfo();
@@ -34,7 +38,7 @@ namespace EntityCache.Bussines
                 { //BeginTransaction
                 }
 
-                res.AddReturnedValue(await UnitOfWork.SmsPanels.SaveAsync(this, tranName));
+                res.AddReturnedValue(await UnitOfWork.SmsLog.SaveAsync(this, tranName));
                 res.ThrowExceptionIfError();
                 if (autoTran)
                 {
@@ -53,6 +57,12 @@ namespace EntityCache.Bussines
 
             return res;
         }
+
+        public static async Task<SmsLogBussines> GetAsync(Guid guid) => await UnitOfWork.SmsLog.GetAsync(guid);
+
+        public static async Task<List<SmsLogBussines>> GetAllAsync() => await UnitOfWork.SmsLog.GetAllAsync();
+
+        public static List<SmsLogBussines> GetAll() => AsyncContext.Run(GetAllAsync);
 
         public async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(bool status, string tranName = "")
         {
@@ -65,7 +75,8 @@ namespace EntityCache.Bussines
                 { //BeginTransaction
                 }
 
-                res.AddReturnedValue(await UnitOfWork.SmsPanels.ChangeStatusAsync(this, status, tranName));
+
+                res.AddReturnedValue(await UnitOfWork.SmsLog.ChangeStatusAsync(this, status, tranName));
                 res.ThrowExceptionIfError();
                 if (autoTran)
                 {
@@ -85,39 +96,52 @@ namespace EntityCache.Bussines
             return res;
         }
 
-        public static async Task<List<SmsPanelsBussines>> GetAllAsync(string search)
+        public static async Task<List<SmsLogBussines>> GetAllAsync(string search, Guid userGuid)
         {
             try
             {
                 if (string.IsNullOrEmpty(search))
                     search = "";
                 var res = await GetAllAsync();
+                if (userGuid != Guid.Empty) res = res.Where(q => q.UserGuid == userGuid).ToList();
                 var searchItems = search.SplitString();
                 if (searchItems?.Count > 0)
                     foreach (var item in searchItems)
                     {
                         if (!string.IsNullOrEmpty(item) && item.Trim() != "")
                         {
-                            res = res.Where(x => x.Name.ToLower().Contains(item.ToLower()) ||
-                                                 x.Sender.ToLower().Contains(item.ToLower()))
+                            res = res.Where(x => x.UserName.Contains(item) ||
+                                                 x.Sender.Contains(item) ||
+                                                 x.Reciver.Contains(item) ||
+                                                 x.Message.Contains(item) ||
+                                                 x.StatusText.Contains(item))
                                 ?.ToList();
                         }
                     }
 
-                res = res?.OrderBy(o => o.Name).ToList();
+                res = res?.OrderByDescending(o => o.Date).ToList();
                 return res;
             }
             catch (OperationCanceledException)
-            { return null; }
+            {
+                return null;
+            }
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
-                return new List<SmsPanelsBussines>();
+                return new List<SmsLogBussines>();
             }
         }
 
-        public static List<SmsPanelsBussines> GetAll(string search) => AsyncContext.Run(() => GetAllAsync(search));
+        public static List<SmsLogBussines> GetAll(string search, Guid userGuid) =>
+            AsyncContext.Run(() => GetAllAsync(search, userGuid));
 
-        public static SmsPanelsBussines Get(Guid guid) => AsyncContext.Run(() => GetAsync(guid));
+        public static SmsLogBussines Get(Guid guid) => AsyncContext.Run(() => GetAsync(guid));
+
+        public static async Task<SmsLogBussines> GetAsync(long messageId) =>
+            await UnitOfWork.SmsLog.GetAsync(messageId);
+
+
+
     }
 }

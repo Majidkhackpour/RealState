@@ -94,6 +94,12 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="ExcelDataReader, Version=3.6.0.0, Culture=neutral, PublicKeyToken=93517dbe6a4012fa, processorArchitecture=MSIL">
+      <HintPath>..\packages\ExcelDataReader.3.6.0\lib\net45\ExcelDataReader.dll</HintPath>
+    </Reference>
+    <Reference Include="ExcelDataReader.DataSet, Version=3.6.0.0, Culture=neutral, PublicKeyToken=93517dbe6a4012fa, processorArchitecture=MSIL">
+      <HintPath>..\packages\ExcelDataReader.DataSet.3.6.0\lib\net35\ExcelDataReader.DataSet.dll</HintPath>
+    </Reference>
     <Reference Include="MetroFramework, Version=1.4.0.0, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
       <HintPath>..\packages\MetroModernUI.1.4.0.0\lib\net\MetroFramework.dll</HintPath>
     </Reference>
@@ -107,6 +113,7 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.Compression" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -116,6 +123,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="frmSendSms.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSendSms.Designer.cs">
+      <DependentUpon>frmSendSms.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmSmsLog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSmsLog.Designer.cs">
+      <DependentUpon>frmSmsLog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Panel\frmPanelMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -133,6 +152,12 @@
     </Compile>
     <Compile Include="PhoneBook\frmPhoneBookMain.Designer.cs">
       <DependentUpon>frmPhoneBookMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PhoneBook\frmPhoneBookSearch.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PhoneBook\frmPhoneBookSearch.Designer.cs">
+      <DependentUpon>frmPhoneBookSearch.cs</DependentUpon>
     </Compile>
     <Compile Include="PhoneBook\frmShowPhoneBook.cs">
       <SubType>Form</SubType>
@@ -152,6 +177,10 @@
       <Project>{dcb5bde2-6238-422d-ad4e-f53afce9bf30}</Project>
       <Name>Services</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\Sms\Sms\Sms\Sms.csproj">
+      <Project>{b3fb214c-0212-4375-a063-742b58bcb925}</Project>
+      <Name>Sms</Name>
+    </ProjectReference>
     <ProjectReference Include="..\EntityCache\EntityCache.csproj">
       <Project>{cc417799-f38c-4997-8491-510eb1c15f74}</Project>
       <Name>EntityCache</Name>
@@ -168,6 +197,14 @@
       <Project>{69dbdf3a-8578-44db-95cd-08a671de9e41}</Project>
       <Name>Persistence</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Settings\Settings.csproj">
+      <Project>{5005cb62-16e0-4240-9a2d-8001adc9d990}</Project>
+      <Name>Settings</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\User\User.csproj">
+      <Project>{ebed491e-32a3-4484-a5aa-e5ed61e8bb0b}</Project>
+      <Name>User</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -175,10 +212,14 @@
     <None Include="Properties\DataSources\EntityCache.Bussines.PhoneBookBussines.datasource" />
     <None Include="Properties\DataSources\EntityCache.Bussines.SmsPanelsBussines.datasource" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="SMS\" />
-  </ItemGroup>
-  <ItemGroup>
+    <EmbeddedResource Include="frmSendSms.resx">
+      <DependentUpon>frmSendSms.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSmsLog.resx">
+      <DependentUpon>frmSmsLog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Panel\frmPanelMain.resx">
       <DependentUpon>frmPanelMain.cs</DependentUpon>
     </EmbeddedResource>
@@ -187,6 +228,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PhoneBook\frmPhoneBookMain.resx">
       <DependentUpon>frmPhoneBookMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PhoneBook\frmPhoneBookSearch.resx">
+      <DependentUpon>frmPhoneBookSearch.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PhoneBook\frmShowPhoneBook.resx">
       <DependentUpon>frmShowPhoneBook.cs</DependentUpon>
@@ -197,6 +241,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Properties\DataSources\EntityCache.Bussines.UserBussines.datasource" />
     <None Include="Resources\add.png" />
   </ItemGroup>
   <ItemGroup>
