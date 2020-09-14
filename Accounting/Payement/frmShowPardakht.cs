@@ -251,6 +251,9 @@ namespace Accounting.Payement
                         frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);
                         return;
                     }
+
+
+                    User.UserLog.Save(EnLogAction.Delete, EnLogPart.Pardakht);
                 }
                 else
                 {
@@ -292,6 +295,9 @@ namespace Accounting.Payement
                         frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);
                         return;
                     }
+
+                    User.UserLog.Save(EnLogAction.Enable, EnLogPart.Pardakht);
+
                 }
 
                 LoadData(ST, txtSearch.Text);

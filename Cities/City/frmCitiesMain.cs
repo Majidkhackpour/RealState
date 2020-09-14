@@ -11,6 +11,7 @@ namespace Cities.City
     public partial class frmCitiesMain : MetroForm
     {
         private CitiesBussines cls;
+        private EnLogAction action;
         private void SetData()
         {
             try
@@ -30,6 +31,7 @@ namespace Cities.City
         {
             InitializeComponent();
             cls = new CitiesBussines();
+            action = EnLogAction.Insert;
         }
         public frmCitiesMain(Guid guid, bool isShowMode)
         {
@@ -37,6 +39,7 @@ namespace Cities.City
             cls = CitiesBussines.Get(guid);
             grp.Enabled = !isShowMode;
             btnFinish.Enabled = !isShowMode;
+            action = EnLogAction.Update;
         }
 
         private void txtCity_Enter(object sender, System.EventArgs e)
@@ -131,6 +134,9 @@ namespace Cities.City
                     frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);
                     return;
                 }
+
+                User.UserLog.Save(action, EnLogPart.Cities);
+
                 DialogResult = DialogResult.OK;
                 Close();
             }

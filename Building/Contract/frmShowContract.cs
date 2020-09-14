@@ -212,6 +212,7 @@ namespace Building.Contract
                         frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);
                         return;
                     }
+                    User.UserLog.Save(EnLogAction.Delete, EnLogPart.Contracts);
                 }
                 else
                 {
@@ -243,6 +244,7 @@ namespace Building.Contract
                         frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);
                         return;
                     }
+                    User.UserLog.Save(EnLogAction.Enable, EnLogPart.Contracts);
                 }
 
                 LoadData(ST, txtSearch.Text);

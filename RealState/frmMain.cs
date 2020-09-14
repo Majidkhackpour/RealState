@@ -1106,5 +1106,10 @@ namespace RealState
         {
             lblErtegha.ForeColor = Color.Black;
         }
+
+        private void frmMain_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            UserLog.Save(EnLogAction.Logout, EnLogPart.Logout);
+        }
     }
 }

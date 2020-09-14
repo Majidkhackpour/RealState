@@ -133,6 +133,8 @@ namespace Building.BuildingRequest
                         frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);
                         return;
                     }
+
+                    User.UserLog.Save(EnLogAction.Delete, EnLogPart.BuildingRequest);
                 }
                 else
                 {
@@ -147,6 +149,8 @@ namespace Building.BuildingRequest
                         frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);
                         return;
                     }
+
+                    User.UserLog.Save(EnLogAction.Enable, EnLogPart.BuildingRequest);
                 }
 
                 LoadData(ST, txtSearch.Text);

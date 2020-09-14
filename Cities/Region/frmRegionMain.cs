@@ -11,6 +11,7 @@ namespace Cities.Region
     public partial class frmRegionMain : MetroForm
     {
         private RegionsBussines cls;
+        private EnLogAction action;
         private void SetData()
         {
             try
@@ -35,6 +36,7 @@ namespace Cities.Region
         {
             InitializeComponent();
             cls = new RegionsBussines();
+            action = EnLogAction.Insert;
         }
 
         public frmRegionMain(Guid guid, bool isShowMode)
@@ -43,6 +45,7 @@ namespace Cities.Region
             cls = RegionsBussines.Get(guid);
             grp.Enabled = !isShowMode;
             btnFinish.Enabled = !isShowMode;
+            action = EnLogAction.Update;
         }
 
         private void txtRegion_Enter(object sender, EventArgs e)
@@ -152,6 +155,9 @@ namespace Cities.Region
                     frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);
                     return;
                 }
+
+                User.UserLog.Save(action, EnLogPart.Regions);
+
                 DialogResult = DialogResult.OK;
                 Close();
             }

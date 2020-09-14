@@ -127,6 +127,9 @@ namespace Building.BuildingCondition
                         frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);
                         return;
                     }
+
+                    User.UserLog.Save(EnLogAction.Delete, EnLogPart.BuildingCondition);
+
                 }
                 else
                 {
@@ -141,6 +144,8 @@ namespace Building.BuildingCondition
                         frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);
                         return;
                     }
+
+                    User.UserLog.Save(EnLogAction.Enable, EnLogPart.BuildingCondition);
                 }
 
                 LoadData(ST, txtSearch.Text);

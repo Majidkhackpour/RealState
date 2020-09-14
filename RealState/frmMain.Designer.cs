@@ -244,7 +244,7 @@
             // 
             this.lblHour.AutoSize = true;
             this.lblHour.Font = new System.Drawing.Font("B Yekan", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.lblHour.Location = new System.Drawing.Point(125, 19);
+            this.lblHour.Location = new System.Drawing.Point(101, 19);
             this.lblHour.Name = "lblHour";
             this.lblHour.Size = new System.Drawing.Size(35, 29);
             this.lblHour.TabIndex = 1;
@@ -254,7 +254,7 @@
             // 
             this.lblSecond.AutoSize = true;
             this.lblSecond.Font = new System.Drawing.Font("B Yekan", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.lblSecond.Location = new System.Drawing.Point(152, 19);
+            this.lblSecond.Location = new System.Drawing.Point(128, 19);
             this.lblSecond.Name = "lblSecond";
             this.lblSecond.Size = new System.Drawing.Size(18, 29);
             this.lblSecond.TabIndex = 1;
@@ -264,7 +264,7 @@
             // 
             this.lblMinute.AutoSize = true;
             this.lblMinute.Font = new System.Drawing.Font("B Yekan", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.lblMinute.Location = new System.Drawing.Point(166, 19);
+            this.lblMinute.Location = new System.Drawing.Point(142, 19);
             this.lblMinute.Name = "lblMinute";
             this.lblMinute.Size = new System.Drawing.Size(35, 29);
             this.lblMinute.TabIndex = 1;
@@ -272,7 +272,7 @@
             // 
             // line2
             // 
-            this.line2.Location = new System.Drawing.Point(105, 25);
+            this.line2.Location = new System.Drawing.Point(81, 25);
             this.line2.Name = "line2";
             this.line2.Size = new System.Drawing.Size(26, 23);
             this.line2.TabIndex = 2;
@@ -295,7 +295,7 @@
             // 
             this.lblMounth.AutoSize = true;
             this.lblMounth.Font = new System.Drawing.Font("B Yekan", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.lblMounth.Location = new System.Drawing.Point(43, 17);
+            this.lblMounth.Location = new System.Drawing.Point(19, 17);
             this.lblMounth.Name = "lblMounth";
             this.lblMounth.Size = new System.Drawing.Size(27, 17);
             this.lblMounth.TabIndex = 1;
@@ -305,7 +305,7 @@
             // 
             this.lblYear.AutoSize = true;
             this.lblYear.Font = new System.Drawing.Font("B Yekan", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.lblYear.Location = new System.Drawing.Point(43, 33);
+            this.lblYear.Location = new System.Drawing.Point(19, 33);
             this.lblYear.Name = "lblYear";
             this.lblYear.Size = new System.Drawing.Size(32, 17);
             this.lblYear.TabIndex = 1;
@@ -315,7 +315,7 @@
             // 
             this.lblDay.AutoSize = true;
             this.lblDay.Font = new System.Drawing.Font("B Yekan", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.lblDay.Location = new System.Drawing.Point(76, 19);
+            this.lblDay.Location = new System.Drawing.Point(52, 19);
             this.lblDay.Name = "lblDay";
             this.lblDay.Size = new System.Drawing.Size(35, 29);
             this.lblDay.TabIndex = 1;
@@ -1091,7 +1091,7 @@
             this.grpInformation.Controls.Add(this.panel31);
             this.grpInformation.Controls.Add(this.panel30);
             this.grpInformation.Controls.Add(this.panel32);
-            this.grpInformation.Location = new System.Drawing.Point(204, 242);
+            this.grpInformation.Location = new System.Drawing.Point(199, 240);
             this.grpInformation.Name = "grpInformation";
             this.grpInformation.Size = new System.Drawing.Size(586, 301);
             this.grpInformation.TabIndex = 55768;
@@ -1166,6 +1166,7 @@
             this.lblBazsazi.Size = new System.Drawing.Size(106, 24);
             this.lblBazsazi.TabIndex = 55762;
             this.lblBazsazi.Text = "بازسازی اطلاعات";
+            this.lblBazsazi.Click += new System.EventHandler(this.lblBazsazi_Click);
             this.lblBazsazi.MouseEnter += new System.EventHandler(this.lblBazsazi_MouseEnter);
             this.lblBazsazi.MouseLeave += new System.EventHandler(this.lblBazsazi_MouseLeave);
             // 
@@ -1203,6 +1204,7 @@
             this.lblPhoneBook.Size = new System.Drawing.Size(86, 24);
             this.lblPhoneBook.TabIndex = 55762;
             this.lblPhoneBook.Text = "دفترچه تلفن";
+            this.lblPhoneBook.Click += new System.EventHandler(this.lblPhoneBook_Click);
             this.lblPhoneBook.MouseEnter += new System.EventHandler(this.lblPhoneBook_MouseEnter);
             this.lblPhoneBook.MouseLeave += new System.EventHandler(this.lblPhoneBook_MouseLeave);
             // 
@@ -1240,6 +1242,7 @@
             this.lblSmsPanel.Size = new System.Drawing.Size(112, 24);
             this.lblSmsPanel.TabIndex = 55762;
             this.lblSmsPanel.Text = "پنل ارسال پیامک";
+            this.lblSmsPanel.Click += new System.EventHandler(this.lblSmsPanel_Click);
             this.lblSmsPanel.MouseEnter += new System.EventHandler(this.lblSmsPanel_MouseEnter);
             this.lblSmsPanel.MouseLeave += new System.EventHandler(this.lblSmsPanel_MouseLeave);
             // 
@@ -1277,6 +1280,7 @@
             this.lblSendSms.Size = new System.Drawing.Size(87, 24);
             this.lblSendSms.TabIndex = 55762;
             this.lblSendSms.Text = "ارسال پیامک";
+            this.lblSendSms.Click += new System.EventHandler(this.lblSendSms_Click);
             this.lblSendSms.MouseEnter += new System.EventHandler(this.lblSendSms_MouseEnter);
             this.lblSendSms.MouseLeave += new System.EventHandler(this.lblSendSms_MouseLeave);
             // 
@@ -1314,6 +1318,7 @@
             this.lblSimcard.Size = new System.Drawing.Size(89, 24);
             this.lblSimcard.TabIndex = 55762;
             this.lblSimcard.Text = "سیم کارت ها";
+            this.lblSimcard.Click += new System.EventHandler(this.lblSimcard_Click);
             this.lblSimcard.MouseEnter += new System.EventHandler(this.lblSimcard_MouseEnter);
             this.lblSimcard.MouseLeave += new System.EventHandler(this.lblSimcard_MouseLeave);
             // 
@@ -1437,7 +1442,7 @@
             this.grpAccounting.Controls.Add(this.panel23);
             this.grpAccounting.Controls.Add(this.panel24);
             this.grpAccounting.Controls.Add(this.panel27);
-            this.grpAccounting.Location = new System.Drawing.Point(203, 243);
+            this.grpAccounting.Location = new System.Drawing.Point(200, 240);
             this.grpAccounting.Name = "grpAccounting";
             this.grpAccounting.Size = new System.Drawing.Size(586, 301);
             this.grpAccounting.TabIndex = 55769;
@@ -1476,6 +1481,7 @@
             this.lblHazine.Size = new System.Drawing.Size(111, 24);
             this.lblHazine.TabIndex = 55762;
             this.lblHazine.Text = "مدیریت هزینه ها";
+            this.lblHazine.Click += new System.EventHandler(this.lblHazine_Click);
             this.lblHazine.MouseEnter += new System.EventHandler(this.lblHazine_MouseEnter);
             this.lblHazine.MouseLeave += new System.EventHandler(this.lblHazine_MouseLeave);
             // 
@@ -1513,6 +1519,7 @@
             this.lblAccountPerformence.Size = new System.Drawing.Size(110, 24);
             this.lblAccountPerformence.TabIndex = 55762;
             this.lblAccountPerformence.Text = "عملکرد حساب ها";
+            this.lblAccountPerformence.Click += new System.EventHandler(this.lblAccountPerformence_Click);
             this.lblAccountPerformence.MouseEnter += new System.EventHandler(this.lblAccountPerformence_MouseEnter);
             this.lblAccountPerformence.MouseLeave += new System.EventHandler(this.lblAccountPerformence_MouseLeave);
             // 
@@ -1550,6 +1557,7 @@
             this.lblReception.Size = new System.Drawing.Size(54, 24);
             this.lblReception.TabIndex = 55762;
             this.lblReception.Text = "دریافت";
+            this.lblReception.Click += new System.EventHandler(this.lblReception_Click);
             this.lblReception.MouseEnter += new System.EventHandler(this.lblReception_MouseEnter);
             this.lblReception.MouseLeave += new System.EventHandler(this.lblReception_MouseLeave);
             // 
@@ -1587,6 +1595,7 @@
             this.lblPardakht.Size = new System.Drawing.Size(55, 24);
             this.lblPardakht.TabIndex = 55762;
             this.lblPardakht.Text = "پرداخت";
+            this.lblPardakht.Click += new System.EventHandler(this.lblPardakht_Click);
             this.lblPardakht.MouseEnter += new System.EventHandler(this.lblPardakht_MouseEnter);
             this.lblPardakht.MouseLeave += new System.EventHandler(this.lblPardakht_MouseLeave);
             // 
@@ -1611,6 +1620,7 @@
             this.lblSanad.Size = new System.Drawing.Size(98, 24);
             this.lblSanad.TabIndex = 55762;
             this.lblSanad.Text = "سند حسابداری";
+            this.lblSanad.Click += new System.EventHandler(this.lblSanad_Click);
             this.lblSanad.MouseEnter += new System.EventHandler(this.lblSanad_MouseEnter);
             this.lblSanad.MouseLeave += new System.EventHandler(this.lblSanad_MouseLeave);
             // 
@@ -1636,7 +1646,7 @@
             this.grpUsers.BackColor = System.Drawing.Color.White;
             this.grpUsers.Controls.Add(this.panel17);
             this.grpUsers.Controls.Add(this.panel18);
-            this.grpUsers.Location = new System.Drawing.Point(203, 242);
+            this.grpUsers.Location = new System.Drawing.Point(201, 241);
             this.grpUsers.Name = "grpUsers";
             this.grpUsers.Size = new System.Drawing.Size(586, 301);
             this.grpUsers.TabIndex = 55770;
@@ -1675,6 +1685,7 @@
             this.lblUserMng.Size = new System.Drawing.Size(104, 24);
             this.lblUserMng.TabIndex = 55762;
             this.lblUserMng.Text = "مدیریت کاربران";
+            this.lblUserMng.Click += new System.EventHandler(this.lblUserMng_Click);
             this.lblUserMng.MouseEnter += new System.EventHandler(this.lblUserMng_MouseEnter);
             this.lblUserMng.MouseLeave += new System.EventHandler(this.lblUserMng_MouseLeave);
             // 
@@ -1765,6 +1776,7 @@
             this.lblBuilding.Size = new System.Drawing.Size(92, 24);
             this.lblBuilding.TabIndex = 55762;
             this.lblBuilding.Text = "مدیریت املاک";
+            this.lblBuilding.Click += new System.EventHandler(this.lblBuilding_Click);
             this.lblBuilding.MouseEnter += new System.EventHandler(this.lblBuilding_MouseEnter);
             this.lblBuilding.MouseLeave += new System.EventHandler(this.lblBuilding_MouseLeave);
             // 
@@ -1802,6 +1814,7 @@
             this.lblBuildingSearch.Size = new System.Drawing.Size(110, 24);
             this.lblBuildingSearch.TabIndex = 55762;
             this.lblBuildingSearch.Text = "جستجوی پشرفته";
+            this.lblBuildingSearch.Click += new System.EventHandler(this.lblBuildingSearch_Click);
             this.lblBuildingSearch.MouseEnter += new System.EventHandler(this.lblBuildingSearch_MouseEnter);
             this.lblBuildingSearch.MouseLeave += new System.EventHandler(this.lblBuildingSearch_MouseLeave);
             // 
@@ -1839,6 +1852,7 @@
             this.lblBuildingRequest.Size = new System.Drawing.Size(85, 24);
             this.lblBuildingRequest.TabIndex = 55762;
             this.lblBuildingRequest.Text = "درخواست ها";
+            this.lblBuildingRequest.Click += new System.EventHandler(this.lblBuildingRequest_Click);
             this.lblBuildingRequest.MouseEnter += new System.EventHandler(this.lblBuildingRequest_MouseEnter);
             this.lblBuildingRequest.MouseLeave += new System.EventHandler(this.lblBuildingRequest_MouseLeave);
             // 
@@ -1876,6 +1890,7 @@
             this.lblContract.Size = new System.Drawing.Size(69, 24);
             this.lblContract.TabIndex = 55762;
             this.lblContract.Text = "قولنامه ها";
+            this.lblContract.Click += new System.EventHandler(this.lblContract_Click);
             this.lblContract.MouseEnter += new System.EventHandler(this.lblContract_MouseEnter);
             this.lblContract.MouseLeave += new System.EventHandler(this.lblContract_MouseLeave);
             // 
@@ -1885,9 +1900,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(800, 600);
-            this.Controls.Add(this.grpInformation);
             this.Controls.Add(this.grpAccounting);
             this.Controls.Add(this.grpUsers);
+            this.Controls.Add(this.grpInformation);
             this.Controls.Add(this.grpBuilding);
             this.Controls.Add(this.grpBaseInfo);
             this.Controls.Add(this.lblInfornation);
@@ -1929,6 +1944,7 @@
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.Style = MetroFramework.MetroColorStyle.Green;
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmMain_FormClosing);
             this.Load += new System.EventHandler(this.frmMain_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmMain_KeyDown);
             this.grpBaseInfo.ResumeLayout(false);

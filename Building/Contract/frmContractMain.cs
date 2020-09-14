@@ -23,6 +23,7 @@ namespace Building.Contract
         private BuildingBussines building;
         private decimal fPrice = 0, sPrice = 0;
         readonly List<string> lstList = new List<string>();
+        private EnLogAction action;
         private void SetData()
         {
             try
@@ -691,6 +692,7 @@ namespace Building.Contract
             cls = new ContractBussines();
             superTabControl1.SelectedTab = superTabItem5;
             superTabControl2.SelectedTab = superTabItem8;
+            action = EnLogAction.Insert;
         }
         public frmContractMain(Guid guid, bool isShowMode)
         {
@@ -713,6 +715,7 @@ namespace Building.Contract
             superTabControlPanel8.Enabled = !isShowMode;
             superTabControlPanel11.Enabled = !isShowMode;
             btnFinish.Enabled = !isShowMode;
+            action = EnLogAction.Update;
         }
 
         private void frmContractMain_Load(object sender, EventArgs e)
@@ -1046,6 +1049,9 @@ namespace Building.Contract
                     frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);
                     return;
                 }
+
+                User.UserLog.Save(action, EnLogPart.Contracts);
+
                 DialogResult = DialogResult.OK;
                 Close();
             }

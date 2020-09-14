@@ -194,6 +194,10 @@ namespace Building.Building
                         frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);
                         return;
                     }
+
+                    UserLog.Save(EnLogAction.Delete, EnLogPart.Building);
+
+
                 }
                 else
                 {
@@ -208,6 +212,8 @@ namespace Building.Building
                         frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);
                         return;
                     }
+
+                    UserLog.Save(EnLogAction.Enable, EnLogPart.Building);
                 }
 
                 LoadData(ST, txtSearch.Text);

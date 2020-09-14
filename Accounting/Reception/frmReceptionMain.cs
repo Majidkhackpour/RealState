@@ -14,6 +14,7 @@ namespace Accounting.Reception
         private EnAccountingType type;
         private ReceptionBussines cls;
         private decimal fPrice;
+        private EnLogAction action;
         private void SetData()
         {
             try
@@ -178,6 +179,7 @@ namespace Accounting.Reception
             _receptorGuid = receptorGuid;
             type = _type;
             cls = new ReceptionBussines();
+            action = EnLogAction.Insert;
         }
         public frmReceptionMain(Guid guid, bool isShowMode, EnAccountingType _type)
         {
@@ -190,6 +192,7 @@ namespace Accounting.Reception
             grp3.Enabled = !isShowMode;
             txtDesc.Enabled = !isShowMode;
             btnFinish.Enabled = !isShowMode;
+            action = EnLogAction.Update;
         }
 
         private void SetReceptor()
@@ -362,6 +365,9 @@ namespace Accounting.Reception
                     frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);
                     return;
                 }
+
+                User.UserLog.Save(action, EnLogPart.Reception);
+
                 DialogResult = DialogResult.OK;
                 Close();
             }

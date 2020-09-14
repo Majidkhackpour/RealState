@@ -321,6 +321,9 @@ namespace Peoples
                         foreach (var item in prd2)
                             await item.ChangeStatusAsync(false);
                     }
+
+                    User.UserLog.Save(EnLogAction.Delete, EnLogPart.Peoples);
+
                 }
                 else
                 {
@@ -346,6 +349,9 @@ namespace Peoples
                     var prd2 = await PhoneBookBussines.GetAllAsync(guid, false);
                     foreach (var item in prd2)
                         await item.ChangeStatusAsync(true);
+
+                    User.UserLog.Save(EnLogAction.Enable, EnLogPart.Peoples);
+
                 }
 
                 LoadPeoples(ST, txtSearch.Text);

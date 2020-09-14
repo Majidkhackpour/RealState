@@ -141,6 +141,10 @@ namespace User
 
                 clsGlobalSetting.LastUser = user.UserName;
 
+
+                UserLog.Save(EnLogAction.Login, EnLogPart.Login);
+
+
                 DialogResult = DialogResult.OK;
                 Close();
             }

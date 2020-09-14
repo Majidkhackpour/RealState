@@ -11,6 +11,7 @@ namespace Accounting.Hazine
     public partial class frmHazineMain : MetroForm
     {
         private HazineBussines cls;
+        private EnLogAction action;
         private void SetData()
         {
             try
@@ -26,6 +27,7 @@ namespace Accounting.Hazine
         {
             InitializeComponent();
             cls = new HazineBussines();
+            action = EnLogAction.Insert;
         }
         public frmHazineMain(Guid guid, bool isShowMode)
         {
@@ -33,6 +35,7 @@ namespace Accounting.Hazine
             cls = HazineBussines.Get(guid);
             grp.Enabled = !isShowMode;
             btnFinish.Enabled = !isShowMode;
+            action = EnLogAction.Update;
         }
 
         private void txtName_Enter(object sender, EventArgs e)
@@ -119,6 +122,9 @@ namespace Accounting.Hazine
                     frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);
                     return;
                 }
+
+                User.UserLog.Save(action, EnLogPart.Hazine);
+
                 DialogResult = DialogResult.OK;
                 Close();
             }

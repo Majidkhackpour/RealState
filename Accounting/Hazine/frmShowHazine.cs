@@ -165,6 +165,8 @@ namespace Accounting.Hazine
                         frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);
                         return;
                     }
+
+                    User.UserLog.Save(EnLogAction.Delete, EnLogPart.Hazine);
                 }
                 else
                 {
@@ -179,6 +181,8 @@ namespace Accounting.Hazine
                         frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);
                         return;
                     }
+
+                    User.UserLog.Save(EnLogAction.Enable, EnLogPart.Hazine);
                 }
 
                 LoadData(ST, txtSearch.Text);

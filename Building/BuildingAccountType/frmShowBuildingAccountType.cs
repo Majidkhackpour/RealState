@@ -132,6 +132,9 @@ namespace Building.BuildingAccountType
                         frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);
                         return;
                     }
+
+
+                    User.UserLog.Save(EnLogAction.Delete, EnLogPart.BuildingAccountType);
                 }
                 else
                 {
@@ -146,6 +149,8 @@ namespace Building.BuildingAccountType
                         frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);
                         return;
                     }
+
+                    User.UserLog.Save(EnLogAction.Enable, EnLogPart.BuildingAccountType);
                 }
 
                 LoadData(ST, txtSearch.Text);

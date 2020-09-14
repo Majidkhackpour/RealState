@@ -132,6 +132,8 @@ namespace Building.DocumentType
                         frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);
                         return;
                     }
+
+                    User.UserLog.Save(EnLogAction.Delete, EnLogPart.DocumentType);
                 }
                 else
                 {
@@ -146,6 +148,8 @@ namespace Building.DocumentType
                         frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);
                         return;
                     }
+
+                    User.UserLog.Save(EnLogAction.Enable, EnLogPart.DocumentType);
                 }
 
                 LoadData(ST, txtSearch.Text);

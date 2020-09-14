@@ -14,6 +14,7 @@ namespace User
     {
         private UserBussines cls;
         private decimal fAccount;
+        private EnLogAction action;
 
         private void SetData()
         {
@@ -96,6 +97,7 @@ namespace User
         {
             InitializeComponent();
             cls = new UserBussines();
+            action = EnLogAction.Insert;
         }
         public frmUserMain(Guid guid, bool isShowMode)
         {
@@ -103,6 +105,7 @@ namespace User
             cls = UserBussines.Get(guid);
             grp.Enabled = !isShowMode;
             btnFinish.Enabled = !isShowMode;
+            action = EnLogAction.Update;
         }
 
         #region TxtSetter
@@ -316,6 +319,9 @@ namespace User
                     frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);
                     return;
                 }
+
+                UserLog.Save(action, EnLogPart.Users);
+
                 DialogResult = DialogResult.OK;
                 Close();
             }

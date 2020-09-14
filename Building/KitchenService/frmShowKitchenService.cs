@@ -132,6 +132,7 @@ namespace Building.KitchenService
                         frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);
                         return;
                     }
+                    User.UserLog.Save(EnLogAction.Delete, EnLogPart.KitchenService);
                 }
                 else
                 {
@@ -146,6 +147,7 @@ namespace Building.KitchenService
                         frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);
                         return;
                     }
+                    User.UserLog.Save(EnLogAction.Enable, EnLogPart.KitchenService);
                 }
 
                 LoadData(ST, txtSearch.Text);

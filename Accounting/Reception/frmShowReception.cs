@@ -237,6 +237,9 @@ namespace Accounting.Reception
                         frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);
                         return;
                     }
+
+                    User.UserLog.Save(EnLogAction.Delete, EnLogPart.Reception);
+
                 }
                 else
                 {
@@ -269,6 +272,9 @@ namespace Accounting.Reception
                         frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);
                         return;
                     }
+
+                    User.UserLog.Save(EnLogAction.Enable, EnLogPart.Reception);
+
                 }
 
                 LoadData(ST, txtSearch.Text);

@@ -24,6 +24,7 @@ namespace Building.Building
         private PictureBox _fakepicBox;
         private string _picNameJari = "";
         readonly List<string> lstList = new List<string>();
+        private EnLogAction action;
 
 
         private void SetData()
@@ -826,6 +827,7 @@ namespace Building.Building
             cls = new BuildingBussines();
             superTabControl1.SelectedTab = superTabItem1;
             superTabControl2.SelectedTab = superTabItem8;
+            action = EnLogAction.Insert;
         }
         public frmBuildingMain(Guid guid, bool isShowMode)
         {
@@ -843,6 +845,7 @@ namespace Building.Building
             superTabControlPanel5.Enabled = !isShowMode;
             superTabControlPanel6.Enabled = !isShowMode;
             btnFinish.Enabled = !isShowMode;
+            action = EnLogAction.Update;
         }
 
         private void SaveImageToTemp()
@@ -1292,6 +1295,12 @@ namespace Building.Building
                     frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);
                     return;
                 }
+
+
+                UserLog.Save(action, EnLogPart.Building);
+
+
+
                 DialogResult = DialogResult.OK;
                 Close();
             }

@@ -156,6 +156,8 @@ namespace Advertise.Forms.Simcard
                     frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);
                     return;
                 }
+
+
                 DialogResult = DialogResult.OK;
                 Close();
             }

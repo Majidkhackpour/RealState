@@ -250,6 +250,10 @@ namespace Accounting
                     frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);
                     return;
                 }
+
+                User.UserLog.Save(EnLogAction.Insert, EnLogPart.Sanad);
+
+
                 DialogResult = DialogResult.OK;
                 Close();
 

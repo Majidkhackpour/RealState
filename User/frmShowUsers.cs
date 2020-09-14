@@ -152,6 +152,8 @@ namespace User
                         frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);
                         return;
                     }
+
+                    UserLog.Save(EnLogAction.Delete, EnLogPart.Users);
                 }
                 else
                 {
@@ -166,6 +168,8 @@ namespace User
                         frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);
                         return;
                     }
+
+                    UserLog.Save(EnLogAction.Enable, EnLogPart.Users);
                 }
 
                 LoadData(ST, txtSearch.Text);

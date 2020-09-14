@@ -132,6 +132,9 @@ namespace Building.RentalAuthority
                         frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);
                         return;
                     }
+
+                    User.UserLog.Save(EnLogAction.Delete, EnLogPart.RentalAuthority);
+
                 }
                 else
                 {
@@ -146,6 +149,8 @@ namespace Building.RentalAuthority
                         frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);
                         return;
                     }
+
+                    User.UserLog.Save(EnLogAction.Enable, EnLogPart.RentalAuthority);
                 }
 
                 LoadData(ST, txtSearch.Text);

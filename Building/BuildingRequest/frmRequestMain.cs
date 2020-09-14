@@ -15,6 +15,7 @@ namespace Building.BuildingRequest
     {
         private BuildingRequestBussines cls;
         private PeoplesBussines asker;
+        private EnLogAction action;
 
         private void SetData()
         {
@@ -454,6 +455,7 @@ namespace Building.BuildingRequest
             InitializeComponent();
             cls = new BuildingRequestBussines();
             WindowState = FormWindowState.Maximized;
+            action = EnLogAction.Insert;
         }
         public frmRequestMain(Guid guid, bool isShowMode)
         {
@@ -466,6 +468,7 @@ namespace Building.BuildingRequest
             btnFinish.Enabled = !isShowMode;
             superTabControl1.SelectedTab = superTabItem1;
             WindowState = FormWindowState.Maximized;
+            action = EnLogAction.Update;
         }
 
         private void frmRequestMain_Load(object sender, EventArgs e)
@@ -661,6 +664,9 @@ namespace Building.BuildingRequest
                     frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);
                     return;
                 }
+
+                User.UserLog.Save(action, EnLogPart.BuildingRequest);
+
                 DialogResult = DialogResult.OK;
                 Close();
             }

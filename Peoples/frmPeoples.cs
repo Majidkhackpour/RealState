@@ -13,6 +13,7 @@ namespace Peoples
         private PeoplesBussines cls;
         public Guid SelectedGuid { get; set; }
         private decimal fAccount;
+        private EnLogAction action;
         private void SetData()
         {
             try
@@ -140,6 +141,7 @@ namespace Peoples
             superTabControl1.SelectedTab = superTabItem1;
             WindowState = FormWindowState.Maximized;
             cls = new PeoplesBussines();
+            action = EnLogAction.Insert;
         }
         public frmPeoples(Guid guid, bool isShowMode)
         {
@@ -151,6 +153,7 @@ namespace Peoples
             btnFinish.Enabled = !isShowMode;
             superTabControl1.SelectedTab = superTabItem1;
             WindowState = FormWindowState.Maximized;
+            action = EnLogAction.Update;
         }
         private async void frmPeoples_Load(object sender, EventArgs e)
         {
@@ -508,6 +511,9 @@ namespace Peoples
                 }
 
                 SelectedGuid = cls.Guid;
+
+                User.UserLog.Save(action, EnLogPart.Peoples);
+
                 DialogResult = DialogResult.OK;
                 Close();
             }

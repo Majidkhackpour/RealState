@@ -153,6 +153,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="UserLog.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

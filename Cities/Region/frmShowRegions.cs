@@ -180,6 +180,8 @@ namespace Cities.Region
                         frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);
                         return;
                     }
+
+                    User.UserLog.Save(EnLogAction.Delete, EnLogPart.Regions);
                 }
                 else
                 {
@@ -194,6 +196,8 @@ namespace Cities.Region
                         frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);
                         return;
                     }
+
+                    User.UserLog.Save(EnLogAction.Enable, EnLogPart.Regions);
                 }
 
                 LoadData(ST, txtSearch.Text);

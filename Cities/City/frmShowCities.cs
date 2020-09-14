@@ -199,6 +199,8 @@ namespace Cities.City
                         frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);
                         return;
                     }
+
+                    User.UserLog.Save(EnLogAction.Delete, EnLogPart.Cities);
                 }
                 else
                 {
@@ -213,6 +215,8 @@ namespace Cities.City
                         frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);
                         return;
                     }
+
+                    User.UserLog.Save(EnLogAction.Enable, EnLogPart.Cities);
                 }
 
                 LoadData(ST, txtSearch.Text);

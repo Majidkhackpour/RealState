@@ -13,6 +13,7 @@ namespace Accounting.Payement
         private Guid _receptorGuid;
         private EnAccountingType type;
         private PardakhtBussines cls;
+        private EnLogAction action;
         private decimal fPrice;
         private void SetData()
         {
@@ -206,6 +207,7 @@ namespace Accounting.Payement
             _receptorGuid = receptorGuid;
             type = _type;
             cls = new PardakhtBussines();
+            action = EnLogAction.Insert;
         }
         public frmPardakhtMain(Guid guid, bool isShowMode, EnAccountingType _type)
         {
@@ -218,6 +220,7 @@ namespace Accounting.Payement
             grp3.Enabled = !isShowMode;
             txtDesc.Enabled = !isShowMode;
             btnFinish.Enabled = !isShowMode;
+            action = EnLogAction.Update;
         }
 
         #region TxtSetter
@@ -376,6 +379,11 @@ namespace Accounting.Payement
                     frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);
                     return;
                 }
+
+
+                User.UserLog.Save(action, EnLogPart.Pardakht);
+
+
                 DialogResult = DialogResult.OK;
                 Close();
             }

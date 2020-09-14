@@ -11,6 +11,7 @@ namespace Building.BuildingOptions
     public partial class frmBuildingOptions : MetroForm
     {
         private BuildingOptionsBussines cls;
+        private EnLogAction action;
         private void SetData()
         {
             try
@@ -26,6 +27,7 @@ namespace Building.BuildingOptions
         {
             InitializeComponent();
             cls = new BuildingOptionsBussines();
+            action = EnLogAction.Insert;
         }
         public frmBuildingOptions(Guid guid, bool isShowMode)
         {
@@ -33,6 +35,7 @@ namespace Building.BuildingOptions
             cls = BuildingOptionsBussines.Get(guid);
             grp.Enabled = !isShowMode;
             btnFinish.Enabled = !isShowMode;
+            action = EnLogAction.Update;
         }
 
         private void txtName_Enter(object sender, EventArgs e)
@@ -119,6 +122,9 @@ namespace Building.BuildingOptions
                     frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);
                     return;
                 }
+
+                User.UserLog.Save(action, EnLogPart.BuildingOptions);
+
                 DialogResult = DialogResult.OK;
                 Close();
             }

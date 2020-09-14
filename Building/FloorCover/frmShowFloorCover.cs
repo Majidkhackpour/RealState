@@ -132,6 +132,8 @@ namespace Building.FloorCover
                         frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);
                         return;
                     }
+
+                    User.UserLog.Save(EnLogAction.Delete, EnLogPart.FloorCover);
                 }
                 else
                 {
@@ -146,6 +148,8 @@ namespace Building.FloorCover
                         frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);
                         return;
                     }
+
+                    User.UserLog.Save(EnLogAction.Enable, EnLogPart.FloorCover);
                 }
 
                 LoadData(ST, txtSearch.Text);

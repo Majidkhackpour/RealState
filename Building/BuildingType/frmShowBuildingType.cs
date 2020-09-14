@@ -132,6 +132,7 @@ namespace Building.BuildingType
                         frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);
                         return;
                     }
+                    User.UserLog.Save(EnLogAction.Delete, EnLogPart.BuildingType);
                 }
                 else
                 {
@@ -146,6 +147,7 @@ namespace Building.BuildingType
                         frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);
                         return;
                     }
+                    User.UserLog.Save(EnLogAction.Enable, EnLogPart.BuildingType);
                 }
 
                 LoadData(ST, txtSearch.Text);

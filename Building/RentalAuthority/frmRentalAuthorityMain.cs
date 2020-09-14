@@ -11,6 +11,7 @@ namespace Building.RentalAuthority
     public partial class frmRentalAuthorityMain : MetroForm
     {
         private RentalAuthorityBussines cls;
+        private EnLogAction action;
         private void SetData()
         {
             try
@@ -26,6 +27,7 @@ namespace Building.RentalAuthority
         {
             InitializeComponent();
             cls = new RentalAuthorityBussines();
+            action = EnLogAction.Insert;
         }
         public frmRentalAuthorityMain(Guid guid, bool isShowMode)
         {
@@ -33,6 +35,7 @@ namespace Building.RentalAuthority
             cls = RentalAuthorityBussines.Get(guid);
             grp.Enabled = !isShowMode;
             btnFinish.Enabled = !isShowMode;
+            action = EnLogAction.Update;
         }
 
         private void txtName_Enter(object sender, EventArgs e)
@@ -119,6 +122,9 @@ namespace Building.RentalAuthority
                     frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);
                     return;
                 }
+
+                User.UserLog.Save(action, EnLogPart.RentalAuthority);
+
                 DialogResult = DialogResult.OK;
                 Close();
             }

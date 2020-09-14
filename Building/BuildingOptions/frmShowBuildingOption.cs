@@ -132,6 +132,9 @@ namespace Building.BuildingOptions
                         frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);
                         return;
                     }
+
+                    User.UserLog.Save(EnLogAction.Delete, EnLogPart.BuildingOptions);
+
                 }
                 else
                 {
@@ -146,6 +149,9 @@ namespace Building.BuildingOptions
                         frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);
                         return;
                     }
+
+
+                    User.UserLog.Save(EnLogAction.Enable, EnLogPart.BuildingOptions);
                 }
 
                 LoadData(ST, txtSearch.Text);
