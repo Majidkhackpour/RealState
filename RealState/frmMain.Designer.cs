@@ -88,15 +88,7 @@
             this.picCondition = new System.Windows.Forms.PictureBox();
             this.panel10 = new System.Windows.Forms.Panel();
             this.picType = new System.Windows.Forms.PictureBox();
-            this.picInformation = new System.Windows.Forms.PictureBox();
-            this.picAccounting = new System.Windows.Forms.PictureBox();
-            this.picUsers = new System.Windows.Forms.PictureBox();
-            this.picBuilding = new System.Windows.Forms.PictureBox();
-            this.picBaseInfo = new System.Windows.Forms.PictureBox();
-            this.pictureBox5 = new System.Windows.Forms.PictureBox();
-            this.picDashboard = new System.Windows.Forms.PictureBox();
             this.lblDashBoard = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.grpInformation = new System.Windows.Forms.FlowLayoutPanel();
             this.panel19 = new System.Windows.Forms.Panel();
             this.picSetting = new System.Windows.Forms.PictureBox();
@@ -161,6 +153,20 @@
             this.panel16 = new System.Windows.Forms.Panel();
             this.picContract = new System.Windows.Forms.PictureBox();
             this.lblContract = new System.Windows.Forms.Label();
+            this.lblReport = new System.Windows.Forms.Label();
+            this.grpReport = new System.Windows.Forms.FlowLayoutPanel();
+            this.panel33 = new System.Windows.Forms.Panel();
+            this.picUserPerformance = new System.Windows.Forms.PictureBox();
+            this.lblUserPerformance = new System.Windows.Forms.Label();
+            this.picReport = new System.Windows.Forms.PictureBox();
+            this.picInformation = new System.Windows.Forms.PictureBox();
+            this.picAccounting = new System.Windows.Forms.PictureBox();
+            this.picUsers = new System.Windows.Forms.PictureBox();
+            this.picBuilding = new System.Windows.Forms.PictureBox();
+            this.picDashboard = new System.Windows.Forms.PictureBox();
+            this.picBaseInfo = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.grpBaseInfo.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PicPeoples)).BeginInit();
@@ -186,14 +192,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.picCondition)).BeginInit();
             this.panel10.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picType)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picInformation)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picAccounting)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picUsers)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picBuilding)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picBaseInfo)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picDashboard)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.grpInformation.SuspendLayout();
             this.panel19.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picSetting)).BeginInit();
@@ -238,6 +236,18 @@
             ((System.ComponentModel.ISupportInitialize)(this.picRequest)).BeginInit();
             this.panel16.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picContract)).BeginInit();
+            this.grpReport.SuspendLayout();
+            this.panel33.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picUserPerformance)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picReport)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picInformation)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picAccounting)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picUsers)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picBuilding)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picDashboard)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picBaseInfo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             this.SuspendLayout();
             // 
             // lblHour
@@ -962,94 +972,6 @@
             this.picType.TabStop = false;
             this.picType.Click += new System.EventHandler(this.picType_Click);
             // 
-            // picInformation
-            // 
-            this.picInformation.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.picInformation.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.picInformation.Image = global::RealState.Properties.Resources.P_1_30;
-            this.picInformation.Location = new System.Drawing.Point(156, 78);
-            this.picInformation.Name = "picInformation";
-            this.picInformation.Size = new System.Drawing.Size(70, 63);
-            this.picInformation.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.picInformation.TabIndex = 55761;
-            this.picInformation.TabStop = false;
-            this.picInformation.MouseEnter += new System.EventHandler(this.picInformation_MouseEnter);
-            // 
-            // picAccounting
-            // 
-            this.picAccounting.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.picAccounting.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.picAccounting.Image = global::RealState.Properties.Resources._004;
-            this.picAccounting.Location = new System.Drawing.Point(268, 78);
-            this.picAccounting.Name = "picAccounting";
-            this.picAccounting.Size = new System.Drawing.Size(70, 63);
-            this.picAccounting.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.picAccounting.TabIndex = 55761;
-            this.picAccounting.TabStop = false;
-            this.picAccounting.MouseEnter += new System.EventHandler(this.picAccounting_MouseEnter);
-            // 
-            // picUsers
-            // 
-            this.picUsers.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.picUsers.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.picUsers.Image = global::RealState.Properties.Resources._11;
-            this.picUsers.Location = new System.Drawing.Point(380, 78);
-            this.picUsers.Name = "picUsers";
-            this.picUsers.Size = new System.Drawing.Size(70, 63);
-            this.picUsers.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.picUsers.TabIndex = 55761;
-            this.picUsers.TabStop = false;
-            this.picUsers.MouseEnter += new System.EventHandler(this.picUsers_MouseEnter);
-            // 
-            // picBuilding
-            // 
-            this.picBuilding.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.picBuilding.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.picBuilding.Image = global::RealState.Properties.Resources._70;
-            this.picBuilding.Location = new System.Drawing.Point(492, 78);
-            this.picBuilding.Name = "picBuilding";
-            this.picBuilding.Size = new System.Drawing.Size(70, 63);
-            this.picBuilding.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.picBuilding.TabIndex = 55761;
-            this.picBuilding.TabStop = false;
-            this.picBuilding.MouseEnter += new System.EventHandler(this.picBuilding_MouseEnter);
-            // 
-            // picBaseInfo
-            // 
-            this.picBaseInfo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.picBaseInfo.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.picBaseInfo.Image = global::RealState.Properties.Resources._018;
-            this.picBaseInfo.Location = new System.Drawing.Point(604, 78);
-            this.picBaseInfo.Name = "picBaseInfo";
-            this.picBaseInfo.Size = new System.Drawing.Size(70, 63);
-            this.picBaseInfo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.picBaseInfo.TabIndex = 55761;
-            this.picBaseInfo.TabStop = false;
-            this.picBaseInfo.MouseEnter += new System.EventHandler(this.picBaseInfo_MouseEnter);
-            // 
-            // pictureBox5
-            // 
-            this.pictureBox5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox5.Image = global::RealState.Properties.Resources.Untitled_11;
-            this.pictureBox5.Location = new System.Drawing.Point(287, 555);
-            this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(513, 45);
-            this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox5.TabIndex = 55764;
-            this.pictureBox5.TabStop = false;
-            // 
-            // picDashboard
-            // 
-            this.picDashboard.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.picDashboard.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.picDashboard.Image = global::RealState.Properties.Resources._06;
-            this.picDashboard.Location = new System.Drawing.Point(711, 78);
-            this.picDashboard.Name = "picDashboard";
-            this.picDashboard.Size = new System.Drawing.Size(70, 63);
-            this.picDashboard.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.picDashboard.TabIndex = 55761;
-            this.picDashboard.TabStop = false;
-            // 
             // lblDashBoard
             // 
             this.lblDashBoard.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -1063,17 +985,6 @@
             this.lblDashBoard.Text = "داشبورد";
             this.lblDashBoard.MouseEnter += new System.EventHandler(this.lblDashBoard_MouseEnter);
             this.lblDashBoard.MouseLeave += new System.EventHandler(this.lblDashBoard_MouseLeave);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.pictureBox1.Image = global::RealState.Properties.Resources.BackGroud_;
-            this.pictureBox1.Location = new System.Drawing.Point(0, 397);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(196, 203);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 4;
-            this.pictureBox1.TabStop = false;
             // 
             // grpInformation
             // 
@@ -1894,23 +1805,203 @@
             this.lblContract.MouseEnter += new System.EventHandler(this.lblContract_MouseEnter);
             this.lblContract.MouseLeave += new System.EventHandler(this.lblContract_MouseLeave);
             // 
+            // lblReport
+            // 
+            this.lblReport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblReport.AutoSize = true;
+            this.lblReport.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lblReport.Font = new System.Drawing.Font("B Yekan", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.lblReport.Location = new System.Drawing.Point(43, 144);
+            this.lblReport.Name = "lblReport";
+            this.lblReport.Size = new System.Drawing.Size(74, 29);
+            this.lblReport.TabIndex = 55762;
+            this.lblReport.Text = "گزارشات";
+            this.lblReport.MouseEnter += new System.EventHandler(this.lblReport_MouseEnter);
+            this.lblReport.MouseLeave += new System.EventHandler(this.lblReport_MouseLeave);
+            // 
+            // grpReport
+            // 
+            this.grpReport.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.grpReport.AutoScroll = true;
+            this.grpReport.BackColor = System.Drawing.Color.White;
+            this.grpReport.Controls.Add(this.panel33);
+            this.grpReport.Location = new System.Drawing.Point(201, 243);
+            this.grpReport.Name = "grpReport";
+            this.grpReport.Size = new System.Drawing.Size(586, 301);
+            this.grpReport.TabIndex = 55771;
+            // 
+            // panel33
+            // 
+            this.panel33.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel33.Controls.Add(this.picUserPerformance);
+            this.panel33.Controls.Add(this.lblUserPerformance);
+            this.panel33.Location = new System.Drawing.Point(457, 3);
+            this.panel33.Name = "panel33";
+            this.panel33.Size = new System.Drawing.Size(126, 116);
+            this.panel33.TabIndex = 0;
+            // 
+            // picUserPerformance
+            // 
+            this.picUserPerformance.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.picUserPerformance.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.picUserPerformance.Image = global::RealState.Properties.Resources._012;
+            this.picUserPerformance.Location = new System.Drawing.Point(30, 9);
+            this.picUserPerformance.Name = "picUserPerformance";
+            this.picUserPerformance.Size = new System.Drawing.Size(70, 63);
+            this.picUserPerformance.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picUserPerformance.TabIndex = 55761;
+            this.picUserPerformance.TabStop = false;
+            this.picUserPerformance.Click += new System.EventHandler(this.picUserPerformance_Click);
+            // 
+            // lblUserPerformance
+            // 
+            this.lblUserPerformance.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblUserPerformance.AutoSize = true;
+            this.lblUserPerformance.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lblUserPerformance.Font = new System.Drawing.Font("B Yekan", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.lblUserPerformance.Location = new System.Drawing.Point(14, 80);
+            this.lblUserPerformance.Name = "lblUserPerformance";
+            this.lblUserPerformance.Size = new System.Drawing.Size(100, 24);
+            this.lblUserPerformance.TabIndex = 55762;
+            this.lblUserPerformance.Text = "عملکرد کاربران";
+            this.lblUserPerformance.Click += new System.EventHandler(this.lblUserPerformance_Click);
+            this.lblUserPerformance.MouseEnter += new System.EventHandler(this.lblUserPerformance_MouseEnter);
+            this.lblUserPerformance.MouseLeave += new System.EventHandler(this.lblUserPerformance_MouseLeave);
+            // 
+            // picReport
+            // 
+            this.picReport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.picReport.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.picReport.Image = global::RealState.Properties.Resources._027;
+            this.picReport.Location = new System.Drawing.Point(44, 78);
+            this.picReport.Name = "picReport";
+            this.picReport.Size = new System.Drawing.Size(70, 63);
+            this.picReport.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picReport.TabIndex = 55761;
+            this.picReport.TabStop = false;
+            this.picReport.MouseEnter += new System.EventHandler(this.picReport_MouseEnter);
+            // 
+            // picInformation
+            // 
+            this.picInformation.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.picInformation.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.picInformation.Image = global::RealState.Properties.Resources.P_1_30;
+            this.picInformation.Location = new System.Drawing.Point(156, 78);
+            this.picInformation.Name = "picInformation";
+            this.picInformation.Size = new System.Drawing.Size(70, 63);
+            this.picInformation.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picInformation.TabIndex = 55761;
+            this.picInformation.TabStop = false;
+            this.picInformation.MouseEnter += new System.EventHandler(this.picInformation_MouseEnter);
+            // 
+            // picAccounting
+            // 
+            this.picAccounting.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.picAccounting.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.picAccounting.Image = global::RealState.Properties.Resources._004;
+            this.picAccounting.Location = new System.Drawing.Point(268, 78);
+            this.picAccounting.Name = "picAccounting";
+            this.picAccounting.Size = new System.Drawing.Size(70, 63);
+            this.picAccounting.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picAccounting.TabIndex = 55761;
+            this.picAccounting.TabStop = false;
+            this.picAccounting.MouseEnter += new System.EventHandler(this.picAccounting_MouseEnter);
+            // 
+            // picUsers
+            // 
+            this.picUsers.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.picUsers.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.picUsers.Image = global::RealState.Properties.Resources._11;
+            this.picUsers.Location = new System.Drawing.Point(380, 78);
+            this.picUsers.Name = "picUsers";
+            this.picUsers.Size = new System.Drawing.Size(70, 63);
+            this.picUsers.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picUsers.TabIndex = 55761;
+            this.picUsers.TabStop = false;
+            this.picUsers.MouseEnter += new System.EventHandler(this.picUsers_MouseEnter);
+            // 
+            // picBuilding
+            // 
+            this.picBuilding.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.picBuilding.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.picBuilding.Image = global::RealState.Properties.Resources._70;
+            this.picBuilding.Location = new System.Drawing.Point(492, 78);
+            this.picBuilding.Name = "picBuilding";
+            this.picBuilding.Size = new System.Drawing.Size(70, 63);
+            this.picBuilding.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picBuilding.TabIndex = 55761;
+            this.picBuilding.TabStop = false;
+            this.picBuilding.MouseEnter += new System.EventHandler(this.picBuilding_MouseEnter);
+            // 
+            // picDashboard
+            // 
+            this.picDashboard.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.picDashboard.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.picDashboard.Image = global::RealState.Properties.Resources._06;
+            this.picDashboard.Location = new System.Drawing.Point(711, 78);
+            this.picDashboard.Name = "picDashboard";
+            this.picDashboard.Size = new System.Drawing.Size(70, 63);
+            this.picDashboard.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picDashboard.TabIndex = 55761;
+            this.picDashboard.TabStop = false;
+            // 
+            // picBaseInfo
+            // 
+            this.picBaseInfo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.picBaseInfo.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.picBaseInfo.Image = global::RealState.Properties.Resources._018;
+            this.picBaseInfo.Location = new System.Drawing.Point(604, 78);
+            this.picBaseInfo.Name = "picBaseInfo";
+            this.picBaseInfo.Size = new System.Drawing.Size(70, 63);
+            this.picBaseInfo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picBaseInfo.TabIndex = 55761;
+            this.picBaseInfo.TabStop = false;
+            this.picBaseInfo.MouseEnter += new System.EventHandler(this.picBaseInfo_MouseEnter);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.pictureBox1.Image = global::RealState.Properties.Resources.BackGroud_;
+            this.pictureBox1.Location = new System.Drawing.Point(0, 397);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(196, 203);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 4;
+            this.pictureBox1.TabStop = false;
+            // 
+            // pictureBox5
+            // 
+            this.pictureBox5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBox5.Image = global::RealState.Properties.Resources.Untitled_11;
+            this.pictureBox5.Location = new System.Drawing.Point(287, 555);
+            this.pictureBox5.Name = "pictureBox5";
+            this.pictureBox5.Size = new System.Drawing.Size(513, 45);
+            this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox5.TabIndex = 55764;
+            this.pictureBox5.TabStop = false;
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(800, 600);
+            this.Controls.Add(this.grpReport);
             this.Controls.Add(this.grpAccounting);
             this.Controls.Add(this.grpUsers);
             this.Controls.Add(this.grpInformation);
             this.Controls.Add(this.grpBuilding);
             this.Controls.Add(this.grpBaseInfo);
+            this.Controls.Add(this.lblReport);
             this.Controls.Add(this.lblInfornation);
             this.Controls.Add(this.lblAccountiong);
             this.Controls.Add(this.lblUsers);
             this.Controls.Add(this.lblBuildingInfo);
             this.Controls.Add(this.lblDashBoard);
             this.Controls.Add(this.lblBaseInfo);
+            this.Controls.Add(this.picReport);
             this.Controls.Add(this.picInformation);
             this.Controls.Add(this.picAccounting);
             this.Controls.Add(this.picUsers);
@@ -1984,14 +2075,6 @@
             this.panel10.ResumeLayout(false);
             this.panel10.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picType)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picInformation)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picAccounting)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picUsers)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picBuilding)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picBaseInfo)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picDashboard)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.grpInformation.ResumeLayout(false);
             this.panel19.ResumeLayout(false);
             this.panel19.PerformLayout();
@@ -2056,6 +2139,19 @@
             this.panel16.ResumeLayout(false);
             this.panel16.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picContract)).EndInit();
+            this.grpReport.ResumeLayout(false);
+            this.panel33.ResumeLayout(false);
+            this.panel33.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picUserPerformance)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picReport)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picInformation)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picAccounting)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picUsers)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picBuilding)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picDashboard)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picBaseInfo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2193,6 +2289,12 @@
         private System.Windows.Forms.Panel panel16;
         private System.Windows.Forms.PictureBox picContract;
         private System.Windows.Forms.Label lblContract;
+        private System.Windows.Forms.PictureBox picReport;
+        private System.Windows.Forms.Label lblReport;
+        private System.Windows.Forms.FlowLayoutPanel grpReport;
+        private System.Windows.Forms.Panel panel33;
+        private System.Windows.Forms.PictureBox picUserPerformance;
+        private System.Windows.Forms.Label lblUserPerformance;
     }
 }
 

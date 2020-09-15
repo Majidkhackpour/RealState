@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using EntityCache.Assistence;
@@ -14,9 +15,14 @@ namespace EntityCache.Bussines
         public DateTime Modified { get; set; } = DateTime.Now;
         public bool Status { get; set; } = true;
         public Guid UserGuid { get; set; }
+        public string UserName { get; set; }
         public DateTime Date { get; set; } = DateTime.Now;
+        public string DateSh => Calendar.MiladiToShamsi(Date);
+        public string Time => Date.ToShortTimeString();
         public EnLogAction Action { get; set; }
+        public string ActionName => Action.GetDisplay();
         public EnLogPart Part { get; set; }
+        public string PartName => Part.GetDisplay();
         public string Description { get; set; }
 
 
@@ -53,6 +59,12 @@ namespace EntityCache.Bussines
         }
 
         public ReturnedSaveFuncInfo Save(string tranName = "") => AsyncContext.Run(() => SaveAsync(tranName));
+
+        public static async Task<List<UserLogBussines>> GetAllAsync(Guid userGuid, DateTime d1, DateTime d2) =>
+            await UnitOfWork.UserLog.GetAllAsync(userGuid, d1, d2);
+
+        public static List<UserLogBussines> GetAll(Guid userGuid, DateTime d1, DateTime d2) =>
+            AsyncContext.Run(() => GetAllAsync(userGuid, d1, d2));
 
     }
 }

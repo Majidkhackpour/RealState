@@ -121,6 +121,7 @@ namespace RealState
                 grpBuilding.Visible = false;
                 grpAccounting.Visible = false;
                 grpInformation.Visible = false;
+                grpReport.Visible = false;
             }
             catch (Exception ex)
             {
@@ -182,6 +183,18 @@ namespace RealState
             {
                 UnsetGroupBox();
                 grpInformation.Visible = true;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private void Reports()
+        {
+            try
+            {
+                UnsetGroupBox();
+                grpReport.Visible = true;
             }
             catch (Exception ex)
             {
@@ -1110,6 +1123,50 @@ namespace RealState
         private void frmMain_FormClosing(object sender, FormClosingEventArgs e)
         {
             UserLog.Save(EnLogAction.Logout, EnLogPart.Logout);
+        }
+
+        private void picReport_MouseEnter(object sender, EventArgs e)
+        {
+            Reports();
+        }
+
+        private void lblReport_MouseEnter(object sender, EventArgs e)
+        {
+            lblReport.ForeColor = Color.Red;
+            Reports();
+        }
+
+        private void lblReport_MouseLeave(object sender, EventArgs e)
+        {
+            lblReport.ForeColor = Color.Black;
+        }
+
+        private void picUserPerformance_Click(object sender, EventArgs e)
+        {
+            lblUserPerformance_Click(null, null);
+        }
+
+        private void lblUserPerformance_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var frm = new frmUserLogFilter();
+                frm.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private void lblUserPerformance_MouseEnter(object sender, EventArgs e)
+        {
+            lblUserPerformance.ForeColor = Color.Red;
+        }
+
+        private void lblUserPerformance_MouseLeave(object sender, EventArgs e)
+        {
+            lblUserPerformance.ForeColor = Color.Black;
         }
     }
 }
