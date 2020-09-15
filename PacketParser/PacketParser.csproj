@@ -73,6 +73,7 @@
     <Compile Include="Interfaces\IHazine.cs" />
     <Compile Include="Interfaces\IKitchenService.cs" />
     <Compile Include="Interfaces\INaqz.cs" />
+    <Compile Include="Interfaces\INote.cs" />
     <Compile Include="Interfaces\IPardakht.cs" />
     <Compile Include="Interfaces\IPeopleBankAccount.cs" />
     <Compile Include="Interfaces\IPeopleGroup.cs" />

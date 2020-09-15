@@ -121,14 +121,14 @@
   <data name="007" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\007.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="083" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\083.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="_70" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\70.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="P-1-30" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\P-1-30.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="72" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\72.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="371" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\371.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -178,6 +178,12 @@
   <data name="03" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\03.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="012" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\012.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Arad_Icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Arad_Icon.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="55" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\55.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -223,8 +229,8 @@
   <data name="33" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\33.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Arad_Icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Arad_Icon.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="72" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\72.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="57" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\57.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -247,9 +253,6 @@
   <data name="Untitled_11" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Untitled-11.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="0781" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\0782.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="_018" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\018.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -259,8 +262,8 @@
   <data name="53" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\53.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="083" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\083.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="0781" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\0782.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="_12" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\12.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -271,7 +274,7 @@
   <data name="06" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\06.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="012" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\012.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="011" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\011.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

@@ -43,6 +43,7 @@ namespace EntityCache.Assistence
             CreateMap<ContractFinanceBussines, ContractFinance>().ReverseMap();
             CreateMap<UserLogBussines, UserLog>().ReverseMap();
             CreateMap<SmsLogBussines, SmsLog>().ReverseMap();
+            CreateMap<NoteBussines, Note>().ReverseMap();
         }
     }
 }

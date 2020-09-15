@@ -75,6 +75,7 @@
     <Compile Include="Entities\Hazine.cs" />
     <Compile Include="Entities\KitchenService.cs" />
     <Compile Include="Entities\Naqz.cs" />
+    <Compile Include="Entities\Note.cs" />
     <Compile Include="Entities\Pardakht.cs" />
     <Compile Include="Entities\PeopleBankAccount.cs" />
     <Compile Include="Entities\PeopleGroup.cs" />
@@ -238,6 +239,10 @@
     <Compile Include="Migrations\202009111240310__37.designer.cs">
       <DependentUpon>202009111240310__37.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202009151515316__38.cs" />
+    <Compile Include="Migrations\202009151515316__38.designer.cs">
+      <DependentUpon>202009151515316__38.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\ModelContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -367,6 +372,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202009111240310__37.resx">
       <DependentUpon>202009111240310__37.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202009151515316__38.resx">
+      <DependentUpon>202009151515316__38.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

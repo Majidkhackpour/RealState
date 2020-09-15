@@ -108,6 +108,9 @@
             this.panel29 = new System.Windows.Forms.Panel();
             this.picSimcard = new System.Windows.Forms.PictureBox();
             this.lblSimcard = new System.Windows.Forms.Label();
+            this.panel34 = new System.Windows.Forms.Panel();
+            this.picNote = new System.Windows.Forms.PictureBox();
+            this.lblNote = new System.Windows.Forms.Label();
             this.panel31 = new System.Windows.Forms.Panel();
             this.picBackUp = new System.Windows.Forms.PictureBox();
             this.lblBackUp = new System.Windows.Forms.Label();
@@ -205,6 +208,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.picSms)).BeginInit();
             this.panel29.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picSimcard)).BeginInit();
+            this.panel34.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picNote)).BeginInit();
             this.panel31.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picBackUp)).BeginInit();
             this.panel30.SuspendLayout();
@@ -999,6 +1004,7 @@
             this.grpInformation.Controls.Add(this.panel26);
             this.grpInformation.Controls.Add(this.panel28);
             this.grpInformation.Controls.Add(this.panel29);
+            this.grpInformation.Controls.Add(this.panel34);
             this.grpInformation.Controls.Add(this.panel31);
             this.grpInformation.Controls.Add(this.panel30);
             this.grpInformation.Controls.Add(this.panel32);
@@ -1233,15 +1239,53 @@
             this.lblSimcard.MouseEnter += new System.EventHandler(this.lblSimcard_MouseEnter);
             this.lblSimcard.MouseLeave += new System.EventHandler(this.lblSimcard_MouseLeave);
             // 
+            // panel34
+            // 
+            this.panel34.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel34.Controls.Add(this.picNote);
+            this.panel34.Controls.Add(this.lblNote);
+            this.panel34.Location = new System.Drawing.Point(176, 128);
+            this.panel34.Name = "panel34";
+            this.panel34.Size = new System.Drawing.Size(126, 116);
+            this.panel34.TabIndex = 1;
+            // 
+            // picNote
+            // 
+            this.picNote.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.picNote.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.picNote.Image = global::RealState.Properties.Resources._011;
+            this.picNote.Location = new System.Drawing.Point(30, 9);
+            this.picNote.Name = "picNote";
+            this.picNote.Size = new System.Drawing.Size(70, 63);
+            this.picNote.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picNote.TabIndex = 55761;
+            this.picNote.TabStop = false;
+            this.picNote.Click += new System.EventHandler(this.picNote_Click);
+            // 
+            // lblNote
+            // 
+            this.lblNote.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblNote.AutoSize = true;
+            this.lblNote.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lblNote.Font = new System.Drawing.Font("B Yekan", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.lblNote.Location = new System.Drawing.Point(34, 79);
+            this.lblNote.Name = "lblNote";
+            this.lblNote.Size = new System.Drawing.Size(63, 24);
+            this.lblNote.TabIndex = 55762;
+            this.lblNote.Text = "یادداشت";
+            this.lblNote.Click += new System.EventHandler(this.lblNote_Click);
+            this.lblNote.MouseEnter += new System.EventHandler(this.lblNote_MouseEnter);
+            this.lblNote.MouseLeave += new System.EventHandler(this.lblNote_MouseLeave);
+            // 
             // panel31
             // 
             this.panel31.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.panel31.Controls.Add(this.picBackUp);
             this.panel31.Controls.Add(this.lblBackUp);
-            this.panel31.Location = new System.Drawing.Point(176, 128);
+            this.panel31.Location = new System.Drawing.Point(44, 128);
             this.panel31.Name = "panel31";
             this.panel31.Size = new System.Drawing.Size(126, 116);
-            this.panel31.TabIndex = 0;
+            this.panel31.TabIndex = 2;
             // 
             // picBackUp
             // 
@@ -1274,10 +1318,10 @@
             this.panel30.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.panel30.Controls.Add(this.PicRestore);
             this.panel30.Controls.Add(this.lblRestore);
-            this.panel30.Location = new System.Drawing.Point(44, 128);
+            this.panel30.Location = new System.Drawing.Point(440, 250);
             this.panel30.Name = "panel30";
             this.panel30.Size = new System.Drawing.Size(126, 116);
-            this.panel30.TabIndex = 0;
+            this.panel30.TabIndex = 3;
             // 
             // PicRestore
             // 
@@ -1310,7 +1354,7 @@
             this.panel32.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.panel32.Controls.Add(this.PicErtegha);
             this.panel32.Controls.Add(this.lblErtegha);
-            this.panel32.Location = new System.Drawing.Point(440, 250);
+            this.panel32.Location = new System.Drawing.Point(308, 250);
             this.panel32.Name = "panel32";
             this.panel32.Size = new System.Drawing.Size(126, 116);
             this.panel32.TabIndex = 0;
@@ -1353,7 +1397,7 @@
             this.grpAccounting.Controls.Add(this.panel23);
             this.grpAccounting.Controls.Add(this.panel24);
             this.grpAccounting.Controls.Add(this.panel27);
-            this.grpAccounting.Location = new System.Drawing.Point(200, 240);
+            this.grpAccounting.Location = new System.Drawing.Point(203, 243);
             this.grpAccounting.Name = "grpAccounting";
             this.grpAccounting.Size = new System.Drawing.Size(586, 301);
             this.grpAccounting.TabIndex = 55769;
@@ -1557,7 +1601,7 @@
             this.grpUsers.BackColor = System.Drawing.Color.White;
             this.grpUsers.Controls.Add(this.panel17);
             this.grpUsers.Controls.Add(this.panel18);
-            this.grpUsers.Location = new System.Drawing.Point(201, 241);
+            this.grpUsers.Location = new System.Drawing.Point(202, 242);
             this.grpUsers.Name = "grpUsers";
             this.grpUsers.Size = new System.Drawing.Size(586, 301);
             this.grpUsers.TabIndex = 55770;
@@ -1827,7 +1871,7 @@
             this.grpReport.AutoScroll = true;
             this.grpReport.BackColor = System.Drawing.Color.White;
             this.grpReport.Controls.Add(this.panel33);
-            this.grpReport.Location = new System.Drawing.Point(201, 243);
+            this.grpReport.Location = new System.Drawing.Point(203, 244);
             this.grpReport.Name = "grpReport";
             this.grpReport.Size = new System.Drawing.Size(586, 301);
             this.grpReport.TabIndex = 55771;
@@ -2094,6 +2138,9 @@
             this.panel29.ResumeLayout(false);
             this.panel29.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picSimcard)).EndInit();
+            this.panel34.ResumeLayout(false);
+            this.panel34.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picNote)).EndInit();
             this.panel31.ResumeLayout(false);
             this.panel31.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picBackUp)).EndInit();
@@ -2244,12 +2291,6 @@
         private System.Windows.Forms.Panel panel29;
         private System.Windows.Forms.PictureBox picSimcard;
         private System.Windows.Forms.Label lblSimcard;
-        private System.Windows.Forms.Panel panel31;
-        private System.Windows.Forms.PictureBox picBackUp;
-        private System.Windows.Forms.Label lblBackUp;
-        private System.Windows.Forms.Panel panel30;
-        private System.Windows.Forms.PictureBox PicRestore;
-        private System.Windows.Forms.Label lblRestore;
         private System.Windows.Forms.Panel panel32;
         private System.Windows.Forms.PictureBox PicErtegha;
         private System.Windows.Forms.Label lblErtegha;
@@ -2295,6 +2336,15 @@
         private System.Windows.Forms.Panel panel33;
         private System.Windows.Forms.PictureBox picUserPerformance;
         private System.Windows.Forms.Label lblUserPerformance;
+        private System.Windows.Forms.Panel panel34;
+        private System.Windows.Forms.PictureBox picNote;
+        private System.Windows.Forms.Label lblNote;
+        private System.Windows.Forms.Panel panel31;
+        private System.Windows.Forms.PictureBox picBackUp;
+        private System.Windows.Forms.Label lblBackUp;
+        private System.Windows.Forms.Panel panel30;
+        private System.Windows.Forms.PictureBox PicRestore;
+        private System.Windows.Forms.Label lblRestore;
     }
 }
 

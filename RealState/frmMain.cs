@@ -1092,7 +1092,7 @@ namespace RealState
 
         private void lblBackUp_MouseEnter(object sender, EventArgs e)
         {
-            lblDashBoard.ForeColor = Color.Red;
+            lblBackUp.ForeColor = Color.Red;
         }
 
         private void lblRestore_MouseLeave(object sender, EventArgs e)
@@ -1107,7 +1107,7 @@ namespace RealState
 
         private void lblRestore_MouseEnter(object sender, EventArgs e)
         {
-            lblBackUp.ForeColor = Color.Red;
+            lblRestore.ForeColor = Color.Red;
         }
 
         private void lblErtegha_MouseEnter(object sender, EventArgs e)
@@ -1167,6 +1167,26 @@ namespace RealState
         private void lblUserPerformance_MouseLeave(object sender, EventArgs e)
         {
             lblUserPerformance.ForeColor = Color.Black;
+        }
+
+        private void lblNote_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void picNote_Click(object sender, EventArgs e)
+        {
+            lblNote_Click(null, null);
+        }
+
+        private void lblNote_MouseEnter(object sender, EventArgs e)
+        {
+            lblNote.ForeColor = Color.Red;
+        }
+
+        private void lblNote_MouseLeave(object sender, EventArgs e)
+        {
+            lblNote.ForeColor = Color.Black;
         }
     }
 }
