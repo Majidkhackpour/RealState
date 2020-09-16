@@ -63,6 +63,11 @@ ALTER TABLE [dbo].[UserLogs]  WITH CHECK ADD  CONSTRAINT [FK_UserLog_User] FOREI
 REFERENCES [dbo].[Users] ([Guid])
 GO
 
+IF NOT EXISTS (SELECT * FROM sys.foreign_keys WHERE object_id = OBJECT_ID(N'[dbo].[FK_Note_User]') AND parent_object_id = OBJECT_ID(N'[dbo].[Notes]'))
+ALTER TABLE [dbo].[Notes]  WITH CHECK ADD  CONSTRAINT [FK_Note_User] FOREIGN KEY([UserGuid])
+REFERENCES [dbo].[Users] ([Guid])
+GO
+
 -- ==========================================================================================
 IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Cities_SelectAll]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
 	exec('Create Procedure [dbo].[sp_Cities_SelectAll]	As Begin print 11 end')
@@ -191,7 +196,16 @@ BEGIN
 	on [dbo].[UserLogs].UserGuid=[dbo].[Users].Guid
 	where Date>=@date1 and Date<=@date2 and UserGuid=@userGuid
 End
+GO
+-- ==========================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Note_SelectAll]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Note_SelectAll]	As Begin print 11 end')
+GO
 
-
-
-
+ALTER PROCEDURE [dbo].[sp_Note_SelectAll] 
+AS
+BEGIN
+	select [dbo].[Notes].*,[dbo].[Users].Name as UserName
+	from [dbo].[Notes] inner join [dbo].[Users]
+	on [dbo].[Notes].UserGuid=[dbo].[Users].Guid
+End

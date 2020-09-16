@@ -21,7 +21,7 @@ namespace EntityCache.Bussines
         public DateTime? DateSarresid { get; set; }
         public string DateSarresidSh => Calendar.MiladiToShamsi(DateSarresid);
         public Guid UserGuid { get; set; }
-        public string UserName => UserBussines.Get(UserGuid).Name;
+        public string UserName { get; set; }
         public EnNotePriority Priority { get; set; }
         public string PriorityName => Priority.GetDisplay();
         public EnNoteStatus NoteStatus { get; set; }
@@ -31,7 +31,7 @@ namespace EntityCache.Bussines
 
         public static async Task<NoteBussines> GetAsync(Guid guid) => await UnitOfWork.Note.GetAsync(guid);
 
-        public static async Task<List<NoteBussines>> GetAllAsync() => await UnitOfWork.Note.GetAllAsync();
+        public static async Task<List<NoteBussines>> GetAllAsync() => await UnitOfWork.Note.GetAllAsyncBySp();
 
         public static List<NoteBussines> GetAll() => AsyncContext.Run(GetAllAsync);
 

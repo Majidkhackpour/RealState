@@ -30,6 +30,7 @@ using Payamak;
 using Payamak.Panel;
 using Payamak.PhoneBook;
 using Peoples;
+using RealState.Note;
 using Services;
 using Settings;
 using Settings.Classes;
@@ -1171,7 +1172,15 @@ namespace RealState
 
         private void lblNote_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                var frm = new frmShowNotes();
+                frm.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
         }
 
         private void picNote_Click(object sender, EventArgs e)
