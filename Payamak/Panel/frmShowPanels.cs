@@ -5,6 +5,7 @@ using EntityCache.Bussines;
 using MetroFramework.Forms;
 using Notification;
 using Services;
+using User;
 
 namespace Payamak.Panel
 {
@@ -24,7 +25,24 @@ namespace Payamak.Panel
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-
+        private void SetAccess()
+        {
+            try
+            {
+                var access = clsUser.CurrentUser.UserAccess;
+                btnInsert.Enabled = access?.SmsPanel.Panel_Insert ?? false;
+                btnEdit.Enabled = access?.SmsPanel.Panel_Update ?? false;
+                btnDelete.Enabled = access?.SmsPanel.Panel_Delete ?? false;
+                btnChangeStatus.Enabled = access?.SmsPanel.Panel_Disable ?? false;
+                btnView.Enabled = access?.SmsPanel.Panel_View ?? false;
+                btnRemain.Enabled = access?.SmsPanel.Panel_Etebar ?? false;
+                btnDef.Enabled = access?.SmsPanel.Panel_Default ?? false;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
         public bool ST
         {
             get => _st;
@@ -48,6 +66,7 @@ namespace Payamak.Panel
         public frmShowPanels()
         {
             InitializeComponent();
+            SetAccess();
         }
 
         private void frmShowPanels_Load(object sender, EventArgs e)

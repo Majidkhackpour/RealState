@@ -61,10 +61,11 @@
             this.mnuAdvLog = new System.Windows.Forms.ToolStripMenuItem();
             this.simBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.btnOther = new DevComponents.DotNetBar.ButtonX();
-            this.btnLogin = new DevComponents.DotNetBar.ButtonItem();
+            this.btnLoginDivar = new DevComponents.DotNetBar.ButtonItem();
             this.btnDelToken = new DevComponents.DotNetBar.ButtonItem();
             this.btnSendAdv = new DevComponents.DotNetBar.ButtonItem();
             this.btnAdvLog = new DevComponents.DotNetBar.ButtonItem();
+            this.btnLoginSheypoor = new DevComponents.DotNetBar.ButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).BeginInit();
             this.cmDivar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.simBindingSource)).BeginInit();
@@ -412,7 +413,8 @@
             this.btnOther.Size = new System.Drawing.Size(61, 31);
             this.btnOther.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
             this.btnOther.SubItems.AddRange(new DevComponents.DotNetBar.BaseItem[] {
-            this.btnLogin,
+            this.btnLoginDivar,
+            this.btnLoginSheypoor,
             this.btnDelToken,
             this.btnSendAdv,
             this.btnAdvLog});
@@ -421,12 +423,12 @@
             this.btnOther.TextAlignment = DevComponents.DotNetBar.eButtonTextAlignment.Left;
             this.btnOther.TextColor = System.Drawing.Color.Black;
             // 
-            // btnLogin
+            // btnLoginDivar
             // 
-            this.btnLogin.GlobalItem = false;
-            this.btnLogin.Name = "btnLogin";
-            this.btnLogin.Text = "لاگین دیوار";
-            this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
+            this.btnLoginDivar.GlobalItem = false;
+            this.btnLoginDivar.Name = "btnLoginDivar";
+            this.btnLoginDivar.Text = "لاگین دیوار";
+            this.btnLoginDivar.Click += new System.EventHandler(this.btnLogin_Click);
             // 
             // btnDelToken
             // 
@@ -444,6 +446,11 @@
             // 
             this.btnAdvLog.Name = "btnAdvLog";
             this.btnAdvLog.Text = "مشاهده آگهی های ارسال شده";
+            // 
+            // btnLoginSheypoor
+            // 
+            this.btnLoginSheypoor.Name = "btnLoginSheypoor";
+            this.btnLoginSheypoor.Text = "لاگین شیپور";
             // 
             // frmShowSimcard
             // 
@@ -506,9 +513,10 @@
         private System.Windows.Forms.DataGridViewCheckBoxColumn statusDataGridViewCheckBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn tokenDataGridViewTextBoxColumn;
         private DevComponents.DotNetBar.ButtonX btnOther;
-        private DevComponents.DotNetBar.ButtonItem btnLogin;
+        private DevComponents.DotNetBar.ButtonItem btnLoginDivar;
         private DevComponents.DotNetBar.ButtonItem btnDelToken;
         private DevComponents.DotNetBar.ButtonItem btnSendAdv;
         private DevComponents.DotNetBar.ButtonItem btnAdvLog;
+        private DevComponents.DotNetBar.ButtonItem btnLoginSheypoor;
     }
 }

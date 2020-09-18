@@ -5,6 +5,7 @@ using EntityCache.Bussines;
 using MetroFramework.Forms;
 using Notification;
 using Services;
+using User;
 
 namespace Building.BuildingOptions
 {
@@ -24,7 +25,22 @@ namespace Building.BuildingOptions
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-
+        private void SetAccess()
+        {
+            try
+            {
+                var access = clsUser.CurrentUser.UserAccess;
+                btnInsert.Enabled = access?.BuildingOption.Building_Option_Insert ?? false;
+                btnEdit.Enabled = access?.BuildingOption.Building_Option_Update ?? false;
+                btnDelete.Enabled = access?.BuildingOption.Building_Option_Delete ?? false;
+                btnChangeStatus.Enabled = access?.BuildingOption.Building_Option_Disable ?? false;
+                btnView.Enabled = access?.BuildingOption.Building_Option_View ?? false;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
         public bool ST
         {
             get => _st;
@@ -48,6 +64,7 @@ namespace Building.BuildingOptions
         public frmShowBuildingOption()
         {
             InitializeComponent();
+            SetAccess();
         }
 
         private void frmShowBuildingOption_Load(object sender, EventArgs e)

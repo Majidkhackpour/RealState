@@ -5,6 +5,7 @@ using EntityCache.Bussines;
 using MetroFramework.Forms;
 using Notification;
 using Services;
+using User;
 
 namespace Building.BuildingAccountType
 {
@@ -24,7 +25,22 @@ namespace Building.BuildingAccountType
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-
+        private void SetAccess()
+        {
+            try
+            {
+                var access = clsUser.CurrentUser.UserAccess;
+                btnInsert.Enabled = access?.BuildingAccountType.Building_Acc_Type_Insert ?? false;
+                btnEdit.Enabled = access?.BuildingAccountType.Building_Acc_Type_Update ?? false;
+                btnDelete.Enabled = access?.BuildingAccountType.Building_Acc_Type_Delete ?? false;
+                btnChangeStatus.Enabled = access?.BuildingAccountType.Building_Acc_Type_Disable ?? false;
+                btnView.Enabled = access?.BuildingAccountType.Building_Acc_Type_View ?? false;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
         public bool ST
         {
             get => _st;
@@ -48,6 +64,7 @@ namespace Building.BuildingAccountType
         public frmShowBuildingAccountType()
         {
             InitializeComponent();
+            SetAccess();
         }
 
         private void frmShowBuildingAccountType_Load(object sender, EventArgs e)

@@ -6,6 +6,7 @@ using EntityCache.Assistence.Defualts;
 using EntityCache.Bussines;
 using Persistence.Model;
 using Services;
+using Services.Access;
 
 namespace EntityCache.Assistence
 {
@@ -19,6 +20,7 @@ namespace EntityCache.Assistence
             #region Users
 
             var allusers = await UserBussines.GetAllAsync();
+            var access = new AccessLevel();
             if (allusers == null || allusers.Count <= 0)
             {
                 var user = new UserBussines()
@@ -26,7 +28,8 @@ namespace EntityCache.Assistence
                     Guid = Guid.NewGuid(),
                     Name = "کاربر پیش فرض",
                     UserName = "Admin",
-                    SecurityQuestion = 0
+                    SecurityQuestion = 0,
+                    Access = Json.ToStringJson(access)
                 };
                 var ue = new UTF8Encoding();
                 var bytes = ue.GetBytes("2211");

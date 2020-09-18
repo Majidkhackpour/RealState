@@ -5,6 +5,7 @@ using EntityCache.Bussines;
 using MetroFramework.Forms;
 using Notification;
 using Services;
+using User;
 
 namespace Building.FloorCover
 {
@@ -24,7 +25,22 @@ namespace Building.FloorCover
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-
+        private void SetAccess()
+        {
+            try
+            {
+                var access = clsUser.CurrentUser.UserAccess;
+                btnInsert.Enabled = access?.FloorCover.Floor_Cover_Insert ?? false;
+                btnEdit.Enabled = access?.FloorCover.Floor_Cover_Update ?? false;
+                btnDelete.Enabled = access?.FloorCover.Floor_Cover_Delete ?? false;
+                btnChangeStatus.Enabled = access?.FloorCover.Floor_Cover_Disable ?? false;
+                btnView.Enabled = access?.FloorCover.Floor_Cover_View ?? false;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
         public bool ST
         {
             get => _st;
@@ -48,6 +64,7 @@ namespace Building.FloorCover
         public frmShowFloorCover()
         {
             InitializeComponent();
+            SetAccess();
         }
 
         private void frmShowFloorCover_Load(object sender, EventArgs e)

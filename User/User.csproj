@@ -120,7 +120,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AccessLevel\AccessLevelClass.cs" />
+    <Compile Include="AccessLevel\PropertyInfoClass.cs" />
     <Compile Include="clsUser.cs" />
+    <Compile Include="frmAccessLevel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAccessLevel.Designer.cs">
+      <DependentUpon>frmAccessLevel.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmForgetPassword.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -176,6 +184,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="frmAccessLevel.resx">
+      <DependentUpon>frmAccessLevel.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmForgetPassword.resx">
       <DependentUpon>frmForgetPassword.cs</DependentUpon>
     </EmbeddedResource>
@@ -205,6 +216,8 @@
   <ItemGroup>
     <None Include="Properties\DataSources\EntityCache.Bussines.UserBussines.datasource" />
     <None Include="Properties\DataSources\EntityCache.Bussines.UserLogBussines.datasource" />
+    <None Include="Properties\DataSources\User.AccessLevel.AccessLevelClass.datasource" />
+    <None Include="Properties\DataSources\User.AccessLevel.PropertyInfoClass.datasource" />
     <None Include="Resources\add%281%29.png" />
   </ItemGroup>
   <ItemGroup>
@@ -279,6 +292,7 @@
   <ItemGroup>
     <None Include="Resources\400063700833_50757.jpg" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

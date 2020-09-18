@@ -26,7 +26,23 @@ namespace User
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-
+        private void SetAccess()
+        {
+            try
+            {
+                var access = clsUser.CurrentUser.UserAccess;
+                btnInsert.Enabled = access?.User.User_Insert ?? false;
+                btnEdit.Enabled = access?.User.User_Update ?? false;
+                btnDelete.Enabled = access?.User.User_Delete ?? false;
+                btnChangeStatus.Enabled = access?.User.User_Disable ?? false;
+                btnView.Enabled = access?.User.User_View ?? false;
+                btnPrint.Enabled = access?.User.User_Gardesh ?? false;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
         public bool ST
         {
             get => _st;
@@ -71,6 +87,8 @@ namespace User
                 btnSelect.Visible = false;
                 btnPrint.Visible = true;
             }
+
+            SetAccess();
         }
 
         private void frmShowUsers_Load(object sender, EventArgs e)
@@ -215,13 +233,17 @@ namespace User
             {
                 switch (e.KeyCode)
                 {
-                    case Keys.Insert: btnInsert.PerformClick();
+                    case Keys.Insert:
+                        btnInsert.PerformClick();
                         break;
-                    case Keys.F7: btnEdit.PerformClick();
+                    case Keys.F7:
+                        btnEdit.PerformClick();
                         break;
-                    case Keys.Delete: btnDelete.PerformClick();
+                    case Keys.Delete:
+                        btnDelete.PerformClick();
                         break;
-                    case Keys.F12: btnView.PerformClick();
+                    case Keys.F12:
+                        btnView.PerformClick();
                         break;
                     case Keys.S:
                         if (e.Control) ST = !ST;
@@ -229,7 +251,8 @@ namespace User
                     case Keys.P:
                         if (e.Control) btnPrint.PerformClick();
                         break;
-                    case Keys.Escape: Close();
+                    case Keys.Escape:
+                        Close();
                         break;
                     case Keys.F:
                         if (e.Control) txtSearch.Focus();

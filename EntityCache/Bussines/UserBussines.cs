@@ -6,6 +6,7 @@ using EntityCache.Assistence;
 using Nito.AsyncEx;
 using PacketParser.Interfaces;
 using Services;
+using Services.Access;
 
 namespace EntityCache.Bussines
 {
@@ -17,7 +18,33 @@ namespace EntityCache.Bussines
         public string Name { get; set; }
         public string UserName { get; set; }
         public string Password { get; set; }
-        public string Access { get; set; }
+        private string _access = "";
+
+        public string Access
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(_access))
+                    _access = Json.ToStringJson(UserAccess);
+                return _access;
+            }
+            set
+            {
+                _access = value;
+                _accessLevel = value.FromJson<AccessLevel>();
+            }
+        }
+
+        private AccessLevel _accessLevel;
+        public AccessLevel UserAccess
+        {
+            get => _accessLevel ?? (_accessLevel = new AccessLevel());
+            set
+            {
+                _accessLevel = value;
+                _access = Json.ToStringJson(value);
+            }
+        }
         public EnSecurityQuestion SecurityQuestion { get; set; }
         public string AnswerQuestion { get; set; }
         public string Email { get; set; }
@@ -25,7 +52,6 @@ namespace EntityCache.Bussines
         public decimal Account { get; set; }
         public decimal AccountFirst { get; set; }
         public decimal Account_ => Math.Abs(Account);
-
 
         public static async Task<UserBussines> GetAsync(Guid guid) => await UnitOfWork.Users.GetAsync(guid);
 

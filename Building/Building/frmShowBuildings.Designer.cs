@@ -127,6 +127,7 @@
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnSelect = new DevComponents.DotNetBar.ButtonX();
+            this.btnSendToSheypoor = new DevComponents.DotNetBar.ButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BuildingBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btBindingSource)).BeginInit();
@@ -888,6 +889,7 @@
             this.btnVagozar,
             this.btnSendSms,
             this.btnSendToDivar,
+            this.btnSendToSheypoor,
             this.btnSendToTelegram,
             this.btnMatchRequest});
             this.btnOther.TabIndex = 55758;
@@ -1080,6 +1082,11 @@
             this.btnSelect.TextColor = System.Drawing.Color.White;
             this.btnSelect.Click += new System.EventHandler(this.btnSelect_Click);
             // 
+            // btnSendToSheypoor
+            // 
+            this.btnSendToSheypoor.Name = "btnSendToSheypoor";
+            this.btnSendToSheypoor.Text = "ارسال ملک در شیپور";
+            // 
             // frmShowBuildings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -1216,5 +1223,6 @@
         private System.Windows.Forms.BindingSource userBindingSource;
         private DevComponents.DotNetBar.ButtonItem btnSendSms;
         private DevComponents.DotNetBar.ButtonX btnSelect;
+        private DevComponents.DotNetBar.ButtonItem btnSendToSheypoor;
     }
 }

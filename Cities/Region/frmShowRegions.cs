@@ -7,6 +7,7 @@ using MetroFramework.Forms;
 using Notification;
 using Services;
 using Settings.Classes;
+using User;
 
 namespace Cities.Region
 {
@@ -34,7 +35,22 @@ namespace Cities.Region
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-
+        private void SetAccess()
+        {
+            try
+            {
+                var access = clsUser.CurrentUser.UserAccess;
+                btnInsert.Enabled = access?.Regions.Region_Insert ?? false;
+                btnEdit.Enabled = access?.Regions.Region_Update ?? false;
+                btnDelete.Enabled = access?.Regions.Region_Delete ?? false;
+                btnChangeStatus.Enabled = access?.Regions.Region_Disable ?? false;
+                btnView.Enabled = access?.Regions.Region_View ?? false;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
         public bool ST
         {
             get => _st;
@@ -59,6 +75,7 @@ namespace Cities.Region
         {
             InitializeComponent();
             rbtnMyRegion.Checked = true;
+            SetAccess();
         }
 
         private void frmShowRegions_Load(object sender, EventArgs e)

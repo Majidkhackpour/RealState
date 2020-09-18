@@ -5,6 +5,7 @@ using EntityCache.Bussines;
 using MetroFramework.Forms;
 using Notification;
 using Services;
+using User;
 
 namespace Building.DocumentType
 {
@@ -24,7 +25,22 @@ namespace Building.DocumentType
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-
+        private void SetAccess()
+        {
+            try
+            {
+                var access = clsUser.CurrentUser.UserAccess;
+                btnInsert.Enabled = access?.DocumentType.Document_Type_Insert ?? false;
+                btnEdit.Enabled = access?.DocumentType.Document_Type_Update ?? false;
+                btnDelete.Enabled = access?.DocumentType.Document_Type_Delete ?? false;
+                btnChangeStatus.Enabled = access?.DocumentType.Document_Type_Disable ?? false;
+                btnView.Enabled = access?.DocumentType.Document_Type_View ?? false;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
         public bool ST
         {
             get => _st;
@@ -48,6 +64,7 @@ namespace Building.DocumentType
         public frmShowDocumentType()
         {
             InitializeComponent();
+            SetAccess();
         }
 
         private void frmShowDocumentType_Load(object sender, EventArgs e)

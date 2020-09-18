@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Data.SqlClient;
-using System.Drawing;
 using System.Reflection;
 using System.Windows.Forms;
 using Accounting;
@@ -69,7 +68,44 @@ namespace RealState
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
+        private void SetAccess()
+        {
+            try
+            {
+                var access = clsUser.CurrentUser.UserAccess;
 
+                mnuAccountPerformence.Enabled = access?.AccountPerformence.Account_Per_ShowForm ?? false;
+                mnuBuilding.Enabled = access?.Building.Building_ShowForm ?? false;
+                mnuBuildingAccType.Enabled = access?.BuildingAccountType.Building_Acc_Type_ShowForm ?? false;
+                mnuBuildingCondition.Enabled = access?.BuildingCondition.Building_Condition_ShowForm ?? false;
+                mnuBuildingOptions.Enabled = access?.BuildingOption.Building_Option_ShowForm ?? false;
+                mnuBuildingRequest.Enabled = access?.BuildingRequest.Building_Request_ShowForm ?? false;
+                mnuBuildingSearch.Enabled = access?.BuildingSearch.Building_Search_ShowForm ?? false;
+                mnuBuildingType.Enabled = access?.BuildingType.Building_Type_ShowForm ?? false;
+                mnuBuildingView.Enabled = access?.BuildingView.Building_View_ShowForm ?? false;
+                mnuCity.Enabled = access?.Cities.City_ShowForm ?? false;
+                mnuContract.Enabled = access?.Contract.Contract_ShowForm ?? false;
+                mnuDocumentType.Enabled = access?.DocumentType.Document_Type_ShowForm ?? false;
+                mnuFloorCover.Enabled = access?.FloorCover.Floor_Cover_ShowForm ?? false;
+                mnuHazine.Enabled = access?.Hazine.Hazine_ShowForm ?? false;
+                mnuKitchenService.Enabled = access?.KitchenService.Kitchen_Service_ShowForm ?? false;
+                mnuPardakht.Enabled = access?.Pardakht.Pardakht_ShowForm ?? false;
+                mnuPeoples.Enabled = access?.Peoples.People_ShowForm ?? false;
+                mnuPhoneBook.Enabled = access?.PhoneBook.PhoneBook_ShowForm ?? false;
+                mnuReception.Enabled = access?.Reception.Reception_ShowForm ?? false;
+                mnuRentalAuthority.Enabled = access?.RentalAuthority.Rental_ShowForm ?? false;
+                mnuSanad.Enabled = access?.Sanad.Sanad_Insert ?? false;
+                mnuSendSms.Enabled = access?.SendSms.Sms_ShowForm ?? false;
+                mnuSimcard.Enabled = access?.Simcard.Simcard_ShowForm ?? false;
+                mnuSmsPanels.Enabled = access?.SmsPanel.Panel_ShowForm ?? false;
+                mnuUsers.Enabled = access?.User.User_ShowForm ?? false;
+                mnuAccessLevel.Enabled = access?.UserAccLevel.User_Acc_ShowForm ?? false;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
         private void SetButtomLables()
         {
             try
@@ -87,23 +123,20 @@ namespace RealState
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-
         public frmMain()
         {
             InitializeComponent();
         }
-
         private async void frmMain_Load(object sender, System.EventArgs e)
         {
-            UnsetGroupBox();
             lblSecond.Visible = true;
             SetClock();
             SetCalendar();
             SetButtomLables();
-            var tt = new ToolTip();
-            tt.SetToolTip(picSetting, "تنظیمات برنامه");
             var naqz = await NaqzBussines.SetNaqz();
             new frmNaqz(naqz).ShowDialog();
+
+            SetAccess();
         }
         private void timerSecond_Tick(object sender, EventArgs e)
         {
@@ -113,282 +146,13 @@ namespace RealState
             else if (!lblSecond.Visible)
                 lblSecond.Visible = true;
         }
-        private void UnsetGroupBox()
+
+        private void frmMain_FormClosing(object sender, FormClosingEventArgs e)
         {
-            try
-            {
-                grpBaseInfo.Visible = false;
-                grpUsers.Visible = false;
-                grpBuilding.Visible = false;
-                grpAccounting.Visible = false;
-                grpInformation.Visible = false;
-                grpReport.Visible = false;
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
+            UserLog.Save(EnLogAction.Logout, EnLogPart.Logout);
         }
 
-        private void BaseInfo()
-        {
-            try
-            {
-                UnsetGroupBox();
-                grpBaseInfo.Visible = true;
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-        private void Building()
-        {
-            try
-            {
-                UnsetGroupBox();
-                grpBuilding.Visible = true;
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-        private void Users()
-        {
-            try
-            {
-                UnsetGroupBox();
-                grpUsers.Visible = true;
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-        private void Accounting()
-        {
-            try
-            {
-                UnsetGroupBox();
-                grpAccounting.Visible = true;
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-        private void Information()
-        {
-            try
-            {
-                UnsetGroupBox();
-                grpInformation.Visible = true;
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-        private void Reports()
-        {
-            try
-            {
-                UnsetGroupBox();
-                grpReport.Visible = true;
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-
-        private void lblBaseInfo_MouseEnter(object sender, EventArgs e)
-        {
-            lblBaseInfo.ForeColor = Color.Red;
-            BaseInfo();
-        }
-
-        private void lblBuildingInfo_MouseEnter(object sender, EventArgs e)
-        {
-            lblBuildingInfo.ForeColor = Color.Red;
-            Building();
-        }
-
-        private void lblUsers_MouseEnter(object sender, EventArgs e)
-        {
-            lblUsers.ForeColor = Color.Red;
-            Users();
-        }
-
-        private void lblAccountiong_MouseEnter(object sender, EventArgs e)
-        {
-            lblAccountiong.ForeColor = Color.Red;
-            Accounting();
-        }
-
-        private void lblInfornation_MouseEnter(object sender, EventArgs e)
-        {
-            lblInfornation.ForeColor = Color.Red;
-            Information();
-        }
-
-        private void lblInfornation_MouseLeave(object sender, EventArgs e)
-        {
-            lblInfornation.ForeColor = Color.Black;
-        }
-
-        private void lblAccountiong_MouseLeave(object sender, EventArgs e)
-        {
-            lblAccountiong.ForeColor = Color.Black;
-        }
-
-        private void lblUsers_MouseLeave(object sender, EventArgs e)
-        {
-            lblUsers.ForeColor = Color.Black;
-        }
-
-        private void lblBuildingInfo_MouseLeave(object sender, EventArgs e)
-        {
-            lblBuildingInfo.ForeColor = Color.Black;
-        }
-
-        private void lblBaseInfo_MouseLeave(object sender, EventArgs e)
-        {
-            lblBaseInfo.ForeColor = Color.Black;
-        }
-
-        private void frmMain_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Escape) UnsetGroupBox();
-        }
-
-        private void picBaseInfo_MouseEnter(object sender, EventArgs e)
-        {
-            BaseInfo();
-        }
-
-        private void lblPeoples_MouseEnter(object sender, EventArgs e)
-        {
-            lblPeoples.ForeColor = Color.Red;
-        }
-
-        private void lblPeoples_MouseLeave(object sender, EventArgs e)
-        {
-            lblPeoples.ForeColor = Color.Black;
-        }
-
-        private void lblCities_MouseEnter(object sender, EventArgs e)
-        {
-            lblCities.ForeColor = Color.Red;
-        }
-
-        private void lblCities_MouseLeave(object sender, EventArgs e)
-        {
-            lblCities.ForeColor = Color.Black;
-        }
-
-        private void lblRegions_MouseEnter(object sender, EventArgs e)
-        {
-            lblRegions.ForeColor = Color.Red;
-        }
-
-        private void lblRegions_MouseLeave(object sender, EventArgs e)
-        {
-            lblRegions.ForeColor = Color.Black;
-        }
-
-        private void lblBuildingOptions_MouseEnter(object sender, EventArgs e)
-        {
-            lblBuildingOptions.ForeColor = Color.Red;
-        }
-
-        private void lblBuildingOptions_MouseLeave(object sender, EventArgs e)
-        {
-            lblBuildingOptions.ForeColor = Color.Black;
-        }
-
-        private void lblBuildingAccType_MouseEnter(object sender, EventArgs e)
-        {
-            lblBuildingAccType.ForeColor = Color.Red;
-        }
-
-        private void lblBuildingAccType_MouseLeave(object sender, EventArgs e)
-        {
-            lblBuildingAccType.ForeColor = Color.Black;
-        }
-
-        private void lblFloorCover_MouseEnter(object sender, EventArgs e)
-        {
-            lblFloorCover.ForeColor = Color.Red;
-        }
-
-        private void lblFloorCover_MouseLeave(object sender, EventArgs e)
-        {
-            lblFloorCover.ForeColor = Color.Black;
-        }
-
-        private void lblKitchenService_MouseEnter(object sender, EventArgs e)
-        {
-            lblKitchenService.ForeColor = Color.Red;
-        }
-
-        private void lblKitchenService_MouseLeave(object sender, EventArgs e)
-        {
-            lblKitchenService.ForeColor = Color.Black;
-        }
-
-        private void lblDocumentType_MouseEnter(object sender, EventArgs e)
-        {
-            lblDocumentType.ForeColor = Color.Red;
-        }
-
-        private void lblDocumentType_MouseLeave(object sender, EventArgs e)
-        {
-            lblDocumentType.ForeColor = Color.Black;
-        }
-
-        private void lblRental_MouseEnter(object sender, EventArgs e)
-        {
-            lblRental.ForeColor = Color.Red;
-        }
-
-        private void lblRental_MouseLeave(object sender, EventArgs e)
-        {
-            lblRental.ForeColor = Color.Black;
-        }
-
-        private void lblBuildingView_MouseEnter(object sender, EventArgs e)
-        {
-            lblBuildingView.ForeColor = Color.Red;
-        }
-
-        private void lblBuildingView_MouseLeave(object sender, EventArgs e)
-        {
-            lblBuildingView.ForeColor = Color.Black;
-        }
-
-        private void lblBuildingCondition_MouseEnter(object sender, EventArgs e)
-        {
-            lblBuildingCondition.ForeColor = Color.Red;
-        }
-
-        private void lblBuildingCondition_MouseLeave(object sender, EventArgs e)
-        {
-            lblBuildingCondition.ForeColor = Color.Black;
-        }
-
-        private void lblBuildingType_MouseEnter(object sender, EventArgs e)
-        {
-            lblBuildingType.ForeColor = Color.Red;
-        }
-
-        private void lblBuildingType_MouseLeave(object sender, EventArgs e)
-        {
-            lblBuildingType.ForeColor = Color.Black;
-        }
-
-        private void lblPeoples_Click(object sender, EventArgs e)
+        private void mnuPeoples_Click(object sender, EventArgs e)
         {
             try
             {
@@ -401,7 +165,7 @@ namespace RealState
             }
         }
 
-        private void lblCities_Click(object sender, EventArgs e)
+        private void mnuCity_Click(object sender, EventArgs e)
         {
             try
             {
@@ -414,7 +178,7 @@ namespace RealState
             }
         }
 
-        private void lblRegions_Click(object sender, EventArgs e)
+        private void mnuRegion_Click(object sender, EventArgs e)
         {
             try
             {
@@ -427,7 +191,7 @@ namespace RealState
             }
         }
 
-        private void lblBuildingOptions_Click(object sender, EventArgs e)
+        private void mnuBuildingOptions_Click(object sender, EventArgs e)
         {
             try
             {
@@ -440,7 +204,7 @@ namespace RealState
             }
         }
 
-        private void lblBuildingAccType_Click(object sender, EventArgs e)
+        private void mnuBuildingAccType_Click(object sender, EventArgs e)
         {
             try
             {
@@ -453,7 +217,7 @@ namespace RealState
             }
         }
 
-        private void lblFloorCover_Click(object sender, EventArgs e)
+        private void mnuFloorCover_Click(object sender, EventArgs e)
         {
             try
             {
@@ -466,7 +230,7 @@ namespace RealState
             }
         }
 
-        private void lblKitchenService_Click(object sender, EventArgs e)
+        private void mnuKitchenService_Click(object sender, EventArgs e)
         {
             try
             {
@@ -479,7 +243,7 @@ namespace RealState
             }
         }
 
-        private void lblDocumentType_Click(object sender, EventArgs e)
+        private void mnuDocumentType_Click(object sender, EventArgs e)
         {
             try
             {
@@ -492,7 +256,7 @@ namespace RealState
             }
         }
 
-        private void lblRental_Click(object sender, EventArgs e)
+        private void mnuRentalAuthority_Click(object sender, EventArgs e)
         {
             try
             {
@@ -505,7 +269,7 @@ namespace RealState
             }
         }
 
-        private void lblBuildingView_Click(object sender, EventArgs e)
+        private void mnuBuildingView_Click(object sender, EventArgs e)
         {
             try
             {
@@ -518,7 +282,7 @@ namespace RealState
             }
         }
 
-        private void lblBuildingCondition_Click(object sender, EventArgs e)
+        private void mnuBuildingCondition_Click(object sender, EventArgs e)
         {
             try
             {
@@ -531,7 +295,7 @@ namespace RealState
             }
         }
 
-        private void lblBuildingType_Click(object sender, EventArgs e)
+        private void mnuBuildingType_Click(object sender, EventArgs e)
         {
             try
             {
@@ -544,121 +308,7 @@ namespace RealState
             }
         }
 
-        private void picBuilding_MouseEnter(object sender, EventArgs e)
-        {
-            Building();
-        }
-
-        private void picUsers_MouseEnter(object sender, EventArgs e)
-        {
-            Users();
-        }
-
-        private void picAccounting_MouseEnter(object sender, EventArgs e)
-        {
-            Accounting();
-        }
-
-        private void lblSanad_MouseEnter(object sender, EventArgs e)
-        {
-            lblSanad.ForeColor = Color.Red;
-        }
-
-        private void lblSanad_MouseLeave(object sender, EventArgs e)
-        {
-            lblSanad.ForeColor = Color.Black;
-        }
-
-        private void lblPardakht_MouseEnter(object sender, EventArgs e)
-        {
-            lblPardakht.ForeColor = Color.Red;
-        }
-
-        private void lblPardakht_MouseLeave(object sender, EventArgs e)
-        {
-            lblPardakht.ForeColor = Color.Black;
-        }
-
-        private void lblReception_MouseEnter(object sender, EventArgs e)
-        {
-            lblReception.ForeColor = Color.Red;
-        }
-
-        private void lblReception_MouseLeave(object sender, EventArgs e)
-        {
-            lblReception.ForeColor = Color.Black;
-        }
-
-        private void lblAccountPerformence_MouseEnter(object sender, EventArgs e)
-        {
-            lblAccountPerformence.ForeColor = Color.Red;
-        }
-
-        private void lblAccountPerformence_MouseLeave(object sender, EventArgs e)
-        {
-            lblAccountPerformence.ForeColor = Color.Black;
-        }
-
-        private void lblHazine_MouseEnter(object sender, EventArgs e)
-        {
-            lblHazine.ForeColor = Color.Red;
-        }
-
-        private void lblHazine_MouseLeave(object sender, EventArgs e)
-        {
-            lblHazine.ForeColor = Color.Black;
-        }
-        private void lblAccessLevel_MouseEnter(object sender, EventArgs e)
-        {
-            lblAccessLevel.ForeColor = Color.Red;
-        }
-
-        private void lblAccessLevel_MouseLeave(object sender, EventArgs e)
-        {
-            lblAccessLevel.ForeColor = Color.Black;
-        }
-
-        private void lblUserMng_MouseEnter(object sender, EventArgs e)
-        {
-            lblUserMng.ForeColor = Color.Red;
-        }
-
-        private void lblUserMng_MouseLeave(object sender, EventArgs e)
-        {
-            lblUserMng.ForeColor = Color.Black;
-        }
-
-        private void lblBuildingRequest_MouseEnter(object sender, EventArgs e)
-        {
-            lblBuildingRequest.ForeColor = Color.Red;
-        }
-
-        private void lblBuildingRequest_MouseLeave(object sender, EventArgs e)
-        {
-            lblBuildingRequest.ForeColor = Color.Black;
-        }
-
-        private void lblBuildingSearch_MouseEnter(object sender, EventArgs e)
-        {
-            lblBuildingSearch.ForeColor = Color.Red;
-        }
-
-        private void lblBuildingSearch_MouseLeave(object sender, EventArgs e)
-        {
-            lblBuildingSearch.ForeColor = Color.Black;
-        }
-
-        private void lblBuilding_MouseEnter(object sender, EventArgs e)
-        {
-            lblBuilding.ForeColor = Color.Red;
-        }
-
-        private void lblBuilding_MouseLeave(object sender, EventArgs e)
-        {
-            lblBuilding.ForeColor = Color.Black;
-        }
-
-        private void lblBuilding_Click(object sender, EventArgs e)
+        private void mnuBuilding_Click(object sender, EventArgs e)
         {
             try
             {
@@ -671,7 +321,7 @@ namespace RealState
             }
         }
 
-        private void lblBuildingSearch_Click(object sender, EventArgs e)
+        private void mnuBuildingSearch_Click(object sender, EventArgs e)
         {
             try
             {
@@ -684,7 +334,7 @@ namespace RealState
             }
         }
 
-        private void lblBuildingRequest_Click(object sender, EventArgs e)
+        private void mnuBuildingRequest_Click(object sender, EventArgs e)
         {
             try
             {
@@ -697,7 +347,20 @@ namespace RealState
             }
         }
 
-        private void lblUserMng_Click(object sender, EventArgs e)
+        private void mnuContract_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var frm = new frmShowContract();
+                frm.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private void mnuUsers_Click(object sender, EventArgs e)
         {
             try
             {
@@ -710,12 +373,7 @@ namespace RealState
             }
         }
 
-        private void lblAccessLevel_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lblHazine_Click(object sender, EventArgs e)
+        private void mnuHazine_Click(object sender, EventArgs e)
         {
             try
             {
@@ -728,7 +386,7 @@ namespace RealState
             }
         }
 
-        private void lblAccountPerformence_Click(object sender, EventArgs e)
+        private void mnuAccountPerformence_Click(object sender, EventArgs e)
         {
             try
             {
@@ -741,7 +399,7 @@ namespace RealState
             }
         }
 
-        private void lblReception_Click(object sender, EventArgs e)
+        private void mnuReception_Click(object sender, EventArgs e)
         {
             try
             {
@@ -754,7 +412,7 @@ namespace RealState
             }
         }
 
-        private void lblPardakht_Click(object sender, EventArgs e)
+        private void mnuPardakht_Click(object sender, EventArgs e)
         {
             try
             {
@@ -767,7 +425,7 @@ namespace RealState
             }
         }
 
-        private void lblSanad_Click(object sender, EventArgs e)
+        private void mnuSanad_Click(object sender, EventArgs e)
         {
             try
             {
@@ -780,61 +438,7 @@ namespace RealState
             }
         }
 
-        private void picInformation_MouseEnter(object sender, EventArgs e)
-        {
-            Information();
-        }
-
-        private void lblBazsazi_MouseEnter(object sender, EventArgs e)
-        {
-            lblBazsazi.ForeColor = Color.Red;
-        }
-
-        private void lblBazsazi_MouseLeave(object sender, EventArgs e)
-        {
-            lblBazsazi.ForeColor = Color.Black;
-        }
-
-        private void lblPhoneBook_MouseEnter(object sender, EventArgs e)
-        {
-            lblPhoneBook.ForeColor = Color.Red;
-        }
-
-        private void lblPhoneBook_MouseLeave(object sender, EventArgs e)
-        {
-            lblPhoneBook.ForeColor = Color.Black;
-        }
-
-        private void lblSmsPanel_MouseEnter(object sender, EventArgs e)
-        {
-            lblSmsPanel.ForeColor = Color.Red;
-        }
-
-        private void lblSmsPanel_MouseLeave(object sender, EventArgs e)
-        {
-            lblSmsPanel.ForeColor = Color.Black;
-        }
-
-        private void lblSendSms_MouseEnter(object sender, EventArgs e)
-        {
-            lblSendSms.ForeColor = Color.Red;
-        }
-
-        private void lblSendSms_MouseLeave(object sender, EventArgs e)
-        {
-            lblSendSms.ForeColor = Color.Black;
-        }
-        private void lblSimcard_MouseEnter(object sender, EventArgs e)
-        {
-            lblSimcard.ForeColor = Color.Red;
-        }
-
-        private void lblSimcard_MouseLeave(object sender, EventArgs e)
-        {
-            lblSimcard.ForeColor = Color.Black;
-        }
-
-        private void lblSimcard_Click(object sender, EventArgs e)
+        private void mnuSimcard_Click(object sender, EventArgs e)
         {
             try
             {
@@ -847,8 +451,7 @@ namespace RealState
             }
         }
 
-
-        private void lblSendSms_Click(object sender, EventArgs e)
+        private void mnuSendSms_Click(object sender, EventArgs e)
         {
             try
             {
@@ -861,7 +464,7 @@ namespace RealState
             }
         }
 
-        private void lblSmsPanel_Click(object sender, EventArgs e)
+        private void mnuSmsPanels_Click(object sender, EventArgs e)
         {
             try
             {
@@ -874,7 +477,7 @@ namespace RealState
             }
         }
 
-        private void lblPhoneBook_Click(object sender, EventArgs e)
+        private void mnuPhoneBook_Click(object sender, EventArgs e)
         {
             try
             {
@@ -887,7 +490,7 @@ namespace RealState
             }
         }
 
-        private async void lblBazsazi_Click(object sender, EventArgs e)
+        private async void mnuBazsazi_Click(object sender, EventArgs e)
         {
             try
             {
@@ -908,246 +511,7 @@ namespace RealState
             }
         }
 
-        private void lblContract_MouseEnter(object sender, EventArgs e)
-        {
-            lblContract.ForeColor = Color.Red;
-        }
-
-        private void lblContract_MouseLeave(object sender, EventArgs e)
-        {
-            lblContract.ForeColor = Color.Black;
-        }
-
-        private void lblContract_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                var frm = new frmShowContract();
-                frm.ShowDialog();
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-
-        private void PicPeoples_Click(object sender, EventArgs e)
-        {
-            lblPeoples_Click(null, null);
-        }
-
-        private void picCity_Click(object sender, EventArgs e)
-        {
-            lblCities_Click(null, null);
-        }
-
-        private void picRegion_Click(object sender, EventArgs e)
-        {
-            lblRegions_Click(null, null);
-        }
-
-        private void picBuildingOption_Click(object sender, EventArgs e)
-        {
-            lblBuildingOptions_Click(null, null);
-        }
-
-        private void picBuildingAccType_Click(object sender, EventArgs e)
-        {
-            lblBuildingAccType_Click(null, null);
-        }
-
-        private void picFloor_Click(object sender, EventArgs e)
-        {
-            lblFloorCover_Click(null, null);
-        }
-
-        private void picKitchen_Click(object sender, EventArgs e)
-        {
-            lblKitchenService_Click(null, null);
-        }
-
-        private void picDocType_Click(object sender, EventArgs e)
-        {
-            lblDocumentType_Click(null, null);
-        }
-
-        private void picRental_Click(object sender, EventArgs e)
-        {
-            lblRental_Click(null, null);
-        }
-
-        private void picView_Click(object sender, EventArgs e)
-        {
-            lblBuildingView_Click(null, null);
-        }
-
-        private void picCondition_Click(object sender, EventArgs e)
-        {
-            lblBuildingCondition_Click(null, null);
-        }
-
-        private void picType_Click(object sender, EventArgs e)
-        {
-            lblBuildingType_Click(null, null);
-        }
-
-        private void picBuildingInfo_Click(object sender, EventArgs e)
-        {
-            lblBuilding_Click(null, null);
-        }
-
-        private void picBuildingSearch_Click(object sender, EventArgs e)
-        {
-            lblBuildingSearch_Click(null, null);
-        }
-
-        private void picRequest_Click(object sender, EventArgs e)
-        {
-            lblBuildingRequest_Click(null, null);
-        }
-
-        private void picContract_Click(object sender, EventArgs e)
-        {
-            lblContract_Click(null, null);
-        }
-
-        private void picUserMng_Click(object sender, EventArgs e)
-        {
-            lblUserMng_Click(null, null);
-        }
-
-        private void picAccessLevel_Click(object sender, EventArgs e)
-        {
-            lblAccessLevel_Click(null, null);
-        }
-
-        private void picHazine_Click(object sender, EventArgs e)
-        {
-            lblHazine_Click(null, null);
-        }
-
-        private void picAccPerformence_Click(object sender, EventArgs e)
-        {
-            lblAccountPerformence_Click(null, null);
-        }
-
-        private void picDaryaft_Click(object sender, EventArgs e)
-        {
-            lblReception_Click(null, null);
-        }
-
-        private void picPardakht_Click(object sender, EventArgs e)
-        {
-            lblPardakht_Click(null, null);
-        }
-
-        private void picSanad_Click(object sender, EventArgs e)
-        {
-            lblSanad_Click(null, null);
-        }
-
-        private void picBazsazi_Click(object sender, EventArgs e)
-        {
-            lblBazsazi_Click(null, null);
-        }
-
-        private void picPhoneBook_Click(object sender, EventArgs e)
-        {
-            lblPhoneBook_Click(null, null);
-        }
-
-        private void picPanel_Click(object sender, EventArgs e)
-        {
-            lblSmsPanel_Click(null, null);
-        }
-
-        private void picSms_Click(object sender, EventArgs e)
-        {
-            lblSendSms_Click(null, null);
-        }
-
-        private void picSimcard_Click(object sender, EventArgs e)
-        {
-            lblSimcard_Click(null, null);
-        }
-
-        private void lblDashBoard_MouseEnter(object sender, EventArgs e)
-        {
-            lblDashBoard.ForeColor = Color.Red;
-        }
-
-        private void lblDashBoard_MouseLeave(object sender, EventArgs e)
-        {
-            lblDashBoard.ForeColor = Color.Black;
-        }
-
-        private void lblSetting_MouseEnter(object sender, EventArgs e)
-        {
-            lblSetting.ForeColor = Color.Red;
-        }
-
-        private void lblSetting_MouseLeave(object sender, EventArgs e)
-        {
-            lblSetting.ForeColor = Color.Black;
-        }
-
-        private void lblBackUp_MouseEnter(object sender, EventArgs e)
-        {
-            lblBackUp.ForeColor = Color.Red;
-        }
-
-        private void lblRestore_MouseLeave(object sender, EventArgs e)
-        {
-            lblRestore.ForeColor = Color.Black;
-        }
-
-        private void lblBackUp_MouseLeave(object sender, EventArgs e)
-        {
-            lblBackUp.ForeColor = Color.Black;
-        }
-
-        private void lblRestore_MouseEnter(object sender, EventArgs e)
-        {
-            lblRestore.ForeColor = Color.Red;
-        }
-
-        private void lblErtegha_MouseEnter(object sender, EventArgs e)
-        {
-            lblErtegha.ForeColor = Color.Red;
-        }
-
-        private void lblErtegha_MouseLeave(object sender, EventArgs e)
-        {
-            lblErtegha.ForeColor = Color.Black;
-        }
-
-        private void frmMain_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            UserLog.Save(EnLogAction.Logout, EnLogPart.Logout);
-        }
-
-        private void picReport_MouseEnter(object sender, EventArgs e)
-        {
-            Reports();
-        }
-
-        private void lblReport_MouseEnter(object sender, EventArgs e)
-        {
-            lblReport.ForeColor = Color.Red;
-            Reports();
-        }
-
-        private void lblReport_MouseLeave(object sender, EventArgs e)
-        {
-            lblReport.ForeColor = Color.Black;
-        }
-
-        private void picUserPerformance_Click(object sender, EventArgs e)
-        {
-            lblUserPerformance_Click(null, null);
-        }
-
-        private void lblUserPerformance_Click(object sender, EventArgs e)
+        private void mnuUserPerformence_Click(object sender, EventArgs e)
         {
             try
             {
@@ -1160,17 +524,7 @@ namespace RealState
             }
         }
 
-        private void lblUserPerformance_MouseEnter(object sender, EventArgs e)
-        {
-            lblUserPerformance.ForeColor = Color.Red;
-        }
-
-        private void lblUserPerformance_MouseLeave(object sender, EventArgs e)
-        {
-            lblUserPerformance.ForeColor = Color.Black;
-        }
-
-        private void lblNote_Click(object sender, EventArgs e)
+        private void mnuNote_Click(object sender, EventArgs e)
         {
             try
             {
@@ -1183,19 +537,17 @@ namespace RealState
             }
         }
 
-        private void picNote_Click(object sender, EventArgs e)
+        private void mnuAccessLevel_Click(object sender, EventArgs e)
         {
-            lblNote_Click(null, null);
-        }
-
-        private void lblNote_MouseEnter(object sender, EventArgs e)
-        {
-            lblNote.ForeColor = Color.Red;
-        }
-
-        private void lblNote_MouseLeave(object sender, EventArgs e)
-        {
-            lblNote.ForeColor = Color.Black;
+            try
+            {
+                var frm = new frmAccessLevel();
+                frm.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
         }
     }
 }

@@ -105,6 +105,8 @@ namespace RealState.Note
                     case Keys.F:
                         if (e.Control) txtSearch.Focus();
                         break;
+                    case Keys.Escape: Close();
+                        break;
                 }
             }
             catch (Exception ex)

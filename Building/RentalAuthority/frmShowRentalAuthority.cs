@@ -5,6 +5,7 @@ using EntityCache.Bussines;
 using MetroFramework.Forms;
 using Notification;
 using Services;
+using User;
 
 namespace Building.RentalAuthority
 {
@@ -24,7 +25,22 @@ namespace Building.RentalAuthority
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-
+        private void SetAccess()
+        {
+            try
+            {
+                var access = clsUser.CurrentUser.UserAccess;
+                btnInsert.Enabled = access?.RentalAuthority.Rental_Insert ?? false;
+                btnEdit.Enabled = access?.RentalAuthority.Rental_Update ?? false;
+                btnDelete.Enabled = access?.RentalAuthority.Rental_Delete ?? false;
+                btnChangeStatus.Enabled = access?.RentalAuthority.Rental_Disable ?? false;
+                btnView.Enabled = access?.RentalAuthority.Rental_View ?? false;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
         public bool ST
         {
             get => _st;
@@ -48,6 +64,7 @@ namespace Building.RentalAuthority
         public frmShowRentalAuthority()
         {
             InitializeComponent();
+            SetAccess();
         }
 
         private void frmShowRentalAuthority_Load(object sender, EventArgs e)

@@ -64,7 +64,29 @@ namespace Building.Building
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-
+        private void SetAccess()
+        {
+            try
+            {
+                var access = clsUser.CurrentUser.UserAccess;
+                btnInsert.Enabled = access?.Building.Building_Insert ?? false;
+                btnEdit.Enabled = access?.Building.Building_Update ?? false;
+                btnDelete.Enabled = access?.Building.Building_Delete ?? false;
+                btnChangeStatus.Enabled = access?.Building.Building_Disable ?? false;
+                btnView.Enabled = access?.Building.Building_View ?? false;
+                btnMatchRequest.Enabled = access?.Building.Building_Show_request ?? false;
+                btnMojod.Enabled = access?.Building.Building_Mojod ?? false;
+                btnVagozar.Enabled = access?.Building.Building_Vagozar ?? false;
+                btnSendSms.Enabled = access?.Building.Building_Send_Sms ?? false;
+                btnSendToDivar.Enabled = access?.Building.Building_Send_Divar ?? false;
+                btnSendToSheypoor.Enabled = access?.Building.Building_Send_Sheypoor ?? false;
+                btnSendToTelegram.Enabled = access?.Building.Building_Send_Telegram ?? false;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
         public bool ST
         {
             get => _st;
@@ -109,6 +131,8 @@ namespace Building.Building
                 btnSelect.Visible = false;
                 btnOther.Visible = true;
             }
+
+            SetAccess();
         }
 
         private void frmShowBuildings_Load(object sender, EventArgs e)

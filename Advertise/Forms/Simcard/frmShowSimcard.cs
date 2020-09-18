@@ -6,6 +6,7 @@ using EntityCache.Bussines;
 using MetroFramework.Forms;
 using Notification;
 using Services;
+using User;
 
 namespace Advertise.Forms.Simcard
 {
@@ -25,7 +26,26 @@ namespace Advertise.Forms.Simcard
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-
+        private void SetAccess()
+        {
+            try
+            {
+                var access = clsUser.CurrentUser.UserAccess;
+                btnInsert.Enabled = access?.Simcard.Simcard_Insert ?? false;
+                btnEdit.Enabled = access?.Simcard.Simcard_Update ?? false;
+                btnDelete.Enabled = access?.Simcard.Simcard_Delete ?? false;
+                btnChangeStatus.Enabled = access?.Simcard.Simcard_Disable ?? false;
+                btnView.Enabled = access?.Simcard.Simcard_View ?? false;
+                btnLoginDivar.Enabled = access?.Simcard.Simcard_Divar_Token ?? false;
+                btnDelToken.Enabled = access?.Simcard.Simcard_Delete_Token ?? false;
+                btnSendAdv.Enabled = access?.Simcard.Simcard_Send_Adv ?? false;
+                btnLoginSheypoor.Enabled = access?.Simcard.Simcard_Shepoor_Token ?? false;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
         public bool ST
         {
             get => _st;
@@ -49,6 +69,7 @@ namespace Advertise.Forms.Simcard
         public frmShowSimcard()
         {
             InitializeComponent();
+            SetAccess();
         }
 
         private void frmShowSimcard_Load(object sender, EventArgs e)

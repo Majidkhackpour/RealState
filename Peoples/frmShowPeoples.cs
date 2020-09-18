@@ -10,6 +10,7 @@ using Notification;
 using Payamak;
 using Payamak.PhoneBook;
 using Services;
+using User;
 
 namespace Peoples
 {
@@ -89,7 +90,29 @@ namespace Peoples
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-
+        private void SetAccess()
+        {
+            try
+            {
+                var access = clsUser.CurrentUser.UserAccess;
+                btnInsert.Enabled = access?.Peoples.People_Insert ?? false;
+                btnEdit.Enabled = access?.Peoples.People_Update ?? false;
+                btnDelete.Enabled = access?.Peoples.People_Delete ?? false;
+                btnChangeStatus.Enabled = access?.Peoples.People_Disable ?? false;
+                btnView.Enabled = access?.Peoples.People_View ?? false;
+                btnBank.Enabled = access?.Peoples.People_Show_BankHesab ?? false;
+                btnDelGroup.Enabled = access?.Peoples.People_Group_Delete ?? false;
+                btnInsGroup.Enabled = access?.Peoples.People_Group_Insert ?? false;
+                btnIpmortFromExcel.Enabled = access?.Peoples.People_Import_Excel ?? false;
+                btnSendSMS.Enabled = access?.Peoples.People_SendSms ?? false;
+                btnUpGroup.Enabled = access?.Peoples.People_Group_Update ?? false;
+                btnTell.Enabled = access?.Peoples.People_Show_Tell ?? false;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
         private void LoadData()
         {
             try
@@ -128,6 +151,8 @@ namespace Peoples
                 btnOther.Visible = true;
                 btnSelect.Visible = false;
             }
+
+            SetAccess();
         }
 
         private void frmShowPeoples_Load(object sender, EventArgs e)

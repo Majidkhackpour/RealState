@@ -5,6 +5,7 @@ using EntityCache.Bussines;
 using MetroFramework.Forms;
 using Notification;
 using Services;
+using User;
 
 namespace Building.Contract
 {
@@ -24,7 +25,23 @@ namespace Building.Contract
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-
+        private void SetAccess()
+        {
+            try
+            {
+                var access = clsUser.CurrentUser.UserAccess;
+                btnInsert.Enabled = access?.Contract.Contract_Insert ?? false;
+                btnEdit.Enabled = access?.Contract.Contract_Update ?? false;
+                btnDelete.Enabled = access?.Contract.Contract_Delete ?? false;
+                btnChangeStatus.Enabled = access?.Contract.Contract_Disable ?? false;
+                btnView.Enabled = access?.Contract.Contract_View ?? false;
+                btnChangeTemp.Enabled = access?.Contract.Contract_Finish ?? false;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
         public bool ST
         {
             get => _st;
@@ -48,6 +65,7 @@ namespace Building.Contract
         public frmShowContract()
         {
             InitializeComponent();
+            SetAccess();
         }
 
         private void frmShowContract_Load(object sender, EventArgs e)

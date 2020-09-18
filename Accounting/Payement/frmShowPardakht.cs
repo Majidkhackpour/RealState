@@ -5,6 +5,7 @@ using EntityCache.Bussines;
 using MetroFramework.Forms;
 using Notification;
 using Services;
+using User;
 
 namespace Accounting.Payement
 {
@@ -25,7 +26,22 @@ namespace Accounting.Payement
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-
+        private void SetAccess()
+        {
+            try
+            {
+                var access = clsUser.CurrentUser.UserAccess;
+                btnInsert.Enabled = access?.Pardakht.Pardakht_Insert ?? false;
+                btnEdit.Enabled = access?.Pardakht.Pardakht_Update ?? false;
+                btnDelete.Enabled = access?.Pardakht.Pardakht_Delete ?? false;
+                btnChangeStatus.Enabled = access?.Pardakht.Pardakht_Disable ?? false;
+                btnView.Enabled = access?.Pardakht.Pardakht_View ?? false;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
         public bool ST
         {
             get => _st;
@@ -52,6 +68,7 @@ namespace Accounting.Payement
             _receptorGuid = receptorGuid;
             type = _type;
             SetLabels();
+            SetAccess();
         }
         private void SetLabels()
         {

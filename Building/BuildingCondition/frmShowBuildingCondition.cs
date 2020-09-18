@@ -5,6 +5,7 @@ using EntityCache.Bussines;
 using MetroFramework.Forms;
 using Notification;
 using Services;
+using User;
 
 namespace Building.BuildingCondition
 {
@@ -24,7 +25,22 @@ namespace Building.BuildingCondition
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-
+        private void SetAccess()
+        {
+            try
+            {
+                var access = clsUser.CurrentUser.UserAccess;
+                btnInsert.Enabled = access?.BuildingCondition.Building_Condition_Insert ?? false;
+                btnEdit.Enabled = access?.BuildingCondition.Building_Condition_Update ?? false;
+                btnDelete.Enabled = access?.BuildingCondition.Building_Condition_Delete ?? false;
+                btnChangeStatus.Enabled = access?.BuildingCondition.Building_Condition_Disable ?? false;
+                btnView.Enabled = access?.BuildingCondition.Building_Condition_View ?? false;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
         public bool ST
         {
             get => _st;
@@ -48,6 +64,7 @@ namespace Building.BuildingCondition
         public frmShowBuildingCondition()
         {
             InitializeComponent();
+            SetAccess();
         }
 
         private void DGrid_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)

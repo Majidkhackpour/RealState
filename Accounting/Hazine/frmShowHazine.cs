@@ -5,6 +5,7 @@ using EntityCache.Bussines;
 using MetroFramework.Forms;
 using Notification;
 using Services;
+using User;
 
 namespace Accounting.Hazine
 {
@@ -46,6 +47,24 @@ namespace Accounting.Hazine
                 }
             }
         }
+
+        private void SetAccess()
+        {
+            try
+            {
+                var access = clsUser.CurrentUser.UserAccess;
+                btnInsert.Enabled = access?.Hazine.Hazine_Insert ?? false;
+                btnEdit.Enabled = access?.Hazine.Hazine_Update ?? false;
+                btnDelete.Enabled = access?.Hazine.Hazine_Delete ?? false;
+                btnChangeStatus.Enabled = access?.Hazine.Hazine_Disable ?? false;
+                btnView.Enabled = access?.Hazine.Hazine_View ?? false;
+                btnPrint.Enabled = access?.Hazine.Hazine_Gardesh ?? false;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
         public frmShowHazine(bool _isShowMode)
         {
             InitializeComponent();
@@ -70,6 +89,8 @@ namespace Accounting.Hazine
                 btnSelect.Visible = false;
                 btnPrint.Visible = true;
             }
+
+            SetAccess();
         }
 
         private void frmShowHazine_Load(object sender, EventArgs e)

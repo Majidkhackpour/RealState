@@ -5,6 +5,7 @@ using EntityCache.Bussines;
 using MetroFramework.Forms;
 using Notification;
 using Services;
+using User;
 
 namespace Payamak.PhoneBook
 {
@@ -12,6 +13,22 @@ namespace Payamak.PhoneBook
     {
         public Guid ParentGuid { get; set; }
         private bool _st = true;
+        private void SetAccess()
+        {
+            try
+            {
+                var access = clsUser.CurrentUser.UserAccess;
+                btnInsert.Enabled = access?.PhoneBook.PhoneBook_Insert ?? false;
+                btnEdit.Enabled = access?.PhoneBook.PhoneBook_Update ?? false;
+                btnDelete.Enabled = access?.PhoneBook.PhoneBook_Delete ?? false;
+                btnChangeStatus.Enabled = access?.PhoneBook.PhoneBook_Disable ?? false;
+                btnView.Enabled = access?.PhoneBook.PhoneBook_View ?? false;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
         private void LoadData(bool status, string search = "")
         {
             try
@@ -72,12 +89,14 @@ namespace Payamak.PhoneBook
             btnInsert.Visible = false;
             btnView.Visible = false;
             cmbGroup.Enabled = false;
+            SetAccess();
         }
 
         public frmShowPhoneBook()
         {
             InitializeComponent();
             ParentGuid = Guid.Empty;
+            SetAccess();
         }
 
         private void frmShowPhoneBook_Load(object sender, EventArgs e)

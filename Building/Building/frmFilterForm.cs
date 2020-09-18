@@ -6,6 +6,7 @@ using EntityCache.Bussines;
 using EntityCache.ViewModels;
 using MetroFramework.Forms;
 using Services;
+using User;
 
 namespace Building.Building
 {
@@ -105,11 +106,26 @@ namespace Building.Building
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-
+        private void SetAccess()
+        {
+            try
+            {
+                var access = clsUser.CurrentUser.UserAccess;
+                chbDivar.Enabled = access?.BuildingSearch.Building_Search_Divar ?? false;
+                chbSystem.Enabled = access?.BuildingSearch.Building_Search_System ?? false;
+                chbSarasari.Enabled = access?.BuildingSearch.Building_Search_Site ?? false;
+                //chbSheypoor.Enabled = access?.BuildingSearch.Building_Search_Sheypoor ?? false;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
         public frmFilterForm()
         {
             InitializeComponent();
             SetData();
+            SetAccess();
         }
 
         public frmFilterForm(EnRequestType type, Guid buildingType, Guid accountType, int roomCount, int fMasahat,
@@ -119,6 +135,7 @@ namespace Building.Building
             SetData();
             SetFormControl(type, buildingType, accountType, roomCount, fMasahat, sMasahat, fPrice1, sPrice1, fPrice2,
                 sPrice2);
+            SetAccess();
         }
 
         private void cmbReqType_SelectedIndexChanged(object sender, EventArgs e)
