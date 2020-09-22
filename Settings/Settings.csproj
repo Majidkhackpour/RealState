@@ -104,6 +104,10 @@
     <Reference Include="MetroFramework.Fonts, Version=1.4.0.0, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
       <HintPath>..\packages\MetroModernUI.1.4.0.0\lib\net\MetroFramework.Fonts.dll</HintPath>
     </Reference>
+    <Reference Include="Payamak, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\References\RealState\Payamak.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -122,8 +126,11 @@
   <ItemGroup>
     <Compile Include="AppSettings.cs" />
     <Compile Include="Classes\clsAdvertise.cs" />
+    <Compile Include="Classes\clsBackUp.cs" />
     <Compile Include="Classes\clsEconomyUnit.cs" />
     <Compile Include="Classes\clsGlobalSetting.cs" />
+    <Compile Include="Classes\clsSandouq.cs" />
+    <Compile Include="Classes\clsTelegram.cs" />
     <Compile Include="Classes\Payamak.cs" />
     <Compile Include="clsRegistery.cs" />
     <Compile Include="frmEconomyUnit.cs">
@@ -132,11 +139,47 @@
     <Compile Include="frmEconomyUnit.Designer.cs">
       <DependentUpon>frmEconomyUnit.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSettings.Designer.cs">
+      <DependentUpon>frmSettings.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="SettingForms\frmBackUpSetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SettingForms\frmBackUpSetting.Designer.cs">
+      <DependentUpon>frmBackUpSetting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SettingForms\frmEconomy.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SettingForms\frmEconomy.Designer.cs">
+      <DependentUpon>frmEconomy.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SettingForms\frmSandouq.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SettingForms\frmSandouq.Designer.cs">
+      <DependentUpon>frmSandouq.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SettingForms\frmSmsSetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SettingForms\frmSmsSetting.Designer.cs">
+      <DependentUpon>frmSmsSetting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SettingForms\frmTelegramSetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SettingForms\frmTelegramSetting.Designer.cs">
+      <DependentUpon>frmTelegramSetting.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -144,6 +187,7 @@
     <None Include="packages.config" />
     <None Include="Properties\DataSources\EntityCache.Bussines.CitiesBussines.datasource" />
     <None Include="Properties\DataSources\EntityCache.Bussines.RegionsBussines.datasource" />
+    <None Include="Properties\DataSources\EntityCache.Bussines.SmsPanelsBussines.datasource" />
     <None Include="Properties\DataSources\EntityCache.Bussines.StatesBussines.datasource" />
   </ItemGroup>
   <ItemGroup>
@@ -168,9 +212,27 @@
     <EmbeddedResource Include="frmEconomyUnit.resx">
       <DependentUpon>frmEconomyUnit.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmSettings.resx">
+      <DependentUpon>frmSettings.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SettingForms\frmBackUpSetting.resx">
+      <DependentUpon>frmBackUpSetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SettingForms\frmEconomy.resx">
+      <DependentUpon>frmEconomy.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SettingForms\frmSandouq.resx">
+      <DependentUpon>frmSandouq.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SettingForms\frmSmsSetting.resx">
+      <DependentUpon>frmSmsSetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SettingForms\frmTelegramSetting.resx">
+      <DependentUpon>frmTelegramSetting.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmEconomyUnit));
             this.btnFinish = new DevComponents.DotNetBar.ButtonX();
             this.txtManagerName = new System.Windows.Forms.TextBox();
@@ -44,12 +45,12 @@
             this.btnCancel = new DevComponents.DotNetBar.ButtonX();
             this.grp = new DevComponents.DotNetBar.PanelEx();
             this.cmbRegion = new System.Windows.Forms.ComboBox();
-            this.RegionBindingSource = new System.Windows.Forms.BindingSource();
+            this.RegionBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.cmbCity = new System.Windows.Forms.ComboBox();
-            this.CityBindingSource = new System.Windows.Forms.BindingSource();
+            this.CityBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label13 = new System.Windows.Forms.Label();
             this.cmbState = new System.Windows.Forms.ComboBox();
-            this.StateBindingSource = new System.Windows.Forms.BindingSource();
+            this.StateBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label12 = new System.Windows.Forms.Label();
             this.txtEmail = new System.Windows.Forms.TextBox();
             this.txtMobile = new System.Windows.Forms.TextBox();
@@ -252,6 +253,7 @@
             // 
             // cmbRegion
             // 
+            this.cmbRegion.Cursor = System.Windows.Forms.Cursors.Hand;
             this.cmbRegion.DataSource = this.RegionBindingSource;
             this.cmbRegion.DisplayMember = "Name";
             this.cmbRegion.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -268,6 +270,7 @@
             // 
             // cmbCity
             // 
+            this.cmbCity.Cursor = System.Windows.Forms.Cursors.Hand;
             this.cmbCity.DataSource = this.CityBindingSource;
             this.cmbCity.DisplayMember = "Name";
             this.cmbCity.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -295,6 +298,7 @@
             // 
             // cmbState
             // 
+            this.cmbState.Cursor = System.Windows.Forms.Cursors.Hand;
             this.cmbState.DataSource = this.StateBindingSource;
             this.cmbState.DisplayMember = "Name";
             this.cmbState.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -340,6 +344,7 @@
             // 
             // cmbType
             // 
+            this.cmbType.Cursor = System.Windows.Forms.Cursors.Hand;
             this.cmbType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbType.FormattingEnabled = true;
             this.cmbType.Location = new System.Drawing.Point(22, 54);

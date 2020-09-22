@@ -549,5 +549,18 @@ namespace RealState
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
+
+        private void mnuSettings_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var frm = new frmSettings();
+                frm.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
     }
 }

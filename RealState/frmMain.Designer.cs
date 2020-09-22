@@ -600,6 +600,7 @@
             this.mnuSettings.Name = "mnuSettings";
             this.mnuSettings.Size = new System.Drawing.Size(221, 24);
             this.mnuSettings.Text = "تنظیمات برنامه";
+            this.mnuSettings.Click += new System.EventHandler(this.mnuSettings_Click);
             // 
             // toolStripMenuItem3
             // 
