@@ -9,6 +9,7 @@ using Microsoft.Office.Interop.Excel;
 using Notification;
 using Payamak;
 using Payamak.PhoneBook;
+using Print;
 using Services;
 using User;
 
@@ -20,7 +21,7 @@ namespace Peoples
         public Guid GroupGuid { get => _groupGuid; set => _groupGuid = value; }
         public Guid SelectedGuid { get; set; }
         private bool isShowMode = false;
-        private List<PeoplesBussines> list;
+        private IEnumerable<PeoplesBussines> list;
         private bool _st = true;
         public bool ST
         {
@@ -107,6 +108,7 @@ namespace Peoples
                 btnSendSMS.Enabled = access?.Peoples.People_SendSms ?? false;
                 btnUpGroup.Enabled = access?.Peoples.People_Group_Update ?? false;
                 btnTell.Enabled = access?.Peoples.People_Show_Tell ?? false;
+                btnPrint.Enabled = access?.Peoples.People_Print ?? false;
             }
             catch (Exception ex)
             {
@@ -561,7 +563,7 @@ namespace Peoples
                 excel.Visible = false;
                 var index = 1;
 
-                var frm = new frmSplash(list.Count);
+                var frm = new frmSplash(list.ToList().Count);
                 frm.Show();
 
 
@@ -608,6 +610,22 @@ namespace Peoples
                 excel.Quit();
                 frm.Close();
 
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private void btnPrint_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var frm=new frmSetPrintSize();
+                if (frm.ShowDialog() != DialogResult.OK) return;
+
+                var cls = new ReportGenerator(StiType.People_List, frm.PrintType) {Lst = new List<object>(list)};
+                cls.PrintNew();
             }
             catch (Exception ex)
             {

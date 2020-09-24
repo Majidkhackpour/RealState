@@ -28,6 +28,15 @@ namespace EntityCache.Bussines
         public decimal Account { get; set; }
         public decimal AccountFirst { get; set; }
         public decimal Account_ => Math.Abs(Account);
+        public string AccountType
+        {
+            get
+            {
+                if (Account > 0) return "بدهکار";
+                if (Account < 0) return "بستانکار";
+                return "بی حساب";
+            }
+        }
 
         public string FirstNumber => PhoneBookBussines.GetAll(Guid, true)?.FirstOrDefault()?.Tell ?? "";
         private List<PhoneBookBussines> _tellList;

@@ -4,11 +4,11 @@ using Services;
 
 namespace Print.Classes
 {
-    public class clsPeoples
+    public class clsUserPerformence
     {
-        public static string FolderName => "اشخاص";
+        public static string FolderName => "عملکرد کاربران";
 
-        public class One
+        public class List
         {
             public static Stimulsoft.Report.StiReport GetSti(Stimulsoft.Report.StiReport sti, EnPrintType peper)
             {
@@ -18,8 +18,8 @@ namespace Print.Classes
                     ReportPath.CreatePath(ReportPath.ReportPath_ + @"\" + FolderName);
                     switch (peper)
                     {
-                        case EnPrintType.A4: return Peoples_One_A4(sti);
-                        case EnPrintType.A5: return Peoples_One_A5(sti);
+                        case EnPrintType.A4: return User_Prf_List_A4(sti);
+                        case EnPrintType.A5: return User_Prf_List_A5(sti);
                     }
                 }
                 catch (Exception ex)
@@ -29,14 +29,14 @@ namespace Print.Classes
 
                 return sti;
             }
-            public static Stimulsoft.Report.StiReport Peoples_One_A4(Stimulsoft.Report.StiReport sti)
+            public static Stimulsoft.Report.StiReport User_Prf_List_A4(Stimulsoft.Report.StiReport sti)
             {
                 try
                 {
-                    var fullAdd = ReportPath.ReportPath_ + @"\" + FolderName + @"\Peoples_A4.mrt";
+                    var fullAdd = ReportPath.ReportPath_ + @"\" + FolderName + @"\User_Prf_List_A4.mrt";
 
                     if (!File.Exists(fullAdd))
-                        File.WriteAllBytes(fullAdd, Properties.Resources.Peoples_A4);
+                        File.WriteAllBytes(fullAdd, null /*AddReportFileToResourceAndResourceNameIsHere*/);
                     sti.Load(fullAdd);
                 }
                 catch (Exception ex)
@@ -45,14 +45,14 @@ namespace Print.Classes
                 }
                 return sti;
             }
-            public static Stimulsoft.Report.StiReport Peoples_One_A5(Stimulsoft.Report.StiReport sti)
+            public static Stimulsoft.Report.StiReport User_Prf_List_A5(Stimulsoft.Report.StiReport sti)
             {
                 try
                 {
-                    var fullAdd = ReportPath.ReportPath_ + @"\" + FolderName + @"\Peoples_A5.mrt";
+                    var fullAdd = ReportPath.ReportPath_ + @"\" + FolderName + @"\User_Prf_List_A5.mrt";
 
                     if (!File.Exists(fullAdd))
-                        File.WriteAllBytes(fullAdd, Properties.Resources.Peoples_A5);
+                        File.WriteAllBytes(fullAdd, null /*AddReportFileToResourceAndResourceNameIsHere*/);
                     sti.Load(fullAdd);
                 }
                 catch (Exception ex)

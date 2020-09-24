@@ -72,6 +72,7 @@
             this.btnExportToExcel = new DevComponents.DotNetBar.ButtonItem();
             this.btnSelect = new DevComponents.DotNetBar.ButtonX();
             this.groupBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.btnPrint = new DevComponents.DotNetBar.ButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.peopleBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupBindingSource)).BeginInit();
@@ -480,7 +481,8 @@
             this.btnBank,
             this.btnSendSMS,
             this.btnIpmortFromExcel,
-            this.btnExportToExcel});
+            this.btnExportToExcel,
+            this.btnPrint});
             this.btnOther.TabIndex = 55756;
             this.btnOther.Text = "سایر";
             this.btnOther.TextAlignment = DevComponents.DotNetBar.eButtonTextAlignment.Left;
@@ -542,6 +544,12 @@
             // groupBindingSource
             // 
             this.groupBindingSource.DataSource = typeof(EntityCache.Bussines.PeopleGroupBussines);
+            // 
+            // btnPrint
+            // 
+            this.btnPrint.Name = "btnPrint";
+            this.btnPrint.Text = "چاپ لیست اشخاص";
+            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
             // 
             // frmShowPeoples
             // 
@@ -619,5 +627,6 @@
         private DevComponents.DotNetBar.ButtonX btnSelect;
         private DevComponents.DotNetBar.ButtonItem btnIpmortFromExcel;
         private DevComponents.DotNetBar.ButtonItem btnExportToExcel;
+        private DevComponents.DotNetBar.ButtonItem btnPrint;
     }
 }

@@ -116,6 +116,10 @@
     <Reference Include="Microsoft.Office.Interop.Excel, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
+    <Reference Include="Stimulsoft.Design, Version=2018.1.6.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\References\Stimulsoft.Design.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -271,6 +275,10 @@
     <ProjectReference Include="..\Persistence\Persistence.csproj">
       <Project>{69dbdf3a-8578-44db-95cd-08a671de9e41}</Project>
       <Name>Persistence</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Print\Print.csproj">
+      <Project>{86698884-fad8-4d69-b7ad-4f0a437f7bcc}</Project>
+      <Name>Print</Name>
     </ProjectReference>
     <ProjectReference Include="..\User\User.csproj">
       <Project>{ebed491e-32a3-4484-a5aa-e5ed61e8bb0b}</Project>
