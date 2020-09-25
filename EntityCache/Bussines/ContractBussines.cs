@@ -13,8 +13,9 @@ namespace EntityCache.Bussines
     {
         public Guid Guid { get; set; }
         public DateTime Modified { get; set; } = DateTime.Now;
-        public string DateSh => Calendar.MiladiToShamsi(Modified);
+        public string DateSh => Calendar.MiladiToShamsi(DateM);
         public bool Status { get; set; } = true;
+        public DateTime DateM { get; set; } = DateTime.Now;
         public long Code { get; set; }
         public bool IsTemp { get; set; }
         public Guid FirstSideGuid { get; set; }
@@ -38,6 +39,7 @@ namespace EntityCache.Bussines
         public decimal SarQofli { get; set; }
         public decimal Delay { get; set; }
         public string Description { get; set; }
+        public EnRequestType Type { get; set; }
         private ContractFinanceBussines _finance;
         public ContractFinanceBussines Finance
         {

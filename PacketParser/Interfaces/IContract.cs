@@ -1,9 +1,11 @@
 ﻿using System;
+using Services;
 
 namespace PacketParser.Interfaces
 {
     public interface IContract : IHasGuid
     {
+        DateTime DateM { get; set; }
         long Code { get; set; }
         bool IsTemp { get; set; }
         Guid FirstSideGuid { get; set; }
@@ -24,5 +26,6 @@ namespace PacketParser.Interfaces
         decimal SarQofli { get; set; }
         decimal Delay { get; set; }
         string Description { get; set; }
+        EnRequestType Type { get; set; }
     }
 }

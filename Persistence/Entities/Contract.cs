@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using PacketParser.Interfaces;
+using Services;
 
 namespace Persistence.Entities
 {
@@ -10,6 +11,7 @@ namespace Persistence.Entities
         public Guid Guid { get; set; }
         public DateTime Modified { get; set; }
         public bool Status { get; set; }
+        public DateTime DateM { get; set; }
         public long Code { get; set; }
         public bool IsTemp { get; set; }
         public Guid FirstSideGuid { get; set; }
@@ -35,5 +37,6 @@ namespace Persistence.Entities
         public decimal SarQofli { get; set; }
         public decimal Delay { get; set; }
         public string Description { get; set; }
+        public EnRequestType Type { get; set; }
     }
 }

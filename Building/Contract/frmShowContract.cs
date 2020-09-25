@@ -1,9 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 using EntityCache.Bussines;
+using EntityCache.ViewModels;
 using MetroFramework.Forms;
 using Notification;
+using Print;
 using Services;
 using User;
 
@@ -12,11 +15,12 @@ namespace Building.Contract
     public partial class frmShowContract : MetroForm
     {
         private bool _st = true;
+        private List<ContractBussines> list;
         private void LoadData(bool status, string search = "")
         {
             try
             {
-                var list = ContractBussines.GetAll(search).Where(q => q.Status == status).ToList();
+                list = ContractBussines.GetAll(search).Where(q => q.Status == status).ToList();
                 conBindingSource.DataSource =
                     list.OrderByDescending(q => q.Modified).ToSortableBindingList();
             }
@@ -306,6 +310,136 @@ namespace Building.Contract
                     return;
                 }
                 LoadData(ST, txtSearch.Text);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private async void btnShowStandard_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (DGrid.RowCount <= 0) return;
+                if (DGrid.CurrentRow == null) return;
+                var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
+                var contract = await ContractBussines.GetAsync(guid);
+                if (contract == null) return;
+                var building = await BuildingBussines.GetAsync(contract.BuildingGuid);
+                var buildingAccountType = await BuildingAccountTypeBussines.GetAsync(building.BuildingAccountTypeGuid);
+                var fSide = await PeoplesBussines.GetAsync(contract.FirstSideGuid);
+                var sSide = await PeoplesBussines.GetAsync(contract.SecondSideGuid);
+                var unitCity = await CitiesBussines.GetAsync(Guid.Parse(Settings.Classes.clsEconomyUnit.EconomyCity));
+                if (contract.Type == EnRequestType.Rahn)
+                {
+                    var view = new RahnViewModel
+                    {
+                        fName = fSide?.Name,
+                        fFatherName = fSide?.FatherName,
+                        fIdCode = fSide?.IdCode,
+                        fIssuedFrom = fSide?.IssuedFrom,
+                        fDateBirth = fSide?.DateBirth,
+                        fNationalCode = fSide?.NationalCode,
+                        fAddress = fSide?.Address,
+                        sName = sSide?.Name,
+                        sFatherName = sSide?.FatherName,
+                        sIdCode = sSide?.IdCode,
+                        sIssuedFrom = sSide?.IssuedFrom,
+                        sDateBirth = sSide?.DateBirth,
+                        sNationalCode = sSide?.NationalCode,
+                        sAddress = sSide?.Address,
+                        ContractDesc = contract?.Description,
+                        DongCount = 6,
+                        BuildingAddress = building?.Address,
+                        Masahat = building?.Masahat ?? 0,
+                        RoomCount = building?.RoomCount ?? 0,
+                        ContractTerm = contract?.Term ?? 0,
+                        ContractfDate = Calendar.MiladiToShamsi(contract?.FromDate),
+                        ContractsDate = Calendar.MiladiToShamsi((contract?.FromDate ?? DateTime.Now).AddMonths((int)contract?.Term)),
+                        UnitAddress = Settings.Classes.clsEconomyUnit.ManagerAddress,
+                        TotalEjare = (contract?.MinorPrice * contract?.Term) ?? 0,
+                        MinorEjare = contract?.MinorPrice ?? 0,
+                        Rahn = contract?.TotalPrice ?? 0,
+                        CheckNo = contract?.CheckNo,
+                        BankName = contract?.BankName,
+                        Shobe = contract?.Shobe,
+                        Sarresid = contract?.SarResid,
+                        UnitName = Settings.Classes.clsEconomyUnit.EconomyName,
+                        DischargeDate = Calendar.MiladiToShamsi(contract?.DischargeDate),
+                        BuildingAccountType = buildingAccountType?.Name,
+                        Sarqofli = contract?.SarQofli ?? 0,
+                        Delay = contract?.Delay ?? 0,
+                        UnitCity = unitCity?.Name,
+                        Commition = contract?.Finance?.FirstTotalPrice ?? 0,
+                        ContractDate = contract?.DateSh,
+                        ContractTime = contract?.DateM.ToShortTimeString()
+                    };
+                    var lst = new List<object>() { view };
+                    var cls = new ReportGenerator(StiType.Contract_One, EnPrintType.A4)
+                    { Lst = lst, SanadId = (int)contract?.Code };
+                    cls.PrintNew();
+                }
+                else if (contract.Type == EnRequestType.Forush)
+                {
+                    var view = new ForoshViewModel()
+                    {
+                        fName = fSide?.Name,
+                        fFatherName = fSide?.FatherName,
+                        fIdCode = fSide?.IdCode,
+                        fIssuedFrom = fSide?.IssuedFrom,
+                        fDateBirth = fSide?.DateBirth,
+                        fNationalCode = fSide?.NationalCode,
+                        fAddress = fSide?.Address,
+                        sName = sSide?.Name,
+                        sFatherName = sSide?.FatherName,
+                        sIdCode = sSide?.IdCode,
+                        sIssuedFrom = sSide?.IssuedFrom,
+                        sDateBirth = sSide?.DateBirth,
+                        sNationalCode = sSide?.NationalCode,
+                        sAddress = sSide?.Address,
+                        ContractDesc = contract?.Description,
+                        DongCount = building?.Dang ?? 0,
+                        BuildingAddress = building?.Address,
+                        Masahat = building?.Masahat ?? 0,
+                        UnitAddress = Settings.Classes.clsEconomyUnit.ManagerAddress,
+                        TotalPrice = contract?.TotalPrice ?? 0,
+                        MinorPrice = (contract?.TotalPrice - contract?.MinorPrice) ?? 0,
+                        Beyane = contract?.MinorPrice ?? 0,
+                        CheckNo = contract?.CheckNo,
+                        BankName = contract?.BankName,
+                        Shobe = contract?.Shobe,
+                        Sarresid = contract?.SarResid,
+                        UnitName = Settings.Classes.clsEconomyUnit.EconomyName,
+                        DischargeDate = Calendar.MiladiToShamsi(contract?.DischargeDate),
+                        BuildingAccountType = buildingAccountType?.Name,
+                        Delay = contract?.Delay ?? 0,
+                        UnitCity = unitCity?.Name,
+                        Commition = contract?.Finance?.FirstTotalPrice ?? 0,
+                        ContractDate = contract?.DateSh,
+                        ContractTime = contract?.DateM.ToShortTimeString()
+                    };
+                    var lst = new List<object>() { view };
+                    var cls = new ReportGenerator(StiType.Contract_One, EnPrintType.A5)
+                    { Lst = lst, SanadId = (int)contract?.Code };
+                    cls.PrintNew();
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private void btnPrint_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var frm = new frmSetPrintSize();
+                if (frm.ShowDialog() != DialogResult.OK) return;
+
+                var cls = new ReportGenerator(StiType.Contract_List, frm.PrintType) { Lst = new List<object>(list) };
+                cls.PrintNew();
             }
             catch (Exception ex)
             {

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -37,7 +38,7 @@
             this.btnView = new DevComponents.DotNetBar.ButtonX();
             this.btnChangeStatus = new DevComponents.DotNetBar.ButtonX();
             this.txtSearch = new DevComponents.DotNetBar.Controls.TextBoxX();
-            this.reqBindingSource = new System.Windows.Forms.BindingSource();
+            this.reqBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.btnDelete = new DevComponents.DotNetBar.ButtonX();
             this.btnInsert = new DevComponents.DotNetBar.ButtonX();
             this.btnEdit = new DevComponents.DotNetBar.ButtonX();
@@ -74,6 +75,7 @@
             this.btnOther = new DevComponents.DotNetBar.ButtonX();
             this.btnSendSms = new DevComponents.DotNetBar.ButtonItem();
             this.btnShowBuilding = new DevComponents.DotNetBar.ButtonItem();
+            this.btnPrint = new DevComponents.DotNetBar.ButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.reqBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).BeginInit();
             this.SuspendLayout();
@@ -537,7 +539,8 @@
             this.btnOther.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
             this.btnOther.SubItems.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.btnSendSms,
-            this.btnShowBuilding});
+            this.btnShowBuilding,
+            this.btnPrint});
             this.btnOther.TabIndex = 55767;
             this.btnOther.Text = "سایر";
             this.btnOther.TextAlignment = DevComponents.DotNetBar.eButtonTextAlignment.Left;
@@ -553,6 +556,12 @@
             this.btnShowBuilding.Name = "btnShowBuilding";
             this.btnShowBuilding.Text = "نمایش فایل های مطابق با درخواست";
             this.btnShowBuilding.Click += new System.EventHandler(this.btnShowBuilding_Click);
+            // 
+            // btnPrint
+            // 
+            this.btnPrint.Name = "btnPrint";
+            this.btnPrint.Text = "چاپ لیست تقاضاها";
+            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
             // 
             // frmShowRequest
             // 
@@ -628,5 +637,6 @@
         private DevComponents.DotNetBar.ButtonX btnOther;
         private DevComponents.DotNetBar.ButtonItem btnSendSms;
         private DevComponents.DotNetBar.ButtonItem btnShowBuilding;
+        private DevComponents.DotNetBar.ButtonItem btnPrint;
     }
 }

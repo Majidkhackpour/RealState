@@ -32,8 +32,8 @@
             this.btnCancel = new DevComponents.DotNetBar.ButtonX();
             this.btnFinish = new DevComponents.DotNetBar.ButtonX();
             this.grp = new DevComponents.DotNetBar.PanelEx();
-            this.rbtnA4 = new System.Windows.Forms.RadioButton();
             this.rbtnA5 = new System.Windows.Forms.RadioButton();
+            this.rbtnA4 = new System.Windows.Forms.RadioButton();
             this.grp.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -51,7 +51,7 @@
             this.btnCancel.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
             this.btnCancel.Size = new System.Drawing.Size(125, 31);
             this.btnCancel.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
-            this.btnCancel.TabIndex = 20;
+            this.btnCancel.TabIndex = 2;
             this.btnCancel.Text = "انصراف (Esc)";
             this.btnCancel.TextColor = System.Drawing.Color.Black;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
@@ -69,7 +69,7 @@
             this.btnFinish.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
             this.btnFinish.Size = new System.Drawing.Size(125, 31);
             this.btnFinish.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
-            this.btnFinish.TabIndex = 19;
+            this.btnFinish.TabIndex = 1;
             this.btnFinish.Text = "تایید (F5)";
             this.btnFinish.TextColor = System.Drawing.Color.Black;
             this.btnFinish.Click += new System.EventHandler(this.btnFinish_Click);
@@ -93,7 +93,19 @@
             this.grp.Style.CornerType = DevComponents.DotNetBar.eCornerType.Rounded;
             this.grp.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText;
             this.grp.Style.GradientAngle = 90;
-            this.grp.TabIndex = 18;
+            this.grp.TabIndex = 0;
+            // 
+            // rbtnA5
+            // 
+            this.rbtnA5.AutoSize = true;
+            this.rbtnA5.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.rbtnA5.Location = new System.Drawing.Point(81, 15);
+            this.rbtnA5.Name = "rbtnA5";
+            this.rbtnA5.Size = new System.Drawing.Size(44, 24);
+            this.rbtnA5.TabIndex = 1;
+            this.rbtnA5.TabStop = true;
+            this.rbtnA5.Text = "A5";
+            this.rbtnA5.UseVisualStyleBackColor = true;
             // 
             // rbtnA4
             // 
@@ -106,18 +118,6 @@
             this.rbtnA4.TabStop = true;
             this.rbtnA4.Text = "A4";
             this.rbtnA4.UseVisualStyleBackColor = true;
-            // 
-            // rbtnA5
-            // 
-            this.rbtnA5.AutoSize = true;
-            this.rbtnA5.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.rbtnA5.Location = new System.Drawing.Point(81, 15);
-            this.rbtnA5.Name = "rbtnA5";
-            this.rbtnA5.Size = new System.Drawing.Size(44, 24);
-            this.rbtnA5.TabIndex = 0;
-            this.rbtnA5.TabStop = true;
-            this.rbtnA5.Text = "A5";
-            this.rbtnA5.UseVisualStyleBackColor = true;
             // 
             // frmSetPrintSize
             // 

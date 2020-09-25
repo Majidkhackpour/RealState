@@ -1041,6 +1041,9 @@ namespace Building.Contract
                 await GardeshHesabBussines.SaveRangeAsync(gardeshList);
 
                 building.BuildingStatus = EnBuildingStatus.Vagozar;
+
+                cls.Type = txtRahn.Value > 0 ? EnRequestType.Rahn : EnRequestType.Forush;
+
                 await building.SaveAsync();
 
                 var res = await cls.SaveAsync();

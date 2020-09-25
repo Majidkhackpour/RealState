@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 using EntityCache.Bussines;
 using MetroFramework.Forms;
 using Notification;
+using Print;
 using Services;
 using User;
 
@@ -14,6 +16,7 @@ namespace Building.Building
         private bool _st = true;
         public Guid SelectedGuid { get; set; }
         private bool isShowMode = false;
+        private List<BuildingBussines> list;
         private void FillCmb()
         {
             try
@@ -51,8 +54,8 @@ namespace Building.Building
         private void LoadData(bool status, string search = "")
         {
             try
-            {
-                var list = BuildingBussines
+            { 
+                list = BuildingBussines
                     .GetAll(search, (EnBuildingStatus) cmbStatus.SelectedIndex - 1,
                         (Guid) cmbBuildingType.SelectedValue,
                         (Guid) cmbUser.SelectedValue).Where(q => q.Status == status).ToList();
@@ -81,6 +84,7 @@ namespace Building.Building
                 btnSendToDivar.Enabled = access?.Building.Building_Send_Divar ?? false;
                 btnSendToSheypoor.Enabled = access?.Building.Building_Send_Sheypoor ?? false;
                 btnSendToTelegram.Enabled = access?.Building.Building_Send_Telegram ?? false;
+                btnPrint.Enabled = access?.Building.Building_Print ?? false;
             }
             catch (Exception ex)
             {
@@ -445,6 +449,22 @@ namespace Building.Building
                 SelectedGuid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
                 DialogResult = DialogResult.OK;
                 Close();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private void btnPrint_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var frm = new frmSetPrintSize();
+                if (frm.ShowDialog() != DialogResult.OK) return;
+
+                var cls = new ReportGenerator(StiType.Building_List, frm.PrintType) { Lst = new List<object>(list) };
+                cls.PrintNew();
             }
             catch (Exception ex)
             {

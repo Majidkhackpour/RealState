@@ -216,6 +216,8 @@
     <Compile Include="SqlServerPersistence\UserLogPersistenceRepository.cs" />
     <Compile Include="SqlServerPersistence\UsersPersistenceRepository.cs" />
     <Compile Include="ViewModels\BuildingViewModel.cs" />
+    <Compile Include="ViewModels\ForoshViewModel.cs" />
+    <Compile Include="ViewModels\RahnViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Services\Services\Services\Services.csproj">

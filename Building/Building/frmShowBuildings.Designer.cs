@@ -110,6 +110,7 @@
             this.btnVagozar = new DevComponents.DotNetBar.ButtonItem();
             this.btnSendSms = new DevComponents.DotNetBar.ButtonItem();
             this.btnSendToDivar = new DevComponents.DotNetBar.ButtonItem();
+            this.btnSendToSheypoor = new DevComponents.DotNetBar.ButtonItem();
             this.btnSendToTelegram = new DevComponents.DotNetBar.ButtonItem();
             this.btnMatchRequest = new DevComponents.DotNetBar.ButtonItem();
             this.cmbStatus = new System.Windows.Forms.ComboBox();
@@ -127,7 +128,7 @@
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnSelect = new DevComponents.DotNetBar.ButtonX();
-            this.btnSendToSheypoor = new DevComponents.DotNetBar.ButtonItem();
+            this.btnPrint = new DevComponents.DotNetBar.ButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BuildingBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btBindingSource)).BeginInit();
@@ -891,7 +892,8 @@
             this.btnSendToDivar,
             this.btnSendToSheypoor,
             this.btnSendToTelegram,
-            this.btnMatchRequest});
+            this.btnMatchRequest,
+            this.btnPrint});
             this.btnOther.TabIndex = 55758;
             this.btnOther.Text = "سایر";
             this.btnOther.TextAlignment = DevComponents.DotNetBar.eButtonTextAlignment.Left;
@@ -918,6 +920,11 @@
             // 
             this.btnSendToDivar.Name = "btnSendToDivar";
             this.btnSendToDivar.Text = "ارسال ملک در دیوار";
+            // 
+            // btnSendToSheypoor
+            // 
+            this.btnSendToSheypoor.Name = "btnSendToSheypoor";
+            this.btnSendToSheypoor.Text = "ارسال ملک در شیپور";
             // 
             // btnSendToTelegram
             // 
@@ -1082,10 +1089,11 @@
             this.btnSelect.TextColor = System.Drawing.Color.White;
             this.btnSelect.Click += new System.EventHandler(this.btnSelect_Click);
             // 
-            // btnSendToSheypoor
+            // btnPrint
             // 
-            this.btnSendToSheypoor.Name = "btnSendToSheypoor";
-            this.btnSendToSheypoor.Text = "ارسال ملک در شیپور";
+            this.btnPrint.Name = "btnPrint";
+            this.btnPrint.Text = "چاپ لیست املاک";
+            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
             // 
             // frmShowBuildings
             // 
@@ -1224,5 +1232,6 @@
         private DevComponents.DotNetBar.ButtonItem btnSendSms;
         private DevComponents.DotNetBar.ButtonX btnSelect;
         private DevComponents.DotNetBar.ButtonItem btnSendToSheypoor;
+        private DevComponents.DotNetBar.ButtonItem btnPrint;
     }
 }

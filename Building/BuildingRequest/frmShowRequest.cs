@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 using Building.Building;
 using EntityCache.Bussines;
 using MetroFramework.Forms;
 using Notification;
+using Print;
 using Services;
 using User;
 
@@ -13,11 +15,12 @@ namespace Building.BuildingRequest
     public partial class frmShowRequest : MetroForm
     {
         private bool _st = true;
+        private List<BuildingRequestBussines> list;
         private void LoadData(bool status, string search = "")
         {
             try
-            {
-                var list = BuildingRequestBussines.GetAll(search).Where(q => q.Status == status).ToList();
+            { 
+                list = BuildingRequestBussines.GetAll(search).Where(q => q.Status == status).ToList();
                 reqBindingSource.DataSource =
                     list.OrderByDescending(q => q.CreateDate).ToSortableBindingList();
             }
@@ -36,6 +39,7 @@ namespace Building.BuildingRequest
                 btnDelete.Enabled = access?.BuildingRequest.Building_Request_Delete ?? false;
                 btnChangeStatus.Enabled = access?.BuildingRequest.Building_Request_Disable ?? false;
                 btnView.Enabled = access?.BuildingRequest.Building_Request_View ?? false;
+                btnPrint.Enabled = access?.BuildingRequest.Building_Request_Print ?? false;
             }
             catch (Exception ex)
             {
@@ -264,6 +268,22 @@ namespace Building.BuildingRequest
                 var frm = new frmFilterForm(type, req.BuildingTypeGuid, req.BuildingAccountTypeGuid, req.RoomCount,
                     req.Masahat1, req.Masahat2, fPrice1, sPrice1, fPrice2, sPrice2);
                 frm.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private void btnPrint_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var frm = new frmSetPrintSize();
+                if (frm.ShowDialog() != DialogResult.OK) return;
+
+                var cls = new ReportGenerator(StiType.Building_Request_List, frm.PrintType) { Lst = new List<object>(list) };
+                cls.PrintNew();
             }
             catch (Exception ex)
             {

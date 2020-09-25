@@ -272,8 +272,19 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
+    <None Include="Resources\Building_List_A4.mrt" />
+    <None Include="Resources\Building_List_A5.mrt" />
+    <None Include="Resources\Building_One_A4.mrt" />
+    <None Include="Resources\Building_Request_List_A4.mrt" />
+    <None Include="Resources\Building_Request_List_A5.mrt" />
+    <None Include="Resources\Contract_List_A4.mrt" />
+    <None Include="Resources\Contract_List_A5.mrt" />
+    <None Include="Resources\Contract_One_A4.mrt" />
+    <None Include="Resources\Contract_One_A5.mrt" />
     <None Include="Resources\Peoples_A4.mrt" />
     <None Include="Resources\Peoples_A5.mrt" />
+    <None Include="Resources\User_Prf_List_A4.mrt" />
+    <None Include="Resources\User_Prf_List_A5.mrt" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\tab-checkbox__.png" />

@@ -33,10 +33,11 @@ namespace Print.Classes
             {
                 try
                 {
+                    //Rahn
                     var fullAdd = ReportPath.ReportPath_ + @"\" + FolderName + @"\Contract_One_A4.mrt";
 
                     if (!File.Exists(fullAdd))
-                        File.WriteAllBytes(fullAdd, null /*AddReportFileToResourceAndResourceNameIsHere*/);
+                        File.WriteAllBytes(fullAdd, Properties.Resources.Contract_One_A4);
                     sti.Load(fullAdd);
                 }
                 catch (Exception ex)
@@ -49,10 +50,11 @@ namespace Print.Classes
             {
                 try
                 {
+                    //Kharid
                     var fullAdd = ReportPath.ReportPath_ + @"\" + FolderName + @"\Contract_One_A5.mrt";
 
                     if (!File.Exists(fullAdd))
-                        File.WriteAllBytes(fullAdd, null /*AddReportFileToResourceAndResourceNameIsHere*/);
+                        File.WriteAllBytes(fullAdd, Properties.Resources.Contract_One_A5);
                     sti.Load(fullAdd);
                 }
                 catch (Exception ex)
@@ -90,7 +92,7 @@ namespace Print.Classes
                     var fullAdd = ReportPath.ReportPath_ + @"\" + FolderName + @"\Contract_List_A4.mrt";
 
                     if (!File.Exists(fullAdd))
-                        File.WriteAllBytes(fullAdd, null /*AddReportFileToResourceAndResourceNameIsHere*/);
+                        File.WriteAllBytes(fullAdd, Properties.Resources.Contract_List_A4);
                     sti.Load(fullAdd);
                 }
                 catch (Exception ex)
@@ -106,7 +108,7 @@ namespace Print.Classes
                     var fullAdd = ReportPath.ReportPath_ + @"\" + FolderName + @"\Contract_List_A5.mrt";
 
                     if (!File.Exists(fullAdd))
-                        File.WriteAllBytes(fullAdd, null /*AddReportFileToResourceAndResourceNameIsHere*/);
+                        File.WriteAllBytes(fullAdd, Properties.Resources.Contract_List_A5);
                     sti.Load(fullAdd);
                 }
                 catch (Exception ex)

@@ -36,7 +36,7 @@ namespace Print.Classes
                     var fullAdd = ReportPath.ReportPath_ + @"\" + FolderName + @"\Building_One_A4.mrt";
 
                     if (!File.Exists(fullAdd))
-                        File.WriteAllBytes(fullAdd, null /*AddReportFileToResourceAndResourceNameIsHere*/);
+                        File.WriteAllBytes(fullAdd, Properties.Resources.Building_One_A4);
                     sti.Load(fullAdd);
                 }
                 catch (Exception ex)
@@ -90,7 +90,7 @@ namespace Print.Classes
                     var fullAdd = ReportPath.ReportPath_ + @"\" + FolderName + @"\Building_List_A4.mrt";
 
                     if (!File.Exists(fullAdd))
-                        File.WriteAllBytes(fullAdd, null /*AddReportFileToResourceAndResourceNameIsHere*/);
+                        File.WriteAllBytes(fullAdd, Properties.Resources.Building_List_A4);
                     sti.Load(fullAdd);
                 }
                 catch (Exception ex)
@@ -106,7 +106,7 @@ namespace Print.Classes
                     var fullAdd = ReportPath.ReportPath_ + @"\" + FolderName + @"\Building_List_A5.mrt";
 
                     if (!File.Exists(fullAdd))
-                        File.WriteAllBytes(fullAdd, null /*AddReportFileToResourceAndResourceNameIsHere*/);
+                        File.WriteAllBytes(fullAdd, Properties.Resources.Building_List_A5);
                     sti.Load(fullAdd);
                 }
                 catch (Exception ex)

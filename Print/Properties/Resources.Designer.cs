@@ -63,6 +63,96 @@ namespace Print.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
+        internal static byte[] Building_List_A4 {
+            get {
+                object obj = ResourceManager.GetObject("Building_List_A4", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] Building_List_A5 {
+            get {
+                object obj = ResourceManager.GetObject("Building_List_A5", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] Building_One_A4 {
+            get {
+                object obj = ResourceManager.GetObject("Building_One_A4", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] Building_Request_List_A4 {
+            get {
+                object obj = ResourceManager.GetObject("Building_Request_List_A4", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] Building_Request_List_A5 {
+            get {
+                object obj = ResourceManager.GetObject("Building_Request_List_A5", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] Contract_List_A4 {
+            get {
+                object obj = ResourceManager.GetObject("Contract_List_A4", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] Contract_List_A5 {
+            get {
+                object obj = ResourceManager.GetObject("Contract_List_A5", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] Contract_One_A4 {
+            get {
+                object obj = ResourceManager.GetObject("Contract_One_A4", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] Contract_One_A5 {
+            get {
+                object obj = ResourceManager.GetObject("Contract_One_A5", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
         internal static byte[] Peoples_A4 {
             get {
                 object obj = ResourceManager.GetObject("Peoples_A4", resourceCulture);
@@ -97,6 +187,26 @@ namespace Print.Properties {
             get {
                 object obj = ResourceManager.GetObject("tab_close_", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] User_Prf_List_A4 {
+            get {
+                object obj = ResourceManager.GetObject("User_Prf_List_A4", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] User_Prf_List_A5 {
+            get {
+                object obj = ResourceManager.GetObject("User_Prf_List_A5", resourceCulture);
+                return ((byte[])(obj));
             }
         }
     }

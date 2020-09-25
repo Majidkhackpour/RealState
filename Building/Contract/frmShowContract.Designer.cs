@@ -74,6 +74,7 @@
             this.delayDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.descriptionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.conBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.btnPrint = new DevComponents.DotNetBar.ButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.conBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -93,7 +94,8 @@
             this.btnOther.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
             this.btnOther.SubItems.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.btnChangeTemp,
-            this.btnShowStandard});
+            this.btnShowStandard,
+            this.btnPrint});
             this.btnOther.TabIndex = 55776;
             this.btnOther.Text = "سایر";
             this.btnOther.TextAlignment = DevComponents.DotNetBar.eButtonTextAlignment.Left;
@@ -108,7 +110,8 @@
             // btnShowStandard
             // 
             this.btnShowStandard.Name = "btnShowStandard";
-            this.btnShowStandard.Text = "مشاهده قرارداد در قالب استاندارد";
+            this.btnShowStandard.Text = "نمایش قولنامه در فرمت استاندارد اتحادیه املاک";
+            this.btnShowStandard.Click += new System.EventHandler(this.btnShowStandard_Click);
             // 
             // btnView
             // 
@@ -542,6 +545,12 @@
             // 
             this.conBindingSource.DataSource = typeof(EntityCache.Bussines.ContractBussines);
             // 
+            // btnPrint
+            // 
+            this.btnPrint.Name = "btnPrint";
+            this.btnPrint.Text = "چاپ لیست قولنامه ها";
+            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
+            // 
             // frmShowContract
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -614,5 +623,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn sarQofliDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn delayDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn descriptionDataGridViewTextBoxColumn;
+        private DevComponents.DotNetBar.ButtonItem btnPrint;
     }
 }

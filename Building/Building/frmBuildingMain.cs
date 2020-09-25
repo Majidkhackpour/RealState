@@ -10,6 +10,7 @@ using EntityCache.Bussines;
 using MetroFramework.Forms;
 using Notification;
 using Peoples;
+using Print;
 using Services;
 using User;
 
@@ -1006,11 +1007,14 @@ namespace Building.Building
                 switch (e.KeyCode)
                 {
                     case Keys.Enter:
-                        if (!btnFinish.Focused && !btnCancel.Focused)
+                        if (!btnFinish.Focused && !btnCancel.Focused && !btnPrint.Focused)
                             SendKeys.Send("{Tab}");
                         break;
                     case Keys.F5:
                         btnFinish.PerformClick();
+                        break;
+                    case Keys.F10:
+                        btnPrint.PerformClick();
                         break;
                     case Keys.Escape:
                         btnCancel.PerformClick();
@@ -1268,7 +1272,7 @@ namespace Building.Building
                     {
                     }
 
-                    
+
                     var a = new BuildingGalleryBussines()
                     {
                         Guid = Guid.NewGuid(),
@@ -1285,7 +1289,7 @@ namespace Building.Building
                     var imagePath = Path.Combine(Application.StartupPath, "Temp");
                     Directory.Delete(imagePath, true);
                 }
-                catch 
+                catch
                 {
                 }
 
@@ -1499,6 +1503,31 @@ namespace Building.Building
         private void txtCode_Leave(object sender, EventArgs e)
         {
             txtSetter.Follow(txtCode);
+        }
+
+        private void btnPrint_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                btnFinish.PerformClick();
+                
+                var reg = RegionsBussines.Get(cls.RegionGuid);
+                var accType = BuildingAccountTypeBussines.Get(cls.BuildingAccountTypeGuid);
+                var type = BuildingTypeBussines.Get(cls.BuildingTypeGuid);
+                cls.RegionName = reg?.Name ?? "";
+                cls.BuildingAccountTypeName = accType?.Name ?? "";
+                cls.BuildingTypeName = type?.Name ?? "";
+                var list = new List<object>() { cls };
+                var cls_ = new ReportGenerator(StiType.Building_One, EnPrintType.A4) { Lst = list };
+                cls_.PrintNew();
+
+                DialogResult = DialogResult.OK;
+                Close();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
         }
     }
 }

@@ -272,6 +272,10 @@
       <Project>{69dbdf3a-8578-44db-95cd-08a671de9e41}</Project>
       <Name>Persistence</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Print\Print.csproj">
+      <Project>{86698884-fad8-4d69-b7ad-4f0a437f7bcc}</Project>
+      <Name>Print</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Settings\Settings.csproj">
       <Project>{5005cb62-16e0-4240-9a2d-8001adc9d990}</Project>
       <Name>Settings</Name>
