@@ -272,6 +272,8 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
+    <None Include="Resources\Account_Perf_List_A4.mrt" />
+    <None Include="Resources\Account_Perf_List_A5.mrt" />
     <None Include="Resources\Building_List_A4.mrt" />
     <None Include="Resources\Building_List_A5.mrt" />
     <None Include="Resources\Building_One_A4.mrt" />
@@ -281,8 +283,10 @@
     <None Include="Resources\Contract_List_A5.mrt" />
     <None Include="Resources\Contract_One_A4.mrt" />
     <None Include="Resources\Contract_One_A5.mrt" />
+    <None Include="Resources\Pardakht_One_A4.mrt" />
     <None Include="Resources\Peoples_A4.mrt" />
     <None Include="Resources\Peoples_A5.mrt" />
+    <None Include="Resources\Reception_One_A4.mrt" />
     <None Include="Resources\User_Prf_List_A4.mrt" />
     <None Include="Resources\User_Prf_List_A5.mrt" />
   </ItemGroup>
@@ -291,6 +295,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\tab-close_.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\File - excel 2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PDF.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

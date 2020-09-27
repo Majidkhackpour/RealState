@@ -52,7 +52,7 @@ namespace EntityCache.Bussines
                     var g = new GardeshHesabBussines()
                     {
                         Guid = Guid.NewGuid(),
-                        Babat = EnAccountBabat.Reception,
+                        Babat = EnAccountBabat.Payement,
                         Description = $"ثبت سند پرداخت در تاریخ {DateSh}",
                         PeopleGuid = Payer,
                         Price = TotalPrice,

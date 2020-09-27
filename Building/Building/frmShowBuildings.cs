@@ -54,11 +54,11 @@ namespace Building.Building
         private void LoadData(bool status, string search = "")
         {
             try
-            { 
+            {
                 list = BuildingBussines
-                    .GetAll(search, (EnBuildingStatus) cmbStatus.SelectedIndex - 1,
-                        (Guid) cmbBuildingType.SelectedValue,
-                        (Guid) cmbUser.SelectedValue).Where(q => q.Status == status).ToList();
+                    .GetAll(search, (EnBuildingStatus)cmbStatus.SelectedIndex - 1,
+                        (Guid)cmbBuildingType.SelectedValue,
+                        (Guid)cmbUser.SelectedValue).Where(q => q.Status == status).ToList();
                 BuildingBindingSource.DataSource =
                     list.OrderByDescending(q => q.CreateDate).ToSortableBindingList();
             }
@@ -463,8 +463,14 @@ namespace Building.Building
                 var frm = new frmSetPrintSize();
                 if (frm.ShowDialog() != DialogResult.OK) return;
 
-                var cls = new ReportGenerator(StiType.Building_List, frm.PrintType) { Lst = new List<object>(list) };
-                cls.PrintNew();
+                if (frm._PrintType != EnPrintType.Excel)
+                {
+                    var cls = new ReportGenerator(StiType.Building_List, frm._PrintType) { Lst = new List<object>(list) };
+                    cls.PrintNew();
+                    return;
+                }
+
+                ExportToExcel.ExportBuilding(list);
             }
             catch (Exception ex)
             {

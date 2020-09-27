@@ -218,6 +218,7 @@
     <Compile Include="ViewModels\BuildingViewModel.cs" />
     <Compile Include="ViewModels\ForoshViewModel.cs" />
     <Compile Include="ViewModels\RahnViewModel.cs" />
+    <Compile Include="ViewModels\Reception_PardakhtViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Services\Services\Services\Services.csproj">

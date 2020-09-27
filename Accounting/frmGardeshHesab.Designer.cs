@@ -38,6 +38,15 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmGardeshHesab));
             this.txtSearch = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.DGrid = new DevComponents.DotNetBar.Controls.DataGridViewX();
+            this.gardeshBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.label7 = new System.Windows.Forms.Label();
+            this.lblName = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.lblAccount = new System.Windows.Forms.Label();
+            this.lblAccount_ = new System.Windows.Forms.Label();
+            this.btnPrint = new DevComponents.DotNetBar.ButtonX();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgRadif = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dateShDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.timeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -48,15 +57,9 @@
             this.guidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.modifiedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.statusDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.typeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.peopleGuidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.typeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.babatDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.gardeshBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.label7 = new System.Windows.Forms.Label();
-            this.lblName = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.lblAccount = new System.Windows.Forms.Label();
-            this.lblAccount_ = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gardeshBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -117,8 +120,8 @@
             this.guidDataGridViewTextBoxColumn,
             this.modifiedDataGridViewTextBoxColumn,
             this.statusDataGridViewCheckBoxColumn,
-            this.typeDataGridViewTextBoxColumn,
             this.peopleGuidDataGridViewTextBoxColumn,
+            this.typeDataGridViewTextBoxColumn,
             this.babatDataGridViewTextBoxColumn});
             this.DGrid.DataSource = this.gardeshBindingSource;
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
@@ -153,9 +156,98 @@
             this.DGrid.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.DGrid.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             this.DGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DGrid.Size = new System.Drawing.Size(789, 499);
+            this.DGrid.Size = new System.Drawing.Size(789, 455);
             this.DGrid.TabIndex = 55764;
             this.DGrid.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DGrid_CellFormatting);
+            // 
+            // gardeshBindingSource
+            // 
+            this.gardeshBindingSource.DataSource = typeof(EntityCache.Bussines.GardeshHesabBussines);
+            // 
+            // label7
+            // 
+            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label7.AutoSize = true;
+            this.label7.BackColor = System.Drawing.Color.Transparent;
+            this.label7.Location = new System.Drawing.Point(680, 24);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(119, 20);
+            this.label7.TabIndex = 55766;
+            this.label7.Text = "گزارش گردش عملکرد:";
+            // 
+            // lblName
+            // 
+            this.lblName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblName.BackColor = System.Drawing.Color.Transparent;
+            this.lblName.Location = new System.Drawing.Point(362, 24);
+            this.lblName.Name = "lblName";
+            this.lblName.Size = new System.Drawing.Size(322, 20);
+            this.lblName.TabIndex = 55766;
+            // 
+            // label2
+            // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.Location = new System.Drawing.Point(231, 24);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(70, 20);
+            this.label2.TabIndex = 55766;
+            this.label2.Text = "مانده حساب:";
+            // 
+            // lblAccount
+            // 
+            this.lblAccount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblAccount.BackColor = System.Drawing.Color.Transparent;
+            this.lblAccount.Font = new System.Drawing.Font("B Yekan", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.lblAccount.Location = new System.Drawing.Point(82, 17);
+            this.lblAccount.Name = "lblAccount";
+            this.lblAccount.Size = new System.Drawing.Size(154, 27);
+            this.lblAccount.TabIndex = 55766;
+            // 
+            // lblAccount_
+            // 
+            this.lblAccount_.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblAccount_.BackColor = System.Drawing.Color.Transparent;
+            this.lblAccount_.Font = new System.Drawing.Font("B Yekan", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.lblAccount_.Location = new System.Drawing.Point(6, 17);
+            this.lblAccount_.Name = "lblAccount_";
+            this.lblAccount_.Size = new System.Drawing.Size(70, 27);
+            this.lblAccount_.TabIndex = 55766;
+            // 
+            // btnPrint
+            // 
+            this.btnPrint.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnPrint.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnPrint.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.btnPrint.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnPrint.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.btnPrint.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnPrint.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.btnPrint.Location = new System.Drawing.Point(185, 561);
+            this.btnPrint.Name = "btnPrint";
+            this.btnPrint.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
+            this.btnPrint.Size = new System.Drawing.Size(414, 31);
+            this.btnPrint.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
+            this.btnPrint.TabIndex = 55767;
+            this.btnPrint.Text = "چاپ";
+            this.btnPrint.TextColor = System.Drawing.Color.White;
+            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "Type";
+            this.dataGridViewTextBoxColumn1.HeaderText = "Type";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "Babat";
+            this.dataGridViewTextBoxColumn2.HeaderText = "Babat";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.Visible = false;
             // 
             // dgRadif
             // 
@@ -235,14 +327,6 @@
             this.statusDataGridViewCheckBoxColumn.ReadOnly = true;
             this.statusDataGridViewCheckBoxColumn.Visible = false;
             // 
-            // typeDataGridViewTextBoxColumn
-            // 
-            this.typeDataGridViewTextBoxColumn.DataPropertyName = "Type";
-            this.typeDataGridViewTextBoxColumn.HeaderText = "Type";
-            this.typeDataGridViewTextBoxColumn.Name = "typeDataGridViewTextBoxColumn";
-            this.typeDataGridViewTextBoxColumn.ReadOnly = true;
-            this.typeDataGridViewTextBoxColumn.Visible = false;
-            // 
             // peopleGuidDataGridViewTextBoxColumn
             // 
             this.peopleGuidDataGridViewTextBoxColumn.DataPropertyName = "PeopleGuid";
@@ -250,6 +334,14 @@
             this.peopleGuidDataGridViewTextBoxColumn.Name = "peopleGuidDataGridViewTextBoxColumn";
             this.peopleGuidDataGridViewTextBoxColumn.ReadOnly = true;
             this.peopleGuidDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // typeDataGridViewTextBoxColumn
+            // 
+            this.typeDataGridViewTextBoxColumn.DataPropertyName = "Type";
+            this.typeDataGridViewTextBoxColumn.HeaderText = "Type";
+            this.typeDataGridViewTextBoxColumn.Name = "typeDataGridViewTextBoxColumn";
+            this.typeDataGridViewTextBoxColumn.ReadOnly = true;
+            this.typeDataGridViewTextBoxColumn.Visible = false;
             // 
             // babatDataGridViewTextBoxColumn
             // 
@@ -259,66 +351,12 @@
             this.babatDataGridViewTextBoxColumn.ReadOnly = true;
             this.babatDataGridViewTextBoxColumn.Visible = false;
             // 
-            // gardeshBindingSource
-            // 
-            this.gardeshBindingSource.DataSource = typeof(EntityCache.Bussines.GardeshHesabBussines);
-            // 
-            // label7
-            // 
-            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label7.AutoSize = true;
-            this.label7.BackColor = System.Drawing.Color.Transparent;
-            this.label7.Location = new System.Drawing.Point(680, 24);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(119, 20);
-            this.label7.TabIndex = 55766;
-            this.label7.Text = "گزارش گردش عملکرد:";
-            // 
-            // lblName
-            // 
-            this.lblName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblName.BackColor = System.Drawing.Color.Transparent;
-            this.lblName.Location = new System.Drawing.Point(362, 24);
-            this.lblName.Name = "lblName";
-            this.lblName.Size = new System.Drawing.Size(322, 20);
-            this.lblName.TabIndex = 55766;
-            // 
-            // label2
-            // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Location = new System.Drawing.Point(231, 24);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(70, 20);
-            this.label2.TabIndex = 55766;
-            this.label2.Text = "مانده حساب:";
-            // 
-            // lblAccount
-            // 
-            this.lblAccount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblAccount.BackColor = System.Drawing.Color.Transparent;
-            this.lblAccount.Font = new System.Drawing.Font("B Yekan", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.lblAccount.Location = new System.Drawing.Point(82, 17);
-            this.lblAccount.Name = "lblAccount";
-            this.lblAccount.Size = new System.Drawing.Size(154, 27);
-            this.lblAccount.TabIndex = 55766;
-            // 
-            // lblAccount_
-            // 
-            this.lblAccount_.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblAccount_.BackColor = System.Drawing.Color.Transparent;
-            this.lblAccount_.Font = new System.Drawing.Font("B Yekan", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.lblAccount_.Location = new System.Drawing.Point(6, 17);
-            this.lblAccount_.Name = "lblAccount_";
-            this.lblAccount_.Size = new System.Drawing.Size(70, 27);
-            this.lblAccount_.TabIndex = 55766;
-            // 
             // frmGardeshHesab
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 600);
+            this.Controls.Add(this.btnPrint);
             this.Controls.Add(this.lblName);
             this.Controls.Add(this.lblAccount);
             this.Controls.Add(this.lblAccount_);
@@ -350,6 +388,14 @@
         private DevComponents.DotNetBar.Controls.TextBoxX txtSearch;
         private DevComponents.DotNetBar.Controls.DataGridViewX DGrid;
         private System.Windows.Forms.BindingSource gardeshBindingSource;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label lblName;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblAccount;
+        private System.Windows.Forms.Label lblAccount_;
+        private DevComponents.DotNetBar.ButtonX btnPrint;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgRadif;
         private System.Windows.Forms.DataGridViewTextBoxColumn dateShDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn timeDataGridViewTextBoxColumn;
@@ -360,13 +406,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn guidDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn modifiedDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewCheckBoxColumn statusDataGridViewCheckBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn typeDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn peopleGuidDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn typeDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn babatDataGridViewTextBoxColumn;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label lblName;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label lblAccount;
-        private System.Windows.Forms.Label lblAccount_;
     }
 }

@@ -52,13 +52,25 @@ namespace User
                 var frm = new frmSetPrintSize();
                 if (frm.ShowDialog() != DialogResult.OK) return;
 
-                var cls = new ReportGenerator(StiType.User_Performence_List, frm.PrintType) { Lst = new List<object>(list) };
-                cls.PrintNew();
+                if (frm._PrintType != EnPrintType.Excel)
+                {
+                    var cls = new ReportGenerator(StiType.User_Performence_List, frm._PrintType)
+                        {Lst = new List<object>(list)};
+                    cls.PrintNew();
+                    return;
+                }
+
+                ExportToExcel.ExportLog(list);
             }
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
+        }
+
+        private void DGrid_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            DGrid.Rows[e.RowIndex].Cells["dgRadif"].Value = e.RowIndex + 1;
         }
 
         public frmUserLog(Guid _userGuid, DateTime _d1, DateTime _d2)

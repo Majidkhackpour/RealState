@@ -63,6 +63,26 @@ namespace Print.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
+        internal static byte[] Account_Perf_List_A4 {
+            get {
+                object obj = ResourceManager.GetObject("Account_Perf_List_A4", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] Account_Perf_List_A5 {
+            get {
+                object obj = ResourceManager.GetObject("Account_Perf_List_A5", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
         internal static byte[] Building_List_A4 {
             get {
                 object obj = ResourceManager.GetObject("Building_List_A4", resourceCulture);
@@ -151,6 +171,36 @@ namespace Print.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap File___excel_2 {
+            get {
+                object obj = ResourceManager.GetObject("File___excel_2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] Pardakht_One_A4 {
+            get {
+                object obj = ResourceManager.GetObject("Pardakht_One_A4", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap PDF {
+            get {
+                object obj = ResourceManager.GetObject("PDF", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
         internal static byte[] Peoples_A4 {
@@ -166,6 +216,16 @@ namespace Print.Properties {
         internal static byte[] Peoples_A5 {
             get {
                 object obj = ResourceManager.GetObject("Peoples_A5", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] Reception_One_A4 {
+            get {
+                object obj = ResourceManager.GetObject("Reception_One_A4", resourceCulture);
                 return ((byte[])(obj));
             }
         }

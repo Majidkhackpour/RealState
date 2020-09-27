@@ -62,6 +62,7 @@
             this.lblDateNow = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.groupPanel1 = new DevComponents.DotNetBar.Controls.GroupPanel();
+            this.btnPrint = new DevComponents.DotNetBar.ButtonX();
             ((System.ComponentModel.ISupportInitialize)(this.txtCheckPrice)).BeginInit();
             this.grp3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtBankPrice)).BeginInit();
@@ -604,11 +605,30 @@
             this.groupPanel1.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.groupPanel1.TabIndex = 17;
             // 
+            // btnPrint
+            // 
+            this.btnPrint.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnPrint.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnPrint.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.btnPrint.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnPrint.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.btnPrint.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnPrint.Location = new System.Drawing.Point(354, 525);
+            this.btnPrint.Name = "btnPrint";
+            this.btnPrint.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
+            this.btnPrint.Size = new System.Drawing.Size(125, 31);
+            this.btnPrint.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
+            this.btnPrint.TabIndex = 78;
+            this.btnPrint.Text = "تایید و چاپ (F10)";
+            this.btnPrint.TextColor = System.Drawing.Color.Black;
+            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
+            // 
             // frmPardakhtMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(713, 561);
+            this.Controls.Add(this.btnPrint);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnFinish);
             this.Controls.Add(this.txtDesc);
@@ -684,5 +704,6 @@
         private System.Windows.Forms.Label lblDateNow;
         private System.Windows.Forms.Label label15;
         private DevComponents.DotNetBar.Controls.GroupPanel groupPanel1;
+        private DevComponents.DotNetBar.ButtonX btnPrint;
     }
 }

@@ -18,8 +18,8 @@ namespace Print.Classes
                     ReportPath.CreatePath(ReportPath.ReportPath_ + @"\" + FolderName);
                     switch (peper)
                     {
-                        case EnPrintType.A4: return Peoples_One_A4(sti);
-                        case EnPrintType.A5: return Peoples_One_A5(sti);
+                        case EnPrintType.Pdf_A4: return Peoples_One_A4(sti);
+                        case EnPrintType.Pdf_A5: return Peoples_One_A5(sti);
                     }
                 }
                 catch (Exception ex)

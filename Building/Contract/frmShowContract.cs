@@ -376,7 +376,7 @@ namespace Building.Contract
                         ContractTime = contract?.DateM.ToShortTimeString()
                     };
                     var lst = new List<object>() { view };
-                    var cls = new ReportGenerator(StiType.Contract_One, EnPrintType.A4)
+                    var cls = new ReportGenerator(StiType.Contract_One, EnPrintType.Pdf_A4)
                     { Lst = lst, SanadId = (int)contract?.Code };
                     cls.PrintNew();
                 }
@@ -420,7 +420,7 @@ namespace Building.Contract
                         ContractTime = contract?.DateM.ToShortTimeString()
                     };
                     var lst = new List<object>() { view };
-                    var cls = new ReportGenerator(StiType.Contract_One, EnPrintType.A5)
+                    var cls = new ReportGenerator(StiType.Contract_One, EnPrintType.Pdf_A5)
                     { Lst = lst, SanadId = (int)contract?.Code };
                     cls.PrintNew();
                 }
@@ -438,8 +438,13 @@ namespace Building.Contract
                 var frm = new frmSetPrintSize();
                 if (frm.ShowDialog() != DialogResult.OK) return;
 
-                var cls = new ReportGenerator(StiType.Contract_List, frm.PrintType) { Lst = new List<object>(list) };
-                cls.PrintNew();
+                if (frm._PrintType != EnPrintType.Excel)
+                {
+                    var cls = new ReportGenerator(StiType.Contract_List, frm._PrintType) {Lst = new List<object>(list)};
+                    cls.PrintNew();
+                }
+
+                ExportToExcel.ExportContract(list);
             }
             catch (Exception ex)
             {

@@ -118,6 +118,12 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="Account_Perf_List_A4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Account_Perf_List_A4.mrt;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Account_Perf_List_A5" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Account_Perf_List_A5.mrt;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="Building_List_A4" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Building_List_A4.mrt;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
@@ -145,11 +151,23 @@
   <data name="Contract_One_A5" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Contract_One_A5.mrt;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="File___excel_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\File - excel 2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Pardakht_One_A4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Pardakht_One_A4.mrt;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="PDF" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\PDF.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Peoples_A4" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Peoples_A4.mrt;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="Peoples_A5" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Peoples_A5.mrt;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Reception_One_A4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Reception_One_A4.mrt;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="tab_checkbox__" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\tab-checkbox__.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>

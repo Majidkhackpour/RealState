@@ -134,6 +134,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ExportToExcel.cs" />
     <Compile Include="frmChangeGroup.cs">
       <SubType>Form</SubType>
     </Compile>

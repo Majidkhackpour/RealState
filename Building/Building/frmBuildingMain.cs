@@ -1518,7 +1518,7 @@ namespace Building.Building
                 cls.BuildingAccountTypeName = accType?.Name ?? "";
                 cls.BuildingTypeName = type?.Name ?? "";
                 var list = new List<object>() { cls };
-                var cls_ = new ReportGenerator(StiType.Building_One, EnPrintType.A4) { Lst = list };
+                var cls_ = new ReportGenerator(StiType.Building_One, EnPrintType.Pdf_A4) { Lst = list };
                 cls_.PrintNew();
 
                 DialogResult = DialogResult.OK;

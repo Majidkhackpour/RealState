@@ -77,23 +77,14 @@ namespace Print
                     case StiType.User_Performence_List:
                         Sti = clsUserPerformence.List.GetSti(Sti, peper);
                         break;
-                    case StiType.Account_Performence_One:
-                        Sti = clsAccountPerformence.One.GetSti(Sti, peper);
-                        break;
                     case StiType.Account_Performence_List:
                         Sti = clsAccountPerformence.List.GetSti(Sti, peper);
                         break;
                     case StiType.Reception_One:
                         Sti = clsReception.One.GetSti(Sti, peper);
                         break;
-                    case StiType.Reception_List:
-                        Sti = clsReception.List.GetSti(Sti, peper);
-                        break;
                     case StiType.Pardakht_One:
                         Sti = clsPardakht.One.GetSti(Sti, peper);
-                        break;
-                    case StiType.Pardakht_List:
-                        Sti = clsPardakht.List.GetSti(Sti, peper);
                         break;
                     case StiType.SmsSent_List:
                         Sti = clsSms.List.GetSti(Sti, peper);

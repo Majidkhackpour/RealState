@@ -7,7 +7,7 @@ namespace Print
 {
     public partial class frmSetPrintSize : MetroForm
     {
-        public EnPrintType PrintType { get; set; }
+        public EnPrintType _PrintType { get; set; }
         public frmSetPrintSize()
         {
             InitializeComponent();
@@ -43,7 +43,10 @@ namespace Print
 
         private void btnFinish_Click(object sender, EventArgs e)
         {
-            PrintType = rbtnA4.Checked ? EnPrintType.A4 : EnPrintType.A5;
+            if (rbtnA4.Checked) _PrintType = EnPrintType.Pdf_A4;
+            else if(rbtnA5.Checked) _PrintType = EnPrintType.Pdf_A5;
+            else _PrintType = EnPrintType.Excel;
+
 
             DialogResult = DialogResult.OK;
             Close();

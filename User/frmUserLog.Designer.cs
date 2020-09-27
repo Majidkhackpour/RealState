@@ -36,7 +36,11 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmUserLog));
             this.DGrid = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.Radif = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.logBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.label1 = new System.Windows.Forms.Label();
+            this.lblUserName = new System.Windows.Forms.Label();
+            this.btnPrint = new DevComponents.DotNetBar.ButtonX();
+            this.dgRadif = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DateSh = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.timeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.actionNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -50,10 +54,6 @@
             this.dateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.actionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.partDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.logBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.label1 = new System.Windows.Forms.Label();
-            this.lblUserName = new System.Windows.Forms.Label();
-            this.btnPrint = new DevComponents.DotNetBar.ButtonX();
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.logBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -85,7 +85,7 @@
             this.DGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.DGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Radif,
+            this.dgRadif,
             this.DateSh,
             this.timeDataGridViewTextBoxColumn,
             this.actionNameDataGridViewTextBoxColumn,
@@ -134,13 +134,59 @@
             this.DGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DGrid.Size = new System.Drawing.Size(795, 489);
             this.DGrid.TabIndex = 55709;
+            this.DGrid.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DGrid_CellFormatting);
             // 
-            // Radif
+            // logBindingSource
             // 
-            this.Radif.HeaderText = "ردیف";
-            this.Radif.Name = "Radif";
-            this.Radif.ReadOnly = true;
-            this.Radif.Width = 50;
+            this.logBindingSource.DataSource = typeof(EntityCache.Bussines.UserLogBussines);
+            // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(633, 33);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(85, 20);
+            this.label1.TabIndex = 55710;
+            this.label1.Text = "گزارش عملکرد:";
+            // 
+            // lblUserName
+            // 
+            this.lblUserName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblUserName.Font = new System.Drawing.Font("B Yekan", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.lblUserName.Location = new System.Drawing.Point(30, 30);
+            this.lblUserName.Name = "lblUserName";
+            this.lblUserName.Size = new System.Drawing.Size(597, 20);
+            this.lblUserName.TabIndex = 55710;
+            this.lblUserName.Text = "گزارش عملکرد:";
+            // 
+            // btnPrint
+            // 
+            this.btnPrint.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnPrint.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnPrint.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.btnPrint.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnPrint.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.btnPrint.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnPrint.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.btnPrint.Location = new System.Drawing.Point(178, 564);
+            this.btnPrint.Name = "btnPrint";
+            this.btnPrint.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
+            this.btnPrint.Size = new System.Drawing.Size(414, 31);
+            this.btnPrint.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
+            this.btnPrint.TabIndex = 55762;
+            this.btnPrint.Text = "چاپ";
+            this.btnPrint.TextColor = System.Drawing.Color.White;
+            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
+            // 
+            // dgRadif
+            // 
+            this.dgRadif.HeaderText = "ردیف";
+            this.dgRadif.Name = "dgRadif";
+            this.dgRadif.ReadOnly = true;
+            this.dgRadif.Width = 50;
             // 
             // DateSh
             // 
@@ -245,51 +291,6 @@
             this.partDataGridViewTextBoxColumn.ReadOnly = true;
             this.partDataGridViewTextBoxColumn.Visible = false;
             // 
-            // logBindingSource
-            // 
-            this.logBindingSource.DataSource = typeof(EntityCache.Bussines.UserLogBussines);
-            // 
-            // label1
-            // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(633, 33);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(85, 20);
-            this.label1.TabIndex = 55710;
-            this.label1.Text = "گزارش عملکرد:";
-            // 
-            // lblUserName
-            // 
-            this.lblUserName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblUserName.Font = new System.Drawing.Font("B Yekan", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.lblUserName.Location = new System.Drawing.Point(30, 30);
-            this.lblUserName.Name = "lblUserName";
-            this.lblUserName.Size = new System.Drawing.Size(597, 20);
-            this.lblUserName.TabIndex = 55710;
-            this.lblUserName.Text = "گزارش عملکرد:";
-            // 
-            // btnPrint
-            // 
-            this.btnPrint.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnPrint.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnPrint.BackColor = System.Drawing.Color.DarkSlateGray;
-            this.btnPrint.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnPrint.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
-            this.btnPrint.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnPrint.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.btnPrint.Location = new System.Drawing.Point(178, 564);
-            this.btnPrint.Name = "btnPrint";
-            this.btnPrint.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
-            this.btnPrint.Size = new System.Drawing.Size(414, 31);
-            this.btnPrint.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
-            this.btnPrint.TabIndex = 55762;
-            this.btnPrint.Text = "چاپ";
-            this.btnPrint.TextColor = System.Drawing.Color.White;
-            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
-            // 
             // frmUserLog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -321,7 +322,10 @@
         #endregion
         private DevComponents.DotNetBar.Controls.DataGridViewX DGrid;
         private System.Windows.Forms.BindingSource logBindingSource;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Radif;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblUserName;
+        private DevComponents.DotNetBar.ButtonX btnPrint;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgRadif;
         private System.Windows.Forms.DataGridViewTextBoxColumn DateSh;
         private System.Windows.Forms.DataGridViewTextBoxColumn timeDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn actionNameDataGridViewTextBoxColumn;
@@ -335,8 +339,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dateDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn actionDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn partDataGridViewTextBoxColumn;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label lblUserName;
-        private DevComponents.DotNetBar.ButtonX btnPrint;
     }
 }

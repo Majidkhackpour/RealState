@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using EntityCache.Bussines;
 using MetroFramework.Forms;
+using Print;
 using Services;
 
 namespace Accounting
@@ -11,12 +13,12 @@ namespace Accounting
     public partial class frmGardeshHesab : MetroForm
     {
         private Guid _hesabGuid;
-
+        private IEnumerable<GardeshHesabBussines> list;
         private void LoadData(Guid hesabGuid, string search = "")
         {
             try
             {
-                var list = GardeshHesabBussines.GetAll(hesabGuid, search).Where(q => q.Status).ToSortableBindingList();
+                list = GardeshHesabBussines.GetAll(hesabGuid, search).Where(q => q.Status).ToSortableBindingList();
                 gardeshBindingSource.DataSource = list;
             }
             catch (Exception ex)
@@ -133,6 +135,28 @@ namespace Accounting
         private void frmGardeshHesab_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Escape) Close();
+        }
+
+        private void btnPrint_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var frm = new frmSetPrintSize();
+                if (frm.ShowDialog() != DialogResult.OK) return;
+                if (frm._PrintType != EnPrintType.Excel)
+                {
+                    var cls = new ReportGenerator(StiType.Account_Performence_List, frm._PrintType)
+                        {Lst = new List<object>(list)};
+                    cls.PrintNew();
+                    return;
+                }
+
+                ExportToExcel.ExportGardesh(list);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
         }
     }
 }

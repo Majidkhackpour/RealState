@@ -1,9 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 using EntityCache.Bussines;
+using EntityCache.ViewModels;
 using MetroFramework.Forms;
 using Notification;
+using Print;
 using Services;
 
 namespace Accounting.Payement
@@ -284,6 +287,9 @@ namespace Accounting.Payement
                     case Keys.F5:
                         btnFinish.PerformClick();
                         break;
+                    case Keys.F10:
+                        btnPrint.PerformClick();
+                        break;
                     case Keys.Escape:
                         btnCancel.PerformClick();
                         break;
@@ -458,6 +464,40 @@ namespace Accounting.Payement
             try
             {
                 SetTotal();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private void btnPrint_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                btnFinish.PerformClick();
+
+                var view = new Reception_PardakhtViewModel()
+                {
+                    TotalPrice = cls?.TotalPrice ?? 0,
+                    NaqdPrice = cls?.NaqdPrice ?? 0,
+                    BankPrice = cls?.BankPrice ?? 0,
+                    BankName = cls?.BankName,
+                    CheckNo = cls?.CheckNo,
+                    DateSh = cls?.DateSh,
+                    Sarresid = cls?.SarResid,
+                    Time = cls?.Time,
+                    CheckPrice = cls?.Check ?? 0,
+                    ResidNo = cls?.FishNo,
+                    SideName = txtName.Text
+                };
+                var list=new List<object>(){view};
+
+                var cls_ = new ReportGenerator(StiType.Pardakht_One, EnPrintType.Pdf_A4) { Lst = list };
+                cls_.PrintNew();
+
+                DialogResult = DialogResult.OK;
+                Close();
             }
             catch (Exception ex)
             {

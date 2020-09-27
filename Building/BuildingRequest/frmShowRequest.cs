@@ -282,8 +282,15 @@ namespace Building.BuildingRequest
                 var frm = new frmSetPrintSize();
                 if (frm.ShowDialog() != DialogResult.OK) return;
 
-                var cls = new ReportGenerator(StiType.Building_Request_List, frm.PrintType) { Lst = new List<object>(list) };
-                cls.PrintNew();
+                if (frm._PrintType != EnPrintType.Excel)
+                {
+                    var cls = new ReportGenerator(StiType.Building_Request_List, frm._PrintType)
+                        {Lst = new List<object>(list)};
+                    cls.PrintNew();
+                    return;
+                }
+
+                ExportToExcel.ExportRequest(list);
             }
             catch (Exception ex)
             {
