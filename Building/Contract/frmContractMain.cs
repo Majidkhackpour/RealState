@@ -305,55 +305,63 @@ namespace Building.Contract
         {
             try
             {
-                if (cls?.MinorPrice == 0)
+                if (cls?.Type == EnRequestType.Rahn)
                 {
-                    txtEjare.Text = cls?.MinorPrice.ToString();
-                    cmbEjare.SelectedIndex = 0;
-                }
-                if (cls?.MinorPrice != 0)
-                {
-                    if (cls?.MinorPrice >= 10000 && cls?.MinorPrice >= 9999)
+                    if (cls?.MinorPrice == 0)
                     {
-                        txtEjare.Text = (cls?.MinorPrice / 10000).ToString();
+                        txtEjare.Text = cls?.MinorPrice.ToString();
                         cmbEjare.SelectedIndex = 0;
                     }
-                    if (cls?.MinorPrice >= 10000000 && cls?.MinorPrice >= 9999999)
+
+                    if (cls?.MinorPrice != 0)
                     {
-                        txtEjare.Text = (cls?.MinorPrice / 10000000).ToString();
-                        cmbEjare.SelectedIndex = 1;
+                        if (cls?.MinorPrice >= 10000 && cls?.MinorPrice >= 9999)
+                        {
+                            txtEjare.Text = (cls?.MinorPrice / 10000).ToString();
+                            cmbEjare.SelectedIndex = 0;
+                        }
+
+                        if (cls?.MinorPrice >= 10000000 && cls?.MinorPrice >= 9999999)
+                        {
+                            txtEjare.Text = (cls?.MinorPrice / 10000000).ToString();
+                            cmbEjare.SelectedIndex = 1;
+                        }
+
+                        if (cls?.MinorPrice >= 10000000000 && cls?.MinorPrice >= 9999999999)
+                        {
+                            txtEjare.Text = (cls?.MinorPrice / 10000000000).ToString();
+                            cmbEjare.SelectedIndex = 2;
+                        }
                     }
-                    if (cls?.MinorPrice >= 10000000000 && cls?.MinorPrice >= 9999999999)
-                    {
-                        txtEjare.Text = (cls?.MinorPrice / 10000000000).ToString();
-                        cmbEjare.SelectedIndex = 2;
-                    }
-                }
 
 
-                if (cls?.TotalPrice == 0)
-                {
-                    txtRahn.Text = cls?.TotalPrice.ToString();
-                    cmbRahn.SelectedIndex = 0;
-                }
-                if (cls?.TotalPrice != 0)
-                {
-                    if (cls?.TotalPrice >= 10000 && cls?.TotalPrice >= 9999)
+                    if (cls?.TotalPrice == 0)
                     {
-                        txtRahn.Text = (cls?.TotalPrice / 10000).ToString();
+                        txtRahn.Text = cls?.TotalPrice.ToString();
                         cmbRahn.SelectedIndex = 0;
                     }
-                    if (cls?.TotalPrice >= 10000000 && cls?.TotalPrice >= 9999999)
+
+                    if (cls?.TotalPrice != 0)
                     {
-                        txtRahn.Text = (cls?.TotalPrice / 10000000).ToString();
-                        cmbRahn.SelectedIndex = 1;
-                    }
-                    if (cls?.TotalPrice >= 10000000000 && cls?.TotalPrice >= 9999999999)
-                    {
-                        txtRahn.Text = (cls?.TotalPrice / 10000000000).ToString();
-                        cmbRahn.SelectedIndex = 2;
+                        if (cls?.TotalPrice >= 10000 && cls?.TotalPrice >= 9999)
+                        {
+                            txtRahn.Text = (cls?.TotalPrice / 10000).ToString();
+                            cmbRahn.SelectedIndex = 0;
+                        }
+
+                        if (cls?.TotalPrice >= 10000000 && cls?.TotalPrice >= 9999999)
+                        {
+                            txtRahn.Text = (cls?.TotalPrice / 10000000).ToString();
+                            cmbRahn.SelectedIndex = 1;
+                        }
+
+                        if (cls?.TotalPrice >= 10000000000 && cls?.TotalPrice >= 9999999999)
+                        {
+                            txtRahn.Text = (cls?.TotalPrice / 10000000000).ToString();
+                            cmbRahn.SelectedIndex = 2;
+                        }
                     }
                 }
-
 
 
                 if (cls?.SarQofli == 0)
@@ -405,57 +413,64 @@ namespace Building.Contract
                     }
                 }
 
-
-                if (cls?.TotalPrice == 0)
+                if (cls?.Type == EnRequestType.Forush)
                 {
-                    txtSellPrice.Text = cls?.TotalPrice.ToString();
-                    cmbSellPrice.SelectedIndex = 0;
-                }
-                if (cls?.TotalPrice != 0)
-                {
-                    if (cls?.TotalPrice >= 10000 && cls?.TotalPrice >= 9999)
+                    if (cls?.TotalPrice == 0)
                     {
-                        txtSellPrice.Text = (cls?.TotalPrice / 10000).ToString();
+                        txtSellPrice.Text = cls?.TotalPrice.ToString();
                         cmbSellPrice.SelectedIndex = 0;
                     }
-                    if (cls?.TotalPrice >= 10000000 && cls?.TotalPrice >= 9999999)
+
+                    if (cls?.TotalPrice != 0)
                     {
-                        txtSellPrice.Text = (cls?.TotalPrice / 10000000).ToString();
-                        cmbSellPrice.SelectedIndex = 1;
+                        if (cls?.TotalPrice >= 10000 && cls?.TotalPrice >= 9999)
+                        {
+                            txtSellPrice.Text = (cls?.TotalPrice / 10000).ToString();
+                            cmbSellPrice.SelectedIndex = 0;
+                        }
+
+                        if (cls?.TotalPrice >= 10000000 && cls?.TotalPrice >= 9999999)
+                        {
+                            txtSellPrice.Text = (cls?.TotalPrice / 10000000).ToString();
+                            cmbSellPrice.SelectedIndex = 1;
+                        }
+
+                        if (cls?.TotalPrice >= 10000000000 && cls?.TotalPrice >= 9999999999)
+                        {
+                            txtSellPrice.Text = (cls?.TotalPrice / 10000000000).ToString();
+                            cmbSellPrice.SelectedIndex = 2;
+                        }
                     }
-                    if (cls?.TotalPrice >= 10000000000 && cls?.TotalPrice >= 9999999999)
+
+
+
+                    if (cls?.MinorPrice == 0)
                     {
-                        txtSellPrice.Text = (cls?.TotalPrice / 10000000000).ToString();
-                        cmbSellPrice.SelectedIndex = 2;
-                    }
-                }
-
-
-
-                if (cls?.MinorPrice == 0)
-                {
-                    txtBeyane.Text = cls?.MinorPrice.ToString();
-                    cmbBeyane.SelectedIndex = 0;
-                }
-                if (cls?.MinorPrice != 0)
-                {
-                    if (cls?.MinorPrice >= 10000 && cls?.MinorPrice >= 9999)
-                    {
-                        txtBeyane.Text = (cls?.MinorPrice / 10000).ToString();
+                        txtBeyane.Text = cls?.MinorPrice.ToString();
                         cmbBeyane.SelectedIndex = 0;
                     }
-                    if (cls?.MinorPrice >= 10000000 && cls?.MinorPrice >= 9999999)
+
+                    if (cls?.MinorPrice != 0)
                     {
-                        txtBeyane.Text = (cls?.MinorPrice / 10000000).ToString();
-                        cmbBeyane.SelectedIndex = 1;
-                    }
-                    if (cls?.MinorPrice >= 10000000000 && cls?.MinorPrice >= 9999999999)
-                    {
-                        txtBeyane.Text = (cls?.MinorPrice / 10000000000).ToString();
-                        cmbBeyane.SelectedIndex = 2;
+                        if (cls?.MinorPrice >= 10000 && cls?.MinorPrice >= 9999)
+                        {
+                            txtBeyane.Text = (cls?.MinorPrice / 10000).ToString();
+                            cmbBeyane.SelectedIndex = 0;
+                        }
+
+                        if (cls?.MinorPrice >= 10000000 && cls?.MinorPrice >= 9999999)
+                        {
+                            txtBeyane.Text = (cls?.MinorPrice / 10000000).ToString();
+                            cmbBeyane.SelectedIndex = 1;
+                        }
+
+                        if (cls?.MinorPrice >= 10000000000 && cls?.MinorPrice >= 9999999999)
+                        {
+                            txtBeyane.Text = (cls?.MinorPrice / 10000000000).ToString();
+                            cmbBeyane.SelectedIndex = 2;
+                        }
                     }
                 }
-
 
                 if (cls?.Finance == null)
                 {
@@ -1053,7 +1068,7 @@ namespace Building.Contract
                     return;
                 }
 
-                User.UserLog.Save(action, EnLogPart.Contracts);
+                UserLog.Save(action, EnLogPart.Contracts);
 
                 DialogResult = DialogResult.OK;
                 Close();
@@ -1402,6 +1417,174 @@ namespace Building.Contract
                     price = txtEjare.Text.ParseToDecimal() * 10000000000;
 
                 lblEjareFull.Text = (price * txtTerm.Value).ToString("N0") + " ریال";
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private void btnCalculateCommition_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                decimal commition = 0;
+                if (txtRahn.Value > 0 || txtEjare.Value > 0)
+                {
+                    decimal rahn = 0, ejare = 0;
+
+
+                    if (cmbRahn.SelectedIndex == 0)
+                        rahn = txtRahn.Text.ParseToDecimal() * 10000;
+                    if (cmbRahn.SelectedIndex == 1)
+                        rahn = txtRahn.Text.ParseToDecimal() * 10000000;
+                    if (cmbRahn.SelectedIndex == 2)
+                        rahn = txtRahn.Text.ParseToDecimal() * 10000000000;
+
+                    
+                    if (cmbEjare.SelectedIndex == 0)
+                        ejare = txtEjare.Text.ParseToDecimal() * 10000;
+                    if (cmbEjare.SelectedIndex == 1)
+                        ejare = txtEjare.Text.ParseToDecimal() * 10000000;
+                    if (cmbEjare.SelectedIndex == 2)
+                        ejare = txtEjare.Text.ParseToDecimal() * 10000000000;
+
+                    var tabdilPercent = Settings.Classes.clsSandouq.Tabdil.ParseToInt();
+                    
+                    commition = CalculateCommition.CalculateEjare(rahn, ejare, tabdilPercent);
+
+                    if (commition == 0)
+                    {
+                        txtfTotalPrice.Text = commition.ToString();
+                        txtsTotalPrice.Text = commition.ToString();
+                        cmbfTotalPrice.SelectedIndex = 0;
+                        cmbsTotalPrice.SelectedIndex = 0;
+                    }
+
+                    if (commition != 0)
+                    {
+                        if (commition >= 10000 && commition >= 9999)
+                        {
+                            var val = commition / 10000;
+                            txtfTotalPrice.Text = (decimal.Round(val)).ToString();
+                            txtsTotalPrice.Text = (decimal.Round(val)).ToString();
+                            cmbfTotalPrice.SelectedIndex = 0;
+                            cmbsTotalPrice.SelectedIndex = 0;
+                        }
+
+                        if (commition >= 10000000 && commition >= 9999999)
+                        {
+                            var val = commition / 10000000;
+                            txtfTotalPrice.Text = (decimal.Round(val)).ToString();
+                            txtsTotalPrice.Text = (decimal.Round(val)).ToString();
+                            cmbfTotalPrice.SelectedIndex = 1;
+                            cmbsTotalPrice.SelectedIndex = 1;
+                        }
+
+                        if (commition >= 10000000000 && commition >= 9999999999)
+                        {
+                            var val = commition / 10000000000;
+                            txtfTotalPrice.Text = (decimal.Round(val)).ToString();
+                            txtsTotalPrice.Text = (decimal.Round(val)).ToString();
+                            cmbfTotalPrice.SelectedIndex = 2;
+                            cmbsTotalPrice.SelectedIndex = 2;
+                        }
+                    }
+                }
+                else if (txtSellPrice.Value > 0)
+                {
+                    decimal sellPrice = 0;
+
+                    if (cmbSellPrice.SelectedIndex == 0)
+                        sellPrice = txtSellPrice.Text.ParseToDecimal() * 10000;
+                    if (cmbSellPrice.SelectedIndex == 1)
+                        sellPrice = txtSellPrice.Text.ParseToDecimal() * 10000000;
+                    if (cmbSellPrice.SelectedIndex == 2)
+                        sellPrice = txtSellPrice.Text.ParseToDecimal() * 10000000000;
+                    
+                    commition = CalculateCommition.CalculateKharid(sellPrice);
+
+                    if (commition == 0)
+                    {
+                        txtfTotalPrice.Text = commition.ToString();
+                        txtsTotalPrice.Text = commition.ToString();
+                        cmbfTotalPrice.SelectedIndex = 0;
+                        cmbsTotalPrice.SelectedIndex = 0;
+                    }
+
+                    if (commition != 0)
+                    {
+                        if (commition >= 10000 && commition >= 9999)
+                        {
+                            var val = commition / 10000;
+                            txtfTotalPrice.Text = (decimal.Round(val)).ToString();
+                            txtsTotalPrice.Text = (decimal.Round(val)).ToString();
+                            cmbfTotalPrice.SelectedIndex = 0;
+                            cmbsTotalPrice.SelectedIndex = 0;
+                        }
+
+                        if (commition >= 10000000 && commition >= 9999999)
+                        {
+                            var val = commition / 10000000;
+                            txtfTotalPrice.Text = (decimal.Round(val)).ToString();
+                            txtsTotalPrice.Text = (decimal.Round(val)).ToString();
+                            cmbfTotalPrice.SelectedIndex = 1;
+                            cmbsTotalPrice.SelectedIndex = 1;
+                        }
+
+                        if (commition >= 10000000000 && commition >= 9999999999)
+                        {
+                            var val = commition / 10000000000;
+                            txtfTotalPrice.Text = (decimal.Round(val)).ToString();
+                            txtsTotalPrice.Text = (decimal.Round(val)).ToString();
+                            cmbfTotalPrice.SelectedIndex = 2;
+                            cmbsTotalPrice.SelectedIndex = 2;
+                        }
+                    }
+                }
+
+                var arzehPercent = Settings.Classes.clsSandouq.ArzeshAfzoude.ParseToInt();
+
+                var arzesh = (commition * arzehPercent) / 100;
+
+                if (arzesh == 0)
+                {
+                    txtfAddedValue.Text = arzesh.ToString();
+                    txtsAddedValue.Text = arzesh.ToString();
+                    cmbfAddedValue.SelectedIndex = 0;
+                    cmbsAddedValue.SelectedIndex = 0;
+                }
+
+                if (arzesh != 0)
+                {
+                    if (arzesh >= 10000 && arzesh >= 9999)
+                    {
+                        var val = arzesh / 10000;
+                        txtfAddedValue.Text = (decimal.Round(val)).ToString();
+                        txtsAddedValue.Text = (decimal.Round(val)).ToString();
+                        cmbfAddedValue.SelectedIndex = 0;
+                        cmbsAddedValue.SelectedIndex = 0;
+                    }
+
+                    if (arzesh >= 10000000 && arzesh >= 9999999)
+                    {
+                        var val = arzesh / 10000000;
+                        txtfAddedValue.Text = (decimal.Round(val)).ToString();
+                        txtsAddedValue.Text = (decimal.Round(val)).ToString();
+                        cmbfAddedValue.SelectedIndex = 1;
+                        cmbsAddedValue.SelectedIndex = 1;
+                    }
+
+                    if (arzesh >= 10000000000 && arzesh >= 9999999999)
+                    {
+                        var val = arzesh / 10000000000;
+                        txtfAddedValue.Text = (decimal.Round(val)).ToString();
+                        txtsAddedValue.Text = (decimal.Round(val)).ToString();
+                        cmbfAddedValue.SelectedIndex = 2;
+                        cmbsAddedValue.SelectedIndex = 2;
+                    }
+                }
+
             }
             catch (Exception ex)
             {

@@ -460,6 +460,7 @@
     <Compile Include="Building\frmShowBuildings.Designer.cs">
       <DependentUpon>frmShowBuildings.cs</DependentUpon>
     </Compile>
+    <Compile Include="Contract\CalculateCommition.cs" />
     <Compile Include="Contract\frmContractMain.cs">
       <SubType>Form</SubType>
     </Compile>
