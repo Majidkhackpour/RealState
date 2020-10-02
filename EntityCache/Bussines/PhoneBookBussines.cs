@@ -23,10 +23,7 @@ namespace EntityCache.Bussines
 
 
         public static async Task<List<PhoneBookBussines>> GetAllAsync(Guid parentGuid, bool status) =>
-            await UnitOfWork.PhoneBook.GetAllAsync(parentGuid, status);
-
-        public static List<PhoneBookBussines> GetAll(Guid parentGuid, bool status) =>
-            AsyncContext.Run(() => GetAllAsync(parentGuid, status));
+            await UnitOfWork.PhoneBook.GetAllBySpAsync(parentGuid, status);
 
         public static async Task<List<PhoneBookBussines>> GetAllAsync() => await UnitOfWork.PhoneBook.GetAllAsync();
 
@@ -98,9 +95,6 @@ namespace EntityCache.Bussines
                 return new List<PhoneBookBussines>();
             }
         }
-
-        public static List<PhoneBookBussines> GetAll(Guid parentGuid, string search, EnPhoneBookGroup group) =>
-            AsyncContext.Run(() => GetAllAsync(parentGuid, search, group));
 
         public static async Task<PhoneBookBussines> GetAsync(Guid guid) => await UnitOfWork.PhoneBook.GetAsync(guid);
         public static PhoneBookBussines Get(Guid guid) => AsyncContext.Run(() => GetAsync(guid));

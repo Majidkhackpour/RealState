@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using EntityCache.Bussines;
 using MetroFramework.Forms;
@@ -14,21 +15,25 @@ namespace Cities.Region
     public partial class frmShowRegions : MetroForm
     {
         private bool _st = true;
-        private void LoadData(bool status, string search = "")
+        private async Task LoadDataAsync(bool status, string search = "")
         {
             try
             {
+                while(!IsHandleCreated)
+                {
+                    await Task.Delay(100);
+                }
                 var list = new List<RegionsBussines>();
                 if (rbtnMyRegion.Checked)
                 {
                     var cityGuid = Guid.Parse(clsEconomyUnit.EconomyCity); 
-                    list = RegionsBussines.GetAll(search, cityGuid).Where(q => q.Status == status).ToList();
+                    list = await RegionsBussines.GetAllAsync(search, cityGuid);
                 }
                 else if (rbtnAll.Checked)
-                    list = RegionsBussines.GetAll(search, Guid.Empty).Where(q => q.Status == status).ToList();
-                
-                RegionBindingSource.DataSource =
-                    list.OrderBy(q => q.Name).ToSortableBindingList();
+                    list = await RegionsBussines.GetAllAsync(search, Guid.Empty);
+
+                Invoke(new MethodInvoker(() => RegionBindingSource.DataSource =
+                    list.Where(q => q.Status == status).OrderBy(q => q.Name).ToSortableBindingList()));
             }
             catch (Exception ex)
             {
@@ -60,13 +65,13 @@ namespace Cities.Region
                 if (_st)
                 {
                     btnChangeStatus.Text = "غیرفعال (Ctrl+S)";
-                    LoadData(ST, txtSearch.Text);
+                    Task.Run(() => LoadDataAsync(ST, txtSearch.Text));
                     btnDelete.Text = "حذف (Del)";
                 }
                 else
                 {
                     btnChangeStatus.Text = "فعال (Ctrl+S)";
-                    LoadData(ST, txtSearch.Text);
+                    Task.Run(() => LoadDataAsync(ST, txtSearch.Text));
                     btnDelete.Text = "فعال کردن";
                 }
             }
@@ -78,21 +83,18 @@ namespace Cities.Region
             SetAccess();
         }
 
-        private void frmShowRegions_Load(object sender, EventArgs e)
-        {
-            LoadData(ST);
-        }
+        private async void frmShowRegions_Load(object sender, EventArgs e) => await LoadDataAsync(ST);
 
         private void DGrid_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
             DGrid.Rows[e.RowIndex].Cells["dgRadif"].Value = e.RowIndex + 1;
         }
 
-        private void txtSearch_TextChanged(object sender, EventArgs e)
+        private async void txtSearch_TextChanged(object sender, EventArgs e)
         {
             try
             {
-                LoadData(ST, txtSearch.Text);
+                await LoadDataAsync(ST, txtSearch.Text);
             }
             catch (Exception ex)
             {
@@ -140,13 +142,13 @@ namespace Cities.Region
             ST = !ST;
         }
 
-        private void btnInsert_Click(object sender, EventArgs e)
+        private async void btnInsert_Click(object sender, EventArgs e)
         {
             try
             {
                 var frm = new frmRegionMain();
                 if (frm.ShowDialog() == DialogResult.OK)
-                    LoadData(ST);
+                    await LoadDataAsync(ST);
             }
             catch (Exception ex)
             {
@@ -154,7 +156,7 @@ namespace Cities.Region
             }
         }
 
-        private void btnEdit_Click(object sender, EventArgs e)
+        private async void btnEdit_Click(object sender, EventArgs e)
         {
             try
             {
@@ -169,7 +171,7 @@ namespace Cities.Region
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
                 var frm = new frmRegionMain(guid, false);
                 if (frm.ShowDialog() == DialogResult.OK)
-                    LoadData(ST, txtSearch.Text);
+                    await LoadDataAsync(ST, txtSearch.Text);
             }
             catch (Exception ex)
             {
@@ -217,7 +219,7 @@ namespace Cities.Region
                     User.UserLog.Save(EnLogAction.Enable, EnLogPart.Regions);
                 }
 
-                LoadData(ST, txtSearch.Text);
+                await LoadDataAsync(ST, txtSearch.Text);
             }
             catch (Exception ex)
             {
@@ -234,7 +236,6 @@ namespace Cities.Region
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
                 var frm = new frmRegionMain(guid, true);
                 frm.ShowDialog();
-                LoadData(ST, txtSearch.Text);
             }
             catch (Exception ex)
             {
@@ -242,11 +243,11 @@ namespace Cities.Region
             }
         }
 
-        private void rbtnAll_CheckedChanged(object sender, EventArgs e)
+        private async void rbtnAll_CheckedChanged(object sender, EventArgs e)
         {
             try
             {
-                LoadData(ST, txtSearch.Text);
+                await LoadDataAsync(ST, txtSearch.Text);
             }
             catch (Exception ex)
             {
@@ -254,11 +255,11 @@ namespace Cities.Region
             }
         }
 
-        private void rbtnMyRegion_CheckedChanged(object sender, EventArgs e)
+        private async void rbtnMyRegion_CheckedChanged(object sender, EventArgs e)
         {
             try
             {
-                LoadData(ST, txtSearch.Text);
+                await LoadDataAsync(ST, txtSearch.Text);
             }
             catch (Exception ex)
             {

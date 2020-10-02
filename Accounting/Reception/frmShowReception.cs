@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using EntityCache.Bussines;
 using MetroFramework.Forms;
@@ -14,12 +15,13 @@ namespace Accounting.Reception
         private Guid _receptorGuid;
         private EnAccountingType type;
         private bool _st = true;
-        private void LoadData(bool status, string search = "")
+        private async Task LoadDataAsync(bool status, string search = "")
         {
             try
             {
-                var list = ReceptionBussines.GetAll(search, _receptorGuid).Where(q => q.Status == status).ToList();
-                receptionBindingSource.DataSource = list.ToSortableBindingList();
+                var list = await ReceptionBussines.GetAllAsync(search, _receptorGuid);
+                Invoke(new MethodInvoker(() =>
+                    receptionBindingSource.DataSource = list.Where(q => q.Status == status).ToSortableBindingList()));
             }
             catch (Exception ex)
             {
@@ -51,13 +53,13 @@ namespace Accounting.Reception
                 if (_st)
                 {
                     btnChangeStatus.Text = "غیرفعال (Ctrl+S)";
-                    LoadData(ST, txtSearch.Text);
+                    Task.Run(() => LoadDataAsync(ST, txtSearch.Text));
                     btnDelete.Text = "حذف (Del)";
                 }
                 else
                 {
                     btnChangeStatus.Text = "فعال (Ctrl+S)";
-                    LoadData(ST, txtSearch.Text);
+                    Task.Run(() => LoadDataAsync(ST, txtSearch.Text));
                     btnDelete.Text = "فعال کردن";
                 }
             }
@@ -94,21 +96,18 @@ namespace Accounting.Reception
             }
         }
 
-        private void frmShowReception_Load(object sender, EventArgs e)
-        {
-            LoadData(ST);
-        }
+        private async void frmShowReception_Load(object sender, EventArgs e) => await LoadDataAsync(ST);
 
         private void DGrid_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
             DGrid.Rows[e.RowIndex].Cells["dgRadif"].Value = e.RowIndex + 1;
         }
 
-        private void txtSearch_TextChanged(object sender, EventArgs e)
+        private async void txtSearch_TextChanged(object sender, EventArgs e)
         {
             try
             {
-                LoadData(ST, txtSearch.Text);
+                await LoadDataAsync(ST, txtSearch.Text);
             }
             catch (Exception ex)
             {
@@ -156,13 +155,13 @@ namespace Accounting.Reception
             ST = !ST;
         }
 
-        private void btnInsert_Click(object sender, EventArgs e)
+        private async void btnInsert_Click(object sender, EventArgs e)
         {
             try
             {
                 var frm = new frmReceptionMain(_receptorGuid, type);
                 if (frm.ShowDialog() == DialogResult.OK)
-                    LoadData(ST);
+                    await LoadDataAsync(ST);
             }
             catch (Exception ex)
             {
@@ -170,7 +169,7 @@ namespace Accounting.Reception
             }
         }
 
-        private void btnEdit_Click(object sender, EventArgs e)
+        private async void btnEdit_Click(object sender, EventArgs e)
         {
             try
             {
@@ -185,7 +184,7 @@ namespace Accounting.Reception
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
                 var frm = new frmReceptionMain(guid, false, type);
                 if (frm.ShowDialog() == DialogResult.OK)
-                    LoadData(ST, txtSearch.Text);
+                    await LoadDataAsync(ST, txtSearch.Text);
             }
             catch (Exception ex)
             {
@@ -202,7 +201,6 @@ namespace Accounting.Reception
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
                 var frm = new frmReceptionMain(guid, true, type);
                 frm.ShowDialog();
-                LoadData(ST, txtSearch.Text);
             }
             catch (Exception ex)
             {
@@ -294,7 +292,7 @@ namespace Accounting.Reception
 
                 }
 
-                LoadData(ST, txtSearch.Text);
+                await LoadDataAsync(ST, txtSearch.Text);
             }
             catch (Exception ex)
             {

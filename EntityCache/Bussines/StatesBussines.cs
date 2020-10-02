@@ -53,6 +53,5 @@ namespace EntityCache.Bussines
 
         public static StatesBussines Get(Guid guid) => AsyncContext.Run(() => GetAsync(guid));
 
-        public static List<StatesBussines> GetAll() => AsyncContext.Run(GetAllAsync);
     }
 }

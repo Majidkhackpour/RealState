@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using EntityCache.Bussines;
 using MetroFramework.Forms;
@@ -13,14 +14,14 @@ namespace Payamak.PhoneBook
         public List<string> SelectedNumber { get; set; } = new List<string>();
         private Guid parentGuid = Guid.Empty;
         private List<PhoneBookBussines> list = new List<PhoneBookBussines>();
-        private void LoadData(string search = "")
+        private async Task LoadDataAsync(string search = "")
         {
             try
             {
                 if (list.Count <= 0)
-                    list = PhoneBookBussines.GetAll(parentGuid, search, (EnPhoneBookGroup)cmbGroup.SelectedIndex)
-                        .Where(q => q.Status).ToList();
-
+                    list = await PhoneBookBussines.GetAllAsync(parentGuid, search,
+                        (EnPhoneBookGroup) cmbGroup.SelectedIndex);
+                list = list.Where(q => q.Status).ToList();
                 LoadData_(parentGuid, search, (EnPhoneBookGroup)cmbGroup.SelectedIndex);
             }
             catch (Exception ex)
@@ -84,21 +85,21 @@ namespace Payamak.PhoneBook
             parentGuid = _parentGuid;
         }
 
-        private void frmPhoneBookSearch_Load(object sender, EventArgs e)
+        private async void frmPhoneBookSearch_Load(object sender, EventArgs e)
         {
             LoadGroups();
-            LoadData();
+            await LoadDataAsync();
         }
 
         private void DGrid_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
         }
 
-        private void txtSearch_TextChanged(object sender, EventArgs e)
+        private async void txtSearch_TextChanged(object sender, EventArgs e)
         {
             try
             {
-                LoadData(txtSearch.Text);
+                await LoadDataAsync(txtSearch.Text);
             }
             catch (Exception ex)
             {
@@ -126,11 +127,11 @@ namespace Payamak.PhoneBook
             }
         }
 
-        private void cmbGroup_SelectedIndexChanged(object sender, EventArgs e)
+        private async void cmbGroup_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
             {
-                LoadData(txtSearch.Text);
+                await LoadDataAsync(txtSearch.Text);
             }
             catch (Exception ex)
             {

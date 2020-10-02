@@ -46,7 +46,7 @@ namespace EntityCache.Bussines
             get
             {
                 if (_regList != null) return _regList;
-                _regList = BuildingRequestRegionBussines.GetAll(Guid, Status);
+                _regList = AsyncContext.Run(() => BuildingRequestRegionBussines.GetAllAsync(Guid, Status));
                 return _regList;
             }
             set => _regList = value;
@@ -178,8 +178,5 @@ namespace EntityCache.Bussines
                 return new List<BuildingRequestBussines>();
             }
         }
-
-        public static List<BuildingRequestBussines> GetAll(string search) =>
-            AsyncContext.Run(() => GetAllAsync(search));
     }
 }

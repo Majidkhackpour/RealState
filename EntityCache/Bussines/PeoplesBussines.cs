@@ -37,15 +37,15 @@ namespace EntityCache.Bussines
                 return "بی حساب";
             }
         }
-
-        public string FirstNumber => PhoneBookBussines.GetAll(Guid, true)?.FirstOrDefault()?.Tell ?? "";
+        public string FirstNumber =>
+            AsyncContext.Run(() => PhoneBookBussines.GetAllAsync(Guid, true))?.FirstOrDefault()?.Tell ?? "";
         private List<PhoneBookBussines> _tellList;
         public List<PhoneBookBussines> TellList
         {
             get
             {
                 if (_tellList != null) return _tellList;
-                _tellList = PhoneBookBussines.GetAll(Guid, Status);
+                _tellList = AsyncContext.Run(()=> PhoneBookBussines.GetAllAsync(Guid, Status));
                 return _tellList;
             }
             set => _tellList = value;
@@ -56,7 +56,7 @@ namespace EntityCache.Bussines
             get
             {
                 if (_bankList != null) return _bankList;
-                _bankList = PeoplesBankAccountBussines.GetAll(Guid, Status);
+                _bankList = AsyncContext.Run(() => PeoplesBankAccountBussines.GetAllAsync(Guid, Status));
                 return _bankList;
             }
             set => _bankList = value;
@@ -208,16 +208,11 @@ namespace EntityCache.Bussines
 
         public static PeoplesBussines Get(Guid guid) => AsyncContext.Run(() => GetAsync(guid));
 
-        public static List<PeoplesBussines> GetAll() => AsyncContext.Run(GetAllAsync);
-
         public static async Task<string> NextCodeAsync() => await UnitOfWork.Peoples.NextCodeAsync();
-
-        public static string NextCode() => AsyncContext.Run(NextCodeAsync);
 
         public static async Task<bool> CheckCodeAsync(string code, Guid guid) =>
             await UnitOfWork.Peoples.CheckCodeAsync(code, guid);
 
-        public static bool CheckCode(string code, Guid guid) => AsyncContext.Run(() => CheckCodeAsync(code, guid));
         public static async Task<List<PeoplesBussines>> GetAllAsync(string search, Guid groupGuid)
         {
             try
@@ -250,12 +245,8 @@ namespace EntityCache.Bussines
             }
         }
 
-        public static List<PeoplesBussines> GetAll(string search, Guid groupGuid) =>
-            AsyncContext.Run(() => GetAllAsync(search, groupGuid));
-
         public static async Task<bool> CheckNameAsync(string name) =>
             await UnitOfWork.Peoples.CheckNameAsync(name);
 
-        public static bool CheckName(string name) => AsyncContext.Run(() => CheckNameAsync(name));
     }
 }

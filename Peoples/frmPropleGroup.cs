@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using EntityCache.Bussines;
 using MetroFramework.Forms;
@@ -11,11 +12,11 @@ namespace Peoples
     public partial class frmPropleGroup : MetroForm
     {
         private PeopleGroupBussines cls;
-        private void SetData()
+        private async Task SetDataAsync()
         {
             try
             {
-                var list = PeopleGroupBussines.GetAll().ToList();
+                var list = await PeopleGroupBussines.GetAllAsync();
                 var a = new PeopleGroupBussines()
                 {
                     Guid = Guid.Empty,
@@ -45,13 +46,13 @@ namespace Peoples
             cls = PeopleGroupBussines.Get(guid);
         }
 
-        private void frmPropleGroup_Load(object sender, EventArgs e)
+        private async void frmPropleGroup_Load(object sender, EventArgs e)
         {
             try
             {
-                SetData();
+                await SetDataAsync();
                 var myCollection = new AutoCompleteStringCollection();
-                var list = PeopleGroupBussines.GetAll();
+                var list = await PeopleGroupBussines.GetAllAsync();
                 foreach (var item in list.ToList())
                     myCollection.Add(item.Name);
                 txtName.AutoCompleteCustomSource = myCollection;

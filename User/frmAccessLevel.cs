@@ -19,10 +19,6 @@ namespace User
             try
             {
                 InitializeComponent();
-                LoadUserData();
-                cmbUser.SelectedIndex = 0;
-                CurrentAccessLevel = UserBussines.Get((Guid)cmbUser.SelectedValue).UserAccess;
-                LoadGrid();
             }
             catch (Exception ex)
             {
@@ -43,12 +39,12 @@ namespace User
 
         }
 
-        private void LoadUserData()
+        private async Task LoadUserDataAsync()
         {
             try
             {
-                var users = UserBussines.GetAll().Where(p => p.Guid != clsUser.CurrentUser.Guid).ToList();
-                UserBindingSource.DataSource = users.ToSortableBindingList();
+                var users = await UserBussines.GetAllAsync();
+                UserBindingSource.DataSource = users.Where(p => p.Guid != clsUser.CurrentUser.Guid).ToSortableBindingList();
             }
             catch (Exception ex)
             {
@@ -178,6 +174,23 @@ namespace User
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(exception);
             }
+        }
+
+        private async void frmAccessLevel_Load(object sender, EventArgs e)
+        {
+
+            try
+            {
+                await LoadUserDataAsync();
+                cmbUser.SelectedIndex = 0;
+                CurrentAccessLevel = UserBussines.Get((Guid)cmbUser.SelectedValue).UserAccess;
+                LoadGrid();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+
         }
     }
 }

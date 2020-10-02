@@ -22,7 +22,6 @@ namespace EntityCache.Bussines
 
 
         public static async Task<List<SimcardBussines>> GetAllAsync() => await UnitOfWork.Simcard.GetAllAsync();
-        public static List<SimcardBussines> GetAll() => AsyncContext.Run(GetAllAsync);
         public async Task<ReturnedSaveFuncInfo> SaveAsync(string tranName = "")
         {
             var res = new ReturnedSaveFuncInfo();
@@ -85,7 +84,6 @@ namespace EntityCache.Bussines
                 return new List<SimcardBussines>();
             }
         }
-        public static List<SimcardBussines> GetAll(string search) => AsyncContext.Run(() => GetAllAsync(search));
         public static async Task<SimcardBussines> GetAsync(Guid guid) => await UnitOfWork.Simcard.GetAsync(guid);
         public static SimcardBussines Get(Guid guid) => AsyncContext.Run(() => GetAsync(guid));
         public async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(bool status, string tranName = "")

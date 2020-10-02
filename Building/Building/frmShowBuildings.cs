@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using EntityCache.Bussines;
 using MetroFramework.Forms;
@@ -17,7 +18,7 @@ namespace Building.Building
         public Guid SelectedGuid { get; set; }
         private bool isShowMode = false;
         private List<BuildingBussines> list;
-        private void FillCmb()
+        private async Task FillCmbAsync()
         {
             try
             {
@@ -25,7 +26,7 @@ namespace Building.Building
                 cmbStatus.Items.Add(EnBuildingStatus.Mojod.GetDisplay());
                 cmbStatus.Items.Add(EnBuildingStatus.Vagozar.GetDisplay());
 
-                var list = BuildingTypeBussines.GetAll("");
+                var list = await BuildingTypeBussines.GetAllAsync();
                 list.Add(new BuildingTypeBussines()
                 {
                     Guid = Guid.Empty,
@@ -34,7 +35,7 @@ namespace Building.Building
                 btBindingSource.DataSource = list.OrderBy(q => q.Name).ToList();
 
 
-                var list2 = UserBussines.GetAll();
+                var list2 = await UserBussines.GetAllAsync();
                 list2.Add(new UserBussines()
                 {
                     Guid = Guid.Empty,
@@ -58,9 +59,9 @@ namespace Building.Building
                 list = BuildingBussines
                     .GetAll(search, (EnBuildingStatus)cmbStatus.SelectedIndex - 1,
                         (Guid)cmbBuildingType.SelectedValue,
-                        (Guid)cmbUser.SelectedValue).Where(q => q.Status == status).ToList();
-                BuildingBindingSource.DataSource =
-                    list.OrderByDescending(q => q.CreateDate).ToSortableBindingList();
+                        (Guid)cmbUser.SelectedValue);
+                Invoke(new MethodInvoker(() => BuildingBindingSource.DataSource =
+                    list.Where(q => q.Status == status).OrderByDescending(q => q.CreateDate).ToSortableBindingList()));
             }
             catch (Exception ex)
             {
@@ -106,6 +107,7 @@ namespace Building.Building
                 else
                 {
                     btnChangeStatus.Text = "فعال (Ctrl+S)";
+           
                     LoadData(ST, txtSearch.Text);
                     btnDelete.Text = "فعال کردن";
                 }
@@ -139,9 +141,9 @@ namespace Building.Building
             SetAccess();
         }
 
-        private void frmShowBuildings_Load(object sender, EventArgs e)
+        private async void frmShowBuildings_Load(object sender, EventArgs e)
         {
-            FillCmb();
+            await FillCmbAsync();
             LoadData(ST);
         }
 
@@ -298,7 +300,6 @@ namespace Building.Building
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
                 var frm = new frmBuildingMain(guid, true);
                 frm.ShowDialog();
-                LoadData(ST, txtSearch.Text);
             }
             catch (Exception ex)
             {

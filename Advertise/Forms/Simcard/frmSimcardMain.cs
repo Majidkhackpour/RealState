@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using EntityCache.Bussines;
 using MetroFramework.Forms;
@@ -12,24 +13,24 @@ namespace Advertise.Forms.Simcard
     {
         private SimcardBussines cls;
 
-        private void FillOperator()
+        private async Task FillOperatorAsync()
         {
             try
             {
-                var list = SimcardBussines.GetAll().Select(q => q.Operator).Distinct().ToList();
+                var list = await SimcardBussines.GetAllAsync();
                 cmbOperator.Items.Clear();
-                cmbOperator.Items.AddRange(list.ToArray());
+                cmbOperator.Items.AddRange(list.Select(q => q.Operator).Distinct().ToArray());
             }
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void SetData()
+        private async Task SetDataAsync()
         {
             try
             {
-                FillOperator();
+                await FillOperatorAsync();
                 txtOwner.Text = cls?.Owner;
                 txtNumber.Text = cls?.Number.ToString();
                 if (cls?.Guid == Guid.Empty && cmbOperator.Items.Count > 0) cmbOperator.SelectedIndex = 0;
@@ -77,10 +78,7 @@ namespace Advertise.Forms.Simcard
 
         #endregion
 
-        private void frmSimcardMain_Load(object sender, EventArgs e)
-        {
-            SetData();
-        }
+        private async void frmSimcardMain_Load(object sender, EventArgs e) => await SetDataAsync();
 
         private void btnCancel_Click(object sender, EventArgs e)
         {

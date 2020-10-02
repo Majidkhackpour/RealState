@@ -51,7 +51,7 @@ namespace EntityCache.Bussines
             return res;
         }
 
-        public static async Task<string> SetNaqz(string tranName = "")
+        public static async Task<string> SetNaqzAsync(string tranName = "")
         {
             var autoTran = string.IsNullOrEmpty(tranName);
             if (autoTran) tranName = Guid.NewGuid().ToString();

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using EntityCache.Bussines;
 using MetroFramework.Forms;
@@ -12,12 +13,12 @@ namespace Cities.City
     {
         private CitiesBussines cls;
         private EnLogAction action;
-        private void SetData()
+        private async Task SetDataAsync()
         {
             try
             {
-                var list = StatesBussines.GetAll().OrderBy(q => q.Name);
-                StateBindingSource.DataSource = list.ToList();
+                var list = await StatesBussines.GetAllAsync();
+                StateBindingSource.DataSource = list.OrderBy(q => q.Name).ToList();
                 txtCity.Text = cls?.Name;
                 if (cls?.Guid == Guid.Empty) cmbState.SelectedIndex = 0;
                 else cmbState.SelectedValue = (Guid)cls?.StateGuid;
@@ -56,7 +57,7 @@ namespace Cities.City
         {
             try
             {
-                SetData();
+                await SetDataAsync();
                 var myCollection = new AutoCompleteStringCollection();
                 var list = await CitiesBussines.GetAllAsync();
                 foreach (var item in list.ToList())

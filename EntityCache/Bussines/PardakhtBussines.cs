@@ -164,9 +164,6 @@ namespace EntityCache.Bussines
             }
         }
 
-        public static List<PardakhtBussines> GetAll(string search, Guid receptorGuid) =>
-            AsyncContext.Run(() => GetAllAsync(search, receptorGuid));
-
         public static PardakhtBussines Get(Guid guid) => AsyncContext.Run(() => GetAsync(guid));
     }
 }

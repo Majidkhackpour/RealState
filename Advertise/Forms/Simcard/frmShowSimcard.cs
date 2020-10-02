@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using Advertise.Classes;
 using EntityCache.Bussines;
@@ -13,13 +14,13 @@ namespace Advertise.Forms.Simcard
     public partial class frmShowSimcard : MetroForm
     {
         private bool _st = true;
-        private void LoadData(bool status, string search = "")
+        private async Task LoadDataAsync(bool status, string search = "")
         {
             try
             {
-                var list = SimcardBussines.GetAll(search).Where(q => q.Status == status).ToList();
-                simBindingSource.DataSource =
-                    list.OrderBy(q => q.Owner).ToSortableBindingList();
+                var list = await SimcardBussines.GetAllAsync(search);
+                Invoke(new MethodInvoker(() => simBindingSource.DataSource =
+                    list.Where(q => q.Status == status).OrderBy(q => q.Owner).ToSortableBindingList()));
             }
             catch (Exception ex)
             {
@@ -55,13 +56,13 @@ namespace Advertise.Forms.Simcard
                 if (_st)
                 {
                     btnChangeStatus.Text = "غیرفعال (Ctrl+S)";
-                    LoadData(ST, txtSearch.Text);
+                    Task.Run(() => LoadDataAsync(ST, txtSearch.Text));
                     btnDelete.Text = "حذف (Del)";
                 }
                 else
                 {
                     btnChangeStatus.Text = "فعال (Ctrl+S)";
-                    LoadData(ST, txtSearch.Text);
+                    Task.Run(() => LoadDataAsync(ST, txtSearch.Text));
                     btnDelete.Text = "فعال کردن";
                 }
             }
@@ -72,21 +73,18 @@ namespace Advertise.Forms.Simcard
             SetAccess();
         }
 
-        private void frmShowSimcard_Load(object sender, EventArgs e)
-        {
-            LoadData(ST);
-        }
+        private async void frmShowSimcard_Load(object sender, EventArgs e) => await LoadDataAsync(ST);
 
         private void DGrid_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
             DGrid.Rows[e.RowIndex].Cells["dgRadif"].Value = e.RowIndex + 1;
         }
 
-        private void txtSearch_TextChanged(object sender, EventArgs e)
+        private async void txtSearch_TextChanged(object sender, EventArgs e)
         {
             try
             {
-                LoadData(ST, txtSearch.Text);
+                await LoadDataAsync(ST, txtSearch.Text);
             }
             catch (Exception ex)
             {
@@ -170,7 +168,7 @@ namespace Advertise.Forms.Simcard
                     }
                 }
 
-                LoadData(ST, txtSearch.Text);
+                await LoadDataAsync(ST, txtSearch.Text);
             }
             catch (Exception ex)
             {
@@ -178,13 +176,13 @@ namespace Advertise.Forms.Simcard
             }
         }
 
-        private void btnInsert_Click(object sender, EventArgs e)
+        private async void btnInsert_Click(object sender, EventArgs e)
         {
             try
             {
                 var frm = new frmSimcardMain();
                 if (frm.ShowDialog() == DialogResult.OK)
-                    LoadData(ST);
+                    await LoadDataAsync(ST);
             }
             catch (Exception ex)
             {
@@ -192,7 +190,7 @@ namespace Advertise.Forms.Simcard
             }
         }
 
-        private void btnEdit_Click(object sender, EventArgs e)
+        private async void btnEdit_Click(object sender, EventArgs e)
         {
             try
             {
@@ -207,7 +205,7 @@ namespace Advertise.Forms.Simcard
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
                 var frm = new frmSimcardMain(guid, false);
                 if (frm.ShowDialog() == DialogResult.OK)
-                    LoadData(ST, txtSearch.Text);
+                    await LoadDataAsync(ST, txtSearch.Text);
             }
             catch (Exception ex)
             {
@@ -224,7 +222,6 @@ namespace Advertise.Forms.Simcard
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
                 var frm = new frmSimcardMain(guid, true);
                 frm.ShowDialog();
-                LoadData(ST, txtSearch.Text);
             }
             catch (Exception ex)
             {

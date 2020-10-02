@@ -126,6 +126,11 @@ namespace RealState
                 if (frm.ShowDialog() == DialogResult.Cancel) Application.Exit();
             }
 
+
+            var splash = new frmSplashCircle();
+            splash.ShowDialog();
+
+
             var logForm = new frmLogin();
             if (logForm.ShowDialog() != DialogResult.OK) return;
 

@@ -39,8 +39,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmShowAccounts));
             this.txtSearch = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.DGrid = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.peopleBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.btnGardeshHesab = new DevComponents.DotNetBar.ButtonX();
             this.dgRadif = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.codeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -59,6 +57,8 @@
             this.postalCodeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupGuidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.firstNumberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.peopleBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.btnGardeshHesab = new DevComponents.DotNetBar.ButtonX();
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.peopleBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -163,30 +163,7 @@
             this.DGrid.Size = new System.Drawing.Size(789, 497);
             this.DGrid.TabIndex = 55762;
             this.DGrid.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DGrid_CellFormatting);
-            // 
-            // peopleBindingSource
-            // 
-            this.peopleBindingSource.DataSource = typeof(EntityCache.Bussines.PeoplesBussines);
-            // 
-            // btnGardeshHesab
-            // 
-            this.btnGardeshHesab.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnGardeshHesab.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnGardeshHesab.BackColor = System.Drawing.Color.DarkSlateGray;
-            this.btnGardeshHesab.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnGardeshHesab.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
-            this.btnGardeshHesab.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnGardeshHesab.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.btnGardeshHesab.Location = new System.Drawing.Point(186, 562);
-            this.btnGardeshHesab.Name = "btnGardeshHesab";
-            this.btnGardeshHesab.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
-            this.btnGardeshHesab.Size = new System.Drawing.Size(414, 31);
-            this.btnGardeshHesab.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
-            this.btnGardeshHesab.TabIndex = 55764;
-            this.btnGardeshHesab.Text = "نمایش گردش حساب";
-            this.btnGardeshHesab.TextColor = System.Drawing.Color.White;
-            this.btnGardeshHesab.Click += new System.EventHandler(this.btnGardeshHesab_Click);
+            this.DGrid.DoubleClick += new System.EventHandler(this.DGrid_DoubleClick);
             // 
             // dgRadif
             // 
@@ -333,6 +310,30 @@
             this.firstNumberDataGridViewTextBoxColumn.Name = "firstNumberDataGridViewTextBoxColumn";
             this.firstNumberDataGridViewTextBoxColumn.ReadOnly = true;
             this.firstNumberDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // peopleBindingSource
+            // 
+            this.peopleBindingSource.DataSource = typeof(EntityCache.Bussines.PeoplesBussines);
+            // 
+            // btnGardeshHesab
+            // 
+            this.btnGardeshHesab.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnGardeshHesab.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnGardeshHesab.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.btnGardeshHesab.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnGardeshHesab.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.btnGardeshHesab.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnGardeshHesab.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.btnGardeshHesab.Location = new System.Drawing.Point(186, 562);
+            this.btnGardeshHesab.Name = "btnGardeshHesab";
+            this.btnGardeshHesab.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
+            this.btnGardeshHesab.Size = new System.Drawing.Size(414, 31);
+            this.btnGardeshHesab.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
+            this.btnGardeshHesab.TabIndex = 55764;
+            this.btnGardeshHesab.Text = "نمایش گردش حساب";
+            this.btnGardeshHesab.TextColor = System.Drawing.Color.White;
+            this.btnGardeshHesab.Click += new System.EventHandler(this.btnGardeshHesab_Click);
             // 
             // frmShowAccounts
             // 

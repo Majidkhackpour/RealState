@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using EntityCache.Bussines;
 using MetroFramework.Forms;
@@ -9,11 +10,11 @@ namespace Peoples
     public partial class frmPeoplesBankAccount : MetroForm
     {
 
-        private void LoadData(Guid parentGuid, string search = "")
+        private async Task LoadDataAsync(Guid parentGuid, string search = "")
         {
             try
             {
-                var list = PeoplesBankAccountBussines.GetAll(parentGuid, search);
+                var list = await PeoplesBankAccountBussines.GetAllAsync(parentGuid, search);
                 peoplesAccountBindingSourcr.DataSource = list.ToSortableBindingList();
             }
             catch (Exception ex)
@@ -28,11 +29,11 @@ namespace Peoples
             ParentGuid = guid;
         }
 
-        private void frmPeoplesBankAccount_Load(object sender, EventArgs e)
+        private async void frmPeoplesBankAccount_Load(object sender, EventArgs e)
         {
             try
             {
-                LoadData(ParentGuid);
+                await LoadDataAsync(ParentGuid);
             }
             catch (Exception ex)
             {
@@ -40,11 +41,11 @@ namespace Peoples
             }
         }
 
-        private void txtSearch_TextChanged(object sender, EventArgs e)
+        private async void txtSearch_TextChanged(object sender, EventArgs e)
         {
             try
             {
-                LoadData(ParentGuid, txtSearch.Text);
+                await LoadDataAsync(ParentGuid, txtSearch.Text);
             }
             catch (Exception ex)
             {

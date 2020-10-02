@@ -20,7 +20,6 @@ namespace EntityCache.Bussines
 
 
         public static async Task<List<CitiesBussines>> GetAllAsync() => await UnitOfWork.Cities.GetAllAsyncBySp();
-
         public static async Task<List<CitiesBussines>> GetAllAsyncEf() => await UnitOfWork.Cities.GetAllAsync();
         public static async Task<ReturnedSaveFuncInfo> SaveRangeAsync(List<CitiesBussines> list,
             string tranName = "")
@@ -159,12 +158,8 @@ namespace EntityCache.Bussines
         public static async Task<bool> CheckNameAsync(Guid stateGuid, string name, Guid guid) =>
             await UnitOfWork.Cities.CheckNameAsync(stateGuid, name, guid);
 
-        public static List<CitiesBussines> GetAll() => AsyncContext.Run(GetAllAsync);
-
         public static async Task<List<CitiesBussines>> GetAllAsync(Guid stateGuid) =>
             await UnitOfWork.Cities.GetAllAsync(stateGuid);
 
-        public static List<CitiesBussines> GetAll(string search, Guid stateGuid) =>
-            AsyncContext.Run(() => GetAllAsync(search, stateGuid));
     }
 }

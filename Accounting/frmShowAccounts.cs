@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using EntityCache.Bussines;
 using MetroFramework.Forms;
@@ -9,12 +10,12 @@ namespace Accounting
 {
     public partial class frmShowAccounts : MetroForm
     {
-        private void LoadPeoples(bool status, string search = "")
+        private async Task LoadPeoplesAsync(bool status, string search = "")
         {
             try
             {
-                var list = PeoplesBussines.GetAll(search, Guid.Empty).Where(q => q.Status == status).ToList();
-                peopleBindingSource.DataSource = list;
+                var list = await PeoplesBussines.GetAllAsync(search, Guid.Empty);
+                peopleBindingSource.DataSource = list.Where(q => q.Status == status).ToList();
             }
             catch (Exception ex)
             {
@@ -26,16 +27,13 @@ namespace Accounting
             InitializeComponent();
         }
 
-        private void frmShowAccounts_Load(object sender, EventArgs e)
-        {
-            LoadPeoples(true);
-        }
+        private async void frmShowAccounts_Load(object sender, EventArgs e) => await LoadPeoplesAsync(true);
 
-        private void txtSearch_TextChanged(object sender, EventArgs e)
+        private async void txtSearch_TextChanged(object sender, EventArgs e)
         {
             try
             {
-                LoadPeoples(true,txtSearch.Text);
+                await LoadPeoplesAsync(true, txtSearch.Text);
             }
             catch (Exception ex)
             {
@@ -82,6 +80,11 @@ namespace Accounting
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
+        }
+
+        private void DGrid_DoubleClick(object sender, EventArgs e)
+        {
+            btnGardeshHesab.PerformClick();
         }
     }
 }

@@ -130,8 +130,6 @@ namespace EntityCache.Bussines
         public static async Task<bool> CheckNameAsync(string name, Guid guid) =>
             await UnitOfWork.PeopleGroup.CheckNameAsync(name, guid);
 
-        public static List<PeopleGroupBussines> GetAll() => AsyncContext.Run(GetAllAsync);
-
         public static async Task<PeopleGroupBussines> GetAsync(string name) =>
             await UnitOfWork.PeopleGroup.GetAsync(name);
 

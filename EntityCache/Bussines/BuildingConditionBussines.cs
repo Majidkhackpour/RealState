@@ -52,8 +52,7 @@ namespace EntityCache.Bussines
         }
 
         public static async Task<BuildingConditionBussines> GetAsync(Guid guid) => await UnitOfWork.BuildingCondition.GetAsync(guid);
-
-
+        
         public async Task<ReturnedSaveFuncInfo> SaveAsync(string tranName = "")
         {
             var res = new ReturnedSaveFuncInfo();
@@ -145,8 +144,6 @@ namespace EntityCache.Bussines
                 return new List<BuildingConditionBussines>();
             }
         }
-
-        public static List<BuildingConditionBussines> GetAll(string search) => AsyncContext.Run(() => GetAllAsync(search));
 
         public static BuildingConditionBussines Get(Guid guid) => AsyncContext.Run(() => GetAsync(guid));
 

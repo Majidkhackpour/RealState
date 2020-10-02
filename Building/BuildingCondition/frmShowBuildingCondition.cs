@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using EntityCache.Bussines;
 using MetroFramework.Forms;
@@ -12,13 +13,13 @@ namespace Building.BuildingCondition
     public partial class frmShowBuildingCondition : MetroForm
     {
         private bool _st = true;
-        private void LoadData(bool status, string search = "")
+        private async Task LoadDataAsync(bool status, string search = "")
         {
             try
             {
-                var list = BuildingConditionBussines.GetAll(search).Where(q => q.Status == status).ToList();
-                BCBindingSource.DataSource =
-                    list.OrderBy(q => q.Name).ToSortableBindingList();
+                var list = await BuildingConditionBussines.GetAllAsync(search);
+                Invoke(new MethodInvoker(() => BCBindingSource.DataSource =
+                    list.Where(q => q.Status == status).OrderBy(q => q.Name).ToSortableBindingList()));
             }
             catch (Exception ex)
             {
@@ -50,13 +51,13 @@ namespace Building.BuildingCondition
                 if (_st)
                 {
                     btnChangeStatus.Text = "غیرفعال (Ctrl+S)";
-                    LoadData(ST, txtSearch.Text);
+                    Task.Run(() => LoadDataAsync(ST, txtSearch.Text));
                     btnDelete.Text = "حذف (Del)";
                 }
                 else
                 {
                     btnChangeStatus.Text = "فعال (Ctrl+S)";
-                    LoadData(ST, txtSearch.Text);
+                    Task.Run(() => LoadDataAsync(ST, txtSearch.Text));
                     btnDelete.Text = "فعال کردن";
                 }
             }
@@ -72,11 +73,11 @@ namespace Building.BuildingCondition
             DGrid.Rows[e.RowIndex].Cells["dgRadif"].Value = e.RowIndex + 1;
         }
 
-        private void txtSearch_TextChanged(object sender, EventArgs e)
+        private async void txtSearch_TextChanged(object sender, EventArgs e)
         {
             try
             {
-                LoadData(ST, txtSearch.Text);
+                await LoadDataAsync(ST, txtSearch.Text);
             }
             catch (Exception ex)
             {
@@ -165,7 +166,7 @@ namespace Building.BuildingCondition
                     User.UserLog.Save(EnLogAction.Enable, EnLogPart.BuildingCondition);
                 }
 
-                LoadData(ST, txtSearch.Text);
+                await LoadDataAsync(ST, txtSearch.Text);
             }
             catch (Exception ex)
             {
@@ -173,18 +174,18 @@ namespace Building.BuildingCondition
             }
         }
 
-        private void frmShowBuildingCondition_Load(object sender, EventArgs e)
+        private async void frmShowBuildingCondition_Load(object sender, EventArgs e)
         {
-            LoadData(ST);
+            await LoadDataAsync(ST);
         }
 
-        private void btnInsert_Click(object sender, EventArgs e)
+        private async void btnInsert_Click(object sender, EventArgs e)
         {
             try
             {
                 var frm = new frmBuildingConditionMain();
                 if (frm.ShowDialog() == DialogResult.OK)
-                    LoadData(ST);
+                    await LoadDataAsync(ST);
             }
             catch (Exception ex)
             {
@@ -192,7 +193,7 @@ namespace Building.BuildingCondition
             }
         }
 
-        private void btnEdit_Click(object sender, EventArgs e)
+        private async void btnEdit_Click(object sender, EventArgs e)
         {
             try
             {
@@ -207,7 +208,7 @@ namespace Building.BuildingCondition
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
                 var frm = new frmBuildingConditionMain(guid, false);
                 if (frm.ShowDialog() == DialogResult.OK)
-                    LoadData(ST, txtSearch.Text);
+                    await LoadDataAsync(ST, txtSearch.Text);
             }
             catch (Exception ex)
             {
@@ -224,7 +225,6 @@ namespace Building.BuildingCondition
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
                 var frm = new frmBuildingConditionMain(guid, true);
                 frm.ShowDialog();
-                LoadData(ST, txtSearch.Text);
             }
             catch (Exception ex)
             {

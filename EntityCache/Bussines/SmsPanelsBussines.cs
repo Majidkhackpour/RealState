@@ -116,8 +116,6 @@ namespace EntityCache.Bussines
             }
         }
 
-        public static List<SmsPanelsBussines> GetAll(string search) => AsyncContext.Run(() => GetAllAsync(search));
-
         public static SmsPanelsBussines Get(Guid guid) => AsyncContext.Run(() => GetAsync(guid));
     }
 }

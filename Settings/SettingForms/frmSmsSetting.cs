@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevComponents.DotNetBar;
 using EntityCache.Bussines;
@@ -11,11 +12,11 @@ namespace Settings.SettingForms
 {
     public partial class frmSmsSetting : Form
     {
-        private void SettData()
+        private async Task SettData()
         {
             try
             {
-                FillCmb();
+                await FillCmbAsync();
 
 
                 var panel = SmsPanelsBussines.Get(Guid.Parse(Classes.Payamak.DefaultPanelGuid));
@@ -35,12 +36,12 @@ namespace Settings.SettingForms
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void FillCmb()
+        private async Task FillCmbAsync()
         {
             try
             {
-                var list = SmsPanelsBussines.GetAll("").Where(q => q.Status);
-                defBindingSource.DataSource = list.ToSortableBindingList();
+                var list = await SmsPanelsBussines.GetAllAsync();
+                defBindingSource.DataSource = list.Where(q => q.Status).ToSortableBindingList();
             }
             catch (Exception ex)
             {
@@ -79,13 +80,13 @@ namespace Settings.SettingForms
             SettData();
         }
 
-        private void btnAddPanel_Click(object sender, EventArgs e)
+        private async void btnAddPanel_Click(object sender, EventArgs e)
         {
             try
             {
                 var frm = new frmPanelMain();
                 if (frm.ShowDialog() == DialogResult.OK)
-                    FillCmb();
+                    await FillCmbAsync();
             }
             catch (Exception ex)
             {

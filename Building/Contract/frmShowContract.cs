@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using EntityCache.Bussines;
 using EntityCache.ViewModels;
@@ -16,13 +17,13 @@ namespace Building.Contract
     {
         private bool _st = true;
         private List<ContractBussines> list;
-        private void LoadData(bool status, string search = "")
+        private async Task LoadDataAsync(bool status, string search = "")
         {
             try
             {
-                list = ContractBussines.GetAll(search).Where(q => q.Status == status).ToList();
-                conBindingSource.DataSource =
-                    list.OrderByDescending(q => q.Modified).ToSortableBindingList();
+                list = await ContractBussines.GetAllAsync(search);
+                Invoke(new MethodInvoker(() => conBindingSource.DataSource =
+                    list.Where(q => q.Status == status).OrderByDescending(q => q.Modified).ToSortableBindingList()));
             }
             catch (Exception ex)
             {
@@ -55,13 +56,13 @@ namespace Building.Contract
                 if (_st)
                 {
                     btnChangeStatus.Text = "غیرفعال (Ctrl+S)";
-                    LoadData(ST, txtSearch.Text);
+                    Task.Run(() => LoadDataAsync(ST, txtSearch.Text));
                     btnDelete.Text = "حذف (Del)";
                 }
                 else
                 {
                     btnChangeStatus.Text = "فعال (Ctrl+S)";
-                    LoadData(ST, txtSearch.Text);
+                    Task.Run(() => LoadDataAsync(ST, txtSearch.Text));
                     btnDelete.Text = "فعال کردن";
                 }
             }
@@ -72,9 +73,9 @@ namespace Building.Contract
             SetAccess();
         }
 
-        private void frmShowContract_Load(object sender, EventArgs e)
+        private async void frmShowContract_Load(object sender, EventArgs e)
         {
-            LoadData(ST);
+            await LoadDataAsync(ST);
         }
 
         private void DGrid_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
@@ -82,11 +83,11 @@ namespace Building.Contract
             DGrid.Rows[e.RowIndex].Cells["dgRadif"].Value = e.RowIndex + 1;
         }
 
-        private void txtSearch_TextChanged(object sender, EventArgs e)
+        private async void txtSearch_TextChanged(object sender, EventArgs e)
         {
             try
             {
-                LoadData(ST, txtSearch.Text);
+                await LoadDataAsync(ST, txtSearch.Text);
             }
             catch (Exception ex)
             {
@@ -129,13 +130,13 @@ namespace Building.Contract
             }
         }
 
-        private void btnInsert_Click(object sender, EventArgs e)
+        private async void btnInsert_Click(object sender, EventArgs e)
         {
             try
             {
                 var frm = new frmContractMain();
                 if (frm.ShowDialog() == DialogResult.OK)
-                    LoadData(ST, txtSearch.Text);
+                    await LoadDataAsync(ST, txtSearch.Text);
             }
             catch (Exception ex)
             {
@@ -143,7 +144,7 @@ namespace Building.Contract
             }
         }
 
-        private void btnEdit_Click(object sender, EventArgs e)
+        private async void btnEdit_Click(object sender, EventArgs e)
         {
             try
             {
@@ -166,7 +167,7 @@ namespace Building.Contract
                 }
                 var frm = new frmContractMain(guid, false);
                 if (frm.ShowDialog() == DialogResult.OK)
-                    LoadData(ST, txtSearch.Text);
+                    await LoadDataAsync(ST, txtSearch.Text);
             }
             catch (Exception ex)
             {
@@ -183,7 +184,6 @@ namespace Building.Contract
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
                 var frm = new frmContractMain(guid, true);
                 frm.ShowDialog();
-                LoadData(ST, txtSearch.Text);
             }
             catch (Exception ex)
             {
@@ -269,7 +269,7 @@ namespace Building.Contract
                     User.UserLog.Save(EnLogAction.Enable, EnLogPart.Contracts);
                 }
 
-                LoadData(ST, txtSearch.Text);
+                await LoadDataAsync(ST, txtSearch.Text);
             }
             catch (Exception ex)
             {
@@ -309,7 +309,7 @@ namespace Building.Contract
                     frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);
                     return;
                 }
-                LoadData(ST, txtSearch.Text);
+                await LoadDataAsync(ST, txtSearch.Text);
             }
             catch (Exception ex)
             {

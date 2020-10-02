@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using EntityCache.Bussines;
 using MetroFramework.Forms;
@@ -14,7 +15,7 @@ namespace Peoples
         public Guid SelectedGuid { get; set; }
         private decimal fAccount;
         private EnLogAction action;
-        private void SetData()
+        private async Task SetDataAsync()
         {
             try
             {
@@ -39,7 +40,7 @@ namespace Peoples
 
                 if (cls?.Guid == Guid.Empty)
                 {
-                    NextCode();
+                    await NextCodeAsync();
                     cmbGroup.SelectedIndex = 1;
                 }
             }
@@ -48,23 +49,23 @@ namespace Peoples
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void NextCode()
+        private async Task NextCodeAsync()
         {
             try
             {
-                txtCode.Text = PeoplesBussines.NextCode() ?? "";
+                txtCode.Text = await PeoplesBussines.NextCodeAsync() ?? "";
             }
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void LoadGroups()
+        private async Task LoadGroups()
         {
             try
             {
-                var list = PeopleGroupBussines.GetAll().Where(q => q.Status).OrderBy(q => q.Name);
-                groupBundingSource.DataSource = list;
+                var list = await PeopleGroupBussines.GetAllAsync();
+                groupBundingSource.DataSource = list.Where(q => q.Status).OrderBy(q => q.Name);
             }
             catch (Exception ex)
             {
@@ -157,7 +158,7 @@ namespace Peoples
         }
         private async void frmPeoples_Load(object sender, EventArgs e)
         {
-            SetData();
+            await SetDataAsync();
 
             var nameCollection = new AutoCompleteStringCollection();
             var fNameCollection = new AutoCompleteStringCollection();

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using EntityCache.Bussines;
 using MetroFramework.Forms;
@@ -12,13 +13,13 @@ namespace Payamak.Panel
     public partial class frmShowPanels : MetroForm
     {
         private bool _st = true;
-        private void LoadData(bool status, string search = "")
+        private async Task LoadDataAsync(bool status, string search = "")
         {
             try
             {
-                var list = SmsPanelsBussines.GetAll(search).Where(q => q.Status == status).ToList();
-                pnlBindingSource.DataSource =
-                    list.OrderBy(q => q.Name).ToSortableBindingList();
+                var list = await SmsPanelsBussines.GetAllAsync(search);
+                Invoke(new MethodInvoker(() => pnlBindingSource.DataSource =
+                    list.Where(q => q.Status == status).OrderBy(q => q.Name).ToSortableBindingList()));
             }
             catch (Exception ex)
             {
@@ -52,13 +53,13 @@ namespace Payamak.Panel
                 if (_st)
                 {
                     btnChangeStatus.Text = "غیرفعال (Ctrl+S)";
-                    LoadData(ST, txtSearch.Text);
+                    Task.Run(() => LoadDataAsync(ST, txtSearch.Text));
                     btnDelete.Text = "حذف (Del)";
                 }
                 else
                 {
                     btnChangeStatus.Text = "فعال (Ctrl+S)";
-                    LoadData(ST, txtSearch.Text);
+                    Task.Run(() => LoadDataAsync(ST, txtSearch.Text));
                     btnDelete.Text = "فعال کردن";
                 }
             }
@@ -69,21 +70,18 @@ namespace Payamak.Panel
             SetAccess();
         }
 
-        private void frmShowPanels_Load(object sender, EventArgs e)
-        {
-            LoadData(ST);
-        }
+        private async void frmShowPanels_Load(object sender, EventArgs e) => await LoadDataAsync(ST);
 
         private void DGrid_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
             DGrid.Rows[e.RowIndex].Cells["dgRadif"].Value = e.RowIndex + 1;
         }
 
-        private void txtSearch_TextChanged(object sender, EventArgs e)
+        private async void txtSearch_TextChanged(object sender, EventArgs e)
         {
             try
             {
-                LoadData(ST, txtSearch.Text);
+                await LoadDataAsync(ST, txtSearch.Text);
             }
             catch (Exception ex)
             {
@@ -167,7 +165,7 @@ namespace Payamak.Panel
                     }
                 }
 
-                LoadData(ST, txtSearch.Text);
+                await LoadDataAsync(ST, txtSearch.Text);
             }
             catch (Exception ex)
             {
@@ -175,13 +173,13 @@ namespace Payamak.Panel
             }
         }
 
-        private void btnInsert_Click(object sender, EventArgs e)
+        private async void btnInsert_Click(object sender, EventArgs e)
         {
             try
             {
                 var frm = new frmPanelMain();
                 if (frm.ShowDialog() == DialogResult.OK)
-                    LoadData(ST);
+                    await LoadDataAsync(ST);
             }
             catch (Exception ex)
             {
@@ -189,7 +187,7 @@ namespace Payamak.Panel
             }
         }
 
-        private void btnEdit_Click(object sender, EventArgs e)
+        private async void btnEdit_Click(object sender, EventArgs e)
         {
             try
             {
@@ -204,7 +202,7 @@ namespace Payamak.Panel
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
                 var frm = new frmPanelMain(guid, false);
                 if (frm.ShowDialog() == DialogResult.OK)
-                    LoadData(ST, txtSearch.Text);
+                    await LoadDataAsync(ST, txtSearch.Text);
             }
             catch (Exception ex)
             {
@@ -221,7 +219,6 @@ namespace Payamak.Panel
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
                 var frm = new frmPanelMain(guid, true);
                 frm.ShowDialog();
-                LoadData(ST, txtSearch.Text);
             }
             catch (Exception ex)
             {
@@ -268,7 +265,7 @@ namespace Payamak.Panel
                 if (DGrid.RowCount <= 0) return;
                 if (DGrid.CurrentRow == null) return;
 
-                var ret = await Utilities.PingHost("www.google.com");
+                var ret = await Utilities.PingHostAsync();
                 if (ret.HasError)
                 {
                     frmNotification.PublicInfo.ShowMessage(ret.ErrorMessage);

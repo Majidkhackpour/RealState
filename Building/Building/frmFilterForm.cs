@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using EntityCache.Bussines;
 using EntityCache.ViewModels;
@@ -12,20 +13,23 @@ namespace Building.Building
 {
     public partial class frmFilterForm : MetroForm
     {
-        private void SetData()
+        private async Task SetDataAsync()
         {
             try
             {
                 FillCmbReqType();
-                FillBuildingAccountType();
-                FillBuildingType();
+                await FillBuildingAccountTypeAsync();
+                await FillBuildingTypeAsync();
                 FillCmbPrice();
 
-                chbSystem.Checked = true;
-                cmbRahn1.SelectedIndex = 0;
-                cmbRahn2.SelectedIndex = 0;
-                cmbEjare1.SelectedIndex = 0;
-                cmbEjare2.SelectedIndex = 0;
+                Invoke(new MethodInvoker(() =>
+                {
+                    chbSystem.Checked = true;
+                    cmbRahn1.SelectedIndex = 0;
+                    cmbRahn2.SelectedIndex = 0;
+                    cmbEjare1.SelectedIndex = 0;
+                    cmbEjare2.SelectedIndex = 0;
+                }));                
             }
             catch (Exception ex)
             {
@@ -46,11 +50,11 @@ namespace Building.Building
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void FillBuildingType()
+        private async Task FillBuildingTypeAsync()
         {
             try
             {
-                var list = BuildingTypeBussines.GetAll("").Where(q => q.Status).ToList();
+                var list = await BuildingTypeBussines.GetAllAsync();
 
                 var a = new BuildingTypeBussines()
                 {
@@ -59,19 +63,24 @@ namespace Building.Building
                 };
                 list.Add(a);
 
-                bTypeBindingSource.DataSource = list.OrderBy(q => q.Name);
-                if (bTypeBindingSource.Count > 0) cmbBuildingType.SelectedIndex = 0;
+
+                if (list.Count > 0)
+                    Invoke(new MethodInvoker(() =>
+                    {
+                        bTypeBindingSource.DataSource = list.ToList().Where(q => q.Status).OrderBy(q => q.Name);
+                        cmbBuildingType.SelectedIndex = 0;
+                    }));
             }
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void FillBuildingAccountType()
+        private async Task FillBuildingAccountTypeAsync()
         {
             try
             {
-                var list = BuildingAccountTypeBussines.GetAll("").Where(q => q.Status).ToList();
+                var list = await BuildingAccountTypeBussines.GetAllAsync();
 
                 var a = new BuildingAccountTypeBussines()
                 {
@@ -80,8 +89,13 @@ namespace Building.Building
                 };
                 list.Add(a);
 
-                batBindingSource.DataSource = list.OrderBy(q => q.Name);
-                if (batBindingSource.Count > 0) cmbBuildingAccountType.SelectedIndex = 0;
+
+                if (list.Count > 0)
+                    Invoke(new MethodInvoker(() =>
+                    {
+                        batBindingSource.DataSource = list.ToList().Where(q => q.Status).OrderBy(q => q.Name);
+                        cmbBuildingAccountType.SelectedIndex = 0;
+                    }));
             }
             catch (Exception ex)
             {
@@ -95,10 +109,13 @@ namespace Building.Building
                 var values = Enum.GetValues(typeof(EnPrice)).Cast<EnPrice>();
                 foreach (var item in values)
                 {
-                    cmbRahn1.Items.Add(item.GetDisplay());
-                    cmbEjare1.Items.Add(item.GetDisplay());
-                    cmbRahn2.Items.Add(item.GetDisplay());
-                    cmbEjare2.Items.Add(item.GetDisplay());
+                    Invoke(new MethodInvoker(() =>
+                    {
+                        cmbRahn1.Items.Add(item.GetDisplay());
+                        cmbEjare1.Items.Add(item.GetDisplay());
+                        cmbRahn2.Items.Add(item.GetDisplay());
+                        cmbEjare2.Items.Add(item.GetDisplay());
+                    }));                    
                 }
             }
             catch (Exception ex)
@@ -124,7 +141,7 @@ namespace Building.Building
         public frmFilterForm()
         {
             InitializeComponent();
-            SetData();
+            Task.Run(() => SetDataAsync());
             SetAccess();
         }
 
@@ -132,30 +149,37 @@ namespace Building.Building
             int sMasahat, decimal fPrice1, decimal sPrice1, decimal fPrice2, decimal sPrice2)
         {
             InitializeComponent();
-            SetData();
+            Task.Run(() => SetDataAsync());
             SetFormControl(type, buildingType, accountType, roomCount, fMasahat, sMasahat, fPrice1, sPrice1, fPrice2,
                 sPrice2);
             SetAccess();
         }
 
-        private void cmbReqType_SelectedIndexChanged(object sender, EventArgs e)
+        private async void cmbReqType_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
             {
-                if (cmbReqType.SelectedIndex == (int)EnRequestType.Rahn)
+                while (!IsHandleCreated)
                 {
-                    lblSPrice1.Visible = lblSPrice2.Visible = true;
-                    txtSPrice1.Visible = txtSPrice2.Visible = true;
-                    cmbEjare1.Visible = cmbEjare2.Visible = true;
-                    lblFPrice1.Text = "رهن از";
+                    await Task.Delay(100);
                 }
-                else
+                Invoke(new MethodInvoker(() =>
                 {
-                    lblSPrice1.Visible = lblSPrice2.Visible = false;
-                    txtSPrice1.Visible = txtSPrice2.Visible = false;
-                    cmbEjare1.Visible = cmbEjare2.Visible = false;
-                    lblFPrice1.Text = "مبلغ از";
-                }
+                    if (cmbReqType.SelectedIndex == (int)EnRequestType.Rahn)
+                    {
+                        lblSPrice1.Visible = lblSPrice2.Visible = true;
+                        txtSPrice1.Visible = txtSPrice2.Visible = true;
+                        cmbEjare1.Visible = cmbEjare2.Visible = true;
+                        lblFPrice1.Text = "رهن از";
+                    }
+                    else
+                    {
+                        lblSPrice1.Visible = lblSPrice2.Visible = false;
+                        txtSPrice1.Visible = txtSPrice2.Visible = false;
+                        cmbEjare1.Visible = cmbEjare2.Visible = false;
+                        lblFPrice1.Text = "مبلغ از";
+                    }
+                }));
             }
             catch (Exception ex)
             {

@@ -34,5 +34,20 @@ namespace EntityCache.SqlServerPersistence
                 return null;
             }
         }
+
+        public async Task<List<PhoneBookBussines>> GetAllBySpAsync(Guid parentGuid, bool status)
+        {
+            try
+            {
+                var res = db.Database.SqlQuery<PhoneBookBussines>("sp_PhoneBook_SelectAll");
+                var a = await res.ToListAsync();
+                return a;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                return null;
+            }
+        }
     }
 }

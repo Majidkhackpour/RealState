@@ -95,7 +95,7 @@ namespace EntityCache.Bussines
             get
             {
                 if (_galleryList != null) return _galleryList;
-                _galleryList = BuildingGalleryBussines.GetAll(Guid, Status);
+                _galleryList = AsyncContext.Run(() => BuildingGalleryBussines.GetAllAsync(Guid, Status));
                 return _galleryList;
             }
             set => _galleryList = value;
@@ -221,7 +221,8 @@ namespace EntityCache.Bussines
 
             return res;
         }
-
+        public static List<BuildingBussines> GetAll(string search, EnBuildingStatus status,
+            Guid buildingTypeGuid, Guid userGuid) => AsyncContext.Run(() => GetAllAsync(search, status, buildingTypeGuid, userGuid));
         public static async Task<List<BuildingBussines>> GetAllAsync(string search, EnBuildingStatus status,
             Guid buildingTypeGuid, Guid userGuid)
         {
@@ -229,6 +230,7 @@ namespace EntityCache.Bussines
             {
                 if (string.IsNullOrEmpty(search)) search = "";
                 var res = await GetAllAsync();
+                if (res == null || res.Count <= 0) return res;
 
                 if (status != EnBuildingStatus.All) res = res.Where(q => q.BuildingStatus == status).ToList();
                 if (buildingTypeGuid != Guid.Empty)
@@ -267,13 +269,7 @@ namespace EntityCache.Bussines
             }
         }
 
-        public static List<BuildingBussines> GetAll(string search, EnBuildingStatus status,
-            Guid buildingTypeGuid, Guid userGuid) =>
-            AsyncContext.Run(() => GetAllAsync(search, status, buildingTypeGuid, userGuid));
-
         public static async Task<string> NextCodeAsync() => await UnitOfWork.Building.NextCodeAsync();
-
-        public static string NextCode() => AsyncContext.Run(NextCodeAsync);
 
         public static async Task<bool> CheckCodeAsync(string code, Guid guid) =>
             await UnitOfWork.Building.CheckCodeAsync(code, guid);

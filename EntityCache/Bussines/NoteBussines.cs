@@ -33,8 +33,6 @@ namespace EntityCache.Bussines
 
         public static async Task<List<NoteBussines>> GetAllAsync() => await UnitOfWork.Note.GetAllAsyncBySp();
 
-        public static List<NoteBussines> GetAll() => AsyncContext.Run(GetAllAsync);
-
         public async Task<ReturnedSaveFuncInfo> SaveAsync(string tranName = "")
         {
             var res = new ReturnedSaveFuncInfo();
@@ -133,9 +131,6 @@ namespace EntityCache.Bussines
                 return new List<NoteBussines>();
             }
         }
-
-        public static List<NoteBussines> GetAll(string search, Guid userGuid, EnNoteStatus status,
-            EnNotePriority priority) => AsyncContext.Run(() => GetAllAsync(search, userGuid, status, priority));
 
         public static NoteBussines Get(Guid guid) => AsyncContext.Run(() => GetAsync(guid));
     }

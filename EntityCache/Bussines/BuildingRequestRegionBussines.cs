@@ -20,13 +20,8 @@ namespace EntityCache.Bussines
         public static async Task<List<BuildingRequestRegionBussines>> GetAllAsync(Guid parentGuid, bool status) =>
             await UnitOfWork.BuildingRequestRegion.GetAllAsync(parentGuid, status);
 
-        public static List<BuildingRequestRegionBussines> GetAll(Guid parentGuid, bool status) =>
-            AsyncContext.Run(() => GetAllAsync(parentGuid, status));
-
         public static async Task<List<BuildingRequestRegionBussines>> GetAllAsync() =>
             await UnitOfWork.BuildingRequestRegion.GetAllAsync();
-
-        public static List<BuildingRequestRegionBussines> GetAll() => AsyncContext.Run(GetAllAsync);
 
         public async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(bool status, string tranName = "")
         {

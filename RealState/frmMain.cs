@@ -133,7 +133,7 @@ namespace RealState
             SetClock();
             SetCalendar();
             SetButtomLables();
-            var naqz = await NaqzBussines.SetNaqz();
+            var naqz = await NaqzBussines.SetNaqzAsync();
             new frmNaqz(naqz).ShowDialog();
 
             SetAccess();

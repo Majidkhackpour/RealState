@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using EntityCache.Bussines;
 using ExcelDataReader;
@@ -17,12 +18,12 @@ namespace Payamak
     public partial class frmSendSms : MetroForm
     {
         private Guid peGuid = Guid.Empty;
-        private void LoadPanels()
+        private async Task LoadPanelsAsync()
         {
             try
             {
-                var list = SmsPanelsBussines.GetAll("").Where(q => q.Status);
-                panelBindingSource.DataSource = list.ToList();
+                var list = await SmsPanelsBussines.GetAllAsync();
+                panelBindingSource.DataSource = list.Where(q => q.Status).ToList();
 
 
 
@@ -76,9 +77,9 @@ namespace Payamak
             peGuid = guid;
             AddItems(lstNumbers);
         }
-        private void frmSendSms_Load(object sender, EventArgs e)
+        private async void frmSendSms_Load(object sender, EventArgs e)
         {
-            LoadPanels();
+            await LoadPanelsAsync();
             lblCounter.Text = "";
         }
 
@@ -170,7 +171,7 @@ namespace Payamak
         {
             try
             {
-                var ret = await Utilities.PingHost("www.google.com");
+                var ret = await Utilities.PingHostAsync();
                 if (ret.HasError)
                 {
                     frmNotification.PublicInfo.ShowMessage(ret.ErrorMessage);

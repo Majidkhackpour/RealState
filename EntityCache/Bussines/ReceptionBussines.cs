@@ -164,9 +164,6 @@ namespace EntityCache.Bussines
             }
         }
 
-        public static List<ReceptionBussines> GetAll(string search, Guid receptorGuid) =>
-            AsyncContext.Run(() => GetAllAsync(search, receptorGuid));
-
         public static ReceptionBussines Get(Guid guid) => AsyncContext.Run(() => GetAsync(guid));
 
     }

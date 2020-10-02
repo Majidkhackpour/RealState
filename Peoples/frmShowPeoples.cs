@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using EntityCache.Bussines;
 using MetroFramework.Forms;
@@ -32,38 +33,35 @@ namespace Peoples
                 if (_st)
                 {
                     btnChangeStatus.Text = "غیرفعال (Ctrl+S)";
-                    LoadPeoples(ST, txtSearch.Text);
+                    Task.Run(() => LoadPeoplesAsync(ST, txtSearch.Text));
                     btnDelete.Text = "حذف (Del)";
                 }
                 else
                 {
                     btnChangeStatus.Text = "فعال (Ctrl+S)";
-                    LoadPeoples(ST, txtSearch.Text);
+                    Task.Run(() => LoadPeoplesAsync(ST, txtSearch.Text));
                     btnDelete.Text = "فعال کردن";
                 }
             }
         }
-        private void LoadGroups()
+        private async Task LoadGroupsAsync()
         {
             try
             {
-                var list = PeopleGroupBussines.GetAll().Where(q => q.Status).OrderBy(q => q.Name).ToList();
-                groupBindingSource.DataSource = list;
+                var list = await PeopleGroupBussines.GetAllAsync();
+                groupBindingSource.DataSource = list.Where(q => q.Status).OrderBy(q => q.Name).ToList();
                 trvGroup.Nodes.Clear();
-                var lst = PeopleGroupBussines.GetAll().Where(q => q.ParentGuid == Guid.Empty && q.Status)
-                    .OrderBy(q => q.Name)
-                    .ToList();
+                var lst = await PeopleGroupBussines.GetAllAsync();
                 var node = new TreeNode { Text = "همه گروه ها", Name = Guid.Empty.ToString() };
                 trvGroup.Nodes.Add(node);
-                foreach (var item in lst)
+                foreach (var item in lst.Where(q => q.ParentGuid == Guid.Empty && q.Status).OrderBy(q => q.Name).ToList())
                 {
                     node = new TreeNode { Text = item.Name, Name = item.Guid.ToString() };
                     trvGroup.Nodes.Add(node);
                 }
 
-                lst = PeopleGroupBussines.GetAll().Where(q => q.ParentGuid != Guid.Empty && q.Status)
-                    .OrderBy(q => q.Name).ToList();
-                foreach (var item in lst)
+                lst = await PeopleGroupBussines.GetAllAsync();
+                foreach (var item in lst.Where(q => q.ParentGuid != Guid.Empty && q.Status).OrderBy(q => q.Name).ToList())
                 {
                     foreach (TreeNode n in trvGroup.Nodes)
                     {
@@ -79,12 +77,13 @@ namespace Peoples
             }
         }
 
-        private void LoadPeoples(bool status, string search = "")
+        private async Task LoadPeoplesAsync(bool status, string search = "")
         {
             try
             {
-                list = PeoplesBussines.GetAll(search, GroupGuid).Where(q => q.Status == status).ToList();
-                peopleBindingSource.DataSource = list;
+                list = await PeoplesBussines.GetAllAsync(search, GroupGuid);
+                Invoke(new MethodInvoker(() =>
+                    peopleBindingSource.DataSource = list.Where(q => q.Status == status).ToList()));
             }
             catch (Exception ex)
             {
@@ -115,12 +114,12 @@ namespace Peoples
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void LoadData()
+        private async void LoadData()
         {
             try
             {
-                LoadGroups();
-                LoadPeoples(ST, txtSearch.Text);
+                await LoadGroupsAsync();
+                await LoadPeoplesAsync(ST, txtSearch.Text);
             }
             catch (Exception ex)
             {
@@ -217,7 +216,7 @@ namespace Peoples
                     if (group != null)
                         GroupGuid = group.Guid;
                 }
-                LoadPeoples(ST);
+                await LoadPeoplesAsync(ST);
             }
             catch (Exception ex)
             {
@@ -225,13 +224,13 @@ namespace Peoples
             }
         }
 
-        private void btnInsert_Click(object sender, EventArgs e)
+        private async void btnInsert_Click(object sender, EventArgs e)
         {
             try
             {
                 var frm = new frmPeoples();
                 if (frm.ShowDialog() == DialogResult.OK)
-                    LoadPeoples(ST, txtSearch.Text);
+                    await LoadPeoplesAsync(ST, txtSearch.Text);
             }
             catch (Exception ex)
             {
@@ -253,7 +252,7 @@ namespace Peoples
             }
         }
 
-        private void btnEdit_Click(object sender, EventArgs e)
+        private async void btnEdit_Click(object sender, EventArgs e)
         {
             try
             {
@@ -268,7 +267,7 @@ namespace Peoples
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
                 var frm = new frmPeoples(guid, false);
                 if (frm.ShowDialog() == DialogResult.OK)
-                    LoadPeoples(ST, txtSearch.Text);
+                    await LoadPeoplesAsync(ST, txtSearch.Text);
             }
             catch (Exception ex)
             {
@@ -285,7 +284,6 @@ namespace Peoples
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
                 var frm = new frmPeoples(guid, true);
                 frm.ShowDialog();
-                LoadPeoples(ST, txtSearch.Text);
             }
             catch (Exception ex)
             {
@@ -293,11 +291,11 @@ namespace Peoples
             }
         }
 
-        private void txtSearch_TextChanged(object sender, EventArgs e)
+        private async void txtSearch_TextChanged(object sender, EventArgs e)
         {
             try
             {
-                LoadPeoples(ST, txtSearch.Text);
+                await LoadPeoplesAsync(ST, txtSearch.Text);
             }
             catch (Exception ex)
             {
@@ -381,7 +379,7 @@ namespace Peoples
 
                 }
 
-                LoadPeoples(ST, txtSearch.Text);
+                await LoadPeoplesAsync(ST, txtSearch.Text);
             }
             catch (Exception ex)
             {
@@ -389,13 +387,13 @@ namespace Peoples
             }
         }
 
-        private void btnInsGroup_Click(object sender, EventArgs e)
+        private async void btnInsGroup_Click(object sender, EventArgs e)
         {
             try
             {
                 var frm = new frmPropleGroup();
                 if (frm.ShowDialog() == DialogResult.OK)
-                    LoadGroups();
+                    await LoadGroupsAsync();
             }
             catch (Exception ex)
             {
@@ -403,7 +401,7 @@ namespace Peoples
             }
         }
 
-        private void btnUpGroup_Click(object sender, EventArgs e)
+        private async void btnUpGroup_Click(object sender, EventArgs e)
         {
             try
             {
@@ -411,7 +409,7 @@ namespace Peoples
                 if (trvGroup.SelectedNode.Text == "همه گروه ها") return;
                 var frm = new frmPropleGroup(GroupGuid);
                 if (frm.ShowDialog() == DialogResult.OK)
-                    LoadGroups();
+                    await LoadGroupsAsync();
             }
             catch (Exception ex)
             {
@@ -450,7 +448,7 @@ namespace Peoples
                     frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);
                     return;
                 }
-                LoadGroups();
+                await LoadGroupsAsync();
             }
             catch (Exception ex)
             {
@@ -490,14 +488,14 @@ namespace Peoples
             }
         }
 
-        private void btnSendSMS_Click(object sender, EventArgs e)
+        private async void btnSendSMS_Click(object sender, EventArgs e)
         {
             try
             {
                 if (DGrid.RowCount <= 0) return;
                 if (DGrid.CurrentRow == null) return;
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
-                var pe = PhoneBookBussines.GetAll(guid, true);
+                var pe = await PhoneBookBussines.GetAllAsync(guid, true);
 
                 var frm = new frmSendSms(pe.Select(q => q.Tell).ToList(), guid);
                 frm.ShowDialog();
@@ -537,13 +535,13 @@ namespace Peoples
             }
         }
 
-        private void btnIpmortFromExcel_Click(object sender, EventArgs e)
+        private async void btnIpmortFromExcel_Click(object sender, EventArgs e)
         {
             try
             {
                 var frm = new frmImportExcel();
                 if (frm.ShowDialog() == DialogResult.OK)
-                    LoadPeoples(ST);
+                    await LoadPeoplesAsync(ST);
             }
             catch (Exception ex)
             {

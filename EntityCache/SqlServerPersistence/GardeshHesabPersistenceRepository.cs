@@ -51,6 +51,21 @@ namespace EntityCache.SqlServerPersistence
             }
         }
 
+        public async Task<List<GardeshHesabBussines>> GetAllBySpAsync()
+        {
+            try
+            {
+                var res = db.Database.SqlQuery<GardeshHesabBussines>("sp_Gardesh_SelectAll");
+                var a = await res.ToListAsync();
+                return a;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                return null;
+            }
+        }
+
         public async Task<List<GardeshHesabBussines>> GetAllAsync(Guid parentGuid, bool status)
         {
             try

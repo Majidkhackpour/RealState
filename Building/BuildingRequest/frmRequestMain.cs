@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using EntityCache.Bussines;
 using MetroFramework.Forms;
@@ -17,21 +18,21 @@ namespace Building.BuildingRequest
         private PeoplesBussines asker;
         private EnLogAction action;
 
-        private void SetData()
+        private async Task SetDataAsync()
         {
             try
             {
-                LoadUsers();
+                await LoadUsersAsync();
                 LoadAsker();
                 FillCmbPrice();
                 SetTxtPrice();
-                FillRentalAuthority();
+                await FillRentalAuthorityAsync();
                 FillCmbMetr();
                 SetTxtMetr();
-                FillBuildingType();
-                FillBuildingCondition();
-                FillBuildingAccountType();
-                FillState();
+                await FillBuildingTypeAsync();
+                await FillBuildingConditionAsync();
+                await FillBuildingAccountTypeAsync();
+                await FillStateAsync();
 
                 lblDateNow.Text = cls?.DateSh;
                 cmbUser.SelectedValue = cls?.UserGuid;
@@ -56,7 +57,7 @@ namespace Building.BuildingRequest
                 if (cmbCity.SelectedValue != null && (Guid)cmbCity.SelectedValue != Guid.Empty)
                     cmbCity_SelectedIndexChanged(null, null);
 
-                SetRelatedRegions(cls?.Guid ?? Guid.Empty);
+                await SetRelatedRegionsAsync(cls?.Guid ?? Guid.Empty);
 
                 if (cls?.Guid == Guid.Empty)
                 {
@@ -73,12 +74,12 @@ namespace Building.BuildingRequest
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void LoadUsers()
+        private async Task LoadUsersAsync()
         {
             try
             {
-                var list = UserBussines.GetAll().Where(q => q.Status).OrderBy(q => q.Name).ToList();
-                userBindingSource.DataSource = list;
+                var list = await UserBussines.GetAllAsync();
+                userBindingSource.DataSource = list.Where(q => q.Status).OrderBy(q => q.Name).ToList();
             }
             catch (Exception ex)
             {
@@ -282,12 +283,12 @@ namespace Building.BuildingRequest
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void FillRentalAuthority()
+        private async Task FillRentalAuthorityAsync()
         {
             try
             {
-                var list = RentalAuthorityBussines.GetAll("").Where(q => q.Status).OrderBy(q => q.Name).ToList();
-                rentalBindingSource.DataSource = list;
+                var list = await RentalAuthorityBussines.GetAllAsync();
+                rentalBindingSource.DataSource = list.Where(q => q.Status).OrderBy(q => q.Name).ToList();
             }
             catch (Exception ex)
             {
@@ -358,61 +359,61 @@ namespace Building.BuildingRequest
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void FillBuildingType()
+        private async Task FillBuildingTypeAsync()
         {
             try
             {
-                var list = BuildingTypeBussines.GetAll("").Where(q => q.Status).ToList();
-                bTypeBindingSource.DataSource = list.OrderBy(q => q.Name);
+                var list = await BuildingTypeBussines.GetAllAsync();
+                bTypeBindingSource.DataSource = list.Where(q => q.Status).OrderBy(q => q.Name);
             }
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void FillBuildingCondition()
+        private async Task FillBuildingConditionAsync()
         {
             try
             {
-                var list = BuildingConditionBussines.GetAll("").Where(q => q.Status).ToList();
-                bConditionBindingSource.DataSource = list.OrderBy(q => q.Name);
+                var list = await BuildingConditionBussines.GetAllAsync();
+                bConditionBindingSource.DataSource = list.Where(q => q.Status).OrderBy(q => q.Name);
             }
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void FillBuildingAccountType()
+        private async Task FillBuildingAccountTypeAsync()
         {
             try
             {
-                var list = BuildingAccountTypeBussines.GetAll("").Where(q => q.Status).ToList();
-                batBindingSource.DataSource = list.OrderBy(q => q.Name);
+                var list = await BuildingAccountTypeBussines.GetAllAsync();
+                batBindingSource.DataSource = list.Where(q => q.Status).OrderBy(q => q.Name);
             }
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void FillState()
+        private async Task FillStateAsync()
         {
             try
             {
-                var list = StatesBussines.GetAll().Where(q => q.Status).ToList();
-                StateBindingSource.DataSource = list.OrderBy(q => q.Name);
+                var list = await StatesBussines.GetAllAsync();
+                StateBindingSource.DataSource = list.Where(q => q.Status).OrderBy(q => q.Name);
             }
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void SetRegions(Guid requestGuid)
+        private async Task SetRegionsAsync(Guid requestGuid)
         {
             try
             {
                 cls.RegionList = new List<BuildingRequestRegionBussines>();
                 if (requestGuid == Guid.Empty) return;
-                var list = RegionsBussines.GetAll("", Guid.Empty);
+                var list = await RegionsBussines.GetAllAsync();
                 if (list.Count <= 0) return;
                 foreach (var item in list)
                     for (var i = 0; i < DGrid.RowCount; i++)
@@ -434,12 +435,12 @@ namespace Building.BuildingRequest
                 WebErrorLog.ErrorInstence.StartErrorLog(e);
             }
         }
-        private void SetRelatedRegions(Guid requestGuid)
+        private async Task SetRelatedRegionsAsync(Guid requestGuid)
         {
             try
             {
                 if (requestGuid == Guid.Empty) return;
-                var op = BuildingRequestRegionBussines.GetAll(requestGuid, true);
+                var op = await BuildingRequestRegionBussines.GetAllAsync(requestGuid, true);
                 foreach (var item in op)
                     for (var i = 0; i < DGrid.RowCount; i++)
                         if (item.RegionGuid == ((Guid?)DGrid[dgGuid.Index, i].Value ?? Guid.Empty))
@@ -471,10 +472,7 @@ namespace Building.BuildingRequest
             action = EnLogAction.Update;
         }
 
-        private void frmRequestMain_Load(object sender, EventArgs e)
-        {
-            SetData();
-        }
+        private async void frmRequestMain_Load(object sender, EventArgs e) => await SetDataAsync();
 
         private void btnSearchOwner_Click(object sender, EventArgs e)
         {
@@ -656,7 +654,7 @@ namespace Building.BuildingRequest
                 cls.BuildingConditionGuid = (Guid) cmbBuildingCondition.SelectedValue;
                 cls.ShortDesc = txtDesc.Text;
 
-                SetRegions(cls.Guid);
+                await SetRegionsAsync(cls.Guid);
 
                 var res = await cls.SaveAsync();
                 if (res.HasError)

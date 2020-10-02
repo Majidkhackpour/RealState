@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using EntityCache.Bussines;
 using MetroFramework.Forms;
@@ -10,11 +11,11 @@ namespace User
 {
     public partial class frmUserLogFilter : MetroForm
     {
-        private void SetData()
+        private async Task SetDataAsync()
         {
             try
             {
-                LoadUsers();
+                await LoadUsersAsync();
                 txtDate1.Text = Calendar.MiladiToShamsi(Calendar.StartDayOfPersianMonth());
                 txtDate2.Text = Calendar.MiladiToShamsi(Calendar.EndDayOfPersianMonth());
             }
@@ -23,12 +24,12 @@ namespace User
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void LoadUsers()
+        private async Task LoadUsersAsync()
         {
             try
             {
-                var list = UserBussines.GetAll().Where(q => q.Status).OrderBy(q => q.Name).ToList();
-                userBindingSource.DataSource = list;
+                var list = await UserBussines.GetAllAsync();
+                userBindingSource.DataSource = list.Where(q => q.Status).OrderBy(q => q.Name).ToList();
             }
             catch (Exception ex)
             {
@@ -40,10 +41,7 @@ namespace User
             InitializeComponent();
         }
 
-        private void frmUserLogFilter_Load(object sender, EventArgs e)
-        {
-            SetData();
-        }
+        private async void frmUserLogFilter_Load(object sender, EventArgs e) => await SetDataAsync();
 
         private void btnCancel_Click(object sender, EventArgs e)
         {

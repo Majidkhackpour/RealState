@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using EntityCache.Bussines;
 using MetroFramework.Forms;
@@ -14,12 +15,12 @@ namespace Accounting
     {
         private Guid _hesabGuid;
         private IEnumerable<GardeshHesabBussines> list;
-        private void LoadData(Guid hesabGuid, string search = "")
+        private async Task LoadDataAsync(Guid hesabGuid, string search = "")
         {
             try
             {
-                list = GardeshHesabBussines.GetAll(hesabGuid, search).Where(q => q.Status).ToSortableBindingList();
-                gardeshBindingSource.DataSource = list;
+                list = await GardeshHesabBussines.GetAllAsync(hesabGuid, search);
+                gardeshBindingSource.DataSource = list.Where(q => q.Status).ToSortableBindingList();
             }
             catch (Exception ex)
             {
@@ -110,16 +111,13 @@ namespace Accounting
             SetLabels(type);
         }
 
-        private void frmGardeshHesab_Load(object sender, EventArgs e)
-        {
-            LoadData(_hesabGuid);
-        }
+        private async void frmGardeshHesab_Load(object sender, EventArgs e) => await LoadDataAsync(_hesabGuid);
 
-        private void txtSearch_TextChanged(object sender, EventArgs e)
+        private async void txtSearch_TextChanged(object sender, EventArgs e)
         {
             try
             {
-                LoadData(_hesabGuid, txtSearch.Text);
+                await LoadDataAsync(_hesabGuid, txtSearch.Text);
             }
             catch (Exception ex)
             {

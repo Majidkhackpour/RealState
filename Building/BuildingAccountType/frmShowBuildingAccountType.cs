@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using EntityCache.Bussines;
 using MetroFramework.Forms;
@@ -12,13 +13,13 @@ namespace Building.BuildingAccountType
     public partial class frmShowBuildingAccountType : MetroForm
     {
         private bool _st = true;
-        private void LoadData(bool status, string search = "")
+        private async Task LoadDataAsync(bool status, string search = "")
         {
             try
             {
-                var list = BuildingAccountTypeBussines.GetAll(search).Where(q => q.Status == status).ToList();
-                BACBindingSource.DataSource =
-                    list.OrderBy(q => q.Name).ToSortableBindingList();
+                var list = await BuildingAccountTypeBussines.GetAllAsync(search);
+                Invoke(new MethodInvoker(() => BACBindingSource.DataSource =
+                    list.OrderBy(q => q.Name).Where(q => q.Status == status).ToSortableBindingList()));
             }
             catch (Exception ex)
             {
@@ -50,13 +51,13 @@ namespace Building.BuildingAccountType
                 if (_st)
                 {
                     btnChangeStatus.Text = "غیرفعال (Ctrl+S)";
-                    LoadData(ST, txtSearch.Text);
+                    Task.Run(() => LoadDataAsync(ST, txtSearch.Text));
                     btnDelete.Text = "حذف (Del)";
                 }
                 else
                 {
                     btnChangeStatus.Text = "فعال (Ctrl+S)";
-                    LoadData(ST, txtSearch.Text);
+                    Task.Run(() => LoadDataAsync(ST, txtSearch.Text));
                     btnDelete.Text = "فعال کردن";
                 }
             }
@@ -67,9 +68,9 @@ namespace Building.BuildingAccountType
             SetAccess();
         }
 
-        private void frmShowBuildingAccountType_Load(object sender, EventArgs e)
+        private async void frmShowBuildingAccountType_Load(object sender, EventArgs e)
         {
-            LoadData(ST);
+            await LoadDataAsync(ST);
         }
 
         private void DGrid_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
@@ -77,11 +78,11 @@ namespace Building.BuildingAccountType
             DGrid.Rows[e.RowIndex].Cells["dgRadif"].Value = e.RowIndex + 1;
         }
 
-        private void txtSearch_TextChanged(object sender, EventArgs e)
+        private async void txtSearch_TextChanged(object sender, EventArgs e)
         {
             try
             {
-                LoadData(ST, txtSearch.Text);
+                await LoadDataAsync(ST, txtSearch.Text);
             }
             catch (Exception ex)
             {
@@ -170,7 +171,7 @@ namespace Building.BuildingAccountType
                     User.UserLog.Save(EnLogAction.Enable, EnLogPart.BuildingAccountType);
                 }
 
-                LoadData(ST, txtSearch.Text);
+                await LoadDataAsync(ST, txtSearch.Text);
             }
             catch (Exception ex)
             {
@@ -178,13 +179,13 @@ namespace Building.BuildingAccountType
             }
         }
 
-        private void btnInsert_Click(object sender, EventArgs e)
+        private async void btnInsert_Click(object sender, EventArgs e)
         {
             try
             {
                 var frm = new frmBuildingAccountType();
                 if (frm.ShowDialog() == DialogResult.OK)
-                    LoadData(ST);
+                    await LoadDataAsync(ST);
             }
             catch (Exception ex)
             {
@@ -192,7 +193,7 @@ namespace Building.BuildingAccountType
             }
         }
 
-        private void btnEdit_Click(object sender, EventArgs e)
+        private async void btnEdit_Click(object sender, EventArgs e)
         {
             try
             {
@@ -207,7 +208,7 @@ namespace Building.BuildingAccountType
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
                 var frm = new frmBuildingAccountType(guid, false);
                 if (frm.ShowDialog() == DialogResult.OK)
-                    LoadData(ST, txtSearch.Text);
+                    await LoadDataAsync(ST, txtSearch.Text);
             }
             catch (Exception ex)
             {
@@ -224,7 +225,6 @@ namespace Building.BuildingAccountType
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
                 var frm = new frmBuildingAccountType(guid, true);
                 frm.ShowDialog();
-                LoadData(ST, txtSearch.Text);
             }
             catch (Exception ex)
             {

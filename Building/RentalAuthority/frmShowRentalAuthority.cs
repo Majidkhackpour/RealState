@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using EntityCache.Bussines;
 using MetroFramework.Forms;
@@ -12,13 +13,13 @@ namespace Building.RentalAuthority
     public partial class frmShowRentalAuthority : MetroForm
     {
         private bool _st = true;
-        private void LoadData(bool status, string search = "")
+        private async Task LoadDataAsync(bool status, string search = "")
         {
             try
             {
-                var list = RentalAuthorityBussines.GetAll(search).Where(q => q.Status == status).ToList();
-                RentalBindingSource.DataSource =
-                    list.OrderBy(q => q.Name).ToSortableBindingList();
+                var list = await RentalAuthorityBussines.GetAllAsync(search);
+                Invoke(new MethodInvoker(() => RentalBindingSource.DataSource =
+                    list.Where(q => q.Status == status).OrderBy(q => q.Name).ToSortableBindingList()));
             }
             catch (Exception ex)
             {
@@ -50,13 +51,13 @@ namespace Building.RentalAuthority
                 if (_st)
                 {
                     btnChangeStatus.Text = "غیرفعال (Ctrl+S)";
-                    LoadData(ST, txtSearch.Text);
+                    Task.Run(() => LoadDataAsync(ST, txtSearch.Text));
                     btnDelete.Text = "حذف (Del)";
                 }
                 else
                 {
                     btnChangeStatus.Text = "فعال (Ctrl+S)";
-                    LoadData(ST, txtSearch.Text);
+                    Task.Run(() => LoadDataAsync(ST, txtSearch.Text));
                     btnDelete.Text = "فعال کردن";
                 }
             }
@@ -67,9 +68,9 @@ namespace Building.RentalAuthority
             SetAccess();
         }
 
-        private void frmShowRentalAuthority_Load(object sender, EventArgs e)
+        private async void frmShowRentalAuthority_Load(object sender, EventArgs e)
         {
-            LoadData(ST);
+            await LoadDataAsync(ST);
         }
 
         private void DGrid_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
@@ -77,11 +78,11 @@ namespace Building.RentalAuthority
             DGrid.Rows[e.RowIndex].Cells["dgRadif"].Value = e.RowIndex + 1;
         }
 
-        private void txtSearch_TextChanged(object sender, EventArgs e)
+        private async void txtSearch_TextChanged(object sender, EventArgs e)
         {
             try
             {
-                LoadData(ST, txtSearch.Text);
+                await LoadDataAsync(ST, txtSearch.Text);
             }
             catch (Exception ex)
             {
@@ -170,7 +171,7 @@ namespace Building.RentalAuthority
                     User.UserLog.Save(EnLogAction.Enable, EnLogPart.RentalAuthority);
                 }
 
-                LoadData(ST, txtSearch.Text);
+                await LoadDataAsync(ST, txtSearch.Text);
             }
             catch (Exception ex)
             {
@@ -178,13 +179,13 @@ namespace Building.RentalAuthority
             }
         }
 
-        private void btnInsert_Click(object sender, EventArgs e)
+        private async void btnInsert_Click(object sender, EventArgs e)
         {
             try
             {
                 var frm = new frmRentalAuthorityMain();
                 if (frm.ShowDialog() == DialogResult.OK)
-                    LoadData(ST);
+                    await LoadDataAsync(ST);
             }
             catch (Exception ex)
             {
@@ -192,7 +193,7 @@ namespace Building.RentalAuthority
             }
         }
 
-        private void btnEdit_Click(object sender, EventArgs e)
+        private async void btnEdit_Click(object sender, EventArgs e)
         {
             try
             {
@@ -207,7 +208,7 @@ namespace Building.RentalAuthority
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
                 var frm = new frmRentalAuthorityMain(guid, false);
                 if (frm.ShowDialog() == DialogResult.OK)
-                    LoadData(ST, txtSearch.Text);
+                    await LoadDataAsync(ST, txtSearch.Text);
             }
             catch (Exception ex)
             {
@@ -224,7 +225,6 @@ namespace Building.RentalAuthority
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
                 var frm = new frmRentalAuthorityMain(guid, true);
                 frm.ShowDialog();
-                LoadData(ST, txtSearch.Text);
             }
             catch (Exception ex)
             {

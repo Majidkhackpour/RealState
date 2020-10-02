@@ -188,14 +188,7 @@ namespace EntityCache.Bussines
             return res;
         }
 
-        public static List<ContractBussines> GetAll() => AsyncContext.Run(GetAllAsync);
-
-        public static List<ContractBussines> GetAll(string search) =>
-            AsyncContext.Run(() => GetAllAsync(search));
-
         public static async Task<string> NextCodeAsync() => await UnitOfWork.Contract.NextCodeAsync();
-
-        public static string NextCode() => AsyncContext.Run(NextCodeAsync);
 
         public static async Task<bool> CheckCodeAsync(string code, Guid guid) =>
             await UnitOfWork.Contract.CheckCodeAsync(code, guid);

@@ -146,8 +146,6 @@ namespace EntityCache.Bussines
             }
         }
 
-        public static List<DocumentTypeBussines> GetAll(string search) => AsyncContext.Run(() => GetAllAsync(search));
-
         public static DocumentTypeBussines Get(Guid guid) => AsyncContext.Run(() => GetAsync(guid));
 
         public static async Task<bool> CheckNameAsync(string name, Guid guid) =>

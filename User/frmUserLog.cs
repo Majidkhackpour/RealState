@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using EntityCache.Bussines;
 using MetroFramework.Forms;
@@ -14,12 +15,12 @@ namespace User
         private Guid userGuid;
         private DateTime d1, d2;
         private IEnumerable<UserLogBussines> list;
-        private void LoadData()
+        private async Task LoadDataAsync()
         {
             try
             { 
-                list = UserLogBussines.GetAll(userGuid, d1, d2).OrderByDescending(q => q.Date);
-                logBindingSource.DataSource = list.ToSortableBindingList();
+                list = await UserLogBussines.GetAllAsync(userGuid, d1, d2);
+                logBindingSource.DataSource = list.OrderByDescending(q => q.Date).ToSortableBindingList();
                 lblUserName.Text = UserBussines.Get(userGuid)?.Name ?? "";
             }
             catch (Exception ex)
@@ -28,10 +29,7 @@ namespace User
             }
         }
 
-        private void frmUserLog_Load(object sender, EventArgs e)
-        {
-            LoadData();
-        }
+        private async void frmUserLog_Load(object sender, EventArgs e) => await LoadDataAsync();
 
         private void frmUserLog_KeyDown(object sender, KeyEventArgs e)
         {

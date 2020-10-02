@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using Accounting;
 using EntityCache.Bussines;
@@ -14,12 +15,13 @@ namespace User
         public Guid SelectedGuid { get; set; }
         private bool isShowMode = false;
         private bool _st = true;
-        private void LoadData(bool status, string search = "")
+        private async Task LoadDataAsync(bool status, string search = "")
         {
             try
             {
-                var list = UserBussines.GetAll(search).Where(q => q.Status == status).ToList();
-                UserBindingSource.DataSource = list.ToSortableBindingList();
+                var list = await UserBussines.GetAllAsync(search);
+                Invoke(new MethodInvoker(() =>
+                    UserBindingSource.DataSource = list.Where(q => q.Status == status).ToSortableBindingList()));
             }
             catch (Exception ex)
             {
@@ -52,13 +54,13 @@ namespace User
                 if (_st)
                 {
                     btnChangeStatus.Text = "غیرفعال (Ctrl+S)";
-                    LoadData(ST, txtSearch.Text);
+                    Task.Run(() => LoadDataAsync(ST, txtSearch.Text));
                     btnDelete.Text = "حذف (Del)";
                 }
                 else
                 {
                     btnChangeStatus.Text = "فعال (Ctrl+S)";
-                    LoadData(ST, txtSearch.Text);
+                    Task.Run(() => LoadDataAsync(ST, txtSearch.Text));
                     btnDelete.Text = "فعال کردن";
                 }
             }
@@ -91,11 +93,11 @@ namespace User
             SetAccess();
         }
 
-        private void frmShowUsers_Load(object sender, EventArgs e)
+        private async void frmShowUsers_Load(object sender, EventArgs e)
         {
             try
             {
-                LoadData(ST);
+                await LoadDataAsync(ST);
             }
             catch (Exception ex)
             {
@@ -108,13 +110,13 @@ namespace User
             ST = !ST;
         }
 
-        private void btnInsert_Click(object sender, EventArgs e)
+        private async void btnInsert_Click(object sender, EventArgs e)
         {
             try
             {
                 var frm = new frmUserMain();
                 if (frm.ShowDialog() == DialogResult.OK)
-                    LoadData(ST);
+                    await LoadDataAsync(ST);
             }
             catch (Exception ex)
             {
@@ -127,7 +129,7 @@ namespace User
             DGrid.Rows[e.RowIndex].Cells["Radif"].Value = e.RowIndex + 1;
         }
 
-        private void btnEdit_Click(object sender, EventArgs e)
+        private async void btnEdit_Click(object sender, EventArgs e)
         {
             try
             {
@@ -142,7 +144,7 @@ namespace User
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
                 var frm = new frmUserMain(guid, false);
                 if (frm.ShowDialog() == DialogResult.OK)
-                    LoadData(ST, txtSearch.Text);
+                    await LoadDataAsync(ST, txtSearch.Text);
             }
             catch (Exception ex)
             {
@@ -190,7 +192,7 @@ namespace User
                     UserLog.Save(EnLogAction.Enable, EnLogPart.Users);
                 }
 
-                LoadData(ST, txtSearch.Text);
+                await LoadDataAsync(ST, txtSearch.Text);
             }
             catch (Exception ex)
             {
@@ -198,11 +200,11 @@ namespace User
             }
         }
 
-        private void txtSearch_TextChanged(object sender, EventArgs e)
+        private async void txtSearch_TextChanged(object sender, EventArgs e)
         {
             try
             {
-                LoadData(ST, txtSearch.Text);
+                await LoadDataAsync(ST, txtSearch.Text);
             }
             catch (Exception ex)
             {
@@ -219,7 +221,6 @@ namespace User
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
                 var frm = new frmUserMain(guid, true);
                 frm.ShowDialog();
-                LoadData(ST, txtSearch.Text);
             }
             catch (Exception ex)
             {

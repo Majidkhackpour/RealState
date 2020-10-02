@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using EntityCache.Bussines;
 using MetroFramework.Forms;
@@ -11,13 +12,13 @@ namespace Payamak
 {
     public partial class frmSmsLog : MetroForm
     {
-        private void LoadData(string search = "")
+        private async Task LoadDataAsync(string search = "")
         {
             try
             {
                 txtMessage.Text = "";
                 if (cmbUsers.SelectedValue == null) return;
-                var list = SmsLogBussines.GetAll(search, (Guid)cmbUsers.SelectedValue);
+                var list = await SmsLogBussines.GetAllAsync(search, (Guid)cmbUsers.SelectedValue);
                 logBindingSource.DataSource = list.ToList();
             }
             catch (Exception ex)
@@ -25,12 +26,12 @@ namespace Payamak
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void FillCmb()
+        private async Task FillCmbAsync()
         {
             try
             {
 
-                var list = UserBussines.GetAll().ToList();
+                var list = await UserBussines.GetAllAsync();
                 list.Add(new UserBussines()
                 {
                     Guid = Guid.Empty,
@@ -51,10 +52,10 @@ namespace Payamak
             cls = pnl;
         }
 
-        private void frmSmsLog_Load(object sender, EventArgs e)
+        private async void frmSmsLog_Load(object sender, EventArgs e)
         {
-            FillCmb();
-            LoadData();
+            await FillCmbAsync();
+            await LoadDataAsync();
         }
 
         private void DGrid_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
@@ -62,11 +63,11 @@ namespace Payamak
             DGrid.Rows[e.RowIndex].Cells["Radif"].Value = e.RowIndex + 1;
         }
 
-        private void txtSearch_TextChanged(object sender, EventArgs e)
+        private async void txtSearch_TextChanged(object sender, EventArgs e)
         {
             try
             {
-                LoadData(txtSearch.Text);
+                await LoadDataAsync(txtSearch.Text);
             }
             catch (Exception ex)
             {
@@ -94,11 +95,11 @@ namespace Payamak
             }
         }
 
-        private void cmbUsers_SelectedIndexChanged(object sender, EventArgs e)
+        private async void cmbUsers_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
             {
-                LoadData(txtSearch.Text);
+                await LoadDataAsync(txtSearch.Text);
             }
             catch (Exception ex)
             {
@@ -138,7 +139,7 @@ namespace Payamak
                     if (log == null) continue;
                     log.StatusText = item.Statustext;
                     await log.SaveAsync();
-                    LoadData();
+                    await LoadDataAsync();
                 }
             }
             catch (Exception ex)
@@ -168,14 +169,13 @@ namespace Payamak
             }
         }
 
-        private void mnuUpAll_Click(object sender, EventArgs e)
+        private async void mnuUpAll_Click(object sender, EventArgs e)
         {
             try
             {
-                var list = new List<string>();
-                list = SmsLogBussines.GetAll().Select(q => q.MessageId.ToString()).ToList();
+                var list = await SmsLogBussines.GetAllAsync();
 
-                UpdateStatus(list);
+                UpdateStatus(list.Select(q => q.MessageId.ToString()).ToList());
             }
             catch (Exception ex)
             {

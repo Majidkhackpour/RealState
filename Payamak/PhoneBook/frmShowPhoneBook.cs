@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using EntityCache.Bussines;
 using MetroFramework.Forms;
@@ -29,14 +30,13 @@ namespace Payamak.PhoneBook
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void LoadData(bool status, string search = "")
+        private async Task LoadDataAsync(bool status, string search = "")
         {
             try
             {
-                var list = PhoneBookBussines.GetAll(ParentGuid, search, (EnPhoneBookGroup) cmbGroup.SelectedIndex)
-                    .Where(q => q.Status == status).ToList();
-                phoneBookBindingSource.DataSource =
-                    list.OrderBy(q => q.Name).ToSortableBindingList();
+                var list = await PhoneBookBussines.GetAllAsync(ParentGuid, search, (EnPhoneBookGroup) cmbGroup.SelectedIndex);
+                Invoke(new MethodInvoker(() => phoneBookBindingSource.DataSource =
+                    list.Where(q => q.Status == status).OrderBy(q => q.Name).ToSortableBindingList()));
             }
             catch (Exception ex)
             {
@@ -67,13 +67,13 @@ namespace Payamak.PhoneBook
                 if (_st)
                 {
                     btnChangeStatus.Text = "غیرفعال (Ctrl+S)";
-                    LoadData(ST, txtSearch.Text);
+                    Task.Run(() => LoadDataAsync(ST, txtSearch.Text));
                     btnDelete.Text = "حذف (Del)";
                 }
                 else
                 {
                     btnChangeStatus.Text = "فعال (Ctrl+S)";
-                    LoadData(ST, txtSearch.Text);
+                    Task.Run(() => LoadDataAsync(ST, txtSearch.Text));
                     btnDelete.Text = "فعال کردن";
                 }
             }
@@ -99,10 +99,10 @@ namespace Payamak.PhoneBook
             SetAccess();
         }
 
-        private void frmShowPhoneBook_Load(object sender, EventArgs e)
+        private async void frmShowPhoneBook_Load(object sender, EventArgs e)
         {
             LoadGroups();
-            LoadData(ST);
+            await LoadDataAsync(ST);
         }
 
         private void DGrid_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
@@ -110,11 +110,11 @@ namespace Payamak.PhoneBook
             DGrid.Rows[e.RowIndex].Cells["dgRadif"].Value = e.RowIndex + 1;
         }
 
-        private void txtSearch_TextChanged(object sender, EventArgs e)
+        private async void txtSearch_TextChanged(object sender, EventArgs e)
         {
             try
             {
-                LoadData(ST, txtSearch.Text);
+                await LoadDataAsync(ST, txtSearch.Text);
             }
             catch (Exception ex)
             {
@@ -162,11 +162,11 @@ namespace Payamak.PhoneBook
             ST = !ST;
         }
 
-        private void cmbGroup_SelectedIndexChanged(object sender, EventArgs e)
+        private async void cmbGroup_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
             {
-                LoadData(ST, txtSearch.Text);
+                await LoadDataAsync(ST, txtSearch.Text);
             }
             catch (Exception ex)
             {
@@ -210,7 +210,7 @@ namespace Payamak.PhoneBook
                     }
                 }
 
-                LoadData(ST, txtSearch.Text);
+                await LoadDataAsync(ST, txtSearch.Text);
             }
             catch (Exception ex)
             {
@@ -218,13 +218,13 @@ namespace Payamak.PhoneBook
             }
         }
 
-        private void btnInsert_Click(object sender, EventArgs e)
+        private async void btnInsert_Click(object sender, EventArgs e)
         {
             try
             {
                 var frm = new frmPhoneBookMain();
                 if (frm.ShowDialog() == DialogResult.OK)
-                    LoadData(ST);
+                    await LoadDataAsync(ST);
             }
             catch (Exception ex)
             {
@@ -232,7 +232,7 @@ namespace Payamak.PhoneBook
             }
         }
 
-        private void btnEdit_Click(object sender, EventArgs e)
+        private async void btnEdit_Click(object sender, EventArgs e)
         {
             try
             {
@@ -247,7 +247,7 @@ namespace Payamak.PhoneBook
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
                 var frm = new frmPhoneBookMain(guid, false);
                 if (frm.ShowDialog() == DialogResult.OK)
-                    LoadData(ST, txtSearch.Text);
+                    await LoadDataAsync(ST, txtSearch.Text);
             }
             catch (Exception ex)
             {
@@ -264,7 +264,6 @@ namespace Payamak.PhoneBook
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
                 var frm = new frmPhoneBookMain(guid, true);
                 frm.ShowDialog();
-                LoadData(ST, txtSearch.Text);
             }
             catch (Exception ex)
             {

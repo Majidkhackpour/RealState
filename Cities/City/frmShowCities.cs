@@ -33,14 +33,13 @@ namespace Cities.City
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void LoadData(bool status, string search = "")
+        private async Task LoadDataAsync(bool status, string search = "")
         {
             try
             {
-                var list = CitiesBussines.GetAll(search, (Guid) cmbState.SelectedValue).Where(q => q.Status == status)
-                    .ToList();
-                CityBindingSource.DataSource =
-                    list.ToSortableBindingList();
+                var list = await CitiesBussines.GetAllAsync(search, (Guid) cmbState.SelectedValue);
+                Invoke(new MethodInvoker(() => CityBindingSource.DataSource =
+                    list.Where(q => q.Status == status).ToSortableBindingList()));
             }
             catch (Exception ex)
             {
@@ -72,13 +71,13 @@ namespace Cities.City
                 if (_st)
                 {
                     btnChangeStatus.Text = "غیرفعال (Ctrl+S)";
-                    LoadData(ST, txtSearch.Text);
+                    Task.Run(() => LoadDataAsync(ST, txtSearch.Text));
                     btnDelete.Text = "حذف (Del)";
                 }
                 else
                 {
                     btnChangeStatus.Text = "فعال (Ctrl+S)";
-                    LoadData(ST, txtSearch.Text);
+                    Task.Run(() => LoadDataAsync(ST, txtSearch.Text));
                     btnDelete.Text = "فعال کردن";
                 }
             }
@@ -94,7 +93,7 @@ namespace Cities.City
             try
             {
                 await LoadState(); 
-                LoadData(ST);
+                await LoadDataAsync(ST);
             }
             catch (Exception ex)
             {
@@ -107,11 +106,11 @@ namespace Cities.City
             DGrid.Rows[e.RowIndex].Cells["dgRadif"].Value = e.RowIndex + 1;
         }
 
-        private void txtSearch_TextChanged(object sender, EventArgs e)
+        private async void txtSearch_TextChanged(object sender, EventArgs e)
         {
             try
             { 
-                LoadData(ST, txtSearch.Text);
+                await LoadDataAsync(ST, txtSearch.Text);
             }
             catch (Exception ex)
             {
@@ -159,13 +158,13 @@ namespace Cities.City
             ST = !ST;
         }
 
-        private void btnInsert_Click(object sender, EventArgs e)
+        private async void btnInsert_Click(object sender, EventArgs e)
         {
             try
             {
                 var frm = new frmCitiesMain();
                 if (frm.ShowDialog() == DialogResult.OK)
-                    LoadData(ST);
+                    await LoadDataAsync(ST);
             }
             catch (Exception ex)
             {
@@ -173,7 +172,7 @@ namespace Cities.City
             }
         }
 
-        private void btnEdit_Click(object sender, EventArgs e)
+        private async void btnEdit_Click(object sender, EventArgs e)
         {
             try
             {
@@ -188,7 +187,7 @@ namespace Cities.City
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
                 var frm = new frmCitiesMain(guid, false);
                 if (frm.ShowDialog() == DialogResult.OK)
-                    LoadData(ST, txtSearch.Text);
+                    await LoadDataAsync(ST, txtSearch.Text);
             }
             catch (Exception ex)
             {
@@ -236,7 +235,7 @@ namespace Cities.City
                     User.UserLog.Save(EnLogAction.Enable, EnLogPart.Cities);
                 }
 
-                LoadData(ST, txtSearch.Text);
+                await LoadDataAsync(ST, txtSearch.Text);
             }
             catch (Exception ex)
             {
@@ -253,7 +252,6 @@ namespace Cities.City
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
                 var frm = new frmCitiesMain(guid, true);
                 frm.ShowDialog();
-                LoadData(ST, txtSearch.Text);
             }
             catch (Exception ex)
             {
@@ -261,11 +259,11 @@ namespace Cities.City
             }
         }
 
-        private void cmbState_SelectedIndexChanged(object sender, EventArgs e)
+        private async void cmbState_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
             {
-                 LoadData(ST, txtSearch.Text);
+                 await LoadDataAsync(ST, txtSearch.Text);
             }
             catch (Exception ex)
             {

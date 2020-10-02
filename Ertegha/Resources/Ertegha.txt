@@ -68,6 +68,10 @@ ALTER TABLE [dbo].[Notes]  WITH CHECK ADD  CONSTRAINT [FK_Note_User] FOREIGN KEY
 REFERENCES [dbo].[Users] ([Guid])
 GO
 
+IF NOT EXISTS (SELECT * FROM sys.foreign_keys WHERE object_id = OBJECT_ID(N'[dbo].[FK_SmsLog_User]') AND parent_object_id = OBJECT_ID(N'[dbo].[SmsLogs]'))
+ALTER TABLE [dbo].[SmsLogs]  WITH CHECK ADD  CONSTRAINT [FK_SmsLog_User] FOREIGN KEY([UserGuid])
+REFERENCES [dbo].[Users] ([Guid])
+GO
 -- ==========================================================================================
 IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Cities_SelectAll]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
 	exec('Create Procedure [dbo].[sp_Cities_SelectAll]	As Begin print 11 end')
@@ -208,4 +212,39 @@ BEGIN
 	select [dbo].[Notes].*,[dbo].[Users].Name as UserName
 	from [dbo].[Notes] inner join [dbo].[Users]
 	on [dbo].[Notes].UserGuid=[dbo].[Users].Guid
+End
+GO
+-- ==========================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Gardesh_SelectAll]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Gardesh_SelectAll]	As Begin print 11 end')
+GO
+
+ALTER PROCEDURE [dbo].[sp_Gardesh_SelectAll] 
+AS
+BEGIN
+	select * from [dbo].[GardeshHesabs]
+End
+GO
+-- ==========================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_PhoneBook_SelectAll]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_PhoneBook_SelectAll]	As Begin print 11 end')
+GO
+
+ALTER PROCEDURE [dbo].[sp_PhoneBook_SelectAll] 
+AS
+BEGIN
+	select * from [dbo].[PhoneBooks]
+End
+GO
+-- ==========================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_SmsLog_SelectAll]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_SmsLog_SelectAll]	As Begin print 11 end')
+GO
+
+ALTER PROCEDURE [dbo].[sp_SmsLog_SelectAll] 
+AS
+BEGIN
+	select [dbo].[SmsLogs].*,[dbo].[Users].Name As UserName
+	from [dbo].[SmsLogs] inner join [dbo].[Users]
+	on [dbo].[SmsLogs].UserGuid=[dbo].[Users].Guid
 End

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using EntityCache.Bussines;
 using MetroFramework.Forms;
@@ -11,12 +12,12 @@ namespace Peoples
     public partial class frmChangeGroup : MetroForm
     {
         private PeoplesBussines cls;
-        private void LoadGroups()
+        private async Task LoadGroupsAsync()
         {
             try
             {
-                var list = PeopleGroupBussines.GetAll().Where(q => q.Status).OrderBy(q => q.Name);
-                groupBundingSource.DataSource = list;
+                var list = await PeopleGroupBussines.GetAllAsync();
+                groupBundingSource.DataSource = list.Where(q => q.Status).OrderBy(q => q.Name);
             }
             catch (Exception ex)
             {
@@ -29,10 +30,7 @@ namespace Peoples
             cls = _cls;
         }
 
-        private void frmChangeGroup_Load(object sender, EventArgs e)
-        {
-            LoadGroups();
-        }
+        private async void frmChangeGroup_Load(object sender, EventArgs e) => await LoadGroupsAsync();
 
         private void btnCancel_Click(object sender, EventArgs e)
         {

@@ -17,7 +17,7 @@ namespace EntityCache.Bussines
         public DateTime Date { get; set; } = DateTime.Now;
         public string DateSh => Calendar.MiladiToShamsi(Date);
         public Guid UserGuid { get; set; }
-        public string UserName => UserBussines.Get(UserGuid).Name;
+        public string UserName { get; set; }
         public string Sender { get; set; }
         public string Reciver { get; set; }
         public string Message { get; set; }
@@ -60,9 +60,7 @@ namespace EntityCache.Bussines
 
         public static async Task<SmsLogBussines> GetAsync(Guid guid) => await UnitOfWork.SmsLog.GetAsync(guid);
 
-        public static async Task<List<SmsLogBussines>> GetAllAsync() => await UnitOfWork.SmsLog.GetAllAsync();
-
-        public static List<SmsLogBussines> GetAll() => AsyncContext.Run(GetAllAsync);
+        public static async Task<List<SmsLogBussines>> GetAllAsync() => await UnitOfWork.SmsLog.GetAllBySpAsync();
 
         public async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(bool status, string tranName = "")
         {
@@ -132,9 +130,6 @@ namespace EntityCache.Bussines
                 return new List<SmsLogBussines>();
             }
         }
-
-        public static List<SmsLogBussines> GetAll(string search, Guid userGuid) =>
-            AsyncContext.Run(() => GetAllAsync(search, userGuid));
 
         public static SmsLogBussines Get(Guid guid) => AsyncContext.Run(() => GetAsync(guid));
 

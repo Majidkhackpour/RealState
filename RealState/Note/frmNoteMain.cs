@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using EntityCache.Bussines;
 using MetroFramework.Forms;
@@ -13,12 +14,12 @@ namespace RealState.Note
     {
         private NoteBussines cls;
 
-        private void SetData()
+        private async Task SetDataAsync()
         {
             try
             {
 
-                var list = UserBussines.GetAll().ToList();
+                var list = await UserBussines.GetAllAsync();
                 userBindingSource.DataSource = list.OrderBy(q => q.Name);
                 cmbUsers.SelectedValue = clsUser.CurrentUser.Guid;
 
@@ -67,9 +68,9 @@ namespace RealState.Note
             btnFinish.Enabled = !isShowMode;
         }
 
-        private void frmNoteMain_Load(object sender, EventArgs e)
+        private async void frmNoteMain_Load(object sender, EventArgs e)
         {
-            SetData();
+            await SetDataAsync();
         }
 
         private void txtTitle_Enter(object sender, EventArgs e)

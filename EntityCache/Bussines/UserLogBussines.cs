@@ -62,8 +62,5 @@ namespace EntityCache.Bussines
         public static async Task<List<UserLogBussines>> GetAllAsync(Guid userGuid, DateTime d1, DateTime d2) =>
             await UnitOfWork.UserLog.GetAllAsync(userGuid, d1, d2);
 
-        public static List<UserLogBussines> GetAll(Guid userGuid, DateTime d1, DateTime d2) =>
-            AsyncContext.Run(() => GetAllAsync(userGuid, d1, d2));
-
     }
 }

@@ -19,7 +19,6 @@ namespace EntityCache.Bussines
         public string UserName { get; set; }
         public string Password { get; set; }
         private string _access = "";
-
         public string Access
         {
             get
@@ -34,7 +33,6 @@ namespace EntityCache.Bussines
                 _accessLevel = value.FromJson<AccessLevel>();
             }
         }
-
         private AccessLevel _accessLevel;
         public AccessLevel UserAccess
         {
@@ -56,8 +54,6 @@ namespace EntityCache.Bussines
         public static async Task<UserBussines> GetAsync(Guid guid) => await UnitOfWork.Users.GetAsync(guid);
 
         public static async Task<List<UserBussines>> GetAllAsync() => await UnitOfWork.Users.GetAllAsync();
-
-        public static List<UserBussines> GetAll() => AsyncContext.Run(GetAllAsync);
 
         public async Task<ReturnedSaveFuncInfo> SaveAsync(bool setEftetah, string tranName = "")
         {
@@ -215,8 +211,6 @@ namespace EntityCache.Bussines
                 return new List<UserBussines>();
             }
         }
-
-        public static List<UserBussines> GetAll(string search) => AsyncContext.Run(() => GetAllAsync(search));
 
         public static UserBussines Get(Guid guid) => AsyncContext.Run(() => GetAsync(guid));
 

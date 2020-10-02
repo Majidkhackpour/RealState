@@ -21,9 +21,6 @@ namespace EntityCache.Bussines
         public static async Task<List<BuildingGalleryBussines>> GetAllAsync(Guid parentGuid, bool status) =>
             await UnitOfWork.BuildingGallery.GetAllAsync(parentGuid, status);
 
-        public static List<BuildingGalleryBussines> GetAll(Guid parentGuid, bool status) =>
-            AsyncContext.Run(() => GetAllAsync(parentGuid, status));
-
         public static async Task<List<BuildingGalleryBussines>> GetAllAsync() =>
             await UnitOfWork.BuildingGallery.GetAllAsync();
 

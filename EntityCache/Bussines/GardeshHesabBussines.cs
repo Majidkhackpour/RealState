@@ -26,7 +26,7 @@ namespace EntityCache.Bussines
         public Guid ParentGuid { get; set; }
 
 
-        public static async Task<List<GardeshHesabBussines>> GetAllAsync() => await UnitOfWork.GardeshHesab.GetAllAsync();
+        public static async Task<List<GardeshHesabBussines>> GetAllAsync() => await UnitOfWork.GardeshHesab.GetAllBySpAsync();
 
         public static async Task<GardeshHesabBussines> GetAsync(Guid guid) => await UnitOfWork.GardeshHesab.GetAsync(guid);
 
@@ -124,9 +124,6 @@ namespace EntityCache.Bussines
             }
         }
 
-        public static List<GardeshHesabBussines> GetAll(Guid hesabGuid, string search) =>
-            AsyncContext.Run(() => GetAllAsync(hesabGuid, search));
-
         public static GardeshHesabBussines Get(Guid guid) => AsyncContext.Run(() => GetAsync(guid));
 
         public static async Task<GardeshHesabBussines> GetAsync(Guid hesabGuid, Guid parentGuid,bool status) =>
@@ -134,9 +131,6 @@ namespace EntityCache.Bussines
 
         public static async Task<List<GardeshHesabBussines>> GetAllAsync(Guid hesabGuid) =>
             await UnitOfWork.GardeshHesab.GetAllAsync(hesabGuid);
-
-        public static List<GardeshHesabBussines> GetAll(Guid hesabGuid) =>
-            AsyncContext.Run(() => GetAllAsync(hesabGuid));
 
         public static async Task<ReturnedSaveFuncInfo> SaveRangeAsync(List<GardeshHesabBussines> list,
             string tranName = "")

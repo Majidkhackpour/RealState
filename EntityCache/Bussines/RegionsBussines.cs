@@ -93,9 +93,6 @@ namespace EntityCache.Bussines
                 return new List<RegionsBussines>();
             }
         }
-
-        public static List<RegionsBussines> GetAll(string search, Guid cityGuid) =>
-            AsyncContext.Run(() => GetAllAsync(search, cityGuid));
         public async Task<ReturnedSaveFuncInfo> SaveAsync(string tranName = "")
         {
             var res = new ReturnedSaveFuncInfo();

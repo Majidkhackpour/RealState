@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using EntityCache.Bussines;
 using MetroFramework.Forms;
@@ -11,18 +12,18 @@ namespace RealState.Note
 {
     public partial class frmShowNotes : MetroForm
     {
-        private void FillCmb()
+        private async Task FillCmbAsync()
         {
             try
             {
 
-                var list = UserBussines.GetAll().ToList();
+                var list = await UserBussines.GetAllAsync();
                 list.Add(new UserBussines()
                 {
                     Guid = Guid.Empty,
                     Name = "[کلیه کاربران]"
                 });
-                userBindingSource.DataSource = list.OrderBy(q => q.Name);
+                userBindingSource.DataSource = list.Where(q => q.Status).OrderBy(q => q.Name);
                 cmbUsers.SelectedValue = clsUser.CurrentUser.Guid;
 
 
@@ -45,14 +46,14 @@ namespace RealState.Note
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void LoadData(string search = "")
+        private async Task LoadDataAsync(string search = "")
         {
             try
             {
                 if (cmbUsers.SelectedValue == null) return;
-                var list = NoteBussines.GetAll(search, (Guid)cmbUsers.SelectedValue,
+                var list = await NoteBussines.GetAllAsync(search, (Guid)cmbUsers.SelectedValue,
                     (EnNoteStatus)cmbStatus.SelectedIndex, (EnNotePriority)cmbPriority.SelectedIndex);
-                noteBindingSource.DataSource = list.ToList();
+                noteBindingSource.DataSource = list.ToSortableBindingList();
             }
             catch (Exception ex)
             {
@@ -64,10 +65,10 @@ namespace RealState.Note
             InitializeComponent();
         }
 
-        private void frmShowNotes_Load(object sender, EventArgs e)
+        private async void frmShowNotes_Load(object sender, EventArgs e)
         {
-            FillCmb();
-            LoadData();
+            await FillCmbAsync();
+            await LoadDataAsync();
         }
 
         private void DGrid_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
@@ -75,11 +76,11 @@ namespace RealState.Note
             DGrid.Rows[e.RowIndex].Cells["Radif"].Value = e.RowIndex + 1;
         }
 
-        private void txtSearch_TextChanged(object sender, EventArgs e)
+        private async void txtSearch_TextChanged(object sender, EventArgs e)
         {
             try
             {
-                LoadData(txtSearch.Text);
+                await LoadDataAsync(txtSearch.Text);
             }
             catch (Exception ex)
             {
@@ -115,11 +116,11 @@ namespace RealState.Note
             }
         }
 
-        private void cmbUsers_SelectedIndexChanged(object sender, EventArgs e)
+        private async void cmbUsers_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
             {
-                LoadData(txtSearch.Text);
+                await LoadDataAsync(txtSearch.Text);
             }
             catch (Exception ex)
             {
@@ -127,11 +128,11 @@ namespace RealState.Note
             }
         }
 
-        private void cmbStatus_SelectedIndexChanged(object sender, EventArgs e)
+        private async void cmbStatus_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
             {
-                LoadData(txtSearch.Text);
+                await LoadDataAsync(txtSearch.Text);
             }
             catch (Exception ex)
             {
@@ -139,11 +140,11 @@ namespace RealState.Note
             }
         }
 
-        private void cmbPriority_SelectedIndexChanged(object sender, EventArgs e)
+        private async void cmbPriority_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
             {
-                LoadData(txtSearch.Text);
+                await LoadDataAsync(txtSearch.Text);
             }
             catch (Exception ex)
             {
@@ -177,7 +178,7 @@ namespace RealState.Note
                     frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);
                     return;
                 }
-                LoadData(txtSearch.Text);
+                await LoadDataAsync(txtSearch.Text);
             }
             catch (Exception ex)
             {
@@ -212,7 +213,7 @@ namespace RealState.Note
                     return;
                 }
 
-                LoadData(txtSearch.Text);
+                await LoadDataAsync(txtSearch.Text);
             }
             catch (Exception ex)
             {
@@ -247,7 +248,7 @@ namespace RealState.Note
                     return;
                 }
 
-                LoadData(txtSearch.Text);
+                await LoadDataAsync(txtSearch.Text);
             }
             catch (Exception ex)
             {
@@ -255,13 +256,13 @@ namespace RealState.Note
             }
         }
 
-        private void btnInsert_Click(object sender, EventArgs e)
+        private async void btnInsert_Click(object sender, EventArgs e)
         {
             try
             {
                 var frm = new frmNoteMain();
                 if (frm.ShowDialog() == DialogResult.OK)
-                    LoadData();
+                    await LoadDataAsync();
             }
             catch (Exception ex)
             {
@@ -269,7 +270,7 @@ namespace RealState.Note
             }
         }
 
-        private void btnEdit_Click(object sender, EventArgs e)
+        private async void btnEdit_Click(object sender, EventArgs e)
         {
             try
             {
@@ -278,7 +279,7 @@ namespace RealState.Note
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
                 var frm = new frmNoteMain(guid, false);
                 if (frm.ShowDialog() == DialogResult.OK)
-                    LoadData(txtSearch.Text);
+                    await LoadDataAsync(txtSearch.Text);
             }
             catch (Exception ex)
             {
@@ -294,8 +295,7 @@ namespace RealState.Note
                 if (DGrid.CurrentRow == null) return;
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
                 var frm = new frmNoteMain(guid, true);
-                if (frm.ShowDialog() == DialogResult.OK)
-                    LoadData(txtSearch.Text);
+                frm.ShowDialog();
             }
             catch (Exception ex)
             {

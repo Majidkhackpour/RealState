@@ -57,7 +57,7 @@ namespace Advertise.Classes
             var counter = 0;
             try
             {
-                var res = await Utilities.PingHost("www.google.com");
+                var res = await Utilities.PingHostAsync();
                 while (res.HasError)
                 {
                     await Utility.Wait(10);
@@ -65,7 +65,7 @@ namespace Advertise.Classes
                     lstMessage.Add("خطای اتصال به شبکه");
                     Utility.ShowBalloon("لطفا اتصال به شبکه را چک نمایید", lstMessage);
                     counter++;
-                    res = await Utilities.PingHost("www.google.com");
+                    res = await Utilities.PingHostAsync();
                 }
 
 

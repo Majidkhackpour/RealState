@@ -24,11 +24,11 @@ namespace Building.Contract
         private decimal fPrice = 0, sPrice = 0;
         readonly List<string> lstList = new List<string>();
         private EnLogAction action;
-        private void SetData()
+        private async Task SetDataAsync()
         {
             try
             {
-                LoadUsers();
+                await LoadUsersAsync();
                 LoadfSide();
                 LoadsSide();
                 FillCmbPrice();
@@ -89,7 +89,7 @@ namespace Building.Contract
 
                 if (cls?.Guid == Guid.Empty)
                 {
-                    NextCode();
+                    await NextCodeAsync();
                     cmbUser.SelectedValue = clsUser.CurrentUser?.Guid;
                     cmbfBabat.SelectedIndex = 0;
                     cmbsBabat.SelectedIndex = 0;
@@ -102,23 +102,23 @@ namespace Building.Contract
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void NextCode()
+        private async Task NextCodeAsync()
         {
             try
             {
-                txtCode.Text = ContractBussines.NextCode() ?? "";
+                txtCode.Text = await ContractBussines.NextCodeAsync() ?? "";
             }
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void LoadUsers()
+        private async Task LoadUsersAsync()
         {
             try
             {
-                var list = UserBussines.GetAll().Where(q => q.Status).OrderBy(q => q.Name).ToList();
-                userBindingSource.DataSource = list;
+                var list = await UserBussines.GetAllAsync();
+                userBindingSource.DataSource = list.Where(q => q.Status).OrderBy(q => q.Name).ToList();
             }
             catch (Exception ex)
             {
@@ -733,9 +733,9 @@ namespace Building.Contract
             action = EnLogAction.Update;
         }
 
-        private void frmContractMain_Load(object sender, EventArgs e)
+        private async void frmContractMain_Load(object sender, EventArgs e)
         {
-            SetData();
+            await SetDataAsync();
         }
 
         private void btnfSearch_Click(object sender, EventArgs e)

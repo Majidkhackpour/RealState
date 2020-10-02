@@ -358,6 +358,7 @@
             this.cmbUsers.Size = new System.Drawing.Size(133, 28);
             this.cmbUsers.TabIndex = 55738;
             this.cmbUsers.ValueMember = "Guid";
+            this.cmbUsers.SelectedIndexChanged += new System.EventHandler(this.cmbUsers_SelectedIndexChanged);
             // 
             // lblUsers
             // 

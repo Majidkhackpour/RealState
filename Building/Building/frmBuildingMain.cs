@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using EntityCache.Bussines;
 using MetroFramework.Forms;
@@ -28,29 +29,29 @@ namespace Building.Building
         private EnLogAction action;
 
 
-        private void SetData()
+        private async Task SetDataAsync()
         {
             try
             {
-                LoadUsers();
+                await LoadUsersAsync();
                 LoadOwner();
                 FillCmbPrice();
                 FillCmbTarakom();
                 FillCmbMetr();
-                FillRentalAuthority();
+                await FillRentalAuthorityAsync();
                 SetTxtPrice();
                 SetTxtMetr();
-                FillSanadType();
-                FillState();
-                FillBuildingCondition();
+                await FillSanadTypeAsync();
+                await FillStateAsync();
+                await FillBuildingConditionAsync();
                 FillCmbSide();
-                FillBuildingType();
-                FillBuildingAccountType();
-                FillBuildingView();
-                FillFloorCover();
-                FillKitchenService();
+                await FillBuildingTypeAsync();
+                await FillBuildingAccountTypeAsync();
+                await FillBuildingViewAsync();
+                await FillFloorCoverAsync();
+                await FillKitchenServiceAsync();
                 FillCmbKhadamt();
-                FillOptions();
+                await FillOptionsAsync();
                 SetRelatedOptions(cls.Guid);
 
                 lblDateNow.Text = cls?.DateSh;
@@ -129,9 +130,13 @@ namespace Building.Building
 
                 Make_Picture_Boxes(lstList);
 
+                chbGoogleMap.Checked = false;
+                picGoogle.Visible = true;
+                webGoogle.Visible = false;
+
                 if (cls?.Guid == Guid.Empty)
                 {
-                    NextCode();
+                   await NextCodeAsync();
                     cmbUser.SelectedValue = clsUser.CurrentUser?.Guid;
                     cmbRentalAuthority.SelectedIndex = 0;
                     cmbSellTarakom.SelectedIndex = 0;
@@ -161,119 +166,119 @@ namespace Building.Building
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void NextCode()
+        private async Task NextCodeAsync()
         {
             try
             {
-                txtCode.Text = BuildingBussines.NextCode() ?? "";
+                txtCode.Text = await BuildingBussines.NextCodeAsync() ?? "";
             }
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void FillRentalAuthority()
+        private async Task FillRentalAuthorityAsync()
         {
             try
             {
-                var list = RentalAuthorityBussines.GetAll("").Where(q => q.Status).OrderBy(q => q.Name).ToList();
-                rentalBindingSource.DataSource = list;
+                var list = await RentalAuthorityBussines.GetAllAsync();
+                rentalBindingSource.DataSource = list.Where(q => q.Status).OrderBy(q => q.Name).ToList();
             }
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void FillSanadType()
+        private async Task FillSanadTypeAsync()
         {
             try
             {
-                var list = DocumentTypeBussines.GetAll("").Where(q => q.Status).OrderBy(q => q.Name).ToList();
-                sanadTypeBindingSource.DataSource = list;
+                var list = await DocumentTypeBussines.GetAllAsync();
+                sanadTypeBindingSource.DataSource = list.Where(q => q.Status).OrderBy(q => q.Name).ToList();
             }
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void FillState()
+        private async Task FillStateAsync()
         {
             try
             {
-                var list = StatesBussines.GetAll().Where(q => q.Status).ToList();
-                StateBindingSource.DataSource = list.OrderBy(q => q.Name);
+                var list = await StatesBussines.GetAllAsync();
+                StateBindingSource.DataSource = list.Where(q => q.Status).OrderBy(q => q.Name);
             }
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void FillBuildingCondition()
+        private async Task FillBuildingConditionAsync()
         {
             try
             {
-                var list = BuildingConditionBussines.GetAll("").Where(q => q.Status).ToList();
-                bConditionBindingSource.DataSource = list.OrderBy(q => q.Name);
+                var list = await BuildingConditionBussines.GetAllAsync();
+                bConditionBindingSource.DataSource = list.Where(q => q.Status).ToList().OrderBy(q => q.Name);
             }
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void FillBuildingType()
+        private async Task FillBuildingTypeAsync()
         {
             try
             {
-                var list = BuildingTypeBussines.GetAll("").Where(q => q.Status).ToList();
-                bTypeBindingSource.DataSource = list.OrderBy(q => q.Name);
+                var list = await BuildingTypeBussines.GetAllAsync();
+                bTypeBindingSource.DataSource = list.Where(q => q.Status).ToList().OrderBy(q => q.Name);
             }
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void FillBuildingAccountType()
+        private async Task FillBuildingAccountTypeAsync()
         {
             try
             {
-                var list = BuildingAccountTypeBussines.GetAll("").Where(q => q.Status).ToList();
-                batBindingSource.DataSource = list.OrderBy(q => q.Name);
+                var list = await BuildingAccountTypeBussines.GetAllAsync();
+                batBindingSource.DataSource = list.Where(q => q.Status).ToList().OrderBy(q => q.Name);
             }
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void FillBuildingView()
+        private async Task FillBuildingViewAsync()
         {
             try
             {
-                var list = BuildingViewBussines.GetAll("").Where(q => q.Status).ToList();
-                BuildingViewBindingSource.DataSource = list.OrderBy(q => q.Name);
+                var list = await BuildingViewBussines.GetAllAsync();
+                BuildingViewBindingSource.DataSource = list.Where(q => q.Status).ToList().OrderBy(q => q.Name);
             }
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void FillFloorCover()
+        private async Task FillFloorCoverAsync()
         {
             try
             {
-                var list = FloorCoverBussines.GetAll("").Where(q => q.Status).ToList();
-                FloorCoverBindingSource.DataSource = list.OrderBy(q => q.Name);
+                var list = await FloorCoverBussines.GetAllAsync();
+                FloorCoverBindingSource.DataSource = list.Where(q => q.Status).ToList().OrderBy(q => q.Name);
             }
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void FillKitchenService()
+        private async Task FillKitchenServiceAsync()
         {
             try
             {
-                var list = KitchenServiceBussines.GetAll("").Where(q => q.Status).ToList();
-                KitchenServiceBindingSource.DataSource = list.OrderBy(q => q.Name);
+                var list = await KitchenServiceBussines.GetAllAsync();
+                KitchenServiceBindingSource.DataSource = list.Where(q => q.Status).ToList().OrderBy(q => q.Name);
             }
             catch (Exception ex)
             {
@@ -669,25 +674,25 @@ namespace Building.Building
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void LoadUsers()
+        private async Task LoadUsersAsync()
         {
             try
             {
-                var list = UserBussines.GetAll().Where(q => q.Status).OrderBy(q => q.Name).ToList();
-                userBindingSource.DataSource = list;
+                var list = await UserBussines.GetAllAsync();
+                userBindingSource.DataSource = list.Where(q => q.Status).OrderBy(q => q.Name).ToList();
             }
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void SetOptions(Guid buildingGuid)
+        private async Task SetOptionsAsync(Guid buildingGuid)
         {
             try
             {
                 cls.OptionList = new List<BuildingRelatedOptionsBussines>();
                 if (buildingGuid == Guid.Empty) return;
-                var list = BuildingOptionsBussines.GetAll("");
+                var list = await BuildingOptionsBussines.GetAllAsync();
                 if (list.Count <= 0) return;
                 foreach (var item in list)
                     for (var i = 0; i < DGrid.RowCount; i++)
@@ -709,12 +714,12 @@ namespace Building.Building
                 WebErrorLog.ErrorInstence.StartErrorLog(e);
             }
         }
-        private void FillOptions(string search = "")
+        private async Task FillOptionsAsync(string search = "")
         {
             try
             {
-                var list = BuildingOptionsBussines.GetAll(search).Where(q => q.Status).OrderBy(q => q.Name).ToList();
-                BuildingOptionBindingSource.DataSource = list;
+                var list = await BuildingOptionsBussines.GetAllAsync(search);
+                BuildingOptionBindingSource.DataSource = list.Where(q => q.Status).OrderBy(q => q.Name).ToList();
             }
             catch (Exception ex)
             {
@@ -875,25 +880,7 @@ namespace Building.Building
             }
         }
 
-        private void frmBuildingMain_Load(object sender, EventArgs e)
-        {
-            SetData();
-
-            //webBrowser1.ScriptErrorsSuppressed = true;
-            //var city = CitiesBussines.Get(Guid.Parse(Settings.Classes.clsEconomyUnit.EconomyCity));
-            //var region = RegionsBussines.Get(Guid.Parse(Settings.Classes.clsEconomyUnit.ManagerRegion));
-            //var sb = new StringBuilder();
-            //sb.Append("https://www.Google.com/maps/search/");
-            //sb.Append(city.Name + region.Name);
-
-            //webBrowser1.Navigate(sb.ToString());
-
-
-            //gMapControl1.MapProvider = GMap.NET.MapProviders.GoogleMapProvider.Instance;
-            //GMap.NET.GMaps.Instance.Mode = GMap.NET.AccessMode.ServerAndCache;
-            //gMapControl1.SetPositionByKeywords($"IRAN,isfahan");
-
-        }
+        private async void frmBuildingMain_Load(object sender, EventArgs e) => await SetDataAsync();
 
         private void btnSearchOwner_Click(object sender, EventArgs e)
         {
@@ -946,6 +933,13 @@ namespace Building.Building
                 if (cmbCity.SelectedValue == null) return;
                 var list = await RegionsBussines.GetAllAsync((Guid)cmbCity.SelectedValue);
                 RegionBindingSource.DataSource = list.Where(q => q.Status).OrderBy(q => q.Name).ToList();
+
+                if (chbGoogleMap.Checked)
+                {
+                    var res = await ShowMap(cmbCity.Text, cmbRegion.Text);
+                    if (res.HasError)
+                        frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);
+                }
             }
             catch (Exception ex)
             {
@@ -953,11 +947,11 @@ namespace Building.Building
             }
         }
 
-        private void txtSearch_TextChanged(object sender, EventArgs e)
+        private async void txtSearch_TextChanged(object sender, EventArgs e)
         {
             try
             {
-                FillOptions(txtSearch.Text);
+                await FillOptionsAsync(txtSearch.Text);
             }
             catch (Exception ex)
             {
@@ -1224,7 +1218,7 @@ namespace Building.Building
                 cls.MamarJoda = chbIsMamarJoda.Checked;
                 cls.RoomCount = txtTedadOtaq.Text.ParseToInt();
 
-                SetOptions(cls.Guid);
+                await SetOptionsAsync(cls.Guid);
 
                 for (var i = fPanel.Controls.Count - 1; i >= 0; i--)
                     fPanel.Controls[i].Dispose();
@@ -1510,7 +1504,7 @@ namespace Building.Building
             try
             {
                 btnFinish.PerformClick();
-                
+
                 var reg = RegionsBussines.Get(cls.RegionGuid);
                 var accType = BuildingAccountTypeBussines.Get(cls.BuildingAccountTypeGuid);
                 var type = BuildingTypeBussines.Get(cls.BuildingTypeGuid);
@@ -1523,6 +1517,72 @@ namespace Building.Building
 
                 DialogResult = DialogResult.OK;
                 Close();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private async void chbGoogleMap_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (chbGoogleMap.Checked)
+                {
+                    picGoogle.Visible = false;
+                    webGoogle.Visible = true;
+                    var res = await ShowMap(cmbCity.Text, cmbRegion.Text);
+                    if (res.HasError)
+                        frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);
+                }
+                else
+                {
+                    picGoogle.Visible = true;
+                    webGoogle.Visible = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private async Task<ReturnedSaveFuncInfo> ShowMap(string city, string region)
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                res.AddReturnedValue(await Utilities.PingHostAsync());
+                if (res.HasError) return res;
+
+                var sb = new StringBuilder();
+                sb.Append("https://www.google.com/maps/place/");
+
+                sb.Append(city + ", +");
+                sb.Append(region);
+
+                webGoogle.Navigate(sb.ToString());
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+
+            return res;
+        }
+
+        private async void cmbRegion_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (chbGoogleMap.Checked)
+                {
+                    var res = await ShowMap(cmbCity.Text, cmbRegion.Text);
+                    if (res.HasError)
+                        frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);
+                }
             }
             catch (Exception ex)
             {

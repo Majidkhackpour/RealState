@@ -2,6 +2,7 @@
 using System.Data;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using EntityCache.Bussines;
 using ExcelDataReader;
@@ -32,12 +33,12 @@ namespace Peoples
         public short ColTell4 => txtTell4.Text.ParseToShort();
         #endregion
 
-        private void LoadGroups()
+        private async Task LoadGroupsAsync()
         {
             try
             {
-                var list = PeopleGroupBussines.GetAll().Where(q => q.Status);
-                groupBindingSource.DataSource = list.OrderBy(q => q.Name);
+                var list = await PeopleGroupBussines.GetAllAsync();
+                groupBindingSource.DataSource = list.Where(q => q.Status).OrderBy(q => q.Name);
 
                 cmbDuplicateName.SelectedIndex = 0;
                 cmbDuplicateCode.SelectedIndex = 0;
@@ -104,10 +105,8 @@ namespace Peoples
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void frmImportExcel_Load(object sender, EventArgs e)
-        {
-            LoadGroups();
-        }
+
+        private async void frmImportExcel_Load(object sender, EventArgs e) => await LoadGroupsAsync();
         private string GetValue(short clIndex, int rowIndex)
         {
             var str = "";
@@ -123,7 +122,7 @@ namespace Peoples
 
             return str;
         }
-        private PeoplesBussines GetItems(int index)
+        private async Task<PeoplesBussines> GetItemsAsync(int index)
         {
             var pe = new PeoplesBussines();
             try
@@ -142,7 +141,7 @@ namespace Peoples
                 {
                     if (!string.IsNullOrEmpty(name))
                     {
-                        var checkName = PeoplesBussines.CheckName(name);
+                        var checkName = await PeoplesBussines.CheckNameAsync(name);
                         if (!checkName) return null;
                         pe.Name = name;
                     }
@@ -165,7 +164,7 @@ namespace Peoples
                 {
                     if (!string.IsNullOrEmpty(code))
                     {
-                        var checkCode = PeoplesBussines.CheckCode(code, pe.Guid);
+                        var checkCode = await PeoplesBussines.CheckCodeAsync(code, pe.Guid);
                         if (!checkCode) return null;
                         pe.Code = code;
                     }
@@ -174,8 +173,8 @@ namespace Peoples
                 //پیشنهاد کد جدید در صورت خالی بودن یا تکراری بودن
                 if (cmbDuplicateCode.SelectedIndex == 2)
                 {
-                    var newCode = PeoplesBussines.NextCode();
-                    if (string.IsNullOrEmpty(code) || !PeoplesBussines.CheckCode(code, pe.Guid))
+                    var newCode = await PeoplesBussines.NextCodeAsync();
+                    if (string.IsNullOrEmpty(code) || ! await PeoplesBussines.CheckCodeAsync(code, pe.Guid))
                         pe.Code = newCode;
                     else pe.Code = code;
                 }
@@ -272,7 +271,7 @@ namespace Peoples
                 frm.Show();
                 for (var i = 0; i < DGrid.RowCount; i++)
                 {
-                    var x = GetItems(i);
+                    var x = await GetItemsAsync(i);
                     frm.Level = i;
                     if (x == null) continue;
                     await x.SaveAsync();

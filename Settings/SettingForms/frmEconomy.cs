@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using EntityCache.Bussines;
 using Services;
@@ -81,11 +82,11 @@ namespace Settings.SettingForms
             txtSetter.Follow(txtEmail);
         }
         #endregion
-        private void SettData()
+        private async Task SettDataAsync()
         {
             try
             {
-                FillCmb();
+                await FillCmbAsync();
 
                 txtName.Text = clsEconomyUnit.EconomyName;
                 txtMobile.Text = clsEconomyUnit.ManagerMobile;
@@ -109,7 +110,7 @@ namespace Settings.SettingForms
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void FillCmb()
+        private async Task FillCmbAsync()
         {
             try
             {
@@ -117,8 +118,8 @@ namespace Settings.SettingForms
                 cmbType.Items.Add(EnEconomyType.AnbouhSaz.GetDisplay());
                 cmbType.Items.Add(EnEconomyType.Sayer.GetDisplay());
 
-                var list = StatesBussines.GetAll().Where(q => q.Status).ToList();
-                StateBindingSource.DataSource = list.OrderBy(q => q.Name);
+                var list = await StatesBussines.GetAllAsync();
+                StateBindingSource.DataSource = list.Where(q => q.Status).OrderBy(q => q.Name);
             }
             catch (Exception ex)
             {
@@ -126,10 +127,7 @@ namespace Settings.SettingForms
             }
         }
 
-        private void frmEconomy_Load(object sender, EventArgs e)
-        {
-            SettData();
-        }
+        private async void frmEconomy_Load(object sender, EventArgs e) => await SettDataAsync();
 
         private void btnFinish_Click(object sender, EventArgs e)
         {
