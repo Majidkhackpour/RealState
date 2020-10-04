@@ -21,9 +21,9 @@ namespace Settings
             }
             return ret;
         }
-        public static ReturnedSaveFuncInfo GetConnectionRegistery(string name)
+        public static ReturnedSaveFuncInfoWithValue<string> GetConnectionRegistery(string name)
         {
-            var ret = new ReturnedSaveFuncInfo();
+            var ret = new ReturnedSaveFuncInfoWithValue<string>();
             try
             {
                 var a = Microsoft.Win32.Registry.GetValue("HKEY_CURRENT_USER\\Software\\Arad\\", name,

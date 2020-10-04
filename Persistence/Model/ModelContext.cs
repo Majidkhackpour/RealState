@@ -56,5 +56,6 @@ namespace Persistence.Model
         public virtual DbSet<UserLog> UserLog { get; set; }
         public virtual DbSet<SmsLog> SmsLog { get; set; }
         public virtual DbSet<Note> Note { get; set; }
+        public virtual DbSet<SerializedData> SerializedData { get; set; }
     }
 }

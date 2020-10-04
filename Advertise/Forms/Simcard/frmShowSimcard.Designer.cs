@@ -62,10 +62,11 @@
             this.simBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.btnOther = new DevComponents.DotNetBar.ButtonX();
             this.btnLoginDivar = new DevComponents.DotNetBar.ButtonItem();
+            this.btnLoginSheypoor = new DevComponents.DotNetBar.ButtonItem();
             this.btnDelToken = new DevComponents.DotNetBar.ButtonItem();
             this.btnSendAdv = new DevComponents.DotNetBar.ButtonItem();
             this.btnAdvLog = new DevComponents.DotNetBar.ButtonItem();
-            this.btnLoginSheypoor = new DevComponents.DotNetBar.ButtonItem();
+            this.btnDivarCities = new DevComponents.DotNetBar.ButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).BeginInit();
             this.cmDivar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.simBindingSource)).BeginInit();
@@ -417,7 +418,8 @@
             this.btnLoginSheypoor,
             this.btnDelToken,
             this.btnSendAdv,
-            this.btnAdvLog});
+            this.btnAdvLog,
+            this.btnDivarCities});
             this.btnOther.TabIndex = 55757;
             this.btnOther.Text = "سایر";
             this.btnOther.TextAlignment = DevComponents.DotNetBar.eButtonTextAlignment.Left;
@@ -429,6 +431,11 @@
             this.btnLoginDivar.Name = "btnLoginDivar";
             this.btnLoginDivar.Text = "لاگین دیوار";
             this.btnLoginDivar.Click += new System.EventHandler(this.btnLogin_Click);
+            // 
+            // btnLoginSheypoor
+            // 
+            this.btnLoginSheypoor.Name = "btnLoginSheypoor";
+            this.btnLoginSheypoor.Text = "لاگین شیپور";
             // 
             // btnDelToken
             // 
@@ -447,10 +454,11 @@
             this.btnAdvLog.Name = "btnAdvLog";
             this.btnAdvLog.Text = "مشاهده آگهی های ارسال شده";
             // 
-            // btnLoginSheypoor
+            // btnDivarCities
             // 
-            this.btnLoginSheypoor.Name = "btnLoginSheypoor";
-            this.btnLoginSheypoor.Text = "لاگین شیپور";
+            this.btnDivarCities.Name = "btnDivarCities";
+            this.btnDivarCities.Text = "دریافت اطلاعات پایه از دیوار و شیپور";
+            this.btnDivarCities.Click += new System.EventHandler(this.btnDivarCities_Click);
             // 
             // frmShowSimcard
             // 
@@ -518,5 +526,6 @@
         private DevComponents.DotNetBar.ButtonItem btnSendAdv;
         private DevComponents.DotNetBar.ButtonItem btnAdvLog;
         private DevComponents.DotNetBar.ButtonItem btnLoginSheypoor;
+        private DevComponents.DotNetBar.ButtonItem btnDivarCities;
     }
 }

@@ -2,10 +2,8 @@
 {
     public static class clsAdvertise
     {
-        public static string DayCountForUpdateState { get; set; }
-        public static string Category1 { get; set; }
-        public static string Category2 { get; set; }
-        public static string Category3 { get; set; }
-        public static string PicCountInPerAdv { get; set; }
+        public static clsDivarSetting DivarSetting { get; set; }
+        public static clsSheypoorSetting SheypoorSetting { get; set; }
+        public static bool IsSilent { get; set; }
     }
 }

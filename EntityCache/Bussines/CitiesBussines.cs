@@ -88,7 +88,6 @@ namespace EntityCache.Bussines
             }
         }
 
-
         public static async Task<CitiesBussines> GetAsync(Guid guid) => await UnitOfWork.Cities.GetAsync(guid);
 
         public static CitiesBussines Get(Guid guid) => AsyncContext.Run(() => GetAsync(guid));
@@ -160,6 +159,5 @@ namespace EntityCache.Bussines
 
         public static async Task<List<CitiesBussines>> GetAllAsync(Guid stateGuid) =>
             await UnitOfWork.Cities.GetAllAsync(stateGuid);
-
     }
 }

@@ -37,5 +37,6 @@ namespace Persistence.Entities
         public string IP { get; set; }
         public DateTime LastUpdate { get; set; }
         public int VisitCount { get; set; }
+        public AdvertiseType AdvType { get; set; }
     }
 }

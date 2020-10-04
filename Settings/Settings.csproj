@@ -130,7 +130,9 @@
     <Compile Include="Classes\clsEconomyUnit.cs" />
     <Compile Include="Classes\clsGlobalSetting.cs" />
     <Compile Include="Classes\clsSandouq.cs" />
+    <Compile Include="Classes\clsSheypoorSetting.cs" />
     <Compile Include="Classes\clsTelegram.cs" />
+    <Compile Include="Classes\clsDivarSetting.cs" />
     <Compile Include="Classes\Payamak.cs" />
     <Compile Include="clsRegistery.cs" />
     <Compile Include="frmEconomyUnit.cs">

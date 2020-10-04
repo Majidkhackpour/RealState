@@ -1,25 +1,28 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using EntityCache.Assistence;
+using EntityCache.ViewModels;
 using Nito.AsyncEx;
 using PacketParser.Interfaces;
 using Services;
 
 namespace EntityCache.Bussines
 {
-    public class SettingsBussines : ISettings
+    public class SerializedDataBussines : ISerializedData
     {
         public Guid Guid { get; set; }
         public DateTime Modified { get; set; } = DateTime.Now;
         public bool Status { get; set; } = true;
         public string Name { get; set; }
-        public string Value { get; set; }
+        public string Data { get; set; }
 
 
-        public static async Task<SettingsBussines> GetAsync(string memberName) =>
-    await UnitOfWork.Settings.GetAsync(memberName);
 
-        public static SettingsBussines Get(string memberName) => AsyncContext.Run(() => GetAsync(memberName));
+        public static async Task<SerializedDataBussines> GetAsync(string memberName) =>
+    await UnitOfWork.SerializedData.GetAsync(memberName);
+
+        public static SerializedDataBussines Get(string memberName) => AsyncContext.Run(() => GetAsync(memberName));
         public static async Task<ReturnedSaveFuncInfo> SaveAsync(string key, string value, string tranName = "")
         {
             var res = new ReturnedSaveFuncInfo();
@@ -34,19 +37,19 @@ namespace EntityCache.Bussines
                 var sett = Get(key);
                 if (sett != null)
                 {
-                    res.AddReturnedValue(await UnitOfWork.Settings.RemoveAsync(sett.Guid, tranName));
+                    res.AddReturnedValue(await UnitOfWork.SerializedData.RemoveAsync(sett.Guid, tranName));
                     res.ThrowExceptionIfError();
                 }
 
-                var set = new SettingsBussines()
+                var set = new SerializedDataBussines()
                 {
                     Guid = Guid.NewGuid(),
                     Name = key,
-                    Value = value,
+                    Data = value,
                     Modified = DateTime.Now
                 };
 
-                res.AddReturnedValue(await UnitOfWork.Settings.SaveAsync(set, tranName));
+                res.AddReturnedValue(await UnitOfWork.SerializedData.SaveAsync(set, tranName));
                 res.ThrowExceptionIfError();
                 if (autoTran)
                 {
@@ -77,7 +80,7 @@ namespace EntityCache.Bussines
                 { //BeginTransaction
                 }
 
-                res.AddReturnedValue(await UnitOfWork.Settings.RemoveAsync(Guid, tranName));
+                res.AddReturnedValue(await UnitOfWork.SerializedData.RemoveAsync(Guid, tranName));
                 res.ThrowExceptionIfError();
                 if (autoTran)
                 {

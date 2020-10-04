@@ -1,4 +1,6 @@
-﻿namespace PacketParser.Interfaces
+﻿using System;
+
+namespace PacketParser.Interfaces
 {
     public interface ISimcard : IHasGuid
     {
@@ -6,5 +8,8 @@
         string Owner { get; set; }
         string Token { get; set; }
         string Operator { get; set; }
+        bool isSheypoorBlocked { get; set; }
+        DateTime NextUseSheypoor { get; set; }
+        DateTime NextUseDivar { get; set; }
     }
 }

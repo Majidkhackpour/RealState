@@ -16,5 +16,8 @@ namespace Persistence.Entities
         public string Token { get; set; }
         [MaxLength(50)]
         public string Operator { get; set; }
+        public bool isSheypoorBlocked { get; set; }
+        public DateTime NextUseSheypoor { get; set; }
+        public DateTime NextUseDivar { get; set; }
     }
 }

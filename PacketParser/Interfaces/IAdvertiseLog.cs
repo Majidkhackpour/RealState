@@ -22,5 +22,6 @@ namespace PacketParser.Interfaces
         string IP { get; set; }
         DateTime LastUpdate { get; set; }
         int VisitCount { get; set; }
+        AdvertiseType AdvType { get; set; }
     }
 }

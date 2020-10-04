@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Advertise.Classes;
 using EntityCache.Bussines;
+using EntityCache.ViewModels;
 using MetroFramework.Forms;
 using Notification;
 using Services;
@@ -276,6 +278,51 @@ namespace Advertise.Forms.Simcard
             try
             {
                 mnuGetToken_Click(null, null);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private async void btnDivarCities_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (MessageBox.Show(
+                        "توجه داشته باشید... درصورتیکه از قبل داده ای را دریافت نموده باشید و مجددا نسبت به دریافت آن اقدام نمایدد، می بایست داده های موجود در صفحه تطبیق را هم اصلاح نمایید. آیا ادامه میدهید؟",
+                        "هشدار", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No) return;
+
+
+                var divar = DivarAdv.GetInstance();
+                var cityList = divar.GetAllCityFromDivar();
+
+                var serializedData = new SerializedDataBussines()
+                {
+                    Guid = Guid.NewGuid(),
+                    Name = "DivarCities",
+                    Data = Json.ToStringJson(cityList)
+                };
+
+                await SerializedDataBussines.SaveAsync("DivarCities", serializedData.Data);
+
+
+                var cities = await SerializedDataBussines.GetAsync("DivarCities");
+                var dc = cities.Data.FromJson<List<DivarCities>>();
+                dc = dc.Where(q =>
+                    q.Name.Contains("مشهد") || q.Name.Contains("اصفهان") || q.Name.Contains("تهران") ||
+                    q.Name.Contains("کرج") || q.Name.Contains("اهواز") || q.Name.Contains("شیراز") ||
+                    q.Name.Contains("قم")).ToList();
+                var regList = await divar.GetAllRegionFromDivar(dc);
+                Utility.CloseAllChromeWindows();
+                var serializedData_ = new SerializedDataBussines()
+                {
+                    Guid = Guid.NewGuid(),
+                    Name = "DivarRegions",
+                    Data = Json.ToStringJson(regList)
+                };
+
+                await SerializedDataBussines.SaveAsync("DivarRegions", serializedData_.Data);
             }
             catch (Exception ex)
             {

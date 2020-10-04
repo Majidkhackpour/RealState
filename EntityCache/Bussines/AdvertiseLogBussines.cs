@@ -34,9 +34,7 @@ namespace EntityCache.Bussines
         public int VisitCount { get; set; } = 0;
         public string ImagesPath { get; set; }
         public List<string> ImagesPathList { get; set; }
-
-
-
+        public AdvertiseType AdvType { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         public async Task<ReturnedSaveFuncInfo> SaveAsync(string tranName = "")
         {

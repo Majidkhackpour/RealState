@@ -18,6 +18,9 @@ namespace EntityCache.Bussines
         public string Owner { get; set; }
         public string Token { get; set; }
         public string Operator { get; set; }
+        public bool isSheypoorBlocked { get; set; }
+        public DateTime NextUseSheypoor { get; set; }
+        public DateTime NextUseDivar { get; set; }
         public bool HasToken => !string.IsNullOrEmpty(Token);
 
 
