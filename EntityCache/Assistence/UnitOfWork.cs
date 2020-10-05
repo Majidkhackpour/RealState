@@ -45,6 +45,7 @@ namespace EntityCache.Assistence
         private static ISmsLogRepository _smsLogRepository;
         private static INoteRepository _noteRepository;
         private static ISerializedDataRepository _serDataRepository;
+        private static IAdvertiseRelatedRegionRepository _advertiseRelatedRegionRepository;
 
         public static void Dispose() => db?.Dispose();
         public static void Set_Save() => db.SaveChanges();
@@ -212,6 +213,13 @@ namespace EntityCache.Assistence
         public static ISerializedDataRepository SerializedData => _serDataRepository ??
                                               (_serDataRepository =
                                                   new SerializedDataPersistenceRepository(db));
+
+
+        public static IAdvertiseRelatedRegionRepository AdvertiseRelatedRegion => _advertiseRelatedRegionRepository ??
+                                                                                  (_advertiseRelatedRegionRepository =
+                                                                                      new
+                                                                                          AdvertiseRelatedRegionPersistenceRepository(
+                                                                                              db));
 
     }
 }

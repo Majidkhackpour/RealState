@@ -649,7 +649,7 @@
             // 
             this.mnuSimcard.Name = "mnuSimcard";
             this.mnuSimcard.Size = new System.Drawing.Size(221, 24);
-            this.mnuSimcard.Text = "مدیریت سیمکارت ها";
+            this.mnuSimcard.Text = "پنل ربات ارسال آگهی";
             this.mnuSimcard.Click += new System.EventHandler(this.mnuSimcard_Click);
             // 
             // toolStripMenuItem6

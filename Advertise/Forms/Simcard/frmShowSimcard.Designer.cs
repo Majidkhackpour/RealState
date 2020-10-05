@@ -52,23 +52,12 @@
             this.modifiedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.statusDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.tokenDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cmDivar = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.mnuGetToken = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuDeleteToken = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
-            this.mnuSendAdv = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
-            this.mnuAdvLog = new System.Windows.Forms.ToolStripMenuItem();
             this.simBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.btnOther = new DevComponents.DotNetBar.ButtonX();
             this.btnLoginDivar = new DevComponents.DotNetBar.ButtonItem();
             this.btnLoginSheypoor = new DevComponents.DotNetBar.ButtonItem();
             this.btnDelToken = new DevComponents.DotNetBar.ButtonItem();
-            this.btnSendAdv = new DevComponents.DotNetBar.ButtonItem();
-            this.btnAdvLog = new DevComponents.DotNetBar.ButtonItem();
-            this.btnDivarCities = new DevComponents.DotNetBar.ButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).BeginInit();
-            this.cmDivar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.simBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -233,7 +222,6 @@
             this.modifiedDataGridViewTextBoxColumn,
             this.statusDataGridViewCheckBoxColumn,
             this.tokenDataGridViewTextBoxColumn});
-            this.DGrid.ContextMenuStrip = this.cmDivar;
             this.DGrid.DataSource = this.simBindingSource;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
@@ -343,59 +331,6 @@
             this.tokenDataGridViewTextBoxColumn.ReadOnly = true;
             this.tokenDataGridViewTextBoxColumn.Visible = false;
             // 
-            // cmDivar
-            // 
-            this.cmDivar.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.cmDivar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mnuGetToken,
-            this.mnuDeleteToken,
-            this.toolStripMenuItem1,
-            this.mnuSendAdv,
-            this.toolStripMenuItem2,
-            this.mnuAdvLog});
-            this.cmDivar.Name = "cmPeoples";
-            this.cmDivar.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.cmDivar.Size = new System.Drawing.Size(220, 112);
-            // 
-            // mnuGetToken
-            // 
-            this.mnuGetToken.Image = global::Advertise.Properties.Resources.add_1_;
-            this.mnuGetToken.Name = "mnuGetToken";
-            this.mnuGetToken.Size = new System.Drawing.Size(219, 24);
-            this.mnuGetToken.Text = "لاگین دیوار";
-            this.mnuGetToken.Click += new System.EventHandler(this.mnuGetToken_Click);
-            // 
-            // mnuDeleteToken
-            // 
-            this.mnuDeleteToken.Image = global::Advertise.Properties.Resources.delete_1_;
-            this.mnuDeleteToken.Name = "mnuDeleteToken";
-            this.mnuDeleteToken.Size = new System.Drawing.Size(219, 24);
-            this.mnuDeleteToken.Text = "حذف توکن دیوار";
-            // 
-            // toolStripMenuItem1
-            // 
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(216, 6);
-            // 
-            // mnuSendAdv
-            // 
-            this.mnuSendAdv.Image = global::Advertise.Properties.Resources.article_1_;
-            this.mnuSendAdv.Name = "mnuSendAdv";
-            this.mnuSendAdv.Size = new System.Drawing.Size(219, 24);
-            this.mnuSendAdv.Text = "ارسال آگهی";
-            // 
-            // toolStripMenuItem2
-            // 
-            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(216, 6);
-            // 
-            // mnuAdvLog
-            // 
-            this.mnuAdvLog.Image = global::Advertise.Properties.Resources.printer;
-            this.mnuAdvLog.Name = "mnuAdvLog";
-            this.mnuAdvLog.Size = new System.Drawing.Size(219, 24);
-            this.mnuAdvLog.Text = "مشاهده آگهی های ارسال شده";
-            // 
             // simBindingSource
             // 
             this.simBindingSource.DataSource = typeof(EntityCache.Bussines.SimcardBussines);
@@ -416,10 +351,7 @@
             this.btnOther.SubItems.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.btnLoginDivar,
             this.btnLoginSheypoor,
-            this.btnDelToken,
-            this.btnSendAdv,
-            this.btnAdvLog,
-            this.btnDivarCities});
+            this.btnDelToken});
             this.btnOther.TabIndex = 55757;
             this.btnOther.Text = "سایر";
             this.btnOther.TextAlignment = DevComponents.DotNetBar.eButtonTextAlignment.Left;
@@ -442,23 +374,6 @@
             this.btnDelToken.GlobalItem = false;
             this.btnDelToken.Name = "btnDelToken";
             this.btnDelToken.Text = "حذف توکن از دیوار";
-            // 
-            // btnSendAdv
-            // 
-            this.btnSendAdv.GlobalItem = false;
-            this.btnSendAdv.Name = "btnSendAdv";
-            this.btnSendAdv.Text = "ارسال آگهی";
-            // 
-            // btnAdvLog
-            // 
-            this.btnAdvLog.Name = "btnAdvLog";
-            this.btnAdvLog.Text = "مشاهده آگهی های ارسال شده";
-            // 
-            // btnDivarCities
-            // 
-            this.btnDivarCities.Name = "btnDivarCities";
-            this.btnDivarCities.Text = "دریافت اطلاعات پایه از دیوار و شیپور";
-            this.btnDivarCities.Click += new System.EventHandler(this.btnDivarCities_Click);
             // 
             // frmShowSimcard
             // 
@@ -487,7 +402,6 @@
             this.Load += new System.EventHandler(this.frmShowSimcard_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmShowSimcard_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).EndInit();
-            this.cmDivar.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.simBindingSource)).EndInit();
             this.ResumeLayout(false);
 
@@ -504,13 +418,6 @@
         private DevComponents.DotNetBar.ButtonX btnEdit;
         private DevComponents.DotNetBar.Controls.Line line1;
         private DevComponents.DotNetBar.Controls.DataGridViewX DGrid;
-        private System.Windows.Forms.ContextMenuStrip cmDivar;
-        private System.Windows.Forms.ToolStripMenuItem mnuGetToken;
-        private System.Windows.Forms.ToolStripMenuItem mnuDeleteToken;
-        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem mnuSendAdv;
-        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
-        private System.Windows.Forms.ToolStripMenuItem mnuAdvLog;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgRadif;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgName;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgNumber;
@@ -523,9 +430,6 @@
         private DevComponents.DotNetBar.ButtonX btnOther;
         private DevComponents.DotNetBar.ButtonItem btnLoginDivar;
         private DevComponents.DotNetBar.ButtonItem btnDelToken;
-        private DevComponents.DotNetBar.ButtonItem btnSendAdv;
-        private DevComponents.DotNetBar.ButtonItem btnAdvLog;
         private DevComponents.DotNetBar.ButtonItem btnLoginSheypoor;
-        private DevComponents.DotNetBar.ButtonItem btnDivarCities;
     }
 }

@@ -6,6 +6,7 @@ using Accounting;
 using Accounting.Hazine;
 using Accounting.Payement;
 using Accounting.Reception;
+using Advertise.Forms;
 using Advertise.Forms.Simcard;
 using Building.Building;
 using Building.BuildingAccountType;
@@ -442,7 +443,7 @@ namespace RealState
         {
             try
             {
-                var frm = new frmShowSimcard();
+                var frm = new frmRobotPanel();
                 frm.ShowDialog();
             }
             catch (Exception ex)

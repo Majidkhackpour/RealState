@@ -53,6 +53,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Interfaces\IAdvertiseLog.cs" />
+    <Compile Include="Interfaces\IAdvertiseRelatedRegion.cs" />
     <Compile Include="Interfaces\IAdvTokens.cs" />
     <Compile Include="Interfaces\IBuilding.cs" />
     <Compile Include="Interfaces\IBuildingAccountType.cs" />

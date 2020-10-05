@@ -18,11 +18,21 @@ namespace EntityCache.Bussines
         public string Data { get; set; }
 
 
+        public static async Task<List<DivarCities>> GetDivarCityAsync()
+        {
+            var list = await UnitOfWork.SerializedData.GetAsync("DivarCities");
+            return list.Data.FromJson<List<DivarCities>>();
+        }
+
+        public static async Task<List<DivarRegion>> GetDivarRegionAsync()
+        {
+            var list = await UnitOfWork.SerializedData.GetAsync("DivarRegions");
+            return list.Data.FromJson<List<DivarRegion>>();
+        }
 
         public static async Task<SerializedDataBussines> GetAsync(string memberName) =>
-    await UnitOfWork.SerializedData.GetAsync(memberName);
+            await UnitOfWork.SerializedData.GetAsync(memberName);
 
-        public static SerializedDataBussines Get(string memberName) => AsyncContext.Run(() => GetAsync(memberName));
         public static async Task<ReturnedSaveFuncInfo> SaveAsync(string key, string value, string tranName = "")
         {
             var res = new ReturnedSaveFuncInfo();
@@ -34,7 +44,7 @@ namespace EntityCache.Bussines
                 { //BeginTransaction
                 }
 
-                var sett = Get(key);
+                var sett = await GetAsync(key);
                 if (sett != null)
                 {
                     res.AddReturnedValue(await UnitOfWork.SerializedData.RemoveAsync(sett.Guid, tranName));

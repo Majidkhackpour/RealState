@@ -1087,14 +1087,13 @@ namespace Advertise.Classes
             try
             {
                 var cityElements = _driver.FindElements(By.TagName("h2")).ToList();
-                foreach (var element in cityElements)
+                var newList = cityElements.GroupBy(q => q.Text).Where(q => q.Count() == 1).Select(q => q.Key).ToList();
+                foreach (var element in newList)
                 {
-                    var bool_ = cities.Any(q => q.Name == element.Text);
-                    if (bool_) continue;
                     var a = new DivarCities
                     {
                         Guid = Guid.NewGuid(),
-                        Name = element.Text
+                        Name = element
                     };
                     cities.Add(a);
                 }

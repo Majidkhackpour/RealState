@@ -7,6 +7,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using EntityCache.Bussines;
+using EntityCache.ViewModels;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.Extensions;
 using Services;
@@ -73,7 +74,7 @@ namespace Advertise.Classes
                         if (res.value == null) continue;
                         var res_ = await RegisterAdv(res.value);
                         if (res_.HasError) return;
-                       
+
                         //تشخیص بلاکی
                         _driver.Navigate().GoToUrl("https://www.sheypoor.com/session/myListings");
                         await Utility.Wait(2);
@@ -516,7 +517,7 @@ namespace Advertise.Classes
                 return false;
             }
         }
-        public async Task<List<string>> GetAllRegionFromSheypoor(string State, string City)
+        public async Task<List<string>> GetAllRegionFromSheypoor(string state, string city)
         {
             var region = new List<string>();
             _driver = Utility.RefreshDriver(_driver, clsAdvertise.IsSilent);
@@ -526,9 +527,9 @@ namespace Advertise.Classes
             {
                 _driver.FindElements(By.ClassName("form-select")).LastOrDefault()?.Click();
                 await Utility.Wait(1);
-                _driver.FindElements(By.TagName("li")).FirstOrDefault(q => q.Text == State)?.Click();
+                _driver.FindElements(By.TagName("li")).FirstOrDefault(q => q.Text == state)?.Click();
                 await Utility.Wait(1);
-                _driver.FindElements(By.TagName("li")).FirstOrDefault(q => q.Text == City)?.Click();
+                _driver.FindElements(By.TagName("li")).FirstOrDefault(q => q.Text == city)?.Click();
                 await Utility.Wait(1);
                 var regions = _driver.FindElements(By.ClassName("list-items"))?.First();
                 foreach (var item in regions.Text)
@@ -704,49 +705,45 @@ namespace Advertise.Classes
                 return null;
             }
         }
-        //public async Task<List<SheypoorCityBusiness>> GetAllCityFromSheypoor()
-        //{
-        //    var cities = new List<SheypoorCityBusiness>();
-        //    var states = await StateBusiness.GetAllAsync();
-        //    _driver = Utility.RefreshDriver(_driver, AppSetting.isSilent);
-        //    _driver.Navigate().GoToUrl("https://www.sheypoor.com");
-        //    try
-        //    {
-        //        _driver.FindElements(By.ClassName("form-select")).LastOrDefault()?.Click();
+        public async Task<List<SheypoorCities>> GetAllCityFromSheypoor()
+        {
+            var cities = new List<SheypoorCities>();
+            var states = await StatesBussines.GetAllAsync();
+            _driver = Utility.RefreshDriver(_driver, clsAdvertise.IsSilent);
+            _driver.Navigate().GoToUrl("https://www.sheypoor.com");
+            try
+            {
+                _driver.FindElements(By.ClassName("form-select")).LastOrDefault()?.Click();
 
-        //        foreach (var stateItem in states)
-        //        {
-        //            _driver.FindElements(By.TagName("li")).FirstOrDefault(q => q.Text == stateItem.StateName)?.Click();
+                foreach (var stateItem in states)
+                {
+                    _driver.FindElements(By.TagName("li")).FirstOrDefault(q => q.Text == stateItem.Name)?.Click();
 
 
-        //            var cc = _driver.FindElements(By.TagName("span"))
-        //                .Where(d => d.GetAttribute("class").Contains("t-city")).ToList();
-        //            foreach (var item in cc)
-        //            {
-        //                if (item.Text == "") continue;
-        //                var a = new SheypoorCityBusiness
-        //                {
-        //                    Guid = Guid.NewGuid(),
-        //                    Modified = DateTime.Now,
-        //                    CityName = item.Text
-        //                };
-        //                cities.Add(a);
-        //            }
+                    var cc = _driver.FindElements(By.TagName("span"))
+                        .Where(d => d.GetAttribute("class").Contains("t-city")).ToList();
+                    foreach (var item in cc)
+                    {
+                        if (item.Text == "") continue;
+                        var a = new SheypoorCities
+                        {
+                            Guid = Guid.NewGuid(),
+                            Modified = DateTime.Now,
+                            Name = item.Text
+                        };
+                        cities.Add(a);
+                    }
 
-        //            _driver
-        //                .FindElements(By.TagName("span"))
-        //                .FirstOrDefault(d => d.GetAttribute("class").Contains("link") && d.Text.Contains("بازگشت"))?
-        //                .Click();
-        //        }
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        Console.WriteLine(e);
-        //        throw;
-        //    }
+                    _driver
+                        .FindElements(By.TagName("span"))
+                        .FirstOrDefault(d => d.GetAttribute("class").Contains("link") && d.Text.Contains("بازگشت"))?
+                        .Click();
+                }
+            }
+            catch { }
 
-        //    return cities;
-        //}
+            return cities;
+        }
 
         private List<string> lstMessage = new List<string>();
         //public async Task GetCategory()
@@ -898,7 +895,7 @@ namespace Advertise.Classes
                         for (var i = 0; i < fieldElements.Count(); i++)
                         {
                             if (fieldElements[i].Text == "") continue;
-                           // if (i == 1) getUrl.State = fieldElements[i].Text.FixString();
+                            // if (i == 1) getUrl.State = fieldElements[i].Text.FixString();
                             if (i == 2) getUrl.City = fieldElements[i].Text.FixString();
                             if (i == 3 && fieldElements.Count() == 5) getUrl.SubCategory1 = fieldElements[i].Text.FixString();
                             if (i == 4 && fieldElements.Count() == 5) getUrl.SubCategory2 = fieldElements[i].Text.FixString();
