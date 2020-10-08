@@ -79,9 +79,6 @@ namespace Advertise.Forms.MatchRegions
                     case Keys.Insert:
                         btnInsert.PerformClick();
                         break;
-                    case Keys.F7:
-                        btnEdit.PerformClick();
-                        break;
                     case Keys.Escape:
                         Close();
                         break;

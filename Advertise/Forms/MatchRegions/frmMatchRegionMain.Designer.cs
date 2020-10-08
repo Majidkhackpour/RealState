@@ -36,22 +36,23 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMatchRegionMain));
             this.DGrid = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.regBingingSource = new System.Windows.Forms.BindingSource(this.components);
             this.btnFinish = new DevComponents.DotNetBar.ButtonX();
             this.btnCancel = new DevComponents.DotNetBar.ButtonX();
             this.label8 = new System.Windows.Forms.Label();
             this.lblName = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.isCheckedDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.dgRadif = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnDelete = new DevComponents.DotNetBar.ButtonX();
+            this.dgIsChecked = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.guidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgGuid = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.modifiedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.statusDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.cityGuidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.stateNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cityNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cityDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.regBingingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.regBingingSource)).BeginInit();
             this.SuspendLayout();
@@ -83,10 +84,10 @@
             this.DGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.DGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.isCheckedDataGridViewCheckBoxColumn,
+            this.dgIsChecked,
             this.dgRadif,
             this.nameDataGridViewTextBoxColumn,
-            this.guidDataGridViewTextBoxColumn,
+            this.dgGuid,
             this.modifiedDataGridViewTextBoxColumn,
             this.statusDataGridViewCheckBoxColumn,
             this.cityGuidDataGridViewTextBoxColumn,
@@ -106,7 +107,6 @@
             this.DGrid.Location = new System.Drawing.Point(3, 96);
             this.DGrid.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.DGrid.Name = "DGrid";
-            this.DGrid.ReadOnly = true;
             this.DGrid.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.DGrid.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
@@ -128,10 +128,7 @@
             this.DGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DGrid.Size = new System.Drawing.Size(795, 459);
             this.DGrid.TabIndex = 55746;
-            // 
-            // regBingingSource
-            // 
-            this.regBingingSource.DataSource = typeof(EntityCache.Bussines.RegionsBussines);
+            this.DGrid.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DGrid_CellFormatting);
             // 
             // btnFinish
             // 
@@ -150,6 +147,7 @@
             this.btnFinish.TabIndex = 55747;
             this.btnFinish.Text = "تایید (F5)";
             this.btnFinish.TextColor = System.Drawing.Color.Black;
+            this.btnFinish.Click += new System.EventHandler(this.btnFinish_Click);
             // 
             // btnCancel
             // 
@@ -169,6 +167,7 @@
             this.btnCancel.TabIndex = 55748;
             this.btnCancel.Text = "انصراف (Esc)";
             this.btnCancel.TextColor = System.Drawing.Color.Black;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // label8
             // 
@@ -200,20 +199,38 @@
             this.label2.TabIndex = 55749;
             this.label2.Text = resources.GetString("label2.Text");
             // 
-            // isCheckedDataGridViewCheckBoxColumn
-            // 
-            this.isCheckedDataGridViewCheckBoxColumn.DataPropertyName = "IsChecked";
-            this.isCheckedDataGridViewCheckBoxColumn.HeaderText = "";
-            this.isCheckedDataGridViewCheckBoxColumn.Name = "isCheckedDataGridViewCheckBoxColumn";
-            this.isCheckedDataGridViewCheckBoxColumn.ReadOnly = true;
-            this.isCheckedDataGridViewCheckBoxColumn.Width = 35;
-            // 
             // dgRadif
             // 
             this.dgRadif.HeaderText = "ردیف";
             this.dgRadif.Name = "dgRadif";
             this.dgRadif.ReadOnly = true;
             this.dgRadif.Width = 50;
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnDelete.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.btnDelete.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnDelete.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.btnDelete.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnDelete.Image = global::Advertise.Properties.Resources.delete_1_;
+            this.btnDelete.Location = new System.Drawing.Point(444, 562);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
+            this.btnDelete.Size = new System.Drawing.Size(172, 31);
+            this.btnDelete.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
+            this.btnDelete.TabIndex = 55774;
+            this.btnDelete.Text = "حذف ارتباطات این منطقه";
+            this.btnDelete.TextColor = System.Drawing.Color.Black;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
+            // dgIsChecked
+            // 
+            this.dgIsChecked.DataPropertyName = "IsChecked";
+            this.dgIsChecked.HeaderText = "";
+            this.dgIsChecked.Name = "dgIsChecked";
+            this.dgIsChecked.Width = 35;
             // 
             // nameDataGridViewTextBoxColumn
             // 
@@ -223,20 +240,18 @@
             this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
             this.nameDataGridViewTextBoxColumn.ReadOnly = true;
             // 
-            // guidDataGridViewTextBoxColumn
+            // dgGuid
             // 
-            this.guidDataGridViewTextBoxColumn.DataPropertyName = "Guid";
-            this.guidDataGridViewTextBoxColumn.HeaderText = "Guid";
-            this.guidDataGridViewTextBoxColumn.Name = "guidDataGridViewTextBoxColumn";
-            this.guidDataGridViewTextBoxColumn.ReadOnly = true;
-            this.guidDataGridViewTextBoxColumn.Visible = false;
+            this.dgGuid.DataPropertyName = "Guid";
+            this.dgGuid.HeaderText = "Guid";
+            this.dgGuid.Name = "dgGuid";
+            this.dgGuid.Visible = false;
             // 
             // modifiedDataGridViewTextBoxColumn
             // 
             this.modifiedDataGridViewTextBoxColumn.DataPropertyName = "Modified";
             this.modifiedDataGridViewTextBoxColumn.HeaderText = "Modified";
             this.modifiedDataGridViewTextBoxColumn.Name = "modifiedDataGridViewTextBoxColumn";
-            this.modifiedDataGridViewTextBoxColumn.ReadOnly = true;
             this.modifiedDataGridViewTextBoxColumn.Visible = false;
             // 
             // statusDataGridViewCheckBoxColumn
@@ -244,7 +259,6 @@
             this.statusDataGridViewCheckBoxColumn.DataPropertyName = "Status";
             this.statusDataGridViewCheckBoxColumn.HeaderText = "Status";
             this.statusDataGridViewCheckBoxColumn.Name = "statusDataGridViewCheckBoxColumn";
-            this.statusDataGridViewCheckBoxColumn.ReadOnly = true;
             this.statusDataGridViewCheckBoxColumn.Visible = false;
             // 
             // cityGuidDataGridViewTextBoxColumn
@@ -252,7 +266,6 @@
             this.cityGuidDataGridViewTextBoxColumn.DataPropertyName = "CityGuid";
             this.cityGuidDataGridViewTextBoxColumn.HeaderText = "CityGuid";
             this.cityGuidDataGridViewTextBoxColumn.Name = "cityGuidDataGridViewTextBoxColumn";
-            this.cityGuidDataGridViewTextBoxColumn.ReadOnly = true;
             this.cityGuidDataGridViewTextBoxColumn.Visible = false;
             // 
             // stateNameDataGridViewTextBoxColumn
@@ -260,7 +273,6 @@
             this.stateNameDataGridViewTextBoxColumn.DataPropertyName = "StateName";
             this.stateNameDataGridViewTextBoxColumn.HeaderText = "StateName";
             this.stateNameDataGridViewTextBoxColumn.Name = "stateNameDataGridViewTextBoxColumn";
-            this.stateNameDataGridViewTextBoxColumn.ReadOnly = true;
             this.stateNameDataGridViewTextBoxColumn.Visible = false;
             // 
             // cityNameDataGridViewTextBoxColumn
@@ -268,7 +280,6 @@
             this.cityNameDataGridViewTextBoxColumn.DataPropertyName = "CityName";
             this.cityNameDataGridViewTextBoxColumn.HeaderText = "CityName";
             this.cityNameDataGridViewTextBoxColumn.Name = "cityNameDataGridViewTextBoxColumn";
-            this.cityNameDataGridViewTextBoxColumn.ReadOnly = true;
             this.cityNameDataGridViewTextBoxColumn.Visible = false;
             // 
             // cityDataGridViewTextBoxColumn
@@ -279,11 +290,16 @@
             this.cityDataGridViewTextBoxColumn.ReadOnly = true;
             this.cityDataGridViewTextBoxColumn.Visible = false;
             // 
+            // regBingingSource
+            // 
+            this.regBingingSource.DataSource = typeof(EntityCache.Bussines.RegionsBussines);
+            // 
             // frmMatchRegionMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 600);
+            this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.lblName);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label8);
@@ -301,6 +317,7 @@
             this.Style = MetroFramework.MetroColorStyle.Green;
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmMatchRegionMain_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmMatchRegionMain_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.regBingingSource)).EndInit();
             this.ResumeLayout(false);
@@ -317,15 +334,16 @@
         private System.Windows.Forms.Label lblName;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.BindingSource regBingingSource;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn isCheckedDataGridViewCheckBoxColumn;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn dgIsChecked;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgRadif;
         private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn guidDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgGuid;
         private System.Windows.Forms.DataGridViewTextBoxColumn modifiedDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewCheckBoxColumn statusDataGridViewCheckBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn cityGuidDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn stateNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn cityNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn cityDataGridViewTextBoxColumn;
+        private DevComponents.DotNetBar.ButtonX btnDelete;
     }
 }

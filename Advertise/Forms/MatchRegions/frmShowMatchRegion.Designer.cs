@@ -36,19 +36,18 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmShowMatchRegion));
             this.DGrid = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.regBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.btnInsert = new DevComponents.DotNetBar.ButtonX();
-            this.btnEdit = new DevComponents.DotNetBar.ButtonX();
-            this.line1 = new DevComponents.DotNetBar.Controls.Line();
-            this.label5 = new System.Windows.Forms.Label();
-            this.cmbState = new System.Windows.Forms.ComboBox();
-            this.cityBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dgRadif = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgGuid = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.modifiedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.statusDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.cityGuidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.regBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.btnInsert = new DevComponents.DotNetBar.ButtonX();
+            this.line1 = new DevComponents.DotNetBar.Controls.Line();
+            this.label5 = new System.Windows.Forms.Label();
+            this.cmbState = new System.Windows.Forms.ComboBox();
+            this.cityBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.regBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cityBindingSource)).BeginInit();
@@ -124,88 +123,6 @@
             this.DGrid.TabIndex = 55745;
             this.DGrid.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DGrid_CellFormatting);
             // 
-            // regBindingSource
-            // 
-            this.regBindingSource.DataSource = typeof(EntityCache.ViewModels.DivarRegion);
-            // 
-            // btnInsert
-            // 
-            this.btnInsert.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnInsert.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnInsert.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.btnInsert.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnInsert.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
-            this.btnInsert.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnInsert.Image = global::Advertise.Properties.Resources.add_1_;
-            this.btnInsert.Location = new System.Drawing.Point(596, 564);
-            this.btnInsert.Name = "btnInsert";
-            this.btnInsert.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
-            this.btnInsert.Size = new System.Drawing.Size(125, 31);
-            this.btnInsert.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
-            this.btnInsert.TabIndex = 55752;
-            this.btnInsert.Text = "افزودن (Ins)";
-            this.btnInsert.TextColor = System.Drawing.Color.Black;
-            this.btnInsert.Click += new System.EventHandler(this.btnInsert_Click);
-            // 
-            // btnEdit
-            // 
-            this.btnEdit.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnEdit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.btnEdit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnEdit.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
-            this.btnEdit.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnEdit.Image = global::Advertise.Properties.Resources.edit_1_;
-            this.btnEdit.Location = new System.Drawing.Point(465, 564);
-            this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
-            this.btnEdit.Size = new System.Drawing.Size(125, 31);
-            this.btnEdit.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
-            this.btnEdit.TabIndex = 55753;
-            this.btnEdit.Text = "ویرایش (F7)";
-            this.btnEdit.TextColor = System.Drawing.Color.Black;
-            // 
-            // line1
-            // 
-            this.line1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.line1.Location = new System.Drawing.Point(1, 543);
-            this.line1.Name = "line1";
-            this.line1.Size = new System.Drawing.Size(799, 23);
-            this.line1.TabIndex = 55751;
-            this.line1.Text = "line1";
-            this.line1.Thickness = 2;
-            // 
-            // label5
-            // 
-            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label5.AutoSize = true;
-            this.label5.BackColor = System.Drawing.Color.Transparent;
-            this.label5.Location = new System.Drawing.Point(728, 30);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(65, 20);
-            this.label5.TabIndex = 55755;
-            this.label5.Text = "انتخاب شهر";
-            // 
-            // cmbState
-            // 
-            this.cmbState.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.cmbState.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.cmbState.DataSource = this.cityBindingSource;
-            this.cmbState.DisplayMember = "Name";
-            this.cmbState.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbState.FormattingEnabled = true;
-            this.cmbState.Location = new System.Drawing.Point(557, 27);
-            this.cmbState.Name = "cmbState";
-            this.cmbState.Size = new System.Drawing.Size(165, 28);
-            this.cmbState.TabIndex = 55754;
-            this.cmbState.ValueMember = "Guid";
-            this.cmbState.SelectedIndexChanged += new System.EventHandler(this.cmbState_SelectedIndexChanged);
-            // 
-            // cityBindingSource
-            // 
-            this.cityBindingSource.DataSource = typeof(EntityCache.ViewModels.DivarCities);
-            // 
             // dgRadif
             // 
             this.dgRadif.HeaderText = "ردیف";
@@ -253,6 +170,70 @@
             this.cityGuidDataGridViewTextBoxColumn.ReadOnly = true;
             this.cityGuidDataGridViewTextBoxColumn.Visible = false;
             // 
+            // regBindingSource
+            // 
+            this.regBindingSource.DataSource = typeof(EntityCache.ViewModels.DivarRegion);
+            // 
+            // btnInsert
+            // 
+            this.btnInsert.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnInsert.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnInsert.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.btnInsert.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnInsert.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.btnInsert.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnInsert.Location = new System.Drawing.Point(93, 564);
+            this.btnInsert.Name = "btnInsert";
+            this.btnInsert.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
+            this.btnInsert.Size = new System.Drawing.Size(628, 31);
+            this.btnInsert.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
+            this.btnInsert.TabIndex = 55752;
+            this.btnInsert.Text = "افزودن ارتباط (Ins)";
+            this.btnInsert.TextColor = System.Drawing.Color.White;
+            this.btnInsert.Click += new System.EventHandler(this.btnInsert_Click);
+            // 
+            // line1
+            // 
+            this.line1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.line1.Location = new System.Drawing.Point(1, 543);
+            this.line1.Name = "line1";
+            this.line1.Size = new System.Drawing.Size(799, 23);
+            this.line1.TabIndex = 55751;
+            this.line1.Text = "line1";
+            this.line1.Thickness = 2;
+            // 
+            // label5
+            // 
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label5.AutoSize = true;
+            this.label5.BackColor = System.Drawing.Color.Transparent;
+            this.label5.Location = new System.Drawing.Point(728, 30);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(65, 20);
+            this.label5.TabIndex = 55755;
+            this.label5.Text = "انتخاب شهر";
+            // 
+            // cmbState
+            // 
+            this.cmbState.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmbState.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cmbState.DataSource = this.cityBindingSource;
+            this.cmbState.DisplayMember = "Name";
+            this.cmbState.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbState.FormattingEnabled = true;
+            this.cmbState.Location = new System.Drawing.Point(557, 27);
+            this.cmbState.Name = "cmbState";
+            this.cmbState.Size = new System.Drawing.Size(165, 28);
+            this.cmbState.TabIndex = 55754;
+            this.cmbState.ValueMember = "Guid";
+            this.cmbState.SelectedIndexChanged += new System.EventHandler(this.cmbState_SelectedIndexChanged);
+            // 
+            // cityBindingSource
+            // 
+            this.cityBindingSource.DataSource = typeof(EntityCache.ViewModels.DivarCities);
+            // 
             // frmShowMatchRegion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -261,7 +242,6 @@
             this.Controls.Add(this.label5);
             this.Controls.Add(this.cmbState);
             this.Controls.Add(this.btnInsert);
-            this.Controls.Add(this.btnEdit);
             this.Controls.Add(this.line1);
             this.Controls.Add(this.DGrid);
             this.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
@@ -288,7 +268,6 @@
 
         private DevComponents.DotNetBar.Controls.DataGridViewX DGrid;
         private DevComponents.DotNetBar.ButtonX btnInsert;
-        private DevComponents.DotNetBar.ButtonX btnEdit;
         private DevComponents.DotNetBar.Controls.Line line1;
         private System.Windows.Forms.BindingSource regBindingSource;
         private System.Windows.Forms.Label label5;
