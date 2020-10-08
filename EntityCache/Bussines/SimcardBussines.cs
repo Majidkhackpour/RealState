@@ -16,12 +16,26 @@ namespace EntityCache.Bussines
         public bool Status { get; set; } = true;
         public long Number { get; set; }
         public string Owner { get; set; }
-        public string Token { get; set; }
         public string Operator { get; set; }
         public bool isSheypoorBlocked { get; set; }
-        public DateTime NextUseSheypoor { get; set; }
-        public DateTime NextUseDivar { get; set; }
-        public bool HasToken => !string.IsNullOrEmpty(Token);
+        public DateTime NextUseSheypoor { get; set; } = DateTime.Now;
+        public DateTime NextUseDivar { get; set; } = DateTime.Now;
+        public bool HasDivarToken
+        {
+            get
+            {
+                var divar = AsyncContext.Run(() => AdvTokenBussines.GetTokenAsync(Number, AdvertiseType.Divar));
+                return divar != null && !string.IsNullOrEmpty(divar?.Token);
+            }
+        }
+        public bool HasSheypoorToken
+        {
+            get
+            {
+                var sheypoor = AsyncContext.Run(() => AdvTokenBussines.GetTokenAsync(Number, AdvertiseType.Sheypoor));
+                return sheypoor != null && !string.IsNullOrEmpty(sheypoor?.Token);
+            }
+        }
 
 
         public static async Task<List<SimcardBussines>> GetAllAsync() => await UnitOfWork.Simcard.GetAllAsync();

@@ -39,15 +39,11 @@
             this.lblYear = new System.Windows.Forms.Label();
             this.lblDay = new System.Windows.Forms.Label();
             this.timerSecond = new System.Windows.Forms.Timer(this.components);
-            this.lblEconomyName = new System.Windows.Forms.Label();
-            this.lblDbName = new System.Windows.Forms.Label();
-            this.lblVersion = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.lblSerial = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.lblExDate = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.mnuBaseInformation = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuPeoples = new System.Windows.Forms.ToolStripMenuItem();
@@ -99,11 +95,13 @@
             this.mnuBazsazi = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem8 = new System.Windows.Forms.ToolStripSeparator();
             this.mnuErtegha = new System.Windows.Forms.ToolStripMenuItem();
-            this.grp = new DevComponents.DotNetBar.PanelEx();
+            this.lblEconomyName = new System.Windows.Forms.Label();
+            this.lblDbName = new System.Windows.Forms.Label();
+            this.lblVersion = new System.Windows.Forms.Label();
+            this.pictureBox5 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             this.menuStrip1.SuspendLayout();
-            this.grp.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             this.SuspendLayout();
             // 
             // lblHour
@@ -193,52 +191,11 @@
             this.timerSecond.Interval = 1000;
             this.timerSecond.Tick += new System.EventHandler(this.timerSecond_Tick);
             // 
-            // lblEconomyName
-            // 
-            this.lblEconomyName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblEconomyName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(146)))), ((int)(((byte)(112)))), ((int)(((byte)(50)))));
-            this.lblEconomyName.Cursor = System.Windows.Forms.Cursors.Default;
-            this.lblEconomyName.Font = new System.Drawing.Font("B Titr", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.lblEconomyName.Location = new System.Drawing.Point(423, 477);
-            this.lblEconomyName.Name = "lblEconomyName";
-            this.lblEconomyName.Size = new System.Drawing.Size(90, 17);
-            this.lblEconomyName.TabIndex = 12;
-            this.lblEconomyName.Text = "نام واحد اقتصادی:";
-            this.lblEconomyName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lblDbName
-            // 
-            this.lblDbName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblDbName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(94)))), ((int)(((byte)(94)))));
-            this.lblDbName.Cursor = System.Windows.Forms.Cursors.Default;
-            this.lblDbName.Font = new System.Drawing.Font("B Titr", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.lblDbName.Location = new System.Drawing.Point(245, 477);
-            this.lblDbName.Name = "lblDbName";
-            this.lblDbName.Size = new System.Drawing.Size(88, 17);
-            this.lblDbName.TabIndex = 12;
-            this.lblDbName.Text = "نام واحد اقتصادی:";
-            this.lblDbName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lblVersion
-            // 
-            this.lblVersion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblVersion.AutoSize = true;
-            this.lblVersion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(49)))), ((int)(((byte)(75)))));
-            this.lblVersion.Cursor = System.Windows.Forms.Cursors.Default;
-            this.lblVersion.Font = new System.Drawing.Font("B Titr", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.lblVersion.ForeColor = System.Drawing.Color.White;
-            this.lblVersion.Location = new System.Drawing.Point(95, 475);
-            this.lblVersion.Name = "lblVersion";
-            this.lblVersion.Size = new System.Drawing.Size(29, 20);
-            this.lblVersion.TabIndex = 12;
-            this.lblVersion.Text = "0000";
-            this.lblVersion.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // label1
             // 
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.Font = new System.Drawing.Font("B Titr", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.label1.Location = new System.Drawing.Point(470, 37);
+            this.label1.Location = new System.Drawing.Point(698, 117);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(96, 29);
             this.label1.TabIndex = 1;
@@ -249,7 +206,7 @@
             // 
             this.lblSerial.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblSerial.Font = new System.Drawing.Font("B Titr", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.lblSerial.Location = new System.Drawing.Point(316, 37);
+            this.lblSerial.Location = new System.Drawing.Point(544, 117);
             this.lblSerial.Name = "lblSerial";
             this.lblSerial.Size = new System.Drawing.Size(155, 29);
             this.lblSerial.TabIndex = 1;
@@ -260,7 +217,7 @@
             // 
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.Font = new System.Drawing.Font("B Titr", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.label2.Location = new System.Drawing.Point(446, 12);
+            this.label2.Location = new System.Drawing.Point(674, 92);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(120, 29);
             this.label2.TabIndex = 1;
@@ -271,7 +228,7 @@
             // 
             this.lblExDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblExDate.Font = new System.Drawing.Font("B Titr", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.lblExDate.Location = new System.Drawing.Point(349, 14);
+            this.lblExDate.Location = new System.Drawing.Point(577, 94);
             this.lblExDate.Name = "lblExDate";
             this.lblExDate.Size = new System.Drawing.Size(102, 29);
             this.lblExDate.TabIndex = 1;
@@ -288,17 +245,6 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 4;
             this.pictureBox1.TabStop = false;
-            // 
-            // pictureBox5
-            // 
-            this.pictureBox5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox5.Image = global::RealState.Properties.Resources.Untitled_11;
-            this.pictureBox5.Location = new System.Drawing.Point(60, 455);
-            this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(513, 45);
-            this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox5.TabIndex = 55764;
-            this.pictureBox5.TabStop = false;
             // 
             // menuStrip1
             // 
@@ -692,35 +638,57 @@
             this.mnuErtegha.Size = new System.Drawing.Size(221, 24);
             this.mnuErtegha.Text = "ارتقای نسخه";
             // 
-            // grp
+            // lblEconomyName
             // 
-            this.grp.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.grp.CanvasColor = System.Drawing.SystemColors.Control;
-            this.grp.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.grp.Controls.Add(this.lblEconomyName);
-            this.grp.Controls.Add(this.lblDbName);
-            this.grp.Controls.Add(this.lblVersion);
-            this.grp.Controls.Add(this.pictureBox5);
-            this.grp.Controls.Add(this.label2);
-            this.grp.Controls.Add(this.label1);
-            this.grp.Controls.Add(this.lblSerial);
-            this.grp.Controls.Add(this.lblExDate);
-            this.grp.DisabledBackColor = System.Drawing.Color.Empty;
-            this.grp.Location = new System.Drawing.Point(204, 95);
-            this.grp.Name = "grp";
-            this.grp.Size = new System.Drawing.Size(580, 505);
-            this.grp.Style.Alignment = System.Drawing.StringAlignment.Center;
-            this.grp.Style.BackColor1.Color = System.Drawing.Color.White;
-            this.grp.Style.BackColor2.Color = System.Drawing.Color.White;
-            this.grp.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
-            this.grp.Style.BorderColor.Color = System.Drawing.Color.Silver;
-            this.grp.Style.BorderWidth = 2;
-            this.grp.Style.CornerType = DevComponents.DotNetBar.eCornerType.Rounded;
-            this.grp.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText;
-            this.grp.Style.GradientAngle = 90;
-            this.grp.TabIndex = 55776;
+            this.lblEconomyName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblEconomyName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(146)))), ((int)(((byte)(112)))), ((int)(((byte)(50)))));
+            this.lblEconomyName.Cursor = System.Windows.Forms.Cursors.Default;
+            this.lblEconomyName.Font = new System.Drawing.Font("B Titr", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.lblEconomyName.Location = new System.Drawing.Point(634, 577);
+            this.lblEconomyName.Name = "lblEconomyName";
+            this.lblEconomyName.Size = new System.Drawing.Size(90, 17);
+            this.lblEconomyName.TabIndex = 55780;
+            this.lblEconomyName.Text = "نام واحد اقتصادی:";
+            this.lblEconomyName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblDbName
+            // 
+            this.lblDbName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblDbName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(94)))), ((int)(((byte)(94)))));
+            this.lblDbName.Cursor = System.Windows.Forms.Cursors.Default;
+            this.lblDbName.Font = new System.Drawing.Font("B Titr", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.lblDbName.Location = new System.Drawing.Point(456, 577);
+            this.lblDbName.Name = "lblDbName";
+            this.lblDbName.Size = new System.Drawing.Size(88, 17);
+            this.lblDbName.TabIndex = 55781;
+            this.lblDbName.Text = "نام واحد اقتصادی:";
+            this.lblDbName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblVersion
+            // 
+            this.lblVersion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblVersion.AutoSize = true;
+            this.lblVersion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(49)))), ((int)(((byte)(75)))));
+            this.lblVersion.Cursor = System.Windows.Forms.Cursors.Default;
+            this.lblVersion.Font = new System.Drawing.Font("B Titr", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.lblVersion.ForeColor = System.Drawing.Color.White;
+            this.lblVersion.Location = new System.Drawing.Point(306, 575);
+            this.lblVersion.Name = "lblVersion";
+            this.lblVersion.Size = new System.Drawing.Size(29, 20);
+            this.lblVersion.TabIndex = 55782;
+            this.lblVersion.Text = "0000";
+            this.lblVersion.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // pictureBox5
+            // 
+            this.pictureBox5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBox5.Image = global::RealState.Properties.Resources.Untitled_11;
+            this.pictureBox5.Location = new System.Drawing.Point(271, 555);
+            this.pictureBox5.Name = "pictureBox5";
+            this.pictureBox5.Size = new System.Drawing.Size(513, 45);
+            this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox5.TabIndex = 55783;
+            this.pictureBox5.TabStop = false;
             // 
             // frmMain
             // 
@@ -728,12 +696,19 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(800, 600);
-            this.Controls.Add(this.grp);
+            this.Controls.Add(this.lblEconomyName);
+            this.Controls.Add(this.lblDbName);
+            this.Controls.Add(this.lblVersion);
+            this.Controls.Add(this.pictureBox5);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.line2);
             this.Controls.Add(this.lblSecond);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.lblMinute);
+            this.Controls.Add(this.lblSerial);
             this.Controls.Add(this.lblYear);
+            this.Controls.Add(this.lblExDate);
             this.Controls.Add(this.lblMounth);
             this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.lblDay);
@@ -753,11 +728,9 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmMain_FormClosing);
             this.Load += new System.EventHandler(this.frmMain_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            this.grp.ResumeLayout(false);
-            this.grp.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -773,10 +746,6 @@
         private System.Windows.Forms.Label lblYear;
         private System.Windows.Forms.Label lblDay;
         private System.Windows.Forms.Timer timerSecond;
-        private System.Windows.Forms.Label lblEconomyName;
-        private System.Windows.Forms.Label lblDbName;
-        private System.Windows.Forms.Label lblVersion;
-        private System.Windows.Forms.PictureBox pictureBox5;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblSerial;
         private System.Windows.Forms.Label label2;
@@ -833,7 +802,10 @@
         private System.Windows.Forms.ToolStripMenuItem mnuBuildingSearch;
         private System.Windows.Forms.ToolStripMenuItem mnuBuildingRequest;
         private System.Windows.Forms.ToolStripMenuItem mnuContract;
-        private DevComponents.DotNetBar.PanelEx grp;
+        private System.Windows.Forms.Label lblEconomyName;
+        private System.Windows.Forms.Label lblDbName;
+        private System.Windows.Forms.Label lblVersion;
+        private System.Windows.Forms.PictureBox pictureBox5;
     }
 }
 

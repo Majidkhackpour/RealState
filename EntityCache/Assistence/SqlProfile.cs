@@ -46,6 +46,7 @@ namespace EntityCache.Assistence
             CreateMap<NoteBussines, Note>().ReverseMap();
             CreateMap<SerializedDataBussines, SerializedData>().ReverseMap();
             CreateMap<AdvertiseRelatedRegionBussines, AdvertiseRelatedRegion>().ReverseMap();
+            CreateMap<AdvTokenBussines, AdvToken>().ReverseMap();
         }
     }
 }

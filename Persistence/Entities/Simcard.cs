@@ -13,7 +13,6 @@ namespace Persistence.Entities
         public long Number { get; set; }
         [MaxLength(200)]
         public string Owner { get; set; }
-        public string Token { get; set; }
         [MaxLength(50)]
         public string Operator { get; set; }
         public bool isSheypoorBlocked { get; set; }

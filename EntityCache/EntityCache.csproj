@@ -145,6 +145,7 @@
     <Compile Include="Bussines\UserLogBussines.cs" />
     <Compile Include="Core\IAdvertiseLogRepository.cs" />
     <Compile Include="Core\IAdvertiseRelatedRegionRepository.cs" />
+    <Compile Include="Core\IAdvTokensRepository.cs" />
     <Compile Include="Core\IBuildingAccountTypeRepository.cs" />
     <Compile Include="Core\IBuildingConditionRepository.cs" />
     <Compile Include="Core\IBuildingGalleryRepository.cs" />
@@ -184,6 +185,7 @@
     <Compile Include="Core\IUsersRepository.cs" />
     <Compile Include="SqlServerPersistence\AdvertiseLogPersistenceRepository.cs" />
     <Compile Include="SqlServerPersistence\AdvertiseRelatedRegionPersistenceRepository.cs" />
+    <Compile Include="SqlServerPersistence\AdvTokensPersistenceRepository.cs" />
     <Compile Include="SqlServerPersistence\BuildingAccountTypePersistenceRepository.cs" />
     <Compile Include="SqlServerPersistence\BuildingConditionPersistenceRepository.cs" />
     <Compile Include="SqlServerPersistence\BuildingGalleryPersistenceRepository.cs" />

@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Advertise.Classes;
 using EntityCache.Bussines;
-using EntityCache.ViewModels;
 using MetroFramework.Forms;
 using Notification;
 using Services;
@@ -40,7 +38,7 @@ namespace Advertise.Forms.Simcard
                 btnChangeStatus.Enabled = access?.Simcard.Simcard_Disable ?? false;
                 btnView.Enabled = access?.Simcard.Simcard_View ?? false;
                 btnLoginDivar.Enabled = access?.Simcard.Simcard_Divar_Token ?? false;
-                btnDelToken.Enabled = access?.Simcard.Simcard_Delete_Token ?? false;
+                btnDelDivarToken.Enabled = access?.Simcard.Simcard_Delete_Token ?? false;
                 btnLoginSheypoor.Enabled = access?.Simcard.Simcard_Shepoor_Token ?? false;
             }
             catch (Exception ex)
@@ -75,12 +73,10 @@ namespace Advertise.Forms.Simcard
         }
 
         private async void frmShowSimcard_Load(object sender, EventArgs e) => await LoadDataAsync(ST);
-
         private void DGrid_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
             DGrid.Rows[e.RowIndex].Cells["dgRadif"].Value = e.RowIndex + 1;
         }
-
         private async void txtSearch_TextChanged(object sender, EventArgs e)
         {
             try
@@ -92,7 +88,6 @@ namespace Advertise.Forms.Simcard
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-
         private void frmShowSimcard_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -127,12 +122,10 @@ namespace Advertise.Forms.Simcard
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-
         private void btnChangeStatus_Click(object sender, EventArgs e)
         {
             ST = !ST;
         }
-
         private async void btnDelete_Click(object sender, EventArgs e)
         {
             try
@@ -176,7 +169,6 @@ namespace Advertise.Forms.Simcard
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-
         private async void btnInsert_Click(object sender, EventArgs e)
         {
             try
@@ -190,7 +182,6 @@ namespace Advertise.Forms.Simcard
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-
         private async void btnEdit_Click(object sender, EventArgs e)
         {
             try
@@ -213,7 +204,6 @@ namespace Advertise.Forms.Simcard
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-
         private void btnView_Click(object sender, EventArgs e)
         {
             try
@@ -229,7 +219,6 @@ namespace Advertise.Forms.Simcard
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-
         private void DGrid_KeyPress(object sender, KeyPressEventArgs e)
         {
             try
@@ -243,8 +232,7 @@ namespace Advertise.Forms.Simcard
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-
-        private async void mnuGetToken_Click(object sender, EventArgs e)
+        private async void btnLogin_Click(object sender, EventArgs e)
         {
             try
             {
@@ -271,12 +259,97 @@ namespace Advertise.Forms.Simcard
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-
-        private void btnLogin_Click(object sender, EventArgs e)
+        private async void btnLoginSheypoor_Click(object sender, EventArgs e)
         {
             try
             {
-                mnuGetToken_Click(null, null);
+                if (DGrid.RowCount <= 0) return;
+                if (DGrid.CurrentRow == null) return;
+                if (!ST)
+                {
+                    frmNotification.PublicInfo.ShowMessage(
+                        "شما مجاز به دریافت توکن داده حذف شده نمی باشید \r\n برای این منظور، ابتدا فیلد موردنظر را از حالت حذف شده به فعال، تغییر وضعیت دهید");
+                    return;
+                }
+                var number = DGrid[dgNumber.Index, DGrid.CurrentRow.Index].Value.ToString().ParseToLong();
+                if (number == 0)
+                {
+                    frmNotification.PublicInfo.ShowMessage(
+                        "شماره انتخاب شده صحیح نمی باشد");
+                    return;
+                }
+                var sheypoor = SheypoorAdv.GetInstance();
+                await sheypoor.Login(number, true);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private async void btnDelDivarToken_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (DGrid.RowCount <= 0) return;
+                if (DGrid.CurrentRow == null) return;
+
+                var number = DGrid[dgNumber.Index, DGrid.CurrentRow.Index].Value.ToString().ParseToLong();
+                if (number == 0)
+                {
+                    frmNotification.PublicInfo.ShowMessage(
+                        "شماره انتخاب شده صحیح نمی باشد");
+                    return;
+                }
+
+                if (MessageBox.Show("آیا از حذف توکن ارتباط با دیوار اطمینان دارید؟", "حذف توکن ارتباط دیوار", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No) return;
+
+                var token = await AdvTokenBussines.GetTokenAsync(number, AdvertiseType.Divar);
+                if (token == null) return;
+
+                var res = await token.RemoveAsync();
+
+                if (res.HasError)
+                {
+                    frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);
+                    return;
+                }
+
+                await LoadDataAsync(ST, txtSearch.Text);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private async void btnDeleteSheypoorToken_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (DGrid.RowCount <= 0) return;
+                if (DGrid.CurrentRow == null) return;
+
+                var number = DGrid[dgNumber.Index, DGrid.CurrentRow.Index].Value.ToString().ParseToLong();
+                if (number == 0)
+                {
+                    frmNotification.PublicInfo.ShowMessage(
+                        "شماره انتخاب شده صحیح نمی باشد");
+                    return;
+                }
+
+                if (MessageBox.Show("آیا از حذف توکن ارتباط با شیپور اطمینان دارید؟", "حذف توکن ارتباط شیپور", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No) return;
+
+                var token = await AdvTokenBussines.GetTokenAsync(number, AdvertiseType.Sheypoor);
+                if (token == null) return;
+
+                var res = await token.RemoveAsync();
+
+                if (res.HasError)
+                {
+                    frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);
+                    return;
+                }
+
+                await LoadDataAsync(ST, txtSearch.Text);
             }
             catch (Exception ex)
             {

@@ -6,7 +6,6 @@ namespace PacketParser.Interfaces
     {
         long Number { get; set; }
         string Owner { get; set; }
-        string Token { get; set; }
         string Operator { get; set; }
         bool isSheypoorBlocked { get; set; }
         DateTime NextUseSheypoor { get; set; }

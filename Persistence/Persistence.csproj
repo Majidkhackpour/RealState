@@ -60,6 +60,7 @@
     <Compile Include="Cache.cs" />
     <Compile Include="Entities\AdvertiseLog.cs" />
     <Compile Include="Entities\AdvertiseRelatedRegion.cs" />
+    <Compile Include="Entities\AdvToken.cs" />
     <Compile Include="Entities\Building.cs" />
     <Compile Include="Entities\BuildingAccountType.cs" />
     <Compile Include="Entities\BuildingCondition.cs" />
@@ -264,6 +265,18 @@
     <Compile Include="Migrations\202010051608147__42.designer.cs">
       <DependentUpon>202010051608147__42.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202010081013150__43.cs" />
+    <Compile Include="Migrations\202010081013150__43.designer.cs">
+      <DependentUpon>202010081013150__43.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202010081040289__44.cs" />
+    <Compile Include="Migrations\202010081040289__44.designer.cs">
+      <DependentUpon>202010081040289__44.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202010081044205__45.cs" />
+    <Compile Include="Migrations\202010081044205__45.designer.cs">
+      <DependentUpon>202010081044205__45.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\ModelContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -408,6 +421,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202010051608147__42.resx">
       <DependentUpon>202010051608147__42.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202010081013150__43.resx">
+      <DependentUpon>202010081013150__43.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202010081040289__44.resx">
+      <DependentUpon>202010081040289__44.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202010081044205__45.resx">
+      <DependentUpon>202010081044205__45.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

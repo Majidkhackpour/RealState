@@ -43,20 +43,21 @@
             this.btnEdit = new DevComponents.DotNetBar.ButtonX();
             this.line1 = new DevComponents.DotNetBar.Controls.Line();
             this.DGrid = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.dgRadif = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.operatorDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.HasToken = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.dgGuid = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.modifiedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.statusDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.tokenDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.simBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.btnOther = new DevComponents.DotNetBar.ButtonX();
             this.btnLoginDivar = new DevComponents.DotNetBar.ButtonItem();
             this.btnLoginSheypoor = new DevComponents.DotNetBar.ButtonItem();
-            this.btnDelToken = new DevComponents.DotNetBar.ButtonItem();
+            this.btnDelDivarToken = new DevComponents.DotNetBar.ButtonItem();
+            this.btnDeleteSheypoorToken = new DevComponents.DotNetBar.ButtonItem();
+            this.dgRadif = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.operatorDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.HasDivarToken = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.HasSheypoorToken = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.dgGuid = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.modifiedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.statusDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.simBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -217,11 +218,11 @@
             this.dgName,
             this.dgNumber,
             this.operatorDataGridViewTextBoxColumn,
-            this.HasToken,
+            this.HasDivarToken,
+            this.HasSheypoorToken,
             this.dgGuid,
             this.modifiedDataGridViewTextBoxColumn,
-            this.statusDataGridViewCheckBoxColumn,
-            this.tokenDataGridViewTextBoxColumn});
+            this.statusDataGridViewCheckBoxColumn});
             this.DGrid.DataSource = this.simBindingSource;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
@@ -260,6 +261,59 @@
             this.DGrid.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DGrid_CellFormatting);
             this.DGrid.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.DGrid_KeyPress);
             // 
+            // simBindingSource
+            // 
+            this.simBindingSource.DataSource = typeof(EntityCache.Bussines.SimcardBussines);
+            // 
+            // btnOther
+            // 
+            this.btnOther.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnOther.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnOther.BackColor = System.Drawing.Color.Silver;
+            this.btnOther.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnOther.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.btnOther.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnOther.Location = new System.Drawing.Point(4, 559);
+            this.btnOther.Name = "btnOther";
+            this.btnOther.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
+            this.btnOther.Size = new System.Drawing.Size(61, 31);
+            this.btnOther.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
+            this.btnOther.SubItems.AddRange(new DevComponents.DotNetBar.BaseItem[] {
+            this.btnLoginDivar,
+            this.btnLoginSheypoor,
+            this.btnDelDivarToken,
+            this.btnDeleteSheypoorToken});
+            this.btnOther.TabIndex = 55757;
+            this.btnOther.Text = "سایر";
+            this.btnOther.TextAlignment = DevComponents.DotNetBar.eButtonTextAlignment.Left;
+            this.btnOther.TextColor = System.Drawing.Color.Black;
+            // 
+            // btnLoginDivar
+            // 
+            this.btnLoginDivar.GlobalItem = false;
+            this.btnLoginDivar.Name = "btnLoginDivar";
+            this.btnLoginDivar.Text = "لاگین دیوار";
+            this.btnLoginDivar.Click += new System.EventHandler(this.btnLogin_Click);
+            // 
+            // btnLoginSheypoor
+            // 
+            this.btnLoginSheypoor.Name = "btnLoginSheypoor";
+            this.btnLoginSheypoor.Text = "لاگین شیپور";
+            this.btnLoginSheypoor.Click += new System.EventHandler(this.btnLoginSheypoor_Click);
+            // 
+            // btnDelDivarToken
+            // 
+            this.btnDelDivarToken.GlobalItem = false;
+            this.btnDelDivarToken.Name = "btnDelDivarToken";
+            this.btnDelDivarToken.Text = "حذف توکن از دیوار";
+            this.btnDelDivarToken.Click += new System.EventHandler(this.btnDelDivarToken_Click);
+            // 
+            // btnDeleteSheypoorToken
+            // 
+            this.btnDeleteSheypoorToken.Name = "btnDeleteSheypoorToken";
+            this.btnDeleteSheypoorToken.Text = "حذف توکن از شیپور";
+            this.btnDeleteSheypoorToken.Click += new System.EventHandler(this.btnDeleteSheypoorToken_Click);
+            // 
             // dgRadif
             // 
             this.dgRadif.HeaderText = "ردیف";
@@ -291,13 +345,21 @@
             this.operatorDataGridViewTextBoxColumn.ReadOnly = true;
             this.operatorDataGridViewTextBoxColumn.Width = 150;
             // 
-            // HasToken
+            // HasDivarToken
             // 
-            this.HasToken.DataPropertyName = "HasToken";
-            this.HasToken.HeaderText = "توکن";
-            this.HasToken.Name = "HasToken";
-            this.HasToken.ReadOnly = true;
-            this.HasToken.Width = 40;
+            this.HasDivarToken.DataPropertyName = "HasDivarToken";
+            this.HasDivarToken.HeaderText = "دیوار";
+            this.HasDivarToken.Name = "HasDivarToken";
+            this.HasDivarToken.ReadOnly = true;
+            this.HasDivarToken.Width = 40;
+            // 
+            // HasSheypoorToken
+            // 
+            this.HasSheypoorToken.DataPropertyName = "HasSheypoorToken";
+            this.HasSheypoorToken.HeaderText = "شیپور";
+            this.HasSheypoorToken.Name = "HasSheypoorToken";
+            this.HasSheypoorToken.ReadOnly = true;
+            this.HasSheypoorToken.Width = 40;
             // 
             // dgGuid
             // 
@@ -322,58 +384,6 @@
             this.statusDataGridViewCheckBoxColumn.Name = "statusDataGridViewCheckBoxColumn";
             this.statusDataGridViewCheckBoxColumn.ReadOnly = true;
             this.statusDataGridViewCheckBoxColumn.Visible = false;
-            // 
-            // tokenDataGridViewTextBoxColumn
-            // 
-            this.tokenDataGridViewTextBoxColumn.DataPropertyName = "Token";
-            this.tokenDataGridViewTextBoxColumn.HeaderText = "Token";
-            this.tokenDataGridViewTextBoxColumn.Name = "tokenDataGridViewTextBoxColumn";
-            this.tokenDataGridViewTextBoxColumn.ReadOnly = true;
-            this.tokenDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // simBindingSource
-            // 
-            this.simBindingSource.DataSource = typeof(EntityCache.Bussines.SimcardBussines);
-            // 
-            // btnOther
-            // 
-            this.btnOther.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnOther.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnOther.BackColor = System.Drawing.Color.Silver;
-            this.btnOther.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnOther.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
-            this.btnOther.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnOther.Location = new System.Drawing.Point(4, 559);
-            this.btnOther.Name = "btnOther";
-            this.btnOther.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
-            this.btnOther.Size = new System.Drawing.Size(61, 31);
-            this.btnOther.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
-            this.btnOther.SubItems.AddRange(new DevComponents.DotNetBar.BaseItem[] {
-            this.btnLoginDivar,
-            this.btnLoginSheypoor,
-            this.btnDelToken});
-            this.btnOther.TabIndex = 55757;
-            this.btnOther.Text = "سایر";
-            this.btnOther.TextAlignment = DevComponents.DotNetBar.eButtonTextAlignment.Left;
-            this.btnOther.TextColor = System.Drawing.Color.Black;
-            // 
-            // btnLoginDivar
-            // 
-            this.btnLoginDivar.GlobalItem = false;
-            this.btnLoginDivar.Name = "btnLoginDivar";
-            this.btnLoginDivar.Text = "لاگین دیوار";
-            this.btnLoginDivar.Click += new System.EventHandler(this.btnLogin_Click);
-            // 
-            // btnLoginSheypoor
-            // 
-            this.btnLoginSheypoor.Name = "btnLoginSheypoor";
-            this.btnLoginSheypoor.Text = "لاگین شیپور";
-            // 
-            // btnDelToken
-            // 
-            this.btnDelToken.GlobalItem = false;
-            this.btnDelToken.Name = "btnDelToken";
-            this.btnDelToken.Text = "حذف توکن از دیوار";
             // 
             // frmShowSimcard
             // 
@@ -418,18 +428,20 @@
         private DevComponents.DotNetBar.ButtonX btnEdit;
         private DevComponents.DotNetBar.Controls.Line line1;
         private DevComponents.DotNetBar.Controls.DataGridViewX DGrid;
+        private System.Windows.Forms.DataGridViewTextBoxColumn tokenDataGridViewTextBoxColumn;
+        private DevComponents.DotNetBar.ButtonX btnOther;
+        private DevComponents.DotNetBar.ButtonItem btnLoginDivar;
+        private DevComponents.DotNetBar.ButtonItem btnDelDivarToken;
+        private DevComponents.DotNetBar.ButtonItem btnLoginSheypoor;
+        private DevComponents.DotNetBar.ButtonItem btnDeleteSheypoorToken;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgRadif;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgName;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgNumber;
         private System.Windows.Forms.DataGridViewTextBoxColumn operatorDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn HasToken;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn HasDivarToken;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn HasSheypoorToken;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgGuid;
         private System.Windows.Forms.DataGridViewTextBoxColumn modifiedDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewCheckBoxColumn statusDataGridViewCheckBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn tokenDataGridViewTextBoxColumn;
-        private DevComponents.DotNetBar.ButtonX btnOther;
-        private DevComponents.DotNetBar.ButtonItem btnLoginDivar;
-        private DevComponents.DotNetBar.ButtonItem btnDelToken;
-        private DevComponents.DotNetBar.ButtonItem btnLoginSheypoor;
     }
 }
