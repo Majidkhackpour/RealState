@@ -873,7 +873,7 @@ namespace Advertise.Classes
                     else
                     {
                         if (dayCount == 0)
-                            dayCount = clsAdvertise.DivarSetting?.DayCountForUpdateState ?? 10;
+                            dayCount = clsAdvertise.Divar_DayCountForUpdateState;
                         var lastWeek = DateTime.Now.AddDays(-dayCount);
                         if (number == 0)
                         {

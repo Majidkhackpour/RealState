@@ -85,7 +85,7 @@ namespace Advertise.Forms
 
 
                 var cities = await SerializedDataBussines.GetDivarCityAsync();
-                
+
                 var dc = cities.Where(q =>
                     q.Name.Contains("مشهد") || q.Name.Contains("اصفهان") || q.Name.Contains("تهران") ||
                     q.Name.Contains("کرج") || q.Name.Contains("اهواز") || q.Name.Contains("شیراز") ||
@@ -169,6 +169,34 @@ namespace Advertise.Forms
         private void picMatchRegion_Click(object sender, EventArgs e)
         {
             lblMatchRegion_Click(null, null);
+        }
+
+        private void lblSetting_MouseEnter(object sender, EventArgs e)
+        {
+            lblSetting.ForeColor = Color.Red;
+        }
+
+        private void lblSetting_MouseLeave(object sender, EventArgs e)
+        {
+            lblSetting.ForeColor = Color.Silver;
+        }
+
+        private void lblSetting_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var frm = new frmRobotSetting();
+                frm.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            lblSetting_Click(null, null);
         }
     }
 }

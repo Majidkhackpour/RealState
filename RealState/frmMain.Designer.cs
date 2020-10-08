@@ -99,9 +99,11 @@
             this.lblDbName = new System.Windows.Forms.Label();
             this.lblVersion = new System.Windows.Forms.Label();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
+            this.picTaghvim = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picTaghvim)).BeginInit();
             this.SuspendLayout();
             // 
             // lblHour
@@ -690,6 +692,16 @@
             this.pictureBox5.TabIndex = 55783;
             this.pictureBox5.TabStop = false;
             // 
+            // picTaghvim
+            // 
+            this.picTaghvim.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.picTaghvim.Location = new System.Drawing.Point(476, 149);
+            this.picTaghvim.Name = "picTaghvim";
+            this.picTaghvim.Size = new System.Drawing.Size(314, 343);
+            this.picTaghvim.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picTaghvim.TabIndex = 4;
+            this.picTaghvim.TabStop = false;
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -700,6 +712,7 @@
             this.Controls.Add(this.lblDbName);
             this.Controls.Add(this.lblVersion);
             this.Controls.Add(this.pictureBox5);
+            this.Controls.Add(this.picTaghvim);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.line2);
             this.Controls.Add(this.lblSecond);
@@ -731,6 +744,7 @@
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picTaghvim)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -806,6 +820,7 @@
         private System.Windows.Forms.Label lblDbName;
         private System.Windows.Forms.Label lblVersion;
         private System.Windows.Forms.PictureBox pictureBox5;
+        private System.Windows.Forms.PictureBox picTaghvim;
     }
 }
 

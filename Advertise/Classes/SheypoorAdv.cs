@@ -573,7 +573,7 @@ namespace Advertise.Classes
                 else
                 {
                     if (dayCount == 0)
-                        dayCount = clsAdvertise.SheypoorSetting?.DayCountForUpdateState ?? 10;
+                        dayCount = clsAdvertise.Sheypoor_DayCountForUpdateState;
                     var lastWeek = DateTime.Now.AddDays(-dayCount);
                     var lst = await AdvertiseLogBussines.GetAllSpecialAsync(p =>
                         p.DateM > lastWeek && p.AdvType == AdvertiseType.Sheypoor);

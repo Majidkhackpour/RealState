@@ -237,7 +237,7 @@ namespace Advertise.Classes
             var res = new ReturnedSaveFuncInfo();
             try
             {
-                if (clsAdvertise.DivarSetting.AdvCountInDay == 0)
+                if (clsAdvertise.Divar_AdvCountInDay == 0)
                 {
                     res.AddReturnedValue(ReturnedState.Error, "Divar AdvCountInDay=0");
                     return res;
@@ -264,7 +264,7 @@ namespace Advertise.Classes
             var res = new ReturnedSaveFuncInfo();
             try
             {
-                if (clsAdvertise.SheypoorSetting.AdvCountInDay == 0)
+                if (clsAdvertise.Sheypoor_AdvCountInDay == 0)
                 {
                     res.AddReturnedValue(ReturnedState.Error, "Sheypoor AdvCountInDay=0");
                     return res;

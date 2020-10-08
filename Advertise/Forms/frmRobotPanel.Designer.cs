@@ -35,9 +35,12 @@
             this.lblBaseInfo = new System.Windows.Forms.Label();
             this.picMatchRegion = new System.Windows.Forms.PictureBox();
             this.lblMatchRegion = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.lblSetting = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.picSimcard)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBaseInfo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picMatchRegion)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // picSimcard
@@ -121,6 +124,33 @@
             this.lblMatchRegion.MouseEnter += new System.EventHandler(this.lblMatchRegion_MouseEnter);
             this.lblMatchRegion.MouseLeave += new System.EventHandler(this.lblMatchRegion_MouseLeave);
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBox1.Image = global::Advertise.Properties.Resources._122;
+            this.pictureBox1.Location = new System.Drawing.Point(64, 53);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(100, 95);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            // 
+            // lblSetting
+            // 
+            this.lblSetting.AutoSize = true;
+            this.lblSetting.BackColor = System.Drawing.Color.Transparent;
+            this.lblSetting.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lblSetting.ForeColor = System.Drawing.Color.Silver;
+            this.lblSetting.Location = new System.Drawing.Point(87, 163);
+            this.lblSetting.Name = "lblSetting";
+            this.lblSetting.Size = new System.Drawing.Size(47, 20);
+            this.lblSetting.TabIndex = 1;
+            this.lblSetting.Text = "تنظیمات";
+            this.lblSetting.Click += new System.EventHandler(this.lblSetting_Click);
+            this.lblSetting.MouseEnter += new System.EventHandler(this.lblSetting_MouseEnter);
+            this.lblSetting.MouseLeave += new System.EventHandler(this.lblSetting_MouseLeave);
+            // 
             // frmRobotPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -131,9 +161,11 @@
             this.ControlBox = false;
             this.Controls.Add(this.lblMatchRegion);
             this.Controls.Add(this.lblBaseInfo);
+            this.Controls.Add(this.lblSetting);
             this.Controls.Add(this.lblSimcard);
             this.Controls.Add(this.picMatchRegion);
             this.Controls.Add(this.picBaseInfo);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.picSimcard);
             this.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -150,6 +182,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.picSimcard)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBaseInfo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picMatchRegion)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -163,5 +196,7 @@
         private System.Windows.Forms.Label lblBaseInfo;
         private System.Windows.Forms.PictureBox picMatchRegion;
         private System.Windows.Forms.Label lblMatchRegion;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Label lblSetting;
     }
 }

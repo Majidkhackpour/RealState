@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data.SqlClient;
+using System.IO;
 using System.Reflection;
 using System.Windows.Forms;
 using Accounting;
@@ -7,7 +8,6 @@ using Accounting.Hazine;
 using Accounting.Payement;
 using Accounting.Reception;
 using Advertise.Forms;
-using Advertise.Forms.Simcard;
 using Building.Building;
 using Building.BuildingAccountType;
 using Building.BuildingCondition;
@@ -124,6 +124,25 @@ namespace RealState
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
+        private void SetTaghvim()
+        {
+            try
+            {
+                var mounth = Calendar.GetMonthOfDateSh(Calendar.MiladiToShamsi(DateTime.Now));
+
+                var path = Path.Combine(Application.StartupPath, "Taghvim");
+                if (!Directory.Exists(path)) return;
+
+                var taghvimPath = Path.Combine(path, mounth + ".png");
+                if (!File.Exists(taghvimPath)) return;
+
+                picTaghvim.Load(taghvimPath);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
         public frmMain()
         {
             InitializeComponent();
@@ -134,6 +153,7 @@ namespace RealState
             SetClock();
             SetCalendar();
             SetButtomLables();
+            SetTaghvim();
             var naqz = await NaqzBussines.SetNaqzAsync();
             new frmNaqz(naqz).ShowDialog();
 
