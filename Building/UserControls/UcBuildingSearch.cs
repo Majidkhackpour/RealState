@@ -30,8 +30,7 @@ namespace UcBuildingSearch
             lblRentalAuthority.Text = bu.RentalAuthority;
             lblRoomCount.Text = bu.RoomCount.ToString();
             lblSaleSakht.Text = bu.SaleSakht;
-            lblTabaqeNo.Text = bu.TabaqeNo.ToString();
-            lblTabaqeCount.Text = bu.TabaqeCount.ToString();
+            lblTabaqe.Text = bu.Tabaqe;
             foreach (var item in bu.Options)
                 lblOptions.Text += item + " ,";
         }

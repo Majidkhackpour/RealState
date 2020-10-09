@@ -1731,6 +1731,176 @@ namespace Advertise.Classes
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
+        public async Task<List<BuildingViewModel>> GetBuildingAsync(EnRequestType reqType, decimal fPrice1, decimal sPrice1, decimal fPrice2, decimal sPrice2, int metrazh1, int metrazh2, int count)
+        {
+            var res = new List<BuildingViewModel>();
+            try
+            {
+                var allSim = await SimcardBussines.GetAllAsync();
+                var sim = allSim.FirstOrDefault(q => q.HasDivarToken);
+                if (sim == null) return res;
+
+                if (fPrice2 > 0) fPrice2 /= 10;
+                if (sPrice2 > 0) sPrice2 /= 10;
+                fPrice1 /= 10;
+                sPrice1 /= 10;
+
+                var city = await CitiesBussines.GetAsync(Guid.Parse(clsEconomyUnit.EconomyCity));
+
+                if (!await Login(sim.Number, false)) return res;
+
+                _driver.FindElement(By.ClassName("city-selector")).Click();
+                await Utility.Wait();
+                _driver.FindElements(By.TagName("a")).LastOrDefault(q => q.Text == city.Name)?.Click();
+                await Utility.Wait(2);
+
+                var p = _driver.FindElements(By.ClassName("category-dropdown__icon")).Any();
+                if (!p) return res;
+                await Utility.Wait(1);
+                _driver.FindElements(By.ClassName("category-dropdown__icon")).FirstOrDefault()?.Click();
+                await Utility.Wait();
+
+                var cat = await SetCategory(reqType);
+                if (string.IsNullOrEmpty(cat)) return res;
+
+                _driver.FindElements(By.ClassName("category-button")).FirstOrDefault(q => q.Text.Contains("املاک"))
+                    ?.Click();
+                await Utility.Wait(1);
+
+                _driver.FindElements(By.ClassName("category-button")).FirstOrDefault(q => q.Text == cat)
+                    ?.Click();
+
+                await Utility.Wait(1);
+
+                if (reqType == EnRequestType.Rahn)
+                {
+                    var listVadiee = _driver.FindElements(By.Id("react-select-int-field-input")).ToList();
+                    //رهن
+                    _driver.FindElements(By.ClassName("browse-accordion__title"))
+                        ?.FirstOrDefault(q => q.Text == "ودیعه")?.Click();
+                    await Utility.Wait(1);
+                    listVadiee[0]?.SendKeys(fPrice1 + "\n");
+                    await Utility.Wait(1);
+                    listVadiee[1]?.SendKeys(sPrice1 + "\n");
+
+                    //اجاره
+                    _driver.FindElements(By.ClassName("browse-accordion__title"))
+                        ?.FirstOrDefault(q => q.Text == "اجاره")?.Click();
+                    await Utility.Wait(1);
+                    listVadiee[2]?.SendKeys(fPrice2 + "\n");
+                    await Utility.Wait(1);
+                    listVadiee[3]?.SendKeys(sPrice2 + "\n");
+
+                    //متراژ
+                    _driver.FindElements(By.ClassName("browse-accordion__title"))
+                        ?.FirstOrDefault(q => q.Text == "متراژ")?.Click();
+                    await Utility.Wait(1);
+                    listVadiee[4]?.SendKeys(metrazh1 + "\n");
+                    await Utility.Wait(1);
+                    listVadiee[5]?.SendKeys(metrazh2 + "\n");
+
+
+                    var j = 0;
+
+                    for (var i = 0; j < count; i++)
+                    {
+                        if (j == count) return res;
+
+                        if(_driver.Url.Contains("https://divar.ir/v/")) _driver.Navigate().Back();
+
+                        await Utility.Wait(1);
+                        var viewModel = new BuildingViewModel();
+                        _driver.FindElements(By.ClassName("kt-post-card__body"))[i + 1]?.Click();
+                        await Utility.Wait(2);
+
+                        _driver.FindElement(By.ClassName("post-actions__get-contact")).Click();
+                        await Utility.Wait(1.5);
+
+                        var a = _driver.FindElements(By.ClassName("kt-button"))
+                            .FirstOrDefault(q => q.Text == "با قوانین دیوار موافقم");
+                        await Utility.Wait();
+                        if (a != null)
+                            _driver.FindElements(By.ClassName("kt-button"))
+                                .FirstOrDefault(q => q.Text == "با قوانین دیوار موافقم")?.Click();
+                        await Utility.Wait();
+
+                        var num = _driver.FindElement(By.ClassName("kt-unexpandable-row__action")).Text.FixString();
+                        if (num != "(پنهان‌شده؛ چت کنید)") viewModel.Mobile = num;
+
+                        var pList = _driver.FindElements(By.ClassName("kt-unexpandable-row__value")).ToList();
+
+                        viewModel.Region = _driver.FindElements(By.ClassName("kt-unexpandable-row__action"))[1]?.Text.FixString();
+                        viewModel.Address = _driver.FindElements(By.ClassName("kt-unexpandable-row__action"))[1]?.Text.FixString();
+                        viewModel.Metrazh = (int)pList[1]?.Text?.FixString()
+                            .Replace("متر", "")?.ParseToInt();
+                        viewModel.SaleSakht = pList[2]?.Text.FixString();
+                        viewModel.RoomCount = pList[3]?.Text.FixString();
+                        var p1 = pList[4]?.Text.FixString()?.Replace("تومان", "")?.Replace("٫", "");
+                        var p2 = pList[5]?.Text.FixString()?.Replace("تومان", "")?.Replace("٫", "");
+                        viewModel.Price1 = p1.ParseToDecimal() * 10;
+                        viewModel.Price2 = p2.ParseToDecimal() * 10;
+                        viewModel.Tabdil = pList[6]?.Text;
+                        viewModel.RentalAuthority = pList[7]?.Text;
+                        var options = new List<string>();
+                        if (pList.Count == 12)
+                        {
+                            options.Add($"پارکینگ: {pList[9]?.Text}");
+                            options.Add($"انباری: {pList[10]?.Text}");
+                            options.Add($"بالکن: {pList[11]?.Text}");
+
+                        }
+                        else if (pList.Count == 13)
+                        {
+                            viewModel.Tabaqe = pList[9]?.Text?.FixString();
+                            options.Add($"پارکینگ: {pList[10]?.Text}");
+                            options.Add($"انباری: {pList[11]?.Text}");
+                            options.Add($"بالکن: {pList[12]?.Text}");
+                        }
+
+                        viewModel.Options = options;
+                        viewModel.Description = _driver
+                            .FindElement(By.ClassName("kt-description-row__text"))?.Text;
+                        viewModel.Parent = "سایت دیوار";
+
+                        res.Add(viewModel);
+
+                        j++;
+
+                        _driver.Navigate().Back();
+                    }
+                }
+                else if (reqType == EnRequestType.Forush)
+                {
+
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+
+            return res;
+        }
+        private async Task<string> SetCategory(EnRequestType reqType)
+        {
+            try
+            {
+                switch (reqType)
+                {
+                    case EnRequestType.Rahn: return "اجاره مسکونی";
+                    case EnRequestType.Forush: return "فروش مسکونی";
+                    case EnRequestType.Moavezeh: return "";
+                    case EnRequestType.Mosharekat: return "مشارکت در ساخت";
+                    case EnRequestType.PishForush: return "پیش‌فروش";
+                    default: return "";
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                return "";
+            }
+        }
         #endregion
 
     }

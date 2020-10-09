@@ -9,12 +9,11 @@ namespace EntityCache.ViewModels
         public int Metrazh { get; set; }
         public string SaleSakht { get; set; }
         public string RentalAuthority { get; set; }
-        public int RoomCount { get; set; }
+        public string RoomCount { get; set; }
         public decimal Price1 { get; set; }
         public decimal Price2 { get; set; }
         public string Tabdil { get; set; }
-        public int TabaqeNo { get; set; }
-        public int TabaqeCount { get; set; }
+        public string Tabaqe { get; set; }
         public string Description { get; set; }
         public List<string> Options { get; set; }
         public string Parent { get; set; }

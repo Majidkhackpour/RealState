@@ -309,14 +309,13 @@ namespace EntityCache.Bussines
                 {
                     var a = new BuildingViewModel()
                     {
-                        RoomCount = item.RoomCount,
+                        RoomCount = item.RoomCount.ToString(),
                         SaleSakht = item.SaleSakht,
-                        TabaqeNo = item.TabaqeNo,
+                        Tabaqe = $"{item.TabaqeNo} از {item.TedadTabaqe}",
                         Description = item.ShortDesc,
                         Metrazh = item.Masahat,
                         Region = item.RegionName,
                         RentalAuthority = item.RentalAuthorityName,
-                        TabaqeCount = item.TedadTabaqe,
                         Parent = $"فایل های سیستم کد {item.Code}",
                         Options = item.OptionList.Select(q => q.OptionName).ToList(),
                         Address = item.Address,

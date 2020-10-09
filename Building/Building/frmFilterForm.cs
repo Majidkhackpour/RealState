@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Advertise.Classes;
 using EntityCache.Bussines;
 using EntityCache.ViewModels;
 using MetroFramework.Forms;
@@ -29,7 +30,7 @@ namespace Building.Building
                     cmbRahn2.SelectedIndex = 0;
                     cmbEjare1.SelectedIndex = 0;
                     cmbEjare2.SelectedIndex = 0;
-                }));                
+                }));
             }
             catch (Exception ex)
             {
@@ -115,7 +116,7 @@ namespace Building.Building
                         cmbEjare1.Items.Add(item.GetDisplay());
                         cmbRahn2.Items.Add(item.GetDisplay());
                         cmbEjare2.Items.Add(item.GetDisplay());
-                    }));                    
+                    }));
                 }
             }
             catch (Exception ex)
@@ -202,18 +203,18 @@ namespace Building.Building
                     fPrice1 = txtFPrice1.Text.ParseToDecimal() * 10000000000;
 
                 if (cmbRahn2.SelectedIndex == 0)
-                    sPrice1 = txtSPrice1.Text.ParseToDecimal() * 10000;
+                    sPrice1 = txtFPrice2.Text.ParseToDecimal() * 10000;
                 if (cmbRahn2.SelectedIndex == 1)
-                    sPrice1 = txtSPrice1.Text.ParseToDecimal() * 10000000;
+                    sPrice1 = txtFPrice2.Text.ParseToDecimal() * 10000000;
                 if (cmbRahn2.SelectedIndex == 2)
-                    sPrice1 = txtSPrice1.Text.ParseToDecimal() * 10000000000;
+                    sPrice1 = txtFPrice2.Text.ParseToDecimal() * 10000000000;
 
                 if (cmbEjare1.SelectedIndex == 0)
-                    fPrice2 = txtFPrice2.Text.ParseToDecimal() * 10000;
+                    fPrice2 = txtSPrice1.Text.ParseToDecimal() * 10000;
                 if (cmbEjare1.SelectedIndex == 1)
-                    fPrice2 = txtFPrice2.Text.ParseToDecimal() * 10000000;
+                    fPrice2 = txtSPrice1.Text.ParseToDecimal() * 10000000;
                 if (cmbEjare1.SelectedIndex == 2)
-                    fPrice2 = txtFPrice2.Text.ParseToDecimal() * 10000000000;
+                    fPrice2 = txtSPrice1.Text.ParseToDecimal() * 10000000000;
 
                 if (cmbEjare2.SelectedIndex == 0)
                     sPrice2 = txtSPrice2.Text.ParseToDecimal() * 10000;
@@ -228,12 +229,21 @@ namespace Building.Building
 
                 if (chbSystem.Checked)
                 {
-                    list = await BuildingBussines.GetAllAsync(txtCode.Text, (Guid)cmbBuildingType.SelectedValue,
+                    list.AddRange(await BuildingBussines.GetAllAsync(txtCode.Text, (Guid)cmbBuildingType.SelectedValue,
                         (Guid)cmbBuildingAccountType.SelectedValue, txtFMasahat.Text.ParseToInt(),
                         txtSMasahat.Text.ParseToInt(), txtRoomCount.Text.ParseToInt(), fPrice1,
                         sPrice1, fPrice2,
-                        sPrice2, (EnRequestType)cmbReqType.SelectedIndex);
+                        sPrice2, (EnRequestType)cmbReqType.SelectedIndex));
                 }
+
+                if (chbDivar.Checked)
+                {
+                    var divar = DivarAdv.GetInstance();
+                    list.AddRange(await divar.GetBuildingAsync((EnRequestType) cmbReqType.SelectedIndex, fPrice1,
+                        sPrice1, fPrice2, sPrice2, txtFMasahat.Text.ParseToInt(),
+                        txtSMasahat.Text.ParseToInt(), 24));
+                }
+
 
                 var frm = new frmBuildingAdvanceSearch(list);
                 frm.ShowDialog();
