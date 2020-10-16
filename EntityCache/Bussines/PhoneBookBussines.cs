@@ -22,8 +22,11 @@ namespace EntityCache.Bussines
         public bool IsChecked { get; set; }
 
 
-        public static async Task<List<PhoneBookBussines>> GetAllAsync(Guid parentGuid, bool status) =>
+        public static async Task<List<PhoneBookBussines>> GetAllBySpAsync(Guid parentGuid, bool status) =>
             await UnitOfWork.PhoneBook.GetAllBySpAsync(parentGuid, status);
+
+        public static async Task<List<PhoneBookBussines>> GetAllAsync(Guid parentGuid, bool status) =>
+            await UnitOfWork.PhoneBook.GetAllAsync(parentGuid, status);
 
         public static async Task<List<PhoneBookBussines>> GetAllAsync() => await UnitOfWork.PhoneBook.GetAllAsync();
 

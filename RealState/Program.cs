@@ -9,6 +9,7 @@ using Notification;
 using Services;
 using Settings;
 using Settings.Classes;
+using Settings.WorkingYear;
 using User;
 
 namespace RealState
@@ -42,6 +43,17 @@ namespace RealState
                 if (frm.ShowDialog() != DialogResult.OK) return;
             }
 
+            //var res_ = clsErtegha.StartErtegha();
+            //if (res_.HasError)
+            //{
+            //    MessageBox.Show("خطا در بازسازی اطلاعات", "پیغام سیستم", MessageBoxButtons.OK,
+            //        MessageBoxIcon.Error);
+            //    return;
+            //}
+            //MessageBox.Show("بازسازی اطلاعات با موفقیت انجام شد", "پیغام سیستم", MessageBoxButtons.OK,
+            //    MessageBoxIcon.Information);
+            var frmYear = new frmShowWorkingYears();
+            frmYear.ShowDialog();
 
             //Config Cache
             ClsCache.Init(AppSettings.DefaultConnectionString);

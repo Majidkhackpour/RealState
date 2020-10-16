@@ -114,8 +114,10 @@ namespace Settings
                     cmbState.SelectedIndex = 0;
                 else
                     cmbState.SelectedValue = Guid.Parse(clsEconomyUnit.EconomyState);
-                cmbCity.SelectedValue = Guid.Parse(clsEconomyUnit.EconomyCity);
-                cmbRegion.SelectedValue = Guid.Parse(clsEconomyUnit.ManagerRegion);
+                if (!string.IsNullOrEmpty(clsEconomyUnit.EconomyCity))
+                    cmbCity.SelectedValue = Guid.Parse(clsEconomyUnit.EconomyCity);
+                if (!string.IsNullOrEmpty(clsEconomyUnit.ManagerRegion))
+                    cmbRegion.SelectedValue = Guid.Parse(clsEconomyUnit.ManagerRegion);
             }
             catch (Exception ex)
             {
@@ -158,7 +160,7 @@ namespace Settings
                 clsEconomyUnit.EconomyState = cmbState.SelectedValue.ToString();
                 clsEconomyUnit.EconomyCity = cmbCity.SelectedValue.ToString();
 
-                
+
                 DialogResult = DialogResult.OK;
                 Close();
             }

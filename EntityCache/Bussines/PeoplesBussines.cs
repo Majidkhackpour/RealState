@@ -234,6 +234,8 @@ namespace EntityCache.Bussines
                         }
                     }
 
+                res = res.OrderBy(q => q.Code).ToList();
+
                 return res;
             }
             catch (OperationCanceledException)

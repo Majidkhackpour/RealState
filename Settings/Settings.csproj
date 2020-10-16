@@ -183,6 +183,18 @@
     <Compile Include="SettingForms\frmTelegramSetting.Designer.cs">
       <DependentUpon>frmTelegramSetting.cs</DependentUpon>
     </Compile>
+    <Compile Include="WorkingYear\frmShowWorkingYears.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WorkingYear\frmShowWorkingYears.Designer.cs">
+      <DependentUpon>frmShowWorkingYears.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WorkingYear\frmWorkingYearMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WorkingYear\frmWorkingYearMain.Designer.cs">
+      <DependentUpon>frmWorkingYearMain.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -235,6 +247,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SettingForms\frmTelegramSetting.resx">
       <DependentUpon>frmTelegramSetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WorkingYear\frmShowWorkingYears.resx">
+      <DependentUpon>frmShowWorkingYears.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WorkingYear\frmWorkingYearMain.resx">
+      <DependentUpon>frmWorkingYearMain.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

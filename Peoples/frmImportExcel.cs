@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Linq;
@@ -98,7 +99,7 @@ namespace Peoples
                 DGrid.DataSource = table;
 
                 for (var i = 0; i < DGrid.ColumnCount; i++)
-                    DGrid.Columns[i].HeaderText = (i + 1).ToString();
+                    DGrid.Columns[i].HeaderText = DGrid.Columns[i].HeaderText + "(" + (i + 1) + ")";
             }
             catch (Exception ex)
             {
@@ -207,6 +208,7 @@ namespace Peoples
                 pe.Address = GetValue(ColAddress, index);
                 pe.PostalCode = GetValue(ColPostalCode, index);
 
+                pe.TellList = new List<PhoneBookBussines>();
                 if (!string.IsNullOrEmpty(GetValue(ColTell1, index))) pe.TellList.Add(new PhoneBookBussines()
                 {
                     Guid = Guid.NewGuid(),
@@ -284,6 +286,30 @@ namespace Peoples
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private void frmImportExcel_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                switch (e.KeyCode)
+                {
+                    case Keys.Enter:
+                        if (!btnFinish.Focused && !btnCancel.Focused)
+                            SendKeys.Send("{Tab}");
+                        break;
+                    case Keys.F5:
+                        btnFinish.PerformClick();
+                        break;
+                    case Keys.Escape:
+                        btnCancel.PerformClick();
+                        break;
+                }
+            }
+            catch (Exception exception)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(exception);
             }
         }
     }
