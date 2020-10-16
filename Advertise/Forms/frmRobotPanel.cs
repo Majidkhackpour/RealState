@@ -48,7 +48,7 @@ namespace Advertise.Forms
         {
             try
             {
-                var frm = new frmShowSimcard();
+                var frm = new frmShowSimcard(false);
                 frm.ShowDialog();
             }
             catch (Exception ex)

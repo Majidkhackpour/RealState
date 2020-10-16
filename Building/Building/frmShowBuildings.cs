@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Advertise.Classes;
+using Advertise.Forms.Simcard;
 using EntityCache.Bussines;
 using MetroFramework.Forms;
 using Notification;
@@ -107,7 +109,7 @@ namespace Building.Building
                 else
                 {
                     btnChangeStatus.Text = "فعال (Ctrl+S)";
-           
+
                     LoadData(ST, txtSearch.Text);
                     btnDelete.Text = "فعال کردن";
                 }
@@ -472,6 +474,60 @@ namespace Building.Building
                 }
 
                 ExportToExcel.ExportBuilding(list);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private async void btnSendToDivar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (DGrid.RowCount <= 0) return;
+                if (DGrid.CurrentRow == null) return;
+                var simList = new List<SimcardBussines>();
+                var buList = new List<BuildingBussines>();
+
+                var bu = await BuildingBussines.GetAsync((Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value);
+                if (bu == null) return;
+                buList.Add(bu);
+
+                var frm = new frmShowSimcard(true);
+                if (frm.ShowDialog() == DialogResult.OK)
+                    simList.Add(await SimcardBussines.GetAsync(frm.SelectedGuid));
+
+
+
+                var res = await Utility.ManageAdvSend(buList, simList, AdvertiseType.Divar);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private async void btnSendToSheypoor_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (DGrid.RowCount <= 0) return;
+                if (DGrid.CurrentRow == null) return;
+                var simList = new List<SimcardBussines>();
+                var buList = new List<BuildingBussines>();
+
+                var bu = await BuildingBussines.GetAsync((Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value);
+                if (bu == null) return;
+                buList.Add(bu);
+
+                var frm = new frmShowSimcard(true);
+                if (frm.ShowDialog() == DialogResult.OK)
+                    simList.Add(await SimcardBussines.GetAsync(frm.SelectedGuid));
+
+
+
+                var res = await Utility.ManageAdvSend(buList, simList, AdvertiseType.Sheypoor);
             }
             catch (Exception ex)
             {

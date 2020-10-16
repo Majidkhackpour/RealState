@@ -19,7 +19,7 @@ namespace Advertise.Classes
     {
         private IWebDriver _driver;
         public SheypoorAdv() { }
-        public async Task StartRegisterAdv(List<long> numbers = null, int count = 0)
+        public async Task StartRegisterAdv(AdvertiseLogBussines adv, long number)
         {
             var counter = 0;
 
@@ -35,72 +35,52 @@ namespace Advertise.Classes
                     counter++;
                 }
 
-                foreach (var t in numbers.ToList())
+                var sim = await SimcardBussines.GetAsync(number);
+                if (sim.isSheypoorBlocked)
                 {
-                    var sim = await SimcardBussines.GetAsync(t);
-                    if (sim.isSheypoorBlocked)
-                    {
-                        lstMessage.Clear();
-                        lstMessage.Add($"نوع آگهی: شیپور");
-                        lstMessage.Add($"شماره: {t}");
-                        lstMessage.Add($"مالک: {sim.Owner}");
-                        lstMessage.Add("بدلیل بلاک بودن، موفق به لاگین نشد");
-                        Utility.ShowBalloon("عدم انجام لاگین", lstMessage);
-                        sim.NextUseSheypoor = DateTime.Now.AddDays(1);
-                        await sim.SaveAsync();
-                        continue;
-                    }
-
-                    var tt = await Utility.CheckToken(t, AdvertiseType.Sheypoor);
-                    if (tt.HasError)
-                    {
-                        lstMessage.Clear();
-                        lstMessage.Add($"نوع آگهی: شیپور");
-                        lstMessage.Add($"شماره: {t}");
-                        lstMessage.Add($"مالک: {sim.Owner}");
-                        lstMessage.Add("بدلیل توکن نداشتن، موفق به لاگین نشد");
-                        Utility.ShowBalloon("عدم انجام لاگین", lstMessage);
-                        sim.NextUseSheypoor = DateTime.Now.AddDays(1);
-                        await sim.SaveAsync();
-                        continue;
-                    }
-                    if (!await Login(t, false)) continue;
-
-                    await GetChatCount(t);
-                    for (var i = 0; i < count; i++)
-                    {
-                        var res = await Utility.GetNextAdv(AdvertiseType.Sheypoor, t);
-                        if (res.HasError) continue;
-                        if (res.value == null) continue;
-                        var res_ = await RegisterAdv(res.value);
-                        if (res_.HasError) return;
-
-                        //تشخیص بلاکی
-                        _driver.Navigate().GoToUrl("https://www.sheypoor.com/session/myListings");
-                        await Utility.Wait(2);
-                        var el = _driver.FindElements(By.TagName("article")).Any();
-                        await Utility.Wait();
-                        if (el) continue;
-                        TelegramSender.GetChatLog_bot().Send($"#گزارش_تشخیص_بلاکی_در_شیپور \r\n" +
-                                                             $" سیمکارت {t} " +
-                                                             $"\r\n به مالکیت {sim.Owner}" +
-                                                             $" \r\n در تاریخ {Calendar.MiladiToShamsi(DateTime.Now)} " +
-                                                             $"\r\n و ساعت {DateTime.Now.ToLongTimeString()} " +
-                                                             $"\r\n از سوی ربات، بلاک شده تشخیص داده شد");
-                        //اگر از سیمکارت های فروشگاه بود، لاگ در کانال
-                        if (t == 9156590839 | t == 9159766856 | t == 9159222416 | t == 9155633308 | t == 9034443393 |
-                            t == 9377373548 | t == 9354501200 | t == 9158980915 | t == 9384381129 | t == 09194351410)
-                        {
-                            TelegramSender.GetChatLog_bot()
-                                .Send(
-                                    $"شماره {t} از سمت سایت شیپور بلاک شده است. درصورتیکه این شماره جزو شماره های فروشگاه می باشد");
-                        }
-
-                        sim.isSheypoorBlocked = true;
-                        await sim.SaveAsync();
-                        return;
-                    }
+                    lstMessage.Clear();
+                    lstMessage.Add($"نوع آگهی: شیپور");
+                    lstMessage.Add($"شماره: {number}");
+                    lstMessage.Add($"مالک: {sim.Owner}");
+                    lstMessage.Add("بدلیل بلاک بودن، موفق به لاگین نشد");
+                    Utility.ShowBalloon("عدم انجام لاگین", lstMessage);
+                    sim.NextUseSheypoor = DateTime.Now.AddDays(1);
+                    await sim.SaveAsync();
+                    return;
                 }
+
+                var tt = await Utility.CheckToken(number, AdvertiseType.Sheypoor);
+                if (tt.HasError)
+                {
+                    lstMessage.Clear();
+                    lstMessage.Add($"نوع آگهی: شیپور");
+                    lstMessage.Add($"شماره: {number}");
+                    lstMessage.Add($"مالک: {sim.Owner}");
+                    lstMessage.Add("بدلیل توکن نداشتن، موفق به لاگین نشد");
+                    Utility.ShowBalloon("عدم انجام لاگین", lstMessage);
+                    sim.NextUseSheypoor = DateTime.Now.AddDays(1);
+                    await sim.SaveAsync();
+                    return;
+                }
+                if (!await Login(number, false)) return;
+
+                await GetChatCount(number);
+
+                var res_ = await RegisterAdv(adv);
+                if (res_.HasError) return;
+
+                //تشخیص بلاکی
+                _driver.Navigate().GoToUrl("https://www.sheypoor.com/session/myListings");
+                await Utility.Wait(2);
+                var el = _driver.FindElements(By.TagName("article")).Any();
+                await Utility.Wait();
+                if (el) return;
+                TelegramSender.GetChatLog_bot().Send($"#گزارش_تشخیص_بلاکی_در_شیپور \r\n" +
+                                                     $" سیمکارت {number} " +
+                                                     $"\r\n به مالکیت {sim.Owner}" +
+                                                     $" \r\n در تاریخ {Calendar.MiladiToShamsi(DateTime.Now)} " +
+                                                     $"\r\n و ساعت {DateTime.Now.ToLongTimeString()} " +
+                                                     $"\r\n از سوی ربات، بلاک شده تشخیص داده شد");
             }
             catch (WebDriverException) { }
             catch (Exception ex)

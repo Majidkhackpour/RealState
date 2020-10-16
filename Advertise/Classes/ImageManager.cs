@@ -17,17 +17,24 @@ namespace Advertise.Classes
                     Directory.CreateDirectory(destinationPath);
                 destinationPath = Path.Combine(destinationPath, $"{Guid.NewGuid()}.jpg");
 
-                using (var bm = new Bitmap(sourceFullPath))
+                try
                 {
-                    var rnd = new Random();
-                    var rnd_w = new Random();
-                    var rnd_h = new Random();
-                    for (var i = 0; i < 10; i++)
+                    using (var bm = new Bitmap(sourceFullPath))
                     {
-                        bm.SetPixel(rnd_w.Next(bm.Width - 1), rnd_h.Next(bm.Height - 1), Color.FromArgb(rnd.Next(255), rnd.Next(255), rnd.Next(255)));
+                        var rnd = new Random();
+                        var rnd_w = new Random();
+                        var rnd_h = new Random();
+                        for (var i = 0; i < 10; i++)
+                        {
+                            bm.SetPixel(rnd_w.Next(bm.Width - 1), rnd_h.Next(bm.Height - 1), Color.FromArgb(rnd.Next(255), rnd.Next(255), rnd.Next(255)));
+                        }
+                        bm.Save(destinationPath);
                     }
-                    bm.Save(destinationPath);
                 }
+                catch
+                {
+                }
+
 
                 return destinationPath;
             }

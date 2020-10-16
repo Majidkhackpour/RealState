@@ -40,7 +40,7 @@ namespace Advertise.Classes
         }
         #region MyRegion
         private List<string> lstMessage = new List<string>();
-        public async Task StartRegisterAdv(bool isUpdateNextUse, List<long> numbers = null, int count = 1, bool isRaiseEvent = true)
+        public async Task StartRegisterAdv(AdvertiseLogBussines adv, long number, bool isRaiseEvent = true)
         {
             try
             {
@@ -54,46 +54,36 @@ namespace Advertise.Classes
                     return;
                 }
 
-                foreach (var number in numbers)
+                var sim = await SimcardBussines.GetAsync(number);
+                var tt = await Utility.CheckToken(number, AdvertiseType.Divar);
+                if (tt.HasError)
                 {
-                    var sim = await SimcardBussines.GetAsync(number);
-                    var tt = await Utility.CheckToken(number, AdvertiseType.Divar);
-                    if (tt.HasError)
-                    {
-                        lstMessage.Clear();
-                        lstMessage.Add("نوع آگهی: دیوار");
-                        lstMessage.Add($"شماره: {number}");
-                        lstMessage.Add("#نداشتن_توکن");
-                        lstMessage.Add($"مالک: {sim.Owner}");
-                        lstMessage.Add("بدلیل توکن نداشتن، موفق به لاگین نشد");
-                        Utility.ShowBalloon("عدم انجام لاگین", lstMessage);
-                        sim.NextUseDivar = DateTime.Now.AddDays(1);
-                        await sim.SaveAsync();
-                        var msg = $"سیستم مرجع: {await Utility.GetNetworkIpAddress()} \r\n";
-                        foreach (var items in lstMessage) msg += items + "\r\n";
-                        TelegramSender.GetChatLog_bot().Send(msg);
-                        return;
-                    }
-
-                    if (!await Login(number, false) /*|| !await UpdateAllRegisteredAdvOfSimCard(number)*/) continue;
-                    await GetEditNeededAdv(number);
-                    await Utility.Wait(1);
-                    // await RemoveWaitForPayment();
-                    for (var i = 0; i < count; i++)
-                    {
-                        var res_ = await Utility.GetNextAdv(AdvertiseType.Divar, number);
-                        if (res_.HasError) continue;
-                        if (res_.value == null) continue;
-                        await RegisterAdv(res_.value, isRaiseEvent);
-                        await Utility.Wait(1);
-                        sim.Modified = DateTime.Now;
-                        var full = _driver.FindElements(By.ClassName("header"))
-                            .Any(q => q.Text == "لطفا به موارد زیر توجه کنید:");
-                        if (full) return;
-                        if (isUpdateNextUse) sim.NextUseDivar = DateTime.Now.AddHours(2);
-                        await sim.SaveAsync();
-                    }
+                    lstMessage.Clear();
+                    lstMessage.Add("نوع آگهی: دیوار");
+                    lstMessage.Add($"شماره: {number}");
+                    lstMessage.Add("#نداشتن_توکن");
+                    lstMessage.Add($"مالک: {sim.Owner}");
+                    lstMessage.Add("بدلیل توکن نداشتن، موفق به لاگین نشد");
+                    Utility.ShowBalloon("عدم انجام لاگین", lstMessage);
+                    sim.NextUseDivar = DateTime.Now.AddDays(1);
+                    await sim.SaveAsync();
+                    var msg = $"سیستم مرجع: {await Utility.GetNetworkIpAddress()} \r\n";
+                    foreach (var items in lstMessage) msg += items + "\r\n";
+                    TelegramSender.GetChatLog_bot().Send(msg);
+                    return;
                 }
+
+                if (!await Login(number, false) /*|| !await UpdateAllRegisteredAdvOfSimCard(number)*/) return;
+                await GetEditNeededAdv(number);
+                await Utility.Wait(1);
+                // await RemoveWaitForPayment();
+                await RegisterAdv(adv, isRaiseEvent);
+                await Utility.Wait(1);
+                sim.Modified = DateTime.Now;
+                var full = _driver.FindElements(By.ClassName("header"))
+                    .Any(q => q.Text == "لطفا به موارد زیر توجه کنید:");
+                if (full) return;
+                await sim.SaveAsync();
             }
             catch (WebException) { }
             catch (Exception ex) { WebErrorLog.ErrorInstence.StartErrorLog(ex); }

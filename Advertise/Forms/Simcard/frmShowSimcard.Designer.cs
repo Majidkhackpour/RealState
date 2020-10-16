@@ -43,12 +43,6 @@
             this.btnEdit = new DevComponents.DotNetBar.ButtonX();
             this.line1 = new DevComponents.DotNetBar.Controls.Line();
             this.DGrid = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.simBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.btnOther = new DevComponents.DotNetBar.ButtonX();
-            this.btnLoginDivar = new DevComponents.DotNetBar.ButtonItem();
-            this.btnLoginSheypoor = new DevComponents.DotNetBar.ButtonItem();
-            this.btnDelDivarToken = new DevComponents.DotNetBar.ButtonItem();
-            this.btnDeleteSheypoorToken = new DevComponents.DotNetBar.ButtonItem();
             this.dgRadif = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -58,6 +52,13 @@
             this.dgGuid = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.modifiedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.statusDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.simBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.btnOther = new DevComponents.DotNetBar.ButtonX();
+            this.btnLoginDivar = new DevComponents.DotNetBar.ButtonItem();
+            this.btnLoginSheypoor = new DevComponents.DotNetBar.ButtonItem();
+            this.btnDelDivarToken = new DevComponents.DotNetBar.ButtonItem();
+            this.btnDeleteSheypoorToken = new DevComponents.DotNetBar.ButtonItem();
+            this.btnSelect = new DevComponents.DotNetBar.ButtonX();
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.simBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -259,60 +260,8 @@
             this.DGrid.Size = new System.Drawing.Size(795, 468);
             this.DGrid.TabIndex = 55744;
             this.DGrid.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DGrid_CellFormatting);
+            this.DGrid.DoubleClick += new System.EventHandler(this.DGrid_DoubleClick);
             this.DGrid.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.DGrid_KeyPress);
-            // 
-            // simBindingSource
-            // 
-            this.simBindingSource.DataSource = typeof(EntityCache.Bussines.SimcardBussines);
-            // 
-            // btnOther
-            // 
-            this.btnOther.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnOther.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnOther.BackColor = System.Drawing.Color.Silver;
-            this.btnOther.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnOther.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
-            this.btnOther.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnOther.Location = new System.Drawing.Point(4, 559);
-            this.btnOther.Name = "btnOther";
-            this.btnOther.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
-            this.btnOther.Size = new System.Drawing.Size(61, 31);
-            this.btnOther.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
-            this.btnOther.SubItems.AddRange(new DevComponents.DotNetBar.BaseItem[] {
-            this.btnLoginDivar,
-            this.btnLoginSheypoor,
-            this.btnDelDivarToken,
-            this.btnDeleteSheypoorToken});
-            this.btnOther.TabIndex = 55757;
-            this.btnOther.Text = "سایر";
-            this.btnOther.TextAlignment = DevComponents.DotNetBar.eButtonTextAlignment.Left;
-            this.btnOther.TextColor = System.Drawing.Color.Black;
-            // 
-            // btnLoginDivar
-            // 
-            this.btnLoginDivar.GlobalItem = false;
-            this.btnLoginDivar.Name = "btnLoginDivar";
-            this.btnLoginDivar.Text = "لاگین دیوار";
-            this.btnLoginDivar.Click += new System.EventHandler(this.btnLogin_Click);
-            // 
-            // btnLoginSheypoor
-            // 
-            this.btnLoginSheypoor.Name = "btnLoginSheypoor";
-            this.btnLoginSheypoor.Text = "لاگین شیپور";
-            this.btnLoginSheypoor.Click += new System.EventHandler(this.btnLoginSheypoor_Click);
-            // 
-            // btnDelDivarToken
-            // 
-            this.btnDelDivarToken.GlobalItem = false;
-            this.btnDelDivarToken.Name = "btnDelDivarToken";
-            this.btnDelDivarToken.Text = "حذف توکن از دیوار";
-            this.btnDelDivarToken.Click += new System.EventHandler(this.btnDelDivarToken_Click);
-            // 
-            // btnDeleteSheypoorToken
-            // 
-            this.btnDeleteSheypoorToken.Name = "btnDeleteSheypoorToken";
-            this.btnDeleteSheypoorToken.Text = "حذف توکن از شیپور";
-            this.btnDeleteSheypoorToken.Click += new System.EventHandler(this.btnDeleteSheypoorToken_Click);
             // 
             // dgRadif
             // 
@@ -385,11 +334,85 @@
             this.statusDataGridViewCheckBoxColumn.ReadOnly = true;
             this.statusDataGridViewCheckBoxColumn.Visible = false;
             // 
+            // simBindingSource
+            // 
+            this.simBindingSource.DataSource = typeof(EntityCache.Bussines.SimcardBussines);
+            // 
+            // btnOther
+            // 
+            this.btnOther.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnOther.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnOther.BackColor = System.Drawing.Color.Silver;
+            this.btnOther.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnOther.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.btnOther.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnOther.Location = new System.Drawing.Point(4, 559);
+            this.btnOther.Name = "btnOther";
+            this.btnOther.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
+            this.btnOther.Size = new System.Drawing.Size(61, 31);
+            this.btnOther.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
+            this.btnOther.SubItems.AddRange(new DevComponents.DotNetBar.BaseItem[] {
+            this.btnLoginDivar,
+            this.btnLoginSheypoor,
+            this.btnDelDivarToken,
+            this.btnDeleteSheypoorToken});
+            this.btnOther.TabIndex = 55757;
+            this.btnOther.Text = "سایر";
+            this.btnOther.TextAlignment = DevComponents.DotNetBar.eButtonTextAlignment.Left;
+            this.btnOther.TextColor = System.Drawing.Color.Black;
+            // 
+            // btnLoginDivar
+            // 
+            this.btnLoginDivar.GlobalItem = false;
+            this.btnLoginDivar.Name = "btnLoginDivar";
+            this.btnLoginDivar.Text = "لاگین دیوار";
+            this.btnLoginDivar.Click += new System.EventHandler(this.btnLogin_Click);
+            // 
+            // btnLoginSheypoor
+            // 
+            this.btnLoginSheypoor.Name = "btnLoginSheypoor";
+            this.btnLoginSheypoor.Text = "لاگین شیپور";
+            this.btnLoginSheypoor.Click += new System.EventHandler(this.btnLoginSheypoor_Click);
+            // 
+            // btnDelDivarToken
+            // 
+            this.btnDelDivarToken.GlobalItem = false;
+            this.btnDelDivarToken.Name = "btnDelDivarToken";
+            this.btnDelDivarToken.Text = "حذف توکن از دیوار";
+            this.btnDelDivarToken.Click += new System.EventHandler(this.btnDelDivarToken_Click);
+            // 
+            // btnDeleteSheypoorToken
+            // 
+            this.btnDeleteSheypoorToken.Name = "btnDeleteSheypoorToken";
+            this.btnDeleteSheypoorToken.Text = "حذف توکن از شیپور";
+            this.btnDeleteSheypoorToken.Click += new System.EventHandler(this.btnDeleteSheypoorToken_Click);
+            // 
+            // btnSelect
+            // 
+            this.btnSelect.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnSelect.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSelect.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.btnSelect.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnSelect.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.btnSelect.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSelect.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.btnSelect.Location = new System.Drawing.Point(185, 559);
+            this.btnSelect.Name = "btnSelect";
+            this.btnSelect.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
+            this.btnSelect.Size = new System.Drawing.Size(414, 31);
+            this.btnSelect.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
+            this.btnSelect.TabIndex = 55764;
+            this.btnSelect.Text = "انتخاب";
+            this.btnSelect.TextColor = System.Drawing.Color.White;
+            this.btnSelect.Click += new System.EventHandler(this.btnSelect_Click);
+            // 
             // frmShowSimcard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 600);
+            this.Controls.Add(this.btnSelect);
             this.Controls.Add(this.btnOther);
             this.Controls.Add(this.btnView);
             this.Controls.Add(this.btnChangeStatus);
@@ -443,5 +466,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dgGuid;
         private System.Windows.Forms.DataGridViewTextBoxColumn modifiedDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewCheckBoxColumn statusDataGridViewCheckBoxColumn;
+        private DevComponents.DotNetBar.ButtonX btnSelect;
     }
 }

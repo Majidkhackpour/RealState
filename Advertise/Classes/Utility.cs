@@ -214,15 +214,14 @@ namespace Advertise.Classes
             }
             finally { notifyIcon.Dispose(); }
         }
-        private static async Task<ReturnedSaveFuncInfo> SendAdv(int index, List<long> lst, int maxDailyCountDivar,
-            int maxDailyCountSheypoor)
+        private static async Task<ReturnedSaveFuncInfo> SendAdv(AdvertiseLogBussines adv, long number, AdvertiseType type)
         {
             var res = new ReturnedSaveFuncInfo();
             try
             {
-                if (index == (int)AdvertiseType.Divar) res.AddReturnedValue(await DivarSend(lst, maxDailyCountDivar));
-                else if (index == (int)AdvertiseType.Sheypoor)
-                    res.AddReturnedValue(await SheypoorSend(lst, maxDailyCountSheypoor));
+                if (type == AdvertiseType.Divar) res.AddReturnedValue(await DivarSend(adv, number));
+                else if (type == AdvertiseType.Sheypoor)
+                    res.AddReturnedValue(await SheypoorSend(adv, number));
             }
             catch (Exception ex)
             {
@@ -232,7 +231,7 @@ namespace Advertise.Classes
 
             return res;
         }
-        private static async Task<ReturnedSaveFuncInfo> DivarSend(List<long> lst, int maxDailyCountDivar)
+        private static async Task<ReturnedSaveFuncInfo> DivarSend(AdvertiseLogBussines adv, long number)
         {
             var res = new ReturnedSaveFuncInfo();
             try
@@ -247,8 +246,7 @@ namespace Advertise.Classes
                 if (!res.HasError)
                 {
                     var divar = DivarAdv.GetInstance();
-                    await divar.StartRegisterAdv(false, lst, maxDailyCountDivar);
-                    //await SendChat(lst[0]);
+                    await divar.StartRegisterAdv(adv, number);
                 }
             }
             catch (Exception ex)
@@ -259,7 +257,7 @@ namespace Advertise.Classes
 
             return res;
         }
-        private static async Task<ReturnedSaveFuncInfo> SheypoorSend(List<long> lst, int maxDailyCountSheypoor)
+        private static async Task<ReturnedSaveFuncInfo> SheypoorSend(AdvertiseLogBussines adv, long number)
         {
             var res = new ReturnedSaveFuncInfo();
             try
@@ -273,7 +271,7 @@ namespace Advertise.Classes
                 if (!res.HasError)
                 {
                     var sheypoor = SheypoorAdv.GetInstance();
-                    await sheypoor.StartRegisterAdv(lst, maxDailyCountSheypoor);
+                    await sheypoor.StartRegisterAdv(adv, number);
                 }
             }
             catch (Exception ex)
@@ -488,22 +486,40 @@ namespace Advertise.Classes
         #endregion
 
         #region GetAdv
-        public static async Task<ReturnedSaveFuncInfoWithValue<AdvertiseLogBussines>> GetNextAdv(AdvertiseType type, long simCardNumber)
+        private static async Task<ReturnedSaveFuncInfoWithValue<AdvertiseLogBussines>> GetNextAdv(BuildingBussines bu, AdvertiseType type, long simCardNumber)
         {
             var res = new ReturnedSaveFuncInfoWithValue<AdvertiseLogBussines>();
             try
             {
                 res.value = new AdvertiseLogBussines { SimcardNumber = simCardNumber };
-                //var replacements = await VisitorBusiness.GetMasterSlaveAdvReplacementsAsync(res.value.SimcardNumber);
-                //res.AddReturnedValue(await GetMasterSlaveReplaceMentAdv(replacements, res));
-                //var adv = await BuildingBussines.GetAsync(Guid.NewGuid());
-                //res.AddReturnedValue(await GetAdvAddress(type, adv, res));
-                //res.AddReturnedValue(await GetAdvTitle(adv, res));
-                //res.AddReturnedValue(await GetAdvContent(type, adv, replacements, res));
-                //res.AddReturnedValue(await GetAdvImages(type, res));
-                //res.AddReturnedValue(await GetAdvCity(type, res));
-                //res.AddReturnedValue(await GetAdvCategory(type, adv, res));
-                //res.value.Price1 = adv.SellPrice;
+
+                res.AddReturnedValue(await GetAdvCategory(bu, type, res));
+                res.AddReturnedValue(await GetAdvCity(bu, type, res));
+                res.AddReturnedValue(await GetAdvTitle(bu, res));
+                res.AddReturnedValue(await GetAdvContent(bu, res));
+                res.AddReturnedValue(await GetAdvOption(bu, res));
+
+                var path = Path.Combine(Application.StartupPath, "Images");
+                res.value.ImagesPathList = GetNextImages(bu, path);
+
+                if (bu.RahnPrice1 > 0 || bu.RahnPrice2 > 0)
+                {
+                    res.value.Price1 = bu.RahnPrice1;
+                    res.value.Price2 = bu.EjarePrice1;
+                    if (bu.RahnPrice2 > 0 || bu.EjarePrice2 > 0)
+                        res.value.Tabdil = "قابل تبدیل";
+                    else res.value.Tabdil = "غیر قابل تبدیل";
+
+                    var rentAuth = await RentalAuthorityBussines.GetAsync(bu.RentalAutorityGuid ?? Guid.Empty);
+                    if (rentAuth != null && rentAuth.Name.Contains("مجرد"))
+                        res.value.RentalAuthority = "خانواده و مجرد";
+                }
+                else if (bu.SellPrice > 0)
+                {
+                    res.value.Price1 = bu.SellPrice;
+                    res.value.Price2 = 0;
+                }
+
                 res.value.IP = await GetLocalIpAddress();
             }
             catch (Exception ex)
@@ -514,27 +530,137 @@ namespace Advertise.Classes
 
             return res;
         }
-      
-        private static async Task<ReturnedSaveFuncInfoWithValue<AdvertiseLogBussines>> GetAdvTitle(EntityCache.ViewModels.Advertise adv,
+        private static async Task<ReturnedSaveFuncInfoWithValue<AdvertiseLogBussines>> GetAdvTitle(BuildingBussines bu,
             ReturnedSaveFuncInfoWithValue<AdvertiseLogBussines> res)
         {
             try
             {
+                var type = "";
+                var regionName = "";
 
-                if (adv.Titles?.Count <= 0)
+                if (bu.RahnPrice1 > 0 || bu.RahnPrice2 > 0) type = "رهن و اجاره";
+                else if (bu.SellPrice > 0) type = "فروش";
+
+                if (bu.RegionGuid != Guid.Empty) regionName = RegionsBussines.Get(bu.RegionGuid)?.Name ?? "";
+
+                res.value.Title = $"{type} ملک در {regionName}";
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+
+            return res;
+        }
+        private static async Task<ReturnedSaveFuncInfoWithValue<AdvertiseLogBussines>> GetAdvContent(BuildingBussines bu,
+            ReturnedSaveFuncInfoWithValue<AdvertiseLogBussines> res)
+        {
+            try
+            {
+                var content = new StringBuilder();
+                var reg = "";
+                if (bu.RegionGuid != Guid.Empty)
+                    reg = RegionsBussines.Get(bu.RegionGuid)?.Name ?? "";
+
+                content.AppendLine($"محدوده: {reg}");
+                content.AppendLine($"متراژ: {bu.Masahat}");
+                content.AppendLine($"سال ساخت: {bu.SaleSakht}");
+                content.AppendLine($"تعداد اتاق: {bu.RoomCount}");
+                content.AppendLine($"طبقه: {bu.TabaqeNo} از {bu.TedadTabaqe}");
+
+                res.value.Content = content.ToString();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+
+            return res;
+        }
+        private static async Task<ReturnedSaveFuncInfoWithValue<AdvertiseLogBussines>> GetAdvCategory(
+            BuildingBussines bu, AdvertiseType type, ReturnedSaveFuncInfoWithValue<AdvertiseLogBussines> res)
+        {
+            try
+            {
+                res.value.Category = "املاک";
+                if (type == AdvertiseType.Divar)
                 {
-                    res.AddReturnedValue(ReturnedState.Error, $"Adv Titles is Null");
-                    return res;
+                    if (bu.RahnPrice1 > 0 || bu.RahnPrice2 > 0)
+                    {
+                        res.value.SubCategory1 = "اجاره مسکونی";
+                        var buType = await BuildingTypeBussines.GetAsync(bu.BuildingTypeGuid);
+                        if (buType == null)
+                        {
+                            res.value.SubCategory2 = "متفرقه";
+                            return res;
+                        }
+
+                        if (buType.Name == "آپارتمان"|| buType.Name == "اپارتمان")
+                        {
+                            res.value.SubCategory2 = "آپارتمان";
+                            return res;
+                        }
+                        if (buType.Name == "منزل مسکونی" || buType.Name == "ویلا")
+                        {
+                            res.value.SubCategory2 = "خانه و ویلا";
+                            return res;
+                        }
+
+                        res.value.SubCategory2 = "متفرقه";
+                    }
+                    else if (bu.SellPrice > 0)
+                    {
+                        res.value.SubCategory1 = "فروش مسکونی";
+                        var buType = await BuildingTypeBussines.GetAsync(bu.BuildingTypeGuid);
+                        if (buType == null)
+                        {
+                            res.value.SubCategory2 = "متفرقه";
+                            return res;
+                        }
+
+                        if (buType.Name == "آپارتمان")
+                        {
+                            res.value.SubCategory2 = "آپارتمان";
+                            return res;
+                        }
+                        if (buType.Name == "منزل مسکونی" || buType.Name == "ویلا")
+                        {
+                            res.value.SubCategory2 = "خانه و ویلا";
+                            return res;
+                        }
+                        if (buType.Name.Contains("زمین"))
+                        {
+                            res.value.SubCategory2 = "زمین و کلنگی";
+                            return res;
+                        }
+
+                        res.value.SubCategory2 = "متفرقه";
+                    }
                 }
-
-                var nextTitleIndex = new Random(DateTime.Now.Millisecond).Next(adv.Titles.Count);
-                res.value.Title = adv.Titles[nextTitleIndex];
-
-
-                if (string.IsNullOrEmpty(res.value.Title))
+                else if (type == AdvertiseType.Sheypoor)
                 {
-                    res.AddReturnedValue(ReturnedState.Error, $"AdvLog Title is Null");
-                    return res;
+                    if (bu.RahnPrice1 > 0 || bu.RahnPrice2 > 0)
+                    {
+                        res.value.SubCategory1 = "رهن و اجاره خانه و آپارتمان";
+                        var buType = await BuildingTypeBussines.GetAsync(bu.BuildingTypeGuid);
+                        if (buType == null)
+                        {
+                            res.value.SubCategory2 = "سایر املاک";
+                            return res;
+                        }
+                    }
+                    else if (bu.SellPrice > 0)
+                    {
+                        res.value.SubCategory1 = "خرید و فروش خانه و آپارتمان";
+                        var buType = await BuildingTypeBussines.GetAsync(bu.BuildingTypeGuid);
+                        if (buType == null)
+                        {
+                            res.value.SubCategory2 = "سایر املاک";
+                            return res;
+                        }
+                    }
                 }
             }
             catch (Exception ex)
@@ -545,84 +671,53 @@ namespace Advertise.Classes
 
             return res;
         }
-       //private static async Task<ReturnedSaveFuncInfoWithValue<AdvertiseLogBussines>> GetAdvCity(AdvertiseType type,
-       //     ReturnedSaveFuncInfoWithValue<AdvertiseLogBussines> res)
-       // {
-       //     try
-       //     {
+        private static async Task<ReturnedSaveFuncInfoWithValue<AdvertiseLogBussines>> GetAdvCity(BuildingBussines bu, AdvertiseType type,
+             ReturnedSaveFuncInfoWithValue<AdvertiseLogBussines> res)
+        {
+            try
+            {
 
-       //         var city = new CityBusiness();
-       //         if (type == AdvertiseType.Divar)
-       //             city = await CityBusiness.GetNextRandomCityAsync(res.value.MasterVisitorGuid,
-       //                 AdvertiseType.Divar);
-       //         else if (type == AdvertiseType.Sheypoor)
-       //             city = await CityBusiness.GetNextRandomCityAsync(res.value.MasterVisitorGuid,
-       //                 AdvertiseType.Sheypoor);
-       //         res.value.City = city?.CityName;
-       //         res.value.State = city?.State?.StateName;
-       //     }
-       //     catch (Exception ex)
-       //     {
-       //         WebErrorLog.ErrorLogInstance.StartLog(ex);
-       //         res.AddReturnedValue(ex);
-       //     }
+                var city = await CitiesBussines.GetAsync(bu.CityGuid);
+                res.value.City = city?.Name;
 
-       //     return res;
-       // }
-        //private static async Task<ReturnedSaveFuncInfoWithValue<AdvertiseLogBussines>> GetAdvCategory(
-        //    AdvertiseType type, EntityCache.ViewModels.Advertise adv, ReturnedSaveFuncInfoWithValue<AdvertiseLogBussines> res)
-        //{
-        //    try
-        //    {
-        //        if (type == AdvertiseType.Divar)
-        //        {
-        //            if (adv.DivarCats != null &&
-        //                adv.DivarCats.Count > 0)
-        //            {
-        //                var random = new Random().Next(0, adv.DivarCats.Count);
-        //                res.value.Category = adv?.DivarCats[random].Item1 ?? "";
-        //                res.value.SubCategory1 = adv?.DivarCats[random].Item2 ?? "";
-        //                res.value.SubCategory2 = adv?.DivarCats[random].Item3 ?? "";
-        //            }
-        //            else
-        //            {
-        //                res.value.SubCategory1 = null;
-        //                res.value.SubCategory2 = null;
-        //            }
-        //        }
+                var state = await StatesBussines.GetAsync(city.StateGuid);
+                if (state != null)
+                    res.value.State = state?.Name;
 
-        //        if (type == AdvertiseType.Sheypoor)
-        //        {
-        //            if (adv.SheypoorCats != null && adv.SheypoorCats.Count > 0)
-        //            {
-        //                var random = new Random().Next(0, adv.SheypoorCats.Count);
-        //                res.value.SubCategory1 = adv?.SheypoorCats[random].Item1 ?? "";
-        //                res.value.SubCategory2 = adv?.SheypoorCats[random].Item2 ?? "";
-        //            }
-        //            else
-        //            {
-        //                res.value.SubCategory1 = null;
-        //                res.value.SubCategory2 = null;
-        //            }
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        WebErrorLog.ErrorLogInstance.StartLog(ex);
-        //        res.AddReturnedValue(ex);
-        //    }
+                if (bu.RegionGuid != Guid.Empty)
+                {
+                    var relatedRegion = await AdvertiseRelatedRegionBussines.GetByRegionGuidAsync(bu.RegionGuid);
+                    if (relatedRegion != null) res.value.Region = relatedRegion?.OnlineRegionName;
+                    else
+                    {
+                        var reg = await RegionsBussines.GetAsync(bu.RegionGuid);
+                        if (reg != null) res.value.Region = reg?.Name;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
 
-        //    return res;
-        //}
-        private static List<string> GetNextImages(string advFullPath, int imgCount = 3)
+            return res;
+        }
+        private static List<string> GetNextImages(BuildingBussines bu, string imageAddress, int imgCount = 3)
         {
             var resultImages = new List<string>();
             try
             {
-                if (string.IsNullOrEmpty(advFullPath)) return resultImages;
+                if (string.IsNullOrEmpty(imageAddress)) return resultImages;
                 //گرفتن تمام عکسهای پوشه و فیلتر کردن عکسهای درست
-                var picturesPath = Path.Combine(advFullPath, "Pictures");
-                var allImages = Utility.GetFiles(picturesPath, "*.jpg");
+                var advFullPath = bu.GalleryList.Select(q => q.ImageName);
+                var allImages = new List<string>();
+                foreach (var imgName in advFullPath)
+                {
+                    var fullPath = Path.Combine(imageAddress, imgName + ".jpg");
+                    if (!File.Exists(fullPath)) continue;
+                    allImages.Add(fullPath);
+                }
                 var selectedImages = new List<string>();
                 //حذف عکسهای زیر پیکسل 600*600
                 foreach (var imgItem in allImages)
@@ -640,7 +735,6 @@ namespace Advertise.Classes
                         }
                     img.Dispose();
                 }
-                allImages = Utility.GetFiles(picturesPath, "*.jpg");
 
                 if (allImages.Count <= imgCount) selectedImages = allImages;
                 else
@@ -669,6 +763,32 @@ namespace Advertise.Classes
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
                 return resultImages;
             }
+        }
+        private static async Task<ReturnedSaveFuncInfoWithValue<AdvertiseLogBussines>> GetAdvOption(BuildingBussines bu,
+            ReturnedSaveFuncInfoWithValue<AdvertiseLogBussines> res)
+        {
+            try
+            {
+                var options = bu.OptionList;
+                if (options == null) return res;
+
+                var asansor = options.Any(q => q.OptionName.Contains("آسانسور") || q.OptionName.Contains("اسانسور"));
+                var parking = options.Any(q => q.OptionName.Contains("پارکینگ"));
+                var anbar = options.Any(q => q.OptionName.Contains("انبار"));
+                var balkon = options.Any(q => q.OptionName.Contains("بالکن") || q.OptionName.Contains("تراس"));
+
+                res.value.Asansor = asansor;
+                res.value.Parking = parking;
+                res.value.Anbari = anbar;
+                res.value.Balkon = balkon;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+
+            return res;
         }
         #endregion
 
@@ -758,6 +878,47 @@ namespace Advertise.Classes
             }
             return "";
         }
+        public static async Task<ReturnedSaveFuncInfo> ManageAdvSend(List<BuildingBussines> buList, List<SimcardBussines> simcardList, AdvertiseType type)
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                foreach (var number in simcardList)
+                {
+                    var rand = new Random().Next(0, buList.Count);
+                    var bu = buList[rand];
 
+                    if (type == AdvertiseType.Divar)
+                    {
+                        var adv = await GetNextAdv(bu, AdvertiseType.Divar, number.Number);
+                        if (adv.HasError || adv.value == null)
+                            res.AddReturnedValue(ReturnedState.Error, "خطا در دریافت آگهی");
+                        res.AddReturnedValue(await SendAdv(adv.value, number.Number, AdvertiseType.Divar));
+                    }
+                    if (type == AdvertiseType.Sheypoor)
+                    {
+                        var adv = await GetNextAdv(bu, AdvertiseType.Sheypoor, number.Number);
+                        if (adv.HasError || adv.value == null)
+                            res.AddReturnedValue(ReturnedState.Error, "خطا در دریافت آگهی");
+                        res.AddReturnedValue(await SendAdv(adv.value, number.Number, AdvertiseType.Sheypoor));
+                    }
+                    if (type == AdvertiseType.Both)
+                    {
+                        var divarAdv = await GetNextAdv(bu, AdvertiseType.Divar, number.Number);
+                        var sheypoorAdv = await GetNextAdv(bu, AdvertiseType.Sheypoor, number.Number);
+
+                        res.AddReturnedValue(await SendAdv(divarAdv.value, number.Number, AdvertiseType.Divar));
+                        res.AddReturnedValue(await SendAdv(sheypoorAdv.value, number.Number, AdvertiseType.Sheypoor));
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+
+            return res;
+        }
     }
 }

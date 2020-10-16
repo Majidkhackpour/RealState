@@ -14,6 +14,8 @@ namespace Advertise.Forms.Simcard
     public partial class frmShowSimcard : MetroForm
     {
         private bool _st = true;
+        public Guid SelectedGuid { get; set; }
+        private bool isShowMode = false;
         private async Task LoadDataAsync(bool status, string search = "")
         {
             try
@@ -66,10 +68,32 @@ namespace Advertise.Forms.Simcard
                 }
             }
         }
-        public frmShowSimcard()
+        public frmShowSimcard(bool _isShowMode)
         {
             InitializeComponent();
             SetAccess();
+
+            isShowMode = _isShowMode;
+            if (isShowMode)
+            {
+                btnDelete.Visible = false;
+                btnInsert.Visible = false;
+                btnEdit.Visible = false;
+                btnView.Visible = false;
+                btnChangeStatus.Visible = false;
+                btnSelect.Visible = true;
+                btnOther.Visible = false;
+            }
+            else
+            {
+                btnDelete.Visible = true;
+                btnInsert.Visible = true;
+                btnEdit.Visible = true;
+                btnView.Visible = true;
+                btnChangeStatus.Visible = true;
+                btnSelect.Visible = false;
+                btnOther.Visible = true;
+            }
         }
 
         private async void frmShowSimcard_Load(object sender, EventArgs e) => await LoadDataAsync(ST);
@@ -350,6 +374,33 @@ namespace Advertise.Forms.Simcard
                 }
 
                 await LoadDataAsync(ST, txtSearch.Text);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private void DGrid_DoubleClick(object sender, EventArgs e)
+        {
+            try
+            {
+                if (!isShowMode) return;
+                btnSelect.PerformClick();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private void btnSelect_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (DGrid.RowCount <= 0) return;
+                if (DGrid.CurrentRow == null) return;
+                SelectedGuid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
+                DialogResult = DialogResult.OK;
+                Close();
             }
             catch (Exception ex)
             {
