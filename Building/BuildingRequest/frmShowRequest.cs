@@ -266,7 +266,8 @@ namespace Building.BuildingRequest
                 }
 
                 var frm = new frmFilterForm(type, req.BuildingTypeGuid, req.BuildingAccountTypeGuid, req.RoomCount,
-                    req.Masahat1, req.Masahat2, fPrice1, sPrice1, fPrice2, sPrice2);
+                    req.Masahat1, req.Masahat2, fPrice1, sPrice1, fPrice2, sPrice2,
+                    req.RegionList.Select(q => q.RegionGuid).ToList());
                 frm.ShowDialog();
             }
             catch (Exception ex)

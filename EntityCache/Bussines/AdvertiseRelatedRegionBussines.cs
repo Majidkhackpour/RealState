@@ -92,5 +92,8 @@ namespace EntityCache.Bussines
         public static async Task<List<AdvertiseRelatedRegionBussines>> GetAllAsync() =>
             await UnitOfWork.AdvertiseRelatedRegion.GetAllAsync();
 
+        public static async Task<AdvertiseRelatedRegionBussines> GetByRegionGuidAsync(Guid regionGuid) =>
+            await UnitOfWork.AdvertiseRelatedRegion.GetByRegionGuidAsync(regionGuid);
+
     }
 }

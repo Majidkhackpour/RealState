@@ -207,9 +207,9 @@
             // 
             // lblPrice1
             // 
-            this.lblPrice1.Location = new System.Drawing.Point(607, 79);
+            this.lblPrice1.Location = new System.Drawing.Point(574, 79);
             this.lblPrice1.Name = "lblPrice1";
-            this.lblPrice1.Size = new System.Drawing.Size(130, 20);
+            this.lblPrice1.Size = new System.Drawing.Size(163, 20);
             this.lblPrice1.TabIndex = 1;
             // 
             // lblPrice1_

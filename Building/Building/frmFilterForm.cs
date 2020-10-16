@@ -4,16 +4,19 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Advertise.Classes;
+using Cities.Region;
 using EntityCache.Bussines;
 using EntityCache.ViewModels;
 using MetroFramework.Forms;
 using Services;
+using Settings.Classes;
 using User;
 
 namespace Building.Building
 {
     public partial class frmFilterForm : MetroForm
     {
+        public List<Guid> RegionList { get; set; }
         private async Task SetDataAsync()
         {
             try
@@ -22,6 +25,7 @@ namespace Building.Building
                 await FillBuildingAccountTypeAsync();
                 await FillBuildingTypeAsync();
                 FillCmbPrice();
+                var maxCount = clsAdvertise.MaxFileCount;
 
                 Invoke(new MethodInvoker(() =>
                 {
@@ -30,6 +34,7 @@ namespace Building.Building
                     cmbRahn2.SelectedIndex = 0;
                     cmbEjare1.SelectedIndex = 0;
                     cmbEjare2.SelectedIndex = 0;
+                    txtMaxFile.Value = maxCount <= 0 ? 1 : maxCount;
                 }));
             }
             catch (Exception ex)
@@ -142,28 +147,27 @@ namespace Building.Building
         public frmFilterForm()
         {
             InitializeComponent();
-            Task.Run(() => SetDataAsync());
+            Task.Run(SetDataAsync);
             SetAccess();
         }
 
         public frmFilterForm(EnRequestType type, Guid buildingType, Guid accountType, int roomCount, int fMasahat,
-            int sMasahat, decimal fPrice1, decimal sPrice1, decimal fPrice2, decimal sPrice2)
+            int sMasahat, decimal fPrice1, decimal sPrice1, decimal fPrice2, decimal sPrice2, List<Guid> regList)
         {
             InitializeComponent();
-            Task.Run(() => SetDataAsync());
+            RegionList = regList;
+            Task.Run(SetDataAsync);
             SetFormControl(type, buildingType, accountType, roomCount, fMasahat, sMasahat, fPrice1, sPrice1, fPrice2,
                 sPrice2);
             SetAccess();
+            btnRegion.Enabled = false;
         }
 
         private async void cmbReqType_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
             {
-                while (!IsHandleCreated)
-                {
-                    await Task.Delay(100);
-                }
+                while (!IsHandleCreated) await Task.Delay(100);
                 Invoke(new MethodInvoker(() =>
                 {
                     if (cmbReqType.SelectedIndex == (int)EnRequestType.Rahn)
@@ -180,6 +184,13 @@ namespace Building.Building
                         cmbEjare1.Visible = cmbEjare2.Visible = false;
                         lblFPrice1.Text = "مبلغ از";
                     }
+
+                    if (cmbReqType.SelectedIndex > 1)
+                    {
+                        chbDivar.Enabled = false;
+                        chbDivar.Checked = false;
+                    }
+                    else chbDivar.Enabled = true;
                 }));
             }
             catch (Exception ex)
@@ -192,6 +203,8 @@ namespace Building.Building
         {
             try
             {
+                clsAdvertise.MaxFileCount = (int)txtMaxFile.Value;
+
                 var list = new List<BuildingViewModel>();
                 decimal fPrice1 = 0, sPrice1 = 0, fPrice2 = 0, sPrice2 = 0;
 
@@ -233,15 +246,30 @@ namespace Building.Building
                         (Guid)cmbBuildingAccountType.SelectedValue, txtFMasahat.Text.ParseToInt(),
                         txtSMasahat.Text.ParseToInt(), txtRoomCount.Text.ParseToInt(), fPrice1,
                         sPrice1, fPrice2,
-                        sPrice2, (EnRequestType)cmbReqType.SelectedIndex));
+                        sPrice2, (EnRequestType)cmbReqType.SelectedIndex, RegionList));
                 }
 
                 if (chbDivar.Checked)
                 {
+                    var list_ = new List<string>();
+                    foreach (var item in RegionList)
+                    {
+                        var related = await AdvertiseRelatedRegionBussines.GetByRegionGuidAsync(item);
+                        if (related != null)
+                        {
+                            list_.Add(related.OnlineRegionName);
+                            continue;
+                        }
+
+                        var region = await RegionsBussines.GetAsync(item);
+                        if (region != null) list_.Add(region.Name);
+                    }
+
+                    list_ = list_.GroupBy(q => q).Select(q => q.Key).ToList();
                     var divar = DivarAdv.GetInstance();
-                    list.AddRange(await divar.GetBuildingAsync((EnRequestType) cmbReqType.SelectedIndex, fPrice1,
+                    list.AddRange(await divar.GetBuildingAsync((EnRequestType)cmbReqType.SelectedIndex, fPrice1,
                         sPrice1, fPrice2, sPrice2, txtFMasahat.Text.ParseToInt(),
-                        txtSMasahat.Text.ParseToInt(), 24));
+                        txtSMasahat.Text.ParseToInt(), (int)txtMaxFile.Value, list_));
                 }
 
 
@@ -389,6 +417,20 @@ namespace Building.Building
                 }
 
 
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private void btnRegion_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var frm = new frmSelectRegion();
+                if (frm.ShowDialog() == DialogResult.OK)
+                    RegionList = frm.Guids;
             }
             catch (Exception ex)
             {

@@ -35,5 +35,21 @@ namespace EntityCache.SqlServerPersistence
                 return null;
             }
         }
+
+        public async Task<AdvertiseRelatedRegionBussines> GetByRegionGuidAsync(Guid regionGuid)
+        {
+            try
+            {
+                var acc = db.AdvertiseRelatedRegion.AsNoTracking()
+                    .FirstOrDefault(q => q.LocalRegionGuid == regionGuid && q.Status);
+
+                return Mappings.Default.Map<AdvertiseRelatedRegionBussines>(acc);
+            }
+            catch (Exception exception)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(exception);
+                return null;
+            }
+        }
     }
 }

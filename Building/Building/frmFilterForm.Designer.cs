@@ -63,6 +63,9 @@
             this.label3 = new System.Windows.Forms.Label();
             this.txtFPrice2 = new System.Windows.Forms.NumericUpDown();
             this.btnSeach = new DevComponents.DotNetBar.ButtonX();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtMaxFile = new System.Windows.Forms.NumericUpDown();
+            this.btnRegion = new DevComponents.DotNetBar.ButtonX();
             this.grp.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtSPrice2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtRoomCount)).BeginInit();
@@ -73,6 +76,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.batBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtFPrice1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtFPrice2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtMaxFile)).BeginInit();
             this.SuspendLayout();
             // 
             // grp
@@ -85,7 +89,9 @@
             this.grp.Controls.Add(this.chbSystem);
             this.grp.Controls.Add(this.lblSPrice2);
             this.grp.Controls.Add(this.txtRoomCount);
+            this.grp.Controls.Add(this.txtMaxFile);
             this.grp.Controls.Add(this.txtSPrice1);
+            this.grp.Controls.Add(this.label2);
             this.grp.Controls.Add(this.label9);
             this.grp.Controls.Add(this.lblSPrice1);
             this.grp.Controls.Add(this.cmbEjare2);
@@ -136,7 +142,7 @@
             this.chbSarasari.Name = "chbSarasari";
             this.chbSarasari.Size = new System.Drawing.Size(192, 23);
             this.chbSarasari.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.chbSarasari.TabIndex = 17;
+            this.chbSarasari.TabIndex = 18;
             this.chbSarasari.Text = "جستجو در فایل های مسکن سراسری";
             // 
             // chbDivar
@@ -493,21 +499,65 @@
             this.btnSeach.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnSeach.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnSeach.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.btnSeach.Location = new System.Drawing.Point(55, 335);
+            this.btnSeach.Location = new System.Drawing.Point(138, 335);
             this.btnSeach.Name = "btnSeach";
             this.btnSeach.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
-            this.btnSeach.Size = new System.Drawing.Size(431, 31);
+            this.btnSeach.Size = new System.Drawing.Size(348, 31);
             this.btnSeach.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
             this.btnSeach.TabIndex = 1;
             this.btnSeach.Text = "جستجو";
             this.btnSeach.TextColor = System.Drawing.Color.White;
             this.btnSeach.Click += new System.EventHandler(this.btnSeach_Click);
             // 
+            // label2
+            // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.Location = new System.Drawing.Point(164, 231);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(101, 20);
+            this.label2.TabIndex = 55798;
+            this.label2.Text = "تعداد فایل دریافتی";
+            // 
+            // txtMaxFile
+            // 
+            this.txtMaxFile.Location = new System.Drawing.Point(24, 228);
+            this.txtMaxFile.Maximum = new decimal(new int[] {
+            24,
+            0,
+            0,
+            0});
+            this.txtMaxFile.Name = "txtMaxFile";
+            this.txtMaxFile.Size = new System.Drawing.Size(134, 27);
+            this.txtMaxFile.TabIndex = 17;
+            // 
+            // btnRegion
+            // 
+            this.btnRegion.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnRegion.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnRegion.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.btnRegion.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnRegion.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.btnRegion.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnRegion.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.btnRegion.Location = new System.Drawing.Point(30, 335);
+            this.btnRegion.Name = "btnRegion";
+            this.btnRegion.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
+            this.btnRegion.Size = new System.Drawing.Size(102, 31);
+            this.btnRegion.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
+            this.btnRegion.TabIndex = 1;
+            this.btnRegion.Text = "فیلتر مناطق";
+            this.btnRegion.TextColor = System.Drawing.Color.White;
+            this.btnRegion.Click += new System.EventHandler(this.btnRegion_Click);
+            // 
             // frmFilterForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(549, 376);
+            this.Controls.Add(this.btnRegion);
             this.Controls.Add(this.btnSeach);
             this.Controls.Add(this.grp);
             this.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
@@ -532,6 +582,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.batBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtFPrice1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtFPrice2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtMaxFile)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -571,5 +622,8 @@
         private DevComponents.DotNetBar.ButtonX btnSeach;
         private System.Windows.Forms.BindingSource bTypeBindingSource;
         private System.Windows.Forms.BindingSource batBindingSource;
+        private System.Windows.Forms.NumericUpDown txtMaxFile;
+        private System.Windows.Forms.Label label2;
+        private DevComponents.DotNetBar.ButtonX btnRegion;
     }
 }

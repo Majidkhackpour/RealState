@@ -137,6 +137,12 @@
     <Compile Include="Region\frmRegionMain.Designer.cs">
       <DependentUpon>frmRegionMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="Region\frmSelectRegion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Region\frmSelectRegion.Designer.cs">
+      <DependentUpon>frmSelectRegion.cs</DependentUpon>
+    </Compile>
     <Compile Include="Region\frmShowRegions.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -165,6 +171,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Region\frmRegionMain.resx">
       <DependentUpon>frmRegionMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Region\frmSelectRegion.resx">
+      <DependentUpon>frmSelectRegion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Region\frmShowRegions.resx">
       <DependentUpon>frmShowRegions.cs</DependentUpon>

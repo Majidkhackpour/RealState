@@ -276,7 +276,7 @@ namespace EntityCache.Bussines
 
         public static async Task<List<BuildingViewModel>> GetAllAsync(string code, Guid buildingGuid,
             Guid buildingAccountTypeGuid, int fMasahat, int lMasahat, int roomCount, decimal fPrice1, decimal lPrice1,
-            decimal fPrice2, decimal lPrice2, EnRequestType type)
+            decimal fPrice2, decimal lPrice2, EnRequestType type,List<Guid>regionList)
         {
             try
             {
@@ -302,6 +302,8 @@ namespace EntityCache.Bussines
                     if (fPrice1 != 0) res = res.Where(q => q.SellPrice >= fPrice1).ToList();
                     if (fPrice2 != 0) res = res.Where(q => q.SellPrice >= fPrice2).ToList();
                 }
+
+                if (regionList.Count > 0) res = res.Where(q => regionList.Contains(q.RegionGuid)).ToList();
 
                 var val = new List<BuildingViewModel>();
 

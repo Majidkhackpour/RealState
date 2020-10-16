@@ -148,5 +148,21 @@ namespace Settings.Classes
                 SettingsBussines.Save("IsSilent", _isSilent.ToString());
             }
         }
+
+        private static int _maxFileCount = 0;
+        public static int MaxFileCount
+        {
+            get
+            {
+                if (_maxFileCount != 0) return _maxFileCount;
+                var mem = SettingsBussines.Get("MaxFileCount");
+                return mem?.Value.ParseToInt() ?? 0;
+            }
+            set
+            {
+                _maxFileCount = value;
+                SettingsBussines.Save("MaxFileCount", _maxFileCount.ToString());
+            }
+        }
     }
 }

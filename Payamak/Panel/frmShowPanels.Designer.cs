@@ -43,18 +43,19 @@
             this.btnEdit = new DevComponents.DotNetBar.ButtonX();
             this.line1 = new DevComponents.DotNetBar.Controls.Line();
             this.DGrid = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.dgRadif = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.senderDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgGuid = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.modifiedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.statusDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.aPIDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.pnlBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.btnOther = new DevComponents.DotNetBar.ButtonX();
             this.btnDef = new DevComponents.DotNetBar.ButtonItem();
             this.btnRemain = new DevComponents.DotNetBar.ButtonItem();
             this.btnLog = new DevComponents.DotNetBar.ButtonItem();
+            this.pnlBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.dgRadif = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.senderDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IsDefult = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.dgGuid = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.modifiedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.statusDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.aPIDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -214,6 +215,7 @@
             this.dgRadif,
             this.dgName,
             this.senderDataGridViewTextBoxColumn,
+            this.IsDefult,
             this.dgGuid,
             this.modifiedDataGridViewTextBoxColumn,
             this.statusDataGridViewCheckBoxColumn,
@@ -256,65 +258,6 @@
             this.DGrid.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DGrid_CellFormatting);
             this.DGrid.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.DGrid_KeyPress);
             // 
-            // dgRadif
-            // 
-            this.dgRadif.HeaderText = "ردیف";
-            this.dgRadif.Name = "dgRadif";
-            this.dgRadif.ReadOnly = true;
-            this.dgRadif.Width = 50;
-            // 
-            // dgName
-            // 
-            this.dgName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dgName.DataPropertyName = "Name";
-            this.dgName.HeaderText = "عنوان";
-            this.dgName.Name = "dgName";
-            this.dgName.ReadOnly = true;
-            // 
-            // senderDataGridViewTextBoxColumn
-            // 
-            this.senderDataGridViewTextBoxColumn.DataPropertyName = "Sender";
-            this.senderDataGridViewTextBoxColumn.HeaderText = "شماره خط فرستنده";
-            this.senderDataGridViewTextBoxColumn.Name = "senderDataGridViewTextBoxColumn";
-            this.senderDataGridViewTextBoxColumn.ReadOnly = true;
-            this.senderDataGridViewTextBoxColumn.Width = 200;
-            // 
-            // dgGuid
-            // 
-            this.dgGuid.DataPropertyName = "Guid";
-            this.dgGuid.HeaderText = "Guid";
-            this.dgGuid.Name = "dgGuid";
-            this.dgGuid.ReadOnly = true;
-            this.dgGuid.Visible = false;
-            // 
-            // modifiedDataGridViewTextBoxColumn
-            // 
-            this.modifiedDataGridViewTextBoxColumn.DataPropertyName = "Modified";
-            this.modifiedDataGridViewTextBoxColumn.HeaderText = "Modified";
-            this.modifiedDataGridViewTextBoxColumn.Name = "modifiedDataGridViewTextBoxColumn";
-            this.modifiedDataGridViewTextBoxColumn.ReadOnly = true;
-            this.modifiedDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // statusDataGridViewCheckBoxColumn
-            // 
-            this.statusDataGridViewCheckBoxColumn.DataPropertyName = "Status";
-            this.statusDataGridViewCheckBoxColumn.HeaderText = "Status";
-            this.statusDataGridViewCheckBoxColumn.Name = "statusDataGridViewCheckBoxColumn";
-            this.statusDataGridViewCheckBoxColumn.ReadOnly = true;
-            this.statusDataGridViewCheckBoxColumn.Visible = false;
-            // 
-            // aPIDataGridViewTextBoxColumn
-            // 
-            this.aPIDataGridViewTextBoxColumn.DataPropertyName = "API";
-            this.aPIDataGridViewTextBoxColumn.HeaderText = "API";
-            this.aPIDataGridViewTextBoxColumn.Name = "aPIDataGridViewTextBoxColumn";
-            this.aPIDataGridViewTextBoxColumn.ReadOnly = true;
-            this.aPIDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // pnlBindingSource
-            // 
-            this.pnlBindingSource.DataSource = typeof(EntityCache.Bussines.SmsPanelsBussines);
-            // 
             // btnOther
             // 
             this.btnOther.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
@@ -356,6 +299,73 @@
             this.btnLog.Name = "btnLog";
             this.btnLog.Text = "مشاهده پیامک های ارسال شده";
             this.btnLog.Click += new System.EventHandler(this.btnLog_Click);
+            // 
+            // pnlBindingSource
+            // 
+            this.pnlBindingSource.DataSource = typeof(EntityCache.Bussines.SmsPanelsBussines);
+            // 
+            // dgRadif
+            // 
+            this.dgRadif.HeaderText = "ردیف";
+            this.dgRadif.Name = "dgRadif";
+            this.dgRadif.ReadOnly = true;
+            this.dgRadif.Width = 50;
+            // 
+            // dgName
+            // 
+            this.dgName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dgName.DataPropertyName = "Name";
+            this.dgName.HeaderText = "عنوان";
+            this.dgName.Name = "dgName";
+            this.dgName.ReadOnly = true;
+            // 
+            // senderDataGridViewTextBoxColumn
+            // 
+            this.senderDataGridViewTextBoxColumn.DataPropertyName = "Sender";
+            this.senderDataGridViewTextBoxColumn.HeaderText = "شماره خط فرستنده";
+            this.senderDataGridViewTextBoxColumn.Name = "senderDataGridViewTextBoxColumn";
+            this.senderDataGridViewTextBoxColumn.ReadOnly = true;
+            this.senderDataGridViewTextBoxColumn.Width = 200;
+            // 
+            // IsDefult
+            // 
+            this.IsDefult.DataPropertyName = "IsDefult";
+            this.IsDefult.HeaderText = "پیش فرض";
+            this.IsDefult.Name = "IsDefult";
+            this.IsDefult.ReadOnly = true;
+            this.IsDefult.Width = 70;
+            // 
+            // dgGuid
+            // 
+            this.dgGuid.DataPropertyName = "Guid";
+            this.dgGuid.HeaderText = "Guid";
+            this.dgGuid.Name = "dgGuid";
+            this.dgGuid.ReadOnly = true;
+            this.dgGuid.Visible = false;
+            // 
+            // modifiedDataGridViewTextBoxColumn
+            // 
+            this.modifiedDataGridViewTextBoxColumn.DataPropertyName = "Modified";
+            this.modifiedDataGridViewTextBoxColumn.HeaderText = "Modified";
+            this.modifiedDataGridViewTextBoxColumn.Name = "modifiedDataGridViewTextBoxColumn";
+            this.modifiedDataGridViewTextBoxColumn.ReadOnly = true;
+            this.modifiedDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // statusDataGridViewCheckBoxColumn
+            // 
+            this.statusDataGridViewCheckBoxColumn.DataPropertyName = "Status";
+            this.statusDataGridViewCheckBoxColumn.HeaderText = "Status";
+            this.statusDataGridViewCheckBoxColumn.Name = "statusDataGridViewCheckBoxColumn";
+            this.statusDataGridViewCheckBoxColumn.ReadOnly = true;
+            this.statusDataGridViewCheckBoxColumn.Visible = false;
+            // 
+            // aPIDataGridViewTextBoxColumn
+            // 
+            this.aPIDataGridViewTextBoxColumn.DataPropertyName = "API";
+            this.aPIDataGridViewTextBoxColumn.HeaderText = "API";
+            this.aPIDataGridViewTextBoxColumn.Name = "aPIDataGridViewTextBoxColumn";
+            this.aPIDataGridViewTextBoxColumn.ReadOnly = true;
+            this.aPIDataGridViewTextBoxColumn.Visible = false;
             // 
             // frmShowPanels
             // 
@@ -400,16 +410,17 @@
         private DevComponents.DotNetBar.ButtonX btnEdit;
         private DevComponents.DotNetBar.Controls.Line line1;
         private DevComponents.DotNetBar.Controls.DataGridViewX DGrid;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgRadif;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn senderDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgGuid;
-        private System.Windows.Forms.DataGridViewTextBoxColumn modifiedDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn statusDataGridViewCheckBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn aPIDataGridViewTextBoxColumn;
         private DevComponents.DotNetBar.ButtonX btnOther;
         private DevComponents.DotNetBar.ButtonItem btnDef;
         private DevComponents.DotNetBar.ButtonItem btnRemain;
         private DevComponents.DotNetBar.ButtonItem btnLog;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgRadif;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn senderDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn IsDefult;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgGuid;
+        private System.Windows.Forms.DataGridViewTextBoxColumn modifiedDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn statusDataGridViewCheckBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn aPIDataGridViewTextBoxColumn;
     }
 }

@@ -551,6 +551,10 @@
       <Project>{8b34c014-5867-42f1-85c9-55ed88f3759d}</Project>
       <Name>Advertise</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Cities\Cities.csproj">
+      <Project>{3b865c8f-f1a2-4362-8e0a-98c9139184ad}</Project>
+      <Name>Cities</Name>
+    </ProjectReference>
     <ProjectReference Include="..\EntityCache\EntityCache.csproj">
       <Project>{cc417799-f38c-4997-8491-510eb1c15f74}</Project>
       <Name>EntityCache</Name>

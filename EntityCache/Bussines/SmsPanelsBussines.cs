@@ -17,6 +17,16 @@ namespace EntityCache.Bussines
         public string Name { get; set; }
         public string Sender { get; set; }
         public string API { get; set; }
+        public bool IsDefult
+        {
+            get
+            {
+                var defPanel= SettingsBussines.Get("defPanel");
+                if (defPanel == null) return false;
+                if (Guid.Parse(defPanel.Value) != Guid) return false;
+                return true;
+            }
+        }
 
 
 

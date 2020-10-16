@@ -1731,7 +1731,7 @@ namespace Advertise.Classes
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        public async Task<List<BuildingViewModel>> GetBuildingAsync(EnRequestType reqType, decimal fPrice1, decimal sPrice1, decimal fPrice2, decimal sPrice2, int metrazh1, int metrazh2, int count)
+        public async Task<List<BuildingViewModel>> GetBuildingAsync(EnRequestType reqType, decimal fPrice1, decimal sPrice1, decimal fPrice2, decimal sPrice2, int metrazh1, int metrazh2, int count, List<string> regionList)
         {
             var res = new List<BuildingViewModel>();
             try
@@ -1774,30 +1774,54 @@ namespace Advertise.Classes
 
                 if (reqType == EnRequestType.Rahn)
                 {
+                    //محل
+                    if (regionList != null && regionList.Count > 0)
+                    {
+                        _driver.FindElements(By.ClassName("browse-accordion__title"))
+                            ?.FirstOrDefault(q => q.Text == "محل")?.Click();
+                        await Utility.Wait();
+                        _driver.FindElement(By.ClassName("browse-select-field__value-container"))?.Click();
+                        await Utility.Wait();
+                        foreach (var item in regionList)
+                        {
+                            _driver.FindElement(By.Id("react-select-location-select-input"))?.SendKeys(item + "\n");
+                            await Utility.Wait();
+                        }
+                    }
+
                     var listVadiee = _driver.FindElements(By.Id("react-select-int-field-input")).ToList();
                     //رهن
-                    _driver.FindElements(By.ClassName("browse-accordion__title"))
-                        ?.FirstOrDefault(q => q.Text == "ودیعه")?.Click();
-                    await Utility.Wait(1);
-                    listVadiee[0]?.SendKeys(fPrice1 + "\n");
-                    await Utility.Wait(1);
-                    listVadiee[1]?.SendKeys(sPrice1 + "\n");
+                    if (fPrice1 != 0 || sPrice1 != 0)
+                    {
+                        _driver.FindElements(By.ClassName("browse-accordion__title"))
+                            ?.FirstOrDefault(q => q.Text == "ودیعه")?.Click();
+                        await Utility.Wait(1);
+                        listVadiee[0]?.SendKeys(fPrice1 + "\n");
+                        await Utility.Wait(1);
+                        listVadiee[1]?.SendKeys(sPrice1 + "\n");
+                    }
 
                     //اجاره
-                    _driver.FindElements(By.ClassName("browse-accordion__title"))
-                        ?.FirstOrDefault(q => q.Text == "اجاره")?.Click();
-                    await Utility.Wait(1);
-                    listVadiee[2]?.SendKeys(fPrice2 + "\n");
-                    await Utility.Wait(1);
-                    listVadiee[3]?.SendKeys(sPrice2 + "\n");
+                    if (fPrice2 != 0 || sPrice2 != 0)
+                    {
+                        _driver.FindElements(By.ClassName("browse-accordion__title"))
+                            ?.FirstOrDefault(q => q.Text == "اجاره")?.Click();
+                        await Utility.Wait(1);
+                        listVadiee[2]?.SendKeys(fPrice2 + "\n");
+                        await Utility.Wait(1);
+                        listVadiee[3]?.SendKeys(sPrice2 + "\n");
+                    }
 
                     //متراژ
-                    _driver.FindElements(By.ClassName("browse-accordion__title"))
-                        ?.FirstOrDefault(q => q.Text == "متراژ")?.Click();
-                    await Utility.Wait(1);
-                    listVadiee[4]?.SendKeys(metrazh1 + "\n");
-                    await Utility.Wait(1);
-                    listVadiee[5]?.SendKeys(metrazh2 + "\n");
+                    if (metrazh1 != 0 || metrazh2 != 0)
+                    {
+                        _driver.FindElements(By.ClassName("browse-accordion__title"))
+                            ?.FirstOrDefault(q => q.Text == "متراژ")?.Click();
+                        await Utility.Wait(1);
+                        listVadiee[4]?.SendKeys(metrazh1 + "\n");
+                        await Utility.Wait(1);
+                        listVadiee[5]?.SendKeys(metrazh2 + "\n");
+                    }
 
 
                     var j = 0;
@@ -1806,7 +1830,7 @@ namespace Advertise.Classes
                     {
                         if (j == count) return res;
 
-                        if(_driver.Url.Contains("https://divar.ir/v/")) _driver.Navigate().Back();
+                        if (_driver.Url.Contains("https://divar.ir/v/")) _driver.Navigate().Back();
 
                         await Utility.Wait(1);
                         var viewModel = new BuildingViewModel();
@@ -1861,6 +1885,7 @@ namespace Advertise.Classes
                         viewModel.Description = _driver
                             .FindElement(By.ClassName("kt-description-row__text"))?.Text;
                         viewModel.Parent = "سایت دیوار";
+                        viewModel.Type = EnRequestType.Rahn;
 
                         res.Add(viewModel);
 
@@ -1871,7 +1896,110 @@ namespace Advertise.Classes
                 }
                 else if (reqType == EnRequestType.Forush)
                 {
+                    //محل
+                    if (regionList != null && regionList.Count > 0)
+                    {
+                        _driver.FindElements(By.ClassName("browse-accordion__title"))
+                            ?.FirstOrDefault(q => q.Text == "محل")?.Click();
+                        await Utility.Wait();
+                        _driver.FindElement(By.ClassName("browse-select-field__value-container"))?.Click();
+                        await Utility.Wait();
+                        foreach (var item in regionList)
+                        {
+                            _driver.FindElement(By.Id("react-select-location-select-input"))?.SendKeys(item + "\n");
+                            await Utility.Wait();
+                        }
+                    }
 
+                    var listVadiee = _driver.FindElements(By.Id("react-select-int-field-input")).ToList();
+                    //فی کل
+                    if (fPrice1 != 0 || sPrice1 != 0)
+                    {
+                        _driver.FindElements(By.ClassName("browse-accordion__title"))
+                            ?.FirstOrDefault(q => q.Text == "قیمت کل")?.Click();
+                        await Utility.Wait(1);
+                        listVadiee[0]?.SendKeys(fPrice1 + "\n");
+                        await Utility.Wait(1);
+                        listVadiee[1]?.SendKeys(sPrice1 + "\n");
+                    }
+
+                    //متراژ
+                    if (metrazh1 != 0 || metrazh2 != 0)
+                    {
+                        _driver.FindElements(By.ClassName("browse-accordion__title"))
+                            ?.FirstOrDefault(q => q.Text == "متراژ")?.Click();
+                        await Utility.Wait(1);
+                        listVadiee[2]?.SendKeys(metrazh1 + "\n");
+                        await Utility.Wait(1);
+                        listVadiee[3]?.SendKeys(metrazh2 + "\n");
+                    }
+
+                    var j = 0;
+
+                    for (var i = 0; j < count; i++)
+                    {
+                        if (j == count) return res;
+
+                        if (_driver.Url.Contains("https://divar.ir/v/")) _driver.Navigate().Back();
+
+                        await Utility.Wait(1);
+                        var viewModel = new BuildingViewModel();
+                        _driver.FindElements(By.ClassName("kt-post-card__body"))[i + 1]?.Click();
+                        await Utility.Wait(2);
+
+                        _driver.FindElement(By.ClassName("post-actions__get-contact")).Click();
+                        await Utility.Wait(1.5);
+
+                        var a = _driver.FindElements(By.ClassName("kt-button"))
+                            .FirstOrDefault(q => q.Text == "با قوانین دیوار موافقم");
+                        await Utility.Wait();
+                        if (a != null)
+                            _driver.FindElements(By.ClassName("kt-button"))
+                                .FirstOrDefault(q => q.Text == "با قوانین دیوار موافقم")?.Click();
+                        await Utility.Wait();
+
+                        var num = _driver.FindElement(By.ClassName("kt-unexpandable-row__action")).Text.FixString();
+                        if (num != "(پنهان‌شده؛ چت کنید)") viewModel.Mobile = num;
+
+                        var pList = _driver.FindElements(By.ClassName("kt-unexpandable-row__value")).ToList();
+
+                        viewModel.Region = _driver.FindElements(By.ClassName("kt-unexpandable-row__action"))[1]?.Text.FixString();
+                        viewModel.Address = _driver.FindElements(By.ClassName("kt-unexpandable-row__action"))[1]?.Text.FixString();
+                        viewModel.Metrazh = (int)pList[1]?.Text?.FixString()
+                            .Replace("متر", "")?.ParseToInt();
+                        viewModel.SaleSakht = pList[2]?.Text.FixString();
+                        viewModel.RoomCount = pList[3]?.Text.FixString();
+                        var p1 = pList[4]?.Text.FixString()?.Replace("تومان", "")?.Replace("٫", "");
+                        viewModel.Price1 = p1.ParseToDecimal() * 10;
+
+                        var options = new List<string>();
+                        if (pList.Count == 10)
+                        {
+                            viewModel.Tabaqe = pList[6]?.Text?.FixString();
+                            options.Add($"پارکینگ: {pList[7]?.Text}");
+                            options.Add($"انباری: {pList[8]?.Text}");
+                            options.Add($"بالکن: {pList[9]?.Text}");
+                        }
+                        else if (pList.Count == 11)
+                        {
+                            viewModel.Tabaqe = pList[7]?.Text?.FixString();
+                            options.Add($"پارکینگ: {pList[8]?.Text}");
+                            options.Add($"انباری: {pList[9]?.Text}");
+                            options.Add($"بالکن: {pList[10]?.Text}");
+                        }
+
+                        viewModel.Options = options;
+                        viewModel.Description = _driver
+                            .FindElement(By.ClassName("kt-description-row__text"))?.Text;
+                        viewModel.Parent = "سایت دیوار";
+                        viewModel.Type = EnRequestType.Forush;
+
+                        res.Add(viewModel);
+
+                        j++;
+
+                        _driver.Navigate().Back();
+                    }
                 }
             }
             catch (Exception ex)

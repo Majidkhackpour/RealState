@@ -240,7 +240,7 @@ namespace Payamak.Panel
             }
         }
 
-        private void btnDef_Click(object sender, EventArgs e)
+        private async void btnDef_Click(object sender, EventArgs e)
         {
             try
             {
@@ -251,6 +251,8 @@ namespace Payamak.Panel
                 Settings.Classes.Payamak.DefaultPanelGuid = guid.ToString();
 
                 frmNotification.PublicInfo.ShowMessage("پنل پیش فرض با موفقیت تغییر کرد");
+
+                await LoadDataAsync(ST);
             }
             catch (Exception ex)
             {
