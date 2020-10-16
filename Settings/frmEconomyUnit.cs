@@ -154,7 +154,7 @@ namespace Settings
                 clsEconomyUnit.ManagerFax = txtFax.Text;
                 clsEconomyUnit.ManagerName = txtManagerName.Text;
                 clsEconomyUnit.ManagerEmail = txtEmail.Text;
-                clsEconomyUnit.ManagerRegion = cmbRegion.SelectedValue.ToString();
+                clsEconomyUnit.ManagerRegion = cmbRegion.SelectedValue?.ToString();
                 clsEconomyUnit.ManagerAddress = txtAddress.Text;
                 clsEconomyUnit.EconomyType = cmbType.Text;
                 clsEconomyUnit.EconomyState = cmbState.SelectedValue.ToString();

@@ -515,7 +515,7 @@ namespace RealState
         {
             try
             {
-                var res = await clsErtegha.StartErteghaAsync();
+                var res = await clsErtegha.StartErteghaAsync(AppSettings.DefaultConnectionString);
                 if (!res.HasError)
                 {
                     MessageBox.Show("بازسازی اطلاعات با موفقیت انجام شد", "پیغام سیستم", MessageBoxButtons.OK,

@@ -8,12 +8,12 @@ namespace Ertegha
 {
     public class clsErtegha
     {
-        public static async Task<ReturnedSaveFuncInfo> StartErteghaAsync()
+        public static async Task<ReturnedSaveFuncInfo> StartErteghaAsync(string connectionString)
         {
             var res = new ReturnedSaveFuncInfo();
             try
             {
-                var cn = new SqlConnection(Settings.AppSettings.DefaultConnectionString);
+                var cn = new SqlConnection(connectionString);
                 res.AddReturnedValue(await DataBaseUtilities.RunScript.RunAsync(Properties.Resources.Ertegha, cn));
                 res.ThrowExceptionIfError();
             }
@@ -26,6 +26,7 @@ namespace Ertegha
             return res;
         }
 
-        public static ReturnedSaveFuncInfo StartErtegha() => AsyncContext.Run(StartErteghaAsync);
+        public static ReturnedSaveFuncInfo StartErtegha(string connectionString) =>
+            AsyncContext.Run(() => StartErteghaAsync(connectionString));
     }
 }

@@ -195,6 +195,7 @@
     <Compile Include="WorkingYear\frmWorkingYearMain.Designer.cs">
       <DependentUpon>frmWorkingYearMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="WorkingYear\WorkingYear.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -205,6 +206,10 @@
     <None Include="Properties\DataSources\EntityCache.Bussines.StatesBussines.datasource" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\DataBaseUtilities\DataBaseUtilities\DataBaseUtilities\DataBaseUtilities.csproj">
+      <Project>{6c91d45f-9ab2-4202-916b-dc256bdc02d7}</Project>
+      <Name>DataBaseUtilities</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\Services\Services\Services\Services.csproj">
       <Project>{dcb5bde2-6238-422d-ad4e-f53afce9bf30}</Project>
       <Name>Services</Name>
@@ -212,6 +217,14 @@
     <ProjectReference Include="..\EntityCache\EntityCache.csproj">
       <Project>{cc417799-f38c-4997-8491-510eb1c15f74}</Project>
       <Name>EntityCache</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Ertegha\Ertegha.csproj">
+      <Project>{5da0bf3c-deb8-4075-aa1b-8f5a17e17823}</Project>
+      <Name>Ertegha</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Notification\Notification.csproj">
+      <Project>{44a0f109-df64-482c-befb-df20038ee4df}</Project>
+      <Name>Notification</Name>
     </ProjectReference>
     <ProjectReference Include="..\PacketParser\PacketParser.csproj">
       <Project>{7e235f22-ae73-4698-9951-0f092ac91850}</Project>
@@ -256,6 +269,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Properties\DataSources\Settings.WorkingYear.WorkingYear.datasource" />
     <None Include="Resources\tab-checkbox__.png" />
   </ItemGroup>
   <ItemGroup>

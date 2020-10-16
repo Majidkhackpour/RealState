@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -36,11 +37,18 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmShowWorkingYears));
             this.label1 = new System.Windows.Forms.Label();
             this.DGrid = new DevComponents.DotNetBar.Controls.DataGridViewX();
+            this.dgName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgGuid = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.connectionStringDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.workingYearBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.btnSelect = new DevComponents.DotNetBar.ButtonX();
             this.btnCreate = new DevComponents.DotNetBar.ButtonX();
             this.btnEdit = new DevComponents.DotNetBar.ButtonX();
             this.btnDelete = new DevComponents.DotNetBar.ButtonX();
+            this.btnRestore = new DevComponents.DotNetBar.ButtonX();
+            this.txtConnectionString = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.workingYearBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -68,6 +76,7 @@
             this.DGrid.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.DGrid.AutoGenerateColumns = false;
             this.DGrid.BackgroundColor = System.Drawing.Color.White;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
@@ -78,6 +87,11 @@
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.DGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.DGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dgName,
+            this.dgGuid,
+            this.connectionStringDataGridViewTextBoxColumn});
+            this.DGrid.DataSource = this.workingYearBindingSource;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
             dataGridViewCellStyle3.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
@@ -112,6 +126,35 @@
             this.DGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DGrid.Size = new System.Drawing.Size(384, 252);
             this.DGrid.TabIndex = 55719;
+            this.DGrid.Click += new System.EventHandler(this.DGrid_Click);
+            // 
+            // dgName
+            // 
+            this.dgName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dgName.DataPropertyName = "DbName";
+            this.dgName.HeaderText = "عنوان";
+            this.dgName.Name = "dgName";
+            this.dgName.ReadOnly = true;
+            // 
+            // dgGuid
+            // 
+            this.dgGuid.DataPropertyName = "Guid";
+            this.dgGuid.HeaderText = "Guid";
+            this.dgGuid.Name = "dgGuid";
+            this.dgGuid.ReadOnly = true;
+            this.dgGuid.Visible = false;
+            // 
+            // connectionStringDataGridViewTextBoxColumn
+            // 
+            this.connectionStringDataGridViewTextBoxColumn.DataPropertyName = "ConnectionString";
+            this.connectionStringDataGridViewTextBoxColumn.HeaderText = "ConnectionString";
+            this.connectionStringDataGridViewTextBoxColumn.Name = "connectionStringDataGridViewTextBoxColumn";
+            this.connectionStringDataGridViewTextBoxColumn.ReadOnly = true;
+            this.connectionStringDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // workingYearBindingSource
+            // 
+            this.workingYearBindingSource.DataSource = typeof(Settings.WorkingYear.WorkingYear);
             // 
             // btnSelect
             // 
@@ -131,6 +174,7 @@
             this.btnSelect.TabIndex = 0;
             this.btnSelect.Text = "انتخاب";
             this.btnSelect.TextColor = System.Drawing.Color.White;
+            this.btnSelect.Click += new System.EventHandler(this.btnSelect_Click);
             // 
             // btnCreate
             // 
@@ -170,6 +214,7 @@
             this.btnEdit.TabIndex = 2;
             this.btnEdit.Text = "ویرایش سال کاری جاری";
             this.btnEdit.TextColor = System.Drawing.Color.White;
+            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
             // 
             // btnDelete
             // 
@@ -189,6 +234,37 @@
             this.btnDelete.TabIndex = 3;
             this.btnDelete.Text = "حذف سال کاری جاری";
             this.btnDelete.TextColor = System.Drawing.Color.White;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
+            // btnRestore
+            // 
+            this.btnRestore.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnRestore.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnRestore.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.btnRestore.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnRestore.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.btnRestore.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnRestore.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.btnRestore.Location = new System.Drawing.Point(4, 201);
+            this.btnRestore.Name = "btnRestore";
+            this.btnRestore.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
+            this.btnRestore.Size = new System.Drawing.Size(143, 31);
+            this.btnRestore.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
+            this.btnRestore.TabIndex = 3;
+            this.btnRestore.Text = "بازگردانی اطلاعات";
+            this.btnRestore.TextColor = System.Drawing.Color.White;
+            this.btnRestore.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
+            // txtConnectionString
+            // 
+            this.txtConnectionString.Enabled = false;
+            this.txtConnectionString.Font = new System.Drawing.Font("B Yekan", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.txtConnectionString.Location = new System.Drawing.Point(4, 316);
+            this.txtConnectionString.Name = "txtConnectionString";
+            this.txtConnectionString.ReadOnly = true;
+            this.txtConnectionString.Size = new System.Drawing.Size(533, 24);
+            this.txtConnectionString.TabIndex = 55720;
             // 
             // frmShowWorkingYears
             // 
@@ -196,6 +272,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(540, 352);
             this.ControlBox = false;
+            this.Controls.Add(this.txtConnectionString);
+            this.Controls.Add(this.btnRestore);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnEdit);
             this.Controls.Add(this.btnCreate);
@@ -214,7 +292,9 @@
             this.Padding = new System.Windows.Forms.Padding(27, 92, 27, 31);
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.Style = MetroFramework.MetroColorStyle.Green;
+            this.Load += new System.EventHandler(this.frmShowWorkingYears_Load);
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.workingYearBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -228,5 +308,11 @@
         private DevComponents.DotNetBar.ButtonX btnCreate;
         private DevComponents.DotNetBar.ButtonX btnEdit;
         private DevComponents.DotNetBar.ButtonX btnDelete;
+        private System.Windows.Forms.BindingSource workingYearBindingSource;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgGuid;
+        private System.Windows.Forms.DataGridViewTextBoxColumn connectionStringDataGridViewTextBoxColumn;
+        private DevComponents.DotNetBar.ButtonX btnRestore;
+        private System.Windows.Forms.TextBox txtConnectionString;
     }
 }

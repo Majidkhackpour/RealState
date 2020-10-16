@@ -1,12 +1,13 @@
 ﻿using EntityCache.Core;
 using EntityCache.SqlServerPersistence;
+using Persistence;
 using Persistence.Model;
 
 namespace EntityCache.Assistence
 {
     public static class UnitOfWork
     {
-        private static readonly ModelContext db = new ModelContext();
+        private static readonly ModelContext db = new ModelContext(Cache.ConnectionString);
 
         private static IUsersRepository _usersRepository;
         private static IStatesRepository _statesRepository;

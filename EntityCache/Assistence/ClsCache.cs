@@ -18,7 +18,6 @@ namespace EntityCache.Assistence
             var config = new MapperConfiguration(c => { c.AddProfile(new SqlProfile()); });
             Mappings.Default = new Mapper(config);
             UpdateMigration();
-            AsyncContext.Run(AddDefaults.InsertDefaultDataAsync);
         }
         private static void UpdateMigration()
         {
@@ -46,6 +45,17 @@ namespace EntityCache.Assistence
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
                 return false;
+            }
+        }
+        public static void InserDefults()
+        {
+            try
+            {
+                AsyncContext.Run(AddDefaults.InsertDefaultDataAsync);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
     }

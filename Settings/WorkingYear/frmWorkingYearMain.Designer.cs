@@ -31,7 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmWorkingYearMain));
             this.txtDbName = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.buttonX1 = new DevComponents.DotNetBar.ButtonX();
+            this.btnConString = new DevComponents.DotNetBar.ButtonX();
             this.btnFinish = new DevComponents.DotNetBar.ButtonX();
             this.btnCancel = new DevComponents.DotNetBar.ButtonX();
             this.SuspendLayout();
@@ -53,24 +53,25 @@
             this.label1.TabIndex = 10;
             this.label1.Text = "عنوان سال کاری";
             // 
-            // buttonX1
+            // btnConString
             // 
-            this.buttonX1.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.buttonX1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.btnConString.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnConString.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonX1.BackColor = System.Drawing.Color.DarkSlateGray;
-            this.buttonX1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.buttonX1.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
-            this.buttonX1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.buttonX1.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.buttonX1.Location = new System.Drawing.Point(30, 50);
-            this.buttonX1.Name = "buttonX1";
-            this.buttonX1.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
-            this.buttonX1.Size = new System.Drawing.Size(302, 31);
-            this.buttonX1.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
-            this.buttonX1.TabIndex = 1;
-            this.buttonX1.Text = "تنظیم پارامترهای اتصال";
-            this.buttonX1.TextColor = System.Drawing.Color.White;
+            this.btnConString.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.btnConString.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnConString.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.btnConString.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnConString.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.btnConString.Location = new System.Drawing.Point(30, 50);
+            this.btnConString.Name = "btnConString";
+            this.btnConString.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
+            this.btnConString.Size = new System.Drawing.Size(302, 31);
+            this.btnConString.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
+            this.btnConString.TabIndex = 1;
+            this.btnConString.Text = "تنظیم پارامترهای اتصال";
+            this.btnConString.TextColor = System.Drawing.Color.White;
+            this.btnConString.Click += new System.EventHandler(this.btnConString_Click);
             // 
             // btnFinish
             // 
@@ -116,7 +117,7 @@
             this.ControlBox = false;
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnFinish);
-            this.Controls.Add(this.buttonX1);
+            this.Controls.Add(this.btnConString);
             this.Controls.Add(this.txtDbName);
             this.Controls.Add(this.label1);
             this.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
@@ -131,6 +132,8 @@
             this.Padding = new System.Windows.Forms.Padding(27, 92, 27, 31);
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.Style = MetroFramework.MetroColorStyle.Green;
+            this.Load += new System.EventHandler(this.frmWorkingYearMain_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmWorkingYearMain_KeyDown);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -140,7 +143,7 @@
 
         private System.Windows.Forms.TextBox txtDbName;
         private System.Windows.Forms.Label label1;
-        private DevComponents.DotNetBar.ButtonX buttonX1;
+        private DevComponents.DotNetBar.ButtonX btnConString;
         private DevComponents.DotNetBar.ButtonX btnFinish;
         private DevComponents.DotNetBar.ButtonX btnCancel;
     }

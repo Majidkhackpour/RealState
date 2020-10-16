@@ -4,6 +4,7 @@ using System.Text;
 using System.Threading.Tasks;
 using EntityCache.Assistence.Defualts;
 using EntityCache.Bussines;
+using Persistence;
 using Persistence.Model;
 using Services;
 using Services.Access;
@@ -14,7 +15,7 @@ namespace EntityCache.Assistence
     {
         public static async Task InsertDefaultDataAsync()
         {
-            var dbContext = new ModelContext();
+            var dbContext = new ModelContext(Cache.ConnectionString);
             var res = new ReturnedSaveFuncInfo();
 
             #region Users

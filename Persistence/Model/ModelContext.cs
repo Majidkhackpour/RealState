@@ -12,7 +12,7 @@ namespace Persistence.Model
                 new MigrateDatabaseToLatestVersion<ModelContext, Configuration>());
         }
 
-        public ModelContext() : base("name=ModelContext")
+        public ModelContext() : base(Cache.ConnectionString)
         {
             Database.SetInitializer(
                 new MigrateDatabaseToLatestVersion<ModelContext, Configuration>());

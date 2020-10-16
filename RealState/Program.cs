@@ -35,28 +35,16 @@ namespace RealState
             Application.SetCompatibleTextRenderingDefault(false);
 
 
-            //ConfigConnectionString
-            var reg = clsRegistery.GetConnectionRegistery("BuildingCn");
-            if (string.IsNullOrEmpty(reg.value))
-            {
-                var frm = new frmSetConnectionString(ENSource.Building, AppSettings.DefaultConnectionString);
-                if (frm.ShowDialog() != DialogResult.OK) return;
-            }
-
-            //var res_ = clsErtegha.StartErtegha();
-            //if (res_.HasError)
-            //{
-            //    MessageBox.Show("خطا در بازسازی اطلاعات", "پیغام سیستم", MessageBoxButtons.OK,
-            //        MessageBoxIcon.Error);
-            //    return;
-            //}
-            //MessageBox.Show("بازسازی اطلاعات با موفقیت انجام شد", "پیغام سیستم", MessageBoxButtons.OK,
-            //    MessageBoxIcon.Information);
             var frmYear = new frmShowWorkingYears();
-            frmYear.ShowDialog();
+            if (frmYear.ShowDialog() != DialogResult.OK) return;
 
             //Config Cache
             ClsCache.Init(AppSettings.DefaultConnectionString);
+
+            clsErtegha.StartErtegha(AppSettings.DefaultConnectionString);
+            
+            ClsCache.InserDefults();
+            
             var color = Color.FromArgb(255, 192, 128);
             clsNotification.Init(color);
 
@@ -124,16 +112,6 @@ namespace RealState
 
             if (string.IsNullOrEmpty(clsEconomyUnit.EconomyName))
             {
-                var res = clsErtegha.StartErtegha();
-                if (res.HasError)
-                {
-                    MessageBox.Show("خطا در بازسازی اطلاعات", "پیغام سیستم", MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
-                    return;
-                }
-                MessageBox.Show("بازسازی اطلاعات با موفقیت انجام شد", "پیغام سیستم", MessageBoxButtons.OK,
-                    MessageBoxIcon.Information);
-
                 var frm = new frmEconomyUnit();
                 if (frm.ShowDialog() == DialogResult.Cancel) Application.Exit();
             }
