@@ -138,7 +138,7 @@ namespace Payamak.Panel
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
                 if (ST)
                 {
-                    if (MessageBox.Show(
+                    if (MessageBox.Show(this,
                             $@"آیا از حذف {DGrid[dgName.Index, DGrid.CurrentRow.Index].Value} اطمینان دارید؟", "حذف",
                             MessageBoxButtons.YesNo,
                             MessageBoxIcon.Question) == DialogResult.No) return;
@@ -152,7 +152,7 @@ namespace Payamak.Panel
                 }
                 else
                 {
-                    if (MessageBox.Show(
+                    if (MessageBox.Show(this,
                             $@"آیا از فعال کردن {DGrid[dgName.Index, DGrid.CurrentRow.Index].Value} اطمینان دارید؟", "حذف",
                             MessageBoxButtons.YesNo,
                             MessageBoxIcon.Question) == DialogResult.No) return;
@@ -178,7 +178,7 @@ namespace Payamak.Panel
             try
             {
                 var frm = new frmPanelMain();
-                if (frm.ShowDialog() == DialogResult.OK)
+                if (frm.ShowDialog(this) == DialogResult.OK)
                     await LoadDataAsync(ST);
             }
             catch (Exception ex)
@@ -201,7 +201,7 @@ namespace Payamak.Panel
                 }
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
                 var frm = new frmPanelMain(guid, false);
-                if (frm.ShowDialog() == DialogResult.OK)
+                if (frm.ShowDialog(this) == DialogResult.OK)
                     await LoadDataAsync(ST, txtSearch.Text);
             }
             catch (Exception ex)
@@ -218,7 +218,7 @@ namespace Payamak.Panel
                 if (DGrid.CurrentRow == null) return;
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
                 var frm = new frmPanelMain(guid, true);
-                frm.ShowDialog();
+                frm.ShowDialog(this);
             }
             catch (Exception ex)
             {
@@ -282,7 +282,7 @@ namespace Payamak.Panel
                 var api = new Sms.Api(panel.API.Trim());
                 var res = api.AccountInfo();
 
-                MessageBox.Show($"مانده حساب پنل {panel.Name} {res.RemainCredit} ریال می باشد");
+                MessageBox.Show(this,$"مانده حساب پنل {panel.Name} {res.RemainCredit} ریال می باشد");
             }
             catch (Exception ex)
             {
@@ -301,7 +301,7 @@ namespace Payamak.Panel
                 if (panel == null) return;
 
                 var frm = new frmSmsLog(panel);
-                frm.ShowDialog();
+                frm.ShowDialog(this);
             }
             catch (Exception ex)
             {

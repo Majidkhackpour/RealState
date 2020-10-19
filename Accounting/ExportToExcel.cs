@@ -11,12 +11,12 @@ namespace Accounting
 {
     public class ExportToExcel
     {
-        public static void ExportGardesh(IEnumerable<GardeshHesabBussines> list)
+        public static void ExportGardesh(IEnumerable<GardeshHesabBussines> list,IWin32Window owner)
         {
             try
             {
                 var sfd = new SaveFileDialog() { Filter = "Excel Files|*.xls" };
-                if (sfd.ShowDialog() != DialogResult.OK) return;
+                if (sfd.ShowDialog(owner) != DialogResult.OK) return;
                 var excel = new Microsoft.Office.Interop.Excel.Application();
                 var wb = excel.Workbooks.Add(XlSheetType.xlWorksheet);
                 var ws = (Worksheet)excel.ActiveSheet;
@@ -24,7 +24,7 @@ namespace Accounting
                 var index = 1;
 
                 var frm = new frmSplash(list.ToList().Count);
-                frm.Show();
+                frm.Show(owner);
 
 
                 //Add column

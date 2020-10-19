@@ -57,13 +57,13 @@ namespace Accounting.Payement
             try
             {
                 var frm = new frmShowPeoples(true);
-                if (frm.ShowDialog() != DialogResult.OK) return;
+                if (frm.ShowDialog(this) != DialogResult.OK) return;
                 SelectedGuid = frm.SelectedGuid;
                 AccountingType = EnAccountingType.Peoples;
                 if (type == EnSanadType.Auto)
                 {
                     var frm1 = new frmShowPardakht(frm.SelectedGuid, EnAccountingType.Peoples);
-                    frm1.ShowDialog();
+                    frm1.ShowDialog(this);
                     return;
                 }
 
@@ -81,13 +81,13 @@ namespace Accounting.Payement
             try
             {
                 var frm = new frmShowUsers(true);
-                if (frm.ShowDialog() != DialogResult.OK) return;
+                if (frm.ShowDialog(this) != DialogResult.OK) return;
                 SelectedGuid = frm.SelectedGuid;
                 AccountingType = EnAccountingType.Users;
                 if (type == EnSanadType.Auto)
                 {
                     var frm1 = new frmShowPardakht(frm.SelectedGuid, EnAccountingType.Users);
-                    frm1.ShowDialog();
+                    frm1.ShowDialog(this);
                     return;
                 }
                 DialogResult = DialogResult.OK;
@@ -104,13 +104,13 @@ namespace Accounting.Payement
             try
             {
                 var frm = new frmShowHazine(true);
-                if (frm.ShowDialog() != DialogResult.OK) return;
+                if (frm.ShowDialog(this) != DialogResult.OK) return;
                 SelectedGuid = frm.SelectedGuid;
                 AccountingType = EnAccountingType.Hazine;
                 if (type == EnSanadType.Auto)
                 {
                     var frm1 = new frmShowPardakht(frm.SelectedGuid, EnAccountingType.Hazine);
-                    frm1.ShowDialog();
+                    frm1.ShowDialog(this);
                 }
                 DialogResult = DialogResult.OK;
                 Close();

@@ -32,7 +32,7 @@ namespace Settings.WorkingYear
             try
             {
                 var frm = new frmWorkingYearMain();
-                if (frm.ShowDialog() == DialogResult.OK) LoadData();
+                if (frm.ShowDialog(this) == DialogResult.OK) LoadData();
             }
             catch (Exception ex)
             {
@@ -51,7 +51,7 @@ namespace Settings.WorkingYear
 
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
                 var frm = new frmWorkingYearMain(guid);
-                if (frm.ShowDialog() == DialogResult.OK) LoadData();
+                if (frm.ShowDialog(this) == DialogResult.OK) LoadData();
             }
             catch (Exception ex)
             {
@@ -66,7 +66,7 @@ namespace Settings.WorkingYear
                 if (DGrid.RowCount <= 0) return;
                 if (DGrid.CurrentRow == null) return;
 
-                if (MessageBox.Show(
+                if (MessageBox.Show(this,
                         $@"آیا از حذف {DGrid[dgName.Index, DGrid.CurrentRow.Index].Value} اطمینان دارید؟", "حذف",
                         MessageBoxButtons.YesNo,
                         MessageBoxIcon.Question) == DialogResult.No) return;

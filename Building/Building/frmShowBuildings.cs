@@ -215,7 +215,7 @@ namespace Building.Building
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
                 if (ST)
                 {
-                    if (MessageBox.Show(
+                    if (MessageBox.Show(this,
                             $@" آیا از حذف ملک{DGrid[dgCode.Index, DGrid.CurrentRow.Index].Value} اطمینان دارید؟", "حذف",
                             MessageBoxButtons.YesNo,
                             MessageBoxIcon.Question) == DialogResult.No) return;
@@ -233,7 +233,7 @@ namespace Building.Building
                 }
                 else
                 {
-                    if (MessageBox.Show(
+                    if (MessageBox.Show(this,
                             $@"آیا از فعال کردن ملک{DGrid[dgCode.Index, DGrid.CurrentRow.Index].Value} اطمینان دارید؟", "حذف",
                             MessageBoxButtons.YesNo,
                             MessageBoxIcon.Question) == DialogResult.No) return;
@@ -261,7 +261,7 @@ namespace Building.Building
             try
             {
                 var frm = new frmBuildingMain();
-                if (frm.ShowDialog() == DialogResult.OK)
+                if (frm.ShowDialog(this) == DialogResult.OK)
                     LoadData(ST);
             }
             catch (Exception ex)
@@ -284,7 +284,7 @@ namespace Building.Building
                 }
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
                 var frm = new frmBuildingMain(guid, false);
-                if (frm.ShowDialog() == DialogResult.OK)
+                if (frm.ShowDialog(this) == DialogResult.OK)
                     LoadData(ST, txtSearch.Text);
             }
             catch (Exception ex)
@@ -301,7 +301,7 @@ namespace Building.Building
                 if (DGrid.CurrentRow == null) return;
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
                 var frm = new frmBuildingMain(guid, true);
-                frm.ShowDialog();
+                frm.ShowDialog(this);
             }
             catch (Exception ex)
             {
@@ -338,7 +338,7 @@ namespace Building.Building
                         "وضعیت ملک هم اکنون موجود می باشد");
                     return;
                 }
-                if (MessageBox.Show(
+                if (MessageBox.Show(this,
                         $@"آیا از اعمال تغییرات اطمینان دارید؟", "تغییر وضعیت ملک",
                         MessageBoxButtons.YesNo,
                         MessageBoxIcon.Question) == DialogResult.No) return;
@@ -374,7 +374,7 @@ namespace Building.Building
                         "وضعیت ملک هم اکنون واگذارشده می باشد");
                     return;
                 }
-                if (MessageBox.Show(
+                if (MessageBox.Show(this,
                         $@"آیا از اعمال تغییرات اطمینان دارید؟", "تغییر وضعیت ملک",
                         MessageBoxButtons.YesNo,
                         MessageBoxIcon.Question) == DialogResult.No) return;
@@ -464,7 +464,7 @@ namespace Building.Building
             try
             {
                 var frm = new frmSetPrintSize();
-                if (frm.ShowDialog() != DialogResult.OK) return;
+                if (frm.ShowDialog(this) != DialogResult.OK) return;
 
                 if (frm._PrintType != EnPrintType.Excel)
                 {
@@ -473,7 +473,7 @@ namespace Building.Building
                     return;
                 }
 
-                ExportToExcel.ExportBuilding(list);
+                ExportToExcel.ExportBuilding(list, this);
             }
             catch (Exception ex)
             {
@@ -495,7 +495,7 @@ namespace Building.Building
                 buList.Add(bu);
 
                 var frm = new frmShowSimcard(true);
-                if (frm.ShowDialog() == DialogResult.OK)
+                if (frm.ShowDialog(this) == DialogResult.OK)
                     simList.Add(await SimcardBussines.GetAsync(frm.SelectedGuid));
 
 
@@ -522,7 +522,7 @@ namespace Building.Building
                 buList.Add(bu);
 
                 var frm = new frmShowSimcard(true);
-                if (frm.ShowDialog() == DialogResult.OK)
+                if (frm.ShowDialog(this) == DialogResult.OK)
                     simList.Add(await SimcardBussines.GetAsync(frm.SelectedGuid));
 
 

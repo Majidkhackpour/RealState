@@ -61,7 +61,7 @@ namespace Accounting
             try
             {
                 var frm = new frmPayeMentFilter(EnSanadType.Dasti);
-                if (frm.ShowDialog() == DialogResult.OK)
+                if (frm.ShowDialog(this) == DialogResult.OK)
                 {
                     bedGuid = frm.SelectedGuid;
                     bedType = frm.AccountingType;
@@ -100,7 +100,7 @@ namespace Accounting
             try
             {
                 var frm = new frmReceptionFilter(EnSanadType.Dasti);
-                if (frm.ShowDialog() == DialogResult.OK)
+                if (frm.ShowDialog(this) == DialogResult.OK)
                 { 
                     besGuid = frm.SelectedGuid;
                     besType = frm.AccountingType;

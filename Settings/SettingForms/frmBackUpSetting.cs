@@ -59,7 +59,7 @@ namespace Settings.SettingForms
             try
             {
                 var ff = new FolderBrowserDialog();
-                if (ff.ShowDialog() == DialogResult.OK)
+                if (ff.ShowDialog(this) == DialogResult.OK)
                     txtPath.Text = ff.SelectedPath;
             }
             catch (Exception ex)

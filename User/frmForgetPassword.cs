@@ -152,7 +152,7 @@ namespace User
                 }
 
                 var frm = new frmRegisterPassword(cls);
-                if (frm.ShowDialog() == DialogResult.OK)
+                if (frm.ShowDialog(this) == DialogResult.OK)
                     Close();
             }
             catch (Exception ex)

@@ -155,7 +155,7 @@ namespace RealState
             SetButtomLables();
             SetTaghvim();
             var naqz = await NaqzBussines.SetNaqzAsync();
-            new frmNaqz(naqz).ShowDialog();
+            new frmNaqz(naqz).ShowDialog(this);
 
             SetAccess();
         }
@@ -178,7 +178,7 @@ namespace RealState
             try
             {
                 var frm = new frmShowPeoples(false);
-                frm.ShowDialog();
+                frm.ShowDialog(this);
             }
             catch (Exception ex)
             {
@@ -191,7 +191,7 @@ namespace RealState
             try
             {
                 var frm = new frmShowCities();
-                frm.ShowDialog();
+                frm.ShowDialog(this);
             }
             catch (Exception ex)
             {
@@ -204,7 +204,7 @@ namespace RealState
             try
             {
                 var frm = new frmShowRegions();
-                frm.ShowDialog();
+                frm.ShowDialog(this);
             }
             catch (Exception ex)
             {
@@ -217,7 +217,7 @@ namespace RealState
             try
             {
                 var frm = new frmShowBuildingOption();
-                frm.ShowDialog();
+                frm.ShowDialog(this);
             }
             catch (Exception ex)
             {
@@ -230,7 +230,7 @@ namespace RealState
             try
             {
                 var frm = new frmShowBuildingAccountType();
-                frm.ShowDialog();
+                frm.ShowDialog(this);
             }
             catch (Exception ex)
             {
@@ -243,7 +243,7 @@ namespace RealState
             try
             {
                 var frm = new frmShowFloorCover();
-                frm.ShowDialog();
+                frm.ShowDialog(this);
             }
             catch (Exception ex)
             {
@@ -256,7 +256,7 @@ namespace RealState
             try
             {
                 var frm = new frmShowKitchenService();
-                frm.ShowDialog();
+                frm.ShowDialog(this);
             }
             catch (Exception ex)
             {
@@ -269,7 +269,7 @@ namespace RealState
             try
             {
                 var frm = new frmShowDocumentType();
-                frm.ShowDialog();
+                frm.ShowDialog(this);
             }
             catch (Exception ex)
             {
@@ -282,7 +282,7 @@ namespace RealState
             try
             {
                 var frm = new frmShowRentalAuthority();
-                frm.ShowDialog();
+                frm.ShowDialog(this);
             }
             catch (Exception ex)
             {
@@ -295,7 +295,7 @@ namespace RealState
             try
             {
                 var frm = new frmShowBuildingView();
-                frm.ShowDialog();
+                frm.ShowDialog(this);
             }
             catch (Exception ex)
             {
@@ -308,7 +308,7 @@ namespace RealState
             try
             {
                 var frm = new frmShowBuildingCondition();
-                frm.ShowDialog();
+                frm.ShowDialog(this);
             }
             catch (Exception ex)
             {
@@ -321,7 +321,7 @@ namespace RealState
             try
             {
                 var frm = new frmShowBuildingType();
-                frm.ShowDialog();
+                frm.ShowDialog(this);
             }
             catch (Exception ex)
             {
@@ -334,7 +334,7 @@ namespace RealState
             try
             {
                 var frm = new frmShowBuildings(false);
-                frm.ShowDialog();
+                frm.ShowDialog(this);
             }
             catch (Exception ex)
             {
@@ -347,7 +347,7 @@ namespace RealState
             try
             {
                 var frm = new frmFilterForm();
-                frm.ShowDialog();
+                frm.ShowDialog(this);
             }
             catch (Exception ex)
             {
@@ -360,7 +360,7 @@ namespace RealState
             try
             {
                 var frm = new frmShowRequest();
-                frm.ShowDialog();
+                frm.ShowDialog(this);
             }
             catch (Exception ex)
             {
@@ -373,7 +373,7 @@ namespace RealState
             try
             {
                 var frm = new frmShowContract();
-                frm.ShowDialog();
+                frm.ShowDialog(this);
             }
             catch (Exception ex)
             {
@@ -386,7 +386,7 @@ namespace RealState
             try
             {
                 var frm = new frmShowUsers(false);
-                frm.ShowDialog();
+                frm.ShowDialog(this);
             }
             catch (Exception ex)
             {
@@ -399,7 +399,7 @@ namespace RealState
             try
             {
                 var frm = new frmShowHazine(false);
-                frm.ShowDialog();
+                frm.ShowDialog(this);
             }
             catch (Exception ex)
             {
@@ -412,7 +412,7 @@ namespace RealState
             try
             {
                 var frm = new frmShowAccounts();
-                frm.ShowDialog();
+                frm.ShowDialog(this);
             }
             catch (Exception ex)
             {
@@ -425,7 +425,7 @@ namespace RealState
             try
             {
                 var frm = new frmReceptionFilter(EnSanadType.Auto);
-                frm.ShowDialog();
+                frm.ShowDialog(this);
             }
             catch (Exception ex)
             {
@@ -438,7 +438,7 @@ namespace RealState
             try
             {
                 var frm = new frmPayeMentFilter(EnSanadType.Auto);
-                frm.ShowDialog();
+                frm.ShowDialog(this);
             }
             catch (Exception ex)
             {
@@ -451,7 +451,7 @@ namespace RealState
             try
             {
                 var frm = new frmSanad();
-                frm.ShowDialog();
+                frm.ShowDialog(this);
             }
             catch (Exception ex)
             {
@@ -464,7 +464,7 @@ namespace RealState
             try
             {
                 var frm = new frmRobotPanel();
-                frm.ShowDialog();
+                frm.ShowDialog(this);
             }
             catch (Exception ex)
             {
@@ -477,7 +477,7 @@ namespace RealState
             try
             {
                 var frm = new frmSendSms();
-                frm.ShowDialog();
+                frm.ShowDialog(this);
             }
             catch (Exception ex)
             {
@@ -490,7 +490,7 @@ namespace RealState
             try
             {
                 var frm = new frmShowPanels();
-                frm.ShowDialog();
+                frm.ShowDialog(this);
             }
             catch (Exception ex)
             {
@@ -515,15 +515,15 @@ namespace RealState
         {
             try
             {
-                var res = await clsErtegha.StartErteghaAsync(AppSettings.DefaultConnectionString);
+                var res = await clsErtegha.StartErteghaAsync(AppSettings.DefaultConnectionString,this);
                 if (!res.HasError)
                 {
-                    MessageBox.Show("بازسازی اطلاعات با موفقیت انجام شد", "پیغام سیستم", MessageBoxButtons.OK,
+                    MessageBox.Show(this,"بازسازی اطلاعات با موفقیت انجام شد", "پیغام سیستم", MessageBoxButtons.OK,
                         MessageBoxIcon.Information);
                     return;
                 }
 
-                MessageBox.Show("خطا در بازسازی اطلاعات", "پیغام سیستم", MessageBoxButtons.OK,
+                MessageBox.Show(this,"خطا در بازسازی اطلاعات", "پیغام سیستم", MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
             }
             catch (Exception ex)
@@ -537,7 +537,7 @@ namespace RealState
             try
             {
                 var frm = new frmUserLogFilter();
-                frm.ShowDialog();
+                frm.ShowDialog(this);
             }
             catch (Exception ex)
             {
@@ -550,7 +550,7 @@ namespace RealState
             try
             {
                 var frm = new frmShowNotes();
-                frm.ShowDialog();
+                frm.ShowDialog(this);
             }
             catch (Exception ex)
             {
@@ -563,7 +563,7 @@ namespace RealState
             try
             {
                 var frm = new frmAccessLevel();
-                frm.ShowDialog();
+                frm.ShowDialog(this);
             }
             catch (Exception ex)
             {
@@ -576,7 +576,7 @@ namespace RealState
             try
             {
                 var frm = new frmSettings();
-                frm.ShowDialog();
+                frm.ShowDialog(this);
             }
             catch (Exception ex)
             {

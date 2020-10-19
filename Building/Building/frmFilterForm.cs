@@ -274,7 +274,7 @@ namespace Building.Building
 
 
                 var frm = new frmBuildingAdvanceSearch(list);
-                frm.ShowDialog();
+                frm.ShowDialog(this);
 
             }
             catch (Exception ex)
@@ -429,7 +429,7 @@ namespace Building.Building
             try
             {
                 var frm = new frmSelectRegion();
-                if (frm.ShowDialog() == DialogResult.OK)
+                if (frm.ShowDialog(this) == DialogResult.OK)
                     RegionList = frm.Guids;
             }
             catch (Exception ex)

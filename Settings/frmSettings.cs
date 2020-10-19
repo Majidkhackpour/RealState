@@ -89,7 +89,7 @@ namespace Settings
                 pnlContent.Controls.Add(frm);
                 frm.Dock = DockStyle.Fill;
                 pnlContent.AutoScroll = true;
-                frm.Show();
+                frm.Show(this);
             }
             catch (Exception ex)
             {

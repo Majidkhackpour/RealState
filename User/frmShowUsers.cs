@@ -115,7 +115,7 @@ namespace User
             try
             {
                 var frm = new frmUserMain();
-                if (frm.ShowDialog() == DialogResult.OK)
+                if (frm.ShowDialog(this) == DialogResult.OK)
                     await LoadDataAsync(ST);
             }
             catch (Exception ex)
@@ -143,7 +143,7 @@ namespace User
                 }
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
                 var frm = new frmUserMain(guid, false);
-                if (frm.ShowDialog() == DialogResult.OK)
+                if (frm.ShowDialog(this) == DialogResult.OK)
                     await LoadDataAsync(ST, txtSearch.Text);
             }
             catch (Exception ex)
@@ -161,7 +161,7 @@ namespace User
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
                 if (ST)
                 {
-                    if (MessageBox.Show(
+                    if (MessageBox.Show(this,
                             $@"آیا از حذف {DGrid[dgName.Index, DGrid.CurrentRow.Index].Value} اطمینان دارید؟", "حذف",
                             MessageBoxButtons.YesNo,
                             MessageBoxIcon.Question) == DialogResult.No) return;
@@ -177,7 +177,7 @@ namespace User
                 }
                 else
                 {
-                    if (MessageBox.Show(
+                    if (MessageBox.Show(this,
                             $@"آیا از فعال کردن {DGrid[dgName.Index, DGrid.CurrentRow.Index].Value} اطمینان دارید؟", "حذف",
                             MessageBoxButtons.YesNo,
                             MessageBoxIcon.Question) == DialogResult.No) return;
@@ -220,7 +220,7 @@ namespace User
                 if (DGrid.CurrentRow == null) return;
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
                 var frm = new frmUserMain(guid, true);
-                frm.ShowDialog();
+                frm.ShowDialog(this);
             }
             catch (Exception ex)
             {
@@ -288,7 +288,7 @@ namespace User
                 if (DGrid.CurrentRow == null) return;
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
                 var frm = new frmGardeshHesab(guid, EnAccountingType.Users);
-                frm.ShowDialog();
+                frm.ShowDialog(this);
             }
             catch (Exception ex)
             {

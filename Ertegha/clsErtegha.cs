@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data.SqlClient;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using Nito.AsyncEx;
 using Services;
 
@@ -8,13 +9,13 @@ namespace Ertegha
 {
     public class clsErtegha
     {
-        public static async Task<ReturnedSaveFuncInfo> StartErteghaAsync(string connectionString)
+        public static async Task<ReturnedSaveFuncInfo> StartErteghaAsync(string connectionString, IWin32Window owner)
         {
             var res = new ReturnedSaveFuncInfo();
             try
             {
                 var cn = new SqlConnection(connectionString);
-                res.AddReturnedValue(await DataBaseUtilities.RunScript.RunAsync(Properties.Resources.Ertegha, cn));
+                res.AddReturnedValue(await DataBaseUtilities.RunScript.RunAsync(owner, Properties.Resources.Ertegha, cn));
                 res.ThrowExceptionIfError();
             }
             catch (Exception ex)
@@ -26,7 +27,7 @@ namespace Ertegha
             return res;
         }
 
-        public static ReturnedSaveFuncInfo StartErtegha(string connectionString) =>
-            AsyncContext.Run(() => StartErteghaAsync(connectionString));
+        public static ReturnedSaveFuncInfo StartErtegha(string connectionString, IWin32Window owner) =>
+            AsyncContext.Run(() => StartErteghaAsync(connectionString, owner));
     }
 }

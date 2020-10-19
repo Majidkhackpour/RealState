@@ -26,6 +26,7 @@ namespace RealState
         [STAThread]
         static void Main()
         {
+
             //if (!isAdmin())
             //{
             //    MessageBox.Show("اجرا نمایید Run As Adminstrator لطفا برنامه را در حالت");
@@ -33,18 +34,18 @@ namespace RealState
             //}
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-
+            var owner = new frmMain();
 
             var frmYear = new frmShowWorkingYears();
-            if (frmYear.ShowDialog() != DialogResult.OK) return;
+            if (frmYear.ShowDialog(owner) != DialogResult.OK) return;
 
             //Config Cache
             ClsCache.Init(AppSettings.DefaultConnectionString);
 
-            clsErtegha.StartErtegha(AppSettings.DefaultConnectionString);
-            
+            clsErtegha.StartErtegha(AppSettings.DefaultConnectionString, owner);
+
             ClsCache.InserDefults();
-            
+
             var color = Color.FromArgb(255, 192, 128);
             clsNotification.Init(color);
 
@@ -64,14 +65,14 @@ namespace RealState
                 if (codeDb != codeHdd)
                 {
                     var frm = new SoftwareLock.frmClient(serialNumber, true);
-                    if (frm.ShowDialog() != DialogResult.OK) return;
+                    if (frm.ShowDialog(owner) != DialogResult.OK) return;
                     serialNumber = clsRegistery.GetRegistery("U1001ML");
                 }
 
                 if (string.IsNullOrEmpty(serialNumber))
                 {
                     var frm = new SoftwareLock.frmClient(serialNumber, true);
-                    if (frm.ShowDialog() != DialogResult.OK) return;
+                    if (frm.ShowDialog(owner) != DialogResult.OK) return;
                 }
 
             }
@@ -82,9 +83,9 @@ namespace RealState
                 if (fDate < DateTime.Now)
                 {
                     //Expire Free Time
-                    MessageBox.Show("مهلت استفاده 10 روزه رایگان شما از نرم افزار به اتمام رسیده است");
+                    MessageBox.Show(owner, "مهلت استفاده 10 روزه رایگان شما از نرم افزار به اتمام رسیده است");
                     var frm = new SoftwareLock.frmClient("", false);
-                    if (frm.ShowDialog() != DialogResult.OK) return;
+                    if (frm.ShowDialog(owner) != DialogResult.OK) return;
                 }
             }
 
@@ -100,7 +101,7 @@ namespace RealState
 
             if (currentVersion < dbVersion)
             {
-                MessageBox.Show($"نسخه فایل اجرایی {currentVersion} و نسخه بانک اطلاعاتی {dbVersion} می باشد. \r\n" +
+                MessageBox.Show(owner, $"نسخه فایل اجرایی {currentVersion} و نسخه بانک اطلاعاتی {dbVersion} می باشد. \r\n" +
                                 $"لطفا جهت بروزرسانی نسخه اجرایی خود، با تیم پشتیبانی تماس حاصل فرمایید");
                 return;
             }
@@ -113,19 +114,19 @@ namespace RealState
             if (string.IsNullOrEmpty(clsEconomyUnit.EconomyName))
             {
                 var frm = new frmEconomyUnit();
-                if (frm.ShowDialog() == DialogResult.Cancel) Application.Exit();
+                if (frm.ShowDialog(owner) == DialogResult.Cancel) Application.Exit();
             }
 
 
             var splash = new frmSplashCircle();
-            splash.ShowDialog();
+            splash.ShowDialog(owner);
 
 
             var logForm = new frmLogin();
-            if (logForm.ShowDialog() != DialogResult.OK) return;
+            if (logForm.ShowDialog(owner) != DialogResult.OK) return;
 
             var frmMain = new frmMain();
-            frmMain.ShowDialog();
+            frmMain.ShowDialog(owner);
 
         }
     }

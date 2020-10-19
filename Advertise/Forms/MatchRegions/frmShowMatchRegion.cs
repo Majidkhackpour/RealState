@@ -101,7 +101,7 @@ namespace Advertise.Forms.MatchRegions
                 var reg = list.FirstOrDefault(q => q.Guid == guid);
                 if (reg == null) return;
                 var frm = new frmMatchRegionMain(reg);
-                frm.ShowDialog();
+                frm.ShowDialog(this);
             }
             catch (Exception ex)
             {

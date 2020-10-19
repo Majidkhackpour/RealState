@@ -28,7 +28,7 @@ namespace Notification
         public void ShowMessage(string message)
         {
             var a = new frmNotification { lblText = { Text = message } };
-            a.Show();
+            a.Show(this);
         }
 
         private void ClosingTimer_Tick(object sender, System.EventArgs e)

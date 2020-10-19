@@ -49,7 +49,7 @@ namespace Advertise.Forms
             try
             {
                 var frm = new frmShowSimcard(false);
-                frm.ShowDialog();
+                frm.ShowDialog(this);
             }
             catch (Exception ex)
             {
@@ -66,7 +66,7 @@ namespace Advertise.Forms
         {
             try
             {
-                if (MessageBox.Show(
+                if (MessageBox.Show(this,
                         "توجه داشته باشید... درصورتیکه از قبل داده ای را دریافت نموده باشید و مجددا نسبت به دریافت آن اقدام نمایدد، می بایست داده های موجود در صفحه تطبیق را هم اصلاح نمایید. آیا ادامه میدهید؟",
                         "هشدار", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No) return;
 
@@ -158,7 +158,7 @@ namespace Advertise.Forms
             try
             {
                 var frm = new frmShowMatchRegion();
-                frm.ShowDialog();
+                frm.ShowDialog(this);
             }
             catch (Exception ex)
             {
@@ -186,7 +186,7 @@ namespace Advertise.Forms
             try
             {
                 var frm = new frmRobotSetting();
-                frm.ShowDialog();
+                frm.ShowDialog(this);
             }
             catch (Exception ex)
             {

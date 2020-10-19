@@ -80,7 +80,7 @@ namespace Peoples
             try
             {
                 var frm = new OpenFileDialog { Multiselect = false };
-                if (frm.ShowDialog() != DialogResult.OK) return;
+                if (frm.ShowDialog(this) != DialogResult.OK) return;
                 txtPath.Text = frm.FileName;
                 LoadSheets();
                 if (cmbSheet.Items.Count > 0)
@@ -270,7 +270,7 @@ namespace Peoples
 
 
                 var frm = new frmSplash(DGrid.RowCount);
-                frm.Show();
+                frm.Show(this);
                 for (var i = 0; i < DGrid.RowCount; i++)
                 {
                     var x = await GetItemsAsync(i);

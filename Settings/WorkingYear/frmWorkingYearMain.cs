@@ -120,7 +120,7 @@ namespace Settings.WorkingYear
             try
             {
                 var frm = new FRMInitialSettings();
-                if (frm.ShowDialog() == DialogResult.OK)
+                if (frm.ShowDialog(this) == DialogResult.OK)
                     ConnectionString = frm.ConnectionString;
             }
             catch (Exception ex)

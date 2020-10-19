@@ -168,7 +168,7 @@ namespace User
         {
             try
             {
-                new frmForgetPassword().ShowDialog();
+                new frmForgetPassword().ShowDialog(this);
             }
             catch (Exception ex)
             {

@@ -479,7 +479,7 @@ namespace Building.BuildingRequest
             try
             {
                 var frm = new frmShowPeoples(true);
-                if (frm.ShowDialog() != DialogResult.OK) return;
+                if (frm.ShowDialog(this) != DialogResult.OK) return;
                 asker = PeoplesBussines.Get(frm.SelectedGuid);
                 LoadAsker();
             }
@@ -494,7 +494,7 @@ namespace Building.BuildingRequest
             try
             {
                 var frm = new frmPeoples();
-                if (frm.ShowDialog() != DialogResult.OK) return;
+                if (frm.ShowDialog(this) != DialogResult.OK) return;
                 asker = PeoplesBussines.Get(frm.SelectedGuid);
                 LoadAsker();
             }

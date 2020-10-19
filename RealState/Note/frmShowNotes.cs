@@ -167,7 +167,7 @@ namespace RealState.Note
                     return;
                 }
 
-                if (MessageBox.Show(
+                if (MessageBox.Show(this,
                         $@"آیا از اعمال تغییرات اطمینان دارید؟", "حذف",
                         MessageBoxButtons.YesNo,
                         MessageBoxIcon.Question) == DialogResult.No) return;
@@ -201,7 +201,7 @@ namespace RealState.Note
                     return;
                 }
 
-                if (MessageBox.Show(
+                if (MessageBox.Show(this,
                         $@"آیا از اعمال تغییرات اطمینان دارید؟", "حذف",
                         MessageBoxButtons.YesNo,
                         MessageBoxIcon.Question) == DialogResult.No) return;
@@ -236,7 +236,7 @@ namespace RealState.Note
                     return;
                 }
 
-                if (MessageBox.Show(
+                if (MessageBox.Show(this,
                         $@"آیا از اعمال تغییرات اطمینان دارید؟", "حذف",
                         MessageBoxButtons.YesNo,
                         MessageBoxIcon.Question) == DialogResult.No) return;
@@ -261,7 +261,7 @@ namespace RealState.Note
             try
             {
                 var frm = new frmNoteMain();
-                if (frm.ShowDialog() == DialogResult.OK)
+                if (frm.ShowDialog(this) == DialogResult.OK)
                     await LoadDataAsync();
             }
             catch (Exception ex)
@@ -278,7 +278,7 @@ namespace RealState.Note
                 if (DGrid.CurrentRow == null) return;
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
                 var frm = new frmNoteMain(guid, false);
-                if (frm.ShowDialog() == DialogResult.OK)
+                if (frm.ShowDialog(this) == DialogResult.OK)
                     await LoadDataAsync(txtSearch.Text);
             }
             catch (Exception ex)
@@ -295,7 +295,7 @@ namespace RealState.Note
                 if (DGrid.CurrentRow == null) return;
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
                 var frm = new frmNoteMain(guid, true);
-                frm.ShowDialog();
+                frm.ShowDialog(this);
             }
             catch (Exception ex)
             {

@@ -155,7 +155,7 @@ namespace Payamak
                 if (lbxNumbers.Items.Count <= 0) return;
                 if (lbxNumbers.SelectedItem == null) return;
 
-                if (MessageBox.Show($"آیا از حذف شماره {lbxNumbers.SelectedItem} از لیست ارسال اطمینان دارید؟",
+                if (MessageBox.Show(this,$"آیا از حذف شماره {lbxNumbers.SelectedItem} از لیست ارسال اطمینان دارید؟",
                         "حذف شماره از لیست ارسال", MessageBoxButtons.YesNo, MessageBoxIcon.Question) !=
                     DialogResult.Yes) return;
 
@@ -202,7 +202,7 @@ namespace Payamak
 
                 var index = 0;
                 var frm = new frmSplash(list.Count);
-                frm.Show();
+                frm.Show(this);
 
                 var res = sApi.Send(panel.Sender, list, txtMessage.Text);
 
@@ -242,7 +242,7 @@ namespace Payamak
             try
             {
                 var frm = new OpenFileDialog { Multiselect = false };
-                if (frm.ShowDialog() != DialogResult.OK) return;
+                if (frm.ShowDialog(this) != DialogResult.OK) return;
 
                 var stream = File.Open(frm.FileName, FileMode.Open, FileAccess.Read);
                 var reader = ExcelReaderFactory.CreateReader(stream);
@@ -275,7 +275,7 @@ namespace Payamak
             try
             {
                 var frm = new frmPhoneBookSearch(peGuid);
-                if (frm.ShowDialog() != DialogResult.OK) return;
+                if (frm.ShowDialog(this) != DialogResult.OK) return;
                 var list=new List<string>();
                 foreach (var item in frm.SelectedNumber)
                     list.Add(item);

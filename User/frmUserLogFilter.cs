@@ -89,7 +89,7 @@ namespace User
                 var d2 = Calendar.ShamsiToMiladi(txtDate2.Text);
 
                 var frm = new frmUserLog(userGuid, d1, d2);
-                frm.ShowDialog();
+                frm.ShowDialog(this);
             }
             catch (Exception ex)
             {

@@ -48,7 +48,7 @@ namespace User
             try
             {
                 var frm = new frmSetPrintSize();
-                if (frm.ShowDialog() != DialogResult.OK) return;
+                if (frm.ShowDialog(this) != DialogResult.OK) return;
 
                 if (frm._PrintType != EnPrintType.Excel)
                 {
@@ -58,7 +58,7 @@ namespace User
                     return;
                 }
 
-                ExportToExcel.ExportLog(list);
+                ExportToExcel.ExportLog(list,this);
             }
             catch (Exception ex)
             {

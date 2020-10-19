@@ -743,7 +743,7 @@ namespace Building.Contract
             try
             {
                 var frm = new frmShowPeoples(true);
-                if (frm.ShowDialog() != DialogResult.OK) return;
+                if (frm.ShowDialog(this) != DialogResult.OK) return;
                 fSide = PeoplesBussines.Get(frm.SelectedGuid);
                 LoadfSide();
             }
@@ -758,7 +758,7 @@ namespace Building.Contract
             try
             {
                 var frm = new frmShowPeoples(true);
-                if (frm.ShowDialog() != DialogResult.OK) return;
+                if (frm.ShowDialog(this) != DialogResult.OK) return;
                 sSide = PeoplesBussines.Get(frm.SelectedGuid);
                 LoadsSide();
             }
@@ -773,7 +773,7 @@ namespace Building.Contract
             try
             {
                 var frm = new frmShowBuildings(true);
-                if (frm.ShowDialog() != DialogResult.OK) return;
+                if (frm.ShowDialog(this) != DialogResult.OK) return;
                 building = BuildingBussines.Get(frm.SelectedGuid);
                 if (building.BuildingStatus == EnBuildingStatus.Vagozar)
                 {

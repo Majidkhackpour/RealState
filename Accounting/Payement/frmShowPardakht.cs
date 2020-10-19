@@ -165,7 +165,7 @@ namespace Accounting.Payement
             try
             {
                 var frm = new frmPardakhtMain(_receptorGuid, type);
-                if (frm.ShowDialog() == DialogResult.OK)
+                if (frm.ShowDialog(this) == DialogResult.OK)
                     await LoadDataAsync(ST);
             }
             catch (Exception ex)
@@ -188,7 +188,7 @@ namespace Accounting.Payement
                 }
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
                 var frm = new frmPardakhtMain(guid, false, type);
-                if (frm.ShowDialog() == DialogResult.OK)
+                if (frm.ShowDialog(this) == DialogResult.OK)
                     await LoadDataAsync(ST, txtSearch.Text);
             }
             catch (Exception ex)
@@ -205,7 +205,7 @@ namespace Accounting.Payement
                 if (DGrid.CurrentRow == null) return;
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
                 var frm = new frmPardakhtMain(guid, true, type);
-                frm.ShowDialog();
+                frm.ShowDialog(this);
             }
             catch (Exception ex)
             {
@@ -222,7 +222,7 @@ namespace Accounting.Payement
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
                 if (ST)
                 {
-                    if (MessageBox.Show(
+                    if (MessageBox.Show(this,
                             $@"آیا از حذف سند پرداخت اطمینان دارید؟", "حذف",
                             MessageBoxButtons.YesNo,
                             MessageBoxIcon.Question) == DialogResult.No) return;
@@ -272,7 +272,7 @@ namespace Accounting.Payement
                 }
                 else
                 {
-                    if (MessageBox.Show(
+                    if (MessageBox.Show(this,
                             $@"آیا از فعال کردن سند پرداخت اطمینان دارید؟", "حذف",
                             MessageBoxButtons.YesNo,
                             MessageBoxIcon.Question) == DialogResult.No) return;

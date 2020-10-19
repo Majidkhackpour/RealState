@@ -58,7 +58,7 @@ namespace User
             {
                 if (cmbUser.Items.Count <= 1) return;
 
-                if (!_firstindexChange && MessageBox.Show("مایل به ذخیره تنظیمات هستید ؟", "پیغام سیستم", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2, MessageBoxOptions.RightAlign) == DialogResult.Yes)
+                if (!_firstindexChange && MessageBox.Show(this,"مایل به ذخیره تنظیمات هستید ؟", "پیغام سیستم", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2, MessageBoxOptions.RightAlign) == DialogResult.Yes)
                 {
                     var user = await UserBussines.GetAsync((Guid)cmbUser.SelectedValue);
                     CurrentAccessLevel = user.UserAccess;
@@ -87,12 +87,12 @@ namespace User
                 var res = await user.SaveAsync(true);
                 if (res.HasError)
                 {
-                    MessageBox.Show(res.ErrorMessage, "خطا", MessageBoxButtons.OK,
+                    MessageBox.Show(this,res.ErrorMessage, "خطا", MessageBoxButtons.OK,
                         MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MessageBoxOptions.RightAlign);
 
                     return;
                 }
-                MessageBox.Show("سطوح دسترسی کاربر با موفقیت ذخیره شد", "پیغام سیستم", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1,
+                MessageBox.Show(this,"سطوح دسترسی کاربر با موفقیت ذخیره شد", "پیغام سیستم", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1,
                     MessageBoxOptions.RightAlign);
             }
             catch (Exception exception)

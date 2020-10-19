@@ -85,7 +85,7 @@ namespace Settings.SettingForms
             try
             {
                 var frm = new frmPanelMain();
-                if (frm.ShowDialog() == DialogResult.OK)
+                if (frm.ShowDialog(this) == DialogResult.OK)
                     await FillCmbAsync();
             }
             catch (Exception ex)

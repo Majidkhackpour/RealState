@@ -140,7 +140,7 @@ namespace Accounting
             try
             {
                 var frm = new frmSetPrintSize();
-                if (frm.ShowDialog() != DialogResult.OK) return;
+                if (frm.ShowDialog(this) != DialogResult.OK) return;
                 if (frm._PrintType != EnPrintType.Excel)
                 {
                     var cls = new ReportGenerator(StiType.Account_Performence_List, frm._PrintType)
@@ -149,7 +149,7 @@ namespace Accounting
                     return;
                 }
 
-                ExportToExcel.ExportGardesh(list);
+                ExportToExcel.ExportGardesh(list,this);
             }
             catch (Exception ex)
             {

@@ -135,7 +135,7 @@ namespace Building.Contract
             try
             {
                 var frm = new frmContractMain();
-                if (frm.ShowDialog() == DialogResult.OK)
+                if (frm.ShowDialog(this) == DialogResult.OK)
                     await LoadDataAsync(ST, txtSearch.Text);
             }
             catch (Exception ex)
@@ -166,7 +166,7 @@ namespace Building.Contract
                     return;
                 }
                 var frm = new frmContractMain(guid, false);
-                if (frm.ShowDialog() == DialogResult.OK)
+                if (frm.ShowDialog(this) == DialogResult.OK)
                     await LoadDataAsync(ST, txtSearch.Text);
             }
             catch (Exception ex)
@@ -183,7 +183,7 @@ namespace Building.Contract
                 if (DGrid.CurrentRow == null) return;
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
                 var frm = new frmContractMain(guid, true);
-                frm.ShowDialog();
+                frm.ShowDialog(this);
             }
             catch (Exception ex)
             {
@@ -200,7 +200,7 @@ namespace Building.Contract
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
                 if (ST)
                 {
-                    if (MessageBox.Show(
+                    if (MessageBox.Show(this,
                             $@"آیا از حذف قرارداد اطمینان دارید؟", "حذف",
                             MessageBoxButtons.YesNo,
                             MessageBoxIcon.Question) == DialogResult.No) return;
@@ -238,7 +238,7 @@ namespace Building.Contract
                 }
                 else
                 {
-                    if (MessageBox.Show(
+                    if (MessageBox.Show(this,
                             $@"آیا از فعال کردن سند پرداخت اطمینان دارید؟", "حذف",
                             MessageBoxButtons.YesNo,
                             MessageBoxIcon.Question) == DialogResult.No) return;
@@ -297,7 +297,7 @@ namespace Building.Contract
                         "وضعیت قرارداد هم اکنون بسته شده می باشد");
                     return;
                 }
-                if (MessageBox.Show(
+                if (MessageBox.Show(this,
                         $@"آیا از اعمال تغییرات اطمینان دارید؟", "تغییر وضعیت قرارداد",
                         MessageBoxButtons.YesNo,
                         MessageBoxIcon.Question) == DialogResult.No) return;
@@ -436,7 +436,7 @@ namespace Building.Contract
             try
             {
                 var frm = new frmSetPrintSize();
-                if (frm.ShowDialog() != DialogResult.OK) return;
+                if (frm.ShowDialog(this) != DialogResult.OK) return;
 
                 if (frm._PrintType != EnPrintType.Excel)
                 {
@@ -444,7 +444,7 @@ namespace Building.Contract
                     cls.PrintNew();
                 }
 
-                ExportToExcel.ExportContract(list);
+                ExportToExcel.ExportContract(list, this);
             }
             catch (Exception ex)
             {

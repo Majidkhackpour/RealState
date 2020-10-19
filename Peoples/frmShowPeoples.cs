@@ -229,7 +229,7 @@ namespace Peoples
             try
             {
                 var frm = new frmPeoples();
-                if (frm.ShowDialog() == DialogResult.OK)
+                if (frm.ShowDialog(this) == DialogResult.OK)
                     await LoadPeoplesAsync(ST, txtSearch.Text);
             }
             catch (Exception ex)
@@ -266,7 +266,7 @@ namespace Peoples
                 }
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
                 var frm = new frmPeoples(guid, false);
-                if (frm.ShowDialog() == DialogResult.OK)
+                if (frm.ShowDialog(this) == DialogResult.OK)
                     await LoadPeoplesAsync(ST, txtSearch.Text);
             }
             catch (Exception ex)
@@ -283,7 +283,7 @@ namespace Peoples
                 if (DGrid.CurrentRow == null) return;
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
                 var frm = new frmPeoples(guid, true);
-                frm.ShowDialog();
+                frm.ShowDialog(this);
             }
             catch (Exception ex)
             {
@@ -325,7 +325,7 @@ namespace Peoples
                             "به دلیل داشتن گردش حساب، شما مجاز به حذف شخص نمی باشید");
                         return;
                     }
-                    if (MessageBox.Show(
+                    if (MessageBox.Show(this,
                             $@"آیا از حذف {DGrid[dgName.Index, DGrid.CurrentRow.Index].Value} اطمینان دارید؟", "حذف",
                             MessageBoxButtons.YesNo,
                             MessageBoxIcon.Question) == DialogResult.No) return;
@@ -337,7 +337,7 @@ namespace Peoples
                         return;
                     }
 
-                    if (MessageBox.Show(
+                    if (MessageBox.Show(this,
                             $@"آیا شماره های شخص نیز از دفترچه تلفن حذف شود؟", "حذف",
                             MessageBoxButtons.YesNo,
                             MessageBoxIcon.Question) == DialogResult.Yes)
@@ -352,7 +352,7 @@ namespace Peoples
                 }
                 else
                 {
-                    if (MessageBox.Show(
+                    if (MessageBox.Show(this,
                             $@"آیا از فعال کردن {DGrid[dgName.Index, DGrid.CurrentRow.Index].Value} اطمینان دارید؟", "حذف",
                             MessageBoxButtons.YesNo,
                             MessageBoxIcon.Question) == DialogResult.No) return;
@@ -361,7 +361,7 @@ namespace Peoples
                     if (prd.GroupGuid == Guid.Empty)
                     {
                         var frm = new frmChangeGroup(prd);
-                        if (frm.ShowDialog() != DialogResult.OK) return;
+                        if (frm.ShowDialog(this) != DialogResult.OK) return;
                     }
 
                     var res = await prd.ChangeStatusAsync(true);
@@ -392,7 +392,7 @@ namespace Peoples
             try
             {
                 var frm = new frmPropleGroup();
-                if (frm.ShowDialog() == DialogResult.OK)
+                if (frm.ShowDialog(this) == DialogResult.OK)
                     await LoadGroupsAsync();
             }
             catch (Exception ex)
@@ -408,7 +408,7 @@ namespace Peoples
                 if (trvGroup.SelectedNode == null) return;
                 if (trvGroup.SelectedNode.Text == "همه گروه ها") return;
                 var frm = new frmPropleGroup(GroupGuid);
-                if (frm.ShowDialog() == DialogResult.OK)
+                if (frm.ShowDialog(this) == DialogResult.OK)
                     await LoadGroupsAsync();
             }
             catch (Exception ex)
@@ -439,7 +439,7 @@ namespace Peoples
                         $"گروه {trvGroup.SelectedNode.Text} بدلیل داشتن {childes.Count} شخص فعال، قادر به حذف نیست");
                     return;
                 }
-                if (MessageBox.Show($@"آیا از حذف گروه {trvGroup.SelectedNode.Text} اطمینان دارید؟", "حذف", MessageBoxButtons.YesNo,
+                if (MessageBox.Show(this,$@"آیا از حذف گروه {trvGroup.SelectedNode.Text} اطمینان دارید؟", "حذف", MessageBoxButtons.YesNo,
                         MessageBoxIcon.Question) == DialogResult.No) return;
                 var group = await PeopleGroupBussines.GetAsync(GroupGuid);
                 var res = await group.ChangeStatusAsync(false);
@@ -464,7 +464,7 @@ namespace Peoples
                 if (DGrid.CurrentRow == null) return;
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
                 var frm = new frmShowPhoneBook(guid);
-                frm.ShowDialog();
+                frm.ShowDialog(this);
             }
             catch (Exception ex)
             {
@@ -480,7 +480,7 @@ namespace Peoples
                 if (DGrid.CurrentRow == null) return;
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
                 var frm = new frmPeoplesBankAccount(guid);
-                frm.ShowDialog();
+                frm.ShowDialog(this);
             }
             catch (Exception ex)
             {
@@ -498,7 +498,7 @@ namespace Peoples
                 var pe = await PhoneBookBussines.GetAllAsync(guid, true);
 
                 var frm = new frmSendSms(pe.Select(q => q.Tell).ToList(), guid);
-                frm.ShowDialog();
+                frm.ShowDialog(this);
             }
             catch (Exception ex)
             {
@@ -540,7 +540,7 @@ namespace Peoples
             try
             {
                 var frm = new frmImportExcel();
-                if (frm.ShowDialog() == DialogResult.OK)
+                if (frm.ShowDialog(this) == DialogResult.OK)
                     await LoadPeoplesAsync(ST);
             }
             catch (Exception ex)
@@ -553,7 +553,7 @@ namespace Peoples
             try
             {
                 var frm = new frmSetPrintSize();
-                if (frm.ShowDialog() != DialogResult.OK) return;
+                if (frm.ShowDialog(this) != DialogResult.OK) return;
 
                 if (frm._PrintType != EnPrintType.Excel)
                 {
@@ -562,7 +562,7 @@ namespace Peoples
                     return;
                 }
 
-                ExportToExcel.Export(list);
+                ExportToExcel.Export(list,this);
             }
             catch (Exception ex)
             {

@@ -887,7 +887,7 @@ namespace Building.Building
             try
             {
                 var frm = new frmShowPeoples(true);
-                if (frm.ShowDialog() != DialogResult.OK) return;
+                if (frm.ShowDialog(this) != DialogResult.OK) return;
                 owner = PeoplesBussines.Get(frm.SelectedGuid);
                 LoadOwner();
             }
@@ -902,7 +902,7 @@ namespace Building.Building
             try
             {
                 var frm = new frmPeoples();
-                if (frm.ShowDialog() != DialogResult.OK) return;
+                if (frm.ShowDialog(this) != DialogResult.OK) return;
                 owner = PeoplesBussines.Get(frm.SelectedGuid);
                 LoadOwner();
             }
@@ -966,7 +966,7 @@ namespace Building.Building
                 var t = new Thread(() =>
                 {
                     var ofd = new OpenFileDialog { Multiselect = true, RestoreDirectory = true };
-                    if (ofd.ShowDialog() != DialogResult.OK) return;
+                    if (ofd.ShowDialog(this) != DialogResult.OK) return;
                     foreach (var name in ofd.FileNames)
                         lstList.Add(name);
                 });
