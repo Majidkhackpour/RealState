@@ -53,6 +53,7 @@ namespace EntityCache.Bussines
 
         public static async Task<RentalAuthorityBussines> GetAsync(Guid guid) => await UnitOfWork.RentalAuthority.GetAsync(guid);
 
+        public static async Task<RentalAuthorityBussines> GetAsync(string name) => await UnitOfWork.RentalAuthority.GetAsync(name);
 
         public async Task<ReturnedSaveFuncInfo> SaveAsync(string tranName = "")
         {

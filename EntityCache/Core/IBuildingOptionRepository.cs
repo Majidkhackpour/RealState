@@ -7,5 +7,6 @@ namespace EntityCache.Core
     public interface IBuildingOptionRepository : IRepository<BuildingOptionsBussines>
     {
         Task<bool> CheckNameAsync(string name, Guid guid);
+        Task<BuildingOptionsBussines> GetAsync(string name);
     }
 }

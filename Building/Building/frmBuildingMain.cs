@@ -136,7 +136,7 @@ namespace Building.Building
 
                 if (cls?.Guid == Guid.Empty)
                 {
-                   await NextCodeAsync();
+                    await NextCodeAsync();
                     cmbUser.SelectedValue = clsUser.CurrentUser?.Guid;
                     cmbRentalAuthority.SelectedIndex = 0;
                     cmbSellTarakom.SelectedIndex = 0;
@@ -866,7 +866,9 @@ namespace Building.Building
                     try
                     {
                         var path = Path.Combine(Application.StartupPath, "Images");
-                        var path_ = Path.Combine(path, item.ImageName + ".jpg");
+                        var path_ = "";
+                        if (item.ImageName.EndsWith(".jpg")) path_ = Path.Combine(path, item.ImageName);
+                        else path_ = Path.Combine(path, item.ImageName + ".jpg");
                         File.Copy(path_, fileName);
                     }
                     catch

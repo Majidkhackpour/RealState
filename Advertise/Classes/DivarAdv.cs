@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Threading;
@@ -2017,6 +2018,456 @@ namespace Advertise.Classes
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
                 return "";
+            }
+        }
+        public async Task GetBuildingFromDivarAsync(EnRequestType reqType)
+        {
+            try
+            {
+                var allSim = await SimcardBussines.GetAllAsync();
+                foreach (var sim in allSim)
+                {
+                    if (!sim.HasDivarToken) continue;
+                    var login = await Login(sim.Number, false);
+                    if (!login) continue;
+
+                    var city = await CitiesBussines.GetAsync(Guid.Parse(clsEconomyUnit.EconomyCity));
+
+                    _driver.FindElement(By.ClassName("city-selector")).Click();
+                    await Utility.Wait();
+                    _driver.FindElements(By.TagName("a")).LastOrDefault(q => q.Text == city.Name)?.Click();
+                    await Utility.Wait(2);
+
+                    var p = _driver.FindElements(By.ClassName("category-dropdown__icon")).Any();
+                    if (!p) return;
+                    await Utility.Wait(1);
+                    _driver.FindElements(By.ClassName("category-dropdown__icon")).FirstOrDefault()?.Click();
+                    await Utility.Wait();
+
+                    var cat = await SetCategory(reqType);
+                    if (string.IsNullOrEmpty(cat)) return;
+
+                    _driver.FindElements(By.ClassName("category-button")).FirstOrDefault(q => q.Text.Contains("املاک"))
+                        ?.Click();
+                    await Utility.Wait(1);
+
+                    _driver.FindElements(By.ClassName("category-button")).FirstOrDefault(q => q.Text == cat)
+                        ?.Click();
+
+                    await Utility.Wait(1);
+
+                    if (reqType == EnRequestType.Rahn)
+                    {
+                        try
+                        {
+                            var j = 0;
+
+
+                            for (var i = 0; j < 24; i++)
+                            {
+                                if (j == 24) return;
+
+                                if (_driver.Url.Contains("https://divar.ir/v/")) _driver.Navigate().Back();
+
+                                await Utility.Wait(1);
+                                var viewModel = new BuildingBussines
+                                {
+                                    Guid = Guid.NewGuid(),
+                                    Modified = DateTime.Now,
+                                    Status = true,
+                                    CreateDate = DateTime.Now,
+                                    Code = await BuildingBussines.NextCodeAsync(),
+                                };
+
+                                _driver.FindElements(By.ClassName("kt-post-card__body"))[i + 1]?.Click();
+                                await Utility.Wait(2);
+
+                                //Region
+                                var fullText = _driver.FindElement(By.ClassName("kt-page-title__subtitle"))?.Text;
+                                if (!string.IsNullOrEmpty(fullText))
+                                {
+                                    var indexRemovedCity = fullText.IndexOf('،');
+                                    var removedCity = fullText.Remove(0, indexRemovedCity + 1);
+                                    var indexRemovedCat = removedCity.IndexOf('|');
+                                    var regionName = removedCity.Remove(indexRemovedCat - 1, removedCity.Length - indexRemovedCat + 1);
+
+                                    var region = await RegionsBussines.GetAsync(regionName);
+                                    if (region == null)
+                                    {
+                                        region = new RegionsBussines()
+                                        {
+                                            Guid = Guid.NewGuid(),
+                                            Name = regionName,
+                                            Modified = DateTime.Now,
+                                            Status = true,
+                                            CityGuid = city.Guid
+                                        };
+                                        await region.SaveAsync();
+                                    }
+
+                                    viewModel.RegionGuid = region.Guid;
+                                    viewModel.CityGuid = city.Guid;
+                                    viewModel.Address = regionName;
+
+
+                                    //BuildingType
+                                    var typeName = removedCity.Replace(regionName, "").Replace("اجاره", "").Replace("|", "")
+                                        .Trim();
+                                    var type = await BuildingTypeBussines.GetAsync(typeName);
+                                    if (type == null)
+                                    {
+                                        type = new BuildingTypeBussines()
+                                        {
+                                            Guid = Guid.NewGuid(),
+                                            Name = typeName,
+                                            Modified = DateTime.Now,
+                                            Status = true
+                                        };
+                                        await type.SaveAsync();
+                                    }
+
+                                    viewModel.BuildingTypeGuid = type.Guid;
+                                }
+
+
+
+                                var mList = _driver.FindElements(By.ClassName("kt-group-row-item__value")).ToList();
+
+                                //Metrazh
+                                viewModel.Masahat = mList[0].Text.FixString().ParseToInt();
+
+                                //SaleSakht
+                                viewModel.SaleSakht = mList[1].Text.FixString();
+
+                                //RoomCount
+                                viewModel.RoomCount = mList[2].Text.FixString().ParseToInt();
+
+                                if (mList.Count == 6)
+                                {
+                                    viewModel.OptionList = new List<BuildingRelatedOptionsBussines>();
+
+                                    //Asansor
+                                    if (!mList[3].Text.Contains("ندارد"))
+                                    {
+                                        var evelator = await BuildingOptionsBussines.GetAsync("آسانسور");
+                                        if (evelator == null)
+                                        {
+                                            evelator = new BuildingOptionsBussines()
+                                            {
+                                                Guid = Guid.NewGuid(),
+                                                Modified = DateTime.Now,
+                                                Name = "آسانسور",
+                                                Status = true
+                                            };
+                                            await evelator.SaveAsync();
+                                        }
+
+                                        var op1 = new BuildingRelatedOptionsBussines()
+                                        {
+                                            Guid = Guid.NewGuid(),
+                                            Modified = DateTime.Now,
+                                            Status = true,
+                                            BuildingOptionGuid = evelator.Guid,
+                                            BuildinGuid = viewModel.Guid
+                                        };
+                                        viewModel.OptionList.Add(op1);
+                                    }
+
+                                    //Parking
+                                    if (!mList[4].Text.Contains("ندارد"))
+                                    {
+                                        var parking = await BuildingOptionsBussines.GetAsync("پارکینگ");
+                                        if (parking == null)
+                                        {
+                                            parking = new BuildingOptionsBussines()
+                                            {
+                                                Guid = Guid.NewGuid(),
+                                                Modified = DateTime.Now,
+                                                Name = "پارکینگ",
+                                                Status = true
+                                            };
+                                            await parking.SaveAsync();
+                                        }
+
+                                        var op2 = new BuildingRelatedOptionsBussines()
+                                        {
+                                            Guid = Guid.NewGuid(),
+                                            Modified = DateTime.Now,
+                                            Status = true,
+                                            BuildingOptionGuid = parking.Guid,
+                                            BuildinGuid = viewModel.Guid
+                                        };
+                                        viewModel.OptionList.Add(op2);
+                                    }
+
+                                    //Anbari
+                                    if (!mList[5].Text.Contains("ندارد"))
+                                    {
+                                        var anbari = await BuildingOptionsBussines.GetAsync("انباری");
+                                        if (anbari == null)
+                                        {
+                                            anbari = new BuildingOptionsBussines()
+                                            {
+                                                Guid = Guid.NewGuid(),
+                                                Modified = DateTime.Now,
+                                                Name = "انباری",
+                                                Status = true
+                                            };
+                                            await anbari.SaveAsync();
+                                        }
+
+                                        var op3 = new BuildingRelatedOptionsBussines()
+                                        {
+                                            Guid = Guid.NewGuid(),
+                                            Modified = DateTime.Now,
+                                            Status = true,
+                                            BuildingOptionGuid = anbari.Guid,
+                                            BuildinGuid = viewModel.Guid
+                                        };
+                                        viewModel.OptionList.Add(op3);
+                                    }
+                                }
+
+                                var pList = _driver.FindElements(By.ClassName("kt-unexpandable-row__value")).ToList();
+
+                                //Rahn
+                                var p1 = pList[0]?.Text.FixString()?.Replace("تومان", "")?.Replace("٫", "");
+                                viewModel.RahnPrice1 = p1.ParseToDecimal() * 10;
+
+
+                                //Ejare
+                                if (pList[1]?.Text == "مجانی")
+                                    viewModel.EjarePrice1 = 0;
+                                else
+                                {
+                                    var p2 = pList[1]?.Text.FixString()?.Replace("تومان", "")?.Replace("٫", "");
+                                    viewModel.EjarePrice1 = p2.ParseToDecimal() * 10;
+                                }
+
+
+                                //Rental
+                                if (pList.Count >= 4)
+                                {
+                                    var rent = pList[3]?.Text;
+                                    if (!string.IsNullOrEmpty(rent))
+                                    {
+                                        var rental = await RentalAuthorityBussines.GetAsync(rent);
+                                        if (rental == null)
+                                        {
+                                            rental = new RentalAuthorityBussines()
+                                            {
+                                                Guid = Guid.NewGuid(),
+                                                Name = rent,
+                                                Modified = DateTime.Now,
+                                                Status = true
+                                            };
+
+                                            await rental.SaveAsync();
+                                        }
+
+                                        viewModel.RentalAutorityGuid = rental.Guid;
+                                    }
+                                }
+                                else
+                                {
+                                    var allrent = await RentalAuthorityBussines.GetAllAsync();
+                                    var rentRand = new Random().Next(0, allrent.Count);
+                                    viewModel.RentalAutorityGuid = allrent[rentRand].Guid;
+                                }
+
+                                //Tabaqe
+                                if (pList.Count == 6)
+                                {
+                                    if (pList[5].Text.Contains("از"))
+                                    {
+                                        if (pList[5].Text.Contains("همکف"))
+                                        {
+                                            var a = pList[5].Text.Replace("همکف از", "");
+                                            viewModel.TabaqeNo = 0;
+                                            viewModel.TedadTabaqe = a.FixString().ParseToInt();
+                                        }
+                                        else
+                                        {
+                                            var a = pList[5].Text.Replace("از", "");
+                                            viewModel.TabaqeNo = a.Remove(1, 3).FixString().ParseToInt();
+                                            viewModel.TedadTabaqe = a.Remove(0, 2).FixString().ParseToInt();
+                                        }
+                                    }
+                                    else
+                                    {
+                                        viewModel.TabaqeNo = pList[5].Text.FixString().ParseToInt();
+                                        viewModel.TedadTabaqe = viewModel.TabaqeNo;
+                                    }
+                                }
+                                else
+                                {
+                                    viewModel.TabaqeNo = 0;
+                                    viewModel.TedadTabaqe = 0;
+                                }
+
+
+                                //Description
+                                viewModel.ShortDesc = _driver.FindElement(By.ClassName("kt-description-row__text"))?.Text;
+
+                                var moreDetail = _driver.FindElements(By.ClassName("kt-selector-row__title"))
+                                    .Any(q => q.Text == "نمایش همهٔ جزئیات");
+                                if (moreDetail)
+                                {
+                                    _driver.FindElements(By.ClassName("kt-selector-row__title"))
+                                        .FirstOrDefault(q => q.Text == "نمایش همهٔ جزئیات")?.Click();
+                                    await Utility.Wait(2);
+
+
+                                    var vahed = _driver.FindElements(By.ClassName("kt-base-row__title"))
+                                                    .FirstOrDefault(q => q.Text == "تعداد واحد در طبقه")?.Text?
+                                                    .ParseToInt() ?? 1;
+
+                                    var side = GetSide(_driver.FindElements(By.ClassName("kt-base-row__title"))
+                                                           .FirstOrDefault(q => q.Text == "جهت ساختمان")?.Text ?? "");
+
+                                    viewModel.Side = side;
+                                    viewModel.VahedPerTabaqe = vahed;
+
+                                    _driver.FindElement(By.ClassName("kt-icon-close"))?.Click();
+                                }
+
+
+                                //Images
+                                viewModel.GalleryList = new List<BuildingGalleryBussines>();
+                                var imgElements = _driver.FindElements(By.TagName("img"));
+                                foreach (var img in imgElements)
+                                {
+                                    var src = img.GetAttribute("src");
+                                    if (src.Contains("s100.divarcdn.com"))
+                                    {
+                                        var path = Path.Combine(Application.StartupPath, "Images");
+                                        if (!Directory.Exists(path)) Directory.CreateDirectory(path);
+                                        var name = Guid.NewGuid() + ".jpg";
+                                        var filePath = Path.Combine(path, name);
+                                        DownloadImage(src, filePath);
+                                        var im = new BuildingGalleryBussines()
+                                        {
+                                            Guid = Guid.NewGuid(),
+                                            Modified = DateTime.Now,
+                                            Status = true,
+                                            ImageName = name,
+                                            BuildingGuid = viewModel.Guid
+                                        };
+                                        viewModel.GalleryList.Add(im);
+                                    }
+                                }
+
+
+
+                                var allOwner = await PeoplesBussines.GetAllAsync();
+                                if (allOwner.Count > 0)
+                                {
+                                    var rand = new Random().Next(0, allOwner.Count);
+                                    viewModel.OwnerGuid = allOwner[rand].Guid;
+                                }
+
+                                viewModel.SellPrice = 0;
+                                viewModel.VamPrice = 0;
+                                viewModel.QestPrice = 0;
+                                viewModel.Dang = 6;
+
+                                var allDoc = await DocumentTypeBussines.GetAllAsync();
+                                var docRand = new Random().Next(0, allDoc.Count);
+                                viewModel.DocumentType = allDoc[docRand].Guid;
+
+                                viewModel.Tarakom = EnTarakom.Min;
+                                viewModel.RahnPrice2 = 0;
+                                viewModel.EjarePrice2 = 0;
+                                viewModel.IsShortTime = false;
+                                viewModel.IsOwnerHere = false;
+                                viewModel.PishPrice = 0;
+                                viewModel.PishTotalPrice = 0;
+                                viewModel.DeliveryDate = DateTime.Now;
+                                viewModel.PishDesc = "";
+                                viewModel.MoavezeDesc = "";
+                                viewModel.MosharekatDesc = "";
+                                viewModel.ZirBana = viewModel.Masahat + 15;
+
+                                var allCond = await BuildingConditionBussines.GetAllAsync();
+                                var condRand = new Random().Next(0, allCond.Count);
+                                viewModel.BuildingConditionGuid = allCond[condRand].Guid;
+
+                                var allAccType = await BuildingAccountTypeBussines.GetAllAsync();
+                                var accTypeRand = new Random().Next(0, allAccType.Count);
+                                viewModel.BuildingAccountTypeGuid = allAccType[accTypeRand].Guid;
+                                viewModel.MetrazhTejari = 0;
+
+                                var allView = await BuildingViewBussines.GetAllAsync();
+                                var viewRand = new Random().Next(0, allView.Count);
+                                viewModel.BuildingViewGuid = allView[viewRand].Guid;
+
+                                var allFloor = await FloorCoverBussines.GetAllAsync();
+                                var floorRand = new Random().Next(0, allFloor.Count);
+                                viewModel.FloorCoverGuid = allFloor[floorRand].Guid;
+
+                                var allKitchen = await KitchenServiceBussines.GetAllAsync();
+                                var kitchenRand = new Random().Next(0, allKitchen.Count);
+                                viewModel.KitchenServiceGuid = allKitchen[kitchenRand].Guid;
+
+                                viewModel.Water = EnKhadamati.Mostaqel;
+                                viewModel.Barq = EnKhadamati.Mostaqel;
+                                viewModel.Gas = EnKhadamati.Mostaqel;
+                                viewModel.Tell = EnKhadamati.Mostaqel;
+
+                                viewModel.MetrazhKouche = 0;
+                                viewModel.ErtefaSaqf = 0;
+                                viewModel.Hashie = 0;
+
+                                viewModel.DateParvane =
+                                    Calendar.MiladiToShamsi(Calendar.ShamsiToMiladi(viewModel.SaleSakht).AddYears(-1));
+                                viewModel.ParvaneSerial = "";
+
+                                viewModel.BonBast = false;
+                                viewModel.MamarJoda = true;
+                                viewModel.BuildingStatus = EnBuildingStatus.Mojod;
+
+                                var allUser = await UserBussines.GetAllAsync();
+                                var userRand = new Random().Next(0, allUser.Count);
+                                viewModel.UserGuid = allUser[userRand].Guid;
+
+
+                                await viewModel.SaveAsync();
+
+                                j++;
+                            }
+
+                            _driver.Navigate().Back();
+                        }
+                        catch { }
+                    }
+                }
+            }
+            catch { }
+        }
+        private void DownloadImage(string src, string path)
+        {
+            var webClient = new WebClient();
+            webClient.DownloadFile(src, path);
+        }
+        private EnBuildingSide GetSide(string sideName)
+        {
+            switch (sideName)
+            {
+                case "شمالی": return EnBuildingSide.One;
+                case "جنوبی": return EnBuildingSide.Tow;
+                case "شرقی": return EnBuildingSide.Three;
+                case "غربی": return EnBuildingSide.Four;
+                case "شمالی شرقی": return EnBuildingSide.Five;
+                case "شمالی غربی": return EnBuildingSide.Six;
+                case "جنوبی شرقی": return EnBuildingSide.Seven;
+                case "جنوبی غربی": return EnBuildingSide.Eight;
+                case "شمالی جنوبی دوکله": return EnBuildingSide.Nine;
+                case "شرقی غربی دوکله": return EnBuildingSide.Ten;
+                case "شمالی شرقی غربی": return EnBuildingSide.Eleven;
+                case "جنوبی شرقی غربی": return EnBuildingSide.Towelve;
+                case "شرقی شمالی جنوبی": return EnBuildingSide.Thirteen;
+                case "غربی شمالی جنوبی": return EnBuildingSide.Fourteen;
+                default: return EnBuildingSide.One;
             }
         }
         #endregion

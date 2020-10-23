@@ -7,6 +7,7 @@ using Accounting;
 using Accounting.Hazine;
 using Accounting.Payement;
 using Accounting.Reception;
+using Advertise.Classes;
 using Advertise.Forms;
 using Building.Building;
 using Building.BuildingAccountType;
@@ -582,6 +583,12 @@ namespace RealState
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
+        }
+
+        private async void button1_Click(object sender, EventArgs e)
+        {
+            var d = DivarAdv.GetInstance();
+            await d.GetBuildingFromDivarAsync(EnRequestType.Rahn);
         }
     }
 }

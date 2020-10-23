@@ -31,15 +31,15 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmUserLogFilter));
             this.groupPanel10 = new DevComponents.DotNetBar.Controls.GroupPanel();
+            this.cmbUser = new System.Windows.Forms.ComboBox();
+            this.userBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.label76 = new System.Windows.Forms.Label();
             this.txtDate1 = new BPersianCalender.BPersianCalenderTextBox();
             this.txtDate2 = new BPersianCalender.BPersianCalenderTextBox();
             this.label84 = new System.Windows.Forms.Label();
             this.label86 = new System.Windows.Forms.Label();
-            this.cmbUser = new System.Windows.Forms.ComboBox();
-            this.label76 = new System.Windows.Forms.Label();
             this.btnFinish = new DevComponents.DotNetBar.ButtonX();
             this.btnCancel = new DevComponents.DotNetBar.ButtonX();
-            this.userBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.groupPanel10.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -89,10 +89,37 @@
             this.groupPanel10.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.groupPanel10.TabIndex = 0;
             // 
+            // cmbUser
+            // 
+            this.cmbUser.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cmbUser.DataSource = this.userBindingSource;
+            this.cmbUser.DisplayMember = "Name";
+            this.cmbUser.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbUser.FormattingEnabled = true;
+            this.cmbUser.Location = new System.Drawing.Point(3, 16);
+            this.cmbUser.Name = "cmbUser";
+            this.cmbUser.Size = new System.Drawing.Size(211, 28);
+            this.cmbUser.TabIndex = 0;
+            this.cmbUser.ValueMember = "Guid";
+            // 
+            // userBindingSource
+            // 
+            this.userBindingSource.DataSource = typeof(EntityCache.Bussines.UserBussines);
+            // 
+            // label76
+            // 
+            this.label76.AutoSize = true;
+            this.label76.BackColor = System.Drawing.Color.Transparent;
+            this.label76.Location = new System.Drawing.Point(233, 19);
+            this.label76.Name = "label76";
+            this.label76.Size = new System.Drawing.Size(33, 20);
+            this.label76.TabIndex = 24;
+            this.label76.Text = "کاربر";
+            // 
             // txtDate1
             // 
             this.txtDate1.Location = new System.Drawing.Point(3, 50);
-            this.txtDate1.Miladi = new System.DateTime(((long)(0)));
+            this.txtDate1.Miladi = new System.DateTime(2020, 10, 23, 15, 57, 17, 0);
             this.txtDate1.Name = "txtDate1";
             this.txtDate1.NowDateSelected = false;
             this.txtDate1.ReadOnly = true;
@@ -104,7 +131,7 @@
             // txtDate2
             // 
             this.txtDate2.Location = new System.Drawing.Point(3, 84);
-            this.txtDate2.Miladi = new System.DateTime(((long)(0)));
+            this.txtDate2.Miladi = new System.DateTime(2020, 10, 1, 0, 0, 0, 0);
             this.txtDate2.Name = "txtDate2";
             this.txtDate2.NowDateSelected = false;
             this.txtDate2.ReadOnly = true;
@@ -132,29 +159,6 @@
             this.label86.Size = new System.Drawing.Size(46, 20);
             this.label86.TabIndex = 60;
             this.label86.Text = "از تاریخ";
-            // 
-            // cmbUser
-            // 
-            this.cmbUser.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.cmbUser.DataSource = this.userBindingSource;
-            this.cmbUser.DisplayMember = "Name";
-            this.cmbUser.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbUser.FormattingEnabled = true;
-            this.cmbUser.Location = new System.Drawing.Point(3, 16);
-            this.cmbUser.Name = "cmbUser";
-            this.cmbUser.Size = new System.Drawing.Size(211, 28);
-            this.cmbUser.TabIndex = 0;
-            this.cmbUser.ValueMember = "Guid";
-            // 
-            // label76
-            // 
-            this.label76.AutoSize = true;
-            this.label76.BackColor = System.Drawing.Color.Transparent;
-            this.label76.Location = new System.Drawing.Point(233, 19);
-            this.label76.Name = "label76";
-            this.label76.Size = new System.Drawing.Size(33, 20);
-            this.label76.TabIndex = 24;
-            this.label76.Text = "کاربر";
             // 
             // btnFinish
             // 
@@ -192,10 +196,6 @@
             this.btnCancel.Text = "انصراف (Esc)";
             this.btnCancel.TextColor = System.Drawing.Color.Black;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
-            // 
-            // userBindingSource
-            // 
-            this.userBindingSource.DataSource = typeof(EntityCache.Bussines.UserBussines);
             // 
             // frmUserLogFilter
             // 

@@ -128,5 +128,7 @@ namespace Settings.WorkingYear
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
+
+        private void DGrid_DoubleClick(object sender, EventArgs e) => btnSelect.PerformClick();
     }
 }

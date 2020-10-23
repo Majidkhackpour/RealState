@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
+using EntityCache.Assistence;
 using EntityCache.Bussines;
 using EntityCache.Core;
 using Persistence.Entities;
@@ -47,6 +48,22 @@ namespace EntityCache.SqlServerPersistence
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                return null;
+            }
+        }
+
+        public async Task<RegionsBussines> GetAsync(string name)
+        {
+            try
+            {
+                var acc = db.Regions.AsNoTracking()
+                    .FirstOrDefault(q => q.Name == name);
+
+                return Mappings.Default.Map<RegionsBussines>(acc);
+            }
+            catch (Exception exception)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(exception);
                 return null;
             }
         }

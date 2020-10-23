@@ -55,6 +55,7 @@ namespace EntityCache.Bussines
 
         public static async Task<BuildingOptionsBussines> GetAsync(Guid guid) => await UnitOfWork.BuildingOption.GetAsync(guid);
 
+        public static async Task<BuildingOptionsBussines> GetAsync(string name) => await UnitOfWork.BuildingOption.GetAsync(name);
 
         public async Task<ReturnedSaveFuncInfo> SaveAsync(string tranName = "")
         {

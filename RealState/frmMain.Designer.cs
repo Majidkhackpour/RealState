@@ -100,6 +100,7 @@
             this.lblVersion = new System.Windows.Forms.Label();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.picTaghvim = new System.Windows.Forms.PictureBox();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
@@ -702,12 +703,23 @@
             this.picTaghvim.TabIndex = 4;
             this.picTaghvim.TabStop = false;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(101, 202);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 55784;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(800, 600);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.lblEconomyName);
             this.Controls.Add(this.lblDbName);
             this.Controls.Add(this.lblVersion);
@@ -821,6 +833,7 @@
         private System.Windows.Forms.Label lblVersion;
         private System.Windows.Forms.PictureBox pictureBox5;
         private System.Windows.Forms.PictureBox picTaghvim;
+        private System.Windows.Forms.Button button1;
     }
 }
 

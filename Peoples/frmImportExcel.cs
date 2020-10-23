@@ -187,7 +187,17 @@ namespace Peoples
                 else
                 {
                     var group = PeopleGroupBussines.Get(grp);
-                    if (group == null) pe.GroupGuid = (Guid)cmbWithoutGroup.SelectedValue;
+                    if (group == null)
+                    {
+                        var g = new PeopleGroupBussines()
+                        {
+                            Guid = Guid.NewGuid(),
+                            Name = grp,
+                            ParentGuid = Guid.Empty
+                        };
+                        await g.SaveAsync();
+                        pe.GroupGuid = g.Guid;
+                    }
                     else pe.GroupGuid = group.Guid;
                 }
 
@@ -254,13 +264,6 @@ namespace Peoples
         {
             try
             {
-                if (groupBindingSource.Count <= 0)
-                {
-                    frmNotification.PublicInfo.ShowMessage("لطفا ابتدا نسبت به تعریف گر.ه اشخاص اقدام نمایید");
-                    cmbWithoutGroup.Focus();
-                    return;
-                }
-
                 if (DGrid.RowCount <= 0)
                 {
                     frmNotification.PublicInfo.ShowMessage("هیچ داده ای وجود ندارد");
@@ -268,7 +271,7 @@ namespace Peoples
                     return;
                 }
 
-
+                btnFinish.Enabled = btnCancel.Enabled = false;
                 var frm = new frmSplash(DGrid.RowCount);
                 frm.Show(this);
                 for (var i = 0; i < DGrid.RowCount; i++)
@@ -286,6 +289,10 @@ namespace Peoples
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+            finally
+            {
+                btnFinish.Enabled = btnCancel.Enabled = true;
             }
         }
 

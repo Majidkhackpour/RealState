@@ -127,6 +127,7 @@
             this.DGrid.Size = new System.Drawing.Size(384, 252);
             this.DGrid.TabIndex = 55719;
             this.DGrid.Click += new System.EventHandler(this.DGrid_Click);
+            this.DGrid.DoubleClick += new System.EventHandler(this.DGrid_DoubleClick);
             // 
             // dgName
             // 

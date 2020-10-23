@@ -535,13 +535,13 @@ namespace Peoples
             }
         }
 
-        private async void btnIpmortFromExcel_Click(object sender, EventArgs e)
+        private void btnIpmortFromExcel_Click(object sender, EventArgs e)
         {
             try
             {
                 var frm = new frmImportExcel();
                 if (frm.ShowDialog(this) == DialogResult.OK)
-                    await LoadPeoplesAsync(ST);
+                     LoadData();
             }
             catch (Exception ex)
             {

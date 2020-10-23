@@ -7,5 +7,6 @@ namespace EntityCache.Core
     public interface IRentalAuthorityRepository : IRepository<RentalAuthorityBussines>
     {
         Task<bool> CheckNameAsync(string name, Guid guid);
+        Task<RentalAuthorityBussines> GetAsync(string name);
     }
 }
