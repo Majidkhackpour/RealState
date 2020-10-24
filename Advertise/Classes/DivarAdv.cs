@@ -2061,7 +2061,7 @@ namespace Advertise.Classes
                         while (true)
                         {
                             var j = _driver.FindElements(By.ClassName("kt-post-card__body")).ToList();
-                            for (var i = 0; i < j.Count; i++)
+                            for (var i = 0; i < j.Count-1; i++)
                             {
                                 if (_driver.Url.Contains("https://divar.ir/v/")) _driver.Navigate().Back();
 
@@ -2329,7 +2329,7 @@ namespace Advertise.Classes
                                     viewModel.Side = side;
                                     viewModel.VahedPerTabaqe = vahed;
 
-                                    _driver.FindElement(By.ClassName("kt-icon-close"))?.Click();
+                                    _driver.FindElement(By.ClassName("kt-modal__close-button"))?.Click();
                                 }
 
 

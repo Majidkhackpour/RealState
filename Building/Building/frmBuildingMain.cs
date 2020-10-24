@@ -1047,7 +1047,12 @@ namespace Building.Building
         {
             try
             {
-                if (cls.Guid == Guid.Empty) cls.Guid = Guid.NewGuid();
+                var isSendSms = false;
+                if (cls.Guid == Guid.Empty)
+                {
+                    cls.Guid = Guid.NewGuid();
+                    isSendSms = true;
+                }
 
                 if (string.IsNullOrWhiteSpace(txtCode.Text))
                 {
@@ -1296,6 +1301,14 @@ namespace Building.Building
                     return;
                 }
 
+
+                if (Settings.Classes.Payamak.IsSendToOwner.ParseToBoolean() && isSendSms)
+                {
+                    var tr = await Payamak.FixSms.OwnerSend.SendAsync(cls);
+                    frmNotification.PublicInfo.ShowMessage(tr.HasError
+                        ? tr.ErrorMessage
+                        : "ارسال پیامک به مالک با موفقیت انجام شد");
+                }
 
                 UserLog.Save(action, EnLogPart.Building);
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using EntityCache.Assistence;
 using Nito.AsyncEx;
@@ -99,5 +100,7 @@ namespace EntityCache.Bussines
 
         public static ReturnedSaveFuncInfo Save(string key, string value, string tranName = "") =>
             AsyncContext.Run(() => SaveAsync(key, value, tranName));
+
+        public static async Task<List<SettingsBussines>> GetAllAsync() => await UnitOfWork.Settings.GetAllAsync();
     }
 }

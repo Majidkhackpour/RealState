@@ -123,6 +123,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FixSms\ForoushSend.cs" />
+    <Compile Include="FixSms\OwnerSend.cs" />
+    <Compile Include="FixSms\RahnSend.cs" />
+    <Compile Include="FixSms\RequestSend.cs" />
     <Compile Include="frmSendSms.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -171,6 +175,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Replacor.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Services\Services\Services\Services.csproj">

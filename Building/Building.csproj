@@ -567,6 +567,10 @@
       <Project>{7e235f22-ae73-4698-9951-0f092ac91850}</Project>
       <Name>PacketParser</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Payamak\Payamak.csproj">
+      <Project>{c8268c19-4e5c-4369-8fd4-cf89e3f16f24}</Project>
+      <Name>Payamak</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Peoples\Peoples.csproj">
       <Project>{38a2d24e-9123-4e7e-989d-36b49248a9fb}</Project>
       <Name>Peoples</Name>

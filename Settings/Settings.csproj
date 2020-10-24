@@ -153,36 +153,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="SettingForms\frmBackUpSetting.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="SettingForms\frmBackUpSetting.Designer.cs">
-      <DependentUpon>frmBackUpSetting.cs</DependentUpon>
-    </Compile>
-    <Compile Include="SettingForms\frmEconomy.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="SettingForms\frmEconomy.Designer.cs">
-      <DependentUpon>frmEconomy.cs</DependentUpon>
-    </Compile>
-    <Compile Include="SettingForms\frmSandouq.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="SettingForms\frmSandouq.Designer.cs">
-      <DependentUpon>frmSandouq.cs</DependentUpon>
-    </Compile>
-    <Compile Include="SettingForms\frmSmsSetting.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="SettingForms\frmSmsSetting.Designer.cs">
-      <DependentUpon>frmSmsSetting.cs</DependentUpon>
-    </Compile>
-    <Compile Include="SettingForms\frmTelegramSetting.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="SettingForms\frmTelegramSetting.Designer.cs">
-      <DependentUpon>frmTelegramSetting.cs</DependentUpon>
-    </Compile>
     <Compile Include="WorkingYear\frmShowWorkingYears.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -245,21 +215,6 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SettingForms\frmBackUpSetting.resx">
-      <DependentUpon>frmBackUpSetting.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SettingForms\frmEconomy.resx">
-      <DependentUpon>frmEconomy.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SettingForms\frmSandouq.resx">
-      <DependentUpon>frmSandouq.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SettingForms\frmSmsSetting.resx">
-      <DependentUpon>frmSmsSetting.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SettingForms\frmTelegramSetting.resx">
-      <DependentUpon>frmTelegramSetting.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WorkingYear\frmShowWorkingYears.resx">
       <DependentUpon>frmShowWorkingYears.cs</DependentUpon>

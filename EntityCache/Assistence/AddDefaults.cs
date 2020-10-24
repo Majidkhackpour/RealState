@@ -193,6 +193,16 @@ namespace EntityCache.Assistence
             }
             #endregion
 
+            #region Setting
+            var allSetting = await SettingsBussines.GetAllAsync();
+            if (allSetting == null || allSetting.Count <= 0)
+            {
+                res.AddReturnedValue(SettingsBussines.Save("ArzeshAfzoude", "9"));
+                res.AddReturnedValue(SettingsBussines.Save("Tabdil", "2"));
+                res.ThrowExceptionIfError();
+            }
+            #endregion
+
             await dbContext.SaveChangesAsync();
             dbContext.Dispose();
         }

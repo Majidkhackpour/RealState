@@ -571,7 +571,12 @@ namespace Building.BuildingRequest
         {
             try
             {
-                if (cls.Guid == Guid.Empty) cls.Guid = Guid.NewGuid();
+                var isSendSms = false;
+                if (cls.Guid == Guid.Empty)
+                {
+                    cls.Guid = Guid.NewGuid();
+                    isSendSms = true;
+                }
 
                 if (asker == null)
                 {
@@ -663,7 +668,16 @@ namespace Building.BuildingRequest
                     return;
                 }
 
-                User.UserLog.Save(action, EnLogPart.BuildingRequest);
+                if (Settings.Classes.Payamak.IsSendToSayer.ParseToBoolean() && isSendSms)
+                {
+                    var tr = await Payamak.FixSms.RequestSend.SendAsync(cls);
+                    frmNotification.PublicInfo.ShowMessage(tr.HasError
+                        ? tr.ErrorMessage
+                        : "ارسال پیامک به متقاضی با موفقیت انجام شد");
+                }
+
+
+                UserLog.Save(action, EnLogPart.BuildingRequest);
 
                 DialogResult = DialogResult.OK;
                 Close();
