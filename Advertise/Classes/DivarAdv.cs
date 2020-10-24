@@ -2020,53 +2020,49 @@ namespace Advertise.Classes
                 return "";
             }
         }
-        public async Task GetBuildingFromDivarAsync(EnRequestType reqType)
+        public async Task GetBuildingFromDivarAsync(EnRequestType reqType, long number)
         {
             try
             {
-                var allSim = await SimcardBussines.GetAllAsync();
-                foreach (var sim in allSim)
+                var login = await Login(number, false);
+                if (!login) return;
+
+                var city = await CitiesBussines.GetAsync(Guid.Parse(clsEconomyUnit.EconomyCity));
+
+                _driver.FindElement(By.ClassName("city-selector")).Click();
+                await Utility.Wait();
+                _driver.FindElements(By.TagName("a")).LastOrDefault(q => q.Text == city.Name)?.Click();
+                await Utility.Wait(2);
+
+                var p = _driver.FindElements(By.ClassName("category-dropdown__icon")).Any();
+                if (!p) return;
+                await Utility.Wait(1);
+                _driver.FindElements(By.ClassName("category-dropdown__icon")).FirstOrDefault()?.Click();
+                await Utility.Wait();
+
+                var cat = await SetCategory(reqType);
+                if (string.IsNullOrEmpty(cat)) return;
+
+                _driver.FindElements(By.ClassName("category-button")).FirstOrDefault(q => q.Text.Contains("املاک"))
+                    ?.Click();
+                await Utility.Wait(1);
+
+                _driver.FindElements(By.ClassName("category-button")).FirstOrDefault(q => q.Text == cat)
+                    ?.Click();
+
+                await Utility.Wait(1);
+
+
+
+                if (reqType == EnRequestType.Rahn)
                 {
-                    if (!sim.HasDivarToken) continue;
-                    var login = await Login(sim.Number, false);
-                    if (!login) continue;
-
-                    var city = await CitiesBussines.GetAsync(Guid.Parse(clsEconomyUnit.EconomyCity));
-
-                    _driver.FindElement(By.ClassName("city-selector")).Click();
-                    await Utility.Wait();
-                    _driver.FindElements(By.TagName("a")).LastOrDefault(q => q.Text == city.Name)?.Click();
-                    await Utility.Wait(2);
-
-                    var p = _driver.FindElements(By.ClassName("category-dropdown__icon")).Any();
-                    if (!p) return;
-                    await Utility.Wait(1);
-                    _driver.FindElements(By.ClassName("category-dropdown__icon")).FirstOrDefault()?.Click();
-                    await Utility.Wait();
-
-                    var cat = await SetCategory(reqType);
-                    if (string.IsNullOrEmpty(cat)) return;
-
-                    _driver.FindElements(By.ClassName("category-button")).FirstOrDefault(q => q.Text.Contains("املاک"))
-                        ?.Click();
-                    await Utility.Wait(1);
-
-                    _driver.FindElements(By.ClassName("category-button")).FirstOrDefault(q => q.Text == cat)
-                        ?.Click();
-
-                    await Utility.Wait(1);
-
-                    if (reqType == EnRequestType.Rahn)
+                    try
                     {
-                        try
+                        while (true)
                         {
-                            var j = 0;
-
-
-                            for (var i = 0; j < 24; i++)
+                            var j = _driver.FindElements(By.ClassName("kt-post-card__body")).ToList();
+                            for (var i = 0; i < j.Count; i++)
                             {
-                                if (j == 24) return;
-
                                 if (_driver.Url.Contains("https://divar.ir/v/")) _driver.Navigate().Back();
 
                                 await Utility.Wait(1);
@@ -2079,7 +2075,7 @@ namespace Advertise.Classes
                                     Code = await BuildingBussines.NextCodeAsync(),
                                 };
 
-                                _driver.FindElements(By.ClassName("kt-post-card__body"))[i + 1]?.Click();
+                                _driver.FindElements(By.ClassName("kt-post-card__body"))[i]?.Click();
                                 await Utility.Wait(2);
 
                                 //Region
@@ -2089,7 +2085,8 @@ namespace Advertise.Classes
                                     var indexRemovedCity = fullText.IndexOf('،');
                                     var removedCity = fullText.Remove(0, indexRemovedCity + 1);
                                     var indexRemovedCat = removedCity.IndexOf('|');
-                                    var regionName = removedCity.Remove(indexRemovedCat - 1, removedCity.Length - indexRemovedCat + 1);
+                                    var regionName = removedCity.Remove(indexRemovedCat - 1,
+                                        removedCity.Length - indexRemovedCat + 1);
 
                                     var region = await RegionsBussines.GetAsync(regionName);
                                     if (region == null)
@@ -2111,7 +2108,8 @@ namespace Advertise.Classes
 
 
                                     //BuildingType
-                                    var typeName = removedCity.Replace(regionName, "").Replace("اجاره", "").Replace("|", "")
+                                    var typeName = removedCity.Replace(regionName, "").Replace("اجاره", "")
+                                        .Replace("|", "")
                                         .Trim();
                                     var type = await BuildingTypeBussines.GetAsync(typeName);
                                     if (type == null)
@@ -2228,7 +2226,8 @@ namespace Advertise.Classes
                                     }
                                 }
 
-                                var pList = _driver.FindElements(By.ClassName("kt-unexpandable-row__value")).ToList();
+                                var pList = _driver.FindElements(By.ClassName("kt-unexpandable-row__value"))
+                                    .ToList();
 
                                 //Rahn
                                 var p1 = pList[0]?.Text.FixString()?.Replace("تومان", "")?.Replace("٫", "");
@@ -2307,7 +2306,8 @@ namespace Advertise.Classes
 
 
                                 //Description
-                                viewModel.ShortDesc = _driver.FindElement(By.ClassName("kt-description-row__text"))?.Text;
+                                viewModel.ShortDesc = _driver.FindElement(By.ClassName("kt-description-row__text"))
+                                    ?.Text;
 
                                 var moreDetail = _driver.FindElements(By.ClassName("kt-selector-row__title"))
                                     .Any(q => q.Text == "نمایش همهٔ جزئیات");
@@ -2323,7 +2323,8 @@ namespace Advertise.Classes
                                                     .ParseToInt() ?? 1;
 
                                     var side = GetSide(_driver.FindElements(By.ClassName("kt-base-row__title"))
-                                                           .FirstOrDefault(q => q.Text == "جهت ساختمان")?.Text ?? "");
+                                                           .FirstOrDefault(q => q.Text == "جهت ساختمان")?.Text ??
+                                                       "");
 
                                     viewModel.Side = side;
                                     viewModel.VahedPerTabaqe = vahed;
@@ -2419,7 +2420,8 @@ namespace Advertise.Classes
                                 viewModel.Hashie = 0;
 
                                 viewModel.DateParvane =
-                                    Calendar.MiladiToShamsi(Calendar.ShamsiToMiladi(viewModel.SaleSakht).AddYears(-1));
+                                    Calendar.MiladiToShamsi(Calendar.ShamsiToMiladi(viewModel.SaleSakht)
+                                        .AddYears(-1));
                                 viewModel.ParvaneSerial = "";
 
                                 viewModel.BonBast = false;
@@ -2433,13 +2435,14 @@ namespace Advertise.Classes
 
                                 await viewModel.SaveAsync();
 
-                                j++;
+                                _driver.Navigate().Back();
                             }
 
-                            _driver.Navigate().Back();
+                            ((IJavaScriptExecutor)_driver).ExecuteScript("window.scrollTo(0, document.body.scrollHeight)");
+                            await Utility.Wait();
                         }
-                        catch { }
                     }
+                    catch { }
                 }
             }
             catch { }

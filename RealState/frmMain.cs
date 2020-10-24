@@ -588,7 +588,7 @@ namespace RealState
         private async void button1_Click(object sender, EventArgs e)
         {
             var d = DivarAdv.GetInstance();
-            await d.GetBuildingFromDivarAsync(EnRequestType.Rahn);
+            await d.GetBuildingFromDivarAsync(EnRequestType.Rahn, textBox1.Text.ParseToLong());
         }
     }
 }
