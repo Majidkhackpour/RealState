@@ -98,8 +98,7 @@ namespace EntityCache.Bussines
         {
             try
             {
-                if (string.IsNullOrEmpty(search))
-                    search = "";
+                if (string.IsNullOrEmpty(search)) search = "";
                 var res = await GetAllAsync();
                 if (userGuid != Guid.Empty) res = res.Where(q => q.UserGuid == userGuid).ToList();
                 var searchItems = search.SplitString();

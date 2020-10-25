@@ -55,7 +55,7 @@ namespace Payamak
         private async void frmSmsLog_Load(object sender, EventArgs e)
         {
             await FillCmbAsync();
-            await LoadDataAsync();
+            //await LoadDataAsync();
         }
 
         private void DGrid_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)

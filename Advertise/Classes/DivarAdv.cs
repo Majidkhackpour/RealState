@@ -2076,7 +2076,7 @@ namespace Advertise.Classes
                                 };
 
                                 _driver.FindElements(By.ClassName("kt-post-card__body"))[i]?.Click();
-                                await Utility.Wait(2);
+                                await Utility.Wait(3);
 
                                 //Region
                                 var fullText = _driver.FindElement(By.ClassName("kt-page-title__subtitle"))?.Text;
