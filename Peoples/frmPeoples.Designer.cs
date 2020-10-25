@@ -510,7 +510,7 @@
             this.txtDateBirth.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtDateBirth.Location = new System.Drawing.Point(5, 6);
-            this.txtDateBirth.Miladi = new System.DateTime(((long)(0)));
+            this.txtDateBirth.Miladi = new System.DateTime(2020, 10, 25, 17, 14, 12, 0);
             this.txtDateBirth.Name = "txtDateBirth";
             this.txtDateBirth.NowDateSelected = false;
             this.txtDateBirth.ReadOnly = true;

@@ -60,9 +60,9 @@ namespace Persistence.Entities
         public float MetrazhKouche { get; set; }
         public float ErtefaSaqf { get; set; }
         public float Hashie { get; set; }
-        [MaxLength(10)]
+        [MaxLength(30)]
         public string SaleSakht { get; set; }
-        [MaxLength(10)]
+        [MaxLength(30)]
         public string DateParvane { get; set; }
         [MaxLength(200)]
         public string ParvaneSerial { get; set; }

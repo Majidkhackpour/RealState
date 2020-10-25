@@ -372,6 +372,37 @@ namespace Accounting.Reception
                     return;
                 }
 
+
+                if (txtCheckPrice.Value > 0)
+                {
+                    var note = await NoteBussines.GetAsync(cls.Guid);
+                    if (note == null)
+                    {
+                        note = new NoteBussines()
+                        {
+                            Guid = cls.Guid,
+                            DateSarresid = Calendar.ShamsiToMiladi(txtSarResid.Text),
+                            Modified = DateTime.Now,
+                            Status = true,
+                            DateSabt = DateTime.Now,
+                            NoteStatus = EnNoteStatus.Unread,
+                            Priority = EnNotePriority.Mamoli,
+                            UserGuid = User.clsUser.CurrentUser.Guid,
+                            Description =
+                                $"سررسید چک دریافتنی از شماره {cls.CheckNo} به مبلغ {cls.Check:N0} ریال به {txtName.Text}",
+                            Title = "سررسید چک دریافتنی"
+                        };
+                    }
+                    else
+                    {
+                        note.Description =
+                            $"سررسید چک پرداختنی به شماره {cls.CheckNo} به مبلغ {cls.Check:N0} ریال به {txtName.Text}";
+                    }
+
+                    await note.SaveAsync();
+                }
+
+
                 User.UserLog.Save(action, EnLogPart.Reception);
 
                 DialogResult = DialogResult.OK;

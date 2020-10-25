@@ -14,7 +14,7 @@ namespace Persistence.Entities
         public bool Status { get; set; }
         [MaxLength(500)]
         public string Name { get; set; }
-        [MaxLength(20)]
+        [MaxLength(50)]
         public string Tell { get; set; }
         public EnPhoneBookGroup Group { get; set; }
         public Guid ParentGuid { get; set; }

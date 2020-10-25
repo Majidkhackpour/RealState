@@ -111,6 +111,42 @@
             this.cmbState = new System.Windows.Forms.ComboBox();
             this.superTabItem2 = new DevComponents.DotNetBar.SuperTabItem();
             this.superTabControl1 = new DevComponents.DotNetBar.SuperTabControl();
+            this.superTabControlPanel8 = new DevComponents.DotNetBar.SuperTabControlPanel();
+            this.btnCalculateCommition = new DevComponents.DotNetBar.ButtonX();
+            this.splitContainer5 = new System.Windows.Forms.SplitContainer();
+            this.groupPanel2 = new DevComponents.DotNetBar.Controls.GroupPanel();
+            this.cmbfBabat = new System.Windows.Forms.ComboBox();
+            this.cmbfAddedValue = new System.Windows.Forms.ComboBox();
+            this.cmbfDiscount = new System.Windows.Forms.ComboBox();
+            this.cmbfTotalPrice = new System.Windows.Forms.ComboBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.lblfTotal = new System.Windows.Forms.Label();
+            this.lblfSallary = new System.Windows.Forms.Label();
+            this.label23 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.txtfAddedValue = new System.Windows.Forms.NumericUpDown();
+            this.txtfDiscount = new System.Windows.Forms.NumericUpDown();
+            this.txtfTotalPrice = new System.Windows.Forms.NumericUpDown();
+            this.groupPanel5 = new DevComponents.DotNetBar.Controls.GroupPanel();
+            this.cmbsBabat = new System.Windows.Forms.ComboBox();
+            this.cmbsAddedValue = new System.Windows.Forms.ComboBox();
+            this.cmbsDiscount = new System.Windows.Forms.ComboBox();
+            this.cmbsTotalPrice = new System.Windows.Forms.ComboBox();
+            this.label73 = new System.Windows.Forms.Label();
+            this.lblsTotal = new System.Windows.Forms.Label();
+            this.lblsSallary = new System.Windows.Forms.Label();
+            this.label92 = new System.Windows.Forms.Label();
+            this.label93 = new System.Windows.Forms.Label();
+            this.label94 = new System.Windows.Forms.Label();
+            this.label95 = new System.Windows.Forms.Label();
+            this.label96 = new System.Windows.Forms.Label();
+            this.txtsAddedValue = new System.Windows.Forms.NumericUpDown();
+            this.txtsDiscount = new System.Windows.Forms.NumericUpDown();
+            this.txtsTotalPrice = new System.Windows.Forms.NumericUpDown();
+            this.superTabItem7 = new DevComponents.DotNetBar.SuperTabItem();
             this.superTabControlPanel7 = new DevComponents.DotNetBar.SuperTabControlPanel();
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
             this.groupPanel8 = new DevComponents.DotNetBar.Controls.GroupPanel();
@@ -221,41 +257,6 @@
             this.label62 = new System.Windows.Forms.Label();
             this.superTabItem5 = new DevComponents.DotNetBar.SuperTabItem();
             this.superTabControlPanel6 = new DevComponents.DotNetBar.SuperTabControlPanel();
-            this.superTabControlPanel8 = new DevComponents.DotNetBar.SuperTabControlPanel();
-            this.splitContainer5 = new System.Windows.Forms.SplitContainer();
-            this.groupPanel2 = new DevComponents.DotNetBar.Controls.GroupPanel();
-            this.cmbfBabat = new System.Windows.Forms.ComboBox();
-            this.cmbfAddedValue = new System.Windows.Forms.ComboBox();
-            this.cmbfDiscount = new System.Windows.Forms.ComboBox();
-            this.cmbfTotalPrice = new System.Windows.Forms.ComboBox();
-            this.label15 = new System.Windows.Forms.Label();
-            this.lblfTotal = new System.Windows.Forms.Label();
-            this.lblfSallary = new System.Windows.Forms.Label();
-            this.label23 = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
-            this.label21 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.txtfAddedValue = new System.Windows.Forms.NumericUpDown();
-            this.txtfDiscount = new System.Windows.Forms.NumericUpDown();
-            this.txtfTotalPrice = new System.Windows.Forms.NumericUpDown();
-            this.groupPanel5 = new DevComponents.DotNetBar.Controls.GroupPanel();
-            this.cmbsBabat = new System.Windows.Forms.ComboBox();
-            this.cmbsAddedValue = new System.Windows.Forms.ComboBox();
-            this.cmbsDiscount = new System.Windows.Forms.ComboBox();
-            this.cmbsTotalPrice = new System.Windows.Forms.ComboBox();
-            this.label73 = new System.Windows.Forms.Label();
-            this.lblsTotal = new System.Windows.Forms.Label();
-            this.lblsSallary = new System.Windows.Forms.Label();
-            this.label92 = new System.Windows.Forms.Label();
-            this.label93 = new System.Windows.Forms.Label();
-            this.label94 = new System.Windows.Forms.Label();
-            this.label95 = new System.Windows.Forms.Label();
-            this.label96 = new System.Windows.Forms.Label();
-            this.txtsAddedValue = new System.Windows.Forms.NumericUpDown();
-            this.txtsDiscount = new System.Windows.Forms.NumericUpDown();
-            this.txtsTotalPrice = new System.Windows.Forms.NumericUpDown();
-            this.superTabItem7 = new DevComponents.DotNetBar.SuperTabItem();
             this.superTabControlPanel11 = new DevComponents.DotNetBar.SuperTabControlPanel();
             this.textBox6 = new System.Windows.Forms.TextBox();
             this.superTabItem10 = new DevComponents.DotNetBar.SuperTabItem();
@@ -263,7 +264,6 @@
             this.btnFinish = new DevComponents.DotNetBar.ButtonX();
             this.btnSaveTemp = new DevComponents.DotNetBar.ButtonItem();
             this.btnSaveNoTemp = new DevComponents.DotNetBar.ButtonItem();
-            this.btnCalculateCommition = new DevComponents.DotNetBar.ButtonX();
             this.superTabControlPanel5.SuspendLayout();
             this.groupPanel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtPeopleCount)).BeginInit();
@@ -290,6 +290,19 @@
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.superTabControl1)).BeginInit();
             this.superTabControl1.SuspendLayout();
+            this.superTabControlPanel8.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer5)).BeginInit();
+            this.splitContainer5.Panel1.SuspendLayout();
+            this.splitContainer5.Panel2.SuspendLayout();
+            this.splitContainer5.SuspendLayout();
+            this.groupPanel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtfAddedValue)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtfDiscount)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtfTotalPrice)).BeginInit();
+            this.groupPanel5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtsAddedValue)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtsDiscount)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtsTotalPrice)).BeginInit();
             this.superTabControlPanel7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).BeginInit();
             this.splitContainer3.Panel1.SuspendLayout();
@@ -325,19 +338,6 @@
             this.splitContainer4.SuspendLayout();
             this.groupPanel6.SuspendLayout();
             this.groupPanel7.SuspendLayout();
-            this.superTabControlPanel8.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer5)).BeginInit();
-            this.splitContainer5.Panel1.SuspendLayout();
-            this.splitContainer5.Panel2.SuspendLayout();
-            this.splitContainer5.SuspendLayout();
-            this.groupPanel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtfAddedValue)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtfDiscount)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtfTotalPrice)).BeginInit();
-            this.groupPanel5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtsAddedValue)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtsDiscount)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtsTotalPrice)).BeginInit();
             this.superTabControlPanel11.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -929,7 +929,7 @@
             this.txttxtOwnerCode.Location = new System.Drawing.Point(135, 16);
             this.txttxtOwnerCode.Name = "txttxtOwnerCode";
             this.txttxtOwnerCode.ReadOnly = true;
-            this.txttxtOwnerCode.Size = new System.Drawing.Size(74, 20);
+            this.txttxtOwnerCode.Size = new System.Drawing.Size(68, 20);
             this.txttxtOwnerCode.TabIndex = 10;
             // 
             // label6
@@ -937,7 +937,7 @@
             this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label6.AutoSize = true;
             this.label6.BackColor = System.Drawing.Color.Transparent;
-            this.label6.Location = new System.Drawing.Point(240, 204);
+            this.label6.Location = new System.Drawing.Point(234, 204);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(30, 13);
             this.label6.TabIndex = 9;
@@ -948,7 +948,7 @@
             this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label5.AutoSize = true;
             this.label5.BackColor = System.Drawing.Color.Transparent;
-            this.label5.Location = new System.Drawing.Point(223, 167);
+            this.label5.Location = new System.Drawing.Point(217, 167);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(53, 13);
             this.label5.TabIndex = 9;
@@ -959,7 +959,7 @@
             this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label4.AutoSize = true;
             this.label4.BackColor = System.Drawing.Color.Transparent;
-            this.label4.Location = new System.Drawing.Point(221, 130);
+            this.label4.Location = new System.Drawing.Point(215, 130);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(57, 13);
             this.label4.TabIndex = 9;
@@ -970,7 +970,7 @@
             this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.Transparent;
-            this.label3.Location = new System.Drawing.Point(236, 93);
+            this.label3.Location = new System.Drawing.Point(230, 93);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(37, 13);
             this.label3.TabIndex = 9;
@@ -983,7 +983,7 @@
             this.lblOwnerAddress.BackColor = System.Drawing.Color.Transparent;
             this.lblOwnerAddress.Location = new System.Drawing.Point(20, 204);
             this.lblOwnerAddress.Name = "lblOwnerAddress";
-            this.lblOwnerAddress.Size = new System.Drawing.Size(165, 153);
+            this.lblOwnerAddress.Size = new System.Drawing.Size(159, 153);
             this.lblOwnerAddress.TabIndex = 9;
             // 
             // lblOwnerDateBirth
@@ -993,7 +993,7 @@
             this.lblOwnerDateBirth.BackColor = System.Drawing.Color.Transparent;
             this.lblOwnerDateBirth.Location = new System.Drawing.Point(55, 167);
             this.lblOwnerDateBirth.Name = "lblOwnerDateBirth";
-            this.lblOwnerDateBirth.Size = new System.Drawing.Size(130, 20);
+            this.lblOwnerDateBirth.Size = new System.Drawing.Size(124, 20);
             this.lblOwnerDateBirth.TabIndex = 9;
             // 
             // lblOwnerNCode
@@ -1003,7 +1003,7 @@
             this.lblOwnerNCode.BackColor = System.Drawing.Color.Transparent;
             this.lblOwnerNCode.Location = new System.Drawing.Point(55, 130);
             this.lblOwnerNCode.Name = "lblOwnerNCode";
-            this.lblOwnerNCode.Size = new System.Drawing.Size(130, 20);
+            this.lblOwnerNCode.Size = new System.Drawing.Size(124, 20);
             this.lblOwnerNCode.TabIndex = 9;
             // 
             // lblOwnerFatherName
@@ -1013,7 +1013,7 @@
             this.lblOwnerFatherName.BackColor = System.Drawing.Color.Transparent;
             this.lblOwnerFatherName.Location = new System.Drawing.Point(55, 93);
             this.lblOwnerFatherName.Name = "lblOwnerFatherName";
-            this.lblOwnerFatherName.Size = new System.Drawing.Size(130, 20);
+            this.lblOwnerFatherName.Size = new System.Drawing.Size(124, 20);
             this.lblOwnerFatherName.TabIndex = 9;
             // 
             // lblOwnerName
@@ -1023,7 +1023,7 @@
             this.lblOwnerName.BackColor = System.Drawing.Color.Transparent;
             this.lblOwnerName.Location = new System.Drawing.Point(55, 56);
             this.lblOwnerName.Name = "lblOwnerName";
-            this.lblOwnerName.Size = new System.Drawing.Size(130, 20);
+            this.lblOwnerName.Size = new System.Drawing.Size(124, 20);
             this.lblOwnerName.TabIndex = 9;
             // 
             // label2
@@ -1031,7 +1031,7 @@
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Location = new System.Drawing.Point(184, 56);
+            this.label2.Location = new System.Drawing.Point(178, 56);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(94, 13);
             this.label2.TabIndex = 9;
@@ -1042,7 +1042,7 @@
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Location = new System.Drawing.Point(215, 19);
+            this.label1.Location = new System.Drawing.Point(209, 19);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(66, 13);
             this.label1.TabIndex = 9;
@@ -1451,11 +1451,11 @@
             this.superTabControl1.ControlBox.SubItems.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.superTabControl1.ControlBox.CloseBox,
             this.superTabControl1.ControlBox.MenuBox});
-            this.superTabControl1.Controls.Add(this.superTabControlPanel8);
             this.superTabControl1.Controls.Add(this.superTabControlPanel7);
+            this.superTabControl1.Controls.Add(this.superTabControlPanel11);
+            this.superTabControl1.Controls.Add(this.superTabControlPanel8);
             this.superTabControl1.Controls.Add(this.superTabControlPanel3);
             this.superTabControl1.Controls.Add(this.superTabControlPanel6);
-            this.superTabControl1.Controls.Add(this.superTabControlPanel11);
             this.superTabControl1.Location = new System.Drawing.Point(6, 26);
             this.superTabControl1.Name = "superTabControl1";
             this.superTabControl1.ReorderTabsEnabled = true;
@@ -1472,6 +1472,551 @@
             this.superTabItem10});
             this.superTabControl1.TabStyle = DevComponents.DotNetBar.eSuperTabStyle.OfficeMobile2014;
             this.superTabControl1.Text = "superTabControl1";
+            // 
+            // superTabControlPanel8
+            // 
+            this.superTabControlPanel8.Controls.Add(this.btnCalculateCommition);
+            this.superTabControlPanel8.Controls.Add(this.splitContainer5);
+            this.superTabControlPanel8.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.superTabControlPanel8.Location = new System.Drawing.Point(0, 40);
+            this.superTabControlPanel8.Name = "superTabControlPanel8";
+            this.superTabControlPanel8.Size = new System.Drawing.Size(789, 493);
+            this.superTabControlPanel8.TabIndex = 0;
+            this.superTabControlPanel8.TabItem = this.superTabItem7;
+            // 
+            // btnCalculateCommition
+            // 
+            this.btnCalculateCommition.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnCalculateCommition.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCalculateCommition.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.btnCalculateCommition.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnCalculateCommition.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.btnCalculateCommition.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCalculateCommition.Location = new System.Drawing.Point(223, 5);
+            this.btnCalculateCommition.Name = "btnCalculateCommition";
+            this.btnCalculateCommition.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
+            this.btnCalculateCommition.Size = new System.Drawing.Size(352, 27);
+            this.btnCalculateCommition.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
+            this.btnCalculateCommition.TabIndex = 3;
+            this.btnCalculateCommition.Text = "محاسبه حق الزحمه طرفین قرارداد";
+            this.btnCalculateCommition.TextColor = System.Drawing.Color.White;
+            this.btnCalculateCommition.Click += new System.EventHandler(this.btnCalculateCommition_Click);
+            // 
+            // splitContainer5
+            // 
+            this.splitContainer5.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.splitContainer5.Location = new System.Drawing.Point(0, 38);
+            this.splitContainer5.Name = "splitContainer5";
+            // 
+            // splitContainer5.Panel1
+            // 
+            this.splitContainer5.Panel1.Controls.Add(this.groupPanel2);
+            this.splitContainer5.Panel1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            // 
+            // splitContainer5.Panel2
+            // 
+            this.splitContainer5.Panel2.Controls.Add(this.groupPanel5);
+            this.splitContainer5.Panel2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.splitContainer5.Size = new System.Drawing.Size(789, 455);
+            this.splitContainer5.SplitterDistance = 382;
+            this.splitContainer5.TabIndex = 0;
+            // 
+            // groupPanel2
+            // 
+            this.groupPanel2.CanvasColor = System.Drawing.SystemColors.Control;
+            this.groupPanel2.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
+            this.groupPanel2.Controls.Add(this.cmbfBabat);
+            this.groupPanel2.Controls.Add(this.cmbfAddedValue);
+            this.groupPanel2.Controls.Add(this.cmbfDiscount);
+            this.groupPanel2.Controls.Add(this.cmbfTotalPrice);
+            this.groupPanel2.Controls.Add(this.label15);
+            this.groupPanel2.Controls.Add(this.lblfTotal);
+            this.groupPanel2.Controls.Add(this.lblfSallary);
+            this.groupPanel2.Controls.Add(this.label23);
+            this.groupPanel2.Controls.Add(this.label17);
+            this.groupPanel2.Controls.Add(this.label21);
+            this.groupPanel2.Controls.Add(this.label16);
+            this.groupPanel2.Controls.Add(this.label14);
+            this.groupPanel2.Controls.Add(this.txtfAddedValue);
+            this.groupPanel2.Controls.Add(this.txtfDiscount);
+            this.groupPanel2.Controls.Add(this.txtfTotalPrice);
+            this.groupPanel2.DisabledBackColor = System.Drawing.Color.Empty;
+            this.groupPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupPanel2.Location = new System.Drawing.Point(0, 0);
+            this.groupPanel2.Name = "groupPanel2";
+            this.groupPanel2.Size = new System.Drawing.Size(382, 455);
+            // 
+            // 
+            // 
+            this.groupPanel2.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(227)))), ((int)(((byte)(239)))), ((int)(((byte)(255)))));
+            this.groupPanel2.Style.BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+            this.groupPanel2.Style.BackColorGradientAngle = 90;
+            this.groupPanel2.Style.BorderBottom = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.groupPanel2.Style.BorderBottomWidth = 2;
+            this.groupPanel2.Style.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(198)))), ((int)(((byte)(195)))), ((int)(((byte)(198)))));
+            this.groupPanel2.Style.BorderColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(198)))), ((int)(((byte)(195)))), ((int)(((byte)(198)))));
+            this.groupPanel2.Style.BorderLeft = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.groupPanel2.Style.BorderLeftWidth = 2;
+            this.groupPanel2.Style.BorderRight = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.groupPanel2.Style.BorderRightWidth = 2;
+            this.groupPanel2.Style.BorderTop = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.groupPanel2.Style.BorderTopWidth = 2;
+            this.groupPanel2.Style.CornerDiameter = 4;
+            this.groupPanel2.Style.CornerType = DevComponents.DotNetBar.eCornerType.Rounded;
+            this.groupPanel2.Style.TextAlignment = DevComponents.DotNetBar.eStyleTextAlignment.Center;
+            this.groupPanel2.Style.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.groupPanel2.Style.TextLineAlignment = DevComponents.DotNetBar.eStyleTextAlignment.Near;
+            // 
+            // 
+            // 
+            this.groupPanel2.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.groupPanel2.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.groupPanel2.TabIndex = 3;
+            this.groupPanel2.Text = "حق الزحمه طرف اول";
+            // 
+            // cmbfBabat
+            // 
+            this.cmbfBabat.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmbfBabat.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cmbfBabat.DisplayMember = "Name";
+            this.cmbfBabat.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbfBabat.FormattingEnabled = true;
+            this.cmbfBabat.Location = new System.Drawing.Point(15, 47);
+            this.cmbfBabat.Name = "cmbfBabat";
+            this.cmbfBabat.Size = new System.Drawing.Size(271, 28);
+            this.cmbfBabat.TabIndex = 60;
+            this.cmbfBabat.ValueMember = "Guid";
+            // 
+            // cmbfAddedValue
+            // 
+            this.cmbfAddedValue.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cmbfAddedValue.DisplayMember = "Name";
+            this.cmbfAddedValue.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbfAddedValue.FormattingEnabled = true;
+            this.cmbfAddedValue.Location = new System.Drawing.Point(15, 162);
+            this.cmbfAddedValue.Name = "cmbfAddedValue";
+            this.cmbfAddedValue.Size = new System.Drawing.Size(127, 28);
+            this.cmbfAddedValue.TabIndex = 60;
+            this.cmbfAddedValue.ValueMember = "Guid";
+            this.cmbfAddedValue.SelectedIndexChanged += new System.EventHandler(this.cmbfAddedValue_SelectedIndexChanged);
+            // 
+            // cmbfDiscount
+            // 
+            this.cmbfDiscount.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cmbfDiscount.DisplayMember = "Name";
+            this.cmbfDiscount.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbfDiscount.FormattingEnabled = true;
+            this.cmbfDiscount.Location = new System.Drawing.Point(15, 87);
+            this.cmbfDiscount.Name = "cmbfDiscount";
+            this.cmbfDiscount.Size = new System.Drawing.Size(127, 28);
+            this.cmbfDiscount.TabIndex = 60;
+            this.cmbfDiscount.ValueMember = "Guid";
+            this.cmbfDiscount.SelectedIndexChanged += new System.EventHandler(this.cmbfDiscount_SelectedIndexChanged);
+            // 
+            // cmbfTotalPrice
+            // 
+            this.cmbfTotalPrice.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cmbfTotalPrice.DisplayMember = "Name";
+            this.cmbfTotalPrice.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbfTotalPrice.FormattingEnabled = true;
+            this.cmbfTotalPrice.Location = new System.Drawing.Point(15, 10);
+            this.cmbfTotalPrice.Name = "cmbfTotalPrice";
+            this.cmbfTotalPrice.Size = new System.Drawing.Size(127, 28);
+            this.cmbfTotalPrice.TabIndex = 60;
+            this.cmbfTotalPrice.ValueMember = "Guid";
+            this.cmbfTotalPrice.SelectedIndexChanged += new System.EventHandler(this.cmbfTotalPrice_SelectedIndexChanged);
+            // 
+            // label15
+            // 
+            this.label15.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label15.AutoSize = true;
+            this.label15.BackColor = System.Drawing.Color.Transparent;
+            this.label15.Location = new System.Drawing.Point(336, 50);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(31, 20);
+            this.label15.TabIndex = 59;
+            this.label15.Text = "بابت";
+            // 
+            // lblfTotal
+            // 
+            this.lblfTotal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblfTotal.BackColor = System.Drawing.Color.Transparent;
+            this.lblfTotal.Font = new System.Drawing.Font("B Yekan", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.lblfTotal.ForeColor = System.Drawing.Color.Maroon;
+            this.lblfTotal.Location = new System.Drawing.Point(15, 201);
+            this.lblfTotal.Name = "lblfTotal";
+            this.lblfTotal.Size = new System.Drawing.Size(271, 60);
+            this.lblfTotal.TabIndex = 59;
+            this.lblfTotal.Text = "حق الزحمه پس از کسر تخفیف";
+            this.lblfTotal.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblfSallary
+            // 
+            this.lblfSallary.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblfSallary.AutoSize = true;
+            this.lblfSallary.BackColor = System.Drawing.Color.Transparent;
+            this.lblfSallary.Location = new System.Drawing.Point(37, 129);
+            this.lblfSallary.Name = "lblfSallary";
+            this.lblfSallary.Size = new System.Drawing.Size(154, 20);
+            this.lblfSallary.TabIndex = 59;
+            this.lblfSallary.Text = "حق الزحمه پس از کسر تخفیف";
+            // 
+            // label23
+            // 
+            this.label23.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label23.AutoSize = true;
+            this.label23.BackColor = System.Drawing.Color.Transparent;
+            this.label23.Location = new System.Drawing.Point(321, 218);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(46, 20);
+            this.label23.TabIndex = 59;
+            this.label23.Text = "مبلغ کل";
+            // 
+            // label17
+            // 
+            this.label17.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label17.AutoSize = true;
+            this.label17.BackColor = System.Drawing.Color.Transparent;
+            this.label17.Location = new System.Drawing.Point(216, 129);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(154, 20);
+            this.label17.TabIndex = 59;
+            this.label17.Text = "حق الزحمه پس از کسر تخفیف";
+            // 
+            // label21
+            // 
+            this.label21.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label21.AutoSize = true;
+            this.label21.BackColor = System.Drawing.Color.Transparent;
+            this.label21.Location = new System.Drawing.Point(292, 165);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(75, 20);
+            this.label21.TabIndex = 59;
+            this.label21.Text = "ارزش افزوده";
+            // 
+            // label16
+            // 
+            this.label16.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label16.AutoSize = true;
+            this.label16.BackColor = System.Drawing.Color.Transparent;
+            this.label16.Location = new System.Drawing.Point(327, 92);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(40, 20);
+            this.label16.TabIndex = 59;
+            this.label16.Text = "تخفیف";
+            // 
+            // label14
+            // 
+            this.label14.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label14.AutoSize = true;
+            this.label14.BackColor = System.Drawing.Color.Transparent;
+            this.label14.Location = new System.Drawing.Point(306, 13);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(61, 20);
+            this.label14.TabIndex = 59;
+            this.label14.Text = "حق الزحمه";
+            // 
+            // txtfAddedValue
+            // 
+            this.txtfAddedValue.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtfAddedValue.Location = new System.Drawing.Point(148, 163);
+            this.txtfAddedValue.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.txtfAddedValue.Name = "txtfAddedValue";
+            this.txtfAddedValue.Size = new System.Drawing.Size(138, 27);
+            this.txtfAddedValue.TabIndex = 58;
+            this.txtfAddedValue.ValueChanged += new System.EventHandler(this.txtfAddedValue_ValueChanged);
+            // 
+            // txtfDiscount
+            // 
+            this.txtfDiscount.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtfDiscount.Location = new System.Drawing.Point(148, 88);
+            this.txtfDiscount.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.txtfDiscount.Name = "txtfDiscount";
+            this.txtfDiscount.Size = new System.Drawing.Size(138, 27);
+            this.txtfDiscount.TabIndex = 58;
+            this.txtfDiscount.ValueChanged += new System.EventHandler(this.txtfDiscount_ValueChanged);
+            // 
+            // txtfTotalPrice
+            // 
+            this.txtfTotalPrice.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtfTotalPrice.Location = new System.Drawing.Point(148, 11);
+            this.txtfTotalPrice.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.txtfTotalPrice.Name = "txtfTotalPrice";
+            this.txtfTotalPrice.Size = new System.Drawing.Size(138, 27);
+            this.txtfTotalPrice.TabIndex = 58;
+            this.txtfTotalPrice.ValueChanged += new System.EventHandler(this.txtfTotalPrice_ValueChanged);
+            // 
+            // groupPanel5
+            // 
+            this.groupPanel5.CanvasColor = System.Drawing.SystemColors.Control;
+            this.groupPanel5.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
+            this.groupPanel5.Controls.Add(this.cmbsBabat);
+            this.groupPanel5.Controls.Add(this.cmbsAddedValue);
+            this.groupPanel5.Controls.Add(this.cmbsDiscount);
+            this.groupPanel5.Controls.Add(this.cmbsTotalPrice);
+            this.groupPanel5.Controls.Add(this.label73);
+            this.groupPanel5.Controls.Add(this.lblsTotal);
+            this.groupPanel5.Controls.Add(this.lblsSallary);
+            this.groupPanel5.Controls.Add(this.label92);
+            this.groupPanel5.Controls.Add(this.label93);
+            this.groupPanel5.Controls.Add(this.label94);
+            this.groupPanel5.Controls.Add(this.label95);
+            this.groupPanel5.Controls.Add(this.label96);
+            this.groupPanel5.Controls.Add(this.txtsAddedValue);
+            this.groupPanel5.Controls.Add(this.txtsDiscount);
+            this.groupPanel5.Controls.Add(this.txtsTotalPrice);
+            this.groupPanel5.DisabledBackColor = System.Drawing.Color.Empty;
+            this.groupPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupPanel5.Location = new System.Drawing.Point(0, 0);
+            this.groupPanel5.Name = "groupPanel5";
+            this.groupPanel5.Size = new System.Drawing.Size(403, 455);
+            // 
+            // 
+            // 
+            this.groupPanel5.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(227)))), ((int)(((byte)(239)))), ((int)(((byte)(255)))));
+            this.groupPanel5.Style.BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+            this.groupPanel5.Style.BackColorGradientAngle = 90;
+            this.groupPanel5.Style.BorderBottom = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.groupPanel5.Style.BorderBottomWidth = 2;
+            this.groupPanel5.Style.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(198)))), ((int)(((byte)(195)))), ((int)(((byte)(198)))));
+            this.groupPanel5.Style.BorderColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(198)))), ((int)(((byte)(195)))), ((int)(((byte)(198)))));
+            this.groupPanel5.Style.BorderLeft = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.groupPanel5.Style.BorderLeftWidth = 2;
+            this.groupPanel5.Style.BorderRight = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.groupPanel5.Style.BorderRightWidth = 2;
+            this.groupPanel5.Style.BorderTop = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.groupPanel5.Style.BorderTopWidth = 2;
+            this.groupPanel5.Style.CornerDiameter = 4;
+            this.groupPanel5.Style.CornerType = DevComponents.DotNetBar.eCornerType.Rounded;
+            this.groupPanel5.Style.TextAlignment = DevComponents.DotNetBar.eStyleTextAlignment.Center;
+            this.groupPanel5.Style.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.groupPanel5.Style.TextLineAlignment = DevComponents.DotNetBar.eStyleTextAlignment.Near;
+            // 
+            // 
+            // 
+            this.groupPanel5.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.groupPanel5.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.groupPanel5.TabIndex = 4;
+            this.groupPanel5.Text = "حق الزحمه طرف دوم";
+            // 
+            // cmbsBabat
+            // 
+            this.cmbsBabat.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmbsBabat.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cmbsBabat.DisplayMember = "Name";
+            this.cmbsBabat.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbsBabat.FormattingEnabled = true;
+            this.cmbsBabat.Location = new System.Drawing.Point(12, 47);
+            this.cmbsBabat.Name = "cmbsBabat";
+            this.cmbsBabat.Size = new System.Drawing.Size(284, 28);
+            this.cmbsBabat.TabIndex = 60;
+            this.cmbsBabat.ValueMember = "Guid";
+            // 
+            // cmbsAddedValue
+            // 
+            this.cmbsAddedValue.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cmbsAddedValue.DisplayMember = "Name";
+            this.cmbsAddedValue.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbsAddedValue.FormattingEnabled = true;
+            this.cmbsAddedValue.Location = new System.Drawing.Point(12, 162);
+            this.cmbsAddedValue.Name = "cmbsAddedValue";
+            this.cmbsAddedValue.Size = new System.Drawing.Size(127, 28);
+            this.cmbsAddedValue.TabIndex = 60;
+            this.cmbsAddedValue.ValueMember = "Guid";
+            this.cmbsAddedValue.SelectedIndexChanged += new System.EventHandler(this.cmbsAddedValue_SelectedIndexChanged);
+            // 
+            // cmbsDiscount
+            // 
+            this.cmbsDiscount.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cmbsDiscount.DisplayMember = "Name";
+            this.cmbsDiscount.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbsDiscount.FormattingEnabled = true;
+            this.cmbsDiscount.Location = new System.Drawing.Point(12, 87);
+            this.cmbsDiscount.Name = "cmbsDiscount";
+            this.cmbsDiscount.Size = new System.Drawing.Size(127, 28);
+            this.cmbsDiscount.TabIndex = 60;
+            this.cmbsDiscount.ValueMember = "Guid";
+            this.cmbsDiscount.SelectedIndexChanged += new System.EventHandler(this.cmbsDiscount_SelectedIndexChanged);
+            // 
+            // cmbsTotalPrice
+            // 
+            this.cmbsTotalPrice.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cmbsTotalPrice.DisplayMember = "Name";
+            this.cmbsTotalPrice.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbsTotalPrice.FormattingEnabled = true;
+            this.cmbsTotalPrice.Location = new System.Drawing.Point(12, 10);
+            this.cmbsTotalPrice.Name = "cmbsTotalPrice";
+            this.cmbsTotalPrice.Size = new System.Drawing.Size(127, 28);
+            this.cmbsTotalPrice.TabIndex = 60;
+            this.cmbsTotalPrice.ValueMember = "Guid";
+            this.cmbsTotalPrice.SelectedIndexChanged += new System.EventHandler(this.cmbsTotalPrice_SelectedIndexChanged);
+            // 
+            // label73
+            // 
+            this.label73.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label73.AutoSize = true;
+            this.label73.BackColor = System.Drawing.Color.Transparent;
+            this.label73.Location = new System.Drawing.Point(352, 50);
+            this.label73.Name = "label73";
+            this.label73.Size = new System.Drawing.Size(31, 20);
+            this.label73.TabIndex = 59;
+            this.label73.Text = "بابت";
+            // 
+            // lblsTotal
+            // 
+            this.lblsTotal.BackColor = System.Drawing.Color.Transparent;
+            this.lblsTotal.Font = new System.Drawing.Font("B Yekan", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.lblsTotal.ForeColor = System.Drawing.Color.Maroon;
+            this.lblsTotal.Location = new System.Drawing.Point(10, 200);
+            this.lblsTotal.Name = "lblsTotal";
+            this.lblsTotal.Size = new System.Drawing.Size(286, 57);
+            this.lblsTotal.TabIndex = 59;
+            this.lblsTotal.Text = "حق الزحمه پس از کسر تخفیف";
+            this.lblsTotal.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblsSallary
+            // 
+            this.lblsSallary.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblsSallary.AutoSize = true;
+            this.lblsSallary.BackColor = System.Drawing.Color.Transparent;
+            this.lblsSallary.Location = new System.Drawing.Point(46, 129);
+            this.lblsSallary.Name = "lblsSallary";
+            this.lblsSallary.Size = new System.Drawing.Size(154, 20);
+            this.lblsSallary.TabIndex = 59;
+            this.lblsSallary.Text = "حق الزحمه پس از کسر تخفیف";
+            // 
+            // label92
+            // 
+            this.label92.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label92.AutoSize = true;
+            this.label92.BackColor = System.Drawing.Color.Transparent;
+            this.label92.Location = new System.Drawing.Point(337, 218);
+            this.label92.Name = "label92";
+            this.label92.Size = new System.Drawing.Size(46, 20);
+            this.label92.TabIndex = 59;
+            this.label92.Text = "مبلغ کل";
+            // 
+            // label93
+            // 
+            this.label93.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label93.AutoSize = true;
+            this.label93.BackColor = System.Drawing.Color.Transparent;
+            this.label93.Location = new System.Drawing.Point(232, 129);
+            this.label93.Name = "label93";
+            this.label93.Size = new System.Drawing.Size(154, 20);
+            this.label93.TabIndex = 59;
+            this.label93.Text = "حق الزحمه پس از کسر تخفیف";
+            // 
+            // label94
+            // 
+            this.label94.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label94.AutoSize = true;
+            this.label94.BackColor = System.Drawing.Color.Transparent;
+            this.label94.Location = new System.Drawing.Point(308, 165);
+            this.label94.Name = "label94";
+            this.label94.Size = new System.Drawing.Size(75, 20);
+            this.label94.TabIndex = 59;
+            this.label94.Text = "ارزش افزوده";
+            // 
+            // label95
+            // 
+            this.label95.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label95.AutoSize = true;
+            this.label95.BackColor = System.Drawing.Color.Transparent;
+            this.label95.Location = new System.Drawing.Point(343, 92);
+            this.label95.Name = "label95";
+            this.label95.Size = new System.Drawing.Size(40, 20);
+            this.label95.TabIndex = 59;
+            this.label95.Text = "تخفیف";
+            // 
+            // label96
+            // 
+            this.label96.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label96.AutoSize = true;
+            this.label96.BackColor = System.Drawing.Color.Transparent;
+            this.label96.Location = new System.Drawing.Point(322, 13);
+            this.label96.Name = "label96";
+            this.label96.Size = new System.Drawing.Size(61, 20);
+            this.label96.TabIndex = 59;
+            this.label96.Text = "حق الزحمه";
+            // 
+            // txtsAddedValue
+            // 
+            this.txtsAddedValue.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtsAddedValue.Location = new System.Drawing.Point(145, 163);
+            this.txtsAddedValue.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.txtsAddedValue.Name = "txtsAddedValue";
+            this.txtsAddedValue.Size = new System.Drawing.Size(150, 27);
+            this.txtsAddedValue.TabIndex = 58;
+            this.txtsAddedValue.ValueChanged += new System.EventHandler(this.txtsAddedValue_ValueChanged);
+            // 
+            // txtsDiscount
+            // 
+            this.txtsDiscount.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtsDiscount.Location = new System.Drawing.Point(145, 88);
+            this.txtsDiscount.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.txtsDiscount.Name = "txtsDiscount";
+            this.txtsDiscount.Size = new System.Drawing.Size(150, 27);
+            this.txtsDiscount.TabIndex = 58;
+            this.txtsDiscount.ValueChanged += new System.EventHandler(this.txtsDiscount_ValueChanged);
+            // 
+            // txtsTotalPrice
+            // 
+            this.txtsTotalPrice.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtsTotalPrice.Location = new System.Drawing.Point(145, 11);
+            this.txtsTotalPrice.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.txtsTotalPrice.Name = "txtsTotalPrice";
+            this.txtsTotalPrice.Size = new System.Drawing.Size(150, 27);
+            this.txtsTotalPrice.TabIndex = 58;
+            this.txtsTotalPrice.ValueChanged += new System.EventHandler(this.txtsTotalPrice_ValueChanged);
+            // 
+            // superTabItem7
+            // 
+            this.superTabItem7.AttachedControl = this.superTabControlPanel8;
+            this.superTabItem7.GlobalItem = false;
+            this.superTabItem7.Name = "superTabItem7";
+            this.superTabItem7.Text = "اطلاعات پرداخت";
             // 
             // superTabControlPanel7
             // 
@@ -1568,7 +2113,7 @@
             this.fPanel.BackColor = System.Drawing.Color.Transparent;
             this.fPanel.Location = new System.Drawing.Point(3, 290);
             this.fPanel.Name = "fPanel";
-            this.fPanel.Size = new System.Drawing.Size(224, 130);
+            this.fPanel.Size = new System.Drawing.Size(218, 109);
             this.fPanel.TabIndex = 10;
             // 
             // btnBuildingSearch
@@ -1583,7 +2128,7 @@
             this.btnBuildingSearch.Location = new System.Drawing.Point(29, 9);
             this.btnBuildingSearch.Name = "btnBuildingSearch";
             this.btnBuildingSearch.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
-            this.btnBuildingSearch.Size = new System.Drawing.Size(173, 27);
+            this.btnBuildingSearch.Size = new System.Drawing.Size(167, 27);
             this.btnBuildingSearch.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
             this.btnBuildingSearch.TabIndex = 2;
             this.btnBuildingSearch.Text = "شناسایی ملک";
@@ -1595,7 +2140,7 @@
             this.label45.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label45.AutoSize = true;
             this.label45.BackColor = System.Drawing.Color.Transparent;
-            this.label45.Location = new System.Drawing.Point(192, 191);
+            this.label45.Location = new System.Drawing.Point(186, 191);
             this.label45.Name = "label45";
             this.label45.Size = new System.Drawing.Size(39, 20);
             this.label45.TabIndex = 9;
@@ -1606,7 +2151,7 @@
             this.label46.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label46.AutoSize = true;
             this.label46.BackColor = System.Drawing.Color.Transparent;
-            this.label46.Location = new System.Drawing.Point(195, 154);
+            this.label46.Location = new System.Drawing.Point(189, 154);
             this.label46.Name = "label46";
             this.label46.Size = new System.Drawing.Size(36, 20);
             this.label46.TabIndex = 9;
@@ -1617,7 +2162,7 @@
             this.label47.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label47.AutoSize = true;
             this.label47.BackColor = System.Drawing.Color.Transparent;
-            this.label47.Location = new System.Drawing.Point(186, 117);
+            this.label47.Location = new System.Drawing.Point(180, 117);
             this.label47.Name = "label47";
             this.label47.Size = new System.Drawing.Size(45, 20);
             this.label47.TabIndex = 9;
@@ -1628,7 +2173,7 @@
             this.label48.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label48.AutoSize = true;
             this.label48.BackColor = System.Drawing.Color.Transparent;
-            this.label48.Location = new System.Drawing.Point(166, 80);
+            this.label48.Location = new System.Drawing.Point(160, 80);
             this.label48.Name = "label48";
             this.label48.Size = new System.Drawing.Size(65, 20);
             this.label48.TabIndex = 9;
@@ -1641,7 +2186,7 @@
             this.lblBuildingAddress.BackColor = System.Drawing.Color.Transparent;
             this.lblBuildingAddress.Location = new System.Drawing.Point(47, 191);
             this.lblBuildingAddress.Name = "lblBuildingAddress";
-            this.lblBuildingAddress.Size = new System.Drawing.Size(122, 79);
+            this.lblBuildingAddress.Size = new System.Drawing.Size(116, 79);
             this.lblBuildingAddress.TabIndex = 9;
             // 
             // lblZirBana
@@ -1651,7 +2196,7 @@
             this.lblZirBana.BackColor = System.Drawing.Color.Transparent;
             this.lblZirBana.Location = new System.Drawing.Point(47, 154);
             this.lblZirBana.Name = "lblZirBana";
-            this.lblZirBana.Size = new System.Drawing.Size(118, 20);
+            this.lblZirBana.Size = new System.Drawing.Size(112, 20);
             this.lblZirBana.TabIndex = 9;
             // 
             // lblMasahat
@@ -1661,7 +2206,7 @@
             this.lblMasahat.BackColor = System.Drawing.Color.Transparent;
             this.lblMasahat.Location = new System.Drawing.Point(47, 117);
             this.lblMasahat.Name = "lblMasahat";
-            this.lblMasahat.Size = new System.Drawing.Size(118, 20);
+            this.lblMasahat.Size = new System.Drawing.Size(112, 20);
             this.lblMasahat.TabIndex = 9;
             // 
             // lblsPrice
@@ -1671,7 +2216,7 @@
             this.lblsPrice.BackColor = System.Drawing.Color.Transparent;
             this.lblsPrice.Location = new System.Drawing.Point(47, 80);
             this.lblsPrice.Name = "lblsPrice";
-            this.lblsPrice.Size = new System.Drawing.Size(118, 20);
+            this.lblsPrice.Size = new System.Drawing.Size(112, 20);
             this.lblsPrice.TabIndex = 9;
             // 
             // lblfPrice
@@ -1681,7 +2226,7 @@
             this.lblfPrice.BackColor = System.Drawing.Color.Transparent;
             this.lblfPrice.Location = new System.Drawing.Point(47, 43);
             this.lblfPrice.Name = "lblfPrice";
-            this.lblfPrice.Size = new System.Drawing.Size(118, 20);
+            this.lblfPrice.Size = new System.Drawing.Size(112, 20);
             this.lblfPrice.TabIndex = 9;
             // 
             // label41
@@ -1729,7 +2274,7 @@
             this.label63.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label63.AutoSize = true;
             this.label63.BackColor = System.Drawing.Color.Transparent;
-            this.label63.Location = new System.Drawing.Point(174, 43);
+            this.label63.Location = new System.Drawing.Point(168, 43);
             this.label63.Name = "label63";
             this.label63.Size = new System.Drawing.Size(57, 20);
             this.label63.TabIndex = 9;
@@ -1830,7 +2375,7 @@
             this.txtDisCharge.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtDisCharge.Location = new System.Drawing.Point(244, 41);
-            this.txtDisCharge.Miladi = new System.DateTime(((long)(0)));
+            this.txtDisCharge.Miladi = new System.DateTime(2020, 10, 25, 17, 13, 8, 0);
             this.txtDisCharge.Name = "txtDisCharge";
             this.txtDisCharge.NowDateSelected = false;
             this.txtDisCharge.ReadOnly = true;
@@ -1854,7 +2399,7 @@
             // 
             this.txtSarResid.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.txtSarResid.Location = new System.Drawing.Point(8, 82);
-            this.txtSarResid.Miladi = new System.DateTime(((long)(0)));
+            this.txtSarResid.Miladi = new System.DateTime(2020, 10, 25, 17, 13, 11, 0);
             this.txtSarResid.Name = "txtSarResid";
             this.txtSarResid.NowDateSelected = false;
             this.txtSarResid.ReadOnly = true;
@@ -1976,8 +2521,8 @@
             this.superTabControl2.ControlBox.SubItems.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.superTabControl2.ControlBox.CloseBox,
             this.superTabControl2.ControlBox.MenuBox});
-            this.superTabControl2.Controls.Add(this.superTabControlPanel9);
             this.superTabControl2.Controls.Add(this.superTabControlPanel10);
+            this.superTabControl2.Controls.Add(this.superTabControlPanel9);
             this.superTabControl2.Location = new System.Drawing.Point(3, 8);
             this.superTabControl2.Name = "superTabControl2";
             this.superTabControl2.ReorderTabsEnabled = true;
@@ -2061,7 +2606,7 @@
             this.txtfDate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtfDate.Location = new System.Drawing.Point(247, 55);
-            this.txtfDate.Miladi = new System.DateTime(((long)(0)));
+            this.txtfDate.Miladi = new System.DateTime(2020, 10, 25, 17, 13, 3, 0);
             this.txtfDate.Name = "txtfDate";
             this.txtfDate.NowDateSelected = false;
             this.txtfDate.ReadOnly = true;
@@ -2289,7 +2834,7 @@
             this.txtSetDocDate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtSetDocDate.Location = new System.Drawing.Point(236, 89);
-            this.txtSetDocDate.Miladi = new System.DateTime(((long)(0)));
+            this.txtSetDocDate.Miladi = new System.DateTime(2020, 10, 25, 17, 13, 20, 0);
             this.txtSetDocDate.Name = "txtSetDocDate";
             this.txtSetDocDate.NowDateSelected = false;
             this.txtSetDocDate.ReadOnly = true;
@@ -2666,7 +3211,7 @@
             this.txtfCode.Location = new System.Drawing.Point(106, 6);
             this.txtfCode.Name = "txtfCode";
             this.txtfCode.ReadOnly = true;
-            this.txtfCode.Size = new System.Drawing.Size(186, 27);
+            this.txtfCode.Size = new System.Drawing.Size(180, 27);
             this.txtfCode.TabIndex = 10;
             // 
             // label26
@@ -2674,7 +3219,7 @@
             this.label26.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label26.AutoSize = true;
             this.label26.BackColor = System.Drawing.Color.Transparent;
-            this.label26.Location = new System.Drawing.Point(323, 194);
+            this.label26.Location = new System.Drawing.Point(317, 194);
             this.label26.Name = "label26";
             this.label26.Size = new System.Drawing.Size(39, 20);
             this.label26.TabIndex = 9;
@@ -2685,7 +3230,7 @@
             this.label28.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label28.AutoSize = true;
             this.label28.BackColor = System.Drawing.Color.Transparent;
-            this.label28.Location = new System.Drawing.Point(306, 157);
+            this.label28.Location = new System.Drawing.Point(300, 157);
             this.label28.Name = "label28";
             this.label28.Size = new System.Drawing.Size(56, 20);
             this.label28.TabIndex = 9;
@@ -2696,7 +3241,7 @@
             this.label29.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label29.AutoSize = true;
             this.label29.BackColor = System.Drawing.Color.Transparent;
-            this.label29.Location = new System.Drawing.Point(304, 120);
+            this.label29.Location = new System.Drawing.Point(298, 120);
             this.label29.Name = "label29";
             this.label29.Size = new System.Drawing.Size(58, 20);
             this.label29.TabIndex = 9;
@@ -2707,7 +3252,7 @@
             this.label30.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label30.AutoSize = true;
             this.label30.BackColor = System.Drawing.Color.Transparent;
-            this.label30.Location = new System.Drawing.Point(319, 83);
+            this.label30.Location = new System.Drawing.Point(313, 83);
             this.label30.Name = "label30";
             this.label30.Size = new System.Drawing.Size(43, 20);
             this.label30.TabIndex = 9;
@@ -2720,7 +3265,7 @@
             this.lblfAddress.BackColor = System.Drawing.Color.Transparent;
             this.lblfAddress.Location = new System.Drawing.Point(20, 194);
             this.lblfAddress.Name = "lblfAddress";
-            this.lblfAddress.Size = new System.Drawing.Size(248, 153);
+            this.lblfAddress.Size = new System.Drawing.Size(242, 153);
             this.lblfAddress.TabIndex = 9;
             // 
             // lblfDateBirth
@@ -2730,7 +3275,7 @@
             this.lblfDateBirth.BackColor = System.Drawing.Color.Transparent;
             this.lblfDateBirth.Location = new System.Drawing.Point(55, 157);
             this.lblfDateBirth.Name = "lblfDateBirth";
-            this.lblfDateBirth.Size = new System.Drawing.Size(213, 20);
+            this.lblfDateBirth.Size = new System.Drawing.Size(207, 20);
             this.lblfDateBirth.TabIndex = 9;
             // 
             // lblfNationalCode
@@ -2740,7 +3285,7 @@
             this.lblfNationalCode.BackColor = System.Drawing.Color.Transparent;
             this.lblfNationalCode.Location = new System.Drawing.Point(55, 120);
             this.lblfNationalCode.Name = "lblfNationalCode";
-            this.lblfNationalCode.Size = new System.Drawing.Size(213, 20);
+            this.lblfNationalCode.Size = new System.Drawing.Size(207, 20);
             this.lblfNationalCode.TabIndex = 9;
             // 
             // lblfFatherName
@@ -2750,7 +3295,7 @@
             this.lblfFatherName.BackColor = System.Drawing.Color.Transparent;
             this.lblfFatherName.Location = new System.Drawing.Point(55, 83);
             this.lblfFatherName.Name = "lblfFatherName";
-            this.lblfFatherName.Size = new System.Drawing.Size(213, 20);
+            this.lblfFatherName.Size = new System.Drawing.Size(207, 20);
             this.lblfFatherName.TabIndex = 9;
             // 
             // lblfName
@@ -2760,7 +3305,7 @@
             this.lblfName.BackColor = System.Drawing.Color.Transparent;
             this.lblfName.Location = new System.Drawing.Point(55, 46);
             this.lblfName.Name = "lblfName";
-            this.lblfName.Size = new System.Drawing.Size(213, 20);
+            this.lblfName.Size = new System.Drawing.Size(207, 20);
             this.lblfName.TabIndex = 9;
             // 
             // label43
@@ -2768,7 +3313,7 @@
             this.label43.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label43.AutoSize = true;
             this.label43.BackColor = System.Drawing.Color.Transparent;
-            this.label43.Location = new System.Drawing.Point(267, 46);
+            this.label43.Location = new System.Drawing.Point(261, 46);
             this.label43.Name = "label43";
             this.label43.Size = new System.Drawing.Size(95, 20);
             this.label43.TabIndex = 9;
@@ -2779,7 +3324,7 @@
             this.label44.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label44.AutoSize = true;
             this.label44.BackColor = System.Drawing.Color.Transparent;
-            this.label44.Location = new System.Drawing.Point(298, 9);
+            this.label44.Location = new System.Drawing.Point(292, 9);
             this.label44.Name = "label44";
             this.label44.Size = new System.Drawing.Size(64, 20);
             this.label44.TabIndex = 9;
@@ -2998,532 +3543,6 @@
             this.superTabControlPanel6.Size = new System.Drawing.Size(789, 533);
             this.superTabControlPanel6.TabIndex = 0;
             // 
-            // superTabControlPanel8
-            // 
-            this.superTabControlPanel8.Controls.Add(this.btnCalculateCommition);
-            this.superTabControlPanel8.Controls.Add(this.splitContainer5);
-            this.superTabControlPanel8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.superTabControlPanel8.Location = new System.Drawing.Point(0, 40);
-            this.superTabControlPanel8.Name = "superTabControlPanel8";
-            this.superTabControlPanel8.Size = new System.Drawing.Size(789, 493);
-            this.superTabControlPanel8.TabIndex = 0;
-            this.superTabControlPanel8.TabItem = this.superTabItem7;
-            // 
-            // splitContainer5
-            // 
-            this.splitContainer5.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.splitContainer5.Location = new System.Drawing.Point(0, 38);
-            this.splitContainer5.Name = "splitContainer5";
-            // 
-            // splitContainer5.Panel1
-            // 
-            this.splitContainer5.Panel1.Controls.Add(this.groupPanel2);
-            this.splitContainer5.Panel1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            // 
-            // splitContainer5.Panel2
-            // 
-            this.splitContainer5.Panel2.Controls.Add(this.groupPanel5);
-            this.splitContainer5.Panel2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.splitContainer5.Size = new System.Drawing.Size(789, 455);
-            this.splitContainer5.SplitterDistance = 382;
-            this.splitContainer5.TabIndex = 0;
-            // 
-            // groupPanel2
-            // 
-            this.groupPanel2.CanvasColor = System.Drawing.SystemColors.Control;
-            this.groupPanel2.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
-            this.groupPanel2.Controls.Add(this.cmbfBabat);
-            this.groupPanel2.Controls.Add(this.cmbfAddedValue);
-            this.groupPanel2.Controls.Add(this.cmbfDiscount);
-            this.groupPanel2.Controls.Add(this.cmbfTotalPrice);
-            this.groupPanel2.Controls.Add(this.label15);
-            this.groupPanel2.Controls.Add(this.lblfTotal);
-            this.groupPanel2.Controls.Add(this.lblfSallary);
-            this.groupPanel2.Controls.Add(this.label23);
-            this.groupPanel2.Controls.Add(this.label17);
-            this.groupPanel2.Controls.Add(this.label21);
-            this.groupPanel2.Controls.Add(this.label16);
-            this.groupPanel2.Controls.Add(this.label14);
-            this.groupPanel2.Controls.Add(this.txtfAddedValue);
-            this.groupPanel2.Controls.Add(this.txtfDiscount);
-            this.groupPanel2.Controls.Add(this.txtfTotalPrice);
-            this.groupPanel2.DisabledBackColor = System.Drawing.Color.Empty;
-            this.groupPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupPanel2.Location = new System.Drawing.Point(0, 0);
-            this.groupPanel2.Name = "groupPanel2";
-            this.groupPanel2.Size = new System.Drawing.Size(382, 455);
-            // 
-            // 
-            // 
-            this.groupPanel2.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(227)))), ((int)(((byte)(239)))), ((int)(((byte)(255)))));
-            this.groupPanel2.Style.BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
-            this.groupPanel2.Style.BackColorGradientAngle = 90;
-            this.groupPanel2.Style.BorderBottom = DevComponents.DotNetBar.eStyleBorderType.Solid;
-            this.groupPanel2.Style.BorderBottomWidth = 2;
-            this.groupPanel2.Style.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(198)))), ((int)(((byte)(195)))), ((int)(((byte)(198)))));
-            this.groupPanel2.Style.BorderColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(198)))), ((int)(((byte)(195)))), ((int)(((byte)(198)))));
-            this.groupPanel2.Style.BorderLeft = DevComponents.DotNetBar.eStyleBorderType.Solid;
-            this.groupPanel2.Style.BorderLeftWidth = 2;
-            this.groupPanel2.Style.BorderRight = DevComponents.DotNetBar.eStyleBorderType.Solid;
-            this.groupPanel2.Style.BorderRightWidth = 2;
-            this.groupPanel2.Style.BorderTop = DevComponents.DotNetBar.eStyleBorderType.Solid;
-            this.groupPanel2.Style.BorderTopWidth = 2;
-            this.groupPanel2.Style.CornerDiameter = 4;
-            this.groupPanel2.Style.CornerType = DevComponents.DotNetBar.eCornerType.Rounded;
-            this.groupPanel2.Style.TextAlignment = DevComponents.DotNetBar.eStyleTextAlignment.Center;
-            this.groupPanel2.Style.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.groupPanel2.Style.TextLineAlignment = DevComponents.DotNetBar.eStyleTextAlignment.Near;
-            // 
-            // 
-            // 
-            this.groupPanel2.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // 
-            // 
-            this.groupPanel2.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.groupPanel2.TabIndex = 3;
-            this.groupPanel2.Text = "حق الزحمه طرف اول";
-            // 
-            // cmbfBabat
-            // 
-            this.cmbfBabat.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.cmbfBabat.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.cmbfBabat.DisplayMember = "Name";
-            this.cmbfBabat.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbfBabat.FormattingEnabled = true;
-            this.cmbfBabat.Location = new System.Drawing.Point(15, 47);
-            this.cmbfBabat.Name = "cmbfBabat";
-            this.cmbfBabat.Size = new System.Drawing.Size(277, 28);
-            this.cmbfBabat.TabIndex = 60;
-            this.cmbfBabat.ValueMember = "Guid";
-            // 
-            // cmbfAddedValue
-            // 
-            this.cmbfAddedValue.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.cmbfAddedValue.DisplayMember = "Name";
-            this.cmbfAddedValue.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbfAddedValue.FormattingEnabled = true;
-            this.cmbfAddedValue.Location = new System.Drawing.Point(15, 162);
-            this.cmbfAddedValue.Name = "cmbfAddedValue";
-            this.cmbfAddedValue.Size = new System.Drawing.Size(127, 28);
-            this.cmbfAddedValue.TabIndex = 60;
-            this.cmbfAddedValue.ValueMember = "Guid";
-            this.cmbfAddedValue.SelectedIndexChanged += new System.EventHandler(this.cmbfAddedValue_SelectedIndexChanged);
-            // 
-            // cmbfDiscount
-            // 
-            this.cmbfDiscount.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.cmbfDiscount.DisplayMember = "Name";
-            this.cmbfDiscount.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbfDiscount.FormattingEnabled = true;
-            this.cmbfDiscount.Location = new System.Drawing.Point(15, 87);
-            this.cmbfDiscount.Name = "cmbfDiscount";
-            this.cmbfDiscount.Size = new System.Drawing.Size(127, 28);
-            this.cmbfDiscount.TabIndex = 60;
-            this.cmbfDiscount.ValueMember = "Guid";
-            this.cmbfDiscount.SelectedIndexChanged += new System.EventHandler(this.cmbfDiscount_SelectedIndexChanged);
-            // 
-            // cmbfTotalPrice
-            // 
-            this.cmbfTotalPrice.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.cmbfTotalPrice.DisplayMember = "Name";
-            this.cmbfTotalPrice.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbfTotalPrice.FormattingEnabled = true;
-            this.cmbfTotalPrice.Location = new System.Drawing.Point(15, 10);
-            this.cmbfTotalPrice.Name = "cmbfTotalPrice";
-            this.cmbfTotalPrice.Size = new System.Drawing.Size(127, 28);
-            this.cmbfTotalPrice.TabIndex = 60;
-            this.cmbfTotalPrice.ValueMember = "Guid";
-            this.cmbfTotalPrice.SelectedIndexChanged += new System.EventHandler(this.cmbfTotalPrice_SelectedIndexChanged);
-            // 
-            // label15
-            // 
-            this.label15.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label15.AutoSize = true;
-            this.label15.BackColor = System.Drawing.Color.Transparent;
-            this.label15.Location = new System.Drawing.Point(342, 50);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(31, 20);
-            this.label15.TabIndex = 59;
-            this.label15.Text = "بابت";
-            // 
-            // lblfTotal
-            // 
-            this.lblfTotal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblfTotal.BackColor = System.Drawing.Color.Transparent;
-            this.lblfTotal.Font = new System.Drawing.Font("B Yekan", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.lblfTotal.ForeColor = System.Drawing.Color.Maroon;
-            this.lblfTotal.Location = new System.Drawing.Point(21, 201);
-            this.lblfTotal.Name = "lblfTotal";
-            this.lblfTotal.Size = new System.Drawing.Size(271, 60);
-            this.lblfTotal.TabIndex = 59;
-            this.lblfTotal.Text = "حق الزحمه پس از کسر تخفیف";
-            this.lblfTotal.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lblfSallary
-            // 
-            this.lblfSallary.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblfSallary.AutoSize = true;
-            this.lblfSallary.BackColor = System.Drawing.Color.Transparent;
-            this.lblfSallary.Location = new System.Drawing.Point(43, 129);
-            this.lblfSallary.Name = "lblfSallary";
-            this.lblfSallary.Size = new System.Drawing.Size(154, 20);
-            this.lblfSallary.TabIndex = 59;
-            this.lblfSallary.Text = "حق الزحمه پس از کسر تخفیف";
-            // 
-            // label23
-            // 
-            this.label23.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label23.AutoSize = true;
-            this.label23.BackColor = System.Drawing.Color.Transparent;
-            this.label23.Location = new System.Drawing.Point(327, 218);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(46, 20);
-            this.label23.TabIndex = 59;
-            this.label23.Text = "مبلغ کل";
-            // 
-            // label17
-            // 
-            this.label17.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label17.AutoSize = true;
-            this.label17.BackColor = System.Drawing.Color.Transparent;
-            this.label17.Location = new System.Drawing.Point(222, 129);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(154, 20);
-            this.label17.TabIndex = 59;
-            this.label17.Text = "حق الزحمه پس از کسر تخفیف";
-            // 
-            // label21
-            // 
-            this.label21.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label21.AutoSize = true;
-            this.label21.BackColor = System.Drawing.Color.Transparent;
-            this.label21.Location = new System.Drawing.Point(298, 165);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(75, 20);
-            this.label21.TabIndex = 59;
-            this.label21.Text = "ارزش افزوده";
-            // 
-            // label16
-            // 
-            this.label16.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label16.AutoSize = true;
-            this.label16.BackColor = System.Drawing.Color.Transparent;
-            this.label16.Location = new System.Drawing.Point(333, 92);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(40, 20);
-            this.label16.TabIndex = 59;
-            this.label16.Text = "تخفیف";
-            // 
-            // label14
-            // 
-            this.label14.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label14.AutoSize = true;
-            this.label14.BackColor = System.Drawing.Color.Transparent;
-            this.label14.Location = new System.Drawing.Point(312, 13);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(61, 20);
-            this.label14.TabIndex = 59;
-            this.label14.Text = "حق الزحمه";
-            // 
-            // txtfAddedValue
-            // 
-            this.txtfAddedValue.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtfAddedValue.Location = new System.Drawing.Point(148, 163);
-            this.txtfAddedValue.Maximum = new decimal(new int[] {
-            10000,
-            0,
-            0,
-            0});
-            this.txtfAddedValue.Name = "txtfAddedValue";
-            this.txtfAddedValue.Size = new System.Drawing.Size(144, 27);
-            this.txtfAddedValue.TabIndex = 58;
-            this.txtfAddedValue.ValueChanged += new System.EventHandler(this.txtfAddedValue_ValueChanged);
-            // 
-            // txtfDiscount
-            // 
-            this.txtfDiscount.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtfDiscount.Location = new System.Drawing.Point(148, 88);
-            this.txtfDiscount.Maximum = new decimal(new int[] {
-            10000,
-            0,
-            0,
-            0});
-            this.txtfDiscount.Name = "txtfDiscount";
-            this.txtfDiscount.Size = new System.Drawing.Size(144, 27);
-            this.txtfDiscount.TabIndex = 58;
-            this.txtfDiscount.ValueChanged += new System.EventHandler(this.txtfDiscount_ValueChanged);
-            // 
-            // txtfTotalPrice
-            // 
-            this.txtfTotalPrice.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtfTotalPrice.Location = new System.Drawing.Point(148, 11);
-            this.txtfTotalPrice.Maximum = new decimal(new int[] {
-            10000,
-            0,
-            0,
-            0});
-            this.txtfTotalPrice.Name = "txtfTotalPrice";
-            this.txtfTotalPrice.Size = new System.Drawing.Size(144, 27);
-            this.txtfTotalPrice.TabIndex = 58;
-            this.txtfTotalPrice.ValueChanged += new System.EventHandler(this.txtfTotalPrice_ValueChanged);
-            // 
-            // groupPanel5
-            // 
-            this.groupPanel5.CanvasColor = System.Drawing.SystemColors.Control;
-            this.groupPanel5.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
-            this.groupPanel5.Controls.Add(this.cmbsBabat);
-            this.groupPanel5.Controls.Add(this.cmbsAddedValue);
-            this.groupPanel5.Controls.Add(this.cmbsDiscount);
-            this.groupPanel5.Controls.Add(this.cmbsTotalPrice);
-            this.groupPanel5.Controls.Add(this.label73);
-            this.groupPanel5.Controls.Add(this.lblsTotal);
-            this.groupPanel5.Controls.Add(this.lblsSallary);
-            this.groupPanel5.Controls.Add(this.label92);
-            this.groupPanel5.Controls.Add(this.label93);
-            this.groupPanel5.Controls.Add(this.label94);
-            this.groupPanel5.Controls.Add(this.label95);
-            this.groupPanel5.Controls.Add(this.label96);
-            this.groupPanel5.Controls.Add(this.txtsAddedValue);
-            this.groupPanel5.Controls.Add(this.txtsDiscount);
-            this.groupPanel5.Controls.Add(this.txtsTotalPrice);
-            this.groupPanel5.DisabledBackColor = System.Drawing.Color.Empty;
-            this.groupPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupPanel5.Location = new System.Drawing.Point(0, 0);
-            this.groupPanel5.Name = "groupPanel5";
-            this.groupPanel5.Size = new System.Drawing.Size(403, 455);
-            // 
-            // 
-            // 
-            this.groupPanel5.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(227)))), ((int)(((byte)(239)))), ((int)(((byte)(255)))));
-            this.groupPanel5.Style.BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
-            this.groupPanel5.Style.BackColorGradientAngle = 90;
-            this.groupPanel5.Style.BorderBottom = DevComponents.DotNetBar.eStyleBorderType.Solid;
-            this.groupPanel5.Style.BorderBottomWidth = 2;
-            this.groupPanel5.Style.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(198)))), ((int)(((byte)(195)))), ((int)(((byte)(198)))));
-            this.groupPanel5.Style.BorderColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(198)))), ((int)(((byte)(195)))), ((int)(((byte)(198)))));
-            this.groupPanel5.Style.BorderLeft = DevComponents.DotNetBar.eStyleBorderType.Solid;
-            this.groupPanel5.Style.BorderLeftWidth = 2;
-            this.groupPanel5.Style.BorderRight = DevComponents.DotNetBar.eStyleBorderType.Solid;
-            this.groupPanel5.Style.BorderRightWidth = 2;
-            this.groupPanel5.Style.BorderTop = DevComponents.DotNetBar.eStyleBorderType.Solid;
-            this.groupPanel5.Style.BorderTopWidth = 2;
-            this.groupPanel5.Style.CornerDiameter = 4;
-            this.groupPanel5.Style.CornerType = DevComponents.DotNetBar.eCornerType.Rounded;
-            this.groupPanel5.Style.TextAlignment = DevComponents.DotNetBar.eStyleTextAlignment.Center;
-            this.groupPanel5.Style.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.groupPanel5.Style.TextLineAlignment = DevComponents.DotNetBar.eStyleTextAlignment.Near;
-            // 
-            // 
-            // 
-            this.groupPanel5.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // 
-            // 
-            this.groupPanel5.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.groupPanel5.TabIndex = 4;
-            this.groupPanel5.Text = "حق الزحمه طرف دوم";
-            // 
-            // cmbsBabat
-            // 
-            this.cmbsBabat.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.cmbsBabat.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.cmbsBabat.DisplayMember = "Name";
-            this.cmbsBabat.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbsBabat.FormattingEnabled = true;
-            this.cmbsBabat.Location = new System.Drawing.Point(12, 47);
-            this.cmbsBabat.Name = "cmbsBabat";
-            this.cmbsBabat.Size = new System.Drawing.Size(284, 28);
-            this.cmbsBabat.TabIndex = 60;
-            this.cmbsBabat.ValueMember = "Guid";
-            // 
-            // cmbsAddedValue
-            // 
-            this.cmbsAddedValue.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.cmbsAddedValue.DisplayMember = "Name";
-            this.cmbsAddedValue.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbsAddedValue.FormattingEnabled = true;
-            this.cmbsAddedValue.Location = new System.Drawing.Point(12, 162);
-            this.cmbsAddedValue.Name = "cmbsAddedValue";
-            this.cmbsAddedValue.Size = new System.Drawing.Size(127, 28);
-            this.cmbsAddedValue.TabIndex = 60;
-            this.cmbsAddedValue.ValueMember = "Guid";
-            this.cmbsAddedValue.SelectedIndexChanged += new System.EventHandler(this.cmbsAddedValue_SelectedIndexChanged);
-            // 
-            // cmbsDiscount
-            // 
-            this.cmbsDiscount.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.cmbsDiscount.DisplayMember = "Name";
-            this.cmbsDiscount.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbsDiscount.FormattingEnabled = true;
-            this.cmbsDiscount.Location = new System.Drawing.Point(12, 87);
-            this.cmbsDiscount.Name = "cmbsDiscount";
-            this.cmbsDiscount.Size = new System.Drawing.Size(127, 28);
-            this.cmbsDiscount.TabIndex = 60;
-            this.cmbsDiscount.ValueMember = "Guid";
-            this.cmbsDiscount.SelectedIndexChanged += new System.EventHandler(this.cmbsDiscount_SelectedIndexChanged);
-            // 
-            // cmbsTotalPrice
-            // 
-            this.cmbsTotalPrice.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.cmbsTotalPrice.DisplayMember = "Name";
-            this.cmbsTotalPrice.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbsTotalPrice.FormattingEnabled = true;
-            this.cmbsTotalPrice.Location = new System.Drawing.Point(12, 10);
-            this.cmbsTotalPrice.Name = "cmbsTotalPrice";
-            this.cmbsTotalPrice.Size = new System.Drawing.Size(127, 28);
-            this.cmbsTotalPrice.TabIndex = 60;
-            this.cmbsTotalPrice.ValueMember = "Guid";
-            this.cmbsTotalPrice.SelectedIndexChanged += new System.EventHandler(this.cmbsTotalPrice_SelectedIndexChanged);
-            // 
-            // label73
-            // 
-            this.label73.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label73.AutoSize = true;
-            this.label73.BackColor = System.Drawing.Color.Transparent;
-            this.label73.Location = new System.Drawing.Point(352, 50);
-            this.label73.Name = "label73";
-            this.label73.Size = new System.Drawing.Size(31, 20);
-            this.label73.TabIndex = 59;
-            this.label73.Text = "بابت";
-            // 
-            // lblsTotal
-            // 
-            this.lblsTotal.BackColor = System.Drawing.Color.Transparent;
-            this.lblsTotal.Font = new System.Drawing.Font("B Yekan", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.lblsTotal.ForeColor = System.Drawing.Color.Maroon;
-            this.lblsTotal.Location = new System.Drawing.Point(10, 200);
-            this.lblsTotal.Name = "lblsTotal";
-            this.lblsTotal.Size = new System.Drawing.Size(286, 57);
-            this.lblsTotal.TabIndex = 59;
-            this.lblsTotal.Text = "حق الزحمه پس از کسر تخفیف";
-            this.lblsTotal.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lblsSallary
-            // 
-            this.lblsSallary.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblsSallary.AutoSize = true;
-            this.lblsSallary.BackColor = System.Drawing.Color.Transparent;
-            this.lblsSallary.Location = new System.Drawing.Point(46, 129);
-            this.lblsSallary.Name = "lblsSallary";
-            this.lblsSallary.Size = new System.Drawing.Size(154, 20);
-            this.lblsSallary.TabIndex = 59;
-            this.lblsSallary.Text = "حق الزحمه پس از کسر تخفیف";
-            // 
-            // label92
-            // 
-            this.label92.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label92.AutoSize = true;
-            this.label92.BackColor = System.Drawing.Color.Transparent;
-            this.label92.Location = new System.Drawing.Point(337, 218);
-            this.label92.Name = "label92";
-            this.label92.Size = new System.Drawing.Size(46, 20);
-            this.label92.TabIndex = 59;
-            this.label92.Text = "مبلغ کل";
-            // 
-            // label93
-            // 
-            this.label93.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label93.AutoSize = true;
-            this.label93.BackColor = System.Drawing.Color.Transparent;
-            this.label93.Location = new System.Drawing.Point(232, 129);
-            this.label93.Name = "label93";
-            this.label93.Size = new System.Drawing.Size(154, 20);
-            this.label93.TabIndex = 59;
-            this.label93.Text = "حق الزحمه پس از کسر تخفیف";
-            // 
-            // label94
-            // 
-            this.label94.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label94.AutoSize = true;
-            this.label94.BackColor = System.Drawing.Color.Transparent;
-            this.label94.Location = new System.Drawing.Point(308, 165);
-            this.label94.Name = "label94";
-            this.label94.Size = new System.Drawing.Size(75, 20);
-            this.label94.TabIndex = 59;
-            this.label94.Text = "ارزش افزوده";
-            // 
-            // label95
-            // 
-            this.label95.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label95.AutoSize = true;
-            this.label95.BackColor = System.Drawing.Color.Transparent;
-            this.label95.Location = new System.Drawing.Point(343, 92);
-            this.label95.Name = "label95";
-            this.label95.Size = new System.Drawing.Size(40, 20);
-            this.label95.TabIndex = 59;
-            this.label95.Text = "تخفیف";
-            // 
-            // label96
-            // 
-            this.label96.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label96.AutoSize = true;
-            this.label96.BackColor = System.Drawing.Color.Transparent;
-            this.label96.Location = new System.Drawing.Point(322, 13);
-            this.label96.Name = "label96";
-            this.label96.Size = new System.Drawing.Size(61, 20);
-            this.label96.TabIndex = 59;
-            this.label96.Text = "حق الزحمه";
-            // 
-            // txtsAddedValue
-            // 
-            this.txtsAddedValue.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtsAddedValue.Location = new System.Drawing.Point(145, 163);
-            this.txtsAddedValue.Maximum = new decimal(new int[] {
-            10000,
-            0,
-            0,
-            0});
-            this.txtsAddedValue.Name = "txtsAddedValue";
-            this.txtsAddedValue.Size = new System.Drawing.Size(150, 27);
-            this.txtsAddedValue.TabIndex = 58;
-            this.txtsAddedValue.ValueChanged += new System.EventHandler(this.txtsAddedValue_ValueChanged);
-            // 
-            // txtsDiscount
-            // 
-            this.txtsDiscount.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtsDiscount.Location = new System.Drawing.Point(145, 88);
-            this.txtsDiscount.Maximum = new decimal(new int[] {
-            10000,
-            0,
-            0,
-            0});
-            this.txtsDiscount.Name = "txtsDiscount";
-            this.txtsDiscount.Size = new System.Drawing.Size(150, 27);
-            this.txtsDiscount.TabIndex = 58;
-            this.txtsDiscount.ValueChanged += new System.EventHandler(this.txtsDiscount_ValueChanged);
-            // 
-            // txtsTotalPrice
-            // 
-            this.txtsTotalPrice.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtsTotalPrice.Location = new System.Drawing.Point(145, 11);
-            this.txtsTotalPrice.Maximum = new decimal(new int[] {
-            10000,
-            0,
-            0,
-            0});
-            this.txtsTotalPrice.Name = "txtsTotalPrice";
-            this.txtsTotalPrice.Size = new System.Drawing.Size(150, 27);
-            this.txtsTotalPrice.TabIndex = 58;
-            this.txtsTotalPrice.ValueChanged += new System.EventHandler(this.txtsTotalPrice_ValueChanged);
-            // 
-            // superTabItem7
-            // 
-            this.superTabItem7.AttachedControl = this.superTabControlPanel8;
-            this.superTabItem7.GlobalItem = false;
-            this.superTabItem7.Name = "superTabItem7";
-            this.superTabItem7.Text = "اطلاعات پرداخت";
-            // 
             // superTabControlPanel11
             // 
             this.superTabControlPanel11.Controls.Add(this.textBox6);
@@ -3604,25 +3623,6 @@
             this.btnSaveNoTemp.Text = "ذخیره به صورت دائم (F10)";
             this.btnSaveNoTemp.Click += new System.EventHandler(this.btnSaveNoTemp_Click);
             // 
-            // btnCalculateCommition
-            // 
-            this.btnCalculateCommition.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnCalculateCommition.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCalculateCommition.BackColor = System.Drawing.Color.DarkSlateGray;
-            this.btnCalculateCommition.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnCalculateCommition.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
-            this.btnCalculateCommition.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnCalculateCommition.Location = new System.Drawing.Point(223, 5);
-            this.btnCalculateCommition.Name = "btnCalculateCommition";
-            this.btnCalculateCommition.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
-            this.btnCalculateCommition.Size = new System.Drawing.Size(352, 27);
-            this.btnCalculateCommition.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
-            this.btnCalculateCommition.TabIndex = 3;
-            this.btnCalculateCommition.Text = "محاسبه حق الزحمه طرفین قرارداد";
-            this.btnCalculateCommition.TextColor = System.Drawing.Color.White;
-            this.btnCalculateCommition.Click += new System.EventHandler(this.btnCalculateCommition_Click);
-            // 
             // frmContractMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -3674,6 +3674,21 @@
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.superTabControl1)).EndInit();
             this.superTabControl1.ResumeLayout(false);
+            this.superTabControlPanel8.ResumeLayout(false);
+            this.splitContainer5.Panel1.ResumeLayout(false);
+            this.splitContainer5.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer5)).EndInit();
+            this.splitContainer5.ResumeLayout(false);
+            this.groupPanel2.ResumeLayout(false);
+            this.groupPanel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtfAddedValue)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtfDiscount)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtfTotalPrice)).EndInit();
+            this.groupPanel5.ResumeLayout(false);
+            this.groupPanel5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtsAddedValue)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtsDiscount)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtsTotalPrice)).EndInit();
             this.superTabControlPanel7.ResumeLayout(false);
             this.splitContainer3.Panel1.ResumeLayout(false);
             this.splitContainer3.Panel2.ResumeLayout(false);
@@ -3718,21 +3733,6 @@
             this.groupPanel6.PerformLayout();
             this.groupPanel7.ResumeLayout(false);
             this.groupPanel7.PerformLayout();
-            this.superTabControlPanel8.ResumeLayout(false);
-            this.splitContainer5.Panel1.ResumeLayout(false);
-            this.splitContainer5.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer5)).EndInit();
-            this.splitContainer5.ResumeLayout(false);
-            this.groupPanel2.ResumeLayout(false);
-            this.groupPanel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtfAddedValue)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtfDiscount)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtfTotalPrice)).EndInit();
-            this.groupPanel5.ResumeLayout(false);
-            this.groupPanel5.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtsAddedValue)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtsDiscount)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtsTotalPrice)).EndInit();
             this.superTabControlPanel11.ResumeLayout(false);
             this.superTabControlPanel11.PerformLayout();
             this.ResumeLayout(false);

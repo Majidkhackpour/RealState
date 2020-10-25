@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Data.SqlClient;
 using System.IO;
+using System.Linq;
 using System.Reflection;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using Accounting;
 using Accounting.Hazine;
@@ -144,6 +146,28 @@ namespace RealState
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
+        private async Task SetNotesAsync()
+        {
+            try
+            {
+                var now = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, 0, 0);
+                var allNote = await NoteBussines.GetAllAsync();
+                allNote = allNote.Where(q =>
+                        q.DateSarresid != null && q.DateSarresid >= now &&
+                        q.DateSarresid <= now.AddDays(2))
+                    .ToList();
+
+                if (allNote.Count > 0)
+                {
+                    var frm = new frmReminder(allNote);
+                    frm.ShowDialog();
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
         public frmMain()
         {
             InitializeComponent();
@@ -156,9 +180,9 @@ namespace RealState
             SetButtomLables();
             SetTaghvim();
             var naqz = await NaqzBussines.SetNaqzAsync();
-            new frmNaqz(naqz).ShowDialog(this);
-
+            lblNaqz.Text = $"\n \n \n {naqz}";
             SetAccess();
+            await SetNotesAsync();
         }
         private void timerSecond_Tick(object sender, EventArgs e)
         {
@@ -516,15 +540,15 @@ namespace RealState
         {
             try
             {
-                var res = await clsErtegha.StartErteghaAsync(AppSettings.DefaultConnectionString,this);
+                var res = await clsErtegha.StartErteghaAsync(AppSettings.DefaultConnectionString, this);
                 if (!res.HasError)
                 {
-                    MessageBox.Show(this,"بازسازی اطلاعات با موفقیت انجام شد", "پیغام سیستم", MessageBoxButtons.OK,
+                    MessageBox.Show(this, "بازسازی اطلاعات با موفقیت انجام شد", "پیغام سیستم", MessageBoxButtons.OK,
                         MessageBoxIcon.Information);
                     return;
                 }
 
-                MessageBox.Show(this,"خطا در بازسازی اطلاعات", "پیغام سیستم", MessageBoxButtons.OK,
+                MessageBox.Show(this, "خطا در بازسازی اطلاعات", "پیغام سیستم", MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
             }
             catch (Exception ex)

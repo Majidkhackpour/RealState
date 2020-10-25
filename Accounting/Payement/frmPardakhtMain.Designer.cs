@@ -159,7 +159,7 @@
             this.txtSarResid.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtSarResid.Location = new System.Drawing.Point(474, 53);
-            this.txtSarResid.Miladi = new System.DateTime(((long)(0)));
+            this.txtSarResid.Miladi = new System.DateTime(2020, 10, 25, 16, 57, 36, 0);
             this.txtSarResid.Name = "txtSarResid";
             this.txtSarResid.NowDateSelected = false;
             this.txtSarResid.ReadOnly = true;

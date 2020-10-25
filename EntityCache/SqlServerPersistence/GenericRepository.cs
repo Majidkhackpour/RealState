@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Migrations;
+using System.Data.Entity.Validation;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -111,8 +113,17 @@ namespace EntityCache.SqlServerPersistence
                 await _dbContext.SaveChangesAsync();
                 return new ReturnedSaveFuncInfo();
             }
-            catch (Exception ex)
+            catch (DbEntityValidationException ex)
             {
+                foreach (var validationErrors in ex.EntityValidationErrors)
+                {
+                    foreach (var validationError in validationErrors.ValidationErrors)
+                    {
+                        Trace.TraceInformation("Property: {0} Error: {1}",
+                            validationError.PropertyName,
+                            validationError.ErrorMessage);
+                    }
+                }
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
                 return new ReturnedSaveFuncInfo(ex);
             }
@@ -134,8 +145,17 @@ namespace EntityCache.SqlServerPersistence
                 await _dbContext.SaveChangesAsync();
                 return new ReturnedSaveFuncInfo();
             }
-            catch (Exception ex)
+            catch (DbEntityValidationException ex)
             {
+                foreach (var validationErrors in ex.EntityValidationErrors)
+                {
+                    foreach (var validationError in validationErrors.ValidationErrors)
+                    {
+                        Trace.TraceInformation("Property: {0} Error: {1}",
+                            validationError.PropertyName,
+                            validationError.ErrorMessage);
+                    }
+                }
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
                 return new ReturnedSaveFuncInfo(ex);
             }
@@ -154,8 +174,17 @@ namespace EntityCache.SqlServerPersistence
                 await _dbContext.SaveChangesAsync();
                 return new ReturnedSaveFuncInfo();
             }
-            catch (Exception ex)
+            catch (DbEntityValidationException ex)
             {
+                foreach (var validationErrors in ex.EntityValidationErrors)
+                {
+                    foreach (var validationError in validationErrors.ValidationErrors)
+                    {
+                        Trace.TraceInformation("Property: {0} Error: {1}",
+                            validationError.PropertyName,
+                            validationError.ErrorMessage);
+                    }
+                }
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
                 return new ReturnedSaveFuncInfo(ex);
             }
