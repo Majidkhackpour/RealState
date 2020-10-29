@@ -40,18 +40,18 @@
             // 
             this.txtDbName.Location = new System.Drawing.Point(30, 17);
             this.txtDbName.Name = "txtDbName";
-            this.txtDbName.Size = new System.Drawing.Size(302, 27);
+            this.txtDbName.Size = new System.Drawing.Size(280, 27);
             this.txtDbName.TabIndex = 0;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Location = new System.Drawing.Point(338, 20);
+            this.label1.Location = new System.Drawing.Point(316, 20);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(86, 20);
+            this.label1.Size = new System.Drawing.Size(109, 20);
             this.label1.TabIndex = 10;
-            this.label1.Text = "عنوان سال کاری";
+            this.label1.Text = "عنوان واحد اقتصادی";
             // 
             // btnConString
             // 
@@ -66,7 +66,7 @@
             this.btnConString.Location = new System.Drawing.Point(30, 50);
             this.btnConString.Name = "btnConString";
             this.btnConString.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
-            this.btnConString.Size = new System.Drawing.Size(302, 31);
+            this.btnConString.Size = new System.Drawing.Size(280, 31);
             this.btnConString.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
             this.btnConString.TabIndex = 1;
             this.btnConString.Text = "تنظیم پارامترهای اتصال";
@@ -81,7 +81,7 @@
             this.btnFinish.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnFinish.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnFinish.Image = global::Settings.Properties.Resources.tab_checkbox__;
-            this.btnFinish.Location = new System.Drawing.Point(207, 87);
+            this.btnFinish.Location = new System.Drawing.Point(185, 87);
             this.btnFinish.Name = "btnFinish";
             this.btnFinish.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
             this.btnFinish.Size = new System.Drawing.Size(125, 31);

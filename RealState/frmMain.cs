@@ -28,6 +28,7 @@ using Cities.Region;
 using EntityCache.Bussines;
 using Ertegha;
 using MetroFramework.Forms;
+using Notification;
 using Payamak;
 using Payamak.Panel;
 using Payamak.PhoneBook;
@@ -617,6 +618,47 @@ namespace RealState
         {
             var d = DivarAdv.GetInstance();
             await d.GetBuildingFromDivarAsync(EnRequestType.Rahn, textBox1.Text.ParseToLong());
+        }
+        private async void mnuBackUp_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var res = await DataBaseUtilities.DataBase.BackUpStartAsync(this,
+                    AppSettings.DefaultConnectionString, ENSource.Building);
+                if (res.HasError)
+                {
+                    frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);
+                    return;
+                }
+                frmNotification.PublicInfo.ShowMessage("پشتیبان گیری با موفقیت انجام شد");
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private async void mnuRestore_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (MessageBox.Show(this,
+                        "توجه داشته باشید درصورت بازگردانی اطلاعات، اطلاعات قبلی به کلی از بین خواهد رفت. آیا ادامه میدهید؟",
+                        "هشدار", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                    return;
+                var res = await DataBaseUtilities.DataBase.ReStoreStartAsync(this,
+                    AppSettings.DefaultConnectionString, ENSource.Building);
+                if (res.HasError)
+                {
+                    frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);
+                    return;
+                }
+                frmNotification.PublicInfo.ShowMessage("بازیابی فایل پشتیبان با موفقیت انجام شد");
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
         }
     }
 }

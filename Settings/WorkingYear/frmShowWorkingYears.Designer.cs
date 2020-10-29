@@ -193,7 +193,7 @@
             this.btnCreate.Size = new System.Drawing.Size(143, 31);
             this.btnCreate.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
             this.btnCreate.TabIndex = 1;
-            this.btnCreate.Text = "ایجاد سال کاری جدید";
+            this.btnCreate.Text = "ایجاد واحد اقتصادی جدید";
             this.btnCreate.TextColor = System.Drawing.Color.White;
             this.btnCreate.Click += new System.EventHandler(this.btnCreate_Click);
             // 
@@ -213,7 +213,7 @@
             this.btnEdit.Size = new System.Drawing.Size(143, 31);
             this.btnEdit.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
             this.btnEdit.TabIndex = 2;
-            this.btnEdit.Text = "ویرایش سال کاری جاری";
+            this.btnEdit.Text = "ویرایش واحد اقتصادی جاری";
             this.btnEdit.TextColor = System.Drawing.Color.White;
             this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
             // 
@@ -233,7 +233,7 @@
             this.btnDelete.Size = new System.Drawing.Size(143, 31);
             this.btnDelete.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
             this.btnDelete.TabIndex = 3;
-            this.btnDelete.Text = "حذف سال کاری جاری";
+            this.btnDelete.Text = "حذف واحد اقتصادی جاری";
             this.btnDelete.TextColor = System.Drawing.Color.White;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
@@ -255,7 +255,7 @@
             this.btnRestore.TabIndex = 3;
             this.btnRestore.Text = "بازگردانی اطلاعات";
             this.btnRestore.TextColor = System.Drawing.Color.White;
-            this.btnRestore.Click += new System.EventHandler(this.btnDelete_Click);
+            this.btnRestore.Click += new System.EventHandler(this.btnRestore_Click);
             // 
             // txtConnectionString
             // 

@@ -48,6 +48,7 @@ namespace EntityCache.Assistence
         private static ISerializedDataRepository _serDataRepository;
         private static IAdvertiseRelatedRegionRepository _advertiseRelatedRegionRepository;
         private static IAdvTokensRepository _advTokenRepository;
+        private static IBackUpLogRepository _bkLogRepository;
 
         public static void Dispose() => db?.Dispose();
         public static void Set_Save() => db.SaveChanges();
@@ -227,5 +228,10 @@ namespace EntityCache.Assistence
         public static IAdvTokensRepository AdvTokens => _advTokenRepository ??
                                                                   (_advTokenRepository =
                                                                       new AdvTokensPersistenceRepository(db));
+
+
+        public static IBackUpLogRepository BackUpLog => _bkLogRepository ??
+                                                        (_bkLogRepository =
+                                                            new BackUpLogPersistenceRepository(db));
     }
 }

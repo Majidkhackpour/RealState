@@ -148,5 +148,28 @@ namespace Settings.WorkingYear
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
+
+        private async void btnRestore_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (MessageBox.Show(this,
+                        "توجه داشته باشید درصورت بازگردانی اطلاعات، اطلاعات قبلی به کلی از بین خواهد رفت. آیا ادامه میدهید؟",
+                        "هشدار", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                    return;
+                var res = await DataBaseUtilities.DataBase.ReStoreStartAsync(this,
+                    txtConnectionString.Text, ENSource.Building);
+                if (res.HasError)
+                {
+                    frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);
+                    return;
+                }
+                frmNotification.PublicInfo.ShowMessage("بازیابی فایل پشتیبان با موفقیت انجام شد");
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
     }
 }

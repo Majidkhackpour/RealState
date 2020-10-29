@@ -59,5 +59,6 @@ namespace Persistence.Model
         public virtual DbSet<SerializedData> SerializedData { get; set; }
         public virtual DbSet<AdvertiseRelatedRegion> AdvertiseRelatedRegion { get; set; }
         public virtual DbSet<AdvToken> AdvTokens { get; set; }
+        public virtual DbSet<BackUpLog> BackUpLogs { get; set; }
     }
 }

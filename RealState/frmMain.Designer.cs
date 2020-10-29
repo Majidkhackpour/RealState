@@ -603,12 +603,14 @@
             this.mnuBackUp.Name = "mnuBackUp";
             this.mnuBackUp.Size = new System.Drawing.Size(221, 24);
             this.mnuBackUp.Text = "پشتیبان گیری";
+            this.mnuBackUp.Click += new System.EventHandler(this.mnuBackUp_Click);
             // 
             // mnuRestore
             // 
             this.mnuRestore.Name = "mnuRestore";
             this.mnuRestore.Size = new System.Drawing.Size(221, 24);
             this.mnuRestore.Text = "بازیابی فایل پشتیبان";
+            this.mnuRestore.Click += new System.EventHandler(this.mnuRestore_Click);
             // 
             // toolStripMenuItem7
             // 
