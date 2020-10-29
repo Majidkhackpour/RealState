@@ -704,6 +704,7 @@
             // 
             this.lblNaqz.BackColor = System.Drawing.Color.Transparent;
             this.lblNaqz.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.lblNaqz.ForeColor = System.Drawing.Color.Red;
             this.lblNaqz.Image = global::RealState.Properties.Resources.images1;
             this.lblNaqz.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.lblNaqz.Location = new System.Drawing.Point(9, 98);

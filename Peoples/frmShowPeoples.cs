@@ -108,6 +108,8 @@ namespace Peoples
                 btnUpGroup.Enabled = access?.Peoples.People_Group_Update ?? false;
                 btnTell.Enabled = access?.Peoples.People_Show_Tell ?? false;
                 btnPrint.Enabled = access?.Peoples.People_Print ?? false;
+
+                btnIpmortFromExcel.Visible = Settings.VersionAccess.Excel;
             }
             catch (Exception ex)
             {

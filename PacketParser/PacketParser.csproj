@@ -52,46 +52,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Interfaces\IAdvertiseLog.cs" />
-    <Compile Include="Interfaces\IAdvertiseRelatedRegion.cs" />
-    <Compile Include="Interfaces\IAdvTokens.cs" />
-    <Compile Include="Interfaces\IBuilding.cs" />
-    <Compile Include="Interfaces\IBuildingAccountType.cs" />
-    <Compile Include="Interfaces\IBuildingCondition.cs" />
-    <Compile Include="Interfaces\IBuildingGallery.cs" />
-    <Compile Include="Interfaces\IBuildingOptions.cs" />
-    <Compile Include="Interfaces\IBuildingRelatedOptions.cs" />
-    <Compile Include="Interfaces\IBuildingRequest.cs" />
-    <Compile Include="Interfaces\IBuildingRequestRegion.cs" />
-    <Compile Include="Interfaces\IBuildingType.cs" />
-    <Compile Include="Interfaces\IBuildingView.cs" />
-    <Compile Include="Interfaces\ICities.cs" />
-    <Compile Include="Interfaces\IContract.cs" />
-    <Compile Include="Interfaces\IContractFinance.cs" />
-    <Compile Include="Interfaces\IDocumentType.cs" />
-    <Compile Include="Interfaces\IFloorCover.cs" />
-    <Compile Include="Interfaces\IGardeshHesab.cs" />
-    <Compile Include="Interfaces\IHasGuid.cs" />
-    <Compile Include="Interfaces\IHazine.cs" />
-    <Compile Include="Interfaces\IKitchenService.cs" />
-    <Compile Include="Interfaces\INaqz.cs" />
-    <Compile Include="Interfaces\INote.cs" />
-    <Compile Include="Interfaces\IPardakht.cs" />
-    <Compile Include="Interfaces\IPeopleBankAccount.cs" />
-    <Compile Include="Interfaces\IPeopleGroup.cs" />
-    <Compile Include="Interfaces\IPeoples.cs" />
-    <Compile Include="Interfaces\IPhoneBook.cs" />
-    <Compile Include="Interfaces\IReception.cs" />
-    <Compile Include="Interfaces\IRegions.cs" />
-    <Compile Include="Interfaces\IRentalAuthority.cs" />
-    <Compile Include="Interfaces\ISerializedData.cs" />
-    <Compile Include="Interfaces\ISettings.cs" />
-    <Compile Include="Interfaces\ISimcard.cs" />
-    <Compile Include="Interfaces\ISmsLog.cs" />
-    <Compile Include="Interfaces\ISmsPanels.cs" />
-    <Compile Include="Interfaces\IStates.cs" />
-    <Compile Include="Interfaces\IUserLog.cs" />
-    <Compile Include="Interfaces\IUsers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -55,11 +55,11 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("B Yekan", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.label1.Location = new System.Drawing.Point(182, 13);
+            this.label1.Location = new System.Drawing.Point(169, 13);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(162, 36);
+            this.label1.Size = new System.Drawing.Size(204, 36);
             this.label1.TabIndex = 0;
-            this.label1.Text = "انتخاب سال کاری";
+            this.label1.Text = "انتخاب واحد اقتصادی";
             // 
             // DGrid
             // 
@@ -293,7 +293,9 @@
             this.Padding = new System.Windows.Forms.Padding(27, 92, 27, 31);
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.Style = MetroFramework.MetroColorStyle.Green;
+            this.TopMost = true;
             this.Load += new System.EventHandler(this.frmShowWorkingYears_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmShowWorkingYears_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.workingYearBindingSource)).EndInit();
             this.ResumeLayout(false);

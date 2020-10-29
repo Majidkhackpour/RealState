@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using PacketParser.Interfaces;
 using Services;
+using Servicess.Interfaces;
 
 namespace EntityCache.Core
 {

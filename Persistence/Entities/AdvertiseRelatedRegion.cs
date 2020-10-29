@@ -1,6 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
-using PacketParser.Interfaces;
+using Servicess.Interfaces.Building;
 
 namespace Persistence.Entities
 {

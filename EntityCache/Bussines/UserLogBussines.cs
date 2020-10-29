@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using EntityCache.Assistence;
 using Nito.AsyncEx;
-using PacketParser.Interfaces;
 using Services;
+using Servicess.Interfaces.Building;
 
 namespace EntityCache.Bussines
 {

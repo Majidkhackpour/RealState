@@ -130,5 +130,23 @@ namespace Settings.WorkingYear
         }
 
         private void DGrid_DoubleClick(object sender, EventArgs e) => btnSelect.PerformClick();
+
+        private void frmShowWorkingYears_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                switch (e.KeyCode)
+                {
+                    case Keys.Enter: btnSelect.PerformClick();
+                        break;
+                    case Keys.Escape: Application.Exit();
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
     }
 }

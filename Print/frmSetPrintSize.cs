@@ -40,7 +40,18 @@ namespace Print
                 WebErrorLog.ErrorInstence.StartErrorLog(exception);
             }
         }
-
+        private void SetAccess()
+        {
+            try
+            {
+                pictureBox2.Visible = Settings.VersionAccess.Excel;
+                radioButton1.Visible = Settings.VersionAccess.Excel;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
         private void btnFinish_Click(object sender, EventArgs e)
         {
             if (rbtnA4.Checked) _PrintType = EnPrintType.Pdf_A4;

@@ -1,10 +1,9 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using PacketParser;
-using PacketParser.Interfaces;
 using Services;
 using Services.Access;
+using Servicess.Interfaces.Building;
 
 namespace Persistence.Entities
 {

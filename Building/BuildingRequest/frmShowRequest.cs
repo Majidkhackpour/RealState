@@ -41,6 +41,8 @@ namespace Building.BuildingRequest
                 btnChangeStatus.Enabled = access?.BuildingRequest.Building_Request_Disable ?? false;
                 btnView.Enabled = access?.BuildingRequest.Building_Request_View ?? false;
                 btnPrint.Enabled = access?.BuildingRequest.Building_Request_Print ?? false;
+
+                btnSendSms.Visible = Settings.VersionAccess.Sms;
             }
             catch (Exception ex)
             {

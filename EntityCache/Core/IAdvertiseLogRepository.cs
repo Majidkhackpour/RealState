@@ -4,7 +4,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 using EntityCache.Bussines;
-using PacketParser.Interfaces;
+using Servicess.Interfaces.Building;
 
 namespace EntityCache.Core
 {

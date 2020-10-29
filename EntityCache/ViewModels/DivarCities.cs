@@ -1,5 +1,5 @@
 ﻿using System;
-using PacketParser.Interfaces;
+using Servicess.Interfaces;
 
 namespace EntityCache.ViewModels
 {

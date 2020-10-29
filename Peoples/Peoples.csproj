@@ -265,10 +265,6 @@
       <Project>{44a0f109-df64-482c-befb-df20038ee4df}</Project>
       <Name>Notification</Name>
     </ProjectReference>
-    <ProjectReference Include="..\PacketParser\PacketParser.csproj">
-      <Project>{7e235f22-ae73-4698-9951-0f092ac91850}</Project>
-      <Name>PacketParser</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Payamak\Payamak.csproj">
       <Project>{c8268c19-4e5c-4369-8fd4-cf89e3f16f24}</Project>
       <Name>Payamak</Name>
@@ -280,6 +276,10 @@
     <ProjectReference Include="..\Print\Print.csproj">
       <Project>{86698884-fad8-4d69-b7ad-4f0a437f7bcc}</Project>
       <Name>Print</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Settings\Settings.csproj">
+      <Project>{5005cb62-16e0-4240-9a2d-8001adc9d990}</Project>
+      <Name>Settings</Name>
     </ProjectReference>
     <ProjectReference Include="..\User\User.csproj">
       <Project>{ebed491e-32a3-4484-a5aa-e5ed61e8bb0b}</Project>

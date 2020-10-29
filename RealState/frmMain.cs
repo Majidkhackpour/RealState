@@ -28,7 +28,6 @@ using Cities.Region;
 using EntityCache.Bussines;
 using Ertegha;
 using MetroFramework.Forms;
-using Notification;
 using Payamak;
 using Payamak.Panel;
 using Payamak.PhoneBook;
@@ -104,6 +103,11 @@ namespace RealState
                 mnuSmsPanels.Enabled = access?.SmsPanel.Panel_ShowForm ?? false;
                 mnuUsers.Enabled = access?.User.User_ShowForm ?? false;
                 mnuAccessLevel.Enabled = access?.UserAccLevel.User_Acc_ShowForm ?? false;
+
+                mnuAcciuntingInfo.Visible = VersionAccess.Accounting;
+                mnuSmsPanels.Visible = VersionAccess.Sms;
+                mnuSendSms.Visible= VersionAccess.Sms;
+                mnuSimcard.Visible = VersionAccess.Advertise;
             }
             catch (Exception ex)
             {

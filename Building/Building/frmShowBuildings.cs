@@ -88,6 +88,11 @@ namespace Building.Building
                 btnSendToSheypoor.Enabled = access?.Building.Building_Send_Sheypoor ?? false;
                 btnSendToTelegram.Enabled = access?.Building.Building_Send_Telegram ?? false;
                 btnPrint.Enabled = access?.Building.Building_Print ?? false;
+
+                btnSendSms.Visible = Settings.VersionAccess.Sms;
+                btnSendToDivar.Visible = Settings.VersionAccess.Advertise;
+                btnSendToSheypoor.Visible = Settings.VersionAccess.Advertise;
+                btnSendToTelegram.Visible = Settings.VersionAccess.Telegram;
             }
             catch (Exception ex)
             {

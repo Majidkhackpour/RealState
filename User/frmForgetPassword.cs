@@ -98,6 +98,7 @@ namespace User
             try
             {
                 UserBussines cls = null;
+                short type = 5;
                 if (rbtnQuestion.Checked)
                 {
                     if (string.IsNullOrWhiteSpace(txtAnswer.Text))
@@ -131,6 +132,7 @@ namespace User
                     }
 
                     cls = await UserBussines.GetByEmailAsync(txtEmail.Text);
+                    type = 1;
                 }
 
                 if (rbtnMobile.Checked)
@@ -143,6 +145,7 @@ namespace User
                     }
 
                     cls = await UserBussines.GetByMobileAsync(txtMobile.Text);
+                    type = 0;
                 }
 
                 if (cls == null)
@@ -151,7 +154,7 @@ namespace User
                     return;
                 }
 
-                var frm = new frmRegisterPassword(cls);
+                var frm = new frmRegisterPassword(cls, type);
                 if (frm.ShowDialog(this) == DialogResult.OK)
                     Close();
             }

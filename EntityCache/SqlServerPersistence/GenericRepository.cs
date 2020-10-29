@@ -9,9 +9,9 @@ using System.Threading;
 using System.Threading.Tasks;
 using EntityCache.Assistence;
 using EntityCache.Core;
-using PacketParser.Interfaces;
 using Persistence.Model;
 using Services;
+using Servicess.Interfaces;
 
 namespace EntityCache.SqlServerPersistence
 {

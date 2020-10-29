@@ -263,6 +263,10 @@
       <Project>{dcb5bde2-6238-422d-ad4e-f53afce9bf30}</Project>
       <Name>Services</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\Sms\Sms\Sms\Sms.csproj">
+      <Project>{b3fb214c-0212-4375-a063-742b58bcb925}</Project>
+      <Name>Sms</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Accounting\Accounting.csproj">
       <Project>{f8a06d7c-6061-47f7-8e50-7f4ecf100cda}</Project>
       <Name>Accounting</Name>
@@ -274,10 +278,6 @@
     <ProjectReference Include="..\Notification\Notification.csproj">
       <Project>{44a0f109-df64-482c-befb-df20038ee4df}</Project>
       <Name>Notification</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\PacketParser\PacketParser.csproj">
-      <Project>{7e235f22-ae73-4698-9951-0f092ac91850}</Project>
-      <Name>PacketParser</Name>
     </ProjectReference>
     <ProjectReference Include="..\Persistence\Persistence.csproj">
       <Project>{69dbdf3a-8578-44db-95cd-08a671de9e41}</Project>

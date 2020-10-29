@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using System.Security.Principal;
 using System.Windows.Forms;
 using DataBaseUtilities;
@@ -125,9 +127,75 @@ namespace RealState
             var logForm = new frmLogin();
             if (logForm.ShowDialog(owner) != DialogResult.OK) return;
 
+            SetVersionAccess();
+
+            if (!VersionAccess.Building)
+            {
+                MessageBox.Show(owner,
+                    "سریال نرم افزار شما، مجوز استفاده از نرم افزار را ندارد. لطفا جهت ارتقای نسخه نرم افزار خود اقدام نمایید");
+                return;
+            }
+
             var frmMain = new frmMain();
             frmMain.ShowDialog(owner);
 
+        }
+
+        private static void SetVersionAccess()
+        {
+            try
+            {
+                var serial = clsRegistery.GetRegistery("U1001ML");
+
+                if (string.IsNullOrEmpty(serial)) return;
+                var serialList = new List<string>();
+                var code = "";
+                foreach (var item in serial.ToList())
+                {
+                    if (code.Length < 2)
+                    {
+                        code += item;
+                        if (code.Length == 2)
+                        {
+                            serialList.Add(code);
+                            code = "";
+                        }
+                    }
+                    else
+                    {
+                        serialList.Add(code);
+                        code = "";
+                    }
+                }
+
+
+                foreach (var item in serialList)
+                {
+                    switch ((EnAppSerial)item.ParseToInt())
+                    {
+                        case EnAppSerial.Building: VersionAccess.Building = true;
+                            break;
+                        case EnAppSerial.Sms: VersionAccess.Sms = true;
+                            break;
+                        case EnAppSerial.Advertise: VersionAccess.Advertise = true;
+                            break;
+                        case EnAppSerial.Telegram: VersionAccess.Telegram = true;
+                            break;
+                        case EnAppSerial.WhatsApp: VersionAccess.WhatsApp = true;
+                            break;
+                        case EnAppSerial.Excel: VersionAccess.Excel = true;
+                            break;
+                        case EnAppSerial.AutoBackUp: VersionAccess.AutoBackUp = true;
+                            break;
+                        case EnAppSerial.Accounting: VersionAccess.Accounting = true;
+                            break;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
         }
     }
 }

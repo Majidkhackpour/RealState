@@ -251,13 +251,13 @@
       <Project>{cc417799-f38c-4997-8491-510eb1c15f74}</Project>
       <Name>EntityCache</Name>
     </ProjectReference>
-    <ProjectReference Include="..\PacketParser\PacketParser.csproj">
-      <Project>{7e235f22-ae73-4698-9951-0f092ac91850}</Project>
-      <Name>PacketParser</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Persistence\Persistence.csproj">
       <Project>{69dbdf3a-8578-44db-95cd-08a671de9e41}</Project>
       <Name>Persistence</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Settings\Settings.csproj">
+      <Project>{5005cb62-16e0-4240-9a2d-8001adc9d990}</Project>
+      <Name>Settings</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

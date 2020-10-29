@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Text;
 using System.Windows.Forms;
@@ -12,10 +13,12 @@ namespace User
     public partial class frmRegisterPassword : MetroForm
     {
         private UserBussines cls;
-        public frmRegisterPassword(UserBussines user)
+        private short _type;
+        public frmRegisterPassword(UserBussines user, short type)
         {
             InitializeComponent();
             cls = user;
+            _type = type;
         }
 
         private void txtPass1_Enter(object sender, System.EventArgs e)
@@ -107,6 +110,49 @@ namespace User
                     frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);
                     return;
                 }
+
+                var text = $"کاربر گرامی: {cls?.Name} عزیز " +
+                           $"\r\n در تاریخ {Calendar.MiladiToShamsi(DateTime.Now)} رمز ورود به سیستم شما تعویض شد" +
+                           $"\r\n گروه مهندسی آراد";
+
+                if (_type == 0) //Sms
+                {
+                    if (string.IsNullOrEmpty(Settings.Classes.Payamak.DefaultPanelGuid))
+                        return;
+
+                    var panel = SmsPanelsBussines.Get(Guid.Parse(Settings.Classes.Payamak.DefaultPanelGuid));
+                    if (panel == null)
+                        return;
+
+                    var sApi = new Sms.Api(panel.API.Trim());
+
+
+                    var result = sApi.Send(panel.Sender, cls?.Mobile ?? "", text);
+
+                    var smsLog = new SmsLogBussines()
+                    {
+                        Guid = Guid.NewGuid(),
+                        UserGuid = cls?.Guid ?? Guid.Empty,
+                        Cost = result.Cost,
+                        Message = result.Message,
+                        MessageId = result.Messageid,
+                        Reciver = result.Receptor,
+                        Sender = result.Sender,
+                        StatusText = result.StatusText
+                    };
+
+                    await smsLog.SaveAsync();
+                }
+                else if (_type == 1) //Email
+                {
+                    if (string.IsNullOrEmpty(cls.Email)) return;
+
+                    var subject = "گزارش تغییر رمز عبور";
+                    
+                    SendEmail.Send(cls.Email, subject, text);
+                }
+
+
                 DialogResult = DialogResult.OK;
                 Close();
             }

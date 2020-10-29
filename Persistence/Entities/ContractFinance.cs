@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
-using PacketParser.Interfaces;
 using Services;
+using Servicess.Interfaces.Building;
 
 namespace Persistence.Entities
 {
