@@ -18,5 +18,6 @@ namespace Persistence.Entities
         public EnBackUpStatus BackUpStatus { get; set; }
         [MaxLength(1000)]
         public string StatusDesc { get; set; }
+        public short Size { get; set; }
     }
 }

@@ -16,6 +16,7 @@ namespace EntityCache.Bussines
         public EnBackUpType Type { get; set; }
         public EnBackUpStatus BackUpStatus { get; set; }
         public string StatusDesc { get; set; }
+        public short Size { get; set; }
 
         public static async Task<BackUpLogBussines> GetAsync(Guid guid) => await UnitOfWork.BackUpLog.GetAsync(guid);
 
