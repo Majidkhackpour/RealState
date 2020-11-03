@@ -188,6 +188,7 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\EntityCache.Bussines.BackUpLogBussines.datasource" />
     <None Include="Properties\DataSources\EntityCache.Bussines.UserBussines.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -210,6 +211,10 @@
     <ProjectReference Include="..\..\..\Services\Services\Services\Services.csproj">
       <Project>{dcb5bde2-6238-422d-ad4e-f53afce9bf30}</Project>
       <Name>Services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Sms\Sms\Sms\Sms.csproj">
+      <Project>{b3fb214c-0212-4375-a063-742b58bcb925}</Project>
+      <Name>Sms</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\SoftwareLock\SoftwareLock\SoftwareLock\SoftwareLock.csproj">
       <Project>{00d987f6-802c-45e1-a81c-f12ff68265a2}</Project>

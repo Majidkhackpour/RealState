@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using EntityCache.Assistence;
 using Services;
@@ -12,9 +13,12 @@ namespace EntityCache.Bussines
         public DateTime Modified { get; set; }
         public bool Status { get; set; }
         public DateTime InsertedDate { get; set; }
+        public string DateSh => Calendar.MiladiToShamsi(InsertedDate);
         public string Path { get; set; }
         public EnBackUpType Type { get; set; }
+        public string TypeName => Type.GetDisplay();
         public EnBackUpStatus BackUpStatus { get; set; }
+        public string StatusName => BackUpStatus.GetDisplay();
         public string StatusDesc { get; set; }
         public short Size { get; set; }
 
@@ -51,5 +55,7 @@ namespace EntityCache.Bussines
 
             return res;
         }
+
+        public static async Task<List<BackUpLogBussines>> GetAllAsync() => await UnitOfWork.BackUpLog.GetAllAsync();
     }
 }

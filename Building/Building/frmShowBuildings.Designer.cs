@@ -31,6 +31,9 @@
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -43,29 +46,54 @@
             this.btnEdit = new DevComponents.DotNetBar.ButtonX();
             this.line1 = new DevComponents.DotNetBar.Controls.Line();
             this.DGrid = new DevComponents.DotNetBar.Controls.DataGridViewX();
+            this.BuildingBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.btnOther = new DevComponents.DotNetBar.ButtonX();
+            this.btnMojod = new DevComponents.DotNetBar.ButtonItem();
+            this.btnVagozar = new DevComponents.DotNetBar.ButtonItem();
+            this.btnSendSms = new DevComponents.DotNetBar.ButtonItem();
+            this.btnSendToDivar = new DevComponents.DotNetBar.ButtonItem();
+            this.btnSendToSheypoor = new DevComponents.DotNetBar.ButtonItem();
+            this.btnSendToTelegram = new DevComponents.DotNetBar.ButtonItem();
+            this.btnMatchRequest = new DevComponents.DotNetBar.ButtonItem();
+            this.btnPrint = new DevComponents.DotNetBar.ButtonItem();
+            this.cmbStatus = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.cmbBuildingType = new System.Windows.Forms.ComboBox();
+            this.btBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.label3 = new System.Windows.Forms.Label();
+            this.cmbUser = new System.Windows.Forms.ComboBox();
+            this.userBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnSelect = new DevComponents.DotNetBar.ButtonX();
             this.dgCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DateSh = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ownerNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.buildingTypeNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.RoomCount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.masahatDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.zirBanaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.rahnPrice1DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ejarePrice1DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.sellPriceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.RegionName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.BuildingStatusName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.UserName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.addressDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgGuid = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.modifiedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.statusDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.ownerGuidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.sellPriceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UserName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.zirBanaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.vamPriceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.qestPriceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dangDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.documentTypeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.rahnPrice1DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.rahnPrice2DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ejarePrice1DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ejarePrice2DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.rentalAutorityGuidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.isShortTimeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -104,31 +132,6 @@
             this.barqDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gasDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tellDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BuildingBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.btnOther = new DevComponents.DotNetBar.ButtonX();
-            this.btnMojod = new DevComponents.DotNetBar.ButtonItem();
-            this.btnVagozar = new DevComponents.DotNetBar.ButtonItem();
-            this.btnSendSms = new DevComponents.DotNetBar.ButtonItem();
-            this.btnSendToDivar = new DevComponents.DotNetBar.ButtonItem();
-            this.btnSendToSheypoor = new DevComponents.DotNetBar.ButtonItem();
-            this.btnSendToTelegram = new DevComponents.DotNetBar.ButtonItem();
-            this.btnMatchRequest = new DevComponents.DotNetBar.ButtonItem();
-            this.btnPrint = new DevComponents.DotNetBar.ButtonItem();
-            this.cmbStatus = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.cmbBuildingType = new System.Windows.Forms.ComboBox();
-            this.btBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.label3 = new System.Windows.Forms.Label();
-            this.cmbUser = new System.Windows.Forms.ComboBox();
-            this.userBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnSelect = new DevComponents.DotNetBar.ButtonX();
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BuildingBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btBindingSource)).BeginInit();
@@ -293,23 +296,23 @@
             this.buildingTypeNameDataGridViewTextBoxColumn,
             this.RoomCount,
             this.masahatDataGridViewTextBoxColumn,
-            this.zirBanaDataGridViewTextBoxColumn,
+            this.rahnPrice1DataGridViewTextBoxColumn,
+            this.ejarePrice1DataGridViewTextBoxColumn,
+            this.sellPriceDataGridViewTextBoxColumn,
             this.RegionName,
             this.BuildingStatusName,
-            this.UserName,
             this.addressDataGridViewTextBoxColumn,
             this.dgGuid,
             this.modifiedDataGridViewTextBoxColumn,
             this.statusDataGridViewCheckBoxColumn,
             this.ownerGuidDataGridViewTextBoxColumn,
-            this.sellPriceDataGridViewTextBoxColumn,
+            this.UserName,
+            this.zirBanaDataGridViewTextBoxColumn,
             this.vamPriceDataGridViewTextBoxColumn,
             this.qestPriceDataGridViewTextBoxColumn,
             this.dangDataGridViewTextBoxColumn,
             this.documentTypeDataGridViewTextBoxColumn,
-            this.rahnPrice1DataGridViewTextBoxColumn,
             this.rahnPrice2DataGridViewTextBoxColumn,
-            this.ejarePrice1DataGridViewTextBoxColumn,
             this.ejarePrice2DataGridViewTextBoxColumn,
             this.rentalAutorityGuidDataGridViewTextBoxColumn,
             this.isShortTimeDataGridViewTextBoxColumn,
@@ -349,14 +352,14 @@
             this.gasDataGridViewTextBoxColumn,
             this.tellDataGridViewTextBoxColumn});
             this.DGrid.DataSource = this.BuildingBindingSource;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.Silver;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DGrid.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.Silver;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DGrid.DefaultCellStyle = dataGridViewCellStyle6;
             this.DGrid.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
             this.DGrid.Location = new System.Drawing.Point(4, 70);
             this.DGrid.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -364,21 +367,21 @@
             this.DGrid.ReadOnly = true;
             this.DGrid.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.DGrid.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DGrid.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DGrid.RowHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.DGrid.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.Silver;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.Black;
-            this.DGrid.RowsDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.Silver;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.Black;
+            this.DGrid.RowsDefaultCellStyle = dataGridViewCellStyle8;
             this.DGrid.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             this.DGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DGrid.Size = new System.Drawing.Size(1016, 468);
@@ -386,6 +389,235 @@
             this.DGrid.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DGrid_CellFormatting);
             this.DGrid.DoubleClick += new System.EventHandler(this.DGrid_DoubleClick);
             this.DGrid.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.DGrid_KeyPress);
+            // 
+            // BuildingBindingSource
+            // 
+            this.BuildingBindingSource.DataSource = typeof(EntityCache.Bussines.BuildingBussines);
+            // 
+            // btnOther
+            // 
+            this.btnOther.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnOther.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnOther.BackColor = System.Drawing.Color.Silver;
+            this.btnOther.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnOther.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.btnOther.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnOther.Location = new System.Drawing.Point(4, 559);
+            this.btnOther.Name = "btnOther";
+            this.btnOther.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
+            this.btnOther.Size = new System.Drawing.Size(61, 31);
+            this.btnOther.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
+            this.btnOther.SubItems.AddRange(new DevComponents.DotNetBar.BaseItem[] {
+            this.btnMojod,
+            this.btnVagozar,
+            this.btnSendSms,
+            this.btnSendToDivar,
+            this.btnSendToSheypoor,
+            this.btnSendToTelegram,
+            this.btnMatchRequest,
+            this.btnPrint});
+            this.btnOther.TabIndex = 55758;
+            this.btnOther.Text = "سایر";
+            this.btnOther.TextAlignment = DevComponents.DotNetBar.eButtonTextAlignment.Left;
+            this.btnOther.TextColor = System.Drawing.Color.Black;
+            // 
+            // btnMojod
+            // 
+            this.btnMojod.Name = "btnMojod";
+            this.btnMojod.Text = "تغییر وضعیت به موجود";
+            this.btnMojod.Click += new System.EventHandler(this.btnMojod_Click);
+            // 
+            // btnVagozar
+            // 
+            this.btnVagozar.Name = "btnVagozar";
+            this.btnVagozar.Text = "تغییر وضعیت به واگذار شده";
+            this.btnVagozar.Click += new System.EventHandler(this.btnVagozar_Click);
+            // 
+            // btnSendSms
+            // 
+            this.btnSendSms.Name = "btnSendSms";
+            this.btnSendSms.Text = "ارسال پیامک به مالک";
+            // 
+            // btnSendToDivar
+            // 
+            this.btnSendToDivar.Name = "btnSendToDivar";
+            this.btnSendToDivar.Text = "ارسال ملک در دیوار";
+            this.btnSendToDivar.Click += new System.EventHandler(this.btnSendToDivar_Click);
+            // 
+            // btnSendToSheypoor
+            // 
+            this.btnSendToSheypoor.Name = "btnSendToSheypoor";
+            this.btnSendToSheypoor.Text = "ارسال ملک در شیپور";
+            this.btnSendToSheypoor.Click += new System.EventHandler(this.btnSendToSheypoor_Click);
+            // 
+            // btnSendToTelegram
+            // 
+            this.btnSendToTelegram.Name = "btnSendToTelegram";
+            this.btnSendToTelegram.Text = "ارسال ملک در تلگرام";
+            // 
+            // btnMatchRequest
+            // 
+            this.btnMatchRequest.Name = "btnMatchRequest";
+            this.btnMatchRequest.Text = "تطابق با درخواست ها";
+            // 
+            // btnPrint
+            // 
+            this.btnPrint.Name = "btnPrint";
+            this.btnPrint.Text = "چاپ لیست املاک";
+            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
+            // 
+            // cmbStatus
+            // 
+            this.cmbStatus.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmbStatus.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cmbStatus.DisplayMember = "Name";
+            this.cmbStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbStatus.FormattingEnabled = true;
+            this.cmbStatus.Location = new System.Drawing.Point(837, 34);
+            this.cmbStatus.Name = "cmbStatus";
+            this.cmbStatus.Size = new System.Drawing.Size(122, 28);
+            this.cmbStatus.TabIndex = 55759;
+            this.cmbStatus.ValueMember = "Guid";
+            this.cmbStatus.SelectedIndexChanged += new System.EventHandler(this.cmbStatus_SelectedIndexChanged);
+            // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Location = new System.Drawing.Point(962, 37);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(46, 20);
+            this.label1.TabIndex = 55760;
+            this.label1.Text = "وضعیت";
+            // 
+            // label2
+            // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.Location = new System.Drawing.Point(785, 37);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(49, 20);
+            this.label2.TabIndex = 55760;
+            this.label2.Text = "نوع ملک";
+            // 
+            // cmbBuildingType
+            // 
+            this.cmbBuildingType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmbBuildingType.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cmbBuildingType.DataSource = this.btBindingSource;
+            this.cmbBuildingType.DisplayMember = "Name";
+            this.cmbBuildingType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbBuildingType.FormattingEnabled = true;
+            this.cmbBuildingType.Location = new System.Drawing.Point(660, 34);
+            this.cmbBuildingType.Name = "cmbBuildingType";
+            this.cmbBuildingType.Size = new System.Drawing.Size(122, 28);
+            this.cmbBuildingType.TabIndex = 55759;
+            this.cmbBuildingType.ValueMember = "Guid";
+            this.cmbBuildingType.SelectedIndexChanged += new System.EventHandler(this.cmbBuildingType_SelectedIndexChanged);
+            // 
+            // btBindingSource
+            // 
+            this.btBindingSource.DataSource = typeof(EntityCache.Bussines.BuildingTypeBussines);
+            // 
+            // label3
+            // 
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.Transparent;
+            this.label3.Location = new System.Drawing.Point(618, 37);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(39, 20);
+            this.label3.TabIndex = 55760;
+            this.label3.Text = "مشاور";
+            // 
+            // cmbUser
+            // 
+            this.cmbUser.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmbUser.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cmbUser.DataSource = this.userBindingSource;
+            this.cmbUser.DisplayMember = "Name";
+            this.cmbUser.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbUser.FormattingEnabled = true;
+            this.cmbUser.Location = new System.Drawing.Point(493, 34);
+            this.cmbUser.Name = "cmbUser";
+            this.cmbUser.Size = new System.Drawing.Size(122, 28);
+            this.cmbUser.TabIndex = 55759;
+            this.cmbUser.ValueMember = "Guid";
+            this.cmbUser.SelectedIndexChanged += new System.EventHandler(this.cmbUser_SelectedIndexChanged);
+            // 
+            // userBindingSource
+            // 
+            this.userBindingSource.DataSource = typeof(EntityCache.Bussines.UserBussines);
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "Tarakom";
+            this.dataGridViewTextBoxColumn1.HeaderText = "Tarakom";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "Side";
+            this.dataGridViewTextBoxColumn2.HeaderText = "Side";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            this.dataGridViewTextBoxColumn2.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.DataPropertyName = "Water";
+            this.dataGridViewTextBoxColumn3.HeaderText = "Water";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            this.dataGridViewTextBoxColumn3.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.DataPropertyName = "Barq";
+            this.dataGridViewTextBoxColumn4.HeaderText = "Barq";
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.ReadOnly = true;
+            this.dataGridViewTextBoxColumn4.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            this.dataGridViewTextBoxColumn5.DataPropertyName = "Gas";
+            this.dataGridViewTextBoxColumn5.HeaderText = "Gas";
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            this.dataGridViewTextBoxColumn5.ReadOnly = true;
+            this.dataGridViewTextBoxColumn5.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn6
+            // 
+            this.dataGridViewTextBoxColumn6.DataPropertyName = "Tell";
+            this.dataGridViewTextBoxColumn6.HeaderText = "Tell";
+            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            this.dataGridViewTextBoxColumn6.ReadOnly = true;
+            this.dataGridViewTextBoxColumn6.Visible = false;
+            // 
+            // btnSelect
+            // 
+            this.btnSelect.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnSelect.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSelect.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.btnSelect.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnSelect.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.btnSelect.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSelect.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.btnSelect.Location = new System.Drawing.Point(303, 559);
+            this.btnSelect.Name = "btnSelect";
+            this.btnSelect.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
+            this.btnSelect.Size = new System.Drawing.Size(414, 31);
+            this.btnSelect.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
+            this.btnSelect.TabIndex = 55763;
+            this.btnSelect.Text = "انتخاب";
+            this.btnSelect.TextColor = System.Drawing.Color.White;
+            this.btnSelect.Click += new System.EventHandler(this.btnSelect_Click);
             // 
             // dgCode
             // 
@@ -404,11 +636,11 @@
             // 
             // ownerNameDataGridViewTextBoxColumn
             // 
+            this.ownerNameDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.ownerNameDataGridViewTextBoxColumn.DataPropertyName = "OwnerName";
             this.ownerNameDataGridViewTextBoxColumn.HeaderText = "مالک";
             this.ownerNameDataGridViewTextBoxColumn.Name = "ownerNameDataGridViewTextBoxColumn";
             this.ownerNameDataGridViewTextBoxColumn.ReadOnly = true;
-            this.ownerNameDataGridViewTextBoxColumn.Width = 150;
             // 
             // buildingTypeNameDataGridViewTextBoxColumn
             // 
@@ -432,12 +664,37 @@
             this.masahatDataGridViewTextBoxColumn.Name = "masahatDataGridViewTextBoxColumn";
             this.masahatDataGridViewTextBoxColumn.ReadOnly = true;
             // 
-            // zirBanaDataGridViewTextBoxColumn
+            // rahnPrice1DataGridViewTextBoxColumn
             // 
-            this.zirBanaDataGridViewTextBoxColumn.DataPropertyName = "ZirBana";
-            this.zirBanaDataGridViewTextBoxColumn.HeaderText = "زیربنا";
-            this.zirBanaDataGridViewTextBoxColumn.Name = "zirBanaDataGridViewTextBoxColumn";
-            this.zirBanaDataGridViewTextBoxColumn.ReadOnly = true;
+            this.rahnPrice1DataGridViewTextBoxColumn.DataPropertyName = "RahnPrice1";
+            dataGridViewCellStyle3.Format = "N0";
+            dataGridViewCellStyle3.NullValue = null;
+            this.rahnPrice1DataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle3;
+            this.rahnPrice1DataGridViewTextBoxColumn.HeaderText = "رهن";
+            this.rahnPrice1DataGridViewTextBoxColumn.Name = "rahnPrice1DataGridViewTextBoxColumn";
+            this.rahnPrice1DataGridViewTextBoxColumn.ReadOnly = true;
+            this.rahnPrice1DataGridViewTextBoxColumn.Width = 150;
+            // 
+            // ejarePrice1DataGridViewTextBoxColumn
+            // 
+            this.ejarePrice1DataGridViewTextBoxColumn.DataPropertyName = "EjarePrice1";
+            dataGridViewCellStyle4.Format = "N0";
+            dataGridViewCellStyle4.NullValue = null;
+            this.ejarePrice1DataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle4;
+            this.ejarePrice1DataGridViewTextBoxColumn.HeaderText = "اجاره";
+            this.ejarePrice1DataGridViewTextBoxColumn.Name = "ejarePrice1DataGridViewTextBoxColumn";
+            this.ejarePrice1DataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // sellPriceDataGridViewTextBoxColumn
+            // 
+            this.sellPriceDataGridViewTextBoxColumn.DataPropertyName = "SellPrice";
+            dataGridViewCellStyle5.Format = "N0";
+            dataGridViewCellStyle5.NullValue = null;
+            this.sellPriceDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle5;
+            this.sellPriceDataGridViewTextBoxColumn.HeaderText = "فروش";
+            this.sellPriceDataGridViewTextBoxColumn.Name = "sellPriceDataGridViewTextBoxColumn";
+            this.sellPriceDataGridViewTextBoxColumn.ReadOnly = true;
+            this.sellPriceDataGridViewTextBoxColumn.Width = 150;
             // 
             // RegionName
             // 
@@ -453,13 +710,6 @@
             this.BuildingStatusName.Name = "BuildingStatusName";
             this.BuildingStatusName.ReadOnly = true;
             // 
-            // UserName
-            // 
-            this.UserName.DataPropertyName = "UserName";
-            this.UserName.HeaderText = "مشاور";
-            this.UserName.Name = "UserName";
-            this.UserName.ReadOnly = true;
-            // 
             // addressDataGridViewTextBoxColumn
             // 
             this.addressDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
@@ -467,6 +717,7 @@
             this.addressDataGridViewTextBoxColumn.HeaderText = "آدرس";
             this.addressDataGridViewTextBoxColumn.Name = "addressDataGridViewTextBoxColumn";
             this.addressDataGridViewTextBoxColumn.ReadOnly = true;
+            this.addressDataGridViewTextBoxColumn.Visible = false;
             // 
             // dgGuid
             // 
@@ -500,13 +751,21 @@
             this.ownerGuidDataGridViewTextBoxColumn.ReadOnly = true;
             this.ownerGuidDataGridViewTextBoxColumn.Visible = false;
             // 
-            // sellPriceDataGridViewTextBoxColumn
+            // UserName
             // 
-            this.sellPriceDataGridViewTextBoxColumn.DataPropertyName = "SellPrice";
-            this.sellPriceDataGridViewTextBoxColumn.HeaderText = "SellPrice";
-            this.sellPriceDataGridViewTextBoxColumn.Name = "sellPriceDataGridViewTextBoxColumn";
-            this.sellPriceDataGridViewTextBoxColumn.ReadOnly = true;
-            this.sellPriceDataGridViewTextBoxColumn.Visible = false;
+            this.UserName.DataPropertyName = "UserName";
+            this.UserName.HeaderText = "مشاور";
+            this.UserName.Name = "UserName";
+            this.UserName.ReadOnly = true;
+            this.UserName.Visible = false;
+            // 
+            // zirBanaDataGridViewTextBoxColumn
+            // 
+            this.zirBanaDataGridViewTextBoxColumn.DataPropertyName = "ZirBana";
+            this.zirBanaDataGridViewTextBoxColumn.HeaderText = "زیربنا";
+            this.zirBanaDataGridViewTextBoxColumn.Name = "zirBanaDataGridViewTextBoxColumn";
+            this.zirBanaDataGridViewTextBoxColumn.ReadOnly = true;
+            this.zirBanaDataGridViewTextBoxColumn.Visible = false;
             // 
             // vamPriceDataGridViewTextBoxColumn
             // 
@@ -540,14 +799,6 @@
             this.documentTypeDataGridViewTextBoxColumn.ReadOnly = true;
             this.documentTypeDataGridViewTextBoxColumn.Visible = false;
             // 
-            // rahnPrice1DataGridViewTextBoxColumn
-            // 
-            this.rahnPrice1DataGridViewTextBoxColumn.DataPropertyName = "RahnPrice1";
-            this.rahnPrice1DataGridViewTextBoxColumn.HeaderText = "RahnPrice1";
-            this.rahnPrice1DataGridViewTextBoxColumn.Name = "rahnPrice1DataGridViewTextBoxColumn";
-            this.rahnPrice1DataGridViewTextBoxColumn.ReadOnly = true;
-            this.rahnPrice1DataGridViewTextBoxColumn.Visible = false;
-            // 
             // rahnPrice2DataGridViewTextBoxColumn
             // 
             this.rahnPrice2DataGridViewTextBoxColumn.DataPropertyName = "RahnPrice2";
@@ -555,14 +806,6 @@
             this.rahnPrice2DataGridViewTextBoxColumn.Name = "rahnPrice2DataGridViewTextBoxColumn";
             this.rahnPrice2DataGridViewTextBoxColumn.ReadOnly = true;
             this.rahnPrice2DataGridViewTextBoxColumn.Visible = false;
-            // 
-            // ejarePrice1DataGridViewTextBoxColumn
-            // 
-            this.ejarePrice1DataGridViewTextBoxColumn.DataPropertyName = "EjarePrice1";
-            this.ejarePrice1DataGridViewTextBoxColumn.HeaderText = "EjarePrice1";
-            this.ejarePrice1DataGridViewTextBoxColumn.Name = "ejarePrice1DataGridViewTextBoxColumn";
-            this.ejarePrice1DataGridViewTextBoxColumn.ReadOnly = true;
-            this.ejarePrice1DataGridViewTextBoxColumn.Visible = false;
             // 
             // ejarePrice2DataGridViewTextBoxColumn
             // 
@@ -868,235 +1111,6 @@
             this.tellDataGridViewTextBoxColumn.ReadOnly = true;
             this.tellDataGridViewTextBoxColumn.Visible = false;
             // 
-            // BuildingBindingSource
-            // 
-            this.BuildingBindingSource.DataSource = typeof(EntityCache.Bussines.BuildingBussines);
-            // 
-            // btnOther
-            // 
-            this.btnOther.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnOther.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnOther.BackColor = System.Drawing.Color.Silver;
-            this.btnOther.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnOther.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
-            this.btnOther.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnOther.Location = new System.Drawing.Point(4, 559);
-            this.btnOther.Name = "btnOther";
-            this.btnOther.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
-            this.btnOther.Size = new System.Drawing.Size(61, 31);
-            this.btnOther.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
-            this.btnOther.SubItems.AddRange(new DevComponents.DotNetBar.BaseItem[] {
-            this.btnMojod,
-            this.btnVagozar,
-            this.btnSendSms,
-            this.btnSendToDivar,
-            this.btnSendToSheypoor,
-            this.btnSendToTelegram,
-            this.btnMatchRequest,
-            this.btnPrint});
-            this.btnOther.TabIndex = 55758;
-            this.btnOther.Text = "سایر";
-            this.btnOther.TextAlignment = DevComponents.DotNetBar.eButtonTextAlignment.Left;
-            this.btnOther.TextColor = System.Drawing.Color.Black;
-            // 
-            // btnMojod
-            // 
-            this.btnMojod.Name = "btnMojod";
-            this.btnMojod.Text = "تغییر وضعیت به موجود";
-            this.btnMojod.Click += new System.EventHandler(this.btnMojod_Click);
-            // 
-            // btnVagozar
-            // 
-            this.btnVagozar.Name = "btnVagozar";
-            this.btnVagozar.Text = "تغییر وضعیت به واگذار شده";
-            this.btnVagozar.Click += new System.EventHandler(this.btnVagozar_Click);
-            // 
-            // btnSendSms
-            // 
-            this.btnSendSms.Name = "btnSendSms";
-            this.btnSendSms.Text = "ارسال پیامک به مالک";
-            // 
-            // btnSendToDivar
-            // 
-            this.btnSendToDivar.Name = "btnSendToDivar";
-            this.btnSendToDivar.Text = "ارسال ملک در دیوار";
-            this.btnSendToDivar.Click += new System.EventHandler(this.btnSendToDivar_Click);
-            // 
-            // btnSendToSheypoor
-            // 
-            this.btnSendToSheypoor.Name = "btnSendToSheypoor";
-            this.btnSendToSheypoor.Text = "ارسال ملک در شیپور";
-            this.btnSendToSheypoor.Click += new System.EventHandler(this.btnSendToSheypoor_Click);
-            // 
-            // btnSendToTelegram
-            // 
-            this.btnSendToTelegram.Name = "btnSendToTelegram";
-            this.btnSendToTelegram.Text = "ارسال ملک در تلگرام";
-            // 
-            // btnMatchRequest
-            // 
-            this.btnMatchRequest.Name = "btnMatchRequest";
-            this.btnMatchRequest.Text = "تطابق با درخواست ها";
-            // 
-            // btnPrint
-            // 
-            this.btnPrint.Name = "btnPrint";
-            this.btnPrint.Text = "چاپ لیست املاک";
-            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
-            // 
-            // cmbStatus
-            // 
-            this.cmbStatus.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.cmbStatus.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.cmbStatus.DisplayMember = "Name";
-            this.cmbStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbStatus.FormattingEnabled = true;
-            this.cmbStatus.Location = new System.Drawing.Point(837, 34);
-            this.cmbStatus.Name = "cmbStatus";
-            this.cmbStatus.Size = new System.Drawing.Size(122, 28);
-            this.cmbStatus.TabIndex = 55759;
-            this.cmbStatus.ValueMember = "Guid";
-            this.cmbStatus.SelectedIndexChanged += new System.EventHandler(this.cmbStatus_SelectedIndexChanged);
-            // 
-            // label1
-            // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Location = new System.Drawing.Point(962, 37);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(46, 20);
-            this.label1.TabIndex = 55760;
-            this.label1.Text = "وضعیت";
-            // 
-            // label2
-            // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Location = new System.Drawing.Point(785, 37);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(49, 20);
-            this.label2.TabIndex = 55760;
-            this.label2.Text = "نوع ملک";
-            // 
-            // cmbBuildingType
-            // 
-            this.cmbBuildingType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.cmbBuildingType.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.cmbBuildingType.DataSource = this.btBindingSource;
-            this.cmbBuildingType.DisplayMember = "Name";
-            this.cmbBuildingType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbBuildingType.FormattingEnabled = true;
-            this.cmbBuildingType.Location = new System.Drawing.Point(660, 34);
-            this.cmbBuildingType.Name = "cmbBuildingType";
-            this.cmbBuildingType.Size = new System.Drawing.Size(122, 28);
-            this.cmbBuildingType.TabIndex = 55759;
-            this.cmbBuildingType.ValueMember = "Guid";
-            this.cmbBuildingType.SelectedIndexChanged += new System.EventHandler(this.cmbBuildingType_SelectedIndexChanged);
-            // 
-            // btBindingSource
-            // 
-            this.btBindingSource.DataSource = typeof(EntityCache.Bussines.BuildingTypeBussines);
-            // 
-            // label3
-            // 
-            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label3.AutoSize = true;
-            this.label3.BackColor = System.Drawing.Color.Transparent;
-            this.label3.Location = new System.Drawing.Point(618, 37);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(39, 20);
-            this.label3.TabIndex = 55760;
-            this.label3.Text = "مشاور";
-            // 
-            // cmbUser
-            // 
-            this.cmbUser.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.cmbUser.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.cmbUser.DataSource = this.userBindingSource;
-            this.cmbUser.DisplayMember = "Name";
-            this.cmbUser.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbUser.FormattingEnabled = true;
-            this.cmbUser.Location = new System.Drawing.Point(493, 34);
-            this.cmbUser.Name = "cmbUser";
-            this.cmbUser.Size = new System.Drawing.Size(122, 28);
-            this.cmbUser.TabIndex = 55759;
-            this.cmbUser.ValueMember = "Guid";
-            this.cmbUser.SelectedIndexChanged += new System.EventHandler(this.cmbUser_SelectedIndexChanged);
-            // 
-            // userBindingSource
-            // 
-            this.userBindingSource.DataSource = typeof(EntityCache.Bussines.UserBussines);
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "Tarakom";
-            this.dataGridViewTextBoxColumn1.HeaderText = "Tarakom";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            this.dataGridViewTextBoxColumn1.Visible = false;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.DataPropertyName = "Side";
-            this.dataGridViewTextBoxColumn2.HeaderText = "Side";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.ReadOnly = true;
-            this.dataGridViewTextBoxColumn2.Visible = false;
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.DataPropertyName = "Water";
-            this.dataGridViewTextBoxColumn3.HeaderText = "Water";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.ReadOnly = true;
-            this.dataGridViewTextBoxColumn3.Visible = false;
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            this.dataGridViewTextBoxColumn4.DataPropertyName = "Barq";
-            this.dataGridViewTextBoxColumn4.HeaderText = "Barq";
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            this.dataGridViewTextBoxColumn4.ReadOnly = true;
-            this.dataGridViewTextBoxColumn4.Visible = false;
-            // 
-            // dataGridViewTextBoxColumn5
-            // 
-            this.dataGridViewTextBoxColumn5.DataPropertyName = "Gas";
-            this.dataGridViewTextBoxColumn5.HeaderText = "Gas";
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            this.dataGridViewTextBoxColumn5.ReadOnly = true;
-            this.dataGridViewTextBoxColumn5.Visible = false;
-            // 
-            // dataGridViewTextBoxColumn6
-            // 
-            this.dataGridViewTextBoxColumn6.DataPropertyName = "Tell";
-            this.dataGridViewTextBoxColumn6.HeaderText = "Tell";
-            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
-            this.dataGridViewTextBoxColumn6.ReadOnly = true;
-            this.dataGridViewTextBoxColumn6.Visible = false;
-            // 
-            // btnSelect
-            // 
-            this.btnSelect.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnSelect.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSelect.BackColor = System.Drawing.Color.DarkSlateGray;
-            this.btnSelect.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnSelect.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
-            this.btnSelect.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnSelect.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.btnSelect.Location = new System.Drawing.Point(303, 559);
-            this.btnSelect.Name = "btnSelect";
-            this.btnSelect.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
-            this.btnSelect.Size = new System.Drawing.Size(414, 31);
-            this.btnSelect.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
-            this.btnSelect.TabIndex = 55763;
-            this.btnSelect.Text = "انتخاب";
-            this.btnSelect.TextColor = System.Drawing.Color.White;
-            this.btnSelect.Click += new System.EventHandler(this.btnSelect_Click);
-            // 
             // frmShowBuildings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -1180,23 +1194,23 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn buildingTypeNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn RoomCount;
         private System.Windows.Forms.DataGridViewTextBoxColumn masahatDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn zirBanaDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn rahnPrice1DataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ejarePrice1DataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn sellPriceDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn RegionName;
         private System.Windows.Forms.DataGridViewTextBoxColumn BuildingStatusName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn UserName;
         private System.Windows.Forms.DataGridViewTextBoxColumn addressDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgGuid;
         private System.Windows.Forms.DataGridViewTextBoxColumn modifiedDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewCheckBoxColumn statusDataGridViewCheckBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn ownerGuidDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn sellPriceDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn UserName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn zirBanaDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn vamPriceDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn qestPriceDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn dangDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn documentTypeDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn rahnPrice1DataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn rahnPrice2DataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ejarePrice1DataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn ejarePrice2DataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn rentalAutorityGuidDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn isShortTimeDataGridViewTextBoxColumn;

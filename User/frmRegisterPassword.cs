@@ -143,14 +143,7 @@ namespace User
 
                     await smsLog.SaveAsync();
                 }
-                else if (_type == 1) //Email
-                {
-                    if (string.IsNullOrEmpty(cls.Email)) return;
-
-                    var subject = "گزارش تغییر رمز عبور";
-                    
-                    SendEmail.Send(cls.Email, subject, text);
-                }
+                
 
 
                 DialogResult = DialogResult.OK;

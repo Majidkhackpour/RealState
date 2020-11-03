@@ -33,6 +33,7 @@ using Payamak;
 using Payamak.Panel;
 using Payamak.PhoneBook;
 using Peoples;
+using RealState.BackUpLog;
 using RealState.Note;
 using Services;
 using Settings;
@@ -107,7 +108,7 @@ namespace RealState
 
                 mnuAcciuntingInfo.Visible = VersionAccess.Accounting;
                 mnuSmsPanels.Visible = VersionAccess.Sms;
-                mnuSendSms.Visible= VersionAccess.Sms;
+                mnuSendSms.Visible = VersionAccess.Sms;
                 mnuSimcard.Visible = VersionAccess.Advertise;
             }
             catch (Exception ex)
@@ -173,9 +174,111 @@ namespace RealState
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
+        private async Task BackUpAsync(string path, bool isAuto, EnBackUpType type)
+        {
+            try
+            {
+                if (!isAuto)
+                {
+                    if (string.IsNullOrEmpty(clsBackUp.BackUpOpen) || !clsBackUp.BackUpOpen.ParseToBoolean()) return;
+                    path = Path.Combine(path, "AradBackUp");
+                }
+
+                if (!Directory.Exists(path)) Directory.CreateDirectory(path);
+                var file = Path.GetFileName(Assembly.GetEntryAssembly()?.Location)
+                    ?.Replace(".exe", "__");
+                var d = Calendar.MiladiToShamsi(DateTime.Now).Replace("/", "_");
+                d += "__" + DateTime.Now.Hour + " - " + DateTime.Now.Minute;
+                file += d;
+                file = file.Replace(" ", "");
+                var newPath = Path.Combine(path, file + ".NPZ2");
+                await DataBaseUtilities.DataBase.BackUpStartAsync(this, AppSettings.DefaultConnectionString,
+                    ENSource.Building, type,
+                    newPath);
+                if (isAuto)
+                {
+                    if (!string.IsNullOrEmpty(clsBackUp.BackUpSms) && clsBackUp.BackUpSms.ParseToBoolean() &&
+                        VersionAccess.Sms)
+                    {
+                        if (string.IsNullOrEmpty(Settings.Classes.Payamak.DefaultPanelGuid))
+                            return;
+                        var text = $"مدیریت محترم مجموعه {clsEconomyUnit.EconomyName ?? ""} \r\n" +
+                                   $"{clsEconomyUnit.ManagerName ?? ""} عزیز \r\n" +
+                                   $"در تاریخ {Calendar.MiladiToShamsi(DateTime.Now)} \r\n" +
+                                   $"و در ساعت {DateTime.Now.ToShortTimeString()} \r\n" +
+                                   $"پشتیبان گیری خودکار از داده ها انجام شد \r\n" +
+                                   $"باتشکر \r\n" +
+                                   $"گروه مهندسی آراد";
+
+                        var panel = SmsPanelsBussines.Get(Guid.Parse(Settings.Classes.Payamak.DefaultPanelGuid));
+                        if (panel == null)
+                            return;
+
+                        var sApi = new Sms.Api(panel.API.Trim());
+
+
+                        var result = sApi.Send(panel.Sender, clsEconomyUnit.ManagerMobile ?? "", text);
+
+                        var smsLog = new SmsLogBussines()
+                        {
+                            Guid = Guid.NewGuid(),
+                            UserGuid = clsUser.CurrentUser?.Guid ?? Guid.Empty,
+                            Cost = result.Cost,
+                            Message = result.Message,
+                            MessageId = result.Messageid,
+                            Reciver = result.Receptor,
+                            Sender = result.Sender,
+                            StatusText = result.StatusText
+                        };
+
+                        await smsLog.SaveAsync();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private async Task AutoBackUpAsync()
+        {
+            try
+            {
+                await Task.Delay(2000);
+                if (string.IsNullOrEmpty(clsBackUp.IsAutoBackUp) || !clsBackUp.IsAutoBackUp.ParseToBoolean() ||
+                    clsBackUp.BackUpDuration.ParseToInt() <= 0) return;
+                var duration = clsBackUp.BackUpDuration.ParseToInt();
+                while (true)
+                {
+                    var list = await BackUpLogBussines.GetAllAsync();
+                    var lastAutoBackUp = list.Where(q => q.Type == EnBackUpType.Auto).OrderBy(q => q.InsertedDate)
+                        ?.FirstOrDefault();
+                    var path = clsBackUp.BackUpPath;
+                    if (lastAutoBackUp == null)
+                    {
+                        await BackUpAsync(path, true, EnBackUpType.Auto);
+                        await Task.Delay(60000);
+                        continue;
+                    }
+                    var du = (DateTime.Now - lastAutoBackUp.InsertedDate).Minutes;
+                    if (du < duration)
+                    {
+                        await Task.Delay(60000);
+                        continue;
+                    }
+                    await BackUpAsync(path, true, EnBackUpType.Auto);
+                    await Task.Delay(1000);
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
         public frmMain()
         {
             InitializeComponent();
+            //TopMost = true;
         }
         private async void frmMain_Load(object sender, System.EventArgs e)
         {
@@ -188,6 +291,8 @@ namespace RealState
             lblNaqz.Text = $"\n \n \n {naqz}";
             SetAccess();
             await SetNotesAsync();
+            Task.Run(() => BackUpAsync(@"C:\", false, EnBackUpType.Auto));
+            Task.Run(AutoBackUpAsync);
         }
         private void timerSecond_Tick(object sender, EventArgs e)
         {
@@ -624,7 +729,7 @@ namespace RealState
             try
             {
                 var res = await DataBaseUtilities.DataBase.BackUpStartAsync(this,
-                    AppSettings.DefaultConnectionString, ENSource.Building);
+                    AppSettings.DefaultConnectionString, ENSource.Building, EnBackUpType.Manual);
                 if (res.HasError)
                 {
                     frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);
@@ -654,6 +759,19 @@ namespace RealState
                     return;
                 }
                 frmNotification.PublicInfo.ShowMessage("بازیابی فایل پشتیبان با موفقیت انجام شد");
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private void mnuBackUpLog_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var frm = new frmBackUpLog();
+                frm.ShowDialog(this);
             }
             catch (Exception ex)
             {

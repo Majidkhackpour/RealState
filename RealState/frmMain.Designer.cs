@@ -104,6 +104,7 @@
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.picTaghvim = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.mnuBackUpLog = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picTaghvim)).BeginInit();
@@ -456,52 +457,53 @@
             // mnuHazine
             // 
             this.mnuHazine.Name = "mnuHazine";
-            this.mnuHazine.Size = new System.Drawing.Size(172, 24);
+            this.mnuHazine.Size = new System.Drawing.Size(180, 24);
             this.mnuHazine.Text = "مدیریت هزینه ها";
             this.mnuHazine.Click += new System.EventHandler(this.mnuHazine_Click);
             // 
             // mnuAccountPerformence
             // 
             this.mnuAccountPerformence.Name = "mnuAccountPerformence";
-            this.mnuAccountPerformence.Size = new System.Drawing.Size(172, 24);
+            this.mnuAccountPerformence.Size = new System.Drawing.Size(180, 24);
             this.mnuAccountPerformence.Text = "عملکرد حساب ها";
             this.mnuAccountPerformence.Click += new System.EventHandler(this.mnuAccountPerformence_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(169, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(177, 6);
             // 
             // mnuReception
             // 
             this.mnuReception.Name = "mnuReception";
-            this.mnuReception.Size = new System.Drawing.Size(172, 24);
+            this.mnuReception.Size = new System.Drawing.Size(180, 24);
             this.mnuReception.Text = "دریافت";
             this.mnuReception.Click += new System.EventHandler(this.mnuReception_Click);
             // 
             // mnuPardakht
             // 
             this.mnuPardakht.Name = "mnuPardakht";
-            this.mnuPardakht.Size = new System.Drawing.Size(172, 24);
+            this.mnuPardakht.Size = new System.Drawing.Size(180, 24);
             this.mnuPardakht.Text = "پرداخت";
             this.mnuPardakht.Click += new System.EventHandler(this.mnuPardakht_Click);
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(169, 6);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(177, 6);
             // 
             // mnuSanad
             // 
             this.mnuSanad.Name = "mnuSanad";
-            this.mnuSanad.Size = new System.Drawing.Size(172, 24);
+            this.mnuSanad.Size = new System.Drawing.Size(180, 24);
             this.mnuSanad.Text = "ثبت سند حسابداری";
             this.mnuSanad.Click += new System.EventHandler(this.mnuSanad_Click);
             // 
             // mnuReportInfo
             // 
             this.mnuReportInfo.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mnuUserPerformence});
+            this.mnuUserPerformence,
+            this.mnuBackUpLog});
             this.mnuReportInfo.Name = "mnuReportInfo";
             this.mnuReportInfo.Size = new System.Drawing.Size(64, 26);
             this.mnuReportInfo.Text = "گزارشات";
@@ -509,7 +511,7 @@
             // mnuUserPerformence
             // 
             this.mnuUserPerformence.Name = "mnuUserPerformence";
-            this.mnuUserPerformence.Size = new System.Drawing.Size(189, 24);
+            this.mnuUserPerformence.Size = new System.Drawing.Size(202, 24);
             this.mnuUserPerformence.Text = "گزارش عملکرد کاربران";
             this.mnuUserPerformence.Click += new System.EventHandler(this.mnuUserPerformence_Click);
             // 
@@ -747,6 +749,13 @@
             this.pictureBox1.TabIndex = 4;
             this.pictureBox1.TabStop = false;
             // 
+            // mnuBackUpLog
+            // 
+            this.mnuBackUpLog.Name = "mnuBackUpLog";
+            this.mnuBackUpLog.Size = new System.Drawing.Size(202, 24);
+            this.mnuBackUpLog.Text = "گزارش لاگ پشتیبان گیری";
+            this.mnuBackUpLog.Click += new System.EventHandler(this.mnuBackUpLog_Click);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -874,6 +883,7 @@
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label lblNaqz;
+        private System.Windows.Forms.ToolStripMenuItem mnuBackUpLog;
     }
 }
 

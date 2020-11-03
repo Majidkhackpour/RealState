@@ -35,6 +35,8 @@
             this.superTabControlPanel1 = new DevComponents.DotNetBar.SuperTabControlPanel();
             this.panelEx4 = new DevComponents.DotNetBar.PanelEx();
             this.btnPath = new DevComponents.DotNetBar.ButtonX();
+            this.chbBackUpSms = new DevComponents.DotNetBar.Controls.CheckBoxX();
+            this.chbOpen = new DevComponents.DotNetBar.Controls.CheckBoxX();
             this.chbAuto = new DevComponents.DotNetBar.Controls.CheckBoxX();
             this.txtTime = new System.Windows.Forms.NumericUpDown();
             this.txtPath = new System.Windows.Forms.TextBox();
@@ -43,7 +45,7 @@
             this.label28 = new System.Windows.Forms.Label();
             this.superTabItem1 = new DevComponents.DotNetBar.SuperTabItem();
             this.superTabControlPanel11 = new DevComponents.DotNetBar.SuperTabControlPanel();
-            this.panelEx3 = new DevComponents.DotNetBar.PanelEx();
+            this.pnlTelegram = new DevComponents.DotNetBar.PanelEx();
             this.txtChannel = new System.Windows.Forms.TextBox();
             this.txtToken = new System.Windows.Forms.TextBox();
             this.txtText = new System.Windows.Forms.TextBox();
@@ -71,7 +73,7 @@
             this.label25 = new System.Windows.Forms.Label();
             this.superTabItem10 = new DevComponents.DotNetBar.SuperTabItem();
             this.superTabControlPanel8 = new DevComponents.DotNetBar.SuperTabControlPanel();
-            this.panelEx2 = new DevComponents.DotNetBar.PanelEx();
+            this.pnlSms = new DevComponents.DotNetBar.PanelEx();
             this.txtOwnerText = new System.Windows.Forms.TextBox();
             this.txtMatchTextKharid = new System.Windows.Forms.TextBox();
             this.txtMatchTextRahn = new System.Windows.Forms.TextBox();
@@ -105,23 +107,8 @@
             this.label21 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
             this.superTabItem7 = new DevComponents.DotNetBar.SuperTabItem();
-            this.superTabControlPanel7 = new DevComponents.DotNetBar.SuperTabControlPanel();
-            this.panelEx1 = new DevComponents.DotNetBar.PanelEx();
-            this.txtSTabdil = new System.Windows.Forms.NumericUpDown();
-            this.txtSArzesh = new System.Windows.Forms.NumericUpDown();
-            this.txtSNatCode = new System.Windows.Forms.TextBox();
-            this.cmbSType = new System.Windows.Forms.ComboBox();
-            this.txtSIdCode = new System.Windows.Forms.TextBox();
-            this.txtSCode = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
-            this.superTabItem6 = new DevComponents.DotNetBar.SuperTabItem();
             this.superTabControlPanel3 = new DevComponents.DotNetBar.SuperTabControlPanel();
-            this.grp = new DevComponents.DotNetBar.PanelEx();
+            this.pnlUnit = new DevComponents.DotNetBar.PanelEx();
             this.cmbEcRegion = new System.Windows.Forms.ComboBox();
             this.RegionBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.cmbEcCity = new System.Windows.Forms.ComboBox();
@@ -148,6 +135,21 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.superTabItem5 = new DevComponents.DotNetBar.SuperTabItem();
+            this.superTabControlPanel7 = new DevComponents.DotNetBar.SuperTabControlPanel();
+            this.pnlSandouq = new DevComponents.DotNetBar.PanelEx();
+            this.txtSTabdil = new System.Windows.Forms.NumericUpDown();
+            this.txtSArzesh = new System.Windows.Forms.NumericUpDown();
+            this.txtSNatCode = new System.Windows.Forms.TextBox();
+            this.cmbSType = new System.Windows.Forms.ComboBox();
+            this.txtSIdCode = new System.Windows.Forms.TextBox();
+            this.txtSCode = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.superTabItem6 = new DevComponents.DotNetBar.SuperTabItem();
             this.superTabControlPanel6 = new DevComponents.DotNetBar.SuperTabControlPanel();
             this.btnFinish = new DevComponents.DotNetBar.ButtonX();
             ((System.ComponentModel.ISupportInitialize)(this.superTabControl1)).BeginInit();
@@ -156,19 +158,19 @@
             this.panelEx4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtTime)).BeginInit();
             this.superTabControlPanel11.SuspendLayout();
-            this.panelEx3.SuspendLayout();
+            this.pnlTelegram.SuspendLayout();
             this.superTabControlPanel8.SuspendLayout();
-            this.panelEx2.SuspendLayout();
+            this.pnlSms.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.defBindingSource)).BeginInit();
-            this.superTabControlPanel7.SuspendLayout();
-            this.panelEx1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtSTabdil)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtSArzesh)).BeginInit();
             this.superTabControlPanel3.SuspendLayout();
-            this.grp.SuspendLayout();
+            this.pnlUnit.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.RegionBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CityBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.StateBindingSource)).BeginInit();
+            this.superTabControlPanel7.SuspendLayout();
+            this.pnlSandouq.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtSTabdil)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtSArzesh)).BeginInit();
             this.SuspendLayout();
             // 
             // btnCancel
@@ -206,9 +208,9 @@
             this.superTabControl1.ControlBox.SubItems.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.superTabControl1.ControlBox.CloseBox,
             this.superTabControl1.ControlBox.MenuBox});
+            this.superTabControl1.Controls.Add(this.superTabControlPanel1);
             this.superTabControl1.Controls.Add(this.superTabControlPanel3);
             this.superTabControl1.Controls.Add(this.superTabControlPanel6);
-            this.superTabControl1.Controls.Add(this.superTabControlPanel1);
             this.superTabControl1.Controls.Add(this.superTabControlPanel11);
             this.superTabControl1.Controls.Add(this.superTabControlPanel8);
             this.superTabControl1.Controls.Add(this.superTabControlPanel7);
@@ -245,6 +247,8 @@
             this.panelEx4.CanvasColor = System.Drawing.SystemColors.Control;
             this.panelEx4.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.panelEx4.Controls.Add(this.btnPath);
+            this.panelEx4.Controls.Add(this.chbBackUpSms);
+            this.panelEx4.Controls.Add(this.chbOpen);
             this.panelEx4.Controls.Add(this.chbAuto);
             this.panelEx4.Controls.Add(this.txtTime);
             this.panelEx4.Controls.Add(this.txtPath);
@@ -254,7 +258,7 @@
             this.panelEx4.DisabledBackColor = System.Drawing.Color.Empty;
             this.panelEx4.Location = new System.Drawing.Point(4, 3);
             this.panelEx4.Name = "panelEx4";
-            this.panelEx4.Size = new System.Drawing.Size(600, 91);
+            this.panelEx4.Size = new System.Drawing.Size(600, 149);
             this.panelEx4.Style.Alignment = System.Drawing.StringAlignment.Center;
             this.panelEx4.Style.BackColor1.Color = System.Drawing.Color.White;
             this.panelEx4.Style.BackColor2.Color = System.Drawing.Color.White;
@@ -282,6 +286,40 @@
             this.btnPath.Text = "...";
             this.btnPath.TextColor = System.Drawing.Color.White;
             this.btnPath.Click += new System.EventHandler(this.btnPath_Click);
+            // 
+            // chbBackUpSms
+            // 
+            this.chbBackUpSms.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.chbBackUpSms.BackColor = System.Drawing.Color.Transparent;
+            // 
+            // 
+            // 
+            this.chbBackUpSms.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.chbBackUpSms.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.chbBackUpSms.Location = new System.Drawing.Point(260, 110);
+            this.chbBackUpSms.Name = "chbBackUpSms";
+            this.chbBackUpSms.Size = new System.Drawing.Size(329, 23);
+            this.chbBackUpSms.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.chbBackUpSms.TabIndex = 9;
+            this.chbBackUpSms.Text = "ارسال پیامک به مدیر، پس از انجام عملیات پشتیبان گیری";
+            this.chbBackUpSms.CheckedChanged += new System.EventHandler(this.chbAuto_CheckedChanged);
+            // 
+            // chbOpen
+            // 
+            this.chbOpen.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.chbOpen.BackColor = System.Drawing.Color.Transparent;
+            // 
+            // 
+            // 
+            this.chbOpen.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.chbOpen.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.chbOpen.Location = new System.Drawing.Point(326, 81);
+            this.chbOpen.Name = "chbOpen";
+            this.chbOpen.Size = new System.Drawing.Size(263, 23);
+            this.chbOpen.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.chbOpen.TabIndex = 9;
+            this.chbOpen.Text = "پشتیبان گیری در لحظه اجرای برنامه فعال باشد";
+            this.chbOpen.CheckedChanged += new System.EventHandler(this.chbAuto_CheckedChanged);
             // 
             // chbAuto
             // 
@@ -362,7 +400,7 @@
             // 
             // superTabControlPanel11
             // 
-            this.superTabControlPanel11.Controls.Add(this.panelEx3);
+            this.superTabControlPanel11.Controls.Add(this.pnlTelegram);
             this.superTabControlPanel11.Dock = System.Windows.Forms.DockStyle.Fill;
             this.superTabControlPanel11.Location = new System.Drawing.Point(0, 40);
             this.superTabControlPanel11.Name = "superTabControlPanel11";
@@ -370,49 +408,49 @@
             this.superTabControlPanel11.TabIndex = 0;
             this.superTabControlPanel11.TabItem = this.superTabItem10;
             // 
-            // panelEx3
+            // pnlTelegram
             // 
-            this.panelEx3.CanvasColor = System.Drawing.SystemColors.Control;
-            this.panelEx3.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.panelEx3.Controls.Add(this.txtChannel);
-            this.panelEx3.Controls.Add(this.txtToken);
-            this.panelEx3.Controls.Add(this.txtText);
-            this.panelEx3.Controls.Add(this.btnZirBana);
-            this.panelEx3.Controls.Add(this.btnChannel);
-            this.panelEx3.Controls.Add(this.btnMasahat);
-            this.panelEx3.Controls.Add(this.btnTejari);
-            this.panelEx3.Controls.Add(this.btnEjare);
-            this.panelEx3.Controls.Add(this.btnSaleSakht);
-            this.panelEx3.Controls.Add(this.btnRahn);
-            this.panelEx3.Controls.Add(this.btnRoomCount);
-            this.panelEx3.Controls.Add(this.btnSell);
-            this.panelEx3.Controls.Add(this.btnTabaqeCount);
-            this.panelEx3.Controls.Add(this.btnRegion);
-            this.panelEx3.Controls.Add(this.btnTabaqeNo);
-            this.panelEx3.Controls.Add(this.btnAccType);
-            this.panelEx3.Controls.Add(this.btnTarakom);
-            this.panelEx3.Controls.Add(this.btnConType);
-            this.panelEx3.Controls.Add(this.btnSide);
-            this.panelEx3.Controls.Add(this.btnType);
-            this.panelEx3.Controls.Add(this.btnDocType);
-            this.panelEx3.Controls.Add(this.btnCode);
-            this.panelEx3.Controls.Add(this.label23);
-            this.panelEx3.Controls.Add(this.label24);
-            this.panelEx3.Controls.Add(this.label25);
-            this.panelEx3.DisabledBackColor = System.Drawing.Color.Empty;
-            this.panelEx3.Location = new System.Drawing.Point(4, 12);
-            this.panelEx3.Name = "panelEx3";
-            this.panelEx3.Size = new System.Drawing.Size(600, 524);
-            this.panelEx3.Style.Alignment = System.Drawing.StringAlignment.Center;
-            this.panelEx3.Style.BackColor1.Color = System.Drawing.Color.White;
-            this.panelEx3.Style.BackColor2.Color = System.Drawing.Color.White;
-            this.panelEx3.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
-            this.panelEx3.Style.BorderColor.Color = System.Drawing.Color.Silver;
-            this.panelEx3.Style.BorderWidth = 2;
-            this.panelEx3.Style.CornerType = DevComponents.DotNetBar.eCornerType.Rounded;
-            this.panelEx3.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText;
-            this.panelEx3.Style.GradientAngle = 90;
-            this.panelEx3.TabIndex = 4;
+            this.pnlTelegram.CanvasColor = System.Drawing.SystemColors.Control;
+            this.pnlTelegram.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.pnlTelegram.Controls.Add(this.txtChannel);
+            this.pnlTelegram.Controls.Add(this.txtToken);
+            this.pnlTelegram.Controls.Add(this.txtText);
+            this.pnlTelegram.Controls.Add(this.btnZirBana);
+            this.pnlTelegram.Controls.Add(this.btnChannel);
+            this.pnlTelegram.Controls.Add(this.btnMasahat);
+            this.pnlTelegram.Controls.Add(this.btnTejari);
+            this.pnlTelegram.Controls.Add(this.btnEjare);
+            this.pnlTelegram.Controls.Add(this.btnSaleSakht);
+            this.pnlTelegram.Controls.Add(this.btnRahn);
+            this.pnlTelegram.Controls.Add(this.btnRoomCount);
+            this.pnlTelegram.Controls.Add(this.btnSell);
+            this.pnlTelegram.Controls.Add(this.btnTabaqeCount);
+            this.pnlTelegram.Controls.Add(this.btnRegion);
+            this.pnlTelegram.Controls.Add(this.btnTabaqeNo);
+            this.pnlTelegram.Controls.Add(this.btnAccType);
+            this.pnlTelegram.Controls.Add(this.btnTarakom);
+            this.pnlTelegram.Controls.Add(this.btnConType);
+            this.pnlTelegram.Controls.Add(this.btnSide);
+            this.pnlTelegram.Controls.Add(this.btnType);
+            this.pnlTelegram.Controls.Add(this.btnDocType);
+            this.pnlTelegram.Controls.Add(this.btnCode);
+            this.pnlTelegram.Controls.Add(this.label23);
+            this.pnlTelegram.Controls.Add(this.label24);
+            this.pnlTelegram.Controls.Add(this.label25);
+            this.pnlTelegram.DisabledBackColor = System.Drawing.Color.Empty;
+            this.pnlTelegram.Location = new System.Drawing.Point(4, 12);
+            this.pnlTelegram.Name = "pnlTelegram";
+            this.pnlTelegram.Size = new System.Drawing.Size(600, 524);
+            this.pnlTelegram.Style.Alignment = System.Drawing.StringAlignment.Center;
+            this.pnlTelegram.Style.BackColor1.Color = System.Drawing.Color.White;
+            this.pnlTelegram.Style.BackColor2.Color = System.Drawing.Color.White;
+            this.pnlTelegram.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
+            this.pnlTelegram.Style.BorderColor.Color = System.Drawing.Color.Silver;
+            this.pnlTelegram.Style.BorderWidth = 2;
+            this.pnlTelegram.Style.CornerType = DevComponents.DotNetBar.eCornerType.Rounded;
+            this.pnlTelegram.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText;
+            this.pnlTelegram.Style.GradientAngle = 90;
+            this.pnlTelegram.TabIndex = 4;
             // 
             // txtChannel
             // 
@@ -799,7 +837,7 @@
             // 
             // superTabControlPanel8
             // 
-            this.superTabControlPanel8.Controls.Add(this.panelEx2);
+            this.superTabControlPanel8.Controls.Add(this.pnlSms);
             this.superTabControlPanel8.Dock = System.Windows.Forms.DockStyle.Fill;
             this.superTabControlPanel8.Location = new System.Drawing.Point(0, 40);
             this.superTabControlPanel8.Name = "superTabControlPanel8";
@@ -807,55 +845,55 @@
             this.superTabControlPanel8.TabIndex = 0;
             this.superTabControlPanel8.TabItem = this.superTabItem7;
             // 
-            // panelEx2
+            // pnlSms
             // 
-            this.panelEx2.CanvasColor = System.Drawing.SystemColors.Control;
-            this.panelEx2.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.panelEx2.Controls.Add(this.txtOwnerText);
-            this.panelEx2.Controls.Add(this.txtMatchTextKharid);
-            this.panelEx2.Controls.Add(this.txtMatchTextRahn);
-            this.panelEx2.Controls.Add(this.txtSayerText);
-            this.panelEx2.Controls.Add(this.chbSendAfterMatch);
-            this.panelEx2.Controls.Add(this.chbSendSayer);
-            this.panelEx2.Controls.Add(this.btnOwner_UserName);
-            this.panelEx2.Controls.Add(this.btnRahn_Ejare);
-            this.panelEx2.Controls.Add(this.chbSendOwner);
-            this.panelEx2.Controls.Add(this.btnSayer_UserName);
-            this.panelEx2.Controls.Add(this.btnOwner_Region);
-            this.panelEx2.Controls.Add(this.btnKharid_Price);
-            this.panelEx2.Controls.Add(this.cmbPanel);
-            this.panelEx2.Controls.Add(this.btnRahn_Rahn);
-            this.panelEx2.Controls.Add(this.btnKharid_Region);
-            this.panelEx2.Controls.Add(this.btnOwner_BuildingCode);
-            this.panelEx2.Controls.Add(this.btnRahn_Region);
-            this.panelEx2.Controls.Add(this.btnKharid_DateSh);
-            this.panelEx2.Controls.Add(this.btnOwner_DateSh);
-            this.panelEx2.Controls.Add(this.btnRahn_DateSh);
-            this.panelEx2.Controls.Add(this.btnKharid_SayerName);
-            this.panelEx2.Controls.Add(this.btnOwner_OwnerName);
-            this.panelEx2.Controls.Add(this.btnRahn_SayerName);
-            this.panelEx2.Controls.Add(this.btnSayer_DateSh);
-            this.panelEx2.Controls.Add(this.label18);
-            this.panelEx2.Controls.Add(this.btnSayer_SayerName);
-            this.panelEx2.Controls.Add(this.label19);
-            this.panelEx2.Controls.Add(this.btnAddPanel);
-            this.panelEx2.Controls.Add(this.label20);
-            this.panelEx2.Controls.Add(this.label21);
-            this.panelEx2.Controls.Add(this.label22);
-            this.panelEx2.DisabledBackColor = System.Drawing.Color.Empty;
-            this.panelEx2.Location = new System.Drawing.Point(4, 11);
-            this.panelEx2.Name = "panelEx2";
-            this.panelEx2.Size = new System.Drawing.Size(600, 524);
-            this.panelEx2.Style.Alignment = System.Drawing.StringAlignment.Center;
-            this.panelEx2.Style.BackColor1.Color = System.Drawing.Color.White;
-            this.panelEx2.Style.BackColor2.Color = System.Drawing.Color.White;
-            this.panelEx2.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
-            this.panelEx2.Style.BorderColor.Color = System.Drawing.Color.Silver;
-            this.panelEx2.Style.BorderWidth = 2;
-            this.panelEx2.Style.CornerType = DevComponents.DotNetBar.eCornerType.Rounded;
-            this.panelEx2.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText;
-            this.panelEx2.Style.GradientAngle = 90;
-            this.panelEx2.TabIndex = 4;
+            this.pnlSms.CanvasColor = System.Drawing.SystemColors.Control;
+            this.pnlSms.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.pnlSms.Controls.Add(this.txtOwnerText);
+            this.pnlSms.Controls.Add(this.txtMatchTextKharid);
+            this.pnlSms.Controls.Add(this.txtMatchTextRahn);
+            this.pnlSms.Controls.Add(this.txtSayerText);
+            this.pnlSms.Controls.Add(this.chbSendAfterMatch);
+            this.pnlSms.Controls.Add(this.chbSendSayer);
+            this.pnlSms.Controls.Add(this.btnOwner_UserName);
+            this.pnlSms.Controls.Add(this.btnRahn_Ejare);
+            this.pnlSms.Controls.Add(this.chbSendOwner);
+            this.pnlSms.Controls.Add(this.btnSayer_UserName);
+            this.pnlSms.Controls.Add(this.btnOwner_Region);
+            this.pnlSms.Controls.Add(this.btnKharid_Price);
+            this.pnlSms.Controls.Add(this.cmbPanel);
+            this.pnlSms.Controls.Add(this.btnRahn_Rahn);
+            this.pnlSms.Controls.Add(this.btnKharid_Region);
+            this.pnlSms.Controls.Add(this.btnOwner_BuildingCode);
+            this.pnlSms.Controls.Add(this.btnRahn_Region);
+            this.pnlSms.Controls.Add(this.btnKharid_DateSh);
+            this.pnlSms.Controls.Add(this.btnOwner_DateSh);
+            this.pnlSms.Controls.Add(this.btnRahn_DateSh);
+            this.pnlSms.Controls.Add(this.btnKharid_SayerName);
+            this.pnlSms.Controls.Add(this.btnOwner_OwnerName);
+            this.pnlSms.Controls.Add(this.btnRahn_SayerName);
+            this.pnlSms.Controls.Add(this.btnSayer_DateSh);
+            this.pnlSms.Controls.Add(this.label18);
+            this.pnlSms.Controls.Add(this.btnSayer_SayerName);
+            this.pnlSms.Controls.Add(this.label19);
+            this.pnlSms.Controls.Add(this.btnAddPanel);
+            this.pnlSms.Controls.Add(this.label20);
+            this.pnlSms.Controls.Add(this.label21);
+            this.pnlSms.Controls.Add(this.label22);
+            this.pnlSms.DisabledBackColor = System.Drawing.Color.Empty;
+            this.pnlSms.Location = new System.Drawing.Point(4, 11);
+            this.pnlSms.Name = "pnlSms";
+            this.pnlSms.Size = new System.Drawing.Size(600, 524);
+            this.pnlSms.Style.Alignment = System.Drawing.StringAlignment.Center;
+            this.pnlSms.Style.BackColor1.Color = System.Drawing.Color.White;
+            this.pnlSms.Style.BackColor2.Color = System.Drawing.Color.White;
+            this.pnlSms.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
+            this.pnlSms.Style.BorderColor.Color = System.Drawing.Color.Silver;
+            this.pnlSms.Style.BorderWidth = 2;
+            this.pnlSms.Style.CornerType = DevComponents.DotNetBar.eCornerType.Rounded;
+            this.pnlSms.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText;
+            this.pnlSms.Style.GradientAngle = 90;
+            this.pnlSms.TabIndex = 4;
             // 
             // txtOwnerText
             // 
@@ -1319,176 +1357,9 @@
             this.superTabItem7.Name = "superTabItem7";
             this.superTabItem7.Text = "پیام رسانی";
             // 
-            // superTabControlPanel7
-            // 
-            this.superTabControlPanel7.Controls.Add(this.panelEx1);
-            this.superTabControlPanel7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.superTabControlPanel7.Location = new System.Drawing.Point(0, 40);
-            this.superTabControlPanel7.Name = "superTabControlPanel7";
-            this.superTabControlPanel7.Size = new System.Drawing.Size(608, 548);
-            this.superTabControlPanel7.TabIndex = 0;
-            this.superTabControlPanel7.TabItem = this.superTabItem6;
-            // 
-            // panelEx1
-            // 
-            this.panelEx1.CanvasColor = System.Drawing.SystemColors.Control;
-            this.panelEx1.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.panelEx1.Controls.Add(this.txtSTabdil);
-            this.panelEx1.Controls.Add(this.txtSArzesh);
-            this.panelEx1.Controls.Add(this.txtSNatCode);
-            this.panelEx1.Controls.Add(this.cmbSType);
-            this.panelEx1.Controls.Add(this.txtSIdCode);
-            this.panelEx1.Controls.Add(this.txtSCode);
-            this.panelEx1.Controls.Add(this.label9);
-            this.panelEx1.Controls.Add(this.label10);
-            this.panelEx1.Controls.Add(this.label14);
-            this.panelEx1.Controls.Add(this.label15);
-            this.panelEx1.Controls.Add(this.label16);
-            this.panelEx1.Controls.Add(this.label17);
-            this.panelEx1.DisabledBackColor = System.Drawing.Color.Empty;
-            this.panelEx1.Location = new System.Drawing.Point(4, 3);
-            this.panelEx1.Name = "panelEx1";
-            this.panelEx1.Size = new System.Drawing.Size(600, 209);
-            this.panelEx1.Style.Alignment = System.Drawing.StringAlignment.Center;
-            this.panelEx1.Style.BackColor1.Color = System.Drawing.Color.White;
-            this.panelEx1.Style.BackColor2.Color = System.Drawing.Color.White;
-            this.panelEx1.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
-            this.panelEx1.Style.BorderColor.Color = System.Drawing.Color.Silver;
-            this.panelEx1.Style.BorderWidth = 2;
-            this.panelEx1.Style.CornerType = DevComponents.DotNetBar.eCornerType.Rounded;
-            this.panelEx1.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText;
-            this.panelEx1.Style.GradientAngle = 90;
-            this.panelEx1.TabIndex = 4;
-            // 
-            // txtSTabdil
-            // 
-            this.txtSTabdil.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtSTabdil.Location = new System.Drawing.Point(9, 165);
-            this.txtSTabdil.Maximum = new decimal(new int[] {
-            10000,
-            0,
-            0,
-            0});
-            this.txtSTabdil.Name = "txtSTabdil";
-            this.txtSTabdil.Size = new System.Drawing.Size(127, 27);
-            this.txtSTabdil.TabIndex = 5;
-            // 
-            // txtSArzesh
-            // 
-            this.txtSArzesh.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtSArzesh.Location = new System.Drawing.Point(342, 165);
-            this.txtSArzesh.Maximum = new decimal(new int[] {
-            10000,
-            0,
-            0,
-            0});
-            this.txtSArzesh.Name = "txtSArzesh";
-            this.txtSArzesh.Size = new System.Drawing.Size(137, 27);
-            this.txtSArzesh.TabIndex = 4;
-            // 
-            // txtSNatCode
-            // 
-            this.txtSNatCode.Location = new System.Drawing.Point(9, 90);
-            this.txtSNatCode.Name = "txtSNatCode";
-            this.txtSNatCode.Size = new System.Drawing.Size(471, 27);
-            this.txtSNatCode.TabIndex = 2;
-            // 
-            // cmbSType
-            // 
-            this.cmbSType.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.cmbSType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbSType.FormattingEnabled = true;
-            this.cmbSType.Location = new System.Drawing.Point(9, 54);
-            this.cmbSType.Name = "cmbSType";
-            this.cmbSType.Size = new System.Drawing.Size(471, 28);
-            this.cmbSType.TabIndex = 1;
-            // 
-            // txtSIdCode
-            // 
-            this.txtSIdCode.Location = new System.Drawing.Point(9, 126);
-            this.txtSIdCode.Name = "txtSIdCode";
-            this.txtSIdCode.Size = new System.Drawing.Size(471, 27);
-            this.txtSIdCode.TabIndex = 3;
-            // 
-            // txtSCode
-            // 
-            this.txtSCode.Location = new System.Drawing.Point(9, 18);
-            this.txtSCode.Name = "txtSCode";
-            this.txtSCode.Size = new System.Drawing.Size(471, 27);
-            this.txtSCode.TabIndex = 0;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.BackColor = System.Drawing.Color.Transparent;
-            this.label9.Location = new System.Drawing.Point(507, 129);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(85, 20);
-            this.label9.TabIndex = 3;
-            this.label9.Text = "شماره شناسنامه";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.BackColor = System.Drawing.Color.Transparent;
-            this.label10.Location = new System.Drawing.Point(486, 57);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(106, 20);
-            this.label10.TabIndex = 5;
-            this.label10.Text = "وضعیت کد اقتصادی";
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.BackColor = System.Drawing.Color.Transparent;
-            this.label14.Location = new System.Drawing.Point(142, 167);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(131, 20);
-            this.label14.TabIndex = 6;
-            this.label14.Text = "درصد تبدیل رهن و اجاره";
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.BackColor = System.Drawing.Color.Transparent;
-            this.label15.Location = new System.Drawing.Point(485, 167);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(107, 20);
-            this.label15.TabIndex = 6;
-            this.label15.Text = "درصد ارزش افزوده";
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.BackColor = System.Drawing.Color.Transparent;
-            this.label16.Location = new System.Drawing.Point(552, 93);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(41, 20);
-            this.label16.TabIndex = 7;
-            this.label16.Text = "کد ملی";
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.BackColor = System.Drawing.Color.Transparent;
-            this.label17.Location = new System.Drawing.Point(526, 21);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(66, 20);
-            this.label17.TabIndex = 8;
-            this.label17.Text = "کد اقتصادی";
-            // 
-            // superTabItem6
-            // 
-            this.superTabItem6.AttachedControl = this.superTabControlPanel7;
-            this.superTabItem6.GlobalItem = false;
-            this.superTabItem6.Name = "superTabItem6";
-            this.superTabItem6.Text = "صندوق مکانیزه";
-            // 
             // superTabControlPanel3
             // 
-            this.superTabControlPanel3.Controls.Add(this.grp);
+            this.superTabControlPanel3.Controls.Add(this.pnlUnit);
             this.superTabControlPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.superTabControlPanel3.Location = new System.Drawing.Point(0, 40);
             this.superTabControlPanel3.Name = "superTabControlPanel3";
@@ -1496,46 +1367,46 @@
             this.superTabControlPanel3.TabIndex = 0;
             this.superTabControlPanel3.TabItem = this.superTabItem5;
             // 
-            // grp
+            // pnlUnit
             // 
-            this.grp.CanvasColor = System.Drawing.SystemColors.Control;
-            this.grp.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.grp.Controls.Add(this.cmbEcRegion);
-            this.grp.Controls.Add(this.cmbEcCity);
-            this.grp.Controls.Add(this.label13);
-            this.grp.Controls.Add(this.cmbEcState);
-            this.grp.Controls.Add(this.label12);
-            this.grp.Controls.Add(this.txtEcEmail);
-            this.grp.Controls.Add(this.txtEcMobile);
-            this.grp.Controls.Add(this.cmbEcType);
-            this.grp.Controls.Add(this.txtEcAddress);
-            this.grp.Controls.Add(this.txtEcManagerName);
-            this.grp.Controls.Add(this.txtEcFax);
-            this.grp.Controls.Add(this.txtEcTell);
-            this.grp.Controls.Add(this.txtEcName);
-            this.grp.Controls.Add(this.label8);
-            this.grp.Controls.Add(this.label5);
-            this.grp.Controls.Add(this.label11);
-            this.grp.Controls.Add(this.label4);
-            this.grp.Controls.Add(this.label7);
-            this.grp.Controls.Add(this.label2);
-            this.grp.Controls.Add(this.label6);
-            this.grp.Controls.Add(this.label3);
-            this.grp.Controls.Add(this.label1);
-            this.grp.DisabledBackColor = System.Drawing.Color.Empty;
-            this.grp.Location = new System.Drawing.Point(4, 3);
-            this.grp.Name = "grp";
-            this.grp.Size = new System.Drawing.Size(601, 542);
-            this.grp.Style.Alignment = System.Drawing.StringAlignment.Center;
-            this.grp.Style.BackColor1.Color = System.Drawing.Color.White;
-            this.grp.Style.BackColor2.Color = System.Drawing.Color.White;
-            this.grp.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
-            this.grp.Style.BorderColor.Color = System.Drawing.Color.Silver;
-            this.grp.Style.BorderWidth = 2;
-            this.grp.Style.CornerType = DevComponents.DotNetBar.eCornerType.Rounded;
-            this.grp.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText;
-            this.grp.Style.GradientAngle = 90;
-            this.grp.TabIndex = 11;
+            this.pnlUnit.CanvasColor = System.Drawing.SystemColors.Control;
+            this.pnlUnit.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.pnlUnit.Controls.Add(this.cmbEcRegion);
+            this.pnlUnit.Controls.Add(this.cmbEcCity);
+            this.pnlUnit.Controls.Add(this.label13);
+            this.pnlUnit.Controls.Add(this.cmbEcState);
+            this.pnlUnit.Controls.Add(this.label12);
+            this.pnlUnit.Controls.Add(this.txtEcEmail);
+            this.pnlUnit.Controls.Add(this.txtEcMobile);
+            this.pnlUnit.Controls.Add(this.cmbEcType);
+            this.pnlUnit.Controls.Add(this.txtEcAddress);
+            this.pnlUnit.Controls.Add(this.txtEcManagerName);
+            this.pnlUnit.Controls.Add(this.txtEcFax);
+            this.pnlUnit.Controls.Add(this.txtEcTell);
+            this.pnlUnit.Controls.Add(this.txtEcName);
+            this.pnlUnit.Controls.Add(this.label8);
+            this.pnlUnit.Controls.Add(this.label5);
+            this.pnlUnit.Controls.Add(this.label11);
+            this.pnlUnit.Controls.Add(this.label4);
+            this.pnlUnit.Controls.Add(this.label7);
+            this.pnlUnit.Controls.Add(this.label2);
+            this.pnlUnit.Controls.Add(this.label6);
+            this.pnlUnit.Controls.Add(this.label3);
+            this.pnlUnit.Controls.Add(this.label1);
+            this.pnlUnit.DisabledBackColor = System.Drawing.Color.Empty;
+            this.pnlUnit.Location = new System.Drawing.Point(4, 3);
+            this.pnlUnit.Name = "pnlUnit";
+            this.pnlUnit.Size = new System.Drawing.Size(601, 542);
+            this.pnlUnit.Style.Alignment = System.Drawing.StringAlignment.Center;
+            this.pnlUnit.Style.BackColor1.Color = System.Drawing.Color.White;
+            this.pnlUnit.Style.BackColor2.Color = System.Drawing.Color.White;
+            this.pnlUnit.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
+            this.pnlUnit.Style.BorderColor.Color = System.Drawing.Color.Silver;
+            this.pnlUnit.Style.BorderWidth = 2;
+            this.pnlUnit.Style.CornerType = DevComponents.DotNetBar.eCornerType.Rounded;
+            this.pnlUnit.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText;
+            this.pnlUnit.Style.GradientAngle = 90;
+            this.pnlUnit.TabIndex = 11;
             // 
             // cmbEcRegion
             // 
@@ -1768,6 +1639,173 @@
             this.superTabItem5.Name = "superTabItem5";
             this.superTabItem5.Text = "واحد اقتصادی";
             // 
+            // superTabControlPanel7
+            // 
+            this.superTabControlPanel7.Controls.Add(this.pnlSandouq);
+            this.superTabControlPanel7.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.superTabControlPanel7.Location = new System.Drawing.Point(0, 40);
+            this.superTabControlPanel7.Name = "superTabControlPanel7";
+            this.superTabControlPanel7.Size = new System.Drawing.Size(608, 548);
+            this.superTabControlPanel7.TabIndex = 0;
+            this.superTabControlPanel7.TabItem = this.superTabItem6;
+            // 
+            // pnlSandouq
+            // 
+            this.pnlSandouq.CanvasColor = System.Drawing.SystemColors.Control;
+            this.pnlSandouq.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.pnlSandouq.Controls.Add(this.txtSTabdil);
+            this.pnlSandouq.Controls.Add(this.txtSArzesh);
+            this.pnlSandouq.Controls.Add(this.txtSNatCode);
+            this.pnlSandouq.Controls.Add(this.cmbSType);
+            this.pnlSandouq.Controls.Add(this.txtSIdCode);
+            this.pnlSandouq.Controls.Add(this.txtSCode);
+            this.pnlSandouq.Controls.Add(this.label9);
+            this.pnlSandouq.Controls.Add(this.label10);
+            this.pnlSandouq.Controls.Add(this.label14);
+            this.pnlSandouq.Controls.Add(this.label15);
+            this.pnlSandouq.Controls.Add(this.label16);
+            this.pnlSandouq.Controls.Add(this.label17);
+            this.pnlSandouq.DisabledBackColor = System.Drawing.Color.Empty;
+            this.pnlSandouq.Location = new System.Drawing.Point(4, 3);
+            this.pnlSandouq.Name = "pnlSandouq";
+            this.pnlSandouq.Size = new System.Drawing.Size(600, 209);
+            this.pnlSandouq.Style.Alignment = System.Drawing.StringAlignment.Center;
+            this.pnlSandouq.Style.BackColor1.Color = System.Drawing.Color.White;
+            this.pnlSandouq.Style.BackColor2.Color = System.Drawing.Color.White;
+            this.pnlSandouq.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
+            this.pnlSandouq.Style.BorderColor.Color = System.Drawing.Color.Silver;
+            this.pnlSandouq.Style.BorderWidth = 2;
+            this.pnlSandouq.Style.CornerType = DevComponents.DotNetBar.eCornerType.Rounded;
+            this.pnlSandouq.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText;
+            this.pnlSandouq.Style.GradientAngle = 90;
+            this.pnlSandouq.TabIndex = 4;
+            // 
+            // txtSTabdil
+            // 
+            this.txtSTabdil.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtSTabdil.Location = new System.Drawing.Point(9, 165);
+            this.txtSTabdil.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.txtSTabdil.Name = "txtSTabdil";
+            this.txtSTabdil.Size = new System.Drawing.Size(127, 27);
+            this.txtSTabdil.TabIndex = 5;
+            // 
+            // txtSArzesh
+            // 
+            this.txtSArzesh.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtSArzesh.Location = new System.Drawing.Point(342, 165);
+            this.txtSArzesh.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.txtSArzesh.Name = "txtSArzesh";
+            this.txtSArzesh.Size = new System.Drawing.Size(137, 27);
+            this.txtSArzesh.TabIndex = 4;
+            // 
+            // txtSNatCode
+            // 
+            this.txtSNatCode.Location = new System.Drawing.Point(9, 90);
+            this.txtSNatCode.Name = "txtSNatCode";
+            this.txtSNatCode.Size = new System.Drawing.Size(471, 27);
+            this.txtSNatCode.TabIndex = 2;
+            // 
+            // cmbSType
+            // 
+            this.cmbSType.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cmbSType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbSType.FormattingEnabled = true;
+            this.cmbSType.Location = new System.Drawing.Point(9, 54);
+            this.cmbSType.Name = "cmbSType";
+            this.cmbSType.Size = new System.Drawing.Size(471, 28);
+            this.cmbSType.TabIndex = 1;
+            // 
+            // txtSIdCode
+            // 
+            this.txtSIdCode.Location = new System.Drawing.Point(9, 126);
+            this.txtSIdCode.Name = "txtSIdCode";
+            this.txtSIdCode.Size = new System.Drawing.Size(471, 27);
+            this.txtSIdCode.TabIndex = 3;
+            // 
+            // txtSCode
+            // 
+            this.txtSCode.Location = new System.Drawing.Point(9, 18);
+            this.txtSCode.Name = "txtSCode";
+            this.txtSCode.Size = new System.Drawing.Size(471, 27);
+            this.txtSCode.TabIndex = 0;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.BackColor = System.Drawing.Color.Transparent;
+            this.label9.Location = new System.Drawing.Point(507, 129);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(85, 20);
+            this.label9.TabIndex = 3;
+            this.label9.Text = "شماره شناسنامه";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.BackColor = System.Drawing.Color.Transparent;
+            this.label10.Location = new System.Drawing.Point(486, 57);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(106, 20);
+            this.label10.TabIndex = 5;
+            this.label10.Text = "وضعیت کد اقتصادی";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.BackColor = System.Drawing.Color.Transparent;
+            this.label14.Location = new System.Drawing.Point(142, 167);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(131, 20);
+            this.label14.TabIndex = 6;
+            this.label14.Text = "درصد تبدیل رهن و اجاره";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.BackColor = System.Drawing.Color.Transparent;
+            this.label15.Location = new System.Drawing.Point(485, 167);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(107, 20);
+            this.label15.TabIndex = 6;
+            this.label15.Text = "درصد ارزش افزوده";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.BackColor = System.Drawing.Color.Transparent;
+            this.label16.Location = new System.Drawing.Point(552, 93);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(41, 20);
+            this.label16.TabIndex = 7;
+            this.label16.Text = "کد ملی";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.BackColor = System.Drawing.Color.Transparent;
+            this.label17.Location = new System.Drawing.Point(526, 21);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(66, 20);
+            this.label17.TabIndex = 8;
+            this.label17.Text = "کد اقتصادی";
+            // 
+            // superTabItem6
+            // 
+            this.superTabItem6.AttachedControl = this.superTabControlPanel7;
+            this.superTabItem6.GlobalItem = false;
+            this.superTabItem6.Name = "superTabItem6";
+            this.superTabItem6.Text = "صندوق مکانیزه";
+            // 
             // superTabControlPanel6
             // 
             this.superTabControlPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -1822,23 +1860,23 @@
             this.panelEx4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtTime)).EndInit();
             this.superTabControlPanel11.ResumeLayout(false);
-            this.panelEx3.ResumeLayout(false);
-            this.panelEx3.PerformLayout();
+            this.pnlTelegram.ResumeLayout(false);
+            this.pnlTelegram.PerformLayout();
             this.superTabControlPanel8.ResumeLayout(false);
-            this.panelEx2.ResumeLayout(false);
-            this.panelEx2.PerformLayout();
+            this.pnlSms.ResumeLayout(false);
+            this.pnlSms.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.defBindingSource)).EndInit();
-            this.superTabControlPanel7.ResumeLayout(false);
-            this.panelEx1.ResumeLayout(false);
-            this.panelEx1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtSTabdil)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtSArzesh)).EndInit();
             this.superTabControlPanel3.ResumeLayout(false);
-            this.grp.ResumeLayout(false);
-            this.grp.PerformLayout();
+            this.pnlUnit.ResumeLayout(false);
+            this.pnlUnit.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.RegionBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.CityBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.StateBindingSource)).EndInit();
+            this.superTabControlPanel7.ResumeLayout(false);
+            this.pnlSandouq.ResumeLayout(false);
+            this.pnlSandouq.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtSTabdil)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtSArzesh)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1861,7 +1899,7 @@
         private System.Windows.Forms.BindingSource RegionBindingSource;
         private System.Windows.Forms.BindingSource CityBindingSource;
         private System.Windows.Forms.BindingSource StateBindingSource;
-        private DevComponents.DotNetBar.PanelEx grp;
+        private DevComponents.DotNetBar.PanelEx pnlUnit;
         private System.Windows.Forms.ComboBox cmbEcRegion;
         private System.Windows.Forms.ComboBox cmbEcCity;
         private System.Windows.Forms.Label label13;
@@ -1884,7 +1922,7 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label1;
-        private DevComponents.DotNetBar.PanelEx panelEx1;
+        private DevComponents.DotNetBar.PanelEx pnlSandouq;
         private System.Windows.Forms.NumericUpDown txtSTabdil;
         private System.Windows.Forms.NumericUpDown txtSArzesh;
         private System.Windows.Forms.TextBox txtSNatCode;
@@ -1897,7 +1935,7 @@
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label17;
-        private DevComponents.DotNetBar.PanelEx panelEx2;
+        private DevComponents.DotNetBar.PanelEx pnlSms;
         private System.Windows.Forms.TextBox txtOwnerText;
         private System.Windows.Forms.TextBox txtMatchTextKharid;
         private System.Windows.Forms.TextBox txtMatchTextRahn;
@@ -1930,7 +1968,7 @@
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.BindingSource defBindingSource;
-        private DevComponents.DotNetBar.PanelEx panelEx3;
+        private DevComponents.DotNetBar.PanelEx pnlTelegram;
         private System.Windows.Forms.TextBox txtChannel;
         private System.Windows.Forms.TextBox txtToken;
         private System.Windows.Forms.TextBox txtText;
@@ -1964,5 +2002,7 @@
         private System.Windows.Forms.Label label26;
         private System.Windows.Forms.Label label27;
         private System.Windows.Forms.Label label28;
+        private DevComponents.DotNetBar.Controls.CheckBoxX chbBackUpSms;
+        private DevComponents.DotNetBar.Controls.CheckBoxX chbOpen;
     }
 }

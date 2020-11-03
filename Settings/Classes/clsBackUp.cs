@@ -51,5 +51,38 @@ namespace Settings.Classes
                 SettingsBussines.Save("IsAutoBackUp", _isAutoBackUp);
             }
         }
+
+        private static string _backUpOpen = "";
+        public static string BackUpOpen
+        {
+            get
+            {
+                if (!string.IsNullOrEmpty(_backUpOpen)) return _backUpOpen;
+                var mem = SettingsBussines.Get("BackUpOpen");
+                return mem == null ? "" : mem.Value;
+            }
+            set
+            {
+                _backUpOpen = value;
+                SettingsBussines.Save("BackUpOpen", _backUpOpen);
+            }
+        }
+
+        private static string _backUpSms = "";
+        public static string BackUpSms
+        {
+            get
+            {
+                if (!string.IsNullOrEmpty(_backUpSms)) return _backUpSms;
+                var mem = SettingsBussines.Get("BackUpSms");
+                return mem == null ? "" : mem.Value;
+            }
+            set
+            {
+                _backUpSms = value;
+                SettingsBussines.Save("BackUpSms", _backUpSms);
+            }
+        }
+
     }
 }

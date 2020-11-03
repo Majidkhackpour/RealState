@@ -15,6 +15,22 @@ namespace Settings
 {
     public partial class frmSettings : MetroForm
     {
+        private void SetAccess()
+        {
+            try
+            {
+                pnlSandouq.Enabled = VersionAccess.Accounting;
+                pnlSms.Enabled = VersionAccess.Sms;
+                pnlTelegram.Enabled = VersionAccess.Telegram;
+                chbAuto.Enabled = VersionAccess.AutoBackUp;
+                txtTime.Enabled = VersionAccess.AutoBackUp;
+                chbBackUpSms.Enabled = VersionAccess.Sms;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
         public frmSettings()
         {
             InitializeComponent();
@@ -40,6 +56,7 @@ namespace Settings
         {
             try
             {
+                SetAccess();
                 await LoadEconomyAsync();
                 LoadSandouqAsync();
                 await LoadSmsAsync();
@@ -395,6 +412,8 @@ namespace Settings
                 txtPath.Text = clsBackUp.BackUpPath;
                 chbAuto.Checked = clsBackUp.IsAutoBackUp.ParseToBoolean();
                 txtTime.Text = clsBackUp.BackUpDuration;
+                chbBackUpSms.Checked = clsBackUp.BackUpSms.ParseToBoolean();
+                chbOpen.Checked = clsBackUp.BackUpOpen.ParseToBoolean();
             }
             catch (Exception ex)
             {
@@ -408,6 +427,8 @@ namespace Settings
                 clsBackUp.BackUpPath = txtPath.Text;
                 clsBackUp.BackUpDuration = txtTime.Text;
                 clsBackUp.IsAutoBackUp = chbAuto.Checked.ToString();
+                clsBackUp.BackUpSms = chbBackUpSms.Checked.ToString();
+                clsBackUp.BackUpOpen = chbOpen.Checked.ToString();
             }
             catch (Exception ex)
             {
