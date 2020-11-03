@@ -1,8 +1,13 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Drawing;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Resources;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Accounting;
@@ -40,11 +45,13 @@ using Settings;
 using Settings.Classes;
 using TMS.Class;
 using User;
+using Calendar = Services.Calendar;
 
 namespace RealState
 {
     public partial class frmMain : MetroForm
     {
+        private List<string> sliderImages = new List<string>();
         private void SetClock()
         {
             try
@@ -275,6 +282,21 @@ namespace RealState
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
+        private void SetSliderImages()
+        {
+            try
+            {
+                var sliderPath = Path.Combine(Application.StartupPath, "Slider");
+               
+                sliderImages = Directory.GetFiles(sliderPath).ToList();
+
+                timerSlider.Start();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
         public frmMain()
         {
             InitializeComponent();
@@ -282,17 +304,25 @@ namespace RealState
         }
         private async void frmMain_Load(object sender, System.EventArgs e)
         {
-            lblSecond.Visible = true;
-            SetClock();
-            SetCalendar();
-            SetButtomLables();
-            SetTaghvim();
-            var naqz = await NaqzBussines.SetNaqzAsync();
-            lblNaqz.Text = $"\n \n \n {naqz}";
-            SetAccess();
-            await SetNotesAsync();
-            Task.Run(() => BackUpAsync(@"C:\", false, EnBackUpType.Auto));
-            Task.Run(AutoBackUpAsync);
+            try
+            {
+                lblSecond.Visible = true;
+                SetClock();
+                SetCalendar();
+                SetButtomLables();
+                SetTaghvim();
+                var naqz = await NaqzBussines.SetNaqzAsync();
+                lblNaqz.Text = $"\n \n \n {naqz}";
+                SetAccess();
+                await SetNotesAsync();
+                Task.Run(() => BackUpAsync(@"C:\", false, EnBackUpType.Auto));
+                Task.Run(AutoBackUpAsync);
+                SetSliderImages();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
         }
         private void timerSecond_Tick(object sender, EventArgs e)
         {
@@ -772,6 +802,20 @@ namespace RealState
             {
                 var frm = new frmBackUpLog();
                 frm.ShowDialog(this);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private void timerSlider_Tick(object sender, EventArgs e)
+        {
+            try
+            {
+                if (sliderImages.Count <= 0) return;
+                var rand = new Random().Next(0, sliderImages.Count);
+                picSlider.Image = Image.FromFile(sliderImages[rand]);
             }
             catch (Exception ex)
             {
