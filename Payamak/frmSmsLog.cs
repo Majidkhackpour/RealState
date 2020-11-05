@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using EntityCache.Bussines;
 using MetroFramework.Forms;
+using Print;
 using Services;
 using User;
 
@@ -12,13 +13,14 @@ namespace Payamak
 {
     public partial class frmSmsLog : MetroForm
     {
+        private List<SmsLogBussines> list;
         private async Task LoadDataAsync(string search = "")
         {
             try
             {
                 txtMessage.Text = "";
                 if (cmbUsers.SelectedValue == null) return;
-                var list = await SmsLogBussines.GetAllAsync(search, (Guid)cmbUsers.SelectedValue);
+                list = await SmsLogBussines.GetAllAsync(search, (Guid)cmbUsers.SelectedValue);
                 logBindingSource.DataSource = list.ToList();
             }
             catch (Exception ex)
@@ -176,6 +178,29 @@ namespace Payamak
                 var list = await SmsLogBussines.GetAllAsync();
 
                 UpdateStatus(list.Select(q => q.MessageId.ToString()).ToList());
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private void mnuPrint_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var frm = new frmSetPrintSize();
+                if (frm.ShowDialog(this) != DialogResult.OK) return;
+
+                if (frm._PrintType != EnPrintType.Excel)
+                {
+                    var cls = new ReportGenerator(StiType.SmsSent_List, frm._PrintType)
+                        { Lst = new List<object>(list) };
+                    cls.PrintNew();
+                    return;
+                }
+
+                ExportToExcel.ExportLog(list, this);
             }
             catch (Exception ex)
             {

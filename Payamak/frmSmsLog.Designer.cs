@@ -62,6 +62,8 @@
             this.logBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.cmbUsers = new System.Windows.Forms.ComboBox();
             this.lblUsers = new System.Windows.Forms.Label();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
+            this.mnuPrint = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
@@ -322,10 +324,12 @@
             this.contextMenuStrip1.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mnuUpSingle,
-            this.mnuUpAll});
+            this.mnuUpAll,
+            this.toolStripMenuItem1,
+            this.mnuPrint});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.contextMenuStrip1.Size = new System.Drawing.Size(238, 52);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(238, 104);
             // 
             // mnuUpSingle
             // 
@@ -370,6 +374,18 @@
             this.lblUsers.Size = new System.Drawing.Size(33, 20);
             this.lblUsers.TabIndex = 55737;
             this.lblUsers.Text = "کاربر";
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(234, 6);
+            // 
+            // mnuPrint
+            // 
+            this.mnuPrint.Name = "mnuPrint";
+            this.mnuPrint.Size = new System.Drawing.Size(237, 24);
+            this.mnuPrint.Text = "چاپ";
+            this.mnuPrint.Click += new System.EventHandler(this.mnuPrint_Click);
             // 
             // frmSmsLog
             // 
@@ -431,5 +447,7 @@
         private System.Windows.Forms.ToolStripMenuItem mnuUpAll;
         private System.Windows.Forms.ComboBox cmbUsers;
         private System.Windows.Forms.Label lblUsers;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem mnuPrint;
     }
 }

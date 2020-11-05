@@ -32,10 +32,10 @@ namespace Print.Classes
             {
                 try
                 {
-                    var fullAdd = ReportPath.ReportPath_ + @"\" + FolderName + @"\Sms_List_A4.mrt";
+                    var fullAdd = ReportPath.ReportPath_ + @"\" + FolderName + @"\SmsLog_A4.mrt";
 
                     if (!File.Exists(fullAdd))
-                        File.WriteAllBytes(fullAdd, null /*AddReportFileToResourceAndResourceNameIsHere*/);
+                        File.WriteAllBytes(fullAdd, Properties.Resources.SmsLog_A4);
                     sti.Load(fullAdd);
                 }
                 catch (Exception ex)
@@ -48,10 +48,10 @@ namespace Print.Classes
             {
                 try
                 {
-                    var fullAdd = ReportPath.ReportPath_ + @"\" + FolderName + @"\Sms_List_A5.mrt";
+                    var fullAdd = ReportPath.ReportPath_ + @"\" + FolderName + @"\SmsLog_A5.mrt";
 
                     if (!File.Exists(fullAdd))
-                        File.WriteAllBytes(fullAdd, null /*AddReportFileToResourceAndResourceNameIsHere*/);
+                        File.WriteAllBytes(fullAdd, Properties.Resources.SmsLog_A5);
                     sti.Load(fullAdd);
                 }
                 catch (Exception ex)

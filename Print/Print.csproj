@@ -287,6 +287,8 @@
     <None Include="Resources\Peoples_A4.mrt" />
     <None Include="Resources\Peoples_A5.mrt" />
     <None Include="Resources\Reception_One_A4.mrt" />
+    <None Include="Resources\SmsLog_A4.mrt" />
+    <None Include="Resources\SmsLog_A5.mrt" />
     <None Include="Resources\User_Prf_List_A4.mrt" />
     <None Include="Resources\User_Prf_List_A5.mrt" />
   </ItemGroup>
