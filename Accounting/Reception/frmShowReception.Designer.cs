@@ -47,6 +47,9 @@
             this.txtSearch = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.line1 = new DevComponents.DotNetBar.Controls.Line();
             this.DGrid = new DevComponents.DotNetBar.Controls.DataGridViewX();
+            this.receptionBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.lblName = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
             this.dgRadif = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dateShDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.timeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -64,9 +67,6 @@
             this.checkNoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.sarResidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bankNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.receptionBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.lblName = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.receptionBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -277,6 +277,30 @@
             this.DGrid.TabIndex = 55753;
             this.DGrid.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DGrid_CellFormatting);
             // 
+            // receptionBindingSource
+            // 
+            this.receptionBindingSource.DataSource = typeof(EntityCache.Bussines.ReceptionBussines);
+            // 
+            // lblName
+            // 
+            this.lblName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblName.BackColor = System.Drawing.Color.Transparent;
+            this.lblName.Location = new System.Drawing.Point(487, 38);
+            this.lblName.Name = "lblName";
+            this.lblName.Size = new System.Drawing.Size(190, 20);
+            this.lblName.TabIndex = 55767;
+            // 
+            // label7
+            // 
+            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label7.AutoSize = true;
+            this.label7.BackColor = System.Drawing.Color.Transparent;
+            this.label7.Location = new System.Drawing.Point(673, 38);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(123, 20);
+            this.label7.TabIndex = 55768;
+            this.label7.Text = "لیست وجوه دریافتی از:";
+            // 
             // dgRadif
             // 
             this.dgRadif.HeaderText = "ردیف";
@@ -304,7 +328,7 @@
             dataGridViewCellStyle3.Format = "N0";
             dataGridViewCellStyle3.NullValue = null;
             this.naqdPriceDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle3;
-            this.naqdPriceDataGridViewTextBoxColumn.HeaderText = "پرداخت نقدی";
+            this.naqdPriceDataGridViewTextBoxColumn.HeaderText = "دریافت نقدی";
             this.naqdPriceDataGridViewTextBoxColumn.Name = "naqdPriceDataGridViewTextBoxColumn";
             this.naqdPriceDataGridViewTextBoxColumn.ReadOnly = true;
             // 
@@ -314,7 +338,7 @@
             dataGridViewCellStyle4.Format = "N0";
             dataGridViewCellStyle4.NullValue = null;
             this.bankPriceDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle4;
-            this.bankPriceDataGridViewTextBoxColumn.HeaderText = "پرداخت بانکی";
+            this.bankPriceDataGridViewTextBoxColumn.HeaderText = "دریافت بانکی";
             this.bankPriceDataGridViewTextBoxColumn.Name = "bankPriceDataGridViewTextBoxColumn";
             this.bankPriceDataGridViewTextBoxColumn.ReadOnly = true;
             // 
@@ -324,7 +348,7 @@
             dataGridViewCellStyle5.Format = "N0";
             dataGridViewCellStyle5.NullValue = null;
             this.checkDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle5;
-            this.checkDataGridViewTextBoxColumn.HeaderText = "پرداخت چکی";
+            this.checkDataGridViewTextBoxColumn.HeaderText = "دریافت چکی";
             this.checkDataGridViewTextBoxColumn.Name = "checkDataGridViewTextBoxColumn";
             this.checkDataGridViewTextBoxColumn.ReadOnly = true;
             // 
@@ -334,7 +358,7 @@
             dataGridViewCellStyle6.Format = "N0";
             dataGridViewCellStyle6.NullValue = null;
             this.totalPriceDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle6;
-            this.totalPriceDataGridViewTextBoxColumn.HeaderText = "جمع کل پرداخت";
+            this.totalPriceDataGridViewTextBoxColumn.HeaderText = "جمع کل دریافت";
             this.totalPriceDataGridViewTextBoxColumn.Name = "totalPriceDataGridViewTextBoxColumn";
             this.totalPriceDataGridViewTextBoxColumn.ReadOnly = true;
             this.totalPriceDataGridViewTextBoxColumn.Width = 150;
@@ -418,30 +442,6 @@
             this.bankNameDataGridViewTextBoxColumn.Name = "bankNameDataGridViewTextBoxColumn";
             this.bankNameDataGridViewTextBoxColumn.ReadOnly = true;
             this.bankNameDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // receptionBindingSource
-            // 
-            this.receptionBindingSource.DataSource = typeof(EntityCache.Bussines.ReceptionBussines);
-            // 
-            // lblName
-            // 
-            this.lblName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblName.BackColor = System.Drawing.Color.Transparent;
-            this.lblName.Location = new System.Drawing.Point(487, 38);
-            this.lblName.Name = "lblName";
-            this.lblName.Size = new System.Drawing.Size(190, 20);
-            this.lblName.TabIndex = 55767;
-            // 
-            // label7
-            // 
-            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label7.AutoSize = true;
-            this.label7.BackColor = System.Drawing.Color.Transparent;
-            this.label7.Location = new System.Drawing.Point(673, 38);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(123, 20);
-            this.label7.TabIndex = 55768;
-            this.label7.Text = "لیست وجوه دریافتی از:";
             // 
             // frmShowReception
             // 
