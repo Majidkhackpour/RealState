@@ -332,7 +332,7 @@ namespace Peoples
                             MessageBoxButtons.YesNo,
                             MessageBoxIcon.Question) == DialogResult.No) return;
                     var prd = await PeoplesBussines.GetAsync(guid);
-                    var res = await prd.ChangeStatusAsync(false);
+                    var res = await prd.ChangeStatusAsync(false,true);
                     if (res.HasError)
                     {
                         frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);
@@ -366,7 +366,7 @@ namespace Peoples
                         if (frm.ShowDialog(this) != DialogResult.OK) return;
                     }
 
-                    var res = await prd.ChangeStatusAsync(true);
+                    var res = await prd.ChangeStatusAsync(true,true);
                     if (res.HasError)
                     {
                         frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);
@@ -444,7 +444,7 @@ namespace Peoples
                 if (MessageBox.Show(this,$@"آیا از حذف گروه {trvGroup.SelectedNode.Text} اطمینان دارید؟", "حذف", MessageBoxButtons.YesNo,
                         MessageBoxIcon.Question) == DialogResult.No) return;
                 var group = await PeopleGroupBussines.GetAsync(GroupGuid);
-                var res = await group.ChangeStatusAsync(false);
+                var res = await group.ChangeStatusAsync(false,true);
                 if (res.HasError)
                 {
                     frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);

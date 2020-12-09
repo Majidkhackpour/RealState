@@ -7,6 +7,7 @@ using EntityCache.ViewModels;
 using Nito.AsyncEx;
 using Services;
 using Servicess.Interfaces.Building;
+using WebHesabBussines;
 
 namespace EntityCache.Bussines
 {
@@ -108,7 +109,7 @@ namespace EntityCache.Bussines
 
         public static BuildingBussines Get(Guid guid) => AsyncContext.Run(() => GetAsync(guid));
 
-        public async Task<ReturnedSaveFuncInfo> SaveAsync(string tranName = "")
+        public async Task<ReturnedSaveFuncInfo> SaveAsync(bool sendToServer, string tranName = "")
         {
             var res = new ReturnedSaveFuncInfo();
             var autoTran = string.IsNullOrEmpty(tranName);
@@ -156,6 +157,9 @@ namespace EntityCache.Bussines
                 {
                     //CommitTransAction
                 }
+
+                if (sendToServer)
+                    _ = Task.Run(() => WebBuilding.SaveAsync(this));
             }
             catch (Exception ex)
             {
@@ -170,7 +174,7 @@ namespace EntityCache.Bussines
             return res;
         }
 
-        public async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(bool status, string tranName = "")
+        public async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(bool status, bool sendToServer, string tranName = "")
         {
             var res = new ReturnedSaveFuncInfo();
             var autoTran = string.IsNullOrEmpty(tranName);
@@ -208,6 +212,10 @@ namespace EntityCache.Bussines
                 {
                     //CommitTransAction
                 }
+
+
+                if (sendToServer)
+                    _ = Task.Run(() => WebBuilding.SaveAsync(this));
             }
             catch (Exception ex)
             {
@@ -276,7 +284,7 @@ namespace EntityCache.Bussines
 
         public static async Task<List<BuildingViewModel>> GetAllAsync(string code, Guid buildingGuid,
             Guid buildingAccountTypeGuid, int fMasahat, int lMasahat, int roomCount, decimal fPrice1, decimal lPrice1,
-            decimal fPrice2, decimal lPrice2, EnRequestType type,List<Guid>regionList)
+            decimal fPrice2, decimal lPrice2, EnRequestType type, List<Guid> regionList)
         {
             try
             {

@@ -547,6 +547,10 @@
       <Project>{dcb5bde2-6238-422d-ad4e-f53afce9bf30}</Project>
       <Name>Services</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\Services\Services\WindowsSerivces\WindowsSerivces.csproj">
+      <Project>{bf7c9bb1-0e5a-44b9-aa1a-59a9a2795ef5}</Project>
+      <Name>WindowsSerivces</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Advertise\Advertise.csproj">
       <Project>{8b34c014-5867-42f1-85c9-55ed88f3759d}</Project>
       <Name>Advertise</Name>

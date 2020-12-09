@@ -39,6 +39,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sms", "..\..\Sms\Sms\Sms\Sm
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Print", "Print\Print.csproj", "{86698884-FAD8-4D69-B7AD-4F0A437F7BCC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsSerivces", "..\..\Services\Services\WindowsSerivces\WindowsSerivces.csproj", "{BF7C9BB1-0E5A-44B9-AA1A-59A9A2795EF5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebHesabBussines", "WebHesabBussines\WebHesabBussines.csproj", "{F8F30F25-71E7-4E57-B938-4B30A267EAEF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -117,6 +121,14 @@ Global
 		{86698884-FAD8-4D69-B7AD-4F0A437F7BCC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{86698884-FAD8-4D69-B7AD-4F0A437F7BCC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{86698884-FAD8-4D69-B7AD-4F0A437F7BCC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BF7C9BB1-0E5A-44B9-AA1A-59A9A2795EF5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF7C9BB1-0E5A-44B9-AA1A-59A9A2795EF5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF7C9BB1-0E5A-44B9-AA1A-59A9A2795EF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF7C9BB1-0E5A-44B9-AA1A-59A9A2795EF5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F8F30F25-71E7-4E57-B938-4B30A267EAEF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F8F30F25-71E7-4E57-B938-4B30A267EAEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F8F30F25-71E7-4E57-B938-4B30A267EAEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F8F30F25-71E7-4E57-B938-4B30A267EAEF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

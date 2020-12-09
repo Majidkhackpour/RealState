@@ -7,6 +7,7 @@ using Nito.AsyncEx;
 using Services;
 using Services.Access;
 using Servicess.Interfaces.Building;
+using WebHesabBussines;
 
 namespace EntityCache.Bussines
 {
@@ -55,7 +56,7 @@ namespace EntityCache.Bussines
 
         public static async Task<List<UserBussines>> GetAllAsync() => await UnitOfWork.Users.GetAllAsync();
 
-        public async Task<ReturnedSaveFuncInfo> SaveAsync(bool setEftetah, string tranName = "")
+        public async Task<ReturnedSaveFuncInfo> SaveAsync(bool setEftetah,bool sendToServer, string tranName = "")
         {
             var res = new ReturnedSaveFuncInfo();
             var autoTran = string.IsNullOrEmpty(tranName);
@@ -125,6 +126,9 @@ namespace EntityCache.Bussines
                 {
                     //CommitTransAction
                 }
+
+                if (sendToServer)
+                    _ = Task.Run(() => WebUser.SaveAsync(this));
             }
             catch (Exception ex)
             {

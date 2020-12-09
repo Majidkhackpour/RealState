@@ -5,6 +5,7 @@ using EntityCache.Assistence;
 using Nito.AsyncEx;
 using Services;
 using Servicess.Interfaces.Building;
+using WebHesabBussines;
 
 namespace EntityCache.Bussines
 {
@@ -17,7 +18,7 @@ namespace EntityCache.Bussines
 
         public static async Task<List<StatesBussines>> GetAllAsync() => await UnitOfWork.States.GetAllAsync();
 
-        public static async Task<ReturnedSaveFuncInfo> SaveRangeAsync(List<StatesBussines> list,
+        public static async Task<ReturnedSaveFuncInfo> SaveRangeAsync(List<StatesBussines> list, bool sendToServer,
             string tranName = "")
         {
             var res = new ReturnedSaveFuncInfo();
@@ -35,6 +36,9 @@ namespace EntityCache.Bussines
                 {
                     //CommitTransAction
                 }
+
+                if (sendToServer)
+                    _ = Task.Run(() => WebStates.SaveAsync(list));
             }
             catch (Exception ex)
             {

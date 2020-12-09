@@ -350,7 +350,7 @@ namespace Accounting.Reception
                     {
                         pe.Account += fPrice;
                         pe.Account -= cls.TotalPrice;
-                        await pe.SaveAsync();
+                        await pe.SaveAsync(true);
                     }
                 }
                 else if (type == EnAccountingType.Users)
@@ -360,12 +360,12 @@ namespace Accounting.Reception
                     {
                         user.Account += fPrice;
                         user.Account -= cls.TotalPrice;
-                        await user.SaveAsync(false);
+                        await user.SaveAsync(false,true);
                     }
                 }
 
 
-                var res = await cls.SaveAsync(type);
+                var res = await cls.SaveAsync(type,true);
                 if (res.HasError)
                 {
                     frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);

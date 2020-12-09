@@ -129,7 +129,7 @@ namespace Cities.City
                 cls.Name = txtCity.Text;
                 cls.StateGuid = (Guid)cmbState.SelectedValue;
 
-                var res = await cls.SaveAsync();
+                var res = await cls.SaveAsync(true);
                 if (res.HasError)
                 {
                     frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);

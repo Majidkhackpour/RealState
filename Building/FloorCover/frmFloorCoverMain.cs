@@ -116,7 +116,7 @@ namespace Building.FloorCover
                 if (cls.Guid == Guid.Empty) cls.Guid = Guid.NewGuid();
                 cls.Name = txtName.Text.Trim();
 
-                var res = await cls.SaveAsync();
+                var res = await cls.SaveAsync(true);
                 if (res.HasError)
                 {
                     frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);

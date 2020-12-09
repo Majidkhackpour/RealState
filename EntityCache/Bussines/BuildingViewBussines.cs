@@ -6,6 +6,7 @@ using EntityCache.Assistence;
 using Nito.AsyncEx;
 using Services;
 using Servicess.Interfaces.Building;
+using WebHesabBussines;
 
 namespace EntityCache.Bussines
 {
@@ -19,7 +20,7 @@ namespace EntityCache.Bussines
 
         public static async Task<List<BuildingViewBussines>> GetAllAsync() => await UnitOfWork.BuildingView.GetAllAsync();
 
-        public static async Task<ReturnedSaveFuncInfo> SaveRangeAsync(List<BuildingViewBussines> list,
+        public static async Task<ReturnedSaveFuncInfo> SaveRangeAsync(List<BuildingViewBussines> list,bool sendToServer,
             string tranName = "")
         {
             var res = new ReturnedSaveFuncInfo();
@@ -37,6 +38,9 @@ namespace EntityCache.Bussines
                 {
                     //CommitTransAction
                 }
+
+                if (sendToServer)
+                    _ = Task.Run(() => WebBuildingView.SaveAsync(list));
             }
             catch (Exception ex)
             {
@@ -54,7 +58,7 @@ namespace EntityCache.Bussines
         public static async Task<BuildingViewBussines> GetAsync(Guid guid) => await UnitOfWork.BuildingView.GetAsync(guid);
 
 
-        public async Task<ReturnedSaveFuncInfo> SaveAsync(string tranName = "")
+        public async Task<ReturnedSaveFuncInfo> SaveAsync(bool sendToServer, string tranName = "")
         {
             var res = new ReturnedSaveFuncInfo();
             var autoTran = string.IsNullOrEmpty(tranName);
@@ -71,6 +75,9 @@ namespace EntityCache.Bussines
                 {
                     //CommitTransAction
                 }
+
+                if (sendToServer)
+                    _ = Task.Run(() => WebBuildingView.SaveAsync(this));
             }
             catch (Exception ex)
             {
@@ -85,7 +92,7 @@ namespace EntityCache.Bussines
             return res;
         }
 
-        public async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(bool status, string tranName = "")
+        public async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(bool status,bool sendToServer, string tranName = "")
         {
             var res = new ReturnedSaveFuncInfo();
             var autoTran = string.IsNullOrEmpty(tranName);
@@ -102,6 +109,9 @@ namespace EntityCache.Bussines
                 {
                     //CommitTransAction
                 }
+
+                if (sendToServer)
+                    _ = Task.Run(() => WebBuildingView.SaveAsync(this));
             }
             catch (Exception ex)
             {

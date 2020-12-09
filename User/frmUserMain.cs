@@ -313,7 +313,7 @@ namespace User
                     cls.Account += cls.AccountFirst;
                 }
 
-                var res = await cls.SaveAsync(true);
+                var res = await cls.SaveAsync(true,true);
                 if (res.HasError)
                 {
                     frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);

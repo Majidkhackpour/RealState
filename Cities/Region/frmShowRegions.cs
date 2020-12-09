@@ -193,7 +193,7 @@ namespace Cities.Region
                             MessageBoxButtons.YesNo,
                             MessageBoxIcon.Question) == DialogResult.No) return;
                     var prd = await RegionsBussines.GetAsync(guid);
-                    var res = await prd.ChangeStatusAsync(false);
+                    var res = await prd.ChangeStatusAsync(false,true);
                     if (res.HasError)
                     {
                         frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);
@@ -209,7 +209,7 @@ namespace Cities.Region
                             MessageBoxButtons.YesNo,
                             MessageBoxIcon.Question) == DialogResult.No) return;
                     var prd = await RegionsBussines.GetAsync(guid);
-                    var res = await prd.ChangeStatusAsync(true);
+                    var res = await prd.ChangeStatusAsync(true,true);
                     if (res.HasError)
                     {
                         frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);

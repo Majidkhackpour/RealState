@@ -144,7 +144,7 @@ namespace Building.BuildingView
                             MessageBoxButtons.YesNo,
                             MessageBoxIcon.Question) == DialogResult.No) return;
                     var prd = await BuildingViewBussines.GetAsync(guid);
-                    var res = await prd.ChangeStatusAsync(false);
+                    var res = await prd.ChangeStatusAsync(false, true);
                     if (res.HasError)
                     {
                         frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);
@@ -160,7 +160,7 @@ namespace Building.BuildingView
                             MessageBoxButtons.YesNo,
                             MessageBoxIcon.Question) == DialogResult.No) return;
                     var prd = await BuildingViewBussines.GetAsync(guid);
-                    var res = await prd.ChangeStatusAsync(true);
+                    var res = await prd.ChangeStatusAsync(true, true);
                     if (res.HasError)
                     {
                         frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);

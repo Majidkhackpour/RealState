@@ -116,7 +116,7 @@ namespace Accounting.Hazine
                 if (cls.Guid == Guid.Empty) cls.Guid = Guid.NewGuid();
                 cls.Name = txtName.Text.Trim();
 
-                var res = await cls.SaveAsync(true);
+                var res = await cls.SaveAsync(true,true);
                 if (res.HasError)
                 {
                     frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);

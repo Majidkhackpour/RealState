@@ -178,7 +178,7 @@ namespace Accounting.Hazine
                             MessageBoxButtons.YesNo,
                             MessageBoxIcon.Question) == DialogResult.No) return;
                     var prd = await HazineBussines.GetAsync(guid);
-                    var res = await prd.ChangeStatusAsync(false);
+                    var res = await prd.ChangeStatusAsync(false,true);
                     if (res.HasError)
                     {
                         frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);
@@ -194,7 +194,7 @@ namespace Accounting.Hazine
                             MessageBoxButtons.YesNo,
                             MessageBoxIcon.Question) == DialogResult.No) return;
                     var prd = await HazineBussines.GetAsync(guid);
-                    var res = await prd.ChangeStatusAsync(true);
+                    var res = await prd.ChangeStatusAsync(true,true);
                     if (res.HasError)
                     {
                         frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);

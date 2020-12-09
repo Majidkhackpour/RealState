@@ -225,7 +225,7 @@ namespace Building.Building
                             MessageBoxButtons.YesNo,
                             MessageBoxIcon.Question) == DialogResult.No) return;
                     var prd = await BuildingBussines.GetAsync(guid);
-                    var res = await prd.ChangeStatusAsync(false);
+                    var res = await prd.ChangeStatusAsync(false, true);
                     if (res.HasError)
                     {
                         frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);
@@ -243,7 +243,7 @@ namespace Building.Building
                             MessageBoxButtons.YesNo,
                             MessageBoxIcon.Question) == DialogResult.No) return;
                     var prd = await BuildingBussines.GetAsync(guid);
-                    var res = await prd.ChangeStatusAsync(true);
+                    var res = await prd.ChangeStatusAsync(true, true);
                     if (res.HasError)
                     {
                         frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);
@@ -349,7 +349,7 @@ namespace Building.Building
                         MessageBoxIcon.Question) == DialogResult.No) return;
 
                 bu.BuildingStatus = EnBuildingStatus.Mojod;
-                var res = await bu.SaveAsync();
+                var res = await bu.SaveAsync(true);
                 if (res.HasError)
                 {
                     frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);
@@ -385,7 +385,7 @@ namespace Building.Building
                         MessageBoxIcon.Question) == DialogResult.No) return;
 
                 bu.BuildingStatus = EnBuildingStatus.Vagozar;
-                var res = await bu.SaveAsync();
+                var res = await bu.SaveAsync(true);
                 if (res.HasError)
                 {
                     frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);

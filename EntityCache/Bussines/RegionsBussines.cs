@@ -6,6 +6,7 @@ using EntityCache.Assistence;
 using Nito.AsyncEx;
 using Services;
 using Servicess.Interfaces.Building;
+using WebHesabBussines;
 
 namespace EntityCache.Bussines
 {
@@ -25,7 +26,7 @@ namespace EntityCache.Bussines
 
         public static async Task<List<RegionsBussines>> GetAllAsyncEf() => await UnitOfWork.Regions.GetAllAsync();
 
-        public static async Task<ReturnedSaveFuncInfo> SaveRangeAsync(List<RegionsBussines> list,
+        public static async Task<ReturnedSaveFuncInfo> SaveRangeAsync(List<RegionsBussines> list,bool sendToServer,
             string tranName = "")
         {
             var res = new ReturnedSaveFuncInfo();
@@ -43,6 +44,9 @@ namespace EntityCache.Bussines
                 {
                     //CommitTransAction
                 }
+
+                if (sendToServer)
+                    _ = Task.Run(() => WebRegion.SaveAsync(list));
             }
             catch (Exception ex)
             {
@@ -95,7 +99,7 @@ namespace EntityCache.Bussines
                 return new List<RegionsBussines>();
             }
         }
-        public async Task<ReturnedSaveFuncInfo> SaveAsync(string tranName = "")
+        public async Task<ReturnedSaveFuncInfo> SaveAsync(bool sendToServer, string tranName = "")
         {
             var res = new ReturnedSaveFuncInfo();
             var autoTran = string.IsNullOrEmpty(tranName);
@@ -112,6 +116,9 @@ namespace EntityCache.Bussines
                 {
                     //CommitTransAction
                 }
+
+                if (sendToServer)
+                    _ = Task.Run(() => WebRegion.SaveAsync(this));
             }
             catch (Exception ex)
             {
@@ -126,7 +133,7 @@ namespace EntityCache.Bussines
             return res;
         }
 
-        public async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(bool status, string tranName = "")
+        public async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(bool status, bool sendToServer, string tranName = "")
         {
             var res = new ReturnedSaveFuncInfo();
             var autoTran = string.IsNullOrEmpty(tranName);
@@ -143,6 +150,9 @@ namespace EntityCache.Bussines
                 {
                     //CommitTransAction
                 }
+
+                if (sendToServer)
+                    _ = Task.Run(() => WebRegion.SaveAsync(this));
             }
             catch (Exception ex)
             {

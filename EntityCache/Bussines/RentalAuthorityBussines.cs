@@ -6,6 +6,7 @@ using EntityCache.Assistence;
 using Nito.AsyncEx;
 using Services;
 using Servicess.Interfaces.Building;
+using WebHesabBussines;
 
 namespace EntityCache.Bussines
 {
@@ -19,7 +20,7 @@ namespace EntityCache.Bussines
 
         public static async Task<List<RentalAuthorityBussines>> GetAllAsync() => await UnitOfWork.RentalAuthority.GetAllAsync();
 
-        public static async Task<ReturnedSaveFuncInfo> SaveRangeAsync(List<RentalAuthorityBussines> list,
+        public static async Task<ReturnedSaveFuncInfo> SaveRangeAsync(List<RentalAuthorityBussines> list,bool sendToServer,
             string tranName = "")
         {
             var res = new ReturnedSaveFuncInfo();
@@ -37,6 +38,9 @@ namespace EntityCache.Bussines
                 {
                     //CommitTransAction
                 }
+
+                if (sendToServer)
+                    _ = Task.Run(() => WebRental.SaveAsync(list));
             }
             catch (Exception ex)
             {
@@ -55,7 +59,7 @@ namespace EntityCache.Bussines
 
         public static async Task<RentalAuthorityBussines> GetAsync(string name) => await UnitOfWork.RentalAuthority.GetAsync(name);
 
-        public async Task<ReturnedSaveFuncInfo> SaveAsync(string tranName = "")
+        public async Task<ReturnedSaveFuncInfo> SaveAsync(bool sendToServer, string tranName = "")
         {
             var res = new ReturnedSaveFuncInfo();
             var autoTran = string.IsNullOrEmpty(tranName);
@@ -72,6 +76,9 @@ namespace EntityCache.Bussines
                 {
                     //CommitTransAction
                 }
+
+                if (sendToServer)
+                    _ = Task.Run(() => WebRental.SaveAsync(this));
             }
             catch (Exception ex)
             {
@@ -86,7 +93,7 @@ namespace EntityCache.Bussines
             return res;
         }
 
-        public async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(bool status, string tranName = "")
+        public async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(bool status, bool sendToServer, string tranName = "")
         {
             var res = new ReturnedSaveFuncInfo();
             var autoTran = string.IsNullOrEmpty(tranName);
@@ -103,6 +110,9 @@ namespace EntityCache.Bussines
                 {
                     //CommitTransAction
                 }
+
+                if (sendToServer)
+                    _ = Task.Run(() => WebRental.SaveAsync(this));
             }
             catch (Exception ex)
             {

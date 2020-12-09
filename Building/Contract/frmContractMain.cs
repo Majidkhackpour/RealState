@@ -1014,13 +1014,13 @@ namespace Building.Contract
                                  cls.Finance.FirstDiscount;
                 fSide.Account -= fPrice;
                 fSide.Account += fSidePrice;
-                await fSide.SaveAsync();
+                await fSide.SaveAsync(true);
 
                 var sSidePrice = (cls.Finance.SecondTotalPrice + cls.Finance.SecondAddedValue) -
                                 cls.Finance.SecondDiscount;
                 sSide.Account -= sPrice;
                 sSide.Account += sSidePrice;
-                await sSide.SaveAsync();
+                await sSide.SaveAsync(true);
 
                 var perGardesh = await GardeshHesabBussines.GetAllAsync(cls.Guid, true);
                 if (perGardesh != null && perGardesh.Count > 0)
@@ -1059,9 +1059,9 @@ namespace Building.Contract
 
                 cls.Type = txtRahn.Value > 0 ? EnRequestType.Rahn : EnRequestType.Forush;
 
-                await building.SaveAsync();
+                await building.SaveAsync(true);
 
-                var res = await cls.SaveAsync();
+                var res = await cls.SaveAsync(true);
                 if (res.HasError)
                 {
                     frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);

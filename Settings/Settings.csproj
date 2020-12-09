@@ -185,6 +185,10 @@
       <Project>{dcb5bde2-6238-422d-ad4e-f53afce9bf30}</Project>
       <Name>Services</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\Services\Services\WindowsSerivces\WindowsSerivces.csproj">
+      <Project>{bf7c9bb1-0e5a-44b9-aa1a-59a9a2795ef5}</Project>
+      <Name>WindowsSerivces</Name>
+    </ProjectReference>
     <ProjectReference Include="..\EntityCache\EntityCache.csproj">
       <Project>{cc417799-f38c-4997-8491-510eb1c15f74}</Project>
       <Name>EntityCache</Name>

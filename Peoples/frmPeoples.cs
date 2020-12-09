@@ -504,7 +504,7 @@ namespace Peoples
                     cls.Account += cls.AccountFirst;
                 }
 
-                var res = await cls.SaveAsync();
+                var res = await cls.SaveAsync(true);
                 if (res.HasError)
                 {
                     frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);

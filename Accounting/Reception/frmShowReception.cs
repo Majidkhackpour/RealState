@@ -230,7 +230,7 @@ namespace Accounting.Reception
                         if (pe != null)
                         {
                             pe.Account += prd.TotalPrice;
-                            await pe.SaveAsync();
+                            await pe.SaveAsync(true);
                         }
                     }
                     else if (type == EnAccountingType.Users)
@@ -239,14 +239,14 @@ namespace Accounting.Reception
                         if (user != null)
                         {
                             user.Account += prd.TotalPrice;
-                            await user.SaveAsync(false);
+                            await user.SaveAsync(false,true);
                         }
                     }
 
 
 
 
-                    var res = await prd.ChangeStatusAsync(false);
+                    var res = await prd.ChangeStatusAsync(false,true);
                     if (res.HasError)
                     {
                         frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);
@@ -269,7 +269,7 @@ namespace Accounting.Reception
                         if (pe != null)
                         {
                             pe.Account -= prd.TotalPrice;
-                            await pe.SaveAsync();
+                            await pe.SaveAsync(true);
                         }
                     }
                     else if (type == EnAccountingType.Users)
@@ -278,10 +278,10 @@ namespace Accounting.Reception
                         if (user != null)
                         {
                             user.Account -= prd.TotalPrice;
-                            await user.SaveAsync(false);
+                            await user.SaveAsync(false,true);
                         }
                     }
-                    var res = await prd.ChangeStatusAsync(true);
+                    var res = await prd.ChangeStatusAsync(true,true);
                     if (res.HasError)
                     {
                         frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);

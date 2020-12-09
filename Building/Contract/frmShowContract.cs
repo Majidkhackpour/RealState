@@ -217,7 +217,7 @@ namespace Building.Contract
                     {
                         pe.Account -= (prd.Finance.FirstTotalPrice + prd.Finance.FirstAddedValue) -
                                       prd.Finance.FirstDiscount;
-                        await pe.SaveAsync();
+                        await pe.SaveAsync(true);
                     }
 
                     var pe_ = await PeoplesBussines.GetAsync(prd.SecondSideGuid);
@@ -225,10 +225,10 @@ namespace Building.Contract
                     {
                         pe_.Account -= (prd.Finance.SecondTotalPrice + prd.Finance.SecondAddedValue) -
                                        prd.Finance.SecondDiscount;
-                        await pe_.SaveAsync();
+                        await pe_.SaveAsync(true);
                     }
 
-                    var res = await prd.ChangeStatusAsync(false);
+                    var res = await prd.ChangeStatusAsync(false, true);
                     if (res.HasError)
                     {
                         frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);
@@ -249,7 +249,7 @@ namespace Building.Contract
                     {
                         pe.Account += (prd.Finance.FirstTotalPrice + prd.Finance.FirstAddedValue) -
                                       prd.Finance.FirstDiscount;
-                        await pe.SaveAsync();
+                        await pe.SaveAsync(true);
                     }
 
                     var pe_ = await PeoplesBussines.GetAsync(prd.SecondSideGuid);
@@ -257,10 +257,10 @@ namespace Building.Contract
                     {
                         pe_.Account += (prd.Finance.SecondTotalPrice + prd.Finance.SecondAddedValue) -
                                        prd.Finance.SecondDiscount;
-                        await pe_.SaveAsync();
+                        await pe_.SaveAsync(true);
                     }
 
-                    var res = await prd.ChangeStatusAsync(true);
+                    var res = await prd.ChangeStatusAsync(true, true);
                     if (res.HasError)
                     {
                         frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);
@@ -303,7 +303,7 @@ namespace Building.Contract
                         MessageBoxIcon.Question) == DialogResult.No) return;
 
                 bu.IsTemp = false;
-                var res = await bu.SaveAsync();
+                var res = await bu.SaveAsync(true);
                 if (res.HasError)
                 {
                     frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);

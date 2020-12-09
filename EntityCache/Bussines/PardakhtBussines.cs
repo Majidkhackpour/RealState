@@ -6,6 +6,7 @@ using EntityCache.Assistence;
 using Nito.AsyncEx;
 using Services;
 using Servicess.Interfaces.Building;
+using WebHesabBussines;
 
 namespace EntityCache.Bussines
 {
@@ -35,7 +36,7 @@ namespace EntityCache.Bussines
             await UnitOfWork.Pardakht.GetAllAsync(receptioGuid);
         public static async Task<PardakhtBussines> GetAsync(Guid guid) => await UnitOfWork.Pardakht.GetAsync(guid);
 
-        public async Task<ReturnedSaveFuncInfo> SaveAsync(EnAccountingType type, string tranName = "")
+        public async Task<ReturnedSaveFuncInfo> SaveAsync(EnAccountingType type,bool sendToServer, string tranName = "")
         {
             var res = new ReturnedSaveFuncInfo();
             var autoTran = string.IsNullOrEmpty(tranName);
@@ -67,7 +68,7 @@ namespace EntityCache.Bussines
                 else
                 {
                     gardesh.Price = TotalPrice;
-                    await gardesh.SaveAsync();
+                    await gardesh.SaveAsync(true);
                 }
 
                 res.AddReturnedValue(await UnitOfWork.Pardakht.SaveAsync(this, tranName));
@@ -76,6 +77,9 @@ namespace EntityCache.Bussines
                 {
                     //CommitTransAction
                 }
+
+                if (sendToServer)
+                    _ = Task.Run(() => WebPardakht.SaveAsync(this));
             }
             catch (Exception ex)
             {
@@ -90,7 +94,7 @@ namespace EntityCache.Bussines
             return res;
         }
 
-        public async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(bool status, string tranName = "")
+        public async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(bool status, bool sendToServer, string tranName = "")
         {
             var res = new ReturnedSaveFuncInfo();
             var autoTran = string.IsNullOrEmpty(tranName);
@@ -114,6 +118,9 @@ namespace EntityCache.Bussines
                 {
                     //CommitTransAction
                 }
+
+                if (sendToServer)
+                    _ = Task.Run(() => WebPardakht.SaveAsync(this));
             }
             catch (Exception ex)
             {

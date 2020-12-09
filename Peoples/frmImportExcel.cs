@@ -195,7 +195,7 @@ namespace Peoples
                             Name = grp,
                             ParentGuid = Guid.Empty
                         };
-                        await g.SaveAsync();
+                        await g.SaveAsync(true);
                         pe.GroupGuid = g.Guid;
                     }
                     else pe.GroupGuid = group.Guid;
@@ -279,7 +279,7 @@ namespace Peoples
                     var x = await GetItemsAsync(i);
                     frm.Level = i;
                     if (x == null) continue;
-                    await x.SaveAsync();
+                    await x.SaveAsync(true);
                 }
 
                 DialogResult = DialogResult.OK;

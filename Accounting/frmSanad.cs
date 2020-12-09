@@ -210,21 +210,21 @@ namespace Accounting
                     var item = PeoplesBussines.Get(bedGuid);
                     if (item == null) return;
                     item.Account += val;
-                    await item.SaveAsync();
+                    await item.SaveAsync(true);
                 }
                 else if (bedType == EnAccountingType.Users)
                 {
                     var item = UserBussines.Get(bedGuid);
                     if (item == null) return;
                     item.Account += val;
-                    await item.SaveAsync(false);
+                    await item.SaveAsync(false,true);
                 }
                 else if (bedType == EnAccountingType.Hazine)
                 {
                     var item = HazineBussines.Get(bedGuid);
                     if (item == null) return;
                     item.Account += val;
-                    await item.SaveAsync(false);
+                    await item.SaveAsync(false,true);
                 }
 
                 //Set Bestankar Account
@@ -233,14 +233,14 @@ namespace Accounting
                     var item = PeoplesBussines.Get(besGuid);
                     if (item == null) return;
                     item.Account -= val;
-                    await item.SaveAsync();
+                    await item.SaveAsync(true);
                 }
                 else if (besType == EnAccountingType.Users)
                 {
                     var item = UserBussines.Get(besGuid);
                     if (item == null) return;
                     item.Account -= val;
-                    await item.SaveAsync(false);
+                    await item.SaveAsync(false,true);
                 }
 
 

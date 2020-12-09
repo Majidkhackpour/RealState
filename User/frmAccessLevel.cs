@@ -84,7 +84,7 @@ namespace User
                 var user = await UserBussines.GetAsync(userGuid);
                 if (user == null) return;
                 user.UserAccess = CurrentAccessLevel;
-                var res = await user.SaveAsync(true);
+                var res = await user.SaveAsync(true,true);
                 if (res.HasError)
                 {
                     MessageBox.Show(this,res.ErrorMessage, "خطا", MessageBoxButtons.OK,

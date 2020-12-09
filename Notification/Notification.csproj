@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="clsNotification.cs" />
+    <Compile Include="clsShowError.cs" />
     <Compile Include="frmNaqz.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -59,6 +60,14 @@
     </Compile>
     <Compile Include="frmNotification.Designer.cs">
       <DependentUpon>frmNotification.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmShowErrorDetails.cs" />
+    <Compile Include="frmShowErrorDetails.designer.cs">
+      <DependentUpon>frmShowErrorDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmShowErrorMessage.cs" />
+    <Compile Include="FrmShowErrorMessage.designer.cs">
+      <DependentUpon>FrmShowErrorMessage.cs</DependentUpon>
     </Compile>
     <Compile Include="frmSplash.cs">
       <SubType>Form</SubType>
@@ -85,6 +94,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmNotification.resx">
       <DependentUpon>frmNotification.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmShowErrorDetails.resx">
+      <DependentUpon>frmShowErrorDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmShowErrorMessage.resx">
+      <DependentUpon>FrmShowErrorMessage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmSplash.resx">
       <DependentUpon>frmSplash.cs</DependentUpon>

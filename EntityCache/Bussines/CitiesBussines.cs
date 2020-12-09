@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Services;
 using Servicess.Interfaces.Building;
+using WebHesabBussines;
 
 namespace EntityCache.Bussines
 {
@@ -21,7 +22,7 @@ namespace EntityCache.Bussines
 
         public static async Task<List<CitiesBussines>> GetAllAsync() => await UnitOfWork.Cities.GetAllAsyncBySp();
         public static async Task<List<CitiesBussines>> GetAllAsyncEf() => await UnitOfWork.Cities.GetAllAsync();
-        public static async Task<ReturnedSaveFuncInfo> SaveRangeAsync(List<CitiesBussines> list,
+        public static async Task<ReturnedSaveFuncInfo> SaveRangeAsync(List<CitiesBussines> list,bool sendToServer,
             string tranName = "")
         {
             var res = new ReturnedSaveFuncInfo();
@@ -39,6 +40,9 @@ namespace EntityCache.Bussines
                 {
                     //CommitTransAction
                 }
+
+                if (sendToServer)
+                    _ = Task.Run(() => WebCity.SaveAsync(list));
             }
             catch (Exception ex)
             {
@@ -92,7 +96,7 @@ namespace EntityCache.Bussines
 
         public static CitiesBussines Get(Guid guid) => AsyncContext.Run(() => GetAsync(guid));
 
-        public async Task<ReturnedSaveFuncInfo> SaveAsync(string tranName = "")
+        public async Task<ReturnedSaveFuncInfo> SaveAsync(bool sendToServer, string tranName = "")
         {
             var res = new ReturnedSaveFuncInfo();
             var autoTran = string.IsNullOrEmpty(tranName);
@@ -109,6 +113,9 @@ namespace EntityCache.Bussines
                 {
                     //CommitTransAction
                 }
+
+                if (sendToServer)
+                    _ = Task.Run(() => WebCity.SaveAsync(this));
             }
             catch (Exception ex)
             {
@@ -123,7 +130,7 @@ namespace EntityCache.Bussines
             return res;
         }
 
-        public async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(bool status, string tranName = "")
+        public async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(bool status,bool sendToServer, string tranName = "")
         {
             var res = new ReturnedSaveFuncInfo();
             var autoTran = string.IsNullOrEmpty(tranName);
@@ -140,6 +147,9 @@ namespace EntityCache.Bussines
                 {
                     //CommitTransAction
                 }
+
+                if (sendToServer)
+                    _ = Task.Run(() => WebCity.SaveAsync(this));
             }
             catch (Exception ex)
             {
