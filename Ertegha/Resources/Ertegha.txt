@@ -669,3 +669,184 @@ BEGIN
 	values(5,@desc,NEWID(), GETDATE(),@parentGuid,@besGuid,@price,'true',3)
 
 END
+GO
+-- ==========================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Pardakht_ChangeStatus]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Pardakht_ChangeStatus]	As Begin print 11 end')
+GO
+
+Alter PROCEDURE sp_Pardakht_ChangeStatus	
+	@guid uniqueidentifier,
+	@hesabGuid uniqueidentifier,
+	@st bit,
+	@price bigint
+AS
+BEGIN
+	update GardeshHesabs
+	set Status=@st
+	where PeopleGuid=@hesabGuid and ParentGuid=@guid
+
+	declare @tarafHesab uniqueidentifier
+
+	if (@st='true')
+	begin
+		set @tarafHesab=(ISNULL((select Guid from Peoples
+		where Guid=@hesabGuid),'00000000-0000-0000-0000-000000000000'))
+
+		if (@tarafHesab='00000000-0000-0000-0000-000000000000')
+		begin
+		set @tarafHesab=(ISNULL((select Guid from Users
+		where Guid=@hesabGuid),'00000000-0000-0000-0000-000000000000'))
+
+		if(@tarafHesab='00000000-0000-0000-0000-000000000000')
+		begin
+			set @tarafHesab=(ISNULL((select Guid from Hazines
+			where Guid=@hesabGuid),'00000000-0000-0000-0000-000000000000'))
+
+			update Hazines
+			set Account=Account+@price
+			where Guid=@hesabGuid
+		end
+		else
+		begin
+			update Users
+			set Account=Account+@price
+			where Guid=@hesabGuid
+		end
+end
+else
+begin
+		update Peoples
+		set Account=Account+@price
+		where Guid=@hesabGuid
+end
+	end
+	else
+	begin
+		set @tarafHesab=(ISNULL((select Guid from Peoples
+		where Guid=@hesabGuid),'00000000-0000-0000-0000-000000000000'))
+
+		if (@tarafHesab='00000000-0000-0000-0000-000000000000')
+		begin
+		set @tarafHesab=(ISNULL((select Guid from Users
+		where Guid=@hesabGuid),'00000000-0000-0000-0000-000000000000'))
+
+		if(@tarafHesab='00000000-0000-0000-0000-000000000000')
+		begin
+			set @tarafHesab=(ISNULL((select Guid from Hazines
+			where Guid=@hesabGuid),'00000000-0000-0000-0000-000000000000'))
+
+			update Hazines
+			set Account=Account-@price
+			where Guid=@hesabGuid
+		end
+		else
+		begin
+			update Users
+			set Account=Account-@price
+			where Guid=@hesabGuid
+		end
+		end
+		else
+		begin
+			update Peoples
+			set Account=Account-@price
+			where Guid=@hesabGuid
+		end
+	end
+
+	update Pardakhts
+	set Status=@st
+	where Guid=@guid
+END
+GO
+-- ==========================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Reception_ChangeStatus]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Reception_ChangeStatus]	As Begin print 11 end')
+GO
+
+Alter PROCEDURE sp_Reception_ChangeStatus	
+	@guid uniqueidentifier,
+	@hesabGuid uniqueidentifier,
+	@st bit,
+	@price bigint
+AS
+BEGIN
+	update GardeshHesabs
+	set Status=@st
+	where PeopleGuid=@hesabGuid and ParentGuid=@guid
+
+	declare @tarafHesab uniqueidentifier
+
+	if (@st='true')
+	begin
+		set @tarafHesab=(ISNULL((select Guid from Peoples
+		where Guid=@hesabGuid),'00000000-0000-0000-0000-000000000000'))
+
+		if (@tarafHesab='00000000-0000-0000-0000-000000000000')
+		begin
+		set @tarafHesab=(ISNULL((select Guid from Users
+		where Guid=@hesabGuid),'00000000-0000-0000-0000-000000000000'))
+
+		if(@tarafHesab='00000000-0000-0000-0000-000000000000')
+		begin
+			set @tarafHesab=(ISNULL((select Guid from Hazines
+			where Guid=@hesabGuid),'00000000-0000-0000-0000-000000000000'))
+
+			update Hazines
+			set Account=Account-@price
+			where Guid=@hesabGuid
+		end
+		else
+		begin
+			update Users
+			set Account=Account-@price
+			where Guid=@tarafHesab
+		end
+end
+else
+begin
+		update Peoples
+		set Account=Account-@price
+		where Guid=@hesabGuid
+end
+	end
+	else
+	begin
+		set @tarafHesab=(ISNULL((select Guid from Peoples
+		where Guid=@hesabGuid),'00000000-0000-0000-0000-000000000000'))
+
+		if (@tarafHesab='00000000-0000-0000-0000-000000000000')
+		begin
+		set @tarafHesab=(ISNULL((select Guid from Users
+		where Guid=@hesabGuid),'00000000-0000-0000-0000-000000000000'))
+
+		if(@tarafHesab='00000000-0000-0000-0000-000000000000')
+		begin
+			set @tarafHesab=(ISNULL((select Guid from Hazines
+			where Guid=@hesabGuid),'00000000-0000-0000-0000-000000000000'))
+
+			update Hazines
+			set Account=Account+@price
+			where Guid=@tarafHesab
+		end
+		else
+		begin
+			update Users
+			set Account=Account+@price
+			where Guid=@tarafHesab
+		end
+		end
+		else
+		begin
+			update Peoples
+			set Account=Account+@price
+			where Guid=@tarafHesab
+		end
+	end
+
+	update Receptions
+	set Status=@st
+	where Guid=@guid
+END
+GO

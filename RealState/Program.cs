@@ -44,6 +44,8 @@ namespace RealState
             //Config Cache
             ClsCache.Init(AppSettings.DefaultConnectionString);
 
+            ErrorManager.Init(ENSource.Building, null);
+
             clsErtegha.StartErtegha(AppSettings.DefaultConnectionString, owner);
 
             ClsCache.InserDefults();

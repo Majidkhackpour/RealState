@@ -17,14 +17,11 @@ namespace Accounting.Payement
         private EnAccountingType type;
         private PardakhtBussines cls;
         private EnLogAction action;
-        private decimal fPrice;
         private void SetData()
         {
             try
             {
                 SetReceptor();
-                FillCmbPrice();
-                SetTxtPrice();
                 SetTotal();
                 lblDateNow.Text = cls?.DateSh;
                 txtFishNo.Text = cls?.FishNo;
@@ -32,110 +29,9 @@ namespace Accounting.Payement
                 txtSarResid.Text = cls?.SarResid;
                 txtBankName.Text = cls?.BankName;
                 txtDesc.Text = cls?.Description;
-                fPrice = cls?.TotalPrice ?? 0;
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-        private void FillCmbPrice()
-        {
-            try
-            {
-                var values = Enum.GetValues(typeof(EnPrice)).Cast<EnPrice>();
-                foreach (var item in values)
-                {
-                    cmbBank.Items.Add(item.GetDisplay());
-                    cmbCheck.Items.Add(item.GetDisplay());
-                    cmbNaqd.Items.Add(item.GetDisplay());
-                }
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-        private void SetTxtPrice()
-        {
-            try
-            {
-                if (cls?.NaqdPrice == 0)
-                {
-                    txtNaqdPrice.Text = cls?.NaqdPrice.ToString();
-                    cmbNaqd.SelectedIndex = 0;
-                }
-                if (cls?.NaqdPrice != 0)
-                {
-                    if (cls?.NaqdPrice >= 10000 && cls?.NaqdPrice >= 9999)
-                    {
-                        txtNaqdPrice.Text = (cls?.NaqdPrice / 10000).ToString();
-                        cmbNaqd.SelectedIndex = 0;
-                    }
-                    if (cls?.NaqdPrice >= 10000000 && cls?.NaqdPrice >= 9999999)
-                    {
-                        txtNaqdPrice.Text = (cls?.NaqdPrice / 10000000).ToString();
-                        cmbNaqd.SelectedIndex = 1;
-                    }
-                    if (cls?.NaqdPrice >= 10000000000 && cls?.NaqdPrice >= 9999999999)
-                    {
-                        txtNaqdPrice.Text = (cls?.NaqdPrice / 10000000000).ToString();
-                        cmbNaqd.SelectedIndex = 2;
-                    }
-                }
-
-
-                if (cls?.BankPrice == 0)
-                {
-                    txtBankPrice.Text = cls?.BankPrice.ToString();
-                    cmbBank.SelectedIndex = 0;
-                }
-                if (cls?.BankPrice != 0)
-                {
-                    if (cls?.BankPrice >= 10000 && cls?.BankPrice >= 9999)
-                    {
-                        txtBankPrice.Text = (cls?.BankPrice / 10000).ToString();
-                        cmbBank.SelectedIndex = 0;
-                    }
-                    if (cls?.BankPrice >= 10000000 && cls?.BankPrice >= 9999999)
-                    {
-                        txtBankPrice.Text = (cls?.BankPrice / 10000000).ToString();
-                        cmbBank.SelectedIndex = 1;
-                    }
-                    if (cls?.BankPrice >= 10000000000 && cls?.BankPrice >= 9999999999)
-                    {
-                        txtBankPrice.Text = (cls?.BankPrice / 10000000000).ToString();
-                        cmbBank.SelectedIndex = 2;
-                    }
-                }
-
-
-
-                if (cls?.Check == 0)
-                {
-                    txtCheckPrice.Text = cls?.Check.ToString();
-                    cmbCheck.SelectedIndex = 0;
-                }
-                if (cls?.Check != 0)
-                {
-                    if (cls?.Check >= 10000 && cls?.Check >= 9999)
-                    {
-                        txtCheckPrice.Text = (cls?.Check / 10000).ToString();
-                        cmbCheck.SelectedIndex = 0;
-                    }
-                    if (cls?.Check >= 10000000 && cls?.Check >= 9999999)
-                    {
-                        txtCheckPrice.Text = (cls?.Check / 10000000).ToString();
-                        cmbCheck.SelectedIndex = 1;
-                    }
-                    if (cls?.Check >= 10000000000 && cls?.Check >= 9999999999)
-                    {
-                        txtCheckPrice.Text = (cls?.Check / 10000000000).ToString();
-                        cmbCheck.SelectedIndex = 2;
-                    }
-                }
-
-
+                txtCheckPrice.TextDecimal = cls?.Check ?? 0;
+                txtNaqdPrice.TextDecimal = cls?.NaqdPrice ?? 0;
+                txtBankPrice.TextDecimal = cls?.BankPrice ?? 0;
             }
             catch (Exception ex)
             {
@@ -148,26 +44,9 @@ namespace Accounting.Payement
             {
                 var total = (decimal)0;
 
-                if (cmbNaqd.SelectedIndex == 0)
-                    total += txtNaqdPrice.Value * 10000;
-                if (cmbNaqd.SelectedIndex == 1)
-                    total += txtNaqdPrice.Value * 10000000;
-                if (cmbNaqd.SelectedIndex == 2)
-                    total += txtNaqdPrice.Value * 10000000000;
-
-                if (cmbBank.SelectedIndex == 0)
-                    total += txtBankPrice.Value * 10000;
-                if (cmbBank.SelectedIndex == 1)
-                    total += txtBankPrice.Value * 10000000;
-                if (cmbBank.SelectedIndex == 2)
-                    total += txtBankPrice.Value * 10000000000;
-
-                if (cmbCheck.SelectedIndex == 0)
-                    total += txtCheckPrice.Value * 10000;
-                if (cmbCheck.SelectedIndex == 1)
-                    total += txtCheckPrice.Value * 10000000;
-                if (cmbCheck.SelectedIndex == 2)
-                    total += txtCheckPrice.Value * 10000000000;
+                total += txtNaqdPrice.TextDecimal;
+                total += txtBankPrice.TextDecimal;
+                total += txtCheckPrice.TextDecimal;
 
                 lblTotalPrice.Text = total.ToString("N0");
             }
@@ -273,7 +152,6 @@ namespace Accounting.Payement
             DialogResult = DialogResult.Cancel;
             Close();
         }
-
         private void frmPardakhtMain_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -300,23 +178,21 @@ namespace Accounting.Payement
                 WebErrorLog.ErrorInstence.StartErrorLog(exception);
             }
         }
-
         private async void btnFinish_Click(object sender, EventArgs e)
         {
+            var res = new ReturnedSaveFuncInfo();
             try
             {
                 if (string.IsNullOrWhiteSpace(txtName.Text))
                 {
-                    frmNotification.PublicInfo.ShowMessage("طرف حساب نمی تواند خالی باشد");
+                    res.AddError("طرف حساب نمی تواند خالی باشد");
                     txtName.Focus();
-                    return;
                 }
 
-                if (txtNaqdPrice.Text == "0" && txtBankPrice.Text == "0" && txtCheckPrice.Text == "0")
-                {
-                    frmNotification.PublicInfo.ShowMessage("لطفا یکی از فیلدهای مبلغ را وارد نمایید");
-                    return;
-                }
+                if (txtNaqdPrice.TextDecimal == 0 && txtBankPrice.TextDecimal == 0 && txtCheckPrice.TextDecimal == 0)
+                    res.AddError("لطفا یکی از فیلدهای مبلغ را وارد نمایید");
+
+                if (res.HasError) return;
 
                 if (cls.Guid == Guid.Empty) cls.Guid = Guid.NewGuid();
                 cls.Payer = _receptorGuid;
@@ -325,39 +201,15 @@ namespace Accounting.Payement
                 cls.Description = txtDesc.Text;
                 cls.FishNo = txtFishNo.Text;
                 cls.SarResid = txtSarResid.Text;
+                cls.NaqdPrice = txtNaqdPrice.TextDecimal;
+                cls.BankPrice = txtBankPrice.TextDecimal;
+                cls.Check = txtCheckPrice.TextDecimal;
 
-                if (cmbNaqd.SelectedIndex == 0)
-                    cls.NaqdPrice = txtNaqdPrice.Text.ParseToDecimal() * 10000;
-                if (cmbNaqd.SelectedIndex == 1)
-                    cls.NaqdPrice = txtNaqdPrice.Text.ParseToDecimal() * 10000000;
-                if (cmbNaqd.SelectedIndex == 2)
-                    cls.NaqdPrice = txtNaqdPrice.Text.ParseToDecimal() * 10000000000;
-
-                if (cmbBank.SelectedIndex == 0)
-                    cls.BankPrice = txtBankPrice.Text.ParseToDecimal() * 10000;
-                if (cmbBank.SelectedIndex == 1)
-                    cls.BankPrice = txtBankPrice.Text.ParseToDecimal() * 10000000;
-                if (cmbBank.SelectedIndex == 2)
-                    cls.BankPrice = txtBankPrice.Text.ParseToDecimal() * 10000000000;
-
-                if (cmbCheck.SelectedIndex == 0)
-                    cls.Check = txtCheckPrice.Text.ParseToDecimal() * 10000;
-                if (cmbCheck.SelectedIndex == 1)
-                    cls.Check = txtCheckPrice.Text.ParseToDecimal() * 10000000;
-                if (cmbCheck.SelectedIndex == 2)
-                    cls.Check = txtCheckPrice.Text.ParseToDecimal() * 10000000000;
+                res.AddReturnedValue(await cls.SaveAsync(true));
+                if (res.HasError) return;
 
 
-                
-                var res = await cls.SaveAsync(true);
-                if (res.HasError)
-                {
-                    frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);
-                    return;
-                }
-
-
-                if (txtCheckPrice.Value > 0)
+                if (txtCheckPrice.TextDecimal > 0)
                 {
                     var note = await NoteBussines.GetAsync(cls.Guid);
                     if (note == null)
@@ -383,94 +235,30 @@ namespace Accounting.Payement
                             $"سررسید چک پرداختنی به شماره {cls.CheckNo} به مبلغ {cls.Check:N0} ریال به {txtName.Text}";
                     }
 
-                    await note.SaveAsync();
+                    res.AddReturnedValue(await note.SaveAsync());
                 }
-
-
-                User.UserLog.Save(action, EnLogPart.Pardakht);
-
-
-                DialogResult = DialogResult.OK;
-                Close();
             }
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+            finally
+            {
+                if (res.HasError)
+                {
+                    var frm = new FrmShowErrorMessage(res, "خطا در درج پرداخت");
+                    frm.ShowDialog(this);
+                    frm.Dispose();
+                }
+                else
+                {
+                    User.UserLog.Save(action, EnLogPart.Pardakht);
+                    DialogResult = DialogResult.OK;
+                    Close();
+                }
             }
         }
-
-        private void txtNaqdPrice_ValueChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                SetTotal();
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-
-        private void cmbNaqd_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                SetTotal();
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-
-        private void txtBankPrice_ValueChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                SetTotal();
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-
-        private void cmbBank_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                SetTotal();
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-
-        private void txtCheckPrice_ValueChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                SetTotal();
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-
-        private void cmbCheck_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                SetTotal();
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-
         private void btnPrint_Click(object sender, EventArgs e)
         {
             try
@@ -491,7 +279,7 @@ namespace Accounting.Payement
                     ResidNo = cls?.FishNo,
                     SideName = txtName.Text
                 };
-                var list=new List<object>(){view};
+                var list = new List<object>() { view };
 
                 var cls_ = new ReportGenerator(StiType.Pardakht_One, EnPrintType.Pdf_A4) { Lst = list };
                 cls_.PrintNew();
@@ -504,5 +292,8 @@ namespace Accounting.Payement
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
+        private void txtNaqdPrice_OnTextChanged() => SetTotal();
+        private void txtBankPrice_OnTextChanged() => SetTotal();
+        private void txtCheckPrice_OnTextChanged() => SetTotal();
     }
 }

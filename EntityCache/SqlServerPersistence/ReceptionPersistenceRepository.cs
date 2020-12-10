@@ -38,7 +38,6 @@ namespace EntityCache.SqlServerPersistence
                 return null;
             }
         }
-
         public override async Task<ReturnedSaveFuncInfo> SaveAsync(ReceptionBussines item, string tranName)
         {
             var res = new ReturnedSaveFuncInfo();
@@ -62,6 +61,33 @@ namespace EntityCache.SqlServerPersistence
                     cmd.Parameters.AddWithValue("@sarresid", item.SarResid);
                     cmd.Parameters.AddWithValue("@bankname", item.BankName);
 
+                    await cn.OpenAsync();
+                    await cmd.ExecuteNonQueryAsync();
+                    cn.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+
+            return res;
+        }
+        public override async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(ReceptionBussines item, bool status, string tranName)
+        {
+            var res = new ReturnedSaveFuncInfo();
+
+            try
+            {
+                using (var cn = new SqlConnection(_connectionString))
+                {
+                    var cmd = new SqlCommand("sp_Reception_ChangeStatus", cn)
+                        { CommandType = CommandType.StoredProcedure };
+                    cmd.Parameters.AddWithValue("@guid", item.Guid);
+                    cmd.Parameters.AddWithValue("@hesabGuid", item.Receptor);
+                    cmd.Parameters.AddWithValue("@st", !item.Status);
+                    cmd.Parameters.AddWithValue("@price", item.TotalPrice);
                     await cn.OpenAsync();
                     await cmd.ExecuteNonQueryAsync();
                     cn.Close();

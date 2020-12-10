@@ -11,9 +11,9 @@ namespace Notification
     {
         private static FrmShowErrorMessage _lastThreadFrm = null;
         short rowIndex = 0;
-        //private static Bitmap errorImage = new Bitmap(Properties.Resources.Error);
-        //private static Bitmap infoImage = new Bitmap(Properties.Resources.icons8_info_50);
-        //private static Bitmap warningImage = new Bitmap(Properties.Resources.icons8_warning_50);
+        private static Bitmap errorImage = new Bitmap(Properties.Resources.Red_Warning);
+        private static Bitmap infoImage = new Bitmap(Properties.Resources.info);
+        private static Bitmap warningImage = new Bitmap(Properties.Resources.warning);
 
         public FrmShowErrorMessage(ReturnedSaveFuncInfo pList, string title, MessageBoxButtons boxButtons = MessageBoxButtons.OK)
         {
@@ -28,9 +28,6 @@ namespace Notification
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-
-        
-
         public FrmShowErrorMessage()
         {
             try
@@ -61,7 +58,6 @@ namespace Notification
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-
         private void LoadErrors(List<clsShowError> errorList, CancellationToken token)
         {
             try
@@ -114,7 +110,6 @@ namespace Notification
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-
         private List<clsShowError> FillObject(CancellationToken token, ReturnedSaveFuncInfo pList = null)
         {
             var errorList = new List<clsShowError>();
@@ -126,35 +121,35 @@ namespace Notification
                     foreach (var item in pList.ErrorList)
                     {
                         if (token.IsCancellationRequested || IsDisposed) return null;
-                        //errorList.Add(new clsShowError()
-                        //{
-                        //    Text = item,
-                        //    Title = item,
-                        //    Type = enType.Error,
-                        //    Icon = errorImage
-                        //});
+                        errorList.Add(new clsShowError()
+                        {
+                            Text = item,
+                            Title = item,
+                            Type = enType.Error,
+                            Icon = errorImage
+                        });
                     }
                     foreach (var item in pList.WarningList)
                     {
                         if (token.IsCancellationRequested || IsDisposed) return null;
-                        //errorList.Add(new clsShowError()
-                        //{
-                        //    Text = item,
-                        //    Title = item,
-                        //    Type = enType.Warning,
-                        //    Icon = warningImage
-                        //});
+                        errorList.Add(new clsShowError()
+                        {
+                            Text = item,
+                            Title = item,
+                            Type = enType.Warning,
+                            Icon = warningImage
+                        });
                     }
                     foreach (var item in pList.InformationList)
                     {
                         if (token.IsCancellationRequested || IsDisposed) return null;
-                        //errorList.Add(new clsShowError()
-                        //{
-                        //    Text = item,
-                        //    Title = item,
-                        //    Type = enType.Information,
-                        //    Icon = infoImage
-                        //});
+                        errorList.Add(new clsShowError()
+                        {
+                            Text = item,
+                            Title = item,
+                            Type = enType.Information,
+                            Icon = infoImage
+                        });
                     }
                 }
                 if (token.IsCancellationRequested || IsDisposed) return null;
@@ -167,7 +162,6 @@ namespace Notification
 
             return errorList;
         }
-
         private void FrmShowErrorMessage_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -185,8 +179,6 @@ namespace Notification
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-
-        
         private void ShowError(ReturnedSaveFuncInfo pList, string title, MessageBoxButtons boxButtons, CancellationToken token = default)
         {
             try
@@ -207,9 +199,6 @@ namespace Notification
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-
-        
-
         private void dGrid_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             try
@@ -241,7 +230,6 @@ namespace Notification
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-
         private void dGrid_CellMouseEnter(object sender, DataGridViewCellEventArgs e)
         {
             try

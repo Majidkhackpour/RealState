@@ -25,6 +25,7 @@ namespace Accounting
         public frmShowAccounts()
         {
             InitializeComponent();
+            DGrid.Focus();
         }
 
         private async void frmShowAccounts_Load(object sender, EventArgs e) => await LoadPeoplesAsync(true);
@@ -57,6 +58,9 @@ namespace Accounting
                         break;
                     case Keys.F:
                         if (e.Control) txtSearch.Focus();
+                        break;
+                    case Keys.Enter:
+                        btnGardeshHesab.PerformClick();
                         break;
                 }
             }

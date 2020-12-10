@@ -18,32 +18,12 @@ namespace Accounting
         private Guid besGuid;
         private EnAccountingType bedType;
         private EnAccountingType besType;
-        private void FillCmbPrice()
-        {
-            try
-            {
-                var values = Enum.GetValues(typeof(EnPrice)).Cast<EnPrice>();
-                foreach (var item in values)
-                    cmbPrice.Items.Add(item.GetDisplay());
-                cmbPrice.SelectedIndex = 0;
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
         private void SetDigit()
         {
             try
             {
-                var val = (decimal) 0;
-                if (cmbPrice.SelectedIndex == 0)
-                    val = txtPrice.Value.ToString().ParseToDecimal() * 10000;
-                if (cmbPrice.SelectedIndex == 1)
-                    val = txtPrice.Value.ToString().ParseToDecimal() * 10000000;
-                if (cmbPrice.SelectedIndex == 2)
-                    val = txtPrice.Value.ToString().ParseToDecimal() * 10000000000;
-
+                var val = (decimal)0;
+                val = txtPrice.TextDecimal;
                 lblDegit.Text = NumberToString.Num2Str(val.ToString()) + " ریال";
             }
             catch (Exception ex)
@@ -51,10 +31,8 @@ namespace Accounting
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        public frmSanad()
-        {
-            InitializeComponent();
-        }
+
+        public frmSanad() => InitializeComponent();
 
         private void btnSearchBed_Click(object sender, System.EventArgs e)
         {
@@ -65,7 +43,7 @@ namespace Accounting
                 {
                     bedGuid = frm.SelectedGuid;
                     bedType = frm.AccountingType;
-                    
+
                     if (bedType == EnAccountingType.Peoples)
                     {
                         var item = PeoplesBussines.Get(bedGuid);
@@ -94,14 +72,13 @@ namespace Accounting
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-
         private void btnSearchBes_Click(object sender, EventArgs e)
         {
             try
             {
                 var frm = new frmReceptionFilter(EnSanadType.Dasti);
                 if (frm.ShowDialog(this) == DialogResult.OK)
-                { 
+                {
                     besGuid = frm.SelectedGuid;
                     besType = frm.AccountingType;
                     if (besType == EnAccountingType.Peoples)
@@ -125,87 +102,70 @@ namespace Accounting
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-
-        private void frmSanad_Load(object sender, EventArgs e)
-        {
-            FillCmbPrice();
-        }
-
-        private void txtPrice_ValueChanged(object sender, EventArgs e)
-        {
-            SetDigit();
-        }
-
-        private void cmbPrice_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            SetDigit();
-        }
-
         private async void btnFinish_Click(object sender, EventArgs e)
         {
+            var res = new ReturnedSaveFuncInfo();
             try
             {
-
                 if (string.IsNullOrWhiteSpace(lblBedName.Text))
                 {
-                    frmNotification.PublicInfo.ShowMessage("طرف بدهکار را انتخاب نمایید");
+                    res.AddError("طرف بدهکار را انتخاب نمایید");
                     btnSearchBed.Focus();
-                    return;
                 }
+
                 if (string.IsNullOrWhiteSpace(lblBesName.Text))
                 {
-                    frmNotification.PublicInfo.ShowMessage("طرف بستانکار را انتخاب نمایید");
+                    res.AddError("طرف بستانکار را انتخاب نمایید");
                     btnSearchBed.Focus();
-                    return;
                 }
+
                 if (string.IsNullOrWhiteSpace(txtDesc.Text))
                 {
-                    frmNotification.PublicInfo.ShowMessage("توضیحات مناسب سند را وارد نمایید");
+                    res.AddError("توضیحات مناسب سند را وارد نمایید");
                     txtDesc.Focus();
-                    return;
                 }
-                if (string.IsNullOrWhiteSpace(txtPrice.Text))
+
+                if (txtPrice.TextDecimal <= 0)
                 {
-                    frmNotification.PublicInfo.ShowMessage("مبلغ را وارد نمایید");
+                    res.AddError("مبلغ را وارد نمایید");
                     txtPrice.Focus();
-                    return;
                 }
 
-                var val = (decimal)0;
-                if (cmbPrice.SelectedIndex == 0)
-                    val = txtPrice.Value.ToString().ParseToDecimal() * 10000;
-                if (cmbPrice.SelectedIndex == 1)
-                    val = txtPrice.Value.ToString().ParseToDecimal() * 10000000;
-                if (cmbPrice.SelectedIndex == 2)
-                    val = txtPrice.Value.ToString().ParseToDecimal() * 10000000000;
-
-              
-                var res = await clsSanad.SaveAsync(bedGuid, besGuid, val, txtDesc.Text);
-                if (res.HasError)
+                if (bedGuid == besGuid)
                 {
-                    frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);
-                    return;
+                    res.AddError("هر دو طرف سند نمی تواند برابر باشد");
+                    txtPrice.Focus();
                 }
 
-                User.UserLog.Save(EnLogAction.Insert, EnLogPart.Sanad);
-
-
-                DialogResult = DialogResult.OK;
-                Close();
-
+                if (res.HasError) return; 
+                res.AddReturnedValue(await clsSanad.SaveAsync(bedGuid, besGuid, txtPrice.TextDecimal, txtDesc.Text));
             }
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+            finally
+            {
+                if (res.HasError)
+                {
+                    var frm = new FrmShowErrorMessage(res, "خطا در ثبت سند حسابداری تک سطری");
+                    frm.ShowDialog(this);
+                    frm.Dispose();
+                }
+                else
+                {
+                    User.UserLog.Save(EnLogAction.Insert, EnLogPart.Sanad);
+                    DialogResult = DialogResult.OK;
+                    Close();
+                }
             }
         }
-
         private void btnCancel_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Cancel;
             Close();
         }
-
         private void frmSanad_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -229,5 +189,6 @@ namespace Accounting
                 WebErrorLog.ErrorInstence.StartErrorLog(exception);
             }
         }
+        private void txtPrice_OnTextChanged() => SetDigit();
     }
 }

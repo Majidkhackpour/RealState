@@ -29,8 +29,6 @@ namespace EntityCache.Bussines
 
         public static async Task<List<GardeshHesabBussines>> GetAllAsync() => await UnitOfWork.GardeshHesab.GetAllBySpAsync();
 
-        public static async Task<GardeshHesabBussines> GetAsync(Guid guid) => await UnitOfWork.GardeshHesab.GetAsync(guid);
-        
         public static async Task<List<GardeshHesabBussines>> GetAllAsync(Guid hesabGuid, string search)
         {
             try
@@ -62,8 +60,6 @@ namespace EntityCache.Bussines
                 return new List<GardeshHesabBussines>();
             }
         }
-
-        public static GardeshHesabBussines Get(Guid guid) => AsyncContext.Run(() => GetAsync(guid));
 
         public static async Task<GardeshHesabBussines> GetAsync(Guid hesabGuid, Guid parentGuid,bool status) =>
             await UnitOfWork.GardeshHesab.GetAsync(hesabGuid, parentGuid, status);

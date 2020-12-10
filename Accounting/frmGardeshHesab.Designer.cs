@@ -251,27 +251,33 @@
             // 
             // dgRadif
             // 
+            this.dgRadif.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.dgRadif.HeaderText = "ردیف";
             this.dgRadif.Name = "dgRadif";
             this.dgRadif.ReadOnly = true;
-            this.dgRadif.Width = 50;
+            this.dgRadif.Width = 60;
             // 
             // dateShDataGridViewTextBoxColumn
             // 
+            this.dateShDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.dateShDataGridViewTextBoxColumn.DataPropertyName = "DateSh";
             this.dateShDataGridViewTextBoxColumn.HeaderText = "تاریخ";
             this.dateShDataGridViewTextBoxColumn.Name = "dateShDataGridViewTextBoxColumn";
             this.dateShDataGridViewTextBoxColumn.ReadOnly = true;
+            this.dateShDataGridViewTextBoxColumn.Width = 58;
             // 
             // timeDataGridViewTextBoxColumn
             // 
+            this.timeDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.timeDataGridViewTextBoxColumn.DataPropertyName = "Time";
             this.timeDataGridViewTextBoxColumn.HeaderText = "زمان";
             this.timeDataGridViewTextBoxColumn.Name = "timeDataGridViewTextBoxColumn";
             this.timeDataGridViewTextBoxColumn.ReadOnly = true;
+            this.timeDataGridViewTextBoxColumn.Width = 56;
             // 
             // priceDataGridViewTextBoxColumn
             // 
+            this.priceDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.priceDataGridViewTextBoxColumn.DataPropertyName = "Price";
             dataGridViewCellStyle3.Format = "N0";
             dataGridViewCellStyle3.NullValue = null;
@@ -279,21 +285,25 @@
             this.priceDataGridViewTextBoxColumn.HeaderText = "مبلغ";
             this.priceDataGridViewTextBoxColumn.Name = "priceDataGridViewTextBoxColumn";
             this.priceDataGridViewTextBoxColumn.ReadOnly = true;
+            this.priceDataGridViewTextBoxColumn.Width = 54;
             // 
             // typeNameDataGridViewTextBoxColumn
             // 
+            this.typeNameDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.typeNameDataGridViewTextBoxColumn.DataPropertyName = "TypeName";
             this.typeNameDataGridViewTextBoxColumn.HeaderText = "";
             this.typeNameDataGridViewTextBoxColumn.Name = "typeNameDataGridViewTextBoxColumn";
             this.typeNameDataGridViewTextBoxColumn.ReadOnly = true;
-            this.typeNameDataGridViewTextBoxColumn.Width = 70;
+            this.typeNameDataGridViewTextBoxColumn.Width = 19;
             // 
             // babatNameDataGridViewTextBoxColumn
             // 
+            this.babatNameDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.babatNameDataGridViewTextBoxColumn.DataPropertyName = "BabatName";
             this.babatNameDataGridViewTextBoxColumn.HeaderText = "بابت";
             this.babatNameDataGridViewTextBoxColumn.Name = "babatNameDataGridViewTextBoxColumn";
             this.babatNameDataGridViewTextBoxColumn.ReadOnly = true;
+            this.babatNameDataGridViewTextBoxColumn.Width = 56;
             // 
             // descriptionDataGridViewTextBoxColumn
             // 

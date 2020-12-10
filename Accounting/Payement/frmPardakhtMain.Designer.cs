@@ -39,35 +39,29 @@
             this.txtSarResid = new BPersianCalender.BPersianCalenderTextBox();
             this.txtBankName = new System.Windows.Forms.TextBox();
             this.txtCheckNo = new System.Windows.Forms.TextBox();
-            this.txtCheckPrice = new System.Windows.Forms.NumericUpDown();
-            this.cmbCheck = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.lblTotalPrice = new System.Windows.Forms.Label();
             this.grp3 = new DevComponents.DotNetBar.Controls.GroupPanel();
+            this.txtCheckPrice = new WindowsSerivces.CurrencyTextBox();
             this.txtFishNo = new System.Windows.Forms.TextBox();
-            this.txtBankPrice = new System.Windows.Forms.NumericUpDown();
-            this.cmbBank = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.grp2 = new DevComponents.DotNetBar.Controls.GroupPanel();
+            this.txtBankPrice = new WindowsSerivces.CurrencyTextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.txtNaqdPrice = new System.Windows.Forms.NumericUpDown();
-            this.cmbNaqd = new System.Windows.Forms.ComboBox();
             this.label22 = new System.Windows.Forms.Label();
             this.grp1 = new DevComponents.DotNetBar.Controls.GroupPanel();
+            this.txtNaqdPrice = new WindowsSerivces.CurrencyTextBox();
             this.txtName = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.lblDateNow = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.groupPanel1 = new DevComponents.DotNetBar.Controls.GroupPanel();
             this.btnPrint = new DevComponents.DotNetBar.ButtonX();
-            ((System.ComponentModel.ISupportInitialize)(this.txtCheckPrice)).BeginInit();
             this.grp3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtBankPrice)).BeginInit();
             this.grp2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtNaqdPrice)).BeginInit();
             this.grp1.SuspendLayout();
             this.groupPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -86,7 +80,7 @@
             this.btnCancel.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
             this.btnCancel.Size = new System.Drawing.Size(163, 31);
             this.btnCancel.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
-            this.btnCancel.TabIndex = 5;
+            this.btnCancel.TabIndex = 6;
             this.btnCancel.Text = "انصراف (Esc)";
             this.btnCancel.TextColor = System.Drawing.Color.Black;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
@@ -158,15 +152,15 @@
             // 
             this.txtSarResid.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtSarResid.Location = new System.Drawing.Point(474, 53);
+            this.txtSarResid.Location = new System.Drawing.Point(378, 53);
             this.txtSarResid.Miladi = new System.DateTime(2020, 10, 25, 16, 57, 36, 0);
             this.txtSarResid.Name = "txtSarResid";
             this.txtSarResid.NowDateSelected = false;
             this.txtSarResid.ReadOnly = true;
             this.txtSarResid.SelectedDate = null;
             this.txtSarResid.Shamsi = null;
-            this.txtSarResid.Size = new System.Drawing.Size(154, 27);
-            this.txtSarResid.TabIndex = 3;
+            this.txtSarResid.Size = new System.Drawing.Size(250, 27);
+            this.txtSarResid.TabIndex = 2;
             // 
             // txtBankName
             // 
@@ -175,7 +169,7 @@
             this.txtBankName.Location = new System.Drawing.Point(3, 53);
             this.txtBankName.Name = "txtBankName";
             this.txtBankName.Size = new System.Drawing.Size(163, 27);
-            this.txtBankName.TabIndex = 4;
+            this.txtBankName.TabIndex = 3;
             this.txtBankName.Enter += new System.EventHandler(this.txtBankName_Enter);
             this.txtBankName.Leave += new System.EventHandler(this.txtBankName_Leave);
             // 
@@ -186,37 +180,9 @@
             this.txtCheckNo.Location = new System.Drawing.Point(3, 10);
             this.txtCheckNo.Name = "txtCheckNo";
             this.txtCheckNo.Size = new System.Drawing.Size(163, 27);
-            this.txtCheckNo.TabIndex = 2;
+            this.txtCheckNo.TabIndex = 1;
             this.txtCheckNo.Enter += new System.EventHandler(this.txtCheckNo_Enter);
             this.txtCheckNo.Leave += new System.EventHandler(this.txtCheckNo_Leave);
-            // 
-            // txtCheckPrice
-            // 
-            this.txtCheckPrice.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtCheckPrice.Location = new System.Drawing.Point(474, 11);
-            this.txtCheckPrice.Maximum = new decimal(new int[] {
-            10000,
-            0,
-            0,
-            0});
-            this.txtCheckPrice.Name = "txtCheckPrice";
-            this.txtCheckPrice.Size = new System.Drawing.Size(154, 27);
-            this.txtCheckPrice.TabIndex = 0;
-            this.txtCheckPrice.ValueChanged += new System.EventHandler(this.txtCheckPrice_ValueChanged);
-            // 
-            // cmbCheck
-            // 
-            this.cmbCheck.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.cmbCheck.DisplayMember = "Name";
-            this.cmbCheck.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbCheck.FormattingEnabled = true;
-            this.cmbCheck.Location = new System.Drawing.Point(313, 10);
-            this.cmbCheck.Name = "cmbCheck";
-            this.cmbCheck.Size = new System.Drawing.Size(155, 28);
-            this.cmbCheck.TabIndex = 1;
-            this.cmbCheck.ValueMember = "Guid";
-            this.cmbCheck.SelectedIndexChanged += new System.EventHandler(this.cmbCheck_SelectedIndexChanged);
             // 
             // label7
             // 
@@ -279,11 +245,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.grp3.CanvasColor = System.Drawing.SystemColors.Control;
             this.grp3.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
+            this.grp3.Controls.Add(this.txtCheckPrice);
             this.grp3.Controls.Add(this.txtSarResid);
             this.grp3.Controls.Add(this.txtBankName);
             this.grp3.Controls.Add(this.txtCheckNo);
-            this.grp3.Controls.Add(this.txtCheckPrice);
-            this.grp3.Controls.Add(this.cmbCheck);
             this.grp3.Controls.Add(this.label7);
             this.grp3.Controls.Add(this.label6);
             this.grp3.Controls.Add(this.label4);
@@ -324,6 +289,27 @@
             this.grp3.TabIndex = 2;
             this.grp3.Text = "پرداخت چکی";
             // 
+            // txtCheckPrice
+            // 
+            this.txtCheckPrice.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.txtCheckPrice.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtCheckPrice.BackColor = System.Drawing.Color.White;
+            this.txtCheckPrice.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.txtCheckPrice.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.txtCheckPrice.Font = new System.Drawing.Font("B Titr", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.txtCheckPrice.Location = new System.Drawing.Point(378, 10);
+            this.txtCheckPrice.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtCheckPrice.Name = "txtCheckPrice";
+            this.txtCheckPrice.Size = new System.Drawing.Size(250, 31);
+            this.txtCheckPrice.TabIndex = 0;
+            this.txtCheckPrice.TextDecimal = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.txtCheckPrice.OnTextChanged += new System.Action(this.txtCheckPrice_OnTextChanged);
+            // 
             // txtFishNo
             // 
             this.txtFishNo.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
@@ -331,37 +317,9 @@
             this.txtFishNo.Location = new System.Drawing.Point(3, 10);
             this.txtFishNo.Name = "txtFishNo";
             this.txtFishNo.Size = new System.Drawing.Size(163, 27);
-            this.txtFishNo.TabIndex = 2;
+            this.txtFishNo.TabIndex = 1;
             this.txtFishNo.Enter += new System.EventHandler(this.txtFishNo_Enter);
             this.txtFishNo.Leave += new System.EventHandler(this.txtFishNo_Leave);
-            // 
-            // txtBankPrice
-            // 
-            this.txtBankPrice.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBankPrice.Location = new System.Drawing.Point(474, 11);
-            this.txtBankPrice.Maximum = new decimal(new int[] {
-            10000,
-            0,
-            0,
-            0});
-            this.txtBankPrice.Name = "txtBankPrice";
-            this.txtBankPrice.Size = new System.Drawing.Size(154, 27);
-            this.txtBankPrice.TabIndex = 0;
-            this.txtBankPrice.ValueChanged += new System.EventHandler(this.txtBankPrice_ValueChanged);
-            // 
-            // cmbBank
-            // 
-            this.cmbBank.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.cmbBank.DisplayMember = "Name";
-            this.cmbBank.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbBank.FormattingEnabled = true;
-            this.cmbBank.Location = new System.Drawing.Point(313, 10);
-            this.cmbBank.Name = "cmbBank";
-            this.cmbBank.Size = new System.Drawing.Size(155, 28);
-            this.cmbBank.TabIndex = 1;
-            this.cmbBank.ValueMember = "Guid";
-            this.cmbBank.SelectedIndexChanged += new System.EventHandler(this.cmbBank_SelectedIndexChanged);
             // 
             // label3
             // 
@@ -380,9 +338,8 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.grp2.CanvasColor = System.Drawing.SystemColors.Control;
             this.grp2.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
-            this.grp2.Controls.Add(this.txtFishNo);
             this.grp2.Controls.Add(this.txtBankPrice);
-            this.grp2.Controls.Add(this.cmbBank);
+            this.grp2.Controls.Add(this.txtFishNo);
             this.grp2.Controls.Add(this.label3);
             this.grp2.Controls.Add(this.label2);
             this.grp2.DisabledBackColor = System.Drawing.Color.Empty;
@@ -421,6 +378,27 @@
             this.grp2.TabIndex = 1;
             this.grp2.Text = "پرداخت بانکی";
             // 
+            // txtBankPrice
+            // 
+            this.txtBankPrice.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.txtBankPrice.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtBankPrice.BackColor = System.Drawing.Color.White;
+            this.txtBankPrice.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.txtBankPrice.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.txtBankPrice.Font = new System.Drawing.Font("B Titr", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.txtBankPrice.Location = new System.Drawing.Point(378, 6);
+            this.txtBankPrice.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtBankPrice.Name = "txtBankPrice";
+            this.txtBankPrice.Size = new System.Drawing.Size(250, 31);
+            this.txtBankPrice.TabIndex = 0;
+            this.txtBankPrice.TextDecimal = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.txtBankPrice.OnTextChanged += new System.Action(this.txtBankPrice_OnTextChanged);
+            // 
             // label2
             // 
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -431,34 +409,6 @@
             this.label2.Size = new System.Drawing.Size(29, 20);
             this.label2.TabIndex = 29;
             this.label2.Text = "مبلغ";
-            // 
-            // txtNaqdPrice
-            // 
-            this.txtNaqdPrice.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtNaqdPrice.Location = new System.Drawing.Point(474, 11);
-            this.txtNaqdPrice.Maximum = new decimal(new int[] {
-            10000,
-            0,
-            0,
-            0});
-            this.txtNaqdPrice.Name = "txtNaqdPrice";
-            this.txtNaqdPrice.Size = new System.Drawing.Size(154, 27);
-            this.txtNaqdPrice.TabIndex = 0;
-            this.txtNaqdPrice.ValueChanged += new System.EventHandler(this.txtNaqdPrice_ValueChanged);
-            // 
-            // cmbNaqd
-            // 
-            this.cmbNaqd.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.cmbNaqd.DisplayMember = "Name";
-            this.cmbNaqd.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbNaqd.FormattingEnabled = true;
-            this.cmbNaqd.Location = new System.Drawing.Point(313, 10);
-            this.cmbNaqd.Name = "cmbNaqd";
-            this.cmbNaqd.Size = new System.Drawing.Size(155, 28);
-            this.cmbNaqd.TabIndex = 1;
-            this.cmbNaqd.ValueMember = "Guid";
-            this.cmbNaqd.SelectedIndexChanged += new System.EventHandler(this.cmbNaqd_SelectedIndexChanged);
             // 
             // label22
             // 
@@ -478,7 +428,6 @@
             this.grp1.CanvasColor = System.Drawing.SystemColors.Control;
             this.grp1.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
             this.grp1.Controls.Add(this.txtNaqdPrice);
-            this.grp1.Controls.Add(this.cmbNaqd);
             this.grp1.Controls.Add(this.label22);
             this.grp1.DisabledBackColor = System.Drawing.Color.Empty;
             this.grp1.Location = new System.Drawing.Point(6, 80);
@@ -515,6 +464,27 @@
             this.grp1.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.grp1.TabIndex = 0;
             this.grp1.Text = "پرداخت نقدی";
+            // 
+            // txtNaqdPrice
+            // 
+            this.txtNaqdPrice.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.txtNaqdPrice.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtNaqdPrice.BackColor = System.Drawing.Color.White;
+            this.txtNaqdPrice.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.txtNaqdPrice.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.txtNaqdPrice.Font = new System.Drawing.Font("B Titr", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.txtNaqdPrice.Location = new System.Drawing.Point(378, 8);
+            this.txtNaqdPrice.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtNaqdPrice.Name = "txtNaqdPrice";
+            this.txtNaqdPrice.Size = new System.Drawing.Size(250, 31);
+            this.txtNaqdPrice.TabIndex = 0;
+            this.txtNaqdPrice.TextDecimal = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.txtNaqdPrice.OnTextChanged += new System.Action(this.txtNaqdPrice_OnTextChanged);
             // 
             // txtName
             // 
@@ -618,7 +588,7 @@
             this.btnPrint.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
             this.btnPrint.Size = new System.Drawing.Size(125, 31);
             this.btnPrint.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
-            this.btnPrint.TabIndex = 78;
+            this.btnPrint.TabIndex = 5;
             this.btnPrint.Text = "تایید و چاپ (F10)";
             this.btnPrint.TextColor = System.Drawing.Color.Black;
             this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
@@ -654,13 +624,10 @@
             this.Style = MetroFramework.MetroColorStyle.Green;
             this.Load += new System.EventHandler(this.frmPardakhtMain_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmPardakhtMain_KeyDown);
-            ((System.ComponentModel.ISupportInitialize)(this.txtCheckPrice)).EndInit();
             this.grp3.ResumeLayout(false);
             this.grp3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtBankPrice)).EndInit();
             this.grp2.ResumeLayout(false);
             this.grp2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtNaqdPrice)).EndInit();
             this.grp1.ResumeLayout(false);
             this.grp1.PerformLayout();
             this.groupPanel1.ResumeLayout(false);
@@ -681,8 +648,6 @@
         private BPersianCalender.BPersianCalenderTextBox txtSarResid;
         private System.Windows.Forms.TextBox txtBankName;
         private System.Windows.Forms.TextBox txtCheckNo;
-        private System.Windows.Forms.NumericUpDown txtCheckPrice;
-        private System.Windows.Forms.ComboBox cmbCheck;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label4;
@@ -690,13 +655,9 @@
         private System.Windows.Forms.Label lblTotalPrice;
         private DevComponents.DotNetBar.Controls.GroupPanel grp3;
         private System.Windows.Forms.TextBox txtFishNo;
-        private System.Windows.Forms.NumericUpDown txtBankPrice;
-        private System.Windows.Forms.ComboBox cmbBank;
         private System.Windows.Forms.Label label3;
         private DevComponents.DotNetBar.Controls.GroupPanel grp2;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.NumericUpDown txtNaqdPrice;
-        private System.Windows.Forms.ComboBox cmbNaqd;
         private System.Windows.Forms.Label label22;
         private DevComponents.DotNetBar.Controls.GroupPanel grp1;
         private System.Windows.Forms.TextBox txtName;
@@ -705,5 +666,8 @@
         private System.Windows.Forms.Label label15;
         private DevComponents.DotNetBar.Controls.GroupPanel groupPanel1;
         private DevComponents.DotNetBar.ButtonX btnPrint;
+        private WindowsSerivces.CurrencyTextBox txtNaqdPrice;
+        private WindowsSerivces.CurrencyTextBox txtCheckPrice;
+        private WindowsSerivces.CurrencyTextBox txtBankPrice;
     }
 }

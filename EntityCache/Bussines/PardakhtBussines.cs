@@ -81,13 +81,6 @@ namespace EntityCache.Bussines
                 { //BeginTransaction
                 }
 
-                var gardesh = await GardeshHesabBussines.GetAsync(Payer, Guid, !status);
-                if (gardesh != null)
-                {
-                    res.AddReturnedValue(await UnitOfWork.GardeshHesab.ChangeStatusAsync(gardesh, status, tranName));
-                    res.ThrowExceptionIfError();
-                }
-
                 res.AddReturnedValue(await UnitOfWork.Pardakht.ChangeStatusAsync(this, status, tranName));
                 res.ThrowExceptionIfError();
                 if (autoTran)

@@ -43,17 +43,15 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.txtPrice = new System.Windows.Forms.NumericUpDown();
-            this.cmbPrice = new System.Windows.Forms.ComboBox();
             this.label22 = new System.Windows.Forms.Label();
             this.btnCancel = new DevComponents.DotNetBar.ButtonX();
             this.btnFinish = new DevComponents.DotNetBar.ButtonX();
             this.lblDegit = new System.Windows.Forms.Label();
             this.txtDesc = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
+            this.txtPrice = new WindowsSerivces.CurrencyTextBox();
             this.grp2.SuspendLayout();
             this.grp1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtPrice)).BeginInit();
             this.SuspendLayout();
             // 
             // grp2
@@ -290,34 +288,6 @@
             this.label1.TabIndex = 12;
             this.label1.Text = "شناسایی";
             // 
-            // txtPrice
-            // 
-            this.txtPrice.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtPrice.Location = new System.Drawing.Point(342, 335);
-            this.txtPrice.Maximum = new decimal(new int[] {
-            10000,
-            0,
-            0,
-            0});
-            this.txtPrice.Name = "txtPrice";
-            this.txtPrice.Size = new System.Drawing.Size(160, 27);
-            this.txtPrice.TabIndex = 3;
-            this.txtPrice.ValueChanged += new System.EventHandler(this.txtPrice_ValueChanged);
-            // 
-            // cmbPrice
-            // 
-            this.cmbPrice.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.cmbPrice.DisplayMember = "Name";
-            this.cmbPrice.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbPrice.FormattingEnabled = true;
-            this.cmbPrice.Location = new System.Drawing.Point(181, 334);
-            this.cmbPrice.Name = "cmbPrice";
-            this.cmbPrice.Size = new System.Drawing.Size(155, 28);
-            this.cmbPrice.TabIndex = 4;
-            this.cmbPrice.ValueMember = "Guid";
-            this.cmbPrice.SelectedIndexChanged += new System.EventHandler(this.cmbPrice_SelectedIndexChanged);
-            // 
             // label22
             // 
             this.label22.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -398,17 +368,37 @@
             this.label11.TabIndex = 34;
             this.label11.Text = "توضیحات";
             // 
+            // txtPrice
+            // 
+            this.txtPrice.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.txtPrice.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtPrice.BackColor = System.Drawing.Color.White;
+            this.txtPrice.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.txtPrice.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.txtPrice.Font = new System.Drawing.Font("B Titr", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.txtPrice.Location = new System.Drawing.Point(263, 333);
+            this.txtPrice.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtPrice.Name = "txtPrice";
+            this.txtPrice.Size = new System.Drawing.Size(250, 31);
+            this.txtPrice.TabIndex = 35;
+            this.txtPrice.TextDecimal = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.txtPrice.OnTextChanged += new System.Action(this.txtPrice_OnTextChanged);
+            // 
             // frmSanad
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(713, 449);
+            this.Controls.Add(this.txtPrice);
             this.Controls.Add(this.txtDesc);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnFinish);
-            this.Controls.Add(this.txtPrice);
-            this.Controls.Add(this.cmbPrice);
             this.Controls.Add(this.lblDegit);
             this.Controls.Add(this.label22);
             this.Controls.Add(this.grp2);
@@ -423,13 +413,11 @@
             this.Padding = new System.Windows.Forms.Padding(27, 92, 27, 31);
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.Style = MetroFramework.MetroColorStyle.Green;
-            this.Load += new System.EventHandler(this.frmSanad_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmSanad_KeyDown);
             this.grp2.ResumeLayout(false);
             this.grp2.PerformLayout();
             this.grp1.ResumeLayout(false);
             this.grp1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtPrice)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -451,13 +439,12 @@
         private System.Windows.Forms.Label lblBedAccount;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.NumericUpDown txtPrice;
-        private System.Windows.Forms.ComboBox cmbPrice;
         private System.Windows.Forms.Label label22;
         private DevComponents.DotNetBar.ButtonX btnCancel;
         private DevComponents.DotNetBar.ButtonX btnFinish;
         private System.Windows.Forms.Label lblDegit;
         private System.Windows.Forms.TextBox txtDesc;
         private System.Windows.Forms.Label label11;
+        private WindowsSerivces.CurrencyTextBox txtPrice;
     }
 }

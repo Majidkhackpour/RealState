@@ -23,6 +23,7 @@ namespace Accounting.Hazine
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
+
         public frmHazineMain()
         {
             InitializeComponent();
@@ -38,16 +39,8 @@ namespace Accounting.Hazine
             action = EnLogAction.Update;
         }
 
-        private void txtName_Enter(object sender, EventArgs e)
-        {
-            txtSetter.Focus(txtName);
-        }
-
-        private void txtName_Leave(object sender, EventArgs e)
-        {
-            txtSetter.Follow(txtName);
-        }
-
+        private void txtName_Enter(object sender, EventArgs e) => txtSetter.Focus(txtName);
+        private void txtName_Leave(object sender, EventArgs e) => txtSetter.Follow(txtName);
         private async void frmHazineMain_Load(object sender, EventArgs e)
         {
             try
@@ -64,13 +57,11 @@ namespace Accounting.Hazine
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-
         private void btnCancel_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Cancel;
             Close();
         }
-
         private void frmHazineMain_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -94,43 +85,47 @@ namespace Accounting.Hazine
                 WebErrorLog.ErrorInstence.StartErrorLog(exception);
             }
         }
-
         private async void btnFinish_Click(object sender, EventArgs e)
         {
+            var res = new ReturnedSaveFuncInfo();
             try
             {
                 if (string.IsNullOrWhiteSpace(txtName.Text))
                 {
-                    frmNotification.PublicInfo.ShowMessage("عنوان نمی تواند خالی باشد");
+                    res.AddError("عنوان نمی تواند خالی باشد");
                     txtName.Focus();
-                    return;
                 }
 
                 if (!await HazineBussines.CheckNameAsync(txtName.Text.Trim(), cls.Guid))
                 {
-                    frmNotification.PublicInfo.ShowMessage("عنوان وارد شده تکراری است");
+                    res.AddError("عنوان وارد شده تکراری است");
                     txtName.Focus();
-                    return;
                 }
 
                 if (cls.Guid == Guid.Empty) cls.Guid = Guid.NewGuid();
                 cls.Name = txtName.Text.Trim();
 
-                var res = await cls.SaveAsync(true,true);
-                if (res.HasError)
-                {
-                    frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);
-                    return;
-                }
-
-                User.UserLog.Save(action, EnLogPart.Hazine);
-
-                DialogResult = DialogResult.OK;
-                Close();
+                res.AddReturnedValue(await cls.SaveAsync(true, true));
             }
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+            finally
+            {
+                if (res.HasError)
+                {
+                    var frm = new FrmShowErrorMessage(res, "خطا در درج هزینه");
+                    frm.ShowDialog(this);
+                    frm.Dispose();
+                }
+                else
+                {
+                    User.UserLog.Save(action, EnLogPart.Hazine);
+                    DialogResult = DialogResult.OK;
+                    Close();
+                }
             }
         }
     }

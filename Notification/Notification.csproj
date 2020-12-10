@@ -49,6 +49,7 @@
   <ItemGroup>
     <Compile Include="clsNotification.cs" />
     <Compile Include="clsShowError.cs" />
+    <Compile Include="ErrorManager.cs" />
     <Compile Include="frmNaqz.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -134,6 +135,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Circle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Red Warning.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\info.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\warning.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
