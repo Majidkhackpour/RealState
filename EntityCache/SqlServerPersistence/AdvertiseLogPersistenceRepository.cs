@@ -16,9 +16,11 @@ namespace EntityCache.SqlServerPersistence
     public class AdvertiseLogPersistenceRepository : GenericRepository<AdvertiseLogBussines, AdvertiseLog>, IAdvertiseLogRepository
     {
         private ModelContext db;
-        public AdvertiseLogPersistenceRepository(ModelContext _db) : base(_db)
+        private string _connectionString;
+        public AdvertiseLogPersistenceRepository(ModelContext _db, string connectionString) : base(_db, connectionString)
         {
             db = _db;
+            _connectionString = connectionString;
         }
 
         public async Task<AdvertiseLogBussines> GetAsync(string url)

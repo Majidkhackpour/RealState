@@ -13,9 +13,11 @@ namespace EntityCache.SqlServerPersistence
     public class BuildingPersistenceRepository : GenericRepository<BuildingBussines, Building>, IBuildingRepository
     {
         private ModelContext db;
-        public BuildingPersistenceRepository(ModelContext _db) : base(_db)
+        private string _connectionString;
+        public BuildingPersistenceRepository(ModelContext _db, string connectionString) : base(_db, connectionString)
         {
             db = _db;
+            _connectionString = connectionString;
         }
 
         public async Task<List<BuildingBussines>> GetAllAsyncBySp()

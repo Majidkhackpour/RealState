@@ -13,9 +13,11 @@ namespace EntityCache.SqlServerPersistence
     public class ContractPersistenceRepository : GenericRepository<ContractBussines, Contract>, IContractRepository
     {
         private ModelContext db;
-        public ContractPersistenceRepository(ModelContext _db) : base(_db)
+        private string _connectionString;
+        public ContractPersistenceRepository(ModelContext _db, string connectionString) : base(_db, connectionString)
         {
             db = _db;
+            _connectionString = connectionString;
         }
 
         public async Task<List<ContractBussines>> GetAllAsyncBySp()

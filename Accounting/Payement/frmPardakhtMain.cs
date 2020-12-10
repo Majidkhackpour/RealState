@@ -348,38 +348,8 @@ namespace Accounting.Payement
                     cls.Check = txtCheckPrice.Text.ParseToDecimal() * 10000000000;
 
 
-                if (type == EnAccountingType.Peoples)
-                {
-                    var pe = await PeoplesBussines.GetAsync(_receptorGuid);
-                    if (pe != null)
-                    {
-                        pe.Account -= fPrice;
-                        pe.Account += cls.TotalPrice;
-                        await pe.SaveAsync(true);
-                    }
-                }
-                else if (type == EnAccountingType.Users)
-                {
-                    var user = await UserBussines.GetAsync(_receptorGuid);
-                    if (user != null)
-                    {
-                        user.Account -= fPrice;
-                        user.Account += cls.TotalPrice;
-                        await user.SaveAsync(false,true);
-                    }
-                }
-                else if (type == EnAccountingType.Hazine)
-                {
-                    var hazine = await HazineBussines.GetAsync(_receptorGuid);
-                    if (hazine != null)
-                    {
-                        hazine.Account -= fPrice;
-                        hazine.Account += cls.TotalPrice;
-                        await hazine.SaveAsync(false,true);
-                    }
-                }
-
-                var res = await cls.SaveAsync(type,true);
+                
+                var res = await cls.SaveAsync(true);
                 if (res.HasError)
                 {
                     frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);

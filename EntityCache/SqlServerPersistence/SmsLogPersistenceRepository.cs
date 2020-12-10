@@ -14,9 +14,11 @@ namespace EntityCache.SqlServerPersistence
     public class SmsLogPersistenceRepository : GenericRepository<SmsLogBussines, SmsLog>, ISmsLogRepository
     {
         private ModelContext db;
-        public SmsLogPersistenceRepository(ModelContext _db) : base(_db)
+        private string _connectionString;
+        public SmsLogPersistenceRepository(ModelContext _db, string connectionString) : base(_db, connectionString)
         {
             db = _db;
+            _connectionString = connectionString;
         }
 
         public async Task<SmsLogBussines> GetAsync(long messageId)

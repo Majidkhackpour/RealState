@@ -14,9 +14,11 @@ namespace EntityCache.SqlServerPersistence
     public class UserLogPersistenceRepository : GenericRepository<UserLogBussines, UserLog>, IUserLogRepository
     {
         private ModelContext db;
-        public UserLogPersistenceRepository(ModelContext _db) : base(_db)
+        private string _connectionString;
+        public UserLogPersistenceRepository(ModelContext _db, string connectionString) : base(_db, connectionString)
         {
             db = _db;
+            _connectionString = connectionString;
         }
 
         public async Task<List<UserLogBussines>> GetAllAsync(Guid userGuid, DateTime d1, DateTime d2)

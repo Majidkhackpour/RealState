@@ -20,11 +20,13 @@ namespace EntityCache.SqlServerPersistence
     {
         private ModelContext _dbContext;
         private DbSet<U> _dbSet;
+        private string _connectionString;
 
-        public GenericRepository(ModelContext db)
+        public GenericRepository(ModelContext db,string connectionString)
         {
             this._dbContext = db;
             this._dbSet = _dbContext.Set<U>();
+            _connectionString = connectionString;
         }
 
         public async Task<T> GetAsync(Guid guid)
@@ -104,7 +106,7 @@ namespace EntityCache.SqlServerPersistence
         }
 
 
-        public async Task<ReturnedSaveFuncInfo> SaveAsync(T item, string tranName)
+        public virtual async Task<ReturnedSaveFuncInfo> SaveAsync(T item, string tranName)
         {
             try
             {

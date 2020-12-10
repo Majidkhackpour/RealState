@@ -15,10 +15,11 @@ namespace EntityCache.SqlServerPersistence
     public class RegionsPersistenceRepository : GenericRepository<RegionsBussines, Regions>, IRegionsRepository
     {
         private ModelContext db;
-
-        public RegionsPersistenceRepository(ModelContext _db) : base(_db)
+        private string _connectionString;
+        public RegionsPersistenceRepository(ModelContext _db, string connectionString) : base(_db, connectionString)
         {
             db = _db;
+            _connectionString = connectionString;
         }
 
         public async Task<List<RegionsBussines>> GetAllAsync(Guid cityGuid)

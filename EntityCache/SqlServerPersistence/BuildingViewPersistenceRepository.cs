@@ -12,10 +12,11 @@ namespace EntityCache.SqlServerPersistence
     public class BuildingViewPersistenceRepository : GenericRepository<BuildingViewBussines, BuildingView>, IBuildingViewRepository
     {
         private ModelContext db;
-
-        public BuildingViewPersistenceRepository(ModelContext _db) : base(_db)
+        private string _connectionString;
+        public BuildingViewPersistenceRepository(ModelContext _db, string connectionString) : base(_db, connectionString)
         {
             db = _db;
+            _connectionString = connectionString;
         }
 
         public async Task<bool> CheckNameAsync(string name, Guid guid)

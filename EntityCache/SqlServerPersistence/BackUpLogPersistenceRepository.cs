@@ -8,9 +8,11 @@ namespace EntityCache.SqlServerPersistence
     public class BackUpLogPersistenceRepository : GenericRepository<BackUpLogBussines, BackUpLog>, IBackUpLogRepository
     {
         private ModelContext db;
-        public BackUpLogPersistenceRepository(ModelContext _db) : base(_db)
+        private string _connectionString;
+        public BackUpLogPersistenceRepository(ModelContext _db, string connectionString) : base(_db, connectionString)
         {
             db = _db;
+            _connectionString = connectionString;
         }
     }
 }

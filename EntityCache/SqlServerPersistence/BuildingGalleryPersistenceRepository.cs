@@ -14,9 +14,11 @@ namespace EntityCache.SqlServerPersistence
     public class BuildingGalleryPersistenceRepository : GenericRepository<BuildingGalleryBussines, BuildingGallery>, IBuildingGalleryRepository
     {
         private ModelContext db;
-        public BuildingGalleryPersistenceRepository(ModelContext _db) : base(_db)
+        private string _connectionString;
+        public BuildingGalleryPersistenceRepository(ModelContext _db, string connectionString) : base(_db, connectionString)
         {
             db = _db;
+            _connectionString = connectionString;
         }
 
         public async Task<List<BuildingGalleryBussines>> GetAllAsync(Guid parentGuid, bool status)

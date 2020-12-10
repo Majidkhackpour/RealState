@@ -14,9 +14,11 @@ namespace EntityCache.SqlServerPersistence
     public class ContractFinancePersisteceRepository : GenericRepository<ContractFinanceBussines, ContractFinance>, IContractFinanceRepository
     {
         private ModelContext db;
-        public ContractFinancePersisteceRepository(ModelContext _db) : base(_db)
+        private string _connectionString;
+        public ContractFinancePersisteceRepository(ModelContext _db, string connectionString) : base(_db, connectionString)
         {
             db = _db;
+            _connectionString = connectionString;
         }
         public async Task<ContractFinanceBussines> GetAsync(Guid parentGuid, bool status)
         {

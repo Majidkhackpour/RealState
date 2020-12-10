@@ -14,9 +14,11 @@ namespace EntityCache.SqlServerPersistence
     public class PeoplesPersistenceRepository : GenericRepository<PeoplesBussines, Peoples>, IPeoplesRepository
     {
         ModelContext db;
-        public PeoplesPersistenceRepository(ModelContext _db) : base(_db)
+        private string _connectionString;
+        public PeoplesPersistenceRepository(ModelContext _db, string connectionString) : base(_db, connectionString)
         {
             db = _db;
+            _connectionString = connectionString;
         }
 
         public async Task<List<PeoplesBussines>> GetAllAsync(Guid parentGuid, bool status)

@@ -12,10 +12,11 @@ namespace EntityCache.SqlServerPersistence
     public class DocumentTypePersistenceRepository : GenericRepository<DocumentTypeBussines, DocumentType>, IDocumentTypeRepository
     {
         private ModelContext db;
-
-        public DocumentTypePersistenceRepository(ModelContext _db) : base(_db)
+        private string _connectionString;
+        public DocumentTypePersistenceRepository(ModelContext _db, string connectionString) : base(_db, connectionString)
         {
             db = _db;
+            _connectionString = connectionString;
         }
 
         public async Task<bool> CheckNameAsync(string name, Guid guid)

@@ -12,9 +12,11 @@ namespace EntityCache.SqlServerPersistence
     public class HazinePersistenceRepository : GenericRepository<HazineBussines, Hazine>, IHazineRepository
     {
         private ModelContext db;
-        public HazinePersistenceRepository(ModelContext _db) : base(_db)
+        private string _connectionString;
+        public HazinePersistenceRepository(ModelContext _db, string connectionString) : base(_db, connectionString)
         {
             db = _db;
+            _connectionString = connectionString;
         }
 
         public async Task<bool> CheckNameAsync(string name, Guid guid)

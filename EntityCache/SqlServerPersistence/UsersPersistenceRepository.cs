@@ -13,18 +13,19 @@ namespace EntityCache.SqlServerPersistence
 {
     public class UsersPersistenceRepository : GenericRepository<UserBussines, Users>, IUsersRepository
     {
-        private ModelContext _db;
-
-        public UsersPersistenceRepository(ModelContext db) : base(db)
+        private ModelContext db;
+        private string _connectionString;
+        public UsersPersistenceRepository(ModelContext _db, string connectionString) : base(_db, connectionString)
         {
-            _db = db;
+            db = _db;
+            _connectionString = connectionString;
         }
 
         public async Task<bool> CheckUserNameAsync(Guid guid, string userName)
         {
             try
             {
-                var acc = _db.Users.AsNoTracking().Where(q => q.UserName == userName && q.Guid != guid)
+                var acc = db.Users.AsNoTracking().Where(q => q.UserName == userName && q.Guid != guid)
                     .ToList();
                 return acc.Count == 0;
             }
@@ -39,7 +40,7 @@ namespace EntityCache.SqlServerPersistence
         {
             try
             {
-                var acc = _db.Users.AsNoTracking().FirstOrDefault(q => q.UserName == userName);
+                var acc = db.Users.AsNoTracking().FirstOrDefault(q => q.UserName == userName);
                 return Mappings.Default.Map<UserBussines>(acc);
             }
             catch (Exception exception)
@@ -53,7 +54,7 @@ namespace EntityCache.SqlServerPersistence
         {
             try
             {
-                var acc = _db.Users.AsNoTracking().FirstOrDefault(q =>
+                var acc = db.Users.AsNoTracking().FirstOrDefault(q =>
                     !string.IsNullOrEmpty(q.Email) && q.Email == email.Trim() && q.Status);
                 return Mappings.Default.Map<UserBussines>(acc);
             }
@@ -68,7 +69,7 @@ namespace EntityCache.SqlServerPersistence
         {
             try
             {
-                var acc = _db.Users.AsNoTracking().FirstOrDefault(q =>
+                var acc = db.Users.AsNoTracking().FirstOrDefault(q =>
                     !string.IsNullOrEmpty(q.Mobile) && q.Mobile == mobile.Trim() && q.Status);
                 return Mappings.Default.Map<UserBussines>(acc);
             }
@@ -83,7 +84,7 @@ namespace EntityCache.SqlServerPersistence
         {
             try
             {
-                var acc = _db.Users.AsNoTracking().Where(q =>
+                var acc = db.Users.AsNoTracking().Where(q =>
                     !string.IsNullOrEmpty(q.AnswerQuestion) && q.SecurityQuestion == question &&
                     q.AnswerQuestion == answer && q.Status);
                 return Mappings.Default.Map<List<UserBussines>>(acc);

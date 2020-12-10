@@ -14,11 +14,13 @@ namespace EntityCache.SqlServerPersistence
     public class BuildingRelatedOptionsPersistenceRepository : GenericRepository<BuildingRelatedOptionsBussines, BuildingRelatedOptions>, IBuildingRelatedOptionsRepository
     {
         private ModelContext db;
-        public BuildingRelatedOptionsPersistenceRepository(ModelContext _db) : base(_db)
+        private string _connectionString;
+        public BuildingRelatedOptionsPersistenceRepository(ModelContext _db, string connectionString) : base(_db, connectionString)
         {
             db = _db;
+            _connectionString = connectionString;
         }
-
+        
         public async Task<List<BuildingRelatedOptionsBussines>> GetAllAsync(Guid parentGuid, bool status)
         {
             try

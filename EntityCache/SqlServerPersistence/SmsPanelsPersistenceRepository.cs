@@ -8,9 +8,11 @@ namespace EntityCache.SqlServerPersistence
     public class SmsPanelsPersistenceRepository : GenericRepository<SmsPanelsBussines, SmsPanels>, ISmsPanelsRepository
     {
         private ModelContext db;
-        public SmsPanelsPersistenceRepository(ModelContext _db) : base(_db)
+        private string _connectionString;
+        public SmsPanelsPersistenceRepository(ModelContext _db, string connectionString) : base(_db, connectionString)
         {
             db = _db;
+            _connectionString = connectionString;
         }
     }
 }

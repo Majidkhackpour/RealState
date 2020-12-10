@@ -36,7 +36,7 @@ namespace EntityCache.Bussines
             await UnitOfWork.Pardakht.GetAllAsync(receptioGuid);
         public static async Task<PardakhtBussines> GetAsync(Guid guid) => await UnitOfWork.Pardakht.GetAsync(guid);
 
-        public async Task<ReturnedSaveFuncInfo> SaveAsync(EnAccountingType type,bool sendToServer, string tranName = "")
+        public async Task<ReturnedSaveFuncInfo> SaveAsync(bool sendToServer, string tranName = "")
         {
             var res = new ReturnedSaveFuncInfo();
             var autoTran = string.IsNullOrEmpty(tranName);
@@ -45,30 +45,6 @@ namespace EntityCache.Bussines
             {
                 if (autoTran)
                 { //BeginTransaction
-                }
-
-                var gardesh = await GardeshHesabBussines.GetAsync(Payer, Guid, true);
-                if (gardesh == null)
-                {
-                    var g = new GardeshHesabBussines()
-                    {
-                        Guid = Guid.NewGuid(),
-                        Babat = EnAccountBabat.Payement,
-                        Description = $"ثبت سند پرداخت در تاریخ {DateSh}",
-                        PeopleGuid = Payer,
-                        Price = TotalPrice,
-                        ParentGuid = Guid,
-                        Type = EnAccountType.Bed
-                    };
-
-                    res.AddReturnedValue(
-                        await UnitOfWork.GardeshHesab.SaveAsync(g, tranName));
-                    res.ThrowExceptionIfError();
-                }
-                else
-                {
-                    gardesh.Price = TotalPrice;
-                    await gardesh.SaveAsync(true);
                 }
 
                 res.AddReturnedValue(await UnitOfWork.Pardakht.SaveAsync(this, tranName));

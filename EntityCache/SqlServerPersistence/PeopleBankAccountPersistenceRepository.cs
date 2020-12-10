@@ -14,9 +14,11 @@ namespace EntityCache.SqlServerPersistence
     public class PeopleBankAccountPersistenceRepository : GenericRepository<PeoplesBankAccountBussines, PeopleBankAccount>, IPeoplesBankAccountRepository
     {
         private ModelContext db;
-        public PeopleBankAccountPersistenceRepository(ModelContext _db) : base(_db)
+        private string _connectionString;
+        public PeopleBankAccountPersistenceRepository(ModelContext _db, string connectionString) : base(_db, connectionString)
         {
             db = _db;
+            _connectionString = connectionString;
         }
 
         public async Task<List<PeoplesBankAccountBussines>> GetAllAsync(Guid parentGuid, bool status)

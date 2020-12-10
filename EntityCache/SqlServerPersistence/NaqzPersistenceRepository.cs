@@ -8,10 +8,11 @@ namespace EntityCache.SqlServerPersistence
     public class NaqzPersistenceRepository : GenericRepository<NaqzBussines, Naqz>, INaqzRepository
     {
         private ModelContext db;
-
-        public NaqzPersistenceRepository(ModelContext _db) : base(_db)
+        private string _connectionString;
+        public NaqzPersistenceRepository(ModelContext _db, string connectionString) : base(_db, connectionString)
         {
             db = _db;
+            _connectionString = connectionString;
         }
     }
 }

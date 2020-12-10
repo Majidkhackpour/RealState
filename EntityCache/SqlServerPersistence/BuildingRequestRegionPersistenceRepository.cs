@@ -14,9 +14,11 @@ namespace EntityCache.SqlServerPersistence
     public class BuildingRequestRegionPersistenceRepository : GenericRepository<BuildingRequestRegionBussines, BuildingRequestRegion>, IBuildingRequestRegionRepository
     {
         private ModelContext db;
-        public BuildingRequestRegionPersistenceRepository(ModelContext _db) : base(_db)
+        private string _connectionString;
+        public BuildingRequestRegionPersistenceRepository(ModelContext _db, string connectionString) : base(_db, connectionString)
         {
             db = _db;
+            _connectionString = connectionString;
         }
 
         public async Task<List<BuildingRequestRegionBussines>> GetAllAsync(Guid parentGuid, bool status)

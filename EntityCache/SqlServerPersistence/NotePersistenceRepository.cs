@@ -14,9 +14,11 @@ namespace EntityCache.SqlServerPersistence
     public class NotePersistenceRepository : GenericRepository<NoteBussines, Note>, INoteRepository
     {
         private ModelContext db;
-        public NotePersistenceRepository(ModelContext _db) : base(_db)
+        private string _connectionString;
+        public NotePersistenceRepository(ModelContext _db, string connectionString) : base(_db, connectionString)
         {
             db = _db;
+            _connectionString = connectionString;
         }
 
         public async Task<List<NoteBussines>> GetAllAsyncBySp()

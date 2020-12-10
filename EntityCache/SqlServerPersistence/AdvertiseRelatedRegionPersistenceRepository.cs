@@ -15,9 +15,11 @@ namespace EntityCache.SqlServerPersistence
     {
         private ModelContext db;
 
-        public AdvertiseRelatedRegionPersistenceRepository(ModelContext _db) : base(_db)
+        private string _connectionString;
+        public AdvertiseRelatedRegionPersistenceRepository(ModelContext _db, string connectionString) : base(_db, connectionString)
         {
             db = _db;
+            _connectionString = connectionString;
         }
         public async Task<List<AdvertiseRelatedRegionBussines>> GetAllAsync(string onlineRegion, bool status)
         {

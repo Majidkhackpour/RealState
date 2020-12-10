@@ -13,9 +13,11 @@ namespace EntityCache.SqlServerPersistence
     public class SimcardPersistenceRepository : GenericRepository<SimcardBussines, Simcard>, ISimcardRepository
     {
         private ModelContext db;
-        public SimcardPersistenceRepository(ModelContext _db) : base(_db)
+        private string _connectionString;
+        public SimcardPersistenceRepository(ModelContext _db, string connectionString) : base(_db, connectionString)
         {
             db = _db;
+            _connectionString = connectionString;
         }
 
         public async Task<SimcardBussines> GetAsync(long number)

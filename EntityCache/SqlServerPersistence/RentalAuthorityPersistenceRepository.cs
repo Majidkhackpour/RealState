@@ -13,10 +13,11 @@ namespace EntityCache.SqlServerPersistence
     public class RentalAuthorityPersistenceRepository : GenericRepository<RentalAuthorityBussines, RentalAuthority>, IRentalAuthorityRepository
     {
         private ModelContext db;
-
-        public RentalAuthorityPersistenceRepository(ModelContext _db) : base(_db)
+        private string _connectionString;
+        public RentalAuthorityPersistenceRepository(ModelContext _db, string connectionString) : base(_db, connectionString)
         {
             db = _db;
+            _connectionString = connectionString;
         }
 
         public async Task<bool> CheckNameAsync(string name, Guid guid)

@@ -14,9 +14,11 @@ namespace EntityCache.SqlServerPersistence
     public class GardeshHesabPersistenceRepository : GenericRepository<GardeshHesabBussines, GardeshHesab>, IGardeshHesabRepository
     {
         private ModelContext db;
-        public GardeshHesabPersistenceRepository(ModelContext _db) : base(_db)
+        private string _connectionString;
+        public GardeshHesabPersistenceRepository(ModelContext _db, string connectionString) : base(_db, connectionString)
         {
             db = _db;
+            _connectionString = connectionString;
         }
 
         public async Task<GardeshHesabBussines> GetAsync(Guid hesabGuid, Guid parentGuid,bool status)

@@ -13,9 +13,11 @@ namespace EntityCache.SqlServerPersistence
     public class PeopleGroupPersistenceRepository : GenericRepository<PeopleGroupBussines, PeopleGroup>, IPeopleGroupRepository
     {
         private ModelContext db;
-        public PeopleGroupPersistenceRepository(ModelContext _db) : base(_db)
+        private string _connectionString;
+        public PeopleGroupPersistenceRepository(ModelContext _db, string connectionString) : base(_db, connectionString)
         {
             db = _db;
+            _connectionString = connectionString;
         }
 
         public async Task<bool> CheckNameAsync(string name, Guid guid)

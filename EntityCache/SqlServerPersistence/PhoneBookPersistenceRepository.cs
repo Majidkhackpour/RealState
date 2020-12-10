@@ -14,9 +14,11 @@ namespace EntityCache.SqlServerPersistence
     public class PhoneBookPersistenceRepository : GenericRepository<PhoneBookBussines, PhoneBook>, IPhoneBookRepository
     {
         private ModelContext db;
-        public PhoneBookPersistenceRepository(ModelContext _db) : base(_db)
+        private string _connectionString;
+        public PhoneBookPersistenceRepository(ModelContext _db, string connectionString) : base(_db, connectionString)
         {
             db = _db;
+            _connectionString = connectionString;
         }
 
         public async Task<List<PhoneBookBussines>> GetAllAsync(Guid parentGuid, bool status)

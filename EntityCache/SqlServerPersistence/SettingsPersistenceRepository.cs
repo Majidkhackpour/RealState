@@ -13,10 +13,11 @@ namespace EntityCache.SqlServerPersistence
     public class SettingsPersistenceRepository : GenericRepository<SettingsBussines, Settings>, ISettingsRepository
     {
         private ModelContext db;
-
-        public SettingsPersistenceRepository(ModelContext _db) : base(_db)
+        private string _connectionString;
+        public SettingsPersistenceRepository(ModelContext _db, string connectionString) : base(_db, connectionString)
         {
             db = _db;
+            _connectionString = connectionString;
         }
 
         public async Task<SettingsBussines> GetAsync(string memberName)

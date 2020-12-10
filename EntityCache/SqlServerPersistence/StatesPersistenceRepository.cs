@@ -8,10 +8,11 @@ namespace EntityCache.SqlServerPersistence
     public class StatesPersistenceRepository : GenericRepository<StatesBussines, States>, IStatesRepository
     {
         private ModelContext db;
-
-        public StatesPersistenceRepository(ModelContext _db) : base(_db)
+        private string _connectionString;
+        public StatesPersistenceRepository(ModelContext _db, string connectionString) : base(_db, connectionString)
         {
             db = _db;
+            _connectionString = connectionString;
         }
     }
 }

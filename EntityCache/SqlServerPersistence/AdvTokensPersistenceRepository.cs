@@ -13,9 +13,11 @@ namespace EntityCache.SqlServerPersistence
     public class AdvTokensPersistenceRepository : GenericRepository<AdvTokenBussines, AdvToken>, IAdvTokensRepository
     {
         private ModelContext db;
-        public AdvTokensPersistenceRepository(ModelContext _db) : base(_db)
+        private string _connectionString;
+        public AdvTokensPersistenceRepository(ModelContext _db, string connectionString) : base(_db, connectionString)
         {
             db = _db;
+            _connectionString = connectionString;
         }
 
         public async Task<AdvTokenBussines> GetTokenAsync(long number, AdvertiseType type)

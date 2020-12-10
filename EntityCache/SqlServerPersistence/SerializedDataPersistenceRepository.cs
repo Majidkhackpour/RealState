@@ -13,9 +13,11 @@ namespace EntityCache.SqlServerPersistence
     public class SerializedDataPersistenceRepository : GenericRepository<SerializedDataBussines, SerializedData>, ISerializedDataRepository
     {
         private ModelContext db;
-        public SerializedDataPersistenceRepository(ModelContext _db) : base(_db)
+        private string _connectionString;
+        public SerializedDataPersistenceRepository(ModelContext _db, string connectionString) : base(_db, connectionString)
         {
             db = _db;
+            _connectionString = connectionString;
         }
         public async Task<SerializedDataBussines> GetAsync(string memberName)
         {

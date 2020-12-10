@@ -13,10 +13,11 @@ namespace EntityCache.SqlServerPersistence
     public class BuildingOptionPersistenceRepository : GenericRepository<BuildingOptionsBussines, BuildingOptions>, IBuildingOptionRepository
     {
         private ModelContext db;
-
-        public BuildingOptionPersistenceRepository(ModelContext _db) : base(_db)
+        private string _connectionString;
+        public BuildingOptionPersistenceRepository(ModelContext _db, string connectionString) : base(_db, connectionString)
         {
             db = _db;
+            _connectionString = connectionString;
         }
 
         public async Task<bool> CheckNameAsync(string name, Guid guid)

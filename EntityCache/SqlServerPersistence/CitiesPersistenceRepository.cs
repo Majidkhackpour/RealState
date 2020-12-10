@@ -14,10 +14,11 @@ namespace EntityCache.SqlServerPersistence
     public class CitiesPersistenceRepository : GenericRepository<CitiesBussines, Cities>, ICitiesRepository
     {
         private ModelContext db;
-
-        public CitiesPersistenceRepository(ModelContext _db) : base(_db)
+        private string _connectionString;
+        public CitiesPersistenceRepository(ModelContext _db, string connectionString) : base(_db, connectionString)
         {
             db = _db;
+            _connectionString = connectionString;
         }
 
         public async Task<bool> CheckNameAsync(Guid stateGuid, string name, Guid guid)
