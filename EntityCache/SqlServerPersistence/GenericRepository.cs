@@ -192,7 +192,7 @@ namespace EntityCache.SqlServerPersistence
             }
         }
 
-        public async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(T item, bool status, string tranName)
+        public virtual async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(T item, bool status, string tranName)
         {
             try
             {

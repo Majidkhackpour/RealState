@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 using EntityCache.Bussines;
@@ -98,6 +99,80 @@ namespace EntityCache.SqlServerPersistence
                 WebErrorLog.ErrorInstence.StartErrorLog(exception);
                 return false;
             }
+        }
+        public override async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(ContractBussines item, bool status, string tranName)
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                using (var cn = new SqlConnection(_connectionString))
+                {
+                    var cmd = new SqlCommand("sp_Contract_ChangeStatus", cn);
+                    cmd.Parameters.AddWithValue("@conGuid", item.Guid);
+                    cmd.Parameters.AddWithValue("@st", item.Status);
+                    await cn.OpenAsync();
+                    await cmd.ExecuteNonQueryAsync();
+                    cn.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+
+            return res;
+        }
+        public override async Task<ReturnedSaveFuncInfo> SaveAsync(ContractBussines item, string tranName)
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                using (var cn = new SqlConnection(_connectionString))
+                {
+                    var cmd = new SqlCommand("sp_Contract_Save", cn);
+                    cmd.Parameters.AddWithValue("@Guid", item.Guid);
+                    cmd.Parameters.AddWithValue("@st", item.Status);
+                    cmd.Parameters.AddWithValue("@modif", item.Modified);
+                    cmd.Parameters.AddWithValue("@code", item.Code);
+                    cmd.Parameters.AddWithValue("@isTemp", item.IsTemp);
+                    cmd.Parameters.AddWithValue("@fGuid", item.FirstSideGuid);
+                    cmd.Parameters.AddWithValue("@sGuid", item.SecondSideGuid);
+                    cmd.Parameters.AddWithValue("@term", item.Term);
+                    cmd.Parameters.AddWithValue("@fromDate", item.FromDate);
+                    cmd.Parameters.AddWithValue("@totalPrice", item.TotalPrice);
+                    cmd.Parameters.AddWithValue("@minorPrice", item.MinorPrice);
+                    cmd.Parameters.AddWithValue("@checkNo", item.CheckNo);
+                    cmd.Parameters.AddWithValue("@bankName", item.BankName);
+                    cmd.Parameters.AddWithValue("@shobe", item.Shobe);
+                    cmd.Parameters.AddWithValue("@sareresid", item.SarResid);
+                    cmd.Parameters.AddWithValue("@discharcgDate", item.DischargeDate);
+                    cmd.Parameters.AddWithValue("@setDocDate", item.SetDocDate);
+                    cmd.Parameters.AddWithValue("@setDocPlace", item.SetDocPlace);
+                    cmd.Parameters.AddWithValue("@sarqofli", item.SarQofli);
+                    cmd.Parameters.AddWithValue("@delay", item.Delay);
+                    cmd.Parameters.AddWithValue("@desc", item.Description);
+                    cmd.Parameters.AddWithValue("@userGuid", item.UserGuid);
+                    cmd.Parameters.AddWithValue("@buGuid", item.BuildingGuid);
+                    cmd.Parameters.AddWithValue("@type", (short)item.Type);
+                    cmd.Parameters.AddWithValue("@dateM", item.DateM);
+                    cmd.Parameters.AddWithValue("@dateSh", item.DateSh);
+                    cmd.Parameters.AddWithValue("@fPrice", item.FPrice);
+                    cmd.Parameters.AddWithValue("@sPrice", item.SPrice);
+                    cmd.Parameters.AddWithValue("@fSidePrice", (item.Finance.FirstTotalPrice + item.Finance.FirstAddedValue) - item.Finance.FirstDiscount);
+                    cmd.Parameters.AddWithValue("@sSidePrice", (item.Finance.SecondTotalPrice + item.Finance.SecondAddedValue) - item.Finance.SecondDiscount);
+                    await cn.OpenAsync();
+                    await cmd.ExecuteNonQueryAsync();
+                    cn.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+
+            return res;
         }
     }
 }

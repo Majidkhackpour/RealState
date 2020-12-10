@@ -145,7 +145,6 @@ namespace Accounting
         {
             try
             {
-                var list = new List<GardeshHesabBussines>();
 
                 if (string.IsNullOrWhiteSpace(lblBedName.Text))
                 {
@@ -180,71 +179,8 @@ namespace Accounting
                 if (cmbPrice.SelectedIndex == 2)
                     val = txtPrice.Value.ToString().ParseToDecimal() * 10000000000;
 
-                var parent = Guid.NewGuid();
-
-                list.Add(new GardeshHesabBussines()
-                {
-                    Guid = Guid.NewGuid(),
-                    ParentGuid = parent,
-                    Babat = EnAccountBabat.Sanad,
-                    PeopleGuid = bedGuid,
-                    Price = val,
-                    Type = EnAccountType.Bed,
-                    Description = txtDesc.Text
-                });
-                list.Add(new GardeshHesabBussines()
-                {
-                    Guid = Guid.NewGuid(),
-                    ParentGuid = parent,
-                    Babat = EnAccountBabat.Sanad,
-                    PeopleGuid = besGuid,
-                    Price = val,
-                    Type = EnAccountType.Bes,
-                    Description = txtDesc.Text
-                });
-
-
-                //Set Bedehkar Account
-                if (bedType == EnAccountingType.Peoples)
-                {
-                    var item = PeoplesBussines.Get(bedGuid);
-                    if (item == null) return;
-                    item.Account += val;
-                    await item.SaveAsync(true);
-                }
-                else if (bedType == EnAccountingType.Users)
-                {
-                    var item = UserBussines.Get(bedGuid);
-                    if (item == null) return;
-                    item.Account += val;
-                    await item.SaveAsync(false,true);
-                }
-                else if (bedType == EnAccountingType.Hazine)
-                {
-                    var item = HazineBussines.Get(bedGuid);
-                    if (item == null) return;
-                    item.Account += val;
-                    await item.SaveAsync(false,true);
-                }
-
-                //Set Bestankar Account
-                if (besType == EnAccountingType.Peoples)
-                {
-                    var item = PeoplesBussines.Get(besGuid);
-                    if (item == null) return;
-                    item.Account -= val;
-                    await item.SaveAsync(true);
-                }
-                else if (besType == EnAccountingType.Users)
-                {
-                    var item = UserBussines.Get(besGuid);
-                    if (item == null) return;
-                    item.Account -= val;
-                    await item.SaveAsync(false,true);
-                }
-
-
-                var res = await GardeshHesabBussines.SaveRangeAsync(list);
+              
+                var res = await clsSanad.SaveAsync(bedGuid, besGuid, val, txtDesc.Text);
                 if (res.HasError)
                 {
                     frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);

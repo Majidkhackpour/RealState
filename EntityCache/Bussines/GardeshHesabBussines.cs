@@ -30,74 +30,7 @@ namespace EntityCache.Bussines
         public static async Task<List<GardeshHesabBussines>> GetAllAsync() => await UnitOfWork.GardeshHesab.GetAllBySpAsync();
 
         public static async Task<GardeshHesabBussines> GetAsync(Guid guid) => await UnitOfWork.GardeshHesab.GetAsync(guid);
-
-        public async Task<ReturnedSaveFuncInfo> SaveAsync(bool sendToServer,string tranName = "")
-        {
-            var res = new ReturnedSaveFuncInfo();
-            var autoTran = string.IsNullOrEmpty(tranName);
-            if (autoTran) tranName = Guid.NewGuid().ToString();
-            try
-            {
-                if (autoTran)
-                { //BeginTransaction
-                }
-
-                res.AddReturnedValue(await UnitOfWork.GardeshHesab.SaveAsync(this, tranName));
-                res.ThrowExceptionIfError();
-                if (autoTran)
-                {
-                    //CommitTransAction
-                }
-
-                if (sendToServer)
-                    _ = Task.Run(() => WebGardeshHesab.SaveAsync(this));
-            }
-            catch (Exception ex)
-            {
-                if (autoTran)
-                {
-                    //RollBackTransAction
-                }
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-                res.AddReturnedValue(ex);
-            }
-
-            return res;
-        }
-
-        public async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(bool status, bool sendToServer, string tranName = "")
-        {
-            var res = new ReturnedSaveFuncInfo();
-            var autoTran = string.IsNullOrEmpty(tranName);
-            if (autoTran) tranName = Guid.NewGuid().ToString();
-            try
-            {
-                if (autoTran)
-                { //BeginTransaction
-                }
-
-                res.AddReturnedValue(await UnitOfWork.GardeshHesab.ChangeStatusAsync(this, status, tranName));
-                res.ThrowExceptionIfError();
-                if (autoTran)
-                {
-                    //CommitTransAction
-                }
-                if (sendToServer)
-                    _ = Task.Run(() => WebGardeshHesab.SaveAsync(this));
-            }
-            catch (Exception ex)
-            {
-                if (autoTran)
-                {
-                    //RollBackTransAction
-                }
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-                res.AddReturnedValue(ex);
-            }
-
-            return res;
-        }
-
+        
         public static async Task<List<GardeshHesabBussines>> GetAllAsync(Guid hesabGuid, string search)
         {
             try
@@ -138,71 +71,8 @@ namespace EntityCache.Bussines
         public static async Task<List<GardeshHesabBussines>> GetAllAsync(Guid hesabGuid) =>
             await UnitOfWork.GardeshHesab.GetAllAsync(hesabGuid);
 
-        public static async Task<ReturnedSaveFuncInfo> SaveRangeAsync(List<GardeshHesabBussines> list,
-            string tranName = "")
-        {
-            var res = new ReturnedSaveFuncInfo();
-            var autoTran = string.IsNullOrEmpty(tranName);
-            if (autoTran) tranName = Guid.NewGuid().ToString();
-            try
-            {
-                if (autoTran)
-                { //BeginTransaction
-                }
-
-                res.AddReturnedValue(await UnitOfWork.GardeshHesab.SaveRangeAsync(list, tranName));
-                res.ThrowExceptionIfError();
-                if (autoTran)
-                {
-                    //CommitTransAction
-                }
-            }
-            catch (Exception ex)
-            {
-                if (autoTran)
-                {
-                    //RollBackTransAction
-                }
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-                res.AddReturnedValue(ex);
-            }
-
-            return res;
-        }
-
-        public static async Task<List<GardeshHesabBussines>> GetAllAsync(Guid parentGuid, bool status) =>
+      public static async Task<List<GardeshHesabBussines>> GetAllAsync(Guid parentGuid, bool status) =>
             await UnitOfWork.GardeshHesab.GetAllAsync(parentGuid, status);
-
-        public static async Task<ReturnedSaveFuncInfo> RemoveRangeAsync(List<Guid> list,
-            string tranName = "")
-        {
-            var res = new ReturnedSaveFuncInfo();
-            var autoTran = string.IsNullOrEmpty(tranName);
-            if (autoTran) tranName = Guid.NewGuid().ToString();
-            try
-            {
-                if (autoTran)
-                { //BeginTransaction
-                }
-
-                res.AddReturnedValue(await UnitOfWork.GardeshHesab.RemoveRangeAsync(list, tranName));
-                res.ThrowExceptionIfError();
-                if (autoTran)
-                {
-                    //CommitTransAction
-                }
-            }
-            catch (Exception ex)
-            {
-                if (autoTran)
-                {
-                    //RollBackTransAction
-                }
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-                res.AddReturnedValue(ex);
-            }
-
-            return res;
-        }
+    
     }
 }

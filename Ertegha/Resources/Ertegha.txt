@@ -361,6 +361,7 @@ GO
 IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Reception_Save]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
 	exec('Create Procedure [dbo].[sp_Reception_Save]	As Begin print 11 end')
 GO
+
 Alter PROCEDURE [dbo].[sp_Reception_Save]
 	@guid uniqueidentifier,
 	@modif datetime,
@@ -446,4 +447,225 @@ BEGIN
 		insert into Receptions(BankName,BankPrice,[Check],CheckNo,CreateDate,Description,FishNo,Guid,Modified,NaqdPrice,Receptor,SarResid,Status)
 		values(@bankname,@bankprice,@checkprice,@checkNo,GETDATE(),@desc,@fishNo,@guid,GETDATE(),@naqdprice,@receptor,@sarresid,@st)
 	end
+END
+GO
+-- ==========================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Contract_ChangeStatus]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Contract_ChangeStatus]	As Begin print 11 end')
+GO
+
+Alter PROCEDURE sp_Contract_ChangeStatus
+	@conGuid uniqueidentifier,
+	@st bit
+AS
+BEGIN	
+	update ContractFinances
+	set Status=@st
+	where ConGuid=@conGuid
+
+	update GardeshHesabs
+	set Status=@st
+	where ParentGuid=@conGuid
+
+	update Contracts
+	set Status=@st 
+	where Guid=@conGuid
+END
+GO
+-- ==========================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Contract_Save]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Contract_Save]	As Begin print 11 end')
+GO
+
+Alter PROCEDURE sp_Contract_Save
+	@Guid uniqueidentifier,
+	@st bit,
+	@modif datetime,
+	@code bigint,
+	@isTemp bit,
+	@fGuid uniqueidentifier,
+	@sGuid uniqueidentifier,
+	@term int,
+	@fromDate datetime,
+	@totalPrice bigint=0,
+	@minorPrice bigint=0,
+	@checkNo nvarchar(200)='',
+	@bankName nvarchar(200)='',
+	@shobe nvarchar(200)='',
+	@sareresid nvarchar(20)='',
+	@discharcgDate datetime,
+	@setDocDate datetime,
+	@setDocPlace nvarchar(500)='',
+	@sarqofli bigint=0,
+	@delay bigint=0,
+	@desc nvarchar(Max)='',
+	@userGuid uniqueidentifier,
+	@buGuid uniqueidentifier,
+	@type smallint,
+	@dateM datetime,
+	@dateSh nvarchar(20)='',
+	@fPrice bigint=0,
+	@sPrice bigint=0,
+	@fSidePrice bigint=0,
+	@sSidePrice bigint=0
+AS
+BEGIN	
+	update Peoples
+	set Account=Account-@fPrice
+	where Guid=@fGuid
+	update Peoples
+	set Account=Account+@fSidePrice
+	where Guid=@fGuid
+
+
+	update Peoples
+	set Account=Account-@sPrice
+	where Guid=@sGuid
+	update Peoples
+	set Account=Account+@sSidePrice
+	where Guid=@sGuid
+
+	delete from GardeshHesabs
+	where ParentGuid=@Guid
+
+	insert into GardeshHesabs(Babat,Description,Guid,Modified,ParentGuid,PeopleGuid,Price,Status,Type)
+		values(2,N'عقد قرارداد به شماره '+@code+' در تاریخ '+@dateSh,NEWID(), GETDATE(),@guid,@fGuid,@fSidePrice,'true',2)
+
+			insert into GardeshHesabs(Babat,Description,Guid,Modified,ParentGuid,PeopleGuid,Price,Status,Type)
+		values(2,N'عقد قرارداد به شماره '+@code+' در تاریخ '+@dateSh,NEWID(), GETDATE(),@guid,@sGuid,@sSidePrice,'true',2)
+
+
+
+	update Buildings
+	set BuildingStatus=1
+	where Guid=@buGuid
+
+
+
+	update Contracts 
+	set Status=@st,
+	Modified=@modif,
+	Code=@code,
+	IsTemp=@isTemp,
+	FirstSideGuid=@fGuid,
+	SecondSideGuid=@sGuid,
+	Term=@term,
+	FromDate=@fromDate,
+	TotalPrice=@totalPrice,
+	MinorPrice=@minorPrice,
+	CheckNo=@checkNo,
+	BankName=@bankName,
+	Shobe=@shobe,
+	SarResid=@sareresid,
+	DischargeDate=@discharcgDate,
+	SetDocDate=@setDocDate,
+	SetDocPlace=@setDocPlace,
+	SarQofli=@sarqofli,
+	Delay=@delay,
+	Description=@desc,
+	UserGuid=@userGuid,
+	BuildingGuid=@buGuid,
+	Type=@type,
+	DateM=@dateM
+	where Guid=@Guid
+
+	if (@@ROWCOUNT=0)
+	begin
+		insert into Contracts(
+				Guid,Status,Modified,IsTemp,Code,FirstSideGuid,SecondSideGuid,Term,FromDate,
+				TotalPrice,MinorPrice,CheckNo,BankName,Shobe,SarResid,DischargeDate,
+				SetDocDate,SetDocPlace,SarQofli,Delay,Description,UserGuid,BuildingGuid,
+				Type,DateM
+		)
+		values(
+				@Guid,@st,@modif,@isTemp,@code,@fGuid,@sGuid,@term,@fromDate,
+				@totalPrice,@minorPrice,@checkNo,@bankName,@shobe,@sareresid,@discharcgDate,
+				@setDocDate,@setDocPlace,@sarqofli,@delay,@desc,@userGuid,@buGuid,
+				@type,@dateM
+		)
+	end
+
+END
+GO
+-- ==========================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Sanad_Save]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Sanad_Save]	As Begin print 11 end')
+GO
+
+Alter PROCEDURE sp_Sanad_Save
+	@parentGuid uniqueidentifier,
+	@bedGuid uniqueidentifier,
+	@besGuid uniqueidentifier,
+	@price bigint=0,
+	@desc nvarchar(max)=''
+AS
+BEGIN
+	--Update Bed Account
+	declare @tarafHesab uniqueidentifier
+
+	set @tarafHesab=(ISNULL((select Guid from Peoples
+		where Guid=@bedGuid),'00000000-0000-0000-0000-000000000000'))
+
+	if (@tarafHesab='00000000-0000-0000-0000-000000000000')
+	begin
+		set @tarafHesab=(ISNULL((select Guid from Users
+		where Guid=@bedGuid),'00000000-0000-0000-0000-000000000000'))
+
+		if(@tarafHesab='00000000-0000-0000-0000-000000000000')
+		begin
+			set @tarafHesab=(ISNULL((select Guid from Hazines
+			where Guid=@bedGuid),'00000000-0000-0000-0000-000000000000'))
+
+			update Hazines
+			set Account=Account+@price
+			where Guid=@bedGuid
+		end
+		else
+		begin
+			update Users
+			set Account=Account+@price
+			where Guid=@bedGuid
+		end
+	end
+	else
+	begin
+			update Peoples
+			set Account=Account+@price
+			where Guid=@bedGuid
+	end
+
+
+	--Update Bed Account
+
+	set @tarafHesab=(ISNULL((select Guid from Peoples
+		where Guid=@besGuid),'00000000-0000-0000-0000-000000000000'))
+
+	if (@tarafHesab='00000000-0000-0000-0000-000000000000')
+	begin
+		set @tarafHesab=(ISNULL((select Guid from Users
+		where Guid=@besGuid),'00000000-0000-0000-0000-000000000000'))
+
+		update Users
+		set Account=Account-@price
+		where Guid=@besGuid
+
+	end
+	else
+	begin
+		update Peoples
+		set Account=Account-@price
+		where Guid=@besGuid
+
+	end
+
+
+	--Insert Sanad
+
+	insert into GardeshHesabs(Babat,Description,Guid,Modified,ParentGuid,PeopleGuid,Price,Status,Type)
+		values(5,@desc,NEWID(), GETDATE(),@parentGuid,@bedGuid,@price,'true',2)
+
+
+	insert into GardeshHesabs(Babat,Description,Guid,Modified,ParentGuid,PeopleGuid,Price,Status,Type)
+	values(5,@desc,NEWID(), GETDATE(),@parentGuid,@besGuid,@price,'true',3)
+
 END

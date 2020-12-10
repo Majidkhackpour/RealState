@@ -52,6 +52,8 @@ namespace EntityCache.Bussines
             }
             set => _finance = value;
         }
+        public decimal FPrice { get; set; }
+        public decimal SPrice { get; set; }
 
 
 
@@ -144,7 +146,7 @@ namespace EntityCache.Bussines
             return res;
         }
 
-        public async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(bool status,bool sendToServer, string tranName = "")
+        public async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(bool status, bool sendToServer, string tranName = "")
         {
             var res = new ReturnedSaveFuncInfo();
             var autoTran = string.IsNullOrEmpty(tranName);
@@ -155,23 +157,7 @@ namespace EntityCache.Bussines
                 { //BeginTransaction
                 }
 
-                if (Finance != null)
-                {
-                    res.AddReturnedValue(
-                        await Finance.ChangeStatusAsync(status, tranName));
-                    res.ThrowExceptionIfError();
-                }
-
-                var gardeshList = await GardeshHesabBussines.GetAllAsync(Guid, !status);
-                if (gardeshList != null && gardeshList.Count > 0)
-                {
-                    foreach (var item in gardeshList)
-                    {
-                        res.AddReturnedValue(await item.ChangeStatusAsync(status,true));
-                        res.ThrowExceptionIfError();
-                    }
-                }
-
+                
                 res.AddReturnedValue(await UnitOfWork.Contract.ChangeStatusAsync(this, status, tranName));
                 res.ThrowExceptionIfError();
                 if (autoTran)

@@ -21,7 +21,6 @@ namespace Building.Contract
         private PeoplesBussines fSide;
         private PeoplesBussines sSide;
         private BuildingBussines building;
-        private decimal fPrice = 0, sPrice = 0;
         readonly List<string> lstList = new List<string>();
         private EnLogAction action;
         private async Task SetDataAsync()
@@ -56,10 +55,10 @@ namespace Building.Contract
 
                 if (cls?.Finance != null)
                 {
-                    fPrice = (cls.Finance.FirstTotalPrice + cls.Finance.FirstAddedValue) -
+                    cls.FPrice = (cls.Finance.FirstTotalPrice + cls.Finance.FirstAddedValue) -
                             cls.Finance.FirstDiscount;
 
-                    sPrice = (cls.Finance.SecondTotalPrice + cls.Finance.SecondAddedValue) -
+                    cls.SPrice = (cls.Finance.SecondTotalPrice + cls.Finance.SecondAddedValue) -
                              cls.Finance.SecondDiscount;
 
                     cmbfBabat.SelectedIndex = (int)cls?.Finance?.fBabat;
@@ -1010,57 +1009,7 @@ namespace Building.Contract
                 cls.Finance.sBabat = (EnContractBabat)cmbsBabat.SelectedIndex;
                 cls.Finance.ConGuid = cls.Guid;
 
-                var fSidePrice = (cls.Finance.FirstTotalPrice + cls.Finance.FirstAddedValue) -
-                                 cls.Finance.FirstDiscount;
-                fSide.Account -= fPrice;
-                fSide.Account += fSidePrice;
-                await fSide.SaveAsync(true);
-
-                var sSidePrice = (cls.Finance.SecondTotalPrice + cls.Finance.SecondAddedValue) -
-                                cls.Finance.SecondDiscount;
-                sSide.Account -= sPrice;
-                sSide.Account += sSidePrice;
-                await sSide.SaveAsync(true);
-
-                var perGardesh = await GardeshHesabBussines.GetAllAsync(cls.Guid, true);
-                if (perGardesh != null && perGardesh.Count > 0)
-                    await GardeshHesabBussines.RemoveRangeAsync(perGardesh.Select(q => q.Guid).ToList());
-
-
-                var gardeshList = new List<GardeshHesabBussines>
-                {
-                    new GardeshHesabBussines()
-                    {
-                        Guid = Guid.NewGuid(),
-                        ParentGuid = cls.Guid,
-                        Babat = EnAccountBabat.InsContract,
-                        PeopleGuid = fSide.Guid,
-                        Price = fSidePrice,
-                        Type = EnAccountType.Bed,
-                        Description =
-                            $"عقد قرارداد به شماره {cls.Code} در تاریخ {Calendar.MiladiToShamsi(DateTime.Now)}"
-                    },
-                    new GardeshHesabBussines()
-                    {
-                        Guid = Guid.NewGuid(),
-                        ParentGuid = cls.Guid,
-                        Babat = EnAccountBabat.InsContract,
-                        PeopleGuid = sSide.Guid,
-                        Price = sSidePrice,
-                        Type = EnAccountType.Bed,
-                        Description =
-                            $"عقد قرارداد به شماره {cls.Code} در تاریخ {Calendar.MiladiToShamsi(DateTime.Now)}"
-                    }
-                };
-
-                await GardeshHesabBussines.SaveRangeAsync(gardeshList);
-
-                building.BuildingStatus = EnBuildingStatus.Vagozar;
-
-                cls.Type = txtRahn.Value > 0 ? EnRequestType.Rahn : EnRequestType.Forush;
-
-                await building.SaveAsync(true);
-
+                
                 var res = await cls.SaveAsync(true);
                 if (res.HasError)
                 {
