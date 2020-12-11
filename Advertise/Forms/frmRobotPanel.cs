@@ -3,16 +3,18 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+using WindowsSerivces;
 using Advertise.Classes;
 using Advertise.Forms.MatchRegions;
 using Advertise.Forms.Simcard;
 using EntityCache.Bussines;
 using EntityCache.ViewModels;
+using MetroFramework.Forms;
 using Services;
 
 namespace Advertise.Forms
 {
-    public partial class frmRobotPanel : Form
+    public partial class frmRobotPanel : MetroForm
     {
         public frmRobotPanel()
         {
@@ -36,20 +38,19 @@ namespace Advertise.Forms
 
         private void lblBaseInfo_MouseLeave(object sender, System.EventArgs e)
         {
-            lblBaseInfo.ForeColor = Color.Silver;
+            lblBaseInfo.ForeColor = Color.Black;
         }
 
         private void lblSimcard_MouseLeave(object sender, System.EventArgs e)
         {
-            lblSimcard.ForeColor = Color.Silver;
+            lblSimcard.ForeColor = Color.Black;
         }
 
         private void lblSimcard_Click(object sender, System.EventArgs e)
         {
             try
             {
-                var frm = new frmShowSimcard(false);
-                frm.ShowDialog(this);
+                clsLoadNewForm.LoadNewForm(new frmShowSimcard(false), fPanel);
             }
             catch (Exception ex)
             {
@@ -150,15 +151,14 @@ namespace Advertise.Forms
 
         private void lblMatchRegion_MouseLeave(object sender, EventArgs e)
         {
-            lblMatchRegion.ForeColor = Color.Silver;
+            lblMatchRegion.ForeColor = Color.Black;
         }
 
         private void lblMatchRegion_Click(object sender, EventArgs e)
         {
             try
             {
-                var frm = new frmShowMatchRegion();
-                frm.ShowDialog(this);
+                clsLoadNewForm.LoadNewForm(new frmShowMatchRegion(), fPanel);
             }
             catch (Exception ex)
             {
@@ -178,7 +178,7 @@ namespace Advertise.Forms
 
         private void lblSetting_MouseLeave(object sender, EventArgs e)
         {
-            lblSetting.ForeColor = Color.Silver;
+            lblSetting.ForeColor = Color.Black;
         }
 
         private void lblSetting_Click(object sender, EventArgs e)
@@ -197,6 +197,11 @@ namespace Advertise.Forms
         private void pictureBox1_Click(object sender, EventArgs e)
         {
             lblSetting_Click(null, null);
+        }
+
+        private void frmRobotPanel_Load(object sender, EventArgs e)
+        {
+            clsLoadNewForm.LoadNewForm(new frmRobotLogo(), fPanel);
         }
     }
 }

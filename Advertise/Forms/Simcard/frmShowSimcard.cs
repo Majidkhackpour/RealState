@@ -11,7 +11,7 @@ using User;
 
 namespace Advertise.Forms.Simcard
 {
-    public partial class frmShowSimcard : MetroForm
+    public partial class frmShowSimcard : Form
     {
         private bool _st = true;
         public Guid SelectedGuid { get; set; }
@@ -34,14 +34,14 @@ namespace Advertise.Forms.Simcard
             try
             {
                 var access = clsUser.CurrentUser.UserAccess;
-                btnInsert.Enabled = access?.Simcard.Simcard_Insert ?? false;
-                btnEdit.Enabled = access?.Simcard.Simcard_Update ?? false;
-                btnDelete.Enabled = access?.Simcard.Simcard_Delete ?? false;
-                btnChangeStatus.Enabled = access?.Simcard.Simcard_Disable ?? false;
-                btnView.Enabled = access?.Simcard.Simcard_View ?? false;
-                btnLoginDivar.Enabled = access?.Simcard.Simcard_Divar_Token ?? false;
-                btnDelDivarToken.Enabled = access?.Simcard.Simcard_Delete_Token ?? false;
-                btnLoginSheypoor.Enabled = access?.Simcard.Simcard_Shepoor_Token ?? false;
+                mnuAdd.Enabled = access?.Simcard.Simcard_Insert ?? false;
+                mnuEdit.Enabled = access?.Simcard.Simcard_Update ?? false;
+                mnuDelete.Enabled = access?.Simcard.Simcard_Delete ?? false;
+                mnuStatus.Enabled = access?.Simcard.Simcard_Disable ?? false;
+                mnuView.Enabled = access?.Simcard.Simcard_View ?? false;
+                mnuLoginDivar.Enabled = access?.Simcard.Simcard_Divar_Token ?? false;
+                mnuDelDivarToken.Enabled = access?.Simcard.Simcard_Delete_Token ?? false;
+                mnuLoginSheypoor.Enabled = access?.Simcard.Simcard_Shepoor_Token ?? false;
             }
             catch (Exception ex)
             {
@@ -56,15 +56,15 @@ namespace Advertise.Forms.Simcard
                 _st = value;
                 if (_st)
                 {
-                    btnChangeStatus.Text = "غیرفعال (Ctrl+S)";
+                    mnuStatus.Text = "غیرفعال (Ctrl+S)";
                     Task.Run(() => LoadDataAsync(ST, txtSearch.Text));
-                    btnDelete.Text = "حذف (Del)";
+                    mnuDelete.Text = "حذف (Del)";
                 }
                 else
                 {
-                    btnChangeStatus.Text = "فعال (Ctrl+S)";
+                    mnuStatus.Text = "فعال (Ctrl+S)";
                     Task.Run(() => LoadDataAsync(ST, txtSearch.Text));
-                    btnDelete.Text = "فعال کردن";
+                    mnuDelete.Text = "فعال کردن";
                 }
             }
         }
@@ -72,27 +72,17 @@ namespace Advertise.Forms.Simcard
         {
             InitializeComponent();
             SetAccess();
-
+            DGrid.Focus();
             isShowMode = _isShowMode;
-            if (isShowMode)
+            if (_isShowMode)
             {
-                btnDelete.Visible = false;
-                btnInsert.Visible = false;
-                btnEdit.Visible = false;
-                btnView.Visible = false;
-                btnChangeStatus.Visible = false;
+                contextMenu.Enabled = false;
                 btnSelect.Visible = true;
-                btnOther.Visible = false;
             }
             else
             {
-                btnDelete.Visible = true;
-                btnInsert.Visible = true;
-                btnEdit.Visible = true;
-                btnView.Visible = true;
-                btnChangeStatus.Visible = true;
+                contextMenu.Enabled = true;
                 btnSelect.Visible = false;
-                btnOther.Visible = true;
             }
         }
 
@@ -119,124 +109,33 @@ namespace Advertise.Forms.Simcard
                 switch (e.KeyCode)
                 {
                     case Keys.Insert:
-                        btnInsert.PerformClick();
+                        mnuAdd.PerformClick();
                         break;
                     case Keys.F7:
-                        btnEdit.PerformClick();
+                        mnuEdit.PerformClick();
                         break;
                     case Keys.Delete:
-                        btnDelete.PerformClick();
+                        mnuDelete.PerformClick();
                         break;
                     case Keys.F12:
-                        btnView.PerformClick();
+                        mnuView.PerformClick();
                         break;
                     case Keys.S:
                         if (e.Control) ST = !ST;
                         break;
-                    case Keys.Escape:
-                        Close();
-                        break;
                     case Keys.F:
                         if (e.Control) txtSearch.Focus();
                         break;
-                }
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-        private void btnChangeStatus_Click(object sender, EventArgs e)
-        {
-            ST = !ST;
-        }
-        private async void btnDelete_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (DGrid.RowCount <= 0) return;
-                if (DGrid.CurrentRow == null) return;
-                var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
-                if (ST)
-                {
-                    if (MessageBox.Show(this,
-                            $@"آیا از حذف {DGrid[dgName.Index, DGrid.CurrentRow.Index].Value} اطمینان دارید؟", "حذف",
-                            MessageBoxButtons.YesNo,
-                            MessageBoxIcon.Question) == DialogResult.No) return;
-                    var prd = await SimcardBussines.GetAsync(guid);
-                    var res = await prd.ChangeStatusAsync(false);
-                    if (res.HasError)
-                    {
-                        frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);
-                        return;
-                    }
-                }
-                else
-                {
-                    if (MessageBox.Show(this,
-                            $@"آیا از فعال کردن {DGrid[dgName.Index, DGrid.CurrentRow.Index].Value} اطمینان دارید؟", "حذف",
-                            MessageBoxButtons.YesNo,
-                            MessageBoxIcon.Question) == DialogResult.No) return;
-                    var prd = await SimcardBussines.GetAsync(guid);
-                    var res = await prd.ChangeStatusAsync(true);
-                    if (res.HasError)
-                    {
-                        frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);
-                        return;
-                    }
-                }
+                    case Keys.Enter:
+                        if (isShowMode)
+                        {
+                            btnSelect.PerformClick();
+                            return;
+                        }
 
-                await LoadDataAsync(ST, txtSearch.Text);
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-        private async void btnInsert_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                var frm = new frmSimcardMain();
-                if (frm.ShowDialog(this) == DialogResult.OK)
-                    await LoadDataAsync(ST);
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-        private async void btnEdit_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (DGrid.RowCount <= 0) return;
-                if (DGrid.CurrentRow == null) return;
-                if (!ST)
-                {
-                    frmNotification.PublicInfo.ShowMessage(
-                        "شما مجاز به ویرایش داده حذف شده نمی باشید \r\n برای این منظور، ابتدا فیلد موردنظر را از حالت حذف شده به فعال، تغییر وضعیت دهید");
-                    return;
+                        mnuEdit.PerformClick();
+                        break;
                 }
-                var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
-                var frm = new frmSimcardMain(guid, false);
-                if (frm.ShowDialog(this) == DialogResult.OK)
-                    await LoadDataAsync(ST, txtSearch.Text);
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-        private void btnView_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (DGrid.RowCount <= 0) return;
-                if (DGrid.CurrentRow == null) return;
-                var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
-                var frm = new frmSimcardMain(guid, true);
-                frm.ShowDialog(this);
             }
             catch (Exception ex)
             {
@@ -250,130 +149,6 @@ namespace Advertise.Forms.Simcard
                 txtSearch.Focus();
                 txtSearch.Text = e.KeyChar.ToString();
                 txtSearch.SelectionStart = 9999;
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-        private async void btnLogin_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (DGrid.RowCount <= 0) return;
-                if (DGrid.CurrentRow == null) return;
-                if (!ST)
-                {
-                    frmNotification.PublicInfo.ShowMessage(
-                        "شما مجاز به دریافت توکن داده حذف شده نمی باشید \r\n برای این منظور، ابتدا فیلد موردنظر را از حالت حذف شده به فعال، تغییر وضعیت دهید");
-                    return;
-                }
-                var number = DGrid[dgNumber.Index, DGrid.CurrentRow.Index].Value.ToString().ParseToLong();
-                if (number == 0)
-                {
-                    frmNotification.PublicInfo.ShowMessage(
-                        "شماره انتخاب شده صحیح نمی باشد");
-                    return;
-                }
-                var divar = DivarAdv.GetInstance();
-                await divar.Login(number, true);
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-        private async void btnLoginSheypoor_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (DGrid.RowCount <= 0) return;
-                if (DGrid.CurrentRow == null) return;
-                if (!ST)
-                {
-                    frmNotification.PublicInfo.ShowMessage(
-                        "شما مجاز به دریافت توکن داده حذف شده نمی باشید \r\n برای این منظور، ابتدا فیلد موردنظر را از حالت حذف شده به فعال، تغییر وضعیت دهید");
-                    return;
-                }
-                var number = DGrid[dgNumber.Index, DGrid.CurrentRow.Index].Value.ToString().ParseToLong();
-                if (number == 0)
-                {
-                    frmNotification.PublicInfo.ShowMessage(
-                        "شماره انتخاب شده صحیح نمی باشد");
-                    return;
-                }
-                var sheypoor = SheypoorAdv.GetInstance();
-                await sheypoor.Login(number, true);
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-        private async void btnDelDivarToken_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (DGrid.RowCount <= 0) return;
-                if (DGrid.CurrentRow == null) return;
-
-                var number = DGrid[dgNumber.Index, DGrid.CurrentRow.Index].Value.ToString().ParseToLong();
-                if (number == 0)
-                {
-                    frmNotification.PublicInfo.ShowMessage(
-                        "شماره انتخاب شده صحیح نمی باشد");
-                    return;
-                }
-
-                if (MessageBox.Show(this,"آیا از حذف توکن ارتباط با دیوار اطمینان دارید؟", "حذف توکن ارتباط دیوار", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No) return;
-
-                var token = await AdvTokenBussines.GetTokenAsync(number, AdvertiseType.Divar);
-                if (token == null) return;
-
-                var res = await token.RemoveAsync();
-
-                if (res.HasError)
-                {
-                    frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);
-                    return;
-                }
-
-                await LoadDataAsync(ST, txtSearch.Text);
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-        private async void btnDeleteSheypoorToken_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (DGrid.RowCount <= 0) return;
-                if (DGrid.CurrentRow == null) return;
-
-                var number = DGrid[dgNumber.Index, DGrid.CurrentRow.Index].Value.ToString().ParseToLong();
-                if (number == 0)
-                {
-                    frmNotification.PublicInfo.ShowMessage(
-                        "شماره انتخاب شده صحیح نمی باشد");
-                    return;
-                }
-
-                if (MessageBox.Show(this,"آیا از حذف توکن ارتباط با شیپور اطمینان دارید؟", "حذف توکن ارتباط شیپور", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No) return;
-
-                var token = await AdvTokenBussines.GetTokenAsync(number, AdvertiseType.Sheypoor);
-                if (token == null) return;
-
-                var res = await token.RemoveAsync();
-
-                if (res.HasError)
-                {
-                    frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);
-                    return;
-                }
-
-                await LoadDataAsync(ST, txtSearch.Text);
             }
             catch (Exception ex)
             {
@@ -401,6 +176,245 @@ namespace Advertise.Forms.Simcard
                 SelectedGuid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
                 DialogResult = DialogResult.OK;
                 Close();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private async void mnuDelete_Click(object sender, EventArgs e)
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                if (DGrid.RowCount <= 0) return;
+                if (DGrid.CurrentRow == null) return;
+                var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
+                if (ST)
+                {
+                    if (MessageBox.Show(this,
+                            $@"آیا از حذف {DGrid[dgName.Index, DGrid.CurrentRow.Index].Value} اطمینان دارید؟", "حذف",
+                            MessageBoxButtons.YesNo,
+                            MessageBoxIcon.Question) == DialogResult.No) return;
+                    var prd = await SimcardBussines.GetAsync(guid);
+                    res.AddReturnedValue(await prd.ChangeStatusAsync(false));
+                }
+                else
+                {
+                    if (MessageBox.Show(this,
+                            $@"آیا از فعال کردن {DGrid[dgName.Index, DGrid.CurrentRow.Index].Value} اطمینان دارید؟",
+                            "حذف",
+                            MessageBoxButtons.YesNo,
+                            MessageBoxIcon.Question) == DialogResult.No) return;
+                    var prd = await SimcardBussines.GetAsync(guid);
+                    res.AddReturnedValue(await prd.ChangeStatusAsync(true));
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+            finally
+            {
+                if (res.HasError)
+                {
+                    var frm = new FrmShowErrorMessage(res, "خطا در تغییر وضعیت سیمکارت");
+                    frm.ShowDialog(this);
+                    frm.Dispose();
+                }
+                else await LoadDataAsync(ST, txtSearch.Text);
+            }
+        }
+        private async void mnuDelSheypoorToken_Click(object sender, EventArgs e)
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                if (DGrid.RowCount <= 0) return;
+                if (DGrid.CurrentRow == null) return;
+
+                var number = DGrid[dgNumber.Index, DGrid.CurrentRow.Index].Value.ToString().ParseToLong();
+                if (number == 0)
+                    res.AddError("شماره انتخاب شده صحیح نمی باشد");
+
+                if (res.HasError) return;
+
+                if (MessageBox.Show(this, "آیا از حذف توکن ارتباط با شیپور اطمینان دارید؟", "حذف توکن ارتباط شیپور",
+                        MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No) return;
+
+                var token = await AdvTokenBussines.GetTokenAsync(number, AdvertiseType.Sheypoor);
+                if (token == null) return;
+
+                res.AddReturnedValue(await token.RemoveAsync());
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+            finally
+            {
+                if (res.HasError)
+                {
+                    var frm = new FrmShowErrorMessage(res, "خطا در حذف توکن شیپور");
+                    frm.ShowDialog(this);
+                    frm.Dispose();
+                }
+                else await LoadDataAsync(ST, txtSearch.Text);
+            }
+        }
+        private async void mnuDelDivarToken_Click(object sender, EventArgs e)
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                if (DGrid.RowCount <= 0) return;
+                if (DGrid.CurrentRow == null) return;
+
+                var number = DGrid[dgNumber.Index, DGrid.CurrentRow.Index].Value.ToString().ParseToLong();
+                if (number == 0)
+                    res.AddError("شماره انتخاب شده صحیح نمی باشد");
+
+                if (res.HasError) return;
+
+                if (MessageBox.Show(this, "آیا از حذف توکن ارتباط با دیوار اطمینان دارید؟", "حذف توکن ارتباط دیوار",
+                        MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No) return;
+
+                var token = await AdvTokenBussines.GetTokenAsync(number, AdvertiseType.Divar);
+                if (token == null) return;
+
+                res.AddReturnedValue(await token.RemoveAsync());
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+            finally
+            {
+                if (res.HasError)
+                {
+                    var frm = new FrmShowErrorMessage(res, "خطا در حذف توکن دیوار");
+                    frm.ShowDialog(this);
+                    frm.Dispose();
+                }
+                else await LoadDataAsync(ST, txtSearch.Text);
+            }
+        }
+        private async void mnuLoginSheypoor_Click(object sender, EventArgs e)
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                if (DGrid.RowCount <= 0) return;
+                if (DGrid.CurrentRow == null) return;
+                if (!ST)
+                    res.AddError(
+                        "شما مجاز به دریافت توکن داده حذف شده نمی باشید \r\n برای این منظور، ابتدا فیلد موردنظر را از حالت حذف شده به فعال، تغییر وضعیت دهید");
+
+
+                var number = DGrid[dgNumber.Index, DGrid.CurrentRow.Index].Value.ToString().ParseToLong();
+                if (number == 0)
+                    res.AddError("شماره انتخاب شده صحیح نمی باشد");
+
+                if (res.HasError) return;
+
+                var sheypoor = SheypoorAdv.GetInstance();
+                await sheypoor.Login(number, true);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+            finally
+            {
+                if (res.HasError)
+                {
+                    var frm = new FrmShowErrorMessage(res, "خطا در لاگین شیپور");
+                    frm.ShowDialog(this);
+                    frm.Dispose();
+                }
+            }
+        }
+        private async void mnuLoginDivar_Click(object sender, EventArgs e)
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                if (DGrid.RowCount <= 0) return;
+                if (DGrid.CurrentRow == null) return;
+                if (!ST)
+                    res.AddError(
+                        "شما مجاز به دریافت توکن داده حذف شده نمی باشید \r\n برای این منظور، ابتدا فیلد موردنظر را از حالت حذف شده به فعال، تغییر وضعیت دهید");
+                var number = DGrid[dgNumber.Index, DGrid.CurrentRow.Index].Value.ToString().ParseToLong();
+                if (number == 0)
+                    res.AddError("شماره انتخاب شده صحیح نمی باشد");
+                if (res.HasError) return;
+                var divar = DivarAdv.GetInstance();
+                await divar.Login(number, true);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+            finally
+            {
+                if (res.HasError)
+                {
+                    var frm = new FrmShowErrorMessage(res, "خطا در لاگین دیوار");
+                    frm.ShowDialog(this);
+                    frm.Dispose();
+                }
+            }
+        }
+        private void mnuView_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (DGrid.RowCount <= 0) return;
+                if (DGrid.CurrentRow == null) return;
+                var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
+                var frm = new frmSimcardMain(guid, true);
+                frm.ShowDialog(this);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private void mnuStatus_Click(object sender, EventArgs e) => ST = !ST;
+        private async void mnuEdit_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (DGrid.RowCount <= 0) return;
+                if (DGrid.CurrentRow == null) return;
+                if (!ST)
+                {
+                    frmNotification.PublicInfo.ShowMessage(
+                        "شما مجاز به ویرایش داده حذف شده نمی باشید \r\n برای این منظور، ابتدا فیلد موردنظر را از حالت حذف شده به فعال، تغییر وضعیت دهید");
+                    return;
+                }
+                var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
+                var frm = new frmSimcardMain(guid, false);
+                if (frm.ShowDialog(this) == DialogResult.OK)
+                    await LoadDataAsync(ST, txtSearch.Text);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private async void mnuAdd_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var frm = new frmSimcardMain();
+                if (frm.ShowDialog(this) == DialogResult.OK)
+                    await LoadDataAsync(ST);
             }
             catch (Exception ex)
             {

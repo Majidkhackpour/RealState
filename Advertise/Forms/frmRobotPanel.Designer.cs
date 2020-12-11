@@ -29,51 +29,31 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmRobotPanel));
-            this.picSimcard = new System.Windows.Forms.PictureBox();
-            this.picBaseInfo = new System.Windows.Forms.PictureBox();
             this.lblSimcard = new System.Windows.Forms.Label();
             this.lblBaseInfo = new System.Windows.Forms.Label();
-            this.picMatchRegion = new System.Windows.Forms.PictureBox();
             this.lblMatchRegion = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lblSetting = new System.Windows.Forms.Label();
+            this.grp = new DevComponents.DotNetBar.PanelEx();
+            this.fPanel = new System.Windows.Forms.FlowLayoutPanel();
+            this.picSimcard = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.picBaseInfo = new System.Windows.Forms.PictureBox();
+            this.picMatchRegion = new System.Windows.Forms.PictureBox();
+            this.grp.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picSimcard)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBaseInfo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picMatchRegion)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // picSimcard
-            // 
-            this.picSimcard.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.picSimcard.Image = global::Advertise.Properties.Resources._53;
-            this.picSimcard.Location = new System.Drawing.Point(819, 53);
-            this.picSimcard.Name = "picSimcard";
-            this.picSimcard.Size = new System.Drawing.Size(100, 95);
-            this.picSimcard.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.picSimcard.TabIndex = 0;
-            this.picSimcard.TabStop = false;
-            this.picSimcard.Click += new System.EventHandler(this.picSimcard_Click);
-            // 
-            // picBaseInfo
-            // 
-            this.picBaseInfo.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.picBaseInfo.Image = global::Advertise.Properties.Resources._10;
-            this.picBaseInfo.Location = new System.Drawing.Point(819, 218);
-            this.picBaseInfo.Name = "picBaseInfo";
-            this.picBaseInfo.Size = new System.Drawing.Size(100, 95);
-            this.picBaseInfo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.picBaseInfo.TabIndex = 0;
-            this.picBaseInfo.TabStop = false;
-            this.picBaseInfo.Click += new System.EventHandler(this.picBaseInfo_Click);
             // 
             // lblSimcard
             // 
+            this.lblSimcard.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblSimcard.AutoSize = true;
             this.lblSimcard.BackColor = System.Drawing.Color.Transparent;
             this.lblSimcard.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.lblSimcard.ForeColor = System.Drawing.Color.Silver;
-            this.lblSimcard.Location = new System.Drawing.Point(816, 163);
+            this.lblSimcard.ForeColor = System.Drawing.Color.Black;
+            this.lblSimcard.Location = new System.Drawing.Point(24, 108);
             this.lblSimcard.Name = "lblSimcard";
             this.lblSimcard.Size = new System.Drawing.Size(107, 20);
             this.lblSimcard.TabIndex = 1;
@@ -84,11 +64,12 @@
             // 
             // lblBaseInfo
             // 
+            this.lblBaseInfo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblBaseInfo.AutoSize = true;
             this.lblBaseInfo.BackColor = System.Drawing.Color.Transparent;
             this.lblBaseInfo.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.lblBaseInfo.ForeColor = System.Drawing.Color.Silver;
-            this.lblBaseInfo.Location = new System.Drawing.Point(796, 329);
+            this.lblBaseInfo.ForeColor = System.Drawing.Color.Black;
+            this.lblBaseInfo.Location = new System.Drawing.Point(4, 221);
             this.lblBaseInfo.Name = "lblBaseInfo";
             this.lblBaseInfo.Size = new System.Drawing.Size(147, 20);
             this.lblBaseInfo.TabIndex = 1;
@@ -97,25 +78,14 @@
             this.lblBaseInfo.MouseEnter += new System.EventHandler(this.lblBaseInfo_MouseEnter);
             this.lblBaseInfo.MouseLeave += new System.EventHandler(this.lblBaseInfo_MouseLeave);
             // 
-            // picMatchRegion
-            // 
-            this.picMatchRegion.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.picMatchRegion.Image = global::Advertise.Properties.Resources._34;
-            this.picMatchRegion.Location = new System.Drawing.Point(772, 391);
-            this.picMatchRegion.Name = "picMatchRegion";
-            this.picMatchRegion.Size = new System.Drawing.Size(100, 95);
-            this.picMatchRegion.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.picMatchRegion.TabIndex = 0;
-            this.picMatchRegion.TabStop = false;
-            this.picMatchRegion.Click += new System.EventHandler(this.picMatchRegion_Click);
-            // 
             // lblMatchRegion
             // 
+            this.lblMatchRegion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblMatchRegion.AutoSize = true;
             this.lblMatchRegion.BackColor = System.Drawing.Color.Transparent;
             this.lblMatchRegion.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.lblMatchRegion.ForeColor = System.Drawing.Color.Silver;
-            this.lblMatchRegion.Location = new System.Drawing.Point(752, 502);
+            this.lblMatchRegion.ForeColor = System.Drawing.Color.Black;
+            this.lblMatchRegion.Location = new System.Drawing.Point(7, 340);
             this.lblMatchRegion.Name = "lblMatchRegion";
             this.lblMatchRegion.Size = new System.Drawing.Size(144, 20);
             this.lblMatchRegion.TabIndex = 1;
@@ -124,25 +94,14 @@
             this.lblMatchRegion.MouseEnter += new System.EventHandler(this.lblMatchRegion_MouseEnter);
             this.lblMatchRegion.MouseLeave += new System.EventHandler(this.lblMatchRegion_MouseLeave);
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBox1.Image = global::Advertise.Properties.Resources._122;
-            this.pictureBox1.Location = new System.Drawing.Point(64, 53);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(100, 95);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
-            // 
             // lblSetting
             // 
+            this.lblSetting.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblSetting.AutoSize = true;
             this.lblSetting.BackColor = System.Drawing.Color.Transparent;
             this.lblSetting.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.lblSetting.ForeColor = System.Drawing.Color.Silver;
-            this.lblSetting.Location = new System.Drawing.Point(87, 163);
+            this.lblSetting.ForeColor = System.Drawing.Color.Black;
+            this.lblSetting.Location = new System.Drawing.Point(47, 449);
             this.lblSetting.Name = "lblSetting";
             this.lblSetting.Size = new System.Drawing.Size(47, 20);
             this.lblSetting.TabIndex = 1;
@@ -151,22 +110,107 @@
             this.lblSetting.MouseEnter += new System.EventHandler(this.lblSetting_MouseEnter);
             this.lblSetting.MouseLeave += new System.EventHandler(this.lblSetting_MouseLeave);
             // 
+            // grp
+            // 
+            this.grp.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.grp.CanvasColor = System.Drawing.SystemColors.Control;
+            this.grp.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.grp.Controls.Add(this.picSimcard);
+            this.grp.Controls.Add(this.lblSetting);
+            this.grp.Controls.Add(this.lblBaseInfo);
+            this.grp.Controls.Add(this.pictureBox1);
+            this.grp.Controls.Add(this.lblMatchRegion);
+            this.grp.Controls.Add(this.lblSimcard);
+            this.grp.Controls.Add(this.picBaseInfo);
+            this.grp.Controls.Add(this.picMatchRegion);
+            this.grp.DisabledBackColor = System.Drawing.Color.Empty;
+            this.grp.Location = new System.Drawing.Point(825, 31);
+            this.grp.Name = "grp";
+            this.grp.Size = new System.Drawing.Size(152, 555);
+            this.grp.Style.Alignment = System.Drawing.StringAlignment.Center;
+            this.grp.Style.BackColor1.Color = System.Drawing.Color.White;
+            this.grp.Style.BackColor2.Color = System.Drawing.Color.White;
+            this.grp.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
+            this.grp.Style.BorderColor.Color = System.Drawing.Color.Silver;
+            this.grp.Style.BorderWidth = 2;
+            this.grp.Style.CornerType = DevComponents.DotNetBar.eCornerType.Rounded;
+            this.grp.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText;
+            this.grp.Style.GradientAngle = 90;
+            this.grp.TabIndex = 10;
+            // 
+            // fPanel
+            // 
+            this.fPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.fPanel.FlowDirection = System.Windows.Forms.FlowDirection.BottomUp;
+            this.fPanel.Location = new System.Drawing.Point(5, 34);
+            this.fPanel.Name = "fPanel";
+            this.fPanel.Size = new System.Drawing.Size(814, 552);
+            this.fPanel.TabIndex = 14;
+            // 
+            // picSimcard
+            // 
+            this.picSimcard.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.picSimcard.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.picSimcard.Image = global::Advertise.Properties.Resources._53;
+            this.picSimcard.Location = new System.Drawing.Point(34, 22);
+            this.picSimcard.Name = "picSimcard";
+            this.picSimcard.Size = new System.Drawing.Size(82, 81);
+            this.picSimcard.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picSimcard.TabIndex = 0;
+            this.picSimcard.TabStop = false;
+            this.picSimcard.Click += new System.EventHandler(this.picSimcard_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBox1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBox1.Image = global::Advertise.Properties.Resources._122;
+            this.pictureBox1.Location = new System.Drawing.Point(34, 363);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(82, 81);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            // 
+            // picBaseInfo
+            // 
+            this.picBaseInfo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.picBaseInfo.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.picBaseInfo.Image = global::Advertise.Properties.Resources._10;
+            this.picBaseInfo.Location = new System.Drawing.Point(34, 134);
+            this.picBaseInfo.Name = "picBaseInfo";
+            this.picBaseInfo.Size = new System.Drawing.Size(82, 81);
+            this.picBaseInfo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picBaseInfo.TabIndex = 0;
+            this.picBaseInfo.TabStop = false;
+            this.picBaseInfo.Click += new System.EventHandler(this.picBaseInfo_Click);
+            // 
+            // picMatchRegion
+            // 
+            this.picMatchRegion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.picMatchRegion.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.picMatchRegion.Image = global::Advertise.Properties.Resources._34;
+            this.picMatchRegion.Location = new System.Drawing.Point(34, 252);
+            this.picMatchRegion.Name = "picMatchRegion";
+            this.picMatchRegion.Size = new System.Drawing.Size(82, 81);
+            this.picMatchRegion.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picMatchRegion.TabIndex = 0;
+            this.picMatchRegion.TabStop = false;
+            this.picMatchRegion.Click += new System.EventHandler(this.picMatchRegion_Click);
+            // 
             // frmRobotPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = global::Advertise.Properties.Resources.D1;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(989, 598);
             this.ControlBox = false;
-            this.Controls.Add(this.lblMatchRegion);
-            this.Controls.Add(this.lblBaseInfo);
-            this.Controls.Add(this.lblSetting);
-            this.Controls.Add(this.lblSimcard);
-            this.Controls.Add(this.picMatchRegion);
-            this.Controls.Add(this.picBaseInfo);
-            this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.picSimcard);
+            this.Controls.Add(this.fPanel);
+            this.Controls.Add(this.grp);
             this.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -177,14 +221,17 @@
             this.MinimumSize = new System.Drawing.Size(991, 600);
             this.Name = "frmRobotPanel";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Style = MetroFramework.MetroColorStyle.Green;
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.frmRobotPanel_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmRobotPanel_KeyDown);
+            this.grp.ResumeLayout(false);
+            this.grp.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picSimcard)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBaseInfo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picMatchRegion)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -198,5 +245,7 @@
         private System.Windows.Forms.Label lblMatchRegion;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label lblSetting;
+        private DevComponents.DotNetBar.PanelEx grp;
+        private System.Windows.Forms.FlowLayoutPanel fPanel;
     }
 }

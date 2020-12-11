@@ -44,7 +44,6 @@
             this.cityGuidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.regBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.btnInsert = new DevComponents.DotNetBar.ButtonX();
-            this.line1 = new DevComponents.DotNetBar.Controls.Line();
             this.label5 = new System.Windows.Forms.Label();
             this.cmbState = new System.Windows.Forms.ComboBox();
             this.cityBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -96,7 +95,7 @@
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.DGrid.DefaultCellStyle = dataGridViewCellStyle3;
             this.DGrid.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
-            this.DGrid.Location = new System.Drawing.Point(3, 66);
+            this.DGrid.Location = new System.Drawing.Point(13, 66);
             this.DGrid.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.DGrid.Name = "DGrid";
             this.DGrid.ReadOnly = true;
@@ -119,7 +118,7 @@
             this.DGrid.RowsDefaultCellStyle = dataGridViewCellStyle5;
             this.DGrid.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             this.DGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DGrid.Size = new System.Drawing.Size(795, 470);
+            this.DGrid.Size = new System.Drawing.Size(776, 491);
             this.DGrid.TabIndex = 55745;
             this.DGrid.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DGrid_CellFormatting);
             // 
@@ -193,17 +192,6 @@
             this.btnInsert.TextColor = System.Drawing.Color.White;
             this.btnInsert.Click += new System.EventHandler(this.btnInsert_Click);
             // 
-            // line1
-            // 
-            this.line1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.line1.Location = new System.Drawing.Point(1, 543);
-            this.line1.Name = "line1";
-            this.line1.Size = new System.Drawing.Size(799, 23);
-            this.line1.TabIndex = 55751;
-            this.line1.Text = "line1";
-            this.line1.Thickness = 2;
-            // 
             // label5
             // 
             this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -238,13 +226,14 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(800, 600);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.cmbState);
             this.Controls.Add(this.btnInsert);
-            this.Controls.Add(this.line1);
             this.Controls.Add(this.DGrid);
             this.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -252,7 +241,6 @@
             this.Name = "frmShowMatchRegion";
             this.Padding = new System.Windows.Forms.Padding(27, 92, 27, 31);
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.Style = MetroFramework.MetroColorStyle.Green;
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmShowMatchRegion_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmShowMatchRegion_KeyDown);
@@ -268,7 +256,6 @@
 
         private DevComponents.DotNetBar.Controls.DataGridViewX DGrid;
         private DevComponents.DotNetBar.ButtonX btnInsert;
-        private DevComponents.DotNetBar.Controls.Line line1;
         private System.Windows.Forms.BindingSource regBindingSource;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ComboBox cmbState;

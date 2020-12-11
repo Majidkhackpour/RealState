@@ -21,13 +21,13 @@ namespace EntityCache.Bussines
         public static async Task<List<DivarCities>> GetDivarCityAsync()
         {
             var list = await UnitOfWork.SerializedData.GetAsync("DivarCities");
-            return list.Data.FromJson<List<DivarCities>>();
+            return list?.Data.FromJson<List<DivarCities>>();
         }
 
         public static async Task<List<DivarRegion>> GetDivarRegionAsync()
         {
             var list = await UnitOfWork.SerializedData.GetAsync("DivarRegions");
-            return list.Data.FromJson<List<DivarRegion>>();
+            return list?.Data.FromJson<List<DivarRegion>>();
         }
 
         public static async Task<SerializedDataBussines> GetAsync(string memberName) =>

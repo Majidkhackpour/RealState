@@ -112,56 +112,61 @@ namespace Advertise.Forms.Simcard
 
         private async void btnFinish_Click(object sender, EventArgs e)
         {
+            var res = new ReturnedSaveFuncInfo();
             try
             {
-                if (cls.Guid == Guid.Empty)
-                    cls.Guid = Guid.NewGuid();
+                if (cls.Guid == Guid.Empty) cls.Guid = Guid.NewGuid();
 
                 if (string.IsNullOrWhiteSpace(txtOwner.Text))
                 {
-                    frmNotification.PublicInfo.ShowMessage("مالک نمی تواند خالی باشد");
+                    res.AddError("مالک نمی تواند خالی باشد");
                     txtOwner.Focus();
-                    return;
-                }
-                if (string.IsNullOrWhiteSpace(txtNumber.Text))
-                {
-                    frmNotification.PublicInfo.ShowMessage("شماره نمی تواند خالی باشد");
-                    txtNumber.Focus();
-                    return;
-                }
-                if (!await SimcardBussines.CheckNumberAsync(txtNumber.Text.ParseToLong(), cls.Guid))
-                {
-                    frmNotification.PublicInfo.ShowMessage("شماره وارد شده تکراری می باشد");
-                    txtNumber.Focus();
-                    return;
-                }
-               
-                if (!CheckPerssonValidation.CheckMobile(txtNumber.Text.Trim()))
-                {
-                    frmNotification.PublicInfo.ShowMessage("شماره موبایل وارد شده صحیح نمی باشد");
-                    txtNumber.Focus();
-                    return;
                 }
 
+                if (string.IsNullOrWhiteSpace(txtNumber.Text))
+                {
+                    res.AddError("شماره نمی تواند خالی باشد");
+                    txtNumber.Focus();
+                }
+
+                if (!await SimcardBussines.CheckNumberAsync(txtNumber.Text.ParseToLong(), cls.Guid))
+                {
+                    res.AddError("شماره وارد شده تکراری می باشد");
+                    txtNumber.Focus();
+                }
+
+                if (!CheckPerssonValidation.CheckMobile(txtNumber.Text.Trim()))
+                {
+                    res.AddError("شماره موبایل وارد شده صحیح نمی باشد");
+                    txtNumber.Focus();
+                }
+
+                if (res.HasError) return;
 
                 cls.Owner = txtOwner.Text.Trim();
                 cls.Number = txtNumber.Text.FixString().Trim().ParseToLong();
                 cls.Operator = cmbOperator.Text;
 
-                var res = await cls.SaveAsync();
+                res.AddReturnedValue(await cls.SaveAsync());
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+            finally
+            {
                 if (res.HasError)
                 {
-                    frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);
-                    return;
+                    var frm = new FrmShowErrorMessage(res, "خطا در ثبت سیمکارت");
+                    frm.ShowDialog(this);
+                    frm.Dispose();
                 }
-
-
-                DialogResult = DialogResult.OK;
-                Close();
-            }
-            catch (Exception exception)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(exception);
+                else
+                {
+                    DialogResult = DialogResult.OK;
+                    Close();
+                }
             }
         }
     }

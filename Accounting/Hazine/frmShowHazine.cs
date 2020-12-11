@@ -71,25 +71,15 @@ namespace Accounting.Hazine
             InitializeComponent();
             isShowMode = _isShowMode;
             DGrid.Focus();
-            if (isShowMode)
+            if (_isShowMode)
             {
-                mnuDelete.Visible = false;
-                mnuAdd.Visible = false;
-                mnuEdit.Visible = false;
-                mnuView.Visible = false;
-                mnuStatus.Visible = false;
+                contextMenu.Enabled = false;
                 btnSelect.Visible = true;
-                mnuPrint.Visible = false;
             }
             else
             {
-                mnuDelete.Visible = true;
-                mnuAdd.Visible = true;
-                mnuEdit.Visible = true;
-                mnuView.Visible = true;
-                mnuStatus.Visible = true;
+                contextMenu.Enabled = true;
                 btnSelect.Visible = false;
-                mnuPrint.Visible = true;
             }
 
             SetAccess();

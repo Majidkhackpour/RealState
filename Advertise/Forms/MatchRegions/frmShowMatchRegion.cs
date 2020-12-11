@@ -8,7 +8,7 @@ using Services;
 
 namespace Advertise.Forms.MatchRegions
 {
-    public partial class frmShowMatchRegion : MetroForm
+    public partial class frmShowMatchRegion : Form
     {
         private async Task LoadDataAsync()
         {
@@ -30,11 +30,11 @@ namespace Advertise.Forms.MatchRegions
             try
             {
                 var list = await SerializedDataBussines.GetDivarCityAsync();
-                var dc = list.Where(q =>
+                var dc = list?.Where(q =>
                     q.Name.Contains("مشهد") || q.Name.Contains("اصفهان") || q.Name.Contains("تهران") ||
                     q.Name.Contains("کرج") || q.Name.Contains("اهواز") || q.Name.Contains("شیراز") ||
                     q.Name.Contains("قم")).ToList();
-                cityBindingSource.DataSource = dc.ToList();
+                cityBindingSource.DataSource = dc?.ToList();
                 if (cityBindingSource.Count > 0)
                 {
                     var cityLocal = await CitiesBussines.GetAsync(Guid.Parse(Settings.Classes.clsEconomyUnit.EconomyCity));
@@ -78,9 +78,6 @@ namespace Advertise.Forms.MatchRegions
                 {
                     case Keys.Insert:
                         btnInsert.PerformClick();
-                        break;
-                    case Keys.Escape:
-                        Close();
                         break;
                 }
             }
