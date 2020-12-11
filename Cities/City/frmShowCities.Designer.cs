@@ -53,10 +53,6 @@
             this.modifiedDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.statusDataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.stateGuidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CityBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.cmbState = new System.Windows.Forms.ComboBox();
-            this.stateBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.label5 = new System.Windows.Forms.Label();
             this.contextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.mnuAdd = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuEdit = new System.Windows.Forms.ToolStripMenuItem();
@@ -64,10 +60,14 @@
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.mnuView = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuStatus = new System.Windows.Forms.ToolStripMenuItem();
+            this.CityBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.cmbState = new System.Windows.Forms.ComboBox();
+            this.stateBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.label5 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).BeginInit();
+            this.contextMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CityBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.stateBindingSource)).BeginInit();
-            this.contextMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // answerQuestionDataGridViewTextBoxColumn
@@ -223,7 +223,6 @@
             this.DGrid.Size = new System.Drawing.Size(795, 512);
             this.DGrid.TabIndex = 55711;
             this.DGrid.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DGrid_CellFormatting);
-            this.DGrid.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.DGrid_KeyPress);
             // 
             // dgRadif
             // 
@@ -280,6 +279,65 @@
             this.stateGuidDataGridViewTextBoxColumn.ReadOnly = true;
             this.stateGuidDataGridViewTextBoxColumn.Visible = false;
             // 
+            // contextMenu
+            // 
+            this.contextMenu.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.contextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnuAdd,
+            this.mnuEdit,
+            this.mnuDelete,
+            this.toolStripMenuItem1,
+            this.mnuView,
+            this.mnuStatus});
+            this.contextMenu.Name = "contextMenu";
+            this.contextMenu.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.contextMenu.Size = new System.Drawing.Size(197, 152);
+            // 
+            // mnuAdd
+            // 
+            this.mnuAdd.Image = global::Cities.Properties.Resources.add_2_;
+            this.mnuAdd.Name = "mnuAdd";
+            this.mnuAdd.Size = new System.Drawing.Size(196, 24);
+            this.mnuAdd.Text = "افزودن شهر جدید (Ins)";
+            this.mnuAdd.Click += new System.EventHandler(this.mnuAdd_Click);
+            // 
+            // mnuEdit
+            // 
+            this.mnuEdit.Image = global::Cities.Properties.Resources.edit_1_;
+            this.mnuEdit.Name = "mnuEdit";
+            this.mnuEdit.Size = new System.Drawing.Size(196, 24);
+            this.mnuEdit.Text = "ویرایش شهر جاری (F7)";
+            this.mnuEdit.Click += new System.EventHandler(this.mnuEdit_Click);
+            // 
+            // mnuDelete
+            // 
+            this.mnuDelete.Image = global::Cities.Properties.Resources.delete_1_;
+            this.mnuDelete.Name = "mnuDelete";
+            this.mnuDelete.Size = new System.Drawing.Size(196, 24);
+            this.mnuDelete.Text = "حذف شهرجاری (Del)";
+            this.mnuDelete.Click += new System.EventHandler(this.mnuDelete_Click);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(193, 6);
+            // 
+            // mnuView
+            // 
+            this.mnuView.Image = global::Cities.Properties.Resources.article_1_;
+            this.mnuView.Name = "mnuView";
+            this.mnuView.Size = new System.Drawing.Size(196, 24);
+            this.mnuView.Text = "مشاهده (F12)";
+            this.mnuView.Click += new System.EventHandler(this.mnuView_Click);
+            // 
+            // mnuStatus
+            // 
+            this.mnuStatus.Image = global::Cities.Properties.Resources.refresh_round_symbol;
+            this.mnuStatus.Name = "mnuStatus";
+            this.mnuStatus.Size = new System.Drawing.Size(196, 24);
+            this.mnuStatus.Text = "غیرفعال (Ctrl+S)";
+            this.mnuStatus.Click += new System.EventHandler(this.mnuStatus_Click);
+            // 
             // CityBindingSource
             // 
             this.CityBindingSource.DataSource = typeof(EntityCache.Bussines.CitiesBussines);
@@ -313,60 +371,6 @@
             this.label5.TabIndex = 55720;
             this.label5.Text = "استان";
             // 
-            // contextMenu
-            // 
-            this.contextMenu.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.contextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mnuAdd,
-            this.mnuEdit,
-            this.mnuDelete,
-            this.toolStripMenuItem1,
-            this.mnuView,
-            this.mnuStatus});
-            this.contextMenu.Name = "contextMenu";
-            this.contextMenu.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.contextMenu.Size = new System.Drawing.Size(197, 152);
-            // 
-            // mnuAdd
-            // 
-            this.mnuAdd.Name = "mnuAdd";
-            this.mnuAdd.Size = new System.Drawing.Size(196, 24);
-            this.mnuAdd.Text = "افزودن شهر جدید (Ins)";
-            this.mnuAdd.Click += new System.EventHandler(this.mnuAdd_Click);
-            // 
-            // mnuEdit
-            // 
-            this.mnuEdit.Name = "mnuEdit";
-            this.mnuEdit.Size = new System.Drawing.Size(196, 24);
-            this.mnuEdit.Text = "ویرایش شهر جاری (F7)";
-            this.mnuEdit.Click += new System.EventHandler(this.mnuEdit_Click);
-            // 
-            // mnuDelete
-            // 
-            this.mnuDelete.Name = "mnuDelete";
-            this.mnuDelete.Size = new System.Drawing.Size(196, 24);
-            this.mnuDelete.Text = "حذف شهرجاری (Del)";
-            this.mnuDelete.Click += new System.EventHandler(this.mnuDelete_Click);
-            // 
-            // toolStripMenuItem1
-            // 
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(193, 6);
-            // 
-            // mnuView
-            // 
-            this.mnuView.Name = "mnuView";
-            this.mnuView.Size = new System.Drawing.Size(196, 24);
-            this.mnuView.Text = "مشاهده (F12)";
-            this.mnuView.Click += new System.EventHandler(this.mnuView_Click);
-            // 
-            // mnuStatus
-            // 
-            this.mnuStatus.Name = "mnuStatus";
-            this.mnuStatus.Size = new System.Drawing.Size(196, 24);
-            this.mnuStatus.Text = "غیرفعال (Ctrl+S)";
-            this.mnuStatus.Click += new System.EventHandler(this.mnuStatus_Click);
-            // 
             // frmShowCities
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -388,9 +392,9 @@
             this.Load += new System.EventHandler(this.frmShowCities_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmShowCities_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).EndInit();
+            this.contextMenu.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.CityBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.stateBindingSource)).EndInit();
-            this.contextMenu.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 

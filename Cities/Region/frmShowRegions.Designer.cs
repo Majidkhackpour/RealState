@@ -157,7 +157,6 @@
             this.DGrid.Size = new System.Drawing.Size(795, 514);
             this.DGrid.TabIndex = 55720;
             this.DGrid.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DGrid_CellFormatting);
-            this.DGrid.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.DGrid_KeyPress);
             // 
             // dgRadif
             // 
@@ -246,6 +245,7 @@
             // 
             // mnuAdd
             // 
+            this.mnuAdd.Image = global::Cities.Properties.Resources.add_2_;
             this.mnuAdd.Name = "mnuAdd";
             this.mnuAdd.Size = new System.Drawing.Size(203, 24);
             this.mnuAdd.Text = "افزودن منطقه جدید (Ins)";
@@ -253,6 +253,7 @@
             // 
             // mnuEdit
             // 
+            this.mnuEdit.Image = global::Cities.Properties.Resources.edit_1_;
             this.mnuEdit.Name = "mnuEdit";
             this.mnuEdit.Size = new System.Drawing.Size(203, 24);
             this.mnuEdit.Text = "ویرایش منطقه جاری (F7)";
@@ -260,6 +261,7 @@
             // 
             // mnuDelete
             // 
+            this.mnuDelete.Image = global::Cities.Properties.Resources.delete_1_;
             this.mnuDelete.Name = "mnuDelete";
             this.mnuDelete.Size = new System.Drawing.Size(203, 24);
             this.mnuDelete.Text = "حذف منطقه جاری (Del)";
@@ -272,6 +274,7 @@
             // 
             // mnuView
             // 
+            this.mnuView.Image = global::Cities.Properties.Resources.article_1_;
             this.mnuView.Name = "mnuView";
             this.mnuView.Size = new System.Drawing.Size(203, 24);
             this.mnuView.Text = "مشاهده (F12)";
@@ -279,6 +282,7 @@
             // 
             // mnuStatus
             // 
+            this.mnuStatus.Image = global::Cities.Properties.Resources.refresh_round_symbol;
             this.mnuStatus.Name = "mnuStatus";
             this.mnuStatus.Size = new System.Drawing.Size(203, 24);
             this.mnuStatus.Text = "غیرفعال (Ctrl+S)";

@@ -31,11 +31,11 @@ namespace Building.BuildingView
             try
             {
                 var access = clsUser.CurrentUser.UserAccess;
-                btnInsert.Enabled = access?.BuildingView.Building_View_Insert ?? false;
-                btnEdit.Enabled = access?.BuildingView.Building_View_Update ?? false;
-                btnDelete.Enabled = access?.BuildingView.Building_View_Delete ?? false;
-                btnChangeStatus.Enabled = access?.BuildingView.Building_View_Disable ?? false;
-                btnView.Enabled = access?.BuildingView.Building_View_View ?? false;
+                mnuAdd.Enabled = access?.BuildingView.Building_View_Insert ?? false;
+                mnuEdit.Enabled = access?.BuildingView.Building_View_Update ?? false;
+                mnuDelete.Enabled = access?.BuildingView.Building_View_Delete ?? false;
+                mnuStatus.Enabled = access?.BuildingView.Building_View_Disable ?? false;
+                mnuView.Enabled = access?.BuildingView.Building_View_View ?? false;
             }
             catch (Exception ex)
             {
@@ -50,34 +50,34 @@ namespace Building.BuildingView
                 _st = value;
                 if (_st)
                 {
-                    btnChangeStatus.Text = "غیرفعال (Ctrl+S)";
+                    mnuStatus.Text = "غیرفعال (Ctrl+S)";
                     Task.Run(() => LoadDataAsync(ST, txtSearch.Text));
-                    btnDelete.Text = "حذف (Del)";
+                    mnuDelete.Text = "حذف (Del)";
                 }
                 else
                 {
-                    btnChangeStatus.Text = "فعال (Ctrl+S)";
+                    mnuStatus.Text = "فعال (Ctrl+S)";
                     Task.Run(() => LoadDataAsync(ST, txtSearch.Text));
-                    btnDelete.Text = "فعال کردن";
+                    mnuDelete.Text = "فعال کردن";
                 }
             }
         }
+
         public frmShowBuildingView()
         {
             InitializeComponent();
             SetAccess();
+            DGrid.Focus();
         }
 
         private async void frmShowBuildingView_Load(object sender, EventArgs e)
         {
             await LoadDataAsync(ST);
         }
-
         private void DGrid_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
             DGrid.Rows[e.RowIndex].Cells["dgRadif"].Value = e.RowIndex + 1;
         }
-
         private async void txtSearch_TextChanged(object sender, EventArgs e)
         {
             try
@@ -89,7 +89,6 @@ namespace Building.BuildingView
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-
         private void frmShowBuildingView_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -97,16 +96,16 @@ namespace Building.BuildingView
                 switch (e.KeyCode)
                 {
                     case Keys.Insert:
-                        btnInsert.PerformClick();
+                        mnuAdd.PerformClick();
                         break;
                     case Keys.F7:
-                        btnEdit.PerformClick();
+                        mnuEdit.PerformClick();
                         break;
                     case Keys.Delete:
-                        btnDelete.PerformClick();
+                        mnuDelete.PerformClick();
                         break;
                     case Keys.F12:
-                        btnView.PerformClick();
+                        mnuView.PerformClick();
                         break;
                     case Keys.S:
                         if (e.Control) ST = !ST;
@@ -117,6 +116,9 @@ namespace Building.BuildingView
                     case Keys.F:
                         if (e.Control) txtSearch.Focus();
                         break;
+                    case Keys.Enter:
+                        mnuEdit.PerformClick();
+                        break;
                 }
             }
             catch (Exception ex)
@@ -124,74 +126,23 @@ namespace Building.BuildingView
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-
-        private void btnChangeStatus_Click(object sender, EventArgs e)
-        {
-            ST = !ST;
-        }
-
-        private async void btnDelete_Click(object sender, EventArgs e)
+        private void mnuStatus_Click(object sender, EventArgs e) => ST = !ST;
+        private void mnuView_Click(object sender, EventArgs e)
         {
             try
             {
                 if (DGrid.RowCount <= 0) return;
                 if (DGrid.CurrentRow == null) return;
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
-                if (ST)
-                {
-                    if (MessageBox.Show(this,
-                            $@"آیا از حذف {DGrid[dgName.Index, DGrid.CurrentRow.Index].Value} اطمینان دارید؟", "حذف",
-                            MessageBoxButtons.YesNo,
-                            MessageBoxIcon.Question) == DialogResult.No) return;
-                    var prd = await BuildingViewBussines.GetAsync(guid);
-                    var res = await prd.ChangeStatusAsync(false, true);
-                    if (res.HasError)
-                    {
-                        frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);
-                        return;
-                    }
-
-                    User.UserLog.Save(EnLogAction.Delete, EnLogPart.BuildingView);
-                }
-                else
-                {
-                    if (MessageBox.Show(this,
-                            $@"آیا از فعال کردن {DGrid[dgName.Index, DGrid.CurrentRow.Index].Value} اطمینان دارید؟", "حذف",
-                            MessageBoxButtons.YesNo,
-                            MessageBoxIcon.Question) == DialogResult.No) return;
-                    var prd = await BuildingViewBussines.GetAsync(guid);
-                    var res = await prd.ChangeStatusAsync(true, true);
-                    if (res.HasError)
-                    {
-                        frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);
-                        return;
-                    }
-                    User.UserLog.Save(EnLogAction.Enable, EnLogPart.BuildingView);
-                }
-
-                await LoadDataAsync(ST, txtSearch.Text);
+                var frm = new frmBuildingViewMain(guid, true);
+                frm.ShowDialog(this);
             }
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-
-        private async void btnInsert_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                var frm = new frmBuildingViewMain();
-                if (frm.ShowDialog(this) == DialogResult.OK)
-                    await LoadDataAsync(ST);
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-
-        private async void btnEdit_Click(object sender, EventArgs e)
+        private async void mnuEdit_Click(object sender, EventArgs e)
         {
             try
             {
@@ -213,34 +164,66 @@ namespace Building.BuildingView
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-
-        private void btnView_Click(object sender, EventArgs e)
+        private async void mnuAdd_Click(object sender, EventArgs e)
         {
             try
             {
-                if (DGrid.RowCount <= 0) return;
-                if (DGrid.CurrentRow == null) return;
-                var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
-                var frm = new frmBuildingViewMain(guid, true);
-                frm.ShowDialog(this);
+                var frm = new frmBuildingViewMain();
+                if (frm.ShowDialog(this) == DialogResult.OK)
+                    await LoadDataAsync(ST);
             }
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-
-        private void DGrid_KeyPress(object sender, KeyPressEventArgs e)
+        private async void mnuDelete_Click(object sender, EventArgs e)
         {
+            var res = new ReturnedSaveFuncInfo();
             try
             {
-                txtSearch.Focus();
-                txtSearch.Text = e.KeyChar.ToString();
-                txtSearch.SelectionStart = 9999;
+                if (DGrid.RowCount <= 0) return;
+                if (DGrid.CurrentRow == null) return;
+                var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
+                if (ST)
+                {
+                    if (MessageBox.Show(this,
+                            $@"آیا از حذف {DGrid[dgName.Index, DGrid.CurrentRow.Index].Value} اطمینان دارید؟", "حذف",
+                            MessageBoxButtons.YesNo,
+                            MessageBoxIcon.Question) == DialogResult.No) return;
+                    var prd = await BuildingViewBussines.GetAsync(guid);
+                    res.AddReturnedValue(await prd.ChangeStatusAsync(false, true));
+                    if (res.HasError) return;
+
+                    User.UserLog.Save(EnLogAction.Delete, EnLogPart.BuildingView);
+                }
+                else
+                {
+                    if (MessageBox.Show(this,
+                            $@"آیا از فعال کردن {DGrid[dgName.Index, DGrid.CurrentRow.Index].Value} اطمینان دارید؟",
+                            "حذف",
+                            MessageBoxButtons.YesNo,
+                            MessageBoxIcon.Question) == DialogResult.No) return;
+                    var prd = await BuildingViewBussines.GetAsync(guid);
+                    res.AddReturnedValue(await prd.ChangeStatusAsync(true, true));
+                    if (res.HasError) return;
+                    User.UserLog.Save(EnLogAction.Enable, EnLogPart.BuildingView);
+                }
             }
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+            finally
+            {
+                if (res.HasError)
+                {
+                    var frm = new FrmShowErrorMessage(res, "خطا در تغییر وضعیت نمای ملک");
+                    frm.ShowDialog(this);
+                    frm.Dispose();
+                }
+                else await LoadDataAsync(ST, txtSearch.Text);
             }
         }
     }

@@ -97,40 +97,46 @@ namespace Building.KitchenService
 
         private async void btnFinish_Click(object sender, EventArgs e)
         {
+            var res = new ReturnedSaveFuncInfo();
             try
             {
                 if (string.IsNullOrWhiteSpace(txtName.Text))
                 {
-                    frmNotification.PublicInfo.ShowMessage("عنوان نمی تواند خالی باشد");
+                    res.AddError("عنوان نمی تواند خالی باشد");
                     txtName.Focus();
-                    return;
                 }
 
                 if (!await KitchenServiceBussines.CheckNameAsync(txtName.Text.Trim(), cls.Guid))
                 {
-                    frmNotification.PublicInfo.ShowMessage("عنوان وارد شده تکراری است");
+                    res.AddError("عنوان وارد شده تکراری است");
                     txtName.Focus();
-                    return;
                 }
 
+                if (res.HasError) return;
                 if (cls.Guid == Guid.Empty) cls.Guid = Guid.NewGuid();
                 cls.Name = txtName.Text.Trim();
 
-                var res = await cls.SaveAsync(true);
-                if (res.HasError)
-                {
-                    frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);
-                    return;
-                }
-
-                User.UserLog.Save(action, EnLogPart.KitchenService);
-
-                DialogResult = DialogResult.OK;
-                Close();
+                res.AddReturnedValue(await cls.SaveAsync(true));
             }
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+            finally
+            {
+                if (res.HasError)
+                {
+                    var frm = new FrmShowErrorMessage(res, "خطا در ثبت سرویس آشپزخانه");
+                    frm.ShowDialog(this);
+                    frm.Dispose();
+                }
+                else
+                {
+                    User.UserLog.Save(action, EnLogPart.KitchenService);
+                    DialogResult = DialogResult.OK;
+                    Close();
+                }
             }
         }
     }

@@ -159,16 +159,7 @@ namespace Cities.Region
         }
         private void DGrid_KeyPress(object sender, KeyPressEventArgs e)
         {
-            try
-            {
-                txtSearch.Focus();
-                txtSearch.Text = e.KeyChar.ToString();
-                txtSearch.SelectionStart = 9999;
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
+
         }
         private void mnuStatus_Click(object sender, EventArgs e) => ST = !ST;
         private void mnuView_Click(object sender, EventArgs e)
