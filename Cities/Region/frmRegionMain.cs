@@ -39,7 +39,6 @@ namespace Cities.Region
             cls = new RegionsBussines();
             action = EnLogAction.Insert;
         }
-
         public frmRegionMain(Guid guid, bool isShowMode)
         {
             InitializeComponent();
@@ -112,7 +111,7 @@ namespace Cities.Region
             {
                 if (cmbState.SelectedValue == null) return;
                 var list = await CitiesBussines.GetAllAsync((Guid)cmbState.SelectedValue);
-                CitiesBindingSource.DataSource = list.OrderBy(q=>q.Name).ToList();
+                CitiesBindingSource.DataSource = list.OrderBy(q => q.Name).ToList();
             }
             catch (Exception ex)
             {
@@ -122,49 +121,54 @@ namespace Cities.Region
 
         private async void btnFinish_Click(object sender, EventArgs e)
         {
+            var res = new ReturnedSaveFuncInfo();
             try
             {
                 if (StateBindingSource.Count <= 0)
                 {
-                    frmNotification.PublicInfo.ShowMessage("استان نمی تواند خالی باشد");
+                    res.AddError("استان نمی تواند خالی باشد");
                     cmbState.Focus();
-                    return;
                 }
 
                 if (CitiesBindingSource.Count <= 0)
                 {
-                    frmNotification.PublicInfo.ShowMessage("شهرستان نمی تواند خالی باشد");
+                    res.AddError("شهرستان نمی تواند خالی باشد");
                     cmbCity.Focus();
-                    return;
                 }
 
                 if (string.IsNullOrWhiteSpace(txtRegion.Text))
                 {
-                    frmNotification.PublicInfo.ShowMessage("عنوان منطقه نمی تواند خالی باشد");
+                    res.AddError("عنوان منطقه نمی تواند خالی باشد");
                     txtRegion.Focus();
-                    return;
                 }
 
+                if (res.HasError) return;
 
                 if (cls.Guid == Guid.Empty) cls.Guid = Guid.NewGuid();
                 cls.Name = txtRegion.Text;
                 cls.CityGuid = (Guid)cmbCity.SelectedValue;
 
-                var res = await cls.SaveAsync(true);
-                if (res.HasError)
-                {
-                    frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);
-                    return;
-                }
-
-                User.UserLog.Save(action, EnLogPart.Regions);
-
-                DialogResult = DialogResult.OK;
-                Close();
+                res.AddReturnedValue(await cls.SaveAsync(true));
             }
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+            finally
+            {
+                if (res.HasError)
+                {
+                    var frm = new FrmShowErrorMessage(res, "خطا در درج منطقه");
+                    frm.ShowDialog(this);
+                    frm.Dispose();
+                }
+                else
+                {
+                    User.UserLog.Save(action, EnLogPart.Regions);
+                    DialogResult = DialogResult.OK;
+                    Close();
+                }
             }
         }
     }
