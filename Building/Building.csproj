@@ -740,6 +740,15 @@
   <ItemGroup>
     <None Include="Resources\Google-Maps-Terminates-IR-domains.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\technology-1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\profile.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\list.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
