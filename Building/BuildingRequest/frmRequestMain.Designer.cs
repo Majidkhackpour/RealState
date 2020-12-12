@@ -38,32 +38,26 @@
             this.superTabControl1 = new DevComponents.DotNetBar.SuperTabControl();
             this.superTabControlPanel1 = new DevComponents.DotNetBar.SuperTabControlPanel();
             this.groupPanel4 = new DevComponents.DotNetBar.Controls.GroupPanel();
+            this.txtEjare2 = new WindowsSerivces.CurrencyTextBox();
+            this.txtRahn2 = new WindowsSerivces.CurrencyTextBox();
             this.cmbRentalAuthority = new System.Windows.Forms.ComboBox();
             this.rentalBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.txtEjare1 = new WindowsSerivces.CurrencyTextBox();
+            this.txtRahn1 = new WindowsSerivces.CurrencyTextBox();
             this.label19 = new System.Windows.Forms.Label();
             this.chbShortDate = new DevComponents.DotNetBar.Controls.CheckBoxX();
             this.chbHasOwner = new DevComponents.DotNetBar.Controls.CheckBoxX();
             this.txtPeopleCount = new System.Windows.Forms.NumericUpDown();
-            this.txtEjare2 = new System.Windows.Forms.NumericUpDown();
-            this.txtRahn2 = new System.Windows.Forms.NumericUpDown();
-            this.cmbEjare2 = new System.Windows.Forms.ComboBox();
-            this.cmbRahn2 = new System.Windows.Forms.ComboBox();
             this.label12 = new System.Windows.Forms.Label();
-            this.txtEjare1 = new System.Windows.Forms.NumericUpDown();
             this.label10 = new System.Windows.Forms.Label();
-            this.txtRahn1 = new System.Windows.Forms.NumericUpDown();
-            this.cmbEjare1 = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.cmbRahn1 = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
             this.groupPanel3 = new DevComponents.DotNetBar.Controls.GroupPanel();
+            this.txtSellPrice2 = new WindowsSerivces.CurrencyTextBox();
+            this.txtSellPrice1 = new WindowsSerivces.CurrencyTextBox();
             this.chbHasVam = new DevComponents.DotNetBar.Controls.CheckBoxX();
-            this.txtSellPrice2 = new System.Windows.Forms.NumericUpDown();
-            this.cmbSellPrice2 = new System.Windows.Forms.ComboBox();
-            this.txtSellPrice1 = new System.Windows.Forms.NumericUpDown();
             this.label20 = new System.Windows.Forms.Label();
-            this.cmbSellPrice1 = new System.Windows.Forms.ComboBox();
             this.label22 = new System.Windows.Forms.Label();
             this.groupPanel1 = new DevComponents.DotNetBar.Controls.GroupPanel();
             this.lblDateNow = new System.Windows.Forms.Label();
@@ -135,13 +129,7 @@
             this.groupPanel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.rentalBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPeopleCount)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtEjare2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtRahn2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtEjare1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtRahn1)).BeginInit();
             this.groupPanel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtSellPrice2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtSellPrice1)).BeginInit();
             this.groupPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).BeginInit();
             this.superTabControlPanel2.SuspendLayout();
@@ -218,23 +206,19 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupPanel4.CanvasColor = System.Drawing.SystemColors.Control;
             this.groupPanel4.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
+            this.groupPanel4.Controls.Add(this.txtEjare2);
+            this.groupPanel4.Controls.Add(this.txtRahn2);
             this.groupPanel4.Controls.Add(this.cmbRentalAuthority);
+            this.groupPanel4.Controls.Add(this.txtEjare1);
+            this.groupPanel4.Controls.Add(this.txtRahn1);
             this.groupPanel4.Controls.Add(this.label19);
             this.groupPanel4.Controls.Add(this.chbShortDate);
             this.groupPanel4.Controls.Add(this.chbHasOwner);
             this.groupPanel4.Controls.Add(this.txtPeopleCount);
-            this.groupPanel4.Controls.Add(this.txtEjare2);
-            this.groupPanel4.Controls.Add(this.txtRahn2);
-            this.groupPanel4.Controls.Add(this.cmbEjare2);
-            this.groupPanel4.Controls.Add(this.cmbRahn2);
             this.groupPanel4.Controls.Add(this.label12);
-            this.groupPanel4.Controls.Add(this.txtEjare1);
             this.groupPanel4.Controls.Add(this.label10);
-            this.groupPanel4.Controls.Add(this.txtRahn1);
-            this.groupPanel4.Controls.Add(this.cmbEjare1);
             this.groupPanel4.Controls.Add(this.label7);
             this.groupPanel4.Controls.Add(this.label9);
-            this.groupPanel4.Controls.Add(this.cmbRahn1);
             this.groupPanel4.Controls.Add(this.label8);
             this.groupPanel4.DisabledBackColor = System.Drawing.Color.Empty;
             this.groupPanel4.Location = new System.Drawing.Point(6, 152);
@@ -272,6 +256,46 @@
             this.groupPanel4.TabIndex = 10;
             this.groupPanel4.Text = "اطلاعات رهن و رجاره";
             // 
+            // txtEjare2
+            // 
+            this.txtEjare2.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.txtEjare2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtEjare2.BackColor = System.Drawing.Color.White;
+            this.txtEjare2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.txtEjare2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.txtEjare2.Font = new System.Drawing.Font("B Titr", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.txtEjare2.Location = new System.Drawing.Point(149, 105);
+            this.txtEjare2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtEjare2.Name = "txtEjare2";
+            this.txtEjare2.Size = new System.Drawing.Size(250, 31);
+            this.txtEjare2.TabIndex = 27;
+            this.txtEjare2.TextDecimal = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            // 
+            // txtRahn2
+            // 
+            this.txtRahn2.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.txtRahn2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtRahn2.BackColor = System.Drawing.Color.White;
+            this.txtRahn2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.txtRahn2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.txtRahn2.Font = new System.Drawing.Font("B Titr", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.txtRahn2.Location = new System.Drawing.Point(149, 38);
+            this.txtRahn2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtRahn2.Name = "txtRahn2";
+            this.txtRahn2.Size = new System.Drawing.Size(250, 31);
+            this.txtRahn2.TabIndex = 27;
+            this.txtRahn2.TextDecimal = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            // 
             // cmbRentalAuthority
             // 
             this.cmbRentalAuthority.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -290,6 +314,46 @@
             // rentalBindingSource
             // 
             this.rentalBindingSource.DataSource = typeof(EntityCache.Bussines.RentalAuthorityBussines);
+            // 
+            // txtEjare1
+            // 
+            this.txtEjare1.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.txtEjare1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtEjare1.BackColor = System.Drawing.Color.White;
+            this.txtEjare1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.txtEjare1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.txtEjare1.Font = new System.Drawing.Font("B Titr", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.txtEjare1.Location = new System.Drawing.Point(149, 72);
+            this.txtEjare1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtEjare1.Name = "txtEjare1";
+            this.txtEjare1.Size = new System.Drawing.Size(250, 31);
+            this.txtEjare1.TabIndex = 27;
+            this.txtEjare1.TextDecimal = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            // 
+            // txtRahn1
+            // 
+            this.txtRahn1.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.txtRahn1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtRahn1.BackColor = System.Drawing.Color.White;
+            this.txtRahn1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.txtRahn1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.txtRahn1.Font = new System.Drawing.Font("B Titr", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.txtRahn1.Location = new System.Drawing.Point(149, 5);
+            this.txtRahn1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtRahn1.Name = "txtRahn1";
+            this.txtRahn1.Size = new System.Drawing.Size(250, 31);
+            this.txtRahn1.TabIndex = 27;
+            this.txtRahn1.TextDecimal = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
             // 
             // label19
             // 
@@ -338,67 +402,15 @@
             // 
             this.txtPeopleCount.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtPeopleCount.Location = new System.Drawing.Point(221, 239);
+            this.txtPeopleCount.Location = new System.Drawing.Point(149, 239);
             this.txtPeopleCount.Maximum = new decimal(new int[] {
             10000,
             0,
             0,
             0});
             this.txtPeopleCount.Name = "txtPeopleCount";
-            this.txtPeopleCount.Size = new System.Drawing.Size(154, 27);
+            this.txtPeopleCount.Size = new System.Drawing.Size(226, 27);
             this.txtPeopleCount.TabIndex = 22;
-            // 
-            // txtEjare2
-            // 
-            this.txtEjare2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtEjare2.Location = new System.Drawing.Point(221, 108);
-            this.txtEjare2.Maximum = new decimal(new int[] {
-            10000,
-            0,
-            0,
-            0});
-            this.txtEjare2.Name = "txtEjare2";
-            this.txtEjare2.Size = new System.Drawing.Size(154, 27);
-            this.txtEjare2.TabIndex = 17;
-            // 
-            // txtRahn2
-            // 
-            this.txtRahn2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtRahn2.Location = new System.Drawing.Point(221, 42);
-            this.txtRahn2.Maximum = new decimal(new int[] {
-            10000,
-            0,
-            0,
-            0});
-            this.txtRahn2.Name = "txtRahn2";
-            this.txtRahn2.Size = new System.Drawing.Size(154, 27);
-            this.txtRahn2.TabIndex = 13;
-            // 
-            // cmbEjare2
-            // 
-            this.cmbEjare2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.cmbEjare2.DisplayMember = "Name";
-            this.cmbEjare2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbEjare2.FormattingEnabled = true;
-            this.cmbEjare2.Location = new System.Drawing.Point(9, 107);
-            this.cmbEjare2.Name = "cmbEjare2";
-            this.cmbEjare2.Size = new System.Drawing.Size(199, 28);
-            this.cmbEjare2.TabIndex = 18;
-            this.cmbEjare2.ValueMember = "Guid";
-            // 
-            // cmbRahn2
-            // 
-            this.cmbRahn2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.cmbRahn2.DisplayMember = "Name";
-            this.cmbRahn2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbRahn2.FormattingEnabled = true;
-            this.cmbRahn2.Location = new System.Drawing.Point(9, 41);
-            this.cmbRahn2.Name = "cmbRahn2";
-            this.cmbRahn2.Size = new System.Drawing.Size(199, 28);
-            this.cmbRahn2.TabIndex = 14;
-            this.cmbRahn2.ValueMember = "Guid";
             // 
             // label12
             // 
@@ -411,20 +423,6 @@
             this.label12.TabIndex = 23;
             this.label12.Text = "تعداد افراد";
             // 
-            // txtEjare1
-            // 
-            this.txtEjare1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtEjare1.Location = new System.Drawing.Point(221, 75);
-            this.txtEjare1.Maximum = new decimal(new int[] {
-            10000,
-            0,
-            0,
-            0});
-            this.txtEjare1.Name = "txtEjare1";
-            this.txtEjare1.Size = new System.Drawing.Size(154, 27);
-            this.txtEjare1.TabIndex = 15;
-            // 
             // label10
             // 
             this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -435,33 +433,6 @@
             this.label10.Size = new System.Drawing.Size(24, 20);
             this.label10.TabIndex = 23;
             this.label10.Text = "الی";
-            // 
-            // txtRahn1
-            // 
-            this.txtRahn1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtRahn1.Location = new System.Drawing.Point(221, 9);
-            this.txtRahn1.Maximum = new decimal(new int[] {
-            10000,
-            0,
-            0,
-            0});
-            this.txtRahn1.Name = "txtRahn1";
-            this.txtRahn1.Size = new System.Drawing.Size(154, 27);
-            this.txtRahn1.TabIndex = 11;
-            // 
-            // cmbEjare1
-            // 
-            this.cmbEjare1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.cmbEjare1.DisplayMember = "Name";
-            this.cmbEjare1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbEjare1.FormattingEnabled = true;
-            this.cmbEjare1.Location = new System.Drawing.Point(9, 74);
-            this.cmbEjare1.Name = "cmbEjare1";
-            this.cmbEjare1.Size = new System.Drawing.Size(199, 28);
-            this.cmbEjare1.TabIndex = 16;
-            this.cmbEjare1.ValueMember = "Guid";
-            this.cmbEjare1.SelectedIndexChanged += new System.EventHandler(this.cmbEjare1_SelectedIndexChanged);
             // 
             // label7
             // 
@@ -485,19 +456,6 @@
             this.label9.TabIndex = 26;
             this.label9.Text = "اجاره از";
             // 
-            // cmbRahn1
-            // 
-            this.cmbRahn1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.cmbRahn1.DisplayMember = "Name";
-            this.cmbRahn1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbRahn1.FormattingEnabled = true;
-            this.cmbRahn1.Location = new System.Drawing.Point(9, 8);
-            this.cmbRahn1.Name = "cmbRahn1";
-            this.cmbRahn1.Size = new System.Drawing.Size(199, 28);
-            this.cmbRahn1.TabIndex = 12;
-            this.cmbRahn1.ValueMember = "Guid";
-            this.cmbRahn1.SelectedIndexChanged += new System.EventHandler(this.cmbRahn1_SelectedIndexChanged);
-            // 
             // label8
             // 
             this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -515,12 +473,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupPanel3.CanvasColor = System.Drawing.SystemColors.Control;
             this.groupPanel3.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
-            this.groupPanel3.Controls.Add(this.chbHasVam);
             this.groupPanel3.Controls.Add(this.txtSellPrice2);
-            this.groupPanel3.Controls.Add(this.cmbSellPrice2);
             this.groupPanel3.Controls.Add(this.txtSellPrice1);
+            this.groupPanel3.Controls.Add(this.chbHasVam);
             this.groupPanel3.Controls.Add(this.label20);
-            this.groupPanel3.Controls.Add(this.cmbSellPrice1);
             this.groupPanel3.Controls.Add(this.label22);
             this.groupPanel3.DisabledBackColor = System.Drawing.Color.Empty;
             this.groupPanel3.Location = new System.Drawing.Point(6, 12);
@@ -558,6 +514,46 @@
             this.groupPanel3.TabIndex = 4;
             this.groupPanel3.Text = "اطلاعات خرید";
             // 
+            // txtSellPrice2
+            // 
+            this.txtSellPrice2.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.txtSellPrice2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtSellPrice2.BackColor = System.Drawing.Color.White;
+            this.txtSellPrice2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.txtSellPrice2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.txtSellPrice2.Font = new System.Drawing.Font("B Titr", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.txtSellPrice2.Location = new System.Drawing.Point(149, 38);
+            this.txtSellPrice2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtSellPrice2.Name = "txtSellPrice2";
+            this.txtSellPrice2.Size = new System.Drawing.Size(250, 31);
+            this.txtSellPrice2.TabIndex = 27;
+            this.txtSellPrice2.TextDecimal = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            // 
+            // txtSellPrice1
+            // 
+            this.txtSellPrice1.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.txtSellPrice1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtSellPrice1.BackColor = System.Drawing.Color.White;
+            this.txtSellPrice1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.txtSellPrice1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.txtSellPrice1.Font = new System.Drawing.Font("B Titr", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.txtSellPrice1.Location = new System.Drawing.Point(149, 5);
+            this.txtSellPrice1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtSellPrice1.Name = "txtSellPrice1";
+            this.txtSellPrice1.Size = new System.Drawing.Size(250, 31);
+            this.txtSellPrice1.TabIndex = 27;
+            this.txtSellPrice1.TextDecimal = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            // 
             // chbHasVam
             // 
             this.chbHasVam.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -574,46 +570,6 @@
             this.chbHasVam.TabIndex = 9;
             this.chbHasVam.Text = "ملک دارای وام باشد";
             // 
-            // txtSellPrice2
-            // 
-            this.txtSellPrice2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtSellPrice2.Location = new System.Drawing.Point(221, 42);
-            this.txtSellPrice2.Maximum = new decimal(new int[] {
-            10000,
-            0,
-            0,
-            0});
-            this.txtSellPrice2.Name = "txtSellPrice2";
-            this.txtSellPrice2.Size = new System.Drawing.Size(160, 27);
-            this.txtSellPrice2.TabIndex = 7;
-            // 
-            // cmbSellPrice2
-            // 
-            this.cmbSellPrice2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.cmbSellPrice2.DisplayMember = "Name";
-            this.cmbSellPrice2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbSellPrice2.FormattingEnabled = true;
-            this.cmbSellPrice2.Location = new System.Drawing.Point(9, 41);
-            this.cmbSellPrice2.Name = "cmbSellPrice2";
-            this.cmbSellPrice2.Size = new System.Drawing.Size(199, 28);
-            this.cmbSellPrice2.TabIndex = 8;
-            this.cmbSellPrice2.ValueMember = "Guid";
-            // 
-            // txtSellPrice1
-            // 
-            this.txtSellPrice1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtSellPrice1.Location = new System.Drawing.Point(221, 9);
-            this.txtSellPrice1.Maximum = new decimal(new int[] {
-            10000,
-            0,
-            0,
-            0});
-            this.txtSellPrice1.Name = "txtSellPrice1";
-            this.txtSellPrice1.Size = new System.Drawing.Size(160, 27);
-            this.txtSellPrice1.TabIndex = 5;
-            // 
             // label20
             // 
             this.label20.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -624,19 +580,6 @@
             this.label20.Size = new System.Drawing.Size(24, 20);
             this.label20.TabIndex = 23;
             this.label20.Text = "الی";
-            // 
-            // cmbSellPrice1
-            // 
-            this.cmbSellPrice1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.cmbSellPrice1.DisplayMember = "Name";
-            this.cmbSellPrice1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbSellPrice1.FormattingEnabled = true;
-            this.cmbSellPrice1.Location = new System.Drawing.Point(9, 8);
-            this.cmbSellPrice1.Name = "cmbSellPrice1";
-            this.cmbSellPrice1.Size = new System.Drawing.Size(199, 28);
-            this.cmbSellPrice1.TabIndex = 6;
-            this.cmbSellPrice1.ValueMember = "Guid";
-            this.cmbSellPrice1.SelectedIndexChanged += new System.EventHandler(this.cmbSellPrice1_SelectedIndexChanged);
             // 
             // label22
             // 
@@ -1479,14 +1422,8 @@
             this.groupPanel4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.rentalBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPeopleCount)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtEjare2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtRahn2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtEjare1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtRahn1)).EndInit();
             this.groupPanel3.ResumeLayout(false);
             this.groupPanel3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtSellPrice2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtSellPrice1)).EndInit();
             this.groupPanel1.ResumeLayout(false);
             this.groupPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).EndInit();
@@ -1541,26 +1478,14 @@
         private DevComponents.DotNetBar.ButtonX btnCancel;
         private DevComponents.DotNetBar.ButtonX btnFinish;
         private DevComponents.DotNetBar.Controls.GroupPanel groupPanel3;
-        private System.Windows.Forms.NumericUpDown txtSellPrice2;
-        private System.Windows.Forms.ComboBox cmbSellPrice2;
-        private System.Windows.Forms.NumericUpDown txtSellPrice1;
         private System.Windows.Forms.Label label20;
-        private System.Windows.Forms.ComboBox cmbSellPrice1;
         private System.Windows.Forms.Label label22;
         private DevComponents.DotNetBar.Controls.GroupPanel groupPanel4;
         private DevComponents.DotNetBar.Controls.CheckBoxX chbHasOwner;
-        private System.Windows.Forms.NumericUpDown txtRahn2;
-        private System.Windows.Forms.ComboBox cmbRahn2;
-        private System.Windows.Forms.NumericUpDown txtRahn1;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.ComboBox cmbRahn1;
         private System.Windows.Forms.Label label8;
         private DevComponents.DotNetBar.Controls.CheckBoxX chbHasVam;
-        private System.Windows.Forms.NumericUpDown txtEjare2;
-        private System.Windows.Forms.ComboBox cmbEjare2;
-        private System.Windows.Forms.NumericUpDown txtEjare1;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.ComboBox cmbEjare1;
         private System.Windows.Forms.Label label9;
         private DevComponents.DotNetBar.Controls.CheckBoxX chbShortDate;
         private System.Windows.Forms.ComboBox cmbRentalAuthority;
@@ -1607,5 +1532,11 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn stateNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn cityNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn cityDataGridViewTextBoxColumn;
+        private WindowsSerivces.CurrencyTextBox txtEjare2;
+        private WindowsSerivces.CurrencyTextBox txtRahn2;
+        private WindowsSerivces.CurrencyTextBox txtEjare1;
+        private WindowsSerivces.CurrencyTextBox txtRahn1;
+        private WindowsSerivces.CurrencyTextBox txtSellPrice2;
+        private WindowsSerivces.CurrencyTextBox txtSellPrice1;
     }
 }

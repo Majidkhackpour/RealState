@@ -24,8 +24,6 @@ namespace Building.BuildingRequest
             {
                 await LoadUsersAsync();
                 LoadAsker();
-                FillCmbPrice();
-                SetTxtPrice();
                 await FillRentalAuthorityAsync();
                 FillCmbMetr();
                 SetTxtMetr();
@@ -48,6 +46,13 @@ namespace Building.BuildingRequest
                 cmbBuildingAccountType.SelectedValue = cls?.BuildingAccountTypeGuid;
                 txtRoomCount.Text = cls?.RoomCount.ToString();
                 txtDesc.Text = cls?.ShortDesc;
+
+                txtRahn1.TextDecimal = cls?.RahnPrice1 ?? 0;
+                txtRahn2.TextDecimal = cls?.RahnPrice2 ?? 0;
+                txtEjare1.TextDecimal = cls?.EjarePrice1 ?? 0;
+                txtEjare2.TextDecimal = cls?.EjarePrice2 ?? 0;
+                txtSellPrice1.TextDecimal = cls?.SellPrice1 ?? 0;
+                txtSellPrice2.TextDecimal = cls?.SellPrice2 ?? 0;
 
                 var city = CitiesBussines.Get(cls?.CityGuid ?? Guid.Empty);
                 cmbState.SelectedValue = city?.StateGuid ?? Guid.Empty;
@@ -96,187 +101,6 @@ namespace Building.BuildingRequest
                 lblOwnerFatherName.Text = asker?.FatherName;
                 lblOwnerNCode.Text = asker?.NationalCode;
                 lblOwnerName.Text = asker?.Name;
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-        private void FillCmbPrice()
-        {
-            try
-            {
-                var values = Enum.GetValues(typeof(EnPrice)).Cast<EnPrice>();
-                foreach (var item in values)
-                {
-                    cmbRahn1.Items.Add(item.GetDisplay());
-                    cmbEjare1.Items.Add(item.GetDisplay());
-                    cmbRahn2.Items.Add(item.GetDisplay());
-                    cmbEjare2.Items.Add(item.GetDisplay());
-
-                    cmbSellPrice1.Items.Add(item.GetDisplay());
-                    cmbSellPrice2.Items.Add(item.GetDisplay());
-                }
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-        private void SetTxtPrice()
-        {
-            try
-            {
-                if (cls?.RahnPrice1 == 0)
-                {
-                    txtRahn1.Text = cls?.RahnPrice1.ToString();
-                    cmbRahn1.SelectedIndex = 0;
-                }
-                if (cls?.RahnPrice1 != 0)
-                {
-                    if (cls?.RahnPrice1 >= 10000 && cls?.RahnPrice1 >= 9999)
-                    {
-                        txtRahn1.Text = (cls?.RahnPrice1 / 10000).ToString();
-                        cmbRahn1.SelectedIndex = 0;
-                    }
-                    if (cls?.RahnPrice1 >= 10000000 && cls?.RahnPrice1 >= 9999999)
-                    {
-                        txtRahn1.Text = (cls?.RahnPrice1 / 10000000).ToString();
-                        cmbRahn1.SelectedIndex = 1;
-                    }
-                    if (cls?.RahnPrice1 >= 10000000000 && cls?.RahnPrice1 >= 9999999999)
-                    {
-                        txtRahn1.Text = (cls?.RahnPrice1 / 10000000000).ToString();
-                        cmbRahn1.SelectedIndex = 2;
-                    }
-                }
-
-
-                if (cls?.RahnPrice2 == 0)
-                {
-                    txtRahn2.Text = cls?.RahnPrice2.ToString();
-                    cmbRahn2.SelectedIndex = 0;
-                }
-                if (cls?.RahnPrice2 != 0)
-                {
-                    if (cls?.RahnPrice2 >= 10000 && cls?.RahnPrice2 >= 9999)
-                    {
-                        txtRahn2.Text = (cls?.RahnPrice2 / 10000).ToString();
-                        cmbRahn2.SelectedIndex = 0;
-                    }
-                    if (cls?.RahnPrice2 >= 10000000 && cls?.RahnPrice2 >= 9999999)
-                    {
-                        txtRahn2.Text = (cls?.RahnPrice2 / 10000000).ToString();
-                        cmbRahn2.SelectedIndex = 1;
-                    }
-                    if (cls?.RahnPrice2 >= 10000000000 && cls?.RahnPrice2 >= 9999999999)
-                    {
-                        txtRahn2.Text = (cls?.RahnPrice2 / 10000000000).ToString();
-                        cmbRahn2.SelectedIndex = 2;
-                    }
-                }
-
-
-
-                if (cls?.EjarePrice1 == 0)
-                {
-                    txtEjare1.Text = cls?.EjarePrice1.ToString();
-                    cmbEjare1.SelectedIndex = 0;
-                }
-                if (cls?.EjarePrice1 != 0)
-                {
-                    if (cls?.EjarePrice1 >= 10000 && cls?.EjarePrice1 >= 9999)
-                    {
-                        txtEjare1.Text = (cls?.EjarePrice1 / 10000).ToString();
-                        cmbEjare1.SelectedIndex = 0;
-                    }
-                    if (cls?.EjarePrice1 >= 10000000 && cls?.EjarePrice1 >= 9999999)
-                    {
-                        txtEjare1.Text = (cls?.EjarePrice1 / 10000000).ToString();
-                        cmbEjare1.SelectedIndex = 1;
-                    }
-                    if (cls?.EjarePrice1 >= 10000000000 && cls?.EjarePrice1 >= 9999999999)
-                    {
-                        txtEjare1.Text = (cls?.EjarePrice1 / 10000000000).ToString();
-                        cmbEjare1.SelectedIndex = 2;
-                    }
-                }
-
-
-                if (cls?.EjarePrice2 == 0)
-                {
-                    txtEjare2.Text = cls?.EjarePrice2.ToString();
-                    cmbEjare2.SelectedIndex = 0;
-                }
-                if (cls?.EjarePrice2 != 0)
-                {
-                    if (cls?.EjarePrice2 >= 10000 && cls?.EjarePrice2 >= 9999)
-                    {
-                        txtEjare2.Text = (cls?.EjarePrice2 / 10000).ToString();
-                        cmbEjare2.SelectedIndex = 0;
-                    }
-                    if (cls?.EjarePrice2 >= 10000000 && cls?.EjarePrice2 >= 9999999)
-                    {
-                        txtEjare2.Text = (cls?.EjarePrice2 / 10000000).ToString();
-                        cmbEjare2.SelectedIndex = 1;
-                    }
-                    if (cls?.EjarePrice2 >= 10000000000 && cls?.EjarePrice2 >= 9999999999)
-                    {
-                        txtEjare2.Text = (cls?.EjarePrice2 / 10000000000).ToString();
-                        cmbEjare2.SelectedIndex = 2;
-                    }
-                }
-
-
-                if (cls?.SellPrice1 == 0)
-                {
-                    txtSellPrice1.Text = cls?.SellPrice1.ToString();
-                    cmbSellPrice1.SelectedIndex = 0;
-                }
-                if (cls?.SellPrice1 != 0)
-                {
-                    if (cls?.SellPrice1 >= 10000 && cls?.SellPrice1 >= 9999)
-                    {
-                        txtSellPrice1.Text = (cls?.SellPrice1 / 10000).ToString();
-                        cmbSellPrice1.SelectedIndex = 0;
-                    }
-                    if (cls?.SellPrice1 >= 10000000 && cls?.SellPrice1 >= 9999999)
-                    {
-                        txtSellPrice1.Text = (cls?.SellPrice1 / 10000000).ToString();
-                        cmbSellPrice1.SelectedIndex = 1;
-                    }
-                    if (cls?.SellPrice1 >= 10000000000 && cls?.SellPrice1 >= 9999999999)
-                    {
-                        txtSellPrice1.Text = (cls?.SellPrice1 / 10000000000).ToString();
-                        cmbSellPrice1.SelectedIndex = 2;
-                    }
-                }
-
-
-                if (cls?.SellPrice2 == 0)
-                {
-                    txtSellPrice2.Text = cls?.SellPrice2.ToString();
-                    cmbSellPrice2.SelectedIndex = 0;
-                }
-                if (cls?.SellPrice2 != 0)
-                {
-                    if (cls?.SellPrice2 >= 10000 && cls?.SellPrice2 >= 9999)
-                    {
-                        txtSellPrice2.Text = (cls?.SellPrice2 / 10000).ToString();
-                        cmbSellPrice2.SelectedIndex = 0;
-                    }
-                    if (cls?.SellPrice2 >= 10000000 && cls?.SellPrice2 >= 9999999)
-                    {
-                        txtSellPrice2.Text = (cls?.SellPrice2 / 10000000).ToString();
-                        cmbSellPrice2.SelectedIndex = 1;
-                    }
-                    if (cls?.SellPrice2 >= 10000000000 && cls?.SellPrice2 >= 9999999999)
-                    {
-                        txtSellPrice2.Text = (cls?.SellPrice2 / 10000000000).ToString();
-                        cmbSellPrice2.SelectedIndex = 2;
-                    }
-                }
-
             }
             catch (Exception ex)
             {
@@ -569,6 +393,7 @@ namespace Building.BuildingRequest
 
         private async void btnFinish_Click(object sender, EventArgs e)
         {
+            var res = new ReturnedSaveFuncInfo();
             try
             {
                 var isSendSms = false;
@@ -580,127 +405,77 @@ namespace Building.BuildingRequest
 
                 if (asker == null)
                 {
-                    frmNotification.PublicInfo.ShowMessage("لطفا متقاضی را انتخاب نمایید");
+                    res.AddError("لطفا متقاضی را انتخاب نمایید");
                     btnSearchOwner.Focus();
-                    return;
                 }
+
                 if (txtRahn1.Text == "0" && txtRahn2.Text == "0" && txtEjare1.Text == "0" &&
                     txtEjare2.Text == "0" && txtSellPrice1.Text == "0" && txtSellPrice2.Text == "0")
                 {
-                    frmNotification.PublicInfo.ShowMessage("لطفا یکی از فیلدهای مبلغ را وارد نمایید");
+                    res.AddError("لطفا یکی از فیلدهای مبلغ را وارد نمایید");
                     btnSearchOwner.Focus();
-                    return;
                 }
 
                 if (txtMasahat1.Text == "0" && txtMasahat2.Text == "0")
                 {
-                    frmNotification.PublicInfo.ShowMessage("لطفا مساحت را وارد نمایید");
+                    res.AddError("لطفا مساحت را وارد نمایید");
                     btnSearchOwner.Focus();
-                    return;
                 }
 
                 cls.AskerGuid = asker.Guid;
-                cls.UserGuid = (Guid) cmbUser.SelectedValue;
+                cls.UserGuid = (Guid)cmbUser.SelectedValue;
 
-                if (cmbSellPrice1.SelectedIndex == 0)
-                    cls.SellPrice1 = txtSellPrice1.Text.ParseToDecimal() * 10000;
-                if (cmbSellPrice1.SelectedIndex == 1)
-                    cls.SellPrice1 = txtSellPrice1.Text.ParseToDecimal() * 10000000;
-                if (cmbSellPrice1.SelectedIndex == 2)
-                    cls.SellPrice1 = txtSellPrice1.Text.ParseToDecimal() * 10000000000;
-
-                if (cmbSellPrice2.SelectedIndex == 0)
-                    cls.SellPrice2 = txtSellPrice2.Text.ParseToDecimal() * 10000;
-                if (cmbSellPrice2.SelectedIndex == 1)
-                    cls.SellPrice2 = txtSellPrice2.Text.ParseToDecimal() * 10000000;
-                if (cmbSellPrice2.SelectedIndex == 2)
-                    cls.SellPrice2 = txtSellPrice2.Text.ParseToDecimal() * 10000000000;
-
-                if (cmbRahn1.SelectedIndex == 0)
-                    cls.RahnPrice1 = txtRahn1.Text.ParseToDecimal() * 10000;
-                if (cmbRahn1.SelectedIndex == 1)
-                    cls.RahnPrice1 = txtRahn1.Text.ParseToDecimal() * 10000000;
-                if (cmbRahn1.SelectedIndex == 2)
-                    cls.RahnPrice1 = txtRahn1.Text.ParseToDecimal() * 10000000000;
-
-                if (cmbRahn2.SelectedIndex == 0)
-                    cls.RahnPrice2 = txtRahn2.Text.ParseToDecimal() * 10000;
-                if (cmbRahn2.SelectedIndex == 1)
-                    cls.RahnPrice2 = txtRahn2.Text.ParseToDecimal() * 10000000;
-                if (cmbRahn2.SelectedIndex == 2)
-                    cls.RahnPrice2 = txtRahn2.Text.ParseToDecimal() * 10000000000;
-
-                if (cmbEjare1.SelectedIndex == 0)
-                    cls.EjarePrice1 = txtEjare1.Text.ParseToDecimal() * 10000;
-                if (cmbEjare1.SelectedIndex == 1)
-                    cls.EjarePrice1 = txtEjare1.Text.ParseToDecimal() * 10000000;
-                if (cmbEjare1.SelectedIndex == 2)
-                    cls.EjarePrice1 = txtEjare1.Text.ParseToDecimal() * 10000000000;
-
-                if (cmbEjare2.SelectedIndex == 0)
-                    cls.EjarePrice2 = txtEjare2.Text.ParseToDecimal() * 10000;
-                if (cmbEjare2.SelectedIndex == 1)
-                    cls.EjarePrice2 = txtEjare2.Text.ParseToDecimal() * 10000000;
-                if (cmbEjare2.SelectedIndex == 2)
-                    cls.EjarePrice2 = txtEjare2.Text.ParseToDecimal() * 10000000000;
+                cls.SellPrice1 = txtSellPrice1.TextDecimal;
+                cls.SellPrice2 = txtSellPrice2.TextDecimal;
+                cls.RahnPrice1 = txtRahn1.TextDecimal;
+                cls.RahnPrice2 = txtRahn2.TextDecimal;
+                cls.EjarePrice1 = txtEjare1.TextDecimal;
+                cls.EjarePrice2 = txtEjare2.TextDecimal;
 
 
                 cls.HasVam = chbHasVam.Checked;
                 cls.PeopleCount = txtPeopleCount.Text.ParseToShort();
                 cls.HasOwner = chbHasOwner.Checked;
                 cls.ShortDate = chbShortDate.Checked;
-                cls.RentalAutorityGuid = (Guid?) cmbRentalAuthority.SelectedValue ?? Guid.Empty;
-                cls.CityGuid = (Guid) cmbCity.SelectedValue;
-                cls.BuildingTypeGuid = (Guid) cmbBuildingType.SelectedValue;
+                cls.RentalAutorityGuid = (Guid?)cmbRentalAuthority.SelectedValue ?? Guid.Empty;
+                cls.CityGuid = (Guid)cmbCity.SelectedValue;
+                cls.BuildingTypeGuid = (Guid)cmbBuildingType.SelectedValue;
                 cls.Masahat1 = txtMasahat1.Text.ParseToInt();
                 cls.Masahat2 = txtMasahat2.Text.ParseToInt();
                 cls.RoomCount = txtRoomCount.Text.ParseToInt();
-                cls.BuildingAccountTypeGuid = (Guid) cmbBuildingAccountType.SelectedValue;
-                cls.BuildingConditionGuid = (Guid) cmbBuildingCondition.SelectedValue;
+                cls.BuildingAccountTypeGuid = (Guid)cmbBuildingAccountType.SelectedValue;
+                cls.BuildingConditionGuid = (Guid)cmbBuildingCondition.SelectedValue;
                 cls.ShortDesc = txtDesc.Text;
 
                 await SetRegionsAsync(cls.Guid);
 
-                var res = await cls.SaveAsync(true);
-                if (res.HasError)
-                {
-                    frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);
-                    return;
-                }
+                res.AddReturnedValue(await cls.SaveAsync(true));
+
+                if (res.HasError) return;
 
                 if (Settings.Classes.Payamak.IsSendToSayer.ParseToBoolean() && isSendSms)
-                {
-                    var tr = await Payamak.FixSms.RequestSend.SendAsync(cls);
-                    frmNotification.PublicInfo.ShowMessage(tr.HasError
-                        ? tr.ErrorMessage
-                        : "ارسال پیامک به متقاضی با موفقیت انجام شد");
-                }
-
-
-                UserLog.Save(action, EnLogPart.BuildingRequest);
-
-                DialogResult = DialogResult.OK;
-                Close();
+                    _ = Task.Run(() => Payamak.FixSms.RequestSend.SendAsync(cls));
             }
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
             }
-        }
-
-        private void cmbSellPrice1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            cmbSellPrice2.SelectedIndex = cmbSellPrice1.SelectedIndex;
-        }
-
-        private void cmbRahn1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            cmbRahn2.SelectedIndex = cmbRahn1.SelectedIndex;
-        }
-
-        private void cmbEjare1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            cmbEjare2.SelectedIndex = cmbEjare1.SelectedIndex;
+            finally
+            {
+                if (res.HasError)
+                {
+                    var frm = new FrmShowErrorMessage(res, "خطا در ثبت تقاضا");
+                    frm.ShowDialog(this);
+                    frm.Dispose();
+                }
+                else
+                {
+                    UserLog.Save(action, EnLogPart.BuildingRequest);
+                    DialogResult = DialogResult.OK;
+                    Close();
+                }
+            }
         }
     }
 }
