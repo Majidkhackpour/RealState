@@ -131,6 +131,7 @@
     <Compile Include="AppSettings.cs" />
     <Compile Include="Classes\clsAdvertise.cs" />
     <Compile Include="Classes\clsBackUp.cs" />
+    <Compile Include="Classes\clsBuilding.cs" />
     <Compile Include="Classes\clsBuildingRequest.cs" />
     <Compile Include="Classes\clsEconomyUnit.cs" />
     <Compile Include="Classes\clsGlobalSetting.cs" />

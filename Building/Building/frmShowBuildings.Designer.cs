@@ -31,66 +31,51 @@
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmShowBuildings));
-            this.btnView = new DevComponents.DotNetBar.ButtonX();
-            this.btnChangeStatus = new DevComponents.DotNetBar.ButtonX();
             this.txtSearch = new DevComponents.DotNetBar.Controls.TextBoxX();
-            this.btnDelete = new DevComponents.DotNetBar.ButtonX();
-            this.btnInsert = new DevComponents.DotNetBar.ButtonX();
-            this.btnEdit = new DevComponents.DotNetBar.ButtonX();
-            this.line1 = new DevComponents.DotNetBar.Controls.Line();
             this.DGrid = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.BuildingBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.btnOther = new DevComponents.DotNetBar.ButtonX();
-            this.btnMojod = new DevComponents.DotNetBar.ButtonItem();
-            this.btnVagozar = new DevComponents.DotNetBar.ButtonItem();
-            this.btnSendSms = new DevComponents.DotNetBar.ButtonItem();
-            this.btnSendToDivar = new DevComponents.DotNetBar.ButtonItem();
-            this.btnSendToSheypoor = new DevComponents.DotNetBar.ButtonItem();
-            this.btnSendToTelegram = new DevComponents.DotNetBar.ButtonItem();
-            this.btnMatchRequest = new DevComponents.DotNetBar.ButtonItem();
-            this.btnPrint = new DevComponents.DotNetBar.ButtonItem();
-            this.cmbStatus = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.cmbBuildingType = new System.Windows.Forms.ComboBox();
-            this.btBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.label3 = new System.Windows.Forms.Label();
-            this.cmbUser = new System.Windows.Forms.ComboBox();
-            this.userBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnSelect = new DevComponents.DotNetBar.ButtonX();
             this.dgCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DateSh = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ownerNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.buildingTypeNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.RoomCount = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.masahatDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.rahnPrice1DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ejarePrice1DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.sellPriceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.RegionName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BuildingStatusName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.addressDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgDateSh = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgOwnerName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgRoomCount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgMasahat = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgZirBana = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgRahn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgEjare = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgRentalAuthorityName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgSellPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgVam = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgQest = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgTejari = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgRegionName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgBuildingStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgAddress = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgSaleSakht = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgUserName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgSide = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgDocType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgAccountType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgCondition = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgView = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgFloorCover = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgKitchenService = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgWater = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgBarq = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgGas = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgTell = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgGuid = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.modifiedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.statusDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.ownerGuidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.UserName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.zirBanaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.vamPriceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.qestPriceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dangDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.documentTypeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.rahnPrice2DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -111,7 +96,6 @@
             this.shortDescDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.buildingAccountTypeGuidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.buildingAccountTypeNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.metrazhTejariDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.buildingViewGuidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.floorCoverGuidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.kitchenServiceGuidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -121,7 +105,6 @@
             this.metrazhKoucheDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ertefaSaqfDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.hashieDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.saleSakhtDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dateParvaneDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.parvaneSerialDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bonBastDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
@@ -132,49 +115,80 @@
             this.barqDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gasDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tellDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.contextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.mnuAdd = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuEdit = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuDelete = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
+            this.mnuView = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuStatus = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
+            this.mnuMojod = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuVagozar = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
+            this.mnuSendSms = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuSendToDivar = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuSendToSheypoor = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuSendToTelegram = new System.Windows.Forms.ToolStripMenuItem();
+            this.ارسالملکدرواتساپToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripSeparator();
+            this.mnuMatchRequest = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem6 = new System.Windows.Forms.ToolStripSeparator();
+            this.mnuPrint = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripSeparator();
+            this.مدیریتستونهاToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuCode = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuDate = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuOwner = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuType = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuRoom = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuMasahat = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuZirBana = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuRahn = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuEjare = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuSell = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuRegion = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuBStatus = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuAddress = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuUserName = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuVam = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuQest = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuTejari = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuSaleSakht = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuSide = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuDocType = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuRental = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuAccountType = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuCondition = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuBView = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuFloor = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuKitchen = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuWater = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuBarq = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuGas = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuTell = new System.Windows.Forms.ToolStripMenuItem();
+            this.BuildingBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.cmbStatus = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.cmbBuildingType = new System.Windows.Forms.ComboBox();
+            this.btBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.label3 = new System.Windows.Forms.Label();
+            this.cmbUser = new System.Windows.Forms.ComboBox();
+            this.userBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnSelect = new DevComponents.DotNetBar.ButtonX();
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).BeginInit();
+            this.contextMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BuildingBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).BeginInit();
             this.SuspendLayout();
-            // 
-            // btnView
-            // 
-            this.btnView.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnView.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnView.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.btnView.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnView.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
-            this.btnView.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnView.Image = global::Building.Properties.Resources.article_1_;
-            this.btnView.Location = new System.Drawing.Point(423, 559);
-            this.btnView.Name = "btnView";
-            this.btnView.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
-            this.btnView.Size = new System.Drawing.Size(125, 31);
-            this.btnView.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
-            this.btnView.TabIndex = 55746;
-            this.btnView.Text = "مشاهده (F12)";
-            this.btnView.TextColor = System.Drawing.Color.Black;
-            this.btnView.Click += new System.EventHandler(this.btnView_Click);
-            // 
-            // btnChangeStatus
-            // 
-            this.btnChangeStatus.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnChangeStatus.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnChangeStatus.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.btnChangeStatus.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnChangeStatus.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
-            this.btnChangeStatus.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnChangeStatus.Image = global::Building.Properties.Resources.refresh_round_symbol;
-            this.btnChangeStatus.Location = new System.Drawing.Point(71, 559);
-            this.btnChangeStatus.Name = "btnChangeStatus";
-            this.btnChangeStatus.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
-            this.btnChangeStatus.Size = new System.Drawing.Size(125, 31);
-            this.btnChangeStatus.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
-            this.btnChangeStatus.TabIndex = 55748;
-            this.btnChangeStatus.Text = "غیرفعال (Ctrl+S)";
-            this.btnChangeStatus.TextColor = System.Drawing.Color.Black;
-            this.btnChangeStatus.Click += new System.EventHandler(this.btnChangeStatus_Click);
             // 
             // txtSearch
             // 
@@ -194,74 +208,6 @@
             this.txtSearch.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtSearch.WatermarkText = "مورد جستجو را وارد نمایید ...";
             this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
-            // 
-            // btnDelete
-            // 
-            this.btnDelete.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnDelete.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.btnDelete.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnDelete.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
-            this.btnDelete.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnDelete.Image = global::Building.Properties.Resources.delete_1_;
-            this.btnDelete.Location = new System.Drawing.Point(554, 559);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
-            this.btnDelete.Size = new System.Drawing.Size(125, 31);
-            this.btnDelete.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
-            this.btnDelete.TabIndex = 55747;
-            this.btnDelete.Text = "حذف (Del)";
-            this.btnDelete.TextColor = System.Drawing.Color.Black;
-            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
-            // 
-            // btnInsert
-            // 
-            this.btnInsert.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnInsert.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnInsert.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.btnInsert.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnInsert.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
-            this.btnInsert.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnInsert.Image = global::Building.Properties.Resources.add_1_;
-            this.btnInsert.Location = new System.Drawing.Point(816, 559);
-            this.btnInsert.Name = "btnInsert";
-            this.btnInsert.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
-            this.btnInsert.Size = new System.Drawing.Size(125, 31);
-            this.btnInsert.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
-            this.btnInsert.TabIndex = 55749;
-            this.btnInsert.Text = "افزودن (Ins)";
-            this.btnInsert.TextColor = System.Drawing.Color.Black;
-            this.btnInsert.Click += new System.EventHandler(this.btnInsert_Click);
-            // 
-            // btnEdit
-            // 
-            this.btnEdit.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnEdit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.btnEdit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnEdit.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
-            this.btnEdit.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnEdit.Image = global::Building.Properties.Resources.edit_1_;
-            this.btnEdit.Location = new System.Drawing.Point(685, 559);
-            this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
-            this.btnEdit.Size = new System.Drawing.Size(125, 31);
-            this.btnEdit.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
-            this.btnEdit.TabIndex = 55750;
-            this.btnEdit.Text = "ویرایش (F7)";
-            this.btnEdit.TextColor = System.Drawing.Color.Black;
-            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
-            // 
-            // line1
-            // 
-            this.line1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.line1.Location = new System.Drawing.Point(0, 538);
-            this.line1.Name = "line1";
-            this.line1.Size = new System.Drawing.Size(1020, 23);
-            this.line1.TabIndex = 55743;
-            this.line1.Text = "line1";
-            this.line1.Thickness = 2;
             // 
             // DGrid
             // 
@@ -291,25 +237,39 @@
             this.DGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dgCode,
-            this.DateSh,
-            this.ownerNameDataGridViewTextBoxColumn,
-            this.buildingTypeNameDataGridViewTextBoxColumn,
-            this.RoomCount,
-            this.masahatDataGridViewTextBoxColumn,
-            this.rahnPrice1DataGridViewTextBoxColumn,
-            this.ejarePrice1DataGridViewTextBoxColumn,
-            this.sellPriceDataGridViewTextBoxColumn,
-            this.RegionName,
-            this.BuildingStatusName,
-            this.addressDataGridViewTextBoxColumn,
+            this.dgDateSh,
+            this.dgOwnerName,
+            this.dgType,
+            this.dgRoomCount,
+            this.dgMasahat,
+            this.dgZirBana,
+            this.dgRahn,
+            this.dgEjare,
+            this.dgRentalAuthorityName,
+            this.dgSellPrice,
+            this.dgVam,
+            this.dgQest,
+            this.dgTejari,
+            this.dgRegionName,
+            this.dgBuildingStatus,
+            this.dgAddress,
+            this.dgSaleSakht,
+            this.dgUserName,
+            this.dgSide,
+            this.dgDocType,
+            this.dgAccountType,
+            this.dgCondition,
+            this.dgView,
+            this.dgFloorCover,
+            this.dgKitchenService,
+            this.dgWater,
+            this.dgBarq,
+            this.dgGas,
+            this.dgTell,
             this.dgGuid,
             this.modifiedDataGridViewTextBoxColumn,
             this.statusDataGridViewCheckBoxColumn,
             this.ownerGuidDataGridViewTextBoxColumn,
-            this.UserName,
-            this.zirBanaDataGridViewTextBoxColumn,
-            this.vamPriceDataGridViewTextBoxColumn,
-            this.qestPriceDataGridViewTextBoxColumn,
             this.dangDataGridViewTextBoxColumn,
             this.documentTypeDataGridViewTextBoxColumn,
             this.rahnPrice2DataGridViewTextBoxColumn,
@@ -330,7 +290,6 @@
             this.shortDescDataGridViewTextBoxColumn,
             this.buildingAccountTypeGuidDataGridViewTextBoxColumn,
             this.buildingAccountTypeNameDataGridViewTextBoxColumn,
-            this.metrazhTejariDataGridViewTextBoxColumn,
             this.buildingViewGuidDataGridViewTextBoxColumn,
             this.floorCoverGuidDataGridViewTextBoxColumn,
             this.kitchenServiceGuidDataGridViewTextBoxColumn,
@@ -340,7 +299,6 @@
             this.metrazhKoucheDataGridViewTextBoxColumn,
             this.ertefaSaqfDataGridViewTextBoxColumn,
             this.hashieDataGridViewTextBoxColumn,
-            this.saleSakhtDataGridViewTextBoxColumn,
             this.dateParvaneDataGridViewTextBoxColumn,
             this.parvaneSerialDataGridViewTextBoxColumn,
             this.bonBastDataGridViewCheckBoxColumn,
@@ -351,15 +309,16 @@
             this.barqDataGridViewTextBoxColumn,
             this.gasDataGridViewTextBoxColumn,
             this.tellDataGridViewTextBoxColumn});
+            this.DGrid.ContextMenuStrip = this.contextMenu;
             this.DGrid.DataSource = this.BuildingBindingSource;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.Silver;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DGrid.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.Silver;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DGrid.DefaultCellStyle = dataGridViewCellStyle8;
             this.DGrid.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
             this.DGrid.Location = new System.Drawing.Point(4, 70);
             this.DGrid.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -367,357 +326,313 @@
             this.DGrid.ReadOnly = true;
             this.DGrid.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.DGrid.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DGrid.RowHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DGrid.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
             this.DGrid.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle8.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.Silver;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.Black;
-            this.DGrid.RowsDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle10.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.Silver;
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.Color.Black;
+            this.DGrid.RowsDefaultCellStyle = dataGridViewCellStyle10;
             this.DGrid.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             this.DGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DGrid.Size = new System.Drawing.Size(1016, 468);
+            this.DGrid.Size = new System.Drawing.Size(1016, 489);
             this.DGrid.TabIndex = 55744;
             this.DGrid.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DGrid_CellFormatting);
             this.DGrid.DoubleClick += new System.EventHandler(this.DGrid_DoubleClick);
             this.DGrid.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.DGrid_KeyPress);
             // 
-            // BuildingBindingSource
-            // 
-            this.BuildingBindingSource.DataSource = typeof(EntityCache.Bussines.BuildingBussines);
-            // 
-            // btnOther
-            // 
-            this.btnOther.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnOther.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnOther.BackColor = System.Drawing.Color.Silver;
-            this.btnOther.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnOther.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
-            this.btnOther.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnOther.Location = new System.Drawing.Point(4, 559);
-            this.btnOther.Name = "btnOther";
-            this.btnOther.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
-            this.btnOther.Size = new System.Drawing.Size(61, 31);
-            this.btnOther.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
-            this.btnOther.SubItems.AddRange(new DevComponents.DotNetBar.BaseItem[] {
-            this.btnMojod,
-            this.btnVagozar,
-            this.btnSendSms,
-            this.btnSendToDivar,
-            this.btnSendToSheypoor,
-            this.btnSendToTelegram,
-            this.btnMatchRequest,
-            this.btnPrint});
-            this.btnOther.TabIndex = 55758;
-            this.btnOther.Text = "سایر";
-            this.btnOther.TextAlignment = DevComponents.DotNetBar.eButtonTextAlignment.Left;
-            this.btnOther.TextColor = System.Drawing.Color.Black;
-            // 
-            // btnMojod
-            // 
-            this.btnMojod.Name = "btnMojod";
-            this.btnMojod.Text = "تغییر وضعیت به موجود";
-            this.btnMojod.Click += new System.EventHandler(this.btnMojod_Click);
-            // 
-            // btnVagozar
-            // 
-            this.btnVagozar.Name = "btnVagozar";
-            this.btnVagozar.Text = "تغییر وضعیت به واگذار شده";
-            this.btnVagozar.Click += new System.EventHandler(this.btnVagozar_Click);
-            // 
-            // btnSendSms
-            // 
-            this.btnSendSms.Name = "btnSendSms";
-            this.btnSendSms.Text = "ارسال پیامک به مالک";
-            // 
-            // btnSendToDivar
-            // 
-            this.btnSendToDivar.Name = "btnSendToDivar";
-            this.btnSendToDivar.Text = "ارسال ملک در دیوار";
-            this.btnSendToDivar.Click += new System.EventHandler(this.btnSendToDivar_Click);
-            // 
-            // btnSendToSheypoor
-            // 
-            this.btnSendToSheypoor.Name = "btnSendToSheypoor";
-            this.btnSendToSheypoor.Text = "ارسال ملک در شیپور";
-            this.btnSendToSheypoor.Click += new System.EventHandler(this.btnSendToSheypoor_Click);
-            // 
-            // btnSendToTelegram
-            // 
-            this.btnSendToTelegram.Name = "btnSendToTelegram";
-            this.btnSendToTelegram.Text = "ارسال ملک در تلگرام";
-            // 
-            // btnMatchRequest
-            // 
-            this.btnMatchRequest.Name = "btnMatchRequest";
-            this.btnMatchRequest.Text = "تطابق با درخواست ها";
-            // 
-            // btnPrint
-            // 
-            this.btnPrint.Name = "btnPrint";
-            this.btnPrint.Text = "چاپ لیست املاک";
-            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
-            // 
-            // cmbStatus
-            // 
-            this.cmbStatus.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.cmbStatus.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.cmbStatus.DisplayMember = "Name";
-            this.cmbStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbStatus.FormattingEnabled = true;
-            this.cmbStatus.Location = new System.Drawing.Point(837, 34);
-            this.cmbStatus.Name = "cmbStatus";
-            this.cmbStatus.Size = new System.Drawing.Size(122, 28);
-            this.cmbStatus.TabIndex = 55759;
-            this.cmbStatus.ValueMember = "Guid";
-            this.cmbStatus.SelectedIndexChanged += new System.EventHandler(this.cmbStatus_SelectedIndexChanged);
-            // 
-            // label1
-            // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Location = new System.Drawing.Point(962, 37);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(46, 20);
-            this.label1.TabIndex = 55760;
-            this.label1.Text = "وضعیت";
-            // 
-            // label2
-            // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Location = new System.Drawing.Point(785, 37);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(49, 20);
-            this.label2.TabIndex = 55760;
-            this.label2.Text = "نوع ملک";
-            // 
-            // cmbBuildingType
-            // 
-            this.cmbBuildingType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.cmbBuildingType.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.cmbBuildingType.DataSource = this.btBindingSource;
-            this.cmbBuildingType.DisplayMember = "Name";
-            this.cmbBuildingType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbBuildingType.FormattingEnabled = true;
-            this.cmbBuildingType.Location = new System.Drawing.Point(660, 34);
-            this.cmbBuildingType.Name = "cmbBuildingType";
-            this.cmbBuildingType.Size = new System.Drawing.Size(122, 28);
-            this.cmbBuildingType.TabIndex = 55759;
-            this.cmbBuildingType.ValueMember = "Guid";
-            this.cmbBuildingType.SelectedIndexChanged += new System.EventHandler(this.cmbBuildingType_SelectedIndexChanged);
-            // 
-            // btBindingSource
-            // 
-            this.btBindingSource.DataSource = typeof(EntityCache.Bussines.BuildingTypeBussines);
-            // 
-            // label3
-            // 
-            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label3.AutoSize = true;
-            this.label3.BackColor = System.Drawing.Color.Transparent;
-            this.label3.Location = new System.Drawing.Point(618, 37);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(39, 20);
-            this.label3.TabIndex = 55760;
-            this.label3.Text = "مشاور";
-            // 
-            // cmbUser
-            // 
-            this.cmbUser.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.cmbUser.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.cmbUser.DataSource = this.userBindingSource;
-            this.cmbUser.DisplayMember = "Name";
-            this.cmbUser.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbUser.FormattingEnabled = true;
-            this.cmbUser.Location = new System.Drawing.Point(493, 34);
-            this.cmbUser.Name = "cmbUser";
-            this.cmbUser.Size = new System.Drawing.Size(122, 28);
-            this.cmbUser.TabIndex = 55759;
-            this.cmbUser.ValueMember = "Guid";
-            this.cmbUser.SelectedIndexChanged += new System.EventHandler(this.cmbUser_SelectedIndexChanged);
-            // 
-            // userBindingSource
-            // 
-            this.userBindingSource.DataSource = typeof(EntityCache.Bussines.UserBussines);
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "Tarakom";
-            this.dataGridViewTextBoxColumn1.HeaderText = "Tarakom";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            this.dataGridViewTextBoxColumn1.Visible = false;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.DataPropertyName = "Side";
-            this.dataGridViewTextBoxColumn2.HeaderText = "Side";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.ReadOnly = true;
-            this.dataGridViewTextBoxColumn2.Visible = false;
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.DataPropertyName = "Water";
-            this.dataGridViewTextBoxColumn3.HeaderText = "Water";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.ReadOnly = true;
-            this.dataGridViewTextBoxColumn3.Visible = false;
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            this.dataGridViewTextBoxColumn4.DataPropertyName = "Barq";
-            this.dataGridViewTextBoxColumn4.HeaderText = "Barq";
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            this.dataGridViewTextBoxColumn4.ReadOnly = true;
-            this.dataGridViewTextBoxColumn4.Visible = false;
-            // 
-            // dataGridViewTextBoxColumn5
-            // 
-            this.dataGridViewTextBoxColumn5.DataPropertyName = "Gas";
-            this.dataGridViewTextBoxColumn5.HeaderText = "Gas";
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            this.dataGridViewTextBoxColumn5.ReadOnly = true;
-            this.dataGridViewTextBoxColumn5.Visible = false;
-            // 
-            // dataGridViewTextBoxColumn6
-            // 
-            this.dataGridViewTextBoxColumn6.DataPropertyName = "Tell";
-            this.dataGridViewTextBoxColumn6.HeaderText = "Tell";
-            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
-            this.dataGridViewTextBoxColumn6.ReadOnly = true;
-            this.dataGridViewTextBoxColumn6.Visible = false;
-            // 
-            // btnSelect
-            // 
-            this.btnSelect.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnSelect.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSelect.BackColor = System.Drawing.Color.DarkSlateGray;
-            this.btnSelect.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnSelect.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
-            this.btnSelect.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnSelect.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.btnSelect.Location = new System.Drawing.Point(303, 559);
-            this.btnSelect.Name = "btnSelect";
-            this.btnSelect.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
-            this.btnSelect.Size = new System.Drawing.Size(414, 31);
-            this.btnSelect.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
-            this.btnSelect.TabIndex = 55763;
-            this.btnSelect.Text = "انتخاب";
-            this.btnSelect.TextColor = System.Drawing.Color.White;
-            this.btnSelect.Click += new System.EventHandler(this.btnSelect_Click);
-            // 
             // dgCode
             // 
+            this.dgCode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.dgCode.DataPropertyName = "Code";
             this.dgCode.HeaderText = "کد ملک";
             this.dgCode.Name = "dgCode";
             this.dgCode.ReadOnly = true;
-            this.dgCode.Width = 70;
+            this.dgCode.Width = 69;
             // 
-            // DateSh
+            // dgDateSh
             // 
-            this.DateSh.DataPropertyName = "DateSh";
-            this.DateSh.HeaderText = "تاریخ ثبت";
-            this.DateSh.Name = "DateSh";
-            this.DateSh.ReadOnly = true;
+            this.dgDateSh.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dgDateSh.DataPropertyName = "DateSh";
+            this.dgDateSh.HeaderText = "تاریخ ثبت";
+            this.dgDateSh.Name = "dgDateSh";
+            this.dgDateSh.ReadOnly = true;
+            this.dgDateSh.Width = 80;
             // 
-            // ownerNameDataGridViewTextBoxColumn
+            // dgOwnerName
             // 
-            this.ownerNameDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.ownerNameDataGridViewTextBoxColumn.DataPropertyName = "OwnerName";
-            this.ownerNameDataGridViewTextBoxColumn.HeaderText = "مالک";
-            this.ownerNameDataGridViewTextBoxColumn.Name = "ownerNameDataGridViewTextBoxColumn";
-            this.ownerNameDataGridViewTextBoxColumn.ReadOnly = true;
+            this.dgOwnerName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dgOwnerName.DataPropertyName = "OwnerName";
+            this.dgOwnerName.HeaderText = "مالک";
+            this.dgOwnerName.Name = "dgOwnerName";
+            this.dgOwnerName.ReadOnly = true;
+            this.dgOwnerName.Width = 56;
             // 
-            // buildingTypeNameDataGridViewTextBoxColumn
+            // dgType
             // 
-            this.buildingTypeNameDataGridViewTextBoxColumn.DataPropertyName = "BuildingTypeName";
-            this.buildingTypeNameDataGridViewTextBoxColumn.HeaderText = "نوع ملک";
-            this.buildingTypeNameDataGridViewTextBoxColumn.Name = "buildingTypeNameDataGridViewTextBoxColumn";
-            this.buildingTypeNameDataGridViewTextBoxColumn.ReadOnly = true;
+            this.dgType.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dgType.DataPropertyName = "BuildingTypeName";
+            this.dgType.HeaderText = "نوع ملک";
+            this.dgType.Name = "dgType";
+            this.dgType.ReadOnly = true;
+            this.dgType.Visible = false;
             // 
-            // RoomCount
+            // dgRoomCount
             // 
-            this.RoomCount.DataPropertyName = "RoomCount";
-            this.RoomCount.HeaderText = "ت اتاق";
-            this.RoomCount.Name = "RoomCount";
-            this.RoomCount.ReadOnly = true;
-            this.RoomCount.Width = 70;
+            this.dgRoomCount.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dgRoomCount.DataPropertyName = "RoomCount";
+            this.dgRoomCount.HeaderText = "ت اتاق";
+            this.dgRoomCount.Name = "dgRoomCount";
+            this.dgRoomCount.ReadOnly = true;
+            this.dgRoomCount.Width = 66;
             // 
-            // masahatDataGridViewTextBoxColumn
+            // dgMasahat
             // 
-            this.masahatDataGridViewTextBoxColumn.DataPropertyName = "Masahat";
-            this.masahatDataGridViewTextBoxColumn.HeaderText = "مساحت";
-            this.masahatDataGridViewTextBoxColumn.Name = "masahatDataGridViewTextBoxColumn";
-            this.masahatDataGridViewTextBoxColumn.ReadOnly = true;
+            this.dgMasahat.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dgMasahat.DataPropertyName = "Masahat";
+            this.dgMasahat.HeaderText = "مساحت";
+            this.dgMasahat.Name = "dgMasahat";
+            this.dgMasahat.ReadOnly = true;
+            this.dgMasahat.Visible = false;
             // 
-            // rahnPrice1DataGridViewTextBoxColumn
+            // dgZirBana
             // 
-            this.rahnPrice1DataGridViewTextBoxColumn.DataPropertyName = "RahnPrice1";
+            this.dgZirBana.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dgZirBana.DataPropertyName = "ZirBana";
+            this.dgZirBana.HeaderText = "زیربنا";
+            this.dgZirBana.Name = "dgZirBana";
+            this.dgZirBana.ReadOnly = true;
+            this.dgZirBana.Visible = false;
+            // 
+            // dgRahn
+            // 
+            this.dgRahn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dgRahn.DataPropertyName = "RahnPrice1";
             dataGridViewCellStyle3.Format = "N0";
             dataGridViewCellStyle3.NullValue = null;
-            this.rahnPrice1DataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle3;
-            this.rahnPrice1DataGridViewTextBoxColumn.HeaderText = "رهن";
-            this.rahnPrice1DataGridViewTextBoxColumn.Name = "rahnPrice1DataGridViewTextBoxColumn";
-            this.rahnPrice1DataGridViewTextBoxColumn.ReadOnly = true;
-            this.rahnPrice1DataGridViewTextBoxColumn.Width = 150;
+            this.dgRahn.DefaultCellStyle = dataGridViewCellStyle3;
+            this.dgRahn.HeaderText = "رهن";
+            this.dgRahn.Name = "dgRahn";
+            this.dgRahn.ReadOnly = true;
+            this.dgRahn.Visible = false;
             // 
-            // ejarePrice1DataGridViewTextBoxColumn
+            // dgEjare
             // 
-            this.ejarePrice1DataGridViewTextBoxColumn.DataPropertyName = "EjarePrice1";
+            this.dgEjare.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dgEjare.DataPropertyName = "EjarePrice1";
             dataGridViewCellStyle4.Format = "N0";
             dataGridViewCellStyle4.NullValue = null;
-            this.ejarePrice1DataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle4;
-            this.ejarePrice1DataGridViewTextBoxColumn.HeaderText = "اجاره";
-            this.ejarePrice1DataGridViewTextBoxColumn.Name = "ejarePrice1DataGridViewTextBoxColumn";
-            this.ejarePrice1DataGridViewTextBoxColumn.ReadOnly = true;
+            this.dgEjare.DefaultCellStyle = dataGridViewCellStyle4;
+            this.dgEjare.HeaderText = "اجاره";
+            this.dgEjare.Name = "dgEjare";
+            this.dgEjare.ReadOnly = true;
+            this.dgEjare.Visible = false;
             // 
-            // sellPriceDataGridViewTextBoxColumn
+            // dgRentalAuthorityName
             // 
-            this.sellPriceDataGridViewTextBoxColumn.DataPropertyName = "SellPrice";
+            this.dgRentalAuthorityName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dgRentalAuthorityName.DataPropertyName = "RentalAuthorityName";
+            this.dgRentalAuthorityName.HeaderText = "ارجحیت اجاره";
+            this.dgRentalAuthorityName.Name = "dgRentalAuthorityName";
+            this.dgRentalAuthorityName.ReadOnly = true;
+            this.dgRentalAuthorityName.Visible = false;
+            // 
+            // dgSellPrice
+            // 
+            this.dgSellPrice.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dgSellPrice.DataPropertyName = "SellPrice";
             dataGridViewCellStyle5.Format = "N0";
             dataGridViewCellStyle5.NullValue = null;
-            this.sellPriceDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle5;
-            this.sellPriceDataGridViewTextBoxColumn.HeaderText = "فروش";
-            this.sellPriceDataGridViewTextBoxColumn.Name = "sellPriceDataGridViewTextBoxColumn";
-            this.sellPriceDataGridViewTextBoxColumn.ReadOnly = true;
-            this.sellPriceDataGridViewTextBoxColumn.Width = 150;
+            this.dgSellPrice.DefaultCellStyle = dataGridViewCellStyle5;
+            this.dgSellPrice.HeaderText = "فروش";
+            this.dgSellPrice.Name = "dgSellPrice";
+            this.dgSellPrice.ReadOnly = true;
+            this.dgSellPrice.Visible = false;
             // 
-            // RegionName
+            // dgVam
             // 
-            this.RegionName.DataPropertyName = "RegionName";
-            this.RegionName.HeaderText = "محدوده";
-            this.RegionName.Name = "RegionName";
-            this.RegionName.ReadOnly = true;
+            this.dgVam.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dgVam.DataPropertyName = "VamPrice";
+            dataGridViewCellStyle6.Format = "N0";
+            dataGridViewCellStyle6.NullValue = null;
+            this.dgVam.DefaultCellStyle = dataGridViewCellStyle6;
+            this.dgVam.HeaderText = "مبلغ وام";
+            this.dgVam.Name = "dgVam";
+            this.dgVam.ReadOnly = true;
+            this.dgVam.Visible = false;
             // 
-            // BuildingStatusName
+            // dgQest
             // 
-            this.BuildingStatusName.DataPropertyName = "BuildingStatusName";
-            this.BuildingStatusName.HeaderText = "وضعیت";
-            this.BuildingStatusName.Name = "BuildingStatusName";
-            this.BuildingStatusName.ReadOnly = true;
+            this.dgQest.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dgQest.DataPropertyName = "QestPrice";
+            dataGridViewCellStyle7.Format = "N0";
+            dataGridViewCellStyle7.NullValue = null;
+            this.dgQest.DefaultCellStyle = dataGridViewCellStyle7;
+            this.dgQest.HeaderText = "قسط";
+            this.dgQest.Name = "dgQest";
+            this.dgQest.ReadOnly = true;
+            this.dgQest.Visible = false;
             // 
-            // addressDataGridViewTextBoxColumn
+            // dgTejari
             // 
-            this.addressDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.addressDataGridViewTextBoxColumn.DataPropertyName = "Address";
-            this.addressDataGridViewTextBoxColumn.HeaderText = "آدرس";
-            this.addressDataGridViewTextBoxColumn.Name = "addressDataGridViewTextBoxColumn";
-            this.addressDataGridViewTextBoxColumn.ReadOnly = true;
-            this.addressDataGridViewTextBoxColumn.Visible = false;
+            this.dgTejari.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dgTejari.DataPropertyName = "MetrazhTejari";
+            this.dgTejari.HeaderText = "تجاری";
+            this.dgTejari.Name = "dgTejari";
+            this.dgTejari.ReadOnly = true;
+            this.dgTejari.Visible = false;
+            // 
+            // dgRegionName
+            // 
+            this.dgRegionName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dgRegionName.DataPropertyName = "RegionName";
+            this.dgRegionName.HeaderText = "محدوده";
+            this.dgRegionName.Name = "dgRegionName";
+            this.dgRegionName.ReadOnly = true;
+            this.dgRegionName.Width = 70;
+            // 
+            // dgBuildingStatus
+            // 
+            this.dgBuildingStatus.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dgBuildingStatus.DataPropertyName = "BuildingStatusName";
+            this.dgBuildingStatus.HeaderText = "وضعیت";
+            this.dgBuildingStatus.Name = "dgBuildingStatus";
+            this.dgBuildingStatus.ReadOnly = true;
+            this.dgBuildingStatus.Visible = false;
+            // 
+            // dgAddress
+            // 
+            this.dgAddress.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dgAddress.DataPropertyName = "Address";
+            this.dgAddress.HeaderText = "آدرس";
+            this.dgAddress.MinimumWidth = 100;
+            this.dgAddress.Name = "dgAddress";
+            this.dgAddress.ReadOnly = true;
+            // 
+            // dgSaleSakht
+            // 
+            this.dgSaleSakht.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dgSaleSakht.DataPropertyName = "SaleSakht";
+            this.dgSaleSakht.HeaderText = "سال ساخت";
+            this.dgSaleSakht.Name = "dgSaleSakht";
+            this.dgSaleSakht.ReadOnly = true;
+            this.dgSaleSakht.Visible = false;
+            // 
+            // dgUserName
+            // 
+            this.dgUserName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dgUserName.DataPropertyName = "UserName";
+            this.dgUserName.HeaderText = "مشاور";
+            this.dgUserName.Name = "dgUserName";
+            this.dgUserName.ReadOnly = true;
+            this.dgUserName.Visible = false;
+            // 
+            // dgSide
+            // 
+            this.dgSide.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dgSide.DataPropertyName = "SideName";
+            this.dgSide.HeaderText = "جهت";
+            this.dgSide.Name = "dgSide";
+            this.dgSide.ReadOnly = true;
+            this.dgSide.Visible = false;
+            // 
+            // dgDocType
+            // 
+            this.dgDocType.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dgDocType.DataPropertyName = "DocumentTypeName";
+            this.dgDocType.HeaderText = "سند";
+            this.dgDocType.Name = "dgDocType";
+            this.dgDocType.ReadOnly = true;
+            this.dgDocType.Visible = false;
+            // 
+            // dgAccountType
+            // 
+            this.dgAccountType.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dgAccountType.DataPropertyName = "BuildingAccountTypeName";
+            this.dgAccountType.HeaderText = "کاربری";
+            this.dgAccountType.Name = "dgAccountType";
+            this.dgAccountType.ReadOnly = true;
+            this.dgAccountType.Visible = false;
+            // 
+            // dgCondition
+            // 
+            this.dgCondition.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dgCondition.DataPropertyName = "BuildingConditionName";
+            this.dgCondition.HeaderText = "وضعیت ملک";
+            this.dgCondition.Name = "dgCondition";
+            this.dgCondition.ReadOnly = true;
+            this.dgCondition.Visible = false;
+            // 
+            // dgView
+            // 
+            this.dgView.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dgView.DataPropertyName = "BuildingViewName";
+            this.dgView.HeaderText = "نما";
+            this.dgView.Name = "dgView";
+            this.dgView.ReadOnly = true;
+            this.dgView.Visible = false;
+            // 
+            // dgFloorCover
+            // 
+            this.dgFloorCover.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dgFloorCover.DataPropertyName = "FloorCoverName";
+            this.dgFloorCover.HeaderText = "کفپوش";
+            this.dgFloorCover.Name = "dgFloorCover";
+            this.dgFloorCover.ReadOnly = true;
+            this.dgFloorCover.Visible = false;
+            // 
+            // dgKitchenService
+            // 
+            this.dgKitchenService.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dgKitchenService.DataPropertyName = "KitchenServiceName";
+            this.dgKitchenService.HeaderText = "آشپزخانه";
+            this.dgKitchenService.Name = "dgKitchenService";
+            this.dgKitchenService.ReadOnly = true;
+            this.dgKitchenService.Visible = false;
+            // 
+            // dgWater
+            // 
+            this.dgWater.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dgWater.DataPropertyName = "WaterName";
+            this.dgWater.HeaderText = "آب";
+            this.dgWater.Name = "dgWater";
+            this.dgWater.ReadOnly = true;
+            this.dgWater.Visible = false;
+            // 
+            // dgBarq
+            // 
+            this.dgBarq.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dgBarq.DataPropertyName = "BarqName";
+            this.dgBarq.HeaderText = "برق";
+            this.dgBarq.Name = "dgBarq";
+            this.dgBarq.ReadOnly = true;
+            this.dgBarq.Visible = false;
+            // 
+            // dgGas
+            // 
+            this.dgGas.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dgGas.DataPropertyName = "GasName";
+            this.dgGas.HeaderText = "گاز";
+            this.dgGas.Name = "dgGas";
+            this.dgGas.ReadOnly = true;
+            this.dgGas.Visible = false;
+            // 
+            // dgTell
+            // 
+            this.dgTell.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dgTell.DataPropertyName = "TellName";
+            this.dgTell.HeaderText = "تلفن";
+            this.dgTell.Name = "dgTell";
+            this.dgTell.ReadOnly = true;
+            this.dgTell.Visible = false;
             // 
             // dgGuid
             // 
@@ -750,38 +665,6 @@
             this.ownerGuidDataGridViewTextBoxColumn.Name = "ownerGuidDataGridViewTextBoxColumn";
             this.ownerGuidDataGridViewTextBoxColumn.ReadOnly = true;
             this.ownerGuidDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // UserName
-            // 
-            this.UserName.DataPropertyName = "UserName";
-            this.UserName.HeaderText = "مشاور";
-            this.UserName.Name = "UserName";
-            this.UserName.ReadOnly = true;
-            this.UserName.Visible = false;
-            // 
-            // zirBanaDataGridViewTextBoxColumn
-            // 
-            this.zirBanaDataGridViewTextBoxColumn.DataPropertyName = "ZirBana";
-            this.zirBanaDataGridViewTextBoxColumn.HeaderText = "زیربنا";
-            this.zirBanaDataGridViewTextBoxColumn.Name = "zirBanaDataGridViewTextBoxColumn";
-            this.zirBanaDataGridViewTextBoxColumn.ReadOnly = true;
-            this.zirBanaDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // vamPriceDataGridViewTextBoxColumn
-            // 
-            this.vamPriceDataGridViewTextBoxColumn.DataPropertyName = "VamPrice";
-            this.vamPriceDataGridViewTextBoxColumn.HeaderText = "VamPrice";
-            this.vamPriceDataGridViewTextBoxColumn.Name = "vamPriceDataGridViewTextBoxColumn";
-            this.vamPriceDataGridViewTextBoxColumn.ReadOnly = true;
-            this.vamPriceDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // qestPriceDataGridViewTextBoxColumn
-            // 
-            this.qestPriceDataGridViewTextBoxColumn.DataPropertyName = "QestPrice";
-            this.qestPriceDataGridViewTextBoxColumn.HeaderText = "QestPrice";
-            this.qestPriceDataGridViewTextBoxColumn.Name = "qestPriceDataGridViewTextBoxColumn";
-            this.qestPriceDataGridViewTextBoxColumn.ReadOnly = true;
-            this.qestPriceDataGridViewTextBoxColumn.Visible = false;
             // 
             // dangDataGridViewTextBoxColumn
             // 
@@ -943,14 +826,6 @@
             this.buildingAccountTypeNameDataGridViewTextBoxColumn.ReadOnly = true;
             this.buildingAccountTypeNameDataGridViewTextBoxColumn.Visible = false;
             // 
-            // metrazhTejariDataGridViewTextBoxColumn
-            // 
-            this.metrazhTejariDataGridViewTextBoxColumn.DataPropertyName = "MetrazhTejari";
-            this.metrazhTejariDataGridViewTextBoxColumn.HeaderText = "MetrazhTejari";
-            this.metrazhTejariDataGridViewTextBoxColumn.Name = "metrazhTejariDataGridViewTextBoxColumn";
-            this.metrazhTejariDataGridViewTextBoxColumn.ReadOnly = true;
-            this.metrazhTejariDataGridViewTextBoxColumn.Visible = false;
-            // 
             // buildingViewGuidDataGridViewTextBoxColumn
             // 
             this.buildingViewGuidDataGridViewTextBoxColumn.DataPropertyName = "BuildingViewGuid";
@@ -1022,14 +897,6 @@
             this.hashieDataGridViewTextBoxColumn.Name = "hashieDataGridViewTextBoxColumn";
             this.hashieDataGridViewTextBoxColumn.ReadOnly = true;
             this.hashieDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // saleSakhtDataGridViewTextBoxColumn
-            // 
-            this.saleSakhtDataGridViewTextBoxColumn.DataPropertyName = "SaleSakht";
-            this.saleSakhtDataGridViewTextBoxColumn.HeaderText = "SaleSakht";
-            this.saleSakhtDataGridViewTextBoxColumn.Name = "saleSakhtDataGridViewTextBoxColumn";
-            this.saleSakhtDataGridViewTextBoxColumn.ReadOnly = true;
-            this.saleSakhtDataGridViewTextBoxColumn.Visible = false;
             // 
             // dateParvaneDataGridViewTextBoxColumn
             // 
@@ -1111,6 +978,604 @@
             this.tellDataGridViewTextBoxColumn.ReadOnly = true;
             this.tellDataGridViewTextBoxColumn.Visible = false;
             // 
+            // contextMenu
+            // 
+            this.contextMenu.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.contextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnuAdd,
+            this.mnuEdit,
+            this.mnuDelete,
+            this.toolStripMenuItem1,
+            this.mnuView,
+            this.mnuStatus,
+            this.toolStripMenuItem2,
+            this.mnuMojod,
+            this.mnuVagozar,
+            this.toolStripMenuItem3,
+            this.mnuSendSms,
+            this.mnuSendToDivar,
+            this.mnuSendToSheypoor,
+            this.mnuSendToTelegram,
+            this.ارسالملکدرواتساپToolStripMenuItem,
+            this.toolStripMenuItem5,
+            this.mnuMatchRequest,
+            this.toolStripMenuItem6,
+            this.mnuPrint,
+            this.toolStripMenuItem4,
+            this.مدیریتستونهاToolStripMenuItem});
+            this.contextMenu.Name = "contextMenu";
+            this.contextMenu.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.contextMenu.Size = new System.Drawing.Size(214, 400);
+            // 
+            // mnuAdd
+            // 
+            this.mnuAdd.Image = global::Building.Properties.Resources.add_2_;
+            this.mnuAdd.Name = "mnuAdd";
+            this.mnuAdd.Size = new System.Drawing.Size(213, 24);
+            this.mnuAdd.Text = "افزودن ملک جدید (Ins)";
+            this.mnuAdd.Click += new System.EventHandler(this.mnuAdd_Click);
+            // 
+            // mnuEdit
+            // 
+            this.mnuEdit.Image = global::Building.Properties.Resources.edit_1_;
+            this.mnuEdit.Name = "mnuEdit";
+            this.mnuEdit.Size = new System.Drawing.Size(213, 24);
+            this.mnuEdit.Text = "ویرایش ملک جاری (F7)";
+            this.mnuEdit.Click += new System.EventHandler(this.mnuEdit_Click);
+            // 
+            // mnuDelete
+            // 
+            this.mnuDelete.Image = global::Building.Properties.Resources.delete_1_;
+            this.mnuDelete.Name = "mnuDelete";
+            this.mnuDelete.Size = new System.Drawing.Size(213, 24);
+            this.mnuDelete.Text = "حذف ملک جاری (Del)";
+            this.mnuDelete.Click += new System.EventHandler(this.mnuDelete_Click);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(210, 6);
+            // 
+            // mnuView
+            // 
+            this.mnuView.Image = global::Building.Properties.Resources.article_1_;
+            this.mnuView.Name = "mnuView";
+            this.mnuView.Size = new System.Drawing.Size(213, 24);
+            this.mnuView.Text = "مشاهده (F12)";
+            this.mnuView.Click += new System.EventHandler(this.mnuView_Click);
+            // 
+            // mnuStatus
+            // 
+            this.mnuStatus.Image = global::Building.Properties.Resources.refresh_round_symbol;
+            this.mnuStatus.Name = "mnuStatus";
+            this.mnuStatus.Size = new System.Drawing.Size(213, 24);
+            this.mnuStatus.Text = "غیرفعال (Ctrl+S)";
+            this.mnuStatus.Click += new System.EventHandler(this.mnuStatus_Click);
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(210, 6);
+            // 
+            // mnuMojod
+            // 
+            this.mnuMojod.Name = "mnuMojod";
+            this.mnuMojod.Size = new System.Drawing.Size(213, 24);
+            this.mnuMojod.Text = "تغییر وضعیت به موجود";
+            this.mnuMojod.Click += new System.EventHandler(this.mnuMojod_Click);
+            // 
+            // mnuVagozar
+            // 
+            this.mnuVagozar.Name = "mnuVagozar";
+            this.mnuVagozar.Size = new System.Drawing.Size(213, 24);
+            this.mnuVagozar.Text = "تغییر وضعیت به واگذارشده";
+            this.mnuVagozar.Click += new System.EventHandler(this.mnuVagozar_Click);
+            // 
+            // toolStripMenuItem3
+            // 
+            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(210, 6);
+            // 
+            // mnuSendSms
+            // 
+            this.mnuSendSms.Image = global::Building.Properties.Resources.icons8_sms_24;
+            this.mnuSendSms.Name = "mnuSendSms";
+            this.mnuSendSms.Size = new System.Drawing.Size(213, 24);
+            this.mnuSendSms.Text = "ارسال پیامک به مالک";
+            // 
+            // mnuSendToDivar
+            // 
+            this.mnuSendToDivar.Name = "mnuSendToDivar";
+            this.mnuSendToDivar.Size = new System.Drawing.Size(213, 24);
+            this.mnuSendToDivar.Text = "ارسال ملک در دیوار";
+            this.mnuSendToDivar.Click += new System.EventHandler(this.mnuSendToDivar_Click);
+            // 
+            // mnuSendToSheypoor
+            // 
+            this.mnuSendToSheypoor.Name = "mnuSendToSheypoor";
+            this.mnuSendToSheypoor.Size = new System.Drawing.Size(213, 24);
+            this.mnuSendToSheypoor.Text = "ارسال ملک در شیپور";
+            this.mnuSendToSheypoor.Click += new System.EventHandler(this.mnuSendToSheypoor_Click);
+            // 
+            // mnuSendToTelegram
+            // 
+            this.mnuSendToTelegram.Image = global::Building.Properties.Resources.icons8_telegram_app_24;
+            this.mnuSendToTelegram.Name = "mnuSendToTelegram";
+            this.mnuSendToTelegram.Size = new System.Drawing.Size(213, 24);
+            this.mnuSendToTelegram.Text = "ارسال ملک در تلگرام";
+            // 
+            // ارسالملکدرواتساپToolStripMenuItem
+            // 
+            this.ارسالملکدرواتساپToolStripMenuItem.Image = global::Building.Properties.Resources.icons8_whatsapp_24;
+            this.ارسالملکدرواتساپToolStripMenuItem.Name = "ارسالملکدرواتساپToolStripMenuItem";
+            this.ارسالملکدرواتساپToolStripMenuItem.Size = new System.Drawing.Size(213, 24);
+            this.ارسالملکدرواتساپToolStripMenuItem.Text = "ارسال ملک در واتساپ";
+            // 
+            // toolStripMenuItem5
+            // 
+            this.toolStripMenuItem5.Name = "toolStripMenuItem5";
+            this.toolStripMenuItem5.Size = new System.Drawing.Size(210, 6);
+            // 
+            // mnuMatchRequest
+            // 
+            this.mnuMatchRequest.Image = global::Building.Properties.Resources.article_1_;
+            this.mnuMatchRequest.Name = "mnuMatchRequest";
+            this.mnuMatchRequest.Size = new System.Drawing.Size(213, 24);
+            this.mnuMatchRequest.Text = "تطابق ملک با درخواست ها";
+            // 
+            // toolStripMenuItem6
+            // 
+            this.toolStripMenuItem6.Name = "toolStripMenuItem6";
+            this.toolStripMenuItem6.Size = new System.Drawing.Size(210, 6);
+            // 
+            // mnuPrint
+            // 
+            this.mnuPrint.Image = global::Building.Properties.Resources.printer;
+            this.mnuPrint.Name = "mnuPrint";
+            this.mnuPrint.Size = new System.Drawing.Size(213, 24);
+            this.mnuPrint.Text = "چاپ لیست املاک";
+            this.mnuPrint.Click += new System.EventHandler(this.mnuPrint_Click);
+            // 
+            // toolStripMenuItem4
+            // 
+            this.toolStripMenuItem4.Name = "toolStripMenuItem4";
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(210, 6);
+            // 
+            // مدیریتستونهاToolStripMenuItem
+            // 
+            this.مدیریتستونهاToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnuCode,
+            this.mnuDate,
+            this.mnuOwner,
+            this.mnuType,
+            this.mnuRoom,
+            this.mnuMasahat,
+            this.mnuZirBana,
+            this.mnuRahn,
+            this.mnuEjare,
+            this.mnuSell,
+            this.mnuRegion,
+            this.mnuBStatus,
+            this.mnuAddress,
+            this.mnuUserName,
+            this.mnuVam,
+            this.mnuQest,
+            this.mnuTejari,
+            this.mnuSaleSakht,
+            this.mnuSide,
+            this.mnuDocType,
+            this.mnuRental,
+            this.mnuAccountType,
+            this.mnuCondition,
+            this.mnuBView,
+            this.mnuFloor,
+            this.mnuKitchen,
+            this.mnuWater,
+            this.mnuBarq,
+            this.mnuGas,
+            this.mnuTell});
+            this.مدیریتستونهاToolStripMenuItem.Image = global::Building.Properties.Resources.technology_1;
+            this.مدیریتستونهاToolStripMenuItem.Name = "مدیریتستونهاToolStripMenuItem";
+            this.مدیریتستونهاToolStripMenuItem.Size = new System.Drawing.Size(213, 24);
+            this.مدیریتستونهاToolStripMenuItem.Text = "مدیریت ستون ها";
+            // 
+            // mnuCode
+            // 
+            this.mnuCode.CheckOnClick = true;
+            this.mnuCode.Name = "mnuCode";
+            this.mnuCode.Size = new System.Drawing.Size(180, 24);
+            this.mnuCode.Text = "کد ملک";
+            this.mnuCode.CheckedChanged += new System.EventHandler(this.mnuCode_CheckedChanged);
+            // 
+            // mnuDate
+            // 
+            this.mnuDate.CheckOnClick = true;
+            this.mnuDate.Name = "mnuDate";
+            this.mnuDate.Size = new System.Drawing.Size(180, 24);
+            this.mnuDate.Text = "تاریخ ثبت";
+            this.mnuDate.CheckedChanged += new System.EventHandler(this.mnuDate_CheckedChanged);
+            // 
+            // mnuOwner
+            // 
+            this.mnuOwner.CheckOnClick = true;
+            this.mnuOwner.Name = "mnuOwner";
+            this.mnuOwner.Size = new System.Drawing.Size(180, 24);
+            this.mnuOwner.Text = "نام مالک";
+            this.mnuOwner.CheckedChanged += new System.EventHandler(this.mnuOwner_CheckedChanged);
+            // 
+            // mnuType
+            // 
+            this.mnuType.CheckOnClick = true;
+            this.mnuType.Name = "mnuType";
+            this.mnuType.Size = new System.Drawing.Size(180, 24);
+            this.mnuType.Text = "نوع ملک";
+            this.mnuType.CheckedChanged += new System.EventHandler(this.mnuType_CheckedChanged);
+            // 
+            // mnuRoom
+            // 
+            this.mnuRoom.CheckOnClick = true;
+            this.mnuRoom.Name = "mnuRoom";
+            this.mnuRoom.Size = new System.Drawing.Size(180, 24);
+            this.mnuRoom.Text = "تعداد اتاق";
+            this.mnuRoom.CheckedChanged += new System.EventHandler(this.mnuRoom_CheckedChanged);
+            // 
+            // mnuMasahat
+            // 
+            this.mnuMasahat.CheckOnClick = true;
+            this.mnuMasahat.Name = "mnuMasahat";
+            this.mnuMasahat.Size = new System.Drawing.Size(180, 24);
+            this.mnuMasahat.Text = "مساحت";
+            this.mnuMasahat.CheckedChanged += new System.EventHandler(this.mnuMasahat_CheckedChanged);
+            // 
+            // mnuZirBana
+            // 
+            this.mnuZirBana.CheckOnClick = true;
+            this.mnuZirBana.Name = "mnuZirBana";
+            this.mnuZirBana.Size = new System.Drawing.Size(180, 24);
+            this.mnuZirBana.Text = "زیربنا";
+            this.mnuZirBana.CheckedChanged += new System.EventHandler(this.mnuZirBana_CheckedChanged);
+            // 
+            // mnuRahn
+            // 
+            this.mnuRahn.CheckOnClick = true;
+            this.mnuRahn.Name = "mnuRahn";
+            this.mnuRahn.Size = new System.Drawing.Size(180, 24);
+            this.mnuRahn.Text = "قیمت رهن";
+            this.mnuRahn.CheckedChanged += new System.EventHandler(this.mnuRahn_CheckedChanged);
+            // 
+            // mnuEjare
+            // 
+            this.mnuEjare.CheckOnClick = true;
+            this.mnuEjare.Name = "mnuEjare";
+            this.mnuEjare.Size = new System.Drawing.Size(180, 24);
+            this.mnuEjare.Text = "قیمت اجاره";
+            this.mnuEjare.CheckedChanged += new System.EventHandler(this.mnuEjare_CheckedChanged);
+            // 
+            // mnuSell
+            // 
+            this.mnuSell.CheckOnClick = true;
+            this.mnuSell.Name = "mnuSell";
+            this.mnuSell.Size = new System.Drawing.Size(180, 24);
+            this.mnuSell.Text = "قیمت فروش";
+            this.mnuSell.CheckedChanged += new System.EventHandler(this.mnuSell_CheckedChanged);
+            // 
+            // mnuRegion
+            // 
+            this.mnuRegion.CheckOnClick = true;
+            this.mnuRegion.Name = "mnuRegion";
+            this.mnuRegion.Size = new System.Drawing.Size(180, 24);
+            this.mnuRegion.Text = "محدوده";
+            this.mnuRegion.CheckedChanged += new System.EventHandler(this.mnuRegion_CheckedChanged);
+            // 
+            // mnuBStatus
+            // 
+            this.mnuBStatus.CheckOnClick = true;
+            this.mnuBStatus.Name = "mnuBStatus";
+            this.mnuBStatus.Size = new System.Drawing.Size(180, 24);
+            this.mnuBStatus.Text = "وضعیت";
+            this.mnuBStatus.CheckedChanged += new System.EventHandler(this.mnuBStatus_CheckedChanged);
+            // 
+            // mnuAddress
+            // 
+            this.mnuAddress.CheckOnClick = true;
+            this.mnuAddress.Name = "mnuAddress";
+            this.mnuAddress.Size = new System.Drawing.Size(180, 24);
+            this.mnuAddress.Text = "آدرس";
+            this.mnuAddress.CheckedChanged += new System.EventHandler(this.mnuAddress_CheckedChanged);
+            // 
+            // mnuUserName
+            // 
+            this.mnuUserName.CheckOnClick = true;
+            this.mnuUserName.Name = "mnuUserName";
+            this.mnuUserName.Size = new System.Drawing.Size(180, 24);
+            this.mnuUserName.Text = "مشاور";
+            this.mnuUserName.CheckedChanged += new System.EventHandler(this.mnuUserName_CheckedChanged);
+            // 
+            // mnuVam
+            // 
+            this.mnuVam.CheckOnClick = true;
+            this.mnuVam.Name = "mnuVam";
+            this.mnuVam.Size = new System.Drawing.Size(180, 24);
+            this.mnuVam.Text = "مبلغ وام";
+            this.mnuVam.CheckedChanged += new System.EventHandler(this.mnuVam_CheckedChanged);
+            // 
+            // mnuQest
+            // 
+            this.mnuQest.CheckOnClick = true;
+            this.mnuQest.Name = "mnuQest";
+            this.mnuQest.Size = new System.Drawing.Size(180, 24);
+            this.mnuQest.Text = "مبلغ قسط";
+            this.mnuQest.CheckedChanged += new System.EventHandler(this.mnuQest_CheckedChanged);
+            // 
+            // mnuTejari
+            // 
+            this.mnuTejari.CheckOnClick = true;
+            this.mnuTejari.Name = "mnuTejari";
+            this.mnuTejari.Size = new System.Drawing.Size(180, 24);
+            this.mnuTejari.Text = "متراژ تجاری";
+            this.mnuTejari.CheckedChanged += new System.EventHandler(this.mnuTejari_CheckedChanged);
+            // 
+            // mnuSaleSakht
+            // 
+            this.mnuSaleSakht.CheckOnClick = true;
+            this.mnuSaleSakht.Name = "mnuSaleSakht";
+            this.mnuSaleSakht.Size = new System.Drawing.Size(180, 24);
+            this.mnuSaleSakht.Text = "سال ساخت";
+            this.mnuSaleSakht.CheckedChanged += new System.EventHandler(this.mnuSaleSakht_CheckedChanged);
+            // 
+            // mnuSide
+            // 
+            this.mnuSide.CheckOnClick = true;
+            this.mnuSide.Name = "mnuSide";
+            this.mnuSide.Size = new System.Drawing.Size(180, 24);
+            this.mnuSide.Text = "جهت";
+            this.mnuSide.CheckedChanged += new System.EventHandler(this.mnuSide_CheckedChanged);
+            // 
+            // mnuDocType
+            // 
+            this.mnuDocType.CheckOnClick = true;
+            this.mnuDocType.Name = "mnuDocType";
+            this.mnuDocType.Size = new System.Drawing.Size(180, 24);
+            this.mnuDocType.Text = "نوع سند";
+            this.mnuDocType.CheckedChanged += new System.EventHandler(this.mnuDocType_CheckedChanged);
+            // 
+            // mnuRental
+            // 
+            this.mnuRental.CheckOnClick = true;
+            this.mnuRental.Name = "mnuRental";
+            this.mnuRental.Size = new System.Drawing.Size(180, 24);
+            this.mnuRental.Text = "ارجحیت اجاره";
+            this.mnuRental.CheckedChanged += new System.EventHandler(this.mnuRental_CheckedChanged);
+            // 
+            // mnuAccountType
+            // 
+            this.mnuAccountType.CheckOnClick = true;
+            this.mnuAccountType.Name = "mnuAccountType";
+            this.mnuAccountType.Size = new System.Drawing.Size(180, 24);
+            this.mnuAccountType.Text = "نوع کاربری";
+            this.mnuAccountType.CheckedChanged += new System.EventHandler(this.mnuAccountType_CheckedChanged);
+            // 
+            // mnuCondition
+            // 
+            this.mnuCondition.CheckOnClick = true;
+            this.mnuCondition.Name = "mnuCondition";
+            this.mnuCondition.Size = new System.Drawing.Size(180, 24);
+            this.mnuCondition.Text = "وضعیت ملک";
+            this.mnuCondition.CheckedChanged += new System.EventHandler(this.mnuCondition_CheckedChanged);
+            // 
+            // mnuBView
+            // 
+            this.mnuBView.CheckOnClick = true;
+            this.mnuBView.Name = "mnuBView";
+            this.mnuBView.Size = new System.Drawing.Size(180, 24);
+            this.mnuBView.Text = "نما";
+            this.mnuBView.CheckedChanged += new System.EventHandler(this.mnuBView_CheckedChanged);
+            // 
+            // mnuFloor
+            // 
+            this.mnuFloor.CheckOnClick = true;
+            this.mnuFloor.Name = "mnuFloor";
+            this.mnuFloor.Size = new System.Drawing.Size(180, 24);
+            this.mnuFloor.Text = "کفپوش";
+            this.mnuFloor.CheckedChanged += new System.EventHandler(this.mnuFloor_CheckedChanged);
+            // 
+            // mnuKitchen
+            // 
+            this.mnuKitchen.CheckOnClick = true;
+            this.mnuKitchen.Name = "mnuKitchen";
+            this.mnuKitchen.Size = new System.Drawing.Size(180, 24);
+            this.mnuKitchen.Text = "سرویس آشپزخانه";
+            this.mnuKitchen.CheckedChanged += new System.EventHandler(this.mnuKitchen_CheckedChanged);
+            // 
+            // mnuWater
+            // 
+            this.mnuWater.CheckOnClick = true;
+            this.mnuWater.Name = "mnuWater";
+            this.mnuWater.Size = new System.Drawing.Size(180, 24);
+            this.mnuWater.Text = "آب";
+            this.mnuWater.CheckedChanged += new System.EventHandler(this.mnuWater_CheckedChanged);
+            // 
+            // mnuBarq
+            // 
+            this.mnuBarq.CheckOnClick = true;
+            this.mnuBarq.Name = "mnuBarq";
+            this.mnuBarq.Size = new System.Drawing.Size(180, 24);
+            this.mnuBarq.Text = "برق";
+            this.mnuBarq.CheckedChanged += new System.EventHandler(this.mnuBarq_CheckedChanged);
+            // 
+            // mnuGas
+            // 
+            this.mnuGas.CheckOnClick = true;
+            this.mnuGas.Name = "mnuGas";
+            this.mnuGas.Size = new System.Drawing.Size(180, 24);
+            this.mnuGas.Text = "گاز";
+            this.mnuGas.CheckedChanged += new System.EventHandler(this.mnuGas_CheckedChanged);
+            // 
+            // mnuTell
+            // 
+            this.mnuTell.CheckOnClick = true;
+            this.mnuTell.Name = "mnuTell";
+            this.mnuTell.Size = new System.Drawing.Size(180, 24);
+            this.mnuTell.Text = "تلفن";
+            this.mnuTell.CheckedChanged += new System.EventHandler(this.mnuTell_CheckedChanged);
+            // 
+            // BuildingBindingSource
+            // 
+            this.BuildingBindingSource.DataSource = typeof(EntityCache.Bussines.BuildingBussines);
+            // 
+            // cmbStatus
+            // 
+            this.cmbStatus.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmbStatus.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cmbStatus.DisplayMember = "Name";
+            this.cmbStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbStatus.FormattingEnabled = true;
+            this.cmbStatus.Location = new System.Drawing.Point(837, 34);
+            this.cmbStatus.Name = "cmbStatus";
+            this.cmbStatus.Size = new System.Drawing.Size(122, 28);
+            this.cmbStatus.TabIndex = 55759;
+            this.cmbStatus.ValueMember = "Guid";
+            this.cmbStatus.SelectedIndexChanged += new System.EventHandler(this.cmbStatus_SelectedIndexChanged);
+            // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Location = new System.Drawing.Point(962, 37);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(46, 20);
+            this.label1.TabIndex = 55760;
+            this.label1.Text = "وضعیت";
+            // 
+            // label2
+            // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.Location = new System.Drawing.Point(785, 37);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(49, 20);
+            this.label2.TabIndex = 55760;
+            this.label2.Text = "نوع ملک";
+            // 
+            // cmbBuildingType
+            // 
+            this.cmbBuildingType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmbBuildingType.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cmbBuildingType.DataSource = this.btBindingSource;
+            this.cmbBuildingType.DisplayMember = "Name";
+            this.cmbBuildingType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbBuildingType.FormattingEnabled = true;
+            this.cmbBuildingType.Location = new System.Drawing.Point(660, 34);
+            this.cmbBuildingType.Name = "cmbBuildingType";
+            this.cmbBuildingType.Size = new System.Drawing.Size(122, 28);
+            this.cmbBuildingType.TabIndex = 55759;
+            this.cmbBuildingType.ValueMember = "Guid";
+            this.cmbBuildingType.SelectedIndexChanged += new System.EventHandler(this.cmbBuildingType_SelectedIndexChanged);
+            // 
+            // btBindingSource
+            // 
+            this.btBindingSource.DataSource = typeof(EntityCache.Bussines.BuildingTypeBussines);
+            // 
+            // label3
+            // 
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.Transparent;
+            this.label3.Location = new System.Drawing.Point(618, 37);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(39, 20);
+            this.label3.TabIndex = 55760;
+            this.label3.Text = "مشاور";
+            // 
+            // cmbUser
+            // 
+            this.cmbUser.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmbUser.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cmbUser.DataSource = this.userBindingSource;
+            this.cmbUser.DisplayMember = "Name";
+            this.cmbUser.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbUser.FormattingEnabled = true;
+            this.cmbUser.Location = new System.Drawing.Point(493, 34);
+            this.cmbUser.Name = "cmbUser";
+            this.cmbUser.Size = new System.Drawing.Size(122, 28);
+            this.cmbUser.TabIndex = 55759;
+            this.cmbUser.ValueMember = "Guid";
+            this.cmbUser.SelectedIndexChanged += new System.EventHandler(this.cmbUser_SelectedIndexChanged);
+            // 
+            // userBindingSource
+            // 
+            this.userBindingSource.DataSource = typeof(EntityCache.Bussines.UserBussines);
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "Tarakom";
+            this.dataGridViewTextBoxColumn1.HeaderText = "Tarakom";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "Side";
+            this.dataGridViewTextBoxColumn2.HeaderText = "Side";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            this.dataGridViewTextBoxColumn2.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.DataPropertyName = "Water";
+            this.dataGridViewTextBoxColumn3.HeaderText = "Water";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            this.dataGridViewTextBoxColumn3.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.DataPropertyName = "Barq";
+            this.dataGridViewTextBoxColumn4.HeaderText = "Barq";
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.ReadOnly = true;
+            this.dataGridViewTextBoxColumn4.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            this.dataGridViewTextBoxColumn5.DataPropertyName = "Gas";
+            this.dataGridViewTextBoxColumn5.HeaderText = "Gas";
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            this.dataGridViewTextBoxColumn5.ReadOnly = true;
+            this.dataGridViewTextBoxColumn5.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn6
+            // 
+            this.dataGridViewTextBoxColumn6.DataPropertyName = "Tell";
+            this.dataGridViewTextBoxColumn6.HeaderText = "Tell";
+            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            this.dataGridViewTextBoxColumn6.ReadOnly = true;
+            this.dataGridViewTextBoxColumn6.Visible = false;
+            // 
+            // btnSelect
+            // 
+            this.btnSelect.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnSelect.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSelect.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.btnSelect.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnSelect.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.btnSelect.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSelect.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.btnSelect.Location = new System.Drawing.Point(325, 565);
+            this.btnSelect.Name = "btnSelect";
+            this.btnSelect.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
+            this.btnSelect.Size = new System.Drawing.Size(414, 31);
+            this.btnSelect.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
+            this.btnSelect.TabIndex = 55763;
+            this.btnSelect.Text = "انتخاب";
+            this.btnSelect.TextColor = System.Drawing.Color.White;
+            this.btnSelect.Click += new System.EventHandler(this.btnSelect_Click);
+            // 
             // frmShowBuildings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -1123,14 +1588,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.cmbStatus);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.btnOther);
-            this.Controls.Add(this.btnView);
-            this.Controls.Add(this.btnChangeStatus);
             this.Controls.Add(this.txtSearch);
-            this.Controls.Add(this.btnDelete);
-            this.Controls.Add(this.btnInsert);
-            this.Controls.Add(this.btnEdit);
-            this.Controls.Add(this.line1);
             this.Controls.Add(this.DGrid);
             this.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -1145,6 +1603,7 @@
             this.Load += new System.EventHandler(this.frmShowBuildings_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmShowBuildings_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).EndInit();
+            this.contextMenu.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.BuildingBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).EndInit();
@@ -1154,22 +1613,9 @@
         }
 
         #endregion
-
-        private DevComponents.DotNetBar.ButtonX btnView;
-        private DevComponents.DotNetBar.ButtonX btnChangeStatus;
         private DevComponents.DotNetBar.Controls.TextBoxX txtSearch;
         private System.Windows.Forms.BindingSource BuildingBindingSource;
-        private DevComponents.DotNetBar.ButtonX btnDelete;
-        private DevComponents.DotNetBar.ButtonX btnInsert;
-        private DevComponents.DotNetBar.ButtonX btnEdit;
-        private DevComponents.DotNetBar.Controls.Line line1;
         private DevComponents.DotNetBar.Controls.DataGridViewX DGrid;
-        private DevComponents.DotNetBar.ButtonX btnOther;
-        private DevComponents.DotNetBar.ButtonItem btnMojod;
-        private DevComponents.DotNetBar.ButtonItem btnVagozar;
-        private DevComponents.DotNetBar.ButtonItem btnSendToDivar;
-        private DevComponents.DotNetBar.ButtonItem btnSendToTelegram;
-        private DevComponents.DotNetBar.ButtonItem btnMatchRequest;
         private System.Windows.Forms.ComboBox cmbStatus;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
@@ -1184,30 +1630,93 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
         private System.Windows.Forms.BindingSource btBindingSource;
         private System.Windows.Forms.BindingSource userBindingSource;
-        private DevComponents.DotNetBar.ButtonItem btnSendSms;
         private DevComponents.DotNetBar.ButtonX btnSelect;
-        private DevComponents.DotNetBar.ButtonItem btnSendToSheypoor;
-        private DevComponents.DotNetBar.ButtonItem btnPrint;
+        private System.Windows.Forms.ContextMenuStrip contextMenu;
+        private System.Windows.Forms.ToolStripMenuItem mnuAdd;
+        private System.Windows.Forms.ToolStripMenuItem mnuEdit;
+        private System.Windows.Forms.ToolStripMenuItem mnuDelete;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem mnuView;
+        private System.Windows.Forms.ToolStripMenuItem mnuStatus;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem mnuPrint;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem4;
+        private System.Windows.Forms.ToolStripMenuItem مدیریتستونهاToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mnuCode;
+        private System.Windows.Forms.ToolStripMenuItem mnuDate;
+        private System.Windows.Forms.ToolStripMenuItem mnuOwner;
+        private System.Windows.Forms.ToolStripMenuItem mnuType;
+        private System.Windows.Forms.ToolStripMenuItem mnuRoom;
+        private System.Windows.Forms.ToolStripMenuItem mnuMasahat;
+        private System.Windows.Forms.ToolStripMenuItem mnuZirBana;
+        private System.Windows.Forms.ToolStripMenuItem mnuRahn;
+        private System.Windows.Forms.ToolStripMenuItem mnuEjare;
+        private System.Windows.Forms.ToolStripMenuItem mnuSell;
+        private System.Windows.Forms.ToolStripMenuItem mnuMojod;
+        private System.Windows.Forms.ToolStripMenuItem mnuVagozar;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem3;
+        private System.Windows.Forms.ToolStripMenuItem mnuSendSms;
+        private System.Windows.Forms.ToolStripMenuItem mnuSendToDivar;
+        private System.Windows.Forms.ToolStripMenuItem mnuSendToSheypoor;
+        private System.Windows.Forms.ToolStripMenuItem mnuSendToTelegram;
+        private System.Windows.Forms.ToolStripMenuItem ارسالملکدرواتساپToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem5;
+        private System.Windows.Forms.ToolStripMenuItem mnuMatchRequest;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem6;
+        private System.Windows.Forms.ToolStripMenuItem mnuRegion;
+        private System.Windows.Forms.ToolStripMenuItem mnuBStatus;
+        private System.Windows.Forms.ToolStripMenuItem mnuAddress;
+        private System.Windows.Forms.ToolStripMenuItem mnuUserName;
+        private System.Windows.Forms.ToolStripMenuItem mnuVam;
+        private System.Windows.Forms.ToolStripMenuItem mnuQest;
+        private System.Windows.Forms.ToolStripMenuItem mnuTejari;
+        private System.Windows.Forms.ToolStripMenuItem mnuSaleSakht;
+        private System.Windows.Forms.ToolStripMenuItem mnuSide;
+        private System.Windows.Forms.ToolStripMenuItem mnuDocType;
+        private System.Windows.Forms.ToolStripMenuItem mnuRental;
+        private System.Windows.Forms.ToolStripMenuItem mnuAccountType;
+        private System.Windows.Forms.ToolStripMenuItem mnuCondition;
+        private System.Windows.Forms.ToolStripMenuItem mnuBView;
+        private System.Windows.Forms.ToolStripMenuItem mnuFloor;
+        private System.Windows.Forms.ToolStripMenuItem mnuKitchen;
+        private System.Windows.Forms.ToolStripMenuItem mnuWater;
+        private System.Windows.Forms.ToolStripMenuItem mnuBarq;
+        private System.Windows.Forms.ToolStripMenuItem mnuGas;
+        private System.Windows.Forms.ToolStripMenuItem mnuTell;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgCode;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DateSh;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ownerNameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn buildingTypeNameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn RoomCount;
-        private System.Windows.Forms.DataGridViewTextBoxColumn masahatDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn rahnPrice1DataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ejarePrice1DataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn sellPriceDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn RegionName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn BuildingStatusName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn addressDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgDateSh;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgOwnerName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgType;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgRoomCount;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgMasahat;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgZirBana;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgRahn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgEjare;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgRentalAuthorityName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgSellPrice;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgVam;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgQest;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgTejari;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgRegionName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgBuildingStatus;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgAddress;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgSaleSakht;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgUserName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgSide;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgDocType;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgAccountType;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgCondition;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgView;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgFloorCover;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgKitchenService;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgWater;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgBarq;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgGas;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgTell;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgGuid;
         private System.Windows.Forms.DataGridViewTextBoxColumn modifiedDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewCheckBoxColumn statusDataGridViewCheckBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn ownerGuidDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn UserName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn zirBanaDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn vamPriceDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn qestPriceDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn dangDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn documentTypeDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn rahnPrice2DataGridViewTextBoxColumn;
@@ -1228,7 +1737,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn shortDescDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn buildingAccountTypeGuidDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn buildingAccountTypeNameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn metrazhTejariDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn buildingViewGuidDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn floorCoverGuidDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn kitchenServiceGuidDataGridViewTextBoxColumn;
@@ -1238,7 +1746,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn metrazhKoucheDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn ertefaSaqfDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn hashieDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn saleSakhtDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn dateParvaneDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn parvaneSerialDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewCheckBoxColumn bonBastDataGridViewCheckBoxColumn;

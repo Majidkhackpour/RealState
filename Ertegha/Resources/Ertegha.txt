@@ -72,6 +72,37 @@ IF NOT EXISTS (SELECT * FROM sys.foreign_keys WHERE object_id = OBJECT_ID(N'[dbo
 ALTER TABLE [dbo].[SmsLogs]  WITH CHECK ADD  CONSTRAINT [FK_SmsLog_User] FOREIGN KEY([UserGuid])
 REFERENCES [dbo].[Users] ([Guid])
 GO
+
+IF NOT EXISTS (SELECT * FROM sys.foreign_keys WHERE object_id = OBJECT_ID(N'[dbo].[FK_Buildings_Rental]') AND parent_object_id = OBJECT_ID(N'[dbo].[Buildings]'))
+ALTER TABLE [dbo].[Buildings]  WITH CHECK ADD  CONSTRAINT [FK_Buildings_Rental] FOREIGN KEY([RentalAutorityGuid])
+REFERENCES [dbo].[RentalAuthorities] ([Guid])
+GO
+
+IF NOT EXISTS (SELECT * FROM sys.foreign_keys WHERE object_id = OBJECT_ID(N'[dbo].[FK_Buildings_DocType]') AND parent_object_id = OBJECT_ID(N'[dbo].[Buildings]'))
+ALTER TABLE [dbo].[Buildings]  WITH CHECK ADD  CONSTRAINT [FK_Buildings_DocType] FOREIGN KEY([DocumentType])
+REFERENCES [dbo].[DocumentTypes] ([Guid])
+GO
+
+IF NOT EXISTS (SELECT * FROM sys.foreign_keys WHERE object_id = OBJECT_ID(N'[dbo].[FK_Buildings_Condition]') AND parent_object_id = OBJECT_ID(N'[dbo].[Buildings]'))
+ALTER TABLE [dbo].[Buildings]  WITH CHECK ADD  CONSTRAINT [FK_Buildings_Condition] FOREIGN KEY([BuildingConditionGuid])
+REFERENCES [dbo].[BuildingConditions] ([Guid])
+GO
+
+IF NOT EXISTS (SELECT * FROM sys.foreign_keys WHERE object_id = OBJECT_ID(N'[dbo].[FK_Buildings_View]') AND parent_object_id = OBJECT_ID(N'[dbo].[Buildings]'))
+ALTER TABLE [dbo].[Buildings]  WITH CHECK ADD  CONSTRAINT [FK_Buildings_View] FOREIGN KEY([BuildingViewGuid])
+REFERENCES [dbo].[BuildingViews] ([Guid])
+GO
+
+IF NOT EXISTS (SELECT * FROM sys.foreign_keys WHERE object_id = OBJECT_ID(N'[dbo].[FK_Buildings_AccType]') AND parent_object_id = OBJECT_ID(N'[dbo].[Buildings]'))
+ALTER TABLE [dbo].[Buildings]  WITH CHECK ADD  CONSTRAINT [FK_Buildings_AccType] FOREIGN KEY([BuildingAccountTypeGuid])
+REFERENCES [dbo].[BuildingAccountTypes] ([Guid])
+GO
+
+IF NOT EXISTS (SELECT * FROM sys.foreign_keys WHERE object_id = OBJECT_ID(N'[dbo].[FK_Buildings_FloorCover]') AND parent_object_id = OBJECT_ID(N'[dbo].[Buildings]'))
+ALTER TABLE [dbo].[Buildings]  WITH CHECK ADD  CONSTRAINT [FK_Buildings_FloorCover] FOREIGN KEY([FloorCoverGuid])
+REFERENCES [dbo].[FloorCovers] ([Guid])
+GO
+
 -- ==========================================================================================
 IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Cities_SelectAll]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
 	exec('Create Procedure [dbo].[sp_Cities_SelectAll]	As Begin print 11 end')
@@ -143,13 +174,27 @@ select [dbo].[Buildings].*,[dbo].[Peoples].Name As OwnerName,
        [dbo].[BuildingTypes].Name As BuildingTypeName,
 	   [dbo].[Users].Name As UserName,
 	   [dbo].[Regions].Name As RegionName,
-	   [dbo].[RentalAuthorities].Name As RentalAuthorityName
+	   [dbo].[RentalAuthorities].Name As RentalAuthorityName,
+	   [dbo].[DocumentTypes].Name As DocumentTypeName,
+	   [dbo].[BuildingConditions].Name As BuildingConditionName,
+	   [dbo].[BuildingViews].Name As BuildingViewName,
+	   [dbo].[FloorCovers].Name As FloorCoverName,
+	   [dbo].[KitchenServices].Name As KitchenServiceName,
+	   [dbo].[BuildingAccountTypes].Name As BuildingAccountTypeName
 From [dbo].[Buildings] 
      inner join [dbo].[Peoples] on [dbo].[Buildings].OwnerGuid=[dbo].[Peoples].Guid
 	 inner join [dbo].[BuildingTypes] on [dbo].[Buildings].BuildingTypeGuid=[dbo].[BuildingTypes].Guid
 	 inner join [dbo].[Users] on [dbo].[Buildings].UserGuid=[dbo].[Users].Guid
 	 inner join [dbo].[Regions] on [dbo].[Buildings].RegionGuid=[dbo].[Regions].Guid
-	 left outer join [dbo].[RentalAuthorities] on [dbo].[Buildings].RentalAutorityGuid=[dbo].[RentalAuthorities].Guid
+	 inner join [dbo].[RentalAuthorities] on [dbo].[Buildings].RentalAutorityGuid=[dbo].[RentalAuthorities].Guid
+	 inner join [dbo].[DocumentTypes] on [dbo].[Buildings].DocumentType=[dbo].[DocumentTypes].Guid
+	 inner join [dbo].[BuildingConditions] on [dbo].[Buildings].BuildingConditionGuid=[dbo].[BuildingConditions].Guid
+	 inner join [dbo].[BuildingViews] on [dbo].[Buildings].BuildingViewGuid=[dbo].[BuildingViews].Guid
+	 inner join [dbo].[FloorCovers] on [dbo].[Buildings].FloorCoverGuid=[dbo].[FloorCovers].Guid
+	 inner join [dbo].[KitchenServices] on [dbo].[Buildings].KitchenServiceGuid=[dbo].[KitchenServices].Guid
+	 inner join [dbo].[BuildingAccountTypes] on [dbo].[Buildings].BuildingAccountTypeGuid=[dbo].[BuildingAccountTypes].Guid
+
+	 Order By [dbo].[Buildings].CreateDate desc
 End
 GO
 -- ==========================================================================================

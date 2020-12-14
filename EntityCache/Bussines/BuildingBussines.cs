@@ -13,6 +13,7 @@ namespace EntityCache.Bussines
 {
     public class BuildingBussines : IBuilding
     {
+
         #region Properties
         public Guid Guid { get; set; }
         public DateTime Modified { get; set; } = DateTime.Now;
@@ -29,6 +30,7 @@ namespace EntityCache.Bussines
         public decimal QestPrice { get; set; }
         public int Dang { get; set; }
         public Guid? DocumentType { get; set; }
+        public string DocumentTypeName { get; set; }
         public EnTarakom? Tarakom { get; set; }
         public decimal RahnPrice1 { get; set; }
         public decimal RahnPrice2 { get; set; }
@@ -51,7 +53,9 @@ namespace EntityCache.Bussines
         public string RegionName { get; set; }
         public string Address { get; set; }
         public Guid BuildingConditionGuid { get; set; }
+        public string BuildingConditionName { get; set; }
         public EnBuildingSide Side { get; set; }
+        public string SideName => Side.GetDisplay();
         public Guid BuildingTypeGuid { get; set; }
         public string BuildingTypeName { get; set; }
         public string ShortDesc { get; set; }
@@ -59,12 +63,19 @@ namespace EntityCache.Bussines
         public string BuildingAccountTypeName { get; set; }
         public float MetrazhTejari { get; set; }
         public Guid BuildingViewGuid { get; set; }
+        public string BuildingViewName { get; set; }
         public Guid FloorCoverGuid { get; set; }
+        public string FloorCoverName { get; set; }
         public Guid KitchenServiceGuid { get; set; }
+        public string KitchenServiceName { get; set; }
         public EnKhadamati Water { get; set; }
+        public string WaterName => Water.GetDisplay();
         public EnKhadamati Barq { get; set; }
+        public string BarqName => Barq.GetDisplay();
         public EnKhadamati Gas { get; set; }
+        public string GasName => Gas.GetDisplay();
         public EnKhadamati Tell { get; set; }
+        public string TellName => Tell.GetDisplay();
         public int TedadTabaqe { get; set; }
         public int TabaqeNo { get; set; }
         public int VahedPerTabaqe { get; set; }

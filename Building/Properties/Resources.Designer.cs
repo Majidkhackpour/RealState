@@ -133,6 +133,36 @@ namespace Building.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_sms_24 {
+            get {
+                object obj = ResourceManager.GetObject("icons8_sms_24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_telegram_app_24 {
+            get {
+                object obj = ResourceManager.GetObject("icons8_telegram_app_24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_whatsapp_24 {
+            get {
+                object obj = ResourceManager.GetObject("icons8_whatsapp_24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap list {
             get {
                 object obj = ResourceManager.GetObject("list", resourceCulture);
