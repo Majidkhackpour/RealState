@@ -183,11 +183,22 @@
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnSelect = new DevComponents.DotNetBar.ButtonX();
+            this.grp = new DevComponents.DotNetBar.PanelEx();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.cmbAccType = new System.Windows.Forms.ComboBox();
+            this.AccTypeBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.cmbDocType = new System.Windows.Forms.ComboBox();
+            this.docTypeBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.chbFilter = new DevComponents.DotNetBar.Controls.CheckBoxX();
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).BeginInit();
             this.contextMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BuildingBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).BeginInit();
+            this.grp.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.AccTypeBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.docTypeBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // txtSearch
@@ -203,7 +214,7 @@
             this.txtSearch.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.PreventEnterBeep = true;
-            this.txtSearch.Size = new System.Drawing.Size(428, 27);
+            this.txtSearch.Size = new System.Drawing.Size(747, 27);
             this.txtSearch.TabIndex = 55745;
             this.txtSearch.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtSearch.WatermarkText = "مورد جستجو را وارد نمایید ...";
@@ -343,7 +354,7 @@
             this.DGrid.RowsDefaultCellStyle = dataGridViewCellStyle10;
             this.DGrid.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             this.DGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DGrid.Size = new System.Drawing.Size(1016, 489);
+            this.DGrid.Size = new System.Drawing.Size(844, 489);
             this.DGrid.TabIndex = 55744;
             this.DGrid.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DGrid_CellFormatting);
             this.DGrid.DoubleClick += new System.EventHandler(this.DGrid_DoubleClick);
@@ -1183,7 +1194,7 @@
             // 
             this.mnuCode.CheckOnClick = true;
             this.mnuCode.Name = "mnuCode";
-            this.mnuCode.Size = new System.Drawing.Size(180, 24);
+            this.mnuCode.Size = new System.Drawing.Size(166, 24);
             this.mnuCode.Text = "کد ملک";
             this.mnuCode.CheckedChanged += new System.EventHandler(this.mnuCode_CheckedChanged);
             // 
@@ -1191,7 +1202,7 @@
             // 
             this.mnuDate.CheckOnClick = true;
             this.mnuDate.Name = "mnuDate";
-            this.mnuDate.Size = new System.Drawing.Size(180, 24);
+            this.mnuDate.Size = new System.Drawing.Size(166, 24);
             this.mnuDate.Text = "تاریخ ثبت";
             this.mnuDate.CheckedChanged += new System.EventHandler(this.mnuDate_CheckedChanged);
             // 
@@ -1199,7 +1210,7 @@
             // 
             this.mnuOwner.CheckOnClick = true;
             this.mnuOwner.Name = "mnuOwner";
-            this.mnuOwner.Size = new System.Drawing.Size(180, 24);
+            this.mnuOwner.Size = new System.Drawing.Size(166, 24);
             this.mnuOwner.Text = "نام مالک";
             this.mnuOwner.CheckedChanged += new System.EventHandler(this.mnuOwner_CheckedChanged);
             // 
@@ -1207,7 +1218,7 @@
             // 
             this.mnuType.CheckOnClick = true;
             this.mnuType.Name = "mnuType";
-            this.mnuType.Size = new System.Drawing.Size(180, 24);
+            this.mnuType.Size = new System.Drawing.Size(166, 24);
             this.mnuType.Text = "نوع ملک";
             this.mnuType.CheckedChanged += new System.EventHandler(this.mnuType_CheckedChanged);
             // 
@@ -1215,7 +1226,7 @@
             // 
             this.mnuRoom.CheckOnClick = true;
             this.mnuRoom.Name = "mnuRoom";
-            this.mnuRoom.Size = new System.Drawing.Size(180, 24);
+            this.mnuRoom.Size = new System.Drawing.Size(166, 24);
             this.mnuRoom.Text = "تعداد اتاق";
             this.mnuRoom.CheckedChanged += new System.EventHandler(this.mnuRoom_CheckedChanged);
             // 
@@ -1223,7 +1234,7 @@
             // 
             this.mnuMasahat.CheckOnClick = true;
             this.mnuMasahat.Name = "mnuMasahat";
-            this.mnuMasahat.Size = new System.Drawing.Size(180, 24);
+            this.mnuMasahat.Size = new System.Drawing.Size(166, 24);
             this.mnuMasahat.Text = "مساحت";
             this.mnuMasahat.CheckedChanged += new System.EventHandler(this.mnuMasahat_CheckedChanged);
             // 
@@ -1231,7 +1242,7 @@
             // 
             this.mnuZirBana.CheckOnClick = true;
             this.mnuZirBana.Name = "mnuZirBana";
-            this.mnuZirBana.Size = new System.Drawing.Size(180, 24);
+            this.mnuZirBana.Size = new System.Drawing.Size(166, 24);
             this.mnuZirBana.Text = "زیربنا";
             this.mnuZirBana.CheckedChanged += new System.EventHandler(this.mnuZirBana_CheckedChanged);
             // 
@@ -1239,7 +1250,7 @@
             // 
             this.mnuRahn.CheckOnClick = true;
             this.mnuRahn.Name = "mnuRahn";
-            this.mnuRahn.Size = new System.Drawing.Size(180, 24);
+            this.mnuRahn.Size = new System.Drawing.Size(166, 24);
             this.mnuRahn.Text = "قیمت رهن";
             this.mnuRahn.CheckedChanged += new System.EventHandler(this.mnuRahn_CheckedChanged);
             // 
@@ -1247,7 +1258,7 @@
             // 
             this.mnuEjare.CheckOnClick = true;
             this.mnuEjare.Name = "mnuEjare";
-            this.mnuEjare.Size = new System.Drawing.Size(180, 24);
+            this.mnuEjare.Size = new System.Drawing.Size(166, 24);
             this.mnuEjare.Text = "قیمت اجاره";
             this.mnuEjare.CheckedChanged += new System.EventHandler(this.mnuEjare_CheckedChanged);
             // 
@@ -1255,7 +1266,7 @@
             // 
             this.mnuSell.CheckOnClick = true;
             this.mnuSell.Name = "mnuSell";
-            this.mnuSell.Size = new System.Drawing.Size(180, 24);
+            this.mnuSell.Size = new System.Drawing.Size(166, 24);
             this.mnuSell.Text = "قیمت فروش";
             this.mnuSell.CheckedChanged += new System.EventHandler(this.mnuSell_CheckedChanged);
             // 
@@ -1263,7 +1274,7 @@
             // 
             this.mnuRegion.CheckOnClick = true;
             this.mnuRegion.Name = "mnuRegion";
-            this.mnuRegion.Size = new System.Drawing.Size(180, 24);
+            this.mnuRegion.Size = new System.Drawing.Size(166, 24);
             this.mnuRegion.Text = "محدوده";
             this.mnuRegion.CheckedChanged += new System.EventHandler(this.mnuRegion_CheckedChanged);
             // 
@@ -1271,7 +1282,7 @@
             // 
             this.mnuBStatus.CheckOnClick = true;
             this.mnuBStatus.Name = "mnuBStatus";
-            this.mnuBStatus.Size = new System.Drawing.Size(180, 24);
+            this.mnuBStatus.Size = new System.Drawing.Size(166, 24);
             this.mnuBStatus.Text = "وضعیت";
             this.mnuBStatus.CheckedChanged += new System.EventHandler(this.mnuBStatus_CheckedChanged);
             // 
@@ -1279,7 +1290,7 @@
             // 
             this.mnuAddress.CheckOnClick = true;
             this.mnuAddress.Name = "mnuAddress";
-            this.mnuAddress.Size = new System.Drawing.Size(180, 24);
+            this.mnuAddress.Size = new System.Drawing.Size(166, 24);
             this.mnuAddress.Text = "آدرس";
             this.mnuAddress.CheckedChanged += new System.EventHandler(this.mnuAddress_CheckedChanged);
             // 
@@ -1287,7 +1298,7 @@
             // 
             this.mnuUserName.CheckOnClick = true;
             this.mnuUserName.Name = "mnuUserName";
-            this.mnuUserName.Size = new System.Drawing.Size(180, 24);
+            this.mnuUserName.Size = new System.Drawing.Size(166, 24);
             this.mnuUserName.Text = "مشاور";
             this.mnuUserName.CheckedChanged += new System.EventHandler(this.mnuUserName_CheckedChanged);
             // 
@@ -1295,7 +1306,7 @@
             // 
             this.mnuVam.CheckOnClick = true;
             this.mnuVam.Name = "mnuVam";
-            this.mnuVam.Size = new System.Drawing.Size(180, 24);
+            this.mnuVam.Size = new System.Drawing.Size(166, 24);
             this.mnuVam.Text = "مبلغ وام";
             this.mnuVam.CheckedChanged += new System.EventHandler(this.mnuVam_CheckedChanged);
             // 
@@ -1303,7 +1314,7 @@
             // 
             this.mnuQest.CheckOnClick = true;
             this.mnuQest.Name = "mnuQest";
-            this.mnuQest.Size = new System.Drawing.Size(180, 24);
+            this.mnuQest.Size = new System.Drawing.Size(166, 24);
             this.mnuQest.Text = "مبلغ قسط";
             this.mnuQest.CheckedChanged += new System.EventHandler(this.mnuQest_CheckedChanged);
             // 
@@ -1311,7 +1322,7 @@
             // 
             this.mnuTejari.CheckOnClick = true;
             this.mnuTejari.Name = "mnuTejari";
-            this.mnuTejari.Size = new System.Drawing.Size(180, 24);
+            this.mnuTejari.Size = new System.Drawing.Size(166, 24);
             this.mnuTejari.Text = "متراژ تجاری";
             this.mnuTejari.CheckedChanged += new System.EventHandler(this.mnuTejari_CheckedChanged);
             // 
@@ -1319,7 +1330,7 @@
             // 
             this.mnuSaleSakht.CheckOnClick = true;
             this.mnuSaleSakht.Name = "mnuSaleSakht";
-            this.mnuSaleSakht.Size = new System.Drawing.Size(180, 24);
+            this.mnuSaleSakht.Size = new System.Drawing.Size(166, 24);
             this.mnuSaleSakht.Text = "سال ساخت";
             this.mnuSaleSakht.CheckedChanged += new System.EventHandler(this.mnuSaleSakht_CheckedChanged);
             // 
@@ -1327,7 +1338,7 @@
             // 
             this.mnuSide.CheckOnClick = true;
             this.mnuSide.Name = "mnuSide";
-            this.mnuSide.Size = new System.Drawing.Size(180, 24);
+            this.mnuSide.Size = new System.Drawing.Size(166, 24);
             this.mnuSide.Text = "جهت";
             this.mnuSide.CheckedChanged += new System.EventHandler(this.mnuSide_CheckedChanged);
             // 
@@ -1335,7 +1346,7 @@
             // 
             this.mnuDocType.CheckOnClick = true;
             this.mnuDocType.Name = "mnuDocType";
-            this.mnuDocType.Size = new System.Drawing.Size(180, 24);
+            this.mnuDocType.Size = new System.Drawing.Size(166, 24);
             this.mnuDocType.Text = "نوع سند";
             this.mnuDocType.CheckedChanged += new System.EventHandler(this.mnuDocType_CheckedChanged);
             // 
@@ -1343,7 +1354,7 @@
             // 
             this.mnuRental.CheckOnClick = true;
             this.mnuRental.Name = "mnuRental";
-            this.mnuRental.Size = new System.Drawing.Size(180, 24);
+            this.mnuRental.Size = new System.Drawing.Size(166, 24);
             this.mnuRental.Text = "ارجحیت اجاره";
             this.mnuRental.CheckedChanged += new System.EventHandler(this.mnuRental_CheckedChanged);
             // 
@@ -1351,7 +1362,7 @@
             // 
             this.mnuAccountType.CheckOnClick = true;
             this.mnuAccountType.Name = "mnuAccountType";
-            this.mnuAccountType.Size = new System.Drawing.Size(180, 24);
+            this.mnuAccountType.Size = new System.Drawing.Size(166, 24);
             this.mnuAccountType.Text = "نوع کاربری";
             this.mnuAccountType.CheckedChanged += new System.EventHandler(this.mnuAccountType_CheckedChanged);
             // 
@@ -1359,7 +1370,7 @@
             // 
             this.mnuCondition.CheckOnClick = true;
             this.mnuCondition.Name = "mnuCondition";
-            this.mnuCondition.Size = new System.Drawing.Size(180, 24);
+            this.mnuCondition.Size = new System.Drawing.Size(166, 24);
             this.mnuCondition.Text = "وضعیت ملک";
             this.mnuCondition.CheckedChanged += new System.EventHandler(this.mnuCondition_CheckedChanged);
             // 
@@ -1367,7 +1378,7 @@
             // 
             this.mnuBView.CheckOnClick = true;
             this.mnuBView.Name = "mnuBView";
-            this.mnuBView.Size = new System.Drawing.Size(180, 24);
+            this.mnuBView.Size = new System.Drawing.Size(166, 24);
             this.mnuBView.Text = "نما";
             this.mnuBView.CheckedChanged += new System.EventHandler(this.mnuBView_CheckedChanged);
             // 
@@ -1375,7 +1386,7 @@
             // 
             this.mnuFloor.CheckOnClick = true;
             this.mnuFloor.Name = "mnuFloor";
-            this.mnuFloor.Size = new System.Drawing.Size(180, 24);
+            this.mnuFloor.Size = new System.Drawing.Size(166, 24);
             this.mnuFloor.Text = "کفپوش";
             this.mnuFloor.CheckedChanged += new System.EventHandler(this.mnuFloor_CheckedChanged);
             // 
@@ -1383,7 +1394,7 @@
             // 
             this.mnuKitchen.CheckOnClick = true;
             this.mnuKitchen.Name = "mnuKitchen";
-            this.mnuKitchen.Size = new System.Drawing.Size(180, 24);
+            this.mnuKitchen.Size = new System.Drawing.Size(166, 24);
             this.mnuKitchen.Text = "سرویس آشپزخانه";
             this.mnuKitchen.CheckedChanged += new System.EventHandler(this.mnuKitchen_CheckedChanged);
             // 
@@ -1391,7 +1402,7 @@
             // 
             this.mnuWater.CheckOnClick = true;
             this.mnuWater.Name = "mnuWater";
-            this.mnuWater.Size = new System.Drawing.Size(180, 24);
+            this.mnuWater.Size = new System.Drawing.Size(166, 24);
             this.mnuWater.Text = "آب";
             this.mnuWater.CheckedChanged += new System.EventHandler(this.mnuWater_CheckedChanged);
             // 
@@ -1399,7 +1410,7 @@
             // 
             this.mnuBarq.CheckOnClick = true;
             this.mnuBarq.Name = "mnuBarq";
-            this.mnuBarq.Size = new System.Drawing.Size(180, 24);
+            this.mnuBarq.Size = new System.Drawing.Size(166, 24);
             this.mnuBarq.Text = "برق";
             this.mnuBarq.CheckedChanged += new System.EventHandler(this.mnuBarq_CheckedChanged);
             // 
@@ -1407,7 +1418,7 @@
             // 
             this.mnuGas.CheckOnClick = true;
             this.mnuGas.Name = "mnuGas";
-            this.mnuGas.Size = new System.Drawing.Size(180, 24);
+            this.mnuGas.Size = new System.Drawing.Size(166, 24);
             this.mnuGas.Text = "گاز";
             this.mnuGas.CheckedChanged += new System.EventHandler(this.mnuGas_CheckedChanged);
             // 
@@ -1415,7 +1426,7 @@
             // 
             this.mnuTell.CheckOnClick = true;
             this.mnuTell.Name = "mnuTell";
-            this.mnuTell.Size = new System.Drawing.Size(180, 24);
+            this.mnuTell.Size = new System.Drawing.Size(166, 24);
             this.mnuTell.Text = "تلفن";
             this.mnuTell.CheckedChanged += new System.EventHandler(this.mnuTell_CheckedChanged);
             // 
@@ -1430,9 +1441,9 @@
             this.cmbStatus.DisplayMember = "Name";
             this.cmbStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbStatus.FormattingEnabled = true;
-            this.cmbStatus.Location = new System.Drawing.Point(837, 34);
+            this.cmbStatus.Location = new System.Drawing.Point(11, 34);
             this.cmbStatus.Name = "cmbStatus";
-            this.cmbStatus.Size = new System.Drawing.Size(122, 28);
+            this.cmbStatus.Size = new System.Drawing.Size(134, 28);
             this.cmbStatus.TabIndex = 55759;
             this.cmbStatus.ValueMember = "Guid";
             this.cmbStatus.SelectedIndexChanged += new System.EventHandler(this.cmbStatus_SelectedIndexChanged);
@@ -1442,7 +1453,7 @@
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Location = new System.Drawing.Point(962, 37);
+            this.label1.Location = new System.Drawing.Point(103, 11);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(46, 20);
             this.label1.TabIndex = 55760;
@@ -1453,7 +1464,7 @@
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Location = new System.Drawing.Point(785, 37);
+            this.label2.Location = new System.Drawing.Point(100, 65);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(49, 20);
             this.label2.TabIndex = 55760;
@@ -1467,9 +1478,9 @@
             this.cmbBuildingType.DisplayMember = "Name";
             this.cmbBuildingType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbBuildingType.FormattingEnabled = true;
-            this.cmbBuildingType.Location = new System.Drawing.Point(660, 34);
+            this.cmbBuildingType.Location = new System.Drawing.Point(11, 88);
             this.cmbBuildingType.Name = "cmbBuildingType";
-            this.cmbBuildingType.Size = new System.Drawing.Size(122, 28);
+            this.cmbBuildingType.Size = new System.Drawing.Size(134, 28);
             this.cmbBuildingType.TabIndex = 55759;
             this.cmbBuildingType.ValueMember = "Guid";
             this.cmbBuildingType.SelectedIndexChanged += new System.EventHandler(this.cmbBuildingType_SelectedIndexChanged);
@@ -1483,7 +1494,7 @@
             this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.Transparent;
-            this.label3.Location = new System.Drawing.Point(618, 37);
+            this.label3.Location = new System.Drawing.Point(110, 119);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(39, 20);
             this.label3.TabIndex = 55760;
@@ -1497,9 +1508,9 @@
             this.cmbUser.DisplayMember = "Name";
             this.cmbUser.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbUser.FormattingEnabled = true;
-            this.cmbUser.Location = new System.Drawing.Point(493, 34);
+            this.cmbUser.Location = new System.Drawing.Point(11, 142);
             this.cmbUser.Name = "cmbUser";
-            this.cmbUser.Size = new System.Drawing.Size(122, 28);
+            this.cmbUser.Size = new System.Drawing.Size(134, 28);
             this.cmbUser.TabIndex = 55759;
             this.cmbUser.ValueMember = "Guid";
             this.cmbUser.SelectedIndexChanged += new System.EventHandler(this.cmbUser_SelectedIndexChanged);
@@ -1576,18 +1587,122 @@
             this.btnSelect.TextColor = System.Drawing.Color.White;
             this.btnSelect.Click += new System.EventHandler(this.btnSelect_Click);
             // 
+            // grp
+            // 
+            this.grp.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.grp.CanvasColor = System.Drawing.SystemColors.Control;
+            this.grp.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.grp.Controls.Add(this.label1);
+            this.grp.Controls.Add(this.cmbStatus);
+            this.grp.Controls.Add(this.label5);
+            this.grp.Controls.Add(this.label4);
+            this.grp.Controls.Add(this.label2);
+            this.grp.Controls.Add(this.cmbUser);
+            this.grp.Controls.Add(this.cmbAccType);
+            this.grp.Controls.Add(this.cmbDocType);
+            this.grp.Controls.Add(this.cmbBuildingType);
+            this.grp.Controls.Add(this.label3);
+            this.grp.DisabledBackColor = System.Drawing.Color.Empty;
+            this.grp.Location = new System.Drawing.Point(854, 70);
+            this.grp.Name = "grp";
+            this.grp.Size = new System.Drawing.Size(161, 489);
+            this.grp.Style.Alignment = System.Drawing.StringAlignment.Center;
+            this.grp.Style.BackColor1.Color = System.Drawing.Color.White;
+            this.grp.Style.BackColor2.Color = System.Drawing.Color.White;
+            this.grp.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
+            this.grp.Style.BorderColor.Color = System.Drawing.Color.Silver;
+            this.grp.Style.BorderWidth = 2;
+            this.grp.Style.CornerType = DevComponents.DotNetBar.eCornerType.Rounded;
+            this.grp.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText;
+            this.grp.Style.GradientAngle = 90;
+            this.grp.TabIndex = 55767;
+            // 
+            // label5
+            // 
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label5.AutoSize = true;
+            this.label5.BackColor = System.Drawing.Color.Transparent;
+            this.label5.Location = new System.Drawing.Point(100, 228);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(41, 20);
+            this.label5.TabIndex = 55760;
+            this.label5.Text = "کاربری";
+            // 
+            // label4
+            // 
+            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label4.AutoSize = true;
+            this.label4.BackColor = System.Drawing.Color.Transparent;
+            this.label4.Location = new System.Drawing.Point(100, 174);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(49, 20);
+            this.label4.TabIndex = 55760;
+            this.label4.Text = "نوع سند";
+            // 
+            // cmbAccType
+            // 
+            this.cmbAccType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmbAccType.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cmbAccType.DataSource = this.AccTypeBindingSource;
+            this.cmbAccType.DisplayMember = "Name";
+            this.cmbAccType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbAccType.FormattingEnabled = true;
+            this.cmbAccType.Location = new System.Drawing.Point(11, 251);
+            this.cmbAccType.Name = "cmbAccType";
+            this.cmbAccType.Size = new System.Drawing.Size(134, 28);
+            this.cmbAccType.TabIndex = 55759;
+            this.cmbAccType.ValueMember = "Guid";
+            this.cmbAccType.SelectedIndexChanged += new System.EventHandler(this.cmbAccType_SelectedIndexChanged);
+            // 
+            // AccTypeBindingSource
+            // 
+            this.AccTypeBindingSource.DataSource = typeof(EntityCache.Bussines.BuildingAccountTypeBussines);
+            // 
+            // cmbDocType
+            // 
+            this.cmbDocType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmbDocType.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cmbDocType.DataSource = this.docTypeBindingSource;
+            this.cmbDocType.DisplayMember = "Name";
+            this.cmbDocType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbDocType.FormattingEnabled = true;
+            this.cmbDocType.Location = new System.Drawing.Point(11, 197);
+            this.cmbDocType.Name = "cmbDocType";
+            this.cmbDocType.Size = new System.Drawing.Size(134, 28);
+            this.cmbDocType.TabIndex = 55759;
+            this.cmbDocType.ValueMember = "Guid";
+            this.cmbDocType.SelectedIndexChanged += new System.EventHandler(this.cmbDocType_SelectedIndexChanged);
+            // 
+            // docTypeBindingSource
+            // 
+            this.docTypeBindingSource.DataSource = typeof(EntityCache.Bussines.DocumentTypeBussines);
+            // 
+            // chbFilter
+            // 
+            this.chbFilter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.chbFilter.BackColor = System.Drawing.Color.Transparent;
+            // 
+            // 
+            // 
+            this.chbFilter.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.chbFilter.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.chbFilter.Location = new System.Drawing.Point(878, 35);
+            this.chbFilter.Name = "chbFilter";
+            this.chbFilter.Size = new System.Drawing.Size(121, 23);
+            this.chbFilter.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.chbFilter.TabIndex = 55761;
+            this.chbFilter.Text = "فیلترها فعال باشد";
+            this.chbFilter.CheckedChanged += new System.EventHandler(this.chbFilter_CheckedChanged);
+            // 
             // frmShowBuildings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1021, 600);
+            this.Controls.Add(this.chbFilter);
+            this.Controls.Add(this.grp);
             this.Controls.Add(this.btnSelect);
-            this.Controls.Add(this.cmbUser);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.cmbBuildingType);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.cmbStatus);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.txtSearch);
             this.Controls.Add(this.DGrid);
             this.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
@@ -1607,8 +1722,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.BuildingBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).EndInit();
+            this.grp.ResumeLayout(false);
+            this.grp.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.AccTypeBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.docTypeBindingSource)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -1756,5 +1874,13 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn barqDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn gasDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn tellDataGridViewTextBoxColumn;
+        private DevComponents.DotNetBar.PanelEx grp;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ComboBox cmbAccType;
+        private System.Windows.Forms.ComboBox cmbDocType;
+        private DevComponents.DotNetBar.Controls.CheckBoxX chbFilter;
+        private System.Windows.Forms.BindingSource AccTypeBindingSource;
+        private System.Windows.Forms.BindingSource docTypeBindingSource;
     }
 }

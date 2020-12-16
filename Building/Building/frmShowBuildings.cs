@@ -48,9 +48,27 @@ namespace Building.Building
                 });
                 userBindingSource.DataSource = list2.OrderBy(q => q.Name).ToList();
 
+                var list3 = await DocumentTypeBussines.GetAllAsync();
+                list3.Add(new DocumentTypeBussines()
+                {
+                    Guid = Guid.Empty,
+                    Name = "[همه]"
+                });
+                docTypeBindingSource.DataSource = list3.OrderBy(q => q.Name).ToList();
+
+                var list4 = await BuildingAccountTypeBussines.GetAllAsync();
+                list4.Add(new BuildingAccountTypeBussines()
+                {
+                    Guid = Guid.Empty,
+                    Name = "[همه]"
+                });
+                AccTypeBindingSource.DataSource = list4.OrderBy(q => q.Name).ToList();
+
                 cmbStatus.SelectedIndex = 0;
                 cmbBuildingType.SelectedIndex = 0;
                 cmbUser.SelectedValue = clsUser.CurrentUser.Guid;
+                cmbDocType.SelectedIndex = 0;
+                cmbAccType.SelectedIndex = 0;
             }
             catch (Exception ex)
             {
@@ -62,9 +80,11 @@ namespace Building.Building
             try
             {
                 list = BuildingBussines
-                    .GetAll(search, (EnBuildingStatus)cmbStatus.SelectedIndex - 1,
-                        (Guid)cmbBuildingType.SelectedValue,
-                        (Guid)cmbUser.SelectedValue);
+                    .GetAll(search, (EnBuildingStatus) cmbStatus.SelectedIndex - 1,
+                        (Guid) cmbBuildingType.SelectedValue,
+                        (Guid) cmbUser.SelectedValue,
+                        (Guid) cmbDocType.SelectedValue,
+                        (Guid) cmbAccType.SelectedValue);
                 Invoke(new MethodInvoker(() => BuildingBindingSource.DataSource =
                     list.Where(q => q.Status == status).OrderByDescending(q => q.CreateDate).ToSortableBindingList()));
             }
@@ -310,6 +330,8 @@ namespace Building.Building
                 btnSelect.Visible = false;
             }
 
+            chbFilter.Checked = false;
+            grp.Enabled = false;
             SetAccess();
             SetColumns();
         }
@@ -317,6 +339,7 @@ namespace Building.Building
         private async void frmShowBuildings_Load(object sender, EventArgs e)
         {
             await FillCmbAsync();
+            LoadData(ST);
         }
         private void DGrid_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
@@ -387,6 +410,7 @@ namespace Building.Building
         {
             try
             {
+                if (!grp.Enabled) return;
                 LoadData(ST, txtSearch.Text);
             }
             catch (Exception ex)
@@ -398,6 +422,7 @@ namespace Building.Building
         {
             try
             {
+                if (!grp.Enabled) return;
                 LoadData(ST, txtSearch.Text);
             }
             catch (Exception ex)
@@ -409,6 +434,7 @@ namespace Building.Building
         {
             try
             {
+                if (!grp.Enabled) return;
                 LoadData(ST, txtSearch.Text);
             }
             catch (Exception ex)
@@ -1400,6 +1426,31 @@ namespace Building.Building
                     DGrid.Columns[dgTell.Index].Visible = false;
                     SaveColumns(ColumnList);
                 }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private void chbFilter_CheckedChanged(object sender, EventArgs e) => grp.Enabled = chbFilter.Checked;
+        private void cmbDocType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (!grp.Enabled) return;
+                LoadData(ST, txtSearch.Text);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private void cmbAccType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (!grp.Enabled) return;
+                LoadData(ST, txtSearch.Text);
             }
             catch (Exception ex)
             {

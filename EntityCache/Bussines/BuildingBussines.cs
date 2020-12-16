@@ -240,22 +240,29 @@ namespace EntityCache.Bussines
 
             return res;
         }
+
         public static List<BuildingBussines> GetAll(string search, EnBuildingStatus status,
-            Guid buildingTypeGuid, Guid userGuid) => AsyncContext.Run(() => GetAllAsync(search, status, buildingTypeGuid, userGuid));
+            Guid buildingTypeGuid, Guid userGuid, Guid docTypeGuid, Guid accTypeGuid) => AsyncContext.Run(() =>
+            GetAllAsync(search, status, buildingTypeGuid, userGuid, docTypeGuid, accTypeGuid));
         public static async Task<List<BuildingBussines>> GetAllAsync(string search, EnBuildingStatus status,
-            Guid buildingTypeGuid, Guid userGuid)
+            Guid buildingTypeGuid, Guid userGuid, Guid docTypeGuid, Guid accTypeGuid)
         {
             try
             {
+                IEnumerable<BuildingBussines> res;
                 if (string.IsNullOrEmpty(search)) search = "";
-                var res = await GetAllAsync();
-                if (res == null || res.Count <= 0) return res;
+                res = await GetAllAsync();
+                if (res == null || !res.Any()) return res?.ToList();
 
-                if (status != EnBuildingStatus.All) res = res.Where(q => q.BuildingStatus == status).ToList();
+                if (status != EnBuildingStatus.All) res = res.Where(q => q.BuildingStatus == status);
                 if (buildingTypeGuid != Guid.Empty)
-                    res = res.Where(q => q.BuildingTypeGuid == buildingTypeGuid).ToList();
+                    res = res.Where(q => q.BuildingTypeGuid == buildingTypeGuid);
                 if (userGuid != Guid.Empty)
                     res = res.Where(q => q.UserGuid == userGuid).ToList();
+                if (docTypeGuid != Guid.Empty)
+                    res = res.Where(q => q.DocumentType != null && q.DocumentType.Value == docTypeGuid);
+                if (accTypeGuid != Guid.Empty)
+                    res = res.Where(q => q.BuildingAccountTypeGuid == accTypeGuid);
 
                 var searchItems = search.SplitString();
                 if (searchItems?.Count > 0)
@@ -275,7 +282,7 @@ namespace EntityCache.Bussines
                         }
                     }
 
-                return res;
+                return res?.ToList();
             }
             catch (OperationCanceledException)
             {

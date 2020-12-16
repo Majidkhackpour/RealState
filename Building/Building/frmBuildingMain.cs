@@ -35,7 +35,6 @@ namespace Building.Building
             {
                 await LoadUsersAsync();
                 LoadOwner();
-                FillCmbPrice();
                 FillCmbTarakom();
                 FillCmbMetr();
                 await FillRentalAuthorityAsync();
@@ -289,232 +288,15 @@ namespace Building.Building
         {
             try
             {
-                if (cls?.RahnPrice1 == 0)
-                {
-                    txtRahnPrice1.Text = cls?.RahnPrice1.ToString();
-                    cmbRahn1.SelectedIndex = 0;
-                }
-                if (cls?.RahnPrice1 != 0)
-                {
-                    if (cls?.RahnPrice1 >= 10000 && cls?.RahnPrice1 >= 9999)
-                    {
-                        txtRahnPrice1.Text = (cls?.RahnPrice1 / 10000).ToString();
-                        cmbRahn1.SelectedIndex = 0;
-                    }
-                    if (cls?.RahnPrice1 >= 10000000 && cls?.RahnPrice1 >= 9999999)
-                    {
-                        txtRahnPrice1.Text = (cls?.RahnPrice1 / 10000000).ToString();
-                        cmbRahn1.SelectedIndex = 1;
-                    }
-                    if (cls?.RahnPrice1 >= 10000000000 && cls?.RahnPrice1 >= 9999999999)
-                    {
-                        txtRahnPrice1.Text = (cls?.RahnPrice1 / 10000000000).ToString();
-                        cmbRahn1.SelectedIndex = 2;
-                    }
-                }
-
-
-                if (cls?.RahnPrice2 == 0)
-                {
-                    txtRahnPrice2.Text = cls?.RahnPrice2.ToString();
-                    cmbRahn2.SelectedIndex = 0;
-                }
-                if (cls?.RahnPrice2 != 0)
-                {
-                    if (cls?.RahnPrice2 >= 10000 && cls?.RahnPrice2 >= 9999)
-                    {
-                        txtRahnPrice2.Text = (cls?.RahnPrice2 / 10000).ToString();
-                        cmbRahn2.SelectedIndex = 0;
-                    }
-                    if (cls?.RahnPrice2 >= 10000000 && cls?.RahnPrice2 >= 9999999)
-                    {
-                        txtRahnPrice2.Text = (cls?.RahnPrice2 / 10000000).ToString();
-                        cmbRahn2.SelectedIndex = 1;
-                    }
-                    if (cls?.RahnPrice2 >= 10000000000 && cls?.RahnPrice2 >= 9999999999)
-                    {
-                        txtRahnPrice2.Text = (cls?.RahnPrice2 / 10000000000).ToString();
-                        cmbRahn2.SelectedIndex = 2;
-                    }
-                }
-
-
-
-                if (cls?.EjarePrice1 == 0)
-                {
-                    txtEjarePrice1.Text = cls?.EjarePrice1.ToString();
-                    cmbEjare1.SelectedIndex = 0;
-                }
-                if (cls?.EjarePrice1 != 0)
-                {
-                    if (cls?.EjarePrice1 >= 10000 && cls?.EjarePrice1 >= 9999)
-                    {
-                        txtEjarePrice1.Text = (cls?.EjarePrice1 / 10000).ToString();
-                        cmbEjare1.SelectedIndex = 0;
-                    }
-                    if (cls?.EjarePrice1 >= 10000000 && cls?.EjarePrice1 >= 9999999)
-                    {
-                        txtEjarePrice1.Text = (cls?.EjarePrice1 / 10000000).ToString();
-                        cmbEjare1.SelectedIndex = 1;
-                    }
-                    if (cls?.EjarePrice1 >= 10000000000 && cls?.EjarePrice1 >= 9999999999)
-                    {
-                        txtEjarePrice1.Text = (cls?.EjarePrice1 / 10000000000).ToString();
-                        cmbEjare1.SelectedIndex = 2;
-                    }
-                }
-
-
-                if (cls?.EjarePrice2 == 0)
-                {
-                    txtEjarePrice2.Text = cls?.EjarePrice2.ToString();
-                    cmbEjare2.SelectedIndex = 0;
-                }
-                if (cls?.EjarePrice2 != 0)
-                {
-                    if (cls?.EjarePrice2 >= 10000 && cls?.EjarePrice2 >= 9999)
-                    {
-                        txtEjarePrice2.Text = (cls?.EjarePrice2 / 10000).ToString();
-                        cmbEjare2.SelectedIndex = 0;
-                    }
-                    if (cls?.EjarePrice2 >= 10000000 && cls?.EjarePrice2 >= 9999999)
-                    {
-                        txtEjarePrice2.Text = (cls?.EjarePrice2 / 10000000).ToString();
-                        cmbEjare2.SelectedIndex = 1;
-                    }
-                    if (cls?.EjarePrice2 >= 10000000000 && cls?.EjarePrice2 >= 9999999999)
-                    {
-                        txtEjarePrice2.Text = (cls?.EjarePrice2 / 10000000000).ToString();
-                        cmbEjare2.SelectedIndex = 2;
-                    }
-                }
-
-
-                if (cls?.SellPrice == 0)
-                {
-                    txtSellPrice.Text = cls?.SellPrice.ToString();
-                    cmbSellPrice.SelectedIndex = 0;
-                }
-                if (cls?.SellPrice != 0)
-                {
-                    if (cls?.SellPrice >= 10000 && cls?.SellPrice >= 9999)
-                    {
-                        txtSellPrice.Text = (cls?.SellPrice / 10000).ToString();
-                        cmbSellPrice.SelectedIndex = 0;
-                    }
-                    if (cls?.SellPrice >= 10000000 && cls?.SellPrice >= 9999999)
-                    {
-                        txtSellPrice.Text = (cls?.SellPrice / 10000000).ToString();
-                        cmbSellPrice.SelectedIndex = 1;
-                    }
-                    if (cls?.SellPrice >= 10000000000 && cls?.SellPrice >= 9999999999)
-                    {
-                        txtSellPrice.Text = (cls?.SellPrice / 10000000000).ToString();
-                        cmbSellPrice.SelectedIndex = 2;
-                    }
-                }
-
-
-
-                if (cls?.VamPrice == 0)
-                {
-                    txtVamPrice.Text = cls?.VamPrice.ToString();
-                    cmbVamPrice.SelectedIndex = 0;
-                }
-                if (cls?.VamPrice != 0)
-                {
-                    if (cls?.VamPrice >= 10000 && cls?.VamPrice >= 9999)
-                    {
-                        txtVamPrice.Text = (cls?.VamPrice / 10000).ToString();
-                        cmbVamPrice.SelectedIndex = 0;
-                    }
-                    if (cls?.VamPrice >= 10000000 && cls?.VamPrice >= 9999999)
-                    {
-                        txtVamPrice.Text = (cls?.VamPrice / 10000000).ToString();
-                        cmbVamPrice.SelectedIndex = 1;
-                    }
-                    if (cls?.VamPrice >= 10000000000 && cls?.VamPrice >= 9999999999)
-                    {
-                        txtVamPrice.Text = (cls?.VamPrice / 10000000000).ToString();
-                        cmbVamPrice.SelectedIndex = 2;
-                    }
-                }
-
-
-                if (cls?.QestPrice == 0)
-                {
-                    txtQestPrice.Text = cls?.QestPrice.ToString();
-                    cmbQestPrice.SelectedIndex = 0;
-                }
-                if (cls?.QestPrice != 0)
-                {
-                    if (cls?.QestPrice >= 10000 && cls?.QestPrice >= 9999)
-                    {
-                        txtQestPrice.Text = (cls?.QestPrice / 10000).ToString();
-                        cmbQestPrice.SelectedIndex = 0;
-                    }
-                    if (cls?.QestPrice >= 10000000 && cls?.QestPrice >= 9999999)
-                    {
-                        txtQestPrice.Text = (cls?.QestPrice / 10000000).ToString();
-                        cmbQestPrice.SelectedIndex = 1;
-                    }
-                    if (cls?.QestPrice >= 10000000000 && cls?.QestPrice >= 9999999999)
-                    {
-                        txtQestPrice.Text = (cls?.QestPrice / 10000000000).ToString();
-                        cmbQestPrice.SelectedIndex = 2;
-                    }
-                }
-
-
-                if (cls?.PishTotalPrice == 0)
-                {
-                    txtPishTotalPrice.Text = cls?.PishTotalPrice.ToString();
-                    cmbPishTotalPrice.SelectedIndex = 0;
-                }
-                if (cls?.PishTotalPrice != 0)
-                {
-                    if (cls?.PishTotalPrice >= 10000 && cls?.PishTotalPrice >= 9999)
-                    {
-                        txtPishTotalPrice.Text = (cls?.PishTotalPrice / 10000).ToString();
-                        cmbPishTotalPrice.SelectedIndex = 0;
-                    }
-                    if (cls?.PishTotalPrice >= 10000000 && cls?.PishTotalPrice >= 9999999)
-                    {
-                        txtPishTotalPrice.Text = (cls?.PishTotalPrice / 10000000).ToString();
-                        cmbPishTotalPrice.SelectedIndex = 1;
-                    }
-                    if (cls?.PishTotalPrice >= 10000000000 && cls?.PishTotalPrice >= 9999999999)
-                    {
-                        txtPishTotalPrice.Text = (cls?.PishTotalPrice / 10000000000).ToString();
-                        cmbPishTotalPrice.SelectedIndex = 2;
-                    }
-                }
-
-
-                if (cls?.PishPrice == 0)
-                {
-                    txtPishPrice.Text = cls?.PishPrice.ToString();
-                    cmbPishPrice.SelectedIndex = 0;
-                }
-                if (cls?.PishPrice != 0)
-                {
-                    if (cls?.PishPrice >= 10000 && cls?.PishPrice >= 9999)
-                    {
-                        txtPishPrice.Text = (cls?.PishPrice / 10000).ToString();
-                        cmbPishPrice.SelectedIndex = 0;
-                    }
-                    if (cls?.PishPrice >= 10000000 && cls?.PishPrice >= 9999999)
-                    {
-                        txtPishPrice.Text = (cls?.PishPrice / 10000000).ToString();
-                        cmbPishPrice.SelectedIndex = 1;
-                    }
-                    if (cls?.PishPrice >= 10000000000 && cls?.PishPrice >= 9999999999)
-                    {
-                        txtPishPrice.Text = (cls?.PishPrice / 10000000000).ToString();
-                        cmbPishPrice.SelectedIndex = 2;
-                    }
-                }
-
+                txtRahnPrice1.TextDecimal = cls?.RahnPrice1 ?? 0;
+                txtRahnPrice2.TextDecimal = cls?.RahnPrice2 ?? 0;
+                txtEjarePrice1.TextDecimal = cls?.EjarePrice1 ?? 0;
+                txtEjarePrice2.TextDecimal = cls?.EjarePrice2 ?? 0;
+                txtSellPrice.TextDecimal = cls?.SellPrice ?? 0;
+                txtVamPrice.TextDecimal = cls?.VamPrice ?? 0;
+                txtQestPrice.TextDecimal = cls?.QestPrice ?? 0;
+                txtPishTotalPrice.TextDecimal = cls?.PishTotalPrice ?? 0;
+                txtPishPrice.TextDecimal = cls?.PishPrice ?? 0;
             }
             catch (Exception ex)
             {
@@ -562,31 +344,6 @@ namespace Building.Building
                         txtZirBana.Text = cls?.ZirBana.ToString();
                         cmbZirBana.SelectedIndex = 0;
                     }
-                }
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-        private void FillCmbPrice()
-        {
-            try
-            {
-                var values = Enum.GetValues(typeof(EnPrice)).Cast<EnPrice>();
-                foreach (var item in values)
-                {
-                    cmbRahn1.Items.Add(item.GetDisplay());
-                    cmbEjare1.Items.Add(item.GetDisplay());
-                    cmbRahn2.Items.Add(item.GetDisplay());
-                    cmbEjare2.Items.Add(item.GetDisplay());
-
-                    cmbSellPrice.Items.Add(item.GetDisplay());
-                    cmbVamPrice.Items.Add(item.GetDisplay());
-                    cmbQestPrice.Items.Add(item.GetDisplay());
-
-                    cmbPishPrice.Items.Add(item.GetDisplay());
-                    cmbPishTotalPrice.Items.Add(item.GetDisplay());
                 }
             }
             catch (Exception ex)
@@ -686,14 +443,15 @@ namespace Building.Building
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private async Task SetOptionsAsync(Guid buildingGuid)
+        private async Task<ReturnedSaveFuncInfo> SetOptionsAsync(Guid buildingGuid)
         {
+            var res = new ReturnedSaveFuncInfo();
             try
             {
                 cls.OptionList = new List<BuildingRelatedOptionsBussines>();
-                if (buildingGuid == Guid.Empty) return;
+                if (buildingGuid == Guid.Empty) return res;
                 var list = await BuildingOptionsBussines.GetAllAsync();
-                if (list.Count <= 0) return;
+                if (list.Count <= 0) return res;
                 foreach (var item in list)
                     for (var i = 0; i < DGrid.RowCount; i++)
                         if (item.Guid == ((Guid?)DGrid[dgOptionGuid.Index, i].Value ?? Guid.Empty))
@@ -709,10 +467,13 @@ namespace Building.Building
                             });
                         }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                WebErrorLog.ErrorInstence.StartErrorLog(e);
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
             }
+
+            return res;
         }
         private async Task FillOptionsAsync(string search = "")
         {
@@ -825,35 +586,6 @@ namespace Building.Building
                 WebErrorLog.ErrorInstence.StartErrorLog(exception);
             }
         }
-
-        public frmBuildingMain()
-        {
-            InitializeComponent();
-            WindowState = FormWindowState.Maximized;
-            cls = new BuildingBussines();
-            superTabControl1.SelectedTab = superTabItem1;
-            superTabControl2.SelectedTab = superTabItem8;
-            action = EnLogAction.Insert;
-        }
-        public frmBuildingMain(Guid guid, bool isShowMode)
-        {
-            InitializeComponent();
-            WindowState = FormWindowState.Maximized;
-            cls = BuildingBussines.Get(guid);
-            owner = PeoplesBussines.Get(cls.OwnerGuid);
-            SaveImageToTemp();
-            superTabControl1.SelectedTab = superTabItem1;
-            superTabControl2.SelectedTab = superTabItem8;
-            superTabControlPanel1.Enabled = !isShowMode;
-            superTabControlPanel2.Enabled = !isShowMode;
-            superTabControlPanel3.Enabled = !isShowMode;
-            superTabControlPanel4.Enabled = !isShowMode;
-            superTabControlPanel5.Enabled = !isShowMode;
-            superTabControlPanel6.Enabled = !isShowMode;
-            btnFinish.Enabled = !isShowMode;
-            action = EnLogAction.Update;
-        }
-
         private void SaveImageToTemp()
         {
             try
@@ -881,306 +613,86 @@ namespace Building.Building
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-
-        private async void frmBuildingMain_Load(object sender, EventArgs e) => await SetDataAsync();
-
-        private void btnSearchOwner_Click(object sender, EventArgs e)
+        private async Task<ReturnedSaveFuncInfo> CheckValidationAsync()
         {
+            var res = new ReturnedSaveFuncInfo();
             try
             {
-                var frm = new frmShowPeoples(true);
-                if (frm.ShowDialog(this) != DialogResult.OK) return;
-                owner = PeoplesBussines.Get(frm.SelectedGuid);
-                LoadOwner();
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-
-        private void btnCreateOwner_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                var frm = new frmPeoples();
-                if (frm.ShowDialog(this) != DialogResult.OK) return;
-                owner = PeoplesBussines.Get(frm.SelectedGuid);
-                LoadOwner();
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-
-        private async void cmbState_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                if (cmbState.SelectedValue == null) return;
-                var list = await CitiesBussines.GetAllAsync((Guid)cmbState.SelectedValue);
-                CityBindingSource.DataSource = list.Where(q => q.Status).OrderBy(q => q.Name).ToList();
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-
-        private async void cmbCity_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                if (cmbCity.SelectedValue == null) return;
-                var list = await RegionsBussines.GetAllAsync((Guid)cmbCity.SelectedValue);
-                RegionBindingSource.DataSource = list.Where(q => q.Status).OrderBy(q => q.Name).ToList();
-
-                if (chbGoogleMap.Checked)
-                {
-                    var res = await ShowMap(cmbCity.Text, cmbRegion.Text);
-                    if (res.HasError)
-                        frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);
-                }
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-
-        private async void txtSearch_TextChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                await FillOptionsAsync(txtSearch.Text);
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-
-        private void btnInsImage_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                var t = new Thread(() =>
-                {
-                    var ofd = new OpenFileDialog { Multiselect = true, RestoreDirectory = true };
-                    if (ofd.ShowDialog(this) != DialogResult.OK) return;
-                    foreach (var name in ofd.FileNames)
-                        lstList.Add(name);
-                });
-
-                t.SetApartmentState(ApartmentState.STA);
-                t.Start();
-                t.Join();
-                Make_Picture_Boxes(lstList);
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-
-        private void btnDelImage_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                Make_Picture_Boxes(lstList);
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-
-        private void frmBuildingMain_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                switch (e.KeyCode)
-                {
-                    case Keys.Enter:
-                        if (!btnFinish.Focused && !btnCancel.Focused && !btnPrint.Focused)
-                            SendKeys.Send("{Tab}");
-                        break;
-                    case Keys.F5:
-                        btnFinish.PerformClick();
-                        break;
-                    case Keys.F10:
-                        btnPrint.PerformClick();
-                        break;
-                    case Keys.Escape:
-                        btnCancel.PerformClick();
-                        break;
-                    case Keys.F8:
-                        if (_orGpicBox != null)
-                        {
-                            ShowBigSizePic(_orGpicBox);
-                            _fakepicBox = _orGpicBox;
-                            _orGpicBox = null;
-                        }
-                        else
-                        {
-                            ShowNormalSizePic(_fakepicBox);
-                            _orGpicBox = _fakepicBox;
-                        }
-
-                        break;
-                }
-            }
-            catch (Exception exception)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(exception);
-            }
-        }
-
-        private void btnCancel_Click(object sender, EventArgs e)
-        {
-            DialogResult = DialogResult.Cancel;
-            Close();
-        }
-
-        private async void btnFinish_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                var isSendSms = false;
-                if (cls.Guid == Guid.Empty)
-                {
-                    cls.Guid = Guid.NewGuid();
-                    isSendSms = true;
-                }
-
                 if (string.IsNullOrWhiteSpace(txtCode.Text))
                 {
-                    frmNotification.PublicInfo.ShowMessage("کد ملک نمی تواند خالی باشد");
+                    res.AddError("کد ملک نمی تواند خالی باشد");
                     txtCode.Focus();
-                    return;
                 }
 
                 if (!await BuildingBussines.CheckCodeAsync(txtCode.Text.Trim(), cls.Guid))
                 {
-                    frmNotification.PublicInfo.ShowMessage("کد ملک وارد شده تکراری است");
+                    res.AddError("کد ملک وارد شده تکراری است");
                     txtCode.Focus();
-                    return;
                 }
 
                 if (owner == null)
                 {
-                    frmNotification.PublicInfo.ShowMessage("لطفا مالک را انتخاب نمایید");
+                    res.AddError("لطفا مالک را انتخاب نمایید");
                     btnSearchOwner.Focus();
-                    return;
                 }
 
 
                 if (txtRahnPrice1.Text == "0" && txtRahnPrice2.Text == "0" && txtEjarePrice1.Text == "0" &&
                     txtEjarePrice2.Text == "0" && txtSellPrice.Text == "0" && txtPishTotalPrice.Text == "0")
                 {
-                    frmNotification.PublicInfo.ShowMessage("لطفا یکی از فیلدهای مبلغ را وارد نمایید");
+                    res.AddError("لطفا یکی از فیلدهای مبلغ را وارد نمایید");
                     btnSearchOwner.Focus();
-                    return;
                 }
 
                 if (txtZirBana.Text == "0" && txtMasahat.Text == "0")
                 {
-                    frmNotification.PublicInfo.ShowMessage("لطفا مساحت و زیربنا را وارد نمایید");
+                    res.AddError("لطفا مساحت و زیربنا را وارد نمایید");
                     btnSearchOwner.Focus();
-                    return;
                 }
 
                 if (cmbRegion.SelectedValue == null)
                 {
-                    frmNotification.PublicInfo.ShowMessage("لطفا محدوده ملک را وارد نمایید");
+                    res.AddError("لطفا محدوده ملک را وارد نمایید");
                     btnSearchOwner.Focus();
-                    return;
                 }
 
                 if (txtSaleSakht.Text.ParseToInt() > txtSaleParvane.Text.ParseToInt())
                 {
-                    frmNotification.PublicInfo.ShowMessage("سال ساخت نمی تواند از سال اخذ پروانه بزرگتر باشد");
+                    res.AddError("سال ساخت نمی تواند از سال اخذ پروانه بزرگتر باشد");
                     btnSearchOwner.Focus();
-                    return;
                 }
-
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+            return res;
+        }
+        private ReturnedSaveFuncInfo SetData()
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
                 cls.Code = txtCode.Text;
                 cls.OwnerGuid = owner.Guid;
                 cls.UserGuid = (Guid)cmbUser.SelectedValue;
                 cls.BuildingStatus = EnBuildingStatus.Mojod;
-
-                if (cmbSellPrice.SelectedIndex == 0)
-                    cls.SellPrice = txtSellPrice.Text.ParseToDecimal() * 10000;
-                if (cmbSellPrice.SelectedIndex == 1)
-                    cls.SellPrice = txtSellPrice.Text.ParseToDecimal() * 10000000;
-                if (cmbSellPrice.SelectedIndex == 2)
-                    cls.SellPrice = txtSellPrice.Text.ParseToDecimal() * 10000000000;
-
-                if (cmbQestPrice.SelectedIndex == 0)
-                    cls.QestPrice = txtQestPrice.Text.ParseToDecimal() * 10000;
-                if (cmbQestPrice.SelectedIndex == 1)
-                    cls.QestPrice = txtQestPrice.Text.ParseToDecimal() * 10000000;
-                if (cmbQestPrice.SelectedIndex == 2)
-                    cls.QestPrice = txtQestPrice.Text.ParseToDecimal() * 10000000000;
-
-                if (cmbVamPrice.SelectedIndex == 0)
-                    cls.VamPrice = txtVamPrice.Text.ParseToDecimal() * 10000;
-                if (cmbVamPrice.SelectedIndex == 1)
-                    cls.VamPrice = txtVamPrice.Text.ParseToDecimal() * 10000000;
-                if (cmbVamPrice.SelectedIndex == 2)
-                    cls.VamPrice = txtVamPrice.Text.ParseToDecimal() * 10000000000;
-
+                cls.SellPrice = txtSellPrice.TextDecimal;
+                cls.QestPrice = txtQestPrice.TextDecimal;
+                cls.VamPrice = txtVamPrice.TextDecimal;
                 cls.Dang = txtDong.Text.ParseToInt();
                 cls.DocumentType = (Guid)cmbSellSanadType.SelectedValue;
                 cls.Tarakom = (EnTarakom)cmbSellTarakom.SelectedIndex;
-
-                if (cmbRahn1.SelectedIndex == 0)
-                    cls.RahnPrice1 = txtRahnPrice1.Text.ParseToDecimal() * 10000;
-                if (cmbRahn1.SelectedIndex == 1)
-                    cls.RahnPrice1 = txtRahnPrice1.Text.ParseToDecimal() * 10000000;
-                if (cmbRahn1.SelectedIndex == 2)
-                    cls.RahnPrice1 = txtRahnPrice1.Text.ParseToDecimal() * 10000000000;
-
-                if (cmbRahn2.SelectedIndex == 0)
-                    cls.RahnPrice2 = txtRahnPrice2.Text.ParseToDecimal() * 10000;
-                if (cmbRahn2.SelectedIndex == 1)
-                    cls.RahnPrice2 = txtRahnPrice2.Text.ParseToDecimal() * 10000000;
-                if (cmbRahn2.SelectedIndex == 2)
-                    cls.RahnPrice2 = txtRahnPrice2.Text.ParseToDecimal() * 10000000000;
-
-                if (cmbEjare1.SelectedIndex == 0)
-                    cls.EjarePrice1 = txtEjarePrice1.Text.ParseToDecimal() * 10000;
-                if (cmbEjare1.SelectedIndex == 1)
-                    cls.EjarePrice1 = txtEjarePrice1.Text.ParseToDecimal() * 10000000;
-                if (cmbEjare1.SelectedIndex == 2)
-                    cls.EjarePrice1 = txtEjarePrice1.Text.ParseToDecimal() * 10000000000;
-
-                if (cmbEjare2.SelectedIndex == 0)
-                    cls.EjarePrice2 = txtEjarePrice2.Text.ParseToDecimal() * 10000;
-                if (cmbEjare2.SelectedIndex == 1)
-                    cls.EjarePrice2 = txtEjarePrice2.Text.ParseToDecimal() * 10000000;
-                if (cmbEjare2.SelectedIndex == 2)
-                    cls.EjarePrice2 = txtEjarePrice2.Text.ParseToDecimal() * 10000000000;
-
+                cls.RahnPrice1 = txtRahnPrice1.TextDecimal;
+                cls.RahnPrice2 = txtRahnPrice2.TextDecimal;
+                cls.EjarePrice1 = txtEjarePrice1.TextDecimal;
+                cls.EjarePrice2 = txtEjarePrice2.TextDecimal;
                 cls.RentalAutorityGuid = (Guid)cmbRentalAuthority.SelectedValue;
                 cls.IsShortTime = chbShortRent.Checked;
                 cls.IsOwnerHere = chbOwnerHere.Checked;
-
-                if (cmbPishTotalPrice.SelectedIndex == 0)
-                    cls.PishTotalPrice = txtPishTotalPrice.Text.ParseToDecimal() * 10000;
-                if (cmbPishTotalPrice.SelectedIndex == 1)
-                    cls.PishTotalPrice = txtPishTotalPrice.Text.ParseToDecimal() * 10000000;
-                if (cmbPishTotalPrice.SelectedIndex == 2)
-                    cls.PishTotalPrice = txtPishTotalPrice.Text.ParseToDecimal() * 10000000000;
-
-                if (cmbPishPrice.SelectedIndex == 0)
-                    cls.PishPrice = txtPishPrice.Text.ParseToDecimal() * 10000;
-                if (cmbPishPrice.SelectedIndex == 1)
-                    cls.PishPrice = txtPishPrice.Text.ParseToDecimal() * 10000000;
-                if (cmbPishPrice.SelectedIndex == 2)
-                    cls.PishPrice = txtPishPrice.Text.ParseToDecimal() * 10000000000;
-
+                cls.PishTotalPrice = txtPishTotalPrice.TextDecimal;
+                cls.PishPrice = txtPishPrice.TextDecimal;
                 cls.DeliveryDate = Calendar.ShamsiToMiladi(txtDeliveryDate.Text);
                 cls.PishDesc = txtPishDesc.Text;
                 cls.MoavezeDesc = txtMoavezeDesc.Text;
@@ -1224,13 +736,20 @@ namespace Building.Building
                 cls.BonBast = chbIsBonBast.Checked;
                 cls.MamarJoda = chbIsMamarJoda.Checked;
                 cls.RoomCount = txtTedadOtaq.Text.ParseToInt();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
 
-                await SetOptionsAsync(cls.Guid);
-
-                for (var i = fPanel.Controls.Count - 1; i >= 0; i--)
-                    fPanel.Controls[i].Dispose();
-
-
+            return res;
+        }
+        private ReturnedSaveFuncInfo SetImages()
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
                 var img = Path.Combine(Application.StartupPath, "Images");
                 foreach (var item in cls.GalleryList)
                 {
@@ -1293,276 +812,14 @@ namespace Building.Building
                 catch
                 {
                 }
-
-                var res = await cls.SaveAsync(true);
-                if (res.HasError)
-                {
-                    frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);
-                    return;
-                }
-
-
-                if (Settings.Classes.Payamak.IsSendToOwner.ParseToBoolean() && isSendSms)
-                {
-                    var tr = await Payamak.FixSms.OwnerSend.SendAsync(cls);
-                    frmNotification.PublicInfo.ShowMessage(tr.HasError
-                        ? tr.ErrorMessage
-                        : "ارسال پیامک به مالک با موفقیت انجام شد");
-                }
-
-                UserLog.Save(action, EnLogPart.Building);
-
-
-
-                DialogResult = DialogResult.OK;
-                Close();
             }
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
             }
+            return res;
         }
-
-        private void txtDong_ValueChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                txtPishDong.Value = txtDong.Value;
-                txtMoavezeDong.Value = txtDong.Value;
-                txtMosharekatDong.Value = txtDong.Value;
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-
-        private void txtPishDong_ValueChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                txtDong.Value = txtPishDong.Value;
-                txtMoavezeDong.Value = txtPishDong.Value;
-                txtMosharekatDong.Value = txtPishDong.Value;
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-
-        private void txtMoavezeDong_ValueChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                txtDong.Value = txtMoavezeDong.Value;
-                txtPishDong.Value = txtMoavezeDong.Value;
-                txtMosharekatDong.Value = txtMoavezeDong.Value;
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-
-        private void txtMosharekatDong_ValueChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                txtDong.Value = txtMosharekatDong.Value;
-                txtPishDong.Value = txtMosharekatDong.Value;
-                txtMoavezeDong.Value = txtMosharekatDong.Value;
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-
-        private void cmbSellTarakom_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                cmbMoavezeTarakom.SelectedIndex = cmbSellTarakom.SelectedIndex;
-                cmbMosharekatTarakom.SelectedIndex = cmbSellTarakom.SelectedIndex;
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-
-        private void cmbMoavezeTarakom_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                cmbSellTarakom.SelectedIndex = cmbMoavezeTarakom.SelectedIndex;
-                cmbMosharekatTarakom.SelectedIndex = cmbMoavezeTarakom.SelectedIndex;
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-
-        private void cmbMosharekatTarakom_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                cmbMoavezeTarakom.SelectedIndex = cmbMosharekatTarakom.SelectedIndex;
-                cmbSellTarakom.SelectedIndex = cmbMosharekatTarakom.SelectedIndex;
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-
-        private void cmbSellSanadType_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                cmbPishSanadType.SelectedIndex = cmbSellSanadType.SelectedIndex;
-                cmbMoavezeSanadType.SelectedIndex = cmbSellSanadType.SelectedIndex;
-                cmbMosharekatSanadType.SelectedIndex = cmbSellSanadType.SelectedIndex;
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-
-        private void cmbPishSanadType_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                cmbSellSanadType.SelectedIndex = cmbPishSanadType.SelectedIndex;
-                cmbMoavezeSanadType.SelectedIndex = cmbPishSanadType.SelectedIndex;
-                cmbMosharekatSanadType.SelectedIndex = cmbPishSanadType.SelectedIndex;
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-
-        private void cmbMoavezeSanadType_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                cmbPishSanadType.SelectedIndex = cmbMoavezeSanadType.SelectedIndex;
-                cmbSellSanadType.SelectedIndex = cmbMoavezeSanadType.SelectedIndex;
-                cmbMosharekatSanadType.SelectedIndex = cmbMoavezeSanadType.SelectedIndex;
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-
-        private void cmbMosharekatSanadType_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                cmbPishSanadType.SelectedIndex = cmbMosharekatSanadType.SelectedIndex;
-                cmbMoavezeSanadType.SelectedIndex = cmbMosharekatSanadType.SelectedIndex;
-                cmbSellSanadType.SelectedIndex = cmbMosharekatSanadType.SelectedIndex;
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-
-        private void txtCode_Enter(object sender, EventArgs e)
-        {
-            txtSetter.Focus(txtCode);
-        }
-
-        private void txtSaleSakht_Enter(object sender, EventArgs e)
-        {
-            txtSetter.Focus(txtSaleSakht);
-        }
-
-        private void txtSaleParvane_Enter(object sender, EventArgs e)
-        {
-            txtSetter.Focus(txtSaleParvane);
-        }
-
-        private void txtSerialParvane_Enter(object sender, EventArgs e)
-        {
-            txtSetter.Focus(txtSerialParvane);
-        }
-
-        private void txtSerialParvane_Leave(object sender, EventArgs e)
-        {
-            txtSetter.Follow(txtSerialParvane);
-        }
-
-        private void txtSaleParvane_Leave(object sender, EventArgs e)
-        {
-            txtSetter.Follow(txtSaleParvane);
-        }
-
-        private void txtSaleSakht_Leave(object sender, EventArgs e)
-        {
-            txtSetter.Follow(txtSaleSakht);
-        }
-
-        private void txtCode_Leave(object sender, EventArgs e)
-        {
-            txtSetter.Follow(txtCode);
-        }
-
-        private void btnPrint_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                btnFinish.PerformClick();
-
-                var reg = RegionsBussines.Get(cls.RegionGuid);
-                var accType = BuildingAccountTypeBussines.Get(cls.BuildingAccountTypeGuid);
-                var type = BuildingTypeBussines.Get(cls.BuildingTypeGuid);
-                cls.RegionName = reg?.Name ?? "";
-                cls.BuildingAccountTypeName = accType?.Name ?? "";
-                cls.BuildingTypeName = type?.Name ?? "";
-                var list = new List<object>() { cls };
-                var cls_ = new ReportGenerator(StiType.Building_One, EnPrintType.Pdf_A4) { Lst = list };
-                cls_.PrintNew();
-
-                DialogResult = DialogResult.OK;
-                Close();
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-
-        private async void chbGoogleMap_CheckedChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                if (chbGoogleMap.Checked)
-                {
-                    picGoogle.Visible = false;
-                    webGoogle.Visible = true;
-                    var res = await ShowMap(cmbCity.Text, cmbRegion.Text);
-                    if (res.HasError)
-                        frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);
-                }
-                else
-                {
-                    picGoogle.Visible = true;
-                    webGoogle.Visible = false;
-                }
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-
         private async Task<ReturnedSaveFuncInfo> ShowMap(string city, string region)
         {
             var res = new ReturnedSaveFuncInfo();
@@ -1588,6 +845,461 @@ namespace Building.Building
             return res;
         }
 
+        public frmBuildingMain()
+        {
+            InitializeComponent();
+            WindowState = FormWindowState.Maximized;
+            cls = new BuildingBussines();
+            superTabControl1.SelectedTab = superTabItem1;
+            superTabControl2.SelectedTab = superTabItem8;
+            action = EnLogAction.Insert;
+        }
+        public frmBuildingMain(Guid guid, bool isShowMode)
+        {
+            InitializeComponent();
+            WindowState = FormWindowState.Maximized;
+            cls = BuildingBussines.Get(guid);
+            owner = PeoplesBussines.Get(cls.OwnerGuid);
+            SaveImageToTemp();
+            superTabControl1.SelectedTab = superTabItem1;
+            superTabControl2.SelectedTab = superTabItem8;
+            superTabControlPanel1.Enabled = !isShowMode;
+            superTabControlPanel2.Enabled = !isShowMode;
+            superTabControlPanel3.Enabled = !isShowMode;
+            superTabControlPanel4.Enabled = !isShowMode;
+            superTabControlPanel5.Enabled = !isShowMode;
+            superTabControlPanel6.Enabled = !isShowMode;
+            btnFinish.Enabled = !isShowMode;
+            action = EnLogAction.Update;
+        }
+
+
+
+        private async void frmBuildingMain_Load(object sender, EventArgs e) => await SetDataAsync();
+        private void btnSearchOwner_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var frm = new frmShowPeoples(true);
+                if (frm.ShowDialog(this) != DialogResult.OK) return;
+                owner = PeoplesBussines.Get(frm.SelectedGuid);
+                LoadOwner();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private void btnCreateOwner_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var frm = new frmPeoples();
+                if (frm.ShowDialog(this) != DialogResult.OK) return;
+                owner = PeoplesBussines.Get(frm.SelectedGuid);
+                LoadOwner();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private async void cmbState_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (cmbState.SelectedValue == null) return;
+                var list = await CitiesBussines.GetAllAsync((Guid)cmbState.SelectedValue);
+                CityBindingSource.DataSource = list.Where(q => q.Status).OrderBy(q => q.Name).ToList();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private async void cmbCity_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (cmbCity.SelectedValue == null) return;
+                var list = await RegionsBussines.GetAllAsync((Guid)cmbCity.SelectedValue);
+                RegionBindingSource.DataSource = list.Where(q => q.Status).OrderBy(q => q.Name).ToList();
+
+                if (chbGoogleMap.Checked)
+                {
+                    var res = await ShowMap(cmbCity.Text, cmbRegion.Text);
+                    if (res.HasError)
+                        frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private async void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                await FillOptionsAsync(txtSearch.Text);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private void btnInsImage_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var t = new Thread(() =>
+                {
+                    var ofd = new OpenFileDialog { Multiselect = true, RestoreDirectory = true };
+                    if (ofd.ShowDialog(this) != DialogResult.OK) return;
+                    foreach (var name in ofd.FileNames)
+                        lstList.Add(name);
+                });
+
+                t.SetApartmentState(ApartmentState.STA);
+                t.Start();
+                t.Join();
+                Make_Picture_Boxes(lstList);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private void btnDelImage_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Make_Picture_Boxes(lstList);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private void frmBuildingMain_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                switch (e.KeyCode)
+                {
+                    case Keys.Enter:
+                        if (!btnFinish.Focused && !btnCancel.Focused && !btnPrint.Focused)
+                            SendKeys.Send("{Tab}");
+                        break;
+                    case Keys.F5:
+                        btnFinish.PerformClick();
+                        break;
+                    case Keys.F10:
+                        btnPrint.PerformClick();
+                        break;
+                    case Keys.Escape:
+                        btnCancel.PerformClick();
+                        break;
+                    case Keys.F8:
+                        if (_orGpicBox != null)
+                        {
+                            ShowBigSizePic(_orGpicBox);
+                            _fakepicBox = _orGpicBox;
+                            _orGpicBox = null;
+                        }
+                        else
+                        {
+                            ShowNormalSizePic(_fakepicBox);
+                            _orGpicBox = _fakepicBox;
+                        }
+
+                        break;
+                }
+            }
+            catch (Exception exception)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(exception);
+            }
+        }
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.Cancel;
+            Close();
+        }
+        private async void btnFinish_Click(object sender, EventArgs e)
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                var isSendSms = false;
+                if (cls.Guid == Guid.Empty)
+                {
+                    cls.Guid = Guid.NewGuid();
+                    isSendSms = true;
+                }
+
+                res.AddReturnedValue(await CheckValidationAsync());
+                if (res.HasError) return;
+
+                res.AddReturnedValue(SetData());
+                if (res.HasError) return;
+                res.AddReturnedValue(await SetOptionsAsync(cls.Guid));
+                if (res.HasError) return;
+                for (var i = fPanel.Controls.Count - 1; i >= 0; i--)
+                    fPanel.Controls[i].Dispose();
+
+                res.AddReturnedValue(SetImages());
+                if (res.HasError) return;
+                res.AddReturnedValue(await cls.SaveAsync(true));
+                if (res.HasError) return;
+
+
+                if (!Settings.Classes.Payamak.IsSendToOwner.ParseToBoolean() || !isSendSms) return;
+                var tr = await Payamak.FixSms.OwnerSend.SendAsync(cls);
+                frmNotification.PublicInfo.ShowMessage(tr.HasError
+                    ? tr.ErrorMessage
+                    : "ارسال پیامک به مالک با موفقیت انجام شد");
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+            finally
+            {
+                if (res.HasError)
+                {
+                    var frm = new FrmShowErrorMessage(res, "خطا در ذخیره سازی ملک");
+                    frm.ShowDialog(this);
+                    frm.Dispose();
+                }
+                else
+                {
+                    UserLog.Save(action, EnLogPart.Building);
+                    DialogResult = DialogResult.OK;
+                    Close();
+                }
+            }
+        }
+        private void txtDong_ValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                txtPishDong.Value = txtDong.Value;
+                txtMoavezeDong.Value = txtDong.Value;
+                txtMosharekatDong.Value = txtDong.Value;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private void txtPishDong_ValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                txtDong.Value = txtPishDong.Value;
+                txtMoavezeDong.Value = txtPishDong.Value;
+                txtMosharekatDong.Value = txtPishDong.Value;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private void txtMoavezeDong_ValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                txtDong.Value = txtMoavezeDong.Value;
+                txtPishDong.Value = txtMoavezeDong.Value;
+                txtMosharekatDong.Value = txtMoavezeDong.Value;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private void txtMosharekatDong_ValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                txtDong.Value = txtMosharekatDong.Value;
+                txtPishDong.Value = txtMosharekatDong.Value;
+                txtMoavezeDong.Value = txtMosharekatDong.Value;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private void cmbSellTarakom_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbMoavezeTarakom.SelectedIndex = cmbSellTarakom.SelectedIndex;
+                cmbMosharekatTarakom.SelectedIndex = cmbSellTarakom.SelectedIndex;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private void cmbMoavezeTarakom_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbSellTarakom.SelectedIndex = cmbMoavezeTarakom.SelectedIndex;
+                cmbMosharekatTarakom.SelectedIndex = cmbMoavezeTarakom.SelectedIndex;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private void cmbMosharekatTarakom_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbMoavezeTarakom.SelectedIndex = cmbMosharekatTarakom.SelectedIndex;
+                cmbSellTarakom.SelectedIndex = cmbMosharekatTarakom.SelectedIndex;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private void cmbSellSanadType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbPishSanadType.SelectedIndex = cmbSellSanadType.SelectedIndex;
+                cmbMoavezeSanadType.SelectedIndex = cmbSellSanadType.SelectedIndex;
+                cmbMosharekatSanadType.SelectedIndex = cmbSellSanadType.SelectedIndex;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private void cmbPishSanadType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbSellSanadType.SelectedIndex = cmbPishSanadType.SelectedIndex;
+                cmbMoavezeSanadType.SelectedIndex = cmbPishSanadType.SelectedIndex;
+                cmbMosharekatSanadType.SelectedIndex = cmbPishSanadType.SelectedIndex;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private void cmbMoavezeSanadType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbPishSanadType.SelectedIndex = cmbMoavezeSanadType.SelectedIndex;
+                cmbSellSanadType.SelectedIndex = cmbMoavezeSanadType.SelectedIndex;
+                cmbMosharekatSanadType.SelectedIndex = cmbMoavezeSanadType.SelectedIndex;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private void cmbMosharekatSanadType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbPishSanadType.SelectedIndex = cmbMosharekatSanadType.SelectedIndex;
+                cmbMoavezeSanadType.SelectedIndex = cmbMosharekatSanadType.SelectedIndex;
+                cmbSellSanadType.SelectedIndex = cmbMosharekatSanadType.SelectedIndex;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private void txtCode_Enter(object sender, EventArgs e)
+        {
+            txtSetter.Focus(txtCode);
+        }
+        private void txtSaleSakht_Enter(object sender, EventArgs e)
+        {
+            txtSetter.Focus(txtSaleSakht);
+        }
+        private void txtSaleParvane_Enter(object sender, EventArgs e)
+        {
+            txtSetter.Focus(txtSaleParvane);
+        }
+        private void txtSerialParvane_Enter(object sender, EventArgs e)
+        {
+            txtSetter.Focus(txtSerialParvane);
+        }
+        private void txtSerialParvane_Leave(object sender, EventArgs e)
+        {
+            txtSetter.Follow(txtSerialParvane);
+        }
+        private void txtSaleParvane_Leave(object sender, EventArgs e)
+        {
+            txtSetter.Follow(txtSaleParvane);
+        }
+        private void txtSaleSakht_Leave(object sender, EventArgs e)
+        {
+            txtSetter.Follow(txtSaleSakht);
+        }
+        private void txtCode_Leave(object sender, EventArgs e)
+        {
+            txtSetter.Follow(txtCode);
+        }
+        private void btnPrint_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                btnFinish.PerformClick();
+
+                var reg = RegionsBussines.Get(cls.RegionGuid);
+                var accType = BuildingAccountTypeBussines.Get(cls.BuildingAccountTypeGuid);
+                var type = BuildingTypeBussines.Get(cls.BuildingTypeGuid);
+                cls.RegionName = reg?.Name ?? "";
+                cls.BuildingAccountTypeName = accType?.Name ?? "";
+                cls.BuildingTypeName = type?.Name ?? "";
+                var list = new List<object>() { cls };
+                var cls_ = new ReportGenerator(StiType.Building_One, EnPrintType.Pdf_A4) { Lst = list };
+                cls_.PrintNew();
+
+                DialogResult = DialogResult.OK;
+                Close();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private async void chbGoogleMap_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (chbGoogleMap.Checked)
+                {
+                    picGoogle.Visible = false;
+                    webGoogle.Visible = true;
+                    var res = await ShowMap(cmbCity.Text, cmbRegion.Text);
+                    if (res.HasError)
+                        frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);
+                }
+                else
+                {
+                    picGoogle.Visible = true;
+                    webGoogle.Visible = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
         private async void cmbRegion_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
