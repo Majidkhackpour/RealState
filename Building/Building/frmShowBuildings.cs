@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Advertise.Classes;
@@ -80,13 +81,14 @@ namespace Building.Building
             try
             {
                 list = BuildingBussines
-                    .GetAll(search, (EnBuildingStatus) cmbStatus.SelectedIndex - 1,
-                        (Guid) cmbBuildingType.SelectedValue,
-                        (Guid) cmbUser.SelectedValue,
-                        (Guid) cmbDocType.SelectedValue,
-                        (Guid) cmbAccType.SelectedValue);
-                Invoke(new MethodInvoker(() => BuildingBindingSource.DataSource =
-                    list.Where(q => q.Status == status).OrderByDescending(q => q.CreateDate).ToSortableBindingList()));
+                    .GetAll(search, (EnBuildingStatus)cmbStatus.SelectedIndex - 1,
+                        (Guid)cmbBuildingType.SelectedValue,
+                        (Guid)cmbUser.SelectedValue,
+                        (Guid)cmbDocType.SelectedValue,
+                        (Guid)cmbAccType.SelectedValue);
+                Task.Run(() => ucPagger.PagingAsync(new CancellationToken(),
+                    list.Where(q => q.Status == status).OrderByDescending(q => q.CreateDate), 100,
+                    PagingPosition.GotoStartPage));
             }
             catch (Exception ex)
             {
@@ -329,13 +331,25 @@ namespace Building.Building
             {
                 btnSelect.Visible = false;
             }
-
-            chbFilter.Checked = false;
-            grp.Enabled = false;
+            ucPagger.OnBindDataReady += UcPagger_OnBindDataReady;
             SetAccess();
             SetColumns();
         }
 
+        private void UcPagger_OnBindDataReady(object sender, WindowsSerivces.Pagging.FooterBindingDataReadyEventArg e)
+        {
+            try
+            {
+                var count = e?.ListData?.Count ?? 0;
+                if (count <= 0) count = 100;
+                Invoke(new MethodInvoker(() =>
+                    BuildingBindingSource.DataSource = e?.ListData?.Take(count)?.ToSortableBindingList()));
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
         private async void frmShowBuildings_Load(object sender, EventArgs e)
         {
             await FillCmbAsync();
@@ -410,7 +424,6 @@ namespace Building.Building
         {
             try
             {
-                if (!grp.Enabled) return;
                 LoadData(ST, txtSearch.Text);
             }
             catch (Exception ex)
@@ -422,7 +435,6 @@ namespace Building.Building
         {
             try
             {
-                if (!grp.Enabled) return;
                 LoadData(ST, txtSearch.Text);
             }
             catch (Exception ex)
@@ -434,7 +446,6 @@ namespace Building.Building
         {
             try
             {
-                if (!grp.Enabled) return;
                 LoadData(ST, txtSearch.Text);
             }
             catch (Exception ex)
@@ -1432,12 +1443,10 @@ namespace Building.Building
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void chbFilter_CheckedChanged(object sender, EventArgs e) => grp.Enabled = chbFilter.Checked;
         private void cmbDocType_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
             {
-                if (!grp.Enabled) return;
                 LoadData(ST, txtSearch.Text);
             }
             catch (Exception ex)
@@ -1449,8 +1458,27 @@ namespace Building.Building
         {
             try
             {
-                if (!grp.Enabled) return;
                 LoadData(ST, txtSearch.Text);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private void DGrid_Scroll(object sender, ScrollEventArgs e)
+        {
+            try
+            {
+                if (BuildingBindingSource.Count <= 0 || BuildingBindingSource.Count == ucPagger.list.Count)
+                    return;
+                var addedItem = 0;
+                var percent = 100 * (double)e.NewValue / BuildingBindingSource.Count;
+                if (percent <= 70) return;
+                foreach (var item in ucPagger.NextItemsInPage(BuildingBindingSource.Count, 50))
+                {
+                    BuildingBindingSource.Add(item);
+                    addedItem++;
+                }
             }
             catch (Exception ex)
             {

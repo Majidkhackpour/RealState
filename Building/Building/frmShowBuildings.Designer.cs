@@ -190,7 +190,7 @@
             this.AccTypeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.cmbDocType = new System.Windows.Forms.ComboBox();
             this.docTypeBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.chbFilter = new DevComponents.DotNetBar.Controls.CheckBoxX();
+            this.ucPagger = new WindowsSerivces.Pagging.UC_FooterPaging();
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).BeginInit();
             this.contextMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BuildingBindingSource)).BeginInit();
@@ -357,6 +357,7 @@
             this.DGrid.Size = new System.Drawing.Size(844, 489);
             this.DGrid.TabIndex = 55744;
             this.DGrid.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DGrid_CellFormatting);
+            this.DGrid.Scroll += new System.Windows.Forms.ScrollEventHandler(this.DGrid_Scroll);
             this.DGrid.DoubleClick += new System.EventHandler(this.DGrid_DoubleClick);
             this.DGrid.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.DGrid_KeyPress);
             // 
@@ -1577,7 +1578,7 @@
             this.btnSelect.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnSelect.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnSelect.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.btnSelect.Location = new System.Drawing.Point(325, 565);
+            this.btnSelect.Location = new System.Drawing.Point(4, 566);
             this.btnSelect.Name = "btnSelect";
             this.btnSelect.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
             this.btnSelect.Size = new System.Drawing.Size(414, 31);
@@ -1678,29 +1679,26 @@
             // 
             this.docTypeBindingSource.DataSource = typeof(EntityCache.Bussines.DocumentTypeBussines);
             // 
-            // chbFilter
+            // ucPagger
             // 
-            this.chbFilter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.chbFilter.BackColor = System.Drawing.Color.Transparent;
-            // 
-            // 
-            // 
-            this.chbFilter.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.chbFilter.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.chbFilter.Location = new System.Drawing.Point(878, 35);
-            this.chbFilter.Name = "chbFilter";
-            this.chbFilter.Size = new System.Drawing.Size(121, 23);
-            this.chbFilter.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.chbFilter.TabIndex = 55761;
-            this.chbFilter.Text = "فیلترها فعال باشد";
-            this.chbFilter.CheckedChanged += new System.EventHandler(this.chbFilter_CheckedChanged);
+            this.ucPagger.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ucPagger.BackColor = System.Drawing.Color.Transparent;
+            this.ucPagger.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.ucPagger.Location = new System.Drawing.Point(493, 568);
+            this.ucPagger.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ucPagger.Name = "ucPagger";
+            this.ucPagger.PageIdx = 1;
+            this.ucPagger.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.ucPagger.Size = new System.Drawing.Size(463, 28);
+            this.ucPagger.TabIndex = 55771;
             // 
             // frmShowBuildings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1021, 600);
-            this.Controls.Add(this.chbFilter);
+            this.Controls.Add(this.ucPagger);
             this.Controls.Add(this.grp);
             this.Controls.Add(this.btnSelect);
             this.Controls.Add(this.txtSearch);
@@ -1879,8 +1877,8 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox cmbAccType;
         private System.Windows.Forms.ComboBox cmbDocType;
-        private DevComponents.DotNetBar.Controls.CheckBoxX chbFilter;
         private System.Windows.Forms.BindingSource AccTypeBindingSource;
         private System.Windows.Forms.BindingSource docTypeBindingSource;
+        private WindowsSerivces.Pagging.UC_FooterPaging ucPagger;
     }
 }
