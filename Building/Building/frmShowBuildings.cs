@@ -22,6 +22,7 @@ namespace Building.Building
         private bool isShowMode = false;
         private IEnumerable<BuildingBussines> list;
         private List<string> ColumnList;
+        private Guid ownerGuid = Guid.Empty;
 
 
         private async Task FillCmbAsync()
@@ -86,9 +87,19 @@ namespace Building.Building
                         (Guid)cmbUser.SelectedValue,
                         (Guid)cmbDocType.SelectedValue,
                         (Guid)cmbAccType.SelectedValue);
-                Task.Run(() => ucPagger.PagingAsync(new CancellationToken(),
-                    list.Where(q => q.Status == status).OrderByDescending(q => q.CreateDate), 100,
-                    PagingPosition.GotoStartPage));
+                if (ownerGuid == Guid.Empty)
+                {
+                    Task.Run(() => ucPagger.PagingAsync(new CancellationToken(),
+                        list.Where(q => q.Status == status).OrderByDescending(q => q.CreateDate), 100,
+                        PagingPosition.GotoStartPage));
+                }
+                else
+                {
+                    Task.Run(() => ucPagger.PagingAsync(new CancellationToken(),
+                        list.Where(q => q.Status == status && q.OwnerGuid == ownerGuid)
+                            .OrderByDescending(q => q.CreateDate), 100,
+                        PagingPosition.GotoStartPage));
+                }
             }
             catch (Exception ex)
             {
@@ -318,7 +329,7 @@ namespace Building.Building
             }
         }
 
-        public frmShowBuildings(bool _isShowMode)
+        public frmShowBuildings(bool _isShowMode, Guid ownerGuid = default)
         {
             InitializeComponent();
             isShowMode = _isShowMode;
@@ -328,9 +339,9 @@ namespace Building.Building
                 btnSelect.Visible = true;
             }
             else
-            {
                 btnSelect.Visible = false;
-            }
+
+            this.ownerGuid = ownerGuid;
             ucPagger.OnBindDataReady += UcPagger_OnBindDataReady;
             SetAccess();
             SetColumns();

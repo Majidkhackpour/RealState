@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
@@ -130,7 +131,7 @@ namespace EntityCache.SqlServerPersistence
             {
                 using (var cn = new SqlConnection(_connectionString))
                 {
-                    var cmd = new SqlCommand("sp_Contract_Save", cn);
+                    var cmd = new SqlCommand("sp_Contract_Save", cn) {CommandType = CommandType.StoredProcedure};
                     cmd.Parameters.AddWithValue("@Guid", item.Guid);
                     cmd.Parameters.AddWithValue("@st", item.Status);
                     cmd.Parameters.AddWithValue("@modif", item.Modified);

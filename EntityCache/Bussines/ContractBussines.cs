@@ -35,6 +35,7 @@ namespace EntityCache.Bussines
         public string Shobe { get; set; }
         public string SarResid { get; set; }
         public DateTime DischargeDate { get; set; }
+        public string DischargeDateSh => Calendar.MiladiToShamsi(DischargeDate);
         public DateTime? SetDocDate { get; set; }
         public string SetDocPlace { get; set; }
         public decimal SarQofli { get; set; }

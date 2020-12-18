@@ -35,22 +35,14 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmShowContract));
-            this.btnOther = new DevComponents.DotNetBar.ButtonX();
-            this.btnChangeTemp = new DevComponents.DotNetBar.ButtonItem();
-            this.btnShowStandard = new DevComponents.DotNetBar.ButtonItem();
-            this.btnView = new DevComponents.DotNetBar.ButtonX();
-            this.btnChangeStatus = new DevComponents.DotNetBar.ButtonX();
             this.txtSearch = new DevComponents.DotNetBar.Controls.TextBoxX();
-            this.btnDelete = new DevComponents.DotNetBar.ButtonX();
-            this.btnInsert = new DevComponents.DotNetBar.ButtonX();
-            this.btnEdit = new DevComponents.DotNetBar.ButtonX();
-            this.line1 = new DevComponents.DotNetBar.Controls.Line();
             this.DGrid = new DevComponents.DotNetBar.Controls.DataGridViewX();
             this.dgRadif = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DateSh = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.sNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DischargeDateSh = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.userNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.isTempDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.dgGuid = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -74,82 +66,22 @@
             this.delayDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.descriptionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.conBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.btnPrint = new DevComponents.DotNetBar.ButtonItem();
+            this.contextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.mnuAdd = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuEdit = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuDelete = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
+            this.mnuView = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuStatus = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
+            this.mnuShowStandard = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuPrint = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuChangeTemp = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.conBindingSource)).BeginInit();
+            this.contextMenu.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // btnOther
-            // 
-            this.btnOther.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnOther.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnOther.BackColor = System.Drawing.Color.Silver;
-            this.btnOther.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnOther.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
-            this.btnOther.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnOther.Location = new System.Drawing.Point(4, 559);
-            this.btnOther.Name = "btnOther";
-            this.btnOther.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
-            this.btnOther.Size = new System.Drawing.Size(61, 31);
-            this.btnOther.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
-            this.btnOther.SubItems.AddRange(new DevComponents.DotNetBar.BaseItem[] {
-            this.btnChangeTemp,
-            this.btnShowStandard,
-            this.btnPrint});
-            this.btnOther.TabIndex = 55776;
-            this.btnOther.Text = "سایر";
-            this.btnOther.TextAlignment = DevComponents.DotNetBar.eButtonTextAlignment.Left;
-            this.btnOther.TextColor = System.Drawing.Color.Black;
-            // 
-            // btnChangeTemp
-            // 
-            this.btnChangeTemp.Name = "btnChangeTemp";
-            this.btnChangeTemp.Text = "نهایی کردن و بستن قرارداد";
-            this.btnChangeTemp.Click += new System.EventHandler(this.btnChangeTemp_Click);
-            // 
-            // btnShowStandard
-            // 
-            this.btnShowStandard.Name = "btnShowStandard";
-            this.btnShowStandard.Text = "نمایش قولنامه در فرمت استاندارد اتحادیه املاک";
-            this.btnShowStandard.Click += new System.EventHandler(this.btnShowStandard_Click);
-            // 
-            // btnView
-            // 
-            this.btnView.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnView.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnView.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.btnView.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnView.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
-            this.btnView.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnView.Image = global::Building.Properties.Resources.article_1_;
-            this.btnView.Location = new System.Drawing.Point(202, 559);
-            this.btnView.Name = "btnView";
-            this.btnView.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
-            this.btnView.Size = new System.Drawing.Size(125, 31);
-            this.btnView.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
-            this.btnView.TabIndex = 55771;
-            this.btnView.Text = "مشاهده (F12)";
-            this.btnView.TextColor = System.Drawing.Color.Black;
-            this.btnView.Click += new System.EventHandler(this.btnView_Click);
-            // 
-            // btnChangeStatus
-            // 
-            this.btnChangeStatus.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnChangeStatus.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnChangeStatus.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.btnChangeStatus.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnChangeStatus.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
-            this.btnChangeStatus.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnChangeStatus.Image = global::Building.Properties.Resources.refresh_round_symbol;
-            this.btnChangeStatus.Location = new System.Drawing.Point(71, 559);
-            this.btnChangeStatus.Name = "btnChangeStatus";
-            this.btnChangeStatus.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
-            this.btnChangeStatus.Size = new System.Drawing.Size(125, 31);
-            this.btnChangeStatus.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
-            this.btnChangeStatus.TabIndex = 55773;
-            this.btnChangeStatus.Text = "غیرفعال (Ctrl+S)";
-            this.btnChangeStatus.TextColor = System.Drawing.Color.Black;
-            this.btnChangeStatus.Click += new System.EventHandler(this.btnChangeStatus_Click);
             // 
             // txtSearch
             // 
@@ -169,74 +101,6 @@
             this.txtSearch.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtSearch.WatermarkText = "مورد جستجو را وارد نمایید ...";
             this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
-            // 
-            // btnDelete
-            // 
-            this.btnDelete.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnDelete.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.btnDelete.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnDelete.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
-            this.btnDelete.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnDelete.Image = global::Building.Properties.Resources.delete_1_;
-            this.btnDelete.Location = new System.Drawing.Point(333, 559);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
-            this.btnDelete.Size = new System.Drawing.Size(125, 31);
-            this.btnDelete.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
-            this.btnDelete.TabIndex = 55772;
-            this.btnDelete.Text = "حذف (Del)";
-            this.btnDelete.TextColor = System.Drawing.Color.Black;
-            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
-            // 
-            // btnInsert
-            // 
-            this.btnInsert.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnInsert.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnInsert.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.btnInsert.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnInsert.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
-            this.btnInsert.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnInsert.Image = global::Building.Properties.Resources.add_1_;
-            this.btnInsert.Location = new System.Drawing.Point(595, 559);
-            this.btnInsert.Name = "btnInsert";
-            this.btnInsert.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
-            this.btnInsert.Size = new System.Drawing.Size(125, 31);
-            this.btnInsert.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
-            this.btnInsert.TabIndex = 55774;
-            this.btnInsert.Text = "افزودن (Ins)";
-            this.btnInsert.TextColor = System.Drawing.Color.Black;
-            this.btnInsert.Click += new System.EventHandler(this.btnInsert_Click);
-            // 
-            // btnEdit
-            // 
-            this.btnEdit.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnEdit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.btnEdit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnEdit.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
-            this.btnEdit.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnEdit.Image = global::Building.Properties.Resources.edit_1_;
-            this.btnEdit.Location = new System.Drawing.Point(464, 559);
-            this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
-            this.btnEdit.Size = new System.Drawing.Size(125, 31);
-            this.btnEdit.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
-            this.btnEdit.TabIndex = 55775;
-            this.btnEdit.Text = "ویرایش (F7)";
-            this.btnEdit.TextColor = System.Drawing.Color.Black;
-            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
-            // 
-            // line1
-            // 
-            this.line1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.line1.Location = new System.Drawing.Point(0, 538);
-            this.line1.Name = "line1";
-            this.line1.Size = new System.Drawing.Size(799, 23);
-            this.line1.TabIndex = 55768;
-            this.line1.Text = "line1";
-            this.line1.Thickness = 2;
             // 
             // DGrid
             // 
@@ -270,6 +134,7 @@
             this.dgCode,
             this.fNameDataGridViewTextBoxColumn,
             this.sNameDataGridViewTextBoxColumn,
+            this.DischargeDateSh,
             this.userNameDataGridViewTextBoxColumn,
             this.isTempDataGridViewCheckBoxColumn,
             this.dgGuid,
@@ -292,6 +157,7 @@
             this.sarQofliDataGridViewTextBoxColumn,
             this.delayDataGridViewTextBoxColumn,
             this.descriptionDataGridViewTextBoxColumn});
+            this.DGrid.ContextMenuStrip = this.contextMenu;
             this.DGrid.DataSource = this.conBindingSource;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
@@ -325,7 +191,7 @@
             this.DGrid.RowsDefaultCellStyle = dataGridViewCellStyle5;
             this.DGrid.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             this.DGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DGrid.Size = new System.Drawing.Size(795, 468);
+            this.DGrid.Size = new System.Drawing.Size(795, 515);
             this.DGrid.TabIndex = 55769;
             this.DGrid.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DGrid_CellFormatting);
             // 
@@ -338,48 +204,65 @@
             // 
             // DateSh
             // 
+            this.DateSh.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.DateSh.DataPropertyName = "DateSh";
             this.DateSh.HeaderText = "تاریخ ثبت";
             this.DateSh.Name = "DateSh";
             this.DateSh.ReadOnly = true;
+            this.DateSh.Width = 74;
             // 
             // dgCode
             // 
+            this.dgCode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.dgCode.DataPropertyName = "Code";
             this.dgCode.HeaderText = "کد قرارداد";
             this.dgCode.Name = "dgCode";
             this.dgCode.ReadOnly = true;
+            this.dgCode.Width = 80;
             // 
             // fNameDataGridViewTextBoxColumn
             // 
+            this.fNameDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.fNameDataGridViewTextBoxColumn.DataPropertyName = "fName";
             this.fNameDataGridViewTextBoxColumn.HeaderText = "طرف اول/فروشنده/موجر";
             this.fNameDataGridViewTextBoxColumn.Name = "fNameDataGridViewTextBoxColumn";
             this.fNameDataGridViewTextBoxColumn.ReadOnly = true;
-            this.fNameDataGridViewTextBoxColumn.Width = 300;
             // 
             // sNameDataGridViewTextBoxColumn
             // 
-            this.sNameDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.sNameDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.sNameDataGridViewTextBoxColumn.DataPropertyName = "sName";
             this.sNameDataGridViewTextBoxColumn.HeaderText = "طرف دوم/خریدار/مستاجر";
             this.sNameDataGridViewTextBoxColumn.Name = "sNameDataGridViewTextBoxColumn";
             this.sNameDataGridViewTextBoxColumn.ReadOnly = true;
+            this.sNameDataGridViewTextBoxColumn.Width = 146;
+            // 
+            // DischargeDateSh
+            // 
+            this.DischargeDateSh.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.DischargeDateSh.DataPropertyName = "DischargeDateSh";
+            this.DischargeDateSh.HeaderText = "تاریخ تحویل";
+            this.DischargeDateSh.Name = "DischargeDateSh";
+            this.DischargeDateSh.ReadOnly = true;
+            this.DischargeDateSh.Width = 84;
             // 
             // userNameDataGridViewTextBoxColumn
             // 
+            this.userNameDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.userNameDataGridViewTextBoxColumn.DataPropertyName = "UserName";
             this.userNameDataGridViewTextBoxColumn.HeaderText = "کاربر ثبت کننده";
             this.userNameDataGridViewTextBoxColumn.Name = "userNameDataGridViewTextBoxColumn";
             this.userNameDataGridViewTextBoxColumn.ReadOnly = true;
-            this.userNameDataGridViewTextBoxColumn.Width = 150;
+            this.userNameDataGridViewTextBoxColumn.Width = 99;
             // 
             // isTempDataGridViewCheckBoxColumn
             // 
+            this.isTempDataGridViewCheckBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.isTempDataGridViewCheckBoxColumn.DataPropertyName = "IsTemp";
             this.isTempDataGridViewCheckBoxColumn.HeaderText = "موقت";
             this.isTempDataGridViewCheckBoxColumn.Name = "isTempDataGridViewCheckBoxColumn";
             this.isTempDataGridViewCheckBoxColumn.ReadOnly = true;
+            this.isTempDataGridViewCheckBoxColumn.Width = 43;
             // 
             // dgGuid
             // 
@@ -545,25 +428,110 @@
             // 
             this.conBindingSource.DataSource = typeof(EntityCache.Bussines.ContractBussines);
             // 
-            // btnPrint
+            // contextMenu
             // 
-            this.btnPrint.Name = "btnPrint";
-            this.btnPrint.Text = "چاپ لیست قولنامه ها";
-            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
+            this.contextMenu.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.contextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnuAdd,
+            this.mnuEdit,
+            this.mnuDelete,
+            this.toolStripMenuItem1,
+            this.mnuView,
+            this.mnuStatus,
+            this.toolStripMenuItem2,
+            this.mnuChangeTemp,
+            this.toolStripMenuItem3,
+            this.mnuShowStandard,
+            this.mnuPrint});
+            this.contextMenu.Name = "contextMenu";
+            this.contextMenu.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.contextMenu.Size = new System.Drawing.Size(327, 236);
+            // 
+            // mnuAdd
+            // 
+            this.mnuAdd.Image = global::Building.Properties.Resources.add_2_;
+            this.mnuAdd.Name = "mnuAdd";
+            this.mnuAdd.Size = new System.Drawing.Size(326, 24);
+            this.mnuAdd.Text = "افزودن قولنامه جدید (Ins)";
+            this.mnuAdd.Click += new System.EventHandler(this.mnuAdd_Click);
+            // 
+            // mnuEdit
+            // 
+            this.mnuEdit.Image = global::Building.Properties.Resources.edit_1_;
+            this.mnuEdit.Name = "mnuEdit";
+            this.mnuEdit.Size = new System.Drawing.Size(326, 24);
+            this.mnuEdit.Text = "ویرایش قولنامه جاری (F7)";
+            this.mnuEdit.Click += new System.EventHandler(this.mnuEdit_Click);
+            // 
+            // mnuDelete
+            // 
+            this.mnuDelete.Image = global::Building.Properties.Resources.delete_1_;
+            this.mnuDelete.Name = "mnuDelete";
+            this.mnuDelete.Size = new System.Drawing.Size(326, 24);
+            this.mnuDelete.Text = "حذف قولنامه جاری (Del)";
+            this.mnuDelete.Click += new System.EventHandler(this.mnuDelete_Click);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(323, 6);
+            // 
+            // mnuView
+            // 
+            this.mnuView.Image = global::Building.Properties.Resources.article_1_;
+            this.mnuView.Name = "mnuView";
+            this.mnuView.Size = new System.Drawing.Size(326, 24);
+            this.mnuView.Text = "مشاهده (F12)";
+            this.mnuView.Click += new System.EventHandler(this.mnuView_Click);
+            // 
+            // mnuStatus
+            // 
+            this.mnuStatus.Image = global::Building.Properties.Resources.refresh_round_symbol;
+            this.mnuStatus.Name = "mnuStatus";
+            this.mnuStatus.Size = new System.Drawing.Size(326, 24);
+            this.mnuStatus.Text = "غیرفعال (Ctrl+S)";
+            this.mnuStatus.Click += new System.EventHandler(this.mnuStatus_Click);
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(323, 6);
+            // 
+            // mnuShowStandard
+            // 
+            this.mnuShowStandard.Image = global::Building.Properties.Resources.list;
+            this.mnuShowStandard.Name = "mnuShowStandard";
+            this.mnuShowStandard.Size = new System.Drawing.Size(326, 24);
+            this.mnuShowStandard.Text = "چاپ قولنامه جاری در فرمت استاندارد اتحادیه املاک";
+            this.mnuShowStandard.Click += new System.EventHandler(this.mnuShowStandard_Click);
+            // 
+            // mnuPrint
+            // 
+            this.mnuPrint.Image = global::Building.Properties.Resources.printer;
+            this.mnuPrint.Name = "mnuPrint";
+            this.mnuPrint.Size = new System.Drawing.Size(326, 24);
+            this.mnuPrint.Text = "چاپ لیست قولنامه ها";
+            this.mnuPrint.Click += new System.EventHandler(this.mnuPrint_Click);
+            // 
+            // mnuChangeTemp
+            // 
+            this.mnuChangeTemp.Image = global::Building.Properties.Resources.profile;
+            this.mnuChangeTemp.Name = "mnuChangeTemp";
+            this.mnuChangeTemp.Size = new System.Drawing.Size(326, 24);
+            this.mnuChangeTemp.Text = "نهایی کردن و بستن قولنامه";
+            this.mnuChangeTemp.Click += new System.EventHandler(this.mnuChangeTemp_Click);
+            // 
+            // toolStripMenuItem3
+            // 
+            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(323, 6);
             // 
             // frmShowContract
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 600);
-            this.Controls.Add(this.btnOther);
-            this.Controls.Add(this.btnView);
-            this.Controls.Add(this.btnChangeStatus);
             this.Controls.Add(this.txtSearch);
-            this.Controls.Add(this.btnDelete);
-            this.Controls.Add(this.btnInsert);
-            this.Controls.Add(this.btnEdit);
-            this.Controls.Add(this.line1);
             this.Controls.Add(this.DGrid);
             this.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -579,28 +547,21 @@
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmShowContract_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.conBindingSource)).EndInit();
+            this.contextMenu.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
-        private DevComponents.DotNetBar.ButtonX btnOther;
-        private DevComponents.DotNetBar.ButtonItem btnChangeTemp;
-        private DevComponents.DotNetBar.ButtonItem btnShowStandard;
-        private DevComponents.DotNetBar.ButtonX btnView;
-        private DevComponents.DotNetBar.ButtonX btnChangeStatus;
         private DevComponents.DotNetBar.Controls.TextBoxX txtSearch;
         private System.Windows.Forms.BindingSource conBindingSource;
-        private DevComponents.DotNetBar.ButtonX btnDelete;
-        private DevComponents.DotNetBar.ButtonX btnInsert;
-        private DevComponents.DotNetBar.ButtonX btnEdit;
-        private DevComponents.DotNetBar.Controls.Line line1;
         private DevComponents.DotNetBar.Controls.DataGridViewX DGrid;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgRadif;
         private System.Windows.Forms.DataGridViewTextBoxColumn DateSh;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgCode;
         private System.Windows.Forms.DataGridViewTextBoxColumn fNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn sNameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DischargeDateSh;
         private System.Windows.Forms.DataGridViewTextBoxColumn userNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewCheckBoxColumn isTempDataGridViewCheckBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgGuid;
@@ -623,6 +584,17 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn sarQofliDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn delayDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn descriptionDataGridViewTextBoxColumn;
-        private DevComponents.DotNetBar.ButtonItem btnPrint;
+        private System.Windows.Forms.ContextMenuStrip contextMenu;
+        private System.Windows.Forms.ToolStripMenuItem mnuAdd;
+        private System.Windows.Forms.ToolStripMenuItem mnuEdit;
+        private System.Windows.Forms.ToolStripMenuItem mnuDelete;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem mnuView;
+        private System.Windows.Forms.ToolStripMenuItem mnuStatus;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem mnuShowStandard;
+        private System.Windows.Forms.ToolStripMenuItem mnuPrint;
+        private System.Windows.Forms.ToolStripMenuItem mnuChangeTemp;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem3;
     }
 }

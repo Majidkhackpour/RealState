@@ -1571,8 +1571,7 @@
             // btnSelect
             // 
             this.btnSelect.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnSelect.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSelect.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnSelect.BackColor = System.Drawing.Color.DarkSlateGray;
             this.btnSelect.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnSelect.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
@@ -1685,12 +1684,12 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ucPagger.BackColor = System.Drawing.Color.Transparent;
             this.ucPagger.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.ucPagger.Location = new System.Drawing.Point(493, 568);
+            this.ucPagger.Location = new System.Drawing.Point(425, 568);
             this.ucPagger.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ucPagger.Name = "ucPagger";
             this.ucPagger.PageIdx = 1;
             this.ucPagger.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.ucPagger.Size = new System.Drawing.Size(463, 28);
+            this.ucPagger.Size = new System.Drawing.Size(566, 28);
             this.ucPagger.TabIndex = 55771;
             // 
             // frmShowBuildings

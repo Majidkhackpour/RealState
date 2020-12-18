@@ -499,7 +499,7 @@ IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Contract_
 	exec('Create Procedure [dbo].[sp_Contract_ChangeStatus]	As Begin print 11 end')
 GO
 
-Alter PROCEDURE sp_Contract_ChangeStatus
+ALTER PROCEDURE [dbo].[sp_Contract_ChangeStatus]
 	@conGuid uniqueidentifier,
 	@st bit
 AS
@@ -515,6 +515,39 @@ BEGIN
 	update Contracts
 	set Status=@st 
 	where Guid=@conGuid
+
+	declare @fPrice bigint
+	set @fPrice= (select FirstTotalPrice from ContractFinances where ConGuid=@conGuid)
+
+	declare @fGuid uniqueidentifier
+	set @fGuid=(select FirstSideGuid from Contracts where Guid=@conGuid)
+
+	declare @sPrice bigint
+	set @sPrice= (select SecondTotalPrice from ContractFinances where ConGuid=@conGuid)
+
+	declare @sGuid uniqueidentifier
+	set @sGuid=(select SecondSideGuid from Contracts where Guid=@conGuid)
+
+	if(@st='true')
+	begin
+		update Peoples
+		set Account=Account-@fPrice
+		where Guid=@fGuid
+
+		update Peoples
+		set Account=Account-@SPrice
+		where Guid=@sGuid
+	end
+	else
+	begin
+		update Peoples
+		set Account=Account-@fPrice
+		where Guid=@fGuid
+
+		update Peoples
+		set Account=Account-@SPrice
+		where Guid=@sGuid
+	end
 END
 GO
 -- ==========================================================================================
@@ -522,7 +555,7 @@ IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Contract_
 	exec('Create Procedure [dbo].[sp_Contract_Save]	As Begin print 11 end')
 GO
 
-Alter PROCEDURE sp_Contract_Save
+ALTER PROCEDURE [dbo].[sp_Contract_Save]
 	@Guid uniqueidentifier,
 	@st bit,
 	@modif datetime,
@@ -574,10 +607,10 @@ BEGIN
 	where ParentGuid=@Guid
 
 	insert into GardeshHesabs(Babat,Description,Guid,Modified,ParentGuid,PeopleGuid,Price,Status,Type)
-		values(2,N'عقد قرارداد به شماره '+@code+' در تاریخ '+@dateSh,NEWID(), GETDATE(),@guid,@fGuid,@fSidePrice,'true',2)
+		values(2,N'عقد قرارداد به شماره '+CAST(@code AS nvarchar(100))+' در تاریخ '+@dateSh,NEWID(), GETDATE(),@guid,@fGuid,@fSidePrice,'true',2)
 
 			insert into GardeshHesabs(Babat,Description,Guid,Modified,ParentGuid,PeopleGuid,Price,Status,Type)
-		values(2,N'عقد قرارداد به شماره '+@code+' در تاریخ '+@dateSh,NEWID(), GETDATE(),@guid,@sGuid,@sSidePrice,'true',2)
+		values(2,N'عقد قرارداد به شماره '+CAST(@code AS nvarchar(100))+' در تاریخ '+@dateSh,NEWID(), GETDATE(),@guid,@sGuid,@sSidePrice,'true',2)
 
 
 
