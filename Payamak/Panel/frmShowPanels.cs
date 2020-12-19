@@ -31,13 +31,13 @@ namespace Payamak.Panel
             try
             {
                 var access = clsUser.CurrentUser.UserAccess;
-                btnInsert.Enabled = access?.SmsPanel.Panel_Insert ?? false;
-                btnEdit.Enabled = access?.SmsPanel.Panel_Update ?? false;
-                btnDelete.Enabled = access?.SmsPanel.Panel_Delete ?? false;
-                btnChangeStatus.Enabled = access?.SmsPanel.Panel_Disable ?? false;
-                btnView.Enabled = access?.SmsPanel.Panel_View ?? false;
-                btnRemain.Enabled = access?.SmsPanel.Panel_Etebar ?? false;
-                btnDef.Enabled = access?.SmsPanel.Panel_Default ?? false;
+                mnuAdd.Enabled = access?.SmsPanel.Panel_Insert ?? false;
+                mnuEdit.Enabled = access?.SmsPanel.Panel_Update ?? false;
+                mnuDelete.Enabled = access?.SmsPanel.Panel_Delete ?? false;
+                mnuStatus.Enabled = access?.SmsPanel.Panel_Disable ?? false;
+                mnuView.Enabled = access?.SmsPanel.Panel_View ?? false;
+                mnuRemain.Enabled = access?.SmsPanel.Panel_Etebar ?? false;
+                mnuDef.Enabled = access?.SmsPanel.Panel_Default ?? false;
             }
             catch (Exception ex)
             {
@@ -52,18 +52,19 @@ namespace Payamak.Panel
                 _st = value;
                 if (_st)
                 {
-                    btnChangeStatus.Text = "غیرفعال (Ctrl+S)";
+                    mnuStatus.Text = "غیرفعال (Ctrl+S)";
                     Task.Run(() => LoadDataAsync(ST, txtSearch.Text));
-                    btnDelete.Text = "حذف (Del)";
+                    mnuDelete.Text = "حذف (Del)";
                 }
                 else
                 {
-                    btnChangeStatus.Text = "فعال (Ctrl+S)";
+                    mnuStatus.Text = "فعال (Ctrl+S)";
                     Task.Run(() => LoadDataAsync(ST, txtSearch.Text));
-                    btnDelete.Text = "فعال کردن";
+                    mnuDelete.Text = "فعال کردن";
                 }
             }
         }
+
         public frmShowPanels()
         {
             InitializeComponent();
@@ -71,12 +72,10 @@ namespace Payamak.Panel
         }
 
         private async void frmShowPanels_Load(object sender, EventArgs e) => await LoadDataAsync(ST);
-
         private void DGrid_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
             DGrid.Rows[e.RowIndex].Cells["dgRadif"].Value = e.RowIndex + 1;
         }
-
         private async void txtSearch_TextChanged(object sender, EventArgs e)
         {
             try
@@ -88,7 +87,6 @@ namespace Payamak.Panel
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-
         private void frmShowPanels_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -96,16 +94,16 @@ namespace Payamak.Panel
                 switch (e.KeyCode)
                 {
                     case Keys.Insert:
-                        btnInsert.PerformClick();
+                        mnuAdd.PerformClick();
                         break;
                     case Keys.F7:
-                        btnEdit.PerformClick();
+                        mnuEdit.PerformClick();
                         break;
                     case Keys.Delete:
-                        btnDelete.PerformClick();
+                        mnuDelete.PerformClick();
                         break;
                     case Keys.F12:
-                        btnView.PerformClick();
+                        mnuView.PerformClick();
                         break;
                     case Keys.S:
                         if (e.Control) ST = !ST;
@@ -116,6 +114,9 @@ namespace Payamak.Panel
                     case Keys.F:
                         if (e.Control) txtSearch.Focus();
                         break;
+                    case Keys.Enter:
+                        mnuEdit.PerformClick();
+                        break;
                 }
             }
             catch (Exception ex)
@@ -123,101 +124,17 @@ namespace Payamak.Panel
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-
-        private void btnChangeStatus_Click(object sender, EventArgs e)
-        {
-            ST = !ST;
-        }
-
-        private async void btnDelete_Click(object sender, EventArgs e)
+        private void mnuLog_Click(object sender, EventArgs e)
         {
             try
             {
                 if (DGrid.RowCount <= 0) return;
                 if (DGrid.CurrentRow == null) return;
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
-                if (ST)
-                {
-                    if (MessageBox.Show(this,
-                            $@"آیا از حذف {DGrid[dgName.Index, DGrid.CurrentRow.Index].Value} اطمینان دارید؟", "حذف",
-                            MessageBoxButtons.YesNo,
-                            MessageBoxIcon.Question) == DialogResult.No) return;
-                    var prd = await SmsPanelsBussines.GetAsync(guid);
-                    var res = await prd.ChangeStatusAsync(false);
-                    if (res.HasError)
-                    {
-                        frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);
-                        return;
-                    }
-                }
-                else
-                {
-                    if (MessageBox.Show(this,
-                            $@"آیا از فعال کردن {DGrid[dgName.Index, DGrid.CurrentRow.Index].Value} اطمینان دارید؟", "حذف",
-                            MessageBoxButtons.YesNo,
-                            MessageBoxIcon.Question) == DialogResult.No) return;
-                    var prd = await SmsPanelsBussines.GetAsync(guid);
-                    var res = await prd.ChangeStatusAsync(true);
-                    if (res.HasError)
-                    {
-                        frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);
-                        return;
-                    }
-                }
+                var panel = SmsPanelsBussines.Get(guid);
+                if (panel == null) return;
 
-                await LoadDataAsync(ST, txtSearch.Text);
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-
-        private async void btnInsert_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                var frm = new frmPanelMain();
-                if (frm.ShowDialog(this) == DialogResult.OK)
-                    await LoadDataAsync(ST);
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-
-        private async void btnEdit_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (DGrid.RowCount <= 0) return;
-                if (DGrid.CurrentRow == null) return;
-                if (!ST)
-                {
-                    frmNotification.PublicInfo.ShowMessage(
-                        "شما مجاز به ویرایش داده حذف شده نمی باشید \r\n برای این منظور، ابتدا فیلد موردنظر را از حالت حذف شده به فعال، تغییر وضعیت دهید");
-                    return;
-                }
-                var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
-                var frm = new frmPanelMain(guid, false);
-                if (frm.ShowDialog(this) == DialogResult.OK)
-                    await LoadDataAsync(ST, txtSearch.Text);
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-
-        private void btnView_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (DGrid.RowCount <= 0) return;
-                if (DGrid.CurrentRow == null) return;
-                var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
-                var frm = new frmPanelMain(guid, true);
+                var frm = new frmSmsLog(panel);
                 frm.ShowDialog(this);
             }
             catch (Exception ex)
@@ -225,42 +142,7 @@ namespace Payamak.Panel
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-
-        private void DGrid_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            try
-            {
-                txtSearch.Focus();
-                txtSearch.Text = e.KeyChar.ToString();
-                txtSearch.SelectionStart = 9999;
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-
-        private async void btnDef_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (DGrid.RowCount <= 0) return;
-                if (DGrid.CurrentRow == null) return;
-                var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
-
-                Settings.Classes.Payamak.DefaultPanelGuid = guid.ToString();
-
-                frmNotification.PublicInfo.ShowMessage("پنل پیش فرض با موفقیت تغییر کرد");
-
-                await LoadDataAsync(ST);
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-
-        private async void btnRemain_Click(object sender, EventArgs e)
+        private async void mnuRemain_Click(object sender, EventArgs e)
         {
             try
             {
@@ -282,30 +164,125 @@ namespace Payamak.Panel
                 var api = new Sms.Api(panel.API.Trim());
                 var res = api.AccountInfo();
 
-                MessageBox.Show(this,$"مانده حساب پنل {panel.Name} {res.RemainCredit} ریال می باشد");
+                MessageBox.Show(this, $"مانده حساب پنل {panel.Name} {res.RemainCredit} ریال می باشد");
             }
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-
-        private void btnLog_Click(object sender, EventArgs e)
+        private async void mnuDef_Click(object sender, EventArgs e)
         {
             try
             {
                 if (DGrid.RowCount <= 0) return;
                 if (DGrid.CurrentRow == null) return;
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
-                var panel = SmsPanelsBussines.Get(guid);
-                if (panel == null) return;
 
-                var frm = new frmSmsLog(panel);
+                Settings.Classes.Payamak.DefaultPanelGuid = guid.ToString();
+
+                frmNotification.PublicInfo.ShowMessage("پنل پیش فرض با موفقیت تغییر کرد");
+
+                await LoadDataAsync(ST);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private void mnuView_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (DGrid.RowCount <= 0) return;
+                if (DGrid.CurrentRow == null) return;
+                var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
+                var frm = new frmPanelMain(guid, true);
                 frm.ShowDialog(this);
             }
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private void mnuStatus_Click(object sender, EventArgs e) => ST = !ST;
+        private async void mnuEdit_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (DGrid.RowCount <= 0) return;
+                if (DGrid.CurrentRow == null) return;
+                if (!ST)
+                {
+                    frmNotification.PublicInfo.ShowMessage(
+                        "شما مجاز به ویرایش داده حذف شده نمی باشید \r\n برای این منظور، ابتدا فیلد موردنظر را از حالت حذف شده به فعال، تغییر وضعیت دهید");
+                    return;
+                }
+                var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
+                var frm = new frmPanelMain(guid, false);
+                if (frm.ShowDialog(this) == DialogResult.OK)
+                    await LoadDataAsync(ST, txtSearch.Text);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private async void mnuAdd_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var frm = new frmPanelMain();
+                if (frm.ShowDialog(this) == DialogResult.OK)
+                    await LoadDataAsync(ST);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private async void mnuDelete_Click(object sender, EventArgs e)
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                if (DGrid.RowCount <= 0) return;
+                if (DGrid.CurrentRow == null) return;
+                var guid = (Guid) DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
+                if (ST)
+                {
+                    if (MessageBox.Show(this,
+                            $@"آیا از حذف {DGrid[dgName.Index, DGrid.CurrentRow.Index].Value} اطمینان دارید؟", "حذف",
+                            MessageBoxButtons.YesNo,
+                            MessageBoxIcon.Question) == DialogResult.No) return;
+                    var prd = await SmsPanelsBussines.GetAsync(guid);
+                    res.AddReturnedValue(await prd.ChangeStatusAsync(false));
+                }
+                else
+                {
+                    if (MessageBox.Show(this,
+                            $@"آیا از فعال کردن {DGrid[dgName.Index, DGrid.CurrentRow.Index].Value} اطمینان دارید؟",
+                            "حذف",
+                            MessageBoxButtons.YesNo,
+                            MessageBoxIcon.Question) == DialogResult.No) return;
+                    var prd = await SmsPanelsBussines.GetAsync(guid);
+                    res.AddReturnedValue(await prd.ChangeStatusAsync(true));
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+            finally
+            {
+                if (res.HasError)
+                {
+                    var frm = new FrmShowErrorMessage(res, "خطا در تغییر وضعیت پنل ارسال پیامک");
+                    frm.ShowDialog(this);
+                    frm.Dispose();
+                }
+                else await LoadDataAsync(ST, txtSearch.Text);
             }
         }
     }

@@ -41,7 +41,7 @@
             this.lblNaqz.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.lblNaqz.Location = new System.Drawing.Point(0, 0);
             this.lblNaqz.Name = "lblNaqz";
-            this.lblNaqz.Size = new System.Drawing.Size(316, 110);
+            this.lblNaqz.Size = new System.Drawing.Size(228, 246);
             this.lblNaqz.TabIndex = 2;
             this.lblNaqz.Text = "جمله قصار";
             this.lblNaqz.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -62,7 +62,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ClientSize = new System.Drawing.Size(316, 110);
+            this.ClientSize = new System.Drawing.Size(228, 246);
             this.ControlBox = false;
             this.Controls.Add(this.lblNaqz);
             this.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));

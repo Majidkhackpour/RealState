@@ -352,7 +352,7 @@ namespace Building.Building
             try
             {
                 var count = e?.ListData?.Count ?? 0;
-                if (count <= 0) count = 100;
+                if (count <= 0) count = 50;
                 Invoke(new MethodInvoker(() =>
                     BuildingBindingSource.DataSource = e?.ListData?.Take(count)?.ToSortableBindingList()));
             }

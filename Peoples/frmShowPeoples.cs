@@ -24,6 +24,7 @@ namespace Peoples
         private bool isShowMode = false;
         private IEnumerable<PeoplesBussines> list;
         private bool _st = true;
+        private List<string> ColumnList;
         public bool ST
         {
             get => _st;
@@ -32,15 +33,15 @@ namespace Peoples
                 _st = value;
                 if (_st)
                 {
-                    btnChangeStatus.Text = "غیرفعال (Ctrl+S)";
+                    mnuStatus.Text = "غیرفعال (Ctrl+S)";
                     Task.Run(() => LoadPeoplesAsync(ST, txtSearch.Text));
-                    btnDelete.Text = "حذف (Del)";
+                    mnuDelete.Text = "حذف (Del)";
                 }
                 else
                 {
-                    btnChangeStatus.Text = "فعال (Ctrl+S)";
+                    mnuStatus.Text = "فعال (Ctrl+S)";
                     Task.Run(() => LoadPeoplesAsync(ST, txtSearch.Text));
-                    btnDelete.Text = "فعال کردن";
+                    mnuDelete.Text = "فعال کردن";
                 }
             }
         }
@@ -76,7 +77,6 @@ namespace Peoples
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-
         private async Task LoadPeoplesAsync(bool status, string search = "")
         {
             try
@@ -95,21 +95,20 @@ namespace Peoples
             try
             {
                 var access = clsUser.CurrentUser.UserAccess;
-                btnInsert.Enabled = access?.Peoples.People_Insert ?? false;
-                btnEdit.Enabled = access?.Peoples.People_Update ?? false;
-                btnDelete.Enabled = access?.Peoples.People_Delete ?? false;
-                btnChangeStatus.Enabled = access?.Peoples.People_Disable ?? false;
-                btnView.Enabled = access?.Peoples.People_View ?? false;
-                btnBank.Enabled = access?.Peoples.People_Show_BankHesab ?? false;
-                btnDelGroup.Enabled = access?.Peoples.People_Group_Delete ?? false;
-                btnInsGroup.Enabled = access?.Peoples.People_Group_Insert ?? false;
-                btnIpmortFromExcel.Enabled = access?.Peoples.People_Import_Excel ?? false;
-                btnSendSMS.Enabled = access?.Peoples.People_SendSms ?? false;
-                btnUpGroup.Enabled = access?.Peoples.People_Group_Update ?? false;
-                btnTell.Enabled = access?.Peoples.People_Show_Tell ?? false;
-                btnPrint.Enabled = access?.Peoples.People_Print ?? false;
-
-                btnIpmortFromExcel.Visible = Settings.VersionAccess.Excel;
+                mnuAdd.Enabled = access?.Peoples.People_Insert ?? false;
+                mnuEdit.Enabled = access?.Peoples.People_Update ?? false;
+                mnuDelete.Enabled = access?.Peoples.People_Delete ?? false;
+                mnuStatus.Enabled = access?.Peoples.People_Disable ?? false;
+                mnuView.Enabled = access?.Peoples.People_View ?? false;
+                mnuBank.Enabled = access?.Peoples.People_Show_BankHesab ?? false;
+                mnuDelGroup.Enabled = access?.Peoples.People_Group_Delete ?? false;
+                mnuInsGroup.Enabled = access?.Peoples.People_Group_Insert ?? false;
+                mnuIpmortFromExcel.Enabled = access?.Peoples.People_Import_Excel ?? false;
+                mnuSendSMS.Enabled = access?.Peoples.People_SendSms ?? false;
+                mnuUpGroup.Enabled = access?.Peoples.People_Group_Update ?? false;
+                mnuTell.Enabled = access?.Peoples.People_Show_Tell ?? false;
+                mnuPrint.Enabled = access?.Peoples.People_Print ?? false;
+                mnuIpmortFromExcel.Visible = Settings.VersionAccess.Excel;
             }
             catch (Exception ex)
             {
@@ -128,33 +127,95 @@ namespace Peoples
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
+        private void SetColumns()
+        {
+            try
+            {
+                ColumnList = Settings.Classes.clsPeoples.ColumnsList;
+                if (ColumnList == null || ColumnList.Count <= 0)
+                {
+                    ColumnList = new List<string> { "کد", "عنوان" };
+
+                    SaveColumns(ColumnList);
+
+                    DGrid.Columns[dgName.Index].Visible = true;
+                    DGrid.Columns[dgCode.Index].Visible = true;
+
+                    mnuName.Checked = true;
+                    mnuCode.Checked = true;
+                }
+                else
+                {
+                    foreach (var item in ColumnList.ToList())
+                    {
+                        switch (item)
+                        {
+                            case "کد":
+                                DGrid.Columns[dgCode.Index].Visible = true;
+                                mnuCode.Checked = true;
+                                break;
+                            case "عنوان":
+                                DGrid.Columns[dgName.Index].Visible = true;
+                                mnuName.Checked = true;
+                                break;
+                            case "کدملی":
+                                DGrid.Columns[dgNatCode.Index].Visible = true;
+                                mnuNatName.Checked = true;
+                                break;
+                            case "نام پدر":
+                                DGrid.Columns[dgFatherName.Index].Visible = true;
+                                mnuFatherName.Checked = true;
+                                break;
+                            case "آدرس":
+                                DGrid.Columns[dgAddress.Index].Visible = true;
+                                mnuAddress.Checked = true;
+                                break;
+                            case "حساب":
+                                DGrid.Columns[dgAccount.Index].Visible = true;
+                                DGrid.Columns[dgAccountType.Index].Visible = true;
+                                mnuAccount.Checked = true;
+                                break;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private void SaveColumns(List<string> listcl)
+        {
+            try
+            {
+                listcl = listcl.GroupBy(x => x)
+                    .Select(x => x.First()).ToList();
+                Settings.Classes.clsPeoples.ColumnsList = listcl;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
         public frmShowPeoples(bool _isShowMode)
         {
             InitializeComponent();
             isShowMode = _isShowMode;
             if (isShowMode)
             {
-                btnDelete.Visible = false;
-                btnInsert.Visible = false;
-                btnEdit.Visible = false;
-                btnGroups.Visible = false;
-                btnView.Visible = false;
-                btnChangeStatus.Visible = false;
-                btnOther.Visible = false;
+                contextMenu.Enabled = false;
+                contextMenuGroup.Enabled = false;
                 btnSelect.Visible = true;
             }
             else
             {
-                btnDelete.Visible = true;
-                btnInsert.Visible = true;
-                btnEdit.Visible = true;
-                btnGroups.Visible = true;
-                btnView.Visible = true;
-                btnChangeStatus.Visible = true;
-                btnOther.Visible = true;
+                contextMenu.Enabled = true;
+                contextMenuGroup.Enabled = true;
                 btnSelect.Visible = false;
             }
 
+            SetColumns();
             SetAccess();
         }
 
@@ -162,12 +223,10 @@ namespace Peoples
         {
             LoadData();
         }
-
         private void DGrid_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
             DGrid.Rows[e.RowIndex].Cells["dgRadif"].Value = e.RowIndex + 1;
         }
-
         private void frmShowPeoples_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -175,16 +234,16 @@ namespace Peoples
                 switch (e.KeyCode)
                 {
                     case Keys.Insert:
-                        btnInsert.PerformClick();
+                        mnuAdd.PerformClick();
                         break;
                     case Keys.F7:
-                        btnEdit.PerformClick();
+                        mnuEdit.PerformClick();
                         break;
                     case Keys.Delete:
-                        btnDelete.PerformClick();
+                        mnuDelete.PerformClick();
                         break;
                     case Keys.F12:
-                        btnView.PerformClick();
+                        mnuView.PerformClick();
                         break;
                     case Keys.S:
                         if (e.Control) ST = !ST;
@@ -195,6 +254,9 @@ namespace Peoples
                     case Keys.F:
                         if (e.Control) txtSearch.Focus();
                         break;
+                    case Keys.Enter:
+                        mnuEdit.PerformClick();
+                        break;
                 }
             }
             catch (Exception ex)
@@ -202,7 +264,6 @@ namespace Peoples
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-
         private async void trvGroup_AfterSelect(object sender, TreeViewEventArgs e)
         {
             try
@@ -225,8 +286,45 @@ namespace Peoples
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-
-        private async void btnInsert_Click(object sender, EventArgs e)
+        private async void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                await LoadPeoplesAsync(ST, txtSearch.Text);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private void btnSelect_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (DGrid.RowCount <= 0) return;
+                if (DGrid.CurrentRow == null) return;
+                SelectedGuid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
+                DialogResult = DialogResult.OK;
+                Close();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private void DGrid_DoubleClick(object sender, EventArgs e)
+        {
+            try
+            {
+                if (!isShowMode) return;
+                btnSelect.PerformClick();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private async void mnuAdd_Click(object sender, EventArgs e)
         {
             try
             {
@@ -239,22 +337,255 @@ namespace Peoples
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-
-        private void DGrid_KeyPress(object sender, KeyPressEventArgs e)
+        private void mnuPrint_Click(object sender, EventArgs e)
         {
             try
             {
-                txtSearch.Focus();
-                txtSearch.Text = e.KeyChar.ToString();
-                txtSearch.SelectionStart = 9999;
+                var frm = new frmSetPrintSize();
+                if (frm.ShowDialog(this) != DialogResult.OK) return;
+
+                if (frm._PrintType != EnPrintType.Excel)
+                {
+                    var cls = new ReportGenerator(StiType.People_List, frm._PrintType) { Lst = new List<object>(list) };
+                    cls.PrintNew();
+                    return;
+                }
+
+                ExportToExcel.Export(list, this);
             }
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
+        private void mnuIpmortFromExcel_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var frm = new frmImportExcel();
+                if (frm.ShowDialog(this) == DialogResult.OK)
+                    LoadData();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private async void mnuSendSMS_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (DGrid.RowCount <= 0) return;
+                if (DGrid.CurrentRow == null) return;
+                var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
+                var pe = await PhoneBookBussines.GetAllAsync(guid, true);
 
-        private async void btnEdit_Click(object sender, EventArgs e)
+                var frm = new frmSendSms(pe.Select(q => q.Tell).ToList(), guid);
+                frm.ShowDialog(this);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private void mnuBank_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (DGrid.RowCount <= 0) return;
+                if (DGrid.CurrentRow == null) return;
+                var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
+                var frm = new frmPeoplesBankAccount(guid);
+                frm.ShowDialog(this);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private void mnuTell_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (DGrid.RowCount <= 0) return;
+                if (DGrid.CurrentRow == null) return;
+                var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
+                var frm = new frmShowPhoneBook(guid);
+                frm.ShowDialog(this);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private async void mnuDelGroup_Click(object sender, EventArgs e)
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                if (trvGroup.SelectedNode == null) return;
+                if (trvGroup.SelectedNode.Text == "همه گروه ها") return;
+
+                var counter = await PeopleGroupBussines.ChildCountAsync(GroupGuid);
+                if (counter > 0)
+                {
+                    res.AddError(
+                        $"گروه {trvGroup.SelectedNode.Text} بدلیل داشتن {counter} زیرگروه فعال، قادر به حذف نیست");
+                }
+
+                var childes = await PeoplesBussines.GetAllAsync(GroupGuid, true);
+                if (childes != null && childes.Count > 0)
+                {
+                    res.AddError(
+                        $"گروه {trvGroup.SelectedNode.Text} بدلیل داشتن {childes.Count} شخص فعال، قادر به حذف نیست");
+                }
+
+                if (res.HasError) return;
+                if (MessageBox.Show(this, $@"آیا از حذف گروه {trvGroup.SelectedNode.Text} اطمینان دارید؟", "حذف",
+                        MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Question) == DialogResult.No) return;
+                var group = await PeopleGroupBussines.GetAsync(GroupGuid);
+                res.AddReturnedValue(await group.ChangeStatusAsync(false, true));
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+            finally
+            {
+                if (res.HasError)
+                {
+                    var frm = new FrmShowErrorMessage(res, "خطا در حذف گروه اشخاص");
+                    frm.ShowDialog(this);
+                    frm.Dispose();
+                }
+                else await LoadGroupsAsync();
+            }
+        }
+        private async void mnuUpGroup_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (trvGroup.SelectedNode == null) return;
+                if (trvGroup.SelectedNode.Text == "همه گروه ها") return;
+                var frm = new frmPropleGroup(GroupGuid);
+                if (frm.ShowDialog(this) == DialogResult.OK)
+                    await LoadGroupsAsync();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private async void mnuInsGroup_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var frm = new frmPropleGroup();
+                if (frm.ShowDialog(this) == DialogResult.OK)
+                    await LoadGroupsAsync();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private async void mnuDelete_Click(object sender, EventArgs e)
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                if (DGrid.RowCount <= 0) return;
+                if (DGrid.CurrentRow == null) return;
+                var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
+                if (ST)
+                {
+                    var p = await PeoplesBussines.GetAsync(guid);
+                    if (p == null) return;
+                    if (p.Account != 0)
+                    {
+                        res.AddError("به دلیل داشتن گردش حساب، شما مجاز به حذف شخص نمی باشید");
+                        return;
+                    }
+
+                    if (MessageBox.Show(this,
+                            $@"آیا از حذف {DGrid[dgName.Index, DGrid.CurrentRow.Index].Value} اطمینان دارید؟", "حذف",
+                            MessageBoxButtons.YesNo,
+                            MessageBoxIcon.Question) == DialogResult.No) return;
+                    var prd = await PeoplesBussines.GetAsync(guid);
+                    res.AddReturnedValue(await prd.ChangeStatusAsync(false, true));
+                    if (res.HasError) return;
+                    if (MessageBox.Show(this,
+                            $@"آیا شماره های شخص نیز از دفترچه تلفن حذف شود؟", "حذف",
+                            MessageBoxButtons.YesNo,
+                            MessageBoxIcon.Question) == DialogResult.Yes)
+                    {
+                        var prd2 = await PhoneBookBussines.GetAllAsync(guid, true);
+                        foreach (var item in prd2)
+                            res.AddReturnedValue(await item.ChangeStatusAsync(false));
+                    }
+
+                    if (res.HasError) return;
+                    UserLog.Save(EnLogAction.Delete, EnLogPart.Peoples);
+                }
+                else
+                {
+                    if (MessageBox.Show(this,
+                            $@"آیا از فعال کردن {DGrid[dgName.Index, DGrid.CurrentRow.Index].Value} اطمینان دارید؟",
+                            "حذف",
+                            MessageBoxButtons.YesNo,
+                            MessageBoxIcon.Question) == DialogResult.No) return;
+                    var prd = await PeoplesBussines.GetAsync(guid);
+
+                    if (prd.GroupGuid == Guid.Empty)
+                    {
+                        var frm = new frmChangeGroup(prd);
+                        if (frm.ShowDialog(this) != DialogResult.OK) return;
+                    }
+
+                    res.AddReturnedValue(await prd.ChangeStatusAsync(true, true));
+                    if (res.HasError) return;
+                    var prd2 = await PhoneBookBussines.GetAllAsync(guid, false);
+                    foreach (var item in prd2)
+                        res.AddReturnedValue(await item.ChangeStatusAsync(true));
+                    if (res.HasError) return;
+                    UserLog.Save(EnLogAction.Enable, EnLogPart.Peoples);
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+            finally
+            {
+                if (res.HasError)
+                {
+                    var frm = new FrmShowErrorMessage(res, "خطا در تغییر وضعیت شخص");
+                    frm.ShowDialog(this);
+                    frm.Dispose();
+                }
+                else await LoadPeoplesAsync(ST, txtSearch.Text);
+            }
+        }
+        private void mnuStatus_Click(object sender, EventArgs e) => ST = !ST;
+        private void mnuView_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (DGrid.RowCount <= 0) return;
+                if (DGrid.CurrentRow == null) return;
+                var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
+                var frm = new frmPeoples(guid, true);
+                frm.ShowDialog(this);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private async void mnuEdit_Click(object sender, EventArgs e)
         {
             try
             {
@@ -276,295 +607,140 @@ namespace Peoples
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-
-        private void btnView_Click(object sender, EventArgs e)
+        private void mnuCode_CheckedChanged(object sender, EventArgs e)
         {
             try
             {
-                if (DGrid.RowCount <= 0) return;
-                if (DGrid.CurrentRow == null) return;
-                var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
-                var frm = new frmPeoples(guid, true);
-                frm.ShowDialog(this);
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-
-        private async void txtSearch_TextChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                await LoadPeoplesAsync(ST, txtSearch.Text);
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-
-        private void btnChangeStatus_Click(object sender, EventArgs e)
-        {
-            ST = !ST;
-        }
-
-        private async void btnDelete_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (DGrid.RowCount <= 0) return;
-                if (DGrid.CurrentRow == null) return;
-                var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
-                if (ST)
+                if (mnuCode.Checked)
                 {
-                    var p = await PeoplesBussines.GetAsync(guid);
-                    if (p == null) return;
-                    if (p.Account != 0)
-                    {
-                        frmNotification.PublicInfo.ShowMessage(
-                            "به دلیل داشتن گردش حساب، شما مجاز به حذف شخص نمی باشید");
-                        return;
-                    }
-                    if (MessageBox.Show(this,
-                            $@"آیا از حذف {DGrid[dgName.Index, DGrid.CurrentRow.Index].Value} اطمینان دارید؟", "حذف",
-                            MessageBoxButtons.YesNo,
-                            MessageBoxIcon.Question) == DialogResult.No) return;
-                    var prd = await PeoplesBussines.GetAsync(guid);
-                    var res = await prd.ChangeStatusAsync(false,true);
-                    if (res.HasError)
-                    {
-                        frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);
-                        return;
-                    }
-
-                    if (MessageBox.Show(this,
-                            $@"آیا شماره های شخص نیز از دفترچه تلفن حذف شود؟", "حذف",
-                            MessageBoxButtons.YesNo,
-                            MessageBoxIcon.Question) == DialogResult.Yes)
-                    {
-                        var prd2 = await PhoneBookBussines.GetAllAsync(guid, true);
-                        foreach (var item in prd2)
-                            await item.ChangeStatusAsync(false);
-                    }
-
-                    User.UserLog.Save(EnLogAction.Delete, EnLogPart.Peoples);
-
+                    ColumnList.Add("کد");
+                    DGrid.Columns[dgCode.Index].Visible = true;
+                    SaveColumns(ColumnList);
                 }
                 else
                 {
-                    if (MessageBox.Show(this,
-                            $@"آیا از فعال کردن {DGrid[dgName.Index, DGrid.CurrentRow.Index].Value} اطمینان دارید؟", "حذف",
-                            MessageBoxButtons.YesNo,
-                            MessageBoxIcon.Question) == DialogResult.No) return;
-                    var prd = await PeoplesBussines.GetAsync(guid);
-
-                    if (prd.GroupGuid == Guid.Empty)
-                    {
-                        var frm = new frmChangeGroup(prd);
-                        if (frm.ShowDialog(this) != DialogResult.OK) return;
-                    }
-
-                    var res = await prd.ChangeStatusAsync(true,true);
-                    if (res.HasError)
-                    {
-                        frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);
-                        return;
-                    }
-
-                    var prd2 = await PhoneBookBussines.GetAllAsync(guid, false);
-                    foreach (var item in prd2)
-                        await item.ChangeStatusAsync(true);
-
-                    User.UserLog.Save(EnLogAction.Enable, EnLogPart.Peoples);
-
+                    ColumnList = ColumnList.GroupBy(x => x).Select(x => x.First()).ToList();
+                    ColumnList.Remove("کد");
+                    DGrid.Columns[dgCode.Index].Visible = false;
+                    SaveColumns(ColumnList);
                 }
-
-                await LoadPeoplesAsync(ST, txtSearch.Text);
             }
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-
-        private async void btnInsGroup_Click(object sender, EventArgs e)
+        private void mnuName_CheckedChanged(object sender, EventArgs e)
         {
             try
             {
-                var frm = new frmPropleGroup();
-                if (frm.ShowDialog(this) == DialogResult.OK)
-                    await LoadGroupsAsync();
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-
-        private async void btnUpGroup_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (trvGroup.SelectedNode == null) return;
-                if (trvGroup.SelectedNode.Text == "همه گروه ها") return;
-                var frm = new frmPropleGroup(GroupGuid);
-                if (frm.ShowDialog(this) == DialogResult.OK)
-                    await LoadGroupsAsync();
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-
-        private async void btnDelGroup_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (trvGroup.SelectedNode == null) return;
-                if (trvGroup.SelectedNode.Text == "همه گروه ها") return;
-
-                var counter = await PeopleGroupBussines.ChildCountAsync(GroupGuid);
-                if (counter > 0)
+                if (mnuName.Checked)
                 {
-                    frmNotification.PublicInfo.ShowMessage(
-                        $"گروه {trvGroup.SelectedNode.Text} بدلیل داشتن {counter} زیرگروه فعال، قادر به حذف نیست");
-                    return;
+                    ColumnList.Add("عنوان");
+                    DGrid.Columns[dgName.Index].Visible = true;
+                    SaveColumns(ColumnList);
                 }
-
-                var childes = await PeoplesBussines.GetAllAsync(GroupGuid, true);
-                if (childes != null && childes.Count > 0)
+                else
                 {
-                    frmNotification.PublicInfo.ShowMessage(
-                        $"گروه {trvGroup.SelectedNode.Text} بدلیل داشتن {childes.Count} شخص فعال، قادر به حذف نیست");
-                    return;
+                    ColumnList = ColumnList.GroupBy(x => x).Select(x => x.First()).ToList();
+                    ColumnList.Remove("عنوان");
+                    DGrid.Columns[dgName.Index].Visible = false;
+                    SaveColumns(ColumnList);
                 }
-                if (MessageBox.Show(this,$@"آیا از حذف گروه {trvGroup.SelectedNode.Text} اطمینان دارید؟", "حذف", MessageBoxButtons.YesNo,
-                        MessageBoxIcon.Question) == DialogResult.No) return;
-                var group = await PeopleGroupBussines.GetAsync(GroupGuid);
-                var res = await group.ChangeStatusAsync(false,true);
-                if (res.HasError)
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private void mnuNatName_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (mnuNatName.Checked)
                 {
-                    frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);
-                    return;
+                    ColumnList.Add("کدملی");
+                    DGrid.Columns[dgNatCode.Index].Visible = true;
+                    SaveColumns(ColumnList);
                 }
-                await LoadGroupsAsync();
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-
-        private void btnTell_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (DGrid.RowCount <= 0) return;
-                if (DGrid.CurrentRow == null) return;
-                var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
-                var frm = new frmShowPhoneBook(guid);
-                frm.ShowDialog(this);
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-
-        private void btnBank_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (DGrid.RowCount <= 0) return;
-                if (DGrid.CurrentRow == null) return;
-                var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
-                var frm = new frmPeoplesBankAccount(guid);
-                frm.ShowDialog(this);
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-
-        private async void btnSendSMS_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (DGrid.RowCount <= 0) return;
-                if (DGrid.CurrentRow == null) return;
-                var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
-                var pe = await PhoneBookBussines.GetAllAsync(guid, true);
-
-                var frm = new frmSendSms(pe.Select(q => q.Tell).ToList(), guid);
-                frm.ShowDialog(this);
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-
-        private void btnSelect_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (DGrid.RowCount <= 0) return;
-                if (DGrid.CurrentRow == null) return;
-                SelectedGuid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
-                DialogResult = DialogResult.OK;
-                Close();
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-
-        private void DGrid_DoubleClick(object sender, EventArgs e)
-        {
-            try
-            {
-                if (!isShowMode) return;
-                btnSelect.PerformClick();
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-
-        private void btnIpmortFromExcel_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                var frm = new frmImportExcel();
-                if (frm.ShowDialog(this) == DialogResult.OK)
-                     LoadData();
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-        private void btnPrint_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                var frm = new frmSetPrintSize();
-                if (frm.ShowDialog(this) != DialogResult.OK) return;
-
-                if (frm._PrintType != EnPrintType.Excel)
+                else
                 {
-                    var cls = new ReportGenerator(StiType.People_List, frm._PrintType) { Lst = new List<object>(list) };
-                    cls.PrintNew();
-                    return;
+                    ColumnList = ColumnList.GroupBy(x => x).Select(x => x.First()).ToList();
+                    ColumnList.Remove("کدملی");
+                    DGrid.Columns[dgNatCode.Index].Visible = false;
+                    SaveColumns(ColumnList);
                 }
-
-                ExportToExcel.Export(list,this);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private void mnuFatherName_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (mnuFatherName.Checked)
+                {
+                    ColumnList.Add("نام پدر");
+                    DGrid.Columns[dgFatherName.Index].Visible = true;
+                    SaveColumns(ColumnList);
+                }
+                else
+                {
+                    ColumnList = ColumnList.GroupBy(x => x).Select(x => x.First()).ToList();
+                    ColumnList.Remove("نام پدر");
+                    DGrid.Columns[dgFatherName.Index].Visible = false;
+                    SaveColumns(ColumnList);
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private void mnuAccount_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (mnuAccount.Checked)
+                {
+                    ColumnList.Add("حساب");
+                    DGrid.Columns[dgAccount.Index].Visible = true;
+                    DGrid.Columns[dgAccountType.Index].Visible = true;
+                    SaveColumns(ColumnList);
+                }
+                else
+                {
+                    ColumnList = ColumnList.GroupBy(x => x).Select(x => x.First()).ToList();
+                    ColumnList.Remove("حساب");
+                    DGrid.Columns[dgAccount.Index].Visible = false;
+                    DGrid.Columns[dgAccountType.Index].Visible = false;
+                    SaveColumns(ColumnList);
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private void mnuAddress_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (mnuAddress.Checked)
+                {
+                    ColumnList.Add("آدرس");
+                    DGrid.Columns[dgAddress.Index].Visible = true;
+                    SaveColumns(ColumnList);
+                }
+                else
+                {
+                    ColumnList = ColumnList.GroupBy(x => x).Select(x => x.First()).ToList();
+                    ColumnList.Remove("آدرس");
+                    DGrid.Columns[dgAddress.Index].Visible = false;
+                    SaveColumns(ColumnList);
+                }
             }
             catch (Exception ex)
             {

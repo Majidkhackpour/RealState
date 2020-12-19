@@ -92,6 +92,16 @@ namespace Notification.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap error {
+            get {
+                object obj = ResourceManager.GetObject("error", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap g2a_spinner {
             get {
                 object obj = ResourceManager.GetObject("g2a_spinner", resourceCulture);
@@ -102,9 +112,9 @@ namespace Notification.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap info {
+        internal static System.Drawing.Bitmap icons8_info_50 {
             get {
-                object obj = ResourceManager.GetObject("info", resourceCulture);
+                object obj = ResourceManager.GetObject("icons8_info_50", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -112,19 +122,9 @@ namespace Notification.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Red_Warning {
+        internal static System.Drawing.Bitmap icons8_warning_50 {
             get {
-                object obj = ResourceManager.GetObject("Red_Warning", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap warning {
-            get {
-                object obj = ResourceManager.GetObject("warning", resourceCulture);
+                object obj = ResourceManager.GetObject("icons8_warning_50", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

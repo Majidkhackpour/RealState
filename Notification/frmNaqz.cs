@@ -1,20 +1,22 @@
 ﻿using System;
 using System.Drawing;
-using System.Media;
 using System.Windows.Forms;
-using Notification.Properties;
 using Services;
 
 namespace Notification
 {
     public partial class frmNaqz : Form
     {
-        private int x = 1;
+        private int _startPosX;
+        private int _startPosY;
         public frmNaqz(string text)
         {
             InitializeComponent();
             lblNaqz.Text = text;
+            var workingArea = Screen.GetWorkingArea(this);
+            Location = new Point(workingArea.Right - Size.Width, workingArea.Bottom - Size.Height);
             TopMost = true;
+            _startPosY = Screen.PrimaryScreen.WorkingArea.Height;
         }
 
         private void ClosingTimer_Tick(object sender, System.EventArgs e)
@@ -28,6 +30,9 @@ namespace Notification
             {
                 Styler.Start();
                 ClosingTimer.Start();
+                _startPosX = Screen.PrimaryScreen.WorkingArea.Width - Width;
+                _startPosY = Screen.PrimaryScreen.WorkingArea.Height;
+                Invoke(new MethodInvoker(() => SetDesktopLocation(_startPosX, _startPosY)));
             }
             catch (Exception ex)
             {
@@ -39,12 +44,12 @@ namespace Notification
         {
             try
             {
-                x += 20;
-                var workingArea = Screen.GetWorkingArea(this);
-                Location = new Point(workingArea.Right - x, workingArea.Bottom - Size.Height);
-                if (Location.X == workingArea.Right - Size.Width
-                    || Location.X < workingArea.Right - Size.Width)
-                    Styler.Stop();
+                _startPosY -= 5;
+
+                if (_startPosY <= Screen.PrimaryScreen.WorkingArea.Height - Height)
+                    Styler?.Stop();
+                else
+                    SetDesktopLocation(_startPosX, _startPosY);
             }
             catch (Exception ex)
             {

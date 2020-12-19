@@ -105,13 +105,13 @@ namespace Peoples
 
         private async void btnFinish_Click(object sender, EventArgs e)
         {
+            var res = new ReturnedSaveFuncInfo();
             try
             {
                 if (string.IsNullOrWhiteSpace(txtName.Text))
                 {
-                    frmNotification.PublicInfo.ShowMessage("عنوان گروه نمی تواند خالی باشد");
+                    res.AddError("عنوان گروه نمی تواند خالی باشد");
                     txtName.Focus();
-                    return;
                 }
 
                 if (!await PeopleGroupBussines.CheckNameAsync(txtName.Text, cls.Guid))
@@ -119,37 +119,46 @@ namespace Peoples
                     var pg = await PeopleGroupBussines.GetAsync(txtName.Text);
                     if (pg.Status)
                     {
-                        frmNotification.PublicInfo.ShowMessage("عنوان گروه تکراری است");
+                        res.AddError("عنوان گروه تکراری است");
                         txtName.Focus();
                     }
                     else
                     {
-                        pg.ParentGuid = (Guid)cmbGroup.SelectedValue;
+                        pg.ParentGuid = (Guid) cmbGroup.SelectedValue;
                         pg.Status = true;
                         var res2 = await cls.SaveAsync(true);
                         if (!res2.HasError) return;
                         frmNotification.PublicInfo.ShowMessage(res2.ErrorMessage);
                         return;
                     }
+
                     return;
                 }
 
                 if (cls.Guid == Guid.Empty) cls.Guid = Guid.NewGuid();
                 cls.Name = txtName.Text;
-                cls.ParentGuid = (Guid)cmbGroup.SelectedValue;
+                cls.ParentGuid = (Guid) cmbGroup.SelectedValue;
 
-                var res = await cls.SaveAsync(true);
-                if (res.HasError)
-                {
-                    frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);
-                    return;
-                }
-                DialogResult = DialogResult.OK;
-                Close();
+                res.AddReturnedValue(await cls.SaveAsync(true));
             }
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+            finally
+            {
+                if (res.HasError)
+                {
+                    var frm = new FrmShowErrorMessage(res, "خطا در ثبت گروه اشخاص");
+                    frm.ShowDialog(this);
+                    frm.Dispose();
+                }
+                else
+                {
+                    DialogResult = DialogResult.OK;
+                    Close();
+                }
             }
         }
     }

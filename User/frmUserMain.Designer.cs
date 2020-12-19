@@ -30,6 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmUserMain));
             this.grp = new DevComponents.DotNetBar.PanelEx();
+            this.cmbAccount = new System.Windows.Forms.ComboBox();
+            this.label16 = new System.Windows.Forms.Label();
             this.cmbQuestion = new System.Windows.Forms.ComboBox();
             this.txtAnswer = new System.Windows.Forms.TextBox();
             this.txtMobile = new System.Windows.Forms.TextBox();
@@ -48,19 +50,16 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnCancel = new DevComponents.DotNetBar.ButtonX();
             this.btnFinish = new DevComponents.DotNetBar.ButtonX();
-            this.txtAccount = new System.Windows.Forms.NumericUpDown();
-            this.label16 = new System.Windows.Forms.Label();
-            this.cmbAccount = new System.Windows.Forms.ComboBox();
+            this.txtAccount_ = new WindowsSerivces.CurrencyTextBox();
             this.grp.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtAccount)).BeginInit();
             this.SuspendLayout();
             // 
             // grp
             // 
             this.grp.CanvasColor = System.Drawing.SystemColors.Control;
             this.grp.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.grp.Controls.Add(this.txtAccount_);
             this.grp.Controls.Add(this.cmbAccount);
-            this.grp.Controls.Add(this.txtAccount);
             this.grp.Controls.Add(this.label16);
             this.grp.Controls.Add(this.cmbQuestion);
             this.grp.Controls.Add(this.txtAnswer);
@@ -92,6 +91,29 @@
             this.grp.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText;
             this.grp.Style.GradientAngle = 90;
             this.grp.TabIndex = 0;
+            // 
+            // cmbAccount
+            // 
+            this.cmbAccount.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cmbAccount.DisplayMember = "Name";
+            this.cmbAccount.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbAccount.FormattingEnabled = true;
+            this.cmbAccount.Location = new System.Drawing.Point(22, 317);
+            this.cmbAccount.Name = "cmbAccount";
+            this.cmbAccount.Size = new System.Drawing.Size(142, 28);
+            this.cmbAccount.TabIndex = 9;
+            this.cmbAccount.ValueMember = "Guid";
+            // 
+            // label16
+            // 
+            this.label16.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label16.AutoSize = true;
+            this.label16.BackColor = System.Drawing.Color.Transparent;
+            this.label16.Location = new System.Drawing.Point(385, 320);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(66, 20);
+            this.label16.TabIndex = 12;
+            this.label16.Text = "مانده حساب";
             // 
             // cmbQuestion
             // 
@@ -286,42 +308,25 @@
             this.btnFinish.TextColor = System.Drawing.Color.Black;
             this.btnFinish.Click += new System.EventHandler(this.btnFinish_Click);
             // 
-            // txtAccount
+            // txtAccount_
             // 
-            this.txtAccount.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.txtAccount_.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.txtAccount_.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtAccount.Location = new System.Drawing.Point(170, 318);
-            this.txtAccount.Maximum = new decimal(new int[] {
-            -1530494976,
-            232830,
+            this.txtAccount_.BackColor = System.Drawing.Color.White;
+            this.txtAccount_.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.txtAccount_.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.txtAccount_.Font = new System.Drawing.Font("B Titr", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.txtAccount_.Location = new System.Drawing.Point(171, 315);
+            this.txtAccount_.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtAccount_.Name = "txtAccount_";
+            this.txtAccount_.Size = new System.Drawing.Size(181, 31);
+            this.txtAccount_.TabIndex = 8;
+            this.txtAccount_.TextDecimal = new decimal(new int[] {
+            0,
+            0,
             0,
             0});
-            this.txtAccount.Name = "txtAccount";
-            this.txtAccount.Size = new System.Drawing.Size(182, 27);
-            this.txtAccount.TabIndex = 13;
-            // 
-            // label16
-            // 
-            this.label16.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label16.AutoSize = true;
-            this.label16.BackColor = System.Drawing.Color.Transparent;
-            this.label16.Location = new System.Drawing.Point(385, 320);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(66, 20);
-            this.label16.TabIndex = 12;
-            this.label16.Text = "مانده حساب";
-            // 
-            // cmbAccount
-            // 
-            this.cmbAccount.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.cmbAccount.DisplayMember = "Name";
-            this.cmbAccount.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbAccount.FormattingEnabled = true;
-            this.cmbAccount.Location = new System.Drawing.Point(22, 317);
-            this.cmbAccount.Name = "cmbAccount";
-            this.cmbAccount.Size = new System.Drawing.Size(142, 28);
-            this.cmbAccount.TabIndex = 14;
-            this.cmbAccount.ValueMember = "Guid";
             // 
             // frmUserMain
             // 
@@ -346,7 +351,6 @@
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmUserMain_KeyDown);
             this.grp.ResumeLayout(false);
             this.grp.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtAccount)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -372,8 +376,8 @@
         private System.Windows.Forms.ComboBox cmbQuestion;
         private DevComponents.DotNetBar.ButtonX btnFinish;
         private DevComponents.DotNetBar.ButtonX btnCancel;
-        private System.Windows.Forms.NumericUpDown txtAccount;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.ComboBox cmbAccount;
+        private WindowsSerivces.CurrencyTextBox txtAccount_;
     }
 }

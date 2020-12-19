@@ -46,7 +46,7 @@ namespace EntityCache.Bussines
             get
             {
                 if (_tellList != null) return _tellList;
-                _tellList = AsyncContext.Run(()=> PhoneBookBussines.GetAllAsync(Guid, Status));
+                _tellList = AsyncContext.Run(() => PhoneBookBussines.GetAllAsync(Guid, Status));
                 return _tellList;
             }
             set => _tellList = value;
@@ -70,7 +70,7 @@ namespace EntityCache.Bussines
         public static async Task<List<PeoplesBussines>> GetAllAsync(Guid parentGuid, bool status) =>
             await UnitOfWork.Peoples.GetAllAsync(parentGuid, status);
 
-        public async Task<ReturnedSaveFuncInfo> SaveAsync(bool sendToServer,string tranName = "")
+        public async Task<ReturnedSaveFuncInfo> SaveAsync(bool sendToServer, string tranName = "")
         {
             var res = new ReturnedSaveFuncInfo();
             var autoTran = string.IsNullOrEmpty(tranName);
@@ -115,7 +115,7 @@ namespace EntityCache.Bussines
                 }
 
                 var gardesh = await GardeshHesabBussines.GetAsync(Guid, Guid.Empty, true);
-                if (gardesh == null)
+                if (gardesh == null && AccountFirst != 0)
                 {
                     var g = new GardeshHesabBussines()
                     {
@@ -134,7 +134,7 @@ namespace EntityCache.Bussines
                         await UnitOfWork.GardeshHesab.SaveAsync(g, tranName));
                     res.ThrowExceptionIfError();
                 }
-                else
+                else if (gardesh != null)
                 {
                     gardesh.Price = Math.Abs(AccountFirst);
                     if (Account == 0) gardesh.Type = EnAccountType.BiHesab;

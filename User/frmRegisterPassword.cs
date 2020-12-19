@@ -73,6 +73,7 @@ namespace User
 
         private async void btnFinish_Click(object sender, EventArgs e)
         {
+            var res = new ReturnedSaveFuncInfo();
             try
             {
                 if (cls.Guid == Guid.Empty)
@@ -80,23 +81,23 @@ namespace User
 
                 if (string.IsNullOrWhiteSpace(txtPass1.Text))
                 {
-                    frmNotification.PublicInfo.ShowMessage("کلمه عبور نمی تواند خالی باشد");
+                    res.AddError("کلمه عبور نمی تواند خالی باشد");
                     txtPass1.Focus();
-                    return;
-                }
-                if (string.IsNullOrWhiteSpace(txtPass2.Text))
-                {
-                    frmNotification.PublicInfo.ShowMessage("تکرار کلمه عبور نمی تواند خالی باشد");
-                    txtPass2.Focus();
-                    return;
-                }
-                if (txtPass1.Text != txtPass2.Text)
-                {
-                    frmNotification.PublicInfo.ShowMessage("کلمه عبور با تکرار آن همخوانی ندارد");
-                    txtPass1.Focus();
-                    return;
                 }
 
+                if (string.IsNullOrWhiteSpace(txtPass2.Text))
+                {
+                    res.AddError("تکرار کلمه عبور نمی تواند خالی باشد");
+                    txtPass2.Focus();
+                }
+
+                if (txtPass1.Text != txtPass2.Text)
+                {
+                    res.AddError("کلمه عبور با تکرار آن همخوانی ندارد");
+                    txtPass1.Focus();
+                }
+
+                if (res.HasError) return;
                 var ue = new UTF8Encoding();
                 var bytes = ue.GetBytes(txtPass1.Text.Trim());
                 var md5 = new MD5CryptoServiceProvider();
@@ -104,7 +105,7 @@ namespace User
                 cls.Password = System.Text.RegularExpressions.Regex.Replace(BitConverter.ToString(hashBytes), "-", "")
                     .ToLower();
 
-                var res = await cls.SaveAsync(false,true);
+                res.AddReturnedValue(await cls.SaveAsync(false, true));
                 if (res.HasError)
                 {
                     frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);
@@ -115,43 +116,50 @@ namespace User
                            $"\r\n در تاریخ {Calendar.MiladiToShamsi(DateTime.Now)} رمز ورود به سیستم شما تعویض شد" +
                            $"\r\n گروه مهندسی آراد";
 
-                if (_type == 0) //Sms
+                if (_type != 0) return;
+                if (string.IsNullOrEmpty(Settings.Classes.Payamak.DefaultPanelGuid))
+                    return;
+
+                var panel = SmsPanelsBussines.Get(Guid.Parse(Settings.Classes.Payamak.DefaultPanelGuid));
+                if (panel == null) return;
+
+                var sApi = new Sms.Api(panel.API.Trim());
+
+
+                var result = sApi.Send(panel.Sender, cls?.Mobile ?? "", text);
+
+                var smsLog = new SmsLogBussines()
                 {
-                    if (string.IsNullOrEmpty(Settings.Classes.Payamak.DefaultPanelGuid))
-                        return;
+                    Guid = Guid.NewGuid(),
+                    UserGuid = cls?.Guid ?? Guid.Empty,
+                    Cost = result.Cost,
+                    Message = result.Message,
+                    MessageId = result.Messageid,
+                    Reciver = result.Receptor,
+                    Sender = result.Sender,
+                    StatusText = result.StatusText
+                };
 
-                    var panel = SmsPanelsBussines.Get(Guid.Parse(Settings.Classes.Payamak.DefaultPanelGuid));
-                    if (panel == null)
-                        return;
-
-                    var sApi = new Sms.Api(panel.API.Trim());
-
-
-                    var result = sApi.Send(panel.Sender, cls?.Mobile ?? "", text);
-
-                    var smsLog = new SmsLogBussines()
-                    {
-                        Guid = Guid.NewGuid(),
-                        UserGuid = cls?.Guid ?? Guid.Empty,
-                        Cost = result.Cost,
-                        Message = result.Message,
-                        MessageId = result.Messageid,
-                        Reciver = result.Receptor,
-                        Sender = result.Sender,
-                        StatusText = result.StatusText
-                    };
-
-                    await smsLog.SaveAsync();
-                }
-                
-
-
-                DialogResult = DialogResult.OK;
-                Close();
+                res.AddReturnedValue(await smsLog.SaveAsync());
             }
             catch (Exception exception)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(exception);
+                res.AddReturnedValue(exception);
+            }
+            finally
+            {
+                if (res.HasError)
+                {
+                    var frm = new FrmShowErrorMessage(res, "خطا در ثبت رمز عبور کاربر");
+                    frm.ShowDialog(this);
+                    frm.Dispose();
+                }
+                else
+                {
+                    DialogResult = DialogResult.OK;
+                    Close();
+                }
             }
         }
     }

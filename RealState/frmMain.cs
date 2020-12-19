@@ -1,13 +1,10 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Drawing;
-using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Resources;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Accounting;
@@ -287,7 +284,7 @@ namespace RealState
             try
             {
                 var sliderPath = Path.Combine(Application.StartupPath, "Slider");
-               
+
                 sliderImages = Directory.GetFiles(sliderPath).ToList();
 
                 timerSlider.Start();
@@ -312,7 +309,8 @@ namespace RealState
                 SetButtomLables();
                 SetTaghvim();
                 var naqz = await NaqzBussines.SetNaqzAsync();
-                lblNaqz.Text = $"\n \n \n {naqz}";
+                var frm = new frmNaqz(naqz);
+                frm.ShowDialog(this);
                 SetAccess();
                 await SetNotesAsync();
                 Task.Run(() => BackUpAsync(@"C:\", false, EnBackUpType.Auto));
@@ -749,11 +747,6 @@ namespace RealState
             }
         }
 
-        private async void button1_Click(object sender, EventArgs e)
-        {
-            var d = DivarAdv.GetInstance();
-            await d.GetBuildingFromDivarAsync(EnRequestType.Rahn, textBox1.Text.ParseToLong());
-        }
         private async void mnuBackUp_Click(object sender, EventArgs e)
         {
             try

@@ -106,6 +106,7 @@ namespace Payamak.Panel
 
         private async void btnFinish_Click(object sender, EventArgs e)
         {
+            var res = new ReturnedSaveFuncInfo();
             try
             {
                 if (cls.Guid == Guid.Empty)
@@ -113,41 +114,48 @@ namespace Payamak.Panel
 
                 if (string.IsNullOrWhiteSpace(txtName.Text))
                 {
-                    frmNotification.PublicInfo.ShowMessage("عنوان نمی تواند خالی باشد");
+                    res.AddError("عنوان نمی تواند خالی باشد");
                     txtName.Focus();
-                    return;
-                }
-               
-               
-                if (string.IsNullOrWhiteSpace(txtSender.Text))
-                {
-                    frmNotification.PublicInfo.ShowMessage("شماره خط فرستنده عبور نمی تواند خالی باشد");
-                    txtSender.Focus();
-                    return;
-                }
-                if (string.IsNullOrWhiteSpace(txtApi.Text))
-                {
-                    frmNotification.PublicInfo.ShowMessage("وب سرویس عبور نمی تواند خالی باشد");
-                    txtApi.Focus();
-                    return;
                 }
 
+
+                if (string.IsNullOrWhiteSpace(txtSender.Text))
+                {
+                    res.AddError("شماره خط فرستنده عبور نمی تواند خالی باشد");
+                    txtSender.Focus();
+                }
+
+                if (string.IsNullOrWhiteSpace(txtApi.Text))
+                {
+                    res.AddError("وب سرویس عبور نمی تواند خالی باشد");
+                    txtApi.Focus();
+                }
+
+                if (res.HasError) return;
                 cls.Name = txtName.Text.Trim();
                 cls.Sender = txtSender.Text.Trim();
                 cls.API = txtApi.Text.Trim();
 
-                var res = await cls.SaveAsync();
-                if (res.HasError)
-                {
-                    frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);
-                    return;
-                }
-                DialogResult = DialogResult.OK;
-                Close();
+                res.AddReturnedValue(await cls.SaveAsync());
             }
             catch (Exception exception)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(exception);
+                res.AddReturnedValue(exception);
+            }
+            finally
+            {
+                if (res.HasError)
+                {
+                    var frm = new FrmShowErrorMessage(res, "خطا در ثبت پنل ارسال پیامک");
+                    frm.ShowDialog(this);
+                    frm.Dispose();
+                }
+                else
+                {
+                    DialogResult = DialogResult.OK;
+                    Close();
+                }
             }
         }
     }

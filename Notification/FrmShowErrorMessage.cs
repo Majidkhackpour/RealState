@@ -11,9 +11,9 @@ namespace Notification
     {
         private static FrmShowErrorMessage _lastThreadFrm = null;
         short rowIndex = 0;
-        private static Bitmap errorImage = new Bitmap(Properties.Resources.Red_Warning);
-        private static Bitmap infoImage = new Bitmap(Properties.Resources.info);
-        private static Bitmap warningImage = new Bitmap(Properties.Resources.warning);
+        private static Bitmap errorImage = new Bitmap(Properties.Resources.error);
+        private static Bitmap infoImage = new Bitmap(Properties.Resources.icons8_info_50);
+        private static Bitmap warningImage = new Bitmap(Properties.Resources.icons8_warning_50);
 
         public FrmShowErrorMessage(ReturnedSaveFuncInfo pList, string title, MessageBoxButtons boxButtons = MessageBoxButtons.OK)
         {

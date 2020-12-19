@@ -64,31 +64,38 @@ namespace Peoples
 
         private async void btnFinish_Click(object sender, EventArgs e)
         {
+            var res = new ReturnedSaveFuncInfo();
             try
             {
                 if (groupBundingSource.Count <= 0)
                 {
-                    frmNotification.PublicInfo.ShowMessage("گروه نمی تواند خالی باشد");
+                    res.AddError("گروه نمی تواند خالی باشد");
                     cmbGroup.Focus();
-                    return;
                 }
 
                 cls.GroupGuid = (Guid) cmbGroup.SelectedValue;
 
 
-                var res = await cls.SaveAsync(true);
-                if (res.HasError)
-                {
-                    frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);
-                    return;
-                }
-                DialogResult = DialogResult.OK;
-                Close();
-
+                res.AddReturnedValue(await cls.SaveAsync(true));
             }
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+            finally
+            {
+                if (res.HasError)
+                {
+                    var frm = new FrmShowErrorMessage(res, "خطا در ارتباط شخص به گروه");
+                    frm.ShowDialog(this);
+                    frm.Dispose();
+                }
+                else
+                {
+                    DialogResult = DialogResult.OK;
+                    Close();
+                }
             }
         }
     }

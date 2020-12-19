@@ -122,6 +122,7 @@ namespace Payamak.PhoneBook
 
         private async void btnFinish_Click(object sender, EventArgs e)
         {
+            var res = new ReturnedSaveFuncInfo();
             try
             {
                 if (cls.Guid == Guid.Empty)
@@ -129,34 +130,42 @@ namespace Payamak.PhoneBook
 
                 if (string.IsNullOrWhiteSpace(txtName.Text))
                 {
-                    frmNotification.PublicInfo.ShowMessage("نام و نام خانوادگی نمی تواند خالی باشد");
+                    res.AddError("نام و نام خانوادگی نمی تواند خالی باشد");
                     txtName.Focus();
-                    return;
-                }
-                if (string.IsNullOrWhiteSpace(txtTell.Text))
-                {
-                    frmNotification.PublicInfo.ShowMessage("شماره نمی تواند خالی باشد");
-                    txtTell.Focus();
-                    return;
                 }
 
+                if (string.IsNullOrWhiteSpace(txtTell.Text))
+                {
+                    res.AddError("شماره نمی تواند خالی باشد");
+                    txtTell.Focus();
+                }
+
+                if (res.HasError) return;
                 cls.Name = txtName.Text.Trim();
                 cls.Tell = txtTell.Text.Trim();
                 cls.Group = (EnPhoneBookGroup) cmbGroup.SelectedIndex + 1;
                 cls.ParentGuid = Guid.Empty;
 
-                var res = await cls.SaveAsync();
-                if (res.HasError)
-                {
-                    frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);
-                    return;
-                }
-                DialogResult = DialogResult.OK;
-                Close();
+                res.AddReturnedValue(await cls.SaveAsync());
             }
             catch (Exception exception)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(exception);
+                res.AddReturnedValue(exception);
+            }
+            finally
+            {
+                if (res.HasError)
+                {
+                    var frm = new FrmShowErrorMessage(res, "خطا در ثبت مخاطب");
+                    frm.ShowDialog(this);
+                    frm.Dispose();
+                }
+                else
+                {
+                    DialogResult = DialogResult.OK;
+                    Close();
+                }
             }
         }
     }

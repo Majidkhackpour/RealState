@@ -19,7 +19,7 @@ namespace Peoples
         {
             try
             {
-                LoadGroups();
+                await LoadGroups();
                 LoadTells();
                 LoadBanks();
                 FillCmbPrice();
@@ -115,19 +115,19 @@ namespace Peoples
             {
                 if (cls?.AccountFirst == 0)
                 {
-                    txtAccount.Text = cls?.AccountFirst.ToString();
+                    txtAccount_.TextDecimal = cls?.AccountFirst ?? 0;
                     cmbAccount.SelectedIndex = 0;
                 }
 
                 if (cls?.AccountFirst < 0)
                 {
-                    txtAccount.Text = Math.Abs(cls.AccountFirst).ToString();
+                    txtAccount_.TextDecimal = Math.Abs(cls?.AccountFirst ?? 0);
                     cmbAccount.SelectedIndex = 2;
                 }
 
                 if (cls?.AccountFirst > 0)
                 {
-                    txtAccount.Text = Math.Abs(cls.AccountFirst).ToString();
+                    txtAccount_.TextDecimal = Math.Abs(cls?.AccountFirst ?? 0);
                     cmbAccount.SelectedIndex = 1;
                 }
             }
@@ -450,6 +450,7 @@ namespace Peoples
 
         private async void btnFinish_Click(object sender, EventArgs e)
         {
+            var res = new ReturnedSaveFuncInfo();
             try
             {
                 if (cls.Guid == Guid.Empty)
@@ -457,29 +458,26 @@ namespace Peoples
 
                 if (string.IsNullOrWhiteSpace(txtName.Text))
                 {
-                    frmNotification.PublicInfo.ShowMessage("نام و نام خانوادگی نمی تواند خالی باشد");
+                    res.AddError("نام و نام خانوادگی نمی تواند خالی باشد");
                     txtName.Focus();
-                    return;
                 }
+
                 if (string.IsNullOrWhiteSpace(txtCode.Text))
                 {
-                    frmNotification.PublicInfo.ShowMessage("کد شخص نمی تواند خالی باشد");
+                    res.AddError("کد شخص نمی تواند خالی باشد");
                     txtCode.Focus();
-                    return;
                 }
 
                 if (!await PeoplesBussines.CheckCodeAsync(txtCode.Text.Trim(), cls.Guid))
                 {
-                    frmNotification.PublicInfo.ShowMessage("کد وارد شده تکراری است");
+                    res.AddError("کد وارد شده تکراری است");
                     txtCode.Focus();
-                    return;
                 }
 
-                if (txtAccount.Text != "0" && cmbAccount.SelectedIndex == 0)
+                if (txtAccount_.TextDecimal != 0 && cmbAccount.SelectedIndex == 0)
                 {
-                    frmNotification.PublicInfo.ShowMessage("مانده حساب وارد شده صحیح نمی باشد");
+                    res.AddError("مانده حساب وارد شده صحیح نمی باشد");
                     txtCode.Focus();
-                    return;
                 }
 
                 cls.Name = txtName.Text.Trim();
@@ -493,7 +491,7 @@ namespace Peoples
                 cls.IssuedFrom = txtIssuesFrom.Text;
                 cls.PostalCode = txtPostalCode.Text;
                 cls.Address = txtAddress.Text;
-                var acc = txtAccount.Text.ParseToDecimal();
+                var acc = txtAccount_.TextDecimal;
                 if (cmbAccount.SelectedIndex == 1) cls.AccountFirst = acc;
                 else cls.AccountFirst = -acc;
 
@@ -504,23 +502,28 @@ namespace Peoples
                     cls.Account += cls.AccountFirst;
                 }
 
-                var res = await cls.SaveAsync(true);
-                if (res.HasError)
-                {
-                    frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);
-                    return;
-                }
-
-                SelectedGuid = cls.Guid;
-
-                User.UserLog.Save(action, EnLogPart.Peoples);
-
-                DialogResult = DialogResult.OK;
-                Close();
+                res.AddReturnedValue(await cls.SaveAsync(true));
             }
             catch (Exception exception)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(exception);
+                res.AddReturnedValue(exception);
+            }
+            finally
+            {
+                if (res.HasError)
+                {
+                    var frm = new FrmShowErrorMessage(res, "خطا در ثبت شخص");
+                    frm.ShowDialog(this);
+                    frm.Dispose();
+                }
+                else
+                {
+                    SelectedGuid = cls.Guid;
+                    User.UserLog.Save(action, EnLogPart.Peoples);
+                    DialogResult = DialogResult.OK;
+                    Close();
+                }
             }
         }
 

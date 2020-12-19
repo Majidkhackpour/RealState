@@ -72,19 +72,19 @@ namespace User
             {
                 if (cls?.AccountFirst == 0)
                 {
-                    txtAccount.Text = cls?.AccountFirst.ToString();
+                    txtAccount_.TextDecimal = cls?.AccountFirst ?? 0;
                     cmbAccount.SelectedIndex = 0;
                 }
 
                 if (cls?.AccountFirst < 0)
                 {
-                    txtAccount.Text = Math.Abs(cls.AccountFirst).ToString();
+                    txtAccount_.TextDecimal = Math.Abs(cls?.AccountFirst ?? 0);
                     cmbAccount.SelectedIndex = 2;
                 }
 
                 if (cls?.AccountFirst > 0)
                 {
-                    txtAccount.Text = Math.Abs(cls.AccountFirst).ToString();
+                    txtAccount_.TextDecimal = Math.Abs(cls?.AccountFirst ?? 0);
                     cmbAccount.SelectedIndex = 1;
                 }
             }
@@ -196,13 +196,11 @@ namespace User
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-
         private void btnCancel_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Cancel;
             Close();
         }
-
         private void frmUserMain_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -229,6 +227,7 @@ namespace User
 
         private async void btnFinish_Click(object sender, EventArgs e)
         {
+            var res = new ReturnedSaveFuncInfo();
             try
             {
                 if (cls.Guid == Guid.Empty)
@@ -236,60 +235,59 @@ namespace User
 
                 if (string.IsNullOrWhiteSpace(txtName.Text))
                 {
-                    frmNotification.PublicInfo.ShowMessage("نام و نام خانوادگی نمی تواند خالی باشد");
+                    res.AddError("نام و نام خانوادگی نمی تواند خالی باشد");
                     txtName.Focus();
-                    return;
                 }
+
                 if (string.IsNullOrWhiteSpace(txtUserName.Text))
                 {
-                    frmNotification.PublicInfo.ShowMessage("نام کاربری نمی تواند خالی باشد");
+                    res.AddError("نام کاربری نمی تواند خالی باشد");
                     txtUserName.Focus();
-                    return;
                 }
+
                 if (!await UserBussines.CheckUserNameAsync(cls.Guid, txtUserName.Text))
                 {
-                    frmNotification.PublicInfo.ShowMessage("نام کاربری تکراری می باشد");
+                    res.AddError("نام کاربری تکراری می باشد");
                     txtUserName.Focus();
-                    return;
                 }
+
                 if (string.IsNullOrWhiteSpace(txtPass1.Text))
                 {
-                    frmNotification.PublicInfo.ShowMessage("کلمه عبور نمی تواند خالی باشد");
+                    res.AddError("کلمه عبور نمی تواند خالی باشد");
                     txtPass1.Focus();
-                    return;
                 }
+
                 if (string.IsNullOrWhiteSpace(txtPass2.Text))
                 {
-                    frmNotification.PublicInfo.ShowMessage("تکرار کلمه عبور نمی تواند خالی باشد");
+                    res.AddError("تکرار کلمه عبور نمی تواند خالی باشد");
                     txtPass2.Focus();
-                    return;
                 }
+
                 if (txtPass1.Text != txtPass2.Text)
                 {
-                    frmNotification.PublicInfo.ShowMessage("کلمه عبور با تکرار آن همخوانی ندارد");
+                    res.AddError("کلمه عبور با تکرار آن همخوانی ندارد");
                     txtPass1.Focus();
-                    return;
                 }
 
                 if (!CheckPerssonValidation.CheckEmail(txtEmail.Text.Trim()))
                 {
-                    frmNotification.PublicInfo.ShowMessage("ایمیل وارد شده صحیح نمی باشد");
+                    res.AddError("ایمیل وارد شده صحیح نمی باشد");
                     txtEmail.Focus();
-                    return;
-                }
-                if (!CheckPerssonValidation.CheckMobile(txtMobile.Text.Trim()))
-                {
-                    frmNotification.PublicInfo.ShowMessage("شماره موبایل وارد شده صحیح نمی باشد");
-                    txtMobile.Focus();
-                    return;
-                }
-                if (txtAccount.Text != "0" && cmbAccount.SelectedIndex == 0)
-                {
-                    frmNotification.PublicInfo.ShowMessage("مانده حساب وارد شده صحیح نمی باشد");
-                    txtAccount.Focus();
-                    return;
                 }
 
+                if (!CheckPerssonValidation.CheckMobile(txtMobile.Text.Trim()))
+                {
+                    res.AddError("شماره موبایل وارد شده صحیح نمی باشد");
+                    txtMobile.Focus();
+                }
+
+                if (txtAccount_.TextDecimal != 0 && cmbAccount.SelectedIndex == 0)
+                {
+                    res.AddError("مانده حساب وارد شده صحیح نمی باشد");
+                    txtAccount_.Focus();
+                }
+
+                if (res.HasError) return;
                 cls.Name = txtName.Text.Trim();
                 cls.UserName = txtUserName.Text.Trim();
                 var ue = new UTF8Encoding();
@@ -302,7 +300,7 @@ namespace User
                 cls.Mobile = txtMobile.Text.Trim();
                 cls.AnswerQuestion = txtAnswer.Text;
                 cls.SecurityQuestion = (EnSecurityQuestion)cmbQuestion.SelectedIndex;
-                var acc = txtAccount.Text.ParseToDecimal();
+                var acc = txtAccount_.TextDecimal;
                 if (cmbAccount.SelectedIndex == 1) cls.AccountFirst = acc;
                 else cls.AccountFirst = -acc;
 
@@ -313,21 +311,27 @@ namespace User
                     cls.Account += cls.AccountFirst;
                 }
 
-                var res = await cls.SaveAsync(true,true);
-                if (res.HasError)
-                {
-                    frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);
-                    return;
-                }
-
-                UserLog.Save(action, EnLogPart.Users);
-
-                DialogResult = DialogResult.OK;
-                Close();
+                res.AddReturnedValue(await cls.SaveAsync(true, true));
             }
             catch (Exception exception)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(exception);
+                res.AddReturnedValue(exception);
+            }
+            finally
+            {
+                if (res.HasError)
+                {
+                    var frm = new FrmShowErrorMessage(res, "خطا در ثبت کاربر");
+                    frm.ShowDialog(this);
+                    frm.Dispose();
+                }
+                else
+                {
+                    UserLog.Save(action, EnLogPart.Users);
+                    DialogResult = DialogResult.OK;
+                    Close();
+                }
             }
         }
     }

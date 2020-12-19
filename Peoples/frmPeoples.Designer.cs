@@ -61,7 +61,6 @@
             this.txtNationalCode = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.cmbAccount = new System.Windows.Forms.ComboBox();
-            this.txtAccount = new System.Windows.Forms.NumericUpDown();
             this.splitContainer4 = new System.Windows.Forms.SplitContainer();
             this.txtPlaceBirth = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -109,6 +108,7 @@
             this.superTabItem2 = new DevComponents.DotNetBar.SuperTabItem();
             this.btnCancel = new DevComponents.DotNetBar.ButtonX();
             this.btnFinish = new DevComponents.DotNetBar.ButtonX();
+            this.txtAccount_ = new WindowsSerivces.CurrencyTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.superTabControl1)).BeginInit();
             this.superTabControl1.SuspendLayout();
             this.superTabControlPanel1.SuspendLayout();
@@ -125,7 +125,6 @@
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtAccount)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer4)).BeginInit();
             this.splitContainer4.Panel1.SuspendLayout();
             this.splitContainer4.Panel2.SuspendLayout();
@@ -231,8 +230,8 @@
             // 
             // splitContainer1.Panel2
             // 
+            this.splitContainer1.Panel2.Controls.Add(this.txtAccount_);
             this.splitContainer1.Panel2.Controls.Add(this.cmbAccount);
-            this.splitContainer1.Panel2.Controls.Add(this.txtAccount);
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer4);
             this.splitContainer1.Panel2.Controls.Add(this.txtIssuesFrom);
             this.splitContainer1.Panel2.Controls.Add(this.txtName);
@@ -445,20 +444,6 @@
             this.cmbAccount.TabIndex = 12;
             this.cmbAccount.ValueMember = "Guid";
             // 
-            // txtAccount
-            // 
-            this.txtAccount.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtAccount.Location = new System.Drawing.Point(171, 132);
-            this.txtAccount.Maximum = new decimal(new int[] {
-            -1530494976,
-            232830,
-            0,
-            0});
-            this.txtAccount.Name = "txtAccount";
-            this.txtAccount.Size = new System.Drawing.Size(112, 27);
-            this.txtAccount.TabIndex = 11;
-            // 
             // splitContainer4
             // 
             this.splitContainer4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -562,11 +547,11 @@
             this.label16.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label16.AutoSize = true;
             this.label16.BackColor = System.Drawing.Color.Transparent;
-            this.label16.Location = new System.Drawing.Point(316, 134);
+            this.label16.Location = new System.Drawing.Point(296, 134);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(66, 20);
+            this.label16.Size = new System.Drawing.Size(94, 20);
             this.label16.TabIndex = 10;
-            this.label16.Text = "مانده حساب";
+            this.label16.Text = "مانده ابتدای دوره";
             // 
             // label9
             // 
@@ -1091,6 +1076,26 @@
             this.btnFinish.TextColor = System.Drawing.Color.Black;
             this.btnFinish.Click += new System.EventHandler(this.btnFinish_Click);
             // 
+            // txtAccount_
+            // 
+            this.txtAccount_.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.txtAccount_.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtAccount_.BackColor = System.Drawing.Color.White;
+            this.txtAccount_.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.txtAccount_.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.txtAccount_.Font = new System.Drawing.Font("B Titr", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.txtAccount_.Location = new System.Drawing.Point(172, 131);
+            this.txtAccount_.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtAccount_.Name = "txtAccount_";
+            this.txtAccount_.Size = new System.Drawing.Size(111, 31);
+            this.txtAccount_.TabIndex = 13;
+            this.txtAccount_.TextDecimal = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            // 
             // frmPeoples
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -1134,7 +1139,6 @@
             this.splitContainer2.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
             this.splitContainer2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.txtAccount)).EndInit();
             this.splitContainer4.Panel1.ResumeLayout(false);
             this.splitContainer4.Panel1.PerformLayout();
             this.splitContainer4.Panel2.ResumeLayout(false);
@@ -1222,7 +1226,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn modifiedDataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewCheckBoxColumn statusDataGridViewCheckBoxColumn1;
         private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.NumericUpDown txtAccount;
         private System.Windows.Forms.ComboBox cmbAccount;
+        private WindowsSerivces.CurrencyTextBox txtAccount_;
     }
 }
