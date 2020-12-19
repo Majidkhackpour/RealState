@@ -98,16 +98,7 @@
             this.lblEconomyName = new System.Windows.Forms.Label();
             this.lblDbName = new System.Windows.Forms.Label();
             this.lblVersion = new System.Windows.Forms.Label();
-            this.pictureBox5 = new System.Windows.Forms.PictureBox();
-            this.picTaghvim = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.picSlider = new System.Windows.Forms.PictureBox();
-            this.timerSlider = new System.Windows.Forms.Timer(this.components);
             this.menuStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picTaghvim)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picSlider)).BeginInit();
             this.SuspendLayout();
             // 
             // lblHour
@@ -649,7 +640,7 @@
             this.lblEconomyName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(146)))), ((int)(((byte)(112)))), ((int)(((byte)(50)))));
             this.lblEconomyName.Cursor = System.Windows.Forms.Cursors.Default;
             this.lblEconomyName.Font = new System.Drawing.Font("B Titr", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.lblEconomyName.Location = new System.Drawing.Point(634, 577);
+            this.lblEconomyName.Location = new System.Drawing.Point(674, 575);
             this.lblEconomyName.Name = "lblEconomyName";
             this.lblEconomyName.Size = new System.Drawing.Size(90, 17);
             this.lblEconomyName.TabIndex = 55780;
@@ -662,7 +653,7 @@
             this.lblDbName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(94)))), ((int)(((byte)(94)))));
             this.lblDbName.Cursor = System.Windows.Forms.Cursors.Default;
             this.lblDbName.Font = new System.Drawing.Font("B Titr", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.lblDbName.Location = new System.Drawing.Point(456, 577);
+            this.lblDbName.Location = new System.Drawing.Point(577, 575);
             this.lblDbName.Name = "lblDbName";
             this.lblDbName.Size = new System.Drawing.Size(88, 17);
             this.lblDbName.TabIndex = 55781;
@@ -677,63 +668,12 @@
             this.lblVersion.Cursor = System.Windows.Forms.Cursors.Default;
             this.lblVersion.Font = new System.Drawing.Font("B Titr", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.lblVersion.ForeColor = System.Drawing.Color.White;
-            this.lblVersion.Location = new System.Drawing.Point(306, 575);
+            this.lblVersion.Location = new System.Drawing.Point(528, 573);
             this.lblVersion.Name = "lblVersion";
             this.lblVersion.Size = new System.Drawing.Size(29, 20);
             this.lblVersion.TabIndex = 55782;
             this.lblVersion.Text = "0000";
             this.lblVersion.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // pictureBox5
-            // 
-            this.pictureBox5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox5.Image = global::RealState.Properties.Resources.Untitled_11;
-            this.pictureBox5.Location = new System.Drawing.Point(271, 555);
-            this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(513, 45);
-            this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox5.TabIndex = 55783;
-            this.pictureBox5.TabStop = false;
-            // 
-            // picTaghvim
-            // 
-            this.picTaghvim.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.picTaghvim.Location = new System.Drawing.Point(476, 149);
-            this.picTaghvim.Name = "picTaghvim";
-            this.picTaghvim.Size = new System.Drawing.Size(314, 343);
-            this.picTaghvim.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.picTaghvim.TabIndex = 4;
-            this.picTaghvim.TabStop = false;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.pictureBox1.Image = global::RealState.Properties.Resources.BackGroud_;
-            this.pictureBox1.Location = new System.Drawing.Point(0, 397);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(196, 203);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 4;
-            this.pictureBox1.TabStop = false;
-            // 
-            // picSlider
-            // 
-            this.picSlider.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.picSlider.Image = global::RealState.Properties.Resources._1;
-            this.picSlider.Location = new System.Drawing.Point(231, 98);
-            this.picSlider.Name = "picSlider";
-            this.picSlider.Size = new System.Drawing.Size(241, 394);
-            this.picSlider.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.picSlider.TabIndex = 55788;
-            this.picSlider.TabStop = false;
-            // 
-            // timerSlider
-            // 
-            this.timerSlider.Enabled = true;
-            this.timerSlider.Interval = 5000;
-            this.timerSlider.Tick += new System.EventHandler(this.timerSlider_Tick);
             // 
             // frmMain
             // 
@@ -741,13 +681,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(800, 600);
-            this.Controls.Add(this.picSlider);
             this.Controls.Add(this.lblEconomyName);
             this.Controls.Add(this.lblDbName);
             this.Controls.Add(this.lblVersion);
-            this.Controls.Add(this.pictureBox5);
-            this.Controls.Add(this.picTaghvim);
-            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.line2);
             this.Controls.Add(this.lblSecond);
             this.Controls.Add(this.label2);
@@ -776,10 +712,6 @@
             this.Load += new System.EventHandler(this.frmMain_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picTaghvim)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picSlider)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -799,7 +731,6 @@
         private System.Windows.Forms.Label lblSerial;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label lblExDate;
-        private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem mnuBaseInformation;
         private System.Windows.Forms.ToolStripMenuItem mnuBuildingInfo;
@@ -854,11 +785,7 @@
         private System.Windows.Forms.Label lblEconomyName;
         private System.Windows.Forms.Label lblDbName;
         private System.Windows.Forms.Label lblVersion;
-        private System.Windows.Forms.PictureBox pictureBox5;
-        private System.Windows.Forms.PictureBox picTaghvim;
         private System.Windows.Forms.ToolStripMenuItem mnuBackUpLog;
-        private System.Windows.Forms.PictureBox picSlider;
-        private System.Windows.Forms.Timer timerSlider;
     }
 }
 

@@ -11,7 +11,6 @@ using Accounting;
 using Accounting.Hazine;
 using Accounting.Payement;
 using Accounting.Reception;
-using Advertise.Classes;
 using Advertise.Forms;
 using Building.Building;
 using Building.BuildingAccountType;
@@ -131,25 +130,6 @@ namespace RealState
                 lblSerial.Text = clsRegistery.GetRegistery("U1001ML");
                 var exDate = clsRegistery.GetRegistery("U1001MD").ParseToDate();
                 lblExDate.Text = Calendar.MiladiToShamsi(exDate);
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-        private void SetTaghvim()
-        {
-            try
-            {
-                var mounth = Calendar.GetMonthOfDateSh(Calendar.MiladiToShamsi(DateTime.Now));
-
-                var path = Path.Combine(Application.StartupPath, "Taghvim");
-                if (!Directory.Exists(path)) return;
-
-                var taghvimPath = Path.Combine(path, mounth + ".png");
-                if (!File.Exists(taghvimPath)) return;
-
-                picTaghvim.Load(taghvimPath);
             }
             catch (Exception ex)
             {
@@ -279,25 +259,9 @@ namespace RealState
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void SetSliderImages()
-        {
-            try
-            {
-                var sliderPath = Path.Combine(Application.StartupPath, "Slider");
-
-                sliderImages = Directory.GetFiles(sliderPath).ToList();
-
-                timerSlider.Start();
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
         public frmMain()
         {
             InitializeComponent();
-            //TopMost = true;
         }
         private async void frmMain_Load(object sender, System.EventArgs e)
         {
@@ -307,15 +271,13 @@ namespace RealState
                 SetClock();
                 SetCalendar();
                 SetButtomLables();
-                SetTaghvim();
                 var naqz = await NaqzBussines.SetNaqzAsync();
                 var frm = new frmNaqz(naqz);
                 frm.ShowDialog(this);
                 SetAccess();
                 await SetNotesAsync();
-                Task.Run(() => BackUpAsync(@"C:\", false, EnBackUpType.Auto));
-                Task.Run(AutoBackUpAsync);
-                SetSliderImages();
+                _ = Task.Run(() => BackUpAsync(@"C:\", false, EnBackUpType.Auto));
+                _ = Task.Run(AutoBackUpAsync);
             }
             catch (Exception ex)
             {
@@ -802,18 +764,6 @@ namespace RealState
             }
         }
 
-        private void timerSlider_Tick(object sender, EventArgs e)
-        {
-            try
-            {
-                if (sliderImages.Count <= 0) return;
-                var rand = new Random().Next(0, sliderImages.Count);
-                picSlider.Image = Image.FromFile(sliderImages[rand]);
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
+
     }
 }
