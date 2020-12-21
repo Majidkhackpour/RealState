@@ -38,5 +38,7 @@ namespace Persistence.Entities
         public decimal Delay { get; set; }
         public string Description { get; set; }
         public EnRequestType Type { get; set; }
+        public Guid BazaryabGuid { get; set; }
+        public decimal BazaryabPrice { get; set; }
     }
 }

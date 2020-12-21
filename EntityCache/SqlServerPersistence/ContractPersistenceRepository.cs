@@ -108,9 +108,11 @@ namespace EntityCache.SqlServerPersistence
             {
                 using (var cn = new SqlConnection(_connectionString))
                 {
-                    var cmd = new SqlCommand("sp_Contract_ChangeStatus", cn);
+
+                    var cmd = new SqlCommand("sp_Contract_ChangeStatus", cn)
+                    { CommandType = CommandType.StoredProcedure };
                     cmd.Parameters.AddWithValue("@conGuid", item.Guid);
-                    cmd.Parameters.AddWithValue("@st", item.Status);
+                    cmd.Parameters.AddWithValue("@st", !item.Status);
                     await cn.OpenAsync();
                     await cmd.ExecuteNonQueryAsync();
                     cn.Close();
@@ -131,7 +133,7 @@ namespace EntityCache.SqlServerPersistence
             {
                 using (var cn = new SqlConnection(_connectionString))
                 {
-                    var cmd = new SqlCommand("sp_Contract_Save", cn) {CommandType = CommandType.StoredProcedure};
+                    var cmd = new SqlCommand("sp_Contract_Save", cn) { CommandType = CommandType.StoredProcedure };
                     cmd.Parameters.AddWithValue("@Guid", item.Guid);
                     cmd.Parameters.AddWithValue("@st", item.Status);
                     cmd.Parameters.AddWithValue("@modif", item.Modified);
@@ -162,6 +164,8 @@ namespace EntityCache.SqlServerPersistence
                     cmd.Parameters.AddWithValue("@sPrice", item.SPrice);
                     cmd.Parameters.AddWithValue("@fSidePrice", (item.Finance.FirstTotalPrice + item.Finance.FirstAddedValue) - item.Finance.FirstDiscount);
                     cmd.Parameters.AddWithValue("@sSidePrice", (item.Finance.SecondTotalPrice + item.Finance.SecondAddedValue) - item.Finance.SecondDiscount);
+                    cmd.Parameters.AddWithValue("@bazaryabGuid", item.BazaryabGuid);
+                    cmd.Parameters.AddWithValue("@bazaryabPrice", item.BazaryabPrice);
                     await cn.OpenAsync();
                     await cmd.ExecuteNonQueryAsync();
                     cn.Close();

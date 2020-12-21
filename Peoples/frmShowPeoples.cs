@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using EntityCache.Bussines;
@@ -82,8 +83,8 @@ namespace Peoples
             try
             {
                 list = await PeoplesBussines.GetAllAsync(search, GroupGuid);
-                Invoke(new MethodInvoker(() =>
-                    peopleBindingSource.DataSource = list.Where(q => q.Status == status).ToList()));
+                _ = Task.Run(() => ucPagger.PagingAsync(new CancellationToken(),
+                    list.Where(q => q.Status == status), 100, PagingPosition.GotoStartPage));
             }
             catch (Exception ex)
             {
@@ -197,6 +198,21 @@ namespace Peoples
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
+        private void Select()
+        {
+            try
+            {
+                if (DGrid.RowCount <= 0) return;
+                if (DGrid.CurrentRow == null) return;
+                SelectedGuid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
+                DialogResult = DialogResult.OK;
+                Close();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
 
         public frmShowPeoples(bool _isShowMode)
         {
@@ -206,19 +222,31 @@ namespace Peoples
             {
                 contextMenu.Enabled = false;
                 contextMenuGroup.Enabled = false;
-                btnSelect.Visible = true;
             }
             else
             {
                 contextMenu.Enabled = true;
                 contextMenuGroup.Enabled = true;
-                btnSelect.Visible = false;
             }
-
+            ucPagger.OnBindDataReady += UcPagger_OnBindDataReady;
             SetColumns();
             SetAccess();
         }
 
+        private void UcPagger_OnBindDataReady(object sender, WindowsSerivces.Pagging.FooterBindingDataReadyEventArg e)
+        {
+            try
+            {
+                var count = e?.ListData?.Count ?? 0;
+                if (count <= 0) count = 50;
+                Invoke(new MethodInvoker(() =>
+                    peopleBindingSource.DataSource = e?.ListData?.Take(count)?.ToSortableBindingList()));
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
         private void frmShowPeoples_Load(object sender, EventArgs e)
         {
             LoadData();
@@ -255,7 +283,8 @@ namespace Peoples
                         if (e.Control) txtSearch.Focus();
                         break;
                     case Keys.Enter:
-                        mnuEdit.PerformClick();
+                        if (!isShowMode) mnuEdit.PerformClick();
+                        else Select();
                         break;
                 }
             }
@@ -297,27 +326,12 @@ namespace Peoples
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void btnSelect_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (DGrid.RowCount <= 0) return;
-                if (DGrid.CurrentRow == null) return;
-                SelectedGuid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
-                DialogResult = DialogResult.OK;
-                Close();
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
         private void DGrid_DoubleClick(object sender, EventArgs e)
         {
             try
             {
                 if (!isShowMode) return;
-                btnSelect.PerformClick();
+                Select();
             }
             catch (Exception ex)
             {
@@ -740,6 +754,26 @@ namespace Peoples
                     ColumnList.Remove("آدرس");
                     DGrid.Columns[dgAddress.Index].Visible = false;
                     SaveColumns(ColumnList);
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private void DGrid_Scroll(object sender, ScrollEventArgs e)
+        {
+            try
+            {
+                if (peopleBindingSource.Count <= 0 || peopleBindingSource.Count == ucPagger.list.Count)
+                    return;
+                var addedItem = 0;
+                var percent = 100 * (double)e.NewValue / peopleBindingSource.Count;
+                if (percent <= 70) return;
+                foreach (var item in ucPagger.NextItemsInPage(peopleBindingSource.Count, 50))
+                {
+                    peopleBindingSource.Add(item);
+                    addedItem++;
                 }
             }
             catch (Exception ex)

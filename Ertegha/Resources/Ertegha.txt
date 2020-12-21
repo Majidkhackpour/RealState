@@ -518,25 +518,45 @@ BEGIN
 
 	declare @fPrice bigint
 	set @fPrice= (select FirstTotalPrice from ContractFinances where ConGuid=@conGuid)
-
+	declare @fAddedd bigint
+	set @fAddedd= (select FirstAddedValue from ContractFinances where ConGuid=@conGuid)
+	declare @fDis bigint
+	set @fDis= (select FirstDiscount from ContractFinances where ConGuid=@conGuid)
 	declare @fGuid uniqueidentifier
 	set @fGuid=(select FirstSideGuid from Contracts where Guid=@conGuid)
 
+	set @fPrice=(@fPrice+@fAddedd)-@fDis
+
 	declare @sPrice bigint
 	set @sPrice= (select SecondTotalPrice from ContractFinances where ConGuid=@conGuid)
-
+	declare @sAddedd bigint
+	set @sAddedd= (select SecondAddedValue from ContractFinances where ConGuid=@conGuid)
+	declare @sDis bigint
+	set @sDis= (select SecondDiscount from ContractFinances where ConGuid=@conGuid)
 	declare @sGuid uniqueidentifier
 	set @sGuid=(select SecondSideGuid from Contracts where Guid=@conGuid)
+
+	set @sPrice=(@sPrice+@sAddedd)-@sDis
+
+	declare @bPrice bigint
+	set @bPrice= (select BazaryabPrice from Contracts where Guid=@conGuid)
+
+	declare @bGuid uniqueidentifier
+	set @bGuid=(select BazaryabGuid from Contracts where Guid=@conGuid)
 
 	if(@st='true')
 	begin
 		update Peoples
-		set Account=Account-@fPrice
+		set Account=Account+@fPrice
 		where Guid=@fGuid
 
 		update Peoples
-		set Account=Account-@SPrice
+		set Account=Account+@SPrice
 		where Guid=@sGuid
+
+		update Users
+		set Account =Account-@bPrice
+		where Guid=@bGuid
 	end
 	else
 	begin
@@ -547,6 +567,10 @@ BEGIN
 		update Peoples
 		set Account=Account-@SPrice
 		where Guid=@sGuid
+
+		update Users
+		set Account =Account+@bPrice
+		where Guid=@bGuid
 	end
 END
 GO
@@ -585,7 +609,9 @@ ALTER PROCEDURE [dbo].[sp_Contract_Save]
 	@fPrice bigint=0,
 	@sPrice bigint=0,
 	@fSidePrice bigint=0,
-	@sSidePrice bigint=0
+	@sSidePrice bigint=0,
+	@bazaryabGuid uniqueidentifier='00000000-0000-0000-0000-000000000000',
+	@bazaryabPrice bigint=0
 AS
 BEGIN	
 	update Peoples
@@ -606,19 +632,74 @@ BEGIN
 	delete from GardeshHesabs
 	where ParentGuid=@Guid
 
-	insert into GardeshHesabs(Babat,Description,Guid,Modified,ParentGuid,PeopleGuid,Price,Status,Type)
+	declare @gardeshGuid uniqueidentifier
+	set @gardeshGuid=(isnull((select Guid from GardeshHesabs where ParentGuid=@Guid and PeopleGuid=@fGuid),'00000000-0000-0000-0000-000000000000'))
+
+	if @gardeshGuid='00000000-0000-0000-0000-000000000000'
+	begin
+		insert into GardeshHesabs(Babat,Description,Guid,Modified,ParentGuid,PeopleGuid,Price,Status,Type)
 		values(2,N'عقد قرارداد به شماره '+CAST(@code AS nvarchar(100))+' در تاریخ '+@dateSh,NEWID(), GETDATE(),@guid,@fGuid,@fSidePrice,'true',2)
 
-			insert into GardeshHesabs(Babat,Description,Guid,Modified,ParentGuid,PeopleGuid,Price,Status,Type)
+		insert into GardeshHesabs(Babat,Description,Guid,Modified,ParentGuid,PeopleGuid,Price,Status,Type)
 		values(2,N'عقد قرارداد به شماره '+CAST(@code AS nvarchar(100))+' در تاریخ '+@dateSh,NEWID(), GETDATE(),@guid,@sGuid,@sSidePrice,'true',2)
-
-
+	end
+	else
+	begin
+		update GardeshHesabs
+		set Price=@fSidePrice
+		where ParentGuid=@Guid and PeopleGuid=@fGuid
+		update GardeshHesabs
+		set Price=@sSidePrice
+		where ParentGuid=@Guid and PeopleGuid=@sGuid
+	end
 
 	update Buildings
 	set BuildingStatus=1
 	where Guid=@buGuid
 
+	declare @contractGuid uniqueidentifier
+	set @contractGuid=(isnull((select Guid from Contracts where Guid=@Guid),'00000000-0000-0000-0000-000000000000'))
 
+	declare @contractPrice bigint
+	set @contractPrice=(isnull((select BazaryabPrice from Contracts where Guid=@Guid),0))
+
+	declare @contractBazaryab uniqueidentifier
+	set @contractBazaryab=(isnull((select BazaryabGuid from Contracts where Guid=@Guid),'00000000-0000-0000-0000-000000000000'))
+
+	if @contractGuid<>'00000000-0000-0000-0000-000000000000'
+	begin
+		update Users
+		set Account=Account+@contractPrice
+		where Guid=@contractBazaryab
+
+		delete from GardeshHesabs
+		where ParentGuid=@Guid and PeopleGuid=@contractBazaryab
+	end
+
+	if @bazaryabGuid<>'00000000-0000-0000-0000-000000000000'
+	begin
+		declare @bGardeshGuid uniqueidentifier
+		set @bGardeshGuid=(isnull((select Guid from GardeshHesabs where ParentGuid=@Guid and PeopleGuid=@bazaryabGuid),'00000000-0000-0000-0000-000000000000'))
+
+		declare @bGardeshPrice bigint
+		set @bGardeshPrice=(isnull((select Price from GardeshHesabs where ParentGuid=@Guid and PeopleGuid=@bazaryabGuid),0))
+
+		if @bGardeshGuid='00000000-0000-0000-0000-000000000000'
+		begin
+			insert into GardeshHesabs(Babat,Description,Guid,Modified,ParentGuid,PeopleGuid,Price,Status,Type)
+			values(2,N'پورسانت عقد قرارداد به شماره '+CAST(@code AS nvarchar(100))+' در تاریخ '+@dateSh,NEWID(), GETDATE(),@guid,@bazaryabGuid,@bazaryabPrice,'true',3)
+		end
+		else
+		begin
+			update GardeshHesabs
+			set Price=@bazaryabPrice
+			where ParentGuid=@Guid and PeopleGuid=@bazaryabGuid
+		end
+
+		update Users
+		set Account=Account-@bazaryabPrice
+		where Guid=@bazaryabGuid
+	end
 
 	update Contracts 
 	set Status=@st,
@@ -644,7 +725,9 @@ BEGIN
 	UserGuid=@userGuid,
 	BuildingGuid=@buGuid,
 	Type=@type,
-	DateM=@dateM
+	DateM=@dateM,
+	BazaryabGuid=@bazaryabGuid,
+	BazaryabPrice=@bazaryabPrice
 	where Guid=@Guid
 
 	if (@@ROWCOUNT=0)
@@ -653,16 +736,15 @@ BEGIN
 				Guid,Status,Modified,IsTemp,Code,FirstSideGuid,SecondSideGuid,Term,FromDate,
 				TotalPrice,MinorPrice,CheckNo,BankName,Shobe,SarResid,DischargeDate,
 				SetDocDate,SetDocPlace,SarQofli,Delay,Description,UserGuid,BuildingGuid,
-				Type,DateM
+				Type,DateM,BazaryabGuid,BazaryabPrice
 		)
 		values(
 				@Guid,@st,@modif,@isTemp,@code,@fGuid,@sGuid,@term,@fromDate,
 				@totalPrice,@minorPrice,@checkNo,@bankName,@shobe,@sareresid,@discharcgDate,
 				@setDocDate,@setDocPlace,@sarqofli,@delay,@desc,@userGuid,@buGuid,
-				@type,@dateM
+				@type,@dateM,@bazaryabGuid,@bazaryabPrice
 		)
 	end
-
 END
 GO
 -- ==========================================================================================

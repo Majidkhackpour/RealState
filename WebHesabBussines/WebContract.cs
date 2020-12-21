@@ -33,7 +33,8 @@ namespace WebHesabBussines
         public decimal Delay { get; set; }
         public string Description { get; set; }
         public EnRequestType Type { get; set; }
-
+        public Guid BazaryabGuid { get; set; }
+        public decimal BazaryabPrice { get; set; }
 
 
         public async Task<ReturnedSaveFuncInfo> SaveAsync()
@@ -86,7 +87,7 @@ namespace WebHesabBussines
                     SarResid = cls.SarResid,
                     BuildingGuid = cls.BuildingGuid,
                     SetDocDate = cls.SetDocDate,
-                    SetDocPlace = cls.SetDocPlace
+                    SetDocPlace = cls.SetDocPlace,
                     //DateM = cls.DateM
                 };
                 await obj.SaveAsync();

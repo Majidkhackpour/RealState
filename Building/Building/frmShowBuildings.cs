@@ -308,6 +308,21 @@ namespace Building.Building
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
+        private void Select()
+        {
+            try
+            {
+                if (DGrid.RowCount <= 0) return;
+                if (DGrid.CurrentRow == null) return;
+                SelectedGuid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
+                DialogResult = DialogResult.OK;
+                Close();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
         private bool ST
         {
             get => _st;
@@ -333,14 +348,6 @@ namespace Building.Building
         {
             InitializeComponent();
             isShowMode = _isShowMode;
-            if (isShowMode)
-            {
-                contextMenu.Visible = false;
-                btnSelect.Visible = true;
-            }
-            else
-                btnSelect.Visible = false;
-
             this.ownerGuid = ownerGuid;
             ucPagger.OnBindDataReady += UcPagger_OnBindDataReady;
             SetAccess();
@@ -409,22 +416,10 @@ namespace Building.Building
                         if (e.Control) txtSearch.Focus();
                         break;
                     case Keys.Enter:
-                        mnuEdit.PerformClick();
+                        if (!isShowMode) mnuEdit.PerformClick();
+                        else Select();
                         break;
                 }
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-        private void DGrid_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            try
-            {
-                txtSearch.Focus();
-                txtSearch.Text = e.KeyChar.ToString();
-                txtSearch.SelectionStart = 9999;
             }
             catch (Exception ex)
             {
@@ -469,22 +464,7 @@ namespace Building.Building
             try
             {
                 if (!isShowMode) return;
-                btnSelect.PerformClick();
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-        private void btnSelect_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (DGrid.RowCount <= 0) return;
-                if (DGrid.CurrentRow == null) return;
-                SelectedGuid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
-                DialogResult = DialogResult.OK;
-                Close();
+                Select();
             }
             catch (Exception ex)
             {

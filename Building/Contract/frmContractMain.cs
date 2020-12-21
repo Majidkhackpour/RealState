@@ -28,6 +28,7 @@ namespace Building.Contract
             try
             {
                 await LoadUsersAsync();
+                await LoadBazaryabAsync();
                 LoadfSide();
                 LoadsSide();
                 SetTxtPrice();
@@ -38,7 +39,7 @@ namespace Building.Contract
                 lblDateNow.Text = cls?.DateSh;
                 cmbUser.SelectedValue = cls?.UserGuid;
 
-                txtTerm.Text = (cls?.Term ?? 0).ToString();
+                txtTerm.Value = (decimal)(cls?.Term ?? 0);
                 txtfDate.Text = Calendar.MiladiToShamsi(cls?.FromDate);
 
                 txtDisCharge.Text = Calendar.MiladiToShamsi(cls?.DischargeDate);
@@ -70,7 +71,11 @@ namespace Building.Contract
                     cmbfBabat.SelectedIndex = 0;
                     cmbsBabat.SelectedIndex = 0;
                     lblfTotal.Text = lblsTotal.Text = "0";
+                    lblTotalCommition.Text = "0";
                 }
+
+                cmbBazaryab.SelectedValue = cls?.BazaryabGuid;
+                txtBazaryabPrice.TextDecimal = cls?.BazaryabPrice ?? 0;
 
 
                 fPanel.Controls.Clear();
@@ -94,7 +99,7 @@ namespace Building.Contract
                     cmbUser.SelectedValue = clsUser.CurrentUser?.Guid;
                     cmbfBabat.SelectedIndex = 0;
                     cmbsBabat.SelectedIndex = 0;
-                    txtTerm.Text = "12";
+                    txtTerm.Value = 12;
                     txtfDate.Text = Calendar.MiladiToShamsi(DateTime.Now);
                 }
             }
@@ -120,6 +125,23 @@ namespace Building.Contract
             {
                 var list = await UserBussines.GetAllAsync();
                 userBindingSource.DataSource = list.Where(q => q.Status).OrderBy(q => q.Name).ToList();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private async Task LoadBazaryabAsync()
+        {
+            try
+            {
+                var list = await UserBussines.GetAllAsync();
+                list.Add(new UserBussines()
+                {
+                    Guid = Guid.Empty,
+                    Name = "[هیچکدام]"
+                });
+                bazaryabBindingSource.DataSource = list.Where(q => q.Status).OrderBy(q => q.Name).ToList();
             }
             catch (Exception ex)
             {
@@ -174,6 +196,8 @@ namespace Building.Contract
                         lblsPrice.Text = building?.EjarePrice1.ToString("N0");
                         txtEjare.TextDecimal = building?.EjarePrice1 ?? 0;
                         txtRahn.TextDecimal = building?.RahnPrice1 ?? 0;
+                        txtTerm.Value = 12;
+                        SetFullPrice();
                     }
                     else
                     {
@@ -302,6 +326,15 @@ namespace Building.Contract
                     res.AddError("لطفا یکی از فیلدهای مبلغ را وارد نمایید");
                     btnSearchOwner.Focus();
                 }
+
+                if ((Guid)cmbBazaryab.SelectedValue == Guid.Empty && txtBazaryabPrice.TextDecimal > 0)
+                {
+                    res.AddError("لطفا بازاریاب را انتخاب نمایید");
+                }
+                if ((Guid)cmbBazaryab.SelectedValue != Guid.Empty && txtBazaryabPrice.TextDecimal <= 0)
+                {
+                    res.AddError("لطفا مبلغ پورسانت بازاریاب را مشخص نمایید");
+                }
             }
             catch (Exception ex)
             {
@@ -364,7 +397,8 @@ namespace Building.Contract
                 cls.Finance.fBabat = (EnContractBabat)cmbfBabat.SelectedIndex;
                 cls.Finance.sBabat = (EnContractBabat)cmbsBabat.SelectedIndex;
                 cls.Finance.ConGuid = cls.Guid;
-
+                cls.BazaryabGuid = (Guid)cmbBazaryab.SelectedValue;
+                cls.BazaryabPrice = txtBazaryabPrice.TextDecimal;
 
                 res.AddReturnedValue(await cls.SaveAsync(true));
             }
@@ -381,14 +415,20 @@ namespace Building.Contract
             try
             {
                 decimal fTotal = 0, fDis = 0, fAdd = 0;
+                decimal sTotal = 0, sDis = 0, sAdd = 0;
 
                 fAdd = txtfAddedValue.TextDecimal;
                 fDis = txtfDiscount.TextDecimal;
                 fTotal = txtfTotalPrice.TextDecimal;
 
-                lblfSallary.Text = (fTotal - fDis).ToString("N0") + " ریال";
+                sAdd = txtsAddedValue.TextDecimal;
+                sDis = txtsDiscount.TextDecimal;
+                sTotal = txtsTotalPrice.TextDecimal;
 
+                lblfSallary.Text = (fTotal - fDis).ToString("N0") + " ریال";
                 lblfTotal.Text = ((fTotal + fAdd) - fDis).ToString("N0") + " ریال";
+
+                lblTotalCommition.Text = (((fTotal + fAdd) - fDis) + ((sTotal + sAdd) - sDis)).ToString("N0");
             }
             catch (Exception ex)
             {
@@ -399,15 +439,21 @@ namespace Building.Contract
         {
             try
             {
+                decimal fTotal = 0, fDis = 0, fAdd = 0;
                 decimal sTotal = 0, sDis = 0, sAdd = 0;
+
+                fAdd = txtfAddedValue.TextDecimal;
+                fDis = txtfDiscount.TextDecimal;
+                fTotal = txtfTotalPrice.TextDecimal;
 
                 sAdd = txtsAddedValue.TextDecimal;
                 sDis = txtsDiscount.TextDecimal;
                 sTotal = txtsTotalPrice.TextDecimal;
 
                 lblsSallary.Text = (sTotal - sDis).ToString("N0") + " ریال";
-
                 lblsTotal.Text = ((sTotal + sAdd) - sDis).ToString("N0") + " ریال";
+
+                lblTotalCommition.Text = (((fTotal + fAdd) - fDis) + ((sTotal + sAdd) - sDis)).ToString("N0");
             }
             catch (Exception ex)
             {
@@ -469,6 +515,20 @@ namespace Building.Contract
             catch (Exception exception)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(exception);
+            }
+        }
+        private void SetBazaryabPrice()
+        {
+            try
+            {
+                var price = lblTotalCommition.Text.ParseToDecimal();
+                var percent = (int)txtBazaryabPercent.Value;
+
+                txtBazaryabPrice.TextDecimal = (price * percent) / 100;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
 
@@ -590,6 +650,8 @@ namespace Building.Contract
             var res = new ReturnedSaveFuncInfo();
             try
             {
+                if (MessageBox.Show("آیا از ثبت اطلاعات اطمینان دارید؟", "پیغام سیستم", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
+                    return;
                 cls.IsTemp = true;
                 res.AddReturnedValue(await SaveAsync());
             }
@@ -619,6 +681,8 @@ namespace Building.Contract
             var res = new ReturnedSaveFuncInfo();
             try
             {
+                if (MessageBox.Show("آیا از ثبت اطلاعات اطمینان دارید؟", "پیغام سیستم", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
+                    return;
                 cls.IsTemp = false;
                 res.AddReturnedValue(await SaveAsync());
             }
@@ -741,5 +805,6 @@ namespace Building.Contract
         private void txtsTotalPrice_OnTextChanged() => SetSecondSallary();
         private void txtsDiscount_OnTextChanged() => SetSecondSallary();
         private void txtsAddedValue_OnTextChanged() => SetSecondSallary();
+        private void txtBazaryabPercent_ValueChanged(object sender, EventArgs e) => SetBazaryabPrice();
     }
 }

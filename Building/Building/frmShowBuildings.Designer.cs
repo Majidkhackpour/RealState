@@ -182,7 +182,6 @@
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnSelect = new DevComponents.DotNetBar.ButtonX();
             this.grp = new DevComponents.DotNetBar.PanelEx();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -359,7 +358,6 @@
             this.DGrid.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DGrid_CellFormatting);
             this.DGrid.Scroll += new System.Windows.Forms.ScrollEventHandler(this.DGrid_Scroll);
             this.DGrid.DoubleClick += new System.EventHandler(this.DGrid_DoubleClick);
-            this.DGrid.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.DGrid_KeyPress);
             // 
             // dgCode
             // 
@@ -1568,25 +1566,6 @@
             this.dataGridViewTextBoxColumn6.ReadOnly = true;
             this.dataGridViewTextBoxColumn6.Visible = false;
             // 
-            // btnSelect
-            // 
-            this.btnSelect.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnSelect.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnSelect.BackColor = System.Drawing.Color.DarkSlateGray;
-            this.btnSelect.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnSelect.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
-            this.btnSelect.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnSelect.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.btnSelect.Location = new System.Drawing.Point(4, 566);
-            this.btnSelect.Name = "btnSelect";
-            this.btnSelect.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
-            this.btnSelect.Size = new System.Drawing.Size(414, 31);
-            this.btnSelect.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
-            this.btnSelect.TabIndex = 55763;
-            this.btnSelect.Text = "انتخاب";
-            this.btnSelect.TextColor = System.Drawing.Color.White;
-            this.btnSelect.Click += new System.EventHandler(this.btnSelect_Click);
-            // 
             // grp
             // 
             this.grp.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -1684,12 +1663,12 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ucPagger.BackColor = System.Drawing.Color.Transparent;
             this.ucPagger.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.ucPagger.Location = new System.Drawing.Point(425, 568);
+            this.ucPagger.Location = new System.Drawing.Point(4, 568);
             this.ucPagger.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ucPagger.Name = "ucPagger";
             this.ucPagger.PageIdx = 1;
             this.ucPagger.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.ucPagger.Size = new System.Drawing.Size(566, 28);
+            this.ucPagger.Size = new System.Drawing.Size(987, 28);
             this.ucPagger.TabIndex = 55771;
             // 
             // frmShowBuildings
@@ -1699,7 +1678,6 @@
             this.ClientSize = new System.Drawing.Size(1021, 600);
             this.Controls.Add(this.ucPagger);
             this.Controls.Add(this.grp);
-            this.Controls.Add(this.btnSelect);
             this.Controls.Add(this.txtSearch);
             this.Controls.Add(this.DGrid);
             this.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
@@ -1745,7 +1723,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
         private System.Windows.Forms.BindingSource btBindingSource;
         private System.Windows.Forms.BindingSource userBindingSource;
-        private DevComponents.DotNetBar.ButtonX btnSelect;
         private System.Windows.Forms.ContextMenuStrip contextMenu;
         private System.Windows.Forms.ToolStripMenuItem mnuAdd;
         private System.Windows.Forms.ToolStripMenuItem mnuEdit;
