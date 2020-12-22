@@ -27,6 +27,7 @@ namespace Building.Building
         private string _picNameJari = "";
         readonly List<string> lstList = new List<string>();
         private EnLogAction action;
+        private string image;
 
 
         private async Task SetDataAsync()
@@ -158,6 +159,13 @@ namespace Building.Building
                     cmbGas.SelectedIndex = 0;
                     cmbTell.SelectedIndex = 0;
                     cmbTabaqeNo.SelectedIndex = 3;
+                }
+
+                image = cls?.Image;
+                if (!string.IsNullOrEmpty(cls?.Image))
+                {
+                    var path = Path.Combine(Application.StartupPath + "\\Images", cls.Image);
+                    picImage.ImageLocation = path;
                 }
             }
             catch (Exception ex)
@@ -507,8 +515,7 @@ namespace Building.Building
         {
             try
             {
-                if (lst == null || lst.Count == 0)
-                    return;
+                if (lst == null || lst.Count == 0) return;
                 fPanel.AutoScroll = true;
                 for (var i = fPanel.Controls.Count - 1; i >= 0; i--)
                     fPanel.Controls[i].Dispose();
@@ -736,6 +743,7 @@ namespace Building.Building
                 cls.BonBast = chbIsBonBast.Checked;
                 cls.MamarJoda = chbIsMamarJoda.Checked;
                 cls.RoomCount = txtTedadOtaq.Text.ParseToInt();
+                cls.Image = image ?? "";
             }
             catch (Exception ex)
             {
@@ -843,6 +851,45 @@ namespace Building.Building
             }
 
             return res;
+        }
+        private string LoadFromFile()
+        {
+            try
+            {
+                var fd = new OpenFileDialog
+                {
+                    Multiselect = false,
+                    InitialDirectory = Application.StartupPath + "\\Images"
+                };
+
+                if (!Directory.Exists(fd.InitialDirectory))
+                    Directory.CreateDirectory(fd.InitialDirectory);
+                fd.Filter = "*.JPG;*.GIF;*.PNG|*.JPG;*.GIF;*.PNG";
+                if (fd.ShowDialog() != DialogResult.OK) return null;
+                var aa = new FileInfo(fd.FileName);
+                var attache = 1;
+                if (Application.StartupPath + "\\Images\\" + aa.Name != aa.FullName)
+                {
+                    var newName = "";
+                    newName = aa.Name;
+                    while (File.Exists(Application.StartupPath + "\\Images\\" + newName))
+                    {
+                        var nameLen = aa.Name.Length.ToString();
+                        var extentionLength = aa.Extension.Length;
+                        newName = aa.Name.Substring(0, (int)(nameLen.ParseToDouble() - extentionLength));
+                        newName = newName + attache + aa.Extension;
+                        attache++;
+                    }
+                    File.Copy(aa.FullName, Application.StartupPath + "\\Images\\" + newName);
+                    return newName;
+                }
+                return aa.Name;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                return null;
+            }
         }
 
         public frmBuildingMain()
@@ -1310,6 +1357,20 @@ namespace Building.Building
                     if (res.HasError)
                         frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);
                 }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private void binImage_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var pic = LoadFromFile();
+                var picPath = Path.Combine(Application.StartupPath + "\\Images", pic);
+                picImage.ImageLocation = picPath;
+                image = pic;
             }
             catch (Exception ex)
             {

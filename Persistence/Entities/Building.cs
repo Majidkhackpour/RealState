@@ -70,5 +70,7 @@ namespace Persistence.Entities
         public bool MamarJoda { get; set; }
         public int RoomCount { get; set; }
         public EnBuildingStatus BuildingStatus { get; set; }
+        [MaxLength(100)]
+        public string Image { get; set; }
     }
 }

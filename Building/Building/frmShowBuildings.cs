@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -1470,6 +1471,26 @@ namespace Building.Building
                     BuildingBindingSource.Add(item);
                     addedItem++;
                 }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private async void DGrid_CellEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                PicBox.Image = null;
+                if (DGrid.RowCount <= 0) return;
+                if (DGrid.CurrentRow == null) return;
+                var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
+                if (guid == Guid.Empty) return;
+                var bu = await BuildingBussines.GetAsync(guid);
+                if (bu == null) return;
+                if (string.IsNullOrEmpty(bu.Image)) return;
+                var path = Path.Combine(Application.StartupPath + "\\Images", bu.Image);
+                PicBox.ImageLocation = path;
             }
             catch (Exception ex)
             {

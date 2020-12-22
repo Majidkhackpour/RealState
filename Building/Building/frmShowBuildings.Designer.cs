@@ -183,6 +183,7 @@
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.grp = new DevComponents.DotNetBar.PanelEx();
+            this.PicBox = new System.Windows.Forms.PictureBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.cmbAccType = new System.Windows.Forms.ComboBox();
@@ -196,6 +197,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.btBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).BeginInit();
             this.grp.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PicBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.AccTypeBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.docTypeBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -355,6 +357,7 @@
             this.DGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DGrid.Size = new System.Drawing.Size(844, 489);
             this.DGrid.TabIndex = 55744;
+            this.DGrid.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGrid_CellEnter);
             this.DGrid.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DGrid_CellFormatting);
             this.DGrid.Scroll += new System.Windows.Forms.ScrollEventHandler(this.DGrid_Scroll);
             this.DGrid.DoubleClick += new System.EventHandler(this.DGrid_DoubleClick);
@@ -1572,6 +1575,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.grp.CanvasColor = System.Drawing.SystemColors.Control;
             this.grp.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.grp.Controls.Add(this.PicBox);
             this.grp.Controls.Add(this.label1);
             this.grp.Controls.Add(this.cmbStatus);
             this.grp.Controls.Add(this.label5);
@@ -1596,6 +1600,16 @@
             this.grp.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText;
             this.grp.Style.GradientAngle = 90;
             this.grp.TabIndex = 55767;
+            // 
+            // PicBox
+            // 
+            this.PicBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.PicBox.Location = new System.Drawing.Point(11, 290);
+            this.PicBox.Name = "PicBox";
+            this.PicBox.Size = new System.Drawing.Size(134, 122);
+            this.PicBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.PicBox.TabIndex = 55761;
+            this.PicBox.TabStop = false;
             // 
             // label5
             // 
@@ -1699,6 +1713,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).EndInit();
             this.grp.ResumeLayout(false);
             this.grp.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PicBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.AccTypeBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.docTypeBindingSource)).EndInit();
             this.ResumeLayout(false);
@@ -1856,5 +1871,6 @@
         private System.Windows.Forms.BindingSource AccTypeBindingSource;
         private System.Windows.Forms.BindingSource docTypeBindingSource;
         private WindowsSerivces.Pagging.UC_FooterPaging ucPagger;
+        private System.Windows.Forms.PictureBox PicBox;
     }
 }

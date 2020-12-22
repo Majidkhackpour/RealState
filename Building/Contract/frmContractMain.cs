@@ -217,6 +217,7 @@ namespace Building.Contract
                 {
                     var a = Path.Combine(Application.StartupPath, "Images");
                     var b = Path.Combine(a, image.ImageName + ".jpg");
+                    if (!b.EndsWith(".jpg")) b += ".jpg";
                     lstList.Add(b);
                 }
 

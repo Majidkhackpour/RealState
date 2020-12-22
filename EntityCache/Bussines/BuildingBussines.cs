@@ -89,6 +89,7 @@ namespace EntityCache.Bussines
         public bool MamarJoda { get; set; }
         public int RoomCount { get; set; }
         public EnBuildingStatus BuildingStatus { get; set; }
+        public string Image { get; set; }
         public string BuildingStatusName => BuildingStatus.GetDisplay();
         private List<BuildingRelatedOptionsBussines> _optionList;
         public List<BuildingRelatedOptionsBussines> OptionList
