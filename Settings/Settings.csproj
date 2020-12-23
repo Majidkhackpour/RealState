@@ -134,6 +134,7 @@
     <Compile Include="Classes\clsBuilding.cs" />
     <Compile Include="Classes\clsBuildingRequest.cs" />
     <Compile Include="Classes\clsEconomyUnit.cs" />
+    <Compile Include="Classes\clsGlobal.cs" />
     <Compile Include="Classes\clsGlobalSetting.cs" />
     <Compile Include="Classes\clsPeoples.cs" />
     <Compile Include="Classes\clsSandouq.cs" />

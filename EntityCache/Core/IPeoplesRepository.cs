@@ -11,5 +11,6 @@ namespace EntityCache.Core
         Task<string> NextCodeAsync();
         Task<bool> CheckCodeAsync(string code, Guid guid);
         Task<bool> CheckNameAsync(string name);
+        Task<List<PeoplesBussines>> GetAllBirthDayAsync(string dateSh);
     }
 }

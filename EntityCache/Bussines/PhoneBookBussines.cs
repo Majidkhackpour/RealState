@@ -28,6 +28,8 @@ namespace EntityCache.Bussines
         public static async Task<List<PhoneBookBussines>> GetAllAsync(Guid parentGuid, bool status) =>
             await UnitOfWork.PhoneBook.GetAllAsync(parentGuid, status);
 
+        public static List<PhoneBookBussines> GetAll(Guid parentGuid, bool status) =>
+            AsyncContext.Run(() => GetAllAsync(parentGuid, status));
         public static async Task<List<PhoneBookBussines>> GetAllAsync() => await UnitOfWork.PhoneBook.GetAllAsync();
 
         public async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(bool status, string tranName = "")

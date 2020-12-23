@@ -320,7 +320,6 @@ namespace Peoples
             DialogResult = DialogResult.Cancel;
             Close();
         }
-
         private void frmPeoples_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -357,7 +356,6 @@ namespace Peoples
                 WebErrorLog.ErrorInstence.StartErrorLog(exception);
             }
         }
-
         private void btnInsTell_Click(object sender, EventArgs e)
         {
             try
@@ -380,7 +378,6 @@ namespace Peoples
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-
         private void btnDelTell_Click(object sender, EventArgs e)
         {
             try
@@ -397,7 +394,6 @@ namespace Peoples
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-
         private void btnInsBank_Click(object sender, EventArgs e)
         {
             try
@@ -420,7 +416,6 @@ namespace Peoples
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-
         private void btnDelBank_Click(object sender, EventArgs e)
         {
             try
@@ -437,17 +432,14 @@ namespace Peoples
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-
         private void DGridTell_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
             DGridTell.Rows[e.RowIndex].Cells["tRadif"].Value = e.RowIndex + 1;
         }
-
         private void dgBankAccount_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
             dgBankAccount.Rows[e.RowIndex].Cells["bRadif"].Value = e.RowIndex + 1;
         }
-
         private async void btnFinish_Click(object sender, EventArgs e)
         {
             var res = new ReturnedSaveFuncInfo();
@@ -526,31 +518,26 @@ namespace Peoples
                 }
             }
         }
-
         private void txtCode_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsDigit(e.KeyChar) && e.KeyChar != (char)Keys.Back)
                 e.Handled = true;
         }
-
         private void txtName_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsLetter(e.KeyChar) && e.KeyChar != (char)Keys.Back && e.KeyChar != (char)Keys.Space)
                 e.Handled = true;
         }
-
         private void txtNationalCode_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsDigit(e.KeyChar) && e.KeyChar != (char)Keys.Back)
                 e.Handled = true;
         }
-
         private void txtAccountNumber_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsDigit(e.KeyChar) && e.KeyChar != (char)Keys.Back)
                 e.Handled = true;
         }
-
         private void txtBank_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsLetter(e.KeyChar) && e.KeyChar != (char)Keys.Back && e.KeyChar != (char)Keys.Space)

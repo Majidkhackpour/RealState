@@ -40,6 +40,7 @@ namespace EntityCache.Bussines
         }
         public string FirstNumber =>
             AsyncContext.Run(() => PhoneBookBussines.GetAllAsync(Guid, true))?.FirstOrDefault()?.Tell ?? "";
+        public bool IsChecked { get; set; }
         private List<PhoneBookBussines> _tellList;
         public List<PhoneBookBussines> TellList
         {
@@ -64,12 +65,9 @@ namespace EntityCache.Bussines
         }
 
         public static async Task<List<PeoplesBussines>> GetAllAsync() => await UnitOfWork.Peoples.GetAllAsync();
-
         public static async Task<PeoplesBussines> GetAsync(Guid guid) => await UnitOfWork.Peoples.GetAsync(guid);
-
         public static async Task<List<PeoplesBussines>> GetAllAsync(Guid parentGuid, bool status) =>
             await UnitOfWork.Peoples.GetAllAsync(parentGuid, status);
-
         public async Task<ReturnedSaveFuncInfo> SaveAsync(bool sendToServer, string tranName = "")
         {
             var res = new ReturnedSaveFuncInfo();
@@ -167,7 +165,6 @@ namespace EntityCache.Bussines
 
             return res;
         }
-
         public async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(bool status, bool sendToServer, string tranName = "")
         {
             var res = new ReturnedSaveFuncInfo();
@@ -212,14 +209,10 @@ namespace EntityCache.Bussines
 
             return res;
         }
-
         public static PeoplesBussines Get(Guid guid) => AsyncContext.Run(() => GetAsync(guid));
-
         public static async Task<string> NextCodeAsync() => await UnitOfWork.Peoples.NextCodeAsync();
-
         public static async Task<bool> CheckCodeAsync(string code, Guid guid) =>
             await UnitOfWork.Peoples.CheckCodeAsync(code, guid);
-
         public static async Task<List<PeoplesBussines>> GetAllAsync(string search, Guid groupGuid)
         {
             try
@@ -253,9 +246,9 @@ namespace EntityCache.Bussines
                 return new List<PeoplesBussines>();
             }
         }
-
         public static async Task<bool> CheckNameAsync(string name) =>
             await UnitOfWork.Peoples.CheckNameAsync(name);
-
+        public static async Task<List<PeoplesBussines>> GetAllBirthDayAsync(string dateSh) =>
+            await UnitOfWork.Peoples.GetAllBirthDayAsync(dateSh);
     }
 }

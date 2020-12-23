@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 using EntityCache.Assistence;
@@ -36,7 +37,6 @@ namespace EntityCache.SqlServerPersistence
                 return null;
             }
         }
-
         public async Task<string> NextCodeAsync()
         {
             try
@@ -86,7 +86,6 @@ namespace EntityCache.SqlServerPersistence
                 return "001001";
             }
         }
-
         public async Task<bool> CheckCodeAsync(string code, Guid guid)
         {
             try
@@ -102,7 +101,6 @@ namespace EntityCache.SqlServerPersistence
                 return false;
             }
         }
-
         public async Task<bool> CheckNameAsync(string name)
         {
             try
@@ -117,6 +115,27 @@ namespace EntityCache.SqlServerPersistence
                 WebErrorLog.ErrorInstence.StartErrorLog(exception);
                 return false;
             }
+        }
+        public async Task<List<PeoplesBussines>> GetAllBirthDayAsync(string dateSh)
+        {
+            List<PeoplesBussines> list = null;
+            try
+            {
+                var split = dateSh.SplitString();
+                if (split.Count < 3) return list;
+                var a = split[1];
+                var b = split[2];
+                var date = "/" + a + "/" + b;
+                if (string.IsNullOrEmpty(date)) return list;
+                list = await GetAllAsync();
+                list = list.Where(q => q.DateBirth.Contains(date)).ToList();
+            }
+            catch (Exception exception)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(exception);
+            }
+
+            return list;
         }
     }
 }

@@ -34,7 +34,7 @@ namespace Settings
         public frmSettings()
         {
             InitializeComponent();
-            superTabControl1.SelectedTab = superTabItem5;
+            superTabControl1.SelectedTab = superTabItem2;
         }
         private void frmSettings_KeyDown(object sender, KeyEventArgs e)
         {
@@ -62,6 +62,7 @@ namespace Settings
                 await LoadSmsAsync();
                 LoadTelegram();
                 LoadBackUp();
+                LoadGlobal();
             }
             catch (Exception ex)
             {
@@ -450,6 +451,35 @@ namespace Settings
         }
         private void chbAuto_CheckedChanged(object sender, EventArgs e) => txtTime.Enabled = chbAuto.Checked;
         #endregion
+        
+        #region Global
+        private void LoadGlobal()
+        {
+            try
+            {
+                chbBirthday.Checked = clsGlobal.IsShowBirthDay.ParseToBoolean();
+                chbReminder.Checked = clsGlobal.IsShowReminder.ParseToBoolean();
+                txtBirthDayText.Text = clsGlobal.BirthDayText;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private void SaveGlobal()
+        {
+            try
+            {
+                clsGlobal.IsShowReminder = chbReminder.Checked.ToString();
+                clsGlobal.IsShowBirthDay = chbReminder.Checked.ToString();
+                clsGlobal.BirthDayText = txtBirthDayText.Text;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        #endregion
 
 
         private async void frmSettings_Load(object sender, EventArgs e) => await SetDataAsync();
@@ -462,6 +492,7 @@ namespace Settings
                 SaveSms();
                 SaveTelegram();
                 SaveBackUp();
+                SaveGlobal();
 
                 frmNotification.PublicInfo.ShowMessage("تنظیمات با موفقیت ثبت شد");
 

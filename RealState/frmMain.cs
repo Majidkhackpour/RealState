@@ -1,13 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Reflection;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using Accounting;
+﻿using Accounting;
 using Accounting.Hazine;
 using Accounting.Payement;
 using Accounting.Reception;
@@ -39,6 +30,14 @@ using RealState.Note;
 using Services;
 using Settings;
 using Settings.Classes;
+using System;
+using System.Collections.Generic;
+using System.Data.SqlClient;
+using System.IO;
+using System.Linq;
+using System.Reflection;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 using TMS.Class;
 using User;
 using Calendar = Services.Calendar;
@@ -140,6 +139,7 @@ namespace RealState
         {
             try
             {
+                if (!clsGlobal.IsShowReminder.ParseToBoolean()) return;
                 var now = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, 0, 0);
                 var allNote = await NoteBussines.GetAllAsync();
                 allNote = allNote.Where(q =>
@@ -259,6 +259,21 @@ namespace RealState
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
+        private async Task SetBirthDayAsync(string dateSh)
+        {
+            try
+            {
+                if (!clsGlobal.IsShowBirthDay.ParseToBoolean()) return;
+                var list = await PeoplesBussines.GetAllBirthDayAsync(dateSh);
+                if (list == null || list.Count <= 0) return;
+                var frm = new frmShowBirthDay(list);
+                frm.ShowDialog(this);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
         public frmMain()
         {
             InitializeComponent();
@@ -276,6 +291,7 @@ namespace RealState
                 frm.ShowDialog(this);
                 SetAccess();
                 await SetNotesAsync();
+                await SetBirthDayAsync(Calendar.MiladiToShamsi(DateTime.Now));
                 _ = Task.Run(() => BackUpAsync(@"C:\", false, EnBackUpType.Auto));
                 _ = Task.Run(AutoBackUpAsync);
             }

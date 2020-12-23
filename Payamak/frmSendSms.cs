@@ -18,6 +18,9 @@ namespace Payamak
     public partial class frmSendSms : MetroForm
     {
         private Guid peGuid = Guid.Empty;
+        private DataTableCollection dt;
+
+
         private async Task LoadPanelsAsync()
         {
             try
@@ -35,14 +38,13 @@ namespace Payamak
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-
         private void AddItems(string item)
         {
             try
             {
                 var list = new List<string>() { item };
                 foreach (var lbxNumbersItem in lbxNumbers.Items)
-                    list.Add(lbxNumbersItem.ToString());   
+                    list.Add(lbxNumbersItem.ToString());
                 AddItems(list);
             }
             catch (Exception ex)
@@ -66,23 +68,37 @@ namespace Payamak
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
+
         public frmSendSms()
         {
             InitializeComponent();
         }
-
         public frmSendSms(List<string> lstNumbers, Guid guid)
         {
             InitializeComponent();
             peGuid = guid;
             AddItems(lstNumbers);
         }
+        public frmSendSms(List<Guid> lstGuid, string text)
+        {
+            InitializeComponent();
+            txtMessage.Text = text;
+            var lstNumbers = new List<string>();
+            foreach (var guid in lstGuid)
+            {
+                var numbers = PhoneBookBussines.GetAll(guid, true);
+                if (numbers.Count <= 0) continue;
+                lstNumbers = numbers.Where(q => q.Tell.StartsWith("09") && q.Tell.Length > 10).Select(q => q.Tell)
+                    .ToList();
+            }
+            AddItems(lstNumbers);
+        }
+
         private async void frmSendSms_Load(object sender, EventArgs e)
         {
             await LoadPanelsAsync();
             lblCounter.Text = "";
         }
-
         private void txtMessage_TextChanged(object sender, EventArgs e)
         {
             try
@@ -94,7 +110,6 @@ namespace Payamak
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-
         private void btnAdd_Click(object sender, EventArgs e)
         {
             try
@@ -122,7 +137,6 @@ namespace Payamak
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-
         private void frmSendSms_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -147,7 +161,6 @@ namespace Payamak
                 WebErrorLog.ErrorInstence.StartErrorLog(exception);
             }
         }
-
         private void btnDelete_Click(object sender, EventArgs e)
         {
             try
@@ -155,7 +168,7 @@ namespace Payamak
                 if (lbxNumbers.Items.Count <= 0) return;
                 if (lbxNumbers.SelectedItem == null) return;
 
-                if (MessageBox.Show(this,$"آیا از حذف شماره {lbxNumbers.SelectedItem} از لیست ارسال اطمینان دارید؟",
+                if (MessageBox.Show(this, $"آیا از حذف شماره {lbxNumbers.SelectedItem} از لیست ارسال اطمینان دارید؟",
                         "حذف شماره از لیست ارسال", MessageBoxButtons.YesNo, MessageBoxIcon.Question) !=
                     DialogResult.Yes) return;
 
@@ -166,7 +179,6 @@ namespace Payamak
                 WebErrorLog.ErrorInstence.StartErrorLog(exception);
             }
         }
-
         private async void btnFinish_Click(object sender, EventArgs e)
         {
             try
@@ -236,7 +248,6 @@ namespace Payamak
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private DataTableCollection dt;
         private void btnAddExcel_Click(object sender, EventArgs e)
         {
             try
@@ -257,7 +268,7 @@ namespace Payamak
 
 
                 var table = dt["Sheet1"];
-                var list=new List<string>();
+                var list = new List<string>();
                 foreach (DataRow row in table.Rows)
                     list.Add(row.ItemArray[0].ToString());
                 AddItems(list);
@@ -269,14 +280,13 @@ namespace Payamak
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-
         private void btnSearch_Click(object sender, EventArgs e)
         {
             try
             {
                 var frm = new frmPhoneBookSearch(peGuid);
                 if (frm.ShowDialog(this) != DialogResult.OK) return;
-                var list=new List<string>();
+                var list = new List<string>();
                 foreach (var item in frm.SelectedNumber)
                     list.Add(item);
                 AddItems(list);

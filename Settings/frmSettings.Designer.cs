@@ -32,6 +32,11 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSettings));
             this.btnCancel = new DevComponents.DotNetBar.ButtonX();
             this.superTabControl1 = new DevComponents.DotNetBar.SuperTabControl();
+            this.superTabControlPanel2 = new DevComponents.DotNetBar.SuperTabControlPanel();
+            this.panelEx1 = new DevComponents.DotNetBar.PanelEx();
+            this.chbBirthday = new DevComponents.DotNetBar.Controls.CheckBoxX();
+            this.chbReminder = new DevComponents.DotNetBar.Controls.CheckBoxX();
+            this.superTabItem2 = new DevComponents.DotNetBar.SuperTabItem();
             this.superTabControlPanel1 = new DevComponents.DotNetBar.SuperTabControlPanel();
             this.panelEx4 = new DevComponents.DotNetBar.PanelEx();
             this.btnPath = new DevComponents.DotNetBar.ButtonX();
@@ -107,6 +112,21 @@
             this.label21 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
             this.superTabItem7 = new DevComponents.DotNetBar.SuperTabItem();
+            this.superTabControlPanel7 = new DevComponents.DotNetBar.SuperTabControlPanel();
+            this.pnlSandouq = new DevComponents.DotNetBar.PanelEx();
+            this.txtSTabdil = new System.Windows.Forms.NumericUpDown();
+            this.txtSArzesh = new System.Windows.Forms.NumericUpDown();
+            this.txtSNatCode = new System.Windows.Forms.TextBox();
+            this.cmbSType = new System.Windows.Forms.ComboBox();
+            this.txtSIdCode = new System.Windows.Forms.TextBox();
+            this.txtSCode = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.superTabItem6 = new DevComponents.DotNetBar.SuperTabItem();
             this.superTabControlPanel3 = new DevComponents.DotNetBar.SuperTabControlPanel();
             this.pnlUnit = new DevComponents.DotNetBar.PanelEx();
             this.cmbEcRegion = new System.Windows.Forms.ComboBox();
@@ -135,25 +155,14 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.superTabItem5 = new DevComponents.DotNetBar.SuperTabItem();
-            this.superTabControlPanel7 = new DevComponents.DotNetBar.SuperTabControlPanel();
-            this.pnlSandouq = new DevComponents.DotNetBar.PanelEx();
-            this.txtSTabdil = new System.Windows.Forms.NumericUpDown();
-            this.txtSArzesh = new System.Windows.Forms.NumericUpDown();
-            this.txtSNatCode = new System.Windows.Forms.TextBox();
-            this.cmbSType = new System.Windows.Forms.ComboBox();
-            this.txtSIdCode = new System.Windows.Forms.TextBox();
-            this.txtSCode = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
-            this.superTabItem6 = new DevComponents.DotNetBar.SuperTabItem();
             this.superTabControlPanel6 = new DevComponents.DotNetBar.SuperTabControlPanel();
             this.btnFinish = new DevComponents.DotNetBar.ButtonX();
+            this.txtBirthDayText = new System.Windows.Forms.TextBox();
+            this.label29 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.superTabControl1)).BeginInit();
             this.superTabControl1.SuspendLayout();
+            this.superTabControlPanel2.SuspendLayout();
+            this.panelEx1.SuspendLayout();
             this.superTabControlPanel1.SuspendLayout();
             this.panelEx4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtTime)).BeginInit();
@@ -162,15 +171,15 @@
             this.superTabControlPanel8.SuspendLayout();
             this.pnlSms.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.defBindingSource)).BeginInit();
+            this.superTabControlPanel7.SuspendLayout();
+            this.pnlSandouq.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtSTabdil)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtSArzesh)).BeginInit();
             this.superTabControlPanel3.SuspendLayout();
             this.pnlUnit.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.RegionBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CityBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.StateBindingSource)).BeginInit();
-            this.superTabControlPanel7.SuspendLayout();
-            this.pnlSandouq.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtSTabdil)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtSArzesh)).BeginInit();
             this.SuspendLayout();
             // 
             // btnCancel
@@ -208,9 +217,10 @@
             this.superTabControl1.ControlBox.SubItems.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.superTabControl1.ControlBox.CloseBox,
             this.superTabControl1.ControlBox.MenuBox});
-            this.superTabControl1.Controls.Add(this.superTabControlPanel1);
+            this.superTabControl1.Controls.Add(this.superTabControlPanel2);
             this.superTabControl1.Controls.Add(this.superTabControlPanel3);
             this.superTabControl1.Controls.Add(this.superTabControlPanel6);
+            this.superTabControl1.Controls.Add(this.superTabControlPanel1);
             this.superTabControl1.Controls.Add(this.superTabControlPanel11);
             this.superTabControl1.Controls.Add(this.superTabControlPanel8);
             this.superTabControl1.Controls.Add(this.superTabControlPanel7);
@@ -224,6 +234,7 @@
             this.superTabControl1.TabIndex = 50;
             this.superTabControl1.TabLayoutType = DevComponents.DotNetBar.eSuperTabLayoutType.MultiLine;
             this.superTabControl1.Tabs.AddRange(new DevComponents.DotNetBar.BaseItem[] {
+            this.superTabItem2,
             this.superTabItem5,
             this.superTabItem6,
             this.superTabItem7,
@@ -231,6 +242,78 @@
             this.superTabItem1});
             this.superTabControl1.TabStyle = DevComponents.DotNetBar.eSuperTabStyle.OfficeMobile2014;
             this.superTabControl1.Text = "superTabControl1";
+            // 
+            // superTabControlPanel2
+            // 
+            this.superTabControlPanel2.Controls.Add(this.panelEx1);
+            this.superTabControlPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.superTabControlPanel2.Location = new System.Drawing.Point(0, 40);
+            this.superTabControlPanel2.Name = "superTabControlPanel2";
+            this.superTabControlPanel2.Size = new System.Drawing.Size(608, 548);
+            this.superTabControlPanel2.TabIndex = 0;
+            this.superTabControlPanel2.TabItem = this.superTabItem2;
+            // 
+            // panelEx1
+            // 
+            this.panelEx1.CanvasColor = System.Drawing.SystemColors.Control;
+            this.panelEx1.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.panelEx1.Controls.Add(this.txtBirthDayText);
+            this.panelEx1.Controls.Add(this.label29);
+            this.panelEx1.Controls.Add(this.chbBirthday);
+            this.panelEx1.Controls.Add(this.chbReminder);
+            this.panelEx1.DisabledBackColor = System.Drawing.Color.Empty;
+            this.panelEx1.Location = new System.Drawing.Point(4, 4);
+            this.panelEx1.Name = "panelEx1";
+            this.panelEx1.Size = new System.Drawing.Size(600, 228);
+            this.panelEx1.Style.Alignment = System.Drawing.StringAlignment.Center;
+            this.panelEx1.Style.BackColor1.Color = System.Drawing.Color.White;
+            this.panelEx1.Style.BackColor2.Color = System.Drawing.Color.White;
+            this.panelEx1.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
+            this.panelEx1.Style.BorderColor.Color = System.Drawing.Color.Silver;
+            this.panelEx1.Style.BorderWidth = 2;
+            this.panelEx1.Style.CornerType = DevComponents.DotNetBar.eCornerType.Rounded;
+            this.panelEx1.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText;
+            this.panelEx1.Style.GradientAngle = 90;
+            this.panelEx1.TabIndex = 14;
+            // 
+            // chbBirthday
+            // 
+            this.chbBirthday.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.chbBirthday.BackColor = System.Drawing.Color.Transparent;
+            // 
+            // 
+            // 
+            this.chbBirthday.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.chbBirthday.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.chbBirthday.Location = new System.Drawing.Point(244, 37);
+            this.chbBirthday.Name = "chbBirthday";
+            this.chbBirthday.Size = new System.Drawing.Size(341, 23);
+            this.chbBirthday.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.chbBirthday.TabIndex = 9;
+            this.chbBirthday.Text = "یادآوری تاریخ تولد مشتریان در هنگام ورود به برنامه";
+            // 
+            // chbReminder
+            // 
+            this.chbReminder.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.chbReminder.BackColor = System.Drawing.Color.Transparent;
+            // 
+            // 
+            // 
+            this.chbReminder.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.chbReminder.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.chbReminder.Location = new System.Drawing.Point(322, 9);
+            this.chbReminder.Name = "chbReminder";
+            this.chbReminder.Size = new System.Drawing.Size(263, 23);
+            this.chbReminder.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.chbReminder.TabIndex = 9;
+            this.chbReminder.Text = "نمایش صفحه یادآوری در هنگام ورود به برنامه";
+            // 
+            // superTabItem2
+            // 
+            this.superTabItem2.AttachedControl = this.superTabControlPanel2;
+            this.superTabItem2.GlobalItem = false;
+            this.superTabItem2.Name = "superTabItem2";
+            this.superTabItem2.Text = "تنظیمات برنامه";
             // 
             // superTabControlPanel1
             // 
@@ -1357,6 +1440,173 @@
             this.superTabItem7.Name = "superTabItem7";
             this.superTabItem7.Text = "پیام رسانی";
             // 
+            // superTabControlPanel7
+            // 
+            this.superTabControlPanel7.Controls.Add(this.pnlSandouq);
+            this.superTabControlPanel7.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.superTabControlPanel7.Location = new System.Drawing.Point(0, 40);
+            this.superTabControlPanel7.Name = "superTabControlPanel7";
+            this.superTabControlPanel7.Size = new System.Drawing.Size(608, 548);
+            this.superTabControlPanel7.TabIndex = 0;
+            this.superTabControlPanel7.TabItem = this.superTabItem6;
+            // 
+            // pnlSandouq
+            // 
+            this.pnlSandouq.CanvasColor = System.Drawing.SystemColors.Control;
+            this.pnlSandouq.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.pnlSandouq.Controls.Add(this.txtSTabdil);
+            this.pnlSandouq.Controls.Add(this.txtSArzesh);
+            this.pnlSandouq.Controls.Add(this.txtSNatCode);
+            this.pnlSandouq.Controls.Add(this.cmbSType);
+            this.pnlSandouq.Controls.Add(this.txtSIdCode);
+            this.pnlSandouq.Controls.Add(this.txtSCode);
+            this.pnlSandouq.Controls.Add(this.label9);
+            this.pnlSandouq.Controls.Add(this.label10);
+            this.pnlSandouq.Controls.Add(this.label14);
+            this.pnlSandouq.Controls.Add(this.label15);
+            this.pnlSandouq.Controls.Add(this.label16);
+            this.pnlSandouq.Controls.Add(this.label17);
+            this.pnlSandouq.DisabledBackColor = System.Drawing.Color.Empty;
+            this.pnlSandouq.Location = new System.Drawing.Point(4, 3);
+            this.pnlSandouq.Name = "pnlSandouq";
+            this.pnlSandouq.Size = new System.Drawing.Size(600, 209);
+            this.pnlSandouq.Style.Alignment = System.Drawing.StringAlignment.Center;
+            this.pnlSandouq.Style.BackColor1.Color = System.Drawing.Color.White;
+            this.pnlSandouq.Style.BackColor2.Color = System.Drawing.Color.White;
+            this.pnlSandouq.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
+            this.pnlSandouq.Style.BorderColor.Color = System.Drawing.Color.Silver;
+            this.pnlSandouq.Style.BorderWidth = 2;
+            this.pnlSandouq.Style.CornerType = DevComponents.DotNetBar.eCornerType.Rounded;
+            this.pnlSandouq.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText;
+            this.pnlSandouq.Style.GradientAngle = 90;
+            this.pnlSandouq.TabIndex = 4;
+            // 
+            // txtSTabdil
+            // 
+            this.txtSTabdil.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtSTabdil.Location = new System.Drawing.Point(9, 165);
+            this.txtSTabdil.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.txtSTabdil.Name = "txtSTabdil";
+            this.txtSTabdil.Size = new System.Drawing.Size(127, 27);
+            this.txtSTabdil.TabIndex = 5;
+            // 
+            // txtSArzesh
+            // 
+            this.txtSArzesh.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtSArzesh.Location = new System.Drawing.Point(342, 165);
+            this.txtSArzesh.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.txtSArzesh.Name = "txtSArzesh";
+            this.txtSArzesh.Size = new System.Drawing.Size(137, 27);
+            this.txtSArzesh.TabIndex = 4;
+            // 
+            // txtSNatCode
+            // 
+            this.txtSNatCode.Location = new System.Drawing.Point(9, 90);
+            this.txtSNatCode.Name = "txtSNatCode";
+            this.txtSNatCode.Size = new System.Drawing.Size(471, 27);
+            this.txtSNatCode.TabIndex = 2;
+            // 
+            // cmbSType
+            // 
+            this.cmbSType.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cmbSType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbSType.FormattingEnabled = true;
+            this.cmbSType.Location = new System.Drawing.Point(9, 54);
+            this.cmbSType.Name = "cmbSType";
+            this.cmbSType.Size = new System.Drawing.Size(471, 28);
+            this.cmbSType.TabIndex = 1;
+            // 
+            // txtSIdCode
+            // 
+            this.txtSIdCode.Location = new System.Drawing.Point(9, 126);
+            this.txtSIdCode.Name = "txtSIdCode";
+            this.txtSIdCode.Size = new System.Drawing.Size(471, 27);
+            this.txtSIdCode.TabIndex = 3;
+            // 
+            // txtSCode
+            // 
+            this.txtSCode.Location = new System.Drawing.Point(9, 18);
+            this.txtSCode.Name = "txtSCode";
+            this.txtSCode.Size = new System.Drawing.Size(471, 27);
+            this.txtSCode.TabIndex = 0;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.BackColor = System.Drawing.Color.Transparent;
+            this.label9.Location = new System.Drawing.Point(507, 129);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(85, 20);
+            this.label9.TabIndex = 3;
+            this.label9.Text = "شماره شناسنامه";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.BackColor = System.Drawing.Color.Transparent;
+            this.label10.Location = new System.Drawing.Point(486, 57);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(106, 20);
+            this.label10.TabIndex = 5;
+            this.label10.Text = "وضعیت کد اقتصادی";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.BackColor = System.Drawing.Color.Transparent;
+            this.label14.Location = new System.Drawing.Point(142, 167);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(131, 20);
+            this.label14.TabIndex = 6;
+            this.label14.Text = "درصد تبدیل رهن و اجاره";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.BackColor = System.Drawing.Color.Transparent;
+            this.label15.Location = new System.Drawing.Point(485, 167);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(107, 20);
+            this.label15.TabIndex = 6;
+            this.label15.Text = "درصد ارزش افزوده";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.BackColor = System.Drawing.Color.Transparent;
+            this.label16.Location = new System.Drawing.Point(552, 93);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(41, 20);
+            this.label16.TabIndex = 7;
+            this.label16.Text = "کد ملی";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.BackColor = System.Drawing.Color.Transparent;
+            this.label17.Location = new System.Drawing.Point(526, 21);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(66, 20);
+            this.label17.TabIndex = 8;
+            this.label17.Text = "کد اقتصادی";
+            // 
+            // superTabItem6
+            // 
+            this.superTabItem6.AttachedControl = this.superTabControlPanel7;
+            this.superTabItem6.GlobalItem = false;
+            this.superTabItem6.Name = "superTabItem6";
+            this.superTabItem6.Text = "صندوق مکانیزه";
+            // 
             // superTabControlPanel3
             // 
             this.superTabControlPanel3.Controls.Add(this.pnlUnit);
@@ -1639,173 +1889,6 @@
             this.superTabItem5.Name = "superTabItem5";
             this.superTabItem5.Text = "واحد اقتصادی";
             // 
-            // superTabControlPanel7
-            // 
-            this.superTabControlPanel7.Controls.Add(this.pnlSandouq);
-            this.superTabControlPanel7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.superTabControlPanel7.Location = new System.Drawing.Point(0, 40);
-            this.superTabControlPanel7.Name = "superTabControlPanel7";
-            this.superTabControlPanel7.Size = new System.Drawing.Size(608, 548);
-            this.superTabControlPanel7.TabIndex = 0;
-            this.superTabControlPanel7.TabItem = this.superTabItem6;
-            // 
-            // pnlSandouq
-            // 
-            this.pnlSandouq.CanvasColor = System.Drawing.SystemColors.Control;
-            this.pnlSandouq.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.pnlSandouq.Controls.Add(this.txtSTabdil);
-            this.pnlSandouq.Controls.Add(this.txtSArzesh);
-            this.pnlSandouq.Controls.Add(this.txtSNatCode);
-            this.pnlSandouq.Controls.Add(this.cmbSType);
-            this.pnlSandouq.Controls.Add(this.txtSIdCode);
-            this.pnlSandouq.Controls.Add(this.txtSCode);
-            this.pnlSandouq.Controls.Add(this.label9);
-            this.pnlSandouq.Controls.Add(this.label10);
-            this.pnlSandouq.Controls.Add(this.label14);
-            this.pnlSandouq.Controls.Add(this.label15);
-            this.pnlSandouq.Controls.Add(this.label16);
-            this.pnlSandouq.Controls.Add(this.label17);
-            this.pnlSandouq.DisabledBackColor = System.Drawing.Color.Empty;
-            this.pnlSandouq.Location = new System.Drawing.Point(4, 3);
-            this.pnlSandouq.Name = "pnlSandouq";
-            this.pnlSandouq.Size = new System.Drawing.Size(600, 209);
-            this.pnlSandouq.Style.Alignment = System.Drawing.StringAlignment.Center;
-            this.pnlSandouq.Style.BackColor1.Color = System.Drawing.Color.White;
-            this.pnlSandouq.Style.BackColor2.Color = System.Drawing.Color.White;
-            this.pnlSandouq.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
-            this.pnlSandouq.Style.BorderColor.Color = System.Drawing.Color.Silver;
-            this.pnlSandouq.Style.BorderWidth = 2;
-            this.pnlSandouq.Style.CornerType = DevComponents.DotNetBar.eCornerType.Rounded;
-            this.pnlSandouq.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText;
-            this.pnlSandouq.Style.GradientAngle = 90;
-            this.pnlSandouq.TabIndex = 4;
-            // 
-            // txtSTabdil
-            // 
-            this.txtSTabdil.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtSTabdil.Location = new System.Drawing.Point(9, 165);
-            this.txtSTabdil.Maximum = new decimal(new int[] {
-            10000,
-            0,
-            0,
-            0});
-            this.txtSTabdil.Name = "txtSTabdil";
-            this.txtSTabdil.Size = new System.Drawing.Size(127, 27);
-            this.txtSTabdil.TabIndex = 5;
-            // 
-            // txtSArzesh
-            // 
-            this.txtSArzesh.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtSArzesh.Location = new System.Drawing.Point(342, 165);
-            this.txtSArzesh.Maximum = new decimal(new int[] {
-            10000,
-            0,
-            0,
-            0});
-            this.txtSArzesh.Name = "txtSArzesh";
-            this.txtSArzesh.Size = new System.Drawing.Size(137, 27);
-            this.txtSArzesh.TabIndex = 4;
-            // 
-            // txtSNatCode
-            // 
-            this.txtSNatCode.Location = new System.Drawing.Point(9, 90);
-            this.txtSNatCode.Name = "txtSNatCode";
-            this.txtSNatCode.Size = new System.Drawing.Size(471, 27);
-            this.txtSNatCode.TabIndex = 2;
-            // 
-            // cmbSType
-            // 
-            this.cmbSType.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.cmbSType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbSType.FormattingEnabled = true;
-            this.cmbSType.Location = new System.Drawing.Point(9, 54);
-            this.cmbSType.Name = "cmbSType";
-            this.cmbSType.Size = new System.Drawing.Size(471, 28);
-            this.cmbSType.TabIndex = 1;
-            // 
-            // txtSIdCode
-            // 
-            this.txtSIdCode.Location = new System.Drawing.Point(9, 126);
-            this.txtSIdCode.Name = "txtSIdCode";
-            this.txtSIdCode.Size = new System.Drawing.Size(471, 27);
-            this.txtSIdCode.TabIndex = 3;
-            // 
-            // txtSCode
-            // 
-            this.txtSCode.Location = new System.Drawing.Point(9, 18);
-            this.txtSCode.Name = "txtSCode";
-            this.txtSCode.Size = new System.Drawing.Size(471, 27);
-            this.txtSCode.TabIndex = 0;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.BackColor = System.Drawing.Color.Transparent;
-            this.label9.Location = new System.Drawing.Point(507, 129);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(85, 20);
-            this.label9.TabIndex = 3;
-            this.label9.Text = "شماره شناسنامه";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.BackColor = System.Drawing.Color.Transparent;
-            this.label10.Location = new System.Drawing.Point(486, 57);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(106, 20);
-            this.label10.TabIndex = 5;
-            this.label10.Text = "وضعیت کد اقتصادی";
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.BackColor = System.Drawing.Color.Transparent;
-            this.label14.Location = new System.Drawing.Point(142, 167);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(131, 20);
-            this.label14.TabIndex = 6;
-            this.label14.Text = "درصد تبدیل رهن و اجاره";
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.BackColor = System.Drawing.Color.Transparent;
-            this.label15.Location = new System.Drawing.Point(485, 167);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(107, 20);
-            this.label15.TabIndex = 6;
-            this.label15.Text = "درصد ارزش افزوده";
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.BackColor = System.Drawing.Color.Transparent;
-            this.label16.Location = new System.Drawing.Point(552, 93);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(41, 20);
-            this.label16.TabIndex = 7;
-            this.label16.Text = "کد ملی";
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.BackColor = System.Drawing.Color.Transparent;
-            this.label17.Location = new System.Drawing.Point(526, 21);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(66, 20);
-            this.label17.TabIndex = 8;
-            this.label17.Text = "کد اقتصادی";
-            // 
-            // superTabItem6
-            // 
-            this.superTabItem6.AttachedControl = this.superTabControlPanel7;
-            this.superTabItem6.GlobalItem = false;
-            this.superTabItem6.Name = "superTabItem6";
-            this.superTabItem6.Text = "صندوق مکانیزه";
-            // 
             // superTabControlPanel6
             // 
             this.superTabControlPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -1832,6 +1915,25 @@
             this.btnFinish.TextColor = System.Drawing.Color.Black;
             this.btnFinish.Click += new System.EventHandler(this.btnFinish_Click);
             // 
+            // txtBirthDayText
+            // 
+            this.txtBirthDayText.Location = new System.Drawing.Point(20, 70);
+            this.txtBirthDayText.Multiline = true;
+            this.txtBirthDayText.Name = "txtBirthDayText";
+            this.txtBirthDayText.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtBirthDayText.Size = new System.Drawing.Size(473, 145);
+            this.txtBirthDayText.TabIndex = 12;
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.BackColor = System.Drawing.Color.Transparent;
+            this.label29.Location = new System.Drawing.Point(506, 73);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(83, 20);
+            this.label29.TabIndex = 11;
+            this.label29.Text = "متن تبریک تولد";
+            // 
             // frmSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -1855,6 +1957,9 @@
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmSettings_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.superTabControl1)).EndInit();
             this.superTabControl1.ResumeLayout(false);
+            this.superTabControlPanel2.ResumeLayout(false);
+            this.panelEx1.ResumeLayout(false);
+            this.panelEx1.PerformLayout();
             this.superTabControlPanel1.ResumeLayout(false);
             this.panelEx4.ResumeLayout(false);
             this.panelEx4.PerformLayout();
@@ -1866,17 +1971,17 @@
             this.pnlSms.ResumeLayout(false);
             this.pnlSms.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.defBindingSource)).EndInit();
+            this.superTabControlPanel7.ResumeLayout(false);
+            this.pnlSandouq.ResumeLayout(false);
+            this.pnlSandouq.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtSTabdil)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtSArzesh)).EndInit();
             this.superTabControlPanel3.ResumeLayout(false);
             this.pnlUnit.ResumeLayout(false);
             this.pnlUnit.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.RegionBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.CityBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.StateBindingSource)).EndInit();
-            this.superTabControlPanel7.ResumeLayout(false);
-            this.pnlSandouq.ResumeLayout(false);
-            this.pnlSandouq.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtSTabdil)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtSArzesh)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -2004,5 +2109,12 @@
         private System.Windows.Forms.Label label28;
         private DevComponents.DotNetBar.Controls.CheckBoxX chbBackUpSms;
         private DevComponents.DotNetBar.Controls.CheckBoxX chbOpen;
+        private DevComponents.DotNetBar.SuperTabControlPanel superTabControlPanel2;
+        private DevComponents.DotNetBar.PanelEx panelEx1;
+        private DevComponents.DotNetBar.Controls.CheckBoxX chbBirthday;
+        private DevComponents.DotNetBar.Controls.CheckBoxX chbReminder;
+        private DevComponents.DotNetBar.SuperTabItem superTabItem2;
+        private System.Windows.Forms.TextBox txtBirthDayText;
+        private System.Windows.Forms.Label label29;
     }
 }
