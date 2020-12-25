@@ -81,37 +81,37 @@ namespace RealState
             {
                 var access = clsUser.CurrentUser.UserAccess;
 
-                mnuAccountPerformence.Enabled = access?.AccountPerformence.Account_Per_ShowForm ?? false;
-                mnuBuilding.Enabled = access?.Building.Building_ShowForm ?? false;
-                mnuBuildingAccType.Enabled = access?.BuildingAccountType.Building_Acc_Type_ShowForm ?? false;
-                mnuBuildingCondition.Enabled = access?.BuildingCondition.Building_Condition_ShowForm ?? false;
-                mnuBuildingOptions.Enabled = access?.BuildingOption.Building_Option_ShowForm ?? false;
-                mnuBuildingRequest.Enabled = access?.BuildingRequest.Building_Request_ShowForm ?? false;
-                mnuBuildingSearch.Enabled = access?.BuildingSearch.Building_Search_ShowForm ?? false;
-                mnuBuildingType.Enabled = access?.BuildingType.Building_Type_ShowForm ?? false;
-                mnuBuildingView.Enabled = access?.BuildingView.Building_View_ShowForm ?? false;
-                mnuCity.Enabled = access?.Cities.City_ShowForm ?? false;
-                mnuContract.Enabled = access?.Contract.Contract_ShowForm ?? false;
-                mnuDocumentType.Enabled = access?.DocumentType.Document_Type_ShowForm ?? false;
-                mnuFloorCover.Enabled = access?.FloorCover.Floor_Cover_ShowForm ?? false;
-                mnuHazine.Enabled = access?.Hazine.Hazine_ShowForm ?? false;
-                mnuKitchenService.Enabled = access?.KitchenService.Kitchen_Service_ShowForm ?? false;
-                mnuPardakht.Enabled = access?.Pardakht.Pardakht_ShowForm ?? false;
-                mnuPeoples.Enabled = access?.Peoples.People_ShowForm ?? false;
-                mnuPhoneBook.Enabled = access?.PhoneBook.PhoneBook_ShowForm ?? false;
-                mnuReception.Enabled = access?.Reception.Reception_ShowForm ?? false;
-                mnuRentalAuthority.Enabled = access?.RentalAuthority.Rental_ShowForm ?? false;
-                mnuSanad.Enabled = access?.Sanad.Sanad_Insert ?? false;
-                mnuSendSms.Enabled = access?.SendSms.Sms_ShowForm ?? false;
-                mnuSimcard.Enabled = access?.Simcard.Simcard_ShowForm ?? false;
-                mnuSmsPanels.Enabled = access?.SmsPanel.Panel_ShowForm ?? false;
-                mnuUsers.Enabled = access?.User.User_ShowForm ?? false;
-                mnuAccessLevel.Enabled = access?.UserAccLevel.User_Acc_ShowForm ?? false;
+                btnAccountPerfomence.Enabled = access?.AccountPerformence.Account_Per_ShowForm ?? false;
+                btnBuilding.Enabled = access?.Building.Building_ShowForm ?? false;
+                btnBuildingAccountType.Enabled = access?.BuildingAccountType.Building_Acc_Type_ShowForm ?? false;
+                btnBuildingCondition.Enabled = access?.BuildingCondition.Building_Condition_ShowForm ?? false;
+                btnBuildingOptions.Enabled = access?.BuildingOption.Building_Option_ShowForm ?? false;
+                btnBuildingRequest.Enabled = access?.BuildingRequest.Building_Request_ShowForm ?? false;
+                btnBuildingAdvanceSearch.Enabled = access?.BuildingSearch.Building_Search_ShowForm ?? false;
+                btnBuildingType.Enabled = access?.BuildingType.Building_Type_ShowForm ?? false;
+                btnBuildingView.Enabled = access?.BuildingView.Building_View_ShowForm ?? false;
+                btnCity.Enabled = access?.Cities.City_ShowForm ?? false;
+                btnContract.Enabled = access?.Contract.Contract_ShowForm ?? false;
+                btnDocType.Enabled = access?.DocumentType.Document_Type_ShowForm ?? false;
+                btnFloorCover.Enabled = access?.FloorCover.Floor_Cover_ShowForm ?? false;
+                btnHazine.Enabled = access?.Hazine.Hazine_ShowForm ?? false;
+                btnKitchenService.Enabled = access?.KitchenService.Kitchen_Service_ShowForm ?? false;
+                btnPardakht.Enabled = access?.Pardakht.Pardakht_ShowForm ?? false;
+                btnPeoples.Enabled = access?.Peoples.People_ShowForm ?? false;
+                btnPhoneBook.Enabled = access?.PhoneBook.PhoneBook_ShowForm ?? false;
+                btnReception.Enabled = access?.Reception.Reception_ShowForm ?? false;
+                btnRental.Enabled = access?.RentalAuthority.Rental_ShowForm ?? false;
+                btnSanad.Enabled = access?.Sanad.Sanad_Insert ?? false;
+                btnSendSms.Enabled = access?.SendSms.Sms_ShowForm ?? false;
+                btnRobotPanel.Enabled = access?.Simcard.Simcard_ShowForm ?? false;
+                btnSmsPanel.Enabled = access?.SmsPanel.Panel_ShowForm ?? false;
+                btnUsers.Enabled = access?.User.User_ShowForm ?? false;
+                btnAccessLevel.Enabled = access?.UserAccLevel.User_Acc_ShowForm ?? false;
 
-                mnuAcciuntingInfo.Visible = VersionAccess.Accounting;
-                mnuSmsPanels.Visible = VersionAccess.Sms;
-                mnuSendSms.Visible = VersionAccess.Sms;
-                mnuSimcard.Visible = VersionAccess.Advertise;
+                btnAccountingInfo.Visible = VersionAccess.Accounting;
+                btnSmsPanel.Visible = VersionAccess.Sms;
+                btnSendSms.Visible = VersionAccess.Sms;
+                btnRobotPanel.Visible = VersionAccess.Advertise;
             }
             catch (Exception ex)
             {
@@ -274,10 +274,13 @@ namespace RealState
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
+
         public frmMain()
         {
             InitializeComponent();
+            ribbonControl1.SelectedRibbonTabItem = ribbonTabItem1;
         }
+
         private async void frmMain_Load(object sender, System.EventArgs e)
         {
             try
@@ -308,13 +311,11 @@ namespace RealState
             else if (!lblSecond.Visible)
                 lblSecond.Visible = true;
         }
-
         private void frmMain_FormClosing(object sender, FormClosingEventArgs e)
         {
             UserLog.Save(EnLogAction.Logout, EnLogPart.Logout);
         }
-
-        private void mnuPeoples_Click(object sender, EventArgs e)
+        private void btnPeoples_Click(object sender, EventArgs e)
         {
             try
             {
@@ -326,8 +327,7 @@ namespace RealState
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-
-        private void mnuCity_Click(object sender, EventArgs e)
+        private void btnCity_Click(object sender, EventArgs e)
         {
             try
             {
@@ -339,8 +339,7 @@ namespace RealState
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-
-        private void mnuRegion_Click(object sender, EventArgs e)
+        private void btnRegion_Click(object sender, EventArgs e)
         {
             try
             {
@@ -352,8 +351,7 @@ namespace RealState
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-
-        private void mnuBuildingOptions_Click(object sender, EventArgs e)
+        private void btnBuildingOptions_Click(object sender, EventArgs e)
         {
             try
             {
@@ -365,8 +363,7 @@ namespace RealState
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-
-        private void mnuBuildingAccType_Click(object sender, EventArgs e)
+        private void btnBuildingAccountType_Click(object sender, EventArgs e)
         {
             try
             {
@@ -378,8 +375,7 @@ namespace RealState
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-
-        private void mnuFloorCover_Click(object sender, EventArgs e)
+        private void btnFloorCover_Click(object sender, EventArgs e)
         {
             try
             {
@@ -391,8 +387,7 @@ namespace RealState
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-
-        private void mnuKitchenService_Click(object sender, EventArgs e)
+        private void btnKitchenService_Click(object sender, EventArgs e)
         {
             try
             {
@@ -404,8 +399,7 @@ namespace RealState
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-
-        private void mnuDocumentType_Click(object sender, EventArgs e)
+        private void btnDocType_Click(object sender, EventArgs e)
         {
             try
             {
@@ -417,8 +411,7 @@ namespace RealState
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-
-        private void mnuRentalAuthority_Click(object sender, EventArgs e)
+        private void btnRental_Click(object sender, EventArgs e)
         {
             try
             {
@@ -430,8 +423,7 @@ namespace RealState
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-
-        private void mnuBuildingView_Click(object sender, EventArgs e)
+        private void btnBuildingView_Click(object sender, EventArgs e)
         {
             try
             {
@@ -443,8 +435,7 @@ namespace RealState
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-
-        private void mnuBuildingCondition_Click(object sender, EventArgs e)
+        private void btnBuildingCondition_Click(object sender, EventArgs e)
         {
             try
             {
@@ -456,8 +447,7 @@ namespace RealState
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-
-        private void mnuBuildingType_Click(object sender, EventArgs e)
+        private void btnBuildingType_Click(object sender, EventArgs e)
         {
             try
             {
@@ -469,8 +459,7 @@ namespace RealState
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-
-        private void mnuBuilding_Click(object sender, EventArgs e)
+        private void btnBuilding_Click(object sender, EventArgs e)
         {
             try
             {
@@ -482,8 +471,7 @@ namespace RealState
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-
-        private void mnuBuildingSearch_Click(object sender, EventArgs e)
+        private void btnBuildingAdvanceSearch_Click(object sender, EventArgs e)
         {
             try
             {
@@ -495,8 +483,7 @@ namespace RealState
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-
-        private void mnuBuildingRequest_Click(object sender, EventArgs e)
+        private void btnBuildingRequest_Click(object sender, EventArgs e)
         {
             try
             {
@@ -508,8 +495,7 @@ namespace RealState
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-
-        private void mnuContract_Click(object sender, EventArgs e)
+        private void btnContract_Click(object sender, EventArgs e)
         {
             try
             {
@@ -521,8 +507,7 @@ namespace RealState
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-
-        private void mnuUsers_Click(object sender, EventArgs e)
+        private void btnUsers_Click(object sender, EventArgs e)
         {
             try
             {
@@ -534,172 +519,7 @@ namespace RealState
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-
-        private void mnuHazine_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                var frm = new frmShowHazine(false);
-                frm.ShowDialog(this);
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-
-        private void mnuAccountPerformence_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                var frm = new frmShowAccounts();
-                frm.ShowDialog(this);
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-
-        private void mnuReception_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                var frm = new frmReceptionFilter(EnSanadType.Auto);
-                frm.ShowDialog(this);
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-
-        private void mnuPardakht_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                var frm = new frmPayeMentFilter(EnSanadType.Auto);
-                frm.ShowDialog(this);
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-
-        private void mnuSanad_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                var frm = new frmSanad();
-                frm.ShowDialog(this);
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-
-        private void mnuSimcard_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                var frm = new frmRobotPanel();
-                frm.ShowDialog(this);
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-
-        private void mnuSendSms_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                var frm = new frmSendSms();
-                frm.ShowDialog(this);
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-
-        private void mnuSmsPanels_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                var frm = new frmShowPanels();
-                frm.ShowDialog(this);
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-
-        private void mnuPhoneBook_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                var frm = new frmShowPhoneBook();
-                frm.ShowDialog();
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-
-        private async void mnuBazsazi_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                var res = await clsErtegha.StartErteghaAsync(AppSettings.DefaultConnectionString, this);
-                if (!res.HasError)
-                {
-                    MessageBox.Show(this, "بازسازی اطلاعات با موفقیت انجام شد", "پیغام سیستم", MessageBoxButtons.OK,
-                        MessageBoxIcon.Information);
-                    return;
-                }
-
-                MessageBox.Show(this, "خطا در بازسازی اطلاعات", "پیغام سیستم", MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-
-        private void mnuUserPerformence_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                var frm = new frmUserLogFilter();
-                frm.ShowDialog(this);
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-
-        private void mnuNote_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                var frm = new frmShowNotes();
-                frm.ShowDialog(this);
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-
-        private void mnuAccessLevel_Click(object sender, EventArgs e)
+        private void btnAccessLevel_Click(object sender, EventArgs e)
         {
             try
             {
@@ -711,8 +531,91 @@ namespace RealState
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-
-        private void mnuSettings_Click(object sender, EventArgs e)
+        private void btnHazine_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var frm = new frmShowHazine(false);
+                frm.ShowDialog(this);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private void btnAccountPerfomence_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var frm = new frmShowAccounts();
+                frm.ShowDialog(this);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private void btnReception_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var frm = new frmReceptionFilter(EnSanadType.Auto);
+                frm.ShowDialog(this);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private void btnPardakht_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var frm = new frmPayeMentFilter(EnSanadType.Auto);
+                frm.ShowDialog(this);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private void btnSanad_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var frm = new frmSanad();
+                frm.ShowDialog(this);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private void btnUserPerformance_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var frm = new frmUserLogFilter();
+                frm.ShowDialog(this);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private void btnBackUpLog_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var frm = new frmBackUpLog();
+                frm.ShowDialog(this);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private void btnSetting_Click(object sender, EventArgs e)
         {
             try
             {
@@ -724,8 +627,67 @@ namespace RealState
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-
-        private async void mnuBackUp_Click(object sender, EventArgs e)
+        private void btnPhoneBook_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var frm = new frmShowPhoneBook();
+                frm.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private void btnNote_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var frm = new frmShowNotes();
+                frm.ShowDialog(this);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private void btnSmsPanel_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var frm = new frmShowPanels();
+                frm.ShowDialog(this);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private void btnSendSms_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var frm = new frmSendSms();
+                frm.ShowDialog(this);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private void btnRobotPanel_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var frm = new frmRobotPanel();
+                frm.ShowDialog(this);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private async void btnBackUp_Click(object sender, EventArgs e)
         {
             try
             {
@@ -743,8 +705,7 @@ namespace RealState
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-
-        private async void mnuRestore_Click(object sender, EventArgs e)
+        private async void btnRestore_Click(object sender, EventArgs e)
         {
             try
             {
@@ -766,20 +727,25 @@ namespace RealState
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-
-        private void mnuBackUpLog_Click(object sender, EventArgs e)
+        private async void btnBazsazi_Click(object sender, EventArgs e)
         {
             try
             {
-                var frm = new frmBackUpLog();
-                frm.ShowDialog(this);
+                var res = await clsErtegha.StartErteghaAsync(AppSettings.DefaultConnectionString, this);
+                if (!res.HasError)
+                {
+                    MessageBox.Show(this, "بازسازی اطلاعات با موفقیت انجام شد", "پیغام سیستم", MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+                    return;
+                }
+
+                MessageBox.Show(this, "خطا در بازسازی اطلاعات", "پیغام سیستم", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
             }
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-
-
     }
 }

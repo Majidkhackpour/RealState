@@ -43,51 +43,55 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\References\BPersianCalender.dll</HintPath>
     </Reference>
-    <Reference Include="DevComponents.Charts.Design">
+    <Reference Include="DevComponents.Charts.Design, Version=12.8.0.8, Culture=neutral, PublicKeyToken=90f470f34c89ccaf, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\References\DevComponents.Charts.Design.dll</HintPath>
     </Reference>
-    <Reference Include="DevComponents.DotNetBar.Charts">
+    <Reference Include="DevComponents.DotNetBar.Charts, Version=12.8.0.8, Culture=neutral, PublicKeyToken=7eb7c3a35b91de04, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\References\DevComponents.DotNetBar.Charts.dll</HintPath>
     </Reference>
-    <Reference Include="DevComponents.DotNetBar.Design, Version=10.4.0.1, Culture=neutral, PublicKeyToken=90f470f34c89ccaf, processorArchitecture=MSIL">
+    <Reference Include="DevComponents.DotNetBar.Design, Version=12.8.0.8, Culture=neutral, PublicKeyToken=90f470f34c89ccaf, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\References\DevComponents.DotNetBar.Design.dll</HintPath>
     </Reference>
-    <Reference Include="DevComponents.DotNetBar.Keyboard, Version=10.4.0.1, Culture=neutral, PublicKeyToken=7eb7c3a35b91de04, processorArchitecture=MSIL">
+    <Reference Include="DevComponents.DotNetBar.Keyboard, Version=12.8.0.8, Culture=neutral, PublicKeyToken=7eb7c3a35b91de04, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\References\DevComponents.DotNetBar.Keyboard.dll</HintPath>
     </Reference>
-    <Reference Include="DevComponents.DotNetBar.Layout">
+    <Reference Include="DevComponents.DotNetBar.Layout, Version=12.8.0.8, Culture=neutral, PublicKeyToken=7eb7c3a35b91de04, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\References\DevComponents.DotNetBar.Layout.dll</HintPath>
     </Reference>
-    <Reference Include="DevComponents.DotNetBar.Layout.Design">
+    <Reference Include="DevComponents.DotNetBar.Layout.Design, Version=12.8.0.8, Culture=neutral, PublicKeyToken=7eb7c3a35b91de04, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\References\DevComponents.DotNetBar.Layout.Design.dll</HintPath>
     </Reference>
-    <Reference Include="DevComponents.DotNetBar.Schedule, Version=10.4.0.1, Culture=neutral, PublicKeyToken=7eb7c3a35b91de04, processorArchitecture=MSIL">
+    <Reference Include="DevComponents.DotNetBar.Schedule, Version=12.8.0.8, Culture=neutral, PublicKeyToken=7eb7c3a35b91de04, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\References\DevComponents.DotNetBar.Schedule.dll</HintPath>
     </Reference>
-    <Reference Include="DevComponents.DotNetBar.SuperGrid, Version=10.4.0.1, Culture=neutral, PublicKeyToken=7eb7c3a35b91de04, processorArchitecture=MSIL">
+    <Reference Include="DevComponents.DotNetBar.SuperGrid, Version=12.8.0.8, Culture=neutral, PublicKeyToken=7eb7c3a35b91de04, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\References\DevComponents.DotNetBar.SuperGrid.dll</HintPath>
     </Reference>
-    <Reference Include="DevComponents.DotNetBar2, Version=10.4.0.1, Culture=neutral, PublicKeyToken=7eb7c3a35b91de04, processorArchitecture=MSIL">
+    <Reference Include="DevComponents.DotNetBar2, Version=12.8.0.8, Culture=neutral, PublicKeyToken=7eb7c3a35b91de04, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\References\DevComponents.DotNetBar2.dll</HintPath>
     </Reference>
-    <Reference Include="DevComponents.Instrumentation, Version=10.4.0.1, Culture=neutral, PublicKeyToken=f90dc37c26666a67, processorArchitecture=MSIL">
+    <Reference Include="DevComponents.Instrumentation, Version=12.8.0.8, Culture=neutral, PublicKeyToken=f90dc37c26666a67, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\References\DevComponents.Instrumentation.dll</HintPath>
     </Reference>
-    <Reference Include="DevComponents.Instrumentation.Design, Version=10.4.0.1, Culture=neutral, PublicKeyToken=76cb4c6eb576bca5, processorArchitecture=MSIL">
+    <Reference Include="DevComponents.Instrumentation.Design, Version=12.8.0.8, Culture=neutral, PublicKeyToken=76cb4c6eb576bca5, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\References\DevComponents.Instrumentation.Design.dll</HintPath>
     </Reference>
-    <Reference Include="DevComponents.SuperGrid.Design, Version=10.4.0.1, Culture=neutral, PublicKeyToken=26d81176cfa2b486, processorArchitecture=MSIL">
+    <Reference Include="DevComponents.SuperGrid.Design, Version=12.8.0.8, Culture=neutral, PublicKeyToken=26d81176cfa2b486, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\References\DevComponents.SuperGrid.Design.dll</HintPath>
     </Reference>
-    <Reference Include="DevComponents.TreeGX, Version=10.4.0.1, Culture=neutral, PublicKeyToken=055db68f670cfeab, processorArchitecture=MSIL">
+    <Reference Include="DevComponents.TreeGX, Version=12.8.0.8, Culture=neutral, PublicKeyToken=055db68f670cfeab, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\References\DevComponents.TreeGX.dll</HintPath>
     </Reference>
@@ -510,6 +514,126 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\111.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\112.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\311.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\21.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\05.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\145.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\281.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\671.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\20.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\49.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\01.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\551.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\061.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\10.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\09.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\07.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\119.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\90.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\051.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\64.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\041.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\a077.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\a078.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\15.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\66.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\110.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\091.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\142.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\02.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1111.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\282.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\042.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\88.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\043.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\107.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\81.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\62.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\46.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\113.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BackGroung.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BKjpg.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
