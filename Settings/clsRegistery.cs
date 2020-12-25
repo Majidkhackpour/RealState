@@ -39,6 +39,37 @@ namespace Settings
         }
 
 
+        public static ReturnedSaveFuncInfo SetVersion(string version, string name)
+        {
+            var ret = new ReturnedSaveFuncInfo();
+            try
+            {
+                Microsoft.Win32.Registry.SetValue("HKEY_CURRENT_USER\\Software\\Arad\\" + name + "", "Version",
+                    version);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                ret.AddReturnedValue(ex);
+            }
+            return ret;
+        }
+        public static ReturnedSaveFuncInfoWithValue<string> GetVersion(string name)
+        {
+            var ret = new ReturnedSaveFuncInfoWithValue<string>();
+            try
+            {
+                var a = Microsoft.Win32.Registry.GetValue("HKEY_CURRENT_USER\\Software\\Arad\\", name,
+                    "");
+                ret.value = a.ToString();
+            }
+            catch (Exception ex)
+            {
+                ret.AddReturnedValue(ex);
+            }
+            return ret;
+        }
+
         public static ReturnedSaveFuncInfo SetRegistery(string value, string name)
         {
             var ret = new ReturnedSaveFuncInfo();

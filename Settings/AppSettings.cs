@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data.SqlClient;
 using System.Windows.Forms;
+using Services;
 
 namespace Settings
 {
@@ -15,13 +16,15 @@ namespace Settings
                 _defCn = string.IsNullOrEmpty(res.value)
                     ? "data source=.;initial catalog=AradRealStatedb;integrated security=True;MultipleActiveResultSets=True;"
                     : res.value;
-
-
+                WebErrorLog.DefaultConnectionString = _defCn;
                 return _defCn;
             }
-            set => _defCn = value;
+            set
+            {
+                _defCn = value;
+                WebErrorLog.DefaultConnectionString = _defCn;
+            }
         }
-
 
         public static string CreateConnectionString(SqlConnectionStringBuilder _builder, string serverName, bool isSqlDetect, string userName, string pass)
         {

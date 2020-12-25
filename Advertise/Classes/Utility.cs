@@ -33,43 +33,6 @@ namespace Advertise.Classes
         private static extern bool CloseHandle(IntPtr hObject);
         const int WtsCurrentSession = -1;
         static readonly IntPtr WtsCurrentServerHandle = IntPtr.Zero;
-        public static async Task<string> GetLocalIpAddress()
-        {
-            try
-            {
-                var request = (HttpWebRequest)WebRequest.Create("http://ifconfig.me");
-
-                request.UserAgent = "curl";
-
-                string publicIpAddress;
-
-                request.Method = "GET";
-                using (var response = request.GetResponse())
-                using (var reader = new StreamReader(response.GetResponseStream()))
-                    publicIpAddress = reader.ReadToEnd();
-
-                return publicIpAddress.Replace("\n", "");
-            }
-            catch (Exception ex)
-            {
-                return null;
-            }
-        }
-        public static async Task<string> GetNetworkIpAddress()
-        {
-            try
-            {
-                var host = Dns.GetHostEntry(Dns.GetHostName());
-                foreach (var ip in host.AddressList)
-                    if (ip.AddressFamily == AddressFamily.InterNetwork) return ip.ToString();
-                throw new Exception("No network adapters with an IPv4 address in the system!");
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-                return null;
-            }
-        }
         public static async Task Wait(double second = 0.1, [System.Runtime.CompilerServices.CallerMemberName]
             string memberName = "",
             [System.Runtime.CompilerServices.CallerFilePath]
@@ -287,7 +250,7 @@ namespace Advertise.Classes
             try
             {
                 TelegramSender.GetAdvertiseLog_bot()
-                    .Send($"سیستم مرجع: {await GetNetworkIpAddress()} \r\n آغاز فرایند بروز رسانی آگهی ها");
+                    .Send($"سیستم مرجع: {await Utilities.GetNetworkIpAddress()} \r\n آغاز فرایند بروز رسانی آگهی ها");
                 DeleteTemp();
 
                 var divar = DivarAdv.GetInstance();
@@ -520,7 +483,7 @@ namespace Advertise.Classes
                     res.value.Price2 = 0;
                 }
 
-                res.value.IP = await GetLocalIpAddress();
+                res.value.IP = await Utilities.GetLocalIpAddress();
             }
             catch (Exception ex)
             {

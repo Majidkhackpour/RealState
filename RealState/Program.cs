@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Security.Principal;
 using System.Windows.Forms;
 using DataBaseUtilities;
@@ -38,13 +39,14 @@ namespace RealState
             Application.SetCompatibleTextRenderingDefault(false);
             var owner = new frmMain();
 
-            var frmYear = new frmShowWorkingYears();
-            if (frmYear.ShowDialog(owner) != DialogResult.OK) return;
-
+            ErrorHandler.AddHandler(Assembly.GetExecutingAssembly().GetName().Version.ToString(), ENSource.Building,
+                Application.StartupPath);
             //Config Cache
             ClsCache.Init(AppSettings.DefaultConnectionString);
-
             ErrorManager.Init(ENSource.Building, null);
+
+            var frmYear = new frmShowWorkingYears();
+            if (frmYear.ShowDialog(owner) != DialogResult.OK) return;
 
             clsErtegha.StartErtegha(AppSettings.DefaultConnectionString, owner);
 
@@ -175,21 +177,29 @@ namespace RealState
                 {
                     switch ((EnAppSerial)item.ParseToInt())
                     {
-                        case EnAppSerial.Building: VersionAccess.Building = true;
+                        case EnAppSerial.Building:
+                            VersionAccess.Building = true;
                             break;
-                        case EnAppSerial.Sms: VersionAccess.Sms = true;
+                        case EnAppSerial.Sms:
+                            VersionAccess.Sms = true;
                             break;
-                        case EnAppSerial.Advertise: VersionAccess.Advertise = true;
+                        case EnAppSerial.Advertise:
+                            VersionAccess.Advertise = true;
                             break;
-                        case EnAppSerial.Telegram: VersionAccess.Telegram = true;
+                        case EnAppSerial.Telegram:
+                            VersionAccess.Telegram = true;
                             break;
-                        case EnAppSerial.WhatsApp: VersionAccess.WhatsApp = true;
+                        case EnAppSerial.WhatsApp:
+                            VersionAccess.WhatsApp = true;
                             break;
-                        case EnAppSerial.Excel: VersionAccess.Excel = true;
+                        case EnAppSerial.Excel:
+                            VersionAccess.Excel = true;
                             break;
-                        case EnAppSerial.AutoBackUp: VersionAccess.AutoBackUp = true;
+                        case EnAppSerial.AutoBackUp:
+                            VersionAccess.AutoBackUp = true;
                             break;
-                        case EnAppSerial.Accounting: VersionAccess.Accounting = true;
+                        case EnAppSerial.Accounting:
+                            VersionAccess.Accounting = true;
                             break;
                     }
                 }
