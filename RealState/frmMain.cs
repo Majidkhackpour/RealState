@@ -747,5 +747,21 @@ namespace RealState
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
+        private void btnErtegha_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void btnAdvance_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var frm = new frmAdvance();
+                frm.ShowDialog(this);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
     }
 }

@@ -153,6 +153,16 @@ namespace RealState.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _071 {
+            get {
+                object obj = ResourceManager.GetObject("071", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap _09 {
             get {
                 object obj = ResourceManager.GetObject("09", resourceCulture);
@@ -606,6 +616,16 @@ namespace RealState.Properties {
         internal static System.Drawing.Bitmap refresh_round_symbol {
             get {
                 object obj = ResourceManager.GetObject("refresh-round-symbol", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap run_this_program_as_an_administrator {
+            get {
+                object obj = ResourceManager.GetObject("run-this-program-as-an-administrator", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

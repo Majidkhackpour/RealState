@@ -95,7 +95,13 @@
             this.ribbonTabItem5 = new DevComponents.DotNetBar.RibbonTabItem();
             this.ribbonTabItem6 = new DevComponents.DotNetBar.RibbonTabItem();
             this.qatCustomizeItem1 = new DevComponents.DotNetBar.QatCustomizeItem();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.ribbonBar36 = new DevComponents.DotNetBar.RibbonBar();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.btnAdvance = new DevComponents.DotNetBar.ButtonItem();
             this.btnErtegha = new DevComponents.DotNetBar.ButtonItem();
             this.btnBazsazi = new DevComponents.DotNetBar.ButtonItem();
             this.btnRestore = new DevComponents.DotNetBar.ButtonItem();
@@ -160,6 +166,7 @@
             this.ribbonPanel3.SuspendLayout();
             this.ribbonPanel2.SuspendLayout();
             this.ribbonPanel1.SuspendLayout();
+            this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -253,19 +260,19 @@
             // label1
             // 
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.label1.Font = new System.Drawing.Font("B Titr", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.label1.Location = new System.Drawing.Point(231, 568);
+            this.label1.Font = new System.Drawing.Font("B Titr", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.label1.Location = new System.Drawing.Point(56, 1);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(96, 29);
+            this.label1.Size = new System.Drawing.Size(96, 23);
             this.label1.TabIndex = 1;
-            this.label1.Text = "سریال نرم افزار";
+            this.label1.Text = "سریال نرم افزار:";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblSerial
             // 
             this.lblSerial.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblSerial.Font = new System.Drawing.Font("B Titr", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.lblSerial.Location = new System.Drawing.Point(77, 568);
+            this.lblSerial.Font = new System.Drawing.Font("B Titr", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.lblSerial.Location = new System.Drawing.Point(-102, 0);
             this.lblSerial.Name = "lblSerial";
             this.lblSerial.Size = new System.Drawing.Size(155, 29);
             this.lblSerial.TabIndex = 1;
@@ -275,21 +282,21 @@
             // label2
             // 
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.label2.Font = new System.Drawing.Font("B Titr", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.label2.Location = new System.Drawing.Point(399, 568);
+            this.label2.Font = new System.Drawing.Font("B Titr", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.label2.Location = new System.Drawing.Point(227, 2);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(120, 29);
+            this.label2.Size = new System.Drawing.Size(93, 25);
             this.label2.TabIndex = 1;
-            this.label2.Text = "تاریخ اتمام پشتیبانی";
+            this.label2.Text = "تاریخ اتمام پشتیبانی:";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblExDate
             // 
             this.lblExDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblExDate.Font = new System.Drawing.Font("B Titr", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.lblExDate.Location = new System.Drawing.Point(302, 570);
+            this.lblExDate.Font = new System.Drawing.Font("B Titr", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.lblExDate.Location = new System.Drawing.Point(142, 4);
             this.lblExDate.Name = "lblExDate";
-            this.lblExDate.Size = new System.Drawing.Size(102, 29);
+            this.lblExDate.Size = new System.Drawing.Size(79, 23);
             this.lblExDate.TabIndex = 1;
             this.lblExDate.Text = "1402/05/12";
             this.lblExDate.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -297,10 +304,10 @@
             // lblEconomyName
             // 
             this.lblEconomyName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblEconomyName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(146)))), ((int)(((byte)(112)))), ((int)(((byte)(50)))));
+            this.lblEconomyName.BackColor = System.Drawing.Color.Transparent;
             this.lblEconomyName.Cursor = System.Windows.Forms.Cursors.Default;
             this.lblEconomyName.Font = new System.Drawing.Font("B Titr", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.lblEconomyName.Location = new System.Drawing.Point(674, 575);
+            this.lblEconomyName.Location = new System.Drawing.Point(582, 4);
             this.lblEconomyName.Name = "lblEconomyName";
             this.lblEconomyName.Size = new System.Drawing.Size(90, 17);
             this.lblEconomyName.TabIndex = 55780;
@@ -310,10 +317,10 @@
             // lblDbName
             // 
             this.lblDbName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblDbName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(94)))), ((int)(((byte)(94)))));
+            this.lblDbName.BackColor = System.Drawing.Color.Transparent;
             this.lblDbName.Cursor = System.Windows.Forms.Cursors.Default;
             this.lblDbName.Font = new System.Drawing.Font("B Titr", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.lblDbName.Location = new System.Drawing.Point(577, 575);
+            this.lblDbName.Location = new System.Drawing.Point(414, 4);
             this.lblDbName.Name = "lblDbName";
             this.lblDbName.Size = new System.Drawing.Size(88, 17);
             this.lblDbName.TabIndex = 55781;
@@ -324,11 +331,11 @@
             // 
             this.lblVersion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lblVersion.AutoSize = true;
-            this.lblVersion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(49)))), ((int)(((byte)(75)))));
+            this.lblVersion.BackColor = System.Drawing.Color.Transparent;
             this.lblVersion.Cursor = System.Windows.Forms.Cursors.Default;
             this.lblVersion.Font = new System.Drawing.Font("B Titr", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.lblVersion.ForeColor = System.Drawing.Color.White;
-            this.lblVersion.Location = new System.Drawing.Point(528, 573);
+            this.lblVersion.ForeColor = System.Drawing.Color.Black;
+            this.lblVersion.Location = new System.Drawing.Point(327, 4);
             this.lblVersion.Name = "lblVersion";
             this.lblVersion.Size = new System.Drawing.Size(29, 20);
             this.lblVersion.TabIndex = 55782;
@@ -385,6 +392,7 @@
             // ribbonPanel6
             // 
             this.ribbonPanel6.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.ribbonPanel6.Controls.Add(this.ribbonBar36);
             this.ribbonPanel6.Controls.Add(this.ribbonBar26);
             this.ribbonPanel6.Controls.Add(this.ribbonBar27);
             this.ribbonPanel6.Controls.Add(this.ribbonBar28);
@@ -396,10 +404,10 @@
             this.ribbonPanel6.Controls.Add(this.ribbonBar34);
             this.ribbonPanel6.Controls.Add(this.ribbonBar35);
             this.ribbonPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ribbonPanel6.Location = new System.Drawing.Point(0, 29);
+            this.ribbonPanel6.Location = new System.Drawing.Point(0, 30);
             this.ribbonPanel6.Name = "ribbonPanel6";
             this.ribbonPanel6.Padding = new System.Windows.Forms.Padding(3, 0, 3, 3);
-            this.ribbonPanel6.Size = new System.Drawing.Size(800, 122);
+            this.ribbonPanel6.Size = new System.Drawing.Size(800, 121);
             // 
             // 
             // 
@@ -433,7 +441,7 @@
             this.ribbonBar26.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
             this.ribbonBar26.Location = new System.Drawing.Point(561, 0);
             this.ribbonBar26.Name = "ribbonBar26";
-            this.ribbonBar26.Size = new System.Drawing.Size(62, 119);
+            this.ribbonBar26.Size = new System.Drawing.Size(62, 118);
             this.ribbonBar26.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ribbonBar26.TabIndex = 21;
             // 
@@ -464,7 +472,7 @@
             this.ribbonBar27.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
             this.ribbonBar27.Location = new System.Drawing.Point(499, 0);
             this.ribbonBar27.Name = "ribbonBar27";
-            this.ribbonBar27.Size = new System.Drawing.Size(62, 119);
+            this.ribbonBar27.Size = new System.Drawing.Size(62, 118);
             this.ribbonBar27.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ribbonBar27.TabIndex = 20;
             // 
@@ -495,7 +503,7 @@
             this.ribbonBar28.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
             this.ribbonBar28.Location = new System.Drawing.Point(437, 0);
             this.ribbonBar28.Name = "ribbonBar28";
-            this.ribbonBar28.Size = new System.Drawing.Size(62, 119);
+            this.ribbonBar28.Size = new System.Drawing.Size(62, 118);
             this.ribbonBar28.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ribbonBar28.TabIndex = 19;
             // 
@@ -526,7 +534,7 @@
             this.ribbonBar29.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
             this.ribbonBar29.Location = new System.Drawing.Point(375, 0);
             this.ribbonBar29.Name = "ribbonBar29";
-            this.ribbonBar29.Size = new System.Drawing.Size(62, 119);
+            this.ribbonBar29.Size = new System.Drawing.Size(62, 118);
             this.ribbonBar29.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ribbonBar29.TabIndex = 18;
             // 
@@ -557,7 +565,7 @@
             this.ribbonBar30.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
             this.ribbonBar30.Location = new System.Drawing.Point(313, 0);
             this.ribbonBar30.Name = "ribbonBar30";
-            this.ribbonBar30.Size = new System.Drawing.Size(62, 119);
+            this.ribbonBar30.Size = new System.Drawing.Size(62, 118);
             this.ribbonBar30.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ribbonBar30.TabIndex = 17;
             // 
@@ -588,7 +596,7 @@
             this.ribbonBar31.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
             this.ribbonBar31.Location = new System.Drawing.Point(251, 0);
             this.ribbonBar31.Name = "ribbonBar31";
-            this.ribbonBar31.Size = new System.Drawing.Size(62, 119);
+            this.ribbonBar31.Size = new System.Drawing.Size(62, 118);
             this.ribbonBar31.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ribbonBar31.TabIndex = 16;
             // 
@@ -619,7 +627,7 @@
             this.ribbonBar32.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
             this.ribbonBar32.Location = new System.Drawing.Point(189, 0);
             this.ribbonBar32.Name = "ribbonBar32";
-            this.ribbonBar32.Size = new System.Drawing.Size(62, 119);
+            this.ribbonBar32.Size = new System.Drawing.Size(62, 118);
             this.ribbonBar32.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ribbonBar32.TabIndex = 15;
             // 
@@ -650,7 +658,7 @@
             this.ribbonBar33.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
             this.ribbonBar33.Location = new System.Drawing.Point(127, 0);
             this.ribbonBar33.Name = "ribbonBar33";
-            this.ribbonBar33.Size = new System.Drawing.Size(62, 119);
+            this.ribbonBar33.Size = new System.Drawing.Size(62, 118);
             this.ribbonBar33.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ribbonBar33.TabIndex = 14;
             // 
@@ -681,7 +689,7 @@
             this.ribbonBar34.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
             this.ribbonBar34.Location = new System.Drawing.Point(65, 0);
             this.ribbonBar34.Name = "ribbonBar34";
-            this.ribbonBar34.Size = new System.Drawing.Size(62, 119);
+            this.ribbonBar34.Size = new System.Drawing.Size(62, 118);
             this.ribbonBar34.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ribbonBar34.TabIndex = 13;
             // 
@@ -712,7 +720,7 @@
             this.ribbonBar35.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
             this.ribbonBar35.Location = new System.Drawing.Point(3, 0);
             this.ribbonBar35.Name = "ribbonBar35";
-            this.ribbonBar35.Size = new System.Drawing.Size(62, 119);
+            this.ribbonBar35.Size = new System.Drawing.Size(62, 118);
             this.ribbonBar35.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ribbonBar35.TabIndex = 12;
             // 
@@ -1680,6 +1688,95 @@
             // 
             this.qatCustomizeItem1.Name = "qatCustomizeItem1";
             // 
+            // panel1
+            // 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.Controls.Add(this.label5);
+            this.panel1.Controls.Add(this.label4);
+            this.panel1.Controls.Add(this.label3);
+            this.panel1.Controls.Add(this.lblVersion);
+            this.panel1.Controls.Add(this.lblEconomyName);
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.lblSerial);
+            this.panel1.Controls.Add(this.label2);
+            this.panel1.Controls.Add(this.lblDbName);
+            this.panel1.Controls.Add(this.lblExDate);
+            this.panel1.Location = new System.Drawing.Point(3, 573);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(768, 26);
+            this.panel1.TabIndex = 55785;
+            // 
+            // label5
+            // 
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label5.BackColor = System.Drawing.Color.Transparent;
+            this.label5.Cursor = System.Windows.Forms.Cursors.Default;
+            this.label5.Font = new System.Drawing.Font("B Titr", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.label5.Location = new System.Drawing.Point(362, 4);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(53, 17);
+            this.label5.TabIndex = 55780;
+            this.label5.Text = "ویرایش:";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label4
+            // 
+            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label4.BackColor = System.Drawing.Color.Transparent;
+            this.label4.Cursor = System.Windows.Forms.Cursors.Default;
+            this.label4.Font = new System.Drawing.Font("B Titr", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.label4.Location = new System.Drawing.Point(499, 4);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(70, 17);
+            this.label4.TabIndex = 55780;
+            this.label4.Text = "پایگاه داده:";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label3
+            // 
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label3.BackColor = System.Drawing.Color.Transparent;
+            this.label3.Cursor = System.Windows.Forms.Cursors.Default;
+            this.label3.Font = new System.Drawing.Font("B Titr", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.label3.Location = new System.Drawing.Point(671, 4);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(90, 17);
+            this.label3.TabIndex = 55780;
+            this.label3.Text = "نام واحد اقتصادی:";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // ribbonBar36
+            // 
+            this.ribbonBar36.AutoOverflowEnabled = true;
+            // 
+            // 
+            // 
+            this.ribbonBar36.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.ribbonBar36.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.ribbonBar36.ContainerControlProcessDialogKey = true;
+            this.ribbonBar36.Dock = System.Windows.Forms.DockStyle.Left;
+            this.ribbonBar36.DragDropSupport = true;
+            this.ribbonBar36.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
+            this.btnAdvance});
+            this.ribbonBar36.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
+            this.ribbonBar36.Location = new System.Drawing.Point(623, 0);
+            this.ribbonBar36.Name = "ribbonBar36";
+            this.ribbonBar36.Size = new System.Drawing.Size(62, 118);
+            this.ribbonBar36.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.ribbonBar36.TabIndex = 22;
+            // 
+            // 
+            // 
+            this.ribbonBar36.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.ribbonBar36.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
             // pictureBox1
             // 
             this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -1688,10 +1785,22 @@
             this.pictureBox1.Image = global::RealState.Properties.Resources.BKjpg;
             this.pictureBox1.Location = new System.Drawing.Point(3, 211);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(797, 361);
+            this.pictureBox1.Size = new System.Drawing.Size(797, 363);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 55784;
             this.pictureBox1.TabStop = false;
+            // 
+            // btnAdvance
+            // 
+            this.btnAdvance.Image = global::RealState.Properties.Resources._071;
+            this.btnAdvance.ImageListSizeSelection = DevComponents.DotNetBar.eButtonImageListSelection.Large;
+            this.btnAdvance.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
+            this.btnAdvance.Name = "btnAdvance";
+            this.btnAdvance.PopupWidth = 500;
+            this.btnAdvance.Stretch = true;
+            this.btnAdvance.SubItemsExpandWidth = 14;
+            this.btnAdvance.Text = "مدیریت ویژه";
+            this.btnAdvance.Click += new System.EventHandler(this.btnAdvance_Click);
             // 
             // btnErtegha
             // 
@@ -1703,6 +1812,7 @@
             this.btnErtegha.Stretch = true;
             this.btnErtegha.SubItemsExpandWidth = 14;
             this.btnErtegha.Text = "ارتقا نسخه";
+            this.btnErtegha.Click += new System.EventHandler(this.btnErtegha_Click);
             // 
             // btnBazsazi
             // 
@@ -2360,19 +2470,13 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(800, 600);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.ribbonControl1);
-            this.Controls.Add(this.lblEconomyName);
-            this.Controls.Add(this.lblDbName);
-            this.Controls.Add(this.lblVersion);
             this.Controls.Add(this.line2);
             this.Controls.Add(this.lblSecond);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.lblMinute);
-            this.Controls.Add(this.lblSerial);
             this.Controls.Add(this.lblYear);
-            this.Controls.Add(this.lblExDate);
             this.Controls.Add(this.lblMounth);
             this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.lblDay);
@@ -2397,6 +2501,8 @@
             this.ribbonPanel3.ResumeLayout(false);
             this.ribbonPanel2.ResumeLayout(false);
             this.ribbonPanel1.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -2527,6 +2633,12 @@
         private DevComponents.DotNetBar.RibbonBar ribbonBar35;
         private DevComponents.DotNetBar.ButtonItem btnSetting;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label3;
+        private DevComponents.DotNetBar.RibbonBar ribbonBar36;
+        private DevComponents.DotNetBar.ButtonItem btnAdvance;
     }
 }
 

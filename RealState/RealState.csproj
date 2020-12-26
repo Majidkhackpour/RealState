@@ -143,11 +143,23 @@
     <Compile Include="BackUpLog\frmBackUpLog.Designer.cs">
       <DependentUpon>frmBackUpLog.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmAdvance.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAdvance.Designer.cs">
+      <DependentUpon>frmAdvance.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmMain.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmMain.Designer.cs">
       <DependentUpon>frmMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmRunAsAdmin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmRunAsAdmin.Designer.cs">
+      <DependentUpon>frmRunAsAdmin.cs</DependentUpon>
     </Compile>
     <Compile Include="frmShowBirthDay.cs">
       <SubType>Form</SubType>
@@ -178,8 +190,14 @@
     <EmbeddedResource Include="BackUpLog\frmBackUpLog.resx">
       <DependentUpon>frmBackUpLog.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmAdvance.resx">
+      <DependentUpon>frmAdvance.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmRunAsAdmin.resx">
+      <DependentUpon>frmRunAsAdmin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmShowBirthDay.resx">
       <DependentUpon>frmShowBirthDay.cs</DependentUpon>
@@ -634,6 +652,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\BKjpg.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\run-this-program-as-an-administrator.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\071.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
