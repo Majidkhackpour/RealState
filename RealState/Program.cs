@@ -221,7 +221,7 @@ namespace RealState
             try
             {
                 ErrorHandler.AddHandler(Assembly.GetExecutingAssembly().GetName().Version.ToString(), ENSource.Building,
-                    Application.StartupPath);
+                    Application.StartupPath, clsRegistery.GetRegistery("U1001ML"));
                 ClsCache.Init(AppSettings.DefaultConnectionString);
                 ErrorManager.Init(ENSource.Building, null);
             }

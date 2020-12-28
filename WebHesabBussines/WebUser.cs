@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using EntityCache.Bussines;
 using Services;
@@ -65,6 +66,40 @@ namespace WebHesabBussines
                     Password = cls.Password
                 };
                 await obj.SaveAsync();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+
+            return res;
+        }
+        public static async Task<ReturnedSaveFuncInfo> SaveAsync(List<UserBussines> cls)
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                foreach (var item in cls)
+                {
+                    var obj = new WebUser()
+                    {
+                        Guid = item.Guid,
+                        Name = item.Name,
+                        Modified = item.Modified,
+                        Status = item.Status,
+                        Account = item.Account,
+                        AccountFirst = item.AccountFirst,
+                        Access = item.Access,
+                        Email = item.Email,
+                        Mobile = item.Mobile,
+                        UserName = item.UserName,
+                        AnswerQuestion = item.AnswerQuestion,
+                        SecurityQuestion = item.SecurityQuestion,
+                        Password = item.Password
+                    };
+                    await obj.SaveAsync();
+                }
             }
             catch (Exception ex)
             {

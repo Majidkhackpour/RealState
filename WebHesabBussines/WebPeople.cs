@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using EntityCache.Bussines;
 using Services;
@@ -72,6 +73,43 @@ namespace WebHesabBussines
                     PostalCode = cls.PostalCode
                 };
                 await obj.SaveAsync();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+
+            return res;
+        }
+        public static async Task<ReturnedSaveFuncInfo> SaveAsync(List<PeoplesBussines> item)
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                foreach (var cls in item)
+                {
+                    var obj = new WebPeople()
+                    {
+                        Guid = cls.Guid,
+                        Name = cls.Name,
+                        Modified = cls.Modified,
+                        Status = cls.Status,
+                        Account = cls.Account,
+                        Code = cls.Code,
+                        AccountFirst = cls.AccountFirst,
+                        Address = cls.Address,
+                        FatherName = cls.FatherName,
+                        DateBirth = cls.DateBirth,
+                        IdCode = cls.IdCode,
+                        NationalCode = cls.NationalCode,
+                        GroupGuid = cls.GroupGuid,
+                        PlaceBirth = cls.PlaceBirth,
+                        IssuedFrom = cls.IssuedFrom,
+                        PostalCode = cls.PostalCode
+                    };
+                    await obj.SaveAsync();
+                }
             }
             catch (Exception ex)
             {

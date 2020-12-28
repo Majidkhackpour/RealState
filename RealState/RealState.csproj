@@ -307,6 +307,10 @@
       <Project>{ebed491e-32a3-4484-a5aa-e5ed61e8bb0b}</Project>
       <Name>User</Name>
     </ProjectReference>
+    <ProjectReference Include="..\WebHesabBussines\WebHesabBussines.csproj">
+      <Project>{f8f30f25-71e7-4e57-b938-4b30a267eaef}</Project>
+      <Name>WebHesabBussines</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Arad_Icon.ico" />

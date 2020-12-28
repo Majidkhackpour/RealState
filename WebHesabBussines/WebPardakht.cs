@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using EntityCache.Bussines;
 using Services;
@@ -65,6 +66,40 @@ namespace WebHesabBussines
                     FishNo = cls.FishNo
                 };
                 await obj.SaveAsync();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+
+            return res;
+        }
+        public static async Task<ReturnedSaveFuncInfo> SaveAsync(List<PardakhtBussines> item)
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                foreach (var cls in item)
+                {
+                    var obj = new WebPardakht()
+                    {
+                        Guid = cls.Guid,
+                        Modified = cls.Modified,
+                        Status = cls.Status,
+                        Description = cls.Description,
+                        CreateDate = cls.CreateDate,
+                        NaqdPrice = cls.NaqdPrice,
+                        BankPrice = cls.BankPrice,
+                        BankName = cls.BankName,
+                        CheckNo = cls.CheckNo,
+                        SarResid = cls.SarResid,
+                        Payer = cls.Payer,
+                        Check = cls.Check,
+                        FishNo = cls.FishNo
+                    };
+                    await obj.SaveAsync();
+                }
             }
             catch (Exception ex)
             {

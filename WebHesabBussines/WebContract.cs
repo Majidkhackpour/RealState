@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using EntityCache.Bussines;
 using Services;
@@ -91,6 +92,52 @@ namespace WebHesabBussines
                     //DateM = cls.DateM
                 };
                 await obj.SaveAsync();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+
+            return res;
+        }
+        public static async Task<ReturnedSaveFuncInfo> SaveAsync(List<ContractBussines> item)
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                foreach (var cls in item)
+                {
+                    var obj = new WebContract()
+                    {
+                        Guid = cls.Guid,
+                        Modified = cls.Modified,
+                        Status = cls.Status,
+                        Code = cls.Code,
+                        MinorPrice = cls.MinorPrice,
+                        UserGuid = cls.UserGuid,
+                        TotalPrice = cls.TotalPrice,
+                        Description = cls.Description,
+                        //Type = cls.Type,
+                        Term = cls.Term,
+                        SecondSideGuid = cls.SecondSideGuid,
+                        Delay = cls.Delay,
+                        SarQofli = cls.SarQofli,
+                        BankName = cls.BankName,
+                        IsTemp = cls.IsTemp,
+                        FirstSideGuid = cls.FirstSideGuid,
+                        Shobe = cls.Shobe,
+                        CheckNo = cls.CheckNo,
+                        FromDate = cls.FromDate,
+                        DischargeDate = cls.DischargeDate,
+                        SarResid = cls.SarResid,
+                        BuildingGuid = cls.BuildingGuid,
+                        SetDocDate = cls.SetDocDate,
+                        SetDocPlace = cls.SetDocPlace,
+                        //DateM = cls.DateM
+                    };
+                    await obj.SaveAsync();
+                }
             }
             catch (Exception ex)
             {

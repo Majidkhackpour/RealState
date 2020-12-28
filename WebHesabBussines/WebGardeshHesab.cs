@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using EntityCache.Bussines;
 using Services;
@@ -57,6 +58,36 @@ namespace WebHesabBussines
                     PeopleGuid = cls.PeopleGuid
                 };
                 await obj.SaveAsync();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+
+            return res;
+        }
+        public static async Task<ReturnedSaveFuncInfo> SaveAsync(List<GardeshHesabBussines> item)
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                foreach (var cls in item)
+                {
+                    var obj = new WebGardeshHesab()
+                    {
+                        Guid = cls.Guid,
+                        Modified = cls.Modified,
+                        Status = cls.Status,
+                        ParentGuid = cls.ParentGuid,
+                        Description = cls.Description,
+                        Type = cls.Type,
+                        Price = cls.Price,
+                        Babat = cls.Babat,
+                        PeopleGuid = cls.PeopleGuid
+                    };
+                    await obj.SaveAsync();
+                }
             }
             catch (Exception ex)
             {

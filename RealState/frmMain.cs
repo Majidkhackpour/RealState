@@ -38,6 +38,7 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WindowsSerivces;
 using TMS.Class;
 using User;
 using Calendar = Services.Calendar;
@@ -755,8 +756,9 @@ namespace RealState
         {
             try
             {
-                var frm = new frmAdvance();
-                frm.ShowDialog(this);
+                var frm = new frmManagementPass();
+                if (frm.ShowDialog(this) == DialogResult.OK)
+                    new frmAdvance().ShowDialog(this);
             }
             catch (Exception ex)
             {
