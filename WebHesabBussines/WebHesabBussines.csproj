@@ -51,6 +51,7 @@
     <Compile Include="WebBuildingRequest.cs" />
     <Compile Include="WebBuildingType.cs" />
     <Compile Include="WebBuildingView.cs" />
+    <Compile Include="WebCheckLuck.cs" />
     <Compile Include="WebCity.cs" />
     <Compile Include="WebContract.cs" />
     <Compile Include="WebDocumentType.cs" />

@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Security.Principal;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using EntityCache.Assistence;
 using Ertegha;
@@ -40,6 +42,9 @@ namespace RealState
             clsNotification.Init(color);
 
             if (!CheckHardSerial()) return;
+
+            //_ = Task.Run(CheckHardSerialWithServerAsync);
+
 
             if (!CheckVersion()) return;
 
@@ -254,6 +259,123 @@ namespace RealState
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
                 return false;
+            }
+        }
+        private static async Task CheckHardSerialWithServerAsync()
+        {
+            try
+            {
+                var free = clsRegistery.GetRegistery("U1008FD");
+                if (!string.IsNullOrEmpty(free)) return;
+
+                var code = clsGlobalSetting.HardDriveSerial;
+                if (string.IsNullOrEmpty(code)) return;
+
+                var day = DateTime.Now.Day;
+                var path = Path.Combine(Application.StartupPath , "dbServer.txt");
+                if (day == 1 || day == 15)
+                {
+                    var res = SendRequest(code);
+                    if (res)
+                    {
+                        if (File.Exists(path))
+                        {
+                            try
+                            {
+                                File.Delete(path);
+                            }
+                            catch 
+                            {
+                            }
+                        }
+                        return;
+                    }
+
+                    if (!File.Exists(path))
+                    {
+                        File.WriteAllText(path, "5");
+                        return;
+                    }
+                    else
+                    {
+                        var count = File.ReadAllText(path).Trim().ParseToInt();
+                        if (count == 0)
+                        {
+                            NotAccess(path);
+                            return;
+                        }
+                        count -= 1;
+                        File.WriteAllText(path, count.ToString());
+                        return;
+                    }
+                }
+
+                if (File.Exists(path))
+                {
+                    var res = SendRequest(code);
+                    if (res)
+                    {
+                        if (File.Exists(path))
+                        {
+                            try
+                            {
+                                File.Delete(path);
+                            }
+                            catch
+                            {
+                            }
+                        }
+                        return;
+                    }
+                    var count = File.ReadAllText(path).Trim().ParseToInt();
+                    if (count == 0)
+                    {
+                        NotAccess(path);
+                        Application.Exit();
+                        return;
+                    }
+                    count -= 1;
+                    File.WriteAllText(path, count.ToString());
+                    return;
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private static bool SendRequest(string hSerial)
+        {
+            try
+            {
+                return WebHesabBussines.WebCheckLuck.CheckHardSerial(hSerial);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                return false;
+            }
+        }
+        private static void NotAccess(string path)
+        {
+            try
+            {
+                if (File.Exists(path))
+                {
+                    try
+                    {
+                        File.Delete(path);
+                    }
+                    catch
+                    {
+                    }
+                }
+                SoftwareLock.clsRegistery.SetRegistery("", "U1001ML");
+                MessageBox.Show("متاسفانه مشخصه فنی شما مورد تایید نمی باشد");
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
     }
