@@ -59,7 +59,17 @@ namespace Peoples
             {
                 switch (e.KeyCode)
                 {
-                    case Keys.Escape: Close();
+                    case Keys.Escape:
+                        if (!string.IsNullOrEmpty(txtSearch.Text))
+                        {
+                            txtSearch.Text = "";
+                            return;
+                        }
+                        Close();
+                        break;
+                    case Keys.Down:
+                        if (txtSearch.Focused)
+                            DGrid.Focus();
                         break;
                 }
             }

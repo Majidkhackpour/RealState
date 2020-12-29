@@ -190,7 +190,7 @@
             this.DGrid.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.DGrid.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             this.DGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DGrid.Size = new System.Drawing.Size(654, 490);
+            this.DGrid.Size = new System.Drawing.Size(654, 525);
             this.DGrid.TabIndex = 55752;
             this.DGrid.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DGrid_CellFormatting);
             this.DGrid.Scroll += new System.Windows.Forms.ScrollEventHandler(this.DGrid_Scroll);
@@ -546,7 +546,7 @@
             this.trvGroup.Location = new System.Drawing.Point(660, 70);
             this.trvGroup.Name = "trvGroup";
             this.trvGroup.RightToLeftLayout = true;
-            this.trvGroup.Size = new System.Drawing.Size(135, 490);
+            this.trvGroup.Size = new System.Drawing.Size(135, 525);
             this.trvGroup.TabIndex = 55759;
             this.trvGroup.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.trvGroup_AfterSelect);
             // 
@@ -608,10 +608,10 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 600);
-            this.Controls.Add(this.ucPagger);
             this.Controls.Add(this.trvGroup);
             this.Controls.Add(this.txtSearch);
             this.Controls.Add(this.DGrid);
+            this.Controls.Add(this.ucPagger);
             this.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;

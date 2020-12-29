@@ -135,6 +135,18 @@ namespace Advertise.Forms.Simcard
 
                         mnuEdit.PerformClick();
                         break;
+                    case Keys.Escape:
+                        if (!string.IsNullOrEmpty(txtSearch.Text))
+                        {
+                            txtSearch.Text = "";
+                            return;
+                        }
+                        Close();
+                        break;
+                    case Keys.Down:
+                        if (txtSearch.Focused)
+                            DGrid.Focus();
+                        break;
                 }
             }
             catch (Exception ex)

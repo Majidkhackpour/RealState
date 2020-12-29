@@ -139,7 +139,16 @@ namespace Payamak.PhoneBook
                         if (e.Control) ST = !ST;
                         break;
                     case Keys.Escape:
+                        if (!string.IsNullOrEmpty(txtSearch.Text))
+                        {
+                            txtSearch.Text = "";
+                            return;
+                        }
                         Close();
+                        break;
+                    case Keys.Down:
+                        if (txtSearch.Focused)
+                            DGrid.Focus();
                         break;
                     case Keys.F:
                         if (e.Control) txtSearch.Focus();

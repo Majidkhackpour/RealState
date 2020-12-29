@@ -106,7 +106,17 @@ namespace RealState.Note
                     case Keys.F:
                         if (e.Control) txtSearch.Focus();
                         break;
-                    case Keys.Escape: Close();
+                    case Keys.Escape:
+                        if (!string.IsNullOrEmpty(txtSearch.Text))
+                        {
+                            txtSearch.Text = "";
+                            return;
+                        }
+                        Close();
+                        break;
+                    case Keys.Down:
+                        if (txtSearch.Focused)
+                            DGrid.Focus();
                         break;
                 }
             }

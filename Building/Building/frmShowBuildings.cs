@@ -411,6 +411,11 @@ namespace Building.Building
                         if (e.Control) ST = !ST;
                         break;
                     case Keys.Escape:
+                        if (!string.IsNullOrEmpty(txtSearch.Text))
+                        {
+                            txtSearch.Text = "";
+                            return;
+                        }
                         Close();
                         break;
                     case Keys.F:
@@ -419,6 +424,10 @@ namespace Building.Building
                     case Keys.Enter:
                         if (!isShowMode) mnuEdit.PerformClick();
                         else Select();
+                        break;
+                    case Keys.Down:
+                        if (txtSearch.Focused)
+                            DGrid.Focus();
                         break;
                 }
             }

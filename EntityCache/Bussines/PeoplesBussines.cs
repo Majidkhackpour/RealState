@@ -218,7 +218,7 @@ namespace EntityCache.Bussines
             try
             {
                 if (string.IsNullOrEmpty(search)) search = "";
-                var res = new List<PeoplesBussines>();
+                IEnumerable<PeoplesBussines> res;
                 if (groupGuid == Guid.Empty)
                     res = await GetAllAsync();
                 else res = await GetAllAsync(groupGuid, true);
@@ -229,14 +229,12 @@ namespace EntityCache.Bussines
                         if (!string.IsNullOrEmpty(item) && item.Trim() != "")
                         {
                             res = res.Where(x => x.Name.ToLower().Contains(item.ToLower()) ||
-                                                 x.Code.ToLower().Contains(item.ToLower()))
-                                ?.ToList();
+                                                 x.Code.ToLower().Contains(item.ToLower()));
                         }
                     }
 
-                res = res.OrderBy(q => q.Code).ToList();
-
-                return res;
+                res = res.OrderBy(q => q.Code);
+                return res?.ToList();
             }
             catch (OperationCanceledException)
             { return null; }

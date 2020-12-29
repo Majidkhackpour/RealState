@@ -116,11 +116,8 @@ namespace EntityCache.Bussines
         #endregion
 
         public static async Task<List<BuildingBussines>> GetAllAsync() => await UnitOfWork.Building.GetAllAsyncBySp();
-
         public static async Task<BuildingBussines> GetAsync(Guid guid) => await UnitOfWork.Building.GetAsync(guid);
-
         public static BuildingBussines Get(Guid guid) => AsyncContext.Run(() => GetAsync(guid));
-
         public async Task<ReturnedSaveFuncInfo> SaveAsync(bool sendToServer, string tranName = "")
         {
             var res = new ReturnedSaveFuncInfo();
@@ -185,7 +182,6 @@ namespace EntityCache.Bussines
 
             return res;
         }
-
         public async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(bool status, bool sendToServer, string tranName = "")
         {
             var res = new ReturnedSaveFuncInfo();
@@ -241,7 +237,6 @@ namespace EntityCache.Bussines
 
             return res;
         }
-
         public static List<BuildingBussines> GetAll(string search, EnBuildingStatus status,
             Guid buildingTypeGuid, Guid userGuid, Guid docTypeGuid, Guid accTypeGuid) => AsyncContext.Run(() =>
             GetAllAsync(search, status, buildingTypeGuid, userGuid, docTypeGuid, accTypeGuid));
@@ -278,29 +273,22 @@ namespace EntityCache.Bussines
                                                  x.ZirBana.ToString().ToLower().Contains(item.ToLower()) ||
                                                  x.UserName.ToLower().Contains(item.ToLower()) ||
                                                  x.Address.ToLower().Contains(item.ToLower()) ||
-                                                 x.RegionName.ToLower().Contains(item.ToLower()))
-                                ?.ToList();
+                                                 x.RegionName.ToLower().Contains(item.ToLower()));
                         }
                     }
 
                 return res?.ToList();
             }
-            catch (OperationCanceledException)
-            {
-                return null;
-            }
+            catch (OperationCanceledException) { return null; }
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
                 return new List<BuildingBussines>();
             }
         }
-
         public static async Task<string> NextCodeAsync() => await UnitOfWork.Building.NextCodeAsync();
-
         public static async Task<bool> CheckCodeAsync(string code, Guid guid) =>
             await UnitOfWork.Building.CheckCodeAsync(code, guid);
-
         public static async Task<List<BuildingViewModel>> GetAllAsync(string code, Guid buildingGuid,
             Guid buildingAccountTypeGuid, int fMasahat, int lMasahat, int roomCount, decimal fPrice1, decimal lPrice1,
             decimal fPrice2, decimal lPrice2, EnRequestType type, List<Guid> regionList)
