@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using EntityCache.Assistence;
 using Nito.AsyncEx;
+using Persistence;
 using Services;
 using Servicess.Interfaces.Building;
 using WebHesabBussines;
@@ -41,6 +42,7 @@ namespace EntityCache.Bussines
         public Guid BuildingAccountTypeGuid { get; set; }
         public Guid BuildingConditionGuid { get; set; }
         public string ShortDesc { get; set; }
+        public string HardSerial => Cache.HardSerial;
         private List<BuildingRequestRegionBussines> _regList;
         public List<BuildingRequestRegionBussines> RegionList
         {

@@ -17,9 +17,8 @@ namespace WebHesabBussines
                     return !string.IsNullOrEmpty(res);
                 }
             }
-            catch (Exception ex)
+            catch
             {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
                 return false;
             }
         }

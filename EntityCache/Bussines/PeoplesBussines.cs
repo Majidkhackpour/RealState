@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using EntityCache.Assistence;
 using Nito.AsyncEx;
+using Persistence;
 using Services;
 using Servicess.Interfaces.Building;
 using WebHesabBussines;
@@ -41,6 +42,7 @@ namespace EntityCache.Bussines
         public string FirstNumber =>
             AsyncContext.Run(() => PhoneBookBussines.GetAllAsync(Guid, true))?.FirstOrDefault()?.Tell ?? "";
         public bool IsChecked { get; set; }
+        public string HardSerial => Cache.HardSerial;
         private List<PhoneBookBussines> _tellList;
         public List<PhoneBookBussines> TellList
         {

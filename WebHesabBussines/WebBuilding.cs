@@ -67,6 +67,9 @@ namespace WebHesabBussines
         public int RoomCount { get; set; }
         public EnBuildingStatus BuildingStatus { get; set; }
         public string Image { get; set; }
+        public string HardSerial { get; set; }
+        public List<BuildingRelatedOptionsBussines> OptionList { get; set; }
+        public List<BuildingGalleryBussines> GalleryList { get; set; }
 
 
         public async Task<ReturnedSaveFuncInfo> SaveAsync()
@@ -107,16 +110,15 @@ namespace WebHesabBussines
                     SellPrice = cls.SellPrice,
                     RoomCount = cls.RoomCount,
                     BuildingStatus = cls.BuildingStatus,
-                    //GalleryList = cls.GalleryList,
+                    GalleryList = cls.GalleryList,
                     ZirBana = cls.ZirBana,
                     BuildingAccountTypeGuid = cls.BuildingAccountTypeGuid,
-                    //OptionList = cls.OptionList,
+                    OptionList = cls.OptionList,
                     UserGuid = cls.UserGuid,
                     Address = cls.Address,
                     BuildingTypeGuid = cls.BuildingTypeGuid,
                     SaleSakht = cls.SaleSakht,
                     OwnerGuid = cls.OwnerGuid,
-                    //RegionName = cls.RegionName,
                     EjarePrice2 = cls.EjarePrice2,
                     RentalAutorityGuid = cls.RentalAutorityGuid,
                     Tell = cls.Tell,
@@ -155,12 +157,9 @@ namespace WebHesabBussines
                     BuildingViewGuid = cls.BuildingViewGuid,
                     Barq = cls.Barq,
                     Gas = cls.Gas,
-                    DateParvane = cls.DateParvane
-                    //UserName = cls.UserName,
-                    //BuildingAccountTypeName = cls.BuildingAccountTypeName,
-                    //RentalAuthorityName = cls.RentalAuthorityName,
-                    //OwnerName = cls.OwnerName,
-                    //BuildingTypeName = cls.BuildingTypeName
+                    DateParvane = cls.DateParvane,
+                    HardSerial = cls.HardSerial,
+                    Image = cls.Image
                 };
                 await obj.SaveAsync();
             }
@@ -192,16 +191,15 @@ namespace WebHesabBussines
                         SellPrice = cls.SellPrice,
                         RoomCount = cls.RoomCount,
                         BuildingStatus = cls.BuildingStatus,
-                        //GalleryList = cls.GalleryList,
+                        GalleryList = cls.GalleryList,
                         ZirBana = cls.ZirBana,
                         BuildingAccountTypeGuid = cls.BuildingAccountTypeGuid,
-                        //OptionList = cls.OptionList,
+                        OptionList = cls.OptionList,
                         UserGuid = cls.UserGuid,
                         Address = cls.Address,
                         BuildingTypeGuid = cls.BuildingTypeGuid,
                         SaleSakht = cls.SaleSakht,
                         OwnerGuid = cls.OwnerGuid,
-                        //RegionName = cls.RegionName,
                         EjarePrice2 = cls.EjarePrice2,
                         RentalAutorityGuid = cls.RentalAutorityGuid,
                         Tell = cls.Tell,
@@ -240,12 +238,9 @@ namespace WebHesabBussines
                         BuildingViewGuid = cls.BuildingViewGuid,
                         Barq = cls.Barq,
                         Gas = cls.Gas,
-                        DateParvane = cls.DateParvane
-                        //UserName = cls.UserName,
-                        //BuildingAccountTypeName = cls.BuildingAccountTypeName,
-                        //RentalAuthorityName = cls.RentalAuthorityName,
-                        //OwnerName = cls.OwnerName,
-                        //BuildingTypeName = cls.BuildingTypeName
+                        DateParvane = cls.DateParvane,
+                        HardSerial = cls.HardSerial,
+                        Image = cls.Image
                     };
                     await obj.SaveAsync();
                 }

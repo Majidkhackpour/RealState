@@ -14,6 +14,7 @@ namespace WebHesabBussines
         public bool Status { get; set; }
         public string Name { get; set; }
         public Guid ParentGuid { get; set; }
+        public string HardSerial { get; set; }
 
 
 
@@ -48,7 +49,8 @@ namespace WebHesabBussines
                     Name = cls.Name,
                     Modified = cls.Modified,
                     Status = cls.Status,
-                    ParentGuid = cls.ParentGuid
+                    ParentGuid = cls.ParentGuid,
+                    HardSerial = cls.HardSerial
                 };
                 await obj.SaveAsync();
             }
@@ -73,7 +75,8 @@ namespace WebHesabBussines
                         Name = item.Name,
                         Modified = item.Modified,
                         Status = item.Status,
-                        ParentGuid = item.ParentGuid
+                        ParentGuid = item.ParentGuid,
+                        HardSerial = item.HardSerial
                     };
                     await obj.SaveAsync();
                 }

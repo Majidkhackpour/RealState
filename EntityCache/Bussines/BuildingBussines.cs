@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using EntityCache.Assistence;
 using EntityCache.ViewModels;
 using Nito.AsyncEx;
+using Persistence;
 using Services;
 using Servicess.Interfaces.Building;
 using WebHesabBussines;
@@ -89,6 +90,7 @@ namespace EntityCache.Bussines
         public bool MamarJoda { get; set; }
         public int RoomCount { get; set; }
         public EnBuildingStatus BuildingStatus { get; set; }
+        public string HardSerial => Cache.HardSerial;
         public string Image { get; set; }
         public string BuildingStatusName => BuildingStatus.GetDisplay();
         private List<BuildingRelatedOptionsBussines> _optionList;

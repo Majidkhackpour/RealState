@@ -61,16 +61,19 @@
             this.DGrid = new DevComponents.DotNetBar.Controls.DataGridViewX();
             this.dgGuid = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txtSearch = new DevComponents.DotNetBar.Controls.TextBoxX();
-            this.btnView = new DevComponents.DotNetBar.ButtonX();
-            this.btnDelete = new DevComponents.DotNetBar.ButtonX();
-            this.btnChangeStatus = new DevComponents.DotNetBar.ButtonX();
-            this.btnPrint = new DevComponents.DotNetBar.ButtonX();
-            this.btnEdit = new DevComponents.DotNetBar.ButtonX();
-            this.btnInsert = new DevComponents.DotNetBar.ButtonX();
-            this.line1 = new DevComponents.DotNetBar.Controls.Line();
+            this.contextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.mnuAdd = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuEdit = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuDelete = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
+            this.mnuView = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
+            this.mnuRemain = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuLog = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.noteBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).BeginInit();
+            this.contextMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // cmbUsers
@@ -304,6 +307,7 @@
             this.userGuidDataGridViewTextBoxColumn,
             this.priorityDataGridViewTextBoxColumn,
             this.noteStatusDataGridViewTextBoxColumn});
+            this.DGrid.ContextMenuStrip = this.contextMenu;
             this.DGrid.DataSource = this.noteBindingSource;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
@@ -337,7 +341,7 @@
             this.DGrid.RowsDefaultCellStyle = dataGridViewCellStyle5;
             this.DGrid.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             this.DGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DGrid.Size = new System.Drawing.Size(795, 482);
+            this.DGrid.Size = new System.Drawing.Size(795, 530);
             this.DGrid.TabIndex = 55718;
             this.DGrid.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DGrid_CellFormatting);
             // 
@@ -368,141 +372,85 @@
             this.txtSearch.WatermarkText = "مورد جستجو را وارد نمایید ...";
             this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
             // 
-            // btnView
+            // contextMenu
             // 
-            this.btnView.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnView.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnView.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.btnView.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnView.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
-            this.btnView.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnView.Image = global::RealState.Properties.Resources.article_1_;
-            this.btnView.Location = new System.Drawing.Point(273, 564);
-            this.btnView.Name = "btnView";
-            this.btnView.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
-            this.btnView.Size = new System.Drawing.Size(125, 31);
-            this.btnView.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
-            this.btnView.TabIndex = 55727;
-            this.btnView.Text = "مشاهده (F12)";
-            this.btnView.TextColor = System.Drawing.Color.Black;
-            this.btnView.Click += new System.EventHandler(this.btnView_Click);
+            this.contextMenu.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.contextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnuAdd,
+            this.mnuEdit,
+            this.mnuDelete,
+            this.toolStripMenuItem1,
+            this.mnuView,
+            this.toolStripMenuItem2,
+            this.mnuRemain,
+            this.mnuLog});
+            this.contextMenu.Name = "contextMenu";
+            this.contextMenu.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.contextMenu.Size = new System.Drawing.Size(220, 182);
             // 
-            // btnDelete
+            // mnuAdd
             // 
-            this.btnDelete.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnDelete.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.btnDelete.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnDelete.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
-            this.btnDelete.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnDelete.Image = global::RealState.Properties.Resources.delete_1_;
-            this.btnDelete.Location = new System.Drawing.Point(404, 564);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
-            this.btnDelete.Size = new System.Drawing.Size(125, 31);
-            this.btnDelete.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
-            this.btnDelete.TabIndex = 55728;
-            this.btnDelete.Text = "حذف (Del)";
-            this.btnDelete.TextColor = System.Drawing.Color.Black;
-            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            this.mnuAdd.Image = global::RealState.Properties.Resources.add_1_;
+            this.mnuAdd.Name = "mnuAdd";
+            this.mnuAdd.Size = new System.Drawing.Size(219, 24);
+            this.mnuAdd.Text = "افزودن یادداشت جدید (Ins)";
+            this.mnuAdd.Click += new System.EventHandler(this.mnuAdd_Click);
             // 
-            // btnChangeStatus
+            // mnuEdit
             // 
-            this.btnChangeStatus.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnChangeStatus.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnChangeStatus.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.btnChangeStatus.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnChangeStatus.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
-            this.btnChangeStatus.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnChangeStatus.Location = new System.Drawing.Point(142, 564);
-            this.btnChangeStatus.Name = "btnChangeStatus";
-            this.btnChangeStatus.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
-            this.btnChangeStatus.Size = new System.Drawing.Size(125, 31);
-            this.btnChangeStatus.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
-            this.btnChangeStatus.TabIndex = 55729;
-            this.btnChangeStatus.Text = "تبدیل به خوانده شده";
-            this.btnChangeStatus.TextColor = System.Drawing.Color.Black;
-            this.btnChangeStatus.Click += new System.EventHandler(this.btnChangeStatus_Click);
+            this.mnuEdit.Image = global::RealState.Properties.Resources.edit_1_;
+            this.mnuEdit.Name = "mnuEdit";
+            this.mnuEdit.Size = new System.Drawing.Size(219, 24);
+            this.mnuEdit.Text = "ویرایش یادداشت جاری (F7)";
+            this.mnuEdit.Click += new System.EventHandler(this.mnuEdit_Click);
             // 
-            // btnPrint
+            // mnuDelete
             // 
-            this.btnPrint.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnPrint.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnPrint.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.btnPrint.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnPrint.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
-            this.btnPrint.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnPrint.Location = new System.Drawing.Point(11, 564);
-            this.btnPrint.Name = "btnPrint";
-            this.btnPrint.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
-            this.btnPrint.Size = new System.Drawing.Size(125, 31);
-            this.btnPrint.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
-            this.btnPrint.TabIndex = 55730;
-            this.btnPrint.Text = "تبدیل به خوانده نشده";
-            this.btnPrint.TextColor = System.Drawing.Color.Black;
-            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
+            this.mnuDelete.Image = global::RealState.Properties.Resources.delete_1_;
+            this.mnuDelete.Name = "mnuDelete";
+            this.mnuDelete.Size = new System.Drawing.Size(219, 24);
+            this.mnuDelete.Text = "حذف یادداشت جاری (Del)";
+            this.mnuDelete.Click += new System.EventHandler(this.mnuDelete_Click);
             // 
-            // btnEdit
+            // toolStripMenuItem1
             // 
-            this.btnEdit.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnEdit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.btnEdit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnEdit.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
-            this.btnEdit.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnEdit.Image = global::RealState.Properties.Resources.edit_1_;
-            this.btnEdit.Location = new System.Drawing.Point(535, 564);
-            this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
-            this.btnEdit.Size = new System.Drawing.Size(125, 31);
-            this.btnEdit.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
-            this.btnEdit.TabIndex = 55731;
-            this.btnEdit.Text = "ویرایش (F7)";
-            this.btnEdit.TextColor = System.Drawing.Color.Black;
-            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(216, 6);
             // 
-            // btnInsert
+            // mnuView
             // 
-            this.btnInsert.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnInsert.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnInsert.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.btnInsert.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnInsert.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
-            this.btnInsert.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnInsert.Image = global::RealState.Properties.Resources.add_1_;
-            this.btnInsert.Location = new System.Drawing.Point(666, 564);
-            this.btnInsert.Name = "btnInsert";
-            this.btnInsert.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
-            this.btnInsert.Size = new System.Drawing.Size(125, 31);
-            this.btnInsert.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
-            this.btnInsert.TabIndex = 55732;
-            this.btnInsert.Text = "افزودن (Ins)";
-            this.btnInsert.TextColor = System.Drawing.Color.Black;
-            this.btnInsert.Click += new System.EventHandler(this.btnInsert_Click);
+            this.mnuView.Image = global::RealState.Properties.Resources.article_1_;
+            this.mnuView.Name = "mnuView";
+            this.mnuView.Size = new System.Drawing.Size(219, 24);
+            this.mnuView.Text = "مشاهده (F12)";
+            this.mnuView.Click += new System.EventHandler(this.mnuView_Click);
             // 
-            // line1
+            // toolStripMenuItem2
             // 
-            this.line1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.line1.Location = new System.Drawing.Point(1, 543);
-            this.line1.Name = "line1";
-            this.line1.Size = new System.Drawing.Size(799, 23);
-            this.line1.TabIndex = 55726;
-            this.line1.Text = "line1";
-            this.line1.Thickness = 2;
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(216, 6);
+            // 
+            // mnuRemain
+            // 
+            this.mnuRemain.Image = global::RealState.Properties.Resources.tab_checkbox__;
+            this.mnuRemain.Name = "mnuRemain";
+            this.mnuRemain.Size = new System.Drawing.Size(219, 24);
+            this.mnuRemain.Text = "تبدیل به خوانده شده";
+            this.mnuRemain.Click += new System.EventHandler(this.mnuRemain_Click);
+            // 
+            // mnuLog
+            // 
+            this.mnuLog.Image = global::RealState.Properties.Resources.tab_close_;
+            this.mnuLog.Name = "mnuLog";
+            this.mnuLog.Size = new System.Drawing.Size(219, 24);
+            this.mnuLog.Text = "تبدیل به خوانده نشده";
+            this.mnuLog.Click += new System.EventHandler(this.mnuLog_Click);
             // 
             // frmShowNotes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 600);
-            this.Controls.Add(this.btnView);
-            this.Controls.Add(this.btnDelete);
-            this.Controls.Add(this.btnChangeStatus);
-            this.Controls.Add(this.btnPrint);
-            this.Controls.Add(this.btnEdit);
-            this.Controls.Add(this.btnInsert);
-            this.Controls.Add(this.line1);
             this.Controls.Add(this.cmbUsers);
             this.Controls.Add(this.cmbStatus);
             this.Controls.Add(this.label1);
@@ -526,6 +474,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.noteBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).EndInit();
+            this.contextMenu.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -559,12 +508,14 @@
         private DevComponents.DotNetBar.Controls.DataGridViewX DGrid;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgGuid;
         private DevComponents.DotNetBar.Controls.TextBoxX txtSearch;
-        private DevComponents.DotNetBar.ButtonX btnView;
-        private DevComponents.DotNetBar.ButtonX btnDelete;
-        private DevComponents.DotNetBar.ButtonX btnChangeStatus;
-        private DevComponents.DotNetBar.ButtonX btnPrint;
-        private DevComponents.DotNetBar.ButtonX btnEdit;
-        private DevComponents.DotNetBar.ButtonX btnInsert;
-        private DevComponents.DotNetBar.Controls.Line line1;
+        private System.Windows.Forms.ContextMenuStrip contextMenu;
+        private System.Windows.Forms.ToolStripMenuItem mnuAdd;
+        private System.Windows.Forms.ToolStripMenuItem mnuEdit;
+        private System.Windows.Forms.ToolStripMenuItem mnuDelete;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem mnuView;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem mnuRemain;
+        private System.Windows.Forms.ToolStripMenuItem mnuLog;
     }
 }

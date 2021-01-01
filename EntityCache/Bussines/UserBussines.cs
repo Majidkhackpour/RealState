@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using EntityCache.Assistence;
 using Nito.AsyncEx;
+using Persistence;
 using Services;
 using Services.Access;
 using Servicess.Interfaces.Building;
@@ -51,6 +52,7 @@ namespace EntityCache.Bussines
         public decimal Account { get; set; }
         public decimal AccountFirst { get; set; }
         public decimal Account_ => Math.Abs(Account);
+        public string HardSerial => Cache.HardSerial;
 
         public static async Task<UserBussines> GetAsync(Guid guid) => await UnitOfWork.Users.GetAsync(guid);
 

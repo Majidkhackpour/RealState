@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using EntityCache.Assistence;
 using Nito.AsyncEx;
+using Persistence;
 using Services;
 using Servicess.Interfaces.Building;
 using WebHesabBussines;
@@ -28,6 +29,7 @@ namespace EntityCache.Bussines
         public string SarResid { get; set; }
         public string BankName { get; set; }
         public decimal TotalPrice => NaqdPrice + BankPrice + Check;
+        public string HardSerial => Cache.HardSerial;
 
 
         public static async Task<List<ReceptionBussines>> GetAllAsync() => await UnitOfWork.Reception.GetAllAsync();

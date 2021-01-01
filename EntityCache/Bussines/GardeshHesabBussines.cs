@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using EntityCache.Assistence;
-using Nito.AsyncEx;
+using Persistence;
 using Services;
 using Servicess.Interfaces.Building;
-using WebHesabBussines;
 
 namespace EntityCache.Bussines
 {
@@ -25,6 +24,7 @@ namespace EntityCache.Bussines
         public string BabatName => Babat.GetDisplay();
         public string Description { get; set; }
         public Guid ParentGuid { get; set; }
+        public string HardSerial => Cache.HardSerial;
 
 
         public static async Task<List<GardeshHesabBussines>> GetAllAsync() => await UnitOfWork.GardeshHesab.GetAllBySpAsync();

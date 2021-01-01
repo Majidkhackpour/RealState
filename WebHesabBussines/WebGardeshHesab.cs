@@ -18,6 +18,7 @@ namespace WebHesabBussines
         public EnAccountBabat Babat { get; set; }
         public string Description { get; set; }
         public Guid ParentGuid { get; set; }
+        public string HardSerial { get; set; }
 
 
         public async Task<ReturnedSaveFuncInfo> SaveAsync()
@@ -55,7 +56,8 @@ namespace WebHesabBussines
                     Type = cls.Type,
                     Price = cls.Price,
                     Babat = cls.Babat,
-                    PeopleGuid = cls.PeopleGuid
+                    PeopleGuid = cls.PeopleGuid,
+                    HardSerial = cls.HardSerial
                 };
                 await obj.SaveAsync();
             }
@@ -84,7 +86,8 @@ namespace WebHesabBussines
                         Type = cls.Type,
                         Price = cls.Price,
                         Babat = cls.Babat,
-                        PeopleGuid = cls.PeopleGuid
+                        PeopleGuid = cls.PeopleGuid,
+                        HardSerial = cls.HardSerial
                     };
                     await obj.SaveAsync();
                 }

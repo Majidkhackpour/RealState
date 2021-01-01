@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Reflection;
+using System.Windows.Forms;
 using Services;
 
 namespace RealState
@@ -39,6 +40,23 @@ namespace RealState
                     WebErrorLog.ErrorInstence.StartErrorLog(ex);
                     return "";
                 }
+            }
+        }
+
+        private static bool _isAuthorize = false;
+        public static bool IsAuthorize
+        {
+            get => _isAuthorize;
+            set
+            {
+                if (value)
+                {
+                    _isAuthorize = true;
+                    return;
+                }
+                MessageBox.Show(
+                    "مشتری گرامی، مشخصه فنی شما مورد تایید نمی باشد. لطفا برای احراز هویت با تیم پشتیبانی تماس بگیرید");
+                SoftwareLock.clsRegistery.SetRegistery("", "U1001ML");
             }
         }
     }

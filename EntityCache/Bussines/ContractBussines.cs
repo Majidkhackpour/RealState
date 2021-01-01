@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using EntityCache.Assistence;
 using Nito.AsyncEx;
+using Persistence;
 using Services;
 using Servicess.Interfaces.Building;
 using WebHesabBussines;
@@ -57,6 +58,7 @@ namespace EntityCache.Bussines
         }
         public decimal FPrice { get; set; }
         public decimal SPrice { get; set; }
+        public string HardSerial => Cache.HardSerial;
 
 
 

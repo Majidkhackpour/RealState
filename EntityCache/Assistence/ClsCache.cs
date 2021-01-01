@@ -10,14 +10,18 @@ namespace EntityCache.Assistence
 {
     public class ClsCache
     {
-        public static void Init(string connectionString)
+        public static void Init(string connectionString, string hardSerial)
         {
             Cache.ConnectionString = connectionString;
+            Cache.HardSerial = hardSerial;
             if (!CheckConnectionString(Cache.ConnectionString))
                 throw new ArgumentNullException("ConnectionString Not Correct ", nameof(Cache.ConnectionString));
+            UpdateMigration();
+        }
+        public static void InitMapper()
+        {
             var config = new MapperConfiguration(c => { c.AddProfile(new SqlProfile()); });
             Mappings.Default = new Mapper(config);
-            UpdateMigration();
         }
         private static void UpdateMigration()
         {

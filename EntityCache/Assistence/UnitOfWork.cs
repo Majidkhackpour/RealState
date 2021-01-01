@@ -50,6 +50,7 @@ namespace EntityCache.Assistence
         private static IAdvertiseRelatedRegionRepository _advertiseRelatedRegionRepository;
         private static IAdvTokensRepository _advTokenRepository;
         private static IBackUpLogRepository _bkLogRepository;
+        private static ITempRepository _tempRepository;
 
         public static void Dispose() => db?.Dispose();
         public static void Set_Save() => db.SaveChanges();
@@ -234,5 +235,10 @@ namespace EntityCache.Assistence
         public static IBackUpLogRepository BackUpLog => _bkLogRepository ??
                                                         (_bkLogRepository =
                                                             new BackUpLogPersistenceRepository(db, _connectionString));
+
+
+        public static ITempRepository Temp => _tempRepository ??
+                                                        (_tempRepository =
+                                                            new TempPersistenceRepository(db, _connectionString));
     }
 }

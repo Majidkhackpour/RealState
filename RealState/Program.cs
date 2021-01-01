@@ -30,7 +30,7 @@ namespace RealState
             }
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-
+            ClsCache.InitMapper();
             InitConfigs();
 
             var frmYear = new frmShowWorkingYears();
@@ -227,7 +227,7 @@ namespace RealState
             {
                 ErrorHandler.AddHandler(Assembly.GetExecutingAssembly().GetName().Version.ToString(), ENSource.Building,
                     Application.StartupPath, clsRegistery.GetRegistery("U1001ML"));
-                ClsCache.Init(AppSettings.DefaultConnectionString);
+                ClsCache.Init(AppSettings.DefaultConnectionString, clsGlobalSetting.HardDriveSerial);
                 ErrorManager.Init(ENSource.Building, null);
             }
             catch (Exception ex)
@@ -265,77 +265,18 @@ namespace RealState
         {
             try
             {
-                var free = clsRegistery.GetRegistery("U1008FD");
-                if (!string.IsNullOrEmpty(free)) return;
-
-                var code = clsGlobalSetting.HardDriveSerial;
-                if (string.IsNullOrEmpty(code)) return;
-
-                var day = DateTime.Now.Day;
-                var path = Path.Combine(Application.StartupPath , "dbServer.txt");
-                if (day == 1 || day == 15)
+                while (!AccGlobalSettings.IsAuthorize)
                 {
-                    var res = SendRequest(code);
-                    if (res)
+                    var res = await Utilities.PingHostAsync();
+                    if (res.HasError)
                     {
-                        if (File.Exists(path))
-                        {
-                            try
-                            {
-                                File.Delete(path);
-                            }
-                            catch 
-                            {
-                            }
-                        }
-                        return;
+                        await Task.Delay(12000000);
+                        continue;
                     }
 
-                    if (!File.Exists(path))
-                    {
-                        File.WriteAllText(path, "5");
-                        return;
-                    }
-                    else
-                    {
-                        var count = File.ReadAllText(path).Trim().ParseToInt();
-                        if (count == 0)
-                        {
-                            NotAccess(path);
-                            return;
-                        }
-                        count -= 1;
-                        File.WriteAllText(path, count.ToString());
-                        return;
-                    }
-                }
-
-                if (File.Exists(path))
-                {
-                    var res = SendRequest(code);
-                    if (res)
-                    {
-                        if (File.Exists(path))
-                        {
-                            try
-                            {
-                                File.Delete(path);
-                            }
-                            catch
-                            {
-                            }
-                        }
-                        return;
-                    }
-                    var count = File.ReadAllText(path).Trim().ParseToInt();
-                    if (count == 0)
-                    {
-                        NotAccess(path);
-                        Application.Exit();
-                        return;
-                    }
-                    count -= 1;
-                    File.WriteAllText(path, count.ToString());
+                    AccGlobalSettings.IsAuthorize = SendRequest(clsGlobalSetting.HardDriveSerial);
+                    if (AccGlobalSettings.IsAuthorize) continue;
+                    Application.Exit();
                     return;
                 }
             }
@@ -354,28 +295,6 @@ namespace RealState
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
                 return false;
-            }
-        }
-        private static void NotAccess(string path)
-        {
-            try
-            {
-                if (File.Exists(path))
-                {
-                    try
-                    {
-                        File.Delete(path);
-                    }
-                    catch
-                    {
-                    }
-                }
-                SoftwareLock.clsRegistery.SetRegistery("", "U1001ML");
-                MessageBox.Show("متاسفانه مشخصه فنی شما مورد تایید نمی باشد");
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
     }

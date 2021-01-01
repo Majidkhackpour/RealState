@@ -36,6 +36,8 @@ namespace WebHesabBussines
         public EnRequestType Type { get; set; }
         public Guid BazaryabGuid { get; set; }
         public decimal BazaryabPrice { get; set; }
+        public string HardSerial { get; set; }
+        public ContractFinanceBussines Finance { get; set; }
 
 
         public async Task<ReturnedSaveFuncInfo> SaveAsync()
@@ -70,10 +72,10 @@ namespace WebHesabBussines
                     Status = cls.Status,
                     Code = cls.Code,
                     MinorPrice = cls.MinorPrice,
-                    UserGuid =cls.UserGuid,
+                    UserGuid = cls.UserGuid,
                     TotalPrice = cls.TotalPrice,
                     Description = cls.Description,
-                    //Type = cls.Type,
+                    Type = cls.Type,
                     Term = cls.Term,
                     SecondSideGuid = cls.SecondSideGuid,
                     Delay = cls.Delay,
@@ -89,7 +91,11 @@ namespace WebHesabBussines
                     BuildingGuid = cls.BuildingGuid,
                     SetDocDate = cls.SetDocDate,
                     SetDocPlace = cls.SetDocPlace,
-                    //DateM = cls.DateM
+                    DateM = cls.DateM,
+                    HardSerial = cls.HardSerial,
+                    BazaryabGuid = cls.BazaryabGuid,
+                    BazaryabPrice = cls.BazaryabPrice,
+                    Finance = cls.Finance
                 };
                 await obj.SaveAsync();
             }
@@ -118,7 +124,7 @@ namespace WebHesabBussines
                         UserGuid = cls.UserGuid,
                         TotalPrice = cls.TotalPrice,
                         Description = cls.Description,
-                        //Type = cls.Type,
+                        Type = cls.Type,
                         Term = cls.Term,
                         SecondSideGuid = cls.SecondSideGuid,
                         Delay = cls.Delay,
@@ -134,7 +140,11 @@ namespace WebHesabBussines
                         BuildingGuid = cls.BuildingGuid,
                         SetDocDate = cls.SetDocDate,
                         SetDocPlace = cls.SetDocPlace,
-                        //DateM = cls.DateM
+                        DateM = cls.DateM,
+                        HardSerial = cls.HardSerial,
+                        BazaryabGuid = cls.BazaryabGuid,
+                        BazaryabPrice = cls.BazaryabPrice,
+                        Finance = cls.Finance
                     };
                     await obj.SaveAsync();
                 }

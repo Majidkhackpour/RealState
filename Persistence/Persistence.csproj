@@ -96,6 +96,7 @@
     <Compile Include="Entities\SmsLog.cs" />
     <Compile Include="Entities\SmsPanels.cs" />
     <Compile Include="Entities\States.cs" />
+    <Compile Include="Entities\Temp.cs" />
     <Compile Include="Entities\UserLog.cs" />
     <Compile Include="Entities\Users.cs" />
     <Compile Include="Migrations\202007131420071__1.cs" />
@@ -306,6 +307,10 @@
     <Compile Include="Migrations\202012221509378__52.designer.cs">
       <DependentUpon>202012221509378__52.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202101011117128__53.cs" />
+    <Compile Include="Migrations\202101011117128__53.designer.cs">
+      <DependentUpon>202101011117128__53.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\ModelContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -476,6 +481,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202012221509378__52.resx">
       <DependentUpon>202012221509378__52.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202101011117128__53.resx">
+      <DependentUpon>202101011117128__53.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

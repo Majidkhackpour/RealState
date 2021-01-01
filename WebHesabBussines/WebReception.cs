@@ -22,6 +22,7 @@ namespace WebHesabBussines
         public string CheckNo { get; set; }
         public string SarResid { get; set; }
         public string BankName { get; set; }
+        public string HardSerial { get; set; }
 
 
 
@@ -65,7 +66,8 @@ namespace WebHesabBussines
                     SarResid = cls.SarResid,
                     Receptor = cls.Receptor,
                     Check = cls.Check,
-                    FishNo = cls.FishNo
+                    FishNo = cls.FishNo,
+                    HardSerial = cls.HardSerial
                 };
                 await obj.SaveAsync();
             }
@@ -98,7 +100,8 @@ namespace WebHesabBussines
                         SarResid = cls.SarResid,
                         Receptor = cls.Receptor,
                         Check = cls.Check,
-                        FishNo = cls.FishNo
+                        FishNo = cls.FishNo,
+                        HardSerial = cls.HardSerial
                     };
                     await obj.SaveAsync();
                 }

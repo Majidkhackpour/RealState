@@ -34,6 +34,8 @@ namespace WebHesabBussines
         public Guid BuildingAccountTypeGuid { get; set; }
         public Guid BuildingConditionGuid { get; set; }
         public string ShortDesc { get; set; }
+        public string HardSerial { get; set; }
+        private List<BuildingRequestRegionBussines> RegionList { get; set; }
 
         public async Task<ReturnedSaveFuncInfo> SaveAsync()
         {
@@ -86,7 +88,9 @@ namespace WebHesabBussines
                     PeopleCount = cls.PeopleCount,
                     ShortDate = cls.ShortDate,
                     HasVam = cls.HasVam,
-                    HasOwner = cls.HasOwner
+                    HasOwner = cls.HasOwner,
+                    HardSerial = cls.HardSerial,
+                    RegionList = cls.RegionList
                 };
                 await obj.SaveAsync();
             }
@@ -131,7 +135,9 @@ namespace WebHesabBussines
                         PeopleCount = cls.PeopleCount,
                         ShortDate = cls.ShortDate,
                         HasVam = cls.HasVam,
-                        HasOwner = cls.HasOwner
+                        HasOwner = cls.HasOwner,
+                        HardSerial = cls.HardSerial,
+                        RegionList = cls.RegionList
                     };
                     await obj.SaveAsync();
                 }

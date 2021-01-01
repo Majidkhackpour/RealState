@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using EntityCache.Assistence;
 using Nito.AsyncEx;
+using Persistence;
 using Services;
 using Servicess.Interfaces.Building;
 using WebHesabBussines;
@@ -21,6 +22,7 @@ namespace EntityCache.Bussines
         public string CityName { get; set; }
         public bool IsChecked { get; set; }
         public CitiesBussines City => CitiesBussines.Get(CityGuid);
+        public string HardSerial => Cache.HardSerial;
 
         public static async Task<List<RegionsBussines>> GetAllAsync() => await UnitOfWork.Regions.GetAllAsyncBySp();
 

@@ -25,6 +25,7 @@ namespace WebHesabBussines
         public Guid GroupGuid { get; set; }
         public decimal Account { get; set; }
         public decimal AccountFirst { get; set; }
+        public string HardSerial { get; set; }
 
 
 
@@ -70,7 +71,8 @@ namespace WebHesabBussines
                     GroupGuid = cls.GroupGuid,
                     PlaceBirth = cls.PlaceBirth,
                     IssuedFrom = cls.IssuedFrom,
-                    PostalCode = cls.PostalCode
+                    PostalCode = cls.PostalCode,
+                    HardSerial = cls.HardSerial
                 };
                 await obj.SaveAsync();
             }
@@ -106,7 +108,8 @@ namespace WebHesabBussines
                         GroupGuid = cls.GroupGuid,
                         PlaceBirth = cls.PlaceBirth,
                         IssuedFrom = cls.IssuedFrom,
-                        PostalCode = cls.PostalCode
+                        PostalCode = cls.PostalCode,
+                        HardSerial = cls.HardSerial
                     };
                     await obj.SaveAsync();
                 }

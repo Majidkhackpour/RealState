@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using EntityCache.Assistence;
 using Nito.AsyncEx;
+using Persistence;
 using Services;
 using Servicess.Interfaces.Building;
 using WebHesabBussines;
@@ -19,6 +20,7 @@ namespace EntityCache.Bussines
         public decimal Account { get; set; }
         public decimal AccountFirst { get; set; }
         public decimal Account_ => Math.Abs(Account);
+        public string HardSerial => Cache.HardSerial;
 
 
         public static async Task<List<HazineBussines>> GetAllAsync() => await UnitOfWork.Hazine.GetAllAsync();

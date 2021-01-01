@@ -13,6 +13,7 @@ namespace WebHesabBussines
         public DateTime Modified { get; set; }
         public bool Status { get; set; }
         public string Name { get; set; }
+        public string HardSerial { get; set; }
 
 
         public async Task<ReturnedSaveFuncInfo> SaveAsync()
@@ -45,7 +46,8 @@ namespace WebHesabBussines
                     Guid = cls.Guid,
                     Name = cls.Name,
                     Modified = cls.Modified,
-                    Status = cls.Status
+                    Status = cls.Status,
+                    HardSerial = cls.HardSerial
                 };
                 await obj.SaveAsync();
             }
@@ -69,7 +71,8 @@ namespace WebHesabBussines
                         Guid = item.Guid,
                         Name = item.Name,
                         Modified = item.Modified,
-                        Status = item.Status
+                        Status = item.Status,
+                        HardSerial = item.HardSerial
                     };
                     await obj.SaveAsync();
                 }

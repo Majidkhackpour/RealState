@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using EntityCache.Assistence;
 using Nito.AsyncEx;
+using Persistence;
 using Services;
 using Servicess.Interfaces.Building;
 using WebHesabBussines;
@@ -16,6 +17,7 @@ namespace EntityCache.Bussines
         public DateTime Modified { get; set; } = DateTime.Now;
         public bool Status { get; set; } = true;
         public string Name { get; set; }
+        public string HardSerial => Cache.HardSerial;
 
 
         public static async Task<List<BuildingAccountTypeBussines>> GetAllAsync() => await UnitOfWork.BuildingAccountType.GetAllAsync();

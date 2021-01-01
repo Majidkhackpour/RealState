@@ -15,6 +15,7 @@ namespace WebHesabBussines
         public string Name { get; set; }
         public decimal Account { get; set; }
         public decimal AccountFirst { get; set; }
+        public string HardSerial { get; set; }
 
 
         public async Task<ReturnedSaveFuncInfo> SaveAsync()
@@ -49,7 +50,8 @@ namespace WebHesabBussines
                     Modified = cls.Modified,
                     Status = cls.Status,
                     Account = cls.Account,
-                    AccountFirst = cls.AccountFirst
+                    AccountFirst = cls.AccountFirst,
+                    HardSerial = cls.HardSerial
                 };
                 await obj.SaveAsync();
             }
@@ -75,7 +77,8 @@ namespace WebHesabBussines
                         Modified = item.Modified,
                         Status = item.Status,
                         Account = item.Account,
-                        AccountFirst = item.AccountFirst
+                        AccountFirst = item.AccountFirst,
+                        HardSerial = item.HardSerial
                     };
                     await obj.SaveAsync();
                 }
