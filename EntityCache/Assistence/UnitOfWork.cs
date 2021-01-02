@@ -51,6 +51,7 @@ namespace EntityCache.Assistence
         private static IAdvTokensRepository _advTokenRepository;
         private static IBackUpLogRepository _bkLogRepository;
         private static ITempRepository _tempRepository;
+        private static IFileInfoRepository _fileInfoRepository;
 
         public static void Dispose() => db?.Dispose();
         public static void Set_Save() => db.SaveChanges();
@@ -240,5 +241,10 @@ namespace EntityCache.Assistence
         public static ITempRepository Temp => _tempRepository ??
                                                         (_tempRepository =
                                                             new TempPersistenceRepository(db, _connectionString));
+
+
+        public static IFileInfoRepository FileInfo => _fileInfoRepository ??
+                                              (_fileInfoRepository =
+                                                  new FileInfoPersistenceRepository(db, _connectionString));
     }
 }

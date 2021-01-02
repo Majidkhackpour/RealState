@@ -61,5 +61,6 @@ namespace Persistence.Model
         public virtual DbSet<AdvToken> AdvTokens { get; set; }
         public virtual DbSet<BackUpLog> BackUpLogs { get; set; }
         public virtual DbSet<Temp> Temp { get; set; }
+        public virtual DbSet<FileInfo> FileInfo { get; set; }
     }
 }

@@ -49,6 +49,7 @@ namespace EntityCache.Assistence
             CreateMap<AdvTokenBussines, AdvToken>().ReverseMap();
             CreateMap<BackUpLogBussines, BackUpLog>().ReverseMap();
             CreateMap<TempBussines, Temp>().ReverseMap();
+            CreateMap<FileInfoBussines, FileInfo>().ReverseMap();
         }
     }
 }

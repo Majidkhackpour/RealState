@@ -68,6 +68,9 @@ namespace RealState
                     await WebPardakht.SaveAsync(await PardakhtBussines.GetAllAsync());
                 if (chbGardesh.Checked)
                     await WebGardeshHesab.SaveAsync(await GardeshHesabBussines.GetAllAsync());
+
+
+                Invoke(new MethodInvoker(() => MessageBox.Show("انتقال داده ها به سرور با موفقیت انجام شد")));
             }
             catch (Exception ex)
             {

@@ -1,15 +1,51 @@
 ﻿using System;
+using System.Linq;
+using System.Threading.Tasks;
+using EntityCache.Assistence;
 using Services;
 using Services.Interfaces.Building;
+using WebHesabBussines;
 
 namespace EntityCache.Bussines
 {
     public class TempBussines : ITemp
     {
-        public Guid Guid { get; set; }
+        public Guid Guid { get; set; } = Guid.NewGuid();
         public DateTime Modified { get; set; } = DateTime.Now;
         public bool Status { get; set; } = true;
         public EnTemp Type { get; set; }
         public Guid ObjectGuid { get; set; }
+
+
+        public async Task<ReturnedSaveFuncInfo> SaveAsync(string tranName = "")
+        {
+            var res = new ReturnedSaveFuncInfo();
+            var autoTran = string.IsNullOrEmpty(tranName);
+            if (autoTran) tranName = Guid.NewGuid().ToString();
+            try
+            {
+                if (autoTran)
+                { //BeginTransaction
+                }
+
+                res.AddReturnedValue(await UnitOfWork.Temp.SaveAsync(this, tranName));
+                res.ThrowExceptionIfError();
+                if (autoTran)
+                {
+                    //CommitTransAction
+                }
+            }
+            catch (Exception ex)
+            {
+                if (autoTran)
+                {
+                    //RollBackTransAction
+                }
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+
+            return res;
+        }
     }
 }
