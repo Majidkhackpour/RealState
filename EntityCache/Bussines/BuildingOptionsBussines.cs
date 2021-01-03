@@ -19,7 +19,6 @@ namespace EntityCache.Bussines
 
 
         public static async Task<List<BuildingOptionsBussines>> GetAllAsync() => await UnitOfWork.BuildingOption.GetAllAsync();
-
         public static async Task<ReturnedSaveFuncInfo> SaveRangeAsync(List<BuildingOptionsBussines> list,
             string tranName = "")
         {
@@ -51,12 +50,8 @@ namespace EntityCache.Bussines
 
             return res;
         }
-
-
         public static async Task<BuildingOptionsBussines> GetAsync(Guid guid) => await UnitOfWork.BuildingOption.GetAsync(guid);
-
         public static async Task<BuildingOptionsBussines> GetAsync(string name) => await UnitOfWork.BuildingOption.GetAsync(name);
-
         public async Task<ReturnedSaveFuncInfo> SaveAsync(string tranName = "")
         {
             var res = new ReturnedSaveFuncInfo();
@@ -87,7 +82,6 @@ namespace EntityCache.Bussines
 
             return res;
         }
-
         public async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(bool status, string tranName = "")
         {
             var res = new ReturnedSaveFuncInfo();
@@ -118,7 +112,6 @@ namespace EntityCache.Bussines
 
             return res;
         }
-
         public static async Task<List<BuildingOptionsBussines>> GetAllAsync(string search)
         {
             try
@@ -148,9 +141,7 @@ namespace EntityCache.Bussines
                 return new List<BuildingOptionsBussines>();
             }
         }
-
         public static BuildingOptionsBussines Get(Guid guid) => AsyncContext.Run(() => GetAsync(guid));
-
         public static async Task<bool> CheckNameAsync(string name, Guid guid) =>
             await UnitOfWork.BuildingOption.CheckNameAsync(name, guid);
     }

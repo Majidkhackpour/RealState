@@ -57,12 +57,9 @@ namespace EntityCache.Bussines
         #endregion
 
         public static async Task<List<BuildingRequestBussines>> GetAllAsync() => await UnitOfWork.BuildingRequest.GetAllAsyncBySp();
-
         public static async Task<BuildingRequestBussines> GetAsync(Guid guid) => await UnitOfWork.BuildingRequest.GetAsync(guid);
-
         public static BuildingRequestBussines Get(Guid guid) => AsyncContext.Run(() => GetAsync(guid));
-
-        public async Task<ReturnedSaveFuncInfo> SaveAsync(bool sendToServer,string tranName = "")
+        public async Task<ReturnedSaveFuncInfo> SaveAsync(string tranName = "")
         {
             var res = new ReturnedSaveFuncInfo();
             var autoTran = string.IsNullOrEmpty(tranName);
@@ -95,7 +92,7 @@ namespace EntityCache.Bussines
                     //CommitTransAction
                 }
 
-                if (sendToServer)
+                if (Cache.IsSendToServer)
                     _ = Task.Run(() => WebBuildingRequest.SaveAsync(this));
             }
             catch (Exception ex)
@@ -110,8 +107,7 @@ namespace EntityCache.Bussines
 
             return res;
         }
-
-        public async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(bool status,bool sendToServer, string tranName = "")
+        public async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(bool status, string tranName = "")
         {
             var res = new ReturnedSaveFuncInfo();
             var autoTran = string.IsNullOrEmpty(tranName);
@@ -139,7 +135,7 @@ namespace EntityCache.Bussines
                     //CommitTransAction
                 }
 
-                if (sendToServer)
+                if (Cache.IsSendToServer)
                     _ = Task.Run(() => WebBuildingRequest.SaveAsync(this));
             }
             catch (Exception ex)
@@ -154,7 +150,6 @@ namespace EntityCache.Bussines
 
             return res;
         }
-
         public static async Task<List<BuildingRequestBussines>> GetAllAsync(string search)
         {
             try

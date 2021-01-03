@@ -21,8 +21,7 @@ namespace EntityCache.Bussines
 
 
         public static async Task<List<BuildingViewBussines>> GetAllAsync() => await UnitOfWork.BuildingView.GetAllAsync();
-
-        public static async Task<ReturnedSaveFuncInfo> SaveRangeAsync(List<BuildingViewBussines> list,bool sendToServer,
+        public static async Task<ReturnedSaveFuncInfo> SaveRangeAsync(List<BuildingViewBussines> list,
             string tranName = "")
         {
             var res = new ReturnedSaveFuncInfo();
@@ -41,7 +40,7 @@ namespace EntityCache.Bussines
                     //CommitTransAction
                 }
 
-                if (sendToServer)
+                if (Cache.IsSendToServer)
                     _ = Task.Run(() => WebBuildingView.SaveAsync(list));
             }
             catch (Exception ex)
@@ -56,11 +55,8 @@ namespace EntityCache.Bussines
 
             return res;
         }
-
         public static async Task<BuildingViewBussines> GetAsync(Guid guid) => await UnitOfWork.BuildingView.GetAsync(guid);
-
-
-        public async Task<ReturnedSaveFuncInfo> SaveAsync(bool sendToServer, string tranName = "")
+        public async Task<ReturnedSaveFuncInfo> SaveAsync(string tranName = "")
         {
             var res = new ReturnedSaveFuncInfo();
             var autoTran = string.IsNullOrEmpty(tranName);
@@ -78,7 +74,7 @@ namespace EntityCache.Bussines
                     //CommitTransAction
                 }
 
-                if (sendToServer)
+                if (Cache.IsSendToServer)
                     _ = Task.Run(() => WebBuildingView.SaveAsync(this));
             }
             catch (Exception ex)
@@ -93,8 +89,7 @@ namespace EntityCache.Bussines
 
             return res;
         }
-
-        public async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(bool status,bool sendToServer, string tranName = "")
+        public async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(bool status, string tranName = "")
         {
             var res = new ReturnedSaveFuncInfo();
             var autoTran = string.IsNullOrEmpty(tranName);
@@ -112,7 +107,7 @@ namespace EntityCache.Bussines
                     //CommitTransAction
                 }
 
-                if (sendToServer)
+                if (Cache.IsSendToServer)
                     _ = Task.Run(() => WebBuildingView.SaveAsync(this));
             }
             catch (Exception ex)
@@ -127,7 +122,6 @@ namespace EntityCache.Bussines
 
             return res;
         }
-
         public static async Task<List<BuildingViewBussines>> GetAllAsync(string search)
         {
             try
@@ -157,11 +151,8 @@ namespace EntityCache.Bussines
                 return new List<BuildingViewBussines>();
             }
         }
-
         public static BuildingViewBussines Get(Guid guid) => AsyncContext.Run(() => GetAsync(guid));
-
         public static async Task<bool> CheckNameAsync(string name, Guid guid) =>
             await UnitOfWork.BuildingView.CheckNameAsync(name, guid);
-
     }
 }

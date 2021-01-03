@@ -57,11 +57,8 @@ namespace EntityCache.Bussines
 
             return res;
         }
-
         public static async Task<SmsLogBussines> GetAsync(Guid guid) => await UnitOfWork.SmsLog.GetAsync(guid);
-
         public static async Task<List<SmsLogBussines>> GetAllAsync() => await UnitOfWork.SmsLog.GetAllBySpAsync();
-
         public async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(bool status, string tranName = "")
         {
             var res = new ReturnedSaveFuncInfo();
@@ -93,7 +90,6 @@ namespace EntityCache.Bussines
 
             return res;
         }
-
         public static async Task<List<SmsLogBussines>> GetAllAsync(string search, Guid userGuid)
         {
             try
@@ -129,13 +125,8 @@ namespace EntityCache.Bussines
                 return new List<SmsLogBussines>();
             }
         }
-
         public static SmsLogBussines Get(Guid guid) => AsyncContext.Run(() => GetAsync(guid));
-
         public static async Task<SmsLogBussines> GetAsync(long messageId) =>
             await UnitOfWork.SmsLog.GetAsync(messageId);
-
-
-
     }
 }

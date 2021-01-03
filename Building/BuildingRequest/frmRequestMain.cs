@@ -449,7 +449,7 @@ namespace Building.BuildingRequest
 
                 await SetRegionsAsync(cls.Guid);
 
-                res.AddReturnedValue(await cls.SaveAsync(true));
+                res.AddReturnedValue(await cls.SaveAsync());
 
                 if (res.HasError) return;
 

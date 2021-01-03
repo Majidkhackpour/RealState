@@ -105,7 +105,7 @@ namespace Accounting.Hazine
                 if (cls.Guid == Guid.Empty) cls.Guid = Guid.NewGuid();
                 cls.Name = txtName.Text.Trim();
 
-                res.AddReturnedValue(await cls.SaveAsync(true, true));
+                res.AddReturnedValue(await cls.SaveAsync(true));
             }
             catch (Exception ex)
             {

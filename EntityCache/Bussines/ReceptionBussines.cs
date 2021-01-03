@@ -33,12 +33,10 @@ namespace EntityCache.Bussines
 
 
         public static async Task<List<ReceptionBussines>> GetAllAsync() => await UnitOfWork.Reception.GetAllAsync();
-
         public static async Task<List<ReceptionBussines>> GetAllAsync(Guid receptioGuid) =>
             await UnitOfWork.Reception.GetAllAsync(receptioGuid);
         public static async Task<ReceptionBussines> GetAsync(Guid guid) => await UnitOfWork.Reception.GetAsync(guid);
-
-        public async Task<ReturnedSaveFuncInfo> SaveAsync(bool sendToServer, string tranName = "")
+        public async Task<ReturnedSaveFuncInfo> SaveAsync(string tranName = "")
         {
             var res = new ReturnedSaveFuncInfo();
             var autoTran = string.IsNullOrEmpty(tranName);
@@ -49,7 +47,7 @@ namespace EntityCache.Bussines
                 { //BeginTransaction
                 }
 
-                
+
                 res.AddReturnedValue(await UnitOfWork.Reception.SaveAsync(this, tranName));
                 res.ThrowExceptionIfError();
                 if (autoTran)
@@ -57,7 +55,7 @@ namespace EntityCache.Bussines
                     //CommitTransAction
                 }
 
-                if (sendToServer)
+                if (Cache.IsSendToServer)
                     _ = Task.Run(() => WebReception.SaveAsync(this));
             }
             catch (Exception ex)
@@ -72,8 +70,7 @@ namespace EntityCache.Bussines
 
             return res;
         }
-
-        public async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(bool status, bool sendToServer, string tranName = "")
+        public async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(bool status, string tranName = "")
         {
             var res = new ReturnedSaveFuncInfo();
             var autoTran = string.IsNullOrEmpty(tranName);
@@ -98,7 +95,7 @@ namespace EntityCache.Bussines
                     //CommitTransAction
                 }
 
-                if (sendToServer)
+                if (Cache.IsSendToServer)
                     _ = Task.Run(() => WebReception.SaveAsync(this));
             }
             catch (Exception ex)
@@ -113,7 +110,6 @@ namespace EntityCache.Bussines
 
             return res;
         }
-
         public static async Task<List<ReceptionBussines>> GetAllAsync(string search, Guid receptorGuid)
         {
             try
@@ -149,8 +145,6 @@ namespace EntityCache.Bussines
                 return new List<ReceptionBussines>();
             }
         }
-
         public static ReceptionBussines Get(Guid guid) => AsyncContext.Run(() => GetAsync(guid));
-
     }
 }

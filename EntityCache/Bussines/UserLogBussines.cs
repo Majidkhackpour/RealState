@@ -56,11 +56,8 @@ namespace EntityCache.Bussines
 
             return res;
         }
-
         public ReturnedSaveFuncInfo Save(string tranName = "") => AsyncContext.Run(() => SaveAsync(tranName));
-
         public static async Task<List<UserLogBussines>> GetAllAsync(Guid userGuid, DateTime d1, DateTime d2) =>
             await UnitOfWork.UserLog.GetAllAsync(userGuid, d1, d2);
-
     }
 }

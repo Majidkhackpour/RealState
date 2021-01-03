@@ -596,7 +596,7 @@ namespace Building.Building
                         MessageBoxIcon.Question) == DialogResult.No) return;
 
                 bu.BuildingStatus = EnBuildingStatus.Vagozar;
-                res.AddReturnedValue(await bu.SaveAsync(true));
+                res.AddReturnedValue(await bu.SaveAsync());
             }
             catch (Exception ex)
             {
@@ -637,7 +637,7 @@ namespace Building.Building
                         MessageBoxIcon.Question) == DialogResult.No) return;
 
                 bu.BuildingStatus = EnBuildingStatus.Mojod;
-                res.AddReturnedValue(await bu.SaveAsync(true));
+                res.AddReturnedValue(await bu.SaveAsync());
             }
             catch (Exception ex)
             {
@@ -721,7 +721,7 @@ namespace Building.Building
                             MessageBoxButtons.YesNo,
                             MessageBoxIcon.Question) == DialogResult.No) return;
                     var prd = await BuildingBussines.GetAsync(guid);
-                    res.AddReturnedValue(await prd.ChangeStatusAsync(false, true));
+                    res.AddReturnedValue(await prd.ChangeStatusAsync(false));
                     if (res.HasError) return;
                     UserLog.Save(EnLogAction.Delete, EnLogPart.Building);
                 }
@@ -733,7 +733,7 @@ namespace Building.Building
                             MessageBoxButtons.YesNo,
                             MessageBoxIcon.Question) == DialogResult.No) return;
                     var prd = await BuildingBussines.GetAsync(guid);
-                    res.AddReturnedValue(await prd.ChangeStatusAsync(true, true));
+                    res.AddReturnedValue(await prd.ChangeStatusAsync(true));
                     if (res.HasError) return;
                     UserLog.Save(EnLogAction.Enable, EnLogPart.Building);
                 }

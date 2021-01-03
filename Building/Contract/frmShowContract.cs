@@ -308,7 +308,7 @@ namespace Building.Contract
                         MessageBoxIcon.Question) == DialogResult.No) return;
 
                 bu.IsTemp = false;
-                res.AddReturnedValue(await bu.SaveAsync(true));
+                res.AddReturnedValue(await bu.SaveAsync());
             }
             catch (Exception ex)
             {
@@ -349,7 +349,7 @@ namespace Building.Contract
                         return;
                     }
 
-                    res.AddReturnedValue(await prd.ChangeStatusAsync(false, true));
+                    res.AddReturnedValue(await prd.ChangeStatusAsync(false));
                     if (res.HasError) return;
                     UserLog.Save(EnLogAction.Delete, EnLogPart.Contracts);
                 }
@@ -362,7 +362,7 @@ namespace Building.Contract
                     var prd = await ContractBussines.GetAsync(guid);
 
 
-                    res.AddReturnedValue(await prd.ChangeStatusAsync(true, true));
+                    res.AddReturnedValue(await prd.ChangeStatusAsync(true));
                     if (res.HasError) return;
                     UserLog.Save(EnLogAction.Enable, EnLogPart.Contracts);
                 }

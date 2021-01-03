@@ -21,8 +21,7 @@ namespace EntityCache.Bussines
 
 
         public static async Task<List<KitchenServiceBussines>> GetAllAsync() => await UnitOfWork.KitchenService.GetAllAsync();
-
-        public static async Task<ReturnedSaveFuncInfo> SaveRangeAsync(List<KitchenServiceBussines> list,bool sendToServer,
+        public static async Task<ReturnedSaveFuncInfo> SaveRangeAsync(List<KitchenServiceBussines> list,
             string tranName = "")
         {
             var res = new ReturnedSaveFuncInfo();
@@ -41,7 +40,7 @@ namespace EntityCache.Bussines
                     //CommitTransAction
                 }
 
-                if (sendToServer)
+                if (Cache.IsSendToServer)
                     _ = Task.Run(() => WebKitchenService.SaveAsync(list));
             }
             catch (Exception ex)
@@ -56,11 +55,8 @@ namespace EntityCache.Bussines
 
             return res;
         }
-
         public static async Task<KitchenServiceBussines> GetAsync(Guid guid) => await UnitOfWork.KitchenService.GetAsync(guid);
-
-
-        public async Task<ReturnedSaveFuncInfo> SaveAsync(bool sendToServer, string tranName = "")
+        public async Task<ReturnedSaveFuncInfo> SaveAsync(string tranName = "")
         {
             var res = new ReturnedSaveFuncInfo();
             var autoTran = string.IsNullOrEmpty(tranName);
@@ -78,7 +74,7 @@ namespace EntityCache.Bussines
                     //CommitTransAction
                 }
 
-                if (sendToServer)
+                if (Cache.IsSendToServer)
                     _ = Task.Run(() => WebKitchenService.SaveAsync(this));
             }
             catch (Exception ex)
@@ -93,8 +89,7 @@ namespace EntityCache.Bussines
 
             return res;
         }
-
-        public async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(bool status, bool sendToServer, string tranName = "")
+        public async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(bool status, string tranName = "")
         {
             var res = new ReturnedSaveFuncInfo();
             var autoTran = string.IsNullOrEmpty(tranName);
@@ -112,7 +107,7 @@ namespace EntityCache.Bussines
                     //CommitTransAction
                 }
 
-                if (sendToServer)
+                if (Cache.IsSendToServer)
                     _ = Task.Run(() => WebKitchenService.SaveAsync(this));
             }
             catch (Exception ex)
@@ -127,7 +122,6 @@ namespace EntityCache.Bussines
 
             return res;
         }
-
         public static async Task<List<KitchenServiceBussines>> GetAllAsync(string search)
         {
             try
@@ -157,9 +151,7 @@ namespace EntityCache.Bussines
                 return new List<KitchenServiceBussines>();
             }
         }
-
         public static KitchenServiceBussines Get(Guid guid) => AsyncContext.Run(() => GetAsync(guid));
-
         public static async Task<bool> CheckNameAsync(string name, Guid guid) =>
             await UnitOfWork.KitchenService.CheckNameAsync(name, guid);
     }

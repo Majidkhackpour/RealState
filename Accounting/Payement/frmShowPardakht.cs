@@ -214,7 +214,7 @@ namespace Accounting.Payement
                             MessageBoxIcon.Question) == DialogResult.No) return;
                     var prd = await PardakhtBussines.GetAsync(guid);
 
-                    res.AddReturnedValue(await prd.ChangeStatusAsync(false, true));
+                    res.AddReturnedValue(await prd.ChangeStatusAsync(false));
                     if (res.HasError) return;
 
                     UserLog.Save(EnLogAction.Delete, EnLogPart.Pardakht);
@@ -227,7 +227,7 @@ namespace Accounting.Payement
                             MessageBoxIcon.Question) == DialogResult.No) return;
                     var prd = await PardakhtBussines.GetAsync(guid);
 
-                    res.AddReturnedValue(await prd.ChangeStatusAsync(true, true));
+                    res.AddReturnedValue(await prd.ChangeStatusAsync(true));
                     if (res.HasError) return;
                     UserLog.Save(EnLogAction.Enable, EnLogPart.Pardakht);
                 }

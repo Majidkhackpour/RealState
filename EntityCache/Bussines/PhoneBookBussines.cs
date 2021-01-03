@@ -24,14 +24,11 @@ namespace EntityCache.Bussines
 
         public static async Task<List<PhoneBookBussines>> GetAllBySpAsync(Guid parentGuid, bool status) =>
             await UnitOfWork.PhoneBook.GetAllBySpAsync(parentGuid, status);
-
         public static async Task<List<PhoneBookBussines>> GetAllAsync(Guid parentGuid, bool status) =>
             await UnitOfWork.PhoneBook.GetAllAsync(parentGuid, status);
-
         public static List<PhoneBookBussines> GetAll(Guid parentGuid, bool status) =>
             AsyncContext.Run(() => GetAllAsync(parentGuid, status));
         public static async Task<List<PhoneBookBussines>> GetAllAsync() => await UnitOfWork.PhoneBook.GetAllAsync();
-
         public async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(bool status, string tranName = "")
         {
             var res = new ReturnedSaveFuncInfo();
@@ -62,7 +59,6 @@ namespace EntityCache.Bussines
 
             return res;
         }
-
         public static async Task<List<PhoneBookBussines>> GetAllAsync(Guid parentGuid, string search, EnPhoneBookGroup group)
         {
             try
@@ -100,10 +96,8 @@ namespace EntityCache.Bussines
                 return new List<PhoneBookBussines>();
             }
         }
-
         public static async Task<PhoneBookBussines> GetAsync(Guid guid) => await UnitOfWork.PhoneBook.GetAsync(guid);
         public static PhoneBookBussines Get(Guid guid) => AsyncContext.Run(() => GetAsync(guid));
-
         public async Task<ReturnedSaveFuncInfo> SaveAsync(string tranName = "")
         {
             var res = new ReturnedSaveFuncInfo();

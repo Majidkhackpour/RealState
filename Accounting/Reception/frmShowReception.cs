@@ -187,7 +187,7 @@ namespace Accounting.Reception
                             MessageBoxIcon.Question) == DialogResult.No) return;
                     var prd = await ReceptionBussines.GetAsync(guid);
 
-                    res.AddReturnedValue(await prd.ChangeStatusAsync(false, true));
+                    res.AddReturnedValue(await prd.ChangeStatusAsync(false));
                     if (res.HasError) return;
 
                     UserLog.Save(EnLogAction.Delete, EnLogPart.Reception);
@@ -200,7 +200,7 @@ namespace Accounting.Reception
                             MessageBoxIcon.Question) == DialogResult.No) return;
                     var prd = await ReceptionBussines.GetAsync(guid);
 
-                    res.AddReturnedValue(await prd.ChangeStatusAsync(true, true));
+                    res.AddReturnedValue(await prd.ChangeStatusAsync(true));
                     if (res.HasError) return;
 
                     UserLog.Save(EnLogAction.Enable, EnLogPart.Reception);

@@ -55,10 +55,8 @@ namespace EntityCache.Bussines
         public string HardSerial => Cache.HardSerial;
 
         public static async Task<UserBussines> GetAsync(Guid guid) => await UnitOfWork.Users.GetAsync(guid);
-
         public static async Task<List<UserBussines>> GetAllAsync() => await UnitOfWork.Users.GetAllAsync();
-
-        public async Task<ReturnedSaveFuncInfo> SaveAsync(bool setEftetah,bool sendToServer, string tranName = "")
+        public async Task<ReturnedSaveFuncInfo> SaveAsync(bool setEftetah, string tranName = "")
         {
             var res = new ReturnedSaveFuncInfo();
             var autoTran = string.IsNullOrEmpty(tranName);
@@ -129,7 +127,7 @@ namespace EntityCache.Bussines
                     //CommitTransAction
                 }
 
-                if (sendToServer)
+                if (Cache.IsSendToServer)
                     _ = Task.Run(() => WebUser.SaveAsync(this));
             }
             catch (Exception ex)
@@ -144,7 +142,6 @@ namespace EntityCache.Bussines
 
             return res;
         }
-
         public async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(bool status, string tranName = "")
         {
             var res = new ReturnedSaveFuncInfo();
@@ -183,7 +180,6 @@ namespace EntityCache.Bussines
 
             return res;
         }
-
         public static async Task<List<UserBussines>> GetAllAsync(string search)
         {
             try
@@ -217,18 +213,12 @@ namespace EntityCache.Bussines
                 return new List<UserBussines>();
             }
         }
-
         public static UserBussines Get(Guid guid) => AsyncContext.Run(() => GetAsync(guid));
-
         public static async Task<bool> CheckUserNameAsync(Guid guid, string userName) =>
             await UnitOfWork.Users.CheckUserNameAsync(guid, userName);
-
         public static async Task<UserBussines> GetAsync(string userName) => await UnitOfWork.Users.GetAsync(userName);
-
         public static async Task<UserBussines> GetByEmailAsync(string email) => await UnitOfWork.Users.GetByEmailAsync(email);
-
         public static async Task<UserBussines> GetByMobileAsync(string mobile) => await UnitOfWork.Users.GetByMobilAsync(mobile);
-
         public static async Task<List<UserBussines>> GetAllAsync(EnSecurityQuestion question, string answer) =>
             await UnitOfWork.Users.GetAllAsync(question, answer);
     }

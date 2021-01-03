@@ -105,7 +105,7 @@ namespace User
                 cls.Password = System.Text.RegularExpressions.Regex.Replace(BitConverter.ToString(hashBytes), "-", "")
                     .ToLower();
 
-                res.AddReturnedValue(await cls.SaveAsync(false, true));
+                res.AddReturnedValue(await cls.SaveAsync(false));
                 if (res.HasError)
                 {
                     frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);

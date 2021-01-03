@@ -31,7 +31,6 @@ namespace EntityCache.Bussines
 
 
         public static async Task<SmsPanelsBussines> GetAsync(Guid guid) => await UnitOfWork.SmsPanels.GetAsync(guid);
-
         public static async Task<List<SmsPanelsBussines>> GetAllAsync() => await UnitOfWork.SmsPanels.GetAllAsync();
         public async Task<ReturnedSaveFuncInfo> SaveAsync(string tranName = "")
         {
@@ -63,7 +62,6 @@ namespace EntityCache.Bussines
 
             return res;
         }
-
         public async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(bool status, string tranName = "")
         {
             var res = new ReturnedSaveFuncInfo();
@@ -94,7 +92,6 @@ namespace EntityCache.Bussines
 
             return res;
         }
-
         public static async Task<List<SmsPanelsBussines>> GetAllAsync(string search)
         {
             try
@@ -125,7 +122,6 @@ namespace EntityCache.Bussines
                 return new List<SmsPanelsBussines>();
             }
         }
-
         public static SmsPanelsBussines Get(Guid guid) => AsyncContext.Run(() => GetAsync(guid));
     }
 }

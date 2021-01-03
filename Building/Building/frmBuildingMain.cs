@@ -1097,7 +1097,7 @@ namespace Building.Building
 
                 res.AddReturnedValue(SetImages());
                 if (res.HasError) return;
-                res.AddReturnedValue(await cls.SaveAsync(true));
+                res.AddReturnedValue(await cls.SaveAsync());
                 if (res.HasError) return;
 
 

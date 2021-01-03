@@ -25,10 +25,8 @@ namespace EntityCache.Bussines
 
         public static async Task<ContractFinanceBussines> GetAsync(Guid parentGuid, bool status) =>
             await UnitOfWork.ContractFinance.GetAsync(parentGuid, status);
-
         public static ContractFinanceBussines Get(Guid parentGuid, bool status) =>
             AsyncContext.Run(() => GetAsync(parentGuid, status));
-
         public async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(bool status, string tranName = "")
         {
             var res = new ReturnedSaveFuncInfo();

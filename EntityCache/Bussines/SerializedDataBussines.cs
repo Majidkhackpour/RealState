@@ -23,16 +23,13 @@ namespace EntityCache.Bussines
             var list = await UnitOfWork.SerializedData.GetAsync("DivarCities");
             return list?.Data.FromJson<List<DivarCities>>();
         }
-
         public static async Task<List<DivarRegion>> GetDivarRegionAsync()
         {
             var list = await UnitOfWork.SerializedData.GetAsync("DivarRegions");
             return list?.Data.FromJson<List<DivarRegion>>();
         }
-
         public static async Task<SerializedDataBussines> GetAsync(string memberName) =>
             await UnitOfWork.SerializedData.GetAsync(memberName);
-
         public static async Task<ReturnedSaveFuncInfo> SaveAsync(string key, string value, string tranName = "")
         {
             var res = new ReturnedSaveFuncInfo();
@@ -78,7 +75,6 @@ namespace EntityCache.Bussines
 
             return res;
         }
-
         public async Task<ReturnedSaveFuncInfo> RemoveAsync(string tranName = "")
         {
             var res = new ReturnedSaveFuncInfo();
@@ -109,7 +105,6 @@ namespace EntityCache.Bussines
 
             return res;
         }
-
         public static ReturnedSaveFuncInfo Save(string key, string value, string tranName = "") =>
             AsyncContext.Run(() => SaveAsync(key, value, tranName));
     }

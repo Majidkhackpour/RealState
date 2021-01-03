@@ -18,7 +18,6 @@ namespace EntityCache.Bussines
 
 
         public static async Task<List<NaqzBussines>> GetAllAsync() => await UnitOfWork.Naqz.GetAllAsync();
-
         public static async Task<ReturnedSaveFuncInfo> SaveRangeAsync(List<NaqzBussines> list,
             string tranName = "")
         {
@@ -50,7 +49,6 @@ namespace EntityCache.Bussines
 
             return res;
         }
-
         public static async Task<string> SetNaqzAsync(string tranName = "")
         {
             var autoTran = string.IsNullOrEmpty(tranName);

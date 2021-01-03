@@ -229,7 +229,7 @@ namespace Cities.City
                             MessageBoxButtons.YesNo,
                             MessageBoxIcon.Question) == DialogResult.No) return;
                     var prd = await CitiesBussines.GetAsync(guid);
-                    res.AddReturnedValue(await prd.ChangeStatusAsync(false, true));
+                    res.AddReturnedValue(await prd.ChangeStatusAsync(false));
                     if (res.HasError) return;
 
                     UserLog.Save(EnLogAction.Delete, EnLogPart.Cities);
@@ -242,7 +242,7 @@ namespace Cities.City
                             MessageBoxButtons.YesNo,
                             MessageBoxIcon.Question) == DialogResult.No) return;
                     var prd = await CitiesBussines.GetAsync(guid);
-                    res.AddReturnedValue(await prd.ChangeStatusAsync(true, true));
+                    res.AddReturnedValue(await prd.ChangeStatusAsync(true));
                     if (res.HasError) return;
 
                     UserLog.Save(EnLogAction.Enable, EnLogPart.Cities);

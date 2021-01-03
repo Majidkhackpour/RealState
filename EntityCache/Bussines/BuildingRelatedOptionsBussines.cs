@@ -20,13 +20,10 @@ namespace EntityCache.Bussines
 
         public static async Task<List<BuildingRelatedOptionsBussines>> GetAllAsync(Guid parentGuid, bool status) =>
             await UnitOfWork.BuildingRelatedOptions.GetAllAsync(parentGuid, status);
-
         public static List<BuildingRelatedOptionsBussines> GetAll(Guid parentGuid, bool status) =>
             AsyncContext.Run(() => GetAllAsync(parentGuid, status));
-
         public static async Task<List<BuildingRelatedOptionsBussines>> GetAllAsync() =>
             await UnitOfWork.BuildingRelatedOptions.GetAllAsync();
-
         public async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(bool status, string tranName = "")
         {
             var res = new ReturnedSaveFuncInfo();
@@ -57,6 +54,5 @@ namespace EntityCache.Bussines
 
             return res;
         }
-
     }
 }

@@ -468,7 +468,7 @@ namespace Peoples
                         MessageBoxButtons.YesNo,
                         MessageBoxIcon.Question) == DialogResult.No) return;
                 var group = await PeopleGroupBussines.GetAsync(GroupGuid);
-                res.AddReturnedValue(await group.ChangeStatusAsync(false, true));
+                res.AddReturnedValue(await group.ChangeStatusAsync(false));
             }
             catch (Exception ex)
             {
@@ -537,7 +537,7 @@ namespace Peoples
                             MessageBoxButtons.YesNo,
                             MessageBoxIcon.Question) == DialogResult.No) return;
                     var prd = await PeoplesBussines.GetAsync(guid);
-                    res.AddReturnedValue(await prd.ChangeStatusAsync(false, true));
+                    res.AddReturnedValue(await prd.ChangeStatusAsync(false));
                     if (res.HasError) return;
                     if (MessageBox.Show(this,
                             $@"آیا شماره های شخص نیز از دفترچه تلفن حذف شود؟", "حذف",
@@ -567,7 +567,7 @@ namespace Peoples
                         if (frm.ShowDialog(this) != DialogResult.OK) return;
                     }
 
-                    res.AddReturnedValue(await prd.ChangeStatusAsync(true, true));
+                    res.AddReturnedValue(await prd.ChangeStatusAsync(true));
                     if (res.HasError) return;
                     var prd2 = await PhoneBookBussines.GetAllAsync(guid, false);
                     foreach (var item in prd2)

@@ -203,7 +203,7 @@ namespace Accounting.Reception
                 cls.Check = txtCheckPrice.TextDecimal;
 
 
-                res.AddReturnedValue(await cls.SaveAsync(true));
+                res.AddReturnedValue(await cls.SaveAsync());
                 if (res.HasError) return;
 
 

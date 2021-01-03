@@ -21,8 +21,7 @@ namespace EntityCache.Bussines
 
 
         public static async Task<List<RentalAuthorityBussines>> GetAllAsync() => await UnitOfWork.RentalAuthority.GetAllAsync();
-
-        public static async Task<ReturnedSaveFuncInfo> SaveRangeAsync(List<RentalAuthorityBussines> list,bool sendToServer,
+        public static async Task<ReturnedSaveFuncInfo> SaveRangeAsync(List<RentalAuthorityBussines> list,
             string tranName = "")
         {
             var res = new ReturnedSaveFuncInfo();
@@ -41,7 +40,7 @@ namespace EntityCache.Bussines
                     //CommitTransAction
                 }
 
-                if (sendToServer)
+                if (Cache.IsSendToServer)
                     _ = Task.Run(() => WebRental.SaveAsync(list));
             }
             catch (Exception ex)
@@ -56,12 +55,9 @@ namespace EntityCache.Bussines
 
             return res;
         }
-
         public static async Task<RentalAuthorityBussines> GetAsync(Guid guid) => await UnitOfWork.RentalAuthority.GetAsync(guid);
-
         public static async Task<RentalAuthorityBussines> GetAsync(string name) => await UnitOfWork.RentalAuthority.GetAsync(name);
-
-        public async Task<ReturnedSaveFuncInfo> SaveAsync(bool sendToServer, string tranName = "")
+        public async Task<ReturnedSaveFuncInfo> SaveAsync(string tranName = "")
         {
             var res = new ReturnedSaveFuncInfo();
             var autoTran = string.IsNullOrEmpty(tranName);
@@ -79,7 +75,7 @@ namespace EntityCache.Bussines
                     //CommitTransAction
                 }
 
-                if (sendToServer)
+                if (Cache.IsSendToServer)
                     _ = Task.Run(() => WebRental.SaveAsync(this));
             }
             catch (Exception ex)
@@ -94,41 +90,6 @@ namespace EntityCache.Bussines
 
             return res;
         }
-
-        public async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(bool status, bool sendToServer, string tranName = "")
-        {
-            var res = new ReturnedSaveFuncInfo();
-            var autoTran = string.IsNullOrEmpty(tranName);
-            if (autoTran) tranName = Guid.NewGuid().ToString();
-            try
-            {
-                if (autoTran)
-                { //BeginTransaction
-                }
-
-                res.AddReturnedValue(await UnitOfWork.RentalAuthority.ChangeStatusAsync(this, status, tranName));
-                res.ThrowExceptionIfError();
-                if (autoTran)
-                {
-                    //CommitTransAction
-                }
-
-                if (sendToServer)
-                    _ = Task.Run(() => WebRental.SaveAsync(this));
-            }
-            catch (Exception ex)
-            {
-                if (autoTran)
-                {
-                    //RollBackTransAction
-                }
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-                res.AddReturnedValue(ex);
-            }
-
-            return res;
-        }
-
         public static async Task<List<RentalAuthorityBussines>> GetAllAsync(string search)
         {
             try
@@ -158,10 +119,41 @@ namespace EntityCache.Bussines
                 return new List<RentalAuthorityBussines>();
             }
         }
-
         public static RentalAuthorityBussines Get(Guid guid) => AsyncContext.Run(() => GetAsync(guid));
-
         public static async Task<bool> CheckNameAsync(string name, Guid guid) =>
             await UnitOfWork.RentalAuthority.CheckNameAsync(name, guid);
+        public async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(bool status, string tranName = "")
+        {
+            var res = new ReturnedSaveFuncInfo();
+            var autoTran = string.IsNullOrEmpty(tranName);
+            if (autoTran) tranName = Guid.NewGuid().ToString();
+            try
+            {
+                if (autoTran)
+                { //BeginTransaction
+                }
+
+                res.AddReturnedValue(await UnitOfWork.RentalAuthority.ChangeStatusAsync(this, status, tranName));
+                res.ThrowExceptionIfError();
+                if (autoTran)
+                {
+                    //CommitTransAction
+                }
+
+                if (Cache.IsSendToServer)
+                    _ = Task.Run(() => WebRental.SaveAsync(this));
+            }
+            catch (Exception ex)
+            {
+                if (autoTran)
+                {
+                    //RollBackTransAction
+                }
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+
+            return res;
+        }
     }
 }

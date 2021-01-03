@@ -24,8 +24,7 @@ namespace EntityCache.Bussines
 
 
         public static async Task<List<HazineBussines>> GetAllAsync() => await UnitOfWork.Hazine.GetAllAsync();
-
-        public static async Task<ReturnedSaveFuncInfo> SaveRangeAsync(List<HazineBussines> list,bool sendToServer,
+        public static async Task<ReturnedSaveFuncInfo> SaveRangeAsync(List<HazineBussines> list, 
             string tranName = "")
         {
             var res = new ReturnedSaveFuncInfo();
@@ -43,7 +42,7 @@ namespace EntityCache.Bussines
                 {
                     //CommitTransAction
                 }
-                if (sendToServer)
+                if (Cache.IsSendToServer)
                     _ = Task.Run(() => WebHazine.SaveAsync(list));
             }
             catch (Exception ex)
@@ -58,11 +57,8 @@ namespace EntityCache.Bussines
 
             return res;
         }
-
         public static async Task<HazineBussines> GetAsync(Guid guid) => await UnitOfWork.Hazine.GetAsync(guid);
-
-
-        public async Task<ReturnedSaveFuncInfo> SaveAsync(bool setEftetah, bool sendToServer, string tranName = "")
+        public async Task<ReturnedSaveFuncInfo> SaveAsync(bool setEftetah, string tranName = "")
         {
             var res = new ReturnedSaveFuncInfo();
             var autoTran = string.IsNullOrEmpty(tranName);
@@ -105,7 +101,7 @@ namespace EntityCache.Bussines
                         res.ThrowExceptionIfError();
                     }
                 }
-                
+
 
                 res.AddReturnedValue(await UnitOfWork.Hazine.SaveAsync(this, tranName));
                 res.ThrowExceptionIfError();
@@ -114,7 +110,7 @@ namespace EntityCache.Bussines
                     //CommitTransAction
                 }
 
-                if (sendToServer)
+                if (Cache.IsSendToServer)
                     _ = Task.Run(() => WebHazine.SaveAsync(this));
             }
             catch (Exception ex)
@@ -129,8 +125,7 @@ namespace EntityCache.Bussines
 
             return res;
         }
-
-        public async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(bool status, bool sendToServer, string tranName = "")
+        public async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(bool status, string tranName = "")
         {
             var res = new ReturnedSaveFuncInfo();
             var autoTran = string.IsNullOrEmpty(tranName);
@@ -148,7 +143,7 @@ namespace EntityCache.Bussines
                     //CommitTransAction
                 }
 
-                if (sendToServer)
+                if (Cache.IsSendToServer)
                     _ = Task.Run(() => WebHazine.SaveAsync(this));
             }
             catch (Exception ex)
@@ -163,7 +158,6 @@ namespace EntityCache.Bussines
 
             return res;
         }
-
         public static async Task<List<HazineBussines>> GetAllAsync(string search)
         {
             try
@@ -194,9 +188,7 @@ namespace EntityCache.Bussines
                 return new List<HazineBussines>();
             }
         }
-
         public static HazineBussines Get(Guid guid) => AsyncContext.Run(() => GetAsync(guid));
-
         public static async Task<bool> CheckNameAsync(string name, Guid guid) =>
             await UnitOfWork.Hazine.CheckNameAsync(name, guid);
     }

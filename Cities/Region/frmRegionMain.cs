@@ -148,7 +148,7 @@ namespace Cities.Region
                 cls.Name = txtRegion.Text;
                 cls.CityGuid = (Guid)cmbCity.SelectedValue;
 
-                res.AddReturnedValue(await cls.SaveAsync(true));
+                res.AddReturnedValue(await cls.SaveAsync());
             }
             catch (Exception ex)
             {

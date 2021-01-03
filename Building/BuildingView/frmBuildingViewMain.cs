@@ -117,7 +117,7 @@ namespace Building.BuildingView
                 if (cls.Guid == Guid.Empty) cls.Guid = Guid.NewGuid();
                 cls.Name = txtName.Text.Trim();
 
-                res.AddReturnedValue(await cls.SaveAsync(true));
+                res.AddReturnedValue(await cls.SaveAsync());
             }
             catch (Exception ex)
             {

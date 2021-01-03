@@ -126,7 +126,7 @@ namespace Peoples
                     {
                         pg.ParentGuid = (Guid) cmbGroup.SelectedValue;
                         pg.Status = true;
-                        var res2 = await cls.SaveAsync(true);
+                        var res2 = await cls.SaveAsync();
                         if (!res2.HasError) return;
                         frmNotification.PublicInfo.ShowMessage(res2.ErrorMessage);
                         return;
@@ -139,7 +139,7 @@ namespace Peoples
                 cls.Name = txtName.Text;
                 cls.ParentGuid = (Guid) cmbGroup.SelectedValue;
 
-                res.AddReturnedValue(await cls.SaveAsync(true));
+                res.AddReturnedValue(await cls.SaveAsync());
             }
             catch (Exception ex)
             {

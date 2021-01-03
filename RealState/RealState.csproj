@@ -143,6 +143,7 @@
     <Compile Include="BackUpLog\frmBackUpLog.Designer.cs">
       <DependentUpon>frmBackUpLog.cs</DependentUpon>
     </Compile>
+    <Compile Include="clsTemp.cs" />
     <Compile Include="frmAdvance.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -121,7 +121,7 @@ namespace Cities.City
                 cls.Name = txtCity.Text;
                 cls.StateGuid = (Guid) cmbState.SelectedValue;
 
-                res.AddReturnedValue(await cls.SaveAsync(true));
+                res.AddReturnedValue(await cls.SaveAsync());
             }
             catch (Exception ex)
             {

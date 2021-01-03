@@ -19,7 +19,6 @@ namespace EntityCache.Bussines
 
         public static async Task<SettingsBussines> GetAsync(string memberName) =>
     await UnitOfWork.Settings.GetAsync(memberName);
-
         public static SettingsBussines Get(string memberName) => AsyncContext.Run(() => GetAsync(memberName));
         public static async Task<ReturnedSaveFuncInfo> SaveAsync(string key, string value, string tranName = "")
         {
@@ -66,7 +65,6 @@ namespace EntityCache.Bussines
 
             return res;
         }
-
         public async Task<ReturnedSaveFuncInfo> RemoveAsync(string tranName = "")
         {
             var res = new ReturnedSaveFuncInfo();
@@ -97,10 +95,8 @@ namespace EntityCache.Bussines
 
             return res;
         }
-
         public static ReturnedSaveFuncInfo Save(string key, string value, string tranName = "") =>
             AsyncContext.Run(() => SaveAsync(key, value, tranName));
-
         public static async Task<List<SettingsBussines>> GetAllAsync() => await UnitOfWork.Settings.GetAllAsync();
     }
 }

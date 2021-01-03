@@ -201,7 +201,7 @@ namespace Building.KitchenService
                             MessageBoxButtons.YesNo,
                             MessageBoxIcon.Question) == DialogResult.No) return;
                     var prd = await KitchenServiceBussines.GetAsync(guid);
-                    res.AddReturnedValue(await prd.ChangeStatusAsync(false, true));
+                    res.AddReturnedValue(await prd.ChangeStatusAsync(false));
                     if (res.HasError) return;
                     User.UserLog.Save(EnLogAction.Delete, EnLogPart.KitchenService);
                 }
@@ -213,7 +213,7 @@ namespace Building.KitchenService
                             MessageBoxButtons.YesNo,
                             MessageBoxIcon.Question) == DialogResult.No) return;
                     var prd = await KitchenServiceBussines.GetAsync(guid);
-                    res.AddReturnedValue(await prd.ChangeStatusAsync(true, true));
+                    res.AddReturnedValue(await prd.ChangeStatusAsync( true));
                     if (res.HasError) return;
                     User.UserLog.Save(EnLogAction.Enable, EnLogPart.KitchenService);
                 }

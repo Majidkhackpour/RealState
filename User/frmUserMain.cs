@@ -311,7 +311,7 @@ namespace User
                     cls.Account += cls.AccountFirst;
                 }
 
-                res.AddReturnedValue(await cls.SaveAsync(true, true));
+                res.AddReturnedValue(await cls.SaveAsync(true));
             }
             catch (Exception exception)
             {

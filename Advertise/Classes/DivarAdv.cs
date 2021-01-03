@@ -2099,7 +2099,7 @@ namespace Advertise.Classes
                                             Status = true,
                                             CityGuid = city.Guid
                                         };
-                                        await region.SaveAsync(false);
+                                        await region.SaveAsync();
                                     }
 
                                     viewModel.RegionGuid = region.Guid;
@@ -2121,7 +2121,7 @@ namespace Advertise.Classes
                                             Modified = DateTime.Now,
                                             Status = true
                                         };
-                                        await type.SaveAsync(false);
+                                        await type.SaveAsync();
                                     }
 
                                     viewModel.BuildingTypeGuid = type.Guid;
@@ -2261,7 +2261,7 @@ namespace Advertise.Classes
                                                 Status = true
                                             };
 
-                                            await rental.SaveAsync(false);
+                                            await rental.SaveAsync();
                                         }
 
                                         viewModel.RentalAutorityGuid = rental.Guid;
@@ -2433,7 +2433,7 @@ namespace Advertise.Classes
                                 viewModel.UserGuid = allUser[userRand].Guid;
 
 
-                                await viewModel.SaveAsync(false);
+                                await viewModel.SaveAsync();
 
                                 _driver.Navigate().Back();
                             }

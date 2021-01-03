@@ -21,11 +21,8 @@ namespace EntityCache.Bussines
 
         public static async Task<List<PeoplesBankAccountBussines>> GetAllAsync(Guid parentGuid, bool status) =>
             await UnitOfWork.PeopleBankAccount.GetAllAsync(parentGuid, status);
-
         public static async Task<List<PeoplesBankAccountBussines>> GetAllAsync() =>
             await UnitOfWork.PeopleBankAccount.GetAllAsync();
-
-
         public async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(bool status, string tranName = "")
         {
             var res = new ReturnedSaveFuncInfo();
@@ -56,7 +53,6 @@ namespace EntityCache.Bussines
 
             return res;
         }
-
         public static async Task<List<PeoplesBankAccountBussines>> GetAllAsync(Guid parentGuid, string search)
         {
             try
@@ -88,6 +84,5 @@ namespace EntityCache.Bussines
                 return new List<PeoplesBankAccountBussines>();
             }
         }
-
     }
 }

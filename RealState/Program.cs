@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Security.Principal;
@@ -10,6 +9,7 @@ using System.Windows.Forms;
 using EntityCache.Assistence;
 using Ertegha;
 using Notification;
+using Persistence;
 using Services;
 using Settings;
 using Settings.Classes;
@@ -64,6 +64,8 @@ namespace RealState
                 return;
             }
 
+            clsTemp.Init();
+
             var frmMain = new frmMain();
             frmMain.ShowDialog();
         }
@@ -110,6 +112,7 @@ namespace RealState
                             break;
                         case EnAppSerial.Telegram:
                             VersionAccess.Telegram = true;
+                            Cache.IsSendToServer = true;
                             break;
                         case EnAppSerial.WhatsApp:
                             VersionAccess.WhatsApp = true;
@@ -122,6 +125,12 @@ namespace RealState
                             break;
                         case EnAppSerial.Accounting:
                             VersionAccess.Accounting = true;
+                            break;
+                        case EnAppSerial.WebSite:
+                            Cache.IsSendToServer = true;
+                            break;
+                        case EnAppSerial.MobileApp:
+                            Cache.IsSendToServer = true;
                             break;
                     }
                 }

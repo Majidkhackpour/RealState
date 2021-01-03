@@ -21,8 +21,7 @@ namespace EntityCache.Bussines
 
 
         public static async Task<List<FloorCoverBussines>> GetAllAsync() => await UnitOfWork.FloorCover.GetAllAsync();
-
-        public static async Task<ReturnedSaveFuncInfo> SaveRangeAsync(List<FloorCoverBussines> list, bool sendToServer,
+        public static async Task<ReturnedSaveFuncInfo> SaveRangeAsync(List<FloorCoverBussines> list,
             string tranName = "")
         {
             var res = new ReturnedSaveFuncInfo();
@@ -41,7 +40,7 @@ namespace EntityCache.Bussines
                     //CommitTransAction
                 }
 
-                if (sendToServer)
+                if (Cache.IsSendToServer)
                     _ = Task.Run(() => WebFloorCover.SaveAsync(list));
             }
             catch (Exception ex)
@@ -56,11 +55,8 @@ namespace EntityCache.Bussines
 
             return res;
         }
-
         public static async Task<FloorCoverBussines> GetAsync(Guid guid) => await UnitOfWork.FloorCover.GetAsync(guid);
-
-
-        public async Task<ReturnedSaveFuncInfo> SaveAsync(bool sendToServer, string tranName = "")
+        public async Task<ReturnedSaveFuncInfo> SaveAsync(string tranName = "")
         {
             var res = new ReturnedSaveFuncInfo();
             var autoTran = string.IsNullOrEmpty(tranName);
@@ -78,7 +74,7 @@ namespace EntityCache.Bussines
                     //CommitTransAction
                 }
 
-                if (sendToServer)
+                if (Cache.IsSendToServer)
                     _ = Task.Run(() => WebFloorCover.SaveAsync(this));
             }
             catch (Exception ex)
@@ -93,8 +89,7 @@ namespace EntityCache.Bussines
 
             return res;
         }
-
-        public async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(bool status, bool sendToServer, string tranName = "")
+        public async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(bool status, string tranName = "")
         {
             var res = new ReturnedSaveFuncInfo();
             var autoTran = string.IsNullOrEmpty(tranName);
@@ -111,7 +106,7 @@ namespace EntityCache.Bussines
                 {
                     //CommitTransAction
                 }
-                if (sendToServer)
+                if (Cache.IsSendToServer)
                     _ = Task.Run(() => WebFloorCover.SaveAsync(this));
             }
             catch (Exception ex)
@@ -126,7 +121,6 @@ namespace EntityCache.Bussines
 
             return res;
         }
-
         public static async Task<List<FloorCoverBussines>> GetAllAsync(string search)
         {
             try
@@ -156,9 +150,7 @@ namespace EntityCache.Bussines
                 return new List<FloorCoverBussines>();
             }
         }
-
         public static FloorCoverBussines Get(Guid guid) => AsyncContext.Run(() => GetAsync(guid));
-
         public static async Task<bool> CheckNameAsync(string name, Guid guid) =>
             await UnitOfWork.FloorCover.CheckNameAsync(name, guid);
     }

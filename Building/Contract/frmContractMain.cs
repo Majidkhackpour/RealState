@@ -401,7 +401,7 @@ namespace Building.Contract
                 cls.BazaryabGuid = (Guid)cmbBazaryab.SelectedValue;
                 cls.BazaryabPrice = txtBazaryabPrice.TextDecimal;
 
-                res.AddReturnedValue(await cls.SaveAsync(true));
+                res.AddReturnedValue(await cls.SaveAsync());
             }
             catch (Exception ex)
             {

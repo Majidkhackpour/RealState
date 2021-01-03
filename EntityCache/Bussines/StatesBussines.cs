@@ -19,8 +19,7 @@ namespace EntityCache.Bussines
         public string HardSerial => Cache.HardSerial;
 
         public static async Task<List<StatesBussines>> GetAllAsync() => await UnitOfWork.States.GetAllAsync();
-
-        public static async Task<ReturnedSaveFuncInfo> SaveRangeAsync(List<StatesBussines> list, bool sendToServer,
+        public static async Task<ReturnedSaveFuncInfo> SaveRangeAsync(List<StatesBussines> list,
             string tranName = "")
         {
             var res = new ReturnedSaveFuncInfo();
@@ -39,7 +38,7 @@ namespace EntityCache.Bussines
                     //CommitTransAction
                 }
 
-                if (sendToServer)
+                if (Cache.IsSendToServer)
                     _ = Task.Run(() => WebStates.SaveAsync(list));
             }
             catch (Exception ex)
@@ -54,10 +53,7 @@ namespace EntityCache.Bussines
 
             return res;
         }
-
         public static async Task<StatesBussines> GetAsync(Guid guid) => await UnitOfWork.States.GetAsync(guid);
-
         public static StatesBussines Get(Guid guid) => AsyncContext.Run(() => GetAsync(guid));
-
     }
 }
