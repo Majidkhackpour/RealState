@@ -76,8 +76,23 @@ namespace RealState
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
+            finally
+            {
+                Invoke(new MethodInvoker(() =>
+                {
+                    btnSend.Enabled = true;
+                    Cursor = Cursors.Default;
+                }));
+            }
         }
-        private void btnSend_Click(object sender, EventArgs e) => _ = Task.Run(ResendDataToHost);
+
+        private void btnSend_Click(object sender, EventArgs e)
+        {
+            btnSend.Enabled = false;
+            Cursor = Cursors.WaitCursor;
+            _ = Task.Run(ResendDataToHost);
+        }
+
         private async void btnQuery_Click(object sender, EventArgs e)
         {
             try

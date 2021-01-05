@@ -9,31 +9,34 @@ namespace WebHesabBussines
 {
     public class WebBuildingCondition : IBuildingCondition
     {
+        private static string Url = Utilities.WebApi + "/api/BuildingCondition/SaveAsync";
+
+
         public Guid Guid { get; set; }
         public DateTime Modified { get; set; }
         public bool Status { get; set; }
         public string Name { get; set; }
         public string HardSerial { get; set; }
 
-        public async Task<ReturnedSaveFuncInfo> SaveAsync()
+        public async Task SaveAsync()
         {
-            var res = new ReturnedSaveFuncInfo();
             try
             {
-                //using (var client = new HttpClient())
-                //{
-                //    var json = Json.ToStringJson(cls);
-                //    var content = new StringContent(json, Encoding.UTF8, "application/json");
-                //    var result = await client.PostAsync(Utilities.WebApi + "/api/Order/SaveAsync", content);
-                //}
+                var res = await Extentions.PostToApi<BuildingConditionBussines, WebBuildingCondition>(this, Url);
+                if (res.ResponseStatus != ResponseStatus.Success)
+                {
+                    var temp = new TempBussines()
+                    {
+                        ObjectGuid = Guid,
+                        Type = EnTemp.BuildingCondition
+                    };
+                    await temp.SaveAsync();
+                }
             }
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
-                res.AddReturnedValue(ex);
             }
-
-            return res;
         }
         public static async Task<ReturnedSaveFuncInfo> SaveAsync(BuildingConditionBussines cls)
         {

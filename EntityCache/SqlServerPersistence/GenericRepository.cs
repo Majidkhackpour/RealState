@@ -21,6 +21,7 @@ namespace EntityCache.SqlServerPersistence
         private ModelContext _dbContext;
         private DbSet<U> _dbSet;
         private string _connectionString;
+        private SemaphoreSlim _semaphore = new SemaphoreSlim(1, 1);
 
         public GenericRepository(ModelContext db,string connectionString)
         {
@@ -86,6 +87,7 @@ namespace EntityCache.SqlServerPersistence
 
         public async Task<List<T>> GetAllAsync()
         {
+            await _semaphore.WaitAsync();
             try
             {
                 var tranName = Guid.NewGuid().ToString();
@@ -102,6 +104,10 @@ namespace EntityCache.SqlServerPersistence
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
                 return null;
+            }
+            finally
+            {
+                _semaphore.Release();
             }
         }
 
