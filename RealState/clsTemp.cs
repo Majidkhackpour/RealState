@@ -107,6 +107,11 @@ namespace RealState
                                 if (ra != null)
                                     await WebRental.SaveAsync(ra);
                                 break;
+                            case EnTemp.BuildingOptions:
+                                var o = await BuildingOptionsBussines.GetAsync(item.ObjectGuid);
+                                if (o != null)
+                                    await WebBuildingOptions.SaveAsync(o);
+                                break;
                             case EnTemp.Building:
                                 var bu = await BuildingBussines.GetAsync(item.ObjectGuid);
                                 if (bu != null)

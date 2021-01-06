@@ -225,7 +225,6 @@
     <Compile Include="Classes\clsReception.cs" />
     <Compile Include="Classes\clsSms.cs" />
     <Compile Include="Classes\clsUserPerformence.cs" />
-    <Compile Include="clsPrint.cs" />
     <Compile Include="frmSetPrintSize.cs">
       <SubType>Form</SubType>
     </Compile>

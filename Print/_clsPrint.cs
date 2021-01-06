@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using Services;
+using Settings.Classes;
 using Stimulsoft.Report;
 
 namespace Print
@@ -16,6 +17,7 @@ namespace Print
             {
                 PutExtras(st, ds, sanadId, sanadType, lst);
                 if (clsPrint.ShowDesign) st.Design();
+                else if (clsPrint.ShowPreview) st.Show();
                 else st.Print(false, 1);
             }
             catch (Exception ex)

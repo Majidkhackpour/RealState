@@ -43,6 +43,8 @@ namespace RealState
 
             if (!CheckHardSerial()) return;
 
+            
+
             //_ = Task.Run(CheckHardSerialWithServerAsync);
 
 

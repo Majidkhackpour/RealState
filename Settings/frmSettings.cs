@@ -451,7 +451,7 @@ namespace Settings
         }
         private void chbAuto_CheckedChanged(object sender, EventArgs e) => txtTime.Enabled = chbAuto.Checked;
         #endregion
-        
+
         #region Global
         private void LoadGlobal()
         {
@@ -460,6 +460,8 @@ namespace Settings
                 chbBirthday.Checked = clsGlobal.IsShowBirthDay.ParseToBoolean();
                 chbReminder.Checked = clsGlobal.IsShowReminder.ParseToBoolean();
                 txtBirthDayText.Text = clsGlobal.BirthDayText;
+                chbPrintDesign.Checked = clsPrint.ShowDesign;
+                chbPrintPreView.Checked = clsPrint.ShowPreview;
             }
             catch (Exception ex)
             {
@@ -473,6 +475,8 @@ namespace Settings
                 clsGlobal.IsShowReminder = chbReminder.Checked.ToString();
                 clsGlobal.IsShowBirthDay = chbReminder.Checked.ToString();
                 clsGlobal.BirthDayText = txtBirthDayText.Text;
+                clsPrint.ShowDesign = chbPrintDesign.Checked;
+                clsPrint.ShowPreview = chbPrintPreView.Checked;
             }
             catch (Exception ex)
             {

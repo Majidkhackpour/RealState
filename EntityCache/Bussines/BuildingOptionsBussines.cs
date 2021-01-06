@@ -4,8 +4,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using EntityCache.Assistence;
 using Nito.AsyncEx;
+using Persistence;
 using Services;
 using Servicess.Interfaces.Building;
+using WebHesabBussines;
 
 namespace EntityCache.Bussines
 {
@@ -16,6 +18,7 @@ namespace EntityCache.Bussines
         public bool Status { get; set; } = true;
         public string Name { get; set; }
         public bool Checked { get; set; }
+        public string HardSerial => Cache.HardSerial;
 
 
         public static async Task<List<BuildingOptionsBussines>> GetAllAsync() => await UnitOfWork.BuildingOption.GetAllAsync();
@@ -37,6 +40,9 @@ namespace EntityCache.Bussines
                 {
                     //CommitTransAction
                 }
+
+                if (Cache.IsSendToServer)
+                    _ = Task.Run(() => WebBuildingOptions.SaveAsync(list));
             }
             catch (Exception ex)
             {
@@ -69,6 +75,9 @@ namespace EntityCache.Bussines
                 {
                     //CommitTransAction
                 }
+
+                if (Cache.IsSendToServer)
+                    _ = Task.Run(() => WebBuildingOptions.SaveAsync(this));
             }
             catch (Exception ex)
             {
@@ -99,6 +108,9 @@ namespace EntityCache.Bussines
                 {
                     //CommitTransAction
                 }
+
+                if (Cache.IsSendToServer)
+                    _ = Task.Run(() => WebBuildingOptions.SaveAsync(this));
             }
             catch (Exception ex)
             {

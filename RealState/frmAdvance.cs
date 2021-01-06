@@ -54,6 +54,8 @@ namespace RealState
                     await WebKitchenService.SaveAsync(await KitchenServiceBussines.GetAllAsync());
                 if (chbRental.Checked)
                     await WebRental.SaveAsync(await RentalAuthorityBussines.GetAllAsync());
+                if (chbOptions.Checked)
+                    await WebBuildingOptions.SaveAsync(await BuildingOptionsBussines.GetAllAsync());
                 if (chbBuilding.Checked)
                     await WebBuilding.SaveAsync(await BuildingBussines.GetAllAsync());
 

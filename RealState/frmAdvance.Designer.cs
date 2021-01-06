@@ -54,6 +54,7 @@
             this.btnSend = new DevComponents.DotNetBar.ButtonX();
             this.btnQuery = new DevComponents.DotNetBar.ButtonX();
             this.txtQuery = new System.Windows.Forms.TextBox();
+            this.chbOptions = new DevComponents.DotNetBar.Controls.CheckBoxX();
             this.SuspendLayout();
             // 
             // chbAccountType
@@ -81,9 +82,9 @@
             // 
             this.chbBuilding.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.chbBuilding.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.chbBuilding.Location = new System.Drawing.Point(629, 50);
+            this.chbBuilding.Location = new System.Drawing.Point(679, 50);
             this.chbBuilding.Name = "chbBuilding";
-            this.chbBuilding.Size = new System.Drawing.Size(154, 23);
+            this.chbBuilding.Size = new System.Drawing.Size(104, 23);
             this.chbBuilding.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.chbBuilding.TabIndex = 0;
             this.chbBuilding.Text = "املاک";
@@ -452,6 +453,22 @@
             this.txtQuery.Size = new System.Drawing.Size(578, 242);
             this.txtQuery.TabIndex = 22;
             // 
+            // chbOptions
+            // 
+            this.chbOptions.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.chbOptions.BackColor = System.Drawing.Color.Transparent;
+            // 
+            // 
+            // 
+            this.chbOptions.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.chbOptions.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.chbOptions.Location = new System.Drawing.Point(666, 311);
+            this.chbOptions.Name = "chbOptions";
+            this.chbOptions.Size = new System.Drawing.Size(117, 23);
+            this.chbOptions.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.chbOptions.TabIndex = 8;
+            this.chbOptions.Text = "امکانات";
+            // 
             // frmAdvance
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -471,6 +488,7 @@
             this.Controls.Add(this.chbHazine);
             this.Controls.Add(this.chbType);
             this.Controls.Add(this.chbUsers);
+            this.Controls.Add(this.chbOptions);
             this.Controls.Add(this.chbRental);
             this.Controls.Add(this.chbPardakht);
             this.Controls.Add(this.chbDocType);
@@ -525,5 +543,6 @@
         private DevComponents.DotNetBar.ButtonX btnSend;
         private DevComponents.DotNetBar.ButtonX btnQuery;
         private System.Windows.Forms.TextBox txtQuery;
+        private DevComponents.DotNetBar.Controls.CheckBoxX chbOptions;
     }
 }

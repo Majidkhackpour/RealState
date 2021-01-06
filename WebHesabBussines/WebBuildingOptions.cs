@@ -7,34 +7,30 @@ using Servicess.Interfaces.Building;
 
 namespace WebHesabBussines
 {
-    public class WebGardeshHesab : IGardeshHesab
+    public class WebBuildingOptions : IBuildingOptions
     {
-        private static string Url = Utilities.WebApi + "/api/BuildingGardeshHesab/SaveAsync";
+        private static string Url = Utilities.WebApi + "/api/BuildingOption/SaveAsync";
 
 
         public Guid Guid { get; set; }
         public DateTime Modified { get; set; }
         public bool Status { get; set; }
-        public Guid PeopleGuid { get; set; }
-        public decimal Price { get; set; }
-        public EnAccountType Type { get; set; }
-        public EnAccountBabat Babat { get; set; }
-        public string Description { get; set; }
-        public Guid ParentGuid { get; set; }
+        public string Name { get; set; }
         public string HardSerial { get; set; }
+
 
 
         public async Task SaveAsync()
         {
             try
             {
-                var res = await Extentions.PostToApi<GardeshHesabBussines, WebGardeshHesab>(this, Url);
+                var res = await Extentions.PostToApi<BuildingOptionsBussines, WebBuildingOptions>(this, Url);
                 if (res.ResponseStatus != ResponseStatus.Success)
                 {
                     var temp = new TempBussines()
                     {
                         ObjectGuid = Guid,
-                        Type = EnTemp.GardeshHesab
+                        Type = EnTemp.BuildingOptions
                     };
                     await temp.SaveAsync();
                 }
@@ -44,22 +40,17 @@ namespace WebHesabBussines
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        public static async Task<ReturnedSaveFuncInfo> SaveAsync(GardeshHesabBussines cls)
+        public static async Task<ReturnedSaveFuncInfo> SaveAsync(BuildingOptionsBussines cls)
         {
             var res = new ReturnedSaveFuncInfo();
             try
             {
-                var obj = new WebGardeshHesab()
+                var obj = new WebBuildingOptions()
                 {
                     Guid = cls.Guid,
+                    Name = cls.Name,
                     Modified = cls.Modified,
                     Status = cls.Status,
-                    ParentGuid = cls.ParentGuid,
-                    Description = cls.Description,
-                    Type = cls.Type,
-                    Price = cls.Price,
-                    Babat = cls.Babat,
-                    PeopleGuid = cls.PeopleGuid,
                     HardSerial = cls.HardSerial
                 };
                 await obj.SaveAsync();
@@ -72,25 +63,20 @@ namespace WebHesabBussines
 
             return res;
         }
-        public static async Task<ReturnedSaveFuncInfo> SaveAsync(List<GardeshHesabBussines> item)
+        public static async Task<ReturnedSaveFuncInfo> SaveAsync(List<BuildingOptionsBussines> cls)
         {
             var res = new ReturnedSaveFuncInfo();
             try
             {
-                foreach (var cls in item)
+                foreach (var item in cls)
                 {
-                    var obj = new WebGardeshHesab()
+                    var obj = new WebBuildingOptions()
                     {
-                        Guid = cls.Guid,
-                        Modified = cls.Modified,
-                        Status = cls.Status,
-                        ParentGuid = cls.ParentGuid,
-                        Description = cls.Description,
-                        Type = cls.Type,
-                        Price = cls.Price,
-                        Babat = cls.Babat,
-                        PeopleGuid = cls.PeopleGuid,
-                        HardSerial = cls.HardSerial
+                        Guid = item.Guid,
+                        Name = item.Name,
+                        Modified = item.Modified,
+                        Status = item.Status,
+                        HardSerial = item.HardSerial
                     };
                     await obj.SaveAsync();
                 }
