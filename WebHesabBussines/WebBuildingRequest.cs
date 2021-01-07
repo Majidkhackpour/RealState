@@ -9,6 +9,9 @@ namespace WebHesabBussines
 {
     public class WebBuildingRequest : IBuildingRequest
     {
+        private static string Url = Utilities.WebApi + "/api/BuildingRequest/SaveAsync";
+
+
         public Guid Guid { get; set; }
         public DateTime Modified { get; set; }
         public bool Status { get; set; }
@@ -37,25 +40,28 @@ namespace WebHesabBussines
         public string HardSerial { get; set; }
         private List<BuildingRequestRegionBussines> RegionList { get; set; }
 
-        public async Task<ReturnedSaveFuncInfo> SaveAsync()
+        public async Task SaveAsync()
         {
-            var res = new ReturnedSaveFuncInfo();
             try
             {
-                //using (var client = new HttpClient())
-                //{
-                //    var json = Json.ToStringJson(cls);
-                //    var content = new StringContent(json, Encoding.UTF8, "application/json");
-                //    var result = await client.PostAsync(Utilities.WebApi + "/api/Order/SaveAsync", content);
-                //}
+                var res = await Extentions.PostToApi<BuildingRequestBussines, WebBuildingRequest>(this, Url);
+                if (res.ResponseStatus != ResponseStatus.Success)
+                {
+                    var temp = new TempBussines()
+                    {
+                        ObjectGuid = Guid,
+                        Type = EnTemp.Requests
+                    };
+                    await temp.SaveAsync();
+                    return;
+                }
+
+                await WebBuildingRequestRegion.SaveAsync(RegionList);
             }
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
-                res.AddReturnedValue(ex);
             }
-
-            return res;
         }
         public static async Task<ReturnedSaveFuncInfo> SaveAsync(BuildingRequestBussines cls)
         {

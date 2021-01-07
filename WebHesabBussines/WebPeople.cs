@@ -9,6 +9,9 @@ namespace WebHesabBussines
 {
     public class WebPeople : IPeoples
     {
+        private static string Url = Utilities.WebApi + "/api/People/SaveAsync";
+
+
         public Guid Guid { get; set; }
         public DateTime Modified { get; set; }
         public bool Status { get; set; }
@@ -26,28 +29,31 @@ namespace WebHesabBussines
         public decimal Account { get; set; }
         public decimal AccountFirst { get; set; }
         public string HardSerial { get; set; }
+        public List<PhoneBookBussines> TellList { get; set; }
 
 
-
-        public async Task<ReturnedSaveFuncInfo> SaveAsync()
+        public async Task SaveAsync()
         {
-            var res = new ReturnedSaveFuncInfo();
             try
             {
-                //using (var client = new HttpClient())
-                //{
-                //    var json = Json.ToStringJson(cls);
-                //    var content = new StringContent(json, Encoding.UTF8, "application/json");
-                //    var result = await client.PostAsync(Utilities.WebApi + "/api/Order/SaveAsync", content);
-                //}
+                var res = await Extentions.PostToApi<PeoplesBussines, WebPeople>(this, Url);
+                if (res.ResponseStatus != ResponseStatus.Success)
+                {
+                    var temp = new TempBussines()
+                    {
+                        ObjectGuid = Guid,
+                        Type = EnTemp.Peoples
+                    };
+                    await temp.SaveAsync();
+                    return;
+                }
+
+                await WebPhoneBook.SaveAsync(TellList);
             }
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
-                res.AddReturnedValue(ex);
             }
-
-            return res;
         }
         public static async Task<ReturnedSaveFuncInfo> SaveAsync(PeoplesBussines cls)
         {
@@ -72,7 +78,8 @@ namespace WebHesabBussines
                     PlaceBirth = cls.PlaceBirth,
                     IssuedFrom = cls.IssuedFrom,
                     PostalCode = cls.PostalCode,
-                    HardSerial = cls.HardSerial
+                    HardSerial = cls.HardSerial,
+                    TellList = cls.TellList
                 };
                 await obj.SaveAsync();
             }
@@ -109,7 +116,8 @@ namespace WebHesabBussines
                         PlaceBirth = cls.PlaceBirth,
                         IssuedFrom = cls.IssuedFrom,
                         PostalCode = cls.PostalCode,
-                        HardSerial = cls.HardSerial
+                        HardSerial = cls.HardSerial,
+                        TellList = cls.TellList
                     };
                     await obj.SaveAsync();
                 }

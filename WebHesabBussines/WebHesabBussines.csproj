@@ -53,6 +53,7 @@
     <Compile Include="WebBuildingCondition.cs" />
     <Compile Include="WebBuildingOptions.cs" />
     <Compile Include="WebBuildingRequest.cs" />
+    <Compile Include="WebBuildingRequestRegion.cs" />
     <Compile Include="WebBuildingType.cs" />
     <Compile Include="WebBuildingView.cs" />
     <Compile Include="WebCheckLuck.cs" />
@@ -66,6 +67,7 @@
     <Compile Include="WebPardakht.cs" />
     <Compile Include="WebPeople.cs" />
     <Compile Include="WebPeopleGroup.cs" />
+    <Compile Include="WebPhoneBook.cs" />
     <Compile Include="WebReception.cs" />
     <Compile Include="WebRegion.cs" />
     <Compile Include="WebRental.cs" />

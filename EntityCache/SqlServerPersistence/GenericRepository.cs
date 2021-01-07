@@ -93,7 +93,7 @@ namespace EntityCache.SqlServerPersistence
                 var tranName = Guid.NewGuid().ToString();
                 var tt = typeof(T);
                 var Tu = typeof(U);
-                var ret = _dbContext.Set<U>().AsNoTracking().ToList();
+                var ret = _dbContext.Set<U>()?.AsNoTracking()?.ToList();
                 return Mappings.Default.Map<List<T>>(ret);
             }
             catch (ThreadAbortException)

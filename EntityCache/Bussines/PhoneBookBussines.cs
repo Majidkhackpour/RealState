@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using EntityCache.Assistence;
 using Nito.AsyncEx;
+using Persistence;
 using Services;
 using Servicess.Interfaces.Building;
 
@@ -20,6 +21,7 @@ namespace EntityCache.Bussines
         public string GroupName => Group.GetDisplay();
         public Guid ParentGuid { get; set; }
         public bool IsChecked { get; set; }
+        public string HardSerial => Cache.HardSerial;
 
 
         public static async Task<List<PhoneBookBussines>> GetAllBySpAsync(Guid parentGuid, bool status) =>
