@@ -31,6 +31,7 @@ namespace RealState
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             ClsCache.InitMapper();
+
             InitConfigs();
 
             var frmYear = new frmShowWorkingYears();
@@ -56,6 +57,8 @@ namespace RealState
 
             var logForm = new frmLogin();
             if (logForm.ShowDialog() != DialogResult.OK) return;
+
+            Cache.Path = Application.StartupPath;
 
             SetVersionAccess();
 

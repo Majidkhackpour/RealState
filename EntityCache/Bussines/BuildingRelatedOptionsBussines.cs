@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using EntityCache.Assistence;
 using Nito.AsyncEx;
+using Persistence;
 using Services;
 using Servicess.Interfaces.Building;
 
@@ -15,6 +16,7 @@ namespace EntityCache.Bussines
         public bool Status { get; set; }
         public Guid BuildinGuid { get; set; }
         public Guid BuildingOptionGuid { get; set; }
+        public string HardSerial => Cache.HardSerial;
         public string OptionName => BuildingOptionsBussines.Get(BuildingOptionGuid).Name;
 
 

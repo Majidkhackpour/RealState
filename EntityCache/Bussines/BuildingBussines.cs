@@ -170,7 +170,7 @@ namespace EntityCache.Bussines
                 }
 
                 if (Cache.IsSendToServer)
-                    _ = Task.Run(() => WebBuilding.SaveAsync(this));
+                    _ = Task.Run(() => WebBuilding.SaveAsync(this, Cache.Path));
             }
             catch (Exception ex)
             {
@@ -225,7 +225,7 @@ namespace EntityCache.Bussines
 
 
                 if (Cache.IsSendToServer)
-                    _ = Task.Run(() => WebBuilding.SaveAsync(this));
+                    _ = Task.Run(() => WebBuilding.SaveAsync(this, Cache.Path));
             }
             catch (Exception ex)
             {

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using EntityCache.Bussines;
 using Services;
 using WebHesabBussines;
@@ -120,7 +121,7 @@ namespace RealState
                             case EnTemp.Building:
                                 var bu = await BuildingBussines.GetAsync(item.ObjectGuid);
                                 if (bu != null)
-                                    await WebBuilding.SaveAsync(bu);
+                                    await WebBuilding.SaveAsync(bu, Application.StartupPath);
                                 break;
                             case EnTemp.Contract:
                                 var con = await ContractBussines.GetAsync(item.ObjectGuid);

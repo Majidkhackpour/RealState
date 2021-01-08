@@ -57,7 +57,7 @@ namespace RealState
                 if (chbOptions.Checked)
                     await WebBuildingOptions.SaveAsync(await BuildingOptionsBussines.GetAllAsync());
                 if (chbBuilding.Checked)
-                    await WebBuilding.SaveAsync(await BuildingBussines.GetAllAsync());
+                    await WebBuilding.SaveAsync(await BuildingBussines.GetAllAsync(), Application.StartupPath);
 
 
                 if (chbRequest.Checked)

@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 using EntityCache.Bussines;
 using Services;
@@ -9,6 +12,9 @@ namespace WebHesabBussines
 {
     public class WebBuilding : IBuilding
     {
+        private static string Url = Utilities.WebApi + "/api/Building/SaveAsync";
+
+
         public Guid Guid { get; set; }
         public DateTime Modified { get; set; }
         public bool Status { get; set; }
@@ -72,27 +78,37 @@ namespace WebHesabBussines
         public List<BuildingGalleryBussines> GalleryList { get; set; }
 
 
-        public async Task<ReturnedSaveFuncInfo> SaveAsync()
+        public async Task SaveAsync(string p)
         {
-            var res = new ReturnedSaveFuncInfo();
             try
             {
-                //using (var client = new HttpClient())
-                //{
-                //    var json = Json.ToStringJson(cls);
-                //    var content = new StringContent(json, Encoding.UTF8, "application/json");
-                //    var result = await client.PostAsync(Utilities.WebApi + "/api/Order/SaveAsync", content);
-                //}
+                var res = await Extentions.PostToApi<BuildingBussines, WebBuilding>(this, Url);
+                if (res.ResponseStatus != ResponseStatus.Success)
+                {
+                    var temp = new TempBussines()
+                    {
+                        ObjectGuid = Guid,
+                        Type = EnTemp.Building
+                    };
+                    await temp.SaveAsync();
+                    return;
+                }
+
+                await WebBuildingRelatedOptions.SaveAsync(OptionList);
+                if (string.IsNullOrEmpty(Image)) return;
+                //Check FileInfo
+                var img = Path.Combine(p, "Images");
+                if (!Directory.Exists(img)) return;
+                var path = Path.Combine(img, Image);
+                var imageByte = File.ReadAllBytes(path);
+                _ = Task.Run(() => UploadBitmapAsync(imageByte, Image));
             }
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
-                res.AddReturnedValue(ex);
             }
-
-            return res;
         }
-        public static async Task<ReturnedSaveFuncInfo> SaveAsync(BuildingBussines cls)
+        public static async Task<ReturnedSaveFuncInfo> SaveAsync(BuildingBussines cls, string path)
         {
             var res = new ReturnedSaveFuncInfo();
             try
@@ -161,7 +177,7 @@ namespace WebHesabBussines
                     HardSerial = cls.HardSerial,
                     Image = cls.Image
                 };
-                await obj.SaveAsync();
+                await obj.SaveAsync(path);
             }
             catch (Exception ex)
             {
@@ -171,7 +187,7 @@ namespace WebHesabBussines
 
             return res;
         }
-        public static async Task<ReturnedSaveFuncInfo> SaveAsync(List<BuildingBussines> item)
+        public static async Task<ReturnedSaveFuncInfo> SaveAsync(List<BuildingBussines> item, string path)
         {
             var res = new ReturnedSaveFuncInfo();
             try
@@ -242,7 +258,7 @@ namespace WebHesabBussines
                         HardSerial = cls.HardSerial,
                         Image = cls.Image
                     };
-                    await obj.SaveAsync();
+                    await obj.SaveAsync(path);
                 }
             }
             catch (Exception ex)
@@ -252,6 +268,27 @@ namespace WebHesabBussines
             }
 
             return res;
+        }
+        public async Task UploadBitmapAsync(byte[] img, string imageName)
+        {
+            try
+            {
+                using (var httpClient = new HttpClient())
+                {
+                    var form = new MultipartFormDataContent
+                    {
+                        {new ByteArrayContent(img, 0, img.Count()), "picture", imageName}
+                    };
+                    var response = await httpClient.PostAsync(Utilities.WebApi + "/PostImage", form);
+                    response.EnsureSuccessStatusCode();
+                    var responseBody = response.Content.ReadAsStringAsync();
+                    //Save Image To FileInfo
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
         }
     }
 }

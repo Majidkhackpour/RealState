@@ -16,7 +16,8 @@ namespace Ertegha
             {
                 var cn = new SqlConnection(connectionString);
                 res.AddReturnedValue(await DataBaseUtilities.RunScript.RunAsync(owner, Properties.Resources.Ertegha, cn));
-                res.ThrowExceptionIfError();
+                if (res.HasError) return res;
+                res.AddReturnedValue(await clsFixBuilding.FixBuildingImage());
             }
             catch (Exception ex)
             {
@@ -27,7 +28,7 @@ namespace Ertegha
             return res;
         }
 
-        public static ReturnedSaveFuncInfo StartErtegha(string connectionString, IWin32Window owner) =>
-            AsyncContext.Run(() => StartErteghaAsync(connectionString, owner));
+        public static void StartErtegha(string connectionString, IWin32Window owner) =>
+            Task.Run(() => StartErteghaAsync(connectionString, owner));
     }
 }

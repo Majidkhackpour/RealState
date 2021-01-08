@@ -52,6 +52,7 @@
     <Compile Include="WebBuildingAccountType.cs" />
     <Compile Include="WebBuildingCondition.cs" />
     <Compile Include="WebBuildingOptions.cs" />
+    <Compile Include="WebBuildingRelatedOptions.cs" />
     <Compile Include="WebBuildingRequest.cs" />
     <Compile Include="WebBuildingRequestRegion.cs" />
     <Compile Include="WebBuildingType.cs" />
