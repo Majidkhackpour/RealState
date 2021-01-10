@@ -14,7 +14,7 @@ namespace Ertegha
             try
             {
                 var all = await BuildingBussines.GetAllAsync();
-                all = all.Where(q => string.IsNullOrEmpty(q.Image) && q.GalleryList.Any()).ToList();
+                all = all.Where(q => string.IsNullOrEmpty(q.Image) && (q.GalleryList?.Any() ?? false)).ToList();
                 foreach (var item in all)
                 {
                     item.Image = item.GalleryList[0].ImageName;

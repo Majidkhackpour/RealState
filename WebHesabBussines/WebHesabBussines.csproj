@@ -73,6 +73,7 @@
     <Compile Include="WebRegion.cs" />
     <Compile Include="WebRental.cs" />
     <Compile Include="WebStates.cs" />
+    <Compile Include="WebTelegramBuilding.cs" />
     <Compile Include="WebUser.cs" />
   </ItemGroup>
   <ItemGroup>

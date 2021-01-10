@@ -10,9 +10,11 @@ using Advertise.Forms.Simcard;
 using EntityCache.Bussines;
 using MetroFramework.Forms;
 using Notification;
+using Payamak;
 using Print;
 using Services;
 using User;
+using WebHesabBussines;
 
 namespace Building.Building
 {
@@ -1505,6 +1507,118 @@ namespace Building.Building
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
+        }
+        private async void mnuSendToTelegram_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(Settings.Classes.clsTelegram.Token) ||
+                    string.IsNullOrEmpty(Settings.Classes.clsTelegram.Channel))
+                {
+                    frmNotification.PublicInfo.ShowMessage(
+                        "لطفا ابتدا به تنظیمات برنامه، سربرگ تلگرام رفته و موارد خواسته شده را وارد نمایید");
+                    return;
+                }
+                if (DGrid.RowCount <= 0) return;
+                if (DGrid.CurrentRow == null) return;
+                var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
+                if (guid == Guid.Empty) return;
+                var bu = await BuildingBussines.GetAsync(guid);
+                if (bu == null) return;
+                var telegram = new WebTelegramBuilding
+                {
+                    Content = await TelegramTextAsync(bu),
+                    BotApi = Settings.Classes.clsTelegram.Token,
+                    BuildingGuid = bu.Guid,
+                    Channel = Settings.Classes.clsTelegram.Channel
+                };
+                await telegram.SaveAsync();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private async Task<string> TelegramTextAsync(BuildingBussines bu)
+        {
+            var res = "";
+            try
+            {
+                res = Settings.Classes.clsTelegram.Text;
+
+                if (res.Contains(Replacor.TelegramBuilding.Code)) res = res.Replace(Replacor.TelegramBuilding.Code, bu.Code);
+                if (res.Contains(Replacor.TelegramBuilding.Type))
+                {
+                    var type = await BuildingTypeBussines.GetAsync(bu.BuildingTypeGuid);
+                    res = res.Replace(Replacor.TelegramBuilding.Type, type?.Name ?? "");
+                }
+                if (res.Contains(Replacor.TelegramBuilding.Contract))
+                {
+                    var contract = bu.SellPrice > 0 ? "فروش" : "رهن و اجاره";
+                    res = res.Replace(Replacor.TelegramBuilding.Contract, contract);
+                }
+                if (res.Contains(Replacor.TelegramBuilding.AccountType))
+                {
+                    var type = await BuildingTypeBussines.GetAsync(bu.BuildingAccountTypeGuid);
+                    res = res.Replace(Replacor.TelegramBuilding.AccountType, type?.Name ?? "");
+                }
+                if (res.Contains(Replacor.TelegramBuilding.Region))
+                {
+                    var reg = RegionsBussines.Get(bu.RegionGuid);
+                    res = res.Replace(Replacor.TelegramBuilding.Region, reg?.Name);
+                }
+
+                if (res.Contains(Replacor.TelegramBuilding.SellPrice))
+                    res = res.Replace(Replacor.TelegramBuilding.SellPrice, bu.SellPrice.ToString("N0"));
+
+                if (res.Contains(Replacor.TelegramBuilding.RahnPrice))
+                    res = res.Replace(Replacor.TelegramBuilding.RahnPrice, bu.RahnPrice1.ToString("N0"));
+
+                if (res.Contains(Replacor.TelegramBuilding.EjarePrice))
+                    res = res.Replace(Replacor.TelegramBuilding.EjarePrice, bu.EjarePrice1.ToString("N0"));
+
+                if (res.Contains(Replacor.TelegramBuilding.Masahat))
+                    res = res.Replace(Replacor.TelegramBuilding.Masahat, bu.Masahat.ToString());
+
+                if (res.Contains(Replacor.TelegramBuilding.ZirBana))
+                    res = res.Replace(Replacor.TelegramBuilding.ZirBana, bu.ZirBana.ToString());
+
+                if (res.Contains(Replacor.TelegramBuilding.DocumentType))
+                {
+                    var doc = await DocumentTypeBussines.GetAsync(bu.DocumentType ?? Guid.Empty);
+                    res = res.Replace(Replacor.TelegramBuilding.DocumentType, doc?.Name ?? "");
+                }
+
+                if (res.Contains(Replacor.TelegramBuilding.Side))
+                    res = res.Replace(Replacor.TelegramBuilding.Side, bu.SideName);
+
+                if (res.Contains(Replacor.TelegramBuilding.Tarakom))
+                    res = res.Replace(Replacor.TelegramBuilding.Tarakom, (bu.Tarakom?.GetDisplay() ?? ""));
+
+                if (res.Contains(Replacor.TelegramBuilding.TabaqeNo))
+                    res = res.Replace(Replacor.TelegramBuilding.TabaqeNo, bu.TabaqeNo.ToString());
+
+                if (res.Contains(Replacor.TelegramBuilding.TabaqeCount))
+                    res = res.Replace(Replacor.TelegramBuilding.TabaqeCount, bu.TedadTabaqe.ToString());
+
+                if (res.Contains(Replacor.TelegramBuilding.RoomCount))
+                    res = res.Replace(Replacor.TelegramBuilding.RoomCount, bu.RoomCount.ToString());
+
+                if (res.Contains(Replacor.TelegramBuilding.SaleSakht))
+                    res = res.Replace(Replacor.TelegramBuilding.SaleSakht, bu.SaleSakht);
+
+                if (res.Contains(Replacor.TelegramBuilding.Tejari))
+                    res = res.Replace(Replacor.TelegramBuilding.Tejari, bu.MetrazhTejari.ToString());
+
+                if (res.Contains(Replacor.TelegramBuilding.Channel))
+                    res = res.Replace(Replacor.TelegramBuilding.Channel, Settings.Classes.clsTelegram.Channel);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+
+            return res;
         }
     }
 }

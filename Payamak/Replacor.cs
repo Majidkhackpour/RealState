@@ -31,5 +31,27 @@
             public static string Region => "[محدوده ملک]".Trim();
             public static string SellPrice => "[قیمت]".Trim();
         }
+        public class TelegramBuilding
+        {
+            public static string Code => "[کد ملک]".Trim();
+            public static string Type => "[نوع ملک]".Trim();
+            public static string Contract => "[نوع معامله]".Trim();
+            public static string AccountType => "[نوع کاربری]".Trim();
+            public static string Region => "[محدوده]".Trim();
+            public static string SellPrice => "[ق فروش]".Trim();
+            public static string RahnPrice => "[ق رهن]".Trim();
+            public static string EjarePrice => "[ق اجاره]".Trim();
+            public static string Masahat => "[مساحت]".Trim();
+            public static string ZirBana => "[زیربنا]".Trim();
+            public static string DocumentType => "[نوع سند]".Trim();
+            public static string Side => "[جهت]".Trim();
+            public static string Tarakom => "[تراکم]".Trim();
+            public static string TabaqeNo => "[ش طبقه]".Trim();
+            public static string TabaqeCount => "[تعداد طبقات]".Trim();
+            public static string RoomCount => "[تعداد اتاق]".Trim();
+            public static string SaleSakht => "[سال ساخت]".Trim();
+            public static string Tejari => "[متراژ تجاری]".Trim();
+            public static string Channel => "[آدرس کانال]".Trim();
+        }
     }
 }

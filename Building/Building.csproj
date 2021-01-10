@@ -362,6 +362,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\References\TelerikProviderForGoogleAnalytics.dll</HintPath>
     </Reference>
+    <Reference Include="WebDriver, Version=3.141.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Selenium.WebDriver.3.141.0\lib\net45\WebDriver.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BuildingAccountType\frmBuildingAccountType.cs">
@@ -590,6 +593,10 @@
     <ProjectReference Include="..\User\User.csproj">
       <Project>{ebed491e-32a3-4484-a5aa-e5ed61e8bb0b}</Project>
       <Name>User</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WebHesabBussines\WebHesabBussines.csproj">
+      <Project>{f8f30f25-71e7-4e57-b938-4b30a267eaef}</Project>
+      <Name>WebHesabBussines</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

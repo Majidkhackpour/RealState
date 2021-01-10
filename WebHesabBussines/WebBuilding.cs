@@ -96,12 +96,17 @@ namespace WebHesabBussines
 
                 await WebBuildingRelatedOptions.SaveAsync(OptionList);
                 if (string.IsNullOrEmpty(Image)) return;
-                //Check FileInfo
+
+                var file = await FileInfoBussines.GetAsync(Image);
+                if (file != null)
+                    if (file.FileName == Image) return;
+
                 var img = Path.Combine(p, "Images");
                 if (!Directory.Exists(img)) return;
+                if (!Image.EndsWith(".jpg") && !Image.EndsWith(".png")) return;
                 var path = Path.Combine(img, Image);
                 var imageByte = File.ReadAllBytes(path);
-                _ = Task.Run(() => UploadBitmapAsync(imageByte, Image));
+                await UploadBitmapAsync(imageByte, Image);
             }
             catch (Exception ex)
             {
@@ -282,7 +287,8 @@ namespace WebHesabBussines
                     var response = await httpClient.PostAsync(Utilities.WebApi + "/PostImage", form);
                     response.EnsureSuccessStatusCode();
                     var responseBody = response.Content.ReadAsStringAsync();
-                    //Save Image To FileInfo
+                    var file = new FileInfoBussines() { FileName = imageName };
+                    await file.SaveAsync();
                 }
             }
             catch (Exception ex)

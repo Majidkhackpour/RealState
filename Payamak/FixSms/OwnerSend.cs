@@ -76,7 +76,6 @@ namespace Payamak.FixSms
 
             return res;
         }
-
         private static string Text(BuildingBussines bu)
         {
             var res = "";

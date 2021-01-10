@@ -14,7 +14,7 @@ namespace Settings
             {
                 var res = clsRegistery.GetConnectionRegistery("BuildingCn");
                 _defCn = string.IsNullOrEmpty(res.value)
-                    ? "data source=.;initial catalog=AradRealStatedb;integrated security=True;MultipleActiveResultSets=True;"
+                    ? "data source=.;initial catalog=AradRealStatedb;integrated security=True;MultipleActiveResultSets=True;MultipleActiveResultSets = True;"
                     : res.value;
                 return _defCn;
             }
@@ -40,6 +40,7 @@ namespace Settings
                 }
 
                 _builder.AsynchronousProcessing = true;
+                _builder.MultipleActiveResultSets = true;
                 var con = new SqlConnection { ConnectionString = _builder.ConnectionString };
                 con.Open();
 

@@ -1018,7 +1018,7 @@
             this.مدیریتستونهاToolStripMenuItem});
             this.contextMenu.Name = "contextMenu";
             this.contextMenu.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.contextMenu.Size = new System.Drawing.Size(214, 400);
+            this.contextMenu.Size = new System.Drawing.Size(214, 422);
             // 
             // mnuAdd
             // 
@@ -1116,6 +1116,7 @@
             this.mnuSendToTelegram.Name = "mnuSendToTelegram";
             this.mnuSendToTelegram.Size = new System.Drawing.Size(213, 24);
             this.mnuSendToTelegram.Text = "ارسال ملک در تلگرام";
+            this.mnuSendToTelegram.Click += new System.EventHandler(this.mnuSendToTelegram_Click);
             // 
             // ارسالملکدرواتساپToolStripMenuItem
             // 
