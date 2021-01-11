@@ -917,6 +917,7 @@ namespace Building.Building
             superTabControlPanel5.Enabled = !isShowMode;
             superTabControlPanel6.Enabled = !isShowMode;
             btnFinish.Enabled = !isShowMode;
+            btnPrint.Enabled = !isShowMode;
             action = EnLogAction.Update;
         }
 

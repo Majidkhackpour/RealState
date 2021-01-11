@@ -765,5 +765,17 @@ namespace RealState
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
+        private void btnBuildingFast_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var frm = new frmBuildingMainFast();
+                frm.ShowDialog(this);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
     }
 }
