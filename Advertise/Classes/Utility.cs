@@ -13,6 +13,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Advertise.ViewModels.Divar.Rent.Residential;
 using EntityCache.Bussines;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
@@ -449,15 +450,15 @@ namespace Advertise.Classes
         #endregion
 
         #region GetAdv
-        private static async Task<ReturnedSaveFuncInfoWithValue<AdvertiseLogBussines>> GetNextAdv(BuildingBussines bu, AdvertiseType type, long simCardNumber)
+        private static async Task<ReturnedSaveFuncInfo> SendDivarAdv(BuildingBussines bu, long simCardNumber)
         {
             var res = new ReturnedSaveFuncInfoWithValue<AdvertiseLogBussines>();
             try
             {
+
+
                 res.value = new AdvertiseLogBussines { SimcardNumber = simCardNumber };
 
-                res.AddReturnedValue(await GetAdvCategory(bu, type, res));
-                res.AddReturnedValue(await GetAdvCity(bu, type, res));
                 res.AddReturnedValue(await GetAdvTitle(bu, res));
                 res.AddReturnedValue(await GetAdvContent(bu, res));
                 res.AddReturnedValue(await GetAdvOption(bu, res));
@@ -533,130 +534,6 @@ namespace Advertise.Classes
                 content.AppendLine($"طبقه: {bu.TabaqeNo} از {bu.TedadTabaqe}");
 
                 res.value.Content = content.ToString();
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-                res.AddReturnedValue(ex);
-            }
-
-            return res;
-        }
-        private static async Task<ReturnedSaveFuncInfoWithValue<AdvertiseLogBussines>> GetAdvCategory(
-            BuildingBussines bu, AdvertiseType type, ReturnedSaveFuncInfoWithValue<AdvertiseLogBussines> res)
-        {
-            try
-            {
-                res.value.Category = "املاک";
-                if (type == AdvertiseType.Divar)
-                {
-                    if (bu.RahnPrice1 > 0 || bu.RahnPrice2 > 0)
-                    {
-                        res.value.SubCategory1 = "اجاره مسکونی";
-                        var buType = await BuildingTypeBussines.GetAsync(bu.BuildingTypeGuid);
-                        if (buType == null)
-                        {
-                            res.value.SubCategory2 = "متفرقه";
-                            return res;
-                        }
-
-                        if (buType.Name == "آپارتمان"|| buType.Name == "اپارتمان")
-                        {
-                            res.value.SubCategory2 = "آپارتمان";
-                            return res;
-                        }
-                        if (buType.Name == "منزل مسکونی" || buType.Name == "ویلا")
-                        {
-                            res.value.SubCategory2 = "خانه و ویلا";
-                            return res;
-                        }
-
-                        res.value.SubCategory2 = "متفرقه";
-                    }
-                    else if (bu.SellPrice > 0)
-                    {
-                        res.value.SubCategory1 = "فروش مسکونی";
-                        var buType = await BuildingTypeBussines.GetAsync(bu.BuildingTypeGuid);
-                        if (buType == null)
-                        {
-                            res.value.SubCategory2 = "متفرقه";
-                            return res;
-                        }
-
-                        if (buType.Name == "آپارتمان")
-                        {
-                            res.value.SubCategory2 = "آپارتمان";
-                            return res;
-                        }
-                        if (buType.Name == "منزل مسکونی" || buType.Name == "ویلا")
-                        {
-                            res.value.SubCategory2 = "خانه و ویلا";
-                            return res;
-                        }
-                        if (buType.Name.Contains("زمین"))
-                        {
-                            res.value.SubCategory2 = "زمین و کلنگی";
-                            return res;
-                        }
-
-                        res.value.SubCategory2 = "متفرقه";
-                    }
-                }
-                else if (type == AdvertiseType.Sheypoor)
-                {
-                    if (bu.RahnPrice1 > 0 || bu.RahnPrice2 > 0)
-                    {
-                        res.value.SubCategory1 = "رهن و اجاره خانه و آپارتمان";
-                        var buType = await BuildingTypeBussines.GetAsync(bu.BuildingTypeGuid);
-                        if (buType == null)
-                        {
-                            res.value.SubCategory2 = "سایر املاک";
-                            return res;
-                        }
-                    }
-                    else if (bu.SellPrice > 0)
-                    {
-                        res.value.SubCategory1 = "خرید و فروش خانه و آپارتمان";
-                        var buType = await BuildingTypeBussines.GetAsync(bu.BuildingTypeGuid);
-                        if (buType == null)
-                        {
-                            res.value.SubCategory2 = "سایر املاک";
-                            return res;
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-                res.AddReturnedValue(ex);
-            }
-
-            return res;
-        }
-        private static async Task<ReturnedSaveFuncInfoWithValue<AdvertiseLogBussines>> GetAdvCity(BuildingBussines bu, AdvertiseType type,
-             ReturnedSaveFuncInfoWithValue<AdvertiseLogBussines> res)
-        {
-            try
-            {
-
-                var city = await CitiesBussines.GetAsync(bu.CityGuid);
-                res.value.City = city?.Name;
-
-                var state = await StatesBussines.GetAsync(city.StateGuid);
-                if (state != null)
-                    res.value.State = state?.Name;
-
-                if (bu.RegionGuid != Guid.Empty)
-                {
-                    var relatedRegion = await AdvertiseRelatedRegionBussines.GetByRegionGuidAsync(bu.RegionGuid);
-                    if (relatedRegion != null) res.value.Region = relatedRegion?.OnlineRegionName;
-                    else
-                    {
-                        var reg = await RegionsBussines.GetAsync(bu.RegionGuid);
-                        if (reg != null) res.value.Region = reg?.Name;
-                    }
-                }
             }
             catch (Exception ex)
             {
@@ -851,28 +728,21 @@ namespace Advertise.Classes
                     var rand = new Random().Next(0, buList.Count);
                     var bu = buList[rand];
 
-                    if (type == AdvertiseType.Divar)
-                    {
-                        var adv = await GetNextAdv(bu, AdvertiseType.Divar, number.Number);
-                        if (adv.HasError || adv.value == null)
-                            res.AddReturnedValue(ReturnedState.Error, "خطا در دریافت آگهی");
-                        res.AddReturnedValue(await SendAdv(adv.value, number.Number, AdvertiseType.Divar));
-                    }
-                    if (type == AdvertiseType.Sheypoor)
-                    {
-                        var adv = await GetNextAdv(bu, AdvertiseType.Sheypoor, number.Number);
-                        if (adv.HasError || adv.value == null)
-                            res.AddReturnedValue(ReturnedState.Error, "خطا در دریافت آگهی");
-                        res.AddReturnedValue(await SendAdv(adv.value, number.Number, AdvertiseType.Sheypoor));
-                    }
-                    if (type == AdvertiseType.Both)
-                    {
-                        var divarAdv = await GetNextAdv(bu, AdvertiseType.Divar, number.Number);
-                        var sheypoorAdv = await GetNextAdv(bu, AdvertiseType.Sheypoor, number.Number);
 
-                        res.AddReturnedValue(await SendAdv(divarAdv.value, number.Number, AdvertiseType.Divar));
-                        res.AddReturnedValue(await SendAdv(sheypoorAdv.value, number.Number, AdvertiseType.Sheypoor));
-                    }
+                    if (type == AdvertiseType.Divar)
+                        res.AddReturnedValue(await SendDivarAdv(bu, number.Number));
+
+                    //if (type == AdvertiseType.Sheypoor)
+                    //    res.AddReturnedValue(await SendAdv(adv.value, number.Number, AdvertiseType.Sheypoor));
+
+                    //if (type == AdvertiseType.Both)
+                    //{
+                    //    var divarAdv = await GetNextAdv(bu, AdvertiseType.Divar, number.Number);
+                    //    var sheypoorAdv = await GetNextAdv(bu, AdvertiseType.Sheypoor, number.Number);
+
+                    //    res.AddReturnedValue(await SendAdv(divarAdv.value, number.Number, AdvertiseType.Divar));
+                    //    res.AddReturnedValue(await SendAdv(sheypoorAdv.value, number.Number, AdvertiseType.Sheypoor));
+                    //}
                 }
             }
             catch (Exception ex)
