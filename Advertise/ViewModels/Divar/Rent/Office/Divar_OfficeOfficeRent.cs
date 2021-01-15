@@ -1,6 +1,10 @@
 ﻿using System;
+using System.Threading.Tasks;
+using Advertise.Classes;
+using Advertise.ViewModels.Divar.Elements;
 using EntityCache.Bussines;
 using Services;
+using Settings.Classes;
 
 namespace Advertise.ViewModels.Divar.Rent.Office
 {
@@ -40,14 +44,29 @@ namespace Advertise.ViewModels.Divar.Rent.Office
         public string Title => fixValue.Title();
         public string Description => fixValue.Content();
 
-
-
-        public ReturnedSaveFuncInfo Send(long number)
+        [Obsolete]
+        public async Task<ReturnedSaveFuncInfo> SendAsync(long number)
         {
             var res = new ReturnedSaveFuncInfo();
             try
             {
+                res.AddReturnedValue(await Utility.Init(number));
+                if (res.HasError) return res;
 
+                var cat = new CategoryElements(Utility.RefreshDriver(clsAdvertise.IsSilent));
+                cat.FirsCategory(FisrtCat)?.Click();
+                await Utility.Wait();
+                cat.SecondCategory(SecondCat)?.Click();
+                await Utility.Wait();
+                cat.ThirdCategory(ThirdCat)?.Click();
+                await Utility.Wait();
+
+                var el = new DivarRentOfficeElement(Utility.RefreshDriver(clsAdvertise.IsSilent));
+                el.ImageContainer()?.SendKeys(ImageList);
+                el.CitySearcher()?.Click();
+                el.City()?.SendKeys(City + "\n");
+                el.RegionSearcher()?.Click();
+                el.Region()?.SendKeys(Region + "\n");
             }
             catch (Exception ex)
             {

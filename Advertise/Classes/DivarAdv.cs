@@ -18,6 +18,7 @@ namespace Advertise.Classes
     public class DivarAdv
     {
         #region Fields
+
         private IWebDriver _driver;
         public static event Action SubmitEvent;
         public static event Action SubmitEvent_Update;
@@ -41,53 +42,44 @@ namespace Advertise.Classes
         }
         #region MyRegion
         private List<string> lstMessage = new List<string>();
-        public async Task StartRegisterAdv(AdvertiseLogBussines adv, long number, bool isRaiseEvent = true)
+        public async Task<ReturnedSaveFuncInfo> StartRegisterAdv(long number)
         {
+            var ret=new ReturnedSaveFuncInfo();
             try
             {
                 var res = await Utilities.PingHostAsync();
                 if (res.HasError)
                 {
-
-                    lstMessage.Clear();
-                    lstMessage.Add("خطای اتصال به شبکه");
-                    Utility.ShowBalloon("لطفا اتصال به شبکه را چک نمایید", lstMessage);
-                    return;
+                    ret.AddError("لطفا اتصال به شبکه را چک نمایید");
+                    return ret;
                 }
 
                 var sim = await SimcardBussines.GetAsync(number);
                 var tt = await Utility.CheckToken(number, AdvertiseType.Divar);
                 if (tt.HasError)
                 {
-                    lstMessage.Clear();
-                    lstMessage.Add("نوع آگهی: دیوار");
-                    lstMessage.Add($"شماره: {number}");
-                    lstMessage.Add("#نداشتن_توکن");
-                    lstMessage.Add($"مالک: {sim.Owner}");
-                    lstMessage.Add("بدلیل توکن نداشتن، موفق به لاگین نشد");
-                    Utility.ShowBalloon("عدم انجام لاگین", lstMessage);
+                    ret.AddError($"شماره {number} به دلیل نداشتن توکن دیوار، موفق به لاگین نشد");
                     sim.NextUseDivar = DateTime.Now.AddDays(1);
                     await sim.SaveAsync();
-                    var msg = $"سیستم مرجع: {await Utilities.GetNetworkIpAddress()} \r\n";
-                    foreach (var items in lstMessage) msg += items + "\r\n";
-                    TelegramSender.GetChatLog_bot().Send(msg);
-                    return;
+                    return ret;
                 }
 
-                if (!await Login(number, false) /*|| !await UpdateAllRegisteredAdvOfSimCard(number)*/) return;
-                await GetEditNeededAdv(number);
-                await Utility.Wait(1);
+                if (!await Login(number, false) /*|| !await UpdateAllRegisteredAdvOfSimCard(number)*/) return ret;
+                //await GetEditNeededAdv(number);
+                //await Utility.Wait(1);
                 // await RemoveWaitForPayment();
-                await RegisterAdv(adv, isRaiseEvent);
-                await Utility.Wait(1);
-                sim.Modified = DateTime.Now;
-                var full = _driver.FindElements(By.ClassName("header"))
-                    .Any(q => q.Text == "لطفا به موارد زیر توجه کنید:");
-                if (full) return;
-                await sim.SaveAsync();
+                //await RegisterAdv(adv, isRaiseEvent);
+                //await Utility.Wait(1);
+                //sim.Modified = DateTime.Now;
+                //var full = _driver.FindElements(By.ClassName("header"))
+                //    .Any(q => q.Text == "لطفا به موارد زیر توجه کنید:");
+                //if (full) return;
+                //await sim.SaveAsync();
             }
             catch (WebException) { }
             catch (Exception ex) { WebErrorLog.ErrorInstence.StartErrorLog(ex); }
+
+            return ret;
         }
         public async Task<bool> Login(long simCardNumber, bool isFromSimForm)
         {
@@ -96,7 +88,7 @@ namespace Advertise.Classes
                 if (isFromSimForm)
                 {
                     var sim = await SimcardBussines.GetAsync(simCardNumber);
-                    _driver = Utility.RefreshDriver(_driver, clsAdvertise.IsSilent);
+                    _driver = Utility.RefreshDriver(clsAdvertise.IsSilent);
                     if (!_driver.Url.Contains("divar.ir"))
                         _driver.Navigate().GoToUrl("https://divar.ir");
 
@@ -191,7 +183,7 @@ namespace Advertise.Classes
                 }
                 else
                 {
-                    _driver = Utility.RefreshDriver(_driver, clsAdvertise.IsSilent);
+                    _driver = Utility.RefreshDriver(clsAdvertise.IsSilent);
                     if (!_driver.Url.Contains("divar.ir"))
                         _driver.Navigate().GoToUrl("https://divar.ir");
 
@@ -312,7 +304,7 @@ namespace Advertise.Classes
             {
                 if (isFromSimcard)
                 {
-                    _driver = Utility.RefreshDriver(_driver, clsAdvertise.IsSilent);
+                    _driver = Utility.RefreshDriver(clsAdvertise.IsSilent);
                     if (!_driver.Url.Contains("https://chat.divar.ir/"))
                         _driver.Navigate().GoToUrl("https://chat.divar.ir/");
 
@@ -443,7 +435,7 @@ namespace Advertise.Classes
                 }
                 else
                 {
-                    _driver = Utility.RefreshDriver(_driver, clsAdvertise.IsSilent);
+                    _driver = Utility.RefreshDriver(clsAdvertise.IsSilent);
                     if (!_driver.Url.Contains("https://chat.divar.ir/"))
                         _driver.Navigate().GoToUrl("https://chat.divar.ir/");
 
@@ -782,7 +774,7 @@ namespace Advertise.Classes
         public async Task<List<DivarRegion>> GetAllRegionFromDivar(List<DivarCities> City)
         {
             var region = new List<DivarRegion>();
-            _driver = Utility.RefreshDriver(_driver, clsAdvertise.IsSilent);
+            _driver = Utility.RefreshDriver(clsAdvertise.IsSilent);
             _driver.Navigate().GoToUrl("https://divar.ir/new");
             //کلیک کردن روی کتگوری اصلی
             _driver.FindElements(By.ClassName("expanded-category-selector__item"))
@@ -851,7 +843,7 @@ namespace Advertise.Classes
                 try
                 {
                     List<AdvertiseLogBussines> allAdvertiseLog = null;
-                    _driver = Utility.RefreshDriver(_driver, clsAdvertise.IsSilent);
+                    _driver = Utility.RefreshDriver(clsAdvertise.IsSilent);
                     if (DateTime.Now.DayOfWeek == DayOfWeek.Friday)
                     {
                         dayCount = 7;
@@ -1000,7 +992,7 @@ namespace Advertise.Classes
         {
             try
             {
-                _driver = Utility.RefreshDriver(_driver, clsAdvertise.IsSilent);
+                _driver = Utility.RefreshDriver(clsAdvertise.IsSilent);
                 if (!adv.URL.Contains("manage")) return false;
                 if (_driver.Url != adv.URL)
                     _driver.Navigate().GoToUrl(adv.URL);
@@ -1041,7 +1033,7 @@ namespace Advertise.Classes
             {
                 var log = await Login(number, false);
                 if (!log) return false;
-                _driver = Utility.RefreshDriver(_driver, clsAdvertise.IsSilent);
+                _driver = Utility.RefreshDriver(clsAdvertise.IsSilent);
                 _driver.Navigate().GoToUrl("https://divar.ir/my-divar/my-posts");
                 await Utility.Wait(2);
                 var allPost = _driver.FindElements(By.ClassName("my-post")).Where(q => q.Text.Contains("منتشر شده"))
@@ -1072,7 +1064,7 @@ namespace Advertise.Classes
         public List<DivarCities> GetAllCityFromDivar()
         {
             var cities = new List<DivarCities>();
-            _driver = Utility.RefreshDriver(_driver, clsAdvertise.IsSilent);
+            _driver = Utility.RefreshDriver(clsAdvertise.IsSilent);
             if (_driver.Url != "https://divar.ir/")
                 _driver.Navigate().GoToUrl("https://divar.ir/");
             try
@@ -1112,7 +1104,7 @@ namespace Advertise.Classes
             try
             {
                 if (!url.Contains("manage")) return false;
-                _driver = Utility.RefreshDriver(_driver, clsAdvertise.IsSilent);
+                _driver = Utility.RefreshDriver(clsAdvertise.IsSilent);
                 if (_driver.Url != url) _driver.Navigate().GoToUrl(url);
                 await Utility.Wait();
                 //کلیک روی دکمه حذف
@@ -1161,7 +1153,7 @@ namespace Advertise.Classes
         {
             try
             {
-                _driver = Utility.RefreshDriver(_driver, clsAdvertise.IsSilent);
+                _driver = Utility.RefreshDriver(clsAdvertise.IsSilent);
                 _driver.Navigate().GoToUrl("https://divar.ir/my-divar/my-posts");
                 var sim = await SimcardBussines.GetAsync(number);
                 if (sim == null) return;
@@ -1187,7 +1179,7 @@ namespace Advertise.Classes
         {
             try
             {
-                _driver = Utility.RefreshDriver(_driver, clsAdvertise.IsSilent);
+                _driver = Utility.RefreshDriver(clsAdvertise.IsSilent);
                 _driver.Navigate().GoToUrl("https://divar.ir/my-divar/my-posts");
                 var allPost = _driver.FindElements(By.ClassName("my-post"));
                 var manageLinks = new List<string>();
@@ -1673,7 +1665,7 @@ namespace Advertise.Classes
         {
             try
             {
-                _driver = Utility.RefreshDriver(_driver, clsAdvertise.IsSilent);
+                _driver = Utility.RefreshDriver(clsAdvertise.IsSilent);
                 _driver.Navigate().GoToUrl("https://divar.ir/my-divar/my-posts");
 
                 var allPost = _driver.FindElements(By.ClassName("my-post")).Where(q => q.Text.Contains("منتظر پرداخت"))

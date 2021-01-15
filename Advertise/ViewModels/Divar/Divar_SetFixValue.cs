@@ -48,7 +48,11 @@ namespace Advertise.ViewModels.Divar
                 else
                 {
                     var reg = await RegionsBussines.GetAsync(bu.RegionGuid);
-                    if (reg != null) region = reg?.Name ?? "";
+                    if (reg != null)
+                    {
+                        region = reg?.Name;
+                        if (region.StartsWith(" ")) region = region.Remove(0, 1);
+                    }
                 }
             }
             catch (Exception ex)

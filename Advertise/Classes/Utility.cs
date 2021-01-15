@@ -27,7 +27,7 @@ namespace Advertise.Classes
 {
     public static class Utility
     {
-
+        public static IWebDriver _driver;
         [DllImport("wtsapi32.dll", SetLastError = true)]
         static extern bool WTSDisconnectSession(IntPtr hServer, int sessionId, bool bWait);
         [DllImport("advapi32.dll", SetLastError = true)]
@@ -109,6 +109,17 @@ namespace Advertise.Classes
             return data;
 
         }
+        public static void Navigate(string url)
+        {
+            try
+            {
+                _driver.Navigate().GoToUrl(url);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
 
         #region RefreshDriver
         private static IWebDriver OpenDriverSilent(IWebDriver driver)
@@ -153,18 +164,18 @@ namespace Advertise.Classes
 
             return driver;
         }
-        public static IWebDriver RefreshDriver(IWebDriver driver, bool isSilent)
+        public static IWebDriver RefreshDriver(bool isSilent)
         {
             try
             {
-                if (driver?.Title == null)
-                    driver = isSilent ? OpenDriverSilent(driver) : OpenDriver(driver);
+                if (_driver?.Title == null)
+                    _driver = isSilent ? OpenDriverSilent(_driver) : OpenDriver(_driver);
             }
             catch (Exception)
             {
-                driver = isSilent ? OpenDriverSilent(driver) : OpenDriver(driver);
+                _driver = isSilent ? OpenDriverSilent(_driver) : OpenDriver(_driver);
             }
-            return driver;
+            return _driver;
         }
         #endregion
 
@@ -180,74 +191,6 @@ namespace Advertise.Classes
                 notifyIcon.ShowBalloonTip(30000);
             }
             finally { notifyIcon.Dispose(); }
-        }
-        private static async Task<ReturnedSaveFuncInfo> SendAdv(AdvertiseLogBussines adv, long number, AdvertiseType type)
-        {
-            var res = new ReturnedSaveFuncInfo();
-            try
-            {
-                if (type == AdvertiseType.Divar) res.AddReturnedValue(await DivarSend(adv, number));
-                else if (type == AdvertiseType.Sheypoor)
-                    res.AddReturnedValue(await SheypoorSend(adv, number));
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-                res.AddReturnedValue(ex);
-            }
-
-            return res;
-        }
-        private static async Task<ReturnedSaveFuncInfo> DivarSend(AdvertiseLogBussines adv, long number)
-        {
-            var res = new ReturnedSaveFuncInfo();
-            try
-            {
-                if (clsAdvertise.Divar_AdvCountInDay == 0)
-                {
-                    res.AddReturnedValue(ReturnedState.Error, "Divar AdvCountInDay=0");
-                    return res;
-                }
-                res.AddReturnedValue(await Utilities.PingHostAsync());
-
-                if (!res.HasError)
-                {
-                    var divar = DivarAdv.GetInstance();
-                    await divar.StartRegisterAdv(adv, number);
-                }
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-                res.AddReturnedValue(ex);
-            }
-
-            return res;
-        }
-        private static async Task<ReturnedSaveFuncInfo> SheypoorSend(AdvertiseLogBussines adv, long number)
-        {
-            var res = new ReturnedSaveFuncInfo();
-            try
-            {
-                if (clsAdvertise.Sheypoor_AdvCountInDay == 0)
-                {
-                    res.AddReturnedValue(ReturnedState.Error, "Sheypoor AdvCountInDay=0");
-                    return res;
-                }
-                res.AddReturnedValue(await Utilities.PingHostAsync());
-                if (!res.HasError)
-                {
-                    var sheypoor = SheypoorAdv.GetInstance();
-                    await sheypoor.StartRegisterAdv(adv, number);
-                }
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-                res.AddReturnedValue(ex);
-            }
-
-            return res;
         }
         private static async Task UpdateAdvStatus(int dayCount = 0)
         {
@@ -482,7 +425,7 @@ namespace Advertise.Classes
                     if (accType.Name.Contains("دفتر") || accType.Name.Contains("اداری") || accType.Name.Contains("مطب"))
                     {
                         var ret = new Divar_OfficeOfficeRent(bu, imageCount, isGiveChat, sender);
-                        res.AddReturnedValue(ret.Send(simCardNumber));
+                        res.AddReturnedValue(await ret.SendAsync(simCardNumber));
                         return res;
                     }
                     if (accType.Name.Contains("صنعتی") || accType.Name.Contains("کشاورزی"))
@@ -615,7 +558,7 @@ namespace Advertise.Classes
 
             return resultDate;
         }
-        public static async Task<string> GetScreenShot(IWebDriver _driver)
+        public static async Task<string> GetScreenShot()
         {
             try
             {
@@ -624,7 +567,7 @@ namespace Advertise.Classes
 
                 if (!Directory.Exists(rootPath)) Directory.CreateDirectory(rootPath);
                 await Wait(3);
-                _driver = RefreshDriver(_driver, clsAdvertise.IsSilent);
+                _driver = RefreshDriver(clsAdvertise.IsSilent);
                 ((ITakesScreenshot)_driver).GetScreenshot().SaveAsFile(savePath, ScreenshotImageFormat.Jpeg);
 
                 return savePath;
@@ -634,6 +577,23 @@ namespace Advertise.Classes
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
             return "";
+        }
+        public static async Task<ReturnedSaveFuncInfo> Init(long number)
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                var divar = DivarAdv.GetInstance();
+                res.AddReturnedValue(await divar.StartRegisterAdv(number));
+                Utility.Navigate("https://divar.ir/new");
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+
+            return res;
         }
         public static async Task<ReturnedSaveFuncInfo> ManageAdvSend(List<BuildingBussines> buList, List<SimcardBussines> simcardList, AdvertiseType type, bool isGiveChat, string sender, int imageCount)
         {

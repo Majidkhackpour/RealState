@@ -92,7 +92,7 @@ namespace Advertise.Classes
         {
             try
             {
-                _driver = Utility.RefreshDriver(_driver, clsAdvertise.IsSilent);
+                _driver = Utility.RefreshDriver(clsAdvertise.IsSilent);
                 await Utility.Wait();
                 var link = _driver.FindElements(By.TagName("span")).Any(q => q.Text == "حساب من");
                 if (!link) return;
@@ -294,7 +294,7 @@ namespace Advertise.Classes
                 var sim_ = await SimcardBussines.GetAsync(simCardNumber);
                 if (isFromSimcard)
                 {
-                    _driver = Utility.RefreshDriver(_driver, clsAdvertise.IsSilent);
+                    _driver = Utility.RefreshDriver(clsAdvertise.IsSilent);
                     var simBusiness = await Utility.CheckToken(simCardNumber, AdvertiseType.Sheypoor);
 
                     //   در صورتیکه توکن قبلا ثبت شده باشد لاگین می کند
@@ -396,7 +396,7 @@ namespace Advertise.Classes
                 }
                 else
                 {
-                    _driver = Utility.RefreshDriver(_driver, clsAdvertise.IsSilent);
+                    _driver = Utility.RefreshDriver(clsAdvertise.IsSilent);
                     var simBusiness = await Utility.CheckToken(simCardNumber, AdvertiseType.Sheypoor);
 
                     //   در صورتیکه توکن قبلا ثبت شده باشد لاگین می کند
@@ -500,7 +500,7 @@ namespace Advertise.Classes
         public async Task<List<string>> GetAllRegionFromSheypoor(string state, string city)
         {
             var region = new List<string>();
-            _driver = Utility.RefreshDriver(_driver, clsAdvertise.IsSilent);
+            _driver = Utility.RefreshDriver(clsAdvertise.IsSilent);
             string Name = "";
             _driver.Navigate().GoToUrl("https://Sheypoor.com/listing/new");
             try
@@ -539,7 +539,7 @@ namespace Advertise.Classes
         {
             try
             {
-                _driver = Utility.RefreshDriver(_driver, clsAdvertise.IsSilent);
+                _driver = Utility.RefreshDriver(clsAdvertise.IsSilent);
                 List<AdvertiseLogBussines> allAdvertiseLog = null;
                 if (DateTime.Now.DayOfWeek == DayOfWeek.Friday)
                 {
@@ -689,7 +689,7 @@ namespace Advertise.Classes
         {
             var cities = new List<SheypoorCities>();
             var states = await StatesBussines.GetAllAsync();
-            _driver = Utility.RefreshDriver(_driver, clsAdvertise.IsSilent);
+            _driver = Utility.RefreshDriver(clsAdvertise.IsSilent);
             _driver.Navigate().GoToUrl("https://www.sheypoor.com");
             try
             {
