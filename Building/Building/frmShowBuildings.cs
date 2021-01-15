@@ -13,6 +13,7 @@ using Notification;
 using Payamak;
 using Print;
 using Services;
+using Settings.Classes;
 using User;
 using WebHesabBussines;
 
@@ -502,7 +503,8 @@ namespace Building.Building
                 if (frm.ShowDialog(this) == DialogResult.OK)
                     simList.Add(await SimcardBussines.GetAsync(frm.SelectedGuid));
 
-                res.AddReturnedValue(await Utility.ManageAdvSend(buList, simList, AdvertiseType.Sheypoor));
+                res.AddReturnedValue(await Utility.ManageAdvSend(buList, simList, AdvertiseType.Sheypoor,
+                    clsAdvertise.IsGiveChat, clsAdvertise.Sender, clsAdvertise.Sheypoor_PicCountInPerAdv));
             }
             catch (Exception ex)
             {
@@ -537,7 +539,8 @@ namespace Building.Building
                 if (frm.ShowDialog(this) == DialogResult.OK)
                     simList.Add(await SimcardBussines.GetAsync(frm.SelectedGuid));
 
-                res.AddReturnedValue(await Utility.ManageAdvSend(buList, simList, AdvertiseType.Divar));
+                res.AddReturnedValue(await Utility.ManageAdvSend(buList, simList, AdvertiseType.Divar,
+                    clsAdvertise.IsGiveChat, clsAdvertise.Sender, clsAdvertise.Divar_PicCountInPerAdv));
             }
             catch (Exception ex)
             {

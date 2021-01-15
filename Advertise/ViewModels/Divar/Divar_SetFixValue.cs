@@ -13,9 +13,17 @@ using Services;
 
 namespace Advertise.ViewModels.Divar
 {
-    public static class Divar_SetFixValue
+    public class Divar_SetFixValue
     {
-        private static async Task<string> SetDivarCityAsync(BuildingBussines bu)
+        private BuildingBussines bu;
+        private int imageCount;
+        public Divar_SetFixValue(BuildingBussines _bu, int imgCount)
+        {
+            bu = _bu;
+            imageCount = imgCount;
+        }
+
+        private async Task<string> SetDivarCityAsync(BuildingBussines bu)
         {
             var city = "";
             try
@@ -30,7 +38,7 @@ namespace Advertise.ViewModels.Divar
 
             return city;
         }
-        private static async Task<string> SetDivarRegionAsync(BuildingBussines bu)
+        private async Task<string> SetDivarRegionAsync(BuildingBussines bu)
         {
             var region = "";
             try
@@ -51,9 +59,9 @@ namespace Advertise.ViewModels.Divar
             return region;
         }
 
-        public static string City(BuildingBussines bu) => AsyncContext.Run(() => SetDivarCityAsync(bu));
-        public static string Region(BuildingBussines bu) => AsyncContext.Run(() => SetDivarRegionAsync(bu));
-        public static string Tabdil(BuildingBussines bu)
+        public string City() => AsyncContext.Run(() => SetDivarCityAsync(bu));
+        public string Region() => AsyncContext.Run(() => SetDivarRegionAsync(bu));
+        public string Tabdil()
         {
             try
             {
@@ -67,7 +75,7 @@ namespace Advertise.ViewModels.Divar
                 return "";
             }
         }
-        public static string RoomCount(BuildingBussines bu)
+        public string RoomCount()
         {
             try
             {
@@ -85,9 +93,8 @@ namespace Advertise.ViewModels.Divar
                 return "";
             }
         }
-        public static string SaleSakht(BuildingBussines bu) =>
-            bu.SaleSakht.ParseToInt() <= 1370 ? "قبل از 1370" : bu.SaleSakht;
-        public static string Title(BuildingBussines bu)
+        public string SaleSakht() => bu.SaleSakht.ParseToInt() <= 1370 ? "قبل از 1370" : bu.SaleSakht;
+        public string Title()
         {
             try
             {
@@ -107,7 +114,7 @@ namespace Advertise.ViewModels.Divar
                 return "";
             }
         }
-        public static string Content(BuildingBussines bu)
+        public string Content()
         {
             try
             {
@@ -128,7 +135,7 @@ namespace Advertise.ViewModels.Divar
                 return "";
             }
         }
-        private static List<string> GetNextImages(BuildingBussines bu, int imgCount)
+        private List<string> GetNextImages(BuildingBussines bu, int imgCount)
         {
             var resultImages = new List<string>();
             try
@@ -192,7 +199,7 @@ namespace Advertise.ViewModels.Divar
                 return resultImages;
             }
         }
-        public static string ImageList(BuildingBussines bu, int imageCount)
+        public string ImageList()
         {
             try
             {
@@ -208,7 +215,7 @@ namespace Advertise.ViewModels.Divar
             }
 
         }
-        public static string Tabaqe(BuildingBussines bu)
+        public string Tabaqe()
         {
             try
             {
@@ -222,7 +229,7 @@ namespace Advertise.ViewModels.Divar
                 return "";
             }
         }
-        public static string Asansor(BuildingBussines bu)
+        public string Asansor()
         {
             try
             {
@@ -238,7 +245,7 @@ namespace Advertise.ViewModels.Divar
                 return "";
             }
         }
-        public static string Parking(BuildingBussines bu)
+        public string Parking()
         {
             try
             {
@@ -254,7 +261,7 @@ namespace Advertise.ViewModels.Divar
                 return "";
             }
         }
-        public static string Anbari(BuildingBussines bu)
+        public string Anbari()
         {
             try
             {
@@ -270,7 +277,7 @@ namespace Advertise.ViewModels.Divar
                 return "";
             }
         }
-        public static string Balkon(BuildingBussines bu)
+        public string Balkon()
         {
             try
             {
@@ -284,6 +291,35 @@ namespace Advertise.ViewModels.Divar
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
                 return "";
+            }
+        }
+        public string RentalAuthority()
+        {
+            try
+            {
+
+                var rentAuth = RentalAuthorityBussines.Get(bu.RentalAutorityGuid ?? Guid.Empty);
+                if (rentAuth != null && rentAuth.Name.Contains("خانواده و مجرد"))
+                    return "خانواده و مجرد";
+                return "خانواده";
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                return "";
+            }
+        }
+        public bool SanadEdari()
+        {
+            try
+            {
+                var doc = DocumentTypeBussines.Get(bu.DocumentType ?? Guid.Empty);
+                return doc != null && doc.Name.Contains("اداری");
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                return false;
             }
         }
     }

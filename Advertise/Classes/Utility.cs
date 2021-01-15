@@ -13,7 +13,10 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Advertise.ViewModels.Divar.Rent.Office;
 using Advertise.ViewModels.Divar.Rent.Residential;
+using Advertise.ViewModels.Divar.Sell.Office;
+using Advertise.ViewModels.Divar.Sell.Residential;
 using EntityCache.Bussines;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
@@ -450,177 +453,91 @@ namespace Advertise.Classes
         #endregion
 
         #region GetAdv
-        private static async Task<ReturnedSaveFuncInfo> SendDivarAdv(BuildingBussines bu, long simCardNumber)
+        private static async Task<ReturnedSaveFuncInfo> SendDivarAdv(BuildingBussines bu, long simCardNumber, bool isGiveChat, string sender, int imageCount)
         {
-            var res = new ReturnedSaveFuncInfoWithValue<AdvertiseLogBussines>();
+            var res = new ReturnedSaveFuncInfo();
             try
             {
-
-
-                res.value = new AdvertiseLogBussines { SimcardNumber = simCardNumber };
-
-                res.AddReturnedValue(await GetAdvTitle(bu, res));
-                res.AddReturnedValue(await GetAdvContent(bu, res));
-                res.AddReturnedValue(await GetAdvOption(bu, res));
-
-                var path = Path.Combine(Application.StartupPath, "Images");
-                res.value.ImagesPathList = GetNextImages(bu, path);
-
-                if (bu.RahnPrice1 > 0 || bu.RahnPrice2 > 0)
+                var accType = await BuildingAccountTypeBussines.GetAsync(bu.BuildingAccountTypeGuid);
+                if (accType == null)
                 {
-                    res.value.Price1 = bu.RahnPrice1;
-                    res.value.Price2 = bu.EjarePrice1;
-                    if (bu.RahnPrice2 > 0 || bu.EjarePrice2 > 0)
-                        res.value.Tabdil = "قابل تبدیل";
-                    else res.value.Tabdil = "غیر قابل تبدیل";
-
-                    var rentAuth = await RentalAuthorityBussines.GetAsync(bu.RentalAutorityGuid ?? Guid.Empty);
-                    if (rentAuth != null && rentAuth.Name.Contains("مجرد"))
-                        res.value.RentalAuthority = "خانواده و مجرد";
+                    res.AddError("کاربری ملک معتبر نمی باشد");
+                    return res;
                 }
+
+                if (bu.RahnPrice1 > 0 || bu.RahnPrice2 > 0 || bu.EjarePrice1 > 0 || bu.EjarePrice2 > 0)
+                {
+                    if (accType.Name.Contains("پارتمان"))
+                    {
+                        var ret = new Divar_ResidentialApartmentRent(bu, imageCount, isGiveChat, sender);
+                        res.AddReturnedValue(ret.Send(simCardNumber));
+                        return res;
+                    }
+                    if (accType.Name.Contains("خانه") || accType.Name.Contains("ویلا"))
+                    {
+                        var ret = new Divar_ResidentialVillaRent(bu, imageCount, isGiveChat, sender);
+                        res.AddReturnedValue(ret.Send(simCardNumber));
+                        return res;
+                    }
+                    if (accType.Name.Contains("دفتر") || accType.Name.Contains("اداری") || accType.Name.Contains("مطب"))
+                    {
+                        var ret = new Divar_OfficeOfficeRent(bu, imageCount, isGiveChat, sender);
+                        res.AddReturnedValue(ret.Send(simCardNumber));
+                        return res;
+                    }
+                    if (accType.Name.Contains("صنعتی") || accType.Name.Contains("کشاورزی"))
+                    {
+                        var ret = new Divar_OfficeKeshavarziRent(bu, imageCount, isGiveChat, sender);
+                        res.AddReturnedValue(ret.Send(simCardNumber));
+                        return res;
+                    }
+                    if (accType.Name.Contains("مغازه") || accType.Name.Contains("غرفه"))
+                    {
+                        var ret = new Divar_OfficeStoreRent(bu, imageCount, isGiveChat, sender);
+                        res.AddReturnedValue(ret.Send(simCardNumber));
+                        return res;
+                    }
+                }
+
                 else if (bu.SellPrice > 0)
                 {
-                    res.value.Price1 = bu.SellPrice;
-                    res.value.Price2 = 0;
-                }
-
-                res.value.IP = await Utilities.GetLocalIpAddress();
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-                res.AddReturnedValue(ex);
-            }
-
-            return res;
-        }
-        private static async Task<ReturnedSaveFuncInfoWithValue<AdvertiseLogBussines>> GetAdvTitle(BuildingBussines bu,
-            ReturnedSaveFuncInfoWithValue<AdvertiseLogBussines> res)
-        {
-            try
-            {
-                var type = "";
-                var regionName = "";
-
-                if (bu.RahnPrice1 > 0 || bu.RahnPrice2 > 0) type = "رهن و اجاره";
-                else if (bu.SellPrice > 0) type = "فروش";
-
-                if (bu.RegionGuid != Guid.Empty) regionName = RegionsBussines.Get(bu.RegionGuid)?.Name ?? "";
-
-                res.value.Title = $"{type} ملک در {regionName}";
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-                res.AddReturnedValue(ex);
-            }
-
-            return res;
-        }
-        private static async Task<ReturnedSaveFuncInfoWithValue<AdvertiseLogBussines>> GetAdvContent(BuildingBussines bu,
-            ReturnedSaveFuncInfoWithValue<AdvertiseLogBussines> res)
-        {
-            try
-            {
-                var content = new StringBuilder();
-                var reg = "";
-                if (bu.RegionGuid != Guid.Empty)
-                    reg = RegionsBussines.Get(bu.RegionGuid)?.Name ?? "";
-
-                content.AppendLine($"محدوده: {reg}");
-                content.AppendLine($"متراژ: {bu.Masahat}");
-                content.AppendLine($"سال ساخت: {bu.SaleSakht}");
-                content.AppendLine($"تعداد اتاق: {bu.RoomCount}");
-                content.AppendLine($"طبقه: {bu.TabaqeNo} از {bu.TedadTabaqe}");
-
-                res.value.Content = content.ToString();
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-                res.AddReturnedValue(ex);
-            }
-
-            return res;
-        }
-        private static List<string> GetNextImages(BuildingBussines bu, string imageAddress, int imgCount = 3)
-        {
-            var resultImages = new List<string>();
-            try
-            {
-                if (string.IsNullOrEmpty(imageAddress)) return resultImages;
-                //گرفتن تمام عکسهای پوشه و فیلتر کردن عکسهای درست
-                var advFullPath = bu.GalleryList.Select(q => q.ImageName);
-                var allImages = new List<string>();
-                foreach (var imgName in advFullPath)
-                {
-                    var fullPath = Path.Combine(imageAddress, imgName + ".jpg");
-                    if (!File.Exists(fullPath)) continue;
-                    allImages.Add(fullPath);
-                }
-                var selectedImages = new List<string>();
-                //حذف عکسهای زیر پیکسل 600*600
-                foreach (var imgItem in allImages)
-                {
-                    var img = Image.FromFile(imgItem);
-                    if (img.Width < 600 || img.Height < 600)
-                        try
-                        {
-                            img.Dispose();
-                            File.Delete(imgItem);
-                        }
-                        catch
-                        {
-                            /**/
-                        }
-                    img.Dispose();
-                }
-
-                if (allImages.Count <= imgCount) selectedImages = allImages;
-                else
-                {
-                    var indexes = new List<int>();
-                    var rnd = new Random();
-                    while (indexes.Count < imgCount)
+                    if (accType.Name.Contains("پارتمان"))
                     {
-                        var index = rnd.Next(allImages.Count);
-                        if (!indexes.Contains(index))
-                            indexes.Add(index);
+                        var ret = new Divar_ResidentialApartmentSell(bu, imageCount, isGiveChat, sender);
+                        res.AddReturnedValue(ret.Send(simCardNumber));
+                        return res;
                     }
-
-                    selectedImages.AddRange(indexes.Select(index => allImages[index]));
+                    if (accType.Name.Contains("خانه") || accType.Name.Contains("ویلا"))
+                    {
+                        var ret = new Divar_ResidentialVillaSell(bu, imageCount, isGiveChat, sender);
+                        res.AddReturnedValue(ret.Send(simCardNumber));
+                        return res;
+                    }
+                    if (accType.Name.Contains("زمین") || accType.Name.Contains("کلنگی"))
+                    {
+                        var ret = new Divar_ResidentialZaminSell(bu, imageCount, isGiveChat, sender);
+                        res.AddReturnedValue(ret.Send(simCardNumber));
+                        return res;
+                    }
+                    if (accType.Name.Contains("دفتر") || accType.Name.Contains("اداری") || accType.Name.Contains("مطب"))
+                    {
+                        var ret = new Divar_OfficeOfficeSell(bu, imageCount, isGiveChat, sender);
+                        res.AddReturnedValue(ret.Send(simCardNumber));
+                        return res;
+                    }
+                    if (accType.Name.Contains("صنعتی") || accType.Name.Contains("کشاورزی"))
+                    {
+                        var ret = new Divar_OfficeKeshavarziSell(bu, imageCount, isGiveChat, sender);
+                        res.AddReturnedValue(ret.Send(simCardNumber));
+                        return res;
+                    }
+                    if (accType.Name.Contains("مغازه") || accType.Name.Contains("غرفه"))
+                    {
+                        var ret = new Divar_OfficeStoreSell(bu, imageCount, isGiveChat, sender);
+                        res.AddReturnedValue(ret.Send(simCardNumber));
+                        return res;
+                    }
                 }
-
-
-                //ویرایش عکسها
-                foreach (var img in selectedImages)
-                    resultImages.Add(ImageManager.ModifyImage(img));
-
-                return resultImages;
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-                return resultImages;
-            }
-        }
-        private static async Task<ReturnedSaveFuncInfoWithValue<AdvertiseLogBussines>> GetAdvOption(BuildingBussines bu,
-            ReturnedSaveFuncInfoWithValue<AdvertiseLogBussines> res)
-        {
-            try
-            {
-                var options = bu.OptionList;
-                if (options == null) return res;
-
-                var asansor = options.Any(q => q.OptionName.Contains("آسانسور") || q.OptionName.Contains("اسانسور"));
-                var parking = options.Any(q => q.OptionName.Contains("پارکینگ"));
-                var anbar = options.Any(q => q.OptionName.Contains("انبار"));
-                var balkon = options.Any(q => q.OptionName.Contains("بالکن") || q.OptionName.Contains("تراس"));
-
-                res.value.Asansor = asansor;
-                res.value.Parking = parking;
-                res.value.Anbari = anbar;
-                res.value.Balkon = balkon;
             }
             catch (Exception ex)
             {
@@ -718,7 +635,7 @@ namespace Advertise.Classes
             }
             return "";
         }
-        public static async Task<ReturnedSaveFuncInfo> ManageAdvSend(List<BuildingBussines> buList, List<SimcardBussines> simcardList, AdvertiseType type)
+        public static async Task<ReturnedSaveFuncInfo> ManageAdvSend(List<BuildingBussines> buList, List<SimcardBussines> simcardList, AdvertiseType type, bool isGiveChat, string sender, int imageCount)
         {
             var res = new ReturnedSaveFuncInfo();
             try
@@ -730,7 +647,7 @@ namespace Advertise.Classes
 
 
                     if (type == AdvertiseType.Divar)
-                        res.AddReturnedValue(await SendDivarAdv(bu, number.Number));
+                        res.AddReturnedValue(await SendDivarAdv(bu, number.Number, isGiveChat, sender, imageCount));
 
                     //if (type == AdvertiseType.Sheypoor)
                     //    res.AddReturnedValue(await SendAdv(adv.value, number.Number, AdvertiseType.Sheypoor));

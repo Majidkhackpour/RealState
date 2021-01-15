@@ -5,6 +5,38 @@ namespace Settings.Classes
 {
     public static class clsAdvertise
     {
+        private static string _sender = "";
+        public static string Sender
+        {
+            get
+            {
+                if (!string.IsNullOrEmpty(_sender)) return _sender;
+                var mem = SettingsBussines.Get("AdvSender");
+                return mem?.Value ?? "";
+            }
+            set
+            {
+                _sender = value;
+                SettingsBussines.Save("AdvSender", _sender);
+            }
+        }
+
+        private static bool? _isGiveChat;
+        public static bool IsGiveChat
+        {
+            get
+            {
+                if (_isGiveChat != null) return (bool)_isGiveChat;
+                var mem = SettingsBussines.Get("IsGiveChat");
+                return mem?.Value.ParseToBoolean() ?? false;
+            }
+            set
+            {
+                _isGiveChat = value;
+                SettingsBussines.Save("IsGiveChat", _isGiveChat.ToString());
+            }
+        }
+
         private static int _divarUpdate = 0;
         public static int Divar_DayCountForUpdateState
         {

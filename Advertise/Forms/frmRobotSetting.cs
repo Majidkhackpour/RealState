@@ -13,6 +13,7 @@ namespace Advertise.Forms
             try
             {
                 chbSilent.Checked = clsAdvertise.IsSilent;
+                chbChat.Checked = clsAdvertise.IsGiveChat;
 
                 txtD_DayCount.Value = clsAdvertise.Divar_AdvCountInDay;
                 txtD_MountCount.Value = clsAdvertise.Divar_AdvCountInMounth;
@@ -23,6 +24,13 @@ namespace Advertise.Forms
                 txtSh_MounthCount.Value = clsAdvertise.Sheypoor_AdvCountInMounth;
                 txtSh_PicCount.Value = clsAdvertise.Sheypoor_PicCountInPerAdv;
                 txtSh_Update.Value = clsAdvertise.Sheypoor_DayCountForUpdateState;
+
+                if (string.IsNullOrEmpty(clsAdvertise.Sender)) rbtnRealState.Checked = true;
+                else
+                {
+                    if (clsAdvertise.Sender == "املاک") rbtnRealState.Checked = true;
+                    else rbtnShakhsi.Checked = true;
+                }
             }
             catch (Exception ex)
             {
@@ -39,17 +47,16 @@ namespace Advertise.Forms
             DialogResult = DialogResult.Cancel;
             Close();
         }
-
         private void frmRobotSetting_Load(object sender, EventArgs e)
         {
             SettData();
         }
-
         private void btnFinish_Click(object sender, EventArgs e)
         {
             try
             {
                 clsAdvertise.IsSilent = chbSilent.Checked;
+                clsAdvertise.IsGiveChat = chbChat.Checked;
 
                 clsAdvertise.Divar_AdvCountInDay = (int)txtD_DayCount.Value;
                 clsAdvertise.Divar_AdvCountInMounth = (int)txtD_MountCount.Value;
@@ -61,6 +68,7 @@ namespace Advertise.Forms
                 clsAdvertise.Sheypoor_PicCountInPerAdv = (int)txtSh_PicCount.Value;
                 clsAdvertise.Sheypoor_DayCountForUpdateState = (int)txtSh_Update.Value;
 
+                clsAdvertise.Sender = rbtnRealState.Checked ? "املاک" : "شخصی";
 
                 DialogResult = DialogResult.OK;
                 Close();
@@ -70,7 +78,6 @@ namespace Advertise.Forms
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-
         private void frmRobotSetting_KeyDown(object sender, KeyEventArgs e)
         {
             try

@@ -50,6 +50,10 @@
             this.label6 = new System.Windows.Forms.Label();
             this.btnFinish = new DevComponents.DotNetBar.ButtonX();
             this.btnCancel = new DevComponents.DotNetBar.ButtonX();
+            this.label9 = new System.Windows.Forms.Label();
+            this.rbtnRealState = new System.Windows.Forms.RadioButton();
+            this.rbtnShakhsi = new System.Windows.Forms.RadioButton();
+            this.chbChat = new System.Windows.Forms.CheckBox();
             this.groupPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtD_Update)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtD_PicCount)).BeginInit();
@@ -93,7 +97,7 @@
             this.groupPanel1.DisabledBackColor = System.Drawing.Color.Empty;
             this.groupPanel1.Location = new System.Drawing.Point(310, 50);
             this.groupPanel1.Name = "groupPanel1";
-            this.groupPanel1.Size = new System.Drawing.Size(294, 242);
+            this.groupPanel1.Size = new System.Drawing.Size(294, 221);
             // 
             // 
             // 
@@ -236,7 +240,7 @@
             this.groupPanel2.DisabledBackColor = System.Drawing.Color.Empty;
             this.groupPanel2.Location = new System.Drawing.Point(10, 50);
             this.groupPanel2.Name = "groupPanel2";
-            this.groupPanel2.Size = new System.Drawing.Size(294, 242);
+            this.groupPanel2.Size = new System.Drawing.Size(294, 221);
             // 
             // 
             // 
@@ -372,7 +376,7 @@
             this.btnFinish.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnFinish.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnFinish.Image = global::Advertise.Properties.Resources.tab_checkbox__;
-            this.btnFinish.Location = new System.Drawing.Point(406, 298);
+            this.btnFinish.Location = new System.Drawing.Point(405, 312);
             this.btnFinish.Name = "btnFinish";
             this.btnFinish.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
             this.btnFinish.Size = new System.Drawing.Size(125, 31);
@@ -391,7 +395,7 @@
             this.btnCancel.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Image = global::Advertise.Properties.Resources.tab_close_;
-            this.btnCancel.Location = new System.Drawing.Point(50, 298);
+            this.btnCancel.Location = new System.Drawing.Point(49, 312);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
             this.btnCancel.Size = new System.Drawing.Size(125, 31);
@@ -401,25 +405,73 @@
             this.btnCancel.TextColor = System.Drawing.Color.Black;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.BackColor = System.Drawing.Color.Transparent;
+            this.label9.Location = new System.Drawing.Point(535, 283);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(63, 20);
+            this.label9.TabIndex = 8;
+            this.label9.Text = "آگهی دهنده";
+            // 
+            // rbtnRealState
+            // 
+            this.rbtnRealState.AutoSize = true;
+            this.rbtnRealState.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.rbtnRealState.Location = new System.Drawing.Point(432, 279);
+            this.rbtnRealState.Name = "rbtnRealState";
+            this.rbtnRealState.Size = new System.Drawing.Size(86, 24);
+            this.rbtnRealState.TabIndex = 9;
+            this.rbtnRealState.TabStop = true;
+            this.rbtnRealState.Text = "مشاور املاک";
+            this.rbtnRealState.UseVisualStyleBackColor = true;
+            // 
+            // rbtnShakhsi
+            // 
+            this.rbtnShakhsi.AutoSize = true;
+            this.rbtnShakhsi.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.rbtnShakhsi.Location = new System.Drawing.Point(365, 279);
+            this.rbtnShakhsi.Name = "rbtnShakhsi";
+            this.rbtnShakhsi.Size = new System.Drawing.Size(61, 24);
+            this.rbtnShakhsi.TabIndex = 9;
+            this.rbtnShakhsi.TabStop = true;
+            this.rbtnShakhsi.Text = "شخصی";
+            this.rbtnShakhsi.UseVisualStyleBackColor = true;
+            // 
+            // chbChat
+            // 
+            this.chbChat.AutoSize = true;
+            this.chbChat.Location = new System.Drawing.Point(153, 279);
+            this.chbChat.Name = "chbChat";
+            this.chbChat.Size = new System.Drawing.Size(137, 24);
+            this.chbChat.TabIndex = 10;
+            this.chbChat.Text = "دریافت چت فعال باشد";
+            this.chbChat.UseVisualStyleBackColor = true;
+            // 
             // frmRobotSetting
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(609, 336);
+            this.ClientSize = new System.Drawing.Size(609, 352);
             this.ControlBox = false;
+            this.Controls.Add(this.chbChat);
+            this.Controls.Add(this.rbtnShakhsi);
+            this.Controls.Add(this.rbtnRealState);
             this.Controls.Add(this.groupPanel2);
             this.Controls.Add(this.groupPanel1);
             this.Controls.Add(this.chbSilent);
             this.Controls.Add(this.btnFinish);
+            this.Controls.Add(this.label9);
             this.Controls.Add(this.btnCancel);
             this.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(609, 336);
+            this.MaximumSize = new System.Drawing.Size(609, 352);
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(609, 336);
+            this.MinimumSize = new System.Drawing.Size(609, 352);
             this.Name = "frmRobotSetting";
             this.Padding = new System.Windows.Forms.Padding(27, 92, 27, 31);
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -439,6 +491,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtSh_MounthCount)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSh_DayCount)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -465,5 +518,9 @@
         private System.Windows.Forms.NumericUpDown txtSh_PicCount;
         private System.Windows.Forms.NumericUpDown txtSh_MounthCount;
         private System.Windows.Forms.NumericUpDown txtSh_DayCount;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.RadioButton rbtnRealState;
+        private System.Windows.Forms.RadioButton rbtnShakhsi;
+        private System.Windows.Forms.CheckBox chbChat;
     }
 }
