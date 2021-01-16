@@ -35,13 +35,6 @@ namespace EntityCache.Bussines
         public List<string> ImagesPathList { get; set; }
         public AdvertiseType AdvType { get; set; }
         public string State { get; set; } = "-";
-        public string Tabdil { get; set; } = "-";
-        public string RentalAuthority { get; set; } = "-";
-        public bool Asansor { get; set; }
-        public bool Parking { get; set; }
-        public bool Anbari { get; set; }
-        public bool Balkon { get; set; }
-
         public string ImageList => ImagesPathList != null && ImagesPathList.Count > 0
             ? string.Join("\r\n", ImagesPathList)
             : "---";

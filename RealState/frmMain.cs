@@ -39,6 +39,8 @@ using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WindowsSerivces;
+using Advertise.Classes;
+using Advertise.Forms.Simcard;
 using TMS.Class;
 using User;
 using Calendar = Services.Calendar;
@@ -776,6 +778,23 @@ namespace RealState
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
+        }
+
+        private async void buttonItem23_Click(object sender, EventArgs e)
+        {
+            var bu = await BuildingBussines.GetAsync(Guid.Parse("EFDCB515-05C1-46F0-A88F-4C2BBE3E522B"));
+            var simList = new List<SimcardBussines>();
+            var buList = new List<BuildingBussines>();
+
+            if (bu == null) return;
+            buList.Add(bu);
+
+            var frm = new frmShowSimcard(true);
+            if (frm.ShowDialog(this) == DialogResult.OK)
+                simList.Add(await SimcardBussines.GetAsync(frm.SelectedGuid));
+
+            await Utility.ManageAdvSend(buList, simList, AdvertiseType.Divar,
+                clsAdvertise.IsGiveChat, clsAdvertise.Sender, clsAdvertise.Divar_PicCountInPerAdv);
         }
     }
 }

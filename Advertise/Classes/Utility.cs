@@ -18,6 +18,7 @@ using Advertise.ViewModels.Divar.Rent.Residential;
 using Advertise.ViewModels.Divar.Sell.Office;
 using Advertise.ViewModels.Divar.Sell.Residential;
 using EntityCache.Bussines;
+using Nito.AsyncEx;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using Services;
@@ -37,15 +38,9 @@ namespace Advertise.Classes
         private static extern bool CloseHandle(IntPtr hObject);
         const int WtsCurrentSession = -1;
         static readonly IntPtr WtsCurrentServerHandle = IntPtr.Zero;
-        public static async Task Wait(double second = 0.1, [System.Runtime.CompilerServices.CallerMemberName]
-            string memberName = "",
-            [System.Runtime.CompilerServices.CallerFilePath]
-            string sourceFilePath = "",
-            [System.Runtime.CompilerServices.CallerLineNumber]
-            int sourceLineNumber = 0)
-        {
-            await Task.Delay((int)(second * 1000));
-        }
+        public static async Task Wait(double second = 0.1) => await Task.Delay((int)(second * 1000));
+        public static void Wait_(double second = 0.1) =>
+            AsyncContext.Run(() => Wait(second));
 
         public static List<string> GetFiles(string path, string filePattern = "*.*") =>
             Directory.Exists(path) ? Directory.GetFiles(path, filePattern).ToList() : null;
@@ -395,7 +390,7 @@ namespace Advertise.Classes
         //}
         #endregion
 
-        #region GetAdv
+
         private static async Task<ReturnedSaveFuncInfo> SendDivarAdv(BuildingBussines bu, long simCardNumber, bool isGiveChat, string sender, int imageCount)
         {
             var res = new ReturnedSaveFuncInfo();
@@ -490,8 +485,6 @@ namespace Advertise.Classes
 
             return res;
         }
-        #endregion
-
         public static StatusCode GetAdvStatusCodeByStatus(string advStatus)
         {
             switch (advStatus)
@@ -621,6 +614,48 @@ namespace Advertise.Classes
                     //    res.AddReturnedValue(await SendAdv(sheypoorAdv.value, number.Number, AdvertiseType.Sheypoor));
                     //}
                 }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+
+            return res;
+        }
+        public static async Task<ReturnedSaveFuncInfo> SaveAdv(AdvertiseType type, string fCat, string sCat,
+            string thCat, string state, string city, string region, string title, string content, long number,
+            decimal price1, decimal price2, string url)
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                var log = new AdvertiseLogBussines()
+                {
+                    Guid = Guid.NewGuid(),
+                    Modified = DateTime.Now,
+                    Status = true,
+                    Region = region,
+                    Title = title,
+                    Content = content,
+                    City = city,
+                    State = state,
+                    SimcardNumber = number,
+                    Price2 = price2,
+                    Price1 = price1,
+                    DateM = DateTime.Now,
+                    SubCategory2 = thCat,
+                    Category = fCat,
+                    SubCategory1 = sCat,
+                    AdvType = type,
+                    IP = Utilities.GetIp(),
+                    LastUpdate = DateTime.Now,
+                    StatusCode = StatusCode.InPublishQueue,
+                    URL = url,
+                    UpdateDesc = "آگهی در صف انتشار قرارداد",
+                    VisitCount = 0
+                };
+                res.AddReturnedValue(await log.SaveAsync());
             }
             catch (Exception ex)
             {

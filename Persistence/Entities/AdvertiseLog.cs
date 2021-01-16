@@ -39,13 +39,5 @@ namespace Persistence.Entities
         public AdvertiseType AdvType { get; set; }
         [MaxLength(20)]
         public string State { get; set; }
-        [MaxLength(20)]
-        public string Tabdil { get; set; }
-        [MaxLength(20)]
-        public string RentalAuthority { get; set; }
-        public bool Asansor { get; set; }
-        public bool Parking { get; set; }
-        public bool Anbari { get; set; }
-        public bool Balkon { get; set; }
     }
 }

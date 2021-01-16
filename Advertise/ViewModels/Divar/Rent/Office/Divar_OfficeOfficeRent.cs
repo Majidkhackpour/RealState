@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Advertise.Classes;
-using Advertise.ViewModels.Divar.Elements;
 using EntityCache.Bussines;
 using Services;
 using Settings.Classes;
@@ -26,17 +25,18 @@ namespace Advertise.ViewModels.Divar.Rent.Office
         public string FisrtCat => "املاک";
         public string SecondCat => "اجاره اداری و تجاری";
         public string ThirdCat => "دفتر کار، اتاق اداری و مطب";
+        public string State => fixValue.State();
         public string City => fixValue.City();
         public string Region => fixValue.Region();
         public string ImageList => fixValue.ImageList();
         public string Metrazh => bu.Masahat.ToString();
         public string AgahiDahande => agahiDahande;
-        public string Rahn => bu.RahnPrice1.ToString();
-        public string Ejare => bu.EjarePrice1.ToString();
+        public string Rahn => bu.RahnPrice1.ToString("0.##");
+        public string Ejare => bu.EjarePrice1.ToString("0.##");
         public string Tabdil => fixValue.Tabdil();
         public string RoomCount => fixValue.RoomCount();
-        public string SaleSakht => fixValue.SaleSakht();
-        public string Tabaqe => fixValue.Tabaqe();
+        public string SaleSakht => fixValue.SaleSakht().UpSideFixString();
+        public string Tabaqe => fixValue.Tabaqe().UpSideFixString();
         public string Asansor => fixValue.Asansor();
         public string Parking => fixValue.Parking();
         public string Anbari => fixValue.Anbari();
@@ -52,8 +52,9 @@ namespace Advertise.ViewModels.Divar.Rent.Office
             {
                 res.AddReturnedValue(await Utility.Init(number));
                 if (res.HasError) return res;
+                await Utility.Wait();
 
-                var cat = new CategoryElements(Utility.RefreshDriver(clsAdvertise.IsSilent));
+                var cat = new FixElements(Utility.RefreshDriver(clsAdvertise.IsSilent));
                 cat.FirsCategory(FisrtCat)?.Click();
                 await Utility.Wait();
                 cat.SecondCategory(SecondCat)?.Click();
@@ -61,12 +62,51 @@ namespace Advertise.ViewModels.Divar.Rent.Office
                 cat.ThirdCategory(ThirdCat)?.Click();
                 await Utility.Wait();
 
-                var el = new DivarRentOfficeElement(Utility.RefreshDriver(clsAdvertise.IsSilent));
-                el.ImageContainer()?.SendKeys(ImageList);
-                el.CitySearcher()?.Click();
-                el.City()?.SendKeys(City + "\n");
-                el.RegionSearcher()?.Click();
-                el.Region()?.SendKeys(Region + "\n");
+                cat.ImageContainer()?.SendKeys(ImageList);
+                cat.CitySearcher()?.Click();
+                cat.City()?.SendKeys(City + "\n");
+                cat.RegionSearcher()?.Click();
+                cat.Region()?.SendKeys(Region + "\n");
+
+                cat.Masahat()?.SendKeys(Metrazh);
+
+                if (AgahiDahande.Contains("املاک")) cat.Sender_Amlak()?.Click();
+                else cat.Sender_Shakhsi()?.Click();
+
+                cat.Rahn()?.SendKeys(Rahn);
+                cat.Ejare()?.SendKeys(Ejare);
+
+                cat.Tabdil()?.Click();
+                cat.SelectDropDown(Tabdil);
+
+                cat.RoomCount()?.Click();
+                cat.SelectDropDown(RoomCount);
+
+                cat.SaleSakht()?.Click();
+                cat.SelectDropDown(SaleSakht);
+
+                cat.Tabaqe()?.Click();
+                cat.SelectDropDown(Tabaqe);
+
+                cat.Asansor()?.Click();
+                cat.SelectDropDown(Asansor);
+
+                cat.Parking()?.Click();
+                cat.SelectDropDown(Parking);
+
+                cat.Anbari()?.Click();
+                cat.SelectDropDown(Anbari);
+
+                if (!IsGiveChat) cat.Chat()?.Click();
+
+                cat.Title()?.SendKeys(Title);
+                cat.SendContent(Description);
+
+                cat.SendAdv();
+
+                res.AddReturnedValue(await Utility.SaveAdv(AdvertiseType.Divar, FisrtCat, SecondCat, ThirdCat, State,
+                    City,
+                    Region, Title, Description, number, bu.RahnPrice1, bu.EjarePrice1, cat.Url));
             }
             catch (Exception ex)
             {

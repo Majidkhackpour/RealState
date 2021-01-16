@@ -23,6 +23,23 @@ namespace Advertise.ViewModels.Divar
             imageCount = imgCount;
         }
 
+        private async Task<string> SetDivarStateAsync(BuildingBussines bu)
+        {
+            var state = "";
+            try
+            {
+                var c = await CitiesBussines.GetAsync(bu.CityGuid);
+                if (c == null || c.StateGuid == Guid.Empty) return state;
+                var st = await StatesBussines.GetAsync(c.StateGuid);
+                state = st?.Name ?? "";
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+
+            return state;
+        }
         private async Task<string> SetDivarCityAsync(BuildingBussines bu)
         {
             var city = "";
@@ -65,6 +82,7 @@ namespace Advertise.ViewModels.Divar
 
         public string City() => AsyncContext.Run(() => SetDivarCityAsync(bu));
         public string Region() => AsyncContext.Run(() => SetDivarRegionAsync(bu));
+        public string State() => AsyncContext.Run(() => SetDivarStateAsync(bu));
         public string Tabdil()
         {
             try
