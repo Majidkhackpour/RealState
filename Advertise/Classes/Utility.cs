@@ -324,6 +324,7 @@ namespace Advertise.Classes
 
             return res;
         }
+
         //private static async Task<ReturnedSaveFuncInfo> SendChat_(long number, Guid visitorGuid)
         //{
         //    var res = new ReturnedSaveFuncInfo();
@@ -405,17 +406,26 @@ namespace Advertise.Classes
 
                 if (bu.RahnPrice1 > 0 || bu.RahnPrice2 > 0 || bu.EjarePrice1 > 0 || bu.EjarePrice2 > 0)
                 {
-                    if (accType.Name.Contains("پارتمان"))
+                    if (accType.Name.Contains("مسکونی"))
                     {
-                        var ret = new Divar_ResidentialApartmentRent(bu, imageCount, isGiveChat, sender);
-                        res.AddReturnedValue(ret.Send(simCardNumber));
-                        return res;
-                    }
-                    if (accType.Name.Contains("خانه") || accType.Name.Contains("ویلا"))
-                    {
-                        var ret = new Divar_ResidentialVillaRent(bu, imageCount, isGiveChat, sender);
-                        res.AddReturnedValue(ret.Send(simCardNumber));
-                        return res;
+                        var type = await BuildingTypeBussines.GetAsync(bu.BuildingTypeGuid);
+                        if (type == null)
+                        {
+                            res.AddError("نوع ملک معتبر نمی باشد");
+                            return res;
+                        }
+                        if (type.Name.Contains("پارتمان"))
+                        {
+                            var ret = new Divar_ResidentialApartmentRent(bu, imageCount, isGiveChat, sender);
+                            res.AddReturnedValue(await ret.SendAsync(simCardNumber));
+                            return res;
+                        }
+                        if (type.Name.Contains("خانه") || accType.Name.Contains("ویلا"))
+                        {
+                            var ret = new Divar_ResidentialVillaRent(bu, imageCount, isGiveChat, sender);
+                            res.AddReturnedValue(await ret.SendAsync(simCardNumber));
+                            return res;
+                        }
                     }
                     if (accType.Name.Contains("دفتر") || accType.Name.Contains("اداری") || accType.Name.Contains("مطب"))
                     {
@@ -423,16 +433,18 @@ namespace Advertise.Classes
                         res.AddReturnedValue(await ret.SendAsync(simCardNumber));
                         return res;
                     }
-                    if (accType.Name.Contains("صنعتی") || accType.Name.Contains("کشاورزی"))
+                    if (accType.Name.Contains("صنعتی") || accType.Name.Contains("کشاورزی") ||
+                        accType.Name.Contains("دامداری") || accType.Name.Contains("مرغداری") ||
+                        accType.Name.Contains("زراعی"))
                     {
                         var ret = new Divar_OfficeKeshavarziRent(bu, imageCount, isGiveChat, sender);
-                        res.AddReturnedValue(ret.Send(simCardNumber));
+                        res.AddReturnedValue(await ret.SendAsync(simCardNumber));
                         return res;
                     }
-                    if (accType.Name.Contains("مغازه") || accType.Name.Contains("غرفه"))
+                    if (accType.Name.Contains("مغازه") || accType.Name.Contains("غرفه") || accType.Name.Contains("تجاری"))
                     {
                         var ret = new Divar_OfficeStoreRent(bu, imageCount, isGiveChat, sender);
-                        res.AddReturnedValue(ret.Send(simCardNumber));
+                        res.AddReturnedValue(await ret.SendAsync(simCardNumber));
                         return res;
                     }
                 }
@@ -614,6 +626,8 @@ namespace Advertise.Classes
                     //    res.AddReturnedValue(await SendAdv(sheypoorAdv.value, number.Number, AdvertiseType.Sheypoor));
                     //}
                 }
+
+                CloseAllChromeWindows();
             }
             catch (Exception ex)
             {

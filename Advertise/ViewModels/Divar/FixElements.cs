@@ -73,6 +73,10 @@ namespace Advertise.ViewModels.Divar
             => _drivers.FindElement(By.Id("root_parking"));
         public IWebElement Anbari()
             => _drivers.FindElement(By.Id("root_warehouse"));
+        public IWebElement Balkon()
+            => _drivers.FindElement(By.Id("root_balcony"));
+        public IWebElement Rental()
+            => _drivers.FindElement(By.Id("root_rent_to_single"));
         public IWebElement Chat()
             => _drivers.FindElements(By.ClassName("kt-switch__label"))
                 .FirstOrDefault(q => q.Text == "چت دیوار فعال شود");

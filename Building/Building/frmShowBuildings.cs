@@ -519,6 +519,11 @@ namespace Building.Building
                     frm.ShowDialog(this);
                     frm.Dispose();
                 }
+                else
+                {
+                    frmNotification.PublicInfo.ShowMessage(
+                        "آگهی شما باموفقیت در شیپور ثبت شد");
+                }
             }
         }
         private async void mnuSendToDivar_Click(object sender, EventArgs e)
@@ -554,6 +559,11 @@ namespace Building.Building
                     var frm = new FrmShowErrorMessage(res, "خطا در ارسال ملک به دیوار");
                     frm.ShowDialog(this);
                     frm.Dispose();
+                }
+                else
+                {
+                    frmNotification.PublicInfo.ShowMessage(
+                        "آگهی شما باموفقیت در دیوار ثبت شد");
                 }
             }
         }

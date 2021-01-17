@@ -782,7 +782,7 @@ namespace RealState
 
         private async void buttonItem23_Click(object sender, EventArgs e)
         {
-            var bu = await BuildingBussines.GetAsync(Guid.Parse("EFDCB515-05C1-46F0-A88F-4C2BBE3E522B"));
+            var bu = await BuildingBussines.GetAsync(Guid.Parse("B68E625B-818C-4787-B96C-8BFF6A68F667"));
             var simList = new List<SimcardBussines>();
             var buList = new List<BuildingBussines>();
 
