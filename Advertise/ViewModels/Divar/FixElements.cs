@@ -57,6 +57,8 @@ namespace Advertise.ViewModels.Divar
             => _drivers.FindElements(By.TagName("input[type=tel]"))[0];
         public IWebElement Rahn()
             => _drivers.FindElements(By.TagName("input[type=tel]"))[1];
+        public IWebElement Sell()
+            => _drivers.FindElements(By.TagName("input[type=tel]"))[1];
         public IWebElement Ejare()
             => _drivers.FindElements(By.TagName("input[type=tel]"))[2];
         public IWebElement Tabdil()

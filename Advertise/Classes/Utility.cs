@@ -406,7 +406,7 @@ namespace Advertise.Classes
 
                 if (bu.RahnPrice1 > 0 || bu.RahnPrice2 > 0 || bu.EjarePrice1 > 0 || bu.EjarePrice2 > 0)
                 {
-                    if (accType.Name.Contains("مسکونی"))
+                    if (accType.Name.Contains("مسکونی")&& !accType.Name.Contains("زمین"))
                     {
                         var type = await BuildingTypeBussines.GetAsync(bu.BuildingTypeGuid);
                         if (type == null)
@@ -451,17 +451,26 @@ namespace Advertise.Classes
 
                 else if (bu.SellPrice > 0)
                 {
-                    if (accType.Name.Contains("پارتمان"))
+                    if (accType.Name.Contains("مسکونی") && !accType.Name.Contains("زمین"))
                     {
-                        var ret = new Divar_ResidentialApartmentSell(bu, imageCount, isGiveChat, sender);
-                        res.AddReturnedValue(ret.Send(simCardNumber));
-                        return res;
-                    }
-                    if (accType.Name.Contains("خانه") || accType.Name.Contains("ویلا"))
-                    {
-                        var ret = new Divar_ResidentialVillaSell(bu, imageCount, isGiveChat, sender);
-                        res.AddReturnedValue(ret.Send(simCardNumber));
-                        return res;
+                        var type = await BuildingTypeBussines.GetAsync(bu.BuildingTypeGuid);
+                        if (type == null)
+                        {
+                            res.AddError("نوع ملک معتبر نمی باشد");
+                            return res;
+                        }
+                        if (type.Name.Contains("پارتمان"))
+                        {
+                            var ret = new Divar_ResidentialApartmentSell(bu, imageCount, isGiveChat, sender);
+                            res.AddReturnedValue(await ret.SendAsync(simCardNumber));
+                            return res;
+                        }
+                        if (type.Name.Contains("خانه") || accType.Name.Contains("ویلا"))
+                        {
+                            var ret = new Divar_ResidentialVillaSell(bu, imageCount, isGiveChat, sender);
+                            res.AddReturnedValue(ret.Send(simCardNumber));
+                            return res;
+                        }
                     }
                     if (accType.Name.Contains("زمین") || accType.Name.Contains("کلنگی"))
                     {
@@ -475,13 +484,15 @@ namespace Advertise.Classes
                         res.AddReturnedValue(ret.Send(simCardNumber));
                         return res;
                     }
-                    if (accType.Name.Contains("صنعتی") || accType.Name.Contains("کشاورزی"))
+                    if (accType.Name.Contains("صنعتی") || accType.Name.Contains("کشاورزی") ||
+                        accType.Name.Contains("دامداری") || accType.Name.Contains("مرغداری") ||
+                        accType.Name.Contains("زراعی"))
                     {
                         var ret = new Divar_OfficeKeshavarziSell(bu, imageCount, isGiveChat, sender);
                         res.AddReturnedValue(ret.Send(simCardNumber));
                         return res;
                     }
-                    if (accType.Name.Contains("مغازه") || accType.Name.Contains("غرفه"))
+                    if (accType.Name.Contains("مغازه") || accType.Name.Contains("غرفه") || accType.Name.Contains("تجاری"))
                     {
                         var ret = new Divar_OfficeStoreSell(bu, imageCount, isGiveChat, sender);
                         res.AddReturnedValue(ret.Send(simCardNumber));
