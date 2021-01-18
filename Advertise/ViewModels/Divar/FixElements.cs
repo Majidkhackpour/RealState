@@ -84,6 +84,9 @@ namespace Advertise.ViewModels.Divar
                 .FirstOrDefault(q => q.Text == "چت دیوار فعال شود");
         public IWebElement Title()
             => _drivers.FindElements(By.TagName("input[type=text]")).Last();
+        public IWebElement SanadEdari()
+            => _drivers.FindElements(By.ClassName("kt-switch__label"))
+                .FirstOrDefault(q => q.Text == "سند اداری");
         public List<IWebElement> ImageProgress 
             => _drivers.FindElements(By.ClassName("image-item__progress")).ToList();
         public string Url => _drivers.Url;

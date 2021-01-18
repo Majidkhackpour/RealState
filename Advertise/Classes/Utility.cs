@@ -451,7 +451,7 @@ namespace Advertise.Classes
 
                 else if (bu.SellPrice > 0)
                 {
-                    if (accType.Name.Contains("مسکونی") && !accType.Name.Contains("زمین"))
+                    if (accType.Name.Contains("مسکونی"))
                     {
                         var type = await BuildingTypeBussines.GetAsync(bu.BuildingTypeGuid);
                         if (type == null)
@@ -468,20 +468,26 @@ namespace Advertise.Classes
                         if (type.Name.Contains("خانه") || accType.Name.Contains("ویلا"))
                         {
                             var ret = new Divar_ResidentialVillaSell(bu, imageCount, isGiveChat, sender);
-                            res.AddReturnedValue(ret.Send(simCardNumber));
+                            res.AddReturnedValue(await ret.SendAsync(simCardNumber));
+                            return res;
+                        }
+                        if (type.Name.Contains("زمین") || type.Name.Contains("کلنگی"))
+                        {
+                            var ret = new Divar_ResidentialZaminSell(bu, imageCount, isGiveChat, sender);
+                            res.AddReturnedValue(await ret.SendAsync(simCardNumber));
                             return res;
                         }
                     }
                     if (accType.Name.Contains("زمین") || accType.Name.Contains("کلنگی"))
                     {
                         var ret = new Divar_ResidentialZaminSell(bu, imageCount, isGiveChat, sender);
-                        res.AddReturnedValue(ret.Send(simCardNumber));
+                        res.AddReturnedValue(await ret.SendAsync(simCardNumber));
                         return res;
                     }
                     if (accType.Name.Contains("دفتر") || accType.Name.Contains("اداری") || accType.Name.Contains("مطب"))
                     {
                         var ret = new Divar_OfficeOfficeSell(bu, imageCount, isGiveChat, sender);
-                        res.AddReturnedValue(ret.Send(simCardNumber));
+                        res.AddReturnedValue(await ret.SendAsync(simCardNumber));
                         return res;
                     }
                     if (accType.Name.Contains("صنعتی") || accType.Name.Contains("کشاورزی") ||
@@ -489,13 +495,13 @@ namespace Advertise.Classes
                         accType.Name.Contains("زراعی"))
                     {
                         var ret = new Divar_OfficeKeshavarziSell(bu, imageCount, isGiveChat, sender);
-                        res.AddReturnedValue(ret.Send(simCardNumber));
+                        res.AddReturnedValue(await ret.SendAsync(simCardNumber));
                         return res;
                     }
                     if (accType.Name.Contains("مغازه") || accType.Name.Contains("غرفه") || accType.Name.Contains("تجاری"))
                     {
                         var ret = new Divar_OfficeStoreSell(bu, imageCount, isGiveChat, sender);
-                        res.AddReturnedValue(ret.Send(simCardNumber));
+                        res.AddReturnedValue(await ret.SendAsync(simCardNumber));
                         return res;
                     }
                 }

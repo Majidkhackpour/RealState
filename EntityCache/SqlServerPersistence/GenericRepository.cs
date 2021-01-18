@@ -48,9 +48,7 @@ namespace EntityCache.SqlServerPersistence
                 return null;
             }
         }
-
-
-        public async Task<ReturnedSaveFuncInfo> RemoveAsync(Guid guid, string tranName)
+        public virtual async Task<ReturnedSaveFuncInfo> RemoveAsync(Guid guid, string tranName)
         {
             try
             {
@@ -68,7 +66,6 @@ namespace EntityCache.SqlServerPersistence
                 return new ReturnedSaveFuncInfo(ex);
             }
         }
-
         public async Task<ReturnedSaveFuncInfo> RemoveAllAsync(string tranName)
         {
             try
@@ -83,9 +80,7 @@ namespace EntityCache.SqlServerPersistence
                 return new ReturnedSaveFuncInfo(ex);
             }
         }
-
-
-        public async Task<List<T>> GetAllAsync()
+        public virtual async Task<List<T>> GetAllAsync()
         {
             await _semaphore.WaitAsync();
             try
@@ -110,8 +105,6 @@ namespace EntityCache.SqlServerPersistence
                 _semaphore.Release();
             }
         }
-
-
         public virtual async Task<ReturnedSaveFuncInfo> SaveAsync(T item, string tranName)
         {
             try
@@ -136,7 +129,6 @@ namespace EntityCache.SqlServerPersistence
                 return new ReturnedSaveFuncInfo(ex);
             }
         }
-
         public async Task<ReturnedSaveFuncInfo> RemoveRangeAsync(IEnumerable<Guid> items, string tranName)
         {
             try
@@ -168,7 +160,6 @@ namespace EntityCache.SqlServerPersistence
                 return new ReturnedSaveFuncInfo(ex);
             }
         }
-
         public async Task<ReturnedSaveFuncInfo> SaveRangeAsync(IEnumerable<T> items, string tranName)
         {
             try
@@ -197,7 +188,6 @@ namespace EntityCache.SqlServerPersistence
                 return new ReturnedSaveFuncInfo(ex);
             }
         }
-
         public virtual async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(T item, bool status, string tranName)
         {
             try
