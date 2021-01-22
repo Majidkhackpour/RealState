@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 using EntityCache.Bussines;
@@ -34,7 +36,6 @@ namespace EntityCache.SqlServerPersistence
                 return null;
             }
         }
-
         public async Task<string> NextCodeAsync()
         {
             try
@@ -84,7 +85,6 @@ namespace EntityCache.SqlServerPersistence
                 return "001001";
             }
         }
-
         public async Task<bool> CheckCodeAsync(string code, Guid guid)
         {
             try
@@ -99,6 +99,28 @@ namespace EntityCache.SqlServerPersistence
                 WebErrorLog.ErrorInstence.StartErrorLog(exception);
                 return false;
             }
+        }
+        public async Task<int> DbCount(Guid userGuid, short type)
+        {
+            var count = 0;
+            try
+            {
+                using (var cn = new SqlConnection(_connectionString))
+                {
+                    var cmd = new SqlCommand("sp_Building_Count", cn) { CommandType = CommandType.StoredProcedure };
+                    cmd.Parameters.AddWithValue("@userGuid", userGuid);
+                    cmd.Parameters.AddWithValue("@type", type);
+                    await cn.OpenAsync();
+                    count = (int)await cmd.ExecuteScalarAsync();
+                    cn.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+
+            return count;
         }
     }
 }

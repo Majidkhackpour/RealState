@@ -369,5 +369,7 @@ namespace EntityCache.Bussines
                 return new List<BuildingViewModel>();
             }
         }
+        public static async Task<int> DbCount(Guid userGuid, short type) =>
+            await UnitOfWork.Building.DbCount(userGuid, type);
     }
 }

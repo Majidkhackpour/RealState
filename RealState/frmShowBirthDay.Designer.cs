@@ -36,14 +36,14 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmShowBirthDay));
             this.DGrid = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.label1 = new System.Windows.Forms.Label();
-            this.btnSendSms = new DevComponents.DotNetBar.ButtonX();
-            this.Radif = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgIsChecked = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.Radif = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgGuid = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.codeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.noteBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.label1 = new System.Windows.Forms.Label();
+            this.btnSendSms = new DevComponents.DotNetBar.ButtonX();
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.noteBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -113,34 +113,12 @@
             this.DGrid.TabIndex = 55719;
             this.DGrid.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DGrid_CellFormatting);
             // 
-            // label1
+            // dgIsChecked
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("B Yekan", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.label1.Location = new System.Drawing.Point(218, 16);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(362, 41);
-            this.label1.TabIndex = 55720;
-            this.label1.Text = "لیست اشخاصی که امروز تولدشونه";
-            // 
-            // btnSendSms
-            // 
-            this.btnSendSms.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnSendSms.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.btnSendSms.BackColor = System.Drawing.Color.DarkSlateGray;
-            this.btnSendSms.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnSendSms.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
-            this.btnSendSms.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnSendSms.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.btnSendSms.Location = new System.Drawing.Point(188, 565);
-            this.btnSendSms.Name = "btnSendSms";
-            this.btnSendSms.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
-            this.btnSendSms.Size = new System.Drawing.Size(402, 31);
-            this.btnSendSms.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
-            this.btnSendSms.TabIndex = 55721;
-            this.btnSendSms.Text = "ارسال پیامک تبریک ...!!!";
-            this.btnSendSms.TextColor = System.Drawing.Color.White;
-            this.btnSendSms.Click += new System.EventHandler(this.btnSendSms_Click);
+            this.dgIsChecked.DataPropertyName = "IsChecked";
+            this.dgIsChecked.HeaderText = "";
+            this.dgIsChecked.Name = "dgIsChecked";
+            this.dgIsChecked.Width = 30;
             // 
             // Radif
             // 
@@ -148,13 +126,6 @@
             this.Radif.Name = "Radif";
             this.Radif.ReadOnly = true;
             this.Radif.Width = 50;
-            // 
-            // dgIsChecked
-            // 
-            this.dgIsChecked.DataPropertyName = "IsChecked";
-            this.dgIsChecked.HeaderText = "";
-            this.dgIsChecked.Name = "dgIsChecked";
-            this.dgIsChecked.Width = 30;
             // 
             // dgGuid
             // 
@@ -183,6 +154,35 @@
             // noteBindingSource
             // 
             this.noteBindingSource.DataSource = typeof(EntityCache.Bussines.PeoplesBussines);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("B Yekan", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.label1.Location = new System.Drawing.Point(279, 16);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(293, 41);
+            this.label1.TabIndex = 55720;
+            this.label1.Text = "لیست مشتریان متولد امروز";
+            // 
+            // btnSendSms
+            // 
+            this.btnSendSms.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnSendSms.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btnSendSms.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.btnSendSms.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnSendSms.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.btnSendSms.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSendSms.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.btnSendSms.Location = new System.Drawing.Point(188, 565);
+            this.btnSendSms.Name = "btnSendSms";
+            this.btnSendSms.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
+            this.btnSendSms.Size = new System.Drawing.Size(402, 31);
+            this.btnSendSms.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
+            this.btnSendSms.TabIndex = 55721;
+            this.btnSendSms.Text = "ارسال پیامک تبریک ...!!!";
+            this.btnSendSms.TextColor = System.Drawing.Color.White;
+            this.btnSendSms.Click += new System.EventHandler(this.btnSendSms_Click);
             // 
             // frmShowBirthDay
             // 

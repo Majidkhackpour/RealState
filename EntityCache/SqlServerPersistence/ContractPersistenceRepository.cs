@@ -179,5 +179,26 @@ namespace EntityCache.SqlServerPersistence
 
             return res;
         }
+        public async Task<int> DbCount(Guid userGuid)
+        {
+            var count = 0;
+            try
+            {
+                using (var cn = new SqlConnection(_connectionString))
+                {
+                    var cmd = new SqlCommand("sp_Contract_Count", cn) { CommandType = CommandType.StoredProcedure };
+                    cmd.Parameters.AddWithValue("@userGuid", userGuid);
+                    await cn.OpenAsync();
+                    count = (int)await cmd.ExecuteScalarAsync();
+                    cn.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+
+            return count;
+        }
     }
 }

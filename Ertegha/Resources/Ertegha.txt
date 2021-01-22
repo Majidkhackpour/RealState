@@ -1069,3 +1069,145 @@ BEGIN
 	Delete from [dbo].[Temps]
 	where Guid=@guid
 END
+GO
+-- ==========================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Building_Count]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Building_Count]	As Begin print 11 end')
+GO
+Alter PROCEDURE sp_Building_Count
+	@userGuid uniqueidentifier,
+	@type smallint
+AS
+BEGIN
+	declare @count int
+	if(@userGuid='00000000-0000-0000-0000-000000000000' and @type=0)
+	begin
+		set @count=(select COUNT(*) from Buildings)
+		select @count
+		return @count
+	end
+	else if(@userGuid<>'00000000-0000-0000-0000-000000000000' and @type=0)
+	begin
+		set @count=(select COUNT(*) from Buildings where UserGuid=@userGuid)
+		select @count
+		return @count
+	end
+	else if(@type=1) --Rahn
+	begin
+		set @count=(select COUNT(*) from Buildings where RahnPrice1>0 or RahnPrice2>0 or EjarePrice1>0 or EjarePrice2>0)
+		select @count
+		return @count
+	end
+	else if(@type=2) --Foroush
+	begin
+		set @count=(select COUNT(*) from Buildings where SellPrice>0)
+		select @count
+		return @count
+	end	
+END
+GO
+-- ==========================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Contract_Count]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Contract_Count]	As Begin print 11 end')
+GO
+Alter PROCEDURE sp_Contract_Count
+	@userGuid uniqueidentifier
+AS
+BEGIN
+	declare @count int
+	set @count = (select COUNT(*)
+					from Contracts
+					where UserGuid=@userGuid)
+	select @count
+	return @count
+END
+GO
+-- ==========================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Requests_Count]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Requests_Count]	As Begin print 11 end')
+GO
+Alter PROCEDURE sp_Requests_Count	
+	@userGuid uniqueidentifier
+AS
+BEGIN	
+	declare @count int
+	if (@userGuid='00000000-0000-0000-0000-000000000000')
+	begin
+		set @count=(select COUNT(*) from BuildingRequests)
+		select @count
+		return @count
+	end
+	else 
+	begin
+		set @count=(select COUNT(*) from BuildingRequests where UserGuid=@userGuid)
+		select @count
+		return @count
+	end
+
+END
+GO
+-- ==========================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Pardakht_CheckCount]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Pardakht_CheckCount]	As Begin print 11 end')
+GO
+Alter PROCEDURE sp_Pardakht_CheckCount	
+	@dateSh nvarchar(50)
+AS
+BEGIN	
+	declare @count int
+	set @count = (select COUNT(*) from Pardakhts where SarResid like @dateSh)
+	select @count
+	return @count
+END
+GO
+-- ==========================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Reception_CheckCount]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Reception_CheckCount]	As Begin print 11 end')
+GO
+Alter PROCEDURE sp_Reception_CheckCount	
+	@dateSh nvarchar(50)
+AS
+BEGIN	
+	declare @count int
+	set @count = (select COUNT(*) from Pardakhts where SarResid like @dateSh)
+	select @count
+	return @count
+END
+GO
+-- ==========================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Pardakht_CheckReport]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Pardakht_CheckReport]	As Begin print 11 end')
+GO
+Alter PROCEDURE sp_Pardakht_CheckReport
+	@dateSh nvarchar(50)
+AS
+BEGIN
+	select  Peoples.Name As PeopleName,
+			Pardakhts.[Check] As Price,
+			Pardakhts.CheckNo As Number,
+			Pardakhts.BankName As BankName,
+			Pardakhts.CreateDate As CreateDate
+	from Pardakhts left outer join Peoples on
+		 Pardakhts.Payer = Peoples.Guid
+	where Pardakhts.[Check]>0
+	and Pardakhts.SarResid=@dateSh
+END
+GO
+-- ==========================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Reception_CheckReport]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Reception_CheckReport]	As Begin print 11 end')
+GO
+Alter PROCEDURE sp_Reception_CheckReport
+	@dateSh nvarchar(50)
+AS
+BEGIN
+	select  Peoples.Name As PeopleName,
+			Receptions.[Check] As Price,
+			Receptions.CheckNo As Number,
+			Receptions.BankName As BankName,
+			Receptions.CreateDate As CreateDate
+	from Receptions left outer join Peoples on
+		 Receptions.Receptor = Peoples.Guid
+	where Receptions.[Check]>0
+	and Receptions.SarResid=@dateSh
+END

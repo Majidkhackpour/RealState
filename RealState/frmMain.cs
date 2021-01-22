@@ -49,7 +49,9 @@ namespace RealState
 {
     public partial class frmMain : MetroForm
     {
-        private List<string> sliderImages = new List<string>();
+        private List<PeoplesBussines> BirthdayList;
+        private List<NoteBussines> allNote;
+
         private void SetClock()
         {
             try
@@ -132,29 +134,6 @@ namespace RealState
                 lblSerial.Text = clsRegistery.GetRegistery("U1001ML");
                 var exDate = clsRegistery.GetRegistery("U1001MD").ParseToDate();
                 lblExDate.Text = Calendar.MiladiToShamsi(exDate);
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-        private async Task SetNotesAsync()
-        {
-            try
-            {
-                if (!clsGlobal.IsShowReminder.ParseToBoolean()) return;
-                var now = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, 0, 0);
-                var allNote = await NoteBussines.GetAllAsync();
-                allNote = allNote.Where(q =>
-                        q.DateSarresid != null && q.DateSarresid >= now &&
-                        q.DateSarresid <= now.AddDays(2))
-                    .ToList();
-
-                if (allNote.Count > 0)
-                {
-                    var frm = new frmReminder(allNote);
-                    frm.ShowDialog();
-                }
             }
             catch (Exception ex)
             {
@@ -262,15 +241,49 @@ namespace RealState
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private async Task SetBirthDayAsync(string dateSh)
+        private async Task RefreshLables()
         {
             try
             {
-                if (!clsGlobal.IsShowBirthDay.ParseToBoolean()) return;
-                var list = await PeoplesBussines.GetAllBirthDayAsync(dateSh);
-                if (list == null || list.Count <= 0) return;
-                var frm = new frmShowBirthDay(list);
-                frm.ShowDialog(this);
+                var allBuilding = await BuildingBussines.DbCount(Guid.Empty, 0);
+                var myBuilding = await BuildingBussines.DbCount(clsUser.CurrentUser.Guid, 0);
+                var rahn = await BuildingBussines.DbCount(Guid.Empty, 1);
+                var foroush = await BuildingBussines.DbCount(Guid.Empty, 2);
+                var allReq = await BuildingRequestBussines.DbCount(Guid.Empty);
+                var myReq = await BuildingRequestBussines.DbCount(clsUser.CurrentUser.Guid);
+                var myCon = await ContractBussines.DbCount(clsUser.CurrentUser.Guid);
+                var receptionCheck = await ReceptionBussines.DbCheckCount(Calendar.MiladiToShamsi(DateTime.Now));
+                var pardakhtCheck = await PardakhtBussines.DbCheckCount(Calendar.MiladiToShamsi(DateTime.Now));
+
+                BirthdayList = await PeoplesBussines.GetAllBirthDayAsync(Calendar.MiladiToShamsi(DateTime.Now));
+
+                var minDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, 0, 0);
+                var maxDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 23, 59, 59);
+
+                allNote = await NoteBussines.GetAllAsync();
+                allNote = allNote.Where(q =>
+                        q.DateSarresid != null && q.DateSarresid >= minDate &&
+                        q.DateSarresid <= maxDate)
+                    .ToList();
+
+                Invoke(new MethodInvoker(() =>
+                {
+                    lblAllBiulding.Text = allBuilding.ToString();
+                    lblMyBuilding.Text = myBuilding.ToString();
+                    lblAllRahn.Text = rahn.ToString();
+                    lblAllForoush.Text = foroush.ToString();
+                    lblAllRequest.Text = allReq.ToString();
+                    lblMyRequest.Text = myReq.ToString();
+                    lblMyContract.Text = myCon.ToString();
+                    lblBirthday.Text = BirthdayList.Count.ToString();
+                    lblNotes.Text = allNote.Count.ToString();
+                    lblReceptionCheck.Text = receptionCheck.ToString();
+                    lblPardakhtCheck.Text = pardakhtCheck.ToString();
+                    btnBirthday.Enabled = BirthdayList.Count != 0;
+                    btnReminderNotes.Enabled = allNote.Count != 0;
+                    btnReceptionCheck.Enabled = receptionCheck != 0;
+                    btnPardakhtCheck.Enabled = pardakhtCheck != 0;
+                }));
             }
             catch (Exception ex)
             {
@@ -282,6 +295,7 @@ namespace RealState
         {
             InitializeComponent();
             ribbonControl1.SelectedRibbonTabItem = ribbonTabItem1;
+            ExPanel.Expanded = false;
         }
 
         private async void frmMain_Load(object sender, System.EventArgs e)
@@ -296,10 +310,9 @@ namespace RealState
                 var frm = new frmNaqz(naqz);
                 frm.ShowDialog(this);
                 SetAccess();
-                await SetNotesAsync();
-                await SetBirthDayAsync(Calendar.MiladiToShamsi(DateTime.Now));
                 _ = Task.Run(() => BackUpAsync(@"C:\", false, EnBackUpType.Auto));
                 _ = Task.Run(AutoBackUpAsync);
+                _ = Task.Run(RefreshLables);
             }
             catch (Exception ex)
             {
@@ -779,7 +792,6 @@ namespace RealState
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-
         private async void buttonItem23_Click(object sender, EventArgs e)
         {
             var bu = await BuildingBussines.GetAsync(Guid.Parse("CEB0F271-7220-43D0-BF83-B13F5B648721"));
@@ -795,6 +807,58 @@ namespace RealState
 
             await Utility.ManageAdvSend(buList, simList, AdvertiseType.Divar,
                 clsAdvertise.IsGiveChat, clsAdvertise.Sender, clsAdvertise.Divar_PicCountInPerAdv);
+        }
+        private void ExPanel_ExpandedChanging(object sender, DevComponents.DotNetBar.ExpandedChangeEventArgs e) =>
+            ExPanel.Width = Width;
+        private void btnBirthday_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var frm = new frmShowBirthDay(BirthdayList);
+                frm.ShowDialog(this);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private void btnReminderNotes_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var frm = new frmReminder(allNote);
+                frm.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private void btnReceptionCheck_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var frm = new frmReceptopnCheckToday();
+                frm.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private void btnPardakhtCheck_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var frm = new frmPardakhtCheckToday();
+                frm.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
         }
     }
 }

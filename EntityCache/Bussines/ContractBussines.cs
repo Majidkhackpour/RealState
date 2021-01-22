@@ -182,5 +182,6 @@ namespace EntityCache.Bussines
         public static async Task<string> NextCodeAsync() => await UnitOfWork.Contract.NextCodeAsync();
         public static async Task<bool> CheckCodeAsync(string code, Guid guid) =>
             await UnitOfWork.Contract.CheckCodeAsync(code, guid);
+        public static async Task<int> DbCount(Guid userGuid) => await UnitOfWork.Contract.DbCount(userGuid);
     }
 }

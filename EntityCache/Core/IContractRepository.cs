@@ -10,5 +10,6 @@ namespace EntityCache.Core
         Task<List<ContractBussines>> GetAllAsyncBySp();
         Task<string> NextCodeAsync();
         Task<bool> CheckCodeAsync(string code, Guid guid);
+        Task<int> DbCount(Guid userGuid);
     }
 }

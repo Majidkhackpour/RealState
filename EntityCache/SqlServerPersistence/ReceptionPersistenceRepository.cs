@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using EntityCache.Assistence;
 using EntityCache.Bussines;
 using EntityCache.Core;
+using EntityCache.ViewModels;
 using Persistence.Entities;
 using Persistence.Model;
 using Services;
@@ -100,6 +101,42 @@ namespace EntityCache.SqlServerPersistence
             }
 
             return res;
+        }
+        public async Task<int> DbCheckCount(string dateSh)
+        {
+            var count = 0;
+            try
+            {
+                using (var cn = new SqlConnection(_connectionString))
+                {
+                    var cmd = new SqlCommand("sp_Reception_CheckCount", cn) { CommandType = CommandType.StoredProcedure };
+                    cmd.Parameters.AddWithValue("@dateSh", dateSh);
+                    await cn.OpenAsync();
+                    count = (int)await cmd.ExecuteScalarAsync();
+                    cn.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+
+            return count;
+        }
+        public async Task<List<CheckViewModel>> CheckReportAsync(string dateSh)
+        {
+            try
+            {
+                var ctGuid = new SqlParameter("@dateSh", dateSh);
+                var res = db.Database.SqlQuery<CheckViewModel>("sp_Reception_CheckReport @dateSh", ctGuid);
+                var a = res?.ToList();
+                return a;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                return null;
+            }
         }
     }
 }

@@ -38,8 +38,6 @@
             this.label29 = new System.Windows.Forms.Label();
             this.chbPrintPreView = new DevComponents.DotNetBar.Controls.CheckBoxX();
             this.chbPrintDesign = new DevComponents.DotNetBar.Controls.CheckBoxX();
-            this.chbBirthday = new DevComponents.DotNetBar.Controls.CheckBoxX();
-            this.chbReminder = new DevComponents.DotNetBar.Controls.CheckBoxX();
             this.superTabItem2 = new DevComponents.DotNetBar.SuperTabItem();
             this.superTabControlPanel6 = new DevComponents.DotNetBar.SuperTabControlPanel();
             this.superTabControlPanel3 = new DevComponents.DotNetBar.SuperTabControlPanel();
@@ -263,8 +261,6 @@
             this.panelEx1.Controls.Add(this.label29);
             this.panelEx1.Controls.Add(this.chbPrintPreView);
             this.panelEx1.Controls.Add(this.chbPrintDesign);
-            this.panelEx1.Controls.Add(this.chbBirthday);
-            this.panelEx1.Controls.Add(this.chbReminder);
             this.panelEx1.DisabledBackColor = System.Drawing.Color.Empty;
             this.panelEx1.Location = new System.Drawing.Point(4, 4);
             this.panelEx1.Name = "panelEx1";
@@ -282,18 +278,18 @@
             // 
             // txtBirthDayText
             // 
-            this.txtBirthDayText.Location = new System.Drawing.Point(20, 70);
+            this.txtBirthDayText.Location = new System.Drawing.Point(20, 11);
             this.txtBirthDayText.Multiline = true;
             this.txtBirthDayText.Name = "txtBirthDayText";
             this.txtBirthDayText.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtBirthDayText.Size = new System.Drawing.Size(473, 145);
+            this.txtBirthDayText.Size = new System.Drawing.Size(473, 212);
             this.txtBirthDayText.TabIndex = 12;
             // 
             // label29
             // 
             this.label29.AutoSize = true;
             this.label29.BackColor = System.Drawing.Color.Transparent;
-            this.label29.Location = new System.Drawing.Point(506, 73);
+            this.label29.Location = new System.Drawing.Point(506, 14);
             this.label29.Name = "label29";
             this.label29.Size = new System.Drawing.Size(83, 20);
             this.label29.TabIndex = 11;
@@ -330,38 +326,6 @@
             this.chbPrintDesign.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.chbPrintDesign.TabIndex = 9;
             this.chbPrintDesign.Text = "چاپ در حالت طراحی باز شود";
-            // 
-            // chbBirthday
-            // 
-            this.chbBirthday.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.chbBirthday.BackColor = System.Drawing.Color.Transparent;
-            // 
-            // 
-            // 
-            this.chbBirthday.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.chbBirthday.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.chbBirthday.Location = new System.Drawing.Point(244, 37);
-            this.chbBirthday.Name = "chbBirthday";
-            this.chbBirthday.Size = new System.Drawing.Size(341, 23);
-            this.chbBirthday.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.chbBirthday.TabIndex = 9;
-            this.chbBirthday.Text = "یادآوری تاریخ تولد مشتریان در هنگام ورود به برنامه";
-            // 
-            // chbReminder
-            // 
-            this.chbReminder.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.chbReminder.BackColor = System.Drawing.Color.Transparent;
-            // 
-            // 
-            // 
-            this.chbReminder.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.chbReminder.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.chbReminder.Location = new System.Drawing.Point(322, 9);
-            this.chbReminder.Name = "chbReminder";
-            this.chbReminder.Size = new System.Drawing.Size(263, 23);
-            this.chbReminder.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.chbReminder.TabIndex = 9;
-            this.chbReminder.Text = "نمایش صفحه یادآوری در هنگام ورود به برنامه";
             // 
             // superTabItem2
             // 
@@ -2147,8 +2111,6 @@
         private DevComponents.DotNetBar.Controls.CheckBoxX chbOpen;
         private DevComponents.DotNetBar.SuperTabControlPanel superTabControlPanel2;
         private DevComponents.DotNetBar.PanelEx panelEx1;
-        private DevComponents.DotNetBar.Controls.CheckBoxX chbBirthday;
-        private DevComponents.DotNetBar.Controls.CheckBoxX chbReminder;
         private DevComponents.DotNetBar.SuperTabItem superTabItem2;
         private System.Windows.Forms.TextBox txtBirthDayText;
         private System.Windows.Forms.Label label29;

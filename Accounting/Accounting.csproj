@@ -168,6 +168,12 @@
     <Compile Include="Hazine\frmShowHazine.Designer.cs">
       <DependentUpon>frmShowHazine.cs</DependentUpon>
     </Compile>
+    <Compile Include="Payement\frmPardakhtCheckToday.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Payement\frmPardakhtCheckToday.Designer.cs">
+      <DependentUpon>frmPardakhtCheckToday.cs</DependentUpon>
+    </Compile>
     <Compile Include="Payement\frmPardakhtMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -204,6 +210,12 @@
     <Compile Include="Reception\frmReceptionMain.Designer.cs">
       <DependentUpon>frmReceptionMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reception\frmReceptopnCheckToday.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reception\frmReceptopnCheckToday.Designer.cs">
+      <DependentUpon>frmReceptopnCheckToday.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reception\frmShowReception.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -236,6 +248,9 @@
     <EmbeddedResource Include="Hazine\frmShowHazine.resx">
       <DependentUpon>frmShowHazine.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Payement\frmPardakhtCheckToday.resx">
+      <DependentUpon>frmPardakhtCheckToday.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Payement\frmPardakhtMain.resx">
       <DependentUpon>frmPardakhtMain.cs</DependentUpon>
     </EmbeddedResource>
@@ -254,6 +269,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reception\frmReceptionMain.resx">
       <DependentUpon>frmReceptionMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reception\frmReceptopnCheckToday.resx">
+      <DependentUpon>frmReceptopnCheckToday.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reception\frmShowReception.resx">
       <DependentUpon>frmShowReception.cs</DependentUpon>
@@ -290,6 +308,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Properties\DataSources\EntityCache.ViewModels.CheckViewModel.datasource" />
     <None Include="Resources\add.png" />
   </ItemGroup>
   <ItemGroup>

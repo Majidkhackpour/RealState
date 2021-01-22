@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using EntityCache.Assistence;
+using EntityCache.ViewModels;
 using Nito.AsyncEx;
 using Persistence;
 using Services;
@@ -138,5 +139,8 @@ namespace EntityCache.Bussines
             }
         }
         public static PardakhtBussines Get(Guid guid) => AsyncContext.Run(() => GetAsync(guid));
+        public static async Task<int> DbCheckCount(string dateSh) => await UnitOfWork.Pardakht.DbCheckCount(dateSh);
+        public static async Task<List<CheckViewModel>> CheckReportAsync()
+            => await UnitOfWork.Pardakht.CheckReportAsync(Calendar.MiladiToShamsi(DateTime.Now));
     }
 }

@@ -63,6 +63,16 @@ namespace RealState.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _0029 {
+            get {
+                object obj = ResourceManager.GetObject("0029", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap _01 {
             get {
                 object obj = ResourceManager.GetObject("01", resourceCulture);
@@ -256,6 +266,16 @@ namespace RealState.Properties {
         internal static System.Drawing.Bitmap _112 {
             get {
                 object obj = ResourceManager.GetObject("112", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _1160 {
+            get {
+                object obj = ResourceManager.GetObject("1160", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
