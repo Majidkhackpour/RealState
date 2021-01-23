@@ -605,12 +605,6 @@ namespace Building.Contract
                 var frm = new frmShowBuildings(true, fSide?.Guid ?? Guid.Empty);
                 if (frm.ShowDialog(this) != DialogResult.OK) return;
                 building = BuildingBussines.Get(frm.SelectedGuid);
-                if (building.BuildingStatus == EnBuildingStatus.Vagozar)
-                {
-                    frmNotification.PublicInfo.ShowMessage("این ملک در وضعیت واگذار شده قراردارد و شما قادر به ثبت قرارداد برای این ملک نمی باشید");
-                    btnBuildingSearch.Focus();
-                    return;
-                }
                 LoadBuilding();
             }
             catch (Exception ex)

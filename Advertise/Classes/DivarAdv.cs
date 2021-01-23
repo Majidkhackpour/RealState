@@ -2418,7 +2418,6 @@ namespace Advertise.Classes
 
                                 viewModel.BonBast = false;
                                 viewModel.MamarJoda = true;
-                                viewModel.BuildingStatus = EnBuildingStatus.Mojod;
 
                                 var allUser = await UserBussines.GetAllAsync();
                                 var userRand = new Random().Next(0, allUser.Count);

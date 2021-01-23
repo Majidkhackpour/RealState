@@ -89,10 +89,10 @@ namespace EntityCache.Bussines
         public bool BonBast { get; set; }
         public bool MamarJoda { get; set; }
         public int RoomCount { get; set; }
-        public EnBuildingStatus BuildingStatus { get; set; }
+        public EnBuildingPriority Priority { get; set; }
+        public bool IsArchive { get; set; }
         public string HardSerial => Cache.HardSerial;
         public string Image { get; set; }
-        public string BuildingStatusName => BuildingStatus.GetDisplay();
         private List<BuildingRelatedOptionsBussines> _optionList;
         public List<BuildingRelatedOptionsBussines> OptionList
         {
@@ -239,10 +239,10 @@ namespace EntityCache.Bussines
 
             return res;
         }
-        public static List<BuildingBussines> GetAll(string search, EnBuildingStatus status,
+        public static List<BuildingBussines> GetAll(string search, bool isArchive,
             Guid buildingTypeGuid, Guid userGuid, Guid docTypeGuid, Guid accTypeGuid) => AsyncContext.Run(() =>
-            GetAllAsync(search, status, buildingTypeGuid, userGuid, docTypeGuid, accTypeGuid));
-        public static async Task<List<BuildingBussines>> GetAllAsync(string search, EnBuildingStatus status,
+            GetAllAsync(search,isArchive, buildingTypeGuid, userGuid, docTypeGuid, accTypeGuid));
+        public static async Task<List<BuildingBussines>> GetAllAsync(string search,bool isArchive,
             Guid buildingTypeGuid, Guid userGuid, Guid docTypeGuid, Guid accTypeGuid)
         {
             try
@@ -252,7 +252,8 @@ namespace EntityCache.Bussines
                 res = await GetAllAsync();
                 if (res == null || !res.Any()) return res?.ToList();
 
-                if (status != EnBuildingStatus.All) res = res.Where(q => q.BuildingStatus == status);
+                res = res.Where(q => q.IsArchive == isArchive);
+
                 if (buildingTypeGuid != Guid.Empty)
                     res = res.Where(q => q.BuildingTypeGuid == buildingTypeGuid);
                 if (userGuid != Guid.Empty)
@@ -298,7 +299,6 @@ namespace EntityCache.Bussines
             try
             {
                 var res = await GetAllAsync();
-                res = res.Where(q => q.BuildingStatus == EnBuildingStatus.Mojod).ToList();
                 if (!string.IsNullOrEmpty(code)) res = res.Where(q => q.Code.Contains(code)).ToList();
                 if (buildingGuid != Guid.Empty) res = res.Where(q => q.BuildingTypeGuid == buildingGuid).ToList();
                 if (buildingAccountTypeGuid != Guid.Empty)

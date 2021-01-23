@@ -71,7 +71,8 @@ namespace WebHesabBussines
         public bool BonBast { get; set; }
         public bool MamarJoda { get; set; }
         public int RoomCount { get; set; }
-        public EnBuildingStatus BuildingStatus { get; set; }
+        public EnBuildingPriority Priority { get; set; }
+        public bool IsArchive { get; set; }
         public string Image { get; set; }
         public string HardSerial { get; set; }
         public List<BuildingRelatedOptionsBussines> OptionList { get; set; }
@@ -130,7 +131,8 @@ namespace WebHesabBussines
                     RahnPrice1 = cls.RahnPrice1,
                     SellPrice = cls.SellPrice,
                     RoomCount = cls.RoomCount,
-                    BuildingStatus = cls.BuildingStatus,
+                    Priority = cls.Priority,
+                    IsArchive = cls.IsArchive,
                     GalleryList = cls.GalleryList,
                     ZirBana = cls.ZirBana,
                     BuildingAccountTypeGuid = cls.BuildingAccountTypeGuid,
@@ -211,7 +213,8 @@ namespace WebHesabBussines
                         RahnPrice1 = cls.RahnPrice1,
                         SellPrice = cls.SellPrice,
                         RoomCount = cls.RoomCount,
-                        BuildingStatus = cls.BuildingStatus,
+                        Priority = cls.Priority,
+                        IsArchive = cls.IsArchive,
                         GalleryList = cls.GalleryList,
                         ZirBana = cls.ZirBana,
                         BuildingAccountTypeGuid = cls.BuildingAccountTypeGuid,

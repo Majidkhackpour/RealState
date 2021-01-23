@@ -10,7 +10,7 @@ namespace Ertegha
     {
         public static async Task<ReturnedSaveFuncInfo> FixBuildingImage()
         {
-            var res=new ReturnedSaveFuncInfo();
+            var res = new ReturnedSaveFuncInfo();
             try
             {
                 var all = await BuildingBussines.GetAllAsync();

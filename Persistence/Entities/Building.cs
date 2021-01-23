@@ -69,7 +69,9 @@ namespace Persistence.Entities
         public bool BonBast { get; set; }
         public bool MamarJoda { get; set; }
         public int RoomCount { get; set; }
-        public EnBuildingStatus BuildingStatus { get; set; }
+        public EnBuildingPriority Priority { get; set; }
+        public bool IsArchive { get; set; }
+
         [MaxLength(100)]
         public string Image { get; set; }
     }

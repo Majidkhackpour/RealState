@@ -654,7 +654,7 @@ BEGIN
 	end
 
 	update Buildings
-	set BuildingStatus=1
+	set IsArchive='true'
 	where Guid=@buGuid
 
 	declare @contractGuid uniqueidentifier

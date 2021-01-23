@@ -123,9 +123,6 @@
             this.mnuView = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuStatus = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
-            this.mnuMojod = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuVagozar = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
             this.mnuSendSms = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuSendToDivar = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuSendToSheypoor = new System.Windows.Forms.ToolStripMenuItem();
@@ -168,8 +165,6 @@
             this.mnuGas = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuTell = new System.Windows.Forms.ToolStripMenuItem();
             this.BuildingBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.cmbStatus = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.cmbBuildingType = new System.Windows.Forms.ComboBox();
             this.btBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -1002,9 +997,6 @@
             this.mnuView,
             this.mnuStatus,
             this.toolStripMenuItem2,
-            this.mnuMojod,
-            this.mnuVagozar,
-            this.toolStripMenuItem3,
             this.mnuSendSms,
             this.mnuSendToDivar,
             this.mnuSendToSheypoor,
@@ -1018,13 +1010,13 @@
             this.مدیریتستونهاToolStripMenuItem});
             this.contextMenu.Name = "contextMenu";
             this.contextMenu.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.contextMenu.Size = new System.Drawing.Size(214, 422);
+            this.contextMenu.Size = new System.Drawing.Size(203, 346);
             // 
             // mnuAdd
             // 
             this.mnuAdd.Image = global::Building.Properties.Resources.add_2_;
             this.mnuAdd.Name = "mnuAdd";
-            this.mnuAdd.Size = new System.Drawing.Size(213, 24);
+            this.mnuAdd.Size = new System.Drawing.Size(202, 24);
             this.mnuAdd.Text = "افزودن ملک جدید (Ins)";
             this.mnuAdd.Click += new System.EventHandler(this.mnuAdd_Click);
             // 
@@ -1032,7 +1024,7 @@
             // 
             this.mnuEdit.Image = global::Building.Properties.Resources.edit_1_;
             this.mnuEdit.Name = "mnuEdit";
-            this.mnuEdit.Size = new System.Drawing.Size(213, 24);
+            this.mnuEdit.Size = new System.Drawing.Size(202, 24);
             this.mnuEdit.Text = "ویرایش ملک جاری (F7)";
             this.mnuEdit.Click += new System.EventHandler(this.mnuEdit_Click);
             // 
@@ -1040,20 +1032,20 @@
             // 
             this.mnuDelete.Image = global::Building.Properties.Resources.delete_1_;
             this.mnuDelete.Name = "mnuDelete";
-            this.mnuDelete.Size = new System.Drawing.Size(213, 24);
+            this.mnuDelete.Size = new System.Drawing.Size(202, 24);
             this.mnuDelete.Text = "حذف ملک جاری (Del)";
             this.mnuDelete.Click += new System.EventHandler(this.mnuDelete_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(210, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(199, 6);
             // 
             // mnuView
             // 
             this.mnuView.Image = global::Building.Properties.Resources.article_1_;
             this.mnuView.Name = "mnuView";
-            this.mnuView.Size = new System.Drawing.Size(213, 24);
+            this.mnuView.Size = new System.Drawing.Size(202, 24);
             this.mnuView.Text = "مشاهده (F12)";
             this.mnuView.Click += new System.EventHandler(this.mnuView_Click);
             // 
@@ -1061,52 +1053,33 @@
             // 
             this.mnuStatus.Image = global::Building.Properties.Resources.refresh_round_symbol;
             this.mnuStatus.Name = "mnuStatus";
-            this.mnuStatus.Size = new System.Drawing.Size(213, 24);
+            this.mnuStatus.Size = new System.Drawing.Size(202, 24);
             this.mnuStatus.Text = "غیرفعال (Ctrl+S)";
             this.mnuStatus.Click += new System.EventHandler(this.mnuStatus_Click);
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(210, 6);
-            // 
-            // mnuMojod
-            // 
-            this.mnuMojod.Name = "mnuMojod";
-            this.mnuMojod.Size = new System.Drawing.Size(213, 24);
-            this.mnuMojod.Text = "تغییر وضعیت به موجود";
-            this.mnuMojod.Click += new System.EventHandler(this.mnuMojod_Click);
-            // 
-            // mnuVagozar
-            // 
-            this.mnuVagozar.Name = "mnuVagozar";
-            this.mnuVagozar.Size = new System.Drawing.Size(213, 24);
-            this.mnuVagozar.Text = "تغییر وضعیت به واگذارشده";
-            this.mnuVagozar.Click += new System.EventHandler(this.mnuVagozar_Click);
-            // 
-            // toolStripMenuItem3
-            // 
-            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(210, 6);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(199, 6);
             // 
             // mnuSendSms
             // 
             this.mnuSendSms.Image = global::Building.Properties.Resources.icons8_sms_24;
             this.mnuSendSms.Name = "mnuSendSms";
-            this.mnuSendSms.Size = new System.Drawing.Size(213, 24);
+            this.mnuSendSms.Size = new System.Drawing.Size(202, 24);
             this.mnuSendSms.Text = "ارسال پیامک به مالک";
             // 
             // mnuSendToDivar
             // 
             this.mnuSendToDivar.Name = "mnuSendToDivar";
-            this.mnuSendToDivar.Size = new System.Drawing.Size(213, 24);
+            this.mnuSendToDivar.Size = new System.Drawing.Size(202, 24);
             this.mnuSendToDivar.Text = "ارسال ملک در دیوار";
             this.mnuSendToDivar.Click += new System.EventHandler(this.mnuSendToDivar_Click);
             // 
             // mnuSendToSheypoor
             // 
             this.mnuSendToSheypoor.Name = "mnuSendToSheypoor";
-            this.mnuSendToSheypoor.Size = new System.Drawing.Size(213, 24);
+            this.mnuSendToSheypoor.Size = new System.Drawing.Size(202, 24);
             this.mnuSendToSheypoor.Text = "ارسال ملک در شیپور";
             this.mnuSendToSheypoor.Click += new System.EventHandler(this.mnuSendToSheypoor_Click);
             // 
@@ -1114,7 +1087,7 @@
             // 
             this.mnuSendToTelegram.Image = global::Building.Properties.Resources.icons8_telegram_app_24;
             this.mnuSendToTelegram.Name = "mnuSendToTelegram";
-            this.mnuSendToTelegram.Size = new System.Drawing.Size(213, 24);
+            this.mnuSendToTelegram.Size = new System.Drawing.Size(202, 24);
             this.mnuSendToTelegram.Text = "ارسال ملک در تلگرام";
             this.mnuSendToTelegram.Click += new System.EventHandler(this.mnuSendToTelegram_Click);
             // 
@@ -1122,38 +1095,38 @@
             // 
             this.ارسالملکدرواتساپToolStripMenuItem.Image = global::Building.Properties.Resources.icons8_whatsapp_24;
             this.ارسالملکدرواتساپToolStripMenuItem.Name = "ارسالملکدرواتساپToolStripMenuItem";
-            this.ارسالملکدرواتساپToolStripMenuItem.Size = new System.Drawing.Size(213, 24);
+            this.ارسالملکدرواتساپToolStripMenuItem.Size = new System.Drawing.Size(202, 24);
             this.ارسالملکدرواتساپToolStripMenuItem.Text = "ارسال ملک در واتساپ";
             // 
             // toolStripMenuItem5
             // 
             this.toolStripMenuItem5.Name = "toolStripMenuItem5";
-            this.toolStripMenuItem5.Size = new System.Drawing.Size(210, 6);
+            this.toolStripMenuItem5.Size = new System.Drawing.Size(199, 6);
             // 
             // mnuMatchRequest
             // 
             this.mnuMatchRequest.Image = global::Building.Properties.Resources.article_1_;
             this.mnuMatchRequest.Name = "mnuMatchRequest";
-            this.mnuMatchRequest.Size = new System.Drawing.Size(213, 24);
+            this.mnuMatchRequest.Size = new System.Drawing.Size(202, 24);
             this.mnuMatchRequest.Text = "تطابق ملک با درخواست ها";
             // 
             // toolStripMenuItem6
             // 
             this.toolStripMenuItem6.Name = "toolStripMenuItem6";
-            this.toolStripMenuItem6.Size = new System.Drawing.Size(210, 6);
+            this.toolStripMenuItem6.Size = new System.Drawing.Size(199, 6);
             // 
             // mnuPrint
             // 
             this.mnuPrint.Image = global::Building.Properties.Resources.printer;
             this.mnuPrint.Name = "mnuPrint";
-            this.mnuPrint.Size = new System.Drawing.Size(213, 24);
+            this.mnuPrint.Size = new System.Drawing.Size(202, 24);
             this.mnuPrint.Text = "چاپ لیست املاک";
             this.mnuPrint.Click += new System.EventHandler(this.mnuPrint_Click);
             // 
             // toolStripMenuItem4
             // 
             this.toolStripMenuItem4.Name = "toolStripMenuItem4";
-            this.toolStripMenuItem4.Size = new System.Drawing.Size(210, 6);
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(199, 6);
             // 
             // مدیریتستونهاToolStripMenuItem
             // 
@@ -1190,7 +1163,7 @@
             this.mnuTell});
             this.مدیریتستونهاToolStripMenuItem.Image = global::Building.Properties.Resources.technology_1;
             this.مدیریتستونهاToolStripMenuItem.Name = "مدیریتستونهاToolStripMenuItem";
-            this.مدیریتستونهاToolStripMenuItem.Size = new System.Drawing.Size(213, 24);
+            this.مدیریتستونهاToolStripMenuItem.Size = new System.Drawing.Size(202, 24);
             this.مدیریتستونهاToolStripMenuItem.Text = "مدیریت ستون ها";
             // 
             // mnuCode
@@ -1437,37 +1410,12 @@
             // 
             this.BuildingBindingSource.DataSource = typeof(EntityCache.Bussines.BuildingBussines);
             // 
-            // cmbStatus
-            // 
-            this.cmbStatus.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.cmbStatus.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.cmbStatus.DisplayMember = "Name";
-            this.cmbStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbStatus.FormattingEnabled = true;
-            this.cmbStatus.Location = new System.Drawing.Point(11, 34);
-            this.cmbStatus.Name = "cmbStatus";
-            this.cmbStatus.Size = new System.Drawing.Size(134, 28);
-            this.cmbStatus.TabIndex = 55759;
-            this.cmbStatus.ValueMember = "Guid";
-            this.cmbStatus.SelectedIndexChanged += new System.EventHandler(this.cmbStatus_SelectedIndexChanged);
-            // 
-            // label1
-            // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Location = new System.Drawing.Point(103, 11);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(46, 20);
-            this.label1.TabIndex = 55760;
-            this.label1.Text = "وضعیت";
-            // 
             // label2
             // 
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Location = new System.Drawing.Point(100, 65);
+            this.label2.Location = new System.Drawing.Point(100, 8);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(49, 20);
             this.label2.TabIndex = 55760;
@@ -1481,7 +1429,7 @@
             this.cmbBuildingType.DisplayMember = "Name";
             this.cmbBuildingType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbBuildingType.FormattingEnabled = true;
-            this.cmbBuildingType.Location = new System.Drawing.Point(11, 88);
+            this.cmbBuildingType.Location = new System.Drawing.Point(11, 31);
             this.cmbBuildingType.Name = "cmbBuildingType";
             this.cmbBuildingType.Size = new System.Drawing.Size(134, 28);
             this.cmbBuildingType.TabIndex = 55759;
@@ -1497,7 +1445,7 @@
             this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.Transparent;
-            this.label3.Location = new System.Drawing.Point(110, 119);
+            this.label3.Location = new System.Drawing.Point(110, 62);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(39, 20);
             this.label3.TabIndex = 55760;
@@ -1511,7 +1459,7 @@
             this.cmbUser.DisplayMember = "Name";
             this.cmbUser.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbUser.FormattingEnabled = true;
-            this.cmbUser.Location = new System.Drawing.Point(11, 142);
+            this.cmbUser.Location = new System.Drawing.Point(11, 85);
             this.cmbUser.Name = "cmbUser";
             this.cmbUser.Size = new System.Drawing.Size(134, 28);
             this.cmbUser.TabIndex = 55759;
@@ -1577,8 +1525,6 @@
             this.grp.CanvasColor = System.Drawing.SystemColors.Control;
             this.grp.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.grp.Controls.Add(this.PicBox);
-            this.grp.Controls.Add(this.label1);
-            this.grp.Controls.Add(this.cmbStatus);
             this.grp.Controls.Add(this.label5);
             this.grp.Controls.Add(this.label4);
             this.grp.Controls.Add(this.label2);
@@ -1605,7 +1551,7 @@
             // PicBox
             // 
             this.PicBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.PicBox.Location = new System.Drawing.Point(11, 290);
+            this.PicBox.Location = new System.Drawing.Point(11, 233);
             this.PicBox.Name = "PicBox";
             this.PicBox.Size = new System.Drawing.Size(134, 122);
             this.PicBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -1617,7 +1563,7 @@
             this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label5.AutoSize = true;
             this.label5.BackColor = System.Drawing.Color.Transparent;
-            this.label5.Location = new System.Drawing.Point(100, 228);
+            this.label5.Location = new System.Drawing.Point(100, 171);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(41, 20);
             this.label5.TabIndex = 55760;
@@ -1628,7 +1574,7 @@
             this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label4.AutoSize = true;
             this.label4.BackColor = System.Drawing.Color.Transparent;
-            this.label4.Location = new System.Drawing.Point(100, 174);
+            this.label4.Location = new System.Drawing.Point(100, 117);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(49, 20);
             this.label4.TabIndex = 55760;
@@ -1642,7 +1588,7 @@
             this.cmbAccType.DisplayMember = "Name";
             this.cmbAccType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbAccType.FormattingEnabled = true;
-            this.cmbAccType.Location = new System.Drawing.Point(11, 251);
+            this.cmbAccType.Location = new System.Drawing.Point(11, 194);
             this.cmbAccType.Name = "cmbAccType";
             this.cmbAccType.Size = new System.Drawing.Size(134, 28);
             this.cmbAccType.TabIndex = 55759;
@@ -1661,7 +1607,7 @@
             this.cmbDocType.DisplayMember = "Name";
             this.cmbDocType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbDocType.FormattingEnabled = true;
-            this.cmbDocType.Location = new System.Drawing.Point(11, 197);
+            this.cmbDocType.Location = new System.Drawing.Point(11, 140);
             this.cmbDocType.Name = "cmbDocType";
             this.cmbDocType.Size = new System.Drawing.Size(134, 28);
             this.cmbDocType.TabIndex = 55759;
@@ -1725,8 +1671,6 @@
         private DevComponents.DotNetBar.Controls.TextBoxX txtSearch;
         private System.Windows.Forms.BindingSource BuildingBindingSource;
         private DevComponents.DotNetBar.Controls.DataGridViewX DGrid;
-        private System.Windows.Forms.ComboBox cmbStatus;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox cmbBuildingType;
         private System.Windows.Forms.Label label3;
@@ -1760,9 +1704,6 @@
         private System.Windows.Forms.ToolStripMenuItem mnuRahn;
         private System.Windows.Forms.ToolStripMenuItem mnuEjare;
         private System.Windows.Forms.ToolStripMenuItem mnuSell;
-        private System.Windows.Forms.ToolStripMenuItem mnuMojod;
-        private System.Windows.Forms.ToolStripMenuItem mnuVagozar;
-        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem3;
         private System.Windows.Forms.ToolStripMenuItem mnuSendSms;
         private System.Windows.Forms.ToolStripMenuItem mnuSendToDivar;
         private System.Windows.Forms.ToolStripMenuItem mnuSendToSheypoor;

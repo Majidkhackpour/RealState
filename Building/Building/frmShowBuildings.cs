@@ -33,10 +33,6 @@ namespace Building.Building
         {
             try
             {
-                cmbStatus.Items.Add(EnBuildingStatus.All.GetDisplay());
-                cmbStatus.Items.Add(EnBuildingStatus.Mojod.GetDisplay());
-                cmbStatus.Items.Add(EnBuildingStatus.Vagozar.GetDisplay());
-
                 var list = await BuildingTypeBussines.GetAllAsync();
                 list.Add(new BuildingTypeBussines()
                 {
@@ -70,7 +66,6 @@ namespace Building.Building
                 });
                 AccTypeBindingSource.DataSource = list4.OrderBy(q => q.Name).ToList();
 
-                cmbStatus.SelectedIndex = 0;
                 cmbBuildingType.SelectedIndex = 0;
                 cmbUser.SelectedValue = clsUser.CurrentUser.Guid;
                 cmbDocType.SelectedIndex = 0;
@@ -86,7 +81,7 @@ namespace Building.Building
             try
             {
                 list = BuildingBussines
-                    .GetAll(search, (EnBuildingStatus)cmbStatus.SelectedIndex - 1,
+                    .GetAll(search,false,
                         (Guid)cmbBuildingType.SelectedValue,
                         (Guid)cmbUser.SelectedValue,
                         (Guid)cmbDocType.SelectedValue,
@@ -121,8 +116,6 @@ namespace Building.Building
                 mnuStatus.Enabled = access?.Building.Building_Disable ?? false;
                 mnuView.Enabled = access?.Building.Building_View ?? false;
                 mnuMatchRequest.Enabled = access?.Building.Building_Show_request ?? false;
-                mnuMojod.Enabled = access?.Building.Building_Mojod ?? false;
-                mnuVagozar.Enabled = access?.Building.Building_Vagozar ?? false;
                 mnuSendSms.Enabled = access?.Building.Building_Send_Sms ?? false;
                 mnuSendToDivar.Enabled = access?.Building.Building_Send_Divar ?? false;
                 mnuSendToSheypoor.Enabled = access?.Building.Building_Send_Sheypoor ?? false;
@@ -586,88 +579,6 @@ namespace Building.Building
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-        private async void mnuVagozar_Click(object sender, EventArgs e)
-        {
-            var res = new ReturnedSaveFuncInfo();
-            try
-            {
-                if (DGrid.RowCount <= 0) return;
-                if (DGrid.CurrentRow == null) return;
-                var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
-                var bu = await BuildingBussines.GetAsync(guid);
-                if (bu == null) return;
-                if (bu.BuildingStatus == EnBuildingStatus.Vagozar)
-                {
-                    frmNotification.PublicInfo.ShowMessage(
-                        "وضعیت ملک هم اکنون واگذارشده می باشد");
-                    return;
-                }
-
-                if (MessageBox.Show(this,
-                        $@"آیا از اعمال تغییرات اطمینان دارید؟", "تغییر وضعیت ملک",
-                        MessageBoxButtons.YesNo,
-                        MessageBoxIcon.Question) == DialogResult.No) return;
-
-                bu.BuildingStatus = EnBuildingStatus.Vagozar;
-                res.AddReturnedValue(await bu.SaveAsync());
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-                res.AddReturnedValue(ex);
-            }
-            finally
-            {
-                if (res.HasError)
-                {
-                    var frm = new FrmShowErrorMessage(res, "خطا در تغییر وضعیت ملک به واگذار شده");
-                    frm.ShowDialog(this);
-                    frm.Dispose();
-                }
-                else LoadData(ST, txtSearch.Text);
-            }
-        }
-        private async void mnuMojod_Click(object sender, EventArgs e)
-        {
-            var res = new ReturnedSaveFuncInfo();
-            try
-            {
-                if (DGrid.RowCount <= 0) return;
-                if (DGrid.CurrentRow == null) return;
-                var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
-                var bu = await BuildingBussines.GetAsync(guid);
-                if (bu == null) return;
-                if (bu.BuildingStatus == EnBuildingStatus.Mojod)
-                {
-                    frmNotification.PublicInfo.ShowMessage(
-                        "وضعیت ملک هم اکنون موجود می باشد");
-                    return;
-                }
-
-                if (MessageBox.Show(this,
-                        $@"آیا از اعمال تغییرات اطمینان دارید؟", "تغییر وضعیت ملک",
-                        MessageBoxButtons.YesNo,
-                        MessageBoxIcon.Question) == DialogResult.No) return;
-
-                bu.BuildingStatus = EnBuildingStatus.Mojod;
-                res.AddReturnedValue(await bu.SaveAsync());
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-                res.AddReturnedValue(ex);
-            }
-            finally
-            {
-                if (res.HasError)
-                {
-                    var frm = new FrmShowErrorMessage(res, "خطا در تغییر وضعیت ملک به موجود");
-                    frm.ShowDialog(this);
-                    frm.Dispose();
-                }
-                else LoadData(ST, txtSearch.Text);
             }
         }
         private void mnuView_Click(object sender, EventArgs e)

@@ -130,7 +130,7 @@ namespace Building
                 ws.Cells[1, 6] = "مساحت";
                 ws.Cells[1, 7] = "زیربنا";
                 ws.Cells[1, 8] = "محدوده";
-                ws.Cells[1, 9] = "وضعیت";
+                ws.Cells[1, 9] = "اولویت";
                 ws.Cells[1, 10] = "مشاور";
 
                 foreach (var item in list)
@@ -146,7 +146,7 @@ namespace Building
                     ws.Cells[index, 6] = item.Masahat;
                     ws.Cells[index, 7] = item.ZirBana;
                     ws.Cells[index, 8] = item.RegionName;
-                    ws.Cells[index, 9] = item.BuildingStatusName;
+                    ws.Cells[index, 9] = item.Priority;
                     ws.Cells[index, 10] = item.UserName;
                 }
 

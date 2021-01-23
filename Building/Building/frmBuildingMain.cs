@@ -53,6 +53,7 @@ namespace Building.Building
                 FillCmbKhadamt();
                 await FillOptionsAsync();
                 SetRelatedOptions(cls.Guid);
+                FillPriority();
 
                 lblDateNow.Text = cls?.DateSh;
                 txtCode.Text = cls?.Code;
@@ -134,6 +135,8 @@ namespace Building.Building
                 picGoogle.Visible = true;
                 webGoogle.Visible = false;
 
+                cmbPirority.SelectedIndex = (int) cls.Priority;
+
                 if (cls?.Guid == Guid.Empty)
                 {
                     await NextCodeAsync();
@@ -159,6 +162,7 @@ namespace Building.Building
                     cmbGas.SelectedIndex = 0;
                     cmbTell.SelectedIndex = 0;
                     cmbTabaqeNo.SelectedIndex = 3;
+                    cmbPirority.SelectedIndex = 2;
                 }
 
                 image = cls?.Image;
@@ -286,6 +290,20 @@ namespace Building.Building
             {
                 var list = await KitchenServiceBussines.GetAllAsync();
                 KitchenServiceBindingSource.DataSource = list.Where(q => q.Status).ToList().OrderBy(q => q.Name);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private void FillPriority()
+        {
+            try
+            {
+                cmbPirority.Items.Add(EnBuildingPriority.SoHigh.GetDisplay());
+                cmbPirority.Items.Add(EnBuildingPriority.High.GetDisplay());
+                cmbPirority.Items.Add(EnBuildingPriority.Medium.GetDisplay());
+                cmbPirority.Items.Add(EnBuildingPriority.Low.GetDisplay());
             }
             catch (Exception ex)
             {
@@ -684,7 +702,8 @@ namespace Building.Building
                 cls.Code = txtCode.Text;
                 cls.OwnerGuid = owner.Guid;
                 cls.UserGuid = (Guid)cmbUser.SelectedValue;
-                cls.BuildingStatus = EnBuildingStatus.Mojod;
+                cls.Priority = (EnBuildingPriority)cmbPirority.SelectedIndex;
+                cls.IsArchive = false;
                 cls.SellPrice = txtSellPrice.TextDecimal;
                 cls.QestPrice = txtQestPrice.TextDecimal;
                 cls.VamPrice = txtVamPrice.TextDecimal;

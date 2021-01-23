@@ -280,7 +280,8 @@ namespace Building.Building
                 cls.Code = txtCode.Text;
                 cls.OwnerGuid = owner.Guid;
                 cls.UserGuid = (Guid)cmbUser.SelectedValue;
-                cls.BuildingStatus = EnBuildingStatus.Mojod;
+                cls.Priority = EnBuildingPriority.Medium;
+                cls.IsArchive = false;
                 cls.SellPrice = txtSellPrice.TextDecimal;
                 cls.QestPrice = txtQestPrice.TextDecimal;
                 cls.VamPrice = txtVamPrice.TextDecimal;
