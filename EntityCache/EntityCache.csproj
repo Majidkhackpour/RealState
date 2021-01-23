@@ -233,6 +233,7 @@
     <Compile Include="SqlServerPersistence\TempPersistenceRepository.cs" />
     <Compile Include="SqlServerPersistence\UserLogPersistenceRepository.cs" />
     <Compile Include="SqlServerPersistence\UsersPersistenceRepository.cs" />
+    <Compile Include="ViewModels\BuildingDischargeViewModel.cs" />
     <Compile Include="ViewModels\BuildingViewModel.cs" />
     <Compile Include="ViewModels\CheckViewModel.cs" />
     <Compile Include="ViewModels\DivarCities.cs" />

@@ -507,6 +507,12 @@
     <Compile Include="FloorCover\frmShowFloorCover.Designer.cs">
       <DependentUpon>frmShowFloorCover.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmDischargeList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDischargeList.Designer.cs">
+      <DependentUpon>frmDischargeList.cs</DependentUpon>
+    </Compile>
     <Compile Include="KitchenService\frmKitchenServiceMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -675,6 +681,9 @@
     <EmbeddedResource Include="FloorCover\frmShowFloorCover.resx">
       <DependentUpon>frmShowFloorCover.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmDischargeList.resx">
+      <DependentUpon>frmDischargeList.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="KitchenService\frmKitchenServiceMain.resx">
       <DependentUpon>frmKitchenServiceMain.cs</DependentUpon>
     </EmbeddedResource>
@@ -712,6 +721,7 @@
     <None Include="Properties\DataSources\EntityCache.Bussines.RentalAuthorityBussines.datasource" />
     <None Include="Properties\DataSources\EntityCache.Bussines.StatesBussines.datasource" />
     <None Include="Properties\DataSources\EntityCache.Bussines.UserBussines.datasource" />
+    <None Include="Properties\DataSources\EntityCache.ViewModels.BuildingDischargeViewModel.datasource" />
     <None Include="Resources\add.png" />
   </ItemGroup>
   <ItemGroup>

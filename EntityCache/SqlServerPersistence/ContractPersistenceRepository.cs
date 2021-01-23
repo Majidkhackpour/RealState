@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using EntityCache.Bussines;
 using EntityCache.Core;
+using EntityCache.ViewModels;
 using Persistence.Entities;
 using Persistence.Model;
 using Services;
@@ -199,6 +200,44 @@ namespace EntityCache.SqlServerPersistence
             }
 
             return count;
+        }
+        public async Task<int> DischargeDbCount(DateTime d1, DateTime d2)
+        {
+            var count = 0;
+            try
+            {
+                using (var cn = new SqlConnection(_connectionString))
+                {
+                    var cmd = new SqlCommand("sp_Building_Discharge_Count", cn) { CommandType = CommandType.StoredProcedure };
+                    cmd.Parameters.AddWithValue("@date1", d1);
+                    cmd.Parameters.AddWithValue("@date2", d2);
+                    await cn.OpenAsync();
+                    count = (int)await cmd.ExecuteScalarAsync();
+                    cn.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+
+            return count;
+        }
+        public async Task<List<BuildingDischargeViewModel>> DischargeListAsync(DateTime d1, DateTime d2)
+        {
+            try
+            {
+                var date1 = new SqlParameter("@d1", d1);
+                var date2 = new SqlParameter("@d2", d2);
+                var res = db.Database.SqlQuery<BuildingDischargeViewModel>("sp_Building_Discharge_List @d1,@d2",
+                    date1, date2);
+                return res?.ToList();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                return null;
+            }
         }
     }
 }

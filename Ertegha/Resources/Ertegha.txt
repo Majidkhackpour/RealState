@@ -1211,3 +1211,48 @@ BEGIN
 	where Receptions.[Check]>0
 	and Receptions.SarResid=@dateSh
 END
+GO
+-- ==========================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Building_Discharge_Count]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Building_Discharge_Count]	As Begin print 11 end')
+GO
+Alter PROCEDURE sp_Building_Discharge_Count
+	@date1 datetime,
+	@date2 datetime
+AS
+BEGIN
+	
+	declare @count int
+	set @count = (select COUNT(*) from Contracts where 
+					DATEADD(month, Term, FromDate)>=@date1 and 
+					DATEADD(month, Term, FromDate)<=@date2 and
+					Status='true')
+	select @count
+	return @count
+END
+GO
+-- ==========================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Building_Discharge_List]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Building_Discharge_List]	As Begin print 11 end')
+GO
+ALTER PROCEDURE [dbo].[sp_Building_Discharge_List]
+	@d1 datetime,
+	@d2 datetime
+AS
+BEGIN
+	select  Contracts.Code As Code,
+			Peoples.Name As FSideName,
+			Contracts.FirstSideGuid As FSideGuid,
+			Contracts.SecondSideGuid As SSideGuid,
+			(select [dbo].[Peoples].Name from [dbo].[Peoples] where Guid=[dbo].[Contracts].SecondSideGuid) as SSideName,
+			Contracts.Term As Term,
+			Contracts.FromDate As FromDate,
+			DATEADD(month, Contracts.Term, Contracts.FromDate) As ToDate,
+			Buildings.Code As BuildingCode
+			from [dbo].[Contracts] left Outer join [dbo].[Peoples]
+			on [dbo].[Contracts].FirstSideGuid=[dbo].[Peoples].Guid left outer join Buildings
+			on [dbo].[Contracts].BuildingGuid=Buildings.Guid
+			where  DATEADD(month, Term, FromDate)>=@d1 and 
+				   DATEADD(month, Term, FromDate)<=@d2 and
+				   [Contracts].Status='true'
+END

@@ -146,7 +146,7 @@
             this.btnReminderNotes = new DevComponents.DotNetBar.ButtonX();
             this.btnPardakhtCheck = new DevComponents.DotNetBar.ButtonX();
             this.btnReceptionCheck = new DevComponents.DotNetBar.ButtonX();
-            this.btnPath = new DevComponents.DotNetBar.ButtonX();
+            this.btnDischarge = new DevComponents.DotNetBar.ButtonX();
             this.label14 = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
             this.label27 = new System.Windows.Forms.Label();
@@ -2406,6 +2406,7 @@
             this.ExPanel.TitleStyle.GradientAngle = 90;
             this.ExPanel.TitleText = "داشبورد";
             this.ExPanel.ExpandedChanging += new DevComponents.DotNetBar.ExpandChangeEventHandler(this.ExPanel_ExpandedChanging);
+            this.ExPanel.ExpandedChanged += new DevComponents.DotNetBar.ExpandChangeEventHandler(this.ExPanel_ExpandedChanged);
             // 
             // panelEx1
             // 
@@ -2416,7 +2417,7 @@
             this.panelEx1.Controls.Add(this.btnReminderNotes);
             this.panelEx1.Controls.Add(this.btnPardakhtCheck);
             this.panelEx1.Controls.Add(this.btnReceptionCheck);
-            this.panelEx1.Controls.Add(this.btnPath);
+            this.panelEx1.Controls.Add(this.btnDischarge);
             this.panelEx1.Controls.Add(this.label14);
             this.panelEx1.Controls.Add(this.label25);
             this.panelEx1.Controls.Add(this.label27);
@@ -2433,7 +2434,7 @@
             this.panelEx1.Controls.Add(this.pictureBox16);
             this.panelEx1.Controls.Add(this.pictureBox17);
             this.panelEx1.DisabledBackColor = System.Drawing.Color.Empty;
-            this.panelEx1.Location = new System.Drawing.Point(56, 32);
+            this.panelEx1.Location = new System.Drawing.Point(39, 32);
             this.panelEx1.Name = "panelEx1";
             this.panelEx1.Size = new System.Drawing.Size(414, 188);
             this.panelEx1.Style.Alignment = System.Drawing.StringAlignment.Center;
@@ -2515,21 +2516,22 @@
             this.btnReceptionCheck.TextColor = System.Drawing.Color.White;
             this.btnReceptionCheck.Click += new System.EventHandler(this.btnReceptionCheck_Click);
             // 
-            // btnPath
+            // btnDischarge
             // 
-            this.btnPath.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnPath.BackColor = System.Drawing.Color.DarkSlateGray;
-            this.btnPath.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnPath.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
-            this.btnPath.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnPath.Location = new System.Drawing.Point(15, 14);
-            this.btnPath.Name = "btnPath";
-            this.btnPath.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
-            this.btnPath.Size = new System.Drawing.Size(98, 27);
-            this.btnPath.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
-            this.btnPath.TabIndex = 14;
-            this.btnPath.Text = "نمایش";
-            this.btnPath.TextColor = System.Drawing.Color.White;
+            this.btnDischarge.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnDischarge.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.btnDischarge.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnDischarge.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.btnDischarge.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnDischarge.Location = new System.Drawing.Point(15, 14);
+            this.btnDischarge.Name = "btnDischarge";
+            this.btnDischarge.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
+            this.btnDischarge.Size = new System.Drawing.Size(98, 27);
+            this.btnDischarge.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
+            this.btnDischarge.TabIndex = 14;
+            this.btnDischarge.Text = "نمایش";
+            this.btnDischarge.TextColor = System.Drawing.Color.White;
+            this.btnDischarge.Click += new System.EventHandler(this.btnDischarge_Click);
             // 
             // label14
             // 
@@ -2575,7 +2577,7 @@
             // 
             this.lblSarresidEjare.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblSarresidEjare.AutoSize = true;
-            this.lblSarresidEjare.Location = new System.Drawing.Point(140, 16);
+            this.lblSarresidEjare.Location = new System.Drawing.Point(129, 16);
             this.lblSarresidEjare.Name = "lblSarresidEjare";
             this.lblSarresidEjare.Size = new System.Drawing.Size(25, 20);
             this.lblSarresidEjare.TabIndex = 9;
@@ -2585,7 +2587,7 @@
             // 
             this.lblReceptionCheck.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblReceptionCheck.AutoSize = true;
-            this.lblReceptionCheck.Location = new System.Drawing.Point(140, 50);
+            this.lblReceptionCheck.Location = new System.Drawing.Point(129, 50);
             this.lblReceptionCheck.Name = "lblReceptionCheck";
             this.lblReceptionCheck.Size = new System.Drawing.Size(25, 20);
             this.lblReceptionCheck.TabIndex = 9;
@@ -2595,7 +2597,7 @@
             // 
             this.lblPardakhtCheck.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblPardakhtCheck.AutoSize = true;
-            this.lblPardakhtCheck.Location = new System.Drawing.Point(140, 86);
+            this.lblPardakhtCheck.Location = new System.Drawing.Point(129, 86);
             this.lblPardakhtCheck.Name = "lblPardakhtCheck";
             this.lblPardakhtCheck.Size = new System.Drawing.Size(25, 20);
             this.lblPardakhtCheck.TabIndex = 9;
@@ -2605,7 +2607,7 @@
             // 
             this.lblBirthday.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblBirthday.AutoSize = true;
-            this.lblBirthday.Location = new System.Drawing.Point(140, 154);
+            this.lblBirthday.Location = new System.Drawing.Point(129, 154);
             this.lblBirthday.Name = "lblBirthday";
             this.lblBirthday.Size = new System.Drawing.Size(25, 20);
             this.lblBirthday.TabIndex = 9;
@@ -2615,7 +2617,7 @@
             // 
             this.lblNotes.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblNotes.AutoSize = true;
-            this.lblNotes.Location = new System.Drawing.Point(140, 120);
+            this.lblNotes.Location = new System.Drawing.Point(129, 120);
             this.lblNotes.Name = "lblNotes";
             this.lblNotes.Size = new System.Drawing.Size(25, 20);
             this.lblNotes.TabIndex = 9;
@@ -2625,11 +2627,11 @@
             // 
             this.label37.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label37.AutoSize = true;
-            this.label37.Location = new System.Drawing.Point(201, 16);
+            this.label37.Location = new System.Drawing.Point(161, 16);
             this.label37.Name = "label37";
-            this.label37.Size = new System.Drawing.Size(156, 20);
+            this.label37.Size = new System.Drawing.Size(197, 20);
             this.label37.TabIndex = 9;
-            this.label37.Text = "تعداد سررسیدهای اجاره امروز";
+            this.label37.Text = "تعداد سررسیدهای اجاره تا یک ماه آینده";
             // 
             // pictureBox9
             // 
@@ -2713,7 +2715,7 @@
             this.grp.Controls.Add(this.pictureBox3);
             this.grp.Controls.Add(this.pictureBox2);
             this.grp.DisabledBackColor = System.Drawing.Color.Empty;
-            this.grp.Location = new System.Drawing.Point(476, 32);
+            this.grp.Location = new System.Drawing.Point(459, 32);
             this.grp.Name = "grp";
             this.grp.Size = new System.Drawing.Size(309, 260);
             this.grp.Style.Alignment = System.Drawing.StringAlignment.Center;
@@ -3428,7 +3430,7 @@
         private DevComponents.DotNetBar.ButtonX btnReminderNotes;
         private DevComponents.DotNetBar.ButtonX btnPardakhtCheck;
         private DevComponents.DotNetBar.ButtonX btnReceptionCheck;
-        private DevComponents.DotNetBar.ButtonX btnPath;
+        private DevComponents.DotNetBar.ButtonX btnDischarge;
         private DevComponents.DotNetBar.ButtonX btnBirthday;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label lblBirthday;

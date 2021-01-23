@@ -8,7 +8,7 @@ namespace Accounting.Payement
 {
     public partial class frmPardakhtCheckToday : MetroForm
     {
-        public frmPardakhtCheckToday()=>InitializeComponent();
+        public frmPardakhtCheckToday() => InitializeComponent();
 
         private async void frmPardakhtCheckToday_Load(object sender, System.EventArgs e)
         {

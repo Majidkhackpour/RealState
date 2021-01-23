@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using EntityCache.Bussines;
+using EntityCache.ViewModels;
 
 namespace EntityCache.Core
 {
@@ -11,5 +12,7 @@ namespace EntityCache.Core
         Task<string> NextCodeAsync();
         Task<bool> CheckCodeAsync(string code, Guid guid);
         Task<int> DbCount(Guid userGuid);
+        Task<int> DischargeDbCount(DateTime d1, DateTime d2);
+        Task<List<BuildingDischargeViewModel>> DischargeListAsync(DateTime d1, DateTime d2);
     }
 }

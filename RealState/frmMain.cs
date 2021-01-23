@@ -41,6 +41,7 @@ using System.Windows.Forms;
 using WindowsSerivces;
 using Advertise.Classes;
 using Advertise.Forms.Simcard;
+using Building;
 using TMS.Class;
 using User;
 using Calendar = Services.Calendar;
@@ -254,6 +255,7 @@ namespace RealState
                 var myCon = await ContractBussines.DbCount(clsUser.CurrentUser.Guid);
                 var receptionCheck = await ReceptionBussines.DbCheckCount(Calendar.MiladiToShamsi(DateTime.Now));
                 var pardakhtCheck = await PardakhtBussines.DbCheckCount(Calendar.MiladiToShamsi(DateTime.Now));
+                var disCharge = await ContractBussines.DischargeDbCount();
 
                 BirthdayList = await PeoplesBussines.GetAllBirthDayAsync(Calendar.MiladiToShamsi(DateTime.Now));
 
@@ -279,10 +281,12 @@ namespace RealState
                     lblNotes.Text = allNote.Count.ToString();
                     lblReceptionCheck.Text = receptionCheck.ToString();
                     lblPardakhtCheck.Text = pardakhtCheck.ToString();
+                    lblSarresidEjare.Text = disCharge.ToString();
                     btnBirthday.Enabled = BirthdayList.Count != 0;
                     btnReminderNotes.Enabled = allNote.Count != 0;
                     btnReceptionCheck.Enabled = receptionCheck != 0;
                     btnPardakhtCheck.Enabled = pardakhtCheck != 0;
+                    btnDischarge.Enabled = disCharge != 0;
                 }));
             }
             catch (Exception ex)
@@ -834,7 +838,6 @@ namespace RealState
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-
         private void btnReceptionCheck_Click(object sender, EventArgs e)
         {
             try
@@ -847,7 +850,6 @@ namespace RealState
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-
         private void btnPardakhtCheck_Click(object sender, EventArgs e)
         {
             try
@@ -860,5 +862,19 @@ namespace RealState
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
+        private void btnDischarge_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var frm = new frmDischargeList();
+                frm.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private void ExPanel_ExpandedChanged(object sender, DevComponents.DotNetBar.ExpandedChangeEventArgs e)
+        => ExPanel.Width = Width;
     }
 }

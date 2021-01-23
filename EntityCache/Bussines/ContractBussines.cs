@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using EntityCache.Assistence;
+using EntityCache.ViewModels;
 using Nito.AsyncEx;
 using Persistence;
 using Services;
@@ -183,5 +184,19 @@ namespace EntityCache.Bussines
         public static async Task<bool> CheckCodeAsync(string code, Guid guid) =>
             await UnitOfWork.Contract.CheckCodeAsync(code, guid);
         public static async Task<int> DbCount(Guid userGuid) => await UnitOfWork.Contract.DbCount(userGuid);
+        public static async Task<int> DischargeDbCount()
+        {
+            var d1 = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, 0, 0);
+            var d2 = new DateTime(DateTime.Now.Year, DateTime.Now.Month + 1, DateTime.Now.Day, 23, 59, 59);
+
+            return await UnitOfWork.Contract.DischargeDbCount(d1, d2);
+        }
+        public static async Task<List<BuildingDischargeViewModel>> DischargeListAsync()
+        {
+            var d1 = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, 0, 0);
+            var d2 = new DateTime(DateTime.Now.Year, DateTime.Now.Month + 1, DateTime.Now.Day, 23, 59, 59);
+
+            return await UnitOfWork.Contract.DischargeListAsync(d1, d2);
+        }
     }
 }
