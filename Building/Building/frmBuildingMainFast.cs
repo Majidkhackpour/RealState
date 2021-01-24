@@ -9,6 +9,7 @@ using MetroFramework.Forms;
 using Notification;
 using Peoples;
 using Services;
+using Settings.Classes;
 using User;
 
 namespace Building.Building
@@ -67,6 +68,15 @@ namespace Building.Building
                 txtQestPrice.TextDecimal = 0;
                 txtMasahat.Value = 0;
                 txtZirBana.Value = 0;
+
+                if (string.IsNullOrEmpty(clsEconomyUnit.EconomyState))
+                    cmbState.SelectedIndex = 0;
+                else
+                    cmbState.SelectedValue = Guid.Parse(clsEconomyUnit.EconomyState);
+                if (!string.IsNullOrEmpty(clsEconomyUnit.EconomyCity))
+                    cmbCity.SelectedValue = Guid.Parse(clsEconomyUnit.EconomyCity);
+                if (!string.IsNullOrEmpty(clsEconomyUnit.ManagerRegion))
+                    cmbRegion.SelectedValue = Guid.Parse(clsEconomyUnit.ManagerRegion);
             }
             catch (Exception ex)
             {

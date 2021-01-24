@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Threading;
@@ -81,7 +82,7 @@ namespace Building.Building
             try
             {
                 list = BuildingBussines
-                    .GetAll(search,false,
+                    .GetAll(search, false,
                         (Guid)cmbBuildingType.SelectedValue,
                         (Guid)cmbUser.SelectedValue,
                         (Guid)cmbDocType.SelectedValue,
@@ -320,6 +321,35 @@ namespace Building.Building
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
+        private void SetGridColor()
+        {
+            try
+            {
+                for (var i = 0; i < DGrid.RowCount; i++)
+                {
+                    var priority = (EnBuildingPriority)DGrid[dgPriority.Index, i].Value;
+                    switch (priority)
+                    {
+                        case EnBuildingPriority.SoHigh:
+                            DGrid.Rows[i].DefaultCellStyle.BackColor = Color.OrangeRed;
+                            break;
+                        case EnBuildingPriority.High:
+                            DGrid.Rows[i].DefaultCellStyle.BackColor = Color.Orange;
+                            break;
+                        case EnBuildingPriority.Medium:
+                            DGrid.Rows[i].DefaultCellStyle.BackColor = Color.Khaki;
+                            break;
+                        case EnBuildingPriority.Low:
+                            DGrid.Rows[i].DefaultCellStyle.BackColor = Color.PaleTurquoise;
+                            break;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
         private bool ST
         {
             get => _st;
@@ -358,7 +388,10 @@ namespace Building.Building
                 var count = e?.ListData?.Count ?? 0;
                 if (count <= 0) count = 50;
                 Invoke(new MethodInvoker(() =>
-                    BuildingBindingSource.DataSource = e?.ListData?.Take(count)?.ToSortableBindingList()));
+                {
+                    BuildingBindingSource.DataSource = e?.ListData?.Take(count)?.ToSortableBindingList();
+                    SetGridColor();
+                }));
             }
             catch (Exception ex)
             {
@@ -426,17 +459,6 @@ namespace Building.Building
                             DGrid.Focus();
                         break;
                 }
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-        private void cmbStatus_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                LoadData(ST, txtSearch.Text);
             }
             catch (Exception ex)
             {
@@ -1406,6 +1428,8 @@ namespace Building.Building
                     BuildingBindingSource.Add(item);
                     addedItem++;
                 }
+
+                SetGridColor();
             }
             catch (Exception ex)
             {

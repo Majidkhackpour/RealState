@@ -13,6 +13,7 @@ using Notification;
 using Peoples;
 using Print;
 using Services;
+using Settings.Classes;
 using User;
 
 namespace Building.Building
@@ -149,7 +150,14 @@ namespace Building.Building
                     cmbMoavezeSanadType.SelectedIndex = 0;
                     cmbMosharekatTarakom.SelectedIndex = 0;
                     cmbMosharekatSanadType.SelectedIndex = 0;
-                    cmbState.SelectedIndex = 0;
+                    if (string.IsNullOrEmpty(clsEconomyUnit.EconomyState))
+                        cmbState.SelectedIndex = 0;
+                    else
+                        cmbState.SelectedValue = Guid.Parse(clsEconomyUnit.EconomyState);
+                    if (!string.IsNullOrEmpty(clsEconomyUnit.EconomyCity))
+                        cmbCity.SelectedValue = Guid.Parse(clsEconomyUnit.EconomyCity);
+                    if (!string.IsNullOrEmpty(clsEconomyUnit.ManagerRegion))
+                        cmbRegion.SelectedValue = Guid.Parse(clsEconomyUnit.ManagerRegion);
                     cmbBuildingCondition.SelectedIndex = 0;
                     cmbSide.SelectedIndex = 0;
                     cmbBuildingType.SelectedIndex = 0;

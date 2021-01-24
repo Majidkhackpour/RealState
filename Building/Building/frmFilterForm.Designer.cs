@@ -37,7 +37,9 @@
             this.chbSystem = new DevComponents.DotNetBar.Controls.CheckBoxX();
             this.lblSPrice2 = new System.Windows.Forms.Label();
             this.txtRoomCount = new System.Windows.Forms.NumericUpDown();
+            this.txtMaxFile = new System.Windows.Forms.NumericUpDown();
             this.txtSPrice1 = new System.Windows.Forms.NumericUpDown();
+            this.label2 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.lblSPrice1 = new System.Windows.Forms.Label();
             this.cmbEjare2 = new System.Windows.Forms.ComboBox();
@@ -63,12 +65,11 @@
             this.label3 = new System.Windows.Forms.Label();
             this.txtFPrice2 = new System.Windows.Forms.NumericUpDown();
             this.btnSeach = new DevComponents.DotNetBar.ButtonX();
-            this.label2 = new System.Windows.Forms.Label();
-            this.txtMaxFile = new System.Windows.Forms.NumericUpDown();
             this.btnRegion = new DevComponents.DotNetBar.ButtonX();
             this.grp.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtSPrice2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtRoomCount)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtMaxFile)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSPrice1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bTypeBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSMasahat)).BeginInit();
@@ -76,7 +77,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.batBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtFPrice1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtFPrice2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtMaxFile)).BeginInit();
             this.SuspendLayout();
             // 
             // grp
@@ -212,6 +212,18 @@
             this.txtRoomCount.Size = new System.Drawing.Size(79, 27);
             this.txtRoomCount.TabIndex = 4;
             // 
+            // txtMaxFile
+            // 
+            this.txtMaxFile.Location = new System.Drawing.Point(24, 228);
+            this.txtMaxFile.Maximum = new decimal(new int[] {
+            24,
+            0,
+            0,
+            0});
+            this.txtMaxFile.Name = "txtMaxFile";
+            this.txtMaxFile.Size = new System.Drawing.Size(134, 27);
+            this.txtMaxFile.TabIndex = 17;
+            // 
             // txtSPrice1
             // 
             this.txtSPrice1.Location = new System.Drawing.Point(349, 166);
@@ -223,6 +235,17 @@
             this.txtSPrice1.Name = "txtSPrice1";
             this.txtSPrice1.Size = new System.Drawing.Size(106, 27);
             this.txtSPrice1.TabIndex = 11;
+            // 
+            // label2
+            // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.Location = new System.Drawing.Point(164, 231);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(101, 20);
+            this.label2.TabIndex = 55798;
+            this.label2.Text = "تعداد فایل دریافتی";
             // 
             // label9
             // 
@@ -314,6 +337,11 @@
             // 
             // txtSMasahat
             // 
+            this.txtSMasahat.Increment = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
             this.txtSMasahat.Location = new System.Drawing.Point(170, 87);
             this.txtSMasahat.Maximum = new decimal(new int[] {
             10000,
@@ -326,6 +354,11 @@
             // 
             // txtFMasahat
             // 
+            this.txtFMasahat.Increment = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
             this.txtFMasahat.Location = new System.Drawing.Point(349, 87);
             this.txtFMasahat.Maximum = new decimal(new int[] {
             10000,
@@ -509,29 +542,6 @@
             this.btnSeach.TextColor = System.Drawing.Color.White;
             this.btnSeach.Click += new System.EventHandler(this.btnSeach_Click);
             // 
-            // label2
-            // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Location = new System.Drawing.Point(164, 231);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(101, 20);
-            this.label2.TabIndex = 55798;
-            this.label2.Text = "تعداد فایل دریافتی";
-            // 
-            // txtMaxFile
-            // 
-            this.txtMaxFile.Location = new System.Drawing.Point(24, 228);
-            this.txtMaxFile.Maximum = new decimal(new int[] {
-            24,
-            0,
-            0,
-            0});
-            this.txtMaxFile.Name = "txtMaxFile";
-            this.txtMaxFile.Size = new System.Drawing.Size(134, 27);
-            this.txtMaxFile.TabIndex = 17;
-            // 
             // btnRegion
             // 
             this.btnRegion.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
@@ -575,6 +585,7 @@
             this.grp.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtSPrice2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtRoomCount)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtMaxFile)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSPrice1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bTypeBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSMasahat)).EndInit();
@@ -582,7 +593,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.batBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtFPrice1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtFPrice2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtMaxFile)).EndInit();
             this.ResumeLayout(false);
 
         }
