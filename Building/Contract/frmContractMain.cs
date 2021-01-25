@@ -84,9 +84,14 @@ namespace Building.Contract
                 {
                     foreach (var image in building.GalleryList)
                     {
+                        string fullPath;
                         var a = Path.Combine(Application.StartupPath, "Images");
-                        var b = Path.Combine(a, image.ImageName + ".jpg");
-                        lstList.Add(b);
+
+                        if (!image.ImageName.EndsWith(".jpg") && !image.ImageName.EndsWith(".png"))
+                            fullPath = Path.Combine(a, image.ImageName + ".jpg");
+                        else fullPath = Path.Combine(a, image.ImageName);
+
+                        lstList.Add(fullPath);
                     }
 
                     Make_Picture_Boxes(lstList);
@@ -215,10 +220,14 @@ namespace Building.Contract
 
                 foreach (var image in building.GalleryList)
                 {
+                    string fullPath;
                     var a = Path.Combine(Application.StartupPath, "Images");
-                    var b = Path.Combine(a, image.ImageName + ".jpg");
-                    if (!b.EndsWith(".jpg")) b += ".jpg";
-                    lstList.Add(b);
+
+                    if (!image.ImageName.EndsWith(".jpg") && !image.ImageName.EndsWith(".png"))
+                        fullPath = Path.Combine(a, image.ImageName + ".jpg");
+                    else fullPath = Path.Combine(a, image.ImageName);
+
+                    lstList.Add(fullPath);
                 }
 
                 Make_Picture_Boxes(lstList);
@@ -602,7 +611,7 @@ namespace Building.Contract
         {
             try
             {
-                var frm = new frmShowBuildings(true, fSide?.Guid ?? Guid.Empty);
+                var frm = new frmShowBuildings(true, null, fSide?.Guid ?? Guid.Empty);
                 if (frm.ShowDialog(this) != DialogResult.OK) return;
                 building = BuildingBussines.Get(frm.SelectedGuid);
                 LoadBuilding();

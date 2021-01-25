@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
@@ -38,6 +39,36 @@ namespace EntityCache.SqlServerPersistence
                 WebErrorLog.ErrorInstence.StartErrorLog(exception);
                 return null;
             }
+        }
+        public override async Task<ReturnedSaveFuncInfo> SaveAsync(UserLogBussines item, string tranName)
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                using (var cn = new SqlConnection(_connectionString))
+                {
+                    var cmd = new SqlCommand("sp_UserLog_Insert", cn) {CommandType = CommandType.StoredProcedure};
+                    cmd.Parameters.AddWithValue("@guid", item.Guid);
+                    cmd.Parameters.AddWithValue("@modif", item.Modified);
+                    cmd.Parameters.AddWithValue("@st", item.Status);
+                    cmd.Parameters.AddWithValue("@userGuid", item.UserGuid);
+                    cmd.Parameters.AddWithValue("@date", item.Date);
+                    cmd.Parameters.AddWithValue("@action", (short) item.Action);
+                    cmd.Parameters.AddWithValue("@part", (short) item.Part);
+                    cmd.Parameters.AddWithValue("@desc", item.Description);
+
+                    await cn.OpenAsync();
+                    await cmd.ExecuteNonQueryAsync();
+                    cn.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+
+            return res;
         }
     }
 }

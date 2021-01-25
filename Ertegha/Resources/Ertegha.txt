@@ -516,6 +516,9 @@ BEGIN
 	set Status=@st 
 	where Guid=@conGuid
 
+	declare @buildingGuid uniqueidentifier
+	set @buildingGuid=(select BuildingGuid from Contracts where Guid=@conGuid)
+
 	declare @fPrice bigint
 	set @fPrice= (select FirstTotalPrice from ContractFinances where ConGuid=@conGuid)
 	declare @fAddedd bigint
@@ -557,6 +560,10 @@ BEGIN
 		update Users
 		set Account =Account-@bPrice
 		where Guid=@bGuid
+
+		update Buildings
+		set IsArchive='true'
+		where Guid=@buildingGuid
 	end
 	else
 	begin
@@ -571,6 +578,10 @@ BEGIN
 		update Users
 		set Account =Account+@bPrice
 		where Guid=@bGuid
+
+		update Buildings
+		set IsArchive='false'
+		where Guid=@buildingGuid
 	end
 END
 GO
@@ -1255,4 +1266,39 @@ BEGIN
 			where  DATEADD(month, Term, FromDate)>=@d1 and 
 				   DATEADD(month, Term, FromDate)<=@d2 and
 				   [Contracts].Status='true'
+END
+GO
+-- ==========================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_UserLog_Insert]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_UserLog_Insert]	As Begin print 11 end')
+GO
+Alter PROCEDURE sp_UserLog_Insert
+	@guid uniqueidentifier,
+	@modif datetime,
+	@st bit,
+	@userGuid uniqueidentifier,
+	@date datetime,
+	@action smallint,
+	@part smallint,
+	@desc nvarchar(max)
+AS
+BEGIN	
+	insert into [dbo].[UserLogs](
+			 Guid
+			,Modified
+			,Status
+			,UserGuid
+			,Date
+			,Action
+			,Part
+			,Description)
+			values(
+			 @guid
+			,@modif
+			,@st
+			,@userGuid
+			,@date
+			,@action
+			,@part
+			,@desc)
 END

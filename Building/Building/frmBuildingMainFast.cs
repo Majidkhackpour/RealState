@@ -393,6 +393,38 @@ namespace Building.Building
 
             return res;
         }
+        private void CalculateSellPrice()
+        {
+            try
+            {
+                decimal masahat = 0, zirbana = 0;
+
+                if (cmbMasahat.SelectedIndex == 0)
+                    masahat = txtMasahat.Value;
+                else
+                    masahat = txtMasahat.Value * 10000;
+
+                if (cmbZirBana.SelectedIndex == 0)
+                    zirbana = txtZirBana.Value;
+                else
+                    zirbana = txtZirBana.Value * 10000;
+
+                if (txtSellPrice.TextDecimal == 0)
+                {
+                    lblPricePerZirBana.Text = "0";
+                    lblPricePerMetr.Text = "0";
+                    return;
+                }
+                if (masahat > 0)
+                    lblPricePerMetr.Text = (txtSellPrice.TextDecimal / masahat).ToString("N0") + " ریال";
+                if (zirbana > 0)
+                    lblPricePerZirBana.Text = (txtSellPrice.TextDecimal / zirbana).ToString("N0") + " ریال";
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
 
 
         public frmBuildingMainFast()
@@ -541,5 +573,10 @@ namespace Building.Building
                 }
             }
         }
+        private void txtMasahat_ValueChanged(object sender, EventArgs e) => CalculateSellPrice();
+        private void txtZirBana_ValueChanged(object sender, EventArgs e) => CalculateSellPrice();
+        private void cmbMasahat_SelectedIndexChanged(object sender, EventArgs e) => CalculateSellPrice();
+        private void cmbZirBana_SelectedIndexChanged(object sender, EventArgs e) => CalculateSellPrice();
+        private void txtSellPrice_OnTextChanged() => CalculateSellPrice();
     }
 }

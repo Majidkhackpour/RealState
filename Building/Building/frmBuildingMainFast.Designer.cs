@@ -109,6 +109,10 @@
             this.txtVamPrice = new WindowsSerivces.CurrencyTextBox();
             this.txtSellPrice = new WindowsSerivces.CurrencyTextBox();
             this.cmbSellSanadType = new System.Windows.Forms.ComboBox();
+            this.lblPricePerZirBana = new System.Windows.Forms.Label();
+            this.lblPricePerMetr = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.label24 = new System.Windows.Forms.Label();
             this.txtDong = new System.Windows.Forms.NumericUpDown();
             this.cmbSellTarakom = new System.Windows.Forms.ComboBox();
@@ -548,7 +552,7 @@
             this.txttxtOwnerCode.Location = new System.Drawing.Point(132, 6);
             this.txttxtOwnerCode.Name = "txttxtOwnerCode";
             this.txttxtOwnerCode.ReadOnly = true;
-            this.txttxtOwnerCode.Size = new System.Drawing.Size(42, 27);
+            this.txttxtOwnerCode.Size = new System.Drawing.Size(30, 27);
             this.txttxtOwnerCode.TabIndex = 10;
             // 
             // superTabItem8
@@ -615,8 +619,8 @@
             this.superTabControl1.ControlBox.SubItems.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.superTabControl1.ControlBox.MenuBox,
             this.superTabControl1.ControlBox.CloseBox});
-            this.superTabControl1.Controls.Add(this.superTabControlPanel2);
             this.superTabControl1.Controls.Add(this.superTabControlPanel1);
+            this.superTabControl1.Controls.Add(this.superTabControlPanel2);
             this.superTabControl1.Location = new System.Drawing.Point(6, 21);
             this.superTabControl1.Name = "superTabControl1";
             this.superTabControl1.ReorderTabsEnabled = true;
@@ -732,7 +736,7 @@
             this.cmbBAccountType.FormattingEnabled = true;
             this.cmbBAccountType.Location = new System.Drawing.Point(3, 208);
             this.cmbBAccountType.Name = "cmbBAccountType";
-            this.cmbBAccountType.Size = new System.Drawing.Size(208, 28);
+            this.cmbBAccountType.Size = new System.Drawing.Size(196, 28);
             this.cmbBAccountType.TabIndex = 55742;
             this.cmbBAccountType.ValueMember = "Guid";
             // 
@@ -741,7 +745,7 @@
             this.label42.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label42.AutoSize = true;
             this.label42.BackColor = System.Drawing.Color.Transparent;
-            this.label42.Location = new System.Drawing.Point(221, 208);
+            this.label42.Location = new System.Drawing.Point(209, 208);
             this.label42.Name = "label42";
             this.label42.Size = new System.Drawing.Size(41, 20);
             this.label42.TabIndex = 55741;
@@ -758,7 +762,7 @@
             0,
             0});
             this.txtTedadOtaq.Name = "txtTedadOtaq";
-            this.txtTedadOtaq.Size = new System.Drawing.Size(208, 27);
+            this.txtTedadOtaq.Size = new System.Drawing.Size(196, 27);
             this.txtTedadOtaq.TabIndex = 55740;
             // 
             // label52
@@ -766,7 +770,7 @@
             this.label52.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label52.AutoSize = true;
             this.label52.BackColor = System.Drawing.Color.Transparent;
-            this.label52.Location = new System.Drawing.Point(211, 177);
+            this.label52.Location = new System.Drawing.Point(199, 177);
             this.label52.Name = "label52";
             this.label52.Size = new System.Drawing.Size(57, 20);
             this.label52.TabIndex = 55739;
@@ -778,7 +782,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtSaleSakht.Location = new System.Drawing.Point(3, 142);
             this.txtSaleSakht.Name = "txtSaleSakht";
-            this.txtSaleSakht.Size = new System.Drawing.Size(208, 27);
+            this.txtSaleSakht.Size = new System.Drawing.Size(196, 27);
             this.txtSaleSakht.TabIndex = 55737;
             // 
             // label58
@@ -786,7 +790,7 @@
             this.label58.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label58.AutoSize = true;
             this.label58.BackColor = System.Drawing.Color.Transparent;
-            this.label58.Location = new System.Drawing.Point(208, 146);
+            this.label58.Location = new System.Drawing.Point(196, 146);
             this.label58.Name = "label58";
             this.label58.Size = new System.Drawing.Size(63, 20);
             this.label58.TabIndex = 55738;
@@ -803,7 +807,7 @@
             this.cmbBuildingType.FormattingEnabled = true;
             this.cmbBuildingType.Location = new System.Drawing.Point(3, 108);
             this.cmbBuildingType.Name = "cmbBuildingType";
-            this.cmbBuildingType.Size = new System.Drawing.Size(208, 28);
+            this.cmbBuildingType.Size = new System.Drawing.Size(196, 28);
             this.cmbBuildingType.TabIndex = 57;
             this.cmbBuildingType.ValueMember = "Guid";
             // 
@@ -812,7 +816,7 @@
             this.label40.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label40.AutoSize = true;
             this.label40.BackColor = System.Drawing.Color.Transparent;
-            this.label40.Location = new System.Drawing.Point(215, 111);
+            this.label40.Location = new System.Drawing.Point(203, 111);
             this.label40.Name = "label40";
             this.label40.Size = new System.Drawing.Size(49, 20);
             this.label40.TabIndex = 56;
@@ -829,7 +833,7 @@
             this.cmbBuildingCondition.FormattingEnabled = true;
             this.cmbBuildingCondition.Location = new System.Drawing.Point(3, 74);
             this.cmbBuildingCondition.Name = "cmbBuildingCondition";
-            this.cmbBuildingCondition.Size = new System.Drawing.Size(208, 28);
+            this.cmbBuildingCondition.Size = new System.Drawing.Size(196, 28);
             this.cmbBuildingCondition.TabIndex = 55;
             this.cmbBuildingCondition.ValueMember = "Guid";
             // 
@@ -838,7 +842,7 @@
             this.label38.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label38.AutoSize = true;
             this.label38.BackColor = System.Drawing.Color.Transparent;
-            this.label38.Location = new System.Drawing.Point(209, 77);
+            this.label38.Location = new System.Drawing.Point(197, 77);
             this.label38.Name = "label38";
             this.label38.Size = new System.Drawing.Size(60, 20);
             this.label38.TabIndex = 54;
@@ -855,6 +859,7 @@
             this.cmbZirBana.Size = new System.Drawing.Size(147, 28);
             this.cmbZirBana.TabIndex = 53;
             this.cmbZirBana.ValueMember = "Guid";
+            this.cmbZirBana.SelectedIndexChanged += new System.EventHandler(this.cmbZirBana_SelectedIndexChanged);
             // 
             // txtZirBana
             // 
@@ -872,8 +877,9 @@
             0,
             0});
             this.txtZirBana.Name = "txtZirBana";
-            this.txtZirBana.Size = new System.Drawing.Size(55, 27);
+            this.txtZirBana.Size = new System.Drawing.Size(43, 27);
             this.txtZirBana.TabIndex = 52;
+            this.txtZirBana.ValueChanged += new System.EventHandler(this.txtZirBana_ValueChanged);
             // 
             // cmbMasahat
             // 
@@ -886,13 +892,14 @@
             this.cmbMasahat.Size = new System.Drawing.Size(147, 28);
             this.cmbMasahat.TabIndex = 51;
             this.cmbMasahat.ValueMember = "Guid";
+            this.cmbMasahat.SelectedIndexChanged += new System.EventHandler(this.cmbMasahat_SelectedIndexChanged);
             // 
             // label33
             // 
             this.label33.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label33.AutoSize = true;
             this.label33.BackColor = System.Drawing.Color.Transparent;
-            this.label33.Location = new System.Drawing.Point(226, 43);
+            this.label33.Location = new System.Drawing.Point(214, 43);
             this.label33.Name = "label33";
             this.label33.Size = new System.Drawing.Size(36, 20);
             this.label33.TabIndex = 48;
@@ -914,15 +921,16 @@
             0,
             0});
             this.txtMasahat.Name = "txtMasahat";
-            this.txtMasahat.Size = new System.Drawing.Size(55, 27);
+            this.txtMasahat.Size = new System.Drawing.Size(43, 27);
             this.txtMasahat.TabIndex = 50;
+            this.txtMasahat.ValueChanged += new System.EventHandler(this.txtMasahat_ValueChanged);
             // 
             // label32
             // 
             this.label32.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label32.AutoSize = true;
             this.label32.BackColor = System.Drawing.Color.Transparent;
-            this.label32.Location = new System.Drawing.Point(217, 9);
+            this.label32.Location = new System.Drawing.Point(205, 9);
             this.label32.Name = "label32";
             this.label32.Size = new System.Drawing.Size(45, 20);
             this.label32.TabIndex = 49;
@@ -982,7 +990,7 @@
             this.lblDateNow.BackColor = System.Drawing.Color.Transparent;
             this.lblDateNow.Location = new System.Drawing.Point(17, 85);
             this.lblDateNow.Name = "lblDateNow";
-            this.lblDateNow.Size = new System.Drawing.Size(161, 20);
+            this.lblDateNow.Size = new System.Drawing.Size(149, 20);
             this.lblDateNow.TabIndex = 13;
             // 
             // cmbUser
@@ -996,7 +1004,7 @@
             this.cmbUser.FormattingEnabled = true;
             this.cmbUser.Location = new System.Drawing.Point(17, 46);
             this.cmbUser.Name = "cmbUser";
-            this.cmbUser.Size = new System.Drawing.Size(157, 28);
+            this.cmbUser.Size = new System.Drawing.Size(145, 28);
             this.cmbUser.TabIndex = 3;
             this.cmbUser.ValueMember = "Guid";
             // 
@@ -1010,7 +1018,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtCode.Location = new System.Drawing.Point(17, 11);
             this.txtCode.Name = "txtCode";
-            this.txtCode.Size = new System.Drawing.Size(157, 27);
+            this.txtCode.Size = new System.Drawing.Size(145, 27);
             this.txtCode.TabIndex = 2;
             // 
             // label15
@@ -1018,7 +1026,7 @@
             this.label15.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label15.AutoSize = true;
             this.label15.BackColor = System.Drawing.Color.Transparent;
-            this.label15.Location = new System.Drawing.Point(190, 85);
+            this.label15.Location = new System.Drawing.Point(178, 85);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(55, 20);
             this.label15.TabIndex = 12;
@@ -1029,7 +1037,7 @@
             this.label14.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label14.AutoSize = true;
             this.label14.BackColor = System.Drawing.Color.Transparent;
-            this.label14.Location = new System.Drawing.Point(205, 49);
+            this.label14.Location = new System.Drawing.Point(193, 49);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(39, 20);
             this.label14.TabIndex = 12;
@@ -1040,7 +1048,7 @@
             this.label12.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label12.AutoSize = true;
             this.label12.BackColor = System.Drawing.Color.Transparent;
-            this.label12.Location = new System.Drawing.Point(200, 14);
+            this.label12.Location = new System.Drawing.Point(188, 14);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(44, 20);
             this.label12.TabIndex = 12;
@@ -1097,7 +1105,7 @@
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Location = new System.Drawing.Point(181, 9);
+            this.label1.Location = new System.Drawing.Point(169, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(64, 20);
             this.label1.TabIndex = 9;
@@ -1120,8 +1128,8 @@
             this.superTabControl2.ControlBox.SubItems.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.superTabControl2.ControlBox.CloseBox,
             this.superTabControl2.ControlBox.MenuBox});
-            this.superTabControl2.Controls.Add(this.superTabControlPanel8);
             this.superTabControl2.Controls.Add(this.superTabControlPanel7);
+            this.superTabControl2.Controls.Add(this.superTabControlPanel8);
             this.superTabControl2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.superTabControl2.Location = new System.Drawing.Point(0, 0);
             this.superTabControl2.Name = "superTabControl2";
@@ -1143,6 +1151,10 @@
             this.superTabControlPanel7.Controls.Add(this.txtVamPrice);
             this.superTabControlPanel7.Controls.Add(this.txtSellPrice);
             this.superTabControlPanel7.Controls.Add(this.cmbSellSanadType);
+            this.superTabControlPanel7.Controls.Add(this.lblPricePerZirBana);
+            this.superTabControlPanel7.Controls.Add(this.lblPricePerMetr);
+            this.superTabControlPanel7.Controls.Add(this.label4);
+            this.superTabControlPanel7.Controls.Add(this.label2);
             this.superTabControlPanel7.Controls.Add(this.label24);
             this.superTabControlPanel7.Controls.Add(this.txtDong);
             this.superTabControlPanel7.Controls.Add(this.cmbSellTarakom);
@@ -1217,6 +1229,7 @@
             0,
             0,
             0});
+            this.txtSellPrice.OnTextChanged += new System.Action(this.txtSellPrice_OnTextChanged);
             // 
             // cmbSellSanadType
             // 
@@ -1232,6 +1245,52 @@
             this.cmbSellSanadType.Size = new System.Drawing.Size(370, 28);
             this.cmbSellSanadType.TabIndex = 27;
             this.cmbSellSanadType.ValueMember = "Guid";
+            // 
+            // lblPricePerZirBana
+            // 
+            this.lblPricePerZirBana.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblPricePerZirBana.AutoSize = true;
+            this.lblPricePerZirBana.BackColor = System.Drawing.Color.Transparent;
+            this.lblPricePerZirBana.Font = new System.Drawing.Font("B Titr", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.lblPricePerZirBana.Location = new System.Drawing.Point(210, 289);
+            this.lblPricePerZirBana.Name = "lblPricePerZirBana";
+            this.lblPricePerZirBana.Size = new System.Drawing.Size(16, 23);
+            this.lblPricePerZirBana.TabIndex = 25;
+            this.lblPricePerZirBana.Text = "0";
+            // 
+            // lblPricePerMetr
+            // 
+            this.lblPricePerMetr.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblPricePerMetr.AutoSize = true;
+            this.lblPricePerMetr.BackColor = System.Drawing.Color.Transparent;
+            this.lblPricePerMetr.Font = new System.Drawing.Font("B Titr", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.lblPricePerMetr.Location = new System.Drawing.Point(210, 227);
+            this.lblPricePerMetr.Name = "lblPricePerMetr";
+            this.lblPricePerMetr.Size = new System.Drawing.Size(16, 23);
+            this.lblPricePerMetr.TabIndex = 25;
+            this.lblPricePerMetr.Text = "0";
+            // 
+            // label4
+            // 
+            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label4.AutoSize = true;
+            this.label4.BackColor = System.Drawing.Color.Transparent;
+            this.label4.Location = new System.Drawing.Point(298, 258);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(183, 20);
+            this.label4.TabIndex = 25;
+            this.label4.Text = "قیمت فروش هر متر بر اساس زیربنا";
+            // 
+            // label2
+            // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.Location = new System.Drawing.Point(289, 196);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(192, 20);
+            this.label2.TabIndex = 25;
+            this.label2.Text = "قیمت فروش هر متر بر اساس مساحت";
             // 
             // label24
             // 
@@ -1536,5 +1595,9 @@
         private System.Windows.Forms.Label label34;
         private System.Windows.Forms.ComboBox cmbBAccountType;
         private System.Windows.Forms.Label label42;
+        private System.Windows.Forms.Label lblPricePerZirBana;
+        private System.Windows.Forms.Label lblPricePerMetr;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label2;
     }
 }

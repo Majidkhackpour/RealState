@@ -239,10 +239,10 @@ namespace EntityCache.Bussines
 
             return res;
         }
-        public static List<BuildingBussines> GetAll(string search, bool isArchive,
+        public static List<BuildingBussines> GetAll(string search, bool? isArchive, bool status,
             Guid buildingTypeGuid, Guid userGuid, Guid docTypeGuid, Guid accTypeGuid) => AsyncContext.Run(() =>
-            GetAllAsync(search,isArchive, buildingTypeGuid, userGuid, docTypeGuid, accTypeGuid));
-        public static async Task<List<BuildingBussines>> GetAllAsync(string search,bool isArchive,
+            GetAllAsync(search, isArchive, status, buildingTypeGuid, userGuid, docTypeGuid, accTypeGuid));
+        public static async Task<List<BuildingBussines>> GetAllAsync(string search, bool? isArchive, bool status,
             Guid buildingTypeGuid, Guid userGuid, Guid docTypeGuid, Guid accTypeGuid)
         {
             try
@@ -252,7 +252,9 @@ namespace EntityCache.Bussines
                 res = await GetAllAsync();
                 if (res == null || !res.Any()) return res?.ToList();
 
-                res = res.Where(q => q.IsArchive == isArchive);
+                res = res.Where(q => q.Status == status);
+
+                if (isArchive != null) res = res.Where(q => q.IsArchive == isArchive);
 
                 if (buildingTypeGuid != Guid.Empty)
                     res = res.Where(q => q.BuildingTypeGuid == buildingTypeGuid);
@@ -282,7 +284,10 @@ namespace EntityCache.Bussines
 
                 return res?.ToList();
             }
-            catch (OperationCanceledException) { return null; }
+            catch (OperationCanceledException)
+            {
+                return null;
+            }
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);

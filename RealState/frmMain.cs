@@ -89,6 +89,7 @@ namespace RealState
 
                 btnAccountPerfomence.Enabled = access?.AccountPerformence.Account_Per_ShowForm ?? false;
                 btnBuilding.Enabled = access?.Building.Building_ShowForm ?? false;
+                btnBuildingArchive.Enabled = access?.Building.Building_ShowForm ?? false;
                 btnBuildingAccountType.Enabled = access?.BuildingAccountType.Building_Acc_Type_ShowForm ?? false;
                 btnBuildingCondition.Enabled = access?.BuildingCondition.Building_Condition_ShowForm ?? false;
                 btnBuildingOptions.Enabled = access?.BuildingOption.Building_Option_ShowForm ?? false;
@@ -483,7 +484,7 @@ namespace RealState
         {
             try
             {
-                var frm = new frmShowBuildings(false);
+                var frm = new frmShowBuildings(false, false);
                 frm.ShowDialog(this);
             }
             catch (Exception ex)
@@ -876,5 +877,17 @@ namespace RealState
         }
         private void ExPanel_ExpandedChanged(object sender, DevComponents.DotNetBar.ExpandedChangeEventArgs e)
         => ExPanel.Width = Width;
+        private void btnBuildingArchive_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var frm = new frmShowBuildings(false, true);
+                frm.ShowDialog(this);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
     }
 }

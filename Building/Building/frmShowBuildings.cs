@@ -28,6 +28,7 @@ namespace Building.Building
         private IEnumerable<BuildingBussines> list;
         private List<string> ColumnList;
         private Guid ownerGuid = Guid.Empty;
+        private bool? _isArchive;
 
 
         private async Task FillCmbAsync()
@@ -82,7 +83,7 @@ namespace Building.Building
             try
             {
                 list = BuildingBussines
-                    .GetAll(search, false,
+                    .GetAll(search, _isArchive, ST,
                         (Guid)cmbBuildingType.SelectedValue,
                         (Guid)cmbUser.SelectedValue,
                         (Guid)cmbDocType.SelectedValue,
@@ -371,14 +372,16 @@ namespace Building.Building
             }
         }
 
-        public frmShowBuildings(bool _isShowMode, Guid ownerGuid = default)
+        public frmShowBuildings(bool _isShowMode, bool? isArchive, Guid ownerGuid = default)
         {
             InitializeComponent();
             isShowMode = _isShowMode;
             this.ownerGuid = ownerGuid;
+            _isArchive = isArchive;
             ucPagger.OnBindDataReady += UcPagger_OnBindDataReady;
             SetAccess();
             SetColumns();
+            if (_isShowMode || (_isArchive != null && _isArchive.Value)) contextMenu.Enabled = false;
         }
 
         private void UcPagger_OnBindDataReady(object sender, WindowsSerivces.Pagging.FooterBindingDataReadyEventArg e)
