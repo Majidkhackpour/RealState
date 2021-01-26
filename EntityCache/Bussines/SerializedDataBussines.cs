@@ -45,7 +45,7 @@ namespace EntityCache.Bussines
                 if (sett != null)
                 {
                     res.AddReturnedValue(await UnitOfWork.SerializedData.RemoveAsync(sett.Guid, tranName));
-                    res.ThrowExceptionIfError();
+                    if (res.HasError) return res;
                 }
 
                 var set = new SerializedDataBussines()
@@ -57,7 +57,7 @@ namespace EntityCache.Bussines
                 };
 
                 res.AddReturnedValue(await UnitOfWork.SerializedData.SaveAsync(set, tranName));
-                res.ThrowExceptionIfError();
+                if (res.HasError) return res;
                 if (autoTran)
                 {
                     //CommitTransAction
@@ -87,7 +87,7 @@ namespace EntityCache.Bussines
                 }
 
                 res.AddReturnedValue(await UnitOfWork.SerializedData.RemoveAsync(Guid, tranName));
-                res.ThrowExceptionIfError();
+                if (res.HasError) return res;
                 if (autoTran)
                 {
                     //CommitTransAction

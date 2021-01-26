@@ -44,7 +44,7 @@ namespace EntityCache.Bussines
                 }
 
                 res.AddReturnedValue(await UnitOfWork.SmsPanels.SaveAsync(this, tranName));
-                res.ThrowExceptionIfError();
+                if (res.HasError) return res;
                 if (autoTran)
                 {
                     //CommitTransAction
@@ -74,7 +74,7 @@ namespace EntityCache.Bussines
                 }
 
                 res.AddReturnedValue(await UnitOfWork.SmsPanels.ChangeStatusAsync(this, status, tranName));
-                res.ThrowExceptionIfError();
+                if (res.HasError) return res;
                 if (autoTran)
                 {
                     //CommitTransAction

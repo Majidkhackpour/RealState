@@ -137,13 +137,13 @@ namespace EntityCache.Bussines
                     res.AddReturnedValue(
                         await UnitOfWork.BuildingRelatedOptions.RemoveRangeAsync(list.Select(q => q.Guid).ToList(),
                             tranName));
-                    res.ThrowExceptionIfError();
+                    if (res.HasError) return res;
 
                     foreach (var item in OptionList)
                         item.BuildinGuid = Guid;
                     res.AddReturnedValue(
                         await UnitOfWork.BuildingRelatedOptions.SaveRangeAsync(OptionList, tranName));
-                    res.ThrowExceptionIfError();
+                    if (res.HasError) return res;
                 }
 
                 if (GalleryList.Count > 0)
@@ -152,18 +152,18 @@ namespace EntityCache.Bussines
                     res.AddReturnedValue(
                         await UnitOfWork.BuildingGallery.RemoveRangeAsync(list.Select(q => q.Guid).ToList(),
                             tranName));
-                    res.ThrowExceptionIfError();
+                    if (res.HasError) return res;
 
                     foreach (var item in GalleryList)
                         item.BuildingGuid = Guid;
                     res.AddReturnedValue(
                         await UnitOfWork.BuildingGallery.SaveRangeAsync(GalleryList, tranName));
-                    res.ThrowExceptionIfError();
+                    if (res.HasError) return res;
                 }
 
 
                 res.AddReturnedValue(await UnitOfWork.Building.SaveAsync(this, tranName));
-                res.ThrowExceptionIfError();
+                if (res.HasError) return res;
                 if (autoTran)
                 {
                     //CommitTransAction
@@ -201,7 +201,7 @@ namespace EntityCache.Bussines
                     {
                         res.AddReturnedValue(
                             await item.ChangeStatusAsync(status, tranName));
-                        res.ThrowExceptionIfError();
+                        if (res.HasError) return res;
                     }
                 }
 
@@ -211,13 +211,13 @@ namespace EntityCache.Bussines
                     {
                         res.AddReturnedValue(
                             await item.ChangeStatusAsync(status, tranName));
-                        res.ThrowExceptionIfError();
+                        if (res.HasError) return res;
                     }
                 }
 
 
                 res.AddReturnedValue(await UnitOfWork.Building.ChangeStatusAsync(this, status, tranName));
-                res.ThrowExceptionIfError();
+                if (res.HasError) return res;
                 if (autoTran)
                 {
                     //CommitTransAction

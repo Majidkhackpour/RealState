@@ -39,7 +39,7 @@ namespace EntityCache.Bussines
                 }
 
                 res.AddReturnedValue(await UnitOfWork.Regions.SaveRangeAsync(list, tranName));
-                res.ThrowExceptionIfError();
+                if (res.HasError) return res;
                 if (autoTran)
                 {
                     //CommitTransAction
@@ -107,7 +107,7 @@ namespace EntityCache.Bussines
                 }
 
                 res.AddReturnedValue(await UnitOfWork.Regions.SaveAsync(this, tranName));
-                res.ThrowExceptionIfError();
+                if (res.HasError) return res;
                 if (autoTran)
                 {
                     //CommitTransAction
@@ -140,7 +140,7 @@ namespace EntityCache.Bussines
                 }
 
                 res.AddReturnedValue(await UnitOfWork.Regions.ChangeStatusAsync(this, status, tranName));
-                res.ThrowExceptionIfError();
+                if (res.HasError) return res;
                 if (autoTran)
                 {
                     //CommitTransAction

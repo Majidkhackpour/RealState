@@ -50,7 +50,7 @@ namespace EntityCache.Bussines
 
 
                 res.AddReturnedValue(await UnitOfWork.Reception.SaveAsync(this, tranName));
-                res.ThrowExceptionIfError();
+                if (res.HasError) return res;
                 if (autoTran)
                 {
                     //CommitTransAction
@@ -86,11 +86,11 @@ namespace EntityCache.Bussines
                 if (gardesh != null)
                 {
                     res.AddReturnedValue(await UnitOfWork.GardeshHesab.ChangeStatusAsync(gardesh, status, tranName));
-                    res.ThrowExceptionIfError();
+                    if (res.HasError) return res;
                 }
 
                 res.AddReturnedValue(await UnitOfWork.Reception.ChangeStatusAsync(this, status, tranName));
-                res.ThrowExceptionIfError();
+                if (res.HasError) return res;
                 if (autoTran)
                 {
                     //CommitTransAction

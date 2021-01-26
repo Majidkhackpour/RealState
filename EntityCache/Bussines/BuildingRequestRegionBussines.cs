@@ -35,7 +35,7 @@ namespace EntityCache.Bussines
                 }
 
                 res.AddReturnedValue(await UnitOfWork.BuildingRequestRegion.ChangeStatusAsync(this, status, tranName));
-                res.ThrowExceptionIfError();
+                if (res.HasError) return res;
                 if (autoTran)
                 {
                     //CommitTransAction

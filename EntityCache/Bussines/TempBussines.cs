@@ -28,7 +28,7 @@ namespace EntityCache.Bussines
                 }
 
                 res.AddReturnedValue(await UnitOfWork.Temp.SaveAsync(this, tranName));
-                res.ThrowExceptionIfError();
+                if (res.HasError) return res;
                 if (autoTran)
                 {
                     //CommitTransAction
@@ -59,7 +59,7 @@ namespace EntityCache.Bussines
                 }
 
                 res.AddReturnedValue(await UnitOfWork.Temp.RemoveAsync(Guid, tranName));
-                res.ThrowExceptionIfError();
+                if (res.HasError) return res;
                 if (autoTran)
                 {
                     //CommitTransAction

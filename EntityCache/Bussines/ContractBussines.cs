@@ -116,16 +116,16 @@ namespace EntityCache.Bussines
                         res.AddReturnedValue(
                             await UnitOfWork.ContractFinance.RemoveAsync(list.Guid,
                                 tranName));
-                        res.ThrowExceptionIfError();
+                        if (res.HasError) return res;
                     }
 
                     res.AddReturnedValue(
                         await UnitOfWork.ContractFinance.SaveAsync(Finance, tranName));
-                    res.ThrowExceptionIfError();
+                    if (res.HasError) return res;
                 }
 
                 res.AddReturnedValue(await UnitOfWork.Contract.SaveAsync(this, tranName));
-                res.ThrowExceptionIfError();
+                if (res.HasError) return res;
                 if (autoTran)
                 {
                     //CommitTransAction
@@ -159,7 +159,7 @@ namespace EntityCache.Bussines
 
 
                 res.AddReturnedValue(await UnitOfWork.Contract.ChangeStatusAsync(this, status, tranName));
-                res.ThrowExceptionIfError();
+                if (res.HasError) return res;
                 if (autoTran)
                 {
                     //CommitTransAction

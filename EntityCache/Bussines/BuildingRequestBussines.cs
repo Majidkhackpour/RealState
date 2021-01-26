@@ -76,17 +76,17 @@ namespace EntityCache.Bussines
                     res.AddReturnedValue(
                         await UnitOfWork.BuildingRequestRegion.RemoveRangeAsync(list.Select(q => q.Guid).ToList(),
                             tranName));
-                    res.ThrowExceptionIfError();
+                    if (res.HasError) return res;
 
                     foreach (var item in RegionList)
                         item.RequestGuid = Guid;
                     res.AddReturnedValue(
                         await UnitOfWork.BuildingRequestRegion.SaveRangeAsync(RegionList, tranName));
-                    res.ThrowExceptionIfError();
+                    if (res.HasError) return res;
                 }
 
                 res.AddReturnedValue(await UnitOfWork.BuildingRequest.SaveAsync(this, tranName));
-                res.ThrowExceptionIfError();
+                if (res.HasError) return res;
                 if (autoTran)
                 {
                     //CommitTransAction
@@ -124,12 +124,12 @@ namespace EntityCache.Bussines
                     {
                         res.AddReturnedValue(
                             await item.ChangeStatusAsync(status, tranName));
-                        res.ThrowExceptionIfError();
+                        if (res.HasError) return res;
                     }
                 }
 
                 res.AddReturnedValue(await UnitOfWork.BuildingRequest.ChangeStatusAsync(this, status, tranName));
-                res.ThrowExceptionIfError();
+                if (res.HasError) return res;
                 if (autoTran)
                 {
                     //CommitTransAction

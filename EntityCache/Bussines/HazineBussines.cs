@@ -37,7 +37,7 @@ namespace EntityCache.Bussines
                 }
 
                 res.AddReturnedValue(await UnitOfWork.Hazine.SaveRangeAsync(list, tranName));
-                res.ThrowExceptionIfError();
+                if (res.HasError) return res;
                 if (autoTran)
                 {
                     //CommitTransAction
@@ -88,7 +88,7 @@ namespace EntityCache.Bussines
                         if (Account < 0) g.Type = EnAccountType.Bes;
                         res.AddReturnedValue(
                             await UnitOfWork.GardeshHesab.SaveAsync(g, tranName));
-                        res.ThrowExceptionIfError();
+                        if (res.HasError) return res;
                     }
                     else
                     {
@@ -98,13 +98,13 @@ namespace EntityCache.Bussines
                         if (Account < 0) gardesh.Type = EnAccountType.Bes;
                         res.AddReturnedValue(
                             await UnitOfWork.GardeshHesab.SaveAsync(gardesh, tranName));
-                        res.ThrowExceptionIfError();
+                        if (res.HasError) return res;
                     }
                 }
 
 
                 res.AddReturnedValue(await UnitOfWork.Hazine.SaveAsync(this, tranName));
-                res.ThrowExceptionIfError();
+                if (res.HasError) return res;
                 if (autoTran)
                 {
                     //CommitTransAction
@@ -137,7 +137,7 @@ namespace EntityCache.Bussines
                 }
 
                 res.AddReturnedValue(await UnitOfWork.Hazine.ChangeStatusAsync(this, status, tranName));
-                res.ThrowExceptionIfError();
+                if (res.HasError) return res;
                 if (autoTran)
                 {
                     //CommitTransAction

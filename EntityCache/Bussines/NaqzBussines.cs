@@ -31,7 +31,7 @@ namespace EntityCache.Bussines
                 }
 
                 res.AddReturnedValue(await UnitOfWork.Naqz.SaveRangeAsync(list, tranName));
-                res.ThrowExceptionIfError();
+                if (res.HasError) return res;
                 if (autoTran)
                 {
                     //CommitTransAction
@@ -64,7 +64,7 @@ namespace EntityCache.Bussines
 
                 var res = new ReturnedSaveFuncInfo();
                 res.AddReturnedValue(await UnitOfWork.Naqz.SaveAsync(one, tranName));
-                res.ThrowExceptionIfError();
+                if (res.HasError) return "";
 
                 return one.Message;
             }

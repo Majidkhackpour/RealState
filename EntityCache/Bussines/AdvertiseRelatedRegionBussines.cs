@@ -34,7 +34,8 @@ namespace EntityCache.Bussines
                     await RemoveRangeAsync(_list);
 
                 res.AddReturnedValue(await UnitOfWork.AdvertiseRelatedRegion.SaveRangeAsync(list, tranName));
-                res.ThrowExceptionIfError();
+                if (res.HasError) return res;
+
                 if (autoTran)
                 {
                     //CommitTransAction
@@ -70,7 +71,7 @@ namespace EntityCache.Bussines
 
                 res.AddReturnedValue(
                     await UnitOfWork.AdvertiseRelatedRegion.RemoveRangeAsync(list.Select(q => q.Guid), tranName));
-                res.ThrowExceptionIfError();
+                if (res.HasError) return res;
                 if (autoTran)
                 {
                     //CommitTransAction

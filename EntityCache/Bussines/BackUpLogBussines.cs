@@ -37,7 +37,7 @@ namespace EntityCache.Bussines
 
                 
                 res.AddReturnedValue(await UnitOfWork.BackUpLog.SaveAsync(this, tranName));
-                res.ThrowExceptionIfError();
+                if (res.HasError) return res;
                 if (autoTran)
                 {
                     //CommitTransAction

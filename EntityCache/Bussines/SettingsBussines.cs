@@ -35,7 +35,7 @@ namespace EntityCache.Bussines
                 if (sett != null)
                 {
                     res.AddReturnedValue(await UnitOfWork.Settings.RemoveAsync(sett.Guid, tranName));
-                    res.ThrowExceptionIfError();
+                    if (res.HasError) return res;
                 }
 
                 var set = new SettingsBussines()
@@ -47,7 +47,7 @@ namespace EntityCache.Bussines
                 };
 
                 res.AddReturnedValue(await UnitOfWork.Settings.SaveAsync(set, tranName));
-                res.ThrowExceptionIfError();
+                if (res.HasError) return res;
                 if (autoTran)
                 {
                     //CommitTransAction
@@ -77,7 +77,7 @@ namespace EntityCache.Bussines
                 }
 
                 res.AddReturnedValue(await UnitOfWork.Settings.RemoveAsync(Guid, tranName));
-                res.ThrowExceptionIfError();
+                if (res.HasError) return res;
                 if (autoTran)
                 {
                     //CommitTransAction

@@ -42,7 +42,7 @@ namespace EntityCache.Assistence
                     user.Password = System.Text.RegularExpressions.Regex.Replace(BitConverter.ToString(hashBytes), "-", "")
                         .ToLower();
                     res.AddReturnedValue(await user.SaveAsync(false));
-                    res.ThrowExceptionIfError();
+                    if (res.HasError) return;
                 }
                 #endregion
 
@@ -52,7 +52,7 @@ namespace EntityCache.Assistence
                 {
                     var states = DefaultStates.SetDef();
                     res.AddReturnedValue(await StatesBussines.SaveRangeAsync(states));
-                    res.ThrowExceptionIfError();
+                    if (res.HasError) return;
                 }
                 #endregion
 
@@ -62,7 +62,7 @@ namespace EntityCache.Assistence
                 {
                     var city = DefaultCities.SetDef();
                     res.AddReturnedValue(await CitiesBussines.SaveRangeAsync(city));
-                    res.ThrowExceptionIfError();
+                    if (res.HasError) return;
                 }
                 #endregion
 
@@ -72,7 +72,7 @@ namespace EntityCache.Assistence
                 {
                     var reg = DefaultRegions.SetDef();
                     res.AddReturnedValue(await RegionsBussines.SaveRangeAsync(reg));
-                    res.ThrowExceptionIfError();
+                    if (res.HasError) return;
                 }
                 #endregion
 
@@ -82,7 +82,7 @@ namespace EntityCache.Assistence
                 {
                     var naqz = DefaultNaqz.SetDef();
                     res.AddReturnedValue(await NaqzBussines.SaveRangeAsync(naqz));
-                    res.ThrowExceptionIfError();
+                    if (res.HasError) return;
                 }
                 #endregion
 
@@ -92,7 +92,7 @@ namespace EntityCache.Assistence
                 {
                     var bo = DefaultBuildingOptions.SetDef();
                     res.AddReturnedValue(await BuildingOptionsBussines.SaveRangeAsync(bo));
-                    res.ThrowExceptionIfError();
+                    if (res.HasError) return;
                 }
                 #endregion
 
@@ -102,7 +102,7 @@ namespace EntityCache.Assistence
                 {
                     var bat = DefaultBuildingAccountType.SetDef();
                     res.AddReturnedValue(await BuildingAccountTypeBussines.SaveRangeAsync(bat));
-                    res.ThrowExceptionIfError();
+                    if (res.HasError) return;
                 }
                 #endregion
 
@@ -112,7 +112,7 @@ namespace EntityCache.Assistence
                 {
                     var fc = DefaultFloorCover.SetDef();
                     res.AddReturnedValue(await FloorCoverBussines.SaveRangeAsync(fc));
-                    res.ThrowExceptionIfError();
+                    if (res.HasError) return;
                 }
                 #endregion
 
@@ -122,7 +122,7 @@ namespace EntityCache.Assistence
                 {
                     var ks = DefaultKitchenService.SetDef();
                     res.AddReturnedValue(await KitchenServiceBussines.SaveRangeAsync(ks));
-                    res.ThrowExceptionIfError();
+                    if (res.HasError) return;
                 }
                 #endregion
 
@@ -132,7 +132,7 @@ namespace EntityCache.Assistence
                 {
                     var dt = DefaultDocumentType.SetDef();
                     res.AddReturnedValue(await DocumentTypeBussines.SaveRangeAsync(dt));
-                    res.ThrowExceptionIfError();
+                    if (res.HasError) return;
                 }
                 #endregion
 
@@ -142,7 +142,7 @@ namespace EntityCache.Assistence
                 {
                     var ra = DefaultRentalAuthority.SetDef();
                     res.AddReturnedValue(await RentalAuthorityBussines.SaveRangeAsync(ra));
-                    res.ThrowExceptionIfError();
+                    if (res.HasError) return;
                 }
                 #endregion
 
@@ -152,7 +152,7 @@ namespace EntityCache.Assistence
                 {
                     var bv = DefaultBuildingView.SetDef();
                     res.AddReturnedValue(await BuildingViewBussines.SaveRangeAsync(bv));
-                    res.ThrowExceptionIfError();
+                    if (res.HasError) return;
                 }
                 #endregion
 
@@ -162,7 +162,7 @@ namespace EntityCache.Assistence
                 {
                     var bc = DefaultBuildingCondition.SetDef();
                     res.AddReturnedValue(await BuildingConditionBussines.SaveRangeAsync(bc));
-                    res.ThrowExceptionIfError();
+                    if (res.HasError) return;
                 }
                 #endregion
 
@@ -172,7 +172,7 @@ namespace EntityCache.Assistence
                 {
                     var bo = DefaultBuildingType.SetDef();
                     res.AddReturnedValue(await BuildingTypeBussines.SaveRangeAsync(bo));
-                    res.ThrowExceptionIfError();
+                    if (res.HasError) return;
                 }
                 #endregion
 
@@ -182,7 +182,7 @@ namespace EntityCache.Assistence
                 {
                     var reg = DefaultPeopleGroup.SetDef();
                     res.AddReturnedValue(await PeopleGroupBussines.SaveRangeAsync(reg));
-                    res.ThrowExceptionIfError();
+                    if (res.HasError) return;
                 }
                 #endregion
 
@@ -192,7 +192,7 @@ namespace EntityCache.Assistence
                 {
                     var reg = DefaultHazine.SetDef();
                     res.AddReturnedValue(await HazineBussines.SaveRangeAsync(reg));
-                    res.ThrowExceptionIfError();
+                    if (res.HasError) return;
                 }
                 #endregion
 
@@ -202,7 +202,7 @@ namespace EntityCache.Assistence
                 {
                     res.AddReturnedValue(SettingsBussines.Save("ArzeshAfzoude", "9"));
                     res.AddReturnedValue(SettingsBussines.Save("Tabdil", "2"));
-                    res.ThrowExceptionIfError();
+                    if (res.HasError) return;
                 }
                 #endregion
 

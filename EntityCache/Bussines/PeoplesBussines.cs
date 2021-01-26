@@ -87,7 +87,7 @@ namespace EntityCache.Bussines
                     res.AddReturnedValue(
                         await UnitOfWork.PhoneBook.RemoveRangeAsync(list.Select(q => q.Guid).ToList(),
                             tranName));
-                    res.ThrowExceptionIfError();
+                    if (res.HasError) return res;
 
                     foreach (var item in TellList)
                     {
@@ -96,7 +96,7 @@ namespace EntityCache.Bussines
                     }
                     res.AddReturnedValue(
                         await UnitOfWork.PhoneBook.SaveRangeAsync(TellList, tranName));
-                    res.ThrowExceptionIfError();
+                    if (res.HasError) return res;
                 }
 
                 if (BankList.Count > 0)
@@ -105,13 +105,13 @@ namespace EntityCache.Bussines
                     res.AddReturnedValue(
                         await UnitOfWork.PeopleBankAccount.RemoveRangeAsync(list.Select(q => q.Guid).ToList(),
                             tranName));
-                    res.ThrowExceptionIfError();
+                    if (res.HasError) return res;
 
                     foreach (var item in BankList)
                         item.ParentGuid = Guid;
                     res.AddReturnedValue(
                         await UnitOfWork.PeopleBankAccount.SaveRangeAsync(BankList, tranName));
-                    res.ThrowExceptionIfError();
+                    if (res.HasError) return res;
                 }
 
                 var gardesh = await GardeshHesabBussines.GetAsync(Guid, Guid.Empty, true);
@@ -132,7 +132,7 @@ namespace EntityCache.Bussines
                     if (Account < 0) g.Type = EnAccountType.Bes;
                     res.AddReturnedValue(
                         await UnitOfWork.GardeshHesab.SaveAsync(g, tranName));
-                    res.ThrowExceptionIfError();
+                    if (res.HasError) return res;
                 }
                 else if (gardesh != null)
                 {
@@ -142,11 +142,11 @@ namespace EntityCache.Bussines
                     if (Account < 0) gardesh.Type = EnAccountType.Bes;
                     res.AddReturnedValue(
                         await UnitOfWork.GardeshHesab.SaveAsync(gardesh, tranName));
-                    res.ThrowExceptionIfError();
+                    if (res.HasError) return res;
                 }
 
                 res.AddReturnedValue(await UnitOfWork.Peoples.SaveAsync(this, tranName));
-                res.ThrowExceptionIfError();
+                if (res.HasError) return res;
                 if (autoTran)
                 {
                     //CommitTransAction
@@ -184,13 +184,13 @@ namespace EntityCache.Bussines
                     {
                         res.AddReturnedValue(
                             await item.ChangeStatusAsync(status, tranName));
-                        res.ThrowExceptionIfError();
+                        if (res.HasError) return res;
                     }
                 }
 
 
                 res.AddReturnedValue(await UnitOfWork.Peoples.ChangeStatusAsync(this, status, tranName));
-                res.ThrowExceptionIfError();
+                if (res.HasError) return res;
                 if (autoTran)
                 {
                     //CommitTransAction
