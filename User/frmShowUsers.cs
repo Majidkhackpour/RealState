@@ -300,5 +300,17 @@ namespace User
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
+        private void mnuReport_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var frm = new frmUserLogFilter();
+                frm.ShowDialog(this);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
     }
 }

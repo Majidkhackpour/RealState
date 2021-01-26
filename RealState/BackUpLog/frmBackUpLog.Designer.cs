@@ -37,9 +37,13 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmBackUpLog));
             this.logBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.DGrid = new DevComponents.DotNetBar.Controls.DataGridViewX();
+            this.contextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.mnuBackUp = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuRestoreFromSelectedFile = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuRestoreFromFile = new System.Windows.Forms.ToolStripMenuItem();
             this.Radif = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dateShDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.pathDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgPath = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.typeNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.statusNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.statusDescDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -52,6 +56,7 @@
             this.typeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.logBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).BeginInit();
+            this.contextMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // logBindingSource
@@ -87,7 +92,7 @@
             this.DGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Radif,
             this.dateShDataGridViewTextBoxColumn,
-            this.pathDataGridViewTextBoxColumn,
+            this.dgPath,
             this.typeNameDataGridViewTextBoxColumn,
             this.statusNameDataGridViewTextBoxColumn,
             this.statusDescDataGridViewTextBoxColumn,
@@ -98,6 +103,7 @@
             this.backUpStatusDataGridViewTextBoxColumn,
             this.insertedDateDataGridViewTextBoxColumn,
             this.typeDataGridViewTextBoxColumn});
+            this.DGrid.ContextMenuStrip = this.contextMenu;
             this.DGrid.DataSource = this.logBindingSource;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
@@ -135,6 +141,41 @@
             this.DGrid.TabIndex = 55719;
             this.DGrid.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DGrid_CellFormatting);
             // 
+            // contextMenu
+            // 
+            this.contextMenu.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.contextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnuBackUp,
+            this.mnuRestoreFromSelectedFile,
+            this.mnuRestoreFromFile});
+            this.contextMenu.Name = "contextMenu";
+            this.contextMenu.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.contextMenu.Size = new System.Drawing.Size(229, 76);
+            // 
+            // mnuBackUp
+            // 
+            this.mnuBackUp.Image = global::RealState.Properties.Resources.tab_checkbox__;
+            this.mnuBackUp.Name = "mnuBackUp";
+            this.mnuBackUp.Size = new System.Drawing.Size(228, 24);
+            this.mnuBackUp.Text = "ایجاد پشتیبان جدید";
+            this.mnuBackUp.Click += new System.EventHandler(this.mnuBackUp_Click);
+            // 
+            // mnuRestoreFromSelectedFile
+            // 
+            this.mnuRestoreFromSelectedFile.Image = global::RealState.Properties.Resources.add_1_;
+            this.mnuRestoreFromSelectedFile.Name = "mnuRestoreFromSelectedFile";
+            this.mnuRestoreFromSelectedFile.Size = new System.Drawing.Size(228, 24);
+            this.mnuRestoreFromSelectedFile.Text = "بازیابی پشتیبان از فایل انتخابی";
+            this.mnuRestoreFromSelectedFile.Click += new System.EventHandler(this.mnuRestoreFromSelectedFile_Click);
+            // 
+            // mnuRestoreFromFile
+            // 
+            this.mnuRestoreFromFile.Image = global::RealState.Properties.Resources.edit_1_;
+            this.mnuRestoreFromFile.Name = "mnuRestoreFromFile";
+            this.mnuRestoreFromFile.Size = new System.Drawing.Size(228, 24);
+            this.mnuRestoreFromFile.Text = "بازیابی پشتیبان از فایل دستی";
+            this.mnuRestoreFromFile.Click += new System.EventHandler(this.mnuRestoreFromFile_Click);
+            // 
             // Radif
             // 
             this.Radif.HeaderText = "ردیف";
@@ -149,13 +190,13 @@
             this.dateShDataGridViewTextBoxColumn.Name = "dateShDataGridViewTextBoxColumn";
             this.dateShDataGridViewTextBoxColumn.ReadOnly = true;
             // 
-            // pathDataGridViewTextBoxColumn
+            // dgPath
             // 
-            this.pathDataGridViewTextBoxColumn.DataPropertyName = "Path";
-            this.pathDataGridViewTextBoxColumn.HeaderText = "آدرس";
-            this.pathDataGridViewTextBoxColumn.Name = "pathDataGridViewTextBoxColumn";
-            this.pathDataGridViewTextBoxColumn.ReadOnly = true;
-            this.pathDataGridViewTextBoxColumn.Width = 500;
+            this.dgPath.DataPropertyName = "Path";
+            this.dgPath.HeaderText = "آدرس";
+            this.dgPath.Name = "dgPath";
+            this.dgPath.ReadOnly = true;
+            this.dgPath.Width = 500;
             // 
             // typeNameDataGridViewTextBoxColumn
             // 
@@ -256,6 +297,7 @@
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmBackUpLog_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.logBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).EndInit();
+            this.contextMenu.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -264,9 +306,13 @@
 
         private System.Windows.Forms.BindingSource logBindingSource;
         private DevComponents.DotNetBar.Controls.DataGridViewX DGrid;
+        private System.Windows.Forms.ContextMenuStrip contextMenu;
+        private System.Windows.Forms.ToolStripMenuItem mnuRestoreFromSelectedFile;
+        private System.Windows.Forms.ToolStripMenuItem mnuRestoreFromFile;
+        private System.Windows.Forms.ToolStripMenuItem mnuBackUp;
         private System.Windows.Forms.DataGridViewTextBoxColumn Radif;
         private System.Windows.Forms.DataGridViewTextBoxColumn dateShDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn pathDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgPath;
         private System.Windows.Forms.DataGridViewTextBoxColumn typeNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn statusNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn statusDescDataGridViewTextBoxColumn;

@@ -612,30 +612,6 @@ namespace RealState
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void btnUserPerformance_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                var frm = new frmUserLogFilter();
-                frm.ShowDialog(this);
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-        private void btnBackUpLog_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                var frm = new frmBackUpLog();
-                frm.ShowDialog(this);
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
         private void btnSetting_Click(object sender, EventArgs e)
         {
             try
@@ -708,18 +684,12 @@ namespace RealState
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private async void btnBackUp_Click(object sender, EventArgs e)
+        private void btnBackUp_Click(object sender, EventArgs e)
         {
             try
             {
-                var res = await DataBaseUtilities.DataBase.BackUpStartAsync(this,
-                    AppSettings.DefaultConnectionString, ENSource.Building, EnBackUpType.Manual);
-                if (res.HasError)
-                {
-                    frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);
-                    return;
-                }
-                frmNotification.PublicInfo.ShowMessage("پشتیبان گیری با موفقیت انجام شد");
+                var frm = new frmBackUpLog();
+                frm.ShowDialog();
             }
             catch (Exception ex)
             {
@@ -730,18 +700,8 @@ namespace RealState
         {
             try
             {
-                if (MessageBox.Show(this,
-                        "توجه داشته باشید درصورت بازگردانی اطلاعات، اطلاعات قبلی به کلی از بین خواهد رفت. آیا ادامه میدهید؟",
-                        "هشدار", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
-                    return;
-                var res = await DataBaseUtilities.DataBase.ReStoreStartAsync(this,
-                    AppSettings.DefaultConnectionString, ENSource.Building);
-                if (res.HasError)
-                {
-                    frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);
-                    return;
-                }
-                frmNotification.PublicInfo.ShowMessage("بازیابی فایل پشتیبان با موفقیت انجام شد");
+                var frm = new frmBackUpLog();
+                frm.ShowDialog();
             }
             catch (Exception ex)
             {
