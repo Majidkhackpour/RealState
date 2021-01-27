@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 using EntityCache.Assistence;
@@ -35,20 +37,66 @@ namespace EntityCache.SqlServerPersistence
                 return false;
             }
         }
-
         public async Task<BuildingOptionsBussines> GetAsync(string name)
         {
+            var list = new BuildingOptionsBussines();
             try
             {
-                var acc = db.BuildingOptions.AsNoTracking()
-                    .FirstOrDefault(q => q.Name == name);
-                return Mappings.Default.Map<BuildingOptionsBussines>(acc);
+                using (var cn = new SqlConnection(_connectionString))
+                {
+                    var cmd = new SqlCommand("sp_BuildingOptions_GetByName", cn) { CommandType = CommandType.StoredProcedure };
+                    cmd.Parameters.AddWithValue("@name", name);
+                    await cn.OpenAsync();
+                    var dr = await cmd.ExecuteReaderAsync();
+                    if (dr.Read()) list = LoadData(dr);
+                    cn.Close();
+                }
             }
             catch (Exception exception)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(exception);
-                return null;
             }
+
+            return list;
+        }
+        public override async Task<BuildingOptionsBussines> GetAsync(Guid guid)
+        {
+            var list = new BuildingOptionsBussines();
+            try
+            {
+                using (var cn = new SqlConnection(_connectionString))
+                {
+                    var cmd = new SqlCommand("sp_BuildingOptions_GetByGuid", cn) { CommandType = CommandType.StoredProcedure };
+                    cmd.Parameters.AddWithValue("@guid", guid);
+                    await cn.OpenAsync();
+                    var dr = await cmd.ExecuteReaderAsync();
+                    if (dr.Read()) list = LoadData(dr);
+                    cn.Close();
+                }
+            }
+            catch (Exception exception)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(exception);
+            }
+
+            return list;
+        }
+        private BuildingOptionsBussines LoadData(SqlDataReader dr)
+        {
+            var res = new BuildingOptionsBussines();
+            try
+            {
+                res.Guid = (Guid)dr["Guid"];
+                res.Modified = (DateTime)dr["Modified"];
+                res.Status = (bool)dr["Status"];
+                res.Name = dr["Name"].ToString();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+
+            return res;
         }
     }
 }

@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 using EntityCache.Assistence;
@@ -23,20 +25,27 @@ namespace EntityCache.SqlServerPersistence
 
         public async Task<List<PhoneBookBussines>> GetAllAsync(Guid parentGuid, bool status)
         {
+            var list = new List<PhoneBookBussines>();
             try
             {
-                var acc = db.PhoneBook.AsNoTracking()
-                    .Where(q => q.ParentGuid == parentGuid && q.Status == status).ToList();
-
-                return Mappings.Default.Map<List<PhoneBookBussines>>(acc);
+                using (var cn = new SqlConnection(_connectionString))
+                {
+                    var cmd = new SqlCommand("sp_PhoneBook_GetAll", cn) { CommandType = CommandType.StoredProcedure };
+                    cmd.Parameters.AddWithValue("@pGuid", parentGuid);
+                    cmd.Parameters.AddWithValue("@st", status);
+                    await cn.OpenAsync();
+                    var dr = await cmd.ExecuteReaderAsync();
+                    while (dr.Read()) list.Add(LoadData(dr));
+                    cn.Close();
+                }
             }
             catch (Exception exception)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(exception);
-                return null;
             }
-        }
 
+            return list;
+        }
         public async Task<List<PhoneBookBussines>> GetAllBySpAsync(Guid parentGuid, bool status)
         {
             try
@@ -50,6 +59,26 @@ namespace EntityCache.SqlServerPersistence
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
                 return null;
             }
+        }
+        private PhoneBookBussines LoadData(SqlDataReader dr)
+        {
+            var res = new PhoneBookBussines();
+            try
+            {
+                res.Guid = (Guid)dr["Guid"];
+                res.Modified = (DateTime)dr["Modified"];
+                res.Status = (bool)dr["Status"];
+                res.Name = dr["Name"].ToString();
+                res.Tell = dr["Tell"].ToString();
+                res.Group = (EnPhoneBookGroup)dr["Group"];
+                res.ParentGuid = (Guid)dr["ParentGuid"];
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+
+            return res;
         }
     }
 }

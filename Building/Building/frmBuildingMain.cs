@@ -30,6 +30,7 @@ namespace Building.Building
         readonly List<string> lstList = new List<string>();
         private EnLogAction action;
         private string image;
+        private bool isSendSms = false;
 
 
         private async Task SetDataAsync()
@@ -856,6 +857,39 @@ namespace Building.Building
             }
             return res;
         }
+        private async Task<ReturnedSaveFuncInfo> SaveAsync()
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                if (cls.Guid == Guid.Empty)
+                {
+                    cls.Guid = Guid.NewGuid();
+                    isSendSms = true;
+                }
+
+                res.AddReturnedValue(await CheckValidationAsync());
+                if (res.HasError) return res;
+
+                res.AddReturnedValue(SetData());
+                if (res.HasError) return res;
+                res.AddReturnedValue(await SetOptionsAsync(cls.Guid));
+                if (res.HasError) return res;
+                for (var i = fPanel.Controls.Count - 1; i >= 0; i--)
+                    fPanel.Controls[i].Dispose();
+
+                res.AddReturnedValue(SetImages());
+                if (res.HasError) return res;
+                res.AddReturnedValue(await cls.SaveAsync());
+                if (res.HasError) return res;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+
+            return res;
+        }
         private async Task<ReturnedSaveFuncInfo> ShowMap(string city, string region)
         {
             var res = new ReturnedSaveFuncInfo();
@@ -1107,28 +1141,8 @@ namespace Building.Building
             var res = new ReturnedSaveFuncInfo();
             try
             {
-                var isSendSms = false;
-                if (cls.Guid == Guid.Empty)
-                {
-                    cls.Guid = Guid.NewGuid();
-                    isSendSms = true;
-                }
-
-                res.AddReturnedValue(await CheckValidationAsync());
+                res.AddReturnedValue(await SaveAsync());
                 if (res.HasError) return;
-
-                res.AddReturnedValue(SetData());
-                if (res.HasError) return;
-                res.AddReturnedValue(await SetOptionsAsync(cls.Guid));
-                if (res.HasError) return;
-                for (var i = fPanel.Controls.Count - 1; i >= 0; i--)
-                    fPanel.Controls[i].Dispose();
-
-                res.AddReturnedValue(SetImages());
-                if (res.HasError) return;
-                res.AddReturnedValue(await cls.SaveAsync());
-                if (res.HasError) return;
-
 
                 if (!Settings.Classes.Payamak.IsSendToOwner.ParseToBoolean() || !isSendSms) return;
                 var tr = await Payamak.FixSms.OwnerSend.SendAsync(cls);
@@ -1329,11 +1343,13 @@ namespace Building.Building
         {
             txtSetter.Follow(txtCode);
         }
-        private void btnPrint_Click(object sender, EventArgs e)
+        private async void btnPrint_Click(object sender, EventArgs e)
         {
+            var res = new ReturnedSaveFuncInfo();
             try
             {
-                btnFinish.PerformClick();
+                res.AddReturnedValue(await SaveAsync());
+                if (res.HasError) return;
 
                 var rpt = new BuildingReportViewModel()
                 {
@@ -1402,6 +1418,22 @@ namespace Building.Building
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+            finally
+            {
+                if (res.HasError)
+                {
+                    var frm = new FrmShowErrorMessage(res, "خطا در ذخیره سازی ملک");
+                    frm.ShowDialog(this);
+                    frm.Dispose();
+                }
+                else
+                {
+                    UserLog.Save(action, EnLogPart.Building);
+                    DialogResult = DialogResult.OK;
+                    Close();
+                }
             }
         }
         private async void chbGoogleMap_CheckedChanged(object sender, EventArgs e)

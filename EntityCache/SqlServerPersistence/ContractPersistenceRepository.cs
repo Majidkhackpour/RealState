@@ -201,6 +201,28 @@ namespace EntityCache.SqlServerPersistence
 
             return count;
         }
+        public override async Task<ContractBussines> GetAsync(Guid guid)
+        {
+            var list = new ContractBussines();
+            try
+            {
+                using (var cn = new SqlConnection(_connectionString))
+                {
+                    var cmd = new SqlCommand("sp_Contract_GetByGuid", cn) { CommandType = CommandType.StoredProcedure };
+                    cmd.Parameters.AddWithValue("@guid", guid);
+                    await cn.OpenAsync();
+                    var dr = await cmd.ExecuteReaderAsync();
+                    if (dr.Read()) list = LoadData(dr);
+                    cn.Close();
+                }
+            }
+            catch (Exception exception)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(exception);
+            }
+
+            return list;
+        }
         public async Task<int> DischargeDbCount(DateTime d1, DateTime d2)
         {
             var count = 0;
@@ -238,6 +260,47 @@ namespace EntityCache.SqlServerPersistence
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
                 return null;
             }
+        }
+        private ContractBussines LoadData(SqlDataReader dr)
+        {
+            var res = new ContractBussines();
+            try
+            {
+                res.Guid = (Guid) dr["Guid"];
+                res.BankName = dr["BankName"].ToString();
+                res.BazaryabGuid = (Guid) dr["BazaryabGuid"];
+                res.Modified = (DateTime) dr["Modified"];
+                res.Status = (bool) dr["Status"];
+                res.Code = (long) dr["Code"];
+                res.IsTemp = (bool) dr["IsTemp"];
+                res.FirstSideGuid = (Guid) dr["FirstSideGuid"];
+                res.SecondSideGuid = (Guid) dr["SecondSideGuid"];
+                res.Term = (int) dr["Term"];
+                res.FromDate = (DateTime) dr["FromDate"];
+                res.TotalPrice = (decimal) dr["TotalPrice"];
+                res.MinorPrice = (decimal) dr["MinorPrice"];
+                res.CheckNo = dr["CheckNo"].ToString();
+                res.Shobe = dr["Shobe"].ToString();
+                res.SarResid = dr["SarResid"].ToString();
+                res.DischargeDate = (DateTime) dr["DischargeDate"];
+                res.SetDocDate = (DateTime?) dr["SetDocDate"];
+                res.SetDocPlace = dr["SetDocPlace"].ToString();
+                res.SarQofli = (decimal) dr["SarQofli"];
+                res.Delay = (decimal) dr["Delay"];
+                res.Description = dr["Description"].ToString();
+                res.UserGuid = (Guid) dr["UserGuid"];
+                res.BuildingGuid = (Guid) dr["BuildingGuid"];
+                res.Type = (EnRequestType) dr["Type"];
+                res.DateM = (DateTime) dr["DateM"];
+                res.BazaryabPrice = (decimal) dr["BazaryabPrice"];
+                res.Finance = ContractFinanceBussines.Get(res.Guid, true);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+
+            return res;
         }
     }
 }

@@ -1302,3 +1302,147 @@ BEGIN
 			,@part
 			,@desc)
 END
+GO
+-- ==========================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_BuildingRelatedOptions_GetAll]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_BuildingRelatedOptions_GetAll]	As Begin print 11 end')
+GO
+Alter PROCEDURE sp_BuildingRelatedOptions_GetAll	
+	@buGuid uniqueidentifier,
+	@st bit
+AS
+BEGIN
+	Select * From [dbo].[BuildingRelatedOptions]
+	where BuildinGuid=@buGuid
+	and Status=@st
+END
+GO
+-- ==========================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_BuildingRequestRegion_GetAll]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_BuildingRequestRegion_GetAll]	As Begin print 11 end')
+GO
+Alter PROCEDURE sp_BuildingRequestRegion_GetAll
+	@reqGuid uniqueidentifier,
+	@st bit
+AS
+BEGIN
+	Select * From [dbo].[BuildingRequestRegions]
+	where RequestGuid=@reqGuid
+	and Status=@st
+END
+GO
+-- ==========================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_ContractFinance_Get]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_ContractFinance_Get]	As Begin print 11 end')
+GO
+Alter PROCEDURE sp_ContractFinance_Get
+	@conGuid uniqueidentifier,
+	@st bit
+AS
+BEGIN
+	Select * From [dbo].[ContractFinances]
+	where ConGuid=@conGuid
+	and Status=@st
+END
+GO
+-- ==========================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_PhoneBook_GetAll]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_PhoneBook_GetAll]	As Begin print 11 end')
+GO
+Alter PROCEDURE sp_PhoneBook_GetAll
+	@pGuid uniqueidentifier,
+	@st bit
+AS
+BEGIN
+	Select * From [dbo].[PhoneBooks]
+	where ParentGuid=@pGuid
+	and Status=@st
+END
+GO
+-- ==========================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_People_BankAccount_Get]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_People_BankAccount_Get]	As Begin print 11 end')
+GO
+Alter PROCEDURE sp_People_BankAccount_Get
+	@pGuid uniqueidentifier,
+	@st bit
+AS
+BEGIN
+	Select * From [dbo].[PeopleBankAccounts]
+	where ParentGuid=@pGuid
+	and Status=@st
+END
+GO
+-- ==========================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_BuildingGallery_GetAll]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_BuildingGallery_GetAll]	As Begin print 11 end')
+GO
+Alter PROCEDURE sp_BuildingGallery_GetAll
+	@buGuid uniqueidentifier,
+	@st bit
+AS
+BEGIN
+	Select * From [dbo].[BuildingGalleries]
+	where BuildingGuid=@buGuid
+	and Status=@st
+END
+GO
+-- ==========================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Setting_Get]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Setting_Get]	As Begin print 11 end')
+GO
+Alter PROCEDURE sp_Setting_Get
+	@name nvarchar(100)
+AS
+BEGIN
+	Select * From [dbo].[Settings]
+	where Name=@name
+END
+GO
+-- ==========================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_BuildingOptions_GetByName]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_BuildingOptions_GetByName]	As Begin print 11 end')
+GO
+Alter PROCEDURE sp_BuildingOptions_GetByName
+	@name nvarchar(100)
+AS
+BEGIN
+	Select * From [dbo].[BuildingOptions]
+	where Name=@name
+END
+GO
+-- ==========================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_BuildingOptions_GetByGuid]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_BuildingOptions_GetByGuid]	As Begin print 11 end')
+GO
+Alter PROCEDURE sp_BuildingOptions_GetByGuid
+	@guid uniqueidentifier
+AS
+BEGIN
+	Select * From [dbo].[BuildingOptions]
+	where Guid=@guid
+END
+GO
+-- ==========================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Contract_GetByGuid]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Contract_GetByGuid]	As Begin print 11 end')
+GO
+Alter PROCEDURE sp_Contract_GetByGuid
+	@guid uniqueidentifier
+AS
+BEGIN
+	Select * From [dbo].[Contracts]
+	where Guid=@guid
+END
+GO
+-- ==========================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Buildings_GetByGuid]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Buildings_GetByGuid]	As Begin print 11 end')
+GO
+Alter PROCEDURE sp_Buildings_GetByGuid
+	@guid uniqueidentifier
+AS
+BEGIN
+	Select * From [dbo].[Buildings]
+	where Guid=@guid
+END

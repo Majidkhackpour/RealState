@@ -30,7 +30,7 @@ namespace EntityCache.SqlServerPersistence
             _connectionString = connectionString;
         }
 
-        public async Task<T> GetAsync(Guid guid)
+        public virtual async Task<T> GetAsync(Guid guid)
         {
             try
             {

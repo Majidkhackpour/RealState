@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using EntityCache.Bussines;
 using EntityCache.Core;
+using Nito.AsyncEx;
 using Persistence.Entities;
 using Persistence.Model;
 using Services;
@@ -121,6 +122,103 @@ namespace EntityCache.SqlServerPersistence
             }
 
             return count;
+        }
+        public override async Task<BuildingBussines> GetAsync(Guid guid)
+        {
+            var list = new BuildingBussines();
+            try
+            {
+                using (var cn = new SqlConnection(_connectionString))
+                {
+                    var cmd = new SqlCommand("sp_Buildings_GetByGuid", cn) { CommandType = CommandType.StoredProcedure };
+                    cmd.Parameters.AddWithValue("@guid", guid);
+                    await cn.OpenAsync();
+                    var dr = await cmd.ExecuteReaderAsync();
+                    if (dr.Read()) list = LoadData(dr);
+                    cn.Close();
+                }
+            }
+            catch (Exception exception)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(exception);
+            }
+
+            return list;
+        }
+        private BuildingBussines LoadData(SqlDataReader dr)
+        {
+            var res = new BuildingBussines();
+            try
+            {
+                res.Guid = (Guid)dr["Guid"];
+                res.OwnerGuid = (Guid)dr["OwnerGuid"];
+                res.SellPrice = (decimal)dr["SellPrice"];
+                res.Modified = (DateTime)dr["Modified"];
+                res.Status = (bool)dr["Status"];
+                res.Code = dr["Code"].ToString();
+                res.VamPrice = (decimal)dr["VamPrice"];
+                res.QestPrice = (decimal)dr["QestPrice"];
+                res.Dang = (int)dr["Dang"];
+                res.DocumentType = (Guid)dr["DocumentType"];
+                var tr = dr["Tarakom"].ToString().ParseToShort();
+                res.Tarakom = (EnTarakom?)tr;
+                res.RahnPrice1 = (decimal)dr["RahnPrice1"];
+                res.RahnPrice2 = (decimal)dr["RahnPrice2"];
+                res.EjarePrice1 = (decimal)dr["EjarePrice1"];
+                res.EjarePrice2 = (decimal)dr["EjarePrice2"];
+                res.RentalAutorityGuid = (Guid?)dr["RentalAutorityGuid"];
+                res.IsShortTime = (bool)dr["IsShortTime"];
+                res.IsOwnerHere = (bool)dr["IsOwnerHere"];
+                res.PishTotalPrice = (decimal)dr["PishTotalPrice"];
+                res.PishPrice = (decimal)dr["PishPrice"];
+                res.DeliveryDate = (DateTime?)dr["DeliveryDate"];
+                res.PishDesc = dr["PishDesc"].ToString();
+                res.MoavezeDesc = dr["MoavezeDesc"].ToString();
+                res.MosharekatDesc = dr["MosharekatDesc"].ToString();
+                res.UserGuid = (Guid)dr["UserGuid"];
+                res.Masahat = (int)dr["Masahat"];
+                res.ZirBana = (int)dr["ZirBana"];
+                res.CityGuid = (Guid)dr["CityGuid"];
+                res.RegionGuid = (Guid)dr["RegionGuid"];
+                res.Address = dr["Address"].ToString();
+                res.BuildingConditionGuid = (Guid)dr["BuildingConditionGuid"];
+                res.Side = (EnBuildingSide)dr["Side"];
+                res.BuildingTypeGuid = (Guid)dr["BuildingTypeGuid"];
+                res.ShortDesc = dr["ShortDesc"].ToString();
+                res.BuildingAccountTypeGuid = (Guid)dr["BuildingAccountTypeGuid"];
+                res.MetrazhTejari = (float)dr["MetrazhTejari"];
+                res.BuildingViewGuid = (Guid)dr["BuildingViewGuid"];
+                res.FloorCoverGuid = (Guid)dr["FloorCoverGuid"];
+                res.KitchenServiceGuid = (Guid)dr["KitchenServiceGuid"];
+                res.Water = (EnKhadamati)dr["Water"];
+                res.Barq = (EnKhadamati)dr["Barq"];
+                res.Gas = (EnKhadamati)dr["Gas"];
+                res.Tell = (EnKhadamati)dr["Tell"];
+                res.TedadTabaqe = (int)dr["TedadTabaqe"];
+                res.TabaqeNo = (int)dr["TabaqeNo"];
+                res.VahedPerTabaqe = (int)dr["VahedPerTabaqe"];
+                res.MetrazhKouche = (float)dr["MetrazhKouche"];
+                res.ErtefaSaqf = (float)dr["ErtefaSaqf"];
+                res.Hashie = (float)dr["Hashie"];
+                res.SaleSakht = dr["SaleSakht"].ToString();
+                res.DateParvane = dr["DateParvane"].ToString();
+                res.ParvaneSerial = dr["ParvaneSerial"].ToString();
+                res.BonBast = (bool)dr["BonBast"];
+                res.MamarJoda = (bool)dr["MamarJoda"];
+                res.RoomCount = (int)dr["RoomCount"];
+                res.CreateDate = (DateTime)dr["CreateDate"];
+                res.Image = dr["Image"].ToString();
+                res.Priority = (EnBuildingPriority)dr["Priority"];
+                res.IsArchive = (bool)dr["IsArchive"];
+                res.GalleryList = AsyncContext.Run(() => BuildingGalleryBussines.GetAllAsync(res.Guid, true));
+                res.OptionList = BuildingRelatedOptionsBussines.GetAll(res.Guid, true);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+
+            return res;
         }
     }
 }
