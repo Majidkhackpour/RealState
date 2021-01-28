@@ -1446,3 +1446,135 @@ BEGIN
 	Select * From [dbo].[Buildings]
 	where Guid=@guid
 END
+GO
+-- ==========================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_States_Get]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_States_Get]	As Begin print 11 end')
+GO
+Alter PROCEDURE sp_States_Get
+	@guid uniqueidentifier
+AS
+BEGIN
+	Select * From States
+	Where Guid=@guid
+END
+GO
+-- ==========================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Cities_Get]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Cities_Get]	As Begin print 11 end')
+GO
+Alter PROCEDURE sp_Cities_Get
+	@guid uniqueidentifier
+AS
+BEGIN
+	Select * From Cities
+	Where Guid=@guid
+END
+GO
+-- ==========================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Regions_Get]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Regions_Get]	As Begin print 11 end')
+GO
+Alter PROCEDURE sp_Regions_Get
+	@guid uniqueidentifier
+AS
+BEGIN
+	Select * From Regions
+	Where Guid=@guid
+END
+GO
+-- ==========================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_User_Get]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_User_Get]	As Begin print 11 end')
+GO
+Alter PROCEDURE sp_User_Get
+	@guid uniqueidentifier
+AS
+BEGIN
+	Select * From Users
+	Where Guid=@guid
+END
+GO
+-- ==========================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_PeopleGroup_Get]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_PeopleGroup_Get]	As Begin print 11 end')
+GO
+Alter PROCEDURE sp_PeopleGroup_Get
+	@guid uniqueidentifier
+AS
+BEGIN
+	Select * From Users
+	Where Guid=@guid
+END
+GO
+-- ==========================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Hazine_Get]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Hazine_Get]	As Begin print 11 end')
+GO
+Alter PROCEDURE sp_Hazine_Get
+	@guid uniqueidentifier
+AS
+BEGIN
+	Select * From Hazines
+	Where Guid=@guid
+END
+GO
+-- ==========================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_BuildingAccountType_Get]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_BuildingAccountType_Get]	As Begin print 11 end')
+GO
+Alter PROCEDURE sp_BuildingAccountType_Get
+	@guid uniqueidentifier
+AS
+BEGIN
+	Select * From BuildingAccountTypes
+	Where Guid=@guid
+END
+GO
+-- ==========================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_BuildingCondition_Get]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_BuildingCondition_Get]	As Begin print 11 end')
+GO
+Alter PROCEDURE sp_BuildingCondition_Get
+	@guid uniqueidentifier
+AS
+BEGIN
+	Select * From BuildingConditions
+	Where Guid=@guid
+END
+GO
+-- ==========================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_BuildingType_Get]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_BuildingType_Get]	As Begin print 11 end')
+GO
+Alter PROCEDURE sp_BuildingType_Get
+	@guid uniqueidentifier
+AS
+BEGIN
+	Select * From BuildingTypes
+	Where Guid=@guid
+END
+GO
+-- ==========================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_BuildingView_Get]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_BuildingView_Get]	As Begin print 11 end')
+GO
+Alter PROCEDURE sp_BuildingView_Get
+	@guid uniqueidentifier
+AS
+BEGIN
+	Select * From BuildingViews
+	Where Guid=@guid
+END
+GO
+-- ==========================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_DocumentType_Get]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_DocumentType_Get]	As Begin print 11 end')
+GO
+Alter PROCEDURE sp_DocumentType_Get
+	@guid uniqueidentifier
+AS
+BEGIN
+	Select * From DocumentTypes
+	Where Guid=@guid
+END

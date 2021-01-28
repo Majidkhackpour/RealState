@@ -242,6 +242,7 @@ namespace RealState
                 ErrorHandler.AddHandler(Assembly.GetExecutingAssembly().GetName().Version.ToString(), ENSource.Building,
                     Application.StartupPath, clsRegistery.GetRegistery("U1001ML"));
                 ClsCache.Init(AppSettings.DefaultConnectionString, clsGlobalSetting.HardDriveSerial);
+                Logger.init(Application.StartupPath, "BuidlingEventLog.txt", true);
                 ErrorManager.Init(ENSource.Building, null);
             }
             catch (Exception ex)
