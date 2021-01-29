@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 using EntityCache.Assistence;
@@ -35,51 +37,72 @@ namespace EntityCache.SqlServerPersistence
                 return false;
             }
         }
-
         public async Task<UserBussines> GetAsync(string userName)
         {
+            var obj = new UserBussines();
             try
             {
-                var acc = db.Users.AsNoTracking().FirstOrDefault(q => q.UserName == userName);
-                return Mappings.Default.Map<UserBussines>(acc);
+                using (var cn = new SqlConnection(_connectionString))
+                {
+                    var cmd = new SqlCommand("sp_User_GetByUserName", cn) { CommandType = CommandType.StoredProcedure };
+                    cmd.Parameters.AddWithValue("@uName", userName);
+                    await cn.OpenAsync();
+                    var dr = await cmd.ExecuteReaderAsync();
+                    if (dr.Read()) obj = LoadData(dr);
+                    cn.Close();
+                }
             }
             catch (Exception exception)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(exception);
-                return null;
             }
-        }
 
+            return obj;
+        }
         public async Task<UserBussines> GetByEmailAsync(string email)
         {
+            var obj = new UserBussines();
             try
             {
-                var acc = db.Users.AsNoTracking().FirstOrDefault(q =>
-                    !string.IsNullOrEmpty(q.Email) && q.Email == email.Trim() && q.Status);
-                return Mappings.Default.Map<UserBussines>(acc);
+                using (var cn = new SqlConnection(_connectionString))
+                {
+                    var cmd = new SqlCommand("sp_User_GetByEmail", cn) { CommandType = CommandType.StoredProcedure };
+                    cmd.Parameters.AddWithValue("@email", email);
+                    await cn.OpenAsync();
+                    var dr = await cmd.ExecuteReaderAsync();
+                    if (dr.Read()) obj = LoadData(dr);
+                    cn.Close();
+                }
             }
             catch (Exception exception)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(exception);
-                return null;
             }
-        }
 
+            return obj;
+        }
         public async Task<UserBussines> GetByMobilAsync(string mobile)
         {
+            var obj = new UserBussines();
             try
             {
-                var acc = db.Users.AsNoTracking().FirstOrDefault(q =>
-                    !string.IsNullOrEmpty(q.Mobile) && q.Mobile == mobile.Trim() && q.Status);
-                return Mappings.Default.Map<UserBussines>(acc);
+                using (var cn = new SqlConnection(_connectionString))
+                {
+                    var cmd = new SqlCommand("sp_User_GetByMobile", cn) { CommandType = CommandType.StoredProcedure };
+                    cmd.Parameters.AddWithValue("@mobile", mobile);
+                    await cn.OpenAsync();
+                    var dr = await cmd.ExecuteReaderAsync();
+                    if (dr.Read()) obj = LoadData(dr);
+                    cn.Close();
+                }
             }
             catch (Exception exception)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(exception);
-                return null;
             }
-        }
 
+            return obj;
+        }
         public async Task<List<UserBussines>> GetAllAsync(EnSecurityQuestion question, string answer)
         {
             try
@@ -94,6 +117,54 @@ namespace EntityCache.SqlServerPersistence
                 WebErrorLog.ErrorInstence.StartErrorLog(exception);
                 return null;
             }
+        }
+        public override async Task<UserBussines> GetAsync(Guid guid)
+        {
+            var obj = new UserBussines();
+            try
+            {
+                using (var cn = new SqlConnection(_connectionString))
+                {
+                    var cmd = new SqlCommand("sp_User_Get", cn) { CommandType = CommandType.StoredProcedure };
+                    cmd.Parameters.AddWithValue("@guid", guid);
+                    await cn.OpenAsync();
+                    var dr = await cmd.ExecuteReaderAsync();
+                    if (dr.Read()) obj = LoadData(dr);
+                    cn.Close();
+                }
+            }
+            catch (Exception exception)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(exception);
+            }
+
+            return obj;
+        }
+        private UserBussines LoadData(SqlDataReader dr)
+        {
+            var item = new UserBussines();
+            try
+            {
+                item.Guid = (Guid)dr["Guid"];
+                item.Modified = (DateTime)dr["Modified"];
+                item.Status = (bool)dr["Status"];
+                item.Name = dr["Name"].ToString();
+                item.UserName = dr["UserName"].ToString();
+                item.Password = dr["Password"].ToString();
+                item.Access = dr["Access"].ToString();
+                item.SecurityQuestion = (EnSecurityQuestion)dr["SecurityQuestion"];
+                item.AnswerQuestion = dr["AnswerQuestion"].ToString();
+                item.Email = dr["Email"].ToString();
+                item.Mobile = dr["Mobile"].ToString();
+                item.Account = (decimal) dr["Account"];
+                item.AccountFirst = (decimal) dr["AccountFirst"];
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+
+            return item;
         }
     }
 }

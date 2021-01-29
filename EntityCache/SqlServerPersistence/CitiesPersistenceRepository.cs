@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
@@ -36,7 +37,6 @@ namespace EntityCache.SqlServerPersistence
                 return false;
             }
         }
-
         public async Task<List<CitiesBussines>> GetAllAsync(Guid stateGuid)
         {
             try
@@ -52,7 +52,6 @@ namespace EntityCache.SqlServerPersistence
                 return null;
             }
         }
-
         public async Task<List<CitiesBussines>> GetAllAsyncBySp()
         {
             try
@@ -66,6 +65,46 @@ namespace EntityCache.SqlServerPersistence
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
                 return null;
             }
+        }
+        public override async Task<CitiesBussines> GetAsync(Guid guid)
+        {
+            var obj = new CitiesBussines();
+            try
+            {
+                using (var cn = new SqlConnection(_connectionString))
+                {
+                    var cmd = new SqlCommand("sp_Cities_Get", cn) { CommandType = CommandType.StoredProcedure };
+                    cmd.Parameters.AddWithValue("@guid", guid);
+                    await cn.OpenAsync();
+                    var dr = await cmd.ExecuteReaderAsync();
+                    if (dr.Read()) obj = LoadData(dr);
+                    cn.Close();
+                }
+            }
+            catch (Exception exception)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(exception);
+            }
+
+            return obj;
+        }
+        private CitiesBussines LoadData(SqlDataReader dr)
+        {
+            var item = new CitiesBussines();
+            try
+            {
+                item.Guid = (Guid)dr["Guid"];
+                item.Modified = (DateTime)dr["Modified"];
+                item.Status = (bool)dr["Status"];
+                item.Name = dr["Name"].ToString();
+                item.StateGuid = (Guid)dr["StateGuid"];
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+
+            return item;
         }
     }
 }

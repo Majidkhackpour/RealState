@@ -1503,7 +1503,7 @@ Alter PROCEDURE sp_PeopleGroup_Get
 	@guid uniqueidentifier
 AS
 BEGIN
-	Select * From Users
+	Select * From PeopleGroups
 	Where Guid=@guid
 END
 GO
@@ -1577,4 +1577,160 @@ AS
 BEGIN
 	Select * From DocumentTypes
 	Where Guid=@guid
+END
+GO
+-- ==========================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_FloorCover_Get]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_FloorCover_Get]	As Begin print 11 end')
+GO
+Alter PROCEDURE sp_FloorCover_Get
+	@guid uniqueidentifier
+AS
+BEGIN
+	SELECT * from FloorCovers
+	where Guid=@guid
+END
+GO
+-- ==========================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_KitchenService_Get]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_KitchenService_Get]	As Begin print 11 end')
+GO
+Alter PROCEDURE sp_KitchenService_Get
+	@guid uniqueidentifier
+AS
+BEGIN
+	SELECT * from KitchenServices
+	where Guid=@guid
+END
+GO
+-- ==========================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_RentalAuthority_Get]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_RentalAuthority_Get]	As Begin print 11 end')
+GO
+Alter PROCEDURE sp_RentalAuthority_Get
+	@guid uniqueidentifier
+AS
+BEGIN
+	SELECT * from RentalAuthorities
+	where Guid=@guid
+END
+GO
+-- ==========================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_BuildingOption_Get]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_BuildingOption_Get]	As Begin print 11 end')
+GO
+Alter PROCEDURE sp_BuildingOption_Get
+	@guid uniqueidentifier
+AS
+BEGIN
+	SELECT * from BuildingOptions
+	where Guid=@guid
+END
+GO
+-- ==========================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_BuildingRequest_Get]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_BuildingRequest_Get]	As Begin print 11 end')
+GO
+Alter PROCEDURE sp_BuildingRequest_Get
+	@guid uniqueidentifier
+AS
+BEGIN
+	SELECT * from BuildingRequests
+	where Guid=@guid
+END
+GO
+-- ==========================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Reception_Get]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Reception_Get]	As Begin print 11 end')
+GO
+Alter PROCEDURE sp_Reception_Get
+	@guid uniqueidentifier
+AS
+BEGIN
+	SELECT * from Receptions
+	where Guid=@guid
+END
+GO
+-- ==========================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Pardakht_Get]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Pardakht_Get]	As Begin print 11 end')
+GO
+Alter PROCEDURE sp_Pardakht_Get
+	@guid uniqueidentifier
+AS
+BEGIN
+	SELECT * from Pardakhts
+	where Guid=@guid
+END
+GO
+-- ==========================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_GardeshHesab_Get]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_GardeshHesab_Get]	As Begin print 11 end')
+GO
+Alter PROCEDURE sp_GardeshHesab_Get
+	@guid uniqueidentifier
+AS
+BEGIN
+	SELECT * from GardeshHesabs
+	where Guid=@guid
+END
+GO
+-- ==========================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Regions_GetByName]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Regions_GetByName]	As Begin print 11 end')
+GO
+Alter PROCEDURE sp_Regions_GetByName
+	@name nvarchar(200)
+AS
+BEGIN
+	Select * From Regions
+	Where Name=@name
+END
+GO
+-- ==========================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_User_GetByUserName]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_User_GetByUserName]	As Begin print 11 end')
+GO
+Alter PROCEDURE sp_User_GetByUserName
+	@uName nvarchar(200)
+AS
+BEGIN
+	Select * From Users
+	Where UserName=@uName
+END
+GO
+-- ==========================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_User_GetByEmail]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_User_GetByEmail]	As Begin print 11 end')
+GO
+Alter PROCEDURE sp_User_GetByEmail
+	@email nvarchar(50)
+AS
+BEGIN
+	Select * From Users
+	Where Email=@email
+END
+GO
+-- ==========================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_User_GetByMobile]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_User_GetByMobile]	As Begin print 11 end')
+GO
+Alter PROCEDURE sp_User_GetByMobile
+	@mobile nvarchar(50)
+AS
+BEGIN
+	Select * From Users
+	Where Mobile=@mobile
+END
+GO
+-- ==========================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_PeopleGroup_GetByName]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_PeopleGroup_GetByName]	As Begin print 11 end')
+GO
+Alter PROCEDURE sp_PeopleGroup_GetByName
+	@neme nvarchar(250)
+AS
+BEGIN
+	Select * From PeopleGroups
+	Where Name=@name
 END

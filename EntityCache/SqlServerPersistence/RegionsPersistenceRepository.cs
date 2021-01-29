@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
@@ -37,7 +38,6 @@ namespace EntityCache.SqlServerPersistence
                 return null;
             }
         }
-
         public async Task<List<RegionsBussines>> GetAllAsyncBySp()
         {
             try
@@ -52,21 +52,67 @@ namespace EntityCache.SqlServerPersistence
                 return null;
             }
         }
-
         public async Task<RegionsBussines> GetAsync(string name)
         {
+            var obj = new RegionsBussines();
             try
             {
-                var acc = db.Regions.AsNoTracking()
-                    .FirstOrDefault(q => q.Name == name);
-
-                return Mappings.Default.Map<RegionsBussines>(acc);
+                using (var cn = new SqlConnection(_connectionString))
+                {
+                    var cmd = new SqlCommand("sp_Regions_GetByName", cn) { CommandType = CommandType.StoredProcedure };
+                    cmd.Parameters.AddWithValue("@name", name);
+                    await cn.OpenAsync();
+                    var dr = await cmd.ExecuteReaderAsync();
+                    if (dr.Read()) obj = LoadData(dr);
+                    cn.Close();
+                }
             }
             catch (Exception exception)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(exception);
-                return null;
             }
+
+            return obj;
+        }
+        public override async Task<RegionsBussines> GetAsync(Guid guid)
+        {
+            var obj = new RegionsBussines();
+            try
+            {
+                using (var cn = new SqlConnection(_connectionString))
+                {
+                    var cmd = new SqlCommand("sp_Regions_Get", cn) { CommandType = CommandType.StoredProcedure };
+                    cmd.Parameters.AddWithValue("@guid", guid);
+                    await cn.OpenAsync();
+                    var dr = await cmd.ExecuteReaderAsync();
+                    if (dr.Read()) obj = LoadData(dr);
+                    cn.Close();
+                }
+            }
+            catch (Exception exception)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(exception);
+            }
+
+            return obj;
+        }
+        private RegionsBussines LoadData(SqlDataReader dr)
+        {
+            var item = new RegionsBussines();
+            try
+            {
+                item.Guid = (Guid)dr["Guid"];
+                item.Modified = (DateTime)dr["Modified"];
+                item.Status = (bool)dr["Status"];
+                item.Name = dr["Name"].ToString();
+                item.CityGuid = (Guid)dr["CityGuid"];
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+
+            return item;
         }
     }
 }
