@@ -84,7 +84,7 @@ namespace EntityCache.SqlServerPersistence
                 using (var cn = new SqlConnection(_connectionString))
                 {
                     var cmd = new SqlCommand("sp_Reception_ChangeStatus", cn)
-                        { CommandType = CommandType.StoredProcedure };
+                    { CommandType = CommandType.StoredProcedure };
                     cmd.Parameters.AddWithValue("@guid", item.Guid);
                     cmd.Parameters.AddWithValue("@hesabGuid", item.Receptor);
                     cmd.Parameters.AddWithValue("@st", !item.Status);
@@ -137,6 +137,54 @@ namespace EntityCache.SqlServerPersistence
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
                 return null;
             }
+        }
+        public override async Task<ReceptionBussines> GetAsync(Guid guid)
+        {
+            var list = new ReceptionBussines();
+            try
+            {
+                using (var cn = new SqlConnection(_connectionString))
+                {
+                    var cmd = new SqlCommand("sp_Reception_Get", cn) { CommandType = CommandType.StoredProcedure };
+                    cmd.Parameters.AddWithValue("@guid", guid);
+                    await cn.OpenAsync();
+                    var dr = await cmd.ExecuteReaderAsync();
+                    if (dr.Read()) list = LoadData(dr);
+                    cn.Close();
+                }
+            }
+            catch (Exception exception)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(exception);
+            }
+
+            return list;
+        }
+        private ReceptionBussines LoadData(SqlDataReader dr)
+        {
+            var res = new ReceptionBussines();
+            try
+            {
+                res.Guid = (Guid)dr["Guid"];
+                res.Modified = (DateTime)dr["Modified"];
+                res.Status = (bool)dr["Status"];
+                res.Receptor = (Guid)dr["Receptor"];
+                res.CreateDate = (DateTime)dr["CreateDate"];
+                res.NaqdPrice = (decimal)dr["NaqdPrice"];
+                res.BankPrice = (decimal)dr["BankPrice"];
+                res.FishNo = dr["FishNo"].ToString();
+                res.Check = (decimal)dr["Check"];
+                res.CheckNo = dr["CheckNo"].ToString();
+                res.SarResid = dr["SarResid"].ToString();
+                res.BankName = dr["BankName"].ToString();
+                res.Description = dr["Description"].ToString();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+
+            return res;
         }
     }
 }

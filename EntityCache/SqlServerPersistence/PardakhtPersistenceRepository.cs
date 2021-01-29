@@ -138,5 +138,53 @@ namespace EntityCache.SqlServerPersistence
 
             return res;
         }
+        public override async Task<PardakhtBussines> GetAsync(Guid guid)
+        {
+            var list = new PardakhtBussines();
+            try
+            {
+                using (var cn = new SqlConnection(_connectionString))
+                {
+                    var cmd = new SqlCommand("sp_Pardakht_Get", cn) { CommandType = CommandType.StoredProcedure };
+                    cmd.Parameters.AddWithValue("@guid", guid);
+                    await cn.OpenAsync();
+                    var dr = await cmd.ExecuteReaderAsync();
+                    if (dr.Read()) list = LoadData(dr);
+                    cn.Close();
+                }
+            }
+            catch (Exception exception)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(exception);
+            }
+
+            return list;
+        }
+        private PardakhtBussines LoadData(SqlDataReader dr)
+        {
+            var res = new PardakhtBussines();
+            try
+            {
+                res.Guid = (Guid)dr["Guid"];
+                res.Modified = (DateTime)dr["Modified"];
+                res.Status = (bool)dr["Status"];
+                res.Payer = (Guid)dr["Payer"];
+                res.CreateDate = (DateTime)dr["CreateDate"];
+                res.NaqdPrice = (decimal)dr["NaqdPrice"];
+                res.BankPrice = (decimal)dr["BankPrice"];
+                res.FishNo = dr["FishNo"].ToString();
+                res.Check = (decimal)dr["Check"];
+                res.CheckNo = dr["CheckNo"].ToString();
+                res.SarResid = dr["SarResid"].ToString();
+                res.BankName = dr["BankName"].ToString();
+                res.Description = dr["Description"].ToString();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+
+            return res;
+        }
     }
 }

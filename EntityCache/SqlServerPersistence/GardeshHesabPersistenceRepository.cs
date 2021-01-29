@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 using EntityCache.Assistence;
@@ -21,7 +23,7 @@ namespace EntityCache.SqlServerPersistence
             _connectionString = connectionString;
         }
 
-        public async Task<GardeshHesabBussines> GetAsync(Guid hesabGuid, Guid parentGuid,bool status)
+        public async Task<GardeshHesabBussines> GetAsync(Guid hesabGuid, Guid parentGuid, bool status)
         {
             try
             {
@@ -36,7 +38,6 @@ namespace EntityCache.SqlServerPersistence
                 return null;
             }
         }
-
         public async Task<List<GardeshHesabBussines>> GetAllAsync(Guid hesabGuid)
         {
             try
@@ -52,7 +53,6 @@ namespace EntityCache.SqlServerPersistence
                 return null;
             }
         }
-
         public async Task<List<GardeshHesabBussines>> GetAllBySpAsync()
         {
             try
@@ -67,7 +67,6 @@ namespace EntityCache.SqlServerPersistence
                 return null;
             }
         }
-
         public async Task<List<GardeshHesabBussines>> GetAllAsync(Guid parentGuid, bool status)
         {
             try
@@ -82,6 +81,50 @@ namespace EntityCache.SqlServerPersistence
                 WebErrorLog.ErrorInstence.StartErrorLog(exception);
                 return null;
             }
+        }
+        public override async Task<GardeshHesabBussines> GetAsync(Guid guid)
+        {
+            var list = new GardeshHesabBussines();
+            try
+            {
+                using (var cn = new SqlConnection(_connectionString))
+                {
+                    var cmd = new SqlCommand("sp_GardeshHesab_Get", cn) { CommandType = CommandType.StoredProcedure };
+                    cmd.Parameters.AddWithValue("@guid", guid);
+                    await cn.OpenAsync();
+                    var dr = await cmd.ExecuteReaderAsync();
+                    if (dr.Read()) list = LoadData(dr);
+                    cn.Close();
+                }
+            }
+            catch (Exception exception)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(exception);
+            }
+
+            return list;
+        }
+        private GardeshHesabBussines LoadData(SqlDataReader dr)
+        {
+            var res = new GardeshHesabBussines();
+            try
+            {
+                res.Guid = (Guid)dr["Guid"];
+                res.Modified = (DateTime)dr["Modified"];
+                res.Status = (bool)dr["Status"];
+                res.PeopleGuid = (Guid)dr["PeopleGuid"];
+                res.Price = (decimal)dr["Price"];
+                res.Type = (EnAccountType)dr["Type"];
+                res.Babat = (EnAccountBabat)dr["Babat"];
+                res.ParentGuid = (Guid)dr["ParentGuid"];
+                res.Description = dr["Description"].ToString();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+
+            return res;
         }
     }
 }
