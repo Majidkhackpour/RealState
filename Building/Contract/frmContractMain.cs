@@ -810,5 +810,16 @@ namespace Building.Contract
         private void txtsDiscount_OnTextChanged() => SetSecondSallary();
         private void txtsAddedValue_OnTextChanged() => SetSecondSallary();
         private void txtBazaryabPercent_ValueChanged(object sender, EventArgs e) => SetBazaryabPrice();
+        private void btnHelp_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                new frmHelpCalculateCommition().ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
     }
 }
