@@ -222,6 +222,19 @@
     <Compile Include="Reception\frmShowReception.Designer.cs">
       <DependentUpon>frmShowReception.cs</DependentUpon>
     </Compile>
+    <Compile Include="Sood_Zian\clsSood_Zian.cs" />
+    <Compile Include="Sood_Zian\frmFilterSood_Zian.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sood_Zian\frmFilterSood_Zian.Designer.cs">
+      <DependentUpon>frmFilterSood_Zian.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Sood_Zian\frmSood_Zian.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sood_Zian\frmSood_Zian.Designer.cs">
+      <DependentUpon>frmSood_Zian.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -275,6 +288,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reception\frmShowReception.resx">
       <DependentUpon>frmShowReception.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sood_Zian\frmFilterSood_Zian.resx">
+      <DependentUpon>frmFilterSood_Zian.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sood_Zian\frmSood_Zian.resx">
+      <DependentUpon>frmSood_Zian.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

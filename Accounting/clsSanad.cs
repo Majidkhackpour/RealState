@@ -1,11 +1,10 @@
-﻿using System;
+﻿using Services;
+using Servicess.Interfaces.Building;
+using Settings;
+using System;
 using System.Data;
 using System.Data.SqlClient;
 using System.Threading.Tasks;
-using EntityCache.Bussines;
-using Services;
-using Servicess.Interfaces.Building;
-using Settings;
 
 namespace Accounting
 {
@@ -30,7 +29,7 @@ namespace Accounting
                 using (var cn = new SqlConnection(AppSettings.DefaultConnectionString))
                 {
                     var parent = Guid.NewGuid();
-                    var cmd = new SqlCommand("sp_Sanad_Save", cn) {CommandType = CommandType.StoredProcedure};
+                    var cmd = new SqlCommand("sp_Sanad_Save", cn) { CommandType = CommandType.StoredProcedure };
                     cmd.Parameters.AddWithValue("@parentGuid", parent);
                     cmd.Parameters.AddWithValue("@bedGuid", bedGuid);
                     cmd.Parameters.AddWithValue("@besGuid", besGuid);

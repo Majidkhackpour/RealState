@@ -49,83 +49,46 @@
             this.ribbonControl1 = new DevComponents.DotNetBar.RibbonControl();
             this.ribbonPanel6 = new DevComponents.DotNetBar.RibbonPanel();
             this.ribbonBar36 = new DevComponents.DotNetBar.RibbonBar();
-            this.btnAdvance = new DevComponents.DotNetBar.ButtonItem();
             this.ribbonBar26 = new DevComponents.DotNetBar.RibbonBar();
-            this.btnErtegha = new DevComponents.DotNetBar.ButtonItem();
             this.ribbonBar27 = new DevComponents.DotNetBar.RibbonBar();
-            this.btnBazsazi = new DevComponents.DotNetBar.ButtonItem();
             this.ribbonBar28 = new DevComponents.DotNetBar.RibbonBar();
-            this.btnRestore = new DevComponents.DotNetBar.ButtonItem();
             this.ribbonBar29 = new DevComponents.DotNetBar.RibbonBar();
-            this.btnBackUp = new DevComponents.DotNetBar.ButtonItem();
             this.ribbonBar30 = new DevComponents.DotNetBar.RibbonBar();
-            this.btnRobotPanel = new DevComponents.DotNetBar.ButtonItem();
             this.ribbonBar31 = new DevComponents.DotNetBar.RibbonBar();
-            this.btnSendSms = new DevComponents.DotNetBar.ButtonItem();
             this.ribbonBar32 = new DevComponents.DotNetBar.RibbonBar();
-            this.btnSmsPanel = new DevComponents.DotNetBar.ButtonItem();
             this.ribbonBar33 = new DevComponents.DotNetBar.RibbonBar();
-            this.btnNote = new DevComponents.DotNetBar.ButtonItem();
             this.ribbonBar34 = new DevComponents.DotNetBar.RibbonBar();
-            this.btnPhoneBook = new DevComponents.DotNetBar.ButtonItem();
             this.ribbonBar35 = new DevComponents.DotNetBar.RibbonBar();
-            this.btnSetting = new DevComponents.DotNetBar.ButtonItem();
             this.ribbonPanel2 = new DevComponents.DotNetBar.RibbonPanel();
             this.ribbonBar39 = new DevComponents.DotNetBar.RibbonBar();
-            this.btnBuildingArchive = new DevComponents.DotNetBar.ButtonItem();
             this.ribbonBar38 = new DevComponents.DotNetBar.RibbonBar();
-            this.buttonItem23 = new DevComponents.DotNetBar.ButtonItem();
             this.ribbonBar37 = new DevComponents.DotNetBar.RibbonBar();
-            this.btnBuildingFast = new DevComponents.DotNetBar.ButtonItem();
             this.ribbonBar13 = new DevComponents.DotNetBar.RibbonBar();
-            this.btnContract = new DevComponents.DotNetBar.ButtonItem();
             this.ribbonBar14 = new DevComponents.DotNetBar.RibbonBar();
-            this.btnBuildingRequest = new DevComponents.DotNetBar.ButtonItem();
             this.ribbonBar15 = new DevComponents.DotNetBar.RibbonBar();
-            this.btnBuildingAdvanceSearch = new DevComponents.DotNetBar.ButtonItem();
             this.ribbonBar16 = new DevComponents.DotNetBar.RibbonBar();
-            this.btnBuilding = new DevComponents.DotNetBar.ButtonItem();
             this.ribbonPanel1 = new DevComponents.DotNetBar.RibbonPanel();
             this.ribbonBar12 = new DevComponents.DotNetBar.RibbonBar();
-            this.btnBuildingType = new DevComponents.DotNetBar.ButtonItem();
             this.ribbonBar11 = new DevComponents.DotNetBar.RibbonBar();
-            this.btnBuildingCondition = new DevComponents.DotNetBar.ButtonItem();
             this.ribbonBar10 = new DevComponents.DotNetBar.RibbonBar();
-            this.btnBuildingView = new DevComponents.DotNetBar.ButtonItem();
             this.ribbonBar9 = new DevComponents.DotNetBar.RibbonBar();
-            this.btnRental = new DevComponents.DotNetBar.ButtonItem();
             this.ribbonBar8 = new DevComponents.DotNetBar.RibbonBar();
-            this.btnDocType = new DevComponents.DotNetBar.ButtonItem();
             this.ribbonBar7 = new DevComponents.DotNetBar.RibbonBar();
-            this.btnKitchenService = new DevComponents.DotNetBar.ButtonItem();
             this.ribbonBar6 = new DevComponents.DotNetBar.RibbonBar();
-            this.btnFloorCover = new DevComponents.DotNetBar.ButtonItem();
             this.ribbonBar5 = new DevComponents.DotNetBar.RibbonBar();
-            this.btnBuildingAccountType = new DevComponents.DotNetBar.ButtonItem();
             this.ribbonBar4 = new DevComponents.DotNetBar.RibbonBar();
-            this.btnBuildingOptions = new DevComponents.DotNetBar.ButtonItem();
             this.ribbonBar3 = new DevComponents.DotNetBar.RibbonBar();
-            this.btnRegion = new DevComponents.DotNetBar.ButtonItem();
             this.ribbonBar2 = new DevComponents.DotNetBar.RibbonBar();
-            this.btnCity = new DevComponents.DotNetBar.ButtonItem();
             this.ribbonBar1 = new DevComponents.DotNetBar.RibbonBar();
-            this.btnPeoples = new DevComponents.DotNetBar.ButtonItem();
             this.ribbonPanel4 = new DevComponents.DotNetBar.RibbonPanel();
             this.ribbonBar24 = new DevComponents.DotNetBar.RibbonBar();
-            this.btnSanad = new DevComponents.DotNetBar.ButtonItem();
             this.ribbonBar21 = new DevComponents.DotNetBar.RibbonBar();
-            this.btnPardakht = new DevComponents.DotNetBar.ButtonItem();
             this.ribbonBar22 = new DevComponents.DotNetBar.RibbonBar();
-            this.btnReception = new DevComponents.DotNetBar.ButtonItem();
             this.ribbonBar19 = new DevComponents.DotNetBar.RibbonBar();
-            this.btnAccountPerfomence = new DevComponents.DotNetBar.ButtonItem();
             this.ribbonBar20 = new DevComponents.DotNetBar.RibbonBar();
-            this.btnHazine = new DevComponents.DotNetBar.ButtonItem();
             this.ribbonPanel3 = new DevComponents.DotNetBar.RibbonPanel();
             this.ribbonBar17 = new DevComponents.DotNetBar.RibbonBar();
-            this.btnAccessLevel = new DevComponents.DotNetBar.ButtonItem();
             this.ribbonBar18 = new DevComponents.DotNetBar.RibbonBar();
-            this.btnUsers = new DevComponents.DotNetBar.ButtonItem();
             this.ribbonTabItem1 = new DevComponents.DotNetBar.RibbonTabItem();
             this.ribbonTabItem2 = new DevComponents.DotNetBar.RibbonTabItem();
             this.ribbonTabItem3 = new DevComponents.DotNetBar.RibbonTabItem();
@@ -153,11 +116,6 @@
             this.lblBirthday = new System.Windows.Forms.Label();
             this.lblNotes = new System.Windows.Forms.Label();
             this.label37 = new System.Windows.Forms.Label();
-            this.pictureBox9 = new System.Windows.Forms.PictureBox();
-            this.pictureBox13 = new System.Windows.Forms.PictureBox();
-            this.pictureBox15 = new System.Windows.Forms.PictureBox();
-            this.pictureBox16 = new System.Windows.Forms.PictureBox();
-            this.pictureBox17 = new System.Windows.Forms.PictureBox();
             this.grp = new DevComponents.DotNetBar.PanelEx();
             this.label10 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
@@ -173,6 +131,12 @@
             this.lblAllRahn = new System.Windows.Forms.Label();
             this.lblAllForoush = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
+            this.ribbonBar23 = new DevComponents.DotNetBar.RibbonBar();
+            this.pictureBox9 = new System.Windows.Forms.PictureBox();
+            this.pictureBox13 = new System.Windows.Forms.PictureBox();
+            this.pictureBox15 = new System.Windows.Forms.PictureBox();
+            this.pictureBox16 = new System.Windows.Forms.PictureBox();
+            this.pictureBox17 = new System.Windows.Forms.PictureBox();
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
             this.pictureBox8 = new System.Windows.Forms.PictureBox();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
@@ -181,6 +145,44 @@
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.btnTarazName = new DevComponents.DotNetBar.ButtonItem();
+            this.btnSanad = new DevComponents.DotNetBar.ButtonItem();
+            this.btnPardakht = new DevComponents.DotNetBar.ButtonItem();
+            this.btnReception = new DevComponents.DotNetBar.ButtonItem();
+            this.btnAccountPerfomence = new DevComponents.DotNetBar.ButtonItem();
+            this.btnHazine = new DevComponents.DotNetBar.ButtonItem();
+            this.btnBuildingType = new DevComponents.DotNetBar.ButtonItem();
+            this.btnBuildingCondition = new DevComponents.DotNetBar.ButtonItem();
+            this.btnBuildingView = new DevComponents.DotNetBar.ButtonItem();
+            this.btnRental = new DevComponents.DotNetBar.ButtonItem();
+            this.btnDocType = new DevComponents.DotNetBar.ButtonItem();
+            this.btnKitchenService = new DevComponents.DotNetBar.ButtonItem();
+            this.btnFloorCover = new DevComponents.DotNetBar.ButtonItem();
+            this.btnBuildingAccountType = new DevComponents.DotNetBar.ButtonItem();
+            this.btnBuildingOptions = new DevComponents.DotNetBar.ButtonItem();
+            this.btnRegion = new DevComponents.DotNetBar.ButtonItem();
+            this.btnCity = new DevComponents.DotNetBar.ButtonItem();
+            this.btnPeoples = new DevComponents.DotNetBar.ButtonItem();
+            this.btnAdvance = new DevComponents.DotNetBar.ButtonItem();
+            this.btnErtegha = new DevComponents.DotNetBar.ButtonItem();
+            this.btnBazsazi = new DevComponents.DotNetBar.ButtonItem();
+            this.btnRestore = new DevComponents.DotNetBar.ButtonItem();
+            this.btnBackUp = new DevComponents.DotNetBar.ButtonItem();
+            this.btnRobotPanel = new DevComponents.DotNetBar.ButtonItem();
+            this.btnSendSms = new DevComponents.DotNetBar.ButtonItem();
+            this.btnSmsPanel = new DevComponents.DotNetBar.ButtonItem();
+            this.btnNote = new DevComponents.DotNetBar.ButtonItem();
+            this.btnPhoneBook = new DevComponents.DotNetBar.ButtonItem();
+            this.btnSetting = new DevComponents.DotNetBar.ButtonItem();
+            this.btnBuildingArchive = new DevComponents.DotNetBar.ButtonItem();
+            this.buttonItem23 = new DevComponents.DotNetBar.ButtonItem();
+            this.btnBuildingFast = new DevComponents.DotNetBar.ButtonItem();
+            this.btnContract = new DevComponents.DotNetBar.ButtonItem();
+            this.btnBuildingRequest = new DevComponents.DotNetBar.ButtonItem();
+            this.btnBuildingAdvanceSearch = new DevComponents.DotNetBar.ButtonItem();
+            this.btnBuilding = new DevComponents.DotNetBar.ButtonItem();
+            this.btnAccessLevel = new DevComponents.DotNetBar.ButtonItem();
+            this.btnUsers = new DevComponents.DotNetBar.ButtonItem();
             this.buttonItem1 = new DevComponents.DotNetBar.ButtonItem();
             this.buttonItem2 = new DevComponents.DotNetBar.ButtonItem();
             this.buttonItem3 = new DevComponents.DotNetBar.ButtonItem();
@@ -212,12 +214,12 @@
             this.panel1.SuspendLayout();
             this.ExPanel.SuspendLayout();
             this.panelEx1.SuspendLayout();
+            this.grp.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox13)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox15)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox16)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox17)).BeginInit();
-            this.grp.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
@@ -408,10 +410,10 @@
             // 
             // 
             this.ribbonControl1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.ribbonControl1.Controls.Add(this.ribbonPanel4);
+            this.ribbonControl1.Controls.Add(this.ribbonPanel1);
             this.ribbonControl1.Controls.Add(this.ribbonPanel6);
             this.ribbonControl1.Controls.Add(this.ribbonPanel2);
-            this.ribbonControl1.Controls.Add(this.ribbonPanel1);
-            this.ribbonControl1.Controls.Add(this.ribbonPanel4);
             this.ribbonControl1.Controls.Add(this.ribbonPanel3);
             this.ribbonControl1.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.ribbonTabItem1,
@@ -510,18 +512,6 @@
             // 
             this.ribbonBar36.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             // 
-            // btnAdvance
-            // 
-            this.btnAdvance.Image = global::RealState.Properties.Resources._071;
-            this.btnAdvance.ImageListSizeSelection = DevComponents.DotNetBar.eButtonImageListSelection.Large;
-            this.btnAdvance.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-            this.btnAdvance.Name = "btnAdvance";
-            this.btnAdvance.PopupWidth = 500;
-            this.btnAdvance.Stretch = true;
-            this.btnAdvance.SubItemsExpandWidth = 14;
-            this.btnAdvance.Text = "مدیریت ویژه";
-            this.btnAdvance.Click += new System.EventHandler(this.btnAdvance_Click);
-            // 
             // ribbonBar26
             // 
             this.ribbonBar26.AutoOverflowEnabled = true;
@@ -552,18 +542,6 @@
             // 
             // 
             this.ribbonBar26.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // btnErtegha
-            // 
-            this.btnErtegha.Image = global::RealState.Properties.Resources._112;
-            this.btnErtegha.ImageListSizeSelection = DevComponents.DotNetBar.eButtonImageListSelection.Large;
-            this.btnErtegha.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-            this.btnErtegha.Name = "btnErtegha";
-            this.btnErtegha.PopupWidth = 500;
-            this.btnErtegha.Stretch = true;
-            this.btnErtegha.SubItemsExpandWidth = 14;
-            this.btnErtegha.Text = "ارتقا نسخه";
-            this.btnErtegha.Click += new System.EventHandler(this.btnErtegha_Click);
             // 
             // ribbonBar27
             // 
@@ -596,18 +574,6 @@
             // 
             this.ribbonBar27.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             // 
-            // btnBazsazi
-            // 
-            this.btnBazsazi.Image = global::RealState.Properties.Resources._46;
-            this.btnBazsazi.ImageListSizeSelection = DevComponents.DotNetBar.eButtonImageListSelection.Large;
-            this.btnBazsazi.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-            this.btnBazsazi.Name = "btnBazsazi";
-            this.btnBazsazi.PopupWidth = 500;
-            this.btnBazsazi.Stretch = true;
-            this.btnBazsazi.SubItemsExpandWidth = 14;
-            this.btnBazsazi.Text = "بازسازی اطلاعات";
-            this.btnBazsazi.Click += new System.EventHandler(this.btnBazsazi_Click);
-            // 
             // ribbonBar28
             // 
             this.ribbonBar28.AutoOverflowEnabled = true;
@@ -638,18 +604,6 @@
             // 
             // 
             this.ribbonBar28.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // btnRestore
-            // 
-            this.btnRestore.Image = global::RealState.Properties.Resources._62;
-            this.btnRestore.ImageListSizeSelection = DevComponents.DotNetBar.eButtonImageListSelection.Large;
-            this.btnRestore.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-            this.btnRestore.Name = "btnRestore";
-            this.btnRestore.PopupWidth = 500;
-            this.btnRestore.Stretch = true;
-            this.btnRestore.SubItemsExpandWidth = 14;
-            this.btnRestore.Text = "بازیابی اطلاعات";
-            this.btnRestore.Click += new System.EventHandler(this.btnRestore_Click);
             // 
             // ribbonBar29
             // 
@@ -682,18 +636,6 @@
             // 
             this.ribbonBar29.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             // 
-            // btnBackUp
-            // 
-            this.btnBackUp.Image = global::RealState.Properties.Resources._81;
-            this.btnBackUp.ImageListSizeSelection = DevComponents.DotNetBar.eButtonImageListSelection.Large;
-            this.btnBackUp.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-            this.btnBackUp.Name = "btnBackUp";
-            this.btnBackUp.PopupWidth = 500;
-            this.btnBackUp.Stretch = true;
-            this.btnBackUp.SubItemsExpandWidth = 14;
-            this.btnBackUp.Text = "پشتیبان گیری";
-            this.btnBackUp.Click += new System.EventHandler(this.btnBackUp_Click);
-            // 
             // ribbonBar30
             // 
             this.ribbonBar30.AutoOverflowEnabled = true;
@@ -724,18 +666,6 @@
             // 
             // 
             this.ribbonBar30.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // btnRobotPanel
-            // 
-            this.btnRobotPanel.Image = global::RealState.Properties.Resources._107;
-            this.btnRobotPanel.ImageListSizeSelection = DevComponents.DotNetBar.eButtonImageListSelection.Large;
-            this.btnRobotPanel.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-            this.btnRobotPanel.Name = "btnRobotPanel";
-            this.btnRobotPanel.PopupWidth = 500;
-            this.btnRobotPanel.Stretch = true;
-            this.btnRobotPanel.SubItemsExpandWidth = 14;
-            this.btnRobotPanel.Text = "آگهی تبلیغاتی";
-            this.btnRobotPanel.Click += new System.EventHandler(this.btnRobotPanel_Click);
             // 
             // ribbonBar31
             // 
@@ -768,18 +698,6 @@
             // 
             this.ribbonBar31.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             // 
-            // btnSendSms
-            // 
-            this.btnSendSms.Image = global::RealState.Properties.Resources._042;
-            this.btnSendSms.ImageListSizeSelection = DevComponents.DotNetBar.eButtonImageListSelection.Large;
-            this.btnSendSms.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-            this.btnSendSms.Name = "btnSendSms";
-            this.btnSendSms.PopupWidth = 500;
-            this.btnSendSms.Stretch = true;
-            this.btnSendSms.SubItemsExpandWidth = 14;
-            this.btnSendSms.Text = "ارسال پیامک";
-            this.btnSendSms.Click += new System.EventHandler(this.btnSendSms_Click);
-            // 
             // ribbonBar32
             // 
             this.ribbonBar32.AutoOverflowEnabled = true;
@@ -810,18 +728,6 @@
             // 
             // 
             this.ribbonBar32.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // btnSmsPanel
-            // 
-            this.btnSmsPanel.Image = global::RealState.Properties.Resources._88;
-            this.btnSmsPanel.ImageListSizeSelection = DevComponents.DotNetBar.eButtonImageListSelection.Large;
-            this.btnSmsPanel.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-            this.btnSmsPanel.Name = "btnSmsPanel";
-            this.btnSmsPanel.PopupWidth = 500;
-            this.btnSmsPanel.Stretch = true;
-            this.btnSmsPanel.SubItemsExpandWidth = 14;
-            this.btnSmsPanel.Text = "پنل پیامک";
-            this.btnSmsPanel.Click += new System.EventHandler(this.btnSmsPanel_Click);
             // 
             // ribbonBar33
             // 
@@ -854,18 +760,6 @@
             // 
             this.ribbonBar33.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             // 
-            // btnNote
-            // 
-            this.btnNote.Image = global::RealState.Properties.Resources._281;
-            this.btnNote.ImageListSizeSelection = DevComponents.DotNetBar.eButtonImageListSelection.Large;
-            this.btnNote.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-            this.btnNote.Name = "btnNote";
-            this.btnNote.PopupWidth = 500;
-            this.btnNote.Stretch = true;
-            this.btnNote.SubItemsExpandWidth = 14;
-            this.btnNote.Text = "یادداشت";
-            this.btnNote.Click += new System.EventHandler(this.btnNote_Click);
-            // 
             // ribbonBar34
             // 
             this.ribbonBar34.AutoOverflowEnabled = true;
@@ -897,18 +791,6 @@
             // 
             this.ribbonBar34.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             // 
-            // btnPhoneBook
-            // 
-            this.btnPhoneBook.Image = global::RealState.Properties.Resources._1111;
-            this.btnPhoneBook.ImageListSizeSelection = DevComponents.DotNetBar.eButtonImageListSelection.Large;
-            this.btnPhoneBook.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-            this.btnPhoneBook.Name = "btnPhoneBook";
-            this.btnPhoneBook.PopupWidth = 500;
-            this.btnPhoneBook.Stretch = true;
-            this.btnPhoneBook.SubItemsExpandWidth = 14;
-            this.btnPhoneBook.Text = "دفترچه تلفن";
-            this.btnPhoneBook.Click += new System.EventHandler(this.btnPhoneBook_Click);
-            // 
             // ribbonBar35
             // 
             this.ribbonBar35.AutoOverflowEnabled = true;
@@ -939,18 +821,6 @@
             // 
             // 
             this.ribbonBar35.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // btnSetting
-            // 
-            this.btnSetting.Image = global::RealState.Properties.Resources._02;
-            this.btnSetting.ImageListSizeSelection = DevComponents.DotNetBar.eButtonImageListSelection.Large;
-            this.btnSetting.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-            this.btnSetting.Name = "btnSetting";
-            this.btnSetting.PopupWidth = 500;
-            this.btnSetting.Stretch = true;
-            this.btnSetting.SubItemsExpandWidth = 14;
-            this.btnSetting.Text = "تنظیمات";
-            this.btnSetting.Click += new System.EventHandler(this.btnSetting_Click);
             // 
             // ribbonPanel2
             // 
@@ -1013,18 +883,6 @@
             // 
             this.ribbonBar39.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             // 
-            // btnBuildingArchive
-            // 
-            this.btnBuildingArchive.Image = global::RealState.Properties.Resources._052;
-            this.btnBuildingArchive.ImageListSizeSelection = DevComponents.DotNetBar.eButtonImageListSelection.Large;
-            this.btnBuildingArchive.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-            this.btnBuildingArchive.Name = "btnBuildingArchive";
-            this.btnBuildingArchive.PopupWidth = 500;
-            this.btnBuildingArchive.Stretch = true;
-            this.btnBuildingArchive.SubItemsExpandWidth = 14;
-            this.btnBuildingArchive.Text = "بایگانی املاک";
-            this.btnBuildingArchive.Click += new System.EventHandler(this.btnBuildingArchive_Click);
-            // 
             // ribbonBar38
             // 
             this.ribbonBar38.AutoOverflowEnabled = true;
@@ -1055,18 +913,6 @@
             // 
             // 
             this.ribbonBar38.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // buttonItem23
-            // 
-            this.buttonItem23.Image = global::RealState.Properties.Resources._58;
-            this.buttonItem23.ImageListSizeSelection = DevComponents.DotNetBar.eButtonImageListSelection.Large;
-            this.buttonItem23.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-            this.buttonItem23.Name = "buttonItem23";
-            this.buttonItem23.PopupWidth = 500;
-            this.buttonItem23.Stretch = true;
-            this.buttonItem23.SubItemsExpandWidth = 14;
-            this.buttonItem23.Text = "تست دیوار";
-            this.buttonItem23.Click += new System.EventHandler(this.buttonItem23_Click);
             // 
             // ribbonBar37
             // 
@@ -1099,18 +945,6 @@
             // 
             this.ribbonBar37.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             // 
-            // btnBuildingFast
-            // 
-            this.btnBuildingFast.Image = global::RealState.Properties.Resources._58;
-            this.btnBuildingFast.ImageListSizeSelection = DevComponents.DotNetBar.eButtonImageListSelection.Large;
-            this.btnBuildingFast.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-            this.btnBuildingFast.Name = "btnBuildingFast";
-            this.btnBuildingFast.PopupWidth = 500;
-            this.btnBuildingFast.Stretch = true;
-            this.btnBuildingFast.SubItemsExpandWidth = 14;
-            this.btnBuildingFast.Text = "ثبت سریع ملک";
-            this.btnBuildingFast.Click += new System.EventHandler(this.btnBuildingFast_Click);
-            // 
             // ribbonBar13
             // 
             this.ribbonBar13.AutoOverflowEnabled = true;
@@ -1141,18 +975,6 @@
             // 
             // 
             this.ribbonBar13.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // btnContract
-            // 
-            this.btnContract.Image = global::RealState.Properties.Resources._119;
-            this.btnContract.ImageListSizeSelection = DevComponents.DotNetBar.eButtonImageListSelection.Large;
-            this.btnContract.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-            this.btnContract.Name = "btnContract";
-            this.btnContract.PopupWidth = 500;
-            this.btnContract.Stretch = true;
-            this.btnContract.SubItemsExpandWidth = 14;
-            this.btnContract.Text = "قرارداد";
-            this.btnContract.Click += new System.EventHandler(this.btnContract_Click);
             // 
             // ribbonBar14
             // 
@@ -1185,18 +1007,6 @@
             // 
             this.ribbonBar14.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             // 
-            // btnBuildingRequest
-            // 
-            this.btnBuildingRequest.Image = global::RealState.Properties.Resources._07;
-            this.btnBuildingRequest.ImageListSizeSelection = DevComponents.DotNetBar.eButtonImageListSelection.Large;
-            this.btnBuildingRequest.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-            this.btnBuildingRequest.Name = "btnBuildingRequest";
-            this.btnBuildingRequest.PopupWidth = 500;
-            this.btnBuildingRequest.Stretch = true;
-            this.btnBuildingRequest.SubItemsExpandWidth = 14;
-            this.btnBuildingRequest.Text = "درخواست";
-            this.btnBuildingRequest.Click += new System.EventHandler(this.btnBuildingRequest_Click);
-            // 
             // ribbonBar15
             // 
             this.ribbonBar15.AutoOverflowEnabled = true;
@@ -1227,18 +1037,6 @@
             // 
             // 
             this.ribbonBar15.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // btnBuildingAdvanceSearch
-            // 
-            this.btnBuildingAdvanceSearch.Image = global::RealState.Properties.Resources._09;
-            this.btnBuildingAdvanceSearch.ImageListSizeSelection = DevComponents.DotNetBar.eButtonImageListSelection.Large;
-            this.btnBuildingAdvanceSearch.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-            this.btnBuildingAdvanceSearch.Name = "btnBuildingAdvanceSearch";
-            this.btnBuildingAdvanceSearch.PopupWidth = 500;
-            this.btnBuildingAdvanceSearch.Stretch = true;
-            this.btnBuildingAdvanceSearch.SubItemsExpandWidth = 14;
-            this.btnBuildingAdvanceSearch.Text = "جستجوی پیشرفته";
-            this.btnBuildingAdvanceSearch.Click += new System.EventHandler(this.btnBuildingAdvanceSearch_Click);
             // 
             // ribbonBar16
             // 
@@ -1271,18 +1069,6 @@
             // 
             this.ribbonBar16.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             // 
-            // btnBuilding
-            // 
-            this.btnBuilding.Image = global::RealState.Properties.Resources._10;
-            this.btnBuilding.ImageListSizeSelection = DevComponents.DotNetBar.eButtonImageListSelection.Large;
-            this.btnBuilding.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-            this.btnBuilding.Name = "btnBuilding";
-            this.btnBuilding.PopupWidth = 500;
-            this.btnBuilding.Stretch = true;
-            this.btnBuilding.SubItemsExpandWidth = 14;
-            this.btnBuilding.Text = "مدیریت املاک";
-            this.btnBuilding.Click += new System.EventHandler(this.btnBuilding_Click);
-            // 
             // ribbonPanel1
             // 
             this.ribbonPanel1.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -1299,10 +1085,10 @@
             this.ribbonPanel1.Controls.Add(this.ribbonBar2);
             this.ribbonPanel1.Controls.Add(this.ribbonBar1);
             this.ribbonPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ribbonPanel1.Location = new System.Drawing.Point(0, 30);
+            this.ribbonPanel1.Location = new System.Drawing.Point(0, 0);
             this.ribbonPanel1.Name = "ribbonPanel1";
             this.ribbonPanel1.Padding = new System.Windows.Forms.Padding(3, 0, 3, 3);
-            this.ribbonPanel1.Size = new System.Drawing.Size(800, 121);
+            this.ribbonPanel1.Size = new System.Drawing.Size(800, 151);
             // 
             // 
             // 
@@ -1337,7 +1123,7 @@
             this.ribbonBar12.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
             this.ribbonBar12.Location = new System.Drawing.Point(685, 0);
             this.ribbonBar12.Name = "ribbonBar12";
-            this.ribbonBar12.Size = new System.Drawing.Size(62, 118);
+            this.ribbonBar12.Size = new System.Drawing.Size(62, 148);
             this.ribbonBar12.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ribbonBar12.TabIndex = 11;
             // 
@@ -1348,18 +1134,6 @@
             // 
             // 
             this.ribbonBar12.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // btnBuildingType
-            // 
-            this.btnBuildingType.Image = global::RealState.Properties.Resources._06;
-            this.btnBuildingType.ImageListSizeSelection = DevComponents.DotNetBar.eButtonImageListSelection.Large;
-            this.btnBuildingType.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-            this.btnBuildingType.Name = "btnBuildingType";
-            this.btnBuildingType.PopupWidth = 500;
-            this.btnBuildingType.Stretch = true;
-            this.btnBuildingType.SubItemsExpandWidth = 14;
-            this.btnBuildingType.Text = "نوع ملک";
-            this.btnBuildingType.Click += new System.EventHandler(this.btnBuildingType_Click);
             // 
             // ribbonBar11
             // 
@@ -1380,7 +1154,7 @@
             this.ribbonBar11.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
             this.ribbonBar11.Location = new System.Drawing.Point(623, 0);
             this.ribbonBar11.Name = "ribbonBar11";
-            this.ribbonBar11.Size = new System.Drawing.Size(62, 118);
+            this.ribbonBar11.Size = new System.Drawing.Size(62, 148);
             this.ribbonBar11.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ribbonBar11.TabIndex = 10;
             // 
@@ -1391,18 +1165,6 @@
             // 
             // 
             this.ribbonBar11.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // btnBuildingCondition
-            // 
-            this.btnBuildingCondition.Image = global::RealState.Properties.Resources._55;
-            this.btnBuildingCondition.ImageListSizeSelection = DevComponents.DotNetBar.eButtonImageListSelection.Large;
-            this.btnBuildingCondition.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-            this.btnBuildingCondition.Name = "btnBuildingCondition";
-            this.btnBuildingCondition.PopupWidth = 500;
-            this.btnBuildingCondition.Stretch = true;
-            this.btnBuildingCondition.SubItemsExpandWidth = 14;
-            this.btnBuildingCondition.Text = "نوع بنا";
-            this.btnBuildingCondition.Click += new System.EventHandler(this.btnBuildingCondition_Click);
             // 
             // ribbonBar10
             // 
@@ -1423,7 +1185,7 @@
             this.ribbonBar10.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
             this.ribbonBar10.Location = new System.Drawing.Point(561, 0);
             this.ribbonBar10.Name = "ribbonBar10";
-            this.ribbonBar10.Size = new System.Drawing.Size(62, 118);
+            this.ribbonBar10.Size = new System.Drawing.Size(62, 148);
             this.ribbonBar10.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ribbonBar10.TabIndex = 9;
             // 
@@ -1434,18 +1196,6 @@
             // 
             // 
             this.ribbonBar10.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // btnBuildingView
-            // 
-            this.btnBuildingView.Image = global::RealState.Properties.Resources._01;
-            this.btnBuildingView.ImageListSizeSelection = DevComponents.DotNetBar.eButtonImageListSelection.Large;
-            this.btnBuildingView.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-            this.btnBuildingView.Name = "btnBuildingView";
-            this.btnBuildingView.PopupWidth = 500;
-            this.btnBuildingView.Stretch = true;
-            this.btnBuildingView.SubItemsExpandWidth = 14;
-            this.btnBuildingView.Text = "نمای ساختمان";
-            this.btnBuildingView.Click += new System.EventHandler(this.btnBuildingView_Click);
             // 
             // ribbonBar9
             // 
@@ -1466,7 +1216,7 @@
             this.ribbonBar9.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
             this.ribbonBar9.Location = new System.Drawing.Point(499, 0);
             this.ribbonBar9.Name = "ribbonBar9";
-            this.ribbonBar9.Size = new System.Drawing.Size(62, 118);
+            this.ribbonBar9.Size = new System.Drawing.Size(62, 148);
             this.ribbonBar9.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ribbonBar9.TabIndex = 8;
             // 
@@ -1477,18 +1227,6 @@
             // 
             // 
             this.ribbonBar9.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // btnRental
-            // 
-            this.btnRental.Image = global::RealState.Properties.Resources._49;
-            this.btnRental.ImageListSizeSelection = DevComponents.DotNetBar.eButtonImageListSelection.Large;
-            this.btnRental.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-            this.btnRental.Name = "btnRental";
-            this.btnRental.PopupWidth = 500;
-            this.btnRental.Stretch = true;
-            this.btnRental.SubItemsExpandWidth = 14;
-            this.btnRental.Text = "ارجحیت اجاره";
-            this.btnRental.Click += new System.EventHandler(this.btnRental_Click);
             // 
             // ribbonBar8
             // 
@@ -1509,7 +1247,7 @@
             this.ribbonBar8.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
             this.ribbonBar8.Location = new System.Drawing.Point(437, 0);
             this.ribbonBar8.Name = "ribbonBar8";
-            this.ribbonBar8.Size = new System.Drawing.Size(62, 118);
+            this.ribbonBar8.Size = new System.Drawing.Size(62, 148);
             this.ribbonBar8.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ribbonBar8.TabIndex = 7;
             // 
@@ -1520,18 +1258,6 @@
             // 
             // 
             this.ribbonBar8.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // btnDocType
-            // 
-            this.btnDocType.Image = global::RealState.Properties.Resources._20;
-            this.btnDocType.ImageListSizeSelection = DevComponents.DotNetBar.eButtonImageListSelection.Large;
-            this.btnDocType.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-            this.btnDocType.Name = "btnDocType";
-            this.btnDocType.PopupWidth = 500;
-            this.btnDocType.Stretch = true;
-            this.btnDocType.SubItemsExpandWidth = 14;
-            this.btnDocType.Text = "انواع سند";
-            this.btnDocType.Click += new System.EventHandler(this.btnDocType_Click);
             // 
             // ribbonBar7
             // 
@@ -1552,7 +1278,7 @@
             this.ribbonBar7.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
             this.ribbonBar7.Location = new System.Drawing.Point(375, 0);
             this.ribbonBar7.Name = "ribbonBar7";
-            this.ribbonBar7.Size = new System.Drawing.Size(62, 118);
+            this.ribbonBar7.Size = new System.Drawing.Size(62, 148);
             this.ribbonBar7.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ribbonBar7.TabIndex = 6;
             // 
@@ -1563,18 +1289,6 @@
             // 
             // 
             this.ribbonBar7.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // btnKitchenService
-            // 
-            this.btnKitchenService.Image = global::RealState.Properties.Resources._67;
-            this.btnKitchenService.ImageListSizeSelection = DevComponents.DotNetBar.eButtonImageListSelection.Large;
-            this.btnKitchenService.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-            this.btnKitchenService.Name = "btnKitchenService";
-            this.btnKitchenService.PopupWidth = 500;
-            this.btnKitchenService.Stretch = true;
-            this.btnKitchenService.SubItemsExpandWidth = 14;
-            this.btnKitchenService.Text = "سرویس آشپزخانه";
-            this.btnKitchenService.Click += new System.EventHandler(this.btnKitchenService_Click);
             // 
             // ribbonBar6
             // 
@@ -1595,7 +1309,7 @@
             this.ribbonBar6.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
             this.ribbonBar6.Location = new System.Drawing.Point(313, 0);
             this.ribbonBar6.Name = "ribbonBar6";
-            this.ribbonBar6.Size = new System.Drawing.Size(62, 118);
+            this.ribbonBar6.Size = new System.Drawing.Size(62, 148);
             this.ribbonBar6.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ribbonBar6.TabIndex = 5;
             // 
@@ -1606,18 +1320,6 @@
             // 
             // 
             this.ribbonBar6.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // btnFloorCover
-            // 
-            this.btnFloorCover.Image = global::RealState.Properties.Resources._28;
-            this.btnFloorCover.ImageListSizeSelection = DevComponents.DotNetBar.eButtonImageListSelection.Large;
-            this.btnFloorCover.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-            this.btnFloorCover.Name = "btnFloorCover";
-            this.btnFloorCover.PopupWidth = 500;
-            this.btnFloorCover.Stretch = true;
-            this.btnFloorCover.SubItemsExpandWidth = 14;
-            this.btnFloorCover.Text = "کفپوش";
-            this.btnFloorCover.Click += new System.EventHandler(this.btnFloorCover_Click);
             // 
             // ribbonBar5
             // 
@@ -1638,7 +1340,7 @@
             this.ribbonBar5.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
             this.ribbonBar5.Location = new System.Drawing.Point(251, 0);
             this.ribbonBar5.Name = "ribbonBar5";
-            this.ribbonBar5.Size = new System.Drawing.Size(62, 118);
+            this.ribbonBar5.Size = new System.Drawing.Size(62, 148);
             this.ribbonBar5.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ribbonBar5.TabIndex = 4;
             // 
@@ -1649,18 +1351,6 @@
             // 
             // 
             this.ribbonBar5.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // btnBuildingAccountType
-            // 
-            this.btnBuildingAccountType.Image = global::RealState.Properties.Resources._145;
-            this.btnBuildingAccountType.ImageListSizeSelection = DevComponents.DotNetBar.eButtonImageListSelection.Large;
-            this.btnBuildingAccountType.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-            this.btnBuildingAccountType.Name = "btnBuildingAccountType";
-            this.btnBuildingAccountType.PopupWidth = 500;
-            this.btnBuildingAccountType.Stretch = true;
-            this.btnBuildingAccountType.SubItemsExpandWidth = 14;
-            this.btnBuildingAccountType.Text = "نوع کاربری ملک";
-            this.btnBuildingAccountType.Click += new System.EventHandler(this.btnBuildingAccountType_Click);
             // 
             // ribbonBar4
             // 
@@ -1681,7 +1371,7 @@
             this.ribbonBar4.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
             this.ribbonBar4.Location = new System.Drawing.Point(189, 0);
             this.ribbonBar4.Name = "ribbonBar4";
-            this.ribbonBar4.Size = new System.Drawing.Size(62, 118);
+            this.ribbonBar4.Size = new System.Drawing.Size(62, 148);
             this.ribbonBar4.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ribbonBar4.TabIndex = 3;
             // 
@@ -1692,18 +1382,6 @@
             // 
             // 
             this.ribbonBar4.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // btnBuildingOptions
-            // 
-            this.btnBuildingOptions.Image = global::RealState.Properties.Resources._05;
-            this.btnBuildingOptions.ImageListSizeSelection = DevComponents.DotNetBar.eButtonImageListSelection.Large;
-            this.btnBuildingOptions.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-            this.btnBuildingOptions.Name = "btnBuildingOptions";
-            this.btnBuildingOptions.PopupWidth = 500;
-            this.btnBuildingOptions.Stretch = true;
-            this.btnBuildingOptions.SubItemsExpandWidth = 14;
-            this.btnBuildingOptions.Text = "امکانات ملک";
-            this.btnBuildingOptions.Click += new System.EventHandler(this.btnBuildingOptions_Click);
             // 
             // ribbonBar3
             // 
@@ -1724,7 +1402,7 @@
             this.ribbonBar3.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
             this.ribbonBar3.Location = new System.Drawing.Point(127, 0);
             this.ribbonBar3.Name = "ribbonBar3";
-            this.ribbonBar3.Size = new System.Drawing.Size(62, 118);
+            this.ribbonBar3.Size = new System.Drawing.Size(62, 148);
             this.ribbonBar3.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ribbonBar3.TabIndex = 2;
             // 
@@ -1735,18 +1413,6 @@
             // 
             // 
             this.ribbonBar3.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // btnRegion
-            // 
-            this.btnRegion.Image = global::RealState.Properties.Resources._21;
-            this.btnRegion.ImageListSizeSelection = DevComponents.DotNetBar.eButtonImageListSelection.Large;
-            this.btnRegion.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-            this.btnRegion.Name = "btnRegion";
-            this.btnRegion.PopupWidth = 500;
-            this.btnRegion.Stretch = true;
-            this.btnRegion.SubItemsExpandWidth = 14;
-            this.btnRegion.Text = "مدیریت مناطق";
-            this.btnRegion.Click += new System.EventHandler(this.btnRegion_Click);
             // 
             // ribbonBar2
             // 
@@ -1767,7 +1433,7 @@
             this.ribbonBar2.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
             this.ribbonBar2.Location = new System.Drawing.Point(65, 0);
             this.ribbonBar2.Name = "ribbonBar2";
-            this.ribbonBar2.Size = new System.Drawing.Size(62, 118);
+            this.ribbonBar2.Size = new System.Drawing.Size(62, 148);
             this.ribbonBar2.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ribbonBar2.TabIndex = 1;
             // 
@@ -1778,18 +1444,6 @@
             // 
             // 
             this.ribbonBar2.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // btnCity
-            // 
-            this.btnCity.Image = global::RealState.Properties.Resources._31;
-            this.btnCity.ImageListSizeSelection = DevComponents.DotNetBar.eButtonImageListSelection.Large;
-            this.btnCity.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-            this.btnCity.Name = "btnCity";
-            this.btnCity.PopupWidth = 500;
-            this.btnCity.Stretch = true;
-            this.btnCity.SubItemsExpandWidth = 14;
-            this.btnCity.Text = "مدیریت شهرها";
-            this.btnCity.Click += new System.EventHandler(this.btnCity_Click);
             // 
             // ribbonBar1
             // 
@@ -1810,7 +1464,7 @@
             this.ribbonBar1.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
             this.ribbonBar1.Location = new System.Drawing.Point(3, 0);
             this.ribbonBar1.Name = "ribbonBar1";
-            this.ribbonBar1.Size = new System.Drawing.Size(62, 118);
+            this.ribbonBar1.Size = new System.Drawing.Size(62, 148);
             this.ribbonBar1.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ribbonBar1.TabIndex = 0;
             // 
@@ -1822,31 +1476,20 @@
             // 
             this.ribbonBar1.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             // 
-            // btnPeoples
-            // 
-            this.btnPeoples.Image = global::RealState.Properties.Resources._11;
-            this.btnPeoples.ImageListSizeSelection = DevComponents.DotNetBar.eButtonImageListSelection.Large;
-            this.btnPeoples.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-            this.btnPeoples.Name = "btnPeoples";
-            this.btnPeoples.PopupWidth = 500;
-            this.btnPeoples.Stretch = true;
-            this.btnPeoples.SubItemsExpandWidth = 14;
-            this.btnPeoples.Text = "مدیریت اشخاص";
-            this.btnPeoples.Click += new System.EventHandler(this.btnPeoples_Click);
-            // 
             // ribbonPanel4
             // 
             this.ribbonPanel4.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.ribbonPanel4.Controls.Add(this.ribbonBar23);
             this.ribbonPanel4.Controls.Add(this.ribbonBar24);
             this.ribbonPanel4.Controls.Add(this.ribbonBar21);
             this.ribbonPanel4.Controls.Add(this.ribbonBar22);
             this.ribbonPanel4.Controls.Add(this.ribbonBar19);
             this.ribbonPanel4.Controls.Add(this.ribbonBar20);
             this.ribbonPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ribbonPanel4.Location = new System.Drawing.Point(0, 29);
+            this.ribbonPanel4.Location = new System.Drawing.Point(0, 30);
             this.ribbonPanel4.Name = "ribbonPanel4";
             this.ribbonPanel4.Padding = new System.Windows.Forms.Padding(3, 0, 3, 3);
-            this.ribbonPanel4.Size = new System.Drawing.Size(800, 122);
+            this.ribbonPanel4.Size = new System.Drawing.Size(800, 121);
             // 
             // 
             // 
@@ -1860,7 +1503,6 @@
             // 
             this.ribbonPanel4.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.ribbonPanel4.TabIndex = 4;
-            this.ribbonPanel4.Visible = false;
             // 
             // ribbonBar24
             // 
@@ -1881,7 +1523,7 @@
             this.ribbonBar24.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
             this.ribbonBar24.Location = new System.Drawing.Point(251, 0);
             this.ribbonBar24.Name = "ribbonBar24";
-            this.ribbonBar24.Size = new System.Drawing.Size(62, 119);
+            this.ribbonBar24.Size = new System.Drawing.Size(62, 118);
             this.ribbonBar24.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ribbonBar24.TabIndex = 12;
             // 
@@ -1892,18 +1534,6 @@
             // 
             // 
             this.ribbonBar24.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // btnSanad
-            // 
-            this.btnSanad.Image = global::RealState.Properties.Resources._15;
-            this.btnSanad.ImageListSizeSelection = DevComponents.DotNetBar.eButtonImageListSelection.Large;
-            this.btnSanad.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-            this.btnSanad.Name = "btnSanad";
-            this.btnSanad.PopupWidth = 500;
-            this.btnSanad.Stretch = true;
-            this.btnSanad.SubItemsExpandWidth = 14;
-            this.btnSanad.Text = "سند";
-            this.btnSanad.Click += new System.EventHandler(this.btnSanad_Click);
             // 
             // ribbonBar21
             // 
@@ -1924,7 +1554,7 @@
             this.ribbonBar21.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
             this.ribbonBar21.Location = new System.Drawing.Point(189, 0);
             this.ribbonBar21.Name = "ribbonBar21";
-            this.ribbonBar21.Size = new System.Drawing.Size(62, 119);
+            this.ribbonBar21.Size = new System.Drawing.Size(62, 118);
             this.ribbonBar21.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ribbonBar21.TabIndex = 11;
             // 
@@ -1935,18 +1565,6 @@
             // 
             // 
             this.ribbonBar21.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // btnPardakht
-            // 
-            this.btnPardakht.Image = global::RealState.Properties.Resources._66;
-            this.btnPardakht.ImageListSizeSelection = DevComponents.DotNetBar.eButtonImageListSelection.Large;
-            this.btnPardakht.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-            this.btnPardakht.Name = "btnPardakht";
-            this.btnPardakht.PopupWidth = 500;
-            this.btnPardakht.Stretch = true;
-            this.btnPardakht.SubItemsExpandWidth = 14;
-            this.btnPardakht.Text = "پرداخت";
-            this.btnPardakht.Click += new System.EventHandler(this.btnPardakht_Click);
             // 
             // ribbonBar22
             // 
@@ -1967,7 +1585,7 @@
             this.ribbonBar22.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
             this.ribbonBar22.Location = new System.Drawing.Point(127, 0);
             this.ribbonBar22.Name = "ribbonBar22";
-            this.ribbonBar22.Size = new System.Drawing.Size(62, 119);
+            this.ribbonBar22.Size = new System.Drawing.Size(62, 118);
             this.ribbonBar22.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ribbonBar22.TabIndex = 10;
             // 
@@ -1978,18 +1596,6 @@
             // 
             // 
             this.ribbonBar22.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // btnReception
-            // 
-            this.btnReception.Image = global::RealState.Properties.Resources._110;
-            this.btnReception.ImageListSizeSelection = DevComponents.DotNetBar.eButtonImageListSelection.Large;
-            this.btnReception.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-            this.btnReception.Name = "btnReception";
-            this.btnReception.PopupWidth = 500;
-            this.btnReception.Stretch = true;
-            this.btnReception.SubItemsExpandWidth = 14;
-            this.btnReception.Text = "دریافت";
-            this.btnReception.Click += new System.EventHandler(this.btnReception_Click);
             // 
             // ribbonBar19
             // 
@@ -2010,7 +1616,7 @@
             this.ribbonBar19.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
             this.ribbonBar19.Location = new System.Drawing.Point(65, 0);
             this.ribbonBar19.Name = "ribbonBar19";
-            this.ribbonBar19.Size = new System.Drawing.Size(62, 119);
+            this.ribbonBar19.Size = new System.Drawing.Size(62, 118);
             this.ribbonBar19.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ribbonBar19.TabIndex = 9;
             // 
@@ -2021,18 +1627,6 @@
             // 
             // 
             this.ribbonBar19.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // btnAccountPerfomence
-            // 
-            this.btnAccountPerfomence.Image = global::RealState.Properties.Resources._04;
-            this.btnAccountPerfomence.ImageListSizeSelection = DevComponents.DotNetBar.eButtonImageListSelection.Large;
-            this.btnAccountPerfomence.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-            this.btnAccountPerfomence.Name = "btnAccountPerfomence";
-            this.btnAccountPerfomence.PopupWidth = 500;
-            this.btnAccountPerfomence.Stretch = true;
-            this.btnAccountPerfomence.SubItemsExpandWidth = 14;
-            this.btnAccountPerfomence.Text = "عملکرد حساب";
-            this.btnAccountPerfomence.Click += new System.EventHandler(this.btnAccountPerfomence_Click);
             // 
             // ribbonBar20
             // 
@@ -2053,7 +1647,7 @@
             this.ribbonBar20.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
             this.ribbonBar20.Location = new System.Drawing.Point(3, 0);
             this.ribbonBar20.Name = "ribbonBar20";
-            this.ribbonBar20.Size = new System.Drawing.Size(62, 119);
+            this.ribbonBar20.Size = new System.Drawing.Size(62, 118);
             this.ribbonBar20.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ribbonBar20.TabIndex = 8;
             // 
@@ -2064,18 +1658,6 @@
             // 
             // 
             this.ribbonBar20.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // btnHazine
-            // 
-            this.btnHazine.Image = global::RealState.Properties.Resources._64;
-            this.btnHazine.ImageListSizeSelection = DevComponents.DotNetBar.eButtonImageListSelection.Large;
-            this.btnHazine.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-            this.btnHazine.Name = "btnHazine";
-            this.btnHazine.PopupWidth = 500;
-            this.btnHazine.Stretch = true;
-            this.btnHazine.SubItemsExpandWidth = 14;
-            this.btnHazine.Text = "مدیریت هزینه ها";
-            this.btnHazine.Click += new System.EventHandler(this.btnHazine_Click);
             // 
             // ribbonPanel3
             // 
@@ -2133,18 +1715,6 @@
             // 
             this.ribbonBar17.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             // 
-            // btnAccessLevel
-            // 
-            this.btnAccessLevel.Image = global::RealState.Properties.Resources._051;
-            this.btnAccessLevel.ImageListSizeSelection = DevComponents.DotNetBar.eButtonImageListSelection.Large;
-            this.btnAccessLevel.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-            this.btnAccessLevel.Name = "btnAccessLevel";
-            this.btnAccessLevel.PopupWidth = 500;
-            this.btnAccessLevel.Stretch = true;
-            this.btnAccessLevel.SubItemsExpandWidth = 14;
-            this.btnAccessLevel.Text = "سطوح دسترسی";
-            this.btnAccessLevel.Click += new System.EventHandler(this.btnAccessLevel_Click);
-            // 
             // ribbonBar18
             // 
             this.ribbonBar18.AutoOverflowEnabled = true;
@@ -2176,18 +1746,6 @@
             // 
             this.ribbonBar18.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             // 
-            // btnUsers
-            // 
-            this.btnUsers.Image = global::RealState.Properties.Resources._90;
-            this.btnUsers.ImageListSizeSelection = DevComponents.DotNetBar.eButtonImageListSelection.Large;
-            this.btnUsers.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-            this.btnUsers.Name = "btnUsers";
-            this.btnUsers.PopupWidth = 500;
-            this.btnUsers.Stretch = true;
-            this.btnUsers.SubItemsExpandWidth = 14;
-            this.btnUsers.Text = "مدیریت کاربران";
-            this.btnUsers.Click += new System.EventHandler(this.btnUsers_Click);
-            // 
             // ribbonTabItem1
             // 
             this.ribbonTabItem1.Name = "ribbonTabItem1";
@@ -2208,6 +1766,7 @@
             // 
             // btnAccountingInfo
             // 
+            this.btnAccountingInfo.Checked = true;
             this.btnAccountingInfo.Name = "btnAccountingInfo";
             this.btnAccountingInfo.Panel = this.ribbonPanel4;
             this.btnAccountingInfo.Text = "حسابداری";
@@ -2354,7 +1913,7 @@
             this.panelEx1.Controls.Add(this.pictureBox16);
             this.panelEx1.Controls.Add(this.pictureBox17);
             this.panelEx1.DisabledBackColor = System.Drawing.Color.Empty;
-            this.panelEx1.Location = new System.Drawing.Point(5, 32);
+            this.panelEx1.Location = new System.Drawing.Point(-12, 32);
             this.panelEx1.Name = "panelEx1";
             this.panelEx1.Size = new System.Drawing.Size(414, 188);
             this.panelEx1.Style.Alignment = System.Drawing.StringAlignment.Center;
@@ -2553,61 +2112,6 @@
             this.label37.TabIndex = 9;
             this.label37.Text = "تعداد سررسیدهای اجاره تا یک ماه آینده";
             // 
-            // pictureBox9
-            // 
-            this.pictureBox9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox9.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox9.Image")));
-            this.pictureBox9.Location = new System.Drawing.Point(366, 150);
-            this.pictureBox9.Name = "pictureBox9";
-            this.pictureBox9.Size = new System.Drawing.Size(32, 29);
-            this.pictureBox9.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox9.TabIndex = 8;
-            this.pictureBox9.TabStop = false;
-            // 
-            // pictureBox13
-            // 
-            this.pictureBox13.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox13.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox13.Image")));
-            this.pictureBox13.Location = new System.Drawing.Point(366, 116);
-            this.pictureBox13.Name = "pictureBox13";
-            this.pictureBox13.Size = new System.Drawing.Size(32, 29);
-            this.pictureBox13.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox13.TabIndex = 8;
-            this.pictureBox13.TabStop = false;
-            // 
-            // pictureBox15
-            // 
-            this.pictureBox15.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox15.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox15.Image")));
-            this.pictureBox15.Location = new System.Drawing.Point(366, 81);
-            this.pictureBox15.Name = "pictureBox15";
-            this.pictureBox15.Size = new System.Drawing.Size(32, 29);
-            this.pictureBox15.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox15.TabIndex = 8;
-            this.pictureBox15.TabStop = false;
-            // 
-            // pictureBox16
-            // 
-            this.pictureBox16.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox16.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox16.Image")));
-            this.pictureBox16.Location = new System.Drawing.Point(366, 46);
-            this.pictureBox16.Name = "pictureBox16";
-            this.pictureBox16.Size = new System.Drawing.Size(32, 29);
-            this.pictureBox16.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox16.TabIndex = 8;
-            this.pictureBox16.TabStop = false;
-            // 
-            // pictureBox17
-            // 
-            this.pictureBox17.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox17.Image = global::RealState.Properties.Resources._1160;
-            this.pictureBox17.Location = new System.Drawing.Point(366, 11);
-            this.pictureBox17.Name = "pictureBox17";
-            this.pictureBox17.Size = new System.Drawing.Size(32, 29);
-            this.pictureBox17.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox17.TabIndex = 8;
-            this.pictureBox17.TabStop = false;
-            // 
             // grp
             // 
             this.grp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -2635,7 +2139,7 @@
             this.grp.Controls.Add(this.pictureBox3);
             this.grp.Controls.Add(this.pictureBox2);
             this.grp.DisabledBackColor = System.Drawing.Color.Empty;
-            this.grp.Location = new System.Drawing.Point(425, 32);
+            this.grp.Location = new System.Drawing.Point(408, 32);
             this.grp.Name = "grp";
             this.grp.Size = new System.Drawing.Size(309, 260);
             this.grp.Style.Alignment = System.Drawing.StringAlignment.Center;
@@ -2782,6 +2286,92 @@
             this.label6.TabIndex = 9;
             this.label6.Text = "تعداد کل ملک ها";
             // 
+            // ribbonBar23
+            // 
+            this.ribbonBar23.AutoOverflowEnabled = true;
+            // 
+            // 
+            // 
+            this.ribbonBar23.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.ribbonBar23.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.ribbonBar23.ContainerControlProcessDialogKey = true;
+            this.ribbonBar23.Dock = System.Windows.Forms.DockStyle.Left;
+            this.ribbonBar23.DragDropSupport = true;
+            this.ribbonBar23.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
+            this.btnTarazName});
+            this.ribbonBar23.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
+            this.ribbonBar23.Location = new System.Drawing.Point(313, 0);
+            this.ribbonBar23.Name = "ribbonBar23";
+            this.ribbonBar23.Size = new System.Drawing.Size(62, 118);
+            this.ribbonBar23.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.ribbonBar23.TabIndex = 13;
+            // 
+            // 
+            // 
+            this.ribbonBar23.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.ribbonBar23.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // pictureBox9
+            // 
+            this.pictureBox9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBox9.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox9.Image")));
+            this.pictureBox9.Location = new System.Drawing.Point(366, 150);
+            this.pictureBox9.Name = "pictureBox9";
+            this.pictureBox9.Size = new System.Drawing.Size(32, 29);
+            this.pictureBox9.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox9.TabIndex = 8;
+            this.pictureBox9.TabStop = false;
+            // 
+            // pictureBox13
+            // 
+            this.pictureBox13.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBox13.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox13.Image")));
+            this.pictureBox13.Location = new System.Drawing.Point(366, 116);
+            this.pictureBox13.Name = "pictureBox13";
+            this.pictureBox13.Size = new System.Drawing.Size(32, 29);
+            this.pictureBox13.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox13.TabIndex = 8;
+            this.pictureBox13.TabStop = false;
+            // 
+            // pictureBox15
+            // 
+            this.pictureBox15.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBox15.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox15.Image")));
+            this.pictureBox15.Location = new System.Drawing.Point(366, 81);
+            this.pictureBox15.Name = "pictureBox15";
+            this.pictureBox15.Size = new System.Drawing.Size(32, 29);
+            this.pictureBox15.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox15.TabIndex = 8;
+            this.pictureBox15.TabStop = false;
+            // 
+            // pictureBox16
+            // 
+            this.pictureBox16.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBox16.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox16.Image")));
+            this.pictureBox16.Location = new System.Drawing.Point(366, 46);
+            this.pictureBox16.Name = "pictureBox16";
+            this.pictureBox16.Size = new System.Drawing.Size(32, 29);
+            this.pictureBox16.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox16.TabIndex = 8;
+            this.pictureBox16.TabStop = false;
+            // 
+            // pictureBox17
+            // 
+            this.pictureBox17.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBox17.Image = global::RealState.Properties.Resources._1160;
+            this.pictureBox17.Location = new System.Drawing.Point(366, 11);
+            this.pictureBox17.Name = "pictureBox17";
+            this.pictureBox17.Size = new System.Drawing.Size(32, 29);
+            this.pictureBox17.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox17.TabIndex = 8;
+            this.pictureBox17.TabStop = false;
+            // 
             // pictureBox6
             // 
             this.pictureBox6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -2871,6 +2461,462 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 55784;
             this.pictureBox1.TabStop = false;
+            // 
+            // btnTarazName
+            // 
+            this.btnTarazName.Image = global::RealState.Properties.Resources._17;
+            this.btnTarazName.ImageListSizeSelection = DevComponents.DotNetBar.eButtonImageListSelection.Large;
+            this.btnTarazName.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
+            this.btnTarazName.Name = "btnTarazName";
+            this.btnTarazName.PopupWidth = 500;
+            this.btnTarazName.Stretch = true;
+            this.btnTarazName.SubItemsExpandWidth = 14;
+            this.btnTarazName.Text = "ترازنامه";
+            this.btnTarazName.Click += new System.EventHandler(this.btnTarazName_Click);
+            // 
+            // btnSanad
+            // 
+            this.btnSanad.Image = global::RealState.Properties.Resources._15;
+            this.btnSanad.ImageListSizeSelection = DevComponents.DotNetBar.eButtonImageListSelection.Large;
+            this.btnSanad.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
+            this.btnSanad.Name = "btnSanad";
+            this.btnSanad.PopupWidth = 500;
+            this.btnSanad.Stretch = true;
+            this.btnSanad.SubItemsExpandWidth = 14;
+            this.btnSanad.Text = "سند";
+            this.btnSanad.Click += new System.EventHandler(this.btnSanad_Click);
+            // 
+            // btnPardakht
+            // 
+            this.btnPardakht.Image = global::RealState.Properties.Resources._66;
+            this.btnPardakht.ImageListSizeSelection = DevComponents.DotNetBar.eButtonImageListSelection.Large;
+            this.btnPardakht.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
+            this.btnPardakht.Name = "btnPardakht";
+            this.btnPardakht.PopupWidth = 500;
+            this.btnPardakht.Stretch = true;
+            this.btnPardakht.SubItemsExpandWidth = 14;
+            this.btnPardakht.Text = "پرداخت";
+            this.btnPardakht.Click += new System.EventHandler(this.btnPardakht_Click);
+            // 
+            // btnReception
+            // 
+            this.btnReception.Image = global::RealState.Properties.Resources._110;
+            this.btnReception.ImageListSizeSelection = DevComponents.DotNetBar.eButtonImageListSelection.Large;
+            this.btnReception.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
+            this.btnReception.Name = "btnReception";
+            this.btnReception.PopupWidth = 500;
+            this.btnReception.Stretch = true;
+            this.btnReception.SubItemsExpandWidth = 14;
+            this.btnReception.Text = "دریافت";
+            this.btnReception.Click += new System.EventHandler(this.btnReception_Click);
+            // 
+            // btnAccountPerfomence
+            // 
+            this.btnAccountPerfomence.Image = global::RealState.Properties.Resources._04;
+            this.btnAccountPerfomence.ImageListSizeSelection = DevComponents.DotNetBar.eButtonImageListSelection.Large;
+            this.btnAccountPerfomence.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
+            this.btnAccountPerfomence.Name = "btnAccountPerfomence";
+            this.btnAccountPerfomence.PopupWidth = 500;
+            this.btnAccountPerfomence.Stretch = true;
+            this.btnAccountPerfomence.SubItemsExpandWidth = 14;
+            this.btnAccountPerfomence.Text = "عملکرد حساب";
+            this.btnAccountPerfomence.Click += new System.EventHandler(this.btnAccountPerfomence_Click);
+            // 
+            // btnHazine
+            // 
+            this.btnHazine.Image = global::RealState.Properties.Resources._64;
+            this.btnHazine.ImageListSizeSelection = DevComponents.DotNetBar.eButtonImageListSelection.Large;
+            this.btnHazine.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
+            this.btnHazine.Name = "btnHazine";
+            this.btnHazine.PopupWidth = 500;
+            this.btnHazine.Stretch = true;
+            this.btnHazine.SubItemsExpandWidth = 14;
+            this.btnHazine.Text = "مدیریت هزینه ها";
+            this.btnHazine.Click += new System.EventHandler(this.btnHazine_Click);
+            // 
+            // btnBuildingType
+            // 
+            this.btnBuildingType.Image = global::RealState.Properties.Resources._06;
+            this.btnBuildingType.ImageListSizeSelection = DevComponents.DotNetBar.eButtonImageListSelection.Large;
+            this.btnBuildingType.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
+            this.btnBuildingType.Name = "btnBuildingType";
+            this.btnBuildingType.PopupWidth = 500;
+            this.btnBuildingType.Stretch = true;
+            this.btnBuildingType.SubItemsExpandWidth = 14;
+            this.btnBuildingType.Text = "نوع ملک";
+            this.btnBuildingType.Click += new System.EventHandler(this.btnBuildingType_Click);
+            // 
+            // btnBuildingCondition
+            // 
+            this.btnBuildingCondition.Image = global::RealState.Properties.Resources._55;
+            this.btnBuildingCondition.ImageListSizeSelection = DevComponents.DotNetBar.eButtonImageListSelection.Large;
+            this.btnBuildingCondition.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
+            this.btnBuildingCondition.Name = "btnBuildingCondition";
+            this.btnBuildingCondition.PopupWidth = 500;
+            this.btnBuildingCondition.Stretch = true;
+            this.btnBuildingCondition.SubItemsExpandWidth = 14;
+            this.btnBuildingCondition.Text = "نوع بنا";
+            this.btnBuildingCondition.Click += new System.EventHandler(this.btnBuildingCondition_Click);
+            // 
+            // btnBuildingView
+            // 
+            this.btnBuildingView.Image = global::RealState.Properties.Resources._01;
+            this.btnBuildingView.ImageListSizeSelection = DevComponents.DotNetBar.eButtonImageListSelection.Large;
+            this.btnBuildingView.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
+            this.btnBuildingView.Name = "btnBuildingView";
+            this.btnBuildingView.PopupWidth = 500;
+            this.btnBuildingView.Stretch = true;
+            this.btnBuildingView.SubItemsExpandWidth = 14;
+            this.btnBuildingView.Text = "نمای ساختمان";
+            this.btnBuildingView.Click += new System.EventHandler(this.btnBuildingView_Click);
+            // 
+            // btnRental
+            // 
+            this.btnRental.Image = global::RealState.Properties.Resources._49;
+            this.btnRental.ImageListSizeSelection = DevComponents.DotNetBar.eButtonImageListSelection.Large;
+            this.btnRental.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
+            this.btnRental.Name = "btnRental";
+            this.btnRental.PopupWidth = 500;
+            this.btnRental.Stretch = true;
+            this.btnRental.SubItemsExpandWidth = 14;
+            this.btnRental.Text = "ارجحیت اجاره";
+            this.btnRental.Click += new System.EventHandler(this.btnRental_Click);
+            // 
+            // btnDocType
+            // 
+            this.btnDocType.Image = global::RealState.Properties.Resources._20;
+            this.btnDocType.ImageListSizeSelection = DevComponents.DotNetBar.eButtonImageListSelection.Large;
+            this.btnDocType.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
+            this.btnDocType.Name = "btnDocType";
+            this.btnDocType.PopupWidth = 500;
+            this.btnDocType.Stretch = true;
+            this.btnDocType.SubItemsExpandWidth = 14;
+            this.btnDocType.Text = "انواع سند";
+            this.btnDocType.Click += new System.EventHandler(this.btnDocType_Click);
+            // 
+            // btnKitchenService
+            // 
+            this.btnKitchenService.Image = global::RealState.Properties.Resources._67;
+            this.btnKitchenService.ImageListSizeSelection = DevComponents.DotNetBar.eButtonImageListSelection.Large;
+            this.btnKitchenService.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
+            this.btnKitchenService.Name = "btnKitchenService";
+            this.btnKitchenService.PopupWidth = 500;
+            this.btnKitchenService.Stretch = true;
+            this.btnKitchenService.SubItemsExpandWidth = 14;
+            this.btnKitchenService.Text = "سرویس آشپزخانه";
+            this.btnKitchenService.Click += new System.EventHandler(this.btnKitchenService_Click);
+            // 
+            // btnFloorCover
+            // 
+            this.btnFloorCover.Image = global::RealState.Properties.Resources._28;
+            this.btnFloorCover.ImageListSizeSelection = DevComponents.DotNetBar.eButtonImageListSelection.Large;
+            this.btnFloorCover.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
+            this.btnFloorCover.Name = "btnFloorCover";
+            this.btnFloorCover.PopupWidth = 500;
+            this.btnFloorCover.Stretch = true;
+            this.btnFloorCover.SubItemsExpandWidth = 14;
+            this.btnFloorCover.Text = "کفپوش";
+            this.btnFloorCover.Click += new System.EventHandler(this.btnFloorCover_Click);
+            // 
+            // btnBuildingAccountType
+            // 
+            this.btnBuildingAccountType.Image = global::RealState.Properties.Resources._145;
+            this.btnBuildingAccountType.ImageListSizeSelection = DevComponents.DotNetBar.eButtonImageListSelection.Large;
+            this.btnBuildingAccountType.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
+            this.btnBuildingAccountType.Name = "btnBuildingAccountType";
+            this.btnBuildingAccountType.PopupWidth = 500;
+            this.btnBuildingAccountType.Stretch = true;
+            this.btnBuildingAccountType.SubItemsExpandWidth = 14;
+            this.btnBuildingAccountType.Text = "نوع کاربری ملک";
+            this.btnBuildingAccountType.Click += new System.EventHandler(this.btnBuildingAccountType_Click);
+            // 
+            // btnBuildingOptions
+            // 
+            this.btnBuildingOptions.Image = global::RealState.Properties.Resources._05;
+            this.btnBuildingOptions.ImageListSizeSelection = DevComponents.DotNetBar.eButtonImageListSelection.Large;
+            this.btnBuildingOptions.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
+            this.btnBuildingOptions.Name = "btnBuildingOptions";
+            this.btnBuildingOptions.PopupWidth = 500;
+            this.btnBuildingOptions.Stretch = true;
+            this.btnBuildingOptions.SubItemsExpandWidth = 14;
+            this.btnBuildingOptions.Text = "امکانات ملک";
+            this.btnBuildingOptions.Click += new System.EventHandler(this.btnBuildingOptions_Click);
+            // 
+            // btnRegion
+            // 
+            this.btnRegion.Image = global::RealState.Properties.Resources._21;
+            this.btnRegion.ImageListSizeSelection = DevComponents.DotNetBar.eButtonImageListSelection.Large;
+            this.btnRegion.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
+            this.btnRegion.Name = "btnRegion";
+            this.btnRegion.PopupWidth = 500;
+            this.btnRegion.Stretch = true;
+            this.btnRegion.SubItemsExpandWidth = 14;
+            this.btnRegion.Text = "مدیریت مناطق";
+            this.btnRegion.Click += new System.EventHandler(this.btnRegion_Click);
+            // 
+            // btnCity
+            // 
+            this.btnCity.Image = global::RealState.Properties.Resources._31;
+            this.btnCity.ImageListSizeSelection = DevComponents.DotNetBar.eButtonImageListSelection.Large;
+            this.btnCity.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
+            this.btnCity.Name = "btnCity";
+            this.btnCity.PopupWidth = 500;
+            this.btnCity.Stretch = true;
+            this.btnCity.SubItemsExpandWidth = 14;
+            this.btnCity.Text = "مدیریت شهرها";
+            this.btnCity.Click += new System.EventHandler(this.btnCity_Click);
+            // 
+            // btnPeoples
+            // 
+            this.btnPeoples.Image = global::RealState.Properties.Resources._11;
+            this.btnPeoples.ImageListSizeSelection = DevComponents.DotNetBar.eButtonImageListSelection.Large;
+            this.btnPeoples.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
+            this.btnPeoples.Name = "btnPeoples";
+            this.btnPeoples.PopupWidth = 500;
+            this.btnPeoples.Stretch = true;
+            this.btnPeoples.SubItemsExpandWidth = 14;
+            this.btnPeoples.Text = "مدیریت اشخاص";
+            this.btnPeoples.Click += new System.EventHandler(this.btnPeoples_Click);
+            // 
+            // btnAdvance
+            // 
+            this.btnAdvance.Image = global::RealState.Properties.Resources._071;
+            this.btnAdvance.ImageListSizeSelection = DevComponents.DotNetBar.eButtonImageListSelection.Large;
+            this.btnAdvance.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
+            this.btnAdvance.Name = "btnAdvance";
+            this.btnAdvance.PopupWidth = 500;
+            this.btnAdvance.Stretch = true;
+            this.btnAdvance.SubItemsExpandWidth = 14;
+            this.btnAdvance.Text = "مدیریت ویژه";
+            this.btnAdvance.Click += new System.EventHandler(this.btnAdvance_Click);
+            // 
+            // btnErtegha
+            // 
+            this.btnErtegha.Image = global::RealState.Properties.Resources._112;
+            this.btnErtegha.ImageListSizeSelection = DevComponents.DotNetBar.eButtonImageListSelection.Large;
+            this.btnErtegha.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
+            this.btnErtegha.Name = "btnErtegha";
+            this.btnErtegha.PopupWidth = 500;
+            this.btnErtegha.Stretch = true;
+            this.btnErtegha.SubItemsExpandWidth = 14;
+            this.btnErtegha.Text = "ارتقا نسخه";
+            this.btnErtegha.Click += new System.EventHandler(this.btnErtegha_Click);
+            // 
+            // btnBazsazi
+            // 
+            this.btnBazsazi.Image = global::RealState.Properties.Resources._46;
+            this.btnBazsazi.ImageListSizeSelection = DevComponents.DotNetBar.eButtonImageListSelection.Large;
+            this.btnBazsazi.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
+            this.btnBazsazi.Name = "btnBazsazi";
+            this.btnBazsazi.PopupWidth = 500;
+            this.btnBazsazi.Stretch = true;
+            this.btnBazsazi.SubItemsExpandWidth = 14;
+            this.btnBazsazi.Text = "بازسازی اطلاعات";
+            this.btnBazsazi.Click += new System.EventHandler(this.btnBazsazi_Click);
+            // 
+            // btnRestore
+            // 
+            this.btnRestore.Image = global::RealState.Properties.Resources._62;
+            this.btnRestore.ImageListSizeSelection = DevComponents.DotNetBar.eButtonImageListSelection.Large;
+            this.btnRestore.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
+            this.btnRestore.Name = "btnRestore";
+            this.btnRestore.PopupWidth = 500;
+            this.btnRestore.Stretch = true;
+            this.btnRestore.SubItemsExpandWidth = 14;
+            this.btnRestore.Text = "بازیابی اطلاعات";
+            this.btnRestore.Click += new System.EventHandler(this.btnRestore_Click);
+            // 
+            // btnBackUp
+            // 
+            this.btnBackUp.Image = global::RealState.Properties.Resources._81;
+            this.btnBackUp.ImageListSizeSelection = DevComponents.DotNetBar.eButtonImageListSelection.Large;
+            this.btnBackUp.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
+            this.btnBackUp.Name = "btnBackUp";
+            this.btnBackUp.PopupWidth = 500;
+            this.btnBackUp.Stretch = true;
+            this.btnBackUp.SubItemsExpandWidth = 14;
+            this.btnBackUp.Text = "پشتیبان گیری";
+            this.btnBackUp.Click += new System.EventHandler(this.btnBackUp_Click);
+            // 
+            // btnRobotPanel
+            // 
+            this.btnRobotPanel.Image = global::RealState.Properties.Resources._107;
+            this.btnRobotPanel.ImageListSizeSelection = DevComponents.DotNetBar.eButtonImageListSelection.Large;
+            this.btnRobotPanel.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
+            this.btnRobotPanel.Name = "btnRobotPanel";
+            this.btnRobotPanel.PopupWidth = 500;
+            this.btnRobotPanel.Stretch = true;
+            this.btnRobotPanel.SubItemsExpandWidth = 14;
+            this.btnRobotPanel.Text = "آگهی تبلیغاتی";
+            this.btnRobotPanel.Click += new System.EventHandler(this.btnRobotPanel_Click);
+            // 
+            // btnSendSms
+            // 
+            this.btnSendSms.Image = global::RealState.Properties.Resources._042;
+            this.btnSendSms.ImageListSizeSelection = DevComponents.DotNetBar.eButtonImageListSelection.Large;
+            this.btnSendSms.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
+            this.btnSendSms.Name = "btnSendSms";
+            this.btnSendSms.PopupWidth = 500;
+            this.btnSendSms.Stretch = true;
+            this.btnSendSms.SubItemsExpandWidth = 14;
+            this.btnSendSms.Text = "ارسال پیامک";
+            this.btnSendSms.Click += new System.EventHandler(this.btnSendSms_Click);
+            // 
+            // btnSmsPanel
+            // 
+            this.btnSmsPanel.Image = global::RealState.Properties.Resources._88;
+            this.btnSmsPanel.ImageListSizeSelection = DevComponents.DotNetBar.eButtonImageListSelection.Large;
+            this.btnSmsPanel.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
+            this.btnSmsPanel.Name = "btnSmsPanel";
+            this.btnSmsPanel.PopupWidth = 500;
+            this.btnSmsPanel.Stretch = true;
+            this.btnSmsPanel.SubItemsExpandWidth = 14;
+            this.btnSmsPanel.Text = "پنل پیامک";
+            this.btnSmsPanel.Click += new System.EventHandler(this.btnSmsPanel_Click);
+            // 
+            // btnNote
+            // 
+            this.btnNote.Image = global::RealState.Properties.Resources._281;
+            this.btnNote.ImageListSizeSelection = DevComponents.DotNetBar.eButtonImageListSelection.Large;
+            this.btnNote.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
+            this.btnNote.Name = "btnNote";
+            this.btnNote.PopupWidth = 500;
+            this.btnNote.Stretch = true;
+            this.btnNote.SubItemsExpandWidth = 14;
+            this.btnNote.Text = "یادداشت";
+            this.btnNote.Click += new System.EventHandler(this.btnNote_Click);
+            // 
+            // btnPhoneBook
+            // 
+            this.btnPhoneBook.Image = global::RealState.Properties.Resources._1111;
+            this.btnPhoneBook.ImageListSizeSelection = DevComponents.DotNetBar.eButtonImageListSelection.Large;
+            this.btnPhoneBook.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
+            this.btnPhoneBook.Name = "btnPhoneBook";
+            this.btnPhoneBook.PopupWidth = 500;
+            this.btnPhoneBook.Stretch = true;
+            this.btnPhoneBook.SubItemsExpandWidth = 14;
+            this.btnPhoneBook.Text = "دفترچه تلفن";
+            this.btnPhoneBook.Click += new System.EventHandler(this.btnPhoneBook_Click);
+            // 
+            // btnSetting
+            // 
+            this.btnSetting.Image = global::RealState.Properties.Resources._02;
+            this.btnSetting.ImageListSizeSelection = DevComponents.DotNetBar.eButtonImageListSelection.Large;
+            this.btnSetting.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
+            this.btnSetting.Name = "btnSetting";
+            this.btnSetting.PopupWidth = 500;
+            this.btnSetting.Stretch = true;
+            this.btnSetting.SubItemsExpandWidth = 14;
+            this.btnSetting.Text = "تنظیمات";
+            this.btnSetting.Click += new System.EventHandler(this.btnSetting_Click);
+            // 
+            // btnBuildingArchive
+            // 
+            this.btnBuildingArchive.Image = global::RealState.Properties.Resources._052;
+            this.btnBuildingArchive.ImageListSizeSelection = DevComponents.DotNetBar.eButtonImageListSelection.Large;
+            this.btnBuildingArchive.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
+            this.btnBuildingArchive.Name = "btnBuildingArchive";
+            this.btnBuildingArchive.PopupWidth = 500;
+            this.btnBuildingArchive.Stretch = true;
+            this.btnBuildingArchive.SubItemsExpandWidth = 14;
+            this.btnBuildingArchive.Text = "بایگانی املاک";
+            this.btnBuildingArchive.Click += new System.EventHandler(this.btnBuildingArchive_Click);
+            // 
+            // buttonItem23
+            // 
+            this.buttonItem23.Image = global::RealState.Properties.Resources._58;
+            this.buttonItem23.ImageListSizeSelection = DevComponents.DotNetBar.eButtonImageListSelection.Large;
+            this.buttonItem23.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
+            this.buttonItem23.Name = "buttonItem23";
+            this.buttonItem23.PopupWidth = 500;
+            this.buttonItem23.Stretch = true;
+            this.buttonItem23.SubItemsExpandWidth = 14;
+            this.buttonItem23.Text = "تست دیوار";
+            this.buttonItem23.Click += new System.EventHandler(this.buttonItem23_Click);
+            // 
+            // btnBuildingFast
+            // 
+            this.btnBuildingFast.Image = global::RealState.Properties.Resources._58;
+            this.btnBuildingFast.ImageListSizeSelection = DevComponents.DotNetBar.eButtonImageListSelection.Large;
+            this.btnBuildingFast.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
+            this.btnBuildingFast.Name = "btnBuildingFast";
+            this.btnBuildingFast.PopupWidth = 500;
+            this.btnBuildingFast.Stretch = true;
+            this.btnBuildingFast.SubItemsExpandWidth = 14;
+            this.btnBuildingFast.Text = "ثبت سریع ملک";
+            this.btnBuildingFast.Click += new System.EventHandler(this.btnBuildingFast_Click);
+            // 
+            // btnContract
+            // 
+            this.btnContract.Image = global::RealState.Properties.Resources._119;
+            this.btnContract.ImageListSizeSelection = DevComponents.DotNetBar.eButtonImageListSelection.Large;
+            this.btnContract.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
+            this.btnContract.Name = "btnContract";
+            this.btnContract.PopupWidth = 500;
+            this.btnContract.Stretch = true;
+            this.btnContract.SubItemsExpandWidth = 14;
+            this.btnContract.Text = "قرارداد";
+            this.btnContract.Click += new System.EventHandler(this.btnContract_Click);
+            // 
+            // btnBuildingRequest
+            // 
+            this.btnBuildingRequest.Image = global::RealState.Properties.Resources._07;
+            this.btnBuildingRequest.ImageListSizeSelection = DevComponents.DotNetBar.eButtonImageListSelection.Large;
+            this.btnBuildingRequest.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
+            this.btnBuildingRequest.Name = "btnBuildingRequest";
+            this.btnBuildingRequest.PopupWidth = 500;
+            this.btnBuildingRequest.Stretch = true;
+            this.btnBuildingRequest.SubItemsExpandWidth = 14;
+            this.btnBuildingRequest.Text = "درخواست";
+            this.btnBuildingRequest.Click += new System.EventHandler(this.btnBuildingRequest_Click);
+            // 
+            // btnBuildingAdvanceSearch
+            // 
+            this.btnBuildingAdvanceSearch.Image = global::RealState.Properties.Resources._09;
+            this.btnBuildingAdvanceSearch.ImageListSizeSelection = DevComponents.DotNetBar.eButtonImageListSelection.Large;
+            this.btnBuildingAdvanceSearch.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
+            this.btnBuildingAdvanceSearch.Name = "btnBuildingAdvanceSearch";
+            this.btnBuildingAdvanceSearch.PopupWidth = 500;
+            this.btnBuildingAdvanceSearch.Stretch = true;
+            this.btnBuildingAdvanceSearch.SubItemsExpandWidth = 14;
+            this.btnBuildingAdvanceSearch.Text = "جستجوی پیشرفته";
+            this.btnBuildingAdvanceSearch.Click += new System.EventHandler(this.btnBuildingAdvanceSearch_Click);
+            // 
+            // btnBuilding
+            // 
+            this.btnBuilding.Image = global::RealState.Properties.Resources._10;
+            this.btnBuilding.ImageListSizeSelection = DevComponents.DotNetBar.eButtonImageListSelection.Large;
+            this.btnBuilding.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
+            this.btnBuilding.Name = "btnBuilding";
+            this.btnBuilding.PopupWidth = 500;
+            this.btnBuilding.Stretch = true;
+            this.btnBuilding.SubItemsExpandWidth = 14;
+            this.btnBuilding.Text = "مدیریت املاک";
+            this.btnBuilding.Click += new System.EventHandler(this.btnBuilding_Click);
+            // 
+            // btnAccessLevel
+            // 
+            this.btnAccessLevel.Image = global::RealState.Properties.Resources._051;
+            this.btnAccessLevel.ImageListSizeSelection = DevComponents.DotNetBar.eButtonImageListSelection.Large;
+            this.btnAccessLevel.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
+            this.btnAccessLevel.Name = "btnAccessLevel";
+            this.btnAccessLevel.PopupWidth = 500;
+            this.btnAccessLevel.Stretch = true;
+            this.btnAccessLevel.SubItemsExpandWidth = 14;
+            this.btnAccessLevel.Text = "سطوح دسترسی";
+            this.btnAccessLevel.Click += new System.EventHandler(this.btnAccessLevel_Click);
+            // 
+            // btnUsers
+            // 
+            this.btnUsers.Image = global::RealState.Properties.Resources._90;
+            this.btnUsers.ImageListSizeSelection = DevComponents.DotNetBar.eButtonImageListSelection.Large;
+            this.btnUsers.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
+            this.btnUsers.Name = "btnUsers";
+            this.btnUsers.PopupWidth = 500;
+            this.btnUsers.Stretch = true;
+            this.btnUsers.SubItemsExpandWidth = 14;
+            this.btnUsers.Text = "مدیریت کاربران";
+            this.btnUsers.Click += new System.EventHandler(this.btnUsers_Click);
             // 
             // buttonItem1
             // 
@@ -3156,13 +3202,13 @@
             this.ExPanel.ResumeLayout(false);
             this.panelEx1.ResumeLayout(false);
             this.panelEx1.PerformLayout();
+            this.grp.ResumeLayout(false);
+            this.grp.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox13)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox15)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox16)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox17)).EndInit();
-            this.grp.ResumeLayout(false);
-            this.grp.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
@@ -3350,6 +3396,8 @@
         private System.Windows.Forms.PictureBox pictureBox9;
         private DevComponents.DotNetBar.RibbonBar ribbonBar39;
         private DevComponents.DotNetBar.ButtonItem btnBuildingArchive;
+        private DevComponents.DotNetBar.RibbonBar ribbonBar23;
+        private DevComponents.DotNetBar.ButtonItem btnTarazName;
     }
 }
 

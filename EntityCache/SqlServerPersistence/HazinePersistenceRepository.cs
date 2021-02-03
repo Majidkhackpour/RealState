@@ -36,6 +36,37 @@ namespace EntityCache.SqlServerPersistence
                 return false;
             }
         }
+        public async Task<decimal> GetTotalHazineAsync(DateTime d1, DateTime d2)
+        {
+            var res = (decimal)0;
+            try
+            {
+                var all = await GetAllAsync();
+                using (var cn = new SqlConnection(_connectionString))
+                {
+                    var cmd = new SqlCommand("sp_Hazine_GetTotal", cn) { CommandType = CommandType.StoredProcedure };
+                    await cn.OpenAsync();
+                    foreach (var item in all)
+                    {
+                        cmd.Parameters.Clear();
+                        cmd.Parameters.AddWithValue("@d1", d1);
+                        cmd.Parameters.AddWithValue("@d2", d2);
+                        cmd.Parameters.AddWithValue("@hazineGuid", item.Guid);
+                        var obj = await cmd.ExecuteScalarAsync();
+                        if (obj != null)
+                            res += obj.ToString().ParseToDecimal();
+                    }
+
+                    cn.Close();
+                }
+            }
+            catch (Exception exception)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(exception);
+            }
+
+            return res;
+        }
         public override async Task<HazineBussines> GetAsync(Guid guid)
         {
             var obj = new HazineBussines();

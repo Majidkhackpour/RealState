@@ -92,6 +92,9 @@ namespace Print
                     case StiType.AdvSent_List:
                         Sti = clsAdvertise.List.GetSti(Sti, peper);
                         break;
+                    case StiType.Sood_Zian:
+                        Sti = clsSood_Zian.One.GetSti(Sti, peper);
+                        break;
                 }
             }
             catch (Exception ex)

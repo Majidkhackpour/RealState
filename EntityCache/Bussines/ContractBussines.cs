@@ -198,5 +198,9 @@ namespace EntityCache.Bussines
 
             return await UnitOfWork.Contract.DischargeListAsync(d1, d2);
         }
+        public static async Task<decimal> GetTotalBazaryabAsync(DateTime d1, DateTime d2) =>
+            await UnitOfWork.Contract.GetTotalBazaryab(d1, d2);
+        public static decimal GetTotalBazaryab(DateTime d1, DateTime d2) =>
+            AsyncContext.Run(() => GetTotalBazaryabAsync(d1, d2));
     }
 }

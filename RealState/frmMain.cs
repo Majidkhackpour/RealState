@@ -39,6 +39,7 @@ using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WindowsSerivces;
+using Accounting.Sood_Zian;
 using Advertise.Classes;
 using Advertise.Forms.Simcard;
 using Building;
@@ -114,6 +115,7 @@ namespace RealState
                 btnSmsPanel.Enabled = access?.SmsPanel.Panel_ShowForm ?? false;
                 btnUsers.Enabled = access?.User.User_ShowForm ?? false;
                 btnAccessLevel.Enabled = access?.UserAccLevel.User_Acc_ShowForm ?? false;
+                btnTarazName.Enabled = access?.Sanad.Sanad_Taraz ?? false;
 
                 btnAccountingInfo.Visible = VersionAccess.Accounting;
                 btnSmsPanel.Visible = VersionAccess.Sms;
@@ -842,6 +844,18 @@ namespace RealState
             try
             {
                 var frm = new frmShowBuildings(false, true);
+                frm.ShowDialog(this);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private void btnTarazName_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var frm = new frmFilterSood_Zian();
                 frm.ShowDialog(this);
             }
             catch (Exception ex)

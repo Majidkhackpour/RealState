@@ -42,6 +42,54 @@ namespace EntityCache.SqlServerPersistence
 
             return list;
         }
+        public async Task<decimal> GetTotalCommitionAsync(DateTime d1, DateTime d2)
+        {
+            var res = (decimal)0;
+            try
+            {
+                using (var cn = new SqlConnection(_connectionString))
+                {
+                    var cmd = new SqlCommand("sp_ContractFinance_GetTotalCommition", cn) { CommandType = CommandType.StoredProcedure };
+                    cmd.Parameters.AddWithValue("@d1", d1);
+                    cmd.Parameters.AddWithValue("@d2", d2);
+                    await cn.OpenAsync();
+                    var obj = await cmd.ExecuteScalarAsync();
+                    if (obj != null)
+                        res = obj.ToString().ParseToDecimal();
+                    cn.Close();
+                }
+            }
+            catch (Exception exception)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(exception);
+            }
+
+            return res;
+        }
+        public async Task<decimal> GetTotalTaxAsync(DateTime d1, DateTime d2)
+        {
+            var res = (decimal)0;
+            try
+            {
+                using (var cn = new SqlConnection(_connectionString))
+                {
+                    var cmd = new SqlCommand("sp_ContractFinance_GetTotalTax", cn) { CommandType = CommandType.StoredProcedure };
+                    cmd.Parameters.AddWithValue("@d1", d1);
+                    cmd.Parameters.AddWithValue("@d2", d2);
+                    await cn.OpenAsync();
+                    var obj = await cmd.ExecuteScalarAsync();
+                    if (obj != null)
+                        res = obj.ToString().ParseToDecimal();
+                    cn.Close();
+                }
+            }
+            catch (Exception exception)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(exception);
+            }
+
+            return res;
+        }
         private ContractFinanceBussines LoadData(SqlDataReader dr)
         {
             var res = new ContractFinanceBussines();

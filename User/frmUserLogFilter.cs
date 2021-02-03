@@ -43,11 +43,7 @@ namespace User
 
         private async void frmUserLogFilter_Load(object sender, EventArgs e) => await SetDataAsync();
 
-        private void btnCancel_Click(object sender, EventArgs e)
-        {
-            Close();
-        }
-
+        private void btnCancel_Click(object sender, EventArgs e) => Close();
         private void frmUserLogFilter_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -71,7 +67,6 @@ namespace User
                 WebErrorLog.ErrorInstence.StartErrorLog(exception);
             }
         }
-
         private void btnFinish_Click(object sender, EventArgs e)
         {
             try

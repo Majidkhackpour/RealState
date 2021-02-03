@@ -1746,3 +1746,121 @@ BEGIN
 	SELECT * from RentalAuthorities
 	where Name=@name
 END
+GO
+-- ==========================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_ContractFinance_GetTotalCommition]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_ContractFinance_GetTotalCommition]	As Begin print 11 end')
+GO
+Alter PROCEDURE sp_ContractFinance_GetTotalCommition
+	@d1 datetime,
+	@d2 datetime
+AS
+BEGIN
+	declare @Sum1 decimal
+	declare @Sum2 decimal
+
+	declare @dis1 decimal
+	declare @dis2 decimal
+
+	declare @SumRet1 decimal
+	declare @SumRet2 decimal
+
+	declare @Total decimal
+	set @Total=0
+
+	set @dis1=(select SUM(FirstDiscount) from ContractFinances inner join Contracts
+				on Contracts.Guid=ContractFinances.ConGuid
+				where ContractFinances.Status='true' and Contracts.DateM between @d1 and @d2)
+
+	set @dis2=(select SUM(SecondDiscount) from ContractFinances inner join Contracts
+				on Contracts.Guid=ContractFinances.ConGuid
+				where ContractFinances.Status='true' and Contracts.DateM between @d1 and @d2)
+
+	set @Sum1=(select SUM(FirstTotalPrice) from ContractFinances inner join Contracts
+				on Contracts.Guid=ContractFinances.ConGuid
+				where ContractFinances.Status='true' and Contracts.DateM between @d1 and @d2)
+
+	set @Sum2=(select SUM(SecondTotalPrice) from ContractFinances inner join Contracts
+				on Contracts.Guid=ContractFinances.ConGuid
+				where ContractFinances.Status='true' and Contracts.DateM between @d1 and @d2)
+
+	set @SumRet1=@Sum1-@dis1
+	set @SumRet2=@Sum2-@dis2
+
+	set @Total=@SumRet1+@SumRet2
+
+	select @Total
+	return @Total
+END
+GO
+-- ==========================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_ContractFinance_GetTotalTax]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_ContractFinance_GetTotalTax]	As Begin print 11 end')
+GO
+Alter PROCEDURE sp_ContractFinance_GetTotalTax
+	@d1 datetime,
+	@d2 datetime
+AS
+BEGIN
+	declare @Sum1 decimal
+	declare @Sum2 decimal
+
+	declare @Total decimal
+	set @Total=0
+
+	
+	set @Sum1=(select SUM(FirstAddedValue) from ContractFinances inner join Contracts
+				on Contracts.Guid=ContractFinances.ConGuid
+				where ContractFinances.Status='true' and Contracts.DateM between @d1 and @d2)
+
+	set @Sum2=(select SUM(SecondAddedValue) from ContractFinances inner join Contracts
+				on Contracts.Guid=ContractFinances.ConGuid
+				where ContractFinances.Status='true' and Contracts.DateM between @d1 and @d2)
+
+	set @Total=@Sum1+@Sum2
+
+	select @Total
+	return @Total
+END
+GO
+-- ==========================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Contract_GetTotalBazaryab]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Contract_GetTotalBazaryab]	As Begin print 11 end')
+GO
+Alter PROCEDURE sp_Contract_GetTotalBazaryab
+	@d1 datetime,
+	@d2 datetime
+AS
+BEGIN
+	declare @Total decimal
+	set @Total=0
+
+	
+	set @Total=(select SUM(BazaryabPrice) from Contracts 
+				where Status='true' and Contracts.DateM between @d1 and @d2)
+
+	select @Total
+	return @Total
+END
+GO
+-- ==========================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Hazine_GetTotal]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Hazine_GetTotal]	As Begin print 11 end')
+GO
+Alter PROCEDURE sp_Hazine_GetTotal
+	@d1 datetime,
+	@d2 datetime,
+	@hazineGuid uniqueidentifier
+AS
+BEGIN
+	declare @Total decimal
+	set @Total=0
+
+	
+	set @Total=(select SUM(Price) from GardeshHesabs
+				where Status='true' and Modified between @d1 and @d2
+				and PeopleGuid=@hazineGuid)
+
+	select @Total
+	return @Total
+END

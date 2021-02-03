@@ -191,5 +191,9 @@ namespace EntityCache.Bussines
         public static HazineBussines Get(Guid guid) => AsyncContext.Run(() => GetAsync(guid));
         public static async Task<bool> CheckNameAsync(string name, Guid guid) =>
             await UnitOfWork.Hazine.CheckNameAsync(name, guid);
+        public static async Task<decimal> GetTotalHazineAsync(DateTime d1, DateTime d2) =>
+            await UnitOfWork.Hazine.GetTotalHazineAsync(d1, d2);
+        public static decimal GetTotalHazine(DateTime d1, DateTime d2) =>
+            AsyncContext.Run(() => GetTotalHazineAsync(d1, d2));
     }
 }
