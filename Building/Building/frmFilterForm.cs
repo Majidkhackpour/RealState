@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Advertise.Classes;
@@ -16,6 +17,8 @@ namespace Building.Building
 {
     public partial class frmFilterForm : MetroForm
     {
+        private bool loadComlete = false;
+
         public List<Guid> RegionList { get; set; }
         private async Task SetDataAsync()
         {
@@ -36,6 +39,7 @@ namespace Building.Building
                     cmbEjare2.SelectedIndex = 0;
                     txtMaxFile.Value = maxCount <= 0 ? 1 : maxCount;
                 }));
+                loadComlete = true;
             }
             catch (Exception ex)
             {
@@ -86,6 +90,10 @@ namespace Building.Building
         {
             try
             {
+                while (!IsHandleCreated)
+                {
+                    await Task.Delay(100);
+                }
                 var list = await BuildingAccountTypeBussines.GetAllAsync();
 
                 var a = new BuildingAccountTypeBussines()
@@ -144,21 +152,29 @@ namespace Building.Building
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
+
         public frmFilterForm()
         {
             InitializeComponent();
             Task.Run(SetDataAsync);
             SetAccess();
         }
-
         public frmFilterForm(EnRequestType type, Guid buildingType, Guid accountType, int roomCount, int fMasahat,
             int sMasahat, decimal fPrice1, decimal sPrice1, decimal fPrice2, decimal sPrice2, List<Guid> regList)
         {
             InitializeComponent();
             RegionList = regList;
             Task.Run(SetDataAsync);
-            SetFormControl(type, buildingType, accountType, roomCount, fMasahat, sMasahat, fPrice1, sPrice1, fPrice2,
-                sPrice2);
+            Type = type;
+            BuildingTypeGuid = buildingType;
+            AccountTypeGuid = accountType;
+            RoomCount = roomCount;
+            FirstMasahat = fMasahat;
+            SecondMasahat = sMasahat;
+            FirstPrice1 = fPrice1;
+            SecondPrice1 = sPrice1;
+            FirstPrice2 = fPrice2;
+            SecondPrice2 = sPrice2;
             SetAccess();
             btnRegion.Enabled = false;
         }
@@ -198,7 +214,6 @@ namespace Building.Building
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-
         private async void btnSeach_Click(object sender, EventArgs e)
         {
             try
@@ -242,11 +257,11 @@ namespace Building.Building
 
                 if (chbSystem.Checked)
                 {
-                    list.AddRange(await BuildingBussines.GetAllAsync(txtCode.Text, (Guid)cmbBuildingType.SelectedValue,
-                        (Guid)cmbBuildingAccountType.SelectedValue, txtFMasahat.Text.ParseToInt(),
-                        txtSMasahat.Text.ParseToInt(), txtRoomCount.Text.ParseToInt(), fPrice1,
-                        sPrice1, fPrice2,
-                        sPrice2, (EnRequestType)cmbReqType.SelectedIndex, RegionList));
+                    list.AddRange(await BuildingBussines.GetAllAsync(txtCode.Text, (Guid) cmbBuildingType.SelectedValue,
+                        (Guid) cmbBuildingAccountType.SelectedValue, txtFMasahat.Text.ParseToInt(),
+                        txtSMasahat.Text.ParseToInt(), txtRoomCount.Text.ParseToInt(), fPrice1, fPrice2,
+                        sPrice1, sPrice2,
+                        (EnRequestType) cmbReqType.SelectedIndex, RegionList));
                 }
 
                 if (chbDivar.Checked)
@@ -275,19 +290,21 @@ namespace Building.Building
 
                 var frm = new frmBuildingAdvanceSearch(list);
                 frm.ShowDialog(this);
-
             }
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-
-        private void SetFormControl(EnRequestType type, Guid buildingType, Guid accountType, int roomCount, int fMasahat,
+        private async Task SetFormControlAsync(EnRequestType type, Guid buildingType, Guid accountType, int roomCount, int fMasahat,
             int sMasahat, decimal fPrice1, decimal sPrice1, decimal fPrice2, decimal sPrice2)
         {
             try
             {
+                while (!loadComlete)
+                {
+                    await Task.Delay(100);
+                }
                 cmbReqType.SelectedIndex = (int)type;
                 cmbBuildingType.SelectedValue = buildingType;
                 cmbBuildingAccountType.SelectedValue = accountType;
@@ -344,24 +361,24 @@ namespace Building.Building
                 if (sPrice1 == 0)
                 {
                     txtSPrice1.Text = sPrice1.ToString();
-                    cmbRahn2.SelectedIndex = 0;
+                    cmbEjare1.SelectedIndex = 0;
                 }
                 if (sPrice1 != 0)
                 {
                     if (sPrice1 >= 10000 && sPrice1 >= 9999)
                     {
                         txtSPrice1.Text = (sPrice1 / 10000).ToString();
-                        cmbRahn2.SelectedIndex = 0;
+                        cmbEjare1.SelectedIndex = 0;
                     }
                     if (sPrice1 >= 10000000 && sPrice1 >= 9999999)
                     {
                         txtSPrice1.Text = (sPrice1 / 10000000).ToString();
-                        cmbRahn2.SelectedIndex = 1;
+                        cmbEjare1.SelectedIndex = 1;
                     }
                     if (sPrice1 >= 10000000000 && sPrice1 >= 9999999999)
                     {
                         txtSPrice1.Text = (sPrice1 / 10000000000).ToString();
-                        cmbRahn2.SelectedIndex = 2;
+                        cmbEjare1.SelectedIndex = 2;
                     }
                 }
 
@@ -370,24 +387,24 @@ namespace Building.Building
                 if (fPrice2 == 0)
                 {
                     txtFPrice2.Text = fPrice2.ToString();
-                    cmbEjare1.SelectedIndex = 0;
+                    cmbRahn2.SelectedIndex = 0;
                 }
                 if (fPrice2 != 0)
                 {
                     if (fPrice2 >= 10000 && fPrice2 >= 9999)
                     {
                         txtFPrice2.Text = (fPrice2 / 10000).ToString();
-                        cmbEjare1.SelectedIndex = 0;
+                        cmbRahn2.SelectedIndex = 0;
                     }
                     if (fPrice2 >= 10000000 && fPrice2 >= 9999999)
                     {
                         txtFPrice2.Text = (fPrice2 / 10000000).ToString();
-                        cmbEjare1.SelectedIndex = 1;
+                        cmbRahn2.SelectedIndex = 1;
                     }
                     if (fPrice2 >= 10000000000 && fPrice2 >= 9999999999)
                     {
                         txtFPrice2.Text = (fPrice2 / 10000000000).ToString();
-                        cmbEjare1.SelectedIndex = 2;
+                        cmbRahn2.SelectedIndex = 2;
                     }
                 }
 
@@ -423,7 +440,6 @@ namespace Building.Building
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-
         private void btnRegion_Click(object sender, EventArgs e)
         {
             try
@@ -436,6 +452,23 @@ namespace Building.Building
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
+        }
+
+        public EnRequestType Type { get; set; } = EnRequestType.Moavezeh;
+        public Guid BuildingTypeGuid { get; set; }=Guid.Empty;
+        public Guid AccountTypeGuid { get; set; } = Guid.Empty;
+        public int RoomCount { get; set; } = 0;
+        public int FirstMasahat { get; set; } = 0;
+        public int SecondMasahat { get; set; } = 0;
+        public decimal FirstPrice1 { get; set; } = 0;
+        public decimal FirstPrice2 { get; set; } = 0;
+        public decimal SecondPrice1 { get; set; } = 0;
+        public decimal SecondPrice2 { get; set; } = 0;
+
+        private async void frmFilterForm_Load(object sender, EventArgs e)
+        {
+            await SetFormControlAsync(Type, BuildingTypeGuid, AccountTypeGuid, RoomCount, FirstMasahat, SecondMasahat, FirstPrice1,
+                SecondPrice1, FirstPrice2, SecondPrice2);
         }
     }
 }

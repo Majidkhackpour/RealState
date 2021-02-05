@@ -581,6 +581,7 @@
             this.Padding = new System.Windows.Forms.Padding(27, 92, 27, 31);
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.Style = MetroFramework.MetroColorStyle.Green;
+            this.Load += new System.EventHandler(this.frmFilterForm_Load);
             this.grp.ResumeLayout(false);
             this.grp.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtSPrice2)).EndInit();

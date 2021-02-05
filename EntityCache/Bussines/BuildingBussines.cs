@@ -314,15 +314,15 @@ namespace EntityCache.Bussines
                 if (type == EnRequestType.Rahn)
                 {
                     if (fPrice1 != 0) res = res.Where(q => q.RahnPrice1 >= fPrice1).ToList();
-                    if (fPrice2 != 0) res = res.Where(q => q.RahnPrice2 >= fPrice2).ToList();
+                    if (fPrice2 != 0) res = res.Where(q => q.RahnPrice2 <= fPrice2).ToList();
 
                     if (lPrice1 != 0) res = res.Where(q => q.EjarePrice1 >= lPrice1).ToList();
-                    if (lPrice2 != 0) res = res.Where(q => q.EjarePrice1 >= lPrice2).ToList();
+                    if (lPrice2 != 0) res = res.Where(q => q.EjarePrice2 <= lPrice2).ToList();
                 }
                 else
                 {
                     if (fPrice1 != 0) res = res.Where(q => q.SellPrice >= fPrice1).ToList();
-                    if (fPrice2 != 0) res = res.Where(q => q.SellPrice >= fPrice2).ToList();
+                    if (fPrice2 != 0) res = res.Where(q => q.SellPrice <= fPrice2).ToList();
                 }
 
                 if (regionList.Count > 0) res = res.Where(q => regionList.Contains(q.RegionGuid)).ToList();
@@ -358,6 +358,7 @@ namespace EntityCache.Bussines
                     {
                         a.Price1 = item.SellPrice;
                         a.Price2 = 0;
+                        a.Type = EnRequestType.Forush;
                     }
                     val.Add(a);
                 }

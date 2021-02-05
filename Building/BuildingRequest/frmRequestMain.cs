@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Building.Building;
 using EntityCache.Bussines;
+using EntityCache.ViewModels;
 using MetroFramework.Forms;
 using Notification;
 using Peoples;
@@ -297,7 +299,6 @@ namespace Building.BuildingRequest
         }
 
         private async void frmRequestMain_Load(object sender, EventArgs e) => await SetDataAsync();
-
         private void btnSearchOwner_Click(object sender, EventArgs e)
         {
             try
@@ -312,7 +313,6 @@ namespace Building.BuildingRequest
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-
         private void btnCreateOwner_Click(object sender, EventArgs e)
         {
             try
@@ -327,7 +327,6 @@ namespace Building.BuildingRequest
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-
         private async void cmbState_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -341,7 +340,6 @@ namespace Building.BuildingRequest
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-
         private async void cmbCity_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -355,12 +353,10 @@ namespace Building.BuildingRequest
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-
         private void DGrid_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
             DGrid.Rows[e.RowIndex].Cells["dgRadif"].Value = e.RowIndex + 1;
         }
-
         private void frmRequestMain_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -384,13 +380,11 @@ namespace Building.BuildingRequest
                 WebErrorLog.ErrorInstence.StartErrorLog(exception);
             }
         }
-
         private void btnCancel_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Cancel;
             Close();
         }
-
         private async void btnFinish_Click(object sender, EventArgs e)
         {
             var res = new ReturnedSaveFuncInfo();
@@ -455,6 +449,46 @@ namespace Building.BuildingRequest
 
                 if (Settings.Classes.Payamak.IsSendToSayer.ParseToBoolean() && isSendSms)
                     _ = Task.Run(() => Payamak.FixSms.RequestSend.SendAsync(cls));
+
+                if (MessageBox.Show("آیا مایلید املاک مطابق با این تقاضا را مشاهده نمایید؟", "تطبیق املاک با تقاضا",
+                        MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.No)
+                    return;
+
+                var list = new List<BuildingViewModel>();
+
+                decimal fPrice1, fPrice2, sPrice1, sPrice2;
+                EnRequestType type;
+
+                if (cls.SellPrice1 > 0 || cls.SellPrice2 > 0)
+                {
+                    type = EnRequestType.Forush;
+                    fPrice1 = cls.SellPrice1;
+                    fPrice2 = cls.SellPrice2;
+                    sPrice1 = sPrice2 = 0;
+                }
+                else
+                {
+                    type = EnRequestType.Rahn;
+                    fPrice1 = cls.RahnPrice1;
+                    fPrice2 = cls.RahnPrice2;
+                    sPrice1 = cls.EjarePrice1;
+                    sPrice2 = cls.EjarePrice2;
+                }
+
+                list.AddRange(await BuildingBussines.GetAllAsync(null, Guid.Empty,
+                    cls.BuildingAccountTypeGuid, cls.Masahat1,
+                    cls.Masahat2, cls.RoomCount, fPrice1,
+                    sPrice1, fPrice2,
+                    sPrice2, type, cls.RegionList?.Select(q => q.Guid).ToList()));
+
+                if (list.Count <= 0)
+                {
+                    MessageBox.Show("متاسفانه در حال حاضر، ملکی مطابق با این تقاضا وجود ندارد");
+                    return;
+                }
+
+                var frm = new frmBuildingAdvanceSearch(list);
+                frm.ShowDialog(this);
             }
             catch (Exception ex)
             {

@@ -159,15 +159,15 @@
             // 
             // lblPrice2
             // 
-            this.lblPrice2.Location = new System.Drawing.Point(426, 79);
+            this.lblPrice2.Location = new System.Drawing.Point(314, 79);
             this.lblPrice2.Name = "lblPrice2";
-            this.lblPrice2.Size = new System.Drawing.Size(113, 20);
+            this.lblPrice2.Size = new System.Drawing.Size(154, 20);
             this.lblPrice2.TabIndex = 0;
             // 
             // lblPrice2_
             // 
             this.lblPrice2_.AutoSize = true;
-            this.lblPrice2_.Location = new System.Drawing.Point(538, 79);
+            this.lblPrice2_.Location = new System.Drawing.Point(467, 79);
             this.lblPrice2_.Name = "lblPrice2_";
             this.lblPrice2_.Size = new System.Drawing.Size(38, 20);
             this.lblPrice2_.TabIndex = 0;
@@ -207,9 +207,9 @@
             // 
             // lblPrice1
             // 
-            this.lblPrice1.Location = new System.Drawing.Point(574, 79);
+            this.lblPrice1.Location = new System.Drawing.Point(511, 79);
             this.lblPrice1.Name = "lblPrice1";
-            this.lblPrice1.Size = new System.Drawing.Size(163, 20);
+            this.lblPrice1.Size = new System.Drawing.Size(226, 20);
             this.lblPrice1.TabIndex = 1;
             // 
             // lblPrice1_
@@ -225,13 +225,13 @@
             // 
             this.lblTabdil.Location = new System.Drawing.Point(9, 79);
             this.lblTabdil.Name = "lblTabdil";
-            this.lblTabdil.Size = new System.Drawing.Size(344, 20);
+            this.lblTabdil.Size = new System.Drawing.Size(209, 20);
             this.lblTabdil.TabIndex = 0;
             // 
             // lblTabdil_
             // 
             this.lblTabdil_.AutoSize = true;
-            this.lblTabdil_.Location = new System.Drawing.Point(373, 79);
+            this.lblTabdil_.Location = new System.Drawing.Point(243, 79);
             this.lblTabdil_.Name = "lblTabdil_";
             this.lblTabdil_.Size = new System.Drawing.Size(41, 20);
             this.lblTabdil_.TabIndex = 0;

@@ -277,13 +277,13 @@ namespace Building.BuildingRequest
                 if (type == EnRequestType.Forush)
                 {
                     fPrice1 = req.SellPrice1;
-                    sPrice1 = req.SellPrice2;
+                    fPrice2 = req.SellPrice2;
                 }
                 else
                 {
                     fPrice1 = req.RahnPrice1;
-                    sPrice1 = req.RahnPrice2;
-                    fPrice2 = req.EjarePrice1;
+                    fPrice2 = req.RahnPrice2;
+                    sPrice1 = req.EjarePrice1;
                     sPrice2 = req.EjarePrice2;
                 }
 
