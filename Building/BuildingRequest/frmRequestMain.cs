@@ -479,7 +479,7 @@ namespace Building.BuildingRequest
                     cls.BuildingAccountTypeGuid, cls.Masahat1,
                     cls.Masahat2, cls.RoomCount, fPrice1,
                     sPrice1, fPrice2,
-                    sPrice2, type, cls.RegionList?.Select(q => q.Guid).ToList()));
+                    sPrice2, type, cls.RegionList?.Select(q => q.RegionGuid).ToList()));
 
                 if (list.Count <= 0)
                 {

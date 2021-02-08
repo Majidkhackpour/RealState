@@ -303,29 +303,30 @@ namespace EntityCache.Bussines
         {
             try
             {
-                var res = await GetAllAsync();
-                if (!string.IsNullOrEmpty(code)) res = res.Where(q => q.Code.Contains(code)).ToList();
-                if (buildingGuid != Guid.Empty) res = res.Where(q => q.BuildingTypeGuid == buildingGuid).ToList();
+                IEnumerable<BuildingBussines> res = await GetAllAsync();
+
+                if (regionList.Count > 0) res = res.Where(q => regionList.Contains(q.RegionGuid));
+
+                if (!string.IsNullOrEmpty(code)) res = res.Where(q => q.Code.Contains(code));
+                if (buildingGuid != Guid.Empty) res = res.Where(q => q.BuildingTypeGuid == buildingGuid);
                 if (buildingAccountTypeGuid != Guid.Empty)
-                    res = res.Where(q => q.BuildingAccountTypeGuid == buildingAccountTypeGuid).ToList();
-                if (fMasahat != 0) res = res.Where(q => q.Masahat >= fMasahat).ToList();
-                if (lMasahat != 0) res = res.Where(q => q.Masahat <= lMasahat).ToList();
-                if (roomCount != 0) res = res.Where(q => q.RoomCount <= roomCount).ToList();
+                    res = res.Where(q => q.BuildingAccountTypeGuid == buildingAccountTypeGuid);
+                if (fMasahat != 0) res = res.Where(q => q.Masahat >= fMasahat);
+                if (lMasahat != 0) res = res.Where(q => q.Masahat <= lMasahat);
+                if (roomCount != 0) res = res.Where(q => q.RoomCount <= roomCount);
                 if (type == EnRequestType.Rahn)
                 {
-                    if (fPrice1 != 0) res = res.Where(q => q.RahnPrice1 >= fPrice1).ToList();
-                    if (fPrice2 != 0) res = res.Where(q => q.RahnPrice2 <= fPrice2).ToList();
+                    if (fPrice1 != 0) res = res.Where(q => q.RahnPrice1 >= fPrice1);
+                    if (fPrice2 != 0) res = res.Where(q => q.RahnPrice2 <= fPrice2);
 
-                    if (lPrice1 != 0) res = res.Where(q => q.EjarePrice1 >= lPrice1).ToList();
-                    if (lPrice2 != 0) res = res.Where(q => q.EjarePrice2 <= lPrice2).ToList();
+                    if (lPrice1 != 0) res = res.Where(q => q.EjarePrice1 >= lPrice1);
+                    if (lPrice2 != 0) res = res.Where(q => q.EjarePrice2 <= lPrice2);
                 }
                 else
                 {
-                    if (fPrice1 != 0) res = res.Where(q => q.SellPrice >= fPrice1).ToList();
-                    if (fPrice2 != 0) res = res.Where(q => q.SellPrice <= fPrice2).ToList();
+                    if (fPrice1 != 0) res = res.Where(q => q.SellPrice > 0 && q.SellPrice >= fPrice1);
+                    if (fPrice2 != 0) res = res.Where(q => q.SellPrice > 0 && q.SellPrice <= fPrice2);
                 }
-
-                if (regionList.Count > 0) res = res.Where(q => regionList.Contains(q.RegionGuid)).ToList();
 
                 var val = new List<BuildingViewModel>();
 

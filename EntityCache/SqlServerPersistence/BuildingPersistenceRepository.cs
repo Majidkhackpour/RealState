@@ -166,12 +166,12 @@ namespace EntityCache.SqlServerPersistence
                 res.RahnPrice2 = (decimal)dr["RahnPrice2"];
                 res.EjarePrice1 = (decimal)dr["EjarePrice1"];
                 res.EjarePrice2 = (decimal)dr["EjarePrice2"];
-                res.RentalAutorityGuid = (Guid?)dr["RentalAutorityGuid"];
+                if (dr["RentalAutorityGuid"] != DBNull.Value) res.RentalAutorityGuid = (Guid?)dr["RentalAutorityGuid"];
                 res.IsShortTime = (bool)dr["IsShortTime"];
                 res.IsOwnerHere = (bool)dr["IsOwnerHere"];
                 res.PishTotalPrice = (decimal)dr["PishTotalPrice"];
                 res.PishPrice = (decimal)dr["PishPrice"];
-                res.DeliveryDate = (DateTime?)dr["DeliveryDate"];
+                if (dr["DeliveryDate"] != DBNull.Value) res.DeliveryDate = (DateTime?)dr["DeliveryDate"];
                 res.PishDesc = dr["PishDesc"].ToString();
                 res.MoavezeDesc = dr["MoavezeDesc"].ToString();
                 res.MosharekatDesc = dr["MosharekatDesc"].ToString();
