@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Building.BuildingMatchesItem;
 using EntityCache.Bussines;
 using EntityCache.ViewModels;
 using MetroFramework.Forms;
@@ -1149,6 +1150,19 @@ namespace Building.Building
                 frmNotification.PublicInfo.ShowMessage(tr.HasError
                     ? tr.ErrorMessage
                     : "ارسال پیامک به مالک با موفقیت انجام شد");
+
+                if (MessageBox.Show("آیا مایلید تقاضاهای مطابق با این ملک را مشاهده نمایید؟", "تطبیق املاک با تقاضا",
+                        MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.No)
+                    return;
+
+                var list = await BuildingRequestViewModel.GetAllMatchesItemsAsync(cls);
+                if (list.Count <= 0)
+                {
+                    MessageBox.Show("فایل مطابقی جهت نمایش وجود ندارد");
+                    return;
+                }
+
+                new frmShowRequestMatches(list).ShowDialog();
             }
             catch (Exception ex)
             {
