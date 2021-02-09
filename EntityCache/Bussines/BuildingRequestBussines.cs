@@ -183,5 +183,41 @@ namespace EntityCache.Bussines
             }
         }
         public static async Task<int> DbCount(Guid userGuid) => await UnitOfWork.BuildingRequest.DbCount(userGuid);
+        public static async Task<List<BuildingRequestBussines>> GetAllAsync(EnRequestType type, decimal price1,
+            decimal price2, int masahat,
+            int roomCount, Guid accountTypeGuid, Guid conditionGuid, Guid regionGuid)
+        {
+            try
+            {
+                IEnumerable<BuildingRequestBussines> res = await GetAllAsync();
+
+                if (type == EnRequestType.Forush)
+                    res = res.Where(q => q.SellPrice1 <= price1 && q.SellPrice2 >= price1);
+                else if (type == EnRequestType.Rahn)
+                {
+                    res = res.Where(q => q.RahnPrice1 <= price1 && q.RahnPrice2 >= price1);
+                    if (price2 != 0) res = res.Where(q => q.EjarePrice1 <= price2 && q.EjarePrice2 >= price2);
+                }
+
+                if (masahat > 0) res = res.Where(q => q.Masahat1 <= masahat && q.Masahat2 >= masahat);
+                if (roomCount > 0) res = res.Where(q => q.RoomCount <= roomCount);
+                if (accountTypeGuid != Guid.Empty)
+                    res = res.Where(q =>
+                        q.BuildingAccountTypeGuid == Guid.Empty ||
+                        q.BuildingAccountTypeGuid == accountTypeGuid);
+                if (conditionGuid != Guid.Empty)
+                    res = res.Where(q => q.BuildingConditionGuid == Guid.Empty ||
+                                         q.BuildingConditionGuid == conditionGuid);
+                if (regionGuid != Guid.Empty)
+                    res = res.Where(q => q.RegionList.Select(p => p.RegionGuid).Contains(regionGuid));
+
+                return res?.ToList();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                return null;
+            }
+        }
     }
 }

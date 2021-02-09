@@ -43,6 +43,7 @@ using Accounting.Sood_Zian;
 using Advertise.Classes;
 using Advertise.Forms.Simcard;
 using Building;
+using Building.BuildingMatchesItem;
 using TMS.Class;
 using User;
 using Calendar = Services.Calendar;
@@ -856,6 +857,18 @@ namespace RealState
             try
             {
                 var frm = new frmFilterSood_Zian();
+                frm.ShowDialog(this);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private void btnMatchesBuilding_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var frm = new frmStartBuildingMatches();
                 frm.ShowDialog(this);
             }
             catch (Exception ex)
