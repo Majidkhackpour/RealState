@@ -62,5 +62,9 @@ namespace Persistence.Model
         public virtual DbSet<BackUpLog> BackUpLogs { get; set; }
         public virtual DbSet<Temp> Temp { get; set; }
         public virtual DbSet<FileInfo> FileInfo { get; set; }
+        public virtual DbSet<HesabGroup> HesabGroup { get; set; }
+        public virtual DbSet<Kol> Kol { get; set; }
+        public virtual DbSet<Moein> Moein { get; set; }
+        public virtual DbSet<Tafsil> Tafsil { get; set; }
     }
 }

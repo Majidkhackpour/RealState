@@ -20,6 +20,25 @@ namespace EntityCache.Assistence
                 var dbContext = new ModelContext(Cache.ConnectionString);
                 var res = new ReturnedSaveFuncInfo();
 
+                #region HesabGroup
+                var allhesabGroups = await HesabGroupBussines.GetAllAsync();
+                if (allhesabGroups == null || allhesabGroups.Count <= 0)
+                {
+                    var hg = DefaultHesabGroup.SetDef();
+                    res.AddReturnedValue(await HesabGroupBussines.SaveRangeAsync(hg));
+                    if (res.HasError) return;
+                }
+                #endregion
+
+                #region Kol
+                var allKol = await KolBussines.GetAllAsync();
+                if (allKol == null || allKol.Count <= 0)
+                {
+                    var kol = DefaultKol.SetDef();
+                    res.AddReturnedValue(await KolBussines.SaveRangeAsync(kol));
+                    if (res.HasError) return;
+                }
+                #endregion
 
                 #region Users
 

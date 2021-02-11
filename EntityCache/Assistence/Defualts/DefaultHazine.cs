@@ -26,7 +26,6 @@ namespace EntityCache.Assistence.Defualts
                 return null;
             }
         }
-
         public static List<HazineBussines> SetDef()
         {
             try

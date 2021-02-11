@@ -52,6 +52,10 @@ namespace EntityCache.Assistence
         private static IBackUpLogRepository _bkLogRepository;
         private static ITempRepository _tempRepository;
         private static IFileInfoRepository _fileInfoRepository;
+        private static IHesabGroupRepository _hesabGroupRepository;
+        private static IKolRepository _kolRepository;
+        private static IMoeinRepository _moeinRepository;
+        private static ITafsilRepository _tafsilRepository;
 
         public static void Dispose() => db?.Dispose();
         public static void Set_Save() => db.SaveChanges();
@@ -246,5 +250,25 @@ namespace EntityCache.Assistence
         public static IFileInfoRepository FileInfo => _fileInfoRepository ??
                                               (_fileInfoRepository =
                                                   new FileInfoPersistenceRepository(db, _connectionString));
+
+
+        public static IHesabGroupRepository HesabGroup => _hesabGroupRepository ??
+                                                        (_hesabGroupRepository =
+                                                            new HesabGroupPersistenceRepository(db, _connectionString));
+
+
+        public static IKolRepository Kol => _kolRepository ??
+                                                        (_kolRepository =
+                                                            new KolPersistenceRepository(db, _connectionString));
+
+
+        public static IMoeinRepository Moein => _moeinRepository ??
+                                              (_moeinRepository =
+                                                  new MoeinPersistenceRepository(db, _connectionString));
+
+
+        public static ITafsilRepository Tafsil => _tafsilRepository ??
+                                                      (_tafsilRepository =
+                                                          new TafsilPersistenceRepository(db, _connectionString));
     }
 }

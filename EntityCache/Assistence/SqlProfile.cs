@@ -50,6 +50,10 @@ namespace EntityCache.Assistence
             CreateMap<BackUpLogBussines, BackUpLog>().ReverseMap();
             CreateMap<TempBussines, Temp>().ReverseMap();
             CreateMap<FileInfoBussines, FileInfo>().ReverseMap();
+            CreateMap<HesabGroupBussines, HesabGroup>().ReverseMap();
+            CreateMap<KolBussines, Kol>().ReverseMap();
+            CreateMap<MoeinBussines, Moein>().ReverseMap();
+            CreateMap<TafsilBussines, Tafsil>().ReverseMap();
         }
     }
 }
