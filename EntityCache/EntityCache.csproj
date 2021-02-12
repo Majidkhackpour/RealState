@@ -103,6 +103,7 @@
     <Compile Include="Assistence\Defualts\DefaultRegions.cs" />
     <Compile Include="Assistence\Defualts\DefaultRentalAuthority.cs" />
     <Compile Include="Assistence\Defualts\DefaultStates.cs" />
+    <Compile Include="Assistence\Defualts\DefaultTafsil.cs" />
     <Compile Include="Assistence\Mappings.cs" />
     <Compile Include="Assistence\SqlProfile.cs" />
     <Compile Include="Assistence\UnitOfWork.cs" />
@@ -110,6 +111,7 @@
     <Compile Include="Bussines\AdvertiseRelatedRegionBussines.cs" />
     <Compile Include="Bussines\AdvTokenBussines.cs" />
     <Compile Include="Bussines\BackUpLogBussines.cs" />
+    <Compile Include="Bussines\BankBussines.cs" />
     <Compile Include="Bussines\BuildingAccountTypeBussines.cs" />
     <Compile Include="Bussines\BuildingBussines.cs" />
     <Compile Include="Bussines\BuildingConditionBussines.cs" />
@@ -155,6 +157,7 @@
     <Compile Include="Core\IAdvertiseRelatedRegionRepository.cs" />
     <Compile Include="Core\IAdvTokensRepository.cs" />
     <Compile Include="Core\IBackUpLogRepository.cs" />
+    <Compile Include="Core\IBankRepository.cs" />
     <Compile Include="Core\IBuildingAccountTypeRepository.cs" />
     <Compile Include="Core\IBuildingConditionRepository.cs" />
     <Compile Include="Core\IBuildingGalleryRepository.cs" />
@@ -201,6 +204,7 @@
     <Compile Include="SqlServerPersistence\AdvertiseRelatedRegionPersistenceRepository.cs" />
     <Compile Include="SqlServerPersistence\AdvTokensPersistenceRepository.cs" />
     <Compile Include="SqlServerPersistence\BackUpLogPersistenceRepository.cs" />
+    <Compile Include="SqlServerPersistence\BankPersistenceRepository.cs" />
     <Compile Include="SqlServerPersistence\BuildingAccountTypePersistenceRepository.cs" />
     <Compile Include="SqlServerPersistence\BuildingConditionPersistenceRepository.cs" />
     <Compile Include="SqlServerPersistence\BuildingGalleryPersistenceRepository.cs" />

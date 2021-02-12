@@ -8,6 +8,7 @@ using Persistence;
 using Persistence.Model;
 using Services;
 using Services.Access;
+using Services.DefaultCoding;
 
 namespace EntityCache.Assistence
 {
@@ -30,15 +31,49 @@ namespace EntityCache.Assistence
                 }
                 #endregion
 
-                #region Users
+                #region Moein
+                var allMoein = await MoeinBussines.GetAllAsync();
+                if (allMoein == null || allMoein.Count <= 0)
+                {
+                    var moein = DefaultMoein.SetDef();
+                    res.AddReturnedValue(await MoeinBussines.SaveRangeAsync(moein));
+                    if (res.HasError) return;
+                }
+                #endregion
 
+                #region Tafsil
+                var allTafsil = await TafsilBussines.GetAllAsync();
+                if (allTafsil == null || allTafsil.Count <= 0)
+                {
+                    var tafsil = DefaultTafsil.SetDef();
+                    res.AddReturnedValue(await TafsilBussines.SaveRangeAsync(tafsil));
+                    if (res.HasError) return;
+                }
+                #endregion
+
+                #region Bank
+                var allBank = await BankBussines.GetAllAsync();
+                if (allBank == null || allBank.Count <= 0)
+                {
+                    var user = new BankBussines()
+                    {
+                        Guid = ParentDefaults.TafsilCoding.CLSTafsil1010101,
+                        Name = "حساب بانکی مرکزی",
+                        Code = "1010101",
+                    };
+                    res.AddReturnedValue(await user.SaveAsync());
+                    if (res.HasError) return;
+                }
+                #endregion
+
+                #region Users
                 var allusers = await UserBussines.GetAllAsync();
                 var access = new AccessLevel();
                 if (allusers == null || allusers.Count <= 0)
                 {
                     var user = new UserBussines()
                     {
-                        Guid = Guid.NewGuid(),
+                        Guid = ParentDefaults.TafsilCoding.CLSTafsil9020101,
                         Name = "کاربر پیش فرض",
                         UserName = "Admin",
                         SecurityQuestion = 0,

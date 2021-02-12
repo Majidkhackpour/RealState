@@ -1,27 +1,31 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using EntityCache.Assistence;
+using Persistence;
 using Services;
 using Services.Interfaces.Building;
+using WebHesabBussines;
 
 namespace EntityCache.Bussines
 {
-    public class MoeinBussines : IMoein
+    public class BankBussines : IBank
     {
         public Guid Guid { get; set; }
         public DateTime Modified { get; set; } = DateTime.Now;
         public bool Status { get; set; } = true;
-        public string Name { get; set; }
         public string Code { get; set; }
-        public Guid KolGuid { get; set; }
+        public string Name { get; set; }
+        public string Shobe { get; set; }
+        public string CodeShobe { get; set; }
+        public string HesabNumber { get; set; }
+        public string Description { get; set; }
         public DateTime DateM { get; set; } = DateTime.Now;
-        public decimal Account { get; set; }
 
 
-        public static async Task<List<MoeinBussines>> GetAllAsync() => await UnitOfWork.Moein.GetAllAsync();
-        public static async Task<ReturnedSaveFuncInfo> SaveRangeAsync(List<MoeinBussines> list,
-            string tranName = "")
+        public static async Task<List<BankBussines>> GetAllAsync() => await UnitOfWork.Bank.GetAllAsync();
+        public async Task<ReturnedSaveFuncInfo> SaveAsync(string tranName = "")
         {
             var res = new ReturnedSaveFuncInfo();
             var autoTran = string.IsNullOrEmpty(tranName);
@@ -32,7 +36,7 @@ namespace EntityCache.Bussines
                 { //BeginTransaction
                 }
 
-                res.AddReturnedValue(await UnitOfWork.Moein.SaveRangeAsync(list, tranName));
+                res.AddReturnedValue(await UnitOfWork.Bank.SaveAsync(this, tranName));
                 if (res.HasError) return res;
                 if (autoTran)
                 {
@@ -40,7 +44,7 @@ namespace EntityCache.Bussines
                 }
 
                 //if (Cache.IsSendToServer)
-                //    _ = Task.Run(() => WebRental.SaveAsync(list));
+                //    _ = Task.Run(() => WebUser.SaveAsync(this));
             }
             catch (Exception ex)
             {

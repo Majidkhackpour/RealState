@@ -169,8 +169,8 @@ namespace EntityCache.Assistence.Defualts
                 list.Add(SetDef("ذخیره مرخصی استفاده نشده", "30807", ParentDefaults.MoeinCoding.CLSMoein30807, ParentDefaults.KolCoding.ClsKol308));
                 list.Add(SetDef("اسناد پرداختنی بلند مدت تجاری", "40101", ParentDefaults.MoeinCoding.CLSMoein40101, ParentDefaults.KolCoding.ClsKol401));
                 list.Add(SetDef("حساب های پرداختنی بلندمدت تجاری", "40102", ParentDefaults.MoeinCoding.CLSMoein40102, ParentDefaults.KolCoding.ClsKol401));
-                list.Add(SetDef("اسناد پرداختنی بلندمدت غیر تجاری", "40201", ParentDefaults.MoeinCoding.CLSMoein40101, ParentDefaults.KolCoding.ClsKol402));
-                list.Add(SetDef("حساب های پرداختنی بلند مدت غیر تجاری", "40202", ParentDefaults.MoeinCoding.CLSMoein40102, ParentDefaults.KolCoding.ClsKol402));
+                list.Add(SetDef("اسناد پرداختنی بلندمدت غیر تجاری", "40201", ParentDefaults.MoeinCoding.CLSMoein40201, ParentDefaults.KolCoding.ClsKol402));
+                list.Add(SetDef("حساب های پرداختنی بلند مدت غیر تجاری", "40202", ParentDefaults.MoeinCoding.CLSMoein40202, ParentDefaults.KolCoding.ClsKol402));
                 list.Add(SetDef("فروش اقساطی", "40301", ParentDefaults.MoeinCoding.CLSMoein40301, ParentDefaults.KolCoding.ClsKol403));
                 list.Add(SetDef("سلف", "40302", ParentDefaults.MoeinCoding.CLSMoein40302, ParentDefaults.KolCoding.ClsKol403));
                 list.Add(SetDef("مشارکت مدنی", "40303", ParentDefaults.MoeinCoding.CLSMoein40303, ParentDefaults.KolCoding.ClsKol403));
@@ -273,7 +273,7 @@ namespace EntityCache.Assistence.Defualts
                 list.Add(SetDef("حساب های انتظامی به نفع شرکت", "90101", ParentDefaults.MoeinCoding.CLSMoein90101, ParentDefaults.KolCoding.ClsKol901));
                 list.Add(SetDef("حساب های انتظامی بر عهده شرکت", "90102", ParentDefaults.MoeinCoding.CLSMoein90102, ParentDefaults.KolCoding.ClsKol901));
                 list.Add(SetDef("طرف حساب های انتظامی به نفع شرکت", "90201", ParentDefaults.MoeinCoding.CLSMoein90201, ParentDefaults.KolCoding.ClsKol902));
-                list.Add(SetDef("طرف حساب های انتظامی بر عهده شرکت", "90202", ParentDefaults.MoeinCoding.CLSMoein90201, ParentDefaults.KolCoding.ClsKol902));
+                list.Add(SetDef("طرف حساب های انتظامی بر عهده شرکت", "90202", ParentDefaults.MoeinCoding.CLSMoein90202, ParentDefaults.KolCoding.ClsKol902));
 
 
                 return list;
