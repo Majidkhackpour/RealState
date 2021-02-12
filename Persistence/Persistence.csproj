@@ -80,7 +80,6 @@
     <Compile Include="Entities\FloorCover.cs" />
     <Compile Include="Entities\GardeshHesab.cs" />
     <Compile Include="Entities\Hazine.cs" />
-    <Compile Include="Entities\HesabGroup.cs" />
     <Compile Include="Entities\KitchenService.cs" />
     <Compile Include="Entities\Kol.cs" />
     <Compile Include="Entities\Moein.cs" />
@@ -340,6 +339,14 @@
     <Compile Include="Migrations\202102101140036__59.designer.cs">
       <DependentUpon>202102101140036__59.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202102121327049__60.cs" />
+    <Compile Include="Migrations\202102121327049__60.designer.cs">
+      <DependentUpon>202102121327049__60.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202102121351034__61.cs" />
+    <Compile Include="Migrations\202102121351034__61.designer.cs">
+      <DependentUpon>202102121351034__61.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\ModelContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -531,6 +538,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202102101140036__59.resx">
       <DependentUpon>202102101140036__59.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102121327049__60.resx">
+      <DependentUpon>202102121327049__60.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102121351034__61.resx">
+      <DependentUpon>202102121351034__61.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

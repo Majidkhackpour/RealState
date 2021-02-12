@@ -15,5 +15,6 @@ namespace EntityCache.Bussines
         public HesabType HesabType { get; set; }
         public DateTime DateM { get; set; }
         public decimal Account { get; set; }
+        public bool isSystem { get; set; }
     }
 }

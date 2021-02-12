@@ -13,7 +13,7 @@ namespace EntityCache.Bussines
         public DateTime Modified { get; set; } = DateTime.Now;
         public bool Status { get; set; } = true;
         public string Name { get; set; }
-        public Guid GroupGuid { get; set; }
+        public EnHesabGroup HesabGroup { get; set; }
         public string Code { get; set; }
         public decimal Account { get; set; }
 
