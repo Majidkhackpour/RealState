@@ -102,7 +102,237 @@ IF NOT EXISTS (SELECT * FROM sys.foreign_keys WHERE object_id = OBJECT_ID(N'[dbo
 ALTER TABLE [dbo].[Buildings]  WITH CHECK ADD  CONSTRAINT [FK_Buildings_FloorCover] FOREIGN KEY([FloorCoverGuid])
 REFERENCES [dbo].[FloorCovers] ([Guid])
 GO
-
+-- ==========================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Kol_Save]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Kol_Save]	As Begin print 11 end')
+GO
+Alter PROCEDURE sp_Kol_Save
+	@guid uniqueidentifier,
+	@modif datetime,
+	@st bit,
+	@name nvarchar(200),
+	@code nvarchar(10),
+	@account decimal,
+	@hGroup smallint
+AS
+BEGIN
+	UPDATE [dbo].[Kols]
+   SET [Modified] = @modif
+      ,[Status] = @st
+      ,[Name] = @name
+      ,[Code] = @name
+      ,[Account] = @account
+      ,[HesabGroup] = @hGroup
+	WHERE [Guid] = @guid
+	
+	if @@ROWCOUNT=0
+	begin
+		INSERT INTO [dbo].[Kols]
+			   ([Guid]
+			   ,[Modified]
+			   ,[Status]
+			   ,[Name]
+			   ,[Code]
+			   ,[Account]
+			   ,[HesabGroup])
+		 VALUES
+			   (@guid
+			   ,@modif
+			   ,@st
+			   ,@name
+			   ,@code
+			   ,@account
+			   ,@hGroup)
+	end
+END
+GO
+-- ==========================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Kol_SelectAll]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Kol_SelectAll]	As Begin print 11 end')
+GO
+Alter PROCEDURE sp_Kol_SelectAll
+	@st bit='true'
+AS
+BEGIN
+	select * from Kols 
+	where Status=@st
+	order by Code
+END
+GO
+-- ==========================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Kol_SelectRow]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Kol_SelectRow]	As Begin print 11 end')
+GO
+Alter PROCEDURE sp_Kol_SelectRow
+	@guid uniqueidentifier
+AS
+BEGIN
+	select * from Kols
+	where Guid=@guid
+END
+GO
+-- ==========================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Moein_Save]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Moein_Save]	As Begin print 11 end')
+GO
+Alter PROCEDURE sp_Moein_Save
+	@guid uniqueidentifier,
+	@modif datetime,
+	@st bit,
+	@name nvarchar(200),
+	@code nvarchar(10),
+	@account decimal,
+	@kolGuid uniqueidentifier
+AS
+BEGIN
+	UPDATE [dbo].[Moeins]
+	   SET [Modified] = @modif
+		  ,[Status] = @st
+		  ,[Name] = @name
+		  ,[Code] = @code
+		  ,[KolGuid] = @kolGuid
+		  ,[Account] = @account
+	 WHERE [Guid] = @guid
+	 if @@ROWCOUNT=0
+	 begin
+		INSERT INTO [dbo].[Moeins]
+           ([Guid]
+           ,[Modified]
+           ,[Status]
+           ,[Name]
+           ,[Code]
+           ,[KolGuid]
+           ,[DateM]
+           ,[Account])
+		VALUES
+           (@guid
+           ,@modif
+           ,@st
+		   ,@name
+           ,@code
+           ,@kolGuid
+           ,GETDATE()
+           ,@account)
+	 end
+END
+GO
+-- ==========================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Moein_SelectAll]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Moein_SelectAll]	As Begin print 11 end')
+GO
+Alter PROCEDURE sp_Moein_SelectAll
+	@st bit='true'
+AS
+BEGIN
+	select * from Moeins
+	where Status=@st
+	order by Code
+END
+GO
+-- ==========================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Moein_SelectRow]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Moein_SelectRow]	As Begin print 11 end')
+GO
+Alter PROCEDURE sp_Moein_SelectRow
+	@guid uniqueidentifier
+AS
+BEGIN
+	SELECT * from Moeins
+	where Guid=@guid
+END
+GO
+-- ==========================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Tafsil_Save]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Tafsil_Save]	As Begin print 11 end')
+GO
+Alter PROCEDURE sp_Tafsil_Save
+	@guid uniqueidentifier,
+	@modif datetime,
+	@st bit,
+	@name nvarchar(200),
+	@code nvarchar(10),
+	@desc nvarchar(max),
+	@account decimal,
+	@hType int,
+	@isSystem bit
+AS
+BEGIN
+	UPDATE [dbo].[Tafsils]
+	   SET [Modified] = @modif
+		  ,[Status] = @st
+		  ,[Name] = @name
+		  ,[Code] = @code
+		  ,[Description] = @desc
+		  ,[HesabType] = @hType
+		  ,[Account] = @account
+		  ,[isSystem] = @isSystem
+	 WHERE [Guid] = @guid
+	 if @@ROWCOUNT=0
+	 begin
+		INSERT INTO [dbo].[Tafsils]
+           ([Guid]
+           ,[Modified]
+           ,[Status]
+           ,[Name]
+           ,[Code]
+           ,[Description]
+           ,[HesabType]
+           ,[DateM]
+           ,[Account]
+           ,[isSystem])
+		VALUES
+           (@guid
+           ,@modif
+           ,@st
+           ,@name
+           ,@code
+           ,@desc
+           ,@hType
+           ,GETDATE()
+           ,@account
+           ,@isSystem)
+	 end
+END
+GO
+-- ==========================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Tafsil_ChangeStatus]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Tafsil_ChangeStatus]	As Begin print 11 end')
+GO
+Alter PROCEDURE sp_Tafsil_ChangeStatus
+	@Guid uniqueidentifier,
+	@st bit
+AS
+BEGIN
+	update Tafsils
+	set Status=@st
+	where Guid=@Guid
+END
+GO
+-- ==========================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Tafsil_SelectAll]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Tafsil_SelectAll]	As Begin print 11 end')
+GO
+Alter PROCEDURE sp_Tafsil_SelectAll
+	@st bit='true'
+AS
+BEGIN
+	select * from Tafsils
+	where Status=@st
+	order by Code
+END
+GO
+-- ==========================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Tafsil_SelectRow]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Tafsil_SelectRow]	As Begin print 11 end')
+GO
+Alter PROCEDURE sp_Tafsil_SelectRow
+	@guid uniqueidentifier
+AS
+BEGIN
+	SELECT * from Tafsils
+	where Guid=@guid
+END
+GO
 -- ==========================================================================================
 IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Cities_SelectAll]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
 	exec('Create Procedure [dbo].[sp_Cities_SelectAll]	As Begin print 11 end')

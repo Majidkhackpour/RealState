@@ -160,7 +160,7 @@ namespace EntityCache.SqlServerPersistence
                 return new ReturnedSaveFuncInfo(ex);
             }
         }
-        public async Task<ReturnedSaveFuncInfo> SaveRangeAsync(IEnumerable<T> items, string tranName)
+        public virtual async Task<ReturnedSaveFuncInfo> SaveRangeAsync(IEnumerable<T> items, string tranName)
         {
             try
             {

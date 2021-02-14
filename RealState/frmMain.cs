@@ -39,6 +39,7 @@ using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WindowsSerivces;
+using Accounting.Hesab;
 using Accounting.Sood_Zian;
 using Advertise.Classes;
 using Advertise.Forms.Simcard;
@@ -760,22 +761,6 @@ namespace RealState
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private async void buttonItem23_Click(object sender, EventArgs e)
-        {
-            var bu = await BuildingBussines.GetAsync(Guid.Parse("CEB0F271-7220-43D0-BF83-B13F5B648721"));
-            var simList = new List<SimcardBussines>();
-            var buList = new List<BuildingBussines>();
-
-            if (bu == null) return;
-            buList.Add(bu);
-
-            var frm = new frmShowSimcard(true);
-            if (frm.ShowDialog(this) == DialogResult.OK)
-                simList.Add(await SimcardBussines.GetAsync(frm.SelectedGuid));
-
-            await Utility.ManageAdvSend(buList, simList, AdvertiseType.Divar,
-                clsAdvertise.IsGiveChat, clsAdvertise.Sender, clsAdvertise.Divar_PicCountInPerAdv);
-        }
         private void ExPanel_ExpandedChanging(object sender, DevComponents.DotNetBar.ExpandedChangeEventArgs e) =>
             ExPanel.Width = Width;
         private void btnBirthday_Click(object sender, EventArgs e)
@@ -869,6 +854,18 @@ namespace RealState
             try
             {
                 var frm = new frmStartBuildingMatches();
+                frm.ShowDialog(this);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private void btnKolMoein_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var frm = new frmKolMoein();
                 frm.ShowDialog(this);
             }
             catch (Exception ex)

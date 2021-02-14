@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using EntityCache.Assistence;
 using Ertegha;
+using Nito.AsyncEx;
 using Notification;
 using Persistence;
 using Services;
@@ -254,7 +255,7 @@ namespace RealState
         {
             try
             {
-                clsErtegha.StartErtegha(AppSettings.DefaultConnectionString, null);
+                AsyncContext.Run(() => clsErtegha.StartErteghaAsync(AppSettings.DefaultConnectionString, null));
                 ClsCache.InserDefults();
             }
             catch (Exception ex)

@@ -168,6 +168,12 @@
     <Compile Include="Hazine\frmShowHazine.Designer.cs">
       <DependentUpon>frmShowHazine.cs</DependentUpon>
     </Compile>
+    <Compile Include="Hesab\frmKolMoein.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Hesab\frmKolMoein.Designer.cs">
+      <DependentUpon>frmKolMoein.cs</DependentUpon>
+    </Compile>
     <Compile Include="Payement\frmPardakhtCheckToday.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -241,6 +247,8 @@
     <None Include="packages.config" />
     <None Include="Properties\DataSources\EntityCache.Bussines.GardeshHesabBussines.datasource" />
     <None Include="Properties\DataSources\EntityCache.Bussines.HazineBussines.datasource" />
+    <None Include="Properties\DataSources\EntityCache.Bussines.KolBussines.datasource" />
+    <None Include="Properties\DataSources\EntityCache.Bussines.MoeinBussines.datasource" />
     <None Include="Properties\DataSources\EntityCache.Bussines.PardakhtBussines.datasource" />
     <None Include="Properties\DataSources\EntityCache.Bussines.PeoplesBussines.datasource" />
     <None Include="Properties\DataSources\EntityCache.Bussines.ReceptionBussines.datasource" />
@@ -260,6 +268,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Hazine\frmShowHazine.resx">
       <DependentUpon>frmShowHazine.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Hesab\frmKolMoein.resx">
+      <DependentUpon>frmKolMoein.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Payement\frmPardakhtCheckToday.resx">
       <DependentUpon>frmPardakhtCheckToday.cs</DependentUpon>

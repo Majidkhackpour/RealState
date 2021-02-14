@@ -73,7 +73,7 @@ namespace EntityCache.Assistence
                 {
                     var user = new UserBussines()
                     {
-                        Guid = ParentDefaults.TafsilCoding.CLSTafsil9020101,
+                        Guid = ParentDefaults.TafsilCoding.CLSTafsil1030401,
                         Name = "کاربر پیش فرض",
                         UserName = "Admin",
                         SecurityQuestion = 0,
