@@ -136,6 +136,51 @@ namespace EntityCache.SqlServerPersistence
 
             return res;
         }
+        public async Task<string> NextCodeAsync(HesabType type)
+        {
+            var res = "0";
+            try
+            {
+                using (var cn = new SqlConnection(_connectionString))
+                {
+                    var cmd = new SqlCommand("sp_Tafsil_NextCode", cn) {CommandType = CommandType.StoredProcedure};
+                    cmd.Parameters.AddWithValue("@hType", (short)type);
+
+                    await cn.OpenAsync();
+                    var obj = await cmd.ExecuteScalarAsync();
+                    if (obj != null) res = obj.ToString();
+                    cn.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+
+            return res;
+        }
+        public async Task<bool> CheckCodeAsync(Guid guid, string code)
+        {
+            try
+            {
+                using (var cn=new SqlConnection(_connectionString))
+                {
+                    var cmd = new SqlCommand("sp_Tafsil_CheckCode", cn) {CommandType = CommandType.StoredProcedure};
+                    cmd.Parameters.AddWithValue("@guid", guid);
+                    cmd.Parameters.AddWithValue("@code", code);
+
+                    await cn.OpenAsync();
+                    var count = (int) await cmd.ExecuteScalarAsync();
+                    cn.Close();
+                    return count <= 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                return false;
+            }
+        }
         private static TafsilBussines LoadData(SqlDataReader dr)
         {
             var item = new TafsilBussines();

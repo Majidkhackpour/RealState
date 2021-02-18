@@ -12,7 +12,6 @@ namespace Notification
             InitializeComponent();
             _total = total;
         }
-
         public int Level
         {
             set

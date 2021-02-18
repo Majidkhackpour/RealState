@@ -39,7 +39,9 @@ using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WindowsSerivces;
+using Accounting.Bank;
 using Accounting.Hesab;
+using Accounting.Sandouq;
 using Accounting.Sood_Zian;
 using Advertise.Classes;
 using Advertise.Forms.Simcard;
@@ -866,6 +868,42 @@ namespace RealState
             try
             {
                 var frm = new frmKolMoein();
+                frm.ShowDialog(this);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private void btnTafsil_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var frm = new frmShowTafsils();
+                frm.ShowDialog(this);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private void btnSandouq_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var frm = new frmShowSandouq();
+                frm.ShowDialog(this);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private void btnBanks_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var frm = new frmShowBanks();
                 frm.ShowDialog(this);
             }
             catch (Exception ex)

@@ -59,13 +59,14 @@ namespace EntityCache.Bussines
             return res;
         }
         public static async Task<MoeinBussines> GetAsync(Guid guid) => await UnitOfWork.Moein.GetAsync(guid);
-        public static async Task<List<MoeinBussines>> GetAllAsync(string search)
+        public static async Task<List<MoeinBussines>> GetAllAsync(string search, Guid kolGuid)
         {
             try
             {
                 if (string.IsNullOrEmpty(search))
                     search = "";
                 var res = await GetAllAsync();
+                res = res.Where(q => q.KolGuid == kolGuid).ToList();
                 var searchItems = search.SplitString();
                 if (searchItems?.Count > 0)
                     foreach (var item in searchItems)

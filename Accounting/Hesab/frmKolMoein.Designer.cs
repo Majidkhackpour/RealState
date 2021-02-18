@@ -35,29 +35,27 @@ namespace Accounting.Hesab
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmKolMoein));
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.txtSearch = new DevComponents.DotNetBar.Controls.TextBoxX();
-            this.textBoxX1 = new DevComponents.DotNetBar.Controls.TextBoxX();
-            this.DGrid = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.dataGridViewX1 = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.KolBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.MoeinBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.DGridKol = new DevComponents.DotNetBar.Controls.DataGridViewX();
             this.codeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.accountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Account = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.guidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgKolGuid = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.modifiedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.statusDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.hesabGroupDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.KolBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.txtSearchKol = new DevComponents.DotNetBar.Controls.TextBoxX();
+            this.DGridMoein = new DevComponents.DotNetBar.Controls.DataGridViewX();
             this.codeDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nameDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.accountDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -67,13 +65,15 @@ namespace Accounting.Hesab
             this.statusDataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.kolGuidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dateMDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MoeinBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.txtSearchMoein = new DevComponents.DotNetBar.Controls.TextBoxX();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.DGrid)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewX1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DGridKol)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.KolBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DGridMoein)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.MoeinBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -87,72 +87,36 @@ namespace Accounting.Hesab
             // 
             // splitContainer1.Panel1
             // 
-            this.splitContainer1.Panel1.Controls.Add(this.DGrid);
-            this.splitContainer1.Panel1.Controls.Add(this.txtSearch);
+            this.splitContainer1.Panel1.Controls.Add(this.DGridKol);
+            this.splitContainer1.Panel1.Controls.Add(this.txtSearchKol);
             this.splitContainer1.Panel1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             // 
             // splitContainer1.Panel2
             // 
-            this.splitContainer1.Panel2.Controls.Add(this.dataGridViewX1);
-            this.splitContainer1.Panel2.Controls.Add(this.textBoxX1);
+            this.splitContainer1.Panel2.Controls.Add(this.DGridMoein);
+            this.splitContainer1.Panel2.Controls.Add(this.txtSearchMoein);
             this.splitContainer1.Panel2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.splitContainer1.Size = new System.Drawing.Size(796, 565);
             this.splitContainer1.SplitterDistance = 396;
             this.splitContainer1.TabIndex = 0;
             // 
-            // txtSearch
+            // DGridKol
             // 
-            this.txtSearch.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            // 
-            // 
-            // 
-            this.txtSearch.Border.Class = "TextBoxBorder";
-            this.txtSearch.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.txtSearch.Location = new System.Drawing.Point(41, 9);
-            this.txtSearch.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.txtSearch.Name = "txtSearch";
-            this.txtSearch.PreventEnterBeep = true;
-            this.txtSearch.Size = new System.Drawing.Size(326, 27);
-            this.txtSearch.TabIndex = 55746;
-            this.txtSearch.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtSearch.WatermarkText = "مورد جستجو را وارد نمایید ...";
-            // 
-            // textBoxX1
-            // 
-            this.textBoxX1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            // 
-            // 
-            // 
-            this.textBoxX1.Border.Class = "TextBoxBorder";
-            this.textBoxX1.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.textBoxX1.Location = new System.Drawing.Point(28, 9);
-            this.textBoxX1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.textBoxX1.Name = "textBoxX1";
-            this.textBoxX1.PreventEnterBeep = true;
-            this.textBoxX1.Size = new System.Drawing.Size(346, 27);
-            this.textBoxX1.TabIndex = 55746;
-            this.textBoxX1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.textBoxX1.WatermarkText = "مورد جستجو را وارد نمایید ...";
-            // 
-            // DGrid
-            // 
-            this.DGrid.AllowUserToAddRows = false;
-            this.DGrid.AllowUserToDeleteRows = false;
-            this.DGrid.AllowUserToResizeColumns = false;
-            this.DGrid.AllowUserToResizeRows = false;
+            this.DGridKol.AllowUserToAddRows = false;
+            this.DGridKol.AllowUserToDeleteRows = false;
+            this.DGridKol.AllowUserToResizeColumns = false;
+            this.DGridKol.AllowUserToResizeRows = false;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.Gainsboro;
             dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Gainsboro;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
-            this.DGrid.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.DGrid.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.DGridKol.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.DGridKol.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.DGrid.AutoGenerateColumns = false;
-            this.DGrid.BackgroundColor = System.Drawing.Color.White;
+            this.DGridKol.AutoGenerateColumns = false;
+            this.DGridKol.BackgroundColor = System.Drawing.Color.White;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
@@ -160,18 +124,18 @@ namespace Accounting.Hesab
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Silver;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            this.DGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.DGridKol.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.DGridKol.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DGridKol.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.codeDataGridViewTextBoxColumn,
             this.nameDataGridViewTextBoxColumn,
             this.accountDataGridViewTextBoxColumn,
             this.Account,
-            this.guidDataGridViewTextBoxColumn,
+            this.dgKolGuid,
             this.modifiedDataGridViewTextBoxColumn,
             this.statusDataGridViewCheckBoxColumn,
             this.hesabGroupDataGridViewTextBoxColumn});
-            this.DGrid.DataSource = this.KolBindingSource;
+            this.DGridKol.DataSource = this.KolBindingSource;
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
             dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
             dataGridViewCellStyle4.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
@@ -179,14 +143,14 @@ namespace Accounting.Hesab
             dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.Silver;
             dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DGrid.DefaultCellStyle = dataGridViewCellStyle4;
-            this.DGrid.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
-            this.DGrid.Location = new System.Drawing.Point(3, 50);
-            this.DGrid.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.DGrid.Name = "DGrid";
-            this.DGrid.ReadOnly = true;
-            this.DGrid.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.DGrid.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.DGridKol.DefaultCellStyle = dataGridViewCellStyle4;
+            this.DGridKol.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
+            this.DGridKol.Location = new System.Drawing.Point(3, 50);
+            this.DGridKol.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.DGridKol.Name = "DGridKol";
+            this.DGridKol.ReadOnly = true;
+            this.DGridKol.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.DGridKol.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
             dataGridViewCellStyle5.BackColor = System.Drawing.Color.White;
             dataGridViewCellStyle5.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
@@ -194,98 +158,19 @@ namespace Accounting.Hesab
             dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DGrid.RowHeadersDefaultCellStyle = dataGridViewCellStyle5;
-            this.DGrid.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.DGridKol.RowHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            this.DGridKol.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
             dataGridViewCellStyle6.BackColor = System.Drawing.Color.White;
             dataGridViewCellStyle6.ForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.Silver;
             dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black;
-            this.DGrid.RowsDefaultCellStyle = dataGridViewCellStyle6;
-            this.DGrid.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            this.DGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DGrid.Size = new System.Drawing.Size(390, 511);
-            this.DGrid.TabIndex = 55747;
-            // 
-            // dataGridViewX1
-            // 
-            this.dataGridViewX1.AllowUserToAddRows = false;
-            this.dataGridViewX1.AllowUserToDeleteRows = false;
-            this.dataGridViewX1.AllowUserToResizeColumns = false;
-            this.dataGridViewX1.AllowUserToResizeRows = false;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.Gainsboro;
-            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.Gainsboro;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.Black;
-            this.dataGridViewX1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
-            this.dataGridViewX1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridViewX1.AutoGenerateColumns = false;
-            this.dataGridViewX1.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle8.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.Silver;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewX1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
-            this.dataGridViewX1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewX1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.codeDataGridViewTextBoxColumn1,
-            this.nameDataGridViewTextBoxColumn1,
-            this.accountDataGridViewTextBoxColumn1,
-            this.dgAccount,
-            this.guidDataGridViewTextBoxColumn1,
-            this.modifiedDataGridViewTextBoxColumn1,
-            this.statusDataGridViewCheckBoxColumn1,
-            this.kolGuidDataGridViewTextBoxColumn,
-            this.dateMDataGridViewTextBoxColumn});
-            this.dataGridViewX1.DataSource = this.MoeinBindingSource;
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle10.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.Silver;
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewX1.DefaultCellStyle = dataGridViewCellStyle10;
-            this.dataGridViewX1.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
-            this.dataGridViewX1.Location = new System.Drawing.Point(3, 50);
-            this.dataGridViewX1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.dataGridViewX1.Name = "dataGridViewX1";
-            this.dataGridViewX1.ReadOnly = true;
-            this.dataGridViewX1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.dataGridViewX1.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle11.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewX1.RowHeadersDefaultCellStyle = dataGridViewCellStyle11;
-            this.dataGridViewX1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle12.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle12.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.Silver;
-            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.Color.Black;
-            this.dataGridViewX1.RowsDefaultCellStyle = dataGridViewCellStyle12;
-            this.dataGridViewX1.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            this.dataGridViewX1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewX1.Size = new System.Drawing.Size(390, 511);
-            this.dataGridViewX1.TabIndex = 55748;
-            // 
-            // KolBindingSource
-            // 
-            this.KolBindingSource.DataSource = typeof(EntityCache.Bussines.KolBussines);
-            // 
-            // MoeinBindingSource
-            // 
-            this.MoeinBindingSource.DataSource = typeof(EntityCache.Bussines.MoeinBussines);
+            this.DGridKol.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            this.DGridKol.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            this.DGridKol.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.DGridKol.Size = new System.Drawing.Size(390, 511);
+            this.DGridKol.TabIndex = 55747;
+            this.DGridKol.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGrid_CellEnter);
             // 
             // codeDataGridViewTextBoxColumn
             // 
@@ -325,13 +210,13 @@ namespace Accounting.Hesab
             this.Account.ReadOnly = true;
             this.Account.Width = 74;
             // 
-            // guidDataGridViewTextBoxColumn
+            // dgKolGuid
             // 
-            this.guidDataGridViewTextBoxColumn.DataPropertyName = "Guid";
-            this.guidDataGridViewTextBoxColumn.HeaderText = "Guid";
-            this.guidDataGridViewTextBoxColumn.Name = "guidDataGridViewTextBoxColumn";
-            this.guidDataGridViewTextBoxColumn.ReadOnly = true;
-            this.guidDataGridViewTextBoxColumn.Visible = false;
+            this.dgKolGuid.DataPropertyName = "Guid";
+            this.dgKolGuid.HeaderText = "Guid";
+            this.dgKolGuid.Name = "dgKolGuid";
+            this.dgKolGuid.ReadOnly = true;
+            this.dgKolGuid.Visible = false;
             // 
             // modifiedDataGridViewTextBoxColumn
             // 
@@ -356,6 +241,101 @@ namespace Accounting.Hesab
             this.hesabGroupDataGridViewTextBoxColumn.Name = "hesabGroupDataGridViewTextBoxColumn";
             this.hesabGroupDataGridViewTextBoxColumn.ReadOnly = true;
             this.hesabGroupDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // KolBindingSource
+            // 
+            this.KolBindingSource.DataSource = typeof(EntityCache.Bussines.KolBussines);
+            // 
+            // txtSearchKol
+            // 
+            this.txtSearchKol.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            // 
+            // 
+            // 
+            this.txtSearchKol.Border.Class = "TextBoxBorder";
+            this.txtSearchKol.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.txtSearchKol.Location = new System.Drawing.Point(41, 9);
+            this.txtSearchKol.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtSearchKol.Name = "txtSearchKol";
+            this.txtSearchKol.PreventEnterBeep = true;
+            this.txtSearchKol.Size = new System.Drawing.Size(326, 27);
+            this.txtSearchKol.TabIndex = 55746;
+            this.txtSearchKol.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtSearchKol.WatermarkText = "مورد جستجو را وارد نمایید ...";
+            this.txtSearchKol.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
+            // 
+            // DGridMoein
+            // 
+            this.DGridMoein.AllowUserToAddRows = false;
+            this.DGridMoein.AllowUserToDeleteRows = false;
+            this.DGridMoein.AllowUserToResizeColumns = false;
+            this.DGridMoein.AllowUserToResizeRows = false;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.Gainsboro;
+            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.Gainsboro;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.Black;
+            this.DGridMoein.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
+            this.DGridMoein.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.DGridMoein.AutoGenerateColumns = false;
+            this.DGridMoein.BackgroundColor = System.Drawing.Color.White;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.Silver;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DGridMoein.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            this.DGridMoein.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DGridMoein.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.codeDataGridViewTextBoxColumn1,
+            this.nameDataGridViewTextBoxColumn1,
+            this.accountDataGridViewTextBoxColumn1,
+            this.dgAccount,
+            this.guidDataGridViewTextBoxColumn1,
+            this.modifiedDataGridViewTextBoxColumn1,
+            this.statusDataGridViewCheckBoxColumn1,
+            this.kolGuidDataGridViewTextBoxColumn,
+            this.dateMDataGridViewTextBoxColumn});
+            this.DGridMoein.DataSource = this.MoeinBindingSource;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle10.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.Silver;
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DGridMoein.DefaultCellStyle = dataGridViewCellStyle10;
+            this.DGridMoein.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
+            this.DGridMoein.Location = new System.Drawing.Point(3, 50);
+            this.DGridMoein.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.DGridMoein.Name = "DGridMoein";
+            this.DGridMoein.ReadOnly = true;
+            this.DGridMoein.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.DGridMoein.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle11.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DGridMoein.RowHeadersDefaultCellStyle = dataGridViewCellStyle11;
+            this.DGridMoein.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle12.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle12.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.Silver;
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.Color.Black;
+            this.DGridMoein.RowsDefaultCellStyle = dataGridViewCellStyle12;
+            this.DGridMoein.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            this.DGridMoein.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.DGridMoein.Size = new System.Drawing.Size(390, 511);
+            this.DGridMoein.TabIndex = 55748;
             // 
             // codeDataGridViewTextBoxColumn1
             // 
@@ -435,6 +415,29 @@ namespace Accounting.Hesab
             this.dateMDataGridViewTextBoxColumn.ReadOnly = true;
             this.dateMDataGridViewTextBoxColumn.Visible = false;
             // 
+            // MoeinBindingSource
+            // 
+            this.MoeinBindingSource.DataSource = typeof(EntityCache.Bussines.MoeinBussines);
+            // 
+            // txtSearchMoein
+            // 
+            this.txtSearchMoein.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            // 
+            // 
+            // 
+            this.txtSearchMoein.Border.Class = "TextBoxBorder";
+            this.txtSearchMoein.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.txtSearchMoein.Location = new System.Drawing.Point(28, 9);
+            this.txtSearchMoein.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtSearchMoein.Name = "txtSearchMoein";
+            this.txtSearchMoein.PreventEnterBeep = true;
+            this.txtSearchMoein.Size = new System.Drawing.Size(346, 27);
+            this.txtSearchMoein.TabIndex = 55746;
+            this.txtSearchMoein.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtSearchMoein.WatermarkText = "مورد جستجو را وارد نمایید ...";
+            this.txtSearchMoein.TextChanged += new System.EventHandler(this.txtSearchMoein_TextChanged);
+            // 
             // frmKolMoein
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -452,13 +455,14 @@ namespace Accounting.Hesab
             this.Style = MetroFramework.MetroColorStyle.Green;
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmKolMoein_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmKolMoein_KeyDown);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.DGrid)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewX1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DGridKol)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.KolBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DGridMoein)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.MoeinBindingSource)).EndInit();
             this.ResumeLayout(false);
 
@@ -467,20 +471,12 @@ namespace Accounting.Hesab
         #endregion
 
         private System.Windows.Forms.SplitContainer splitContainer1;
-        private DevComponents.DotNetBar.Controls.TextBoxX txtSearch;
-        private DevComponents.DotNetBar.Controls.TextBoxX textBoxX1;
-        private DevComponents.DotNetBar.Controls.DataGridViewX DGrid;
-        private DevComponents.DotNetBar.Controls.DataGridViewX dataGridViewX1;
+        private DevComponents.DotNetBar.Controls.TextBoxX txtSearchKol;
+        private DevComponents.DotNetBar.Controls.TextBoxX txtSearchMoein;
+        private DevComponents.DotNetBar.Controls.DataGridViewX DGridKol;
+        private DevComponents.DotNetBar.Controls.DataGridViewX DGridMoein;
         private System.Windows.Forms.BindingSource KolBindingSource;
         private System.Windows.Forms.BindingSource MoeinBindingSource;
-        private System.Windows.Forms.DataGridViewTextBoxColumn codeDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn accountDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Account;
-        private System.Windows.Forms.DataGridViewTextBoxColumn guidDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn modifiedDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn statusDataGridViewCheckBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn hesabGroupDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn codeDataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn accountDataGridViewTextBoxColumn1;
@@ -490,5 +486,13 @@ namespace Accounting.Hesab
         private System.Windows.Forms.DataGridViewCheckBoxColumn statusDataGridViewCheckBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn kolGuidDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn dateMDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn codeDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn accountDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Account;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgKolGuid;
+        private System.Windows.Forms.DataGridViewTextBoxColumn modifiedDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn statusDataGridViewCheckBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn hesabGroupDataGridViewTextBoxColumn;
     }
 }

@@ -6,36 +6,19 @@ using EntityCache.Bussines;
 using MetroFramework.Forms;
 using Notification;
 using Services;
-using User;
 
-namespace Building.BuildingAccountType
+namespace Accounting.Hesab
 {
-    public partial class frmShowBuildingAccountType : MetroForm
+    public partial class frmShowTafsils : MetroForm
     {
         private bool _st = true;
         private async Task LoadDataAsync(bool status, string search = "")
         {
             try
             {
-                var list = await BuildingAccountTypeBussines.GetAllAsync(search);
-                Invoke(new MethodInvoker(() => BACBindingSource.DataSource =
-                    list.OrderBy(q => q.Name).Where(q => q.Status == status).ToSortableBindingList()));
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-        private void SetAccess()
-        {
-            try
-            {
-                var access = clsUser.CurrentUser.UserAccess;
-                mnuAdd.Enabled = access?.BuildingAccountType.Building_Acc_Type_Insert ?? false;
-                mnuEdit.Enabled = access?.BuildingAccountType.Building_Acc_Type_Update ?? false;
-                mnuDelete.Enabled = access?.BuildingAccountType.Building_Acc_Type_Delete ?? false;
-                mnuStatus.Enabled = access?.BuildingAccountType.Building_Acc_Type_Disable ?? false;
-                mnuView.Enabled = access?.BuildingAccountType.Building_Acc_Type_View ?? false;
+                var list = await TafsilBussines.GetAllAsync(search);
+                Invoke(new MethodInvoker(() => TafsilBindingSource.DataSource =
+                    list.OrderBy(q => q.Code).Where(q => q.Status == status).ToSortableBindingList()));
             }
             catch (Exception ex)
             {
@@ -63,18 +46,13 @@ namespace Building.BuildingAccountType
             }
         }
 
-        public frmShowBuildingAccountType()
+        public frmShowTafsils()
         {
             InitializeComponent();
-            SetAccess();
             DGrid.Focus();
         }
 
-        private async void frmShowBuildingAccountType_Load(object sender, EventArgs e) => await LoadDataAsync(ST);
-        private void DGrid_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
-        {
-            DGrid.Rows[e.RowIndex].Cells["dgRadif"].Value = e.RowIndex + 1;
-        }
+        private async void frmShowTafsils_Load(object sender, EventArgs e) => await LoadDataAsync(ST);
         private async void txtSearch_TextChanged(object sender, EventArgs e)
         {
             try
@@ -86,7 +64,7 @@ namespace Building.BuildingAccountType
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void frmShowBuildingAccountType_KeyDown(object sender, KeyEventArgs e)
+        private void frmShowTafsils_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
@@ -133,15 +111,13 @@ namespace Building.BuildingAccountType
             }
         }
         private void mnuStatus_Click(object sender, EventArgs e) => ST = !ST;
-        private void mnuView_Click(object sender, EventArgs e)
+        private async void mnuAdd_Click(object sender, EventArgs e)
         {
             try
             {
-                if (DGrid.RowCount <= 0) return;
-                if (DGrid.CurrentRow == null) return;
-                var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
-                var frm = new frmBuildingAccountType(guid, true);
-                frm.ShowDialog(this);
+                var frm = new frmTafsilMain();
+                if (frm.ShowDialog(this) == DialogResult.OK)
+                    await LoadDataAsync(ST);
             }
             catch (Exception ex)
             {
@@ -161,22 +137,17 @@ namespace Building.BuildingAccountType
                     return;
                 }
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
-                var frm = new frmBuildingAccountType(guid, false);
-                if (frm.ShowDialog(this) == DialogResult.OK)
-                    await LoadDataAsync(ST, txtSearch.Text);
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-        private async void mnuAdd_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                var frm = new frmBuildingAccountType();
-                if (frm.ShowDialog(this) == DialogResult.OK)
-                    await LoadDataAsync(ST);
+                var tafsil = await TafsilBussines.GetAsync(guid);
+                if (tafsil == null)
+                {
+                    frmNotification.PublicInfo.ShowMessage("حساب انتخاب شده معتبر نمی باشد");
+                    return;
+                }
+                if (tafsil.isSystem)
+                {
+                    frmNotification.PublicInfo.ShowMessage("شما مجاز به ویرایش حساب های پیش فرض نمی باشید");
+                    return;
+                }
             }
             catch (Exception ex)
             {
@@ -185,52 +156,47 @@ namespace Building.BuildingAccountType
         }
         private async void mnuDelete_Click(object sender, EventArgs e)
         {
-            var res = new ReturnedSaveFuncInfo();
             try
             {
                 if (DGrid.RowCount <= 0) return;
                 if (DGrid.CurrentRow == null) return;
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
-                if (ST)
+                var tafsil = await TafsilBussines.GetAsync(guid);
+                if (tafsil == null)
                 {
-                    if (MessageBox.Show(this,
-                            $@"آیا از حذف {DGrid[dgName.Index, DGrid.CurrentRow.Index].Value} اطمینان دارید؟", "حذف",
-                            MessageBoxButtons.YesNo,
-                            MessageBoxIcon.Question) == DialogResult.No) return;
-                    var prd = await BuildingAccountTypeBussines.GetAsync(guid);
-                    res.AddReturnedValue(await prd.ChangeStatusAsync(false));
-                    if (res.HasError) return;
-
-                    UserLog.Save(EnLogAction.Delete, EnLogPart.BuildingAccountType);
+                    frmNotification.PublicInfo.ShowMessage("حساب انتخاب شده معتبر نمی باشد");
+                    return;
                 }
-                else
+                if (tafsil.isSystem)
                 {
-                    if (MessageBox.Show(this,
-                            $@"آیا از فعال کردن {DGrid[dgName.Index, DGrid.CurrentRow.Index].Value} اطمینان دارید؟",
-                            "حذف",
-                            MessageBoxButtons.YesNo,
-                            MessageBoxIcon.Question) == DialogResult.No) return;
-                    var prd = await BuildingAccountTypeBussines.GetAsync(guid);
-                    res.AddReturnedValue(await prd.ChangeStatusAsync(true));
-                    if (res.HasError) return;
-
-                    UserLog.Save(EnLogAction.Enable, EnLogPart.BuildingAccountType);
+                    frmNotification.PublicInfo.ShowMessage("شما مجاز به حذف حساب های پیش فرض نمی باشید");
+                    return;
+                }
+                if (tafsil.Account!=0)
+                {
+                    frmNotification.PublicInfo.ShowMessage(
+                        $"حساب {DGrid[dgName.Index, DGrid.CurrentRow.Index].Value} به علت داشتن گردش، قادر به حذف نمی باشد");
+                    return;
                 }
             }
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
-                res.AddReturnedValue(ex);
             }
-            finally
+        }
+        private void mnuView_Click(object sender, EventArgs e)
+        {
+            try
             {
-                if (res.HasError)
-                {
-                    var frm = new FrmShowErrorMessage(res, "خطا در تغییر وضعیت نوع کاربری ملک");
-                    frm.ShowDialog(this);
-                    frm.Dispose();
-                }
-                else await LoadDataAsync(ST, txtSearch.Text);
+                if (DGrid.RowCount <= 0) return;
+                if (DGrid.CurrentRow == null) return;
+                var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
+                var frm = new frmTafsilMain(guid, true);
+                frm.ShowDialog(this);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
     }

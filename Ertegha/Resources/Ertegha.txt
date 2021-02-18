@@ -151,11 +151,9 @@ IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Kol_Selec
 	exec('Create Procedure [dbo].[sp_Kol_SelectAll]	As Begin print 11 end')
 GO
 Alter PROCEDURE sp_Kol_SelectAll
-	@st bit='true'
 AS
 BEGIN
 	select * from Kols 
-	where Status=@st
 	order by Code
 END
 GO
@@ -221,11 +219,9 @@ IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Moein_Sel
 	exec('Create Procedure [dbo].[sp_Moein_SelectAll]	As Begin print 11 end')
 GO
 Alter PROCEDURE sp_Moein_SelectAll
-	@st bit='true'
 AS
 BEGIN
 	select * from Moeins
-	where Status=@st
 	order by Code
 END
 GO
@@ -313,11 +309,9 @@ IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Tafsil_Se
 	exec('Create Procedure [dbo].[sp_Tafsil_SelectAll]	As Begin print 11 end')
 GO
 Alter PROCEDURE sp_Tafsil_SelectAll
-	@st bit='true'
 AS
 BEGIN
 	select * from Tafsils
-	where Status=@st
 	order by Code
 END
 GO
@@ -331,6 +325,129 @@ AS
 BEGIN
 	SELECT * from Tafsils
 	where Guid=@guid
+END
+GO
+-- ==========================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Tafsil_NextCode]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Tafsil_NextCode]	As Begin print 11 end')
+GO
+Alter PROCEDURE sp_Tafsil_NextCode
+	@hType smallint
+AS
+BEGIN
+	declare @nextCode nvarchar(10)
+	select @nextCode = MAX(Code) From Tafsils
+	where HesabType = @hType
+	set @nextCode = (isnull(@nextCode , 0))
+	set @nextCode = CAST(@nextCode AS bigint) + 1
+	select @nextCode
+END
+GO
+-- ==========================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Tafsil_CheckCode]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Tafsil_CheckCode]	As Begin print 11 end')
+GO
+
+Alter PROCEDURE sp_Tafsil_CheckCode
+	@guid uniqueidentifier,
+	@code nvarchar(10)
+AS
+BEGIN
+	select COUNT(*) from Tafsils
+	where Code=@code and Guid<>@guid
+END
+GO
+-- ==========================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Bank_SelectAll]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Bank_SelectAll]	As Begin print 11 end')
+GO
+Alter PROCEDURE sp_Bank_SelectAll
+AS
+BEGIN
+	Select Banks.*,Tafsils.Account
+	from Banks inner join Tafsils
+	on Tafsils.Guid=Banks.Guid
+END
+GO
+-- ==========================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Bank_SelectRow]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Bank_SelectRow]	As Begin print 11 end')
+GO
+Alter PROCEDURE sp_Bank_SelectRow
+	@Guid uniqueidentifier
+AS
+BEGIN
+	Select Banks.*,Tafsils.Account
+	from Banks inner join Tafsils
+	on Tafsils.Guid=Banks.Guid
+	where Banks.Guid=@Guid
+END
+GO
+-- ==========================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Banks_ChangeStatus]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Banks_ChangeStatus]	As Begin print 11 end')
+GO
+Alter PROCEDURE sp_Banks_ChangeStatus
+	@Guid uniqueidentifier,
+	@st bit
+AS
+BEGIN
+	update Banks
+	set Status=@st
+	where Guid=@Guid
+END
+GO
+-- ==========================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Banks_Save]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Banks_Save]	As Begin print 11 end')
+GO
+Alter PROCEDURE sp_Banks_Save
+	@guid uniqueidentifier,
+	@modif datetime,
+	@st bit,
+	@name nvarchar(200),
+	@code nvarchar(10),
+	@desc nvarchar(max),
+	@shobe nvarchar(200),
+	@codeShobe nvarchar(20),
+	@hesabNumber nvarchar(200)
+AS
+BEGIN
+	UPDATE [dbo].[Banks]
+	   SET [Modified] = @modif
+		  ,[Status] = @st
+		  ,[Code] = @code
+		  ,[Name] = @name
+		  ,[Shobe] = @shobe
+		  ,[CodeShobe] = @codeShobe
+		  ,[HesabNumber] = @hesabNumber
+		  ,[Description] = @desc
+	 WHERE [Guid] = @guid
+	 if @@ROWCOUNT=0
+	 begin
+		INSERT INTO [dbo].[Banks]
+           ([Guid]
+           ,[Modified]
+           ,[Status]
+           ,[Code]
+           ,[Name]
+           ,[Shobe]
+           ,[CodeShobe]
+           ,[HesabNumber]
+           ,[Description]
+           ,[DateM])
+		VALUES
+           (@guid
+           ,@modif
+           ,@st
+           ,@code
+           ,@name
+           ,@shobe
+           ,@codeShobe
+           ,@hesabNumber
+           ,@desc
+           ,GETDATE())
+	 end
 END
 GO
 -- ==========================================================================================

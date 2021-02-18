@@ -136,6 +136,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Bank\frmBankMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Bank\frmBankMain.Designer.cs">
+      <DependentUpon>frmBankMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Bank\frmShowBanks.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Bank\frmShowBanks.Designer.cs">
+      <DependentUpon>frmShowBanks.cs</DependentUpon>
+    </Compile>
     <Compile Include="clsSanad.cs" />
     <Compile Include="ExportToExcel.cs" />
     <Compile Include="frmGardeshHesab.cs">
@@ -173,6 +185,18 @@
     </Compile>
     <Compile Include="Hesab\frmKolMoein.Designer.cs">
       <DependentUpon>frmKolMoein.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Hesab\frmShowTafsils.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Hesab\frmShowTafsils.Designer.cs">
+      <DependentUpon>frmShowTafsils.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Hesab\frmTafsilMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Hesab\frmTafsilMain.Designer.cs">
+      <DependentUpon>frmTafsilMain.cs</DependentUpon>
     </Compile>
     <Compile Include="Payement\frmPardakhtCheckToday.cs">
       <SubType>Form</SubType>
@@ -228,6 +252,12 @@
     <Compile Include="Reception\frmShowReception.Designer.cs">
       <DependentUpon>frmShowReception.cs</DependentUpon>
     </Compile>
+    <Compile Include="Sandouq\frmShowSandouq.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sandouq\frmShowSandouq.Designer.cs">
+      <DependentUpon>frmShowSandouq.cs</DependentUpon>
+    </Compile>
     <Compile Include="Sood_Zian\clsSood_Zian.cs" />
     <Compile Include="Sood_Zian\frmFilterSood_Zian.cs">
       <SubType>Form</SubType>
@@ -245,6 +275,7 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\EntityCache.Bussines.BankBussines.datasource" />
     <None Include="Properties\DataSources\EntityCache.Bussines.GardeshHesabBussines.datasource" />
     <None Include="Properties\DataSources\EntityCache.Bussines.HazineBussines.datasource" />
     <None Include="Properties\DataSources\EntityCache.Bussines.KolBussines.datasource" />
@@ -254,6 +285,12 @@
     <None Include="Properties\DataSources\EntityCache.Bussines.ReceptionBussines.datasource" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Bank\frmBankMain.resx">
+      <DependentUpon>frmBankMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Bank\frmShowBanks.resx">
+      <DependentUpon>frmShowBanks.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmGardeshHesab.resx">
       <DependentUpon>frmGardeshHesab.cs</DependentUpon>
     </EmbeddedResource>
@@ -271,6 +308,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Hesab\frmKolMoein.resx">
       <DependentUpon>frmKolMoein.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Hesab\frmShowTafsils.resx">
+      <DependentUpon>frmShowTafsils.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Hesab\frmTafsilMain.resx">
+      <DependentUpon>frmTafsilMain.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Payement\frmPardakhtCheckToday.resx">
       <DependentUpon>frmPardakhtCheckToday.cs</DependentUpon>
@@ -299,6 +342,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reception\frmShowReception.resx">
       <DependentUpon>frmShowReception.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sandouq\frmShowSandouq.resx">
+      <DependentUpon>frmShowSandouq.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Sood_Zian\frmFilterSood_Zian.resx">
       <DependentUpon>frmFilterSood_Zian.cs</DependentUpon>
@@ -338,6 +384,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Properties\DataSources\EntityCache.Bussines.TafsilBussines.datasource" />
     <None Include="Properties\DataSources\EntityCache.ViewModels.CheckViewModel.datasource" />
     <None Include="Resources\add.png" />
   </ItemGroup>
