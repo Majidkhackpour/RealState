@@ -378,5 +378,6 @@ namespace EntityCache.Bussines
         }
         public static async Task<int> DbCount(Guid userGuid, short type) =>
             await UnitOfWork.Building.DbCount(userGuid, type);
+        public static async Task<ReturnedSaveFuncInfo> FixImageAsync() => await UnitOfWork.Building.FixImageAsync();
     }
 }

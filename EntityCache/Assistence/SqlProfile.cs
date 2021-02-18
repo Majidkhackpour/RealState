@@ -54,6 +54,7 @@ namespace EntityCache.Assistence
             CreateMap<MoeinBussines, Moein>().ReverseMap();
             CreateMap<TafsilBussines, Tafsil>().ReverseMap();
             CreateMap<BankBussines, Bank>().ReverseMap();
+            CreateMap<DasteCheckBussines, DasteCheck>().ReverseMap();
         }
     }
 }

@@ -123,6 +123,28 @@ namespace EntityCache.SqlServerPersistence
 
             return count;
         }
+        public async Task<ReturnedSaveFuncInfo> FixImageAsync()
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                using (var cn=new SqlConnection(_connectionString))
+                {
+                    var cmd = new SqlCommand("sp_Building_FixImages", cn) {CommandType = CommandType.StoredProcedure};
+
+                    await cn.OpenAsync();
+                    await cmd.ExecuteNonQueryAsync();
+                    cn.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+
+            return res;
+        }
         public override async Task<BuildingBussines> GetAsync(Guid guid)
         {
             var list = new BuildingBussines();

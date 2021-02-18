@@ -125,6 +125,7 @@
     <Compile Include="Bussines\CitiesBussines.cs" />
     <Compile Include="Bussines\ContractBussines.cs" />
     <Compile Include="Bussines\ContractFinanceBussines.cs" />
+    <Compile Include="Bussines\DasteCheckBussines.cs" />
     <Compile Include="Bussines\DocumentTypeBussines.cs" />
     <Compile Include="Bussines\FileInfoBussines.cs" />
     <Compile Include="Bussines\FloorCoverBussines.cs" />
@@ -171,6 +172,7 @@
     <Compile Include="Core\ICitiesRepository.cs" />
     <Compile Include="Core\IContractFinanceRepository.cs" />
     <Compile Include="Core\IContractRepository.cs" />
+    <Compile Include="Core\IDasteCheckRepository.cs" />
     <Compile Include="Core\IDocumentTypeRepository.cs" />
     <Compile Include="Core\IFileInfoRepository.cs" />
     <Compile Include="Core\IFloorCoverRepository.cs" />
@@ -218,6 +220,7 @@
     <Compile Include="SqlServerPersistence\CitiesPersistenceRepository.cs" />
     <Compile Include="SqlServerPersistence\ContractFinancePersisteceRepository.cs" />
     <Compile Include="SqlServerPersistence\ContractPersistenceRepository.cs" />
+    <Compile Include="SqlServerPersistence\DasteCheckPersistenceRepository.cs" />
     <Compile Include="SqlServerPersistence\DocumentTypePersistenceRepository.cs" />
     <Compile Include="SqlServerPersistence\FileInfoPersistenceRepository.cs" />
     <Compile Include="SqlServerPersistence\FloorCoverPersistenceRepository.cs" />

@@ -56,6 +56,7 @@ namespace EntityCache.Assistence
         private static IMoeinRepository _moeinRepository;
         private static ITafsilRepository _tafsilRepository;
         private static IBankRepository _bankRepository;
+        private static IDasteCheckRepository _dasteCheckRepository;
 
         public static void Dispose() => db?.Dispose();
         public static void Set_Save() => db.SaveChanges();
@@ -270,5 +271,10 @@ namespace EntityCache.Assistence
         public static IBankRepository Bank => _bankRepository ??
                                                   (_bankRepository =
                                                       new BankPersistenceRepository(db, _connectionString));
+
+
+        public static IDasteCheckRepository DasteCheck => _dasteCheckRepository ??
+                                              (_dasteCheckRepository =
+                                                  new DasteCheckPersistenceRepository(db, _connectionString));
     }
 }

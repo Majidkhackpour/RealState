@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using EntityCache.Bussines;
+using Services;
 
 namespace EntityCache.Core
 {
@@ -11,5 +12,6 @@ namespace EntityCache.Core
         Task<string> NextCodeAsync();
         Task<bool> CheckCodeAsync(string code, Guid guid);
         Task<int> DbCount(Guid userGuid, short type);
+        Task<ReturnedSaveFuncInfo> FixImageAsync();
     }
 }
