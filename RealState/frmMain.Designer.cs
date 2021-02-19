@@ -48,6 +48,7 @@
             this.lblVersion = new System.Windows.Forms.Label();
             this.ribbonControl1 = new DevComponents.DotNetBar.RibbonControl();
             this.ribbonPanel4 = new DevComponents.DotNetBar.RibbonPanel();
+            this.ribbonBar25 = new DevComponents.DotNetBar.RibbonBar();
             this.ribbonBar16 = new DevComponents.DotNetBar.RibbonBar();
             this.ribbonBar14 = new DevComponents.DotNetBar.RibbonBar();
             this.ribbonBar13 = new DevComponents.DotNetBar.RibbonBar();
@@ -130,7 +131,7 @@
             this.lblAllRahn = new System.Windows.Forms.Label();
             this.lblAllForoush = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.ribbonBar25 = new DevComponents.DotNetBar.RibbonBar();
+            this.ribbonBar37 = new DevComponents.DotNetBar.RibbonBar();
             this.pictureBox9 = new System.Windows.Forms.PictureBox();
             this.pictureBox13 = new System.Windows.Forms.PictureBox();
             this.pictureBox15 = new System.Windows.Forms.PictureBox();
@@ -144,6 +145,7 @@
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.btnDasteCheck = new DevComponents.DotNetBar.ButtonItem();
             this.btnBanks = new DevComponents.DotNetBar.ButtonItem();
             this.btnSandouq = new DevComponents.DotNetBar.ButtonItem();
             this.btnTafsil = new DevComponents.DotNetBar.ButtonItem();
@@ -453,6 +455,7 @@
             // ribbonPanel4
             // 
             this.ribbonPanel4.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.ribbonPanel4.Controls.Add(this.ribbonBar37);
             this.ribbonPanel4.Controls.Add(this.ribbonBar25);
             this.ribbonPanel4.Controls.Add(this.ribbonBar16);
             this.ribbonPanel4.Controls.Add(this.ribbonBar14);
@@ -481,6 +484,37 @@
             // 
             this.ribbonPanel4.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.ribbonPanel4.TabIndex = 4;
+            // 
+            // ribbonBar25
+            // 
+            this.ribbonBar25.AutoOverflowEnabled = true;
+            // 
+            // 
+            // 
+            this.ribbonBar25.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.ribbonBar25.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.ribbonBar25.ContainerControlProcessDialogKey = true;
+            this.ribbonBar25.Dock = System.Windows.Forms.DockStyle.Left;
+            this.ribbonBar25.DragDropSupport = true;
+            this.ribbonBar25.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
+            this.btnBanks});
+            this.ribbonBar25.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
+            this.ribbonBar25.Location = new System.Drawing.Point(591, 0);
+            this.ribbonBar25.Name = "ribbonBar25";
+            this.ribbonBar25.Size = new System.Drawing.Size(72, 118);
+            this.ribbonBar25.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.ribbonBar25.TabIndex = 17;
+            // 
+            // 
+            // 
+            this.ribbonBar25.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.ribbonBar25.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             // 
             // ribbonBar16
             // 
@@ -1889,7 +1923,7 @@
             this.panelEx1.Controls.Add(this.pictureBox16);
             this.panelEx1.Controls.Add(this.pictureBox17);
             this.panelEx1.DisabledBackColor = System.Drawing.Color.Empty;
-            this.panelEx1.Location = new System.Drawing.Point(-148, 32);
+            this.panelEx1.Location = new System.Drawing.Point(-165, 32);
             this.panelEx1.Name = "panelEx1";
             this.panelEx1.Size = new System.Drawing.Size(414, 188);
             this.panelEx1.Style.Alignment = System.Drawing.StringAlignment.Center;
@@ -2115,7 +2149,7 @@
             this.grp.Controls.Add(this.pictureBox3);
             this.grp.Controls.Add(this.pictureBox2);
             this.grp.DisabledBackColor = System.Drawing.Color.Empty;
-            this.grp.Location = new System.Drawing.Point(272, 32);
+            this.grp.Location = new System.Drawing.Point(255, 32);
             this.grp.Name = "grp";
             this.grp.Size = new System.Drawing.Size(309, 260);
             this.grp.Style.Alignment = System.Drawing.StringAlignment.Center;
@@ -2262,36 +2296,36 @@
             this.label6.TabIndex = 9;
             this.label6.Text = "تعداد کل ملک ها";
             // 
-            // ribbonBar25
+            // ribbonBar37
             // 
-            this.ribbonBar25.AutoOverflowEnabled = true;
-            // 
-            // 
-            // 
-            this.ribbonBar25.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.ribbonBar37.AutoOverflowEnabled = true;
             // 
             // 
             // 
-            this.ribbonBar25.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.ribbonBar25.ContainerControlProcessDialogKey = true;
-            this.ribbonBar25.Dock = System.Windows.Forms.DockStyle.Left;
-            this.ribbonBar25.DragDropSupport = true;
-            this.ribbonBar25.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
-            this.btnBanks});
-            this.ribbonBar25.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
-            this.ribbonBar25.Location = new System.Drawing.Point(591, 0);
-            this.ribbonBar25.Name = "ribbonBar25";
-            this.ribbonBar25.Size = new System.Drawing.Size(72, 118);
-            this.ribbonBar25.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.ribbonBar25.TabIndex = 17;
+            this.ribbonBar37.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             // 
             // 
             // 
-            this.ribbonBar25.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.ribbonBar37.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.ribbonBar37.ContainerControlProcessDialogKey = true;
+            this.ribbonBar37.Dock = System.Windows.Forms.DockStyle.Left;
+            this.ribbonBar37.DragDropSupport = true;
+            this.ribbonBar37.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
+            this.btnDasteCheck});
+            this.ribbonBar37.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
+            this.ribbonBar37.Location = new System.Drawing.Point(663, 0);
+            this.ribbonBar37.Name = "ribbonBar37";
+            this.ribbonBar37.Size = new System.Drawing.Size(72, 118);
+            this.ribbonBar37.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.ribbonBar37.TabIndex = 18;
             // 
             // 
             // 
-            this.ribbonBar25.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.ribbonBar37.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.ribbonBar37.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             // 
             // pictureBox9
             // 
@@ -2437,6 +2471,18 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 55784;
             this.pictureBox1.TabStop = false;
+            // 
+            // btnDasteCheck
+            // 
+            this.btnDasteCheck.Image = global::RealState.Properties.Resources._043;
+            this.btnDasteCheck.ImageListSizeSelection = DevComponents.DotNetBar.eButtonImageListSelection.Large;
+            this.btnDasteCheck.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
+            this.btnDasteCheck.Name = "btnDasteCheck";
+            this.btnDasteCheck.PopupWidth = 500;
+            this.btnDasteCheck.Stretch = true;
+            this.btnDasteCheck.SubItemsExpandWidth = 14;
+            this.btnDasteCheck.Text = "دسته چک";
+            this.btnDasteCheck.Click += new System.EventHandler(this.btnDasteCheck_Click);
             // 
             // btnBanks
             // 
@@ -3425,6 +3471,8 @@
         private DevComponents.DotNetBar.ButtonItem btnSandouq;
         private DevComponents.DotNetBar.RibbonBar ribbonBar25;
         private DevComponents.DotNetBar.ButtonItem btnBanks;
+        private DevComponents.DotNetBar.RibbonBar ribbonBar37;
+        private DevComponents.DotNetBar.ButtonItem btnDasteCheck;
     }
 }
 

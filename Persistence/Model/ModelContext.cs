@@ -67,5 +67,6 @@ namespace Persistence.Model
         public virtual DbSet<Tafsil> Tafsil { get; set; }
         public virtual DbSet<Bank> Bank { get; set; }
         public virtual DbSet<DasteCheck> DasteCheck { get; set; }
+        public virtual DbSet<CheckPage> CheckPage { get; set; }
     }
 }

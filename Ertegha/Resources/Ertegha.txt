@@ -2228,3 +2228,167 @@ BEGIN
 	select @Total
 	return @Total
 END
+GO
+-- ==========================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_DasteCheck_SelectAll]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_DasteCheck_SelectAll]	As Begin print 11 end')
+GO
+ALTER PROCEDURE [dbo].[sp_DasteCheck_SelectAll]
+AS
+BEGIN
+	Select DasteChecks.*,Tafsils.Name As BankName
+	From DasteChecks inner join Tafsils
+	on Tafsils.Guid=DasteChecks.BankGuid
+END
+GO
+-- ==========================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_DasteCheck_SelectRow]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_DasteCheck_SelectRow]	As Begin print 11 end')
+GO
+Alter PROCEDURE sp_DasteCheck_SelectRow
+	@Guid uniqueidentifier
+AS
+BEGIN
+	Select * From DasteChecks
+	where Guid=@Guid
+END
+GO
+-- ==========================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_DasteCheck_ChangeStatus]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_DasteCheck_ChangeStatus]	As Begin print 11 end')
+GO
+Alter PROCEDURE sp_DasteCheck_ChangeStatus
+	@Guid uniqueidentifier,
+	@st bit
+AS
+BEGIN
+	update DasteChecks
+	set Status=@st
+	where Guid=@Guid
+END
+GO
+-- ==========================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_DasteCheck_Save]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_DasteCheck_Save]	As Begin print 11 end')
+GO
+Alter PROCEDURE sp_DasteCheck_Save
+	@Guid uniqueidentifier,
+	@modif datetime,
+	@st bit,
+	@serial nvarchar(100),
+	@bankGuid uniqueidentifier,
+	@fNumber bigint,
+	@toNumber bigint,
+	@desc nvarchar(Max)
+AS
+BEGIN
+	UPDATE [dbo].[DasteChecks]
+	   SET [Modified] = @modif
+		  ,[Status] = @st
+		  ,[SerialNumber] = @serial
+		  ,[BankGuid] = @bankGuid
+		  ,[FromNumber] = @fNumber
+		  ,[ToNumber] = @toNumber
+		  ,[Description] = @desc
+	 WHERE [Guid] = @Guid
+	 if @@ROWCOUNT=0
+	 begin
+		INSERT INTO [dbo].[DasteChecks]
+           ([Guid]
+           ,[Modified]
+           ,[Status]
+           ,[SerialNumber]
+           ,[BankGuid]
+           ,[FromNumber]
+           ,[ToNumber]
+           ,[Description])
+		 VALUES
+           (@Guid
+           ,@modif
+           ,@st
+           ,@serial
+           ,@bankGuid
+           ,@fNumber
+           ,@toNumber
+           ,@desc)
+	 end
+END
+GO
+-- ==========================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_CheckPage_SelectAll]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_CheckPage_SelectAll]	As Begin print 11 end')
+GO
+Alter PROCEDURE sp_CheckPage_SelectAll
+	@Guid uniqueidentifier
+AS
+BEGIN
+	select * from CheckPages
+	where CheckGuid=@Guid
+END
+GO
+-- ==========================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_CheckPage_SelectRow]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_CheckPage_SelectRow]	As Begin print 11 end')
+GO
+Alter PROCEDURE sp_CheckPage_SelectRow
+	@Guid uniqueidentifier
+AS
+BEGIN
+	select * from CheckPages
+	where Guid=@Guid
+END
+GO
+-- ==========================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_CheckPage_Save]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_CheckPage_Save]	As Begin print 11 end')
+GO
+Alter PROCEDURE sp_CheckPage_Save
+	@Guid uniqueidentifier,
+	@modif datetime,
+	@CheckGuid uniqueidentifier,
+	@datePardakht datetime=null,
+	@number bigint,
+	@receptorGuid uniqueidentifier=null,
+	@sarresid datetime=null,
+	@desc nvarchar(max),
+	@price decimal,
+	@st int
+AS
+BEGIN
+	INSERT INTO [dbo].[CheckPages]
+           ([Guid]
+           ,[Modified]
+           ,[Status]
+           ,[CheckGuid]
+           ,[DatePardakht]
+           ,[Number]
+           ,[ReceptorGuid]
+           ,[DateSarresid]
+           ,[Description]
+           ,[Price]
+           ,[CheckStatus])
+		VALUES
+           (@Guid
+           ,@modif
+           ,'true'
+           ,@CheckGuid
+           ,@datePardakht
+           ,@number
+           ,@receptorGuid
+           ,@sarresid
+           ,@desc
+           ,@price
+           ,@st)
+END
+GO
+-- ==========================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_CheckPage_RemoveAll]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_CheckPage_RemoveAll]	As Begin print 11 end')
+GO
+Alter PROCEDURE sp_CheckPage_RemoveAll
+	@Guid uniqueidentifier
+AS
+BEGIN
+	Delete from CheckPages
+	where CheckGuid=@Guid
+END

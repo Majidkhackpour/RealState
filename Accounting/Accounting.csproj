@@ -148,6 +148,18 @@
     <Compile Include="Bank\frmShowBanks.Designer.cs">
       <DependentUpon>frmShowBanks.cs</DependentUpon>
     </Compile>
+    <Compile Include="Check\DasteCheck\frmDasteCheckMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Check\DasteCheck\frmDasteCheckMain.Designer.cs">
+      <DependentUpon>frmDasteCheckMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Check\DasteCheck\frmShowDasteCheck.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Check\DasteCheck\frmShowDasteCheck.Designer.cs">
+      <DependentUpon>frmShowDasteCheck.cs</DependentUpon>
+    </Compile>
     <Compile Include="clsSanad.cs" />
     <Compile Include="ExportToExcel.cs" />
     <Compile Include="frmGardeshHesab.cs">
@@ -185,6 +197,12 @@
     </Compile>
     <Compile Include="Hesab\frmKolMoein.Designer.cs">
       <DependentUpon>frmKolMoein.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Hesab\frmSelectTafsil.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Hesab\frmSelectTafsil.Designer.cs">
+      <DependentUpon>frmSelectTafsil.cs</DependentUpon>
     </Compile>
     <Compile Include="Hesab\frmShowTafsils.cs">
       <SubType>Form</SubType>
@@ -276,6 +294,7 @@
     <None Include="App.config" />
     <None Include="packages.config" />
     <None Include="Properties\DataSources\EntityCache.Bussines.BankBussines.datasource" />
+    <None Include="Properties\DataSources\EntityCache.Bussines.DasteCheckBussines.datasource" />
     <None Include="Properties\DataSources\EntityCache.Bussines.GardeshHesabBussines.datasource" />
     <None Include="Properties\DataSources\EntityCache.Bussines.HazineBussines.datasource" />
     <None Include="Properties\DataSources\EntityCache.Bussines.KolBussines.datasource" />
@@ -290,6 +309,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Bank\frmShowBanks.resx">
       <DependentUpon>frmShowBanks.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Check\DasteCheck\frmDasteCheckMain.resx">
+      <DependentUpon>frmDasteCheckMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Check\DasteCheck\frmShowDasteCheck.resx">
+      <DependentUpon>frmShowDasteCheck.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmGardeshHesab.resx">
       <DependentUpon>frmGardeshHesab.cs</DependentUpon>
@@ -308,6 +333,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Hesab\frmKolMoein.resx">
       <DependentUpon>frmKolMoein.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Hesab\frmSelectTafsil.resx">
+      <DependentUpon>frmSelectTafsil.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Hesab\frmShowTafsils.resx">
       <DependentUpon>frmShowTafsils.cs</DependentUpon>
@@ -436,9 +464,7 @@
   <ItemGroup>
     <None Include="Resources\P-1-99.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Check\DasteCheck\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

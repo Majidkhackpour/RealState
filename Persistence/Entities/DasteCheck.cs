@@ -10,8 +10,11 @@ namespace Persistence.Entities
         public Guid Guid { get; set; }
         public DateTime Modified { get; set; }
         public bool Status { get; set; }
-        public long SerialNumber { get; set; }
+        [MaxLength(100)]
+        public string SerialNumber { get; set; }
         public Guid BankGuid { get; set; }
-        public bool IsSarresidShode { get; set; }
+        public long FromNumber { get; set; }
+        public long ToNumber { get; set; }
+        public string Description { get; set; }
     }
 }

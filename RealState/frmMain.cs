@@ -40,6 +40,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using WindowsSerivces;
 using Accounting.Bank;
+using Accounting.Check.DasteCheck;
 using Accounting.Hesab;
 using Accounting.Sandouq;
 using Accounting.Sood_Zian;
@@ -904,6 +905,18 @@ namespace RealState
             try
             {
                 var frm = new frmShowBanks();
+                frm.ShowDialog(this);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private void btnDasteCheck_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var frm = new frmShowDasteCheck();
                 frm.ShowDialog(this);
             }
             catch (Exception ex)
