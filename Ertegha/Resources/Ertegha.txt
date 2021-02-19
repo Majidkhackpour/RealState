@@ -2249,8 +2249,10 @@ Alter PROCEDURE sp_DasteCheck_SelectRow
 	@Guid uniqueidentifier
 AS
 BEGIN
-	Select * From DasteChecks
-	where Guid=@Guid
+	Select DasteChecks.*,Tafsils.Name As BankName
+	From DasteChecks inner join Tafsils
+	on Tafsils.Guid=DasteChecks.BankGuid
+	where DasteChecks.Guid = @Guid
 END
 GO
 -- ==========================================================================================

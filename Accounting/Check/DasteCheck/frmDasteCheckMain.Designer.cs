@@ -32,21 +32,21 @@ namespace Accounting.Check.DasteCheck
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmDasteCheckMain));
             this.grp = new DevComponents.DotNetBar.PanelEx();
             this.btnRegion = new DevComponents.DotNetBar.ButtonX();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
-            this.txtFMasahat = new System.Windows.Forms.NumericUpDown();
+            this.txtToNumber = new System.Windows.Forms.NumericUpDown();
+            this.txtFromNumber = new System.Windows.Forms.NumericUpDown();
             this.label4 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.txtCode = new System.Windows.Forms.TextBox();
+            this.txtBankName = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.txtDesc = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.txtName = new System.Windows.Forms.TextBox();
+            this.txtSerial = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.btnCancel = new DevComponents.DotNetBar.ButtonX();
             this.btnFinish = new DevComponents.DotNetBar.ButtonX();
             this.grp.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtFMasahat)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtToNumber)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtFromNumber)).BeginInit();
             this.SuspendLayout();
             // 
             // grp
@@ -54,15 +54,15 @@ namespace Accounting.Check.DasteCheck
             this.grp.CanvasColor = System.Drawing.SystemColors.Control;
             this.grp.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.grp.Controls.Add(this.btnRegion);
-            this.grp.Controls.Add(this.numericUpDown1);
-            this.grp.Controls.Add(this.txtFMasahat);
+            this.grp.Controls.Add(this.txtToNumber);
+            this.grp.Controls.Add(this.txtFromNumber);
             this.grp.Controls.Add(this.label4);
             this.grp.Controls.Add(this.label2);
-            this.grp.Controls.Add(this.txtCode);
+            this.grp.Controls.Add(this.txtBankName);
             this.grp.Controls.Add(this.label1);
             this.grp.Controls.Add(this.txtDesc);
             this.grp.Controls.Add(this.label3);
-            this.grp.Controls.Add(this.txtName);
+            this.grp.Controls.Add(this.txtSerial);
             this.grp.Controls.Add(this.label7);
             this.grp.DisabledBackColor = System.Drawing.Color.Empty;
             this.grp.Location = new System.Drawing.Point(8, 24);
@@ -98,40 +98,36 @@ namespace Accounting.Check.DasteCheck
             this.btnRegion.TabIndex = 0;
             this.btnRegion.Text = "...";
             this.btnRegion.TextColor = System.Drawing.Color.White;
+            this.btnRegion.Click += new System.EventHandler(this.btnRegion_Click);
             // 
-            // numericUpDown1
+            // txtToNumber
             // 
-            this.numericUpDown1.Increment = new decimal(new int[] {
+            this.txtToNumber.Increment = new decimal(new int[] {
             10,
             0,
             0,
             0});
-            this.numericUpDown1.Location = new System.Drawing.Point(13, 74);
-            this.numericUpDown1.Maximum = new decimal(new int[] {
+            this.txtToNumber.Location = new System.Drawing.Point(13, 74);
+            this.txtToNumber.Maximum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            0});
+            this.txtToNumber.Name = "txtToNumber";
+            this.txtToNumber.Size = new System.Drawing.Size(129, 27);
+            this.txtToNumber.TabIndex = 3;
+            // 
+            // txtFromNumber
+            // 
+            this.txtFromNumber.Location = new System.Drawing.Point(213, 75);
+            this.txtFromNumber.Maximum = new decimal(new int[] {
             10000,
             0,
             0,
             0});
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(129, 27);
-            this.numericUpDown1.TabIndex = 3;
-            // 
-            // txtFMasahat
-            // 
-            this.txtFMasahat.Increment = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            this.txtFMasahat.Location = new System.Drawing.Point(213, 75);
-            this.txtFMasahat.Maximum = new decimal(new int[] {
-            10000,
-            0,
-            0,
-            0});
-            this.txtFMasahat.Name = "txtFMasahat";
-            this.txtFMasahat.Size = new System.Drawing.Size(124, 27);
-            this.txtFMasahat.TabIndex = 2;
+            this.txtFromNumber.Name = "txtFromNumber";
+            this.txtFromNumber.Size = new System.Drawing.Size(124, 27);
+            this.txtFromNumber.TabIndex = 2;
             // 
             // label4
             // 
@@ -153,17 +149,17 @@ namespace Accounting.Check.DasteCheck
             this.label2.TabIndex = 6;
             this.label2.Text = "از شماره";
             // 
-            // txtCode
+            // txtBankName
             // 
-            this.txtCode.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.txtCode.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.txtCode.Enabled = false;
-            this.txtCode.Location = new System.Drawing.Point(49, 12);
-            this.txtCode.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.txtCode.Name = "txtCode";
-            this.txtCode.ReadOnly = true;
-            this.txtCode.Size = new System.Drawing.Size(289, 27);
-            this.txtCode.TabIndex = 0;
+            this.txtBankName.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.txtBankName.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.txtBankName.Enabled = false;
+            this.txtBankName.Location = new System.Drawing.Point(49, 12);
+            this.txtBankName.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtBankName.Name = "txtBankName";
+            this.txtBankName.ReadOnly = true;
+            this.txtBankName.Size = new System.Drawing.Size(289, 27);
+            this.txtBankName.TabIndex = 0;
             // 
             // label1
             // 
@@ -197,15 +193,17 @@ namespace Accounting.Check.DasteCheck
             this.label3.TabIndex = 4;
             this.label3.Text = "توضیحات";
             // 
-            // txtName
+            // txtSerial
             // 
-            this.txtName.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.txtName.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.txtName.Location = new System.Drawing.Point(13, 42);
-            this.txtName.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(324, 27);
-            this.txtName.TabIndex = 1;
+            this.txtSerial.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.txtSerial.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.txtSerial.Location = new System.Drawing.Point(13, 42);
+            this.txtSerial.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtSerial.Name = "txtSerial";
+            this.txtSerial.Size = new System.Drawing.Size(324, 27);
+            this.txtSerial.TabIndex = 1;
+            this.txtSerial.Enter += new System.EventHandler(this.txtSerial_Enter);
+            this.txtSerial.Leave += new System.EventHandler(this.txtSerial_Leave);
             // 
             // label7
             // 
@@ -234,6 +232,7 @@ namespace Accounting.Check.DasteCheck
             this.btnCancel.TabIndex = 2;
             this.btnCancel.Text = "انصراف (Esc)";
             this.btnCancel.TextColor = System.Drawing.Color.Black;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // btnFinish
             // 
@@ -251,6 +250,7 @@ namespace Accounting.Check.DasteCheck
             this.btnFinish.TabIndex = 1;
             this.btnFinish.Text = "تایید (F5)";
             this.btnFinish.TextColor = System.Drawing.Color.Black;
+            this.btnFinish.Click += new System.EventHandler(this.btnFinish_Click);
             // 
             // frmDasteCheckMain
             // 
@@ -272,10 +272,12 @@ namespace Accounting.Check.DasteCheck
             this.Padding = new System.Windows.Forms.Padding(27, 92, 27, 31);
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.Style = MetroFramework.MetroColorStyle.Green;
+            this.Load += new System.EventHandler(this.frmDasteCheckMain_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmDasteCheckMain_KeyDown);
             this.grp.ResumeLayout(false);
             this.grp.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtFMasahat)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtToNumber)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtFromNumber)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -285,16 +287,16 @@ namespace Accounting.Check.DasteCheck
         private DevComponents.DotNetBar.PanelEx grp;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox txtCode;
+        private System.Windows.Forms.TextBox txtBankName;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtDesc;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox txtName;
+        private System.Windows.Forms.TextBox txtSerial;
         private System.Windows.Forms.Label label7;
         private DevComponents.DotNetBar.ButtonX btnCancel;
         private DevComponents.DotNetBar.ButtonX btnFinish;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
-        private System.Windows.Forms.NumericUpDown txtFMasahat;
+        private System.Windows.Forms.NumericUpDown txtToNumber;
+        private System.Windows.Forms.NumericUpDown txtFromNumber;
         private DevComponents.DotNetBar.ButtonX btnRegion;
     }
 }

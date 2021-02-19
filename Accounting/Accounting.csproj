@@ -154,6 +154,12 @@
     <Compile Include="Check\DasteCheck\frmDasteCheckMain.Designer.cs">
       <DependentUpon>frmDasteCheckMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="Check\DasteCheck\frmShowCheckPages.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Check\DasteCheck\frmShowCheckPages.Designer.cs">
+      <DependentUpon>frmShowCheckPages.cs</DependentUpon>
+    </Compile>
     <Compile Include="Check\DasteCheck\frmShowDasteCheck.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -294,6 +300,7 @@
     <None Include="App.config" />
     <None Include="packages.config" />
     <None Include="Properties\DataSources\EntityCache.Bussines.BankBussines.datasource" />
+    <None Include="Properties\DataSources\EntityCache.Bussines.CheckPageBussines.datasource" />
     <None Include="Properties\DataSources\EntityCache.Bussines.DasteCheckBussines.datasource" />
     <None Include="Properties\DataSources\EntityCache.Bussines.GardeshHesabBussines.datasource" />
     <None Include="Properties\DataSources\EntityCache.Bussines.HazineBussines.datasource" />
@@ -312,6 +319,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Check\DasteCheck\frmDasteCheckMain.resx">
       <DependentUpon>frmDasteCheckMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Check\DasteCheck\frmShowCheckPages.resx">
+      <DependentUpon>frmShowCheckPages.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Check\DasteCheck\frmShowDasteCheck.resx">
       <DependentUpon>frmShowDasteCheck.cs</DependentUpon>

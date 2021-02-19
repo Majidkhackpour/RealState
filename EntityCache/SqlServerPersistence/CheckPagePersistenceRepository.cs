@@ -31,10 +31,10 @@ namespace EntityCache.SqlServerPersistence
                 item.Modified = (DateTime)dr["Modified"];
                 item.Status = (bool)dr["Status"];
                 item.CheckGuid = (Guid)dr["CheckGuid"];
-                item.DatePardakht = (DateTime?)dr["DatePardakht"];
+                if (dr["DatePardakht"] != DBNull.Value) item.DatePardakht = (DateTime?)dr["DatePardakht"];
                 item.Number = (long)dr["Number"];
-                item.ReceptorGuid = (Guid?)dr["ReceptorGuid"];
-                item.DateSarresid = (DateTime?)dr["DateSarresid"];
+                if (dr["ReceptorGuid"] != DBNull.Value) item.ReceptorGuid = (Guid?)dr["ReceptorGuid"];
+                if (dr["DateSarresid"] != DBNull.Value) item.DateSarresid = (DateTime?)dr["DateSarresid"];
                 item.Description = dr["Description"].ToString();
                 item.Price = (decimal)dr["Price"];
                 item.CheckStatus = (EnCheckSh)dr["CheckStatus"];
@@ -124,7 +124,7 @@ namespace EntityCache.SqlServerPersistence
 
             return res;
         }
-        public override async Task<ReturnedSaveFuncInfo> RemoveAsync(Guid checkGuid, string tranName)
+        public async Task<ReturnedSaveFuncInfo> RemoveAllAsync(Guid checkGuid)
         {
             var res = new ReturnedSaveFuncInfo();
             try
@@ -138,6 +138,22 @@ namespace EntityCache.SqlServerPersistence
                     await cmd.ExecuteNonQueryAsync();
                     cn.Close();
                 }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+
+            return res;
+        }
+        public override async Task<ReturnedSaveFuncInfo> SaveRangeAsync(IEnumerable<CheckPageBussines> items, string tranName)
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                foreach (var item in items)
+                    res.AddReturnedValue(await SaveAsync(item, tranName));
             }
             catch (Exception ex)
             {

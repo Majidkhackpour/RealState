@@ -122,7 +122,7 @@ namespace Accounting.Bank
             finally
             {
                 if (res.HasError)
-                    this.ShowError(res, "خطا در ثبت حساب تفصیلی");
+                    this.ShowError(res, "خطا در ثبت حساب بانکی");
                 else
                 {
                     DialogResult = DialogResult.OK;

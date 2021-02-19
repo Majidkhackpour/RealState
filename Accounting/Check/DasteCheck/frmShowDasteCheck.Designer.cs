@@ -49,13 +49,13 @@ namespace Accounting.Check.DasteCheck
             this.DGrid = new DevComponents.DotNetBar.Controls.DataGridViewX();
             this.DasteCheckBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dgRadif = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.bankNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.serialNumberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fromNumberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.toNumberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pageCountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.descriptionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.guidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgGuid = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.modifiedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.statusDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.bankGuidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -89,6 +89,7 @@ namespace Accounting.Check.DasteCheck
             this.mnuShowPages.Name = "mnuShowPages";
             this.mnuShowPages.Size = new System.Drawing.Size(224, 24);
             this.mnuShowPages.Text = "مشاهده برگه ها";
+            this.mnuShowPages.Click += new System.EventHandler(this.mnuShowPages_Click);
             // 
             // mnuStatus
             // 
@@ -104,6 +105,7 @@ namespace Accounting.Check.DasteCheck
             this.mnuView.Name = "mnuView";
             this.mnuView.Size = new System.Drawing.Size(224, 24);
             this.mnuView.Text = "مشاهده (F12)";
+            this.mnuView.Click += new System.EventHandler(this.mnuView_Click);
             // 
             // toolStripMenuItem1
             // 
@@ -116,6 +118,7 @@ namespace Accounting.Check.DasteCheck
             this.mnuDelete.Name = "mnuDelete";
             this.mnuDelete.Size = new System.Drawing.Size(224, 24);
             this.mnuDelete.Text = "حذف دسته چک جاری (Del)";
+            this.mnuDelete.Click += new System.EventHandler(this.mnuDelete_Click);
             // 
             // mnuEdit
             // 
@@ -123,6 +126,7 @@ namespace Accounting.Check.DasteCheck
             this.mnuEdit.Name = "mnuEdit";
             this.mnuEdit.Size = new System.Drawing.Size(224, 24);
             this.mnuEdit.Text = "ویرایش دسته چک جاری (F7)";
+            this.mnuEdit.Click += new System.EventHandler(this.mnuEdit_Click);
             // 
             // mnuAdd
             // 
@@ -130,6 +134,7 @@ namespace Accounting.Check.DasteCheck
             this.mnuAdd.Name = "mnuAdd";
             this.mnuAdd.Size = new System.Drawing.Size(224, 24);
             this.mnuAdd.Text = "افزودن دسته چک جدید (Ins)";
+            this.mnuAdd.Click += new System.EventHandler(this.mnuAdd_Click);
             // 
             // contextMenu
             // 
@@ -145,7 +150,7 @@ namespace Accounting.Check.DasteCheck
             this.mnuShowPages});
             this.contextMenu.Name = "contextMenu";
             this.contextMenu.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.contextMenu.Size = new System.Drawing.Size(225, 160);
+            this.contextMenu.Size = new System.Drawing.Size(225, 182);
             // 
             // toolStripMenuItem2
             // 
@@ -180,13 +185,13 @@ namespace Accounting.Check.DasteCheck
             this.DGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dgRadif,
-            this.bankNameDataGridViewTextBoxColumn,
+            this.dgName,
             this.serialNumberDataGridViewTextBoxColumn,
             this.fromNumberDataGridViewTextBoxColumn,
             this.toNumberDataGridViewTextBoxColumn,
             this.pageCountDataGridViewTextBoxColumn,
             this.descriptionDataGridViewTextBoxColumn,
-            this.guidDataGridViewTextBoxColumn,
+            this.dgGuid,
             this.modifiedDataGridViewTextBoxColumn,
             this.statusDataGridViewCheckBoxColumn,
             this.bankGuidDataGridViewTextBoxColumn});
@@ -239,14 +244,14 @@ namespace Accounting.Check.DasteCheck
             this.dgRadif.ReadOnly = true;
             this.dgRadif.Width = 40;
             // 
-            // bankNameDataGridViewTextBoxColumn
+            // dgName
             // 
-            this.bankNameDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.bankNameDataGridViewTextBoxColumn.DataPropertyName = "BankName";
-            this.bankNameDataGridViewTextBoxColumn.HeaderText = "بانک";
-            this.bankNameDataGridViewTextBoxColumn.Name = "bankNameDataGridViewTextBoxColumn";
-            this.bankNameDataGridViewTextBoxColumn.ReadOnly = true;
-            this.bankNameDataGridViewTextBoxColumn.Width = 56;
+            this.dgName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dgName.DataPropertyName = "BankName";
+            this.dgName.HeaderText = "بانک";
+            this.dgName.Name = "dgName";
+            this.dgName.ReadOnly = true;
+            this.dgName.Width = 56;
             // 
             // serialNumberDataGridViewTextBoxColumn
             // 
@@ -296,13 +301,13 @@ namespace Accounting.Check.DasteCheck
             this.descriptionDataGridViewTextBoxColumn.Name = "descriptionDataGridViewTextBoxColumn";
             this.descriptionDataGridViewTextBoxColumn.ReadOnly = true;
             // 
-            // guidDataGridViewTextBoxColumn
+            // dgGuid
             // 
-            this.guidDataGridViewTextBoxColumn.DataPropertyName = "Guid";
-            this.guidDataGridViewTextBoxColumn.HeaderText = "Guid";
-            this.guidDataGridViewTextBoxColumn.Name = "guidDataGridViewTextBoxColumn";
-            this.guidDataGridViewTextBoxColumn.ReadOnly = true;
-            this.guidDataGridViewTextBoxColumn.Visible = false;
+            this.dgGuid.DataPropertyName = "Guid";
+            this.dgGuid.HeaderText = "Guid";
+            this.dgGuid.Name = "dgGuid";
+            this.dgGuid.ReadOnly = true;
+            this.dgGuid.Visible = false;
             // 
             // modifiedDataGridViewTextBoxColumn
             // 
@@ -369,13 +374,13 @@ namespace Accounting.Check.DasteCheck
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
         private DevComponents.DotNetBar.Controls.DataGridViewX DGrid;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgRadif;
-        private System.Windows.Forms.DataGridViewTextBoxColumn bankNameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgName;
         private System.Windows.Forms.DataGridViewTextBoxColumn serialNumberDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn fromNumberDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn toNumberDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn pageCountDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn descriptionDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn guidDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgGuid;
         private System.Windows.Forms.DataGridViewTextBoxColumn modifiedDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewCheckBoxColumn statusDataGridViewCheckBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn bankGuidDataGridViewTextBoxColumn;

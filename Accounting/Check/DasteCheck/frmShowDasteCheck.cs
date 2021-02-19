@@ -2,9 +2,12 @@
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WindowsSerivces;
 using EntityCache.Bussines;
 using MetroFramework.Forms;
+using Notification;
 using Services;
+using User;
 
 namespace Accounting.Check.DasteCheck
 {
@@ -112,5 +115,142 @@ namespace Accounting.Check.DasteCheck
         private void mnuStatus_Click(object sender, EventArgs e) => ST = !ST;
         private void DGrid_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e) =>
             DGrid.Rows[e.RowIndex].Cells["dgRadif"].Value = e.RowIndex + 1;
+        private async void mnuAdd_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var frm = new frmDasteCheckMain();
+                if (frm.ShowDialog(this) == DialogResult.OK)
+                    await LoadDataAsync(ST);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private async void mnuEdit_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (DGrid.RowCount <= 0) return;
+                if (DGrid.CurrentRow == null) return;
+                if (!ST)
+                {
+                    frmNotification.PublicInfo.ShowMessage(
+                        "شما مجاز به ویرایش داده حذف شده نمی باشید \r\n برای این منظور، ابتدا فیلد موردنظر را از حالت حذف شده به فعال، تغییر وضعیت دهید");
+                    return;
+                }
+                var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
+                var dasteChek = await DasteCheckBussines.GetAsync(guid);
+                if (dasteChek == null)
+                {
+                    frmNotification.PublicInfo.ShowMessage("دسته چک انتخابی معتبر نمی باشد");
+                    return;
+                }
+
+                var masraf = dasteChek.CheckPages.Any(q => q.CheckStatus != EnCheckSh.Mojoud);
+                if (masraf)
+                {
+                    frmNotification.PublicInfo.ShowMessage("به علت کشیدن چک از این دسته چک، شما مجاز به ویرایش آن نمی باشید");
+                    return;
+                }
+                var frm = new frmDasteCheckMain(guid, false);
+                if (frm.ShowDialog(this) == DialogResult.OK)
+                    await LoadDataAsync(ST, txtSearch.Text);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private void mnuView_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (DGrid.RowCount <= 0) return;
+                if (DGrid.CurrentRow == null) return;
+                var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
+                var frm = new frmDasteCheckMain(guid, true);
+                frm.ShowDialog(this);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private async void mnuDelete_Click(object sender, EventArgs e)
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                if (DGrid.RowCount <= 0) return;
+                if (DGrid.CurrentRow == null) return;
+                var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
+                var dasteChek = await DasteCheckBussines.GetAsync(guid);
+                if (ST)
+                {
+                    if (dasteChek == null)
+                    {
+                        frmNotification.PublicInfo.ShowMessage("دسته چک انتخابی معتبر نمی باشد");
+                        return;
+                    }
+                    var masraf = dasteChek.CheckPages.Any(q => q.CheckStatus != EnCheckSh.Mojoud);
+                    if (masraf)
+                    {
+                        frmNotification.PublicInfo.ShowMessage("به علت کشیدن چک از این دسته چک، شما مجاز به ویرایش آن نمی باشید");
+                        return;
+                    }
+                    if (MessageBox.Show(this,
+                            $@"آیا از حذف دسته چک {DGrid[dgName.Index, DGrid.CurrentRow.Index].Value} اطمینان دارید؟", "حذف",
+                            MessageBoxButtons.YesNo,
+                            MessageBoxIcon.Question) == DialogResult.No) return;
+                    res.AddReturnedValue(await dasteChek.ChangeStatusAsync(false));
+                    if (res.HasError) return;
+                    UserLog.Save(EnLogAction.Delete, EnLogPart.Hazine);
+                }
+                else
+                {
+                    if (MessageBox.Show(this,
+                            $@"آیا از فعال کردن دسته چک {DGrid[dgName.Index, DGrid.CurrentRow.Index].Value} اطمینان دارید؟",
+                            "حذف",
+                            MessageBoxButtons.YesNo,
+                            MessageBoxIcon.Question) == DialogResult.No) return;
+                    res.AddReturnedValue(await dasteChek.ChangeStatusAsync(true));
+                    if (res.HasError) return;
+                    UserLog.Save(EnLogAction.Enable, EnLogPart.Hazine);
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+            finally
+            {
+                if (res.HasError) this.ShowError(res, "خطا در تغییر وضعیت حساب بانکی");
+                else await LoadDataAsync(ST, txtSearch.Text);
+            }
+        }
+        private async void mnuShowPages_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (DGrid.RowCount <= 0) return;
+                if (DGrid.CurrentRow == null) return;
+                var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
+                var dasteChek = await DasteCheckBussines.GetAsync(guid);
+                if (dasteChek == null)
+                {
+                    frmNotification.PublicInfo.ShowMessage("دسته چک انتخابی معتبر نمی باشد");
+                    return;
+                }
+                var frm = new frmShowCheckPages(dasteChek);
+                frm.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
     }
 }
