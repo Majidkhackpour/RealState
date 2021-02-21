@@ -563,7 +563,7 @@ namespace RealState
         {
             try
             {
-                var frm = new frmShowHazine(false);
+                var frm = new frmShowHazine();
                 frm.ShowDialog(this);
             }
             catch (Exception ex)

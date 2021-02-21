@@ -31,16 +31,13 @@
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmShowHazine));
             this.txtSearch = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.DGrid = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.hazineBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.btnSelect = new DevComponents.DotNetBar.ButtonX();
             this.contextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.mnuAdd = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuEdit = new System.Windows.Forms.ToolStripMenuItem();
@@ -50,17 +47,23 @@
             this.mnuStatus = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
             this.mnuPrint = new System.Windows.Forms.ToolStripMenuItem();
-            this.dgRadif = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.hazineBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.codeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.accountDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.diagnosisDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.accountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgGuid = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.modifiedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.statusDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.accountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.descriptionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.hesabTypeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dateMDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.accountFirstDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.isSystemDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.hazineBindingSource)).BeginInit();
             this.contextMenu.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.hazineBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // txtSearch
@@ -109,24 +112,29 @@
             this.DGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.DGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dgRadif,
+            this.codeDataGridViewTextBoxColumn,
             this.dgName,
             this.accountDataGridViewTextBoxColumn1,
-            this.Column1,
+            this.diagnosisDataGridViewTextBoxColumn,
+            this.accountDataGridViewTextBoxColumn,
             this.dgGuid,
             this.modifiedDataGridViewTextBoxColumn,
             this.statusDataGridViewCheckBoxColumn,
-            this.accountDataGridViewTextBoxColumn});
+            this.descriptionDataGridViewTextBoxColumn,
+            this.hesabTypeDataGridViewTextBoxColumn,
+            this.dateMDataGridViewTextBoxColumn,
+            this.accountFirstDataGridViewTextBoxColumn,
+            this.isSystemDataGridViewCheckBoxColumn});
             this.DGrid.ContextMenuStrip = this.contextMenu;
             this.DGrid.DataSource = this.hazineBindingSource;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.Silver;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DGrid.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.Silver;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DGrid.DefaultCellStyle = dataGridViewCellStyle4;
             this.DGrid.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
             this.DGrid.Location = new System.Drawing.Point(4, 70);
             this.DGrid.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -134,51 +142,25 @@
             this.DGrid.ReadOnly = true;
             this.DGrid.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.DGrid.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DGrid.RowHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            this.DGrid.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
             dataGridViewCellStyle6.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             dataGridViewCellStyle6.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DGrid.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
-            this.DGrid.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.Silver;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.Black;
-            this.DGrid.RowsDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.Silver;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black;
+            this.DGrid.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.DGrid.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             this.DGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DGrid.Size = new System.Drawing.Size(795, 487);
+            this.DGrid.Size = new System.Drawing.Size(795, 520);
             this.DGrid.TabIndex = 55744;
-            this.DGrid.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DGrid_CellFormatting);
-            this.DGrid.DoubleClick += new System.EventHandler(this.DGrid_DoubleClick);
-            // 
-            // hazineBindingSource
-            // 
-            this.hazineBindingSource.DataSource = typeof(EntityCache.Bussines.HazineBussines);
-            // 
-            // btnSelect
-            // 
-            this.btnSelect.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnSelect.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSelect.BackColor = System.Drawing.Color.DarkSlateGray;
-            this.btnSelect.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnSelect.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
-            this.btnSelect.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnSelect.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.btnSelect.Location = new System.Drawing.Point(184, 564);
-            this.btnSelect.Name = "btnSelect";
-            this.btnSelect.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
-            this.btnSelect.Size = new System.Drawing.Size(414, 31);
-            this.btnSelect.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
-            this.btnSelect.TabIndex = 55762;
-            this.btnSelect.Text = "انتخاب";
-            this.btnSelect.TextColor = System.Drawing.Color.White;
-            this.btnSelect.Click += new System.EventHandler(this.btnSelect_Click);
             // 
             // contextMenu
             // 
@@ -194,7 +176,7 @@
             this.mnuPrint});
             this.contextMenu.Name = "contextMenu";
             this.contextMenu.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.contextMenu.Size = new System.Drawing.Size(205, 182);
+            this.contextMenu.Size = new System.Drawing.Size(205, 160);
             // 
             // mnuAdd
             // 
@@ -254,13 +236,18 @@
             this.mnuPrint.Text = "گردش (Ctrl+P)";
             this.mnuPrint.Click += new System.EventHandler(this.mnuPrint_Click);
             // 
-            // dgRadif
+            // hazineBindingSource
             // 
-            this.dgRadif.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dgRadif.HeaderText = "ردیف";
-            this.dgRadif.Name = "dgRadif";
-            this.dgRadif.ReadOnly = true;
-            this.dgRadif.Width = 60;
+            this.hazineBindingSource.DataSource = typeof(EntityCache.Bussines.TafsilBussines);
+            // 
+            // codeDataGridViewTextBoxColumn
+            // 
+            this.codeDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.codeDataGridViewTextBoxColumn.DataPropertyName = "Code";
+            this.codeDataGridViewTextBoxColumn.HeaderText = "کد هزینه";
+            this.codeDataGridViewTextBoxColumn.Name = "codeDataGridViewTextBoxColumn";
+            this.codeDataGridViewTextBoxColumn.ReadOnly = true;
+            this.codeDataGridViewTextBoxColumn.Width = 77;
             // 
             // dgName
             // 
@@ -277,21 +264,27 @@
             dataGridViewCellStyle3.Format = "N0";
             dataGridViewCellStyle3.NullValue = null;
             this.accountDataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle3;
-            this.accountDataGridViewTextBoxColumn1.HeaderText = "حساب";
+            this.accountDataGridViewTextBoxColumn1.HeaderText = "مانده";
             this.accountDataGridViewTextBoxColumn1.Name = "accountDataGridViewTextBoxColumn1";
             this.accountDataGridViewTextBoxColumn1.ReadOnly = true;
-            this.accountDataGridViewTextBoxColumn1.Width = 64;
+            this.accountDataGridViewTextBoxColumn1.Width = 58;
             // 
-            // Column1
+            // diagnosisDataGridViewTextBoxColumn
             // 
-            this.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Column1.DataPropertyName = "Account";
-            dataGridViewCellStyle4.Format = "بدهکار;بستانکار;بی حساب;";
-            this.Column1.DefaultCellStyle = dataGridViewCellStyle4;
-            this.Column1.HeaderText = "";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            this.Column1.Width = 19;
+            this.diagnosisDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.diagnosisDataGridViewTextBoxColumn.DataPropertyName = "Diagnosis";
+            this.diagnosisDataGridViewTextBoxColumn.HeaderText = "تشخیص";
+            this.diagnosisDataGridViewTextBoxColumn.Name = "diagnosisDataGridViewTextBoxColumn";
+            this.diagnosisDataGridViewTextBoxColumn.ReadOnly = true;
+            this.diagnosisDataGridViewTextBoxColumn.Width = 74;
+            // 
+            // accountDataGridViewTextBoxColumn
+            // 
+            this.accountDataGridViewTextBoxColumn.DataPropertyName = "Account";
+            this.accountDataGridViewTextBoxColumn.HeaderText = "Account";
+            this.accountDataGridViewTextBoxColumn.Name = "accountDataGridViewTextBoxColumn";
+            this.accountDataGridViewTextBoxColumn.ReadOnly = true;
+            this.accountDataGridViewTextBoxColumn.Visible = false;
             // 
             // dgGuid
             // 
@@ -317,20 +310,51 @@
             this.statusDataGridViewCheckBoxColumn.ReadOnly = true;
             this.statusDataGridViewCheckBoxColumn.Visible = false;
             // 
-            // accountDataGridViewTextBoxColumn
+            // descriptionDataGridViewTextBoxColumn
             // 
-            this.accountDataGridViewTextBoxColumn.DataPropertyName = "Account";
-            this.accountDataGridViewTextBoxColumn.HeaderText = "Account";
-            this.accountDataGridViewTextBoxColumn.Name = "accountDataGridViewTextBoxColumn";
-            this.accountDataGridViewTextBoxColumn.ReadOnly = true;
-            this.accountDataGridViewTextBoxColumn.Visible = false;
+            this.descriptionDataGridViewTextBoxColumn.DataPropertyName = "Description";
+            this.descriptionDataGridViewTextBoxColumn.HeaderText = "Description";
+            this.descriptionDataGridViewTextBoxColumn.Name = "descriptionDataGridViewTextBoxColumn";
+            this.descriptionDataGridViewTextBoxColumn.ReadOnly = true;
+            this.descriptionDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // hesabTypeDataGridViewTextBoxColumn
+            // 
+            this.hesabTypeDataGridViewTextBoxColumn.DataPropertyName = "HesabType";
+            this.hesabTypeDataGridViewTextBoxColumn.HeaderText = "HesabType";
+            this.hesabTypeDataGridViewTextBoxColumn.Name = "hesabTypeDataGridViewTextBoxColumn";
+            this.hesabTypeDataGridViewTextBoxColumn.ReadOnly = true;
+            this.hesabTypeDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // dateMDataGridViewTextBoxColumn
+            // 
+            this.dateMDataGridViewTextBoxColumn.DataPropertyName = "DateM";
+            this.dateMDataGridViewTextBoxColumn.HeaderText = "DateM";
+            this.dateMDataGridViewTextBoxColumn.Name = "dateMDataGridViewTextBoxColumn";
+            this.dateMDataGridViewTextBoxColumn.ReadOnly = true;
+            this.dateMDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // accountFirstDataGridViewTextBoxColumn
+            // 
+            this.accountFirstDataGridViewTextBoxColumn.DataPropertyName = "AccountFirst";
+            this.accountFirstDataGridViewTextBoxColumn.HeaderText = "AccountFirst";
+            this.accountFirstDataGridViewTextBoxColumn.Name = "accountFirstDataGridViewTextBoxColumn";
+            this.accountFirstDataGridViewTextBoxColumn.ReadOnly = true;
+            this.accountFirstDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // isSystemDataGridViewCheckBoxColumn
+            // 
+            this.isSystemDataGridViewCheckBoxColumn.DataPropertyName = "isSystem";
+            this.isSystemDataGridViewCheckBoxColumn.HeaderText = "isSystem";
+            this.isSystemDataGridViewCheckBoxColumn.Name = "isSystemDataGridViewCheckBoxColumn";
+            this.isSystemDataGridViewCheckBoxColumn.ReadOnly = true;
+            this.isSystemDataGridViewCheckBoxColumn.Visible = false;
             // 
             // frmShowHazine
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 600);
-            this.Controls.Add(this.btnSelect);
             this.Controls.Add(this.txtSearch);
             this.Controls.Add(this.DGrid);
             this.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
@@ -346,8 +370,8 @@
             this.Load += new System.EventHandler(this.frmShowHazine_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmShowHazine_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.hazineBindingSource)).EndInit();
             this.contextMenu.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.hazineBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -356,7 +380,6 @@
         private DevComponents.DotNetBar.Controls.TextBoxX txtSearch;
         private System.Windows.Forms.BindingSource hazineBindingSource;
         private DevComponents.DotNetBar.Controls.DataGridViewX DGrid;
-        private DevComponents.DotNetBar.ButtonX btnSelect;
         private System.Windows.Forms.ContextMenuStrip contextMenu;
         private System.Windows.Forms.ToolStripMenuItem mnuAdd;
         private System.Windows.Forms.ToolStripMenuItem mnuEdit;
@@ -366,13 +389,18 @@
         private System.Windows.Forms.ToolStripMenuItem mnuStatus;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem mnuPrint;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgRadif;
+        private System.Windows.Forms.DataGridViewTextBoxColumn codeDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgName;
         private System.Windows.Forms.DataGridViewTextBoxColumn accountDataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn diagnosisDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn accountDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgGuid;
         private System.Windows.Forms.DataGridViewTextBoxColumn modifiedDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewCheckBoxColumn statusDataGridViewCheckBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn accountDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn descriptionDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn hesabTypeDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dateMDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn accountFirstDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn isSystemDataGridViewCheckBoxColumn;
     }
 }

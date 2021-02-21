@@ -186,12 +186,6 @@
     <Compile Include="frmShowAccounts.Designer.cs">
       <DependentUpon>frmShowAccounts.cs</DependentUpon>
     </Compile>
-    <Compile Include="Hazine\frmHazineMain.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Hazine\frmHazineMain.Designer.cs">
-      <DependentUpon>frmHazineMain.cs</DependentUpon>
-    </Compile>
     <Compile Include="Hazine\frmShowHazine.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -334,9 +328,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmShowAccounts.resx">
       <DependentUpon>frmShowAccounts.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Hazine\frmHazineMain.resx">
-      <DependentUpon>frmHazineMain.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Hazine\frmShowHazine.resx">
       <DependentUpon>frmShowHazine.cs</DependentUpon>

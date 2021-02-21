@@ -103,17 +103,17 @@ namespace Accounting.Payement
         {
             try
             {
-                var frm = new frmShowHazine(true);
-                if (frm.ShowDialog(this) != DialogResult.OK) return;
-                SelectedGuid = frm.SelectedGuid;
-                AccountingType = EnAccountingType.Hazine;
-                if (type == EnSanadType.Auto)
-                {
-                    var frm1 = new frmShowPardakht(frm.SelectedGuid, EnAccountingType.Hazine);
-                    frm1.ShowDialog(this);
-                }
-                DialogResult = DialogResult.OK;
-                Close();
+                //var frm = new frmShowHazine();
+                //if (frm.ShowDialog(this) != DialogResult.OK) return;
+                //SelectedGuid = frm.SelectedGuid;
+                //AccountingType = EnAccountingType.Hazine;
+                //if (type == EnSanadType.Auto)
+                //{
+                //    var frm1 = new frmShowPardakht(frm.SelectedGuid, EnAccountingType.Hazine);
+                //    frm1.ShowDialog(this);
+                //}
+                //DialogResult = DialogResult.OK;
+                //Close();
             }
             catch (Exception ex)
             {

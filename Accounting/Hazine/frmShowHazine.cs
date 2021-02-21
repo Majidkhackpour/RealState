@@ -2,6 +2,8 @@
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WindowsSerivces;
+using Accounting.Hesab;
 using EntityCache.Bussines;
 using MetroFramework.Forms;
 using Notification;
@@ -13,15 +15,13 @@ namespace Accounting.Hazine
     public partial class frmShowHazine : MetroForm
     {
         private bool _st = true;
-        public Guid SelectedGuid { get; set; }
-        private bool isShowMode = false;
         private async Task LoadDataAsync(bool status, string search = "")
         {
             try
             {
-                var list = await HazineBussines.GetAllAsync(search);
+                var list = await TafsilBussines.GetAllAsync(search, HesabType.Hazine);
                 Invoke(new MethodInvoker(() => hazineBindingSource.DataSource =
-                    list.Where(q => q.Status == status).OrderBy(q => q.Name).ToSortableBindingList()));
+                    list.OrderBy(q => q.Code).Where(q => q.Status == status).ToSortableBindingList()));
             }
             catch (Exception ex)
             {
@@ -66,30 +66,14 @@ namespace Accounting.Hazine
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        public frmShowHazine(bool _isShowMode)
+        public frmShowHazine()
         {
             InitializeComponent();
-            isShowMode = _isShowMode;
             DGrid.Focus();
-            if (_isShowMode)
-            {
-                contextMenu.Enabled = false;
-                btnSelect.Visible = true;
-            }
-            else
-            {
-                contextMenu.Enabled = true;
-                btnSelect.Visible = false;
-            }
-
             SetAccess();
         }
 
         private async void frmShowHazine_Load(object sender, EventArgs e) => await LoadDataAsync(ST);
-        private void DGrid_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
-        {
-            DGrid.Rows[e.RowIndex].Cells["dgRadif"].Value = e.RowIndex + 1;
-        }
         private async void txtSearch_TextChanged(object sender, EventArgs e)
         {
             try
@@ -131,6 +115,7 @@ namespace Accounting.Hazine
                             txtSearch.Text = "";
                             return;
                         }
+
                         Close();
                         break;
                     case Keys.Down:
@@ -141,41 +126,9 @@ namespace Accounting.Hazine
                         if (e.Control) txtSearch.Focus();
                         break;
                     case Keys.Enter:
-                        if (!isShowMode)
-                        {
-                            mnuEdit.PerformClick();
-                            return;
-                        }
-                        btnSelect.PerformClick();
+                        mnuEdit.PerformClick();
                         break;
                 }
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-        private void DGrid_DoubleClick(object sender, EventArgs e)
-        {
-            try
-            {
-                if (!isShowMode) return;
-                btnSelect.PerformClick();
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-        private void btnSelect_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (DGrid.RowCount <= 0) return;
-                if (DGrid.CurrentRow == null) return;
-                SelectedGuid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
-                DialogResult = DialogResult.OK;
-                Close();
             }
             catch (Exception ex)
             {
@@ -186,7 +139,7 @@ namespace Accounting.Hazine
         {
             try
             {
-                var frm = new frmHazineMain();
+                var frm = new frmTafsilMain(HesabType.Hazine);
                 if (frm.ShowDialog(this) == DialogResult.OK)
                     await LoadDataAsync(ST);
             }
@@ -208,7 +161,14 @@ namespace Accounting.Hazine
                     return;
                 }
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
-                var frm = new frmHazineMain(guid, false);
+                var tafsil = await TafsilBussines.GetAsync(guid);
+                if (tafsil == null)
+                {
+                    frmNotification.PublicInfo.ShowMessage("حساب انتخاب شده معتبر نمی باشد");
+                    return;
+                }
+
+                var frm = new frmTafsilMain(guid, false, HesabType.Hazine);
                 if (frm.ShowDialog(this) == DialogResult.OK)
                     await LoadDataAsync(ST, txtSearch.Text);
             }
@@ -224,10 +184,10 @@ namespace Accounting.Hazine
             {
                 if (DGrid.RowCount <= 0) return;
                 if (DGrid.CurrentRow == null) return;
-                var guid = (Guid) DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
+                var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
                 if (ST)
                 {
-                    var hazine = await HazineBussines.GetAsync(guid);
+                    var hazine = await TafsilBussines.GetAsync(guid);
                     if (hazine == null) return;
                     if (hazine.Account != 0)
                     {
@@ -239,7 +199,7 @@ namespace Accounting.Hazine
                             $@"آیا از حذف {DGrid[dgName.Index, DGrid.CurrentRow.Index].Value} اطمینان دارید؟", "حذف",
                             MessageBoxButtons.YesNo,
                             MessageBoxIcon.Question) == DialogResult.No) return;
-                    var prd = await HazineBussines.GetAsync(guid);
+                    var prd = await TafsilBussines.GetAsync(guid);
                     res.AddReturnedValue(await prd.ChangeStatusAsync(false));
                     if (res.HasError) return;
                     UserLog.Save(EnLogAction.Delete, EnLogPart.Hazine);
@@ -251,8 +211,8 @@ namespace Accounting.Hazine
                             "حذف",
                             MessageBoxButtons.YesNo,
                             MessageBoxIcon.Question) == DialogResult.No) return;
-                    var prd = await HazineBussines.GetAsync(guid);
-                    res.AddReturnedValue(await prd.ChangeStatusAsync( true));
+                    var prd = await TafsilBussines.GetAsync(guid);
+                    res.AddReturnedValue(await prd.ChangeStatusAsync(true));
                     if (res.HasError) return;
                     UserLog.Save(EnLogAction.Enable, EnLogPart.Hazine);
                 }
@@ -264,12 +224,7 @@ namespace Accounting.Hazine
             }
             finally
             {
-                if (res.HasError)
-                {
-                    var frm = new FrmShowErrorMessage(res, "خطا در تغییر وضعیت هزینه");
-                    frm.ShowDialog(this);
-                    frm.Dispose();
-                }
+                if (res.HasError) this.ShowError(res, "خطا در تغییر وضعیت صندوق");
                 else await LoadDataAsync(ST, txtSearch.Text);
             }
         }
@@ -280,7 +235,7 @@ namespace Accounting.Hazine
                 if (DGrid.RowCount <= 0) return;
                 if (DGrid.CurrentRow == null) return;
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
-                var frm = new frmHazineMain(guid, true);
+                var frm = new frmTafsilMain(guid, true);
                 frm.ShowDialog(this);
             }
             catch (Exception ex)
@@ -291,18 +246,7 @@ namespace Accounting.Hazine
         private void mnuStatus_Click(object sender, EventArgs e) => ST = !ST;
         private void mnuPrint_Click(object sender, EventArgs e)
         {
-            try
-            {
-                if (DGrid.RowCount <= 0) return;
-                if (DGrid.CurrentRow == null) return;
-                var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
-                var frm = new frmGardeshHesab(guid, EnAccountingType.Hazine);
-                frm.ShowDialog(this);
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
+            
         }
     }
 }
