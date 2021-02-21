@@ -249,6 +249,7 @@ Alter PROCEDURE sp_Tafsil_Save
 	@code nvarchar(10),
 	@desc nvarchar(max),
 	@account decimal,
+	@accFirst decimal,
 	@hType int,
 	@isSystem bit
 AS
@@ -261,6 +262,7 @@ BEGIN
 		  ,[Description] = @desc
 		  ,[HesabType] = @hType
 		  ,[Account] = @account
+		  ,[AccountFirst] = @accFirst
 		  ,[isSystem] = @isSystem
 	 WHERE [Guid] = @guid
 	 if @@ROWCOUNT=0
@@ -275,6 +277,7 @@ BEGIN
            ,[HesabType]
            ,[DateM]
            ,[Account]
+		   ,[AccountFirst]
            ,[isSystem])
 		VALUES
            (@guid
@@ -286,6 +289,7 @@ BEGIN
            ,@hType
            ,GETDATE()
            ,@account
+		   ,@accFirst
            ,@isSystem)
 	 end
 END
@@ -364,7 +368,7 @@ GO
 Alter PROCEDURE sp_Bank_SelectAll
 AS
 BEGIN
-	Select Banks.*,Tafsils.Account
+	Select Banks.*,Tafsils.Account,Tafsils.AccountFirst
 	from Banks inner join Tafsils
 	on Tafsils.Guid=Banks.Guid
 END
@@ -377,7 +381,7 @@ Alter PROCEDURE sp_Bank_SelectRow
 	@Guid uniqueidentifier
 AS
 BEGIN
-	Select Banks.*,Tafsils.Account
+	Select Banks.*,Tafsils.Account,Tafsils.AccountFirst
 	from Banks inner join Tafsils
 	on Tafsils.Guid=Banks.Guid
 	where Banks.Guid=@Guid

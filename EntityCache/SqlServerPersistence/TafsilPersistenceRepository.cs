@@ -51,6 +51,7 @@ namespace EntityCache.SqlServerPersistence
                     cmd.Parameters.AddWithValue("@code", item.Code);
                     cmd.Parameters.AddWithValue("@desc", item.Description);
                     cmd.Parameters.AddWithValue("@account", item.Account);
+                    cmd.Parameters.AddWithValue("@accFirst", item.AccountFirst);
                     cmd.Parameters.AddWithValue("@hType", (int)item.HesabType);
                     cmd.Parameters.AddWithValue("@isSystem", item.isSystem);
 
@@ -196,6 +197,7 @@ namespace EntityCache.SqlServerPersistence
                 item.Account = (decimal)dr["Account"];
                 item.isSystem = (bool)dr["isSystem"];
                 item.DateM = (DateTime)dr["DateM"];
+                item.AccountFirst = (decimal) dr["AccountFirst"];
             }
             catch (Exception ex)
             {

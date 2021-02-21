@@ -14,6 +14,8 @@ namespace Accounting.Bank
         {
             try
             {
+                FillCmbPrice();
+                SetTxtPrice();
                 txtName.Text = cls?.Name;
                 txtDesc.Text = cls?.Description;
                 txtCodeShobe.Text = cls?.CodeShobe;
@@ -39,6 +41,46 @@ namespace Accounting.Bank
             }
 
             return res;
+        }
+        private void FillCmbPrice()
+        {
+            try
+            {
+                cmbAccount.Items.Add(EnAccountType.BiHesab.GetDisplay());
+                cmbAccount.Items.Add(EnAccountType.Bed.GetDisplay());
+                cmbAccount.Items.Add(EnAccountType.Bes.GetDisplay());
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private void SetTxtPrice()
+        {
+            try
+            {
+                if (cls?.AccountFirst == 0)
+                {
+                    txtAccount_.TextDecimal = cls?.AccountFirst ?? 0;
+                    cmbAccount.SelectedIndex = 0;
+                }
+
+                if (cls?.AccountFirst < 0)
+                {
+                    txtAccount_.TextDecimal = Math.Abs(cls?.AccountFirst ?? 0);
+                    cmbAccount.SelectedIndex = 2;
+                }
+
+                if (cls?.AccountFirst > 0)
+                {
+                    txtAccount_.TextDecimal = Math.Abs(cls?.AccountFirst ?? 0);
+                    cmbAccount.SelectedIndex = 1;
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
         }
 
         public frmBankMain()
@@ -111,6 +153,13 @@ namespace Accounting.Bank
                 cls.Shobe = txtShobe.Text;
                 cls.CodeShobe = txtCodeShobe.Text;
                 cls.HesabNumber = txtHesabNumber.Text;
+                var acc = txtAccount_.TextDecimal;
+                if (cmbAccount.SelectedIndex == 0) cls.AccountFirst = 0;
+                else
+                {
+                    if (cmbAccount.SelectedIndex == 1) cls.AccountFirst = acc;
+                    else cls.AccountFirst = -acc;
+                }
 
                 res.AddReturnedValue(await cls.SaveAsync());
             }

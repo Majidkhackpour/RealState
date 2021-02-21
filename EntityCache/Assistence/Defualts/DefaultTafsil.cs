@@ -21,7 +21,8 @@ namespace EntityCache.Assistence.Defualts
                     Account = 0,
                     Description = "",
                     isSystem = true,
-                    HesabType = hType
+                    HesabType = hType,
+                    AccountFirst = 0
                 };
                 return state;
             }

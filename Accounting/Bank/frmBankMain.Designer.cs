@@ -45,6 +45,10 @@ namespace Accounting.Bank
             this.label7 = new System.Windows.Forms.Label();
             this.btnCancel = new DevComponents.DotNetBar.ButtonX();
             this.btnFinish = new DevComponents.DotNetBar.ButtonX();
+            this.cmbAccount = new System.Windows.Forms.ComboBox();
+            this.txtAccount_ = new WindowsSerivces.CurrencyTextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
             this.grp.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -52,6 +56,10 @@ namespace Accounting.Bank
             // 
             this.grp.CanvasColor = System.Drawing.SystemColors.Control;
             this.grp.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.grp.Controls.Add(this.cmbAccount);
+            this.grp.Controls.Add(this.txtAccount_);
+            this.grp.Controls.Add(this.label6);
+            this.grp.Controls.Add(this.label8);
             this.grp.Controls.Add(this.label5);
             this.grp.Controls.Add(this.label4);
             this.grp.Controls.Add(this.label2);
@@ -67,7 +75,7 @@ namespace Accounting.Bank
             this.grp.DisabledBackColor = System.Drawing.Color.Empty;
             this.grp.Location = new System.Drawing.Point(8, 30);
             this.grp.Name = "grp";
-            this.grp.Size = new System.Drawing.Size(463, 370);
+            this.grp.Size = new System.Drawing.Size(463, 437);
             this.grp.Style.Alignment = System.Drawing.StringAlignment.Center;
             this.grp.Style.BackColor1.Color = System.Drawing.Color.White;
             this.grp.Style.BackColor2.Color = System.Drawing.Color.White;
@@ -134,18 +142,18 @@ namespace Accounting.Bank
             // 
             this.txtDesc.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.txtDesc.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.txtDesc.Location = new System.Drawing.Point(15, 199);
+            this.txtDesc.Location = new System.Drawing.Point(15, 267);
             this.txtDesc.Multiline = true;
             this.txtDesc.Name = "txtDesc";
             this.txtDesc.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.txtDesc.Size = new System.Drawing.Size(364, 158);
-            this.txtDesc.TabIndex = 5;
+            this.txtDesc.TabIndex = 7;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.Transparent;
-            this.label3.Location = new System.Drawing.Point(402, 202);
+            this.label3.Location = new System.Drawing.Point(402, 270);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(54, 20);
             this.label3.TabIndex = 4;
@@ -214,7 +222,7 @@ namespace Accounting.Bank
             this.btnCancel.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Image = global::Accounting.Properties.Resources.tab_close_;
-            this.btnCancel.Location = new System.Drawing.Point(24, 406);
+            this.btnCancel.Location = new System.Drawing.Point(23, 478);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
             this.btnCancel.Size = new System.Drawing.Size(125, 31);
@@ -232,7 +240,7 @@ namespace Accounting.Bank
             this.btnFinish.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnFinish.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnFinish.Image = global::Accounting.Properties.Resources.tab_checkbox__;
-            this.btnFinish.Location = new System.Drawing.Point(263, 406);
+            this.btnFinish.Location = new System.Drawing.Point(262, 478);
             this.btnFinish.Name = "btnFinish";
             this.btnFinish.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
             this.btnFinish.Size = new System.Drawing.Size(125, 31);
@@ -242,11 +250,63 @@ namespace Accounting.Bank
             this.btnFinish.TextColor = System.Drawing.Color.Black;
             this.btnFinish.Click += new System.EventHandler(this.btnFinish_Click);
             // 
+            // cmbAccount
+            // 
+            this.cmbAccount.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cmbAccount.DisplayMember = "Name";
+            this.cmbAccount.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbAccount.FormattingEnabled = true;
+            this.cmbAccount.Location = new System.Drawing.Point(15, 229);
+            this.cmbAccount.Name = "cmbAccount";
+            this.cmbAccount.Size = new System.Drawing.Size(365, 28);
+            this.cmbAccount.TabIndex = 6;
+            this.cmbAccount.ValueMember = "Guid";
+            // 
+            // txtAccount_
+            // 
+            this.txtAccount_.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.txtAccount_.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtAccount_.BackColor = System.Drawing.Color.White;
+            this.txtAccount_.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.txtAccount_.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.txtAccount_.Font = new System.Drawing.Font("B Titr", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.txtAccount_.Location = new System.Drawing.Point(15, 192);
+            this.txtAccount_.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtAccount_.Name = "txtAccount_";
+            this.txtAccount_.Size = new System.Drawing.Size(346, 31);
+            this.txtAccount_.TabIndex = 5;
+            this.txtAccount_.TextDecimal = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.BackColor = System.Drawing.Color.Transparent;
+            this.label6.Location = new System.Drawing.Point(408, 232);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(49, 20);
+            this.label6.TabIndex = 9;
+            this.label6.Text = "تشخیص";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.BackColor = System.Drawing.Color.Transparent;
+            this.label8.Location = new System.Drawing.Point(377, 196);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(80, 20);
+            this.label8.TabIndex = 10;
+            this.label8.Text = "مانئه اول دوره";
+            // 
             // frmBankMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(481, 449);
+            this.ClientSize = new System.Drawing.Size(481, 520);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnFinish);
             this.Controls.Add(this.grp);
@@ -285,5 +345,9 @@ namespace Accounting.Bank
         private System.Windows.Forms.Label label7;
         private DevComponents.DotNetBar.ButtonX btnCancel;
         private DevComponents.DotNetBar.ButtonX btnFinish;
+        private System.Windows.Forms.ComboBox cmbAccount;
+        private WindowsSerivces.CurrencyTextBox txtAccount_;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label8;
     }
 }

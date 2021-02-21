@@ -132,6 +132,7 @@ namespace EntityCache.SqlServerPersistence
                 item.Name = dr["Name"].ToString();
                 item.Code = dr["Code"].ToString();
                 item.Account = (decimal)dr["Account"];
+                item.AccountFirst = (decimal)dr["AccountFirst"];
                 item.Shobe = dr["Shobe"].ToString();
                 item.CodeShobe = dr["CodeShobe"].ToString();
                 item.HesabNumber = dr["HesabNumber"].ToString();

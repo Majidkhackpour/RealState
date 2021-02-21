@@ -41,6 +41,10 @@ namespace Accounting.Hesab
             this.label7 = new System.Windows.Forms.Label();
             this.btnCancel = new DevComponents.DotNetBar.ButtonX();
             this.btnFinish = new DevComponents.DotNetBar.ButtonX();
+            this.label4 = new System.Windows.Forms.Label();
+            this.txtAccount_ = new WindowsSerivces.CurrencyTextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.cmbAccount = new System.Windows.Forms.ComboBox();
             this.grp.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -48,7 +52,11 @@ namespace Accounting.Hesab
             // 
             this.grp.CanvasColor = System.Drawing.SystemColors.Control;
             this.grp.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.grp.Controls.Add(this.cmbAccount);
+            this.grp.Controls.Add(this.txtAccount_);
             this.grp.Controls.Add(this.cmbType);
+            this.grp.Controls.Add(this.label5);
+            this.grp.Controls.Add(this.label4);
             this.grp.Controls.Add(this.label2);
             this.grp.Controls.Add(this.txtCode);
             this.grp.Controls.Add(this.label1);
@@ -59,7 +67,7 @@ namespace Accounting.Hesab
             this.grp.DisabledBackColor = System.Drawing.Color.Empty;
             this.grp.Location = new System.Drawing.Point(5, 36);
             this.grp.Name = "grp";
-            this.grp.Size = new System.Drawing.Size(463, 290);
+            this.grp.Size = new System.Drawing.Size(463, 362);
             this.grp.Style.Alignment = System.Drawing.StringAlignment.Center;
             this.grp.Style.BackColor1.Color = System.Drawing.Color.White;
             this.grp.Style.BackColor2.Color = System.Drawing.Color.White;
@@ -118,18 +126,18 @@ namespace Accounting.Hesab
             // 
             this.txtDesc.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.txtDesc.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.txtDesc.Location = new System.Drawing.Point(15, 117);
+            this.txtDesc.Location = new System.Drawing.Point(15, 190);
             this.txtDesc.Multiline = true;
             this.txtDesc.Name = "txtDesc";
             this.txtDesc.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.txtDesc.Size = new System.Drawing.Size(385, 158);
-            this.txtDesc.TabIndex = 3;
+            this.txtDesc.TabIndex = 5;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.Transparent;
-            this.label3.Location = new System.Drawing.Point(402, 120);
+            this.label3.Location = new System.Drawing.Point(402, 193);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(54, 20);
             this.label3.TabIndex = 4;
@@ -165,7 +173,7 @@ namespace Accounting.Hesab
             this.btnCancel.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Image = global::Accounting.Properties.Resources.tab_close_;
-            this.btnCancel.Location = new System.Drawing.Point(19, 332);
+            this.btnCancel.Location = new System.Drawing.Point(22, 406);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
             this.btnCancel.Size = new System.Drawing.Size(125, 31);
@@ -183,7 +191,7 @@ namespace Accounting.Hesab
             this.btnFinish.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnFinish.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnFinish.Image = global::Accounting.Properties.Resources.tab_checkbox__;
-            this.btnFinish.Location = new System.Drawing.Point(319, 332);
+            this.btnFinish.Location = new System.Drawing.Point(322, 406);
             this.btnFinish.Name = "btnFinish";
             this.btnFinish.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
             this.btnFinish.Size = new System.Drawing.Size(125, 31);
@@ -193,11 +201,63 @@ namespace Accounting.Hesab
             this.btnFinish.TextColor = System.Drawing.Color.Black;
             this.btnFinish.Click += new System.EventHandler(this.btnFinish_Click);
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.BackColor = System.Drawing.Color.Transparent;
+            this.label4.Location = new System.Drawing.Point(376, 122);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(80, 20);
+            this.label4.TabIndex = 6;
+            this.label4.Text = "مانئه اول دوره";
+            // 
+            // txtAccount_
+            // 
+            this.txtAccount_.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.txtAccount_.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtAccount_.BackColor = System.Drawing.Color.White;
+            this.txtAccount_.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.txtAccount_.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.txtAccount_.Font = new System.Drawing.Font("B Titr", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.txtAccount_.Location = new System.Drawing.Point(15, 118);
+            this.txtAccount_.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtAccount_.Name = "txtAccount_";
+            this.txtAccount_.Size = new System.Drawing.Size(345, 31);
+            this.txtAccount_.TabIndex = 3;
+            this.txtAccount_.TextDecimal = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.BackColor = System.Drawing.Color.Transparent;
+            this.label5.Location = new System.Drawing.Point(407, 158);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(49, 20);
+            this.label5.TabIndex = 6;
+            this.label5.Text = "تشخیص";
+            // 
+            // cmbAccount
+            // 
+            this.cmbAccount.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cmbAccount.DisplayMember = "Name";
+            this.cmbAccount.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbAccount.FormattingEnabled = true;
+            this.cmbAccount.Location = new System.Drawing.Point(15, 155);
+            this.cmbAccount.Name = "cmbAccount";
+            this.cmbAccount.Size = new System.Drawing.Size(385, 28);
+            this.cmbAccount.TabIndex = 4;
+            this.cmbAccount.ValueMember = "Guid";
+            // 
             // frmTafsilMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(477, 374);
+            this.ClientSize = new System.Drawing.Size(477, 449);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnFinish);
             this.Controls.Add(this.grp);
@@ -206,9 +266,9 @@ namespace Accounting.Hesab
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(477, 374);
+            this.MaximumSize = new System.Drawing.Size(477, 449);
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(477, 374);
+            this.MinimumSize = new System.Drawing.Size(477, 449);
             this.Name = "frmTafsilMain";
             this.Padding = new System.Windows.Forms.Padding(27, 92, 27, 31);
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -234,5 +294,9 @@ namespace Accounting.Hesab
         private System.Windows.Forms.Label label3;
         private DevComponents.DotNetBar.ButtonX btnCancel;
         private DevComponents.DotNetBar.ButtonX btnFinish;
+        private System.Windows.Forms.Label label4;
+        private WindowsSerivces.CurrencyTextBox txtAccount_;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ComboBox cmbAccount;
     }
 }

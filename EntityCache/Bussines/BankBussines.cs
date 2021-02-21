@@ -22,6 +22,7 @@ namespace EntityCache.Bussines
         public string Description { get; set; }
         public DateTime DateM { get; set; } = DateTime.Now;
         public decimal Account { get; set; }
+        public decimal AccountFirst { get; set; }
         public decimal Account_ => Math.Abs(Account);
         public string Diagnosis => Account.AccountDiagnosis();
 
@@ -136,6 +137,7 @@ namespace EntityCache.Bussines
                 tf.Code = Code;
                 tf.Name = Name;
                 tf.Description = Description;
+                tf.AccountFirst = AccountFirst;
 
                 res.AddReturnedValue(await tf.SaveAsync());
             }

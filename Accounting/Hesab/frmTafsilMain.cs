@@ -21,6 +21,8 @@ namespace Accounting.Hesab
             try
             {
                 FillHesabTypes();
+                FillCmbPrice();
+                SetTxtPrice();
                 txtName.Text = cls?.Name;
                 txtDesc.Text = cls?.Description;
                 if (cls.Guid == Guid.Empty)
@@ -66,6 +68,46 @@ namespace Accounting.Hesab
 
             return res;
         }
+        private void FillCmbPrice()
+        {
+            try
+            {
+                cmbAccount.Items.Add(EnAccountType.BiHesab.GetDisplay());
+                cmbAccount.Items.Add(EnAccountType.Bed.GetDisplay());
+                cmbAccount.Items.Add(EnAccountType.Bes.GetDisplay());
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private void SetTxtPrice()
+        {
+            try
+            {
+                if (cls?.AccountFirst == 0)
+                {
+                    txtAccount_.TextDecimal = cls?.AccountFirst ?? 0;
+                    cmbAccount.SelectedIndex = 0;
+                }
+
+                if (cls?.AccountFirst < 0)
+                {
+                    txtAccount_.TextDecimal = Math.Abs(cls?.AccountFirst ?? 0);
+                    cmbAccount.SelectedIndex = 2;
+                }
+
+                if (cls?.AccountFirst > 0)
+                {
+                    txtAccount_.TextDecimal = Math.Abs(cls?.AccountFirst ?? 0);
+                    cmbAccount.SelectedIndex = 1;
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
 
         public frmTafsilMain()
         {
@@ -80,6 +122,8 @@ namespace Accounting.Hesab
             action = EnLogAction.Insert;
             cmbType.Enabled = false;
             this.hType = hType;
+            if (hType == HesabType.Hazine || hType == HesabType.Bank)
+                cmbAccount.Enabled = txtAccount_.Enabled = false;
         }
         public frmTafsilMain(Guid guid, bool isShowMode, HesabType? htype = null)
         {
@@ -92,6 +136,8 @@ namespace Accounting.Hesab
             {
                 cmbType.Enabled = false;
                 this.hType = htype.Value;
+                if (hType == HesabType.Hazine || hType == HesabType.Bank)
+                    cmbAccount.Enabled = txtAccount_.Enabled = false;
             }
         }
 
@@ -148,6 +194,11 @@ namespace Accounting.Hesab
             try
             {
                 txtCode.Text = NextCode();
+                var t = (HesabType)cmbType.SelectedIndex + 1;
+                if (t == HesabType.Hazine || t == HesabType.Bank)
+                    cmbAccount.Enabled = txtAccount_.Enabled = false;
+                else
+                    cmbAccount.Enabled = txtAccount_.Enabled = true;
             }
             catch (Exception ex)
             {
@@ -171,6 +222,24 @@ namespace Accounting.Hesab
                 cls.Description = txtDesc.Text;
                 cls.isSystem = false;
                 cls.HesabType = (HesabType)cmbType.SelectedIndex + 1;
+                var acc = txtAccount_.TextDecimal;
+                if (cmbAccount.SelectedIndex == 0) cls.AccountFirst = 0;
+                else
+                {
+                    if (cmbAccount.SelectedIndex == 1) cls.AccountFirst = acc;
+                    else cls.AccountFirst = -acc;
+                }
+
+                if (cls.HesabType == HesabType.Bank)
+                {
+                    res.AddError("لطفا برای تعریف حساب بانکی، از منوی حسابداری، حساب های بانکی اقدام نمایید");
+                    return;
+                }
+                if (cls.HesabType == HesabType.Customer)
+                {
+                    res.AddError("لطفا برای تعریف اشخاص، از منوی اطلاعات پایه، مدیریت اشخاص اقدام نمایید");
+                    return;
+                }
 
                 res.AddReturnedValue(await cls.SaveAsync());
             }

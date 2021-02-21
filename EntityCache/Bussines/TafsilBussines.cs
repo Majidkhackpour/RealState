@@ -20,6 +20,7 @@ namespace EntityCache.Bussines
         public HesabType HesabType { get; set; }
         public DateTime DateM { get; set; } = DateTime.Now;
         public decimal Account { get; set; }
+        public decimal AccountFirst { get; set; }
         public bool isSystem { get; set; }
         public decimal Account_ => Math.Abs(Account);
         public string Diagnosis => Account.AccountDiagnosis();

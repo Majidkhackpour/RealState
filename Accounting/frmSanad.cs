@@ -22,7 +22,7 @@ namespace Accounting
         {
             try
             {
-                var val = (decimal)0;
+                decimal val = 0;
                 val = txtPrice.TextDecimal;
                 lblDegit.Text = NumberToString.Num2Str(val.ToString()) + " ریال";
             }
