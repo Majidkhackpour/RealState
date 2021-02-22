@@ -61,14 +61,40 @@ namespace Ertegha.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N&apos;[sp_Customers_ChangeGroupIds]&apos;) AND OBJECTPROPERTY(id, N&apos;IsProcedure&apos;) = 1)
-        ///	exec(&apos;Create Procedure [dbo].[sp_Customers_ChangeGroupIds]	As Begin print 11 end&apos;)
+        ///   Looks up a localized string similar to IF NOT EXISTS (SELECT * FROM sys.foreign_keys WHERE object_id = OBJECT_ID(N&apos;[dbo].[FK_Cities_States]&apos;) AND parent_object_id = OBJECT_ID(N&apos;[dbo].[Cities]&apos;))
+        ///ALTER TABLE [dbo].[Cities]  WITH CHECK ADD  CONSTRAINT [FK_Cities_States] FOREIGN KEY([StateGuid])
+        ///REFERENCES [dbo].[States] ([Guid])
         ///GO
-        ///.
+        ///
+        ///IF NOT EXISTS (SELECT * FROM sys.foreign_keys WHERE object_id = OBJECT_ID(N&apos;[dbo].[FK_Regions_States]&apos;) AND parent_object_id = OBJECT_ID(N&apos;[dbo].[Regions]&apos;))
+        ///ALTER TABLE [dbo].[Regions]  WITH CHECK ADD  CONSTRAIN [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string Ertegha {
             get {
                 return ResourceManager.GetString("Ertegha", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 	CREATE OR ALTER FUNCTION [dbo].[MMod] (@numerator bigint, @denominator bigint)
+        ///	RETURNS bigint AS  
+        ///	BEGIN 
+        ///	 RETURN ((@numerator % @denominator) + @denominator) % 
+        ///	@denominator
+        ///	END
+        ///	GO
+        ///
+        ///
+        ///	IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N&apos;[dbo].[Ceil]&apos;) AND type in (N&apos;FN&apos;, N&apos;IF&apos;, N&apos;TF&apos;, N&apos;FS&apos;, N&apos;FT&apos;))
+        ///	BEGIN
+        ///	execute dbo.sp_executesql @statement = N&apos;CREATE FUNCTION [dbo].[Ceil](@number float)
+        ///	RETURNS bigint AS  
+        ///	BEGIN 
+        ///	RETURN CASE SIGN(@number) WHEN -1 THEN CEILING(@ [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string ErteghaFunctions {
+            get {
+                return ResourceManager.GetString("ErteghaFunctions", resourceCulture);
             }
         }
     }

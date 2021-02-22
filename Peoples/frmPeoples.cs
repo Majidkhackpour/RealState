@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WindowsSerivces;
 using EntityCache.Bussines;
 using MetroFramework.Forms;
 using Notification;
@@ -13,8 +15,6 @@ namespace Peoples
     {
         private PeoplesBussines cls;
         public Guid SelectedGuid { get; set; }
-        private decimal fAccount;
-        private EnLogAction action;
         private async Task SetDataAsync()
         {
             try
@@ -36,7 +36,6 @@ namespace Peoples
                 txtAddress.Text = cls?.Address;
                 txtDateBirth.Text = cls?.DateBirth;
                 cmbGroup.SelectedValue = (Guid)cls?.GroupGuid;
-                fAccount = cls.AccountFirst;
 
                 if (cls?.Guid == Guid.Empty)
                 {
@@ -53,7 +52,7 @@ namespace Peoples
         {
             try
             {
-                txtCode.Text = await PeoplesBussines.NextCodeAsync() ?? "";
+                txtCode.Text = await TafsilBussines.NextCodeAsync(HesabType.Customer);
             }
             catch (Exception ex)
             {
@@ -77,7 +76,7 @@ namespace Peoples
             try
             {
                 txtTell.Text = "";
-                phoneBookBindingSource.DataSource = cls?.TellList.ToList();
+                phoneBookBindingSource.DataSource = cls?.TellList?.ToList();
             }
             catch (Exception ex)
             {
@@ -89,7 +88,7 @@ namespace Peoples
             try
             {
                 txtAccountNumber.Text = txtBank.Text = txtShobe.Text = "";
-                bankAccountBindingSource.DataSource = cls?.BankList.ToList();
+                bankAccountBindingSource.DataSource = cls?.BankList?.ToList();
             }
             catch (Exception ex)
             {
@@ -136,13 +135,13 @@ namespace Peoples
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
+
         public frmPeoples()
         {
             InitializeComponent();
             superTabControl1.SelectedTab = superTabItem1;
             WindowState = FormWindowState.Maximized;
             cls = new PeoplesBussines();
-            action = EnLogAction.Insert;
         }
         public frmPeoples(Guid guid, bool isShowMode)
         {
@@ -154,8 +153,8 @@ namespace Peoples
             btnFinish.Enabled = !isShowMode;
             superTabControl1.SelectedTab = superTabItem1;
             WindowState = FormWindowState.Maximized;
-            action = EnLogAction.Update;
         }
+
         private async void frmPeoples_Load(object sender, EventArgs e)
         {
             await SetDataAsync();
@@ -192,129 +191,30 @@ namespace Peoples
             txtShobe.AutoCompleteCustomSource = shobeCollection;
             txtBank.AutoCompleteCustomSource = bankCollection;
         }
-
-        #region TxtSetter
-        private void txtCode_Enter(object sender, EventArgs e)
-        {
-            txtSetter.Focus(txtCode);
-        }
-
-        private void txtNationalCode_Enter(object sender, EventArgs e)
-        {
-            txtSetter.Focus(txtNationalCode);
-        }
-
-        private void txtName_Enter(object sender, EventArgs e)
-        {
-            txtSetter.Focus(txtName);
-        }
-
-        private void txtIdCode_Enter(object sender, EventArgs e)
-        {
-            txtSetter.Focus(txtIdCode);
-        }
-
-        private void txtFatherName_Enter(object sender, EventArgs e)
-        {
-            txtSetter.Focus(txtFatherName);
-        }
-
-        private void txtPlaceBirth_Enter(object sender, EventArgs e)
-        {
-            txtSetter.Focus(txtPlaceBirth);
-        }
-
-        private void txtIssuesFrom_Enter(object sender, EventArgs e)
-        {
-            txtSetter.Focus(txtIssuesFrom);
-        }
-
-        private void txtPostalCode_Enter(object sender, EventArgs e)
-        {
-            txtSetter.Focus(txtPostalCode);
-        }
-
-        private void txtTell_Enter(object sender, EventArgs e)
-        {
-            txtSetter.Focus(txtTell);
-        }
-
-        private void txtBank_Enter(object sender, EventArgs e)
-        {
-            txtSetter.Focus(txtBank);
-        }
-
-        private void txtAccountNumber_Enter(object sender, EventArgs e)
-        {
-            txtSetter.Focus(txtAccountNumber);
-        }
-
-        private void txtShobe_Enter(object sender, EventArgs e)
-        {
-            txtSetter.Focus(txtShobe);
-        }
-
-        private void txtShobe_Leave(object sender, EventArgs e)
-        {
-            txtSetter.Follow(txtShobe);
-        }
-
-        private void txtAccountNumber_Leave(object sender, EventArgs e)
-        {
-            txtSetter.Follow(txtAccountNumber);
-        }
-
-        private void txtBank_Leave(object sender, EventArgs e)
-        {
-            txtSetter.Follow(txtBank);
-        }
-
-        private void txtTell_Leave(object sender, EventArgs e)
-        {
-            txtSetter.Follow(txtTell);
-        }
-
-        private void txtPostalCode_Leave(object sender, EventArgs e)
-        {
-            txtSetter.Follow(txtPostalCode);
-        }
-
-        private void txtIssuesFrom_Leave(object sender, EventArgs e)
-        {
-            txtSetter.Follow(txtIssuesFrom);
-        }
-
-        private void txtPlaceBirth_Leave(object sender, EventArgs e)
-        {
-            txtSetter.Follow(txtPlaceBirth);
-        }
-
-        private void txtFatherName_Leave(object sender, EventArgs e)
-        {
-            txtSetter.Follow(txtFatherName);
-        }
-
-        private void txtIdCode_Leave(object sender, EventArgs e)
-        {
-            txtSetter.Follow(txtIdCode);
-        }
-
-        private void txtCode_Leave(object sender, EventArgs e)
-        {
-            txtSetter.Follow(txtCode);
-        }
-
-        private void txtNationalCode_Leave(object sender, EventArgs e)
-        {
-            txtSetter.Follow(txtNationalCode);
-        }
-
-        private void txtName_Leave(object sender, EventArgs e)
-        {
-            txtSetter.Follow(txtName);
-        }
-        #endregion
-
+        private void txtCode_Enter(object sender, EventArgs e) => txtSetter.Focus(txtCode);
+        private void txtNationalCode_Enter(object sender, EventArgs e) => txtSetter.Focus(txtNationalCode);
+        private void txtName_Enter(object sender, EventArgs e) => txtSetter.Focus(txtName);
+        private void txtIdCode_Enter(object sender, EventArgs e) => txtSetter.Focus(txtIdCode);
+        private void txtFatherName_Enter(object sender, EventArgs e) => txtSetter.Focus(txtFatherName);
+        private void txtPlaceBirth_Enter(object sender, EventArgs e) => txtSetter.Focus(txtPlaceBirth);
+        private void txtIssuesFrom_Enter(object sender, EventArgs e) => txtSetter.Focus(txtIssuesFrom);
+        private void txtPostalCode_Enter(object sender, EventArgs e) => txtSetter.Focus(txtPostalCode);
+        private void txtTell_Enter(object sender, EventArgs e) => txtSetter.Focus(txtTell);
+        private void txtBank_Enter(object sender, EventArgs e) => txtSetter.Focus(txtBank);
+        private void txtAccountNumber_Enter(object sender, EventArgs e) => txtSetter.Focus(txtAccountNumber);
+        private void txtShobe_Enter(object sender, EventArgs e) => txtSetter.Focus(txtShobe);
+        private void txtShobe_Leave(object sender, EventArgs e) => txtSetter.Follow(txtShobe);
+        private void txtAccountNumber_Leave(object sender, EventArgs e) => txtSetter.Follow(txtAccountNumber);
+        private void txtBank_Leave(object sender, EventArgs e) => txtSetter.Follow(txtBank);
+        private void txtTell_Leave(object sender, EventArgs e) => txtSetter.Follow(txtTell);
+        private void txtPostalCode_Leave(object sender, EventArgs e) => txtSetter.Follow(txtPostalCode);
+        private void txtIssuesFrom_Leave(object sender, EventArgs e) => txtSetter.Follow(txtIssuesFrom);
+        private void txtPlaceBirth_Leave(object sender, EventArgs e) => txtSetter.Follow(txtPlaceBirth);
+        private void txtFatherName_Leave(object sender, EventArgs e) => txtSetter.Follow(txtFatherName);
+        private void txtIdCode_Leave(object sender, EventArgs e) => txtSetter.Follow(txtIdCode);
+        private void txtCode_Leave(object sender, EventArgs e) => txtSetter.Follow(txtCode);
+        private void txtNationalCode_Leave(object sender, EventArgs e) => txtSetter.Follow(txtNationalCode);
+        private void txtName_Leave(object sender, EventArgs e) => txtSetter.Follow(txtName);
         private void btnCancel_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Cancel;
@@ -361,6 +261,7 @@ namespace Peoples
             try
             {
                 if (string.IsNullOrEmpty(txtTell.Text)) return;
+                if (cls.TellList == null) cls.TellList = new List<PhoneBookBussines>();
                 foreach (var item in cls.TellList)
                     if (txtTell.Text.Trim() == item.Tell) return;
                 cls.TellList.Add(new PhoneBookBussines()
@@ -401,6 +302,7 @@ namespace Peoples
                 if (string.IsNullOrEmpty(txtBank.Text) ||
                     string.IsNullOrEmpty(txtAccountNumber.Text) ||
                     string.IsNullOrEmpty(txtShobe.Text)) return;
+                if (cls.BankList == null) cls.BankList = new List<PeoplesBankAccountBussines>();
                 cls.BankList.Add(new PeoplesBankAccountBussines()
                 {
                     Guid = Guid.NewGuid(),
@@ -448,30 +350,6 @@ namespace Peoples
                 if (cls.Guid == Guid.Empty)
                     cls.Guid = Guid.NewGuid();
 
-                if (string.IsNullOrWhiteSpace(txtName.Text))
-                {
-                    res.AddError("نام و نام خانوادگی نمی تواند خالی باشد");
-                    txtName.Focus();
-                }
-
-                if (string.IsNullOrWhiteSpace(txtCode.Text))
-                {
-                    res.AddError("کد شخص نمی تواند خالی باشد");
-                    txtCode.Focus();
-                }
-
-                if (!await PeoplesBussines.CheckCodeAsync(txtCode.Text.Trim(), cls.Guid))
-                {
-                    res.AddError("کد وارد شده تکراری است");
-                    txtCode.Focus();
-                }
-
-                if (txtAccount_.TextDecimal != 0 && cmbAccount.SelectedIndex == 0)
-                {
-                    res.AddError("مانده حساب وارد شده صحیح نمی باشد");
-                    txtCode.Focus();
-                }
-
                 cls.Name = txtName.Text.Trim();
                 cls.Code = txtCode.Text.Trim();
                 cls.NationalCode = txtNationalCode.Text.Trim();
@@ -487,13 +365,6 @@ namespace Peoples
                 if (cmbAccount.SelectedIndex == 1) cls.AccountFirst = acc;
                 else cls.AccountFirst = -acc;
 
-                if (cls.Account == 0) cls.Account = cls.AccountFirst;
-                else
-                {
-                    cls.Account -= fAccount;
-                    cls.Account += cls.AccountFirst;
-                }
-
                 res.AddReturnedValue(await cls.SaveAsync());
             }
             catch (Exception exception)
@@ -503,16 +374,10 @@ namespace Peoples
             }
             finally
             {
-                if (res.HasError)
-                {
-                    var frm = new FrmShowErrorMessage(res, "خطا در ثبت شخص");
-                    frm.ShowDialog(this);
-                    frm.Dispose();
-                }
+                if (res.HasError) this.ShowError(res, "خطا در ثبت شخص");
                 else
                 {
                     SelectedGuid = cls.Guid;
-                    User.UserLog.Save(action, EnLogPart.Peoples);
                     DialogResult = DialogResult.OK;
                     Close();
                 }

@@ -38,23 +38,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmShowPeoples));
             this.txtSearch = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.DGrid = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.dgRadif = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgNatCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgFatherName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgAccount = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgAccountType = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgAddress = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgGuid = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.modifiedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.statusDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.idCodeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.placeBirthDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dateBirthDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.issuedFromDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.postalCodeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.groupGuidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.contextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.mnuAdd = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuEdit = new System.Windows.Forms.ToolStripMenuItem();
@@ -86,6 +69,23 @@
             this.mnuDelGroup = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.ucPagger = new WindowsSerivces.Pagging.UC_FooterPaging();
+            this.dgRadif = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgNatCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgFatherName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgAccount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgAccountType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgAddress = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgGuid = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.modifiedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.statusDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.idCodeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.placeBirthDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dateBirthDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.issuedFromDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.postalCodeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.groupGuidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).BeginInit();
             this.contextMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.peopleBindingSource)).BeginInit();
@@ -195,151 +195,6 @@
             this.DGrid.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DGrid_CellFormatting);
             this.DGrid.Scroll += new System.Windows.Forms.ScrollEventHandler(this.DGrid_Scroll);
             this.DGrid.DoubleClick += new System.EventHandler(this.DGrid_DoubleClick);
-            // 
-            // dgRadif
-            // 
-            this.dgRadif.HeaderText = "ردیف";
-            this.dgRadif.Name = "dgRadif";
-            this.dgRadif.ReadOnly = true;
-            this.dgRadif.Width = 50;
-            // 
-            // dgCode
-            // 
-            this.dgCode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dgCode.DataPropertyName = "Code";
-            this.dgCode.HeaderText = "کد";
-            this.dgCode.Name = "dgCode";
-            this.dgCode.ReadOnly = true;
-            this.dgCode.Width = 46;
-            // 
-            // dgName
-            // 
-            this.dgName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dgName.DataPropertyName = "Name";
-            this.dgName.HeaderText = "عنوان";
-            this.dgName.MinimumWidth = 150;
-            this.dgName.Name = "dgName";
-            this.dgName.ReadOnly = true;
-            // 
-            // dgNatCode
-            // 
-            this.dgNatCode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dgNatCode.DataPropertyName = "NationalCode";
-            this.dgNatCode.HeaderText = "کدملی";
-            this.dgNatCode.Name = "dgNatCode";
-            this.dgNatCode.ReadOnly = true;
-            this.dgNatCode.Visible = false;
-            // 
-            // dgFatherName
-            // 
-            this.dgFatherName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dgFatherName.DataPropertyName = "FatherName";
-            this.dgFatherName.HeaderText = "نام پدر";
-            this.dgFatherName.Name = "dgFatherName";
-            this.dgFatherName.ReadOnly = true;
-            this.dgFatherName.Visible = false;
-            // 
-            // dgAccount
-            // 
-            this.dgAccount.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dgAccount.DataPropertyName = "Account_";
-            dataGridViewCellStyle3.Format = "N0";
-            dataGridViewCellStyle3.NullValue = null;
-            this.dgAccount.DefaultCellStyle = dataGridViewCellStyle3;
-            this.dgAccount.HeaderText = "مانده حساب";
-            this.dgAccount.Name = "dgAccount";
-            this.dgAccount.ReadOnly = true;
-            this.dgAccount.Visible = false;
-            // 
-            // dgAccountType
-            // 
-            this.dgAccountType.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dgAccountType.DataPropertyName = "AccountType";
-            this.dgAccountType.HeaderText = "";
-            this.dgAccountType.Name = "dgAccountType";
-            this.dgAccountType.ReadOnly = true;
-            this.dgAccountType.Visible = false;
-            // 
-            // dgAddress
-            // 
-            this.dgAddress.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dgAddress.DataPropertyName = "Address";
-            this.dgAddress.HeaderText = "آدرس";
-            this.dgAddress.Name = "dgAddress";
-            this.dgAddress.ReadOnly = true;
-            this.dgAddress.Visible = false;
-            // 
-            // dgGuid
-            // 
-            this.dgGuid.DataPropertyName = "Guid";
-            this.dgGuid.HeaderText = "Guid";
-            this.dgGuid.Name = "dgGuid";
-            this.dgGuid.ReadOnly = true;
-            this.dgGuid.Visible = false;
-            // 
-            // modifiedDataGridViewTextBoxColumn
-            // 
-            this.modifiedDataGridViewTextBoxColumn.DataPropertyName = "Modified";
-            this.modifiedDataGridViewTextBoxColumn.HeaderText = "Modified";
-            this.modifiedDataGridViewTextBoxColumn.Name = "modifiedDataGridViewTextBoxColumn";
-            this.modifiedDataGridViewTextBoxColumn.ReadOnly = true;
-            this.modifiedDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // statusDataGridViewCheckBoxColumn
-            // 
-            this.statusDataGridViewCheckBoxColumn.DataPropertyName = "Status";
-            this.statusDataGridViewCheckBoxColumn.HeaderText = "Status";
-            this.statusDataGridViewCheckBoxColumn.Name = "statusDataGridViewCheckBoxColumn";
-            this.statusDataGridViewCheckBoxColumn.ReadOnly = true;
-            this.statusDataGridViewCheckBoxColumn.Visible = false;
-            // 
-            // idCodeDataGridViewTextBoxColumn
-            // 
-            this.idCodeDataGridViewTextBoxColumn.DataPropertyName = "IdCode";
-            this.idCodeDataGridViewTextBoxColumn.HeaderText = "IdCode";
-            this.idCodeDataGridViewTextBoxColumn.Name = "idCodeDataGridViewTextBoxColumn";
-            this.idCodeDataGridViewTextBoxColumn.ReadOnly = true;
-            this.idCodeDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // placeBirthDataGridViewTextBoxColumn
-            // 
-            this.placeBirthDataGridViewTextBoxColumn.DataPropertyName = "PlaceBirth";
-            this.placeBirthDataGridViewTextBoxColumn.HeaderText = "PlaceBirth";
-            this.placeBirthDataGridViewTextBoxColumn.Name = "placeBirthDataGridViewTextBoxColumn";
-            this.placeBirthDataGridViewTextBoxColumn.ReadOnly = true;
-            this.placeBirthDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // dateBirthDataGridViewTextBoxColumn
-            // 
-            this.dateBirthDataGridViewTextBoxColumn.DataPropertyName = "DateBirth";
-            this.dateBirthDataGridViewTextBoxColumn.HeaderText = "DateBirth";
-            this.dateBirthDataGridViewTextBoxColumn.Name = "dateBirthDataGridViewTextBoxColumn";
-            this.dateBirthDataGridViewTextBoxColumn.ReadOnly = true;
-            this.dateBirthDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // issuedFromDataGridViewTextBoxColumn
-            // 
-            this.issuedFromDataGridViewTextBoxColumn.DataPropertyName = "IssuedFrom";
-            this.issuedFromDataGridViewTextBoxColumn.HeaderText = "IssuedFrom";
-            this.issuedFromDataGridViewTextBoxColumn.Name = "issuedFromDataGridViewTextBoxColumn";
-            this.issuedFromDataGridViewTextBoxColumn.ReadOnly = true;
-            this.issuedFromDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // postalCodeDataGridViewTextBoxColumn
-            // 
-            this.postalCodeDataGridViewTextBoxColumn.DataPropertyName = "PostalCode";
-            this.postalCodeDataGridViewTextBoxColumn.HeaderText = "PostalCode";
-            this.postalCodeDataGridViewTextBoxColumn.Name = "postalCodeDataGridViewTextBoxColumn";
-            this.postalCodeDataGridViewTextBoxColumn.ReadOnly = true;
-            this.postalCodeDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // groupGuidDataGridViewTextBoxColumn
-            // 
-            this.groupGuidDataGridViewTextBoxColumn.DataPropertyName = "GroupGuid";
-            this.groupGuidDataGridViewTextBoxColumn.HeaderText = "GroupGuid";
-            this.groupGuidDataGridViewTextBoxColumn.Name = "groupGuidDataGridViewTextBoxColumn";
-            this.groupGuidDataGridViewTextBoxColumn.ReadOnly = true;
-            this.groupGuidDataGridViewTextBoxColumn.Visible = false;
             // 
             // contextMenu
             // 
@@ -603,6 +458,156 @@
             this.ucPagger.Size = new System.Drawing.Size(765, 32);
             this.ucPagger.TabIndex = 55760;
             // 
+            // dgRadif
+            // 
+            this.dgRadif.HeaderText = "ردیف";
+            this.dgRadif.Name = "dgRadif";
+            this.dgRadif.ReadOnly = true;
+            this.dgRadif.Width = 50;
+            // 
+            // dgCode
+            // 
+            this.dgCode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dgCode.DataPropertyName = "Code";
+            this.dgCode.HeaderText = "کد";
+            this.dgCode.Name = "dgCode";
+            this.dgCode.ReadOnly = true;
+            this.dgCode.Width = 46;
+            // 
+            // dgName
+            // 
+            this.dgName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dgName.DataPropertyName = "Name";
+            this.dgName.HeaderText = "عنوان";
+            this.dgName.MinimumWidth = 150;
+            this.dgName.Name = "dgName";
+            this.dgName.ReadOnly = true;
+            // 
+            // dgNatCode
+            // 
+            this.dgNatCode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dgNatCode.DataPropertyName = "NationalCode";
+            this.dgNatCode.HeaderText = "کدملی";
+            this.dgNatCode.Name = "dgNatCode";
+            this.dgNatCode.ReadOnly = true;
+            this.dgNatCode.Visible = false;
+            this.dgNatCode.Width = 63;
+            // 
+            // dgFatherName
+            // 
+            this.dgFatherName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dgFatherName.DataPropertyName = "FatherName";
+            this.dgFatherName.HeaderText = "نام پدر";
+            this.dgFatherName.Name = "dgFatherName";
+            this.dgFatherName.ReadOnly = true;
+            this.dgFatherName.Visible = false;
+            this.dgFatherName.Width = 68;
+            // 
+            // dgAccount
+            // 
+            this.dgAccount.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dgAccount.DataPropertyName = "Account_";
+            dataGridViewCellStyle3.Format = "N0";
+            dataGridViewCellStyle3.NullValue = null;
+            this.dgAccount.DefaultCellStyle = dataGridViewCellStyle3;
+            this.dgAccount.HeaderText = "مانده حساب";
+            this.dgAccount.Name = "dgAccount";
+            this.dgAccount.ReadOnly = true;
+            this.dgAccount.Visible = false;
+            this.dgAccount.Width = 91;
+            // 
+            // dgAccountType
+            // 
+            this.dgAccountType.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dgAccountType.DataPropertyName = "AccountType";
+            this.dgAccountType.HeaderText = "تشخیص";
+            this.dgAccountType.Name = "dgAccountType";
+            this.dgAccountType.ReadOnly = true;
+            this.dgAccountType.Visible = false;
+            this.dgAccountType.Width = 74;
+            // 
+            // dgAddress
+            // 
+            this.dgAddress.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dgAddress.DataPropertyName = "Address";
+            this.dgAddress.HeaderText = "آدرس";
+            this.dgAddress.Name = "dgAddress";
+            this.dgAddress.ReadOnly = true;
+            this.dgAddress.Visible = false;
+            this.dgAddress.Width = 64;
+            // 
+            // dgGuid
+            // 
+            this.dgGuid.DataPropertyName = "Guid";
+            this.dgGuid.HeaderText = "Guid";
+            this.dgGuid.Name = "dgGuid";
+            this.dgGuid.ReadOnly = true;
+            this.dgGuid.Visible = false;
+            // 
+            // modifiedDataGridViewTextBoxColumn
+            // 
+            this.modifiedDataGridViewTextBoxColumn.DataPropertyName = "Modified";
+            this.modifiedDataGridViewTextBoxColumn.HeaderText = "Modified";
+            this.modifiedDataGridViewTextBoxColumn.Name = "modifiedDataGridViewTextBoxColumn";
+            this.modifiedDataGridViewTextBoxColumn.ReadOnly = true;
+            this.modifiedDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // statusDataGridViewCheckBoxColumn
+            // 
+            this.statusDataGridViewCheckBoxColumn.DataPropertyName = "Status";
+            this.statusDataGridViewCheckBoxColumn.HeaderText = "Status";
+            this.statusDataGridViewCheckBoxColumn.Name = "statusDataGridViewCheckBoxColumn";
+            this.statusDataGridViewCheckBoxColumn.ReadOnly = true;
+            this.statusDataGridViewCheckBoxColumn.Visible = false;
+            // 
+            // idCodeDataGridViewTextBoxColumn
+            // 
+            this.idCodeDataGridViewTextBoxColumn.DataPropertyName = "IdCode";
+            this.idCodeDataGridViewTextBoxColumn.HeaderText = "IdCode";
+            this.idCodeDataGridViewTextBoxColumn.Name = "idCodeDataGridViewTextBoxColumn";
+            this.idCodeDataGridViewTextBoxColumn.ReadOnly = true;
+            this.idCodeDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // placeBirthDataGridViewTextBoxColumn
+            // 
+            this.placeBirthDataGridViewTextBoxColumn.DataPropertyName = "PlaceBirth";
+            this.placeBirthDataGridViewTextBoxColumn.HeaderText = "PlaceBirth";
+            this.placeBirthDataGridViewTextBoxColumn.Name = "placeBirthDataGridViewTextBoxColumn";
+            this.placeBirthDataGridViewTextBoxColumn.ReadOnly = true;
+            this.placeBirthDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // dateBirthDataGridViewTextBoxColumn
+            // 
+            this.dateBirthDataGridViewTextBoxColumn.DataPropertyName = "DateBirth";
+            this.dateBirthDataGridViewTextBoxColumn.HeaderText = "DateBirth";
+            this.dateBirthDataGridViewTextBoxColumn.Name = "dateBirthDataGridViewTextBoxColumn";
+            this.dateBirthDataGridViewTextBoxColumn.ReadOnly = true;
+            this.dateBirthDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // issuedFromDataGridViewTextBoxColumn
+            // 
+            this.issuedFromDataGridViewTextBoxColumn.DataPropertyName = "IssuedFrom";
+            this.issuedFromDataGridViewTextBoxColumn.HeaderText = "IssuedFrom";
+            this.issuedFromDataGridViewTextBoxColumn.Name = "issuedFromDataGridViewTextBoxColumn";
+            this.issuedFromDataGridViewTextBoxColumn.ReadOnly = true;
+            this.issuedFromDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // postalCodeDataGridViewTextBoxColumn
+            // 
+            this.postalCodeDataGridViewTextBoxColumn.DataPropertyName = "PostalCode";
+            this.postalCodeDataGridViewTextBoxColumn.HeaderText = "PostalCode";
+            this.postalCodeDataGridViewTextBoxColumn.Name = "postalCodeDataGridViewTextBoxColumn";
+            this.postalCodeDataGridViewTextBoxColumn.ReadOnly = true;
+            this.postalCodeDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // groupGuidDataGridViewTextBoxColumn
+            // 
+            this.groupGuidDataGridViewTextBoxColumn.DataPropertyName = "GroupGuid";
+            this.groupGuidDataGridViewTextBoxColumn.HeaderText = "GroupGuid";
+            this.groupGuidDataGridViewTextBoxColumn.Name = "groupGuidDataGridViewTextBoxColumn";
+            this.groupGuidDataGridViewTextBoxColumn.ReadOnly = true;
+            this.groupGuidDataGridViewTextBoxColumn.Visible = false;
+            // 
             // frmShowPeoples
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -667,6 +672,7 @@
         private System.Windows.Forms.ToolStripMenuItem mnuFatherName;
         private System.Windows.Forms.ToolStripMenuItem mnuAccount;
         private System.Windows.Forms.ToolStripMenuItem mnuAddress;
+        private WindowsSerivces.Pagging.UC_FooterPaging ucPagger;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgRadif;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgCode;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgName;
@@ -684,6 +690,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn issuedFromDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn postalCodeDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn groupGuidDataGridViewTextBoxColumn;
-        private WindowsSerivces.Pagging.UC_FooterPaging ucPagger;
     }
 }

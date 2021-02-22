@@ -131,6 +131,7 @@ namespace EntityCache.Bussines
         public static async Task<string> NextCodeAsync(HesabType hType) => await UnitOfWork.Tafsil.NextCodeAsync(hType);
         public static string NextCode(HesabType hType) => AsyncContext.Run(() => NextCodeAsync(hType));
         public async Task<bool> CheckCodeAsync(Guid guid, string code) => await UnitOfWork.Tafsil.CheckCodeAsync(guid, code);
+        public static async Task<bool> CheckNameAsync(string name) => await UnitOfWork.Tafsil.CheckNameAsync(name);
         private async Task<ReturnedSaveFuncInfo> CheckValidationAsync()
         {
             var res = new ReturnedSaveFuncInfo();

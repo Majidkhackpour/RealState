@@ -30,41 +30,13 @@ namespace EntityCache.Bussines
         public decimal Account { get; set; }
         public decimal AccountFirst { get; set; }
         public decimal Account_ => Math.Abs(Account);
-        public string AccountType
-        {
-            get
-            {
-                if (Account > 0) return "بدهکار";
-                if (Account < 0) return "بستانکار";
-                return "بی حساب";
-            }
-        }
+        public string AccountType => Account.AccountDiagnosis();
         public string FirstNumber =>
             AsyncContext.Run(() => PhoneBookBussines.GetAllAsync(Guid, true))?.FirstOrDefault()?.Tell ?? "";
         public bool IsChecked { get; set; }
         public string HardSerial => Cache.HardSerial;
-        private List<PhoneBookBussines> _tellList;
-        public List<PhoneBookBussines> TellList
-        {
-            get
-            {
-                if (_tellList != null) return _tellList;
-                _tellList = AsyncContext.Run(() => PhoneBookBussines.GetAllAsync(Guid, Status));
-                return _tellList;
-            }
-            set => _tellList = value;
-        }
-        private List<PeoplesBankAccountBussines> _bankList;
-        public List<PeoplesBankAccountBussines> BankList
-        {
-            get
-            {
-                if (_bankList != null) return _bankList;
-                _bankList = AsyncContext.Run(() => PeoplesBankAccountBussines.GetAllAsync(Guid, Status));
-                return _bankList;
-            }
-            set => _bankList = value;
-        }
+        public List<PhoneBookBussines> TellList { get; set; }
+        public List<PeoplesBankAccountBussines> BankList { get; set; }
 
         public static async Task<List<PeoplesBussines>> GetAllAsync() => await UnitOfWork.Peoples.GetAllAsync();
         public static async Task<PeoplesBussines> GetAsync(Guid guid) => await UnitOfWork.Peoples.GetAsync(guid);
@@ -80,6 +52,11 @@ namespace EntityCache.Bussines
                 if (autoTran)
                 { //BeginTransaction
                 }
+
+                res.AddReturnedValue(await CheckValidationAsync());
+                if (res.HasError) return res;
+                res.AddReturnedValue(await SaveTafsilAsync());
+                if (res.HasError) return res;
 
                 if (TellList.Count > 0)
                 {
@@ -98,7 +75,6 @@ namespace EntityCache.Bussines
                         await UnitOfWork.PhoneBook.SaveRangeAsync(TellList, tranName));
                     if (res.HasError) return res;
                 }
-
                 if (BankList.Count > 0)
                 {
                     var list = await PeoplesBankAccountBussines.GetAllAsync(Guid, Status);
@@ -114,37 +90,6 @@ namespace EntityCache.Bussines
                     if (res.HasError) return res;
                 }
 
-                var gardesh = await GardeshHesabBussines.GetAsync(Guid, Guid.Empty, true);
-                if (gardesh == null && AccountFirst != 0)
-                {
-                    var g = new GardeshHesabBussines()
-                    {
-                        Guid = Guid.NewGuid(),
-                        Babat = EnAccountBabat.Ins,
-                        Description = "افتتاح حساب",
-                        PeopleGuid = Guid,
-                        Price = Account_,
-                        ParentGuid = Guid.Empty
-                    };
-
-                    if (Account == 0) g.Type = EnAccountType.BiHesab;
-                    if (Account > 0) g.Type = EnAccountType.Bed;
-                    if (Account < 0) g.Type = EnAccountType.Bes;
-                    res.AddReturnedValue(
-                        await UnitOfWork.GardeshHesab.SaveAsync(g, tranName));
-                    if (res.HasError) return res;
-                }
-                else if (gardesh != null)
-                {
-                    gardesh.Price = Math.Abs(AccountFirst);
-                    if (Account == 0) gardesh.Type = EnAccountType.BiHesab;
-                    if (Account > 0) gardesh.Type = EnAccountType.Bed;
-                    if (Account < 0) gardesh.Type = EnAccountType.Bes;
-                    res.AddReturnedValue(
-                        await UnitOfWork.GardeshHesab.SaveAsync(gardesh, tranName));
-                    if (res.HasError) return res;
-                }
-
                 res.AddReturnedValue(await UnitOfWork.Peoples.SaveAsync(this, tranName));
                 if (res.HasError) return res;
                 if (autoTran)
@@ -152,8 +97,8 @@ namespace EntityCache.Bussines
                     //CommitTransAction
                 }
 
-                if (Cache.IsSendToServer)
-                    _ = Task.Run(() => WebPeople.SaveAsync(this));
+                //if (Cache.IsSendToServer)
+                //    _ = Task.Run(() => WebPeople.SaveAsync(this));
             }
             catch (Exception ex)
             {
@@ -178,16 +123,15 @@ namespace EntityCache.Bussines
                 { //BeginTransaction
                 }
 
-                if (BankList.Count > 0)
+                var tafsil = await TafsilBussines.GetAsync(Guid);
+                if (tafsil == null)
                 {
-                    foreach (var item in BankList)
-                    {
-                        res.AddReturnedValue(
-                            await item.ChangeStatusAsync(status, tranName));
-                        if (res.HasError) return res;
-                    }
+                    res.AddError("شخص انتخاب شده معتبر نمی باشد");
+                    return res;
                 }
 
+                res.AddReturnedValue(await tafsil.ChangeStatusAsync(status));
+                if (res.HasError) return res;
 
                 res.AddReturnedValue(await UnitOfWork.Peoples.ChangeStatusAsync(this, status, tranName));
                 if (res.HasError) return res;
@@ -212,9 +156,6 @@ namespace EntityCache.Bussines
             return res;
         }
         public static PeoplesBussines Get(Guid guid) => AsyncContext.Run(() => GetAsync(guid));
-        public static async Task<string> NextCodeAsync() => await UnitOfWork.Peoples.NextCodeAsync();
-        public static async Task<bool> CheckCodeAsync(string code, Guid guid) =>
-            await UnitOfWork.Peoples.CheckCodeAsync(code, guid);
         public static async Task<List<PeoplesBussines>> GetAllAsync(string search, Guid groupGuid)
         {
             try
@@ -246,9 +187,55 @@ namespace EntityCache.Bussines
                 return new List<PeoplesBussines>();
             }
         }
-        public static async Task<bool> CheckNameAsync(string name) =>
-            await UnitOfWork.Peoples.CheckNameAsync(name);
         public static async Task<List<PeoplesBussines>> GetAllBirthDayAsync(string dateSh) =>
             await UnitOfWork.Peoples.GetAllBirthDayAsync(dateSh);
+        public async Task<bool> CheckCodeAsync(Guid guid, string code) => await UnitOfWork.Tafsil.CheckCodeAsync(guid, code);
+        private async Task<ReturnedSaveFuncInfo> CheckValidationAsync()
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                if (string.IsNullOrEmpty(Name)) res.AddError("عنوان شخص نمی تواند خالی باشد");
+                if (string.IsNullOrEmpty(Code)) res.AddError("کد شخص نمی تواند خالی باشد");
+                if (!await CheckCodeAsync(Guid, Code)) res.AddError("کد شخص معتبر نمی باشد");
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+
+            return res;
+        }
+        private async Task<ReturnedSaveFuncInfo> SaveTafsilAsync()
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                var tf = await TafsilBussines.GetAsync(Guid) ?? new TafsilBussines
+                {
+                    Guid = Guid,
+                    DateM = DateTime.Now,
+                    Account = 0,
+                    HesabType = HesabType.Customer,
+                    Modified = Modified,
+                    Status = true,
+                    isSystem = false
+                };
+
+                tf.Code = Code;
+                tf.Name = Name;
+                tf.Description = "";
+                tf.AccountFirst = AccountFirst;
+
+                res.AddReturnedValue(await tf.SaveAsync());
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+
+            return res;
+        }
     }
 }

@@ -362,6 +362,19 @@ BEGIN
 END
 GO
 -- ==========================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Tafsil_CheckName]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Tafsil_CheckName]	As Begin print 11 end')
+GO
+Alter PROCEDURE sp_Tafsil_CheckName
+	@guid uniqueidentifier,
+	@name nvarchar(200)
+AS
+BEGIN
+	select COUNT(*) from Tafsils
+	where Name=@name
+END
+GO
+-- ==========================================================================================
 IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Bank_SelectAll]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
 	exec('Create Procedure [dbo].[sp_Bank_SelectAll]	As Begin print 11 end')
 GO
@@ -452,6 +465,147 @@ BEGIN
            ,@desc
            ,GETDATE())
 	 end
+END
+GO
+-- ==========================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Peoples_GetAll]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Peoples_GetAll]	As Begin print 11 end')
+GO
+Alter PROCEDURE sp_Peoples_GetAll
+AS
+BEGIN
+	Select Peoples.* , Tafsils.Account,Tafsils.AccountFirst
+	From Peoples inner join Tafsils on
+	Tafsils.Guid=Peoples.Guid
+END
+GO
+-- ==========================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Peoples_SelectRow]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Peoples_SelectRow]	As Begin print 11 end')
+GO
+Alter PROCEDURE sp_Peoples_SelectRow
+	@Guid uniqueidentifier
+AS
+BEGIN
+	Select Peoples.* , Tafsils.Account,Tafsils.AccountFirst
+	From Peoples inner join Tafsils on
+	Tafsils.Guid=Peoples.Guid
+	where Peoples.Guid=@Guid
+END
+GO
+-- ==========================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Peoples_SelectRowByGroupGuid]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Peoples_SelectRowByGroupGuid]	As Begin print 11 end')
+GO
+Alter PROCEDURE sp_Peoples_SelectRowByGroupGuid
+	@GroupGuid uniqueidentifier,
+	@st bit
+AS
+BEGIN
+	Select Peoples.* , Tafsils.Account,Tafsils.AccountFirst
+	From Peoples inner join Tafsils on
+	Tafsils.Guid=Peoples.Guid
+	where Peoples.GroupGuid=@GroupGuid and
+		  Peoples.Status=@st
+END
+GO
+-- ==========================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Peoples_SelectRowByGroupGuid]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Peoples_SelectRowByGroupGuid]	As Begin print 11 end')
+GO
+Alter PROCEDURE sp_Peoples_GetAllBirthDay
+	@dateSh nvarchar(20)
+AS
+BEGIN
+	Select Peoples.* , Tafsils.Account,Tafsils.AccountFirst
+	From Peoples inner join Tafsils on
+	Tafsils.Guid=Peoples.Guid
+	where Peoples.DateBirth=@dateSh
+END
+GO
+-- ==========================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Peoples_Save]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Peoples_Save]	As Begin print 11 end')
+GO
+Alter PROCEDURE sp_Peoples_Save
+	@Guid uniqueidentifier,
+	@modif datetime,
+	@st bit,
+	@code nvarchar(10),
+	@name nvarchar(500),
+	@nCode nvarchar(20),
+	@idCode nvarchar(20),
+	@fName nvarchar(200),
+	@pBirth nvarchar(500),
+	@dBirth nvarchar(20),
+	@address nvarchar(max),
+	@issued nvarchar(200),
+	@postalCode nvarchar(50),
+	@groupGuid uniqueidentifier
+AS
+BEGIN
+	UPDATE [dbo].[Peoples]
+	   SET [Modified] = @modif
+		  ,[Status] = @st
+		  ,[Code] = @code
+		  ,[Name] = @name
+		  ,[NationalCode] = @nCode
+		  ,[IdCode] = @idCode
+		  ,[FatherName] = @fName
+		  ,[PlaceBirth] = @pBirth
+		  ,[DateBirth] = @dBirth
+		  ,[Address] = @address
+		  ,[IssuedFrom] = @issued
+		  ,[PostalCode] = @postalCode
+		  ,[GroupGuid] = @groupGuid
+	 WHERE [Guid] = @Guid
+	 if @@ROWCOUNT=0
+	 begin
+		INSERT INTO [dbo].[Peoples]
+           ([Guid]
+           ,[Modified]
+           ,[Status]
+           ,[Code]
+           ,[Name]
+           ,[NationalCode]
+           ,[IdCode]
+           ,[FatherName]
+           ,[PlaceBirth]
+           ,[DateBirth]
+           ,[Address]
+           ,[IssuedFrom]
+           ,[PostalCode]
+           ,[GroupGuid])
+		 VALUES
+           (@Guid
+           ,@modif
+           ,@st
+           ,@code
+           ,@name
+           ,@nCode
+           ,@idCode
+           ,@fName
+           ,@pBirth
+           ,@dBirth
+           ,@address
+           ,@issued
+           ,@postalCode
+           ,@groupGuid)
+	 end
+END
+GO
+-- ==========================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Peoples_ChangeStatus]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Peoples_ChangeStatus]	As Begin print 11 end')
+GO
+Alter PROCEDURE sp_Peoples_ChangeStatus
+	@Guid uniqueidentifier,
+	@st bit
+AS
+BEGIN
+	UPDATE [dbo].[Peoples]
+			SET [Status] = @st
+	        WHERE [Guid] = @Guid
 END
 GO
 -- ==========================================================================================
@@ -663,205 +817,205 @@ BEGIN
 End
 GO
 -- ==========================================================================================
-IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Pardakht_Save]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
-	exec('Create Procedure [dbo].[sp_Pardakht_Save]	As Begin print 11 end')
-GO
+--IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Pardakht_Save]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+--	exec('Create Procedure [dbo].[sp_Pardakht_Save]	As Begin print 11 end')
+--GO
 
-ALTER PROCEDURE [dbo].[sp_Pardakht_Save]
-	@guid uniqueidentifier,
-	@modif datetime,
-	@dateSh nvarchar(20),
-	@st bit='true',
-	@payer uniqueidentifier,
-	@createdate datetime,
-	@desc nvarchar(max)='',
-	@naqdprice bigint=0,
-	@bankprice bigint=0,
-	@checkprice bigint=0,
-	@fishNo nvarchar(50)='',
-	@checkNo nvarchar(50)='',
-	@sarresid nvarchar(50)='',
-	@bankname nvarchar(50)=''
-AS
-BEGIN
-	declare @gardeshprice bigint
-	declare @totalPrice bigint
-	declare @tarafHesab uniqueidentifier
+--ALTER PROCEDURE [dbo].[sp_Pardakht_Save]
+--	@guid uniqueidentifier,
+--	@modif datetime,
+--	@dateSh nvarchar(20),
+--	@st bit='true',
+--	@payer uniqueidentifier,
+--	@createdate datetime,
+--	@desc nvarchar(max)='',
+--	@naqdprice bigint=0,
+--	@bankprice bigint=0,
+--	@checkprice bigint=0,
+--	@fishNo nvarchar(50)='',
+--	@checkNo nvarchar(50)='',
+--	@sarresid nvarchar(50)='',
+--	@bankname nvarchar(50)=''
+--AS
+--BEGIN
+--	declare @gardeshprice bigint
+--	declare @totalPrice bigint
+--	declare @tarafHesab uniqueidentifier
 
 
-	set @gardeshprice=(ISNULL((select Price from GardeshHesabs
-		where ParentGuid=@guid and PeopleGuid=@payer),0))
+--	set @gardeshprice=(ISNULL((select Price from GardeshHesabs
+--		where ParentGuid=@guid and PeopleGuid=@payer),0))
 
-	set @totalPrice=(@naqdprice+@bankprice+@checkprice)
+--	set @totalPrice=(@naqdprice+@bankprice+@checkprice)
 
-	if(@gardeshprice<>0)
-	begin
-		update GardeshHesabs
-		set Price=@totalPrice
-		where ParentGuid=@guid and PeopleGuid=@payer
-	end
-	else
-	begin
-		insert into GardeshHesabs(Babat,Description,Guid,Modified,ParentGuid,PeopleGuid,Price,Status,Type)
-		values(4,N' ثبت سند پرداخت در تاریخ'+@dateSh,NEWID(), GETDATE(),@guid,@payer,@totalPrice,'true',2)
-	end
+--	if(@gardeshprice<>0)
+--	begin
+--		update GardeshHesabs
+--		set Price=@totalPrice
+--		where ParentGuid=@guid and PeopleGuid=@payer
+--	end
+--	else
+--	begin
+--		insert into GardeshHesabs(Babat,Description,Guid,Modified,ParentGuid,PeopleGuid,Price,Status,Type)
+--		values(4,N' ثبت سند پرداخت در تاریخ'+@dateSh,NEWID(), GETDATE(),@guid,@payer,@totalPrice,'true',2)
+--	end
 
-	set @tarafHesab=(ISNULL((select Guid from Peoples
-		where Guid=@payer),'00000000-0000-0000-0000-000000000000'))
+--	set @tarafHesab=(ISNULL((select Guid from Peoples
+--		where Guid=@payer),'00000000-0000-0000-0000-000000000000'))
 
-	if (@tarafHesab='00000000-0000-0000-0000-000000000000')
-	begin
-		set @tarafHesab=(ISNULL((select Guid from Users
-		where Guid=@payer),'00000000-0000-0000-0000-000000000000'))
+--	if (@tarafHesab='00000000-0000-0000-0000-000000000000')
+--	begin
+--		set @tarafHesab=(ISNULL((select Guid from Users
+--		where Guid=@payer),'00000000-0000-0000-0000-000000000000'))
 
-		if(@tarafHesab='00000000-0000-0000-0000-000000000000')
-		begin
-			set @tarafHesab=(ISNULL((select Guid from Hazines
-			where Guid=@payer),'00000000-0000-0000-0000-000000000000'))
+--		if(@tarafHesab='00000000-0000-0000-0000-000000000000')
+--		begin
+--			set @tarafHesab=(ISNULL((select Guid from Hazines
+--			where Guid=@payer),'00000000-0000-0000-0000-000000000000'))
 
-			update Hazines
-			set Account=Account-@gardeshprice
-			where Guid=@payer
+--			update Hazines
+--			set Account=Account-@gardeshprice
+--			where Guid=@payer
 
-			update Hazines
-			set Account=Account+@totalPrice
-			where Guid=@payer
-		end
-		else
-		begin
-			update Users
-			set Account=Account-@gardeshprice
-			where Guid=@payer
+--			update Hazines
+--			set Account=Account+@totalPrice
+--			where Guid=@payer
+--		end
+--		else
+--		begin
+--			update Users
+--			set Account=Account-@gardeshprice
+--			where Guid=@payer
 
-			update Users
-			set Account=Account+@totalPrice
-			where Guid=@payer
-		end
-	end
-	else
-	begin
-		    update Peoples
-			set Account=Account-@gardeshprice
-			where Guid=@payer
+--			update Users
+--			set Account=Account+@totalPrice
+--			where Guid=@payer
+--		end
+--	end
+--	else
+--	begin
+--		    update Peoples
+--			set Account=Account-@gardeshprice
+--			where Guid=@payer
 
-			update Peoples
-			set Account=Account+@totalPrice
-			where Guid=@payer
-	end
+--			update Peoples
+--			set Account=Account+@totalPrice
+--			where Guid=@payer
+--	end
 
-	update Pardakhts
-	set Modified=@modif,
-	Status=@st,
-	Payer=@payer,
-	NaqdPrice=@naqdprice,
-	BankPrice=@bankprice,
-	[Check]=@checkprice,
-	Description=@desc,
-	FishNo=@fishNo,
-	CheckNo=@checkNo,
-	SarResid=@sarresid,
-	BankName=@bankname
-	where Guid=@guid
+--	update Pardakhts
+--	set Modified=@modif,
+--	Status=@st,
+--	Payer=@payer,
+--	NaqdPrice=@naqdprice,
+--	BankPrice=@bankprice,
+--	[Check]=@checkprice,
+--	Description=@desc,
+--	FishNo=@fishNo,
+--	CheckNo=@checkNo,
+--	SarResid=@sarresid,
+--	BankName=@bankname
+--	where Guid=@guid
 
-	if (@@ROWCOUNT=0)
-	begin
-		insert into Pardakhts(BankName,BankPrice,[Check],CheckNo,CreateDate,Description,FishNo,Guid,Modified,NaqdPrice,Payer,SarResid,Status)
-		values(@bankname,@bankprice,@checkprice,@checkNo,GETDATE(),@desc,@fishNo,@guid,GETDATE(),@naqdprice,@payer,@sarresid,@st)
-	end
-END
-GO
+--	if (@@ROWCOUNT=0)
+--	begin
+--		insert into Pardakhts(BankName,BankPrice,[Check],CheckNo,CreateDate,Description,FishNo,Guid,Modified,NaqdPrice,Payer,SarResid,Status)
+--		values(@bankname,@bankprice,@checkprice,@checkNo,GETDATE(),@desc,@fishNo,@guid,GETDATE(),@naqdprice,@payer,@sarresid,@st)
+--	end
+--END
+--GO
 -- ==========================================================================================
-IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Reception_Save]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
-	exec('Create Procedure [dbo].[sp_Reception_Save]	As Begin print 11 end')
-GO
+--IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Reception_Save]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+--	exec('Create Procedure [dbo].[sp_Reception_Save]	As Begin print 11 end')
+--GO
 
-Alter PROCEDURE [dbo].[sp_Reception_Save]
-	@guid uniqueidentifier,
-	@modif datetime,
-	@dateSh nvarchar(20),
-	@st bit='true',
-	@receptor uniqueidentifier,
-	@createdate datetime,
-	@desc nvarchar(max)='',
-	@naqdprice bigint=0,
-	@bankprice bigint=0,
-	@checkprice bigint=0,
-	@fishNo nvarchar(50)='',
-	@checkNo nvarchar(50)='',
-	@sarresid nvarchar(50)='',
-	@bankname nvarchar(50)=''
-AS
-BEGIN
-	declare @gardeshprice bigint
-	declare @totalPrice bigint
-	declare @tarafHesab uniqueidentifier
+--Alter PROCEDURE [dbo].[sp_Reception_Save]
+--	@guid uniqueidentifier,
+--	@modif datetime,
+--	@dateSh nvarchar(20),
+--	@st bit='true',
+--	@receptor uniqueidentifier,
+--	@createdate datetime,
+--	@desc nvarchar(max)='',
+--	@naqdprice bigint=0,
+--	@bankprice bigint=0,
+--	@checkprice bigint=0,
+--	@fishNo nvarchar(50)='',
+--	@checkNo nvarchar(50)='',
+--	@sarresid nvarchar(50)='',
+--	@bankname nvarchar(50)=''
+--AS
+--BEGIN
+--	declare @gardeshprice bigint
+--	declare @totalPrice bigint
+--	declare @tarafHesab uniqueidentifier
 
 
-	set @gardeshprice=(ISNULL((select Price from GardeshHesabs
-		where ParentGuid=@guid and PeopleGuid=@receptor),0))
+--	set @gardeshprice=(ISNULL((select Price from GardeshHesabs
+--		where ParentGuid=@guid and PeopleGuid=@receptor),0))
 
-	set @totalPrice=(@naqdprice+@bankprice+@checkprice)
+--	set @totalPrice=(@naqdprice+@bankprice+@checkprice)
 
-	if(@gardeshprice<>0)
-	begin
-		update GardeshHesabs
-		set Price=@totalPrice
-		where ParentGuid=@guid and PeopleGuid=@receptor
-	end
-	else
-	begin
-		insert into GardeshHesabs(Babat,Description,Guid,Modified,ParentGuid,PeopleGuid,Price,Status,Type)
-		values(3,N' ثبت سند دریافت در تاریخ'+@dateSh,NEWID(), GETDATE(),@guid,@receptor,@totalPrice,'true',3)
-	end
+--	if(@gardeshprice<>0)
+--	begin
+--		update GardeshHesabs
+--		set Price=@totalPrice
+--		where ParentGuid=@guid and PeopleGuid=@receptor
+--	end
+--	else
+--	begin
+--		insert into GardeshHesabs(Babat,Description,Guid,Modified,ParentGuid,PeopleGuid,Price,Status,Type)
+--		values(3,N' ثبت سند دریافت در تاریخ'+@dateSh,NEWID(), GETDATE(),@guid,@receptor,@totalPrice,'true',3)
+--	end
 
-	set @tarafHesab=(ISNULL((select Guid from Peoples
-		where Guid=@receptor),'00000000-0000-0000-0000-000000000000'))
+--	set @tarafHesab=(ISNULL((select Guid from Peoples
+--		where Guid=@receptor),'00000000-0000-0000-0000-000000000000'))
 
-	if (@tarafHesab='00000000-0000-0000-0000-000000000000')
-	begin
-		set @tarafHesab=(ISNULL((select Guid from Users
-		where Guid=@receptor),'00000000-0000-0000-0000-000000000000'))
+--	if (@tarafHesab='00000000-0000-0000-0000-000000000000')
+--	begin
+--		set @tarafHesab=(ISNULL((select Guid from Users
+--		where Guid=@receptor),'00000000-0000-0000-0000-000000000000'))
 
-		update Users
-		set Account=Account+@gardeshprice
-		where Guid=@receptor
+--		update Users
+--		set Account=Account+@gardeshprice
+--		where Guid=@receptor
 
-		update Users
-		set Account=Account-@totalPrice
-		where Guid=@receptor
-	end
-	else
-	begin
-		update Peoples
-		set Account=Account+@gardeshprice
-		where Guid=@receptor
+--		update Users
+--		set Account=Account-@totalPrice
+--		where Guid=@receptor
+--	end
+--	else
+--	begin
+--		update Peoples
+--		set Account=Account+@gardeshprice
+--		where Guid=@receptor
 
-		update Peoples
-		set Account=Account-@totalPrice
-		where Guid=@receptor
-	end
+--		update Peoples
+--		set Account=Account-@totalPrice
+--		where Guid=@receptor
+--	end
 
-	update Receptions
-	set Modified=@modif,
-	Status=@st,
-	Receptor=@receptor,
-	NaqdPrice=@naqdprice,
-	BankPrice=@bankprice,
-	[Check]=@checkprice,
-	Description=@desc,
-	FishNo=@fishNo,
-	CheckNo=@checkNo,
-	SarResid=@sarresid,
-	BankName=@bankname
-	where Guid=@guid
+--	update Receptions
+--	set Modified=@modif,
+--	Status=@st,
+--	Receptor=@receptor,
+--	NaqdPrice=@naqdprice,
+--	BankPrice=@bankprice,
+--	[Check]=@checkprice,
+--	Description=@desc,
+--	FishNo=@fishNo,
+--	CheckNo=@checkNo,
+--	SarResid=@sarresid,
+--	BankName=@bankname
+--	where Guid=@guid
 
-	if (@@ROWCOUNT=0)
-	begin
-		insert into Receptions(BankName,BankPrice,[Check],CheckNo,CreateDate,Description,FishNo,Guid,Modified,NaqdPrice,Receptor,SarResid,Status)
-		values(@bankname,@bankprice,@checkprice,@checkNo,GETDATE(),@desc,@fishNo,@guid,GETDATE(),@naqdprice,@receptor,@sarresid,@st)
-	end
-END
-GO
+--	if (@@ROWCOUNT=0)
+--	begin
+--		insert into Receptions(BankName,BankPrice,[Check],CheckNo,CreateDate,Description,FishNo,Guid,Modified,NaqdPrice,Receptor,SarResid,Status)
+--		values(@bankname,@bankprice,@checkprice,@checkNo,GETDATE(),@desc,@fishNo,@guid,GETDATE(),@naqdprice,@receptor,@sarresid,@st)
+--	end
+--END
+--GO
 -- ==========================================================================================
 IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Contract_ChangeStatus]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
 	exec('Create Procedure [dbo].[sp_Contract_ChangeStatus]	As Begin print 11 end')
@@ -917,13 +1071,13 @@ BEGIN
 
 	if(@st='true')
 	begin
-		update Peoples
-		set Account=Account+@fPrice
-		where Guid=@fGuid
+		--update Peoples
+		--set Account=Account+@fPrice
+		--where Guid=@fGuid
 
-		update Peoples
-		set Account=Account+@SPrice
-		where Guid=@sGuid
+		--update Peoples
+		--set Account=Account+@SPrice
+		--where Guid=@sGuid
 
 		update Users
 		set Account =Account-@bPrice
@@ -935,13 +1089,13 @@ BEGIN
 	end
 	else
 	begin
-		update Peoples
-		set Account=Account-@fPrice
-		where Guid=@fGuid
+		--update Peoples
+		--set Account=Account-@fPrice
+		--where Guid=@fGuid
 
-		update Peoples
-		set Account=Account-@SPrice
-		where Guid=@sGuid
+		--update Peoples
+		--set Account=Account-@SPrice
+		--where Guid=@sGuid
 
 		update Users
 		set Account =Account+@bPrice
@@ -993,20 +1147,20 @@ ALTER PROCEDURE [dbo].[sp_Contract_Save]
 	@bazaryabPrice bigint=0
 AS
 BEGIN	
-	update Peoples
-	set Account=Account-@fPrice
-	where Guid=@fGuid
-	update Peoples
-	set Account=Account+@fSidePrice
-	where Guid=@fGuid
+	--update Peoples
+	--set Account=Account-@fPrice
+	--where Guid=@fGuid
+	--update Peoples
+	--set Account=Account+@fSidePrice
+	--where Guid=@fGuid
 
 
-	update Peoples
-	set Account=Account-@sPrice
-	where Guid=@sGuid
-	update Peoples
-	set Account=Account+@sSidePrice
-	where Guid=@sGuid
+	--update Peoples
+	--set Account=Account-@sPrice
+	--where Guid=@sGuid
+	--update Peoples
+	--set Account=Account+@sSidePrice
+	--where Guid=@sGuid
 
 	delete from GardeshHesabs
 	where ParentGuid=@Guid
@@ -1127,268 +1281,268 @@ BEGIN
 END
 GO
 -- ==========================================================================================
-IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Sanad_Save]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
-	exec('Create Procedure [dbo].[sp_Sanad_Save]	As Begin print 11 end')
-GO
+--IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Sanad_Save]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+--	exec('Create Procedure [dbo].[sp_Sanad_Save]	As Begin print 11 end')
+--GO
 
-Alter PROCEDURE sp_Sanad_Save
-	@parentGuid uniqueidentifier,
-	@bedGuid uniqueidentifier,
-	@besGuid uniqueidentifier,
-	@price bigint=0,
-	@desc nvarchar(max)=''
-AS
-BEGIN
-	--Update Bed Account
-	declare @tarafHesab uniqueidentifier
+--Alter PROCEDURE sp_Sanad_Save
+--	@parentGuid uniqueidentifier,
+--	@bedGuid uniqueidentifier,
+--	@besGuid uniqueidentifier,
+--	@price bigint=0,
+--	@desc nvarchar(max)=''
+--AS
+--BEGIN
+--	--Update Bed Account
+--	declare @tarafHesab uniqueidentifier
 
-	set @tarafHesab=(ISNULL((select Guid from Peoples
-		where Guid=@bedGuid),'00000000-0000-0000-0000-000000000000'))
+--	set @tarafHesab=(ISNULL((select Guid from Peoples
+--		where Guid=@bedGuid),'00000000-0000-0000-0000-000000000000'))
 
-	if (@tarafHesab='00000000-0000-0000-0000-000000000000')
-	begin
-		set @tarafHesab=(ISNULL((select Guid from Users
-		where Guid=@bedGuid),'00000000-0000-0000-0000-000000000000'))
+--	if (@tarafHesab='00000000-0000-0000-0000-000000000000')
+--	begin
+--		set @tarafHesab=(ISNULL((select Guid from Users
+--		where Guid=@bedGuid),'00000000-0000-0000-0000-000000000000'))
 
-		if(@tarafHesab='00000000-0000-0000-0000-000000000000')
-		begin
-			set @tarafHesab=(ISNULL((select Guid from Hazines
-			where Guid=@bedGuid),'00000000-0000-0000-0000-000000000000'))
+--		if(@tarafHesab='00000000-0000-0000-0000-000000000000')
+--		begin
+--			set @tarafHesab=(ISNULL((select Guid from Hazines
+--			where Guid=@bedGuid),'00000000-0000-0000-0000-000000000000'))
 
-			update Hazines
-			set Account=Account+@price
-			where Guid=@bedGuid
-		end
-		else
-		begin
-			update Users
-			set Account=Account+@price
-			where Guid=@bedGuid
-		end
-	end
-	else
-	begin
-			update Peoples
-			set Account=Account+@price
-			where Guid=@bedGuid
-	end
-
-
-	--Update Bed Account
-
-	set @tarafHesab=(ISNULL((select Guid from Peoples
-		where Guid=@besGuid),'00000000-0000-0000-0000-000000000000'))
-
-	if (@tarafHesab='00000000-0000-0000-0000-000000000000')
-	begin
-		set @tarafHesab=(ISNULL((select Guid from Users
-		where Guid=@besGuid),'00000000-0000-0000-0000-000000000000'))
-
-		update Users
-		set Account=Account-@price
-		where Guid=@besGuid
-
-	end
-	else
-	begin
-		update Peoples
-		set Account=Account-@price
-		where Guid=@besGuid
-
-	end
+--			update Hazines
+--			set Account=Account+@price
+--			where Guid=@bedGuid
+--		end
+--		else
+--		begin
+--			update Users
+--			set Account=Account+@price
+--			where Guid=@bedGuid
+--		end
+--	end
+--	else
+--	begin
+--			update Peoples
+--			set Account=Account+@price
+--			where Guid=@bedGuid
+--	end
 
 
-	--Insert Sanad
+--	--Update Bed Account
 
-	insert into GardeshHesabs(Babat,Description,Guid,Modified,ParentGuid,PeopleGuid,Price,Status,Type)
-		values(5,@desc,NEWID(), GETDATE(),@parentGuid,@bedGuid,@price,'true',2)
+--	set @tarafHesab=(ISNULL((select Guid from Peoples
+--		where Guid=@besGuid),'00000000-0000-0000-0000-000000000000'))
+
+--	if (@tarafHesab='00000000-0000-0000-0000-000000000000')
+--	begin
+--		set @tarafHesab=(ISNULL((select Guid from Users
+--		where Guid=@besGuid),'00000000-0000-0000-0000-000000000000'))
+
+--		update Users
+--		set Account=Account-@price
+--		where Guid=@besGuid
+
+--	end
+--	else
+--	begin
+--		update Peoples
+--		set Account=Account-@price
+--		where Guid=@besGuid
+
+--	end
 
 
-	insert into GardeshHesabs(Babat,Description,Guid,Modified,ParentGuid,PeopleGuid,Price,Status,Type)
-	values(5,@desc,NEWID(), GETDATE(),@parentGuid,@besGuid,@price,'true',3)
+--	--Insert Sanad
 
-END
-GO
+--	insert into GardeshHesabs(Babat,Description,Guid,Modified,ParentGuid,PeopleGuid,Price,Status,Type)
+--		values(5,@desc,NEWID(), GETDATE(),@parentGuid,@bedGuid,@price,'true',2)
+
+
+--	insert into GardeshHesabs(Babat,Description,Guid,Modified,ParentGuid,PeopleGuid,Price,Status,Type)
+--	values(5,@desc,NEWID(), GETDATE(),@parentGuid,@besGuid,@price,'true',3)
+
+--END
+--GO
 -- ==========================================================================================
-IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Pardakht_ChangeStatus]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
-	exec('Create Procedure [dbo].[sp_Pardakht_ChangeStatus]	As Begin print 11 end')
-GO
+--IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Pardakht_ChangeStatus]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+--	exec('Create Procedure [dbo].[sp_Pardakht_ChangeStatus]	As Begin print 11 end')
+--GO
 
-Alter PROCEDURE sp_Pardakht_ChangeStatus	
-	@guid uniqueidentifier,
-	@hesabGuid uniqueidentifier,
-	@st bit,
-	@price bigint
-AS
-BEGIN
-	update GardeshHesabs
-	set Status=@st
-	where PeopleGuid=@hesabGuid and ParentGuid=@guid
+--Alter PROCEDURE sp_Pardakht_ChangeStatus	
+--	@guid uniqueidentifier,
+--	@hesabGuid uniqueidentifier,
+--	@st bit,
+--	@price bigint
+--AS
+--BEGIN
+--	update GardeshHesabs
+--	set Status=@st
+--	where PeopleGuid=@hesabGuid and ParentGuid=@guid
 
-	declare @tarafHesab uniqueidentifier
+--	declare @tarafHesab uniqueidentifier
 
-	if (@st='true')
-	begin
-		set @tarafHesab=(ISNULL((select Guid from Peoples
-		where Guid=@hesabGuid),'00000000-0000-0000-0000-000000000000'))
+--	if (@st='true')
+--	begin
+--		set @tarafHesab=(ISNULL((select Guid from Peoples
+--		where Guid=@hesabGuid),'00000000-0000-0000-0000-000000000000'))
 
-		if (@tarafHesab='00000000-0000-0000-0000-000000000000')
-		begin
-		set @tarafHesab=(ISNULL((select Guid from Users
-		where Guid=@hesabGuid),'00000000-0000-0000-0000-000000000000'))
+--		if (@tarafHesab='00000000-0000-0000-0000-000000000000')
+--		begin
+--		set @tarafHesab=(ISNULL((select Guid from Users
+--		where Guid=@hesabGuid),'00000000-0000-0000-0000-000000000000'))
 
-		if(@tarafHesab='00000000-0000-0000-0000-000000000000')
-		begin
-			set @tarafHesab=(ISNULL((select Guid from Hazines
-			where Guid=@hesabGuid),'00000000-0000-0000-0000-000000000000'))
+--		if(@tarafHesab='00000000-0000-0000-0000-000000000000')
+--		begin
+--			set @tarafHesab=(ISNULL((select Guid from Hazines
+--			where Guid=@hesabGuid),'00000000-0000-0000-0000-000000000000'))
 
-			update Hazines
-			set Account=Account+@price
-			where Guid=@hesabGuid
-		end
-		else
-		begin
-			update Users
-			set Account=Account+@price
-			where Guid=@hesabGuid
-		end
-end
-else
-begin
-		update Peoples
-		set Account=Account+@price
-		where Guid=@hesabGuid
-end
-	end
-	else
-	begin
-		set @tarafHesab=(ISNULL((select Guid from Peoples
-		where Guid=@hesabGuid),'00000000-0000-0000-0000-000000000000'))
+--			update Hazines
+--			set Account=Account+@price
+--			where Guid=@hesabGuid
+--		end
+--		else
+--		begin
+--			update Users
+--			set Account=Account+@price
+--			where Guid=@hesabGuid
+--		end
+--end
+--else
+--begin
+--		update Peoples
+--		set Account=Account+@price
+--		where Guid=@hesabGuid
+--end
+--	end
+--	else
+--	begin
+--		set @tarafHesab=(ISNULL((select Guid from Peoples
+--		where Guid=@hesabGuid),'00000000-0000-0000-0000-000000000000'))
 
-		if (@tarafHesab='00000000-0000-0000-0000-000000000000')
-		begin
-		set @tarafHesab=(ISNULL((select Guid from Users
-		where Guid=@hesabGuid),'00000000-0000-0000-0000-000000000000'))
+--		if (@tarafHesab='00000000-0000-0000-0000-000000000000')
+--		begin
+--		set @tarafHesab=(ISNULL((select Guid from Users
+--		where Guid=@hesabGuid),'00000000-0000-0000-0000-000000000000'))
 
-		if(@tarafHesab='00000000-0000-0000-0000-000000000000')
-		begin
-			set @tarafHesab=(ISNULL((select Guid from Hazines
-			where Guid=@hesabGuid),'00000000-0000-0000-0000-000000000000'))
+--		if(@tarafHesab='00000000-0000-0000-0000-000000000000')
+--		begin
+--			set @tarafHesab=(ISNULL((select Guid from Hazines
+--			where Guid=@hesabGuid),'00000000-0000-0000-0000-000000000000'))
 
-			update Hazines
-			set Account=Account-@price
-			where Guid=@hesabGuid
-		end
-		else
-		begin
-			update Users
-			set Account=Account-@price
-			where Guid=@hesabGuid
-		end
-		end
-		else
-		begin
-			update Peoples
-			set Account=Account-@price
-			where Guid=@hesabGuid
-		end
-	end
+--			update Hazines
+--			set Account=Account-@price
+--			where Guid=@hesabGuid
+--		end
+--		else
+--		begin
+--			update Users
+--			set Account=Account-@price
+--			where Guid=@hesabGuid
+--		end
+--		end
+--		else
+--		begin
+--			update Peoples
+--			set Account=Account-@price
+--			where Guid=@hesabGuid
+--		end
+--	end
 
-	update Pardakhts
-	set Status=@st
-	where Guid=@guid
-END
-GO
+--	update Pardakhts
+--	set Status=@st
+--	where Guid=@guid
+--END
+--GO
 -- ==========================================================================================
-IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Reception_ChangeStatus]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
-	exec('Create Procedure [dbo].[sp_Reception_ChangeStatus]	As Begin print 11 end')
-GO
+--IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Reception_ChangeStatus]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+--	exec('Create Procedure [dbo].[sp_Reception_ChangeStatus]	As Begin print 11 end')
+--GO
 
-Alter PROCEDURE sp_Reception_ChangeStatus	
-	@guid uniqueidentifier,
-	@hesabGuid uniqueidentifier,
-	@st bit,
-	@price bigint
-AS
-BEGIN
-	update GardeshHesabs
-	set Status=@st
-	where PeopleGuid=@hesabGuid and ParentGuid=@guid
+--Alter PROCEDURE sp_Reception_ChangeStatus	
+--	@guid uniqueidentifier,
+--	@hesabGuid uniqueidentifier,
+--	@st bit,
+--	@price bigint
+--AS
+--BEGIN
+--	update GardeshHesabs
+--	set Status=@st
+--	where PeopleGuid=@hesabGuid and ParentGuid=@guid
 
-	declare @tarafHesab uniqueidentifier
+--	declare @tarafHesab uniqueidentifier
 
-	if (@st='true')
-	begin
-		set @tarafHesab=(ISNULL((select Guid from Peoples
-		where Guid=@hesabGuid),'00000000-0000-0000-0000-000000000000'))
+--	if (@st='true')
+--	begin
+--		set @tarafHesab=(ISNULL((select Guid from Peoples
+--		where Guid=@hesabGuid),'00000000-0000-0000-0000-000000000000'))
 
-		if (@tarafHesab='00000000-0000-0000-0000-000000000000')
-		begin
-		set @tarafHesab=(ISNULL((select Guid from Users
-		where Guid=@hesabGuid),'00000000-0000-0000-0000-000000000000'))
+--		if (@tarafHesab='00000000-0000-0000-0000-000000000000')
+--		begin
+--		set @tarafHesab=(ISNULL((select Guid from Users
+--		where Guid=@hesabGuid),'00000000-0000-0000-0000-000000000000'))
 
-		if(@tarafHesab='00000000-0000-0000-0000-000000000000')
-		begin
-			set @tarafHesab=(ISNULL((select Guid from Hazines
-			where Guid=@hesabGuid),'00000000-0000-0000-0000-000000000000'))
+--		if(@tarafHesab='00000000-0000-0000-0000-000000000000')
+--		begin
+--			set @tarafHesab=(ISNULL((select Guid from Hazines
+--			where Guid=@hesabGuid),'00000000-0000-0000-0000-000000000000'))
 
-			update Hazines
-			set Account=Account-@price
-			where Guid=@hesabGuid
-		end
-		else
-		begin
-			update Users
-			set Account=Account-@price
-			where Guid=@tarafHesab
-		end
-end
-else
-begin
-		update Peoples
-		set Account=Account-@price
-		where Guid=@hesabGuid
-end
-	end
-	else
-	begin
-		set @tarafHesab=(ISNULL((select Guid from Peoples
-		where Guid=@hesabGuid),'00000000-0000-0000-0000-000000000000'))
+--			update Hazines
+--			set Account=Account-@price
+--			where Guid=@hesabGuid
+--		end
+--		else
+--		begin
+--			update Users
+--			set Account=Account-@price
+--			where Guid=@tarafHesab
+--		end
+--end
+--else
+--begin
+--		update Peoples
+--		set Account=Account-@price
+--		where Guid=@hesabGuid
+--end
+--	end
+--	else
+--	begin
+--		set @tarafHesab=(ISNULL((select Guid from Peoples
+--		where Guid=@hesabGuid),'00000000-0000-0000-0000-000000000000'))
 
-		if (@tarafHesab='00000000-0000-0000-0000-000000000000')
-		begin
-		set @tarafHesab=(ISNULL((select Guid from Users
-		where Guid=@hesabGuid),'00000000-0000-0000-0000-000000000000'))
+--		if (@tarafHesab='00000000-0000-0000-0000-000000000000')
+--		begin
+--		set @tarafHesab=(ISNULL((select Guid from Users
+--		where Guid=@hesabGuid),'00000000-0000-0000-0000-000000000000'))
 
-		if(@tarafHesab='00000000-0000-0000-0000-000000000000')
-		begin
-			set @tarafHesab=(ISNULL((select Guid from Hazines
-			where Guid=@hesabGuid),'00000000-0000-0000-0000-000000000000'))
+--		if(@tarafHesab='00000000-0000-0000-0000-000000000000')
+--		begin
+--			set @tarafHesab=(ISNULL((select Guid from Hazines
+--			where Guid=@hesabGuid),'00000000-0000-0000-0000-000000000000'))
 
-			update Hazines
-			set Account=Account+@price
-			where Guid=@tarafHesab
-		end
-		else
-		begin
-			update Users
-			set Account=Account+@price
-			where Guid=@tarafHesab
-		end
-		end
-		else
-		begin
-			update Peoples
-			set Account=Account+@price
-			where Guid=@tarafHesab
-		end
-	end
+--			update Hazines
+--			set Account=Account+@price
+--			where Guid=@tarafHesab
+--		end
+--		else
+--		begin
+--			update Users
+--			set Account=Account+@price
+--			where Guid=@tarafHesab
+--		end
+--		end
+--		else
+--		begin
+--			update Peoples
+--			set Account=Account+@price
+--			where Guid=@tarafHesab
+--		end
+--	end
 
-	update Receptions
-	set Status=@st
-	where Guid=@guid
-END
-GO
+--	update Receptions
+--	set Status=@st
+--	where Guid=@guid
+--END
+--GO
 -- ==========================================================================================
 IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Peoples_GetAllBirthDay]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
 	exec('Create Procedure [dbo].[sp_Peoples_GetAllBirthDay]	As Begin print 11 end')

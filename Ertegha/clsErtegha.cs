@@ -15,6 +15,7 @@ namespace Ertegha
             try
             {
                 var cn = new SqlConnection(connectionString);
+                res.AddReturnedValue(await DataBaseUtilities.RunScript.RunAsync(owner, Properties.Resources.ErteghaFunctions, cn));
                 res.AddReturnedValue(await DataBaseUtilities.RunScript.RunAsync(owner, Properties.Resources.Ertegha, cn));
                 if (res.HasError) return res;
                 res.AddReturnedValue(await clsFixBuilding.FixBuildingImage());

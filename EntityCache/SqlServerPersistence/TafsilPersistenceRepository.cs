@@ -182,6 +182,27 @@ namespace EntityCache.SqlServerPersistence
                 return false;
             }
         }
+        public async Task<bool> CheckNameAsync(string name)
+        {
+            try
+            {
+                using (var cn = new SqlConnection(_connectionString))
+                {
+                    var cmd = new SqlCommand("sp_Tafsil_CheckName", cn) { CommandType = CommandType.StoredProcedure };
+                    cmd.Parameters.AddWithValue("@name", name);
+
+                    await cn.OpenAsync();
+                    var count = (int)await cmd.ExecuteScalarAsync();
+                    cn.Close();
+                    return count <= 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                return false;
+            }
+        }
         private static TafsilBussines LoadData(SqlDataReader dr)
         {
             var item = new TafsilBussines();

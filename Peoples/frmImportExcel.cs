@@ -142,7 +142,7 @@ namespace Peoples
                 {
                     if (!string.IsNullOrEmpty(name))
                     {
-                        var checkName = await PeoplesBussines.CheckNameAsync(name);
+                        var checkName = await TafsilBussines.CheckNameAsync(name);
                         if (!checkName) return null;
                         pe.Name = name;
                     }
@@ -165,7 +165,8 @@ namespace Peoples
                 {
                     if (!string.IsNullOrEmpty(code))
                     {
-                        var checkCode = await PeoplesBussines.CheckCodeAsync(code, pe.Guid);
+                        var tf = await TafsilBussines.GetAsync(pe.Guid);
+                        var checkCode = await tf.CheckCodeAsync(pe.Guid, code);
                         if (!checkCode) return null;
                         pe.Code = code;
                     }
@@ -174,8 +175,9 @@ namespace Peoples
                 //پیشنهاد کد جدید در صورت خالی بودن یا تکراری بودن
                 if (cmbDuplicateCode.SelectedIndex == 2)
                 {
-                    var newCode = await PeoplesBussines.NextCodeAsync();
-                    if (string.IsNullOrEmpty(code) || ! await PeoplesBussines.CheckCodeAsync(code, pe.Guid))
+                    var newCode = await TafsilBussines.NextCodeAsync(HesabType.Customer);
+                    var tf = await TafsilBussines.GetAsync(pe.Guid);
+                    if (string.IsNullOrEmpty(code) || !await tf.CheckCodeAsync(pe.Guid, code))
                         pe.Code = newCode;
                     else pe.Code = code;
                 }
