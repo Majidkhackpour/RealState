@@ -609,6 +609,164 @@ BEGIN
 END
 GO
 -- ==========================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_User_GetByGuid]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_User_GetByGuid]	As Begin print 11 end')
+GO
+Alter PROCEDURE sp_User_GetByGuid
+	@guid uniqueidentifier
+AS
+BEGIN
+	Select * from Users
+	Where Guid=@guid
+END
+GO
+-- ==========================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_User_GetAll]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_User_GetAll]	As Begin print 11 end')
+GO
+Alter PROCEDURE sp_User_GetAll
+AS
+BEGIN
+	Select * from Users
+END
+GO
+-- ==========================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_User_Save]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_User_Save]	As Begin print 11 end')
+GO
+Alter PROCEDURE sp_User_Save
+	@guid uniqueidentifier,
+	@modif datetime,
+	@st bit,
+	@name nvarchar(400),
+	@userName nvarchar(200),
+	@pass nvarchar(200),
+	@access nvarchar(max),
+	@questiion smallint,
+	@answer nvarchar(400),
+	@email nvarchar(50),
+	@mobile nvarchar(50)
+AS
+BEGIN
+	UPDATE [dbo].[Users]
+	   SET [Modified] = @modif
+		  ,[Status] = @st
+		  ,[Name] = @name
+		  ,[UserName] = @userName
+		  ,[Password] = @pass
+		  ,[Access] = @access
+		  ,[SecurityQuestion] = @questiion
+		  ,[AnswerQuestion] = @answer
+		  ,[Email] = @email
+		  ,[Mobile] = @mobile
+	 WHERE [Guid] = @guid
+	 if @@ROWCOUNT=0
+	 begin
+		INSERT INTO [dbo].[Users]
+           ([Guid]
+           ,[Modified]
+           ,[Status]
+           ,[Name]
+           ,[UserName]
+           ,[Password]
+           ,[Access]
+           ,[SecurityQuestion]
+           ,[AnswerQuestion]
+           ,[Email]
+           ,[Mobile])
+		VALUES
+           (@guid
+           ,@modif
+           ,@st
+           ,@name
+           ,@userName
+           ,@pass
+           ,@access
+           ,@questiion
+           ,@answer
+           ,@email
+           ,@mobile)
+	 end
+END
+GO
+-- ==========================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_User_ChangeStatus]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_User_ChangeStatus]	As Begin print 11 end')
+GO
+Alter PROCEDURE sp_User_ChangeStatus
+	@guid uniqueidentifier,
+	@st bit
+AS
+BEGIN
+	update Users
+	set Status=@st
+	Where Guid=@guid
+END
+GO
+-- ==========================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_User_CheckUserName]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_User_CheckUserName]	As Begin print 11 end')
+GO
+Alter PROCEDURE sp_User_CheckUserName
+	@guid uniqueidentifier,
+	@userName nvarchar(200)
+AS
+BEGIN
+	select COUNT(*) from Users
+	where UserName=@userName and Guid<>@guid
+END
+GO
+-- ==========================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_User_GetByUserName]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_User_GetByUserName]	As Begin print 11 end')
+GO
+Alter PROCEDURE sp_User_GetByUserName
+	@userName nvarchar(200)
+AS
+BEGIN
+	Select * from Users
+	Where UserName=@userName
+END
+GO
+-- ==========================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_User_GetByEmail]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_User_GetByEmail]	As Begin print 11 end')
+GO
+Alter PROCEDURE sp_User_GetByEmail
+	@email nvarchar(50)
+AS
+BEGIN
+	Select * from Users
+	Where Email=@email
+END
+GO
+-- ==========================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_User_GetByMobile]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_User_GetByMobile]	As Begin print 11 end')
+GO
+Alter PROCEDURE sp_User_GetByMobile
+	@mobile nvarchar(50)
+AS
+BEGIN
+	Select * from Users
+	Where Mobile=@mobile
+END
+GO
+-- ==========================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_User_GetAllByQuestion]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_User_GetAllByQuestion]	As Begin print 11 end')
+GO
+Alter PROCEDURE sp_User_GetAllByQuestion
+	@question smallint,
+	@answer nvarchar(400)
+AS
+BEGIN
+	Select * from Users
+	Where SecurityQuestion=@question and
+		  AnswerQuestion=@answer
+END
+GO
+-- ==========================================================================================
 IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Cities_SelectAll]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
 	exec('Create Procedure [dbo].[sp_Cities_SelectAll]	As Begin print 11 end')
 GO
@@ -1079,9 +1237,9 @@ BEGIN
 		--set Account=Account+@SPrice
 		--where Guid=@sGuid
 
-		update Users
-		set Account =Account-@bPrice
-		where Guid=@bGuid
+		--update Users
+		--set Account =Account-@bPrice
+		--where Guid=@bGuid
 
 		update Buildings
 		set IsArchive='true'
@@ -1097,9 +1255,9 @@ BEGIN
 		--set Account=Account-@SPrice
 		--where Guid=@sGuid
 
-		update Users
-		set Account =Account+@bPrice
-		where Guid=@bGuid
+		--update Users
+		--set Account =Account+@bPrice
+		--where Guid=@bGuid
 
 		update Buildings
 		set IsArchive='false'
@@ -1201,9 +1359,9 @@ BEGIN
 
 	if @contractGuid<>'00000000-0000-0000-0000-000000000000'
 	begin
-		update Users
-		set Account=Account+@contractPrice
-		where Guid=@contractBazaryab
+		--update Users
+		--set Account=Account+@contractPrice
+		--where Guid=@contractBazaryab
 
 		delete from GardeshHesabs
 		where ParentGuid=@Guid and PeopleGuid=@contractBazaryab
@@ -1229,9 +1387,9 @@ BEGIN
 			where ParentGuid=@Guid and PeopleGuid=@bazaryabGuid
 		end
 
-		update Users
-		set Account=Account-@bazaryabPrice
-		where Guid=@bazaryabGuid
+		--update Users
+		--set Account=Account-@bazaryabPrice
+		--where Guid=@bazaryabGuid
 	end
 
 	update Contracts 
@@ -2006,18 +2164,6 @@ BEGIN
 END
 GO
 -- ==========================================================================================
-IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_User_Get]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
-	exec('Create Procedure [dbo].[sp_User_Get]	As Begin print 11 end')
-GO
-Alter PROCEDURE sp_User_Get
-	@guid uniqueidentifier
-AS
-BEGIN
-	Select * From Users
-	Where Guid=@guid
-END
-GO
--- ==========================================================================================
 IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_PeopleGroup_Get]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
 	exec('Create Procedure [dbo].[sp_PeopleGroup_Get]	As Begin print 11 end')
 GO
@@ -2195,42 +2341,6 @@ AS
 BEGIN
 	Select * From Regions
 	Where Name=@name
-END
-GO
--- ==========================================================================================
-IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_User_GetByUserName]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
-	exec('Create Procedure [dbo].[sp_User_GetByUserName]	As Begin print 11 end')
-GO
-Alter PROCEDURE sp_User_GetByUserName
-	@uName nvarchar(200)
-AS
-BEGIN
-	Select * From Users
-	Where UserName=@uName
-END
-GO
--- ==========================================================================================
-IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_User_GetByEmail]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
-	exec('Create Procedure [dbo].[sp_User_GetByEmail]	As Begin print 11 end')
-GO
-Alter PROCEDURE sp_User_GetByEmail
-	@email nvarchar(50)
-AS
-BEGIN
-	Select * From Users
-	Where Email=@email
-END
-GO
--- ==========================================================================================
-IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_User_GetByMobile]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
-	exec('Create Procedure [dbo].[sp_User_GetByMobile]	As Begin print 11 end')
-GO
-Alter PROCEDURE sp_User_GetByMobile
-	@mobile nvarchar(50)
-AS
-BEGIN
-	Select * From Users
-	Where Mobile=@mobile
 END
 GO
 -- ==========================================================================================

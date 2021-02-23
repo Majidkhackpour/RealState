@@ -26,8 +26,6 @@ namespace Persistence.Entities
         public string Email { get; set; }
         [MaxLength(50)]
         public string Mobile { get; set; }
-        public decimal Account { get; set; }
-        public decimal AccountFirst { get; set; }
         public string Access { get; set; }
     }
 }

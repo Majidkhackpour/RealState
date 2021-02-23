@@ -23,8 +23,6 @@ namespace WebHesabBussines
         public string AnswerQuestion { get; set; }
         public string Email { get; set; }
         public string Mobile { get; set; }
-        public decimal Account { get; set; }
-        public decimal AccountFirst { get; set; }
         public string HardSerial { get; set; }
 
 
@@ -59,8 +57,6 @@ namespace WebHesabBussines
                     Name = cls.Name,
                     Modified = cls.Modified,
                     Status = cls.Status,
-                    Account = cls.Account,
-                    AccountFirst = cls.AccountFirst,
                     Access = cls.Access,
                     Email = cls.Email,
                     Mobile = cls.Mobile,
@@ -93,8 +89,6 @@ namespace WebHesabBussines
                         Name = item.Name,
                         Modified = item.Modified,
                         Status = item.Status,
-                        Account = item.Account,
-                        AccountFirst = item.AccountFirst,
                         Access = item.Access,
                         Email = item.Email,
                         Mobile = item.Mobile,

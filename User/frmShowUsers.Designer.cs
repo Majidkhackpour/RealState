@@ -56,11 +56,10 @@
             this.mnuView = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuStatus = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
-            this.mnuPrint = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuReport = new System.Windows.Forms.ToolStripMenuItem();
             this.UserBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.txtSearch = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.btnSelect = new DevComponents.DotNetBar.ButtonX();
-            this.mnuReport = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).BeginInit();
             this.contextMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.UserBindingSource)).BeginInit();
@@ -250,11 +249,10 @@
             this.mnuView,
             this.mnuStatus,
             this.toolStripMenuItem2,
-            this.mnuPrint,
             this.mnuReport});
             this.contextMenu.Name = "contextMenu";
             this.contextMenu.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.contextMenu.Size = new System.Drawing.Size(200, 206);
+            this.contextMenu.Size = new System.Drawing.Size(200, 182);
             // 
             // mnuAdd
             // 
@@ -306,13 +304,13 @@
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
             this.toolStripMenuItem2.Size = new System.Drawing.Size(196, 6);
             // 
-            // mnuPrint
+            // mnuReport
             // 
-            this.mnuPrint.Image = global::User.Properties.Resources.printer;
-            this.mnuPrint.Name = "mnuPrint";
-            this.mnuPrint.Size = new System.Drawing.Size(199, 24);
-            this.mnuPrint.Text = "گردش (Ctrl+P)";
-            this.mnuPrint.Click += new System.EventHandler(this.mnuPrint_Click);
+            this.mnuReport.Image = global::User.Properties.Resources.article_1_;
+            this.mnuReport.Name = "mnuReport";
+            this.mnuReport.Size = new System.Drawing.Size(199, 24);
+            this.mnuReport.Text = "گزارش عملکرد کاربران";
+            this.mnuReport.Click += new System.EventHandler(this.mnuReport_Click);
             // 
             // UserBindingSource
             // 
@@ -356,14 +354,6 @@
             this.btnSelect.Text = "انتخاب";
             this.btnSelect.TextColor = System.Drawing.Color.White;
             this.btnSelect.Click += new System.EventHandler(this.btnSelect_Click);
-            // 
-            // mnuReport
-            // 
-            this.mnuReport.Image = global::User.Properties.Resources.article_1_;
-            this.mnuReport.Name = "mnuReport";
-            this.mnuReport.Size = new System.Drawing.Size(199, 24);
-            this.mnuReport.Text = "گزارش عملکرد کاربران";
-            this.mnuReport.Click += new System.EventHandler(this.mnuReport_Click);
             // 
             // frmShowUsers
             // 
@@ -417,7 +407,6 @@
         private System.Windows.Forms.ToolStripMenuItem mnuView;
         private System.Windows.Forms.ToolStripMenuItem mnuStatus;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
-        private System.Windows.Forms.ToolStripMenuItem mnuPrint;
         private System.Windows.Forms.ToolStripMenuItem mnuReport;
     }
 }

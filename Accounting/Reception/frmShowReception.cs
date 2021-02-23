@@ -76,25 +76,25 @@ namespace Accounting.Reception
 
         private void SetLabels()
         {
-            try
-            {
-                if (type == EnAccountingType.Peoples)
-                {
-                    var hesab = PeoplesBussines.Get(_receptorGuid);
-                    if (hesab == null) return;
-                    lblName.Text = hesab.Name;
-                }
-                else if (type == EnAccountingType.Users)
-                {
-                    var hesab = UserBussines.Get(_receptorGuid);
-                    if (hesab == null) return;
-                    lblName.Text = hesab.Name;
-                }
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
+            //try
+            //{
+            //    if (type == EnAccountingType.Peoples)
+            //    {
+            //        var hesab = PeoplesBussines.Get(_receptorGuid);
+            //        if (hesab == null) return;
+            //        lblName.Text = hesab.Name;
+            //    }
+            //    else if (type == EnAccountingType.Users)
+            //    {
+            //        var hesab = UserBussines.Get(_receptorGuid);
+            //        if (hesab == null) return;
+            //        lblName.Text = hesab.Name;
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            //}
         }
         private async void frmShowReception_Load(object sender, EventArgs e) => await LoadDataAsync(ST);
         private void DGrid_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)

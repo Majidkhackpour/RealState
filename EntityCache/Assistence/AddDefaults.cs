@@ -85,7 +85,7 @@ namespace EntityCache.Assistence
                     var hashBytes = md5.ComputeHash(bytes);
                     user.Password = System.Text.RegularExpressions.Regex.Replace(BitConverter.ToString(hashBytes), "-", "")
                         .ToLower();
-                    res.AddReturnedValue(await user.SaveAsync(false));
+                    res.AddReturnedValue(await user.SaveAsync());
                     if (res.HasError) return;
                 }
                 #endregion

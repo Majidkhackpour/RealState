@@ -38,7 +38,6 @@ namespace User
                 mnuDelete.Enabled = access?.User.User_Delete ?? false;
                 mnuStatus.Enabled = access?.User.User_Disable ?? false;
                 mnuView.Enabled = access?.User.User_View ?? false;
-                mnuPrint.Enabled = access?.User.User_Gardesh ?? false;
             }
             catch (Exception ex)
             {
@@ -149,9 +148,6 @@ namespace User
                     case Keys.Enter:
                         mnuEdit.PerformClick();
                         break;
-                    case Keys.P:
-                        if (e.Control) mnuPrint.PerformClick();
-                        break;
                 }
             }
             catch (Exception ex)
@@ -187,21 +183,6 @@ namespace User
             }
         }
         private void mnuStatus_Click(object sender, EventArgs e) => ST = !ST;
-        private void mnuPrint_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (DGrid.RowCount <= 0) return;
-                if (DGrid.CurrentRow == null) return;
-                var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
-                var frm = new frmGardeshHesab(guid, EnAccountingType.Users);
-                frm.ShowDialog(this);
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
         private void mnuView_Click(object sender, EventArgs e)
         {
             try

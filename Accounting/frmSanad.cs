@@ -44,27 +44,27 @@ namespace Accounting
                     bedGuid = frm.SelectedGuid;
                     bedType = frm.AccountingType;
 
-                    if (bedType == EnAccountingType.Peoples)
-                    {
-                        var item = PeoplesBussines.Get(bedGuid);
-                        if (item == null) return;
-                        lblBedName.Text = item.Name;
-                        lblBedAccount.Text = item.Account.ToString("N0");
-                    }
-                    else if (bedType == EnAccountingType.Users)
-                    {
-                        var item = UserBussines.Get(bedGuid);
-                        if (item == null) return;
-                        lblBedName.Text = item.Name;
-                        lblBedAccount.Text = item.Account.ToString("N0");
-                    }
-                    else if (bedType == EnAccountingType.Hazine)
-                    {
-                        var item = HazineBussines.Get(bedGuid);
-                        if (item == null) return;
-                        lblBedName.Text = item.Name;
-                        lblBedAccount.Text = item.Account.ToString("N0");
-                    }
+                    //if (bedType == EnAccountingType.Peoples)
+                    //{
+                    //    var item = PeoplesBussines.Get(bedGuid);
+                    //    if (item == null) return;
+                    //    lblBedName.Text = item.Name;
+                    //    lblBedAccount.Text = item.Account.ToString("N0");
+                    //}
+                    //else if (bedType == EnAccountingType.Users)
+                    //{
+                    //    var item = UserBussines.Get(bedGuid);
+                    //    if (item == null) return;
+                    //    lblBedName.Text = item.Name;
+                    //    lblBedAccount.Text = item.Account.ToString("N0");
+                    //}
+                    //else if (bedType == EnAccountingType.Hazine)
+                    //{
+                    //    var item = HazineBussines.Get(bedGuid);
+                    //    if (item == null) return;
+                    //    lblBedName.Text = item.Name;
+                    //    lblBedAccount.Text = item.Account.ToString("N0");
+                    //}
                 }
             }
             catch (Exception ex)
@@ -88,13 +88,13 @@ namespace Accounting
                         lblBesName.Text = item.Name;
                         lblBesAccount.Text = item.Account.ToString("N0");
                     }
-                    else if (besType == EnAccountingType.Users)
-                    {
-                        var item = UserBussines.Get(besGuid);
-                        if (item == null) return;
-                        lblBesName.Text = item.Name;
-                        lblBesAccount.Text = item.Account.ToString("N0");
-                    }
+                    //else if (besType == EnAccountingType.Users)
+                    //{
+                    //    var item = UserBussines.Get(besGuid);
+                    //    if (item == null) return;
+                    //    lblBesName.Text = item.Name;
+                    //    lblBesAccount.Text = item.Account.ToString("N0");
+                    //}
                 }
             }
             catch (Exception ex)

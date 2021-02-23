@@ -57,31 +57,31 @@ namespace Accounting.Payement
         }
         private void SetReceptor()
         {
-            try
-            {
-                if (type == EnAccountingType.Peoples)
-                {
-                    var hesab = PeoplesBussines.Get(_receptorGuid);
-                    if (hesab == null) return;
-                    txtName.Text = hesab.Name;
-                }
-                else if (type == EnAccountingType.Users)
-                {
-                    var hesab = UserBussines.Get(_receptorGuid);
-                    if (hesab == null) return;
-                    txtName.Text = hesab.Name;
-                }
-                else if (type == EnAccountingType.Hazine)
-                {
-                    var hesab = HazineBussines.Get(_receptorGuid);
-                    if (hesab == null) return;
-                    txtName.Text = hesab.Name;
-                }
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
+            //try
+            //{
+            //    if (type == EnAccountingType.Peoples)
+            //    {
+            //        var hesab = PeoplesBussines.Get(_receptorGuid);
+            //        if (hesab == null) return;
+            //        txtName.Text = hesab.Name;
+            //    }
+            //    else if (type == EnAccountingType.Users)
+            //    {
+            //        var hesab = UserBussines.Get(_receptorGuid);
+            //        if (hesab == null) return;
+            //        txtName.Text = hesab.Name;
+            //    }
+            //    else if (type == EnAccountingType.Hazine)
+            //    {
+            //        var hesab = HazineBussines.Get(_receptorGuid);
+            //        if (hesab == null) return;
+            //        txtName.Text = hesab.Name;
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            //}
         }
         public frmPardakhtMain(Guid receptorGuid, EnAccountingType _type)
         {

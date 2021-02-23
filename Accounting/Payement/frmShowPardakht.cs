@@ -75,31 +75,31 @@ namespace Accounting.Payement
         }
         private void SetLabels()
         {
-            try
-            {
-                if (type == EnAccountingType.Peoples)
-                {
-                    var hesab = PeoplesBussines.Get(_receptorGuid);
-                    if (hesab == null) return;
-                    lblName.Text = hesab.Name;
-                }
-                else if (type == EnAccountingType.Users)
-                {
-                    var hesab = UserBussines.Get(_receptorGuid);
-                    if (hesab == null) return;
-                    lblName.Text = hesab.Name;
-                }
-                else if (type == EnAccountingType.Hazine)
-                {
-                    var hazine = HazineBussines.Get(_receptorGuid);
-                    if (hazine == null) return;
-                    lblName.Text = hazine.Name;
-                }
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
+            //try
+            //{
+            //    if (type == EnAccountingType.Peoples)
+            //    {
+            //        var hesab = PeoplesBussines.Get(_receptorGuid);
+            //        if (hesab == null) return;
+            //        lblName.Text = hesab.Name;
+            //    }
+            //    else if (type == EnAccountingType.Users)
+            //    {
+            //        var hesab = UserBussines.Get(_receptorGuid);
+            //        if (hesab == null) return;
+            //        lblName.Text = hesab.Name;
+            //    }
+            //    else if (type == EnAccountingType.Hazine)
+            //    {
+            //        var hazine = HazineBussines.Get(_receptorGuid);
+            //        if (hazine == null) return;
+            //        lblName.Text = hazine.Name;
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            //}
         }
         private async void frmShowPardakht_Load(object sender, EventArgs e) => await LoadDataAsync(ST);
         private void DGrid_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)

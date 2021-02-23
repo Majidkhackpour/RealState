@@ -66,25 +66,25 @@ namespace Accounting.Reception
 
         private void Users()
         {
-            try
-            {
-                var frm = new frmShowUsers(true);
-                if (frm.ShowDialog(this) != DialogResult.OK) return;
-                SelectedGuid = frm.SelectedGuid;
-                AccountingType = EnAccountingType.Users;
-                if (type == EnSanadType.Auto)
-                {
-                    var frm1 = new frmShowReception(frm.SelectedGuid, EnAccountingType.Users);
-                    frm1.ShowDialog(this);
-                    return;
-                }
-                DialogResult = DialogResult.OK;
-                Close();
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
+            //try
+            //{
+            //    var frm = new frmShowUsers(true);
+            //    if (frm.ShowDialog(this) != DialogResult.OK) return;
+            //    SelectedGuid = frm.SelectedGuid;
+            //    AccountingType = EnAccountingType.Users;
+            //    if (type == EnSanadType.Auto)
+            //    {
+            //        var frm1 = new frmShowReception(frm.SelectedGuid, EnAccountingType.Users);
+            //        frm1.ShowDialog(this);
+            //        return;
+            //    }
+            //    DialogResult = DialogResult.OK;
+            //    Close();
+            //}
+            //catch (Exception ex)
+            //{
+            //    WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            //}
         }
 
         private void lblPeoples_Click(object sender, System.EventArgs e)

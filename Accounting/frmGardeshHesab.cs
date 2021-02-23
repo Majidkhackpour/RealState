@@ -32,72 +32,72 @@ namespace Accounting
         {
             try
             {
-                if (_type == EnAccountingType.Peoples)
-                {
-                   var hesab = PeoplesBussines.Get(_hesabGuid);
-                   if (hesab == null) return;
-                   lblName.Text = hesab.Name;
-                   lblAccount.Text = hesab.Account_.ToString("N0");
-                   if (hesab.Account == 0)
-                   {
-                       lblAccount.Text = "بی حساب";
-                       lblAccount_.ForeColor = Color.Black;
-                   }
-                   if (hesab.Account > 0)
-                   {
-                       lblAccount_.Text = "بدهکار";
-                       lblAccount_.ForeColor = Color.Red;
-                   }
-                   if (hesab.Account < 0)
-                   {
-                       lblAccount_.Text = "بستانکار";
-                       lblAccount_.ForeColor = Color.Green;
-                   }
-                }
-                else if (_type == EnAccountingType.Hazine)
-                {
-                   var hesab = HazineBussines.Get(_hesabGuid);
-                   if (hesab == null) return;
-                   lblName.Text = hesab.Name;
-                   lblAccount.Text = hesab.Account_.ToString("N0");
-                   if (hesab.Account == 0)
-                   {
-                       lblAccount.Text = "بی حساب";
-                       lblAccount_.ForeColor = Color.Black;
-                   }
-                   if (hesab.Account > 0)
-                   {
-                       lblAccount_.Text = "بدهکار";
-                       lblAccount_.ForeColor = Color.Red;
-                   }
-                   if (hesab.Account < 0)
-                   {
-                       lblAccount_.Text = "بستانکار";
-                       lblAccount_.ForeColor = Color.Green;
-                   }
-                }
-                else if (_type == EnAccountingType.Users)
-                {
-                    var hesab = UserBussines.Get(_hesabGuid);
-                    if (hesab == null) return;
-                    lblName.Text = hesab.Name;
-                    lblAccount.Text = hesab.Account_.ToString("N0");
-                    if (hesab.Account == 0)
-                    {
-                        lblAccount.Text = "بی حساب";
-                        lblAccount_.ForeColor = Color.Black;
-                    }
-                    if (hesab.Account > 0)
-                    {
-                        lblAccount_.Text = "بدهکار";
-                        lblAccount_.ForeColor = Color.Red;
-                    }
-                    if (hesab.Account < 0)
-                    {
-                        lblAccount_.Text = "بستانکار";
-                        lblAccount_.ForeColor = Color.Green;
-                    }
-                }
+                //if (_type == EnAccountingType.Peoples)
+                //{
+                //   var hesab = PeoplesBussines.Get(_hesabGuid);
+                //   if (hesab == null) return;
+                //   lblName.Text = hesab.Name;
+                //   lblAccount.Text = hesab.Account_.ToString("N0");
+                //   if (hesab.Account == 0)
+                //   {
+                //       lblAccount.Text = "بی حساب";
+                //       lblAccount_.ForeColor = Color.Black;
+                //   }
+                //   if (hesab.Account > 0)
+                //   {
+                //       lblAccount_.Text = "بدهکار";
+                //       lblAccount_.ForeColor = Color.Red;
+                //   }
+                //   if (hesab.Account < 0)
+                //   {
+                //       lblAccount_.Text = "بستانکار";
+                //       lblAccount_.ForeColor = Color.Green;
+                //   }
+                //}
+                //else if (_type == EnAccountingType.Hazine)
+                //{
+                //   var hesab = HazineBussines.Get(_hesabGuid);
+                //   if (hesab == null) return;
+                //   lblName.Text = hesab.Name;
+                //   lblAccount.Text = hesab.Account_.ToString("N0");
+                //   if (hesab.Account == 0)
+                //   {
+                //       lblAccount.Text = "بی حساب";
+                //       lblAccount_.ForeColor = Color.Black;
+                //   }
+                //   if (hesab.Account > 0)
+                //   {
+                //       lblAccount_.Text = "بدهکار";
+                //       lblAccount_.ForeColor = Color.Red;
+                //   }
+                //   if (hesab.Account < 0)
+                //   {
+                //       lblAccount_.Text = "بستانکار";
+                //       lblAccount_.ForeColor = Color.Green;
+                //   }
+                //}
+                //else if (_type == EnAccountingType.Users)
+                //{
+                //    var hesab = UserBussines.Get(_hesabGuid);
+                //    if (hesab == null) return;
+                //    lblName.Text = hesab.Name;
+                //    lblAccount.Text = hesab.Account_.ToString("N0");
+                //    if (hesab.Account == 0)
+                //    {
+                //        lblAccount.Text = "بی حساب";
+                //        lblAccount_.ForeColor = Color.Black;
+                //    }
+                //    if (hesab.Account > 0)
+                //    {
+                //        lblAccount_.Text = "بدهکار";
+                //        lblAccount_.ForeColor = Color.Red;
+                //    }
+                //    if (hesab.Account < 0)
+                //    {
+                //        lblAccount_.Text = "بستانکار";
+                //        lblAccount_.ForeColor = Color.Green;
+                //    }
+                //}
             }
             catch (Exception ex)
             {

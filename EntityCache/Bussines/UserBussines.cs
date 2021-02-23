@@ -49,14 +49,11 @@ namespace EntityCache.Bussines
         public string AnswerQuestion { get; set; }
         public string Email { get; set; }
         public string Mobile { get; set; }
-        public decimal Account { get; set; }
-        public decimal AccountFirst { get; set; }
-        public decimal Account_ => Math.Abs(Account);
         public string HardSerial => Cache.HardSerial;
 
         public static async Task<UserBussines> GetAsync(Guid guid) => await UnitOfWork.Users.GetAsync(guid);
         public static async Task<List<UserBussines>> GetAllAsync() => await UnitOfWork.Users.GetAllAsync();
-        public async Task<ReturnedSaveFuncInfo> SaveAsync(bool setEftetah, string tranName = "")
+        public async Task<ReturnedSaveFuncInfo> SaveAsync(string tranName = "")
         {
             var res = new ReturnedSaveFuncInfo();
             var autoTran = string.IsNullOrEmpty(tranName);
@@ -67,58 +64,10 @@ namespace EntityCache.Bussines
                 { //BeginTransaction
                 }
 
-
-                var list = await PhoneBookBussines.GetAllAsync(Guid, Status);
-                res.AddReturnedValue(
-                    await UnitOfWork.PhoneBook.RemoveRangeAsync(list.Select(q => q.Guid).ToList(),
-                        tranName));
+                res.AddReturnedValue(await CheckValidationAsync());
                 if (res.HasError) return res;
-
-                var tel = new PhoneBookBussines()
-                {
-                    Guid = Guid.NewGuid(),
-                    Group = EnPhoneBookGroup.Users,
-                    Name = Name,
-                    ParentGuid = Guid,
-                    Tell = Mobile
-                };
-
-
-                res.AddReturnedValue(await UnitOfWork.PhoneBook.SaveAsync(tel, tranName));
+                res.AddReturnedValue(await SaveMobileAsync());
                 if (res.HasError) return res;
-
-                var gardesh = await GardeshHesabBussines.GetAsync(Guid, Guid.Empty, true);
-                if (setEftetah)
-                {
-                    if (gardesh == null)
-                    {
-                        var g = new GardeshHesabBussines()
-                        {
-                            Guid = Guid.NewGuid(),
-                            Babat = EnAccountBabat.Ins,
-                            Description = "افتتاح حساب",
-                            PeopleGuid = Guid,
-                            Price = Account_,
-                            ParentGuid = Guid.Empty
-                        };
-                        if (Account == 0) g.Type = EnAccountType.BiHesab;
-                        if (Account > 0) g.Type = EnAccountType.Bed;
-                        if (Account < 0) g.Type = EnAccountType.Bes;
-                        res.AddReturnedValue(
-                            await UnitOfWork.GardeshHesab.SaveAsync(g, tranName));
-                        if (res.HasError) return res;
-                    }
-                    else
-                    {
-                        gardesh.Price = Math.Abs(AccountFirst);
-                        if (Account == 0) gardesh.Type = EnAccountType.BiHesab;
-                        if (Account > 0) gardesh.Type = EnAccountType.Bed;
-                        if (Account < 0) gardesh.Type = EnAccountType.Bes;
-                        res.AddReturnedValue(
-                            await UnitOfWork.GardeshHesab.SaveAsync(gardesh, tranName));
-                        if (res.HasError) return res;
-                    }
-                }
 
                 res.AddReturnedValue(await UnitOfWork.Users.SaveAsync(this, tranName));
                 if (res.HasError) return res;
@@ -127,8 +76,8 @@ namespace EntityCache.Bussines
                     //CommitTransAction
                 }
 
-                if (Cache.IsSendToServer)
-                    _ = Task.Run(() => WebUser.SaveAsync(this));
+                //if (Cache.IsSendToServer)
+                //    _ = Task.Run(() => WebUser.SaveAsync(this));
             }
             catch (Exception ex)
             {
@@ -221,5 +170,59 @@ namespace EntityCache.Bussines
         public static async Task<UserBussines> GetByMobileAsync(string mobile) => await UnitOfWork.Users.GetByMobilAsync(mobile);
         public static async Task<List<UserBussines>> GetAllAsync(EnSecurityQuestion question, string answer) =>
             await UnitOfWork.Users.GetAllAsync(question, answer);
+        private async Task<ReturnedSaveFuncInfo> CheckValidationAsync()
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                if (string.IsNullOrWhiteSpace(Name))
+                    res.AddError("نام و نام خانوادگی نمی تواند خالی باشد");
+                if (string.IsNullOrWhiteSpace(UserName))
+                    res.AddError("نام کاربری نمی تواند خالی باشد");
+                if (!await UserBussines.CheckUserNameAsync(Guid, UserName))
+                    res.AddError("نام کاربری تکراری می باشد");
+                if (string.IsNullOrWhiteSpace(Password))
+                    res.AddError("کلمه عبور نمی تواند خالی باشد");
+                if (!CheckPerssonValidation.CheckEmail(Email))
+                    res.AddError("ایمیل وارد شده صحیح نمی باشد");
+                if (!CheckPerssonValidation.CheckMobile(Mobile))
+                    res.AddError("شماره موبایل وارد شده صحیح نمی باشد");
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+
+            return res;
+        }
+        private async Task<ReturnedSaveFuncInfo> SaveMobileAsync()
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                var list = await PhoneBookBussines.GetAllAsync(Guid, Status);
+                res.AddReturnedValue(
+                    await UnitOfWork.PhoneBook.RemoveRangeAsync(list.Select(q => q.Guid).ToList(),""));
+                if (res.HasError) return res;
+
+                var tel = new PhoneBookBussines()
+                {
+                    Guid = Guid.NewGuid(),
+                    Group = EnPhoneBookGroup.Users,
+                    Name = Name,
+                    ParentGuid = Guid,
+                    Tell = Mobile
+                };
+                res.AddReturnedValue(await UnitOfWork.PhoneBook.SaveAsync(tel, ""));
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+
+            return res;
+        }
     }
 }
