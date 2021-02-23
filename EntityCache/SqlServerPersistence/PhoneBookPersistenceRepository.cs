@@ -30,7 +30,7 @@ namespace EntityCache.SqlServerPersistence
             {
                 using (var cn = new SqlConnection(_connectionString))
                 {
-                    var cmd = new SqlCommand("sp_PhoneBook_GetAll", cn) { CommandType = CommandType.StoredProcedure };
+                    var cmd = new SqlCommand("sp_PhoneBook_GetAllByParentGuid", cn) { CommandType = CommandType.StoredProcedure };
                     cmd.Parameters.AddWithValue("@pGuid", parentGuid);
                     cmd.Parameters.AddWithValue("@st", status);
                     await cn.OpenAsync();
@@ -46,19 +46,176 @@ namespace EntityCache.SqlServerPersistence
 
             return list;
         }
-        public async Task<List<PhoneBookBussines>> GetAllBySpAsync(Guid parentGuid, bool status)
+        public override async Task<PhoneBookBussines> GetAsync(Guid guid)
         {
+            PhoneBookBussines res = null;
             try
             {
-                var res = db.Database.SqlQuery<PhoneBookBussines>("sp_PhoneBook_SelectAll");
-                var a = await res.ToListAsync();
-                return a;
+                using (var cn = new SqlConnection(_connectionString))
+                {
+                    var cmd = new SqlCommand("sp_PhoneBook_Get", cn) { CommandType = CommandType.StoredProcedure };
+                    cmd.Parameters.AddWithValue("@guid", guid);
+
+                    await cn.OpenAsync();
+                    var dr = await cmd.ExecuteReaderAsync();
+                    if (dr.Read()) res = LoadData(dr);
+                    cn.Close();
+                }
             }
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
-                return null;
             }
+
+            return res;
+        }
+        public override async Task<List<PhoneBookBussines>> GetAllAsync()
+        {
+            var list = new List<PhoneBookBussines>();
+            try
+            {
+                using (var cn = new SqlConnection(_connectionString))
+                {
+                    var cmd = new SqlCommand("sp_PhoneBook_GetAll", cn) { CommandType = CommandType.StoredProcedure };
+
+                    await cn.OpenAsync();
+                    var dr = await cmd.ExecuteReaderAsync();
+                    while (dr.Read()) list.Add(LoadData(dr));
+                    cn.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+
+            return list;
+        }
+        public override async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(PhoneBookBussines item, bool status, string tranName)
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                using (var cn = new SqlConnection(_connectionString))
+                {
+                    var cmd = new SqlCommand("sp_PhoneBook_ChangeStatus", cn) { CommandType = CommandType.StoredProcedure };
+                    cmd.Parameters.AddWithValue("@Guid", item.Guid);
+                    cmd.Parameters.AddWithValue("@st", status);
+
+                    await cn.OpenAsync();
+                    await cmd.ExecuteNonQueryAsync();
+                    cn.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+
+            return res;
+        }
+        public async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(Guid parentGuid, bool status, string tranName)
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                using (var cn = new SqlConnection(_connectionString))
+                {
+                    var cmd = new SqlCommand("sp_PhoneBook_ChangeStatusByParenGuid", cn)
+                        {CommandType = CommandType.StoredProcedure};
+                    cmd.Parameters.AddWithValue("@parentGuid", parentGuid);
+                    cmd.Parameters.AddWithValue("@st", status);
+
+                    await cn.OpenAsync();
+                    await cmd.ExecuteNonQueryAsync();
+                    cn.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+
+            return res;
+        }
+        public async Task<ReturnedSaveFuncInfo> RemoveAsync(Guid parentGuid)
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                using (var cn = new SqlConnection(_connectionString))
+                {
+                    var cmd = new SqlCommand("sp_PhoneBook_RemoveByParentGuid", cn)
+                        { CommandType = CommandType.StoredProcedure };
+                    cmd.Parameters.AddWithValue("@parentGuid", parentGuid);
+
+                    await cn.OpenAsync();
+                    await cmd.ExecuteNonQueryAsync();
+                    cn.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+
+            return res;
+        }
+        public override async Task<ReturnedSaveFuncInfo> SaveAsync(PhoneBookBussines item, string tranName)
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                using (var cn = new SqlConnection(_connectionString))
+                {
+                    var cmd = new SqlCommand("sp_PhoneBook_Save", cn) { CommandType = CommandType.StoredProcedure };
+                    cmd.Parameters.AddWithValue("@guid", item.Guid);
+                    cmd.Parameters.AddWithValue("@modif", item.Modified);
+                    cmd.Parameters.AddWithValue("@st", item.Status);
+                    cmd.Parameters.AddWithValue("@name", item.Name);
+                    cmd.Parameters.AddWithValue("@tell", item.Tell??"");
+                    cmd.Parameters.AddWithValue("@group", (short)item.Group);
+                    cmd.Parameters.AddWithValue("@parentGuid", item.ParentGuid);
+
+                    await cn.OpenAsync();
+                    await cmd.ExecuteNonQueryAsync();
+                    cn.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+
+            return res;
+        }
+        public override async Task<ReturnedSaveFuncInfo> RemoveAsync(Guid guid, string tranName)
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                using (var cn = new SqlConnection(_connectionString))
+                {
+                    var cmd = new SqlCommand("sp_PhoneBook_Remove", cn)
+                        { CommandType = CommandType.StoredProcedure };
+                    cmd.Parameters.AddWithValue("@guid", guid);
+
+                    await cn.OpenAsync();
+                    await cmd.ExecuteNonQueryAsync();
+                    cn.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+
+            return res;
         }
         private PhoneBookBussines LoadData(SqlDataReader dr)
         {

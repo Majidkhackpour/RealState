@@ -47,9 +47,9 @@ namespace EntityCache.SqlServerPersistence
                     cmd.Parameters.AddWithValue("@guid", item.Guid);
                     cmd.Parameters.AddWithValue("@modif", item.Modified);
                     cmd.Parameters.AddWithValue("@st", item.Status);
-                    cmd.Parameters.AddWithValue("@name", item.Name);
-                    cmd.Parameters.AddWithValue("@code", item.Code);
-                    cmd.Parameters.AddWithValue("@desc", item.Description);
+                    cmd.Parameters.AddWithValue("@name", item.Name ?? "");
+                    cmd.Parameters.AddWithValue("@code", item.Code ?? "");
+                    cmd.Parameters.AddWithValue("@desc", item.Description ?? "");
                     cmd.Parameters.AddWithValue("@account", item.Account);
                     cmd.Parameters.AddWithValue("@accFirst", item.AccountFirst);
                     cmd.Parameters.AddWithValue("@hType", (int)item.HesabType);
@@ -144,7 +144,7 @@ namespace EntityCache.SqlServerPersistence
             {
                 using (var cn = new SqlConnection(_connectionString))
                 {
-                    var cmd = new SqlCommand("sp_Tafsil_NextCode", cn) {CommandType = CommandType.StoredProcedure};
+                    var cmd = new SqlCommand("sp_Tafsil_NextCode", cn) { CommandType = CommandType.StoredProcedure };
                     cmd.Parameters.AddWithValue("@hType", (short)type);
 
                     await cn.OpenAsync();
@@ -164,14 +164,14 @@ namespace EntityCache.SqlServerPersistence
         {
             try
             {
-                using (var cn=new SqlConnection(_connectionString))
+                using (var cn = new SqlConnection(_connectionString))
                 {
-                    var cmd = new SqlCommand("sp_Tafsil_CheckCode", cn) {CommandType = CommandType.StoredProcedure};
+                    var cmd = new SqlCommand("sp_Tafsil_CheckCode", cn) { CommandType = CommandType.StoredProcedure };
                     cmd.Parameters.AddWithValue("@guid", guid);
                     cmd.Parameters.AddWithValue("@code", code);
 
                     await cn.OpenAsync();
-                    var count = (int) await cmd.ExecuteScalarAsync();
+                    var count = (int)await cmd.ExecuteScalarAsync();
                     cn.Close();
                     return count <= 0;
                 }
@@ -218,7 +218,7 @@ namespace EntityCache.SqlServerPersistence
                 item.Account = (decimal)dr["Account"];
                 item.isSystem = (bool)dr["isSystem"];
                 item.DateM = (DateTime)dr["DateM"];
-                item.AccountFirst = (decimal) dr["AccountFirst"];
+                item.AccountFirst = (decimal)dr["AccountFirst"];
             }
             catch (Exception ex)
             {

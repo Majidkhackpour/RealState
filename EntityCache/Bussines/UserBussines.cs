@@ -102,14 +102,7 @@ namespace EntityCache.Bussines
                 { //BeginTransaction
                 }
 
-                var tel = await PhoneBookBussines.GetAllAsync(Guid, !status);
-                foreach (var item in tel.ToList())
-                {
-                    res.AddReturnedValue(
-                        await item.ChangeStatusAsync(status, tranName));
-                    if (res.HasError) return res;
-                }
-
+                res.AddReturnedValue(await PhoneBookBussines.ChangeStatusAsync(Guid, status));
                 res.AddReturnedValue(await UnitOfWork.Users.ChangeStatusAsync(this, status, tranName));
                 if (res.HasError) return res;
                 if (autoTran)
@@ -201,9 +194,7 @@ namespace EntityCache.Bussines
             var res = new ReturnedSaveFuncInfo();
             try
             {
-                var list = await PhoneBookBussines.GetAllAsync(Guid, Status);
-                res.AddReturnedValue(
-                    await UnitOfWork.PhoneBook.RemoveRangeAsync(list.Select(q => q.Guid).ToList(),""));
+                res.AddReturnedValue(await PhoneBookBussines.RemoveAsync(Guid));
                 if (res.HasError) return res;
 
                 var tel = new PhoneBookBussines()
@@ -212,9 +203,11 @@ namespace EntityCache.Bussines
                     Group = EnPhoneBookGroup.Users,
                     Name = Name,
                     ParentGuid = Guid,
-                    Tell = Mobile
+                    Tell = Mobile,
+                    Modified = Modified,
+                    Status = true
                 };
-                res.AddReturnedValue(await UnitOfWork.PhoneBook.SaveAsync(tel, ""));
+                res.AddReturnedValue(await tel.SaveAsync());
             }
             catch (Exception ex)
             {

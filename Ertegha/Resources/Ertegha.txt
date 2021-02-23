@@ -951,17 +951,6 @@ BEGIN
 End
 GO
 -- ==========================================================================================
-IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_PhoneBook_SelectAll]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
-	exec('Create Procedure [dbo].[sp_PhoneBook_SelectAll]	As Begin print 11 end')
-GO
-
-ALTER PROCEDURE [dbo].[sp_PhoneBook_SelectAll] 
-AS
-BEGIN
-	select * from [dbo].[PhoneBooks]
-End
-GO
--- ==========================================================================================
 IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_SmsLog_SelectAll]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
 	exec('Create Procedure [dbo].[sp_SmsLog_SelectAll]	As Begin print 11 end')
 GO
@@ -2026,10 +2015,10 @@ BEGIN
 END
 GO
 -- ==========================================================================================
-IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_PhoneBook_GetAll]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
-	exec('Create Procedure [dbo].[sp_PhoneBook_GetAll]	As Begin print 11 end')
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_PhoneBook_GetAllByParentGuid]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_PhoneBook_GetAllByParentGuid]	As Begin print 11 end')
 GO
-Alter PROCEDURE sp_PhoneBook_GetAll
+Alter PROCEDURE sp_PhoneBook_GetAllByParentGuid
 	@pGuid uniqueidentifier,
 	@st bit
 AS
@@ -2037,6 +2026,123 @@ BEGIN
 	Select * From [dbo].[PhoneBooks]
 	where ParentGuid=@pGuid
 	and Status=@st
+END
+GO
+-- ==========================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_PhoneBook_Get]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_PhoneBook_Get]	As Begin print 11 end')
+GO
+Alter PROCEDURE sp_PhoneBook_Get
+	@guid uniqueidentifier
+AS
+BEGIN
+	select * From PhoneBooks
+	where Guid=@guid
+END
+GO
+-- ==========================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_PhoneBook_GetAll]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_PhoneBook_GetAll]	As Begin print 11 end')
+GO
+Alter PROCEDURE sp_PhoneBook_GetAll
+AS
+BEGIN
+	Select * From PhoneBooks
+END
+GO
+-- ==========================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_PhoneBook_Remove]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_PhoneBook_Remove]	As Begin print 11 end')
+GO
+Alter PROCEDURE sp_PhoneBook_Remove
+	@guid uniqueidentifier
+AS
+BEGIN
+	delete From PhoneBooks
+	where Guid=@guid
+END
+GO
+-- ==========================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_PhoneBook_RemoveByParentGuid]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_PhoneBook_RemoveByParentGuid]	As Begin print 11 end')
+GO
+Alter PROCEDURE sp_PhoneBook_RemoveByParentGuid
+	@parentGuid uniqueidentifier
+AS
+BEGIN
+	delete From PhoneBooks
+	where ParentGuid=@parentGuid
+END
+GO
+-- ==========================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_PhoneBook_ChangeStatus]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_PhoneBook_ChangeStatus]	As Begin print 11 end')
+GO
+Alter PROCEDURE sp_PhoneBook_ChangeStatus
+	@Guid uniqueidentifier,
+	@st bit
+AS
+BEGIN
+	update PhoneBooks
+	set Status=@st
+	where Guid=@Guid
+END
+GO
+-- ==========================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_PhoneBook_ChangeStatusByParenGuid]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_PhoneBook_ChangeStatusByParenGuid]	As Begin print 11 end')
+GO
+Alter PROCEDURE sp_PhoneBook_ChangeStatusByParenGuid
+	@parentGuid uniqueidentifier,
+	@st bit
+AS
+BEGIN
+	update PhoneBooks
+	set Status=@st
+	where ParentGuid=@parentGuid
+END
+GO
+-- ==========================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_PhoneBook_Save]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_PhoneBook_Save]	As Begin print 11 end')
+GO
+Alter PROCEDURE sp_PhoneBook_Save
+	@Guid uniqueidentifier,
+	@modif datetime,
+	@st bit,
+	@name nvarchar(500),
+	@tell nvarchar(50),
+	@group smallint,
+	@parentGuid uniqueidentifier
+AS
+BEGIN
+	UPDATE [dbo].[PhoneBooks]
+	   SET [Modified] = @modif
+		  ,[Status] = @st
+		  ,[Name] = @name
+		  ,[Tell] = @tell
+		  ,[Group] = @group
+		  ,[ParentGuid] = @parentGuid
+	 WHERE [Guid] = @Guid
+	 if @@ROWCOUNT=0
+	 begin
+		INSERT INTO [dbo].[PhoneBooks]
+           ([Guid]
+           ,[Modified]
+           ,[Status]
+           ,[Name]
+           ,[Tell]
+           ,[Group]
+           ,[ParentGuid])
+		 VALUES
+           (@Guid
+           ,@modif
+           ,@st
+           ,@name
+           ,@tell
+           ,@group
+           ,@parentGuid)
+	 end
 END
 GO
 -- ==========================================================================================

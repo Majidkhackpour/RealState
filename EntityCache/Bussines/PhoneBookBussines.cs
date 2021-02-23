@@ -24,8 +24,6 @@ namespace EntityCache.Bussines
         public string HardSerial => Cache.HardSerial;
 
 
-        public static async Task<List<PhoneBookBussines>> GetAllBySpAsync(Guid parentGuid, bool status) =>
-            await UnitOfWork.PhoneBook.GetAllBySpAsync(parentGuid, status);
         public static async Task<List<PhoneBookBussines>> GetAllAsync(Guid parentGuid, bool status) =>
             await UnitOfWork.PhoneBook.GetAllAsync(parentGuid, status);
         public static List<PhoneBookBussines> GetAll(Guid parentGuid, bool status) =>
@@ -43,6 +41,36 @@ namespace EntityCache.Bussines
                 }
 
                 res.AddReturnedValue(await UnitOfWork.PhoneBook.ChangeStatusAsync(this, status, tranName));
+                if (res.HasError) return res;
+                if (autoTran)
+                {
+                    //CommitTransAction
+                }
+            }
+            catch (Exception ex)
+            {
+                if (autoTran)
+                {
+                    //RollBackTransAction
+                }
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+
+            return res;
+        }
+        public static async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(Guid parentGuid, bool status, string tranName = "")
+        {
+            var res = new ReturnedSaveFuncInfo();
+            var autoTran = string.IsNullOrEmpty(tranName);
+            if (autoTran) tranName = Guid.NewGuid().ToString();
+            try
+            {
+                if (autoTran)
+                { //BeginTransaction
+                }
+
+                res.AddReturnedValue(await UnitOfWork.PhoneBook.ChangeStatusAsync(parentGuid, status, tranName));
                 if (res.HasError) return res;
                 if (autoTran)
                 {
@@ -112,6 +140,69 @@ namespace EntityCache.Bussines
                 }
 
                 res.AddReturnedValue(await UnitOfWork.PhoneBook.SaveAsync(this, tranName));
+                if (res.HasError) return res;
+                if (autoTran)
+                {
+                    //CommitTransAction
+                }
+            }
+            catch (Exception ex)
+            {
+                if (autoTran)
+                {
+                    //RollBackTransAction
+                }
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+
+            return res;
+        }
+        public static async Task<ReturnedSaveFuncInfo> SaveRangeAsync(List<PhoneBookBussines> list,
+            string tranName = "")
+            => await UnitOfWork.PhoneBook.SaveRangeAsync(list, tranName);
+        public async Task<ReturnedSaveFuncInfo> RemoveAsync(string tranName = "")
+        {
+            var res = new ReturnedSaveFuncInfo();
+            var autoTran = string.IsNullOrEmpty(tranName);
+            if (autoTran) tranName = Guid.NewGuid().ToString();
+            try
+            {
+                if (autoTran)
+                { //BeginTransaction
+                }
+
+                res.AddReturnedValue(await UnitOfWork.PhoneBook.RemoveAsync(Guid, tranName));
+                if (res.HasError) return res;
+                if (autoTran)
+                {
+                    //CommitTransAction
+                }
+            }
+            catch (Exception ex)
+            {
+                if (autoTran)
+                {
+                    //RollBackTransAction
+                }
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+
+            return res;
+        }
+        public static async Task<ReturnedSaveFuncInfo> RemoveAsync(Guid parentGuid, string tranName = "")
+        {
+            var res = new ReturnedSaveFuncInfo();
+            var autoTran = string.IsNullOrEmpty(tranName);
+            if (autoTran) tranName = Guid.NewGuid().ToString();
+            try
+            {
+                if (autoTran)
+                { //BeginTransaction
+                }
+
+                res.AddReturnedValue(await UnitOfWork.PhoneBook.RemoveAsync(parentGuid, tranName));
                 if (res.HasError) return res;
                 if (autoTran)
                 {

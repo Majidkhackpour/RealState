@@ -48,8 +48,8 @@ namespace EntityCache.SqlServerPersistence
                     cmd.Parameters.AddWithValue("@guid", item.Guid);
                     cmd.Parameters.AddWithValue("@modif", item.Modified);
                     cmd.Parameters.AddWithValue("@st", item.Status);
-                    cmd.Parameters.AddWithValue("@name", item.Name);
-                    cmd.Parameters.AddWithValue("@code", item.Code);
+                    cmd.Parameters.AddWithValue("@name", item.Name ?? "");
+                    cmd.Parameters.AddWithValue("@code", item.Code ?? "");
                     cmd.Parameters.AddWithValue("@account", item.Account);
                     cmd.Parameters.AddWithValue("@hGroup", (short)item.HesabGroup);
 

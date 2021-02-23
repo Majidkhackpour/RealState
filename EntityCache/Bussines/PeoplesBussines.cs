@@ -60,19 +60,7 @@ namespace EntityCache.Bussines
 
                 if (TellList.Count > 0)
                 {
-                    var list = await PhoneBookBussines.GetAllAsync(Guid, Status);
-                    res.AddReturnedValue(
-                        await UnitOfWork.PhoneBook.RemoveRangeAsync(list.Select(q => q.Guid).ToList(),
-                            tranName));
-                    if (res.HasError) return res;
-
-                    foreach (var item in TellList)
-                    {
-                        item.ParentGuid = Guid;
-                        item.Name = Name;
-                    }
-                    res.AddReturnedValue(
-                        await UnitOfWork.PhoneBook.SaveRangeAsync(TellList, tranName));
+                    res.AddReturnedValue(await SaveMobileAsync());
                     if (res.HasError) return res;
                 }
                 if (BankList.Count > 0)
@@ -132,7 +120,8 @@ namespace EntityCache.Bussines
 
                 res.AddReturnedValue(await tafsil.ChangeStatusAsync(status));
                 if (res.HasError) return res;
-
+                res.AddReturnedValue(await PhoneBookBussines.ChangeStatusAsync(Guid, status));
+                if (res.HasError) return res;
                 res.AddReturnedValue(await UnitOfWork.Peoples.ChangeStatusAsync(this, status, tranName));
                 if (res.HasError) return res;
                 if (autoTran)
@@ -228,6 +217,30 @@ namespace EntityCache.Bussines
                 tf.AccountFirst = AccountFirst;
 
                 res.AddReturnedValue(await tf.SaveAsync());
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+
+            return res;
+        }
+        private async Task<ReturnedSaveFuncInfo> SaveMobileAsync()
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                res.AddReturnedValue(await PhoneBookBussines.RemoveAsync(Guid));
+                if (res.HasError) return res;
+
+                foreach (var item in TellList)
+                {
+                    item.ParentGuid = Guid;
+                    item.Name = Name;
+                }
+
+                res.AddReturnedValue(await PhoneBookBussines.SaveRangeAsync(TellList));
             }
             catch (Exception ex)
             {
