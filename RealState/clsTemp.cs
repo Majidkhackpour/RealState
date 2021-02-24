@@ -68,11 +68,6 @@ namespace RealState
                                 if (p != null)
                                     await WebPeople.SaveAsync(p);
                                 break;
-                            case EnTemp.Hazine:
-                                var h = await HazineBussines.GetAsync(item.ObjectGuid);
-                                if (h != null)
-                                    await WebHazine.SaveAsync(h);
-                                break;
                             case EnTemp.BuildingAccountType:
                                 var acc = await BuildingAccountTypeBussines.GetAsync(item.ObjectGuid);
                                 if (acc != null)

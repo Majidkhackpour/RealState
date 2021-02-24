@@ -38,7 +38,6 @@ namespace EntityCache.Assistence
         private static IBuildingRequestRepository _buildingRequestRepository;
         private static IBuildingRequestRegionRepository _buildingRequestRegionRepository;
         private static IGardeshHesabRepository _gardeshHesabRepository;
-        private static IHazineRepository _hazineRepository;
         private static IReceptionRepository _receptionRepository;
         private static IPardakhtRepository _pardakhtRepository;
         private static IContractRepository _contractRepository;
@@ -180,11 +179,6 @@ namespace EntityCache.Assistence
         public static IGardeshHesabRepository GardeshHesab => _gardeshHesabRepository ??
                                                                                 (_gardeshHesabRepository =
                                                                                     new GardeshHesabPersistenceRepository(db, _connectionString));
-
-
-        public static IHazineRepository Hazine => _hazineRepository ??
-                                                              (_hazineRepository =
-                                                                  new HazinePersistenceRepository(db, _connectionString));
 
 
         public static IReceptionRepository Reception => _receptionRepository ??

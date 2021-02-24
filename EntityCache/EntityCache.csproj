@@ -94,7 +94,6 @@
     <Compile Include="Assistence\Defualts\DefaultCities.cs" />
     <Compile Include="Assistence\Defualts\DefaultDocumentType.cs" />
     <Compile Include="Assistence\Defualts\DefaultFloorCover.cs" />
-    <Compile Include="Assistence\Defualts\DefaultHazine.cs" />
     <Compile Include="Assistence\Defualts\DefaultKitchenService.cs" />
     <Compile Include="Assistence\Defualts\DefaultKol.cs" />
     <Compile Include="Assistence\Defualts\DefaultMoein.cs" />
@@ -131,7 +130,6 @@
     <Compile Include="Bussines\FileInfoBussines.cs" />
     <Compile Include="Bussines\FloorCoverBussines.cs" />
     <Compile Include="Bussines\GardeshHesabBussines.cs" />
-    <Compile Include="Bussines\HazineBussines.cs" />
     <Compile Include="Bussines\KitchenServiceBussines.cs" />
     <Compile Include="Bussines\KolBussines.cs" />
     <Compile Include="Bussines\MoeinBussines.cs" />
@@ -179,7 +177,6 @@
     <Compile Include="Core\IFileInfoRepository.cs" />
     <Compile Include="Core\IFloorCoverRepository.cs" />
     <Compile Include="Core\IGardeshHesabRepository.cs" />
-    <Compile Include="Core\IHazineRepository.cs" />
     <Compile Include="Core\IKitchenServiceRepository.cs" />
     <Compile Include="Core\IKolRepository.cs" />
     <Compile Include="Core\IMoeinRepository.cs" />
@@ -230,7 +227,6 @@
     <Compile Include="SqlServerPersistence\GardeshHesabPersistenceRepository.cs" />
     <Compile Include="SqlServerPersistence\GenericRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SqlServerPersistence\HazinePersistenceRepository.cs" />
     <Compile Include="SqlServerPersistence\KitchenServicePersistenceRepository.cs" />
     <Compile Include="SqlServerPersistence\KolPersistenceRepository.cs" />
     <Compile Include="SqlServerPersistence\MoeinPersistenceRepository.cs" />

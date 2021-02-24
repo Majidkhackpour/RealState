@@ -63,7 +63,6 @@
     <Compile Include="WebDocumentType.cs" />
     <Compile Include="WebFloorCover.cs" />
     <Compile Include="WebGardeshHesab.cs" />
-    <Compile Include="WebHazine.cs" />
     <Compile Include="WebKitchenService.cs" />
     <Compile Include="WebPardakht.cs" />
     <Compile Include="WebPeople.cs" />

@@ -48,7 +48,6 @@ namespace Persistence.Model
         public virtual DbSet<BuildingRequest> BuildingRequest { get; set; }
         public virtual DbSet<BuildingRequestRegion> BuildingRequestRegions { get; set; }
         public virtual DbSet<GardeshHesab> GardeshHesab { get; set; }
-        public virtual DbSet<Hazine> Hazine { get; set; }
         public virtual DbSet<Reception> Reception { get; set; }
         public virtual DbSet<Pardakht> Pardakht { get; set; }
         public virtual DbSet<Contract> Contract { get; set; }

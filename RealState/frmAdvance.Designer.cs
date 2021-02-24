@@ -45,7 +45,6 @@
             this.chbGardesh = new DevComponents.DotNetBar.Controls.CheckBoxX();
             this.chbPardakht = new DevComponents.DotNetBar.Controls.CheckBoxX();
             this.chbUsers = new DevComponents.DotNetBar.Controls.CheckBoxX();
-            this.chbHazine = new DevComponents.DotNetBar.Controls.CheckBoxX();
             this.chbPeople = new DevComponents.DotNetBar.Controls.CheckBoxX();
             this.chbState = new DevComponents.DotNetBar.Controls.CheckBoxX();
             this.chbPeopleGroup = new DevComponents.DotNetBar.Controls.CheckBoxX();
@@ -258,7 +257,7 @@
             // 
             this.chbReception.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.chbReception.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.chbReception.Location = new System.Drawing.Point(436, 108);
+            this.chbReception.Location = new System.Drawing.Point(436, 79);
             this.chbReception.Name = "chbReception";
             this.chbReception.Size = new System.Drawing.Size(76, 23);
             this.chbReception.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -290,7 +289,7 @@
             // 
             this.chbPardakht.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.chbPardakht.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.chbPardakht.Location = new System.Drawing.Point(410, 138);
+            this.chbPardakht.Location = new System.Drawing.Point(410, 109);
             this.chbPardakht.Name = "chbPardakht";
             this.chbPardakht.Size = new System.Drawing.Size(102, 23);
             this.chbPardakht.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -312,22 +311,6 @@
             this.chbUsers.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.chbUsers.TabIndex = 11;
             this.chbUsers.Text = "کاربران";
-            // 
-            // chbHazine
-            // 
-            this.chbHazine.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.chbHazine.BackColor = System.Drawing.Color.Transparent;
-            // 
-            // 
-            // 
-            this.chbHazine.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.chbHazine.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.chbHazine.Location = new System.Drawing.Point(399, 79);
-            this.chbHazine.Name = "chbHazine";
-            this.chbHazine.Size = new System.Drawing.Size(113, 23);
-            this.chbHazine.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.chbHazine.TabIndex = 15;
-            this.chbHazine.Text = "هزینه ها";
             // 
             // chbPeople
             // 
@@ -485,7 +468,6 @@
             this.Controls.Add(this.chbRegion);
             this.Controls.Add(this.chbPeople);
             this.Controls.Add(this.chbFloor);
-            this.Controls.Add(this.chbHazine);
             this.Controls.Add(this.chbType);
             this.Controls.Add(this.chbUsers);
             this.Controls.Add(this.chbOptions);
@@ -534,7 +516,6 @@
         private DevComponents.DotNetBar.Controls.CheckBoxX chbGardesh;
         private DevComponents.DotNetBar.Controls.CheckBoxX chbPardakht;
         private DevComponents.DotNetBar.Controls.CheckBoxX chbUsers;
-        private DevComponents.DotNetBar.Controls.CheckBoxX chbHazine;
         private DevComponents.DotNetBar.Controls.CheckBoxX chbPeople;
         private DevComponents.DotNetBar.Controls.CheckBoxX chbState;
         private DevComponents.DotNetBar.Controls.CheckBoxX chbPeopleGroup;

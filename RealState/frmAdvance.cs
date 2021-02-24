@@ -34,8 +34,6 @@ namespace RealState
                     await WebPeopleGroup.SaveAsync(await PeopleGroupBussines.GetAllAsync());
                 if (chbPeople.Checked)
                     await WebPeople.SaveAsync(await PeoplesBussines.GetAllAsync());
-                if (chbHazine.Checked)
-                    await WebHazine.SaveAsync(await HazineBussines.GetAllAsync());
 
 
                 if (chbAccountType.Checked)

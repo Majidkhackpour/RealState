@@ -24,8 +24,7 @@ namespace Accounting.Sood_Zian
         public decimal TotalCommition => ContractFinanceBussines.GetTotalCommition(_date1, _date2);
         public decimal TotalBazarYab => ContractBussines.GetTotalBazaryab(_date1, _date2);
         public decimal Sood_Nakhales => TotalCommition - TotalBazarYab;
-        public decimal TotalHazine => HazineBussines.GetTotalHazine(_date1, _date2);
-        public decimal Sood_BeforeTax => Sood_Nakhales - TotalHazine;
+        public decimal Sood_BeforeTax => Sood_Nakhales;
         public decimal TotalTax => ContractFinanceBussines.GetTotalTax(_date1, _date2);
         public decimal Sood_Total => Sood_BeforeTax - TotalTax;
         public string Ballance

@@ -51,7 +51,6 @@ namespace Accounting.Sood_Zian
                 txtBazarYab.Text = cls.TotalBazarYab.ToString("N0");
                 txtBeforeTax.Text = cls.Sood_BeforeTax.ToString("N0");
                 txtCommition.Text = cls.TotalCommition.ToString("N0");
-                txtHazine.Text = cls.TotalHazine.ToString("N0");
                 txtNakhales.Text = cls.Sood_Nakhales.ToString("N0");
                 txtSood.Text = cls.Sood_Total.ToString("N0");
                 txtTax.Text = cls.TotalTax.ToString("N0");

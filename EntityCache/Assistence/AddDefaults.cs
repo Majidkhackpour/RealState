@@ -230,16 +230,6 @@ namespace EntityCache.Assistence
                 }
                 #endregion
 
-                #region Hazine
-                var allhazine = await HazineBussines.GetAllAsync();
-                if (allhazine == null || allhazine.Count <= 0)
-                {
-                    var reg = DefaultHazine.SetDef();
-                    res.AddReturnedValue(await HazineBussines.SaveRangeAsync(reg));
-                    if (res.HasError) return;
-                }
-                #endregion
-
                 #region Setting
                 var allSetting = await SettingsBussines.GetAllAsync();
                 if (allSetting == null || allSetting.Count <= 0)
