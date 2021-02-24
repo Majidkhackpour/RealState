@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WindowsSerivces;
 using EntityCache.Bussines;
 using MetroFramework.Forms;
 using Microsoft.Office.Interop.Excel;
@@ -538,19 +539,6 @@ namespace Peoples
                             MessageBoxIcon.Question) == DialogResult.No) return;
                     var prd = await PeoplesBussines.GetAsync(guid);
                     res.AddReturnedValue(await prd.ChangeStatusAsync(false));
-                    if (res.HasError) return;
-                    if (MessageBox.Show(this,
-                            $@"آیا شماره های شخص نیز از دفترچه تلفن حذف شود؟", "حذف",
-                            MessageBoxButtons.YesNo,
-                            MessageBoxIcon.Question) == DialogResult.Yes)
-                    {
-                        var prd2 = await PhoneBookBussines.GetAllAsync(guid, true);
-                        foreach (var item in prd2)
-                            res.AddReturnedValue(await item.ChangeStatusAsync(false));
-                    }
-
-                    if (res.HasError) return;
-                    UserLog.Save(EnLogAction.Delete, EnLogPart.Peoples);
                 }
                 else
                 {
@@ -568,12 +556,6 @@ namespace Peoples
                     }
 
                     res.AddReturnedValue(await prd.ChangeStatusAsync(true));
-                    if (res.HasError) return;
-                    var prd2 = await PhoneBookBussines.GetAllAsync(guid, false);
-                    foreach (var item in prd2)
-                        res.AddReturnedValue(await item.ChangeStatusAsync(true));
-                    if (res.HasError) return;
-                    UserLog.Save(EnLogAction.Enable, EnLogPart.Peoples);
                 }
             }
             catch (Exception ex)
@@ -583,12 +565,7 @@ namespace Peoples
             }
             finally
             {
-                if (res.HasError)
-                {
-                    var frm = new FrmShowErrorMessage(res, "خطا در تغییر وضعیت شخص");
-                    frm.ShowDialog(this);
-                    frm.Dispose();
-                }
+                if (res.HasError) this.ShowError(res, "خطا در تغییر وضعیت شخص");
                 else await LoadPeoplesAsync(ST, txtSearch.Text);
             }
         }

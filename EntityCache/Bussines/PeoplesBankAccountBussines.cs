@@ -21,38 +21,6 @@ namespace EntityCache.Bussines
 
         public static async Task<List<PeoplesBankAccountBussines>> GetAllAsync(Guid parentGuid, bool status) =>
             await UnitOfWork.PeopleBankAccount.GetAllAsync(parentGuid, status);
-        public static async Task<List<PeoplesBankAccountBussines>> GetAllAsync() =>
-            await UnitOfWork.PeopleBankAccount.GetAllAsync();
-        public async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(bool status, string tranName = "")
-        {
-            var res = new ReturnedSaveFuncInfo();
-            var autoTran = string.IsNullOrEmpty(tranName);
-            if (autoTran) tranName = Guid.NewGuid().ToString();
-            try
-            {
-                if (autoTran)
-                { //BeginTransaction
-                }
-
-                res.AddReturnedValue(await UnitOfWork.PeopleBankAccount.ChangeStatusAsync(this, status, tranName));
-                if (res.HasError) return res;
-                if (autoTran)
-                {
-                    //CommitTransAction
-                }
-            }
-            catch (Exception ex)
-            {
-                if (autoTran)
-                {
-                    //RollBackTransAction
-                }
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-                res.AddReturnedValue(ex);
-            }
-
-            return res;
-        }
         public static async Task<List<PeoplesBankAccountBussines>> GetAllAsync(Guid parentGuid, string search)
         {
             try
@@ -83,6 +51,68 @@ namespace EntityCache.Bussines
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
                 return new List<PeoplesBankAccountBussines>();
             }
+        }
+        public async Task<ReturnedSaveFuncInfo> SaveAsync(string tranName = "")
+        {
+            var res = new ReturnedSaveFuncInfo();
+            var autoTran = string.IsNullOrEmpty(tranName);
+            if (autoTran) tranName = Guid.NewGuid().ToString();
+            try
+            {
+                if (autoTran)
+                { //BeginTransaction
+                }
+
+                res.AddReturnedValue(await UnitOfWork.PeopleBankAccount.SaveAsync(this, tranName));
+                if (res.HasError) return res;
+                if (autoTran)
+                {
+                    //CommitTransAction
+                }
+            }
+            catch (Exception ex)
+            {
+                if (autoTran)
+                {
+                    //RollBackTransAction
+                }
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+
+            return res;
+        }
+        public static async Task<ReturnedSaveFuncInfo> SaveRangeAsync(List<PeoplesBankAccountBussines> list,
+            string tranName = "") => await UnitOfWork.PeopleBankAccount.SaveRangeAsync(list, tranName);
+        public static async Task<ReturnedSaveFuncInfo> RemoveAsync(Guid parentGuid, string tranName = "")
+        {
+            var res = new ReturnedSaveFuncInfo();
+            var autoTran = string.IsNullOrEmpty(tranName);
+            if (autoTran) tranName = Guid.NewGuid().ToString();
+            try
+            {
+                if (autoTran)
+                { //BeginTransaction
+                }
+
+                res.AddReturnedValue(await UnitOfWork.PeopleBankAccount.RemoveAsync(parentGuid));
+                if (res.HasError) return res;
+                if (autoTran)
+                {
+                    //CommitTransAction
+                }
+            }
+            catch (Exception ex)
+            {
+                if (autoTran)
+                {
+                    //RollBackTransAction
+                }
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+
+            return res;
         }
     }
 }

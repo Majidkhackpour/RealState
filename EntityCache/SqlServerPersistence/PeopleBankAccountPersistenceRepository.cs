@@ -30,7 +30,7 @@ namespace EntityCache.SqlServerPersistence
             {
                 using (var cn = new SqlConnection(_connectionString))
                 {
-                    var cmd = new SqlCommand("sp_People_BankAccount_Get", cn) { CommandType = CommandType.StoredProcedure };
+                    var cmd = new SqlCommand("sp_People_BankAccount_GetAllByParent", cn) { CommandType = CommandType.StoredProcedure };
                     cmd.Parameters.AddWithValue("@pGuid", parentGuid);
                     cmd.Parameters.AddWithValue("@st", status);
                     await cn.OpenAsync();
@@ -45,6 +45,73 @@ namespace EntityCache.SqlServerPersistence
             }
 
             return list;
+        }
+        public async Task<ReturnedSaveFuncInfo> RemoveAsync(Guid parentGuid)
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                using (var cn = new SqlConnection(_connectionString))
+                {
+                    var cmd = new SqlCommand("sp_People_BankAccount_RemoveByParent", cn) { CommandType = CommandType.StoredProcedure };
+                    cmd.Parameters.AddWithValue("@parentGuid", parentGuid);
+                    await cn.OpenAsync();
+                    await cmd.ExecuteNonQueryAsync();
+                    cn.Close();
+                }
+            }
+            catch (Exception exception)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(exception);
+            }
+
+            return res;
+        }
+        public override async Task<ReturnedSaveFuncInfo> SaveRangeAsync(IEnumerable<PeoplesBankAccountBussines> items, string tranName)
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                foreach (var item in items)
+                    res.AddReturnedValue(await SaveAsync(item, tranName));
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+
+            return res;
+        }
+        public override async Task<ReturnedSaveFuncInfo> SaveAsync(PeoplesBankAccountBussines item, string tranName)
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                using (var cn = new SqlConnection(_connectionString))
+                {
+                    var cmd = new SqlCommand("sp_People_BankAccount_Save", cn)
+                    { CommandType = CommandType.StoredProcedure };
+                    cmd.Parameters.AddWithValue("@guid", item.Guid);
+                    cmd.Parameters.AddWithValue("@modif", item.Modified);
+                    cmd.Parameters.AddWithValue("@st", item.Status);
+                    cmd.Parameters.AddWithValue("@parentGuid", item.ParentGuid);
+                    cmd.Parameters.AddWithValue("@bankname", item.BankName ?? "");
+                    cmd.Parameters.AddWithValue("@accountNumber", item.AccountNumber ?? "");
+                    cmd.Parameters.AddWithValue("@shobe", item.Shobe ?? "");
+
+                    await cn.OpenAsync();
+                    await cmd.ExecuteNonQueryAsync();
+                    cn.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+
+            return res;
         }
         private PeoplesBankAccountBussines LoadData(SqlDataReader dr)
         {

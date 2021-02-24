@@ -176,13 +176,6 @@ namespace Peoples
                 nCodeCollection.Add(item.NationalCode);
             }
 
-            var bList = await PeoplesBankAccountBussines.GetAllAsync();
-            foreach (var item in bList.ToList())
-            {
-                bankCollection.Add(item.BankName);
-                shobeCollection.Add(item.Shobe);
-            }
-
             txtName.AutoCompleteCustomSource = nameCollection;
             txtFatherName.AutoCompleteCustomSource = fNameCollection;
             txtNationalCode.AutoCompleteCustomSource = nCodeCollection;

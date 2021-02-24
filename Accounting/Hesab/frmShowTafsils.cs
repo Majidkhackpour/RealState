@@ -2,9 +2,12 @@
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WindowsSerivces;
+using Accounting.Bank;
 using EntityCache.Bussines;
 using MetroFramework.Forms;
 using Notification;
+using Peoples;
 using Services;
 
 namespace Accounting.Hesab
@@ -148,6 +151,25 @@ namespace Accounting.Hesab
                     frmNotification.PublicInfo.ShowMessage("شما مجاز به ویرایش حساب های پیش فرض نمی باشید");
                     return;
                 }
+
+                if (tafsil.HesabType == HesabType.Customer)
+                {
+                    var frm = new frmPeoples(guid, false);
+                    if (frm.ShowDialog(this) == DialogResult.OK)
+                        await LoadDataAsync(ST, txtSearch.Text);
+                    return;
+                }
+                if (tafsil.HesabType == HesabType.Bank)
+                {
+                    var frm = new frmBankMain(guid, false);
+                    if (frm.ShowDialog(this) == DialogResult.OK)
+                        await LoadDataAsync(ST, txtSearch.Text);
+                    return;
+                }
+
+                var _frm = new frmTafsilMain(guid, false);
+                if (_frm.ShowDialog(this) == DialogResult.OK)
+                    await LoadDataAsync(ST, txtSearch.Text);
             }
             catch (Exception ex)
             {
@@ -156,6 +178,7 @@ namespace Accounting.Hesab
         }
         private async void mnuDelete_Click(object sender, EventArgs e)
         {
+            var res = new ReturnedSaveFuncInfo();
             try
             {
                 if (DGrid.RowCount <= 0) return;
@@ -164,24 +187,79 @@ namespace Accounting.Hesab
                 var tafsil = await TafsilBussines.GetAsync(guid);
                 if (tafsil == null)
                 {
-                    frmNotification.PublicInfo.ShowMessage("حساب انتخاب شده معتبر نمی باشد");
+                    res.AddError("حساب انتخاب شده معتبر نمی باشد");
                     return;
                 }
-                if (tafsil.isSystem)
+
+                if (ST)
                 {
-                    frmNotification.PublicInfo.ShowMessage("شما مجاز به حذف حساب های پیش فرض نمی باشید");
-                    return;
+                    if (tafsil.isSystem)
+                    {
+                        res.AddError("شما مجاز به حذف حساب های پیش فرض نمی باشید");
+                        return;
+                    }
+                    if (tafsil.Account != 0)
+                    {
+                        res.AddError(
+                            $"حساب {DGrid[dgName.Index, DGrid.CurrentRow.Index].Value} به علت داشتن گردش، قادر به حذف نمی باشد");
+                        return;
+                    }
+                    if (MessageBox.Show(this,
+                            $@"آیا از حذف {DGrid[dgName.Index, DGrid.CurrentRow.Index].Value} اطمینان دارید؟", "حذف",
+                            MessageBoxButtons.YesNo,
+                            MessageBoxIcon.Question) == DialogResult.No) return;
+                    if (tafsil.HesabType == HesabType.Customer)
+                    {
+                        var cus = await PeoplesBussines.GetAsync(tafsil.Guid);
+                        res.AddReturnedValue(await cus.ChangeStatusAsync(false));
+                        return;
+                    }
+                    if (tafsil.HesabType == HesabType.Bank)
+                    {
+                        var bank = await BankBussines.GetAsync(tafsil.Guid);
+                        res.AddReturnedValue(await bank.ChangeStatusAsync(false));
+                        return;
+                    }
+
+                    res.AddReturnedValue(await tafsil.ChangeStatusAsync(false));
                 }
-                if (tafsil.Account!=0)
+                else
                 {
-                    frmNotification.PublicInfo.ShowMessage(
-                        $"حساب {DGrid[dgName.Index, DGrid.CurrentRow.Index].Value} به علت داشتن گردش، قادر به حذف نمی باشد");
-                    return;
+                    if (MessageBox.Show(this,
+                            $@"آیا از فعال کردن {DGrid[dgName.Index, DGrid.CurrentRow.Index].Value} اطمینان دارید؟",
+                            "حذف",
+                            MessageBoxButtons.YesNo,
+                            MessageBoxIcon.Question) == DialogResult.No) return;
+                    if (tafsil.HesabType == HesabType.Customer)
+                    {
+                        var cus = await PeoplesBussines.GetAsync(tafsil.Guid);
+                        if (cus.GroupGuid == Guid.Empty)
+                        {
+                            var frm = new frmChangeGroup(cus);
+                            if (frm.ShowDialog(this) != DialogResult.OK) return;
+                        }
+                        res.AddReturnedValue(await cus.ChangeStatusAsync(true));
+                        return;
+                    }
+                    if (tafsil.HesabType == HesabType.Bank)
+                    {
+                        var bank = await BankBussines.GetAsync(tafsil.Guid);
+                        res.AddReturnedValue(await bank.ChangeStatusAsync(true));
+                        return;
+                    }
+
+                    res.AddReturnedValue(await tafsil.ChangeStatusAsync(true));
                 }
             }
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+            finally
+            {
+                if (res.HasError) this.ShowError(res, "خطا در تغییر وضعیت حساب تفصیلی");
+                else await LoadDataAsync(ST, txtSearch.Text);
             }
         }
         private void mnuView_Click(object sender, EventArgs e)
@@ -191,8 +269,27 @@ namespace Accounting.Hesab
                 if (DGrid.RowCount <= 0) return;
                 if (DGrid.CurrentRow == null) return;
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
-                var frm = new frmTafsilMain(guid, true);
-                frm.ShowDialog(this);
+                var tafsil = TafsilBussines.Get(guid);
+                if (tafsil == null)
+                {
+                    frmNotification.PublicInfo.ShowMessage("حساب انتخاب شده معتبر نمی باشد");
+                    return;
+                }
+                if (tafsil.HesabType == HesabType.Customer)
+                {
+                    var frm = new frmPeoples(guid, true);
+                    frm.ShowDialog();
+                    return;
+                }
+                if (tafsil.HesabType == HesabType.Bank)
+                {
+                    var frm = new frmBankMain(guid, true);
+                    frm.ShowDialog();
+                    return;
+                }
+
+                var _frm = new frmTafsilMain(guid, true);
+                _frm.ShowDialog();
             }
             catch (Exception ex)
             {

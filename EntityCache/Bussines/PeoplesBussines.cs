@@ -65,16 +65,7 @@ namespace EntityCache.Bussines
                 }
                 if (BankList.Count > 0)
                 {
-                    var list = await PeoplesBankAccountBussines.GetAllAsync(Guid, Status);
-                    res.AddReturnedValue(
-                        await UnitOfWork.PeopleBankAccount.RemoveRangeAsync(list.Select(q => q.Guid).ToList(),
-                            tranName));
-                    if (res.HasError) return res;
-
-                    foreach (var item in BankList)
-                        item.ParentGuid = Guid;
-                    res.AddReturnedValue(
-                        await UnitOfWork.PeopleBankAccount.SaveRangeAsync(BankList, tranName));
+                    res.AddReturnedValue(await SaveBankAccountAsync());
                     if (res.HasError) return res;
                 }
 
@@ -241,6 +232,25 @@ namespace EntityCache.Bussines
                 }
 
                 res.AddReturnedValue(await PhoneBookBussines.SaveRangeAsync(TellList));
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+
+            return res;
+        }
+        private async Task<ReturnedSaveFuncInfo> SaveBankAccountAsync()
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                res.AddReturnedValue(await PeoplesBankAccountBussines.RemoveAsync(Guid));
+                if (res.HasError) return res;
+
+                foreach (var item in BankList) item.ParentGuid = Guid;
+                res.AddReturnedValue(await PeoplesBankAccountBussines.SaveRangeAsync(BankList));
             }
             catch (Exception ex)
             {
