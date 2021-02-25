@@ -15,19 +15,15 @@ namespace Persistence.Entities
         [Column(Order = 2)]
         [Key, ForeignKey("Sanad")]
         public Guid MasterGuid { get; set; }
+        [ForeignKey("Moein")]
         public Guid MoeinGuid { get; set; }
-        [MaxLength(20)]
-        public string MoeinCode { get; set; }
-        [MaxLength(200)]
-        public string MoeinName { get; set; }
+        [ForeignKey("Tafsil")]
         public Guid TafsilGuid { get; set; }
-        [MaxLength(20)]
-        public string TafsilCode { get; set; }
-        [MaxLength(200)]
-        public string TafsilName { get; set; }
         public decimal Debit { get; set; }
         public decimal Credit { get; set; }
         public string Description { get; set; }
         public virtual Sanad Sanad { get; set; }
+        public virtual Moein Moein { get; set; }
+        public virtual Tafsil Tafsil { get; set; }
     }
 }

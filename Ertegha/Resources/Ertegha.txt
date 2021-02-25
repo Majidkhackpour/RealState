@@ -2859,8 +2859,8 @@ BEGIN
 END
 GO
 -- ==========================================================================================
-IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Sanad_SelectRowBuNumber]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
-	exec('Create Procedure [dbo].[sp_Sanad_SelectRowBuNumber]	As Begin print 11 end')
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Sanad_Save]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Sanad_Save]	As Begin print 11 end')
 GO
 Alter PROCEDURE sp_Sanad_Save
 	@guid uniqueidentifier,
@@ -2871,8 +2871,6 @@ Alter PROCEDURE sp_Sanad_Save
 	@number bigint,
 	@sanadst smallint,
 	@userGuid uniqueidentifier,
-	@sumDebit decimal,
-	@sumCredit decimal,
 	@sanadType smallint
 AS
 BEGIN
@@ -2883,8 +2881,6 @@ BEGIN
 		  ,[Description] = @desc
 		  ,[Number] = @number
 		  ,[SanadStatus] = @sanadst
-		  ,[SumDebit] = @sumDebit
-		  ,[SumCredit] = @sumCredit
 		  ,[SanadType] = @sanadType
 	 WHERE [Guid] = @guid
 	 if @@ROWCOUNT = 0
@@ -2898,8 +2894,6 @@ BEGIN
            ,[Number]
            ,[SanadStatus]
            ,[UserGuid]
-           ,[SumDebit]
-           ,[SumCredit]
            ,[SanadType])
 		 VALUES
            (@guid
@@ -2910,8 +2904,6 @@ BEGIN
            ,@number
            ,@sanadst
            ,@userGuid
-           ,@sumDebit
-           ,@sumCredit
            ,@sanadType)
 	 end
 END
@@ -2924,24 +2916,28 @@ Alter PROCEDURE sp_SanadDetail_GetAllByMaster
 	@masterGuid uniqueidentifier
 AS
 BEGIN
-	Select * from SanadDetails
+	Select    SanadDetails.*
+			, Moeins.Code As MoeinCode
+			, Moeins.Name As MoeinName
+			, Tafsils.Code As TafsilCode
+			, Tafsils.Name As TafsilName
+	from SanadDetails inner join Moeins on
+		 SanadDetails.MoeinGuid = Moeins.Guid
+		 inner join Tafsils on
+		 SanadDetails.TafsilGuid = Tafsils.Guid
 	where MasterGuid=@masterGuid
 END
 GO
 -- ==========================================================================================
-IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_SanadDetail_GetAllByMaster]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
-	exec('Create Procedure [dbo].[sp_SanadDetail_GetAllByMaster]	As Begin print 11 end')
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_SanadDetail_Save]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_SanadDetail_Save]	As Begin print 11 end')
 GO
 Alter PROCEDURE sp_SanadDetail_Save
 	@Guid uniqueidentifier,
 	@modif datetime,
 	@st bit,
 	@moeinGuid uniqueidentifier,
-	@moeinCode nvarchar(20),
-	@moeinName nvarchar(200),
 	@tafsilGuid uniqueidentifier,
-	@tafsilCode nvarchar(20),
-	@tafsilName nvarchar(200),
 	@debit decimal,
 	@credit decimal,
 	@desc nvarchar(Max),
@@ -2952,11 +2948,7 @@ BEGIN
 	   SET [Modified] = @modif
 		  ,[Status] = @st
 		  ,[MoeinGuid] = @moeinGuid
-		  ,[MoeinCode] = @moeinCode
-		  ,[MoeinName] = @moeinName
 		  ,[TafsilGuid] = @tafsilGuid
-		  ,[TafsilCode] = @tafsilCode
-		  ,[TafsilName] = @tafsilName
 		  ,[Debit] = @debit
 		  ,[Credit] = @credit
 		  ,[Description] = @desc
@@ -2969,11 +2961,7 @@ BEGIN
            ,[Modified]
            ,[Status]
            ,[MoeinGuid]
-           ,[MoeinCode]
-           ,[MoeinName]
            ,[TafsilGuid]
-           ,[TafsilCode]
-           ,[TafsilName]
            ,[Debit]
            ,[Credit]
            ,[Description]
@@ -2983,11 +2971,7 @@ BEGIN
            ,@modif
            ,@st
            ,@moeinGuid
-           ,@moeinCode
-           ,@moeinName
            ,@tafsilGuid
-           ,@tafsilCode
-           ,@tafsilName
            ,@debit
            ,@credit
            ,@desc

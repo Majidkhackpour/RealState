@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.ComponentModel.DataAnnotations;
 using Services;
 using Services.Interfaces.Building;
@@ -21,5 +22,6 @@ namespace Persistence.Entities
         public decimal Account { get; set; }
         public decimal AccountFirst { get; set; }
         public bool isSystem { get; set; }
+        public virtual ICollection SanadDetails { get; set; }
     }
 }

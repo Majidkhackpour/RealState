@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Services;
 using Services.Interfaces.Building;
 
@@ -15,8 +16,22 @@ namespace EntityCache.Bussines
         public long Number { get; set; }
         public EnSanadStatus SanadStatus { get; set; }
         public Guid UserGuid { get; set; }
-        public decimal SumDebit { get; set; }
-        public decimal SumCredit { get; set; }
+        public decimal SumDebit
+        {
+            get
+            {
+                if (Details == null || Details.Count <= 0) return 0;
+                return Details.Sum(q => q.Debit);
+            }
+        }
+        public decimal SumCredit
+        {
+            get
+            {
+                if (Details == null || Details.Count <= 0) return 0;
+                return Details.Sum(q => q.Credit);
+            }
+        }
         public EnSanadType SanadType { get; set; }
         public List<SanadDetailBussines> Details { get; set; }
     }

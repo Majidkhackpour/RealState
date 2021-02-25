@@ -17,8 +17,6 @@ namespace Persistence.Entities
         public long Number { get; set; }
         public EnSanadStatus SanadStatus { get; set; }
         public Guid UserGuid { get; set; }
-        public decimal SumDebit { get; set; }
-        public decimal SumCredit { get; set; }
         public EnSanadType SanadType { get; set; }
         public virtual ICollection SanadDetails { get; set; }
     }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.ComponentModel.DataAnnotations;
 using Services.Interfaces.Building;
 
@@ -17,5 +18,6 @@ namespace Persistence.Entities
         public Guid KolGuid { get; set; }
         public DateTime DateM { get; set; }
         public decimal Account { get; set; }
+        public virtual ICollection SanadDetails { get; set; }
     }
 }
