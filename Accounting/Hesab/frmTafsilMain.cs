@@ -226,8 +226,8 @@ namespace Accounting.Hesab
                 if (cmbAccount.SelectedIndex == 0) cls.AccountFirst = 0;
                 else
                 {
-                    if (cmbAccount.SelectedIndex == 1) cls.AccountFirst = acc;
-                    else cls.AccountFirst = -acc;
+                    if (cmbAccount.SelectedIndex == 1) cls.AccountFirst = -acc;
+                    else cls.AccountFirst = acc;
                 }
 
                 if (cls.HesabType == HesabType.Bank)

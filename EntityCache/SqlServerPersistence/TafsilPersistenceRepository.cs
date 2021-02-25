@@ -8,6 +8,7 @@ using EntityCache.Core;
 using Persistence.Entities;
 using Persistence.Model;
 using Services;
+using Services.DefaultCoding;
 
 namespace EntityCache.SqlServerPersistence
 {
@@ -54,6 +55,13 @@ namespace EntityCache.SqlServerPersistence
                     cmd.Parameters.AddWithValue("@accFirst", item.AccountFirst);
                     cmd.Parameters.AddWithValue("@hType", (int)item.HesabType);
                     cmd.Parameters.AddWithValue("@isSystem", item.isSystem);
+                    cmd.Parameters.AddWithValue("@BankCreditMoeinGuid", ParentDefaults.MoeinCoding.CLSMoein10101);
+                    cmd.Parameters.AddWithValue("@SandouqCreditMoeinGuid", ParentDefaults.MoeinCoding.CLSMoein10102);
+                    cmd.Parameters.AddWithValue("@HazineCreditMoeinGuid", ParentDefaults.MoeinCoding.CLSMoein80211);
+                    cmd.Parameters.AddWithValue("@TafsilCreditMoeinGuid", ParentDefaults.MoeinCoding.CLSMoein10304);
+                    cmd.Parameters.AddWithValue("@userGuid", ParentDefaults.TafsilCoding.CLSTafsil1030401);
+                    cmd.Parameters.AddWithValue("@sarmayeMoeinGuid", ParentDefaults.MoeinCoding.CLSMoein50110);
+                    cmd.Parameters.AddWithValue("@sarmayeTafsilGuid", ParentDefaults.TafsilCoding.CLSTafsil5011001);
 
                     await cn.OpenAsync();
                     await cmd.ExecuteNonQueryAsync();

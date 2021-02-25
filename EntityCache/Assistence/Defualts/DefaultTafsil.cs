@@ -150,6 +150,7 @@ namespace EntityCache.Assistence.Defualts
                 list.Add(SetDef("هزینه بازاریابی و پورسانت", "8021207", ParentDefaults.TafsilCoding.CLSTafsil8021207, HesabType.Hazine));
                 list.Add(SetDef("هزینه حمل کالای فروش رفته", "8021208", ParentDefaults.TafsilCoding.CLSTafsil8021208, HesabType.Hazine));
                 list.Add(SetDef("هزینه انبارداری", "8021209", ParentDefaults.TafsilCoding.CLSTafsil8021209, HesabType.Hazine));
+                list.Add(SetDef("هزینه های اداری و عمومی", "8021210", ParentDefaults.TafsilCoding.CLSTafsil8021210, HesabType.Hazine));
                 list.Add(SetDef("ضمانت نامه بانکی", "9010106", ParentDefaults.TafsilCoding.CLSTafsil9010106, HesabType.Tafsil));
                 list.Add(SetDef("کالای امانی ما نزد دیگران", "9010108", ParentDefaults.TafsilCoding.CLSTafsil9010108, HesabType.Tafsil));
                 list.Add(SetDef("اسناد تضمینی تنخواه", "9010110", ParentDefaults.TafsilCoding.CLSTafsil9010110, HesabType.Tafsil));

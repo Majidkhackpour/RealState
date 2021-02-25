@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 using System.Threading.Tasks;
 using EntityCache.Bussines;
 using EntityCache.Core;
+using Nito.AsyncEx;
 using Persistence.Entities;
 using Persistence.Model;
 using Services;
@@ -36,6 +37,7 @@ namespace EntityCache.SqlServerPersistence
                 item.UserGuid = (Guid)dr["UserGuid"];
                 item.SanadType = (EnSanadType)dr["SanadType"];
                 item.UserName = dr["UserName"].ToString();
+                item.Details = AsyncContext.Run(() => SanadDetailBussines.GetAllAsync(item.Guid));
             }
             catch (Exception ex)
             {

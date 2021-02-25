@@ -355,8 +355,8 @@ namespace Peoples
                 cls.PostalCode = txtPostalCode.Text;
                 cls.Address = txtAddress.Text;
                 var acc = txtAccount_.TextDecimal;
-                if (cmbAccount.SelectedIndex == 1) cls.AccountFirst = acc;
-                else cls.AccountFirst = -acc;
+                if (cmbAccount.SelectedIndex == 1) cls.AccountFirst = -acc;
+                else cls.AccountFirst = acc;
 
                 res.AddReturnedValue(await cls.SaveAsync());
             }

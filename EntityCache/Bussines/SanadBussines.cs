@@ -43,8 +43,8 @@ namespace EntityCache.Bussines
 
 
         public static async Task<List<SanadBussines>> GetAllAsync() => await UnitOfWork.Sanad.GetAllAsync();
-        public async Task<SanadBussines> GetAsync(Guid guid) => await UnitOfWork.Sanad.GetAsync(guid);
-        public async Task<SanadBussines> GetAsync(long number) => await UnitOfWork.Sanad.GetAsync(number);
+        public static async Task<SanadBussines> GetAsync(Guid guid) => await UnitOfWork.Sanad.GetAsync(guid);
+        public static async Task<SanadBussines> GetAsync(long number) => await UnitOfWork.Sanad.GetAsync(number);
         public async Task<ReturnedSaveFuncInfo> SaveAsync(string tranName = "")
         {
             var res = new ReturnedSaveFuncInfo();
@@ -56,13 +56,21 @@ namespace EntityCache.Bussines
                 { //BeginTransaction
                 }
 
+                var oldSanad = await GetAsync(Guid);
+                if (oldSanad != null)
+                {
+                    res.AddReturnedValue(await UpdateAccounts(oldSanad.Details, true));
+                    if (res.HasError) return res;
+                }
 
                 res.AddReturnedValue(await UnitOfWork.Sanad.SaveAsync(this, tranName));
                 if (res.HasError) return res;
                 foreach (var item in Details) item.MasterGuid = Guid;
+                res.AddReturnedValue(await SanadDetailBussines.RemoveRangeAsync(Guid));
+                if (res.HasError) return res;
                 res.AddReturnedValue(await SanadDetailBussines.SaveRangeAsync(Details, tranName));
                 if (res.HasError) return res;
-                res.AddReturnedValue(await UpdateTafsilAccounts(false));
+                res.AddReturnedValue(await UpdateAccounts(Details, false));
                 if (res.HasError) return res;
 
                 if (autoTran)
@@ -96,7 +104,7 @@ namespace EntityCache.Bussines
                 { //BeginTransaction
                 }
 
-                res.AddReturnedValue(await UpdateTafsilAccounts(true));
+                res.AddReturnedValue(await UpdateAccounts(Details, true));
                 if (res.HasError) return res;
                 res.AddReturnedValue(await SanadDetailBussines.RemoveRangeAsync(Guid, tranName));
                 if (res.HasError) return res;
@@ -122,12 +130,12 @@ namespace EntityCache.Bussines
 
             return res;
         }
-        private async Task<ReturnedSaveFuncInfo> UpdateTafsilAccounts(bool isRemove)
+        private static async Task<ReturnedSaveFuncInfo> UpdateAccounts(List<SanadDetailBussines> dets, bool isRemove)
         {
             var res = new ReturnedSaveFuncInfo();
             try
             {
-                foreach (var item in Details)
+                foreach (var item in dets)
                 {
                     var tafsil = await TafsilBussines.GetAsync(item.TafsilGuid);
                     var moein = await MoeinBussines.GetAsync(item.MoeinGuid);
@@ -136,7 +144,7 @@ namespace EntityCache.Bussines
                     if (isRemove) tag *= -1;
 
                     if (item.Debit > 0) price = item.Debit * tag;
-                    else if (SumCredit > 0) price = item.Credit * tag;
+                    else if (item.Credit > 0) price = item.Credit * tag;
                     else
                     {
                         res.AddError("مبلغ نامعتبر");
@@ -165,6 +173,51 @@ namespace EntityCache.Bussines
             }
 
             return res;
+        }
+        public SanadDetailBussines AddToListSanad(SanadDetailBussines sanadDetBusiness)
+        {
+            try
+            {
+                sanadDetBusiness.MasterGuid = Guid;
+                if (Details == null) Details = new List<SanadDetailBussines>();
+                var old = Details.FirstOrDefault(q => q.Guid == sanadDetBusiness.Guid);
+                if (old != null)
+                    Details.Remove(old);
+                Details.Add(sanadDetBusiness);
+                return sanadDetBusiness;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                return null;
+            }
+        }
+        public void RemoveFromListSanad(Guid tafsilGuid)
+        {
+            try
+            {
+                if (Details == null) Details = new List<SanadDetailBussines>();
+                var item = Details.FirstOrDefault(p => p.TafsilGuid == tafsilGuid);
+                if (item != null) Details.Remove(item);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        public void AddRangeToListSanad(List<SanadDetailBussines> sanaddet)
+        {
+            try
+            {
+                if (Details == null) Details = new List<SanadDetailBussines>();
+                foreach (var det in Details)
+                    if (det != null)
+                        AddToListSanad(det);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
         }
     }
 }

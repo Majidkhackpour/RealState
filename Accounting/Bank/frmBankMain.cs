@@ -157,8 +157,8 @@ namespace Accounting.Bank
                 if (cmbAccount.SelectedIndex == 0) cls.AccountFirst = 0;
                 else
                 {
-                    if (cmbAccount.SelectedIndex == 1) cls.AccountFirst = acc;
-                    else cls.AccountFirst = -acc;
+                    if (cmbAccount.SelectedIndex == 1) cls.AccountFirst = -acc;
+                    else cls.AccountFirst = acc;
                 }
 
                 res.AddReturnedValue(await cls.SaveAsync());

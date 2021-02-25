@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Services.DefaultCoding;
 
 namespace EntityCache.Bussines
 {
@@ -75,6 +76,7 @@ namespace EntityCache.Bussines
                 if (res.HasError) return res;
                 res.AddReturnedValue(await UnitOfWork.Tafsil.SaveAsync(this, tranName));
                 if (res.HasError) return res;
+
                 if (autoTran)
                 {
                     //CommitTransAction
