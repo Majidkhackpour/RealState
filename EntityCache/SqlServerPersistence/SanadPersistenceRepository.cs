@@ -35,6 +35,7 @@ namespace EntityCache.SqlServerPersistence
                 item.SanadStatus = (EnSanadStatus)dr["SanadStatus"];
                 item.UserGuid = (Guid)dr["UserGuid"];
                 item.SanadType = (EnSanadType)dr["SanadType"];
+                item.UserName = dr["UserName"].ToString();
             }
             catch (Exception ex)
             {
@@ -128,6 +129,29 @@ namespace EntityCache.SqlServerPersistence
                     cmd.Parameters.AddWithValue("@sanadst", (short)item.SanadStatus);
                     cmd.Parameters.AddWithValue("@userGuid", item.UserGuid);
                     cmd.Parameters.AddWithValue("@sanadType", item.SanadType);
+
+                    await cn.OpenAsync();
+                    await cmd.ExecuteNonQueryAsync();
+                    cn.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+
+            return res;
+        }
+        public override async Task<ReturnedSaveFuncInfo> RemoveAsync(Guid guid, string tranName)
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                using (var cn = new SqlConnection(_connectionString))
+                {
+                    var cmd = new SqlCommand("sp_Sanad_Remove", cn) { CommandType = CommandType.StoredProcedure };
+                    cmd.Parameters.AddWithValue("@guid", guid);
 
                     await cn.OpenAsync();
                     await cmd.ExecuteNonQueryAsync();

@@ -70,6 +70,46 @@ namespace EntityCache.SqlServerPersistence
 
             return list;
         }
+        public async Task<ReturnedSaveFuncInfo> RemoveRangeAsync(Guid masterGuid)
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                using (var cn = new SqlConnection(_connectionString))
+                {
+                    var cmd = new SqlCommand("sp_SanadDetail_RemoveByMasterGuid", cn)
+                        {CommandType = CommandType.StoredProcedure};
+                    cmd.Parameters.AddWithValue("@masterGuid", masterGuid);
+
+                    await cn.OpenAsync();
+                    await cmd.ExecuteNonQueryAsync();
+                    cn.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+
+            return res;
+        }
+        public override async Task<ReturnedSaveFuncInfo> SaveRangeAsync(IEnumerable<SanadDetailBussines> items, string tranName)
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                foreach (var item in items)
+                    res.AddReturnedValue(await SaveAsync(item, tranName));
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+
+            return res;
+        }
         public override async Task<ReturnedSaveFuncInfo> SaveAsync(SanadDetailBussines item, string tranName)
         {
             var res = new ReturnedSaveFuncInfo();

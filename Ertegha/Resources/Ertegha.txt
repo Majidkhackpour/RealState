@@ -238,6 +238,28 @@ BEGIN
 END
 GO
 -- ==========================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Moein_UpdateAccount]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Moein_UpdateAccount]	As Begin print 11 end')
+GO
+Alter PROCEDURE sp_Moein_UpdateAccount
+	@guid uniqueidentifier,
+	@price decimal
+AS
+BEGIN
+	declare @kolGuid uniqueidentifier
+
+	set @kolGuid = (select KolGuid from Moeins where Guid=@guid)
+
+	update Moeins
+	set Account = Account + @price
+	where Guid = @guid
+
+	update Kols
+	set Account = Account + @price
+	where Guid = @kolGuid
+END
+GO
+-- ==========================================================================================
 IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Tafsil_Save]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
 	exec('Create Procedure [dbo].[sp_Tafsil_Save]	As Begin print 11 end')
 GO
@@ -372,6 +394,20 @@ AS
 BEGIN
 	select COUNT(*) from Tafsils
 	where Name=@name
+END
+GO
+-- ==========================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Tafsil_UpdateAccount]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Tafsil_UpdateAccount]	As Begin print 11 end')
+GO
+Alter PROCEDURE sp_Tafsil_UpdateAccount
+	@guid uniqueidentifier,
+	@price decimal
+AS
+BEGIN
+	update Tafsils
+	set Account = Account + @price
+	where Guid = @guid
 END
 GO
 -- ==========================================================================================
@@ -2831,7 +2867,10 @@ GO
 Alter PROCEDURE sp_Sanad_GetAll
 AS
 BEGIN
-	Select * From Sanads
+	Select    Sanads.* 
+			, Users.Name As UserName
+	From Sanads inner join Users on
+		 Sanads.UserGuid = Users.Guid
 END
 GO
 -- ==========================================================================================
@@ -2842,8 +2881,11 @@ Alter PROCEDURE sp_Sanad_SelectRowBuGuid
 	@guid uniqueidentifier
 AS
 BEGIN
-	Select * From Sanads
-	where Guid=@guid
+	Select    Sanads.* 
+			, Users.Name As UserName
+	From Sanads inner join Users on
+		 Sanads.UserGuid = Users.Guid
+	where Sanads.Guid=@guid
 END
 GO
 -- ==========================================================================================
@@ -2854,7 +2896,10 @@ Alter PROCEDURE sp_Sanad_SelectRowBuNumber
 	@number bigint
 AS
 BEGIN
-	Select * From Sanads
+	Select    Sanads.* 
+			, Users.Name As UserName
+	From Sanads inner join Users on
+		 Sanads.UserGuid = Users.Guid
 	where Number=@number
 END
 GO
@@ -2906,6 +2951,18 @@ BEGIN
            ,@userGuid
            ,@sanadType)
 	 end
+END
+GO
+-- ==========================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Sanad_Remove]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Sanad_Remove]	As Begin print 11 end')
+GO
+Alter PROCEDURE sp_Sanad_Remove
+	@guid uniqueidentifier
+AS
+BEGIN
+	delete from Sanads
+	where Guid = @guid
 END
 GO
 -- ==========================================================================================
@@ -2977,4 +3034,16 @@ BEGIN
            ,@desc
            ,@masterGuid)
 	 end
+END
+GO
+-- ==========================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_SanadDetail_RemoveByMasterGuid]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_SanadDetail_RemoveByMasterGuid]	As Begin print 11 end')
+GO
+Alter PROCEDURE sp_SanadDetail_RemoveByMasterGuid
+	@masterGuid uniqueidentifier
+AS
+BEGIN
+	delete from SanadDetails
+	where MasterGuid = @masterGuid
 END

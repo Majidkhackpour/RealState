@@ -203,6 +203,30 @@ namespace EntityCache.SqlServerPersistence
                 return false;
             }
         }
+        public async Task<ReturnedSaveFuncInfo> UpdateAccountAsync(Guid guid, decimal price)
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                using (var cn = new SqlConnection(_connectionString))
+                {
+                    var cmd = new SqlCommand("sp_Tafsil_UpdateAccount", cn) { CommandType = CommandType.StoredProcedure };
+                    cmd.Parameters.AddWithValue("@guid", guid);
+                    cmd.Parameters.AddWithValue("@price", price);
+
+                    await cn.OpenAsync();
+                    await cmd.ExecuteNonQueryAsync();
+                    cn.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+
+            return res;
+        }
         private static TafsilBussines LoadData(SqlDataReader dr)
         {
             var item = new TafsilBussines();

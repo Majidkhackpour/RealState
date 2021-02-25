@@ -10,5 +10,6 @@ namespace EntityCache.Core
         Task<string> NextCodeAsync(HesabType type);
         Task<bool> CheckCodeAsync(Guid guid, string code);
         Task<bool> CheckNameAsync(string name);
+        Task<ReturnedSaveFuncInfo> UpdateAccountAsync(Guid guid, decimal price);
     }
 }
