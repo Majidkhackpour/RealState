@@ -87,7 +87,6 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
-    <None Include="Resources\Ertegha.txt" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\DataBaseUtilities\DataBaseUtilities\DataBaseUtilities\DataBaseUtilities.csproj">
@@ -105,6 +104,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\ErteghaFunctions.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Ertegha.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

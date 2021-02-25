@@ -57,6 +57,8 @@ namespace EntityCache.Assistence
         private static IBankRepository _bankRepository;
         private static IDasteCheckRepository _dasteCheckRepository;
         private static ICheckPageRepository _checkPageRepository;
+        private static IsanadRepository _sanadRepository;
+        private static ISanadDetailRepository _sanadDetailRepository;
 
         public static void Dispose() => db?.Dispose();
         public static void Set_Save() => db.SaveChanges();
@@ -276,5 +278,15 @@ namespace EntityCache.Assistence
         public static ICheckPageRepository CheckPage => _checkPageRepository ??
                                                           (_checkPageRepository =
                                                               new CheckPagePersistenceRepository(db, _connectionString));
+
+
+        public static IsanadRepository Sanad => _sanadRepository ??
+                                                          (_sanadRepository =
+                                                              new SanadPersistenceRepository(db, _connectionString));
+
+
+        public static ISanadDetailRepository SanadDetail => _sanadDetailRepository ??
+                                                        (_sanadDetailRepository =
+                                                            new SanadDetailPersistenceRepository(db, _connectionString));
     }
 }

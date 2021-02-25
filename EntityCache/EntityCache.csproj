@@ -143,6 +143,8 @@
     <Compile Include="Bussines\ReceptionBussines.cs" />
     <Compile Include="Bussines\RegionsBussines.cs" />
     <Compile Include="Bussines\RentalAuthorityBussines.cs" />
+    <Compile Include="Bussines\SanadBussines.cs" />
+    <Compile Include="Bussines\SanadDetailBussines.cs" />
     <Compile Include="Bussines\SerializedDataBussines.cs" />
     <Compile Include="Bussines\SettingsBussines.cs" />
     <Compile Include="Bussines\SimcardBussines.cs" />
@@ -191,6 +193,8 @@
     <Compile Include="Core\IRegionsRepository.cs" />
     <Compile Include="Core\IRentalAuthorityRepository.cs" />
     <Compile Include="Core\IRepository.cs" />
+    <Compile Include="Core\ISanadDetailRepository.cs" />
+    <Compile Include="Core\IsanadRepository.cs" />
     <Compile Include="Core\ISerializedDataRepository.cs" />
     <Compile Include="Core\ISettingsRepository.cs" />
     <Compile Include="Core\ISimcardRepository.cs" />
@@ -240,6 +244,8 @@
     <Compile Include="SqlServerPersistence\ReceptionPersistenceRepository.cs" />
     <Compile Include="SqlServerPersistence\RegionsPersistenceRepository.cs" />
     <Compile Include="SqlServerPersistence\RentalAuthorityPersistenceRepository.cs" />
+    <Compile Include="SqlServerPersistence\SanadDetailPersistenceRepository.cs" />
+    <Compile Include="SqlServerPersistence\SanadPersistenceRepository.cs" />
     <Compile Include="SqlServerPersistence\SerializedDataPersistenceRepository.cs" />
     <Compile Include="SqlServerPersistence\SettingsPersistenceRepository.cs" />
     <Compile Include="SqlServerPersistence\SimcardPersistenceRepository.cs" />

@@ -81,6 +81,7 @@ namespace EntityCache.Assistence.Defualts
                 list.Add(SetDef("مالیات بر حقوق کارکنان", "3020302", ParentDefaults.TafsilCoding.CLSTafsil3020302, HesabType.Hazine));
                 list.Add(SetDef("مالیات بر درآمد شرکت", "3020401", ParentDefaults.TafsilCoding.CLSTafsil3020401, HesabType.Hazine));
                 list.Add(SetDef("مالیات بر ارزش افزوده", "3020305", ParentDefaults.TafsilCoding.CLSTafsil3020305, HesabType.Hazine));
+                list.Add(SetDef("عوارض شهرداری", "3020306", ParentDefaults.TafsilCoding.CLSTafsil3020306, HesabType.Hazine));
                 list.Add(SetDef("حق بیمه سهم کارفرما", "3020501", ParentDefaults.TafsilCoding.CLSTafsil3020501, HesabType.Hazine));
                 list.Add(SetDef("حق بیمه سهم کارکنان", "3020502", ParentDefaults.TafsilCoding.CLSTafsil3020502, HesabType.Hazine));
                 list.Add(SetDef("بیمه عمر و حوادث", "3020503", ParentDefaults.TafsilCoding.CLSTafsil3020503, HesabType.Hazine));
@@ -97,6 +98,7 @@ namespace EntityCache.Assistence.Defualts
                 list.Add(SetDef("تعهد صاحبان سهام", "5010302", ParentDefaults.TafsilCoding.CLSTafsil5010302, HesabType.Tafsil));
                 list.Add(SetDef("سرمایه اهدایی از دولت", "5010401", ParentDefaults.TafsilCoding.CLSTafsil5010401, HesabType.Tafsil));
                 list.Add(SetDef("سهام خزانه", "5010601", ParentDefaults.TafsilCoding.CLSTafsil5010601, HesabType.Tafsil));
+                list.Add(SetDef("سرمایه پرداخت شده", "5011001", ParentDefaults.TafsilCoding.CLSTafsil5011001, HesabType.Tafsil));
                 list.Add(SetDef("بهای تمام شده مواد مستقیم", "7010101", ParentDefaults.TafsilCoding.CLSTafsil7010101, HesabType.Tafsil));
                 list.Add(SetDef("بهای تمام شده دستمزد مستقیم", "7010102", ParentDefaults.TafsilCoding.CLSTafsil7010102, HesabType.Tafsil));
                 list.Add(SetDef("بهای تمام شده سربار", "7010103", ParentDefaults.TafsilCoding.CLSTafsil7010103, HesabType.Tafsil));

@@ -140,6 +140,9 @@ namespace EntityCache.Bussines
                 if (string.IsNullOrEmpty(Name)) res.AddError("عنوان حساب نمی تواند خالی باشد");
                 if (string.IsNullOrEmpty(Code)) res.AddError("کد حساب نمی تواند خالی باشد");
                 if (!await CheckCodeAsync(Guid, Code)) res.AddError("کد حساب معتبر نمی باشد");
+                if (HesabType == HesabType.Bank || HesabType == HesabType.Sandouq)
+                    if (Account < 0)
+                        res.AddError("ماهیت حساب بانک و صندوق بدهکار است");
             }
             catch (Exception ex)
             {
