@@ -14,10 +14,9 @@ namespace Accounting.Payement
         private EnSanadType type;
         public Guid SelectedGuid { get; set; }
         public EnAccountingType AccountingType { get; set; }
-        public frmPayeMentFilter(EnSanadType _type)
+        public frmPayeMentFilter()
         {
             InitializeComponent();
-            type = _type;
         }
 
         #region LblSetter
@@ -60,12 +59,12 @@ namespace Accounting.Payement
                 if (frm.ShowDialog(this) != DialogResult.OK) return;
                 SelectedGuid = frm.SelectedGuid;
                 AccountingType = EnAccountingType.Peoples;
-                if (type == EnSanadType.Auto)
-                {
-                    var frm1 = new frmShowPardakht(frm.SelectedGuid, EnAccountingType.Peoples);
-                    frm1.ShowDialog(this);
-                    return;
-                }
+                //if (type == EnSanadType.Auto)
+                //{
+                //    var frm1 = new frmShowPardakht(frm.SelectedGuid, EnAccountingType.Peoples);
+                //    frm1.ShowDialog(this);
+                //    return;
+                //}
 
                 DialogResult = DialogResult.OK;
                 Close();

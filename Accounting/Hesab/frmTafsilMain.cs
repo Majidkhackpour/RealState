@@ -94,13 +94,13 @@ namespace Accounting.Hesab
                 if (cls?.AccountFirst < 0)
                 {
                     txtAccount_.TextDecimal = Math.Abs(cls?.AccountFirst ?? 0);
-                    cmbAccount.SelectedIndex = 2;
+                    cmbAccount.SelectedIndex = 1;
                 }
 
                 if (cls?.AccountFirst > 0)
                 {
                     txtAccount_.TextDecimal = Math.Abs(cls?.AccountFirst ?? 0);
-                    cmbAccount.SelectedIndex = 1;
+                    cmbAccount.SelectedIndex = 2;
                 }
             }
             catch (Exception ex)

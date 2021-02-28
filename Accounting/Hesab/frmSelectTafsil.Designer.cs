@@ -74,6 +74,7 @@ namespace Accounting.Hesab
             this.txtSearch.TabIndex = 55750;
             this.txtSearch.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtSearch.WatermarkText = "مورد جستجو را وارد نمایید ...";
+            this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
             // 
             // TafsilBindingSource
             // 

@@ -145,7 +145,7 @@ namespace EntityCache.Bussines
                 if (string.IsNullOrEmpty(Code)) res.AddError("کد حساب نمی تواند خالی باشد");
                 if (!await CheckCodeAsync(Guid, Code)) res.AddError("کد حساب معتبر نمی باشد");
                 if (HesabType == HesabType.Bank || HesabType == HesabType.Sandouq)
-                    if (Account < 0)
+                    if (Account > 0)
                         res.AddError("ماهیت حساب بانک و صندوق بدهکار است");
             }
             catch (Exception ex)
@@ -188,5 +188,7 @@ namespace EntityCache.Bussines
 
             return res;
         }
+        public static async Task<TafsilBussines> GetAsync(string code) => await UnitOfWork.Tafsil.GetAsync(code);
+        public static TafsilBussines Get(string code) => AsyncContext.Run(() => GetAsync(code));
     }
 }

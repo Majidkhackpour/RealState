@@ -235,6 +235,29 @@ namespace EntityCache.SqlServerPersistence
 
             return res;
         }
+        public async Task<TafsilBussines> GetAsync(string code)
+        {
+            TafsilBussines res = null;
+            try
+            {
+                using (var cn = new SqlConnection(_connectionString))
+                {
+                    var cmd = new SqlCommand("sp_Tafsil_GetByCode", cn) { CommandType = CommandType.StoredProcedure };
+                    cmd.Parameters.AddWithValue("@code", code);
+
+                    await cn.OpenAsync();
+                    var dr = await cmd.ExecuteReaderAsync();
+                    if (dr.Read()) res = LoadData(dr);
+                    cn.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+
+            return res;
+        }
         private static TafsilBussines LoadData(SqlDataReader dr)
         {
             var item = new TafsilBussines();

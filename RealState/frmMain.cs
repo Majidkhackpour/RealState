@@ -42,6 +42,7 @@ using WindowsSerivces;
 using Accounting.Bank;
 using Accounting.Check.DasteCheck;
 using Accounting.Hesab;
+using Accounting.Sanad;
 using Accounting.Sandouq;
 using Accounting.Sood_Zian;
 using Advertise.Classes;
@@ -587,7 +588,7 @@ namespace RealState
         {
             try
             {
-                var frm = new frmReceptionFilter(EnSanadType.Auto);
+                var frm = new frmReceptionFilter();
                 frm.ShowDialog(this);
             }
             catch (Exception ex)
@@ -599,7 +600,7 @@ namespace RealState
         {
             try
             {
-                var frm = new frmPayeMentFilter(EnSanadType.Auto);
+                var frm = new frmPayeMentFilter();
                 frm.ShowDialog(this);
             }
             catch (Exception ex)
@@ -611,7 +612,7 @@ namespace RealState
         {
             try
             {
-                var frm = new frmSanad();
+                var frm = new frmShowSanad();
                 frm.ShowDialog(this);
             }
             catch (Exception ex)
@@ -868,7 +869,7 @@ namespace RealState
         {
             try
             {
-                var frm = new frmKolMoein();
+                var frm = new frmKolMoein(false);
                 frm.ShowDialog(this);
             }
             catch (Exception ex)

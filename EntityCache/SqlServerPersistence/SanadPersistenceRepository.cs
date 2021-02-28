@@ -91,6 +91,28 @@ namespace EntityCache.SqlServerPersistence
 
             return res;
         }
+        public async Task<long> NextNumberAsync()
+        {
+            long res = 0;
+            try
+            {
+                using (var cn = new SqlConnection(_connectionString))
+                {
+                    var cmd = new SqlCommand("sp_Sanad_NextNumber", cn) { CommandType = CommandType.StoredProcedure };
+
+                    await cn.OpenAsync();
+                    var obj = await cmd.ExecuteScalarAsync();
+                    if (obj != null) res = (long)obj;
+                    cn.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+
+            return res;
+        }
         public override async Task<SanadBussines> GetAsync(Guid guid)
         {
             SanadBussines res = null;
@@ -167,6 +189,28 @@ namespace EntityCache.SqlServerPersistence
             }
 
             return res;
+        }
+        public async Task<bool> CheckCodeAsync(Guid guid, long code)
+        {
+            try
+            {
+                using (var cn = new SqlConnection(_connectionString))
+                {
+                    var cmd = new SqlCommand("sp_Sanad_CheckCode", cn) { CommandType = CommandType.StoredProcedure };
+                    cmd.Parameters.AddWithValue("@guid", guid);
+                    cmd.Parameters.AddWithValue("@code", code);
+
+                    await cn.OpenAsync();
+                    var count = (int)await cmd.ExecuteScalarAsync();
+                    cn.Close();
+                    return count <= 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                return false;
+            }
         }
     }
 }

@@ -238,6 +238,18 @@ BEGIN
 END
 GO
 -- ==========================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Moein_GetByCode]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Moein_GetByCode]	As Begin print 11 end')
+GO
+Alter PROCEDURE sp_Moein_GetByCode
+	@code nvarchar(10)
+AS
+BEGIN
+	select * from Moeins
+	where Code=@code
+END
+GO
+-- ==========================================================================================
 IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Moein_UpdateAccount]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
 	exec('Create Procedure [dbo].[sp_Moein_UpdateAccount]	As Begin print 11 end')
 GO
@@ -285,6 +297,7 @@ AS
 BEGIN
 	declare @AccountF_Before decimal
 	Set @AccountF_Before = (Select isnull(AccountFirst,0) from Tafsils where Guid=@guid)
+	set @AccountF_Before=isnull(@AccountF_Before,0)
 	
 	UPDATE [dbo].[Tafsils]
 	   SET [Modified] = @modif
@@ -332,9 +345,13 @@ BEGIN
 			begin
 				exec sp_Tafsil_Debit @guid,@AccountF_Before
 				exec sp_Moein_Debit @TafsilCreditMoeinGuid,@AccountF_Before
+				exec sp_Tafsil_Credit @sarmayeTafsilGuid,@AccountF_Before
+				exec sp_Moein_Credit @sarmayeMoeinGuid,@AccountF_Before
 	
 				exec sp_Moein_Credit @TafsilCreditMoeinGuid,@accFirst
 				exec sp_Tafsil_Credit @guid,@accFirst
+				exec sp_Moein_Debit @sarmayeMoeinGuid,@accFirst
+				exec sp_Tafsil_Debit @sarmayeTafsilGuid,@accFirst
 			end
 
 			--Bank
@@ -342,9 +359,13 @@ BEGIN
 			begin
 				exec sp_Tafsil_Debit @guid,@AccountF_Before
 				exec sp_Moein_Debit @BankCreditMoeinGuid,@AccountF_Before
+				exec sp_Tafsil_Credit @sarmayeTafsilGuid,@AccountF_Before
+				exec sp_Moein_Credit @sarmayeMoeinGuid,@AccountF_Before
 	
 				exec sp_Moein_Credit @BankCreditMoeinGuid,@accFirst
 				exec sp_Tafsil_Credit @guid,@accFirst
+				exec sp_Moein_Debit @sarmayeMoeinGuid,@accFirst
+				exec sp_Tafsil_Debit @sarmayeTafsilGuid,@accFirst
 			end
 
 			--Sandouq
@@ -352,9 +373,13 @@ BEGIN
 			begin
 				exec sp_Tafsil_Debit @guid,@AccountF_Before
 				exec sp_Moein_Debit @SandouqCreditMoeinGuid,@AccountF_Before
+				exec sp_Tafsil_Credit @sarmayeTafsilGuid,@AccountF_Before
+				exec sp_Moein_Credit @sarmayeMoeinGuid,@AccountF_Before
 	
 				exec sp_Moein_Credit @SandouqCreditMoeinGuid,@accFirst
 				exec sp_Tafsil_Credit @guid,@accFirst
+				exec sp_Moein_Debit @sarmayeMoeinGuid,@accFirst
+				exec sp_Tafsil_Debit @sarmayeTafsilGuid,@accFirst
 			end
 
 			--Hazine
@@ -362,9 +387,13 @@ BEGIN
 			begin
 				exec sp_Tafsil_Debit @guid,@AccountF_Before
 				exec sp_Moein_Debit @HazineCreditMoeinGuid,@AccountF_Before
+				exec sp_Tafsil_Credit @sarmayeTafsilGuid,@AccountF_Before
+				exec sp_Moein_Credit @sarmayeMoeinGuid,@AccountF_Before
 	
 				exec sp_Moein_Credit @HazineCreditMoeinGuid,@accFirst
 				exec sp_Tafsil_Credit @guid,@accFirst
+				exec sp_Moein_Debit @sarmayeMoeinGuid,@accFirst
+				exec sp_Tafsil_Debit @sarmayeTafsilGuid,@accFirst
 			end
 		
 			Exec sp_Sanad_Update_Eftetahie @userGuid,@sarmayeTafsilGuid,@sarmayeMoeinGuid,@TafsilCreditMoeinGuid,@BankCreditMoeinGuid,@SandouqCreditMoeinGuid
@@ -406,6 +435,18 @@ AS
 BEGIN
 	SELECT * from Tafsils
 	where Guid=@guid
+END
+GO
+-- ==========================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Tafsil_GetByCode]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Tafsil_GetByCode]	As Begin print 11 end')
+GO
+Alter PROCEDURE sp_Tafsil_GetByCode
+	@code nvarchar(10)
+AS
+BEGIN
+	select * from Tafsils
+	where Code=@code
 END
 GO
 -- ==========================================================================================
@@ -1518,89 +1559,6 @@ BEGIN
 	end
 END
 GO
--- ==========================================================================================
---IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Sanad_Save]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
---	exec('Create Procedure [dbo].[sp_Sanad_Save]	As Begin print 11 end')
---GO
-
---Alter PROCEDURE sp_Sanad_Save
---	@parentGuid uniqueidentifier,
---	@bedGuid uniqueidentifier,
---	@besGuid uniqueidentifier,
---	@price bigint=0,
---	@desc nvarchar(max)=''
---AS
---BEGIN
---	--Update Bed Account
---	declare @tarafHesab uniqueidentifier
-
---	set @tarafHesab=(ISNULL((select Guid from Peoples
---		where Guid=@bedGuid),'00000000-0000-0000-0000-000000000000'))
-
---	if (@tarafHesab='00000000-0000-0000-0000-000000000000')
---	begin
---		set @tarafHesab=(ISNULL((select Guid from Users
---		where Guid=@bedGuid),'00000000-0000-0000-0000-000000000000'))
-
---		if(@tarafHesab='00000000-0000-0000-0000-000000000000')
---		begin
---			set @tarafHesab=(ISNULL((select Guid from Hazines
---			where Guid=@bedGuid),'00000000-0000-0000-0000-000000000000'))
-
---			update Hazines
---			set Account=Account+@price
---			where Guid=@bedGuid
---		end
---		else
---		begin
---			update Users
---			set Account=Account+@price
---			where Guid=@bedGuid
---		end
---	end
---	else
---	begin
---			update Peoples
---			set Account=Account+@price
---			where Guid=@bedGuid
---	end
-
-
---	--Update Bed Account
-
---	set @tarafHesab=(ISNULL((select Guid from Peoples
---		where Guid=@besGuid),'00000000-0000-0000-0000-000000000000'))
-
---	if (@tarafHesab='00000000-0000-0000-0000-000000000000')
---	begin
---		set @tarafHesab=(ISNULL((select Guid from Users
---		where Guid=@besGuid),'00000000-0000-0000-0000-000000000000'))
-
---		update Users
---		set Account=Account-@price
---		where Guid=@besGuid
-
---	end
---	else
---	begin
---		update Peoples
---		set Account=Account-@price
---		where Guid=@besGuid
-
---	end
-
-
---	--Insert Sanad
-
---	insert into GardeshHesabs(Babat,Description,Guid,Modified,ParentGuid,PeopleGuid,Price,Status,Type)
---		values(5,@desc,NEWID(), GETDATE(),@parentGuid,@bedGuid,@price,'true',2)
-
-
---	insert into GardeshHesabs(Babat,Description,Guid,Modified,ParentGuid,PeopleGuid,Price,Status,Type)
---	values(5,@desc,NEWID(), GETDATE(),@parentGuid,@besGuid,@price,'true',3)
-
---END
---GO
 -- ==========================================================================================
 --IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Pardakht_ChangeStatus]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
 --	exec('Create Procedure [dbo].[sp_Pardakht_ChangeStatus]	As Begin print 11 end')
@@ -3239,9 +3197,9 @@ BEGIN
 					, AccountFirst As Credit
 					, N'حسابهای دریافتنی ابتدای دوره ('+Tafsils.Name+')' As Description
 					, @materGuid As MasterGuid
-			from Tafsils inner join Peoples on
-				 Tafsils.Guid=Peoples.Guid
-				 where AccountFirst > 0
+			from Tafsils where AccountFirst > 0 
+						 and Tafsils.Status='true'
+						 and (HesabType=2 or HesabType=6)
 	union all
 		--حسابهای دریافتنی ابتدای دوره - بدهکاران
 		select    NEWID() As Guid
@@ -3249,13 +3207,13 @@ BEGIN
 				, Tafsils.Status
 				, @tafsilCreditMoeinGuid As MoeinGuid
 				, Tafsils.Guid As TafsilGuid
-				, AccountFirst As Debit
+				, ABS(AccountFirst) As Debit
 				, 0 As Credit
 				, N'حسابهای دریافتنی ابتدای دوره ('+Tafsils.Name+')' As Description
 				, @materGuid As MasterGuid
-		from Tafsils inner join Peoples on
-			 Tafsils.Guid=Peoples.Guid
-			 where AccountFirst < 0
+		from Tafsils where AccountFirst < 0 
+						 and Tafsils.Status='true'
+						 and (HesabType=2 or HesabType=6)
 	union all
 		--موجودی ابتدای دوره بانک ها
 		select    NEWID() As Guid
@@ -3263,13 +3221,13 @@ BEGIN
 				, Tafsils.Status
 				, @bankCreditTafilGuid As MoeinGuid
 				, Tafsils.Guid As TafsilGuid
-				, AccountFirst As Debit
+				, ABS(AccountFirst) As Debit
 				, 0 As Credit
 				, N' موجودی ابتدای دوره بانک('+Banks.Name+' '+Banks.Shobe+')' As Description
 				, @materGuid As MasterGuid
 		from Tafsils inner join Banks on
 			 Tafsils.Guid=Banks.Guid
-			 where AccountFirst < 0
+			 where AccountFirst < 0 and Tafsils.Status='true'
 	union all
 		--موجودی ابتدای دوره صندوق ها
 		select    NEWID() As Guid
@@ -3277,12 +3235,13 @@ BEGIN
 				, Tafsils.Status
 				, @sandouqCreditTafilGuid As MoeinGuid
 				, Tafsils.Guid As TafsilGuid
-				, AccountFirst As Debit
+				, ABS(AccountFirst) As Debit
 				, 0 As Credit
 				, N' موجودی ابتدای دوره صندوق('+Name+')' As Description
 				, @materGuid As MasterGuid
 		from Tafsils where AccountFirst < 0
 					 and HesabType = 5
+					 and Tafsils.Status='true'
 
 	declare @Sum Decimal(18,3)
 	set @Sum=(select sum(Credit-Debit)
@@ -3290,7 +3249,9 @@ BEGIN
 				where MasterGuid=@materGuid)
 	set @Sum=ISNULL(@Sum,0)
 
-	INSERT INTO [dbo].[SanadDetails]
+	if @Sum>0
+	begin
+		INSERT INTO [dbo].[SanadDetails]
            ([Guid]
            ,[Modified]
            ,[Status]
@@ -3300,27 +3261,67 @@ BEGIN
            ,[Credit]
            ,[Description]
            ,[MasterGuid])
-		   --سرمایه ابتدای دوره بدهکار
+			--سرمایه ابتدای دوره بستانکار
 			select    NEWID() As Guid
 					, Tafsils.Modified
 					, Tafsils.Status
 					, @sarmayeMoeinGuid As MoeinGuid
 					, Tafsils.Guid As TafsilGuid
-					, @Sum As Debit
+					, ABS(@Sum) As Debit
 					, 0 As Credit
 					, N'سرمایه ابتدای دوره' As Description
 					, @materGuid As MasterGuid
 			from Tafsils where Guid = @sarmayeTafsilGuid
-	union all
-		--سرمایه ابتدای دوره بستانکار
-		select    NEWID() As Guid
-				, Tafsils.Modified
-				, Tafsils.Status
-				, @sarmayeMoeinGuid As MoeinGuid
-				, Tafsils.Guid As TafsilGuid
-				, 0 As Debit
-				, ABS(@Sum) As Credit
-				, N'سرمایه ابتدای دوره' As Description
-				, @materGuid As MasterGuid
-		from Tafsils where Guid = @sarmayeTafsilGuid
+	end
+	else if @Sum<0
+	begin
+		INSERT INTO [dbo].[SanadDetails]
+			   ([Guid]
+			   ,[Modified]
+			   ,[Status]
+			   ,[MoeinGuid]
+			   ,[TafsilGuid]
+			   ,[Debit]
+			   ,[Credit]
+			   ,[Description]
+			   ,[MasterGuid])
+			--سرمایه ابتدای دوره بدهکار
+			select    NEWID() As Guid
+					, Tafsils.Modified
+					, Tafsils.Status
+					, @sarmayeMoeinGuid As MoeinGuid
+					, Tafsils.Guid As TafsilGuid
+					, 0 As Debit
+					, ABS(@Sum) As Credit
+					, N'سرمایه ابتدای دوره' As Description
+					, @materGuid As MasterGuid
+			from Tafsils where Guid = @sarmayeTafsilGuid
+	end
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Sanad_NextNumber]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Sanad_NextNumber]	As Begin print 11 end')  
+GO
+ALTER PROCEDURE [dbo].[sp_Sanad_NextNumber]
+AS
+BEGIN
+	declare @nextNumber bigint
+	select @nextNumber = MAX(Number) From Sanads
+	set @nextNumber = (isnull(@nextNumber , 0))
+	set @nextNumber = @nextNumber + 1
+	select @nextNumber
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Sanad_CheckCode]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Sanad_CheckCode]	As Begin print 11 end')  
+GO
+Alter PROCEDURE [dbo].[sp_Sanad_CheckCode]
+	@guid uniqueidentifier,
+	@code bigint
+AS
+BEGIN
+	select COUNT(*) from Sanads
+	where Number=@code and Guid<>@guid
 END

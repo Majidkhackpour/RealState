@@ -60,6 +60,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.txtNationalCode = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.txtAccount_ = new WindowsSerivces.CurrencyTextBox();
             this.cmbAccount = new System.Windows.Forms.ComboBox();
             this.splitContainer4 = new System.Windows.Forms.SplitContainer();
             this.txtPlaceBirth = new System.Windows.Forms.TextBox();
@@ -108,7 +109,6 @@
             this.superTabItem2 = new DevComponents.DotNetBar.SuperTabItem();
             this.btnCancel = new DevComponents.DotNetBar.ButtonX();
             this.btnFinish = new DevComponents.DotNetBar.ButtonX();
-            this.txtAccount_ = new WindowsSerivces.CurrencyTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.superTabControl1)).BeginInit();
             this.superTabControl1.SuspendLayout();
             this.superTabControlPanel1.SuspendLayout();
@@ -155,8 +155,8 @@
             this.superTabControl1.ControlBox.MenuBox.Name = "";
             this.superTabControl1.ControlBox.Name = "";
             this.superTabControl1.ControlBox.SubItems.AddRange(new DevComponents.DotNetBar.BaseItem[] {
-            this.superTabControl1.ControlBox.CloseBox,
-            this.superTabControl1.ControlBox.MenuBox});
+            this.superTabControl1.ControlBox.MenuBox,
+            this.superTabControl1.ControlBox.CloseBox});
             this.superTabControl1.Controls.Add(this.superTabControlPanel1);
             this.superTabControl1.Controls.Add(this.superTabControlPanel3);
             this.superTabControl1.Controls.Add(this.superTabControlPanel2);
@@ -431,6 +431,26 @@
             this.label3.Size = new System.Drawing.Size(41, 20);
             this.label3.TabIndex = 10;
             this.label3.Text = "کد ملی";
+            // 
+            // txtAccount_
+            // 
+            this.txtAccount_.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.txtAccount_.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtAccount_.BackColor = System.Drawing.Color.White;
+            this.txtAccount_.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.txtAccount_.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.txtAccount_.Font = new System.Drawing.Font("B Titr", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.txtAccount_.Location = new System.Drawing.Point(172, 131);
+            this.txtAccount_.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtAccount_.Name = "txtAccount_";
+            this.txtAccount_.Size = new System.Drawing.Size(111, 31);
+            this.txtAccount_.TabIndex = 13;
+            this.txtAccount_.TextDecimal = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
             // 
             // cmbAccount
             // 
@@ -1075,26 +1095,6 @@
             this.btnFinish.Text = "تایید (F5)";
             this.btnFinish.TextColor = System.Drawing.Color.Black;
             this.btnFinish.Click += new System.EventHandler(this.btnFinish_Click);
-            // 
-            // txtAccount_
-            // 
-            this.txtAccount_.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.txtAccount_.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtAccount_.BackColor = System.Drawing.Color.White;
-            this.txtAccount_.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.txtAccount_.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.txtAccount_.Font = new System.Drawing.Font("B Titr", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.txtAccount_.Location = new System.Drawing.Point(172, 131);
-            this.txtAccount_.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.txtAccount_.Name = "txtAccount_";
-            this.txtAccount_.Size = new System.Drawing.Size(111, 31);
-            this.txtAccount_.TabIndex = 13;
-            this.txtAccount_.TextDecimal = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
             // 
             // frmPeoples
             // 

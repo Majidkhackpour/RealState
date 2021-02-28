@@ -174,12 +174,6 @@
     <Compile Include="frmGardeshHesab.Designer.cs">
       <DependentUpon>frmGardeshHesab.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmSanad.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmSanad.Designer.cs">
-      <DependentUpon>frmSanad.cs</DependentUpon>
-    </Compile>
     <Compile Include="frmShowAccounts.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -270,6 +264,18 @@
     <Compile Include="Reception\frmShowReception.Designer.cs">
       <DependentUpon>frmShowReception.cs</DependentUpon>
     </Compile>
+    <Compile Include="Sanad\frmSanadMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sanad\frmSanadMain.Designer.cs">
+      <DependentUpon>frmSanadMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Sanad\frmShowSanad.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sanad\frmShowSanad.Designer.cs">
+      <DependentUpon>frmShowSanad.cs</DependentUpon>
+    </Compile>
     <Compile Include="Sandouq\frmShowSandouq.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -323,9 +329,6 @@
     <EmbeddedResource Include="frmGardeshHesab.resx">
       <DependentUpon>frmGardeshHesab.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmSanad.resx">
-      <DependentUpon>frmSanad.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="frmShowAccounts.resx">
       <DependentUpon>frmShowAccounts.cs</DependentUpon>
     </EmbeddedResource>
@@ -372,6 +375,12 @@
     <EmbeddedResource Include="Reception\frmShowReception.resx">
       <DependentUpon>frmShowReception.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Sanad\frmSanadMain.resx">
+      <DependentUpon>frmSanadMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sanad\frmShowSanad.resx">
+      <DependentUpon>frmShowSanad.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Sandouq\frmShowSandouq.resx">
       <DependentUpon>frmShowSandouq.cs</DependentUpon>
     </EmbeddedResource>
@@ -413,6 +422,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Properties\DataSources\EntityCache.Bussines.SanadBussines.datasource" />
+    <None Include="Properties\DataSources\EntityCache.Bussines.SanadDetailBussines.datasource" />
     <None Include="Properties\DataSources\EntityCache.Bussines.TafsilBussines.datasource" />
     <None Include="Properties\DataSources\EntityCache.ViewModels.CheckViewModel.datasource" />
     <None Include="Resources\add.png" />

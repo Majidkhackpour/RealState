@@ -11,6 +11,7 @@ namespace Accounting.Hesab
     public partial class frmKolMoein : MetroForm
     {
         private Guid _kolGuid = Guid.Empty;
+        private bool isSelectMode;
         public Guid KolGuid
         {
             get => _kolGuid;
@@ -20,6 +21,7 @@ namespace Accounting.Hesab
                 _ = Task.Run(() => LoadMoeinAsync(txtSearchMoein.Text));
             }
         }
+        public Guid SelectedMoeinGuid { get; set; }
 
         private async Task LoadKolAsync(string search = "")
         {
@@ -47,9 +49,10 @@ namespace Accounting.Hesab
             }
         }
 
-        public frmKolMoein()
+        public frmKolMoein(bool _selectMode)
         {
             InitializeComponent();
+            isSelectMode = _selectMode;
         }
 
         private async void frmKolMoein_Load(object sender, EventArgs e)
@@ -76,13 +79,20 @@ namespace Accounting.Hesab
         }
         private void frmKolMoein_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Escape) Close();
-            if (e.KeyCode == Keys.Down)
+            try
             {
-                if (txtSearchMoein.Focused)
-                    DGridMoein.Focus();
-                if (txtSearchKol.Focused)
-                    DGridKol.Focus();
+                if (e.KeyCode == Keys.Escape) Close();
+                if (e.KeyCode == Keys.Down)
+                {
+                    if (txtSearchMoein.Focused)
+                        DGridMoein.Focus();
+                    if (txtSearchKol.Focused)
+                        DGridKol.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
         private async void txtSearch_TextChanged(object sender, EventArgs e)
@@ -101,6 +111,24 @@ namespace Accounting.Hesab
             try
             {
                 await LoadMoeinAsync(txtSearchMoein.Text);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private void DGridMoein_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    if (!isSelectMode) return;
+                    if (DGridMoein.RowCount <= 0 || DGridMoein.CurrentRow == null) return;
+                    SelectedMoeinGuid = (Guid)DGridMoein[dgMoeinGuid.Index, DGridMoein.CurrentRow.Index].Value;
+                    DialogResult = DialogResult.OK;
+                    Close();
+                }
             }
             catch (Exception ex)
             {

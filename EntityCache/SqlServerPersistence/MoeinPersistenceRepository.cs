@@ -60,6 +60,29 @@ namespace EntityCache.SqlServerPersistence
 
             return res;
         }
+        public async Task<MoeinBussines> GetAsync(string code)
+        {
+            MoeinBussines res = null;
+            try
+            {
+                using (var cn = new SqlConnection(_connectionString))
+                {
+                    var cmd = new SqlCommand("sp_Moein_GetByCode", cn) {CommandType = CommandType.StoredProcedure};
+                    cmd.Parameters.AddWithValue("@code", code);
+
+                    await cn.OpenAsync();
+                    var dr = await cmd.ExecuteReaderAsync();
+                    if (dr.Read()) res = LoadData(dr);
+                    cn.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+
+            return res;
+        }
         public override async Task<ReturnedSaveFuncInfo> SaveAsync(MoeinBussines item, string tranName)
         {
             var res = new ReturnedSaveFuncInfo();

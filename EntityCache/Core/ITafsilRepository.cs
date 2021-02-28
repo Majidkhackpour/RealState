@@ -11,5 +11,6 @@ namespace EntityCache.Core
         Task<bool> CheckCodeAsync(Guid guid, string code);
         Task<bool> CheckNameAsync(string name);
         Task<ReturnedSaveFuncInfo> UpdateAccountAsync(Guid guid, decimal price);
+        Task<TafsilBussines> GetAsync(string code);
     }
 }

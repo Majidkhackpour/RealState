@@ -94,5 +94,7 @@ namespace EntityCache.Bussines
         public static MoeinBussines Get(Guid guid) => AsyncContext.Run(() => GetAsync(guid));
         public async Task<ReturnedSaveFuncInfo> UpdateAccountAsync(decimal price) =>
             await UnitOfWork.Moein.UpdateAccountAsync(Guid, price);
+        public static async Task<MoeinBussines> GetAsync(string code) => await UnitOfWork.Moein.GetAsync(code);
+        public static MoeinBussines Get(string code) => AsyncContext.Run(() => GetAsync(code));
     }
 }

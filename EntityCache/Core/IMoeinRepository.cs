@@ -8,5 +8,6 @@ namespace EntityCache.Core
     public interface IMoeinRepository : IRepository<MoeinBussines>
     {
         Task<ReturnedSaveFuncInfo> UpdateAccountAsync(Guid guid, decimal price);
+        Task<MoeinBussines> GetAsync(string code);
     }
 }

@@ -121,5 +121,39 @@ namespace EntityCache.Bussines
 
             return res;
         }
+        public ReturnedSaveFuncInfo CheckValidation()
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                if (MoeinGuid == Guid.Empty)
+                {
+                    res.AddError("وارد کردن حساب معین الزامی است");
+                    return res;
+                }
+                if (TafsilGuid == Guid.Empty)
+                {
+                    res.AddError("وارد کردن حساب تفصیلی الزامی است");
+                    return res;
+                }
+                if (string.IsNullOrEmpty(Description))
+                {
+                    res.AddError("وارد کردن شرح سطر الزامی است");
+                    return res;
+                }
+                if (Debit == 0 && Credit == 0)
+                {
+                    res.AddError("وارد کردن مبلغ بدهکار یا بستانکار الزامی است");
+                    return res;
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+
+            return res;
+        }
     }
 }

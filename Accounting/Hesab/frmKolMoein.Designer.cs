@@ -60,7 +60,7 @@ namespace Accounting.Hesab
             this.nameDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.accountDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgAccount = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.guidDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgMoeinGuid = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.modifiedDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.statusDataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.kolGuidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -296,7 +296,7 @@ namespace Accounting.Hesab
             this.nameDataGridViewTextBoxColumn1,
             this.accountDataGridViewTextBoxColumn1,
             this.dgAccount,
-            this.guidDataGridViewTextBoxColumn1,
+            this.dgMoeinGuid,
             this.modifiedDataGridViewTextBoxColumn1,
             this.statusDataGridViewCheckBoxColumn1,
             this.kolGuidDataGridViewTextBoxColumn,
@@ -336,6 +336,7 @@ namespace Accounting.Hesab
             this.DGridMoein.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DGridMoein.Size = new System.Drawing.Size(390, 511);
             this.DGridMoein.TabIndex = 55748;
+            this.DGridMoein.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DGridMoein_KeyDown);
             // 
             // codeDataGridViewTextBoxColumn1
             // 
@@ -375,13 +376,13 @@ namespace Accounting.Hesab
             this.dgAccount.ReadOnly = true;
             this.dgAccount.Width = 74;
             // 
-            // guidDataGridViewTextBoxColumn1
+            // dgMoeinGuid
             // 
-            this.guidDataGridViewTextBoxColumn1.DataPropertyName = "Guid";
-            this.guidDataGridViewTextBoxColumn1.HeaderText = "Guid";
-            this.guidDataGridViewTextBoxColumn1.Name = "guidDataGridViewTextBoxColumn1";
-            this.guidDataGridViewTextBoxColumn1.ReadOnly = true;
-            this.guidDataGridViewTextBoxColumn1.Visible = false;
+            this.dgMoeinGuid.DataPropertyName = "Guid";
+            this.dgMoeinGuid.HeaderText = "Guid";
+            this.dgMoeinGuid.Name = "dgMoeinGuid";
+            this.dgMoeinGuid.ReadOnly = true;
+            this.dgMoeinGuid.Visible = false;
             // 
             // modifiedDataGridViewTextBoxColumn1
             // 
@@ -477,15 +478,6 @@ namespace Accounting.Hesab
         private DevComponents.DotNetBar.Controls.DataGridViewX DGridMoein;
         private System.Windows.Forms.BindingSource KolBindingSource;
         private System.Windows.Forms.BindingSource MoeinBindingSource;
-        private System.Windows.Forms.DataGridViewTextBoxColumn codeDataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn accountDataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgAccount;
-        private System.Windows.Forms.DataGridViewTextBoxColumn guidDataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn modifiedDataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn statusDataGridViewCheckBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn kolGuidDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dateMDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn codeDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn accountDataGridViewTextBoxColumn;
@@ -494,5 +486,14 @@ namespace Accounting.Hesab
         private System.Windows.Forms.DataGridViewTextBoxColumn modifiedDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewCheckBoxColumn statusDataGridViewCheckBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn hesabGroupDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn codeDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn accountDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgAccount;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgMoeinGuid;
+        private System.Windows.Forms.DataGridViewTextBoxColumn modifiedDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn statusDataGridViewCheckBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn kolGuidDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dateMDataGridViewTextBoxColumn;
     }
 }
