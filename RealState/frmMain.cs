@@ -1,7 +1,5 @@
-﻿using Accounting;
-using Accounting.Hazine;
+﻿using Accounting.Hazine;
 using Accounting.Payement;
-using Accounting.Reception;
 using Advertise.Forms;
 using Building.Building;
 using Building.BuildingAccountType;
@@ -94,7 +92,6 @@ namespace RealState
             {
                 var access = clsUser.CurrentUser.UserAccess;
 
-                btnAccountPerfomence.Enabled = access?.AccountPerformence.Account_Per_ShowForm ?? false;
                 btnBuilding.Enabled = access?.Building.Building_ShowForm ?? false;
                 btnBuildingArchive.Enabled = access?.Building.Building_ShowForm ?? false;
                 btnBuildingAccountType.Enabled = access?.BuildingAccountType.Building_Acc_Type_ShowForm ?? false;
@@ -262,7 +259,6 @@ namespace RealState
                 var allReq = await BuildingRequestBussines.DbCount(Guid.Empty);
                 var myReq = await BuildingRequestBussines.DbCount(clsUser.CurrentUser.Guid);
                 var myCon = await ContractBussines.DbCount(clsUser.CurrentUser.Guid);
-                var receptionCheck = await ReceptionBussines.DbCheckCount(Calendar.MiladiToShamsi(DateTime.Now));
                 var pardakhtCheck = await PardakhtBussines.DbCheckCount(Calendar.MiladiToShamsi(DateTime.Now));
                 var disCharge = await ContractBussines.DischargeDbCount();
 
@@ -288,12 +284,12 @@ namespace RealState
                     lblMyContract.Text = myCon.ToString();
                     lblBirthday.Text = BirthdayList.Count.ToString();
                     lblNotes.Text = allNote.Count.ToString();
-                    lblReceptionCheck.Text = receptionCheck.ToString();
+                    //lblReceptionCheck.Text = receptionCheck.ToString();
                     lblPardakhtCheck.Text = pardakhtCheck.ToString();
                     lblSarresidEjare.Text = disCharge.ToString();
                     btnBirthday.Enabled = BirthdayList.Count != 0;
                     btnReminderNotes.Enabled = allNote.Count != 0;
-                    btnReceptionCheck.Enabled = receptionCheck != 0;
+                    //btnReceptionCheck.Enabled = receptionCheck != 0;
                     btnPardakhtCheck.Enabled = pardakhtCheck != 0;
                     btnDischarge.Enabled = disCharge != 0;
                 }));
@@ -572,24 +568,11 @@ namespace RealState
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void btnAccountPerfomence_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                var frm = new frmShowAccounts();
-                frm.ShowDialog(this);
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
         private void btnReception_Click(object sender, EventArgs e)
         {
             try
             {
-                var frm = new frmReceptionFilter();
-                frm.ShowDialog(this);
+                
             }
             catch (Exception ex)
             {
@@ -795,8 +778,8 @@ namespace RealState
         {
             try
             {
-                var frm = new frmReceptopnCheckToday();
-                frm.ShowDialog();
+                //var frm = new frmReceptopnCheckToday();
+                //frm.ShowDialog();
             }
             catch (Exception ex)
             {

@@ -7,7 +7,7 @@ using Servicess.Interfaces.Building;
 
 namespace WebHesabBussines
 {
-    public class WebReception : IReception
+    public class WebReception
     {
         private static string Url = Utilities.WebApi + "/api/BuildingReception/SaveAsync";
 
@@ -32,90 +32,90 @@ namespace WebHesabBussines
 
         public async Task SaveAsync()
         {
-            try
-            {
-                var res = await Extentions.PostToApi<ReceptionBussines, WebReception>(this, Url);
-                if (res.ResponseStatus != ResponseStatus.Success)
-                {
-                    var temp = new TempBussines()
-                    {
-                        ObjectGuid = Guid,
-                        Type = EnTemp.Reception
-                    };
-                    await temp.SaveAsync();
-                }
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
+            //try
+            //{
+            //    var res = await Extentions.PostToApi<ReceptionBussines, WebReception>(this, Url);
+            //    if (res.ResponseStatus != ResponseStatus.Success)
+            //    {
+            //        var temp = new TempBussines()
+            //        {
+            //            ObjectGuid = Guid,
+            //            Type = EnTemp.Reception
+            //        };
+            //        await temp.SaveAsync();
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            //}
         }
-        public static async Task<ReturnedSaveFuncInfo> SaveAsync(ReceptionBussines cls)
-        {
-            var res = new ReturnedSaveFuncInfo();
-            try
-            {
-                var obj = new WebReception()
-                {
-                    Guid = cls.Guid,
-                    Modified = cls.Modified,
-                    Status = cls.Status,
-                    Description = cls.Description,
-                    CreateDate = cls.CreateDate,
-                    NaqdPrice = cls.NaqdPrice,
-                    BankPrice = cls.BankPrice,
-                    BankName = cls.BankName,
-                    CheckNo = cls.CheckNo,
-                    SarResid = cls.SarResid,
-                    Receptor = cls.Receptor,
-                    Check = cls.Check,
-                    FishNo = cls.FishNo,
-                    HardSerial = cls.HardSerial
-                };
-                await obj.SaveAsync();
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-                res.AddReturnedValue(ex);
-            }
+        //public static async Task<ReturnedSaveFuncInfo> SaveAsync(ReceptionBussines cls)
+        //{
+        //    var res = new ReturnedSaveFuncInfo();
+        //    try
+        //    {
+        //        var obj = new WebReception()
+        //        {
+        //            Guid = cls.Guid,
+        //            Modified = cls.Modified,
+        //            Status = cls.Status,
+        //            Description = cls.Description,
+        //            CreateDate = cls.CreateDate,
+        //            NaqdPrice = cls.NaqdPrice,
+        //            BankPrice = cls.BankPrice,
+        //            BankName = cls.BankName,
+        //            CheckNo = cls.CheckNo,
+        //            SarResid = cls.SarResid,
+        //            Receptor = cls.Receptor,
+        //            Check = cls.Check,
+        //            FishNo = cls.FishNo,
+        //            HardSerial = cls.HardSerial
+        //        };
+        //        await obj.SaveAsync();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        WebErrorLog.ErrorInstence.StartErrorLog(ex);
+        //        res.AddReturnedValue(ex);
+        //    }
 
-            return res;
-        }
-        public static async Task<ReturnedSaveFuncInfo> SaveAsync(List<ReceptionBussines> item)
-        {
-            var res = new ReturnedSaveFuncInfo();
-            try
-            {
-                foreach (var cls in item)
-                {
-                    var obj = new WebReception()
-                    {
-                        Guid = cls.Guid,
-                        Modified = cls.Modified,
-                        Status = cls.Status,
-                        Description = cls.Description,
-                        CreateDate = cls.CreateDate,
-                        NaqdPrice = cls.NaqdPrice,
-                        BankPrice = cls.BankPrice,
-                        BankName = cls.BankName,
-                        CheckNo = cls.CheckNo,
-                        SarResid = cls.SarResid,
-                        Receptor = cls.Receptor,
-                        Check = cls.Check,
-                        FishNo = cls.FishNo,
-                        HardSerial = cls.HardSerial
-                    };
-                    await obj.SaveAsync();
-                }
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-                res.AddReturnedValue(ex);
-            }
+        //    return res;
+        //}
+        //public static async Task<ReturnedSaveFuncInfo> SaveAsync(List<ReceptionBussines> item)
+        //{
+        //    var res = new ReturnedSaveFuncInfo();
+        //    try
+        //    {
+        //        foreach (var cls in item)
+        //        {
+        //            var obj = new WebReception()
+        //            {
+        //                Guid = cls.Guid,
+        //                Modified = cls.Modified,
+        //                Status = cls.Status,
+        //                Description = cls.Description,
+        //                CreateDate = cls.CreateDate,
+        //                NaqdPrice = cls.NaqdPrice,
+        //                BankPrice = cls.BankPrice,
+        //                BankName = cls.BankName,
+        //                CheckNo = cls.CheckNo,
+        //                SarResid = cls.SarResid,
+        //                Receptor = cls.Receptor,
+        //                Check = cls.Check,
+        //                FishNo = cls.FishNo,
+        //                HardSerial = cls.HardSerial
+        //            };
+        //            await obj.SaveAsync();
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        WebErrorLog.ErrorInstence.StartErrorLog(ex);
+        //        res.AddReturnedValue(ex);
+        //    }
 
-            return res;
-        }
+        //    return res;
+        //}
     }
 }

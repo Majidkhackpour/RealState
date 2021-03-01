@@ -81,7 +81,6 @@
     <Compile Include="Entities\DocumentType.cs" />
     <Compile Include="Entities\FileInfo.cs" />
     <Compile Include="Entities\FloorCover.cs" />
-    <Compile Include="Entities\GardeshHesab.cs" />
     <Compile Include="Entities\KitchenService.cs" />
     <Compile Include="Entities\Kol.cs" />
     <Compile Include="Entities\Moein.cs" />
@@ -92,7 +91,6 @@
     <Compile Include="Entities\PeopleGroup.cs" />
     <Compile Include="Entities\Peoples.cs" />
     <Compile Include="Entities\PhoneBook.cs" />
-    <Compile Include="Entities\Reception.cs" />
     <Compile Include="Entities\Regions.cs" />
     <Compile Include="Entities\RentalAuthority.cs" />
     <Compile Include="Entities\Sanad.cs" />

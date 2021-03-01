@@ -129,19 +129,14 @@ namespace RealState
                                     await WebBuildingRequest.SaveAsync(req);
                                 break;
                             case EnTemp.Reception:
-                                var rec = await ReceptionBussines.GetAsync(item.ObjectGuid);
-                                if (rec != null)
-                                    await WebReception.SaveAsync(rec);
+                                //var rec = await ReceptionBussines.GetAsync(item.ObjectGuid);
+                                //if (rec != null)
+                                //    await WebReception.SaveAsync(rec);
                                 break;
                             case EnTemp.Pardakht:
                                 var pa = await PardakhtBussines.GetAsync(item.ObjectGuid);
                                 if (pa != null)
                                     await WebPardakht.SaveAsync(pa);
-                                break;
-                            case EnTemp.GardeshHesab:
-                                var g = await GardeshHesabBussines.GetAsync(item.ObjectGuid);
-                                if (g != null)
-                                    await WebGardeshHesab.SaveAsync(g);
                                 break;
                         }
 

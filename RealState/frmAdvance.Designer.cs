@@ -42,7 +42,6 @@
             this.chbRequest = new DevComponents.DotNetBar.Controls.CheckBoxX();
             this.chbContract = new DevComponents.DotNetBar.Controls.CheckBoxX();
             this.chbReception = new DevComponents.DotNetBar.Controls.CheckBoxX();
-            this.chbGardesh = new DevComponents.DotNetBar.Controls.CheckBoxX();
             this.chbPardakht = new DevComponents.DotNetBar.Controls.CheckBoxX();
             this.chbUsers = new DevComponents.DotNetBar.Controls.CheckBoxX();
             this.chbPeople = new DevComponents.DotNetBar.Controls.CheckBoxX();
@@ -264,22 +263,6 @@
             this.chbReception.TabIndex = 16;
             this.chbReception.Text = "دریافت ها";
             // 
-            // chbGardesh
-            // 
-            this.chbGardesh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.chbGardesh.BackColor = System.Drawing.Color.Transparent;
-            // 
-            // 
-            // 
-            this.chbGardesh.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.chbGardesh.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.chbGardesh.Location = new System.Drawing.Point(410, 50);
-            this.chbGardesh.Name = "chbGardesh";
-            this.chbGardesh.Size = new System.Drawing.Size(102, 23);
-            this.chbGardesh.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.chbGardesh.TabIndex = 14;
-            this.chbGardesh.Text = "گردش حساب ها";
-            // 
             // chbPardakht
             // 
             this.chbPardakht.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -474,7 +457,6 @@
             this.Controls.Add(this.chbRental);
             this.Controls.Add(this.chbPardakht);
             this.Controls.Add(this.chbDocType);
-            this.Controls.Add(this.chbGardesh);
             this.Controls.Add(this.chbCondition);
             this.Controls.Add(this.chbReception);
             this.Controls.Add(this.chbView);
@@ -513,7 +495,6 @@
         private DevComponents.DotNetBar.Controls.CheckBoxX chbRequest;
         private DevComponents.DotNetBar.Controls.CheckBoxX chbContract;
         private DevComponents.DotNetBar.Controls.CheckBoxX chbReception;
-        private DevComponents.DotNetBar.Controls.CheckBoxX chbGardesh;
         private DevComponents.DotNetBar.Controls.CheckBoxX chbPardakht;
         private DevComponents.DotNetBar.Controls.CheckBoxX chbUsers;
         private DevComponents.DotNetBar.Controls.CheckBoxX chbPeople;

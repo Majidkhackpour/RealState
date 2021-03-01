@@ -63,11 +63,12 @@ namespace RealState
                 if (chbContract.Checked)
                     await WebContract.SaveAsync(await ContractBussines.GetAllAsync());
                 if (chbReception.Checked)
-                    await WebReception.SaveAsync(await ReceptionBussines.GetAllAsync());
+                {
+                    //await WebReception.SaveAsync(await ReceptionBussines.GetAllAsync());
+                }
+
                 if (chbPardakht.Checked)
                     await WebPardakht.SaveAsync(await PardakhtBussines.GetAllAsync());
-                if (chbGardesh.Checked)
-                    await WebGardeshHesab.SaveAsync(await GardeshHesabBussines.GetAllAsync());
 
 
                 Invoke(new MethodInvoker(() => MessageBox.Show("انتقال داده ها به سرور با موفقیت انجام شد")));

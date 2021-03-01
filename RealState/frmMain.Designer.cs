@@ -66,8 +66,6 @@
             this.btnPardakht = new DevComponents.DotNetBar.ButtonItem();
             this.ribbonBar22 = new DevComponents.DotNetBar.RibbonBar();
             this.btnReception = new DevComponents.DotNetBar.ButtonItem();
-            this.ribbonBar19 = new DevComponents.DotNetBar.RibbonBar();
-            this.btnAccountPerfomence = new DevComponents.DotNetBar.ButtonItem();
             this.ribbonBar20 = new DevComponents.DotNetBar.RibbonBar();
             this.btnHazine = new DevComponents.DotNetBar.ButtonItem();
             this.ribbonPanel2 = new DevComponents.DotNetBar.RibbonPanel();
@@ -464,7 +462,6 @@
             this.ribbonPanel4.Controls.Add(this.ribbonBar24);
             this.ribbonPanel4.Controls.Add(this.ribbonBar21);
             this.ribbonPanel4.Controls.Add(this.ribbonBar22);
-            this.ribbonPanel4.Controls.Add(this.ribbonBar19);
             this.ribbonPanel4.Controls.Add(this.ribbonBar20);
             this.ribbonPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ribbonPanel4.Location = new System.Drawing.Point(0, 30);
@@ -502,7 +499,7 @@
             this.ribbonBar37.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.btnDasteCheck});
             this.ribbonBar37.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
-            this.ribbonBar37.Location = new System.Drawing.Point(663, 0);
+            this.ribbonBar37.Location = new System.Drawing.Point(601, 0);
             this.ribbonBar37.Name = "ribbonBar37";
             this.ribbonBar37.Size = new System.Drawing.Size(72, 118);
             this.ribbonBar37.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -545,7 +542,7 @@
             this.ribbonBar25.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.btnBanks});
             this.ribbonBar25.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
-            this.ribbonBar25.Location = new System.Drawing.Point(591, 0);
+            this.ribbonBar25.Location = new System.Drawing.Point(529, 0);
             this.ribbonBar25.Name = "ribbonBar25";
             this.ribbonBar25.Size = new System.Drawing.Size(72, 118);
             this.ribbonBar25.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -588,7 +585,7 @@
             this.ribbonBar16.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.btnSandouq});
             this.ribbonBar16.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
-            this.ribbonBar16.Location = new System.Drawing.Point(519, 0);
+            this.ribbonBar16.Location = new System.Drawing.Point(457, 0);
             this.ribbonBar16.Name = "ribbonBar16";
             this.ribbonBar16.Size = new System.Drawing.Size(72, 118);
             this.ribbonBar16.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -631,7 +628,7 @@
             this.ribbonBar14.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.btnTafsil});
             this.ribbonBar14.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
-            this.ribbonBar14.Location = new System.Drawing.Point(447, 0);
+            this.ribbonBar14.Location = new System.Drawing.Point(385, 0);
             this.ribbonBar14.Name = "ribbonBar14";
             this.ribbonBar14.Size = new System.Drawing.Size(72, 118);
             this.ribbonBar14.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -674,7 +671,7 @@
             this.ribbonBar13.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.btnKolMoein});
             this.ribbonBar13.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
-            this.ribbonBar13.Location = new System.Drawing.Point(375, 0);
+            this.ribbonBar13.Location = new System.Drawing.Point(313, 0);
             this.ribbonBar13.Name = "ribbonBar13";
             this.ribbonBar13.Size = new System.Drawing.Size(72, 118);
             this.ribbonBar13.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -717,7 +714,7 @@
             this.ribbonBar23.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.btnTarazName});
             this.ribbonBar23.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
-            this.ribbonBar23.Location = new System.Drawing.Point(313, 0);
+            this.ribbonBar23.Location = new System.Drawing.Point(251, 0);
             this.ribbonBar23.Name = "ribbonBar23";
             this.ribbonBar23.Size = new System.Drawing.Size(62, 118);
             this.ribbonBar23.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -760,7 +757,7 @@
             this.ribbonBar24.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.btnSanad});
             this.ribbonBar24.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
-            this.ribbonBar24.Location = new System.Drawing.Point(251, 0);
+            this.ribbonBar24.Location = new System.Drawing.Point(189, 0);
             this.ribbonBar24.Name = "ribbonBar24";
             this.ribbonBar24.Size = new System.Drawing.Size(62, 118);
             this.ribbonBar24.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -803,7 +800,7 @@
             this.ribbonBar21.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.btnPardakht});
             this.ribbonBar21.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
-            this.ribbonBar21.Location = new System.Drawing.Point(189, 0);
+            this.ribbonBar21.Location = new System.Drawing.Point(127, 0);
             this.ribbonBar21.Name = "ribbonBar21";
             this.ribbonBar21.Size = new System.Drawing.Size(62, 118);
             this.ribbonBar21.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -846,7 +843,7 @@
             this.ribbonBar22.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.btnReception});
             this.ribbonBar22.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
-            this.ribbonBar22.Location = new System.Drawing.Point(127, 0);
+            this.ribbonBar22.Location = new System.Drawing.Point(65, 0);
             this.ribbonBar22.Name = "ribbonBar22";
             this.ribbonBar22.Size = new System.Drawing.Size(62, 118);
             this.ribbonBar22.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -871,49 +868,6 @@
             this.btnReception.SubItemsExpandWidth = 14;
             this.btnReception.Text = "دریافت";
             this.btnReception.Click += new System.EventHandler(this.btnReception_Click);
-            // 
-            // ribbonBar19
-            // 
-            this.ribbonBar19.AutoOverflowEnabled = true;
-            // 
-            // 
-            // 
-            this.ribbonBar19.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // 
-            // 
-            this.ribbonBar19.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.ribbonBar19.ContainerControlProcessDialogKey = true;
-            this.ribbonBar19.Dock = System.Windows.Forms.DockStyle.Left;
-            this.ribbonBar19.DragDropSupport = true;
-            this.ribbonBar19.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
-            this.btnAccountPerfomence});
-            this.ribbonBar19.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
-            this.ribbonBar19.Location = new System.Drawing.Point(65, 0);
-            this.ribbonBar19.Name = "ribbonBar19";
-            this.ribbonBar19.Size = new System.Drawing.Size(62, 118);
-            this.ribbonBar19.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.ribbonBar19.TabIndex = 9;
-            // 
-            // 
-            // 
-            this.ribbonBar19.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // 
-            // 
-            this.ribbonBar19.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // btnAccountPerfomence
-            // 
-            this.btnAccountPerfomence.Image = global::RealState.Properties.Resources._04;
-            this.btnAccountPerfomence.ImageListSizeSelection = DevComponents.DotNetBar.eButtonImageListSelection.Large;
-            this.btnAccountPerfomence.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-            this.btnAccountPerfomence.Name = "btnAccountPerfomence";
-            this.btnAccountPerfomence.PopupWidth = 500;
-            this.btnAccountPerfomence.Stretch = true;
-            this.btnAccountPerfomence.SubItemsExpandWidth = 14;
-            this.btnAccountPerfomence.Text = "عملکرد حساب";
-            this.btnAccountPerfomence.Click += new System.EventHandler(this.btnAccountPerfomence_Click);
             // 
             // ribbonBar20
             // 
@@ -2470,7 +2424,7 @@
             this.panelEx1.Controls.Add(this.pictureBox16);
             this.panelEx1.Controls.Add(this.pictureBox17);
             this.panelEx1.DisabledBackColor = System.Drawing.Color.Empty;
-            this.panelEx1.Location = new System.Drawing.Point(-182, 32);
+            this.panelEx1.Location = new System.Drawing.Point(-199, 32);
             this.panelEx1.Name = "panelEx1";
             this.panelEx1.Size = new System.Drawing.Size(414, 188);
             this.panelEx1.Style.Alignment = System.Drawing.StringAlignment.Center;
@@ -2751,7 +2705,7 @@
             this.grp.Controls.Add(this.pictureBox3);
             this.grp.Controls.Add(this.pictureBox2);
             this.grp.DisabledBackColor = System.Drawing.Color.Empty;
-            this.grp.Location = new System.Drawing.Point(238, 32);
+            this.grp.Location = new System.Drawing.Point(221, 32);
             this.grp.Name = "grp";
             this.grp.Size = new System.Drawing.Size(309, 260);
             this.grp.Style.Alignment = System.Drawing.StringAlignment.Center;
@@ -3377,8 +3331,6 @@
         private DevComponents.DotNetBar.ButtonItem btnPardakht;
         private DevComponents.DotNetBar.RibbonBar ribbonBar22;
         private DevComponents.DotNetBar.ButtonItem btnReception;
-        private DevComponents.DotNetBar.RibbonBar ribbonBar19;
-        private DevComponents.DotNetBar.ButtonItem btnAccountPerfomence;
         private DevComponents.DotNetBar.RibbonBar ribbonBar20;
         private DevComponents.DotNetBar.ButtonItem btnHazine;
         private DevComponents.DotNetBar.RibbonBar ribbonBar26;

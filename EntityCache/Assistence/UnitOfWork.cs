@@ -37,8 +37,6 @@ namespace EntityCache.Assistence
         private static IBuildingGalleryRepository _buildingGalleryRepository;
         private static IBuildingRequestRepository _buildingRequestRepository;
         private static IBuildingRequestRegionRepository _buildingRequestRegionRepository;
-        private static IGardeshHesabRepository _gardeshHesabRepository;
-        private static IReceptionRepository _receptionRepository;
         private static IPardakhtRepository _pardakhtRepository;
         private static IContractRepository _contractRepository;
         private static IContractFinanceRepository _contractFinanceRepository;
@@ -176,16 +174,6 @@ namespace EntityCache.Assistence
         public static IBuildingRequestRegionRepository BuildingRequestRegion => _buildingRequestRegionRepository ??
                                                                     (_buildingRequestRegionRepository =
                                                                         new BuildingRequestRegionPersistenceRepository(db, _connectionString));
-
-
-        public static IGardeshHesabRepository GardeshHesab => _gardeshHesabRepository ??
-                                                                                (_gardeshHesabRepository =
-                                                                                    new GardeshHesabPersistenceRepository(db, _connectionString));
-
-
-        public static IReceptionRepository Reception => _receptionRepository ??
-                                                  (_receptionRepository =
-                                                      new ReceptionPersistenceRepository(db, _connectionString));
 
 
         public static IPardakhtRepository Pardakht => _pardakhtRepository ??

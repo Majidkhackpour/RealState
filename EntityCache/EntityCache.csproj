@@ -129,7 +129,6 @@
     <Compile Include="Bussines\DocumentTypeBussines.cs" />
     <Compile Include="Bussines\FileInfoBussines.cs" />
     <Compile Include="Bussines\FloorCoverBussines.cs" />
-    <Compile Include="Bussines\GardeshHesabBussines.cs" />
     <Compile Include="Bussines\KitchenServiceBussines.cs" />
     <Compile Include="Bussines\KolBussines.cs" />
     <Compile Include="Bussines\MoeinBussines.cs" />
@@ -140,7 +139,6 @@
     <Compile Include="Bussines\PeoplesBankAccountBussines.cs" />
     <Compile Include="Bussines\PeoplesBussines.cs" />
     <Compile Include="Bussines\PhoneBookBussines.cs" />
-    <Compile Include="Bussines\ReceptionBussines.cs" />
     <Compile Include="Bussines\RegionsBussines.cs" />
     <Compile Include="Bussines\RentalAuthorityBussines.cs" />
     <Compile Include="Bussines\SanadBussines.cs" />
@@ -178,7 +176,6 @@
     <Compile Include="Core\IDocumentTypeRepository.cs" />
     <Compile Include="Core\IFileInfoRepository.cs" />
     <Compile Include="Core\IFloorCoverRepository.cs" />
-    <Compile Include="Core\IGardeshHesabRepository.cs" />
     <Compile Include="Core\IKitchenServiceRepository.cs" />
     <Compile Include="Core\IKolRepository.cs" />
     <Compile Include="Core\IMoeinRepository.cs" />
@@ -189,7 +186,6 @@
     <Compile Include="Core\IPeoplesBankAccountRepository.cs" />
     <Compile Include="Core\IPeoplesRepository.cs" />
     <Compile Include="Core\IPhoneBookRepository.cs" />
-    <Compile Include="Core\IReceptionRepository.cs" />
     <Compile Include="Core\IRegionsRepository.cs" />
     <Compile Include="Core\IRentalAuthorityRepository.cs" />
     <Compile Include="Core\IRepository.cs" />
@@ -228,7 +224,6 @@
     <Compile Include="SqlServerPersistence\DocumentTypePersistenceRepository.cs" />
     <Compile Include="SqlServerPersistence\FileInfoPersistenceRepository.cs" />
     <Compile Include="SqlServerPersistence\FloorCoverPersistenceRepository.cs" />
-    <Compile Include="SqlServerPersistence\GardeshHesabPersistenceRepository.cs" />
     <Compile Include="SqlServerPersistence\GenericRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SqlServerPersistence\KitchenServicePersistenceRepository.cs" />
@@ -241,7 +236,6 @@
     <Compile Include="SqlServerPersistence\PeopleGroupPersistenceRepository.cs" />
     <Compile Include="SqlServerPersistence\PeoplesPersistenceRepository.cs" />
     <Compile Include="SqlServerPersistence\PhoneBookPersistenceRepository.cs" />
-    <Compile Include="SqlServerPersistence\ReceptionPersistenceRepository.cs" />
     <Compile Include="SqlServerPersistence\RegionsPersistenceRepository.cs" />
     <Compile Include="SqlServerPersistence\RentalAuthorityPersistenceRepository.cs" />
     <Compile Include="SqlServerPersistence\SanadDetailPersistenceRepository.cs" />
