@@ -49,7 +49,9 @@ namespace Accounting.Sanad
             this.contextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
             this.DGrid = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.numberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dateShDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.sanadTypeNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.sanadStatusNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -57,15 +59,13 @@ namespace Accounting.Sanad
             this.sumDebitDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.sumCreditDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.userNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.guidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgGuid = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.modifiedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.statusDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.dateMDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.userGuidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.sanadStatusDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.sanadTypeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.SanadBindingSource)).BeginInit();
             this.contextMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).BeginInit();
@@ -107,6 +107,7 @@ namespace Accounting.Sanad
             this.mnuView.Name = "mnuView";
             this.mnuView.Size = new System.Drawing.Size(196, 24);
             this.mnuView.Text = "مشاهده (F12)";
+            this.mnuView.Click += new System.EventHandler(this.mnuView_Click);
             // 
             // toolStripMenuItem1
             // 
@@ -119,6 +120,7 @@ namespace Accounting.Sanad
             this.mnuDelete.Name = "mnuDelete";
             this.mnuDelete.Size = new System.Drawing.Size(196, 24);
             this.mnuDelete.Text = "حذف سند جاری (Del)";
+            this.mnuDelete.Click += new System.EventHandler(this.mnuDelete_Click);
             // 
             // mnuEdit
             // 
@@ -126,6 +128,7 @@ namespace Accounting.Sanad
             this.mnuEdit.Name = "mnuEdit";
             this.mnuEdit.Size = new System.Drawing.Size(196, 24);
             this.mnuEdit.Text = "ویرایش سند جاری (F7)";
+            this.mnuEdit.Click += new System.EventHandler(this.mnuEdit_Click);
             // 
             // mnuAdd
             // 
@@ -182,7 +185,7 @@ namespace Accounting.Sanad
             this.DGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.DGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.numberDataGridViewTextBoxColumn,
+            this.dgNumber,
             this.dateShDataGridViewTextBoxColumn,
             this.sanadTypeNameDataGridViewTextBoxColumn,
             this.sanadStatusNameDataGridViewTextBoxColumn,
@@ -190,7 +193,7 @@ namespace Accounting.Sanad
             this.sumDebitDataGridViewTextBoxColumn,
             this.sumCreditDataGridViewTextBoxColumn,
             this.userNameDataGridViewTextBoxColumn,
-            this.guidDataGridViewTextBoxColumn,
+            this.dgGuid,
             this.modifiedDataGridViewTextBoxColumn,
             this.statusDataGridViewCheckBoxColumn,
             this.dateMDataGridViewTextBoxColumn,
@@ -234,14 +237,28 @@ namespace Accounting.Sanad
             this.DGrid.Size = new System.Drawing.Size(793, 528);
             this.DGrid.TabIndex = 55755;
             // 
-            // numberDataGridViewTextBoxColumn
+            // dataGridViewTextBoxColumn1
             // 
-            this.numberDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.numberDataGridViewTextBoxColumn.DataPropertyName = "Number";
-            this.numberDataGridViewTextBoxColumn.HeaderText = "شماره سند";
-            this.numberDataGridViewTextBoxColumn.Name = "numberDataGridViewTextBoxColumn";
-            this.numberDataGridViewTextBoxColumn.ReadOnly = true;
-            this.numberDataGridViewTextBoxColumn.Width = 86;
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "SanadStatus";
+            this.dataGridViewTextBoxColumn1.HeaderText = "SanadStatus";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "SanadType";
+            this.dataGridViewTextBoxColumn2.HeaderText = "SanadType";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.Visible = false;
+            // 
+            // dgNumber
+            // 
+            this.dgNumber.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dgNumber.DataPropertyName = "Number";
+            this.dgNumber.HeaderText = "شماره سند";
+            this.dgNumber.Name = "dgNumber";
+            this.dgNumber.ReadOnly = true;
+            this.dgNumber.Width = 86;
             // 
             // dateShDataGridViewTextBoxColumn
             // 
@@ -311,13 +328,13 @@ namespace Accounting.Sanad
             this.userNameDataGridViewTextBoxColumn.ReadOnly = true;
             this.userNameDataGridViewTextBoxColumn.Width = 58;
             // 
-            // guidDataGridViewTextBoxColumn
+            // dgGuid
             // 
-            this.guidDataGridViewTextBoxColumn.DataPropertyName = "Guid";
-            this.guidDataGridViewTextBoxColumn.HeaderText = "Guid";
-            this.guidDataGridViewTextBoxColumn.Name = "guidDataGridViewTextBoxColumn";
-            this.guidDataGridViewTextBoxColumn.ReadOnly = true;
-            this.guidDataGridViewTextBoxColumn.Visible = false;
+            this.dgGuid.DataPropertyName = "Guid";
+            this.dgGuid.HeaderText = "Guid";
+            this.dgGuid.Name = "dgGuid";
+            this.dgGuid.ReadOnly = true;
+            this.dgGuid.Visible = false;
             // 
             // modifiedDataGridViewTextBoxColumn
             // 
@@ -367,20 +384,6 @@ namespace Accounting.Sanad
             this.sanadTypeDataGridViewTextBoxColumn.ReadOnly = true;
             this.sanadTypeDataGridViewTextBoxColumn.Visible = false;
             // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "SanadStatus";
-            this.dataGridViewTextBoxColumn1.HeaderText = "SanadStatus";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.Visible = false;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.DataPropertyName = "SanadType";
-            this.dataGridViewTextBoxColumn2.HeaderText = "SanadType";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.Visible = false;
-            // 
             // frmShowSanad
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -420,7 +423,9 @@ namespace Accounting.Sanad
         private System.Windows.Forms.ContextMenuStrip contextMenu;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
         private DevComponents.DotNetBar.Controls.DataGridViewX DGrid;
-        private System.Windows.Forms.DataGridViewTextBoxColumn numberDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgNumber;
         private System.Windows.Forms.DataGridViewTextBoxColumn dateShDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn sanadTypeNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn sanadStatusNameDataGridViewTextBoxColumn;
@@ -428,14 +433,12 @@ namespace Accounting.Sanad
         private System.Windows.Forms.DataGridViewTextBoxColumn sumDebitDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn sumCreditDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn userNameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn guidDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgGuid;
         private System.Windows.Forms.DataGridViewTextBoxColumn modifiedDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewCheckBoxColumn statusDataGridViewCheckBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn dateMDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn sanadStatusDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn userGuidDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn sanadStatusDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn sanadTypeDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
     }
 }

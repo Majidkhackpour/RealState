@@ -1,13 +1,12 @@
-﻿using System;
-using System.Linq;
-using System.Windows.Forms;
-using WindowsSerivces;
-using Accounting.Hesab;
-using DevComponents.DotNetBar.Controls;
+﻿using Accounting.Hesab;
 using EntityCache.Bussines;
 using MetroFramework.Forms;
 using Services;
+using System;
+using System.Linq;
+using System.Windows.Forms;
 using User;
+using WindowsSerivces;
 
 namespace Accounting.Sanad
 {
@@ -45,7 +44,7 @@ namespace Accounting.Sanad
         {
             try
             {
-                SanadBindingSource.DataSource = cls?.Details?.ToList();
+                SanadBindingSource.DataSource = cls?.Details?.OrderBy(q => q.Credit)?.ToList();
             }
             catch (Exception ex)
             {
@@ -181,6 +180,15 @@ namespace Accounting.Sanad
             InitializeComponent();
             cls = new SanadBussines();
         }
+        public frmSanadMain(Guid guid, bool isShowMode)
+        {
+            InitializeComponent();
+            cls = SanadBussines.Get(guid);
+            grp.Enabled = !isShowMode;
+            panelEx1.Enabled = !isShowMode;
+            panelEx3.Enabled = !isShowMode;
+            btnFinish.Enabled = !isShowMode;
+        }
 
         private void frmSanadMain_Load(object sender, EventArgs e) => SetData();
         private void frmSanadMain_KeyDown(object sender, KeyEventArgs e)
@@ -202,6 +210,12 @@ namespace Accounting.Sanad
                     case Keys.Escape:
                         btnCancel.PerformClick();
                         break;
+                    case Keys.F7:
+                        mnuEdit.PerformClick();
+                        break;
+                    case Keys.Delete:
+                        mnuDelete.PerformClick();
+                        break;
                 }
             }
             catch (Exception exception)
@@ -211,25 +225,9 @@ namespace Accounting.Sanad
         }
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            try
-            {
-                if (DGrid.RowCount <= 0)
-                {
-                    DialogResult = DialogResult.Cancel;
-                    Close();
-                }
-                else
-                {
-                    if (MessageBox.Show("اطلاعات سند ذخیره نشده است. آیا ادامه می دهید؟", "هشدار", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
-                        return;
-                    DialogResult = DialogResult.Cancel;
-                    Close();
-                }
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
+
+            DialogResult = DialogResult.Cancel;
+            Close();
         }
         private void DGrid_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
             => DGrid.Rows[e.RowIndex].Cells["dgRadif"].Value = e.RowIndex + 1;
@@ -239,6 +237,7 @@ namespace Accounting.Sanad
             var res = new ReturnedSaveFuncInfo();
             try
             {
+                mnuDelete.PerformClick();
                 res.AddReturnedValue(cls.AddToListSanad(GenerateDet()));
             }
             catch (Exception ex)
@@ -273,7 +272,7 @@ namespace Accounting.Sanad
                 cls.Description = txtDesc.Text;
                 cls.Number = (long)txtNumber.Value;
                 cls.SanadStatus = EnSanadStatus.Temporary;
-                cls.SanadType = (EnSanadType) cmbType.SelectedIndex;
+                cls.SanadType = (EnSanadType)cmbType.SelectedIndex;
 
                 res.AddReturnedValue(await cls.SaveAsync());
             }
@@ -290,6 +289,47 @@ namespace Accounting.Sanad
                     DialogResult = DialogResult.OK;
                     Close();
                 }
+            }
+        }
+        private void mnuEdit_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (DGrid.RowCount <= 0 || DGrid.CurrentRow == null) return;
+                var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
+                if (guid == Guid.Empty) return;
+                var det = cls?.Details?.FirstOrDefault(q => q.Guid == guid);
+                if (det == null) return;
+
+                _moeinGuid = det.MoeinGuid;
+                _tafsilGuid = det.TafsilGuid;
+                txtMoeinName.Text = det.MoeinName;
+                txtTafsilName.Text = det.TafsilName;
+                txtRowDesc.Text = det.Description;
+                txtDebit.TextDecimal = det.Debit;
+                txtCredit.TextDecimal = det.Credit;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private void mnuDelete_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (DGrid.RowCount <= 0 || DGrid.CurrentRow == null) return;
+                var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
+                if (guid == Guid.Empty) return;
+                var det = cls?.Details?.FirstOrDefault(q => q.Guid == guid);
+                if (det == null) return;
+                cls?.Details?.Remove(det);
+                FillDetails();
+                SetLables();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
     }

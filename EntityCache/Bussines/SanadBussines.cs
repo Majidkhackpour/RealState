@@ -45,6 +45,7 @@ namespace EntityCache.Bussines
 
         public static async Task<List<SanadBussines>> GetAllAsync() => await UnitOfWork.Sanad.GetAllAsync();
         public static async Task<SanadBussines> GetAsync(Guid guid) => await UnitOfWork.Sanad.GetAsync(guid);
+        public static SanadBussines Get(Guid guid) => AsyncContext.Run(() => GetAsync(guid));
         public static async Task<SanadBussines> GetAsync(long number) => await UnitOfWork.Sanad.GetAsync(number);
         public async Task<ReturnedSaveFuncInfo> SaveAsync(string tranName = "")
         {
@@ -279,6 +280,7 @@ namespace EntityCache.Bussines
             {
                 if (string.IsNullOrEmpty(Description)) res.AddError("لطفا شرح سند را وارد نمایید");
                 if (SumCredit == 0 && SumDebit == 0) res.AddError("سند بدون سطر قابل درج نمی باشد");
+                if (SumCredit != SumDebit) res.AddError("سند موازنه نمی باشد");
                 if (!await CheckCodeAsync(Guid, Number)) res.AddError("شماره سند معتبر نمی باشد");
             }
             catch (Exception ex)

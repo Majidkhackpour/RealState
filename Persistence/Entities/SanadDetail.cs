@@ -10,10 +10,12 @@ namespace Persistence.Entities
         [Column(Order = 1)]
         [Key]
         public Guid Guid { get; set; }
+        [Index("IX_Sanad_Date", 2)]
         public DateTime Modified { get; set; }
         public bool Status { get; set; }
         [Column(Order = 2)]
         [Key, ForeignKey("Sanad")]
+        [Index("IX_Sanad_MasterGuid",1)]
         public Guid MasterGuid { get; set; }
         [ForeignKey("Moein")]
         public Guid MoeinGuid { get; set; }
