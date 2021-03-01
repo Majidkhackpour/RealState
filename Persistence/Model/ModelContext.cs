@@ -1,4 +1,5 @@
 ﻿using System.Data.Entity;
+using System.Data.Entity.ModelConfiguration.Conventions;
 using Persistence.Entities;
 using Persistence.Migrations;
 
@@ -19,6 +20,7 @@ namespace Persistence.Model
         }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
         }
         public virtual DbSet<Users> Users { get; set; }
         public virtual DbSet<States> States { get; set; }
@@ -67,5 +69,9 @@ namespace Persistence.Model
         public virtual DbSet<CheckPage> CheckPage { get; set; }
         public virtual DbSet<Sanad> Sanad { get; set; }
         public virtual DbSet<SanadDetail> SanadDetails { get; set; }
+        public virtual DbSet<Reception> Reception { get; set; }
+        public virtual DbSet<ReceptionCheck> ReceptionCheck { get; set; }
+        public virtual DbSet<ReceptionNaqd> ReceptionNaqd { get; set; }
+        public virtual DbSet<ReceptionHavale> ReceptionHavale { get; set; }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Services;
@@ -20,7 +21,7 @@ namespace Persistence.Entities
         [ForeignKey("User")]
         public Guid UserGuid { get; set; }
         public EnSanadType SanadType { get; set; }
-        public virtual ICollection SanadDetails { get; set; }
+        public virtual ICollection<SanadDetail> SanadDetails { get; set; }
         public virtual Users User { get; set; }
     }
 }

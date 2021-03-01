@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Services;
@@ -28,6 +29,7 @@ namespace Persistence.Entities
         [MaxLength(50)]
         public string Mobile { get; set; }
         public string Access { get; set; }
-        public virtual ICollection Sanad { get; set; }
+        public virtual ICollection<Sanad> Sanad { get; set; }
+        public virtual ICollection<Reception> Reception { get; set; }
     }
 }

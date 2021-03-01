@@ -91,6 +91,10 @@
     <Compile Include="Entities\PeopleGroup.cs" />
     <Compile Include="Entities\Peoples.cs" />
     <Compile Include="Entities\PhoneBook.cs" />
+    <Compile Include="Entities\Reception.cs" />
+    <Compile Include="Entities\ReceptionCheck.cs" />
+    <Compile Include="Entities\ReceptionHavale.cs" />
+    <Compile Include="Entities\ReceptionNaqd.cs" />
     <Compile Include="Entities\Regions.cs" />
     <Compile Include="Entities\RentalAuthority.cs" />
     <Compile Include="Entities\Sanad.cs" />
@@ -397,6 +401,10 @@
     <Compile Include="Migrations\202102281715031__73.designer.cs">
       <DependentUpon>202102281715031__73.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202103011716364__74.cs" />
+    <Compile Include="Migrations\202103011716364__74.designer.cs">
+      <DependentUpon>202103011716364__74.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\ModelContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -630,6 +638,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202102281715031__73.resx">
       <DependentUpon>202102281715031__73.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202103011716364__74.resx">
+      <DependentUpon>202103011716364__74.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
