@@ -57,6 +57,10 @@ namespace EntityCache.Assistence
         private static ICheckPageRepository _checkPageRepository;
         private static IsanadRepository _sanadRepository;
         private static ISanadDetailRepository _sanadDetailRepository;
+        private static IReceptionRepository _receptionRepository;
+        private static IReceptionCheckRepository _receptionCheckRepository;
+        private static IReceptionHavaleRepository _receptionHavaleRepository;
+        private static IReceptionNaqdRepository _receptionNaqdRepository;
 
         public static void Dispose() => db?.Dispose();
         public static void Set_Save() => db.SaveChanges();
@@ -276,5 +280,25 @@ namespace EntityCache.Assistence
         public static ISanadDetailRepository SanadDetail => _sanadDetailRepository ??
                                                         (_sanadDetailRepository =
                                                             new SanadDetailPersistenceRepository(db, _connectionString));
+
+
+        public static IReceptionRepository Reception => _receptionRepository ??
+                                                          (_receptionRepository =
+                                                              new ReceptionPersistenceRepository(db, _connectionString));
+
+
+        public static IReceptionCheckRepository ReceptionCheck => _receptionCheckRepository ??
+                                                        (_receptionCheckRepository =
+                                                            new ReceptionCheckPersistenceRepository(db, _connectionString));
+
+
+        public static IReceptionHavaleRepository ReceptionHavale => _receptionHavaleRepository ??
+                                                (_receptionHavaleRepository =
+                                                    new ReceptionHavalePersistenceRepository(db, _connectionString));
+
+
+        public static IReceptionNaqdRepository ReceptionNaqd => _receptionNaqdRepository ??
+                                                            (_receptionNaqdRepository =
+                                                                new ReceptionNaqdPersistenceRepository(db, _connectionString));
     }
 }

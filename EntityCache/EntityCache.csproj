@@ -139,6 +139,10 @@
     <Compile Include="Bussines\PeoplesBankAccountBussines.cs" />
     <Compile Include="Bussines\PeoplesBussines.cs" />
     <Compile Include="Bussines\PhoneBookBussines.cs" />
+    <Compile Include="Bussines\ReceptionBussines.cs" />
+    <Compile Include="Bussines\ReceptionCheckBussines.cs" />
+    <Compile Include="Bussines\ReceptionHavaleBussines.cs" />
+    <Compile Include="Bussines\ReceptionNaqdBussines.cs" />
     <Compile Include="Bussines\RegionsBussines.cs" />
     <Compile Include="Bussines\RentalAuthorityBussines.cs" />
     <Compile Include="Bussines\SanadBussines.cs" />
@@ -186,6 +190,10 @@
     <Compile Include="Core\IPeoplesBankAccountRepository.cs" />
     <Compile Include="Core\IPeoplesRepository.cs" />
     <Compile Include="Core\IPhoneBookRepository.cs" />
+    <Compile Include="Core\IReceptionCheckRepository.cs" />
+    <Compile Include="Core\IReceptionHavaleRepository.cs" />
+    <Compile Include="Core\IReceptionNaqdRepository.cs" />
+    <Compile Include="Core\IReceptionRepository.cs" />
     <Compile Include="Core\IRegionsRepository.cs" />
     <Compile Include="Core\IRentalAuthorityRepository.cs" />
     <Compile Include="Core\IRepository.cs" />
@@ -236,6 +244,10 @@
     <Compile Include="SqlServerPersistence\PeopleGroupPersistenceRepository.cs" />
     <Compile Include="SqlServerPersistence\PeoplesPersistenceRepository.cs" />
     <Compile Include="SqlServerPersistence\PhoneBookPersistenceRepository.cs" />
+    <Compile Include="SqlServerPersistence\ReceptionCheckPersistenceRepository.cs" />
+    <Compile Include="SqlServerPersistence\ReceptionHavalePersistenceRepository.cs" />
+    <Compile Include="SqlServerPersistence\ReceptionNaqdPersistenceRepository.cs" />
+    <Compile Include="SqlServerPersistence\ReceptionPersistenceRepository.cs" />
     <Compile Include="SqlServerPersistence\RegionsPersistenceRepository.cs" />
     <Compile Include="SqlServerPersistence\RentalAuthorityPersistenceRepository.cs" />
     <Compile Include="SqlServerPersistence\SanadDetailPersistenceRepository.cs" />

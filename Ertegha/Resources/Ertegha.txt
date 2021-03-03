@@ -1204,98 +1204,6 @@ GO
 --END
 --GO
 -- ==========================================================================================
---IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Reception_Save]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
---	exec('Create Procedure [dbo].[sp_Reception_Save]	As Begin print 11 end')
---GO
-
---Alter PROCEDURE [dbo].[sp_Reception_Save]
---	@guid uniqueidentifier,
---	@modif datetime,
---	@dateSh nvarchar(20),
---	@st bit='true',
---	@receptor uniqueidentifier,
---	@createdate datetime,
---	@desc nvarchar(max)='',
---	@naqdprice bigint=0,
---	@bankprice bigint=0,
---	@checkprice bigint=0,
---	@fishNo nvarchar(50)='',
---	@checkNo nvarchar(50)='',
---	@sarresid nvarchar(50)='',
---	@bankname nvarchar(50)=''
---AS
---BEGIN
---	declare @gardeshprice bigint
---	declare @totalPrice bigint
---	declare @tarafHesab uniqueidentifier
-
-
---	set @gardeshprice=(ISNULL((select Price from GardeshHesabs
---		where ParentGuid=@guid and PeopleGuid=@receptor),0))
-
---	set @totalPrice=(@naqdprice+@bankprice+@checkprice)
-
---	if(@gardeshprice<>0)
---	begin
---		update GardeshHesabs
---		set Price=@totalPrice
---		where ParentGuid=@guid and PeopleGuid=@receptor
---	end
---	else
---	begin
---		insert into GardeshHesabs(Babat,Description,Guid,Modified,ParentGuid,PeopleGuid,Price,Status,Type)
---		values(3,N' ثبت سند دریافت در تاریخ'+@dateSh,NEWID(), GETDATE(),@guid,@receptor,@totalPrice,'true',3)
---	end
-
---	set @tarafHesab=(ISNULL((select Guid from Peoples
---		where Guid=@receptor),'00000000-0000-0000-0000-000000000000'))
-
---	if (@tarafHesab='00000000-0000-0000-0000-000000000000')
---	begin
---		set @tarafHesab=(ISNULL((select Guid from Users
---		where Guid=@receptor),'00000000-0000-0000-0000-000000000000'))
-
---		update Users
---		set Account=Account+@gardeshprice
---		where Guid=@receptor
-
---		update Users
---		set Account=Account-@totalPrice
---		where Guid=@receptor
---	end
---	else
---	begin
---		update Peoples
---		set Account=Account+@gardeshprice
---		where Guid=@receptor
-
---		update Peoples
---		set Account=Account-@totalPrice
---		where Guid=@receptor
---	end
-
---	update Receptions
---	set Modified=@modif,
---	Status=@st,
---	Receptor=@receptor,
---	NaqdPrice=@naqdprice,
---	BankPrice=@bankprice,
---	[Check]=@checkprice,
---	Description=@desc,
---	FishNo=@fishNo,
---	CheckNo=@checkNo,
---	SarResid=@sarresid,
---	BankName=@bankname
---	where Guid=@guid
-
---	if (@@ROWCOUNT=0)
---	begin
---		insert into Receptions(BankName,BankPrice,[Check],CheckNo,CreateDate,Description,FishNo,Guid,Modified,NaqdPrice,Receptor,SarResid,Status)
---		values(@bankname,@bankprice,@checkprice,@checkNo,GETDATE(),@desc,@fishNo,@guid,GETDATE(),@naqdprice,@receptor,@sarresid,@st)
---	end
---END
---GO
--- ==========================================================================================
 IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Contract_ChangeStatus]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
 	exec('Create Procedure [dbo].[sp_Contract_ChangeStatus]	As Begin print 11 end')
 GO
@@ -1922,26 +1830,7 @@ BEGIN
 	and Pardakhts.SarResid=@dateSh
 END
 GO
--- ==========================================================================================
-IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Reception_CheckReport]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
-	exec('Create Procedure [dbo].[sp_Reception_CheckReport]	As Begin print 11 end')
-GO
-Alter PROCEDURE sp_Reception_CheckReport
-	@dateSh nvarchar(50)
-AS
-BEGIN
-	select  Peoples.Name As PeopleName,
-			Receptions.[Check] As Price,
-			Receptions.CheckNo As Number,
-			Receptions.BankName As BankName,
-			Receptions.CreateDate As CreateDate
-	from Receptions left outer join Peoples on
-		 Receptions.Receptor = Peoples.Guid
-	where Receptions.[Check]>0
-	and Receptions.SarResid=@dateSh
-END
-GO
--- ==========================================================================================
+-- =================================================================================
 IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Building_Discharge_Count]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
 	exec('Create Procedure [dbo].[sp_Building_Discharge_Count]	As Begin print 11 end')
 GO
@@ -3324,4 +3213,323 @@ AS
 BEGIN
 	select COUNT(*) from Sanads
 	where Number=@code and Guid<>@guid
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Reception_GetAll]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Reception_GetAll]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_Reception_GetAll
+AS
+BEGIN
+	select Receptions.*, Tafsils.Name As TafsilName, Users.Name As UserName
+	from Receptions inner join Tafsils on
+	Receptions.TafsilGuid=Tafsils.Guid
+	inner join Users on
+	Receptions.UserGuid=Users.Guid
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Reception_GetByGuid]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Reception_GetByGuid]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_Reception_GetByGuid
+	@Guid uniqueidentifier
+AS
+BEGIN
+	select Receptions.*, Tafsils.Name As TafsilName, Users.Name As UserName
+	from Receptions inner join Tafsils on
+	Receptions.TafsilGuid=Tafsils.Guid
+	inner join Users on
+	Receptions.UserGuid=Users.Guid
+	where Receptions.Guid=@Guid
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Reception_NextCode]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Reception_NextCode]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_Reception_NextCode
+AS
+BEGIN
+	declare @nextCode nvarchar(10)
+	select @nextCode = MAX(Number) From Receptions
+	set @nextCode = (isnull(@nextCode , 0))
+	set @nextCode = CAST(@nextCode AS bigint) + 1
+	select @nextCode
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Reception_CheckCode]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Reception_CheckCode]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_Reception_CheckCode
+	@guid uniqueidentifier,
+	@code bigint
+AS
+BEGIN
+	select COUNT(*) from Receptions
+	where Number=@code and Guid<>@guid
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Reception_Save]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Reception_Save]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_Reception_Save
+	@guid uniqueidentifier,
+	@modif datetime,
+	@st bit,
+	@number bigint,
+	@desc nvarchar(max),
+	@dateM datetime,
+	@tafsilGuid uniqueidentifier,
+	@moeinGuid uniqueidentifier,
+	@userGuid uniqueidentifier,
+	@sanadNumber bigint
+AS
+BEGIN
+	UPDATE [dbo].[Receptions]
+	   SET [Modified] = @modif
+		  ,[Status] = @st
+		  ,[Description] = @desc
+		  ,[Number] = @number
+		  ,[DateM] = @dateM
+		  ,[TafsilGuid] = @tafsilGuid
+		  ,[MoeinGuid] = @moeinGuid
+		  ,[UserGuid] = @userGuid
+		  ,[SanadNumber] = @sanadNumber
+	 WHERE Guid=@guid
+	 if @@ROWCOUNT=0
+	 begin
+		INSERT INTO [dbo].[Receptions]
+           ([Guid]
+           ,[Modified]
+           ,[Status]
+           ,[Description]
+           ,[Number]
+           ,[DateM]
+           ,[TafsilGuid]
+           ,[MoeinGuid]
+           ,[UserGuid]
+           ,[SanadNumber])
+		VALUES
+           (@guid
+           ,@modif
+           ,@st
+           ,@desc
+           ,@number
+           ,@dateM
+           ,@tafsilGuid
+           ,@moeinGuid
+           ,@userGuid
+           ,@sanadNumber)
+	 end
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Reception_Remove]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Reception_Remove]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_Reception_Remove
+	@guid uniqueidentifier
+AS
+BEGIN
+	delete from Receptions
+	where Guid=@guid
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_ReceptionCheck_GetAll]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_ReceptionCheck_GetAll]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_ReceptionCheck_GetAll
+	@masterGuid uniqueidentifier
+AS
+BEGIN
+	select * from ReceptionChecks
+	where MasterGuid=@masterGuid
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_ReceptionCheck_Remove]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_ReceptionCheck_Remove]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_ReceptionCheck_Remove
+	@masterGuid uniqueidentifier
+AS
+BEGIN
+	delete from ReceptionChecks
+	where MasterGuid=@masterGuid
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_ReceptionCheck_Insert]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_ReceptionCheck_Insert]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_ReceptionCheck_Insert
+	@guid uniqueidentifier,
+	@modif datetime,
+	@st bit,
+	@bankName nvarchar(200),
+	@desc nvarchar(max),
+	@dateM datetime,
+	@masterGuid uniqueidentifier,
+	@checkNumber nvarchar(200),
+	@poshtNomre nvarchar(200),
+	@price decimal,
+	@checkStatus int
+AS
+BEGIN
+	INSERT INTO [dbo].[ReceptionChecks]
+          ([Guid]
+          ,[Modified]
+          ,[Status]
+          ,[BankName]
+          ,[DateM]
+          ,[MasterGuid]
+          ,[Description]
+          ,[CheckNumber]
+          ,[PoshtNomre]
+          ,[Price]
+          ,[CheckStatus])
+	VALUES
+          (@guid
+          ,@modif
+          ,@st
+          ,@bankName
+          ,@dateM
+          ,@masterGuid
+          ,@desc
+          ,@checkNumber
+          ,@poshtNomre
+          ,@price
+          ,@checkStatus)
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_ReceptionNaqd_GetAll]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_ReceptionNaqd_GetAll]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_ReceptionNaqd_GetAll
+	@masterGuid uniqueidentifier
+AS
+BEGIN
+	select * from ReceptionNaqds
+	where MasterGuid=@masterGuid
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_ReceptionNaqd_Remove]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_ReceptionNaqd_Remove]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_ReceptionNaqd_Remove
+	@masterGuid uniqueidentifier
+AS
+BEGIN
+	Delete from ReceptionNaqds
+	where MasterGuid=@masterGuid
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_ReceptionNaqd_Insert]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_ReceptionNaqd_Insert]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_ReceptionNaqd_Insert
+	@guid uniqueidentifier,
+	@modif datetime,
+	@st bit,
+	@desc nvarchar(max),
+	@dateM datetime,
+	@masterGuid uniqueidentifier,
+	@price decimal,
+	@sandouqTafsilGuid uniqueidentifier,
+	@sandouqMoeinGuid uniqueidentifier
+AS
+BEGIN
+	INSERT INTO [dbo].[ReceptionNaqds]
+           ([Guid]
+           ,[Modified]
+           ,[Status]
+           ,[DateM]
+           ,[MasterGuid]
+           ,[Description]
+           ,[Price]
+           ,[SandouqTafsilGuid]
+           ,[SandouqMoeinGuid])
+     VALUES
+           (@guid
+           ,@modif
+           ,@st
+           ,@dateM
+           ,@masterGuid
+           ,@desc
+           ,@price
+           ,@sandouqTafsilGuid
+           ,@sandouqMoeinGuid)
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_ReceptionHavale_GetAll]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_ReceptionHavale_GetAll]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_ReceptionHavale_GetAll
+	@masterGuid uniqueidentifier
+AS
+BEGIN
+	select * from ReceptionHavales
+	where MasterGuid=@masterGuid
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_ReceptionHavale_Remove]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_ReceptionHavale_Remove]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_ReceptionHavale_Remove
+	@masterGuid uniqueidentifier
+AS
+BEGIN
+	delete from ReceptionHavales
+	where MasterGuid=@masterGuid
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_ReceptionHavale_Insert]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_ReceptionHavale_Insert]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_ReceptionHavale_Insert
+	@guid uniqueidentifier,
+	@modif datetime,
+	@st bit,
+	@desc nvarchar(max),
+	@dateM datetime,
+	@masterGuid uniqueidentifier,
+	@price decimal,
+	@peygiriNo nvarchar(200),
+	@bankTafsilGuid uniqueidentifier,
+	@bankMoeinGuid uniqueidentifier
+AS
+BEGIN
+	INSERT INTO [dbo].[ReceptionHavales]
+           ([Guid]
+           ,[Modified]
+           ,[Status]
+           ,[DateM]
+           ,[MasterGuid]
+           ,[Description]
+           ,[Price]
+           ,[PeygiriNumber]
+           ,[BankTafsilGuid]
+           ,[BankMoeinGuid])
+     VALUES
+           (@guid
+           ,@modif
+           ,@st
+           ,@dateM
+           ,@masterGuid
+           ,@desc
+           ,@price
+           ,@peygiriNo
+           ,@bankTafsilGuid
+           ,@bankMoeinGuid)
 END

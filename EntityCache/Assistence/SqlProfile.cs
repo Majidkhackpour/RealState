@@ -55,6 +55,10 @@ namespace EntityCache.Assistence
             CreateMap<CheckPageBussines, CheckPage>().ReverseMap();
             CreateMap<SanadBussines, Sanad>().ReverseMap();
             CreateMap<SanadDetailBussines, SanadDetail>().ReverseMap();
+            CreateMap<ReceptionBussines, Reception>().ReverseMap();
+            CreateMap<ReceptionNaqdBussines, ReceptionNaqd>().ReverseMap();
+            CreateMap<ReceptionHavaleBussines, ReceptionHavale>().ReverseMap();
+            CreateMap<ReceptionCheckBussines, ReceptionCheck>().ReverseMap();
         }
     }
 }
