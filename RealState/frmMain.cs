@@ -40,6 +40,7 @@ using WindowsSerivces;
 using Accounting.Bank;
 using Accounting.Check.DasteCheck;
 using Accounting.Hesab;
+using Accounting.Reception;
 using Accounting.Sanad;
 using Accounting.Sandouq;
 using Accounting.Sood_Zian;
@@ -572,7 +573,8 @@ namespace RealState
         {
             try
             {
-                
+                var frm = new frmShowReception();
+                frm.ShowDialog(this);
             }
             catch (Exception ex)
             {
