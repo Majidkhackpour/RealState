@@ -86,6 +86,7 @@
   <ItemGroup>
     <Compile Include="Assistence\AddDefaults.cs" />
     <Compile Include="Assistence\ClsCache.cs" />
+    <Compile Include="Assistence\Defualts\DefaultBankSegest.cs" />
     <Compile Include="Assistence\Defualts\DefaultBuildingAccountType.cs" />
     <Compile Include="Assistence\Defualts\DefaultBuildingCondition.cs" />
     <Compile Include="Assistence\Defualts\DefaultBuildingOptions.cs" />
@@ -111,6 +112,7 @@
     <Compile Include="Bussines\AdvTokenBussines.cs" />
     <Compile Include="Bussines\BackUpLogBussines.cs" />
     <Compile Include="Bussines\BankBussines.cs" />
+    <Compile Include="Bussines\BankSegestBussines.cs" />
     <Compile Include="Bussines\BuildingAccountTypeBussines.cs" />
     <Compile Include="Bussines\BuildingBussines.cs" />
     <Compile Include="Bussines\BuildingConditionBussines.cs" />
@@ -162,6 +164,7 @@
     <Compile Include="Core\IAdvTokensRepository.cs" />
     <Compile Include="Core\IBackUpLogRepository.cs" />
     <Compile Include="Core\IBankRepository.cs" />
+    <Compile Include="Core\IBankSegestRepository.cs" />
     <Compile Include="Core\IBuildingAccountTypeRepository.cs" />
     <Compile Include="Core\IBuildingConditionRepository.cs" />
     <Compile Include="Core\IBuildingGalleryRepository.cs" />
@@ -214,6 +217,7 @@
     <Compile Include="SqlServerPersistence\AdvTokensPersistenceRepository.cs" />
     <Compile Include="SqlServerPersistence\BackUpLogPersistenceRepository.cs" />
     <Compile Include="SqlServerPersistence\BankPersistenceRepository.cs" />
+    <Compile Include="SqlServerPersistence\BankSegestPersistenseRepository.cs" />
     <Compile Include="SqlServerPersistence\BuildingAccountTypePersistenceRepository.cs" />
     <Compile Include="SqlServerPersistence\BuildingConditionPersistenceRepository.cs" />
     <Compile Include="SqlServerPersistence\BuildingGalleryPersistenceRepository.cs" />

@@ -251,7 +251,12 @@ namespace EntityCache.Bussines
                 res.AddReturnedValue(await PeoplesBankAccountBussines.RemoveAsync(Guid));
                 if (res.HasError) return res;
 
-                foreach (var item in BankList) item.ParentGuid = Guid;
+                foreach (var item in BankList)
+                {
+                    item.ParentGuid = Guid;
+                    res.AddReturnedValue(await BankSegestBussines.CheckBankAsync(item.BankName));
+                    if (res.HasError) return res;
+                }
                 res.AddReturnedValue(await PeoplesBankAccountBussines.SaveRangeAsync(BankList));
             }
             catch (Exception ex)

@@ -59,6 +59,7 @@ namespace EntityCache.Assistence
             CreateMap<ReceptionNaqdBussines, ReceptionNaqd>().ReverseMap();
             CreateMap<ReceptionHavaleBussines, ReceptionHavale>().ReverseMap();
             CreateMap<ReceptionCheckBussines, ReceptionCheck>().ReverseMap();
+            CreateMap<BankSegestBussines, BankSegest>().ReverseMap();
         }
     }
 }

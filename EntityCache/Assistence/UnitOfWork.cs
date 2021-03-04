@@ -61,6 +61,7 @@ namespace EntityCache.Assistence
         private static IReceptionCheckRepository _receptionCheckRepository;
         private static IReceptionHavaleRepository _receptionHavaleRepository;
         private static IReceptionNaqdRepository _receptionNaqdRepository;
+        private static IBankSegestRepository _bankSegestRepository;
 
         public static void Dispose() => db?.Dispose();
         public static void Set_Save() => db.SaveChanges();
@@ -300,5 +301,10 @@ namespace EntityCache.Assistence
         public static IReceptionNaqdRepository ReceptionNaqd => _receptionNaqdRepository ??
                                                             (_receptionNaqdRepository =
                                                                 new ReceptionNaqdPersistenceRepository(db, _connectionString));
+
+
+        public static IBankSegestRepository BankSegest => _bankSegestRepository ??
+                                                                (_bankSegestRepository =
+                                                                    new BankSegestPersistenseRepository(db, _connectionString));
     }
 }

@@ -157,32 +157,43 @@ namespace Peoples
 
         private async void frmPeoples_Load(object sender, EventArgs e)
         {
-            await SetDataAsync();
-
-            var nameCollection = new AutoCompleteStringCollection();
-            var fNameCollection = new AutoCompleteStringCollection();
-            var bankCollection = new AutoCompleteStringCollection();
-            var shobeCollection = new AutoCompleteStringCollection();
-            var nCodeCollection = new AutoCompleteStringCollection();
-            var placeCollection = new AutoCompleteStringCollection();
-            var issuedCollection = new AutoCompleteStringCollection();
-            var list = await PeoplesBussines.GetAllAsync();
-            foreach (var item in list.ToList())
+            try
             {
-                nameCollection.Add(item.Name);
-                fNameCollection.Add(item.FatherName);
-                placeCollection.Add(item.PlaceBirth);
-                issuedCollection.Add(item.IssuedFrom);
-                nCodeCollection.Add(item.NationalCode);
-            }
+                await SetDataAsync();
 
-            txtName.AutoCompleteCustomSource = nameCollection;
-            txtFatherName.AutoCompleteCustomSource = fNameCollection;
-            txtNationalCode.AutoCompleteCustomSource = nCodeCollection;
-            txtPlaceBirth.AutoCompleteCustomSource = placeCollection;
-            txtIssuesFrom.AutoCompleteCustomSource = issuedCollection;
-            txtShobe.AutoCompleteCustomSource = shobeCollection;
-            txtBank.AutoCompleteCustomSource = bankCollection;
+                var nameCollection = new AutoCompleteStringCollection();
+                var fNameCollection = new AutoCompleteStringCollection();
+                var bankCollection = new AutoCompleteStringCollection();
+                var shobeCollection = new AutoCompleteStringCollection();
+                var nCodeCollection = new AutoCompleteStringCollection();
+                var placeCollection = new AutoCompleteStringCollection();
+                var issuedCollection = new AutoCompleteStringCollection();
+                var list = await PeoplesBussines.GetAllAsync();
+                foreach (var item in list.ToList())
+                {
+                    nameCollection.Add(item.Name);
+                    fNameCollection.Add(item.FatherName);
+                    placeCollection.Add(item.PlaceBirth);
+                    issuedCollection.Add(item.IssuedFrom);
+                    nCodeCollection.Add(item.NationalCode);
+                }
+
+                var banksegList = await BankSegestBussines.GetAllAsync();
+                if (banksegList != null && banksegList.Count > 0)
+                    bankCollection.AddRange(banksegList.Select(q => q.BankName).ToArray());
+
+                txtName.AutoCompleteCustomSource = nameCollection;
+                txtFatherName.AutoCompleteCustomSource = fNameCollection;
+                txtNationalCode.AutoCompleteCustomSource = nCodeCollection;
+                txtPlaceBirth.AutoCompleteCustomSource = placeCollection;
+                txtIssuesFrom.AutoCompleteCustomSource = issuedCollection;
+                txtShobe.AutoCompleteCustomSource = shobeCollection;
+                txtBank.AutoCompleteCustomSource = bankCollection;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
         }
         private void txtCode_Enter(object sender, EventArgs e) => txtSetter.Focus(txtCode);
         private void txtNationalCode_Enter(object sender, EventArgs e) => txtSetter.Focus(txtNationalCode);

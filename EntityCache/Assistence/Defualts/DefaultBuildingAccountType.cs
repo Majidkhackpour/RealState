@@ -25,7 +25,6 @@ namespace EntityCache.Assistence.Defualts
                 return null;
             }
         }
-
         public static List<BuildingAccountTypeBussines> SetDef()
         {
             try

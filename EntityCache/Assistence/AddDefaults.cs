@@ -66,6 +66,16 @@ namespace EntityCache.Assistence
                 }
                 #endregion
 
+                #region Bank Segest
+                var allbs = await BankSegestBussines.GetAllAsync();
+                if (allbs == null || allbs.Count <= 0)
+                {
+                    var bs = DefaultBankSegest.SetDef();
+                    res.AddReturnedValue(await BankSegestBussines.SaveRangeAsync(bs));
+                    if (res.HasError) return;
+                }
+                #endregion
+
                 #region Users
                 var allusers = await UserBussines.GetAllAsync();
                 var access = new AccessLevel();

@@ -147,7 +147,7 @@ namespace Accounting.Hesab
             {
                 SetData();
                 var myCollection = new AutoCompleteStringCollection();
-                var list = await TafsilBussines.GetAllAsync("", HesabType.Sandouq);
+                var list = await TafsilBussines.GetAllAsync("", hType);
                 foreach (var item in list.ToList())
                     myCollection.Add(item.Name);
                 txtName.AutoCompleteCustomSource = myCollection;
