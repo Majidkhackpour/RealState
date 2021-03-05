@@ -58,6 +58,41 @@ namespace EntityCache.Bussines
 
 
         public static async Task<List<ReceptionBussines>> GetAllAsync() => await UnitOfWork.Reception.GetAllAsync();
+        public static async Task<List<ReceptionBussines>> GetAllAsync(string search)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(search)) search = "";
+                var res = await GetAllAsync();
+                var searchItems = search.SplitString();
+                if (searchItems?.Count > 0)
+                    foreach (var item in searchItems)
+                    {
+                        if (!string.IsNullOrEmpty(item) && item.Trim() != "")
+                        {
+                            res = res.Where(x => x.Number.ToString().ToLower().Contains(item.ToLower()) ||
+                                                 x.TafsilName.ToLower().Contains(item.ToLower()) ||
+                                                 x.Description.ToLower().Contains(item.ToLower()) ||
+                                                 x.Sum.ToString().ToLower().Contains(item.ToLower()) ||
+                                                 x.SumHavale.ToString().ToLower().Contains(item.ToLower()) ||
+                                                 x.SumCheck.ToString().ToLower().Contains(item.ToLower()) ||
+                                                 x.SumNaqd.ToString().ToLower().Contains(item.ToLower()) ||
+                                                 x.UserName.ToLower().Contains(item.ToLower()))
+                                ?.ToList();
+                        }
+                    }
+
+                res = res?.OrderByDescending(o => o.Number).ToList();
+                return res;
+            }
+            catch (OperationCanceledException)
+            { return null; }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                return new List<ReceptionBussines>();
+            }
+        }
         public static async Task<ReceptionBussines> GetAsync(Guid guid) => await UnitOfWork.Reception.GetAsync(guid);
         public static ReceptionBussines Get(Guid guid) => AsyncContext.Run(() => GetAsync(guid));
         public async Task<ReturnedSaveFuncInfo> SaveAsync(string tranName = "")

@@ -48,7 +48,6 @@ namespace Accounting.Reception
             this.mnuAdd = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.DGrid = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.ReceptionBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.numberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dateShDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tafsilNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -69,6 +68,7 @@ namespace Accounting.Reception
             this.countNaqdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.countHavaleDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.countCheckDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ReceptionBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.contextMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ReceptionBindingSource)).BeginInit();
@@ -124,6 +124,7 @@ namespace Accounting.Reception
             this.mnuAdd.Name = "mnuAdd";
             this.mnuAdd.Size = new System.Drawing.Size(212, 24);
             this.mnuAdd.Text = "افزودن دریافت جدید (Ins)";
+            this.mnuAdd.Click += new System.EventHandler(this.mnuAdd_Click);
             // 
             // contextMenu
             // 
@@ -136,7 +137,7 @@ namespace Accounting.Reception
             this.mnuView});
             this.contextMenu.Name = "contextMenu";
             this.contextMenu.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.contextMenu.Size = new System.Drawing.Size(213, 128);
+            this.contextMenu.Size = new System.Drawing.Size(213, 106);
             // 
             // DGrid
             // 
@@ -221,10 +222,6 @@ namespace Accounting.Reception
             this.DGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DGrid.Size = new System.Drawing.Size(793, 528);
             this.DGrid.TabIndex = 55755;
-            // 
-            // ReceptionBindingSource
-            // 
-            this.ReceptionBindingSource.DataSource = typeof(EntityCache.Bussines.ReceptionBussines);
             // 
             // numberDataGridViewTextBoxColumn
             // 
@@ -405,6 +402,10 @@ namespace Accounting.Reception
             this.countCheckDataGridViewTextBoxColumn.ReadOnly = true;
             this.countCheckDataGridViewTextBoxColumn.Visible = false;
             // 
+            // ReceptionBindingSource
+            // 
+            this.ReceptionBindingSource.DataSource = typeof(EntityCache.Bussines.ReceptionBussines);
+            // 
             // frmShowReception
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -421,6 +422,8 @@ namespace Accounting.Reception
             this.Padding = new System.Windows.Forms.Padding(27, 92, 27, 31);
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.Style = MetroFramework.MetroColorStyle.Green;
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.frmShowReception_Load);
             this.contextMenu.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ReceptionBindingSource)).EndInit();
