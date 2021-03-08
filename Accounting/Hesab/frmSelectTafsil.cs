@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -12,11 +13,20 @@ namespace Accounting.Hesab
     {
         public Guid SelectedGuid { get; set; }
         private HesabType _type = HesabType.All;
+        private bool? _isFromReception = null;
         private async Task LoadDataAsync(string search = "")
         {
             try
             {
-                var list = await TafsilBussines.GetAllAsync(search, _type);
+                List<TafsilBussines> list = null;
+                if (_isFromReception != null && _isFromReception.Value)
+                {
+                    list = await TafsilBussines.GetAllAsync(search);
+                    list = list.Where(q => q.HesabType != HesabType.Hazine).ToList();
+                }
+                else
+                    list = await TafsilBussines.GetAllAsync(search, _type);
+
                 Invoke(new MethodInvoker(() => TafsilBindingSource.DataSource =
                     list.OrderBy(q => q.Code).Where(q => q.Status).ToSortableBindingList()));
             }
@@ -30,6 +40,12 @@ namespace Accounting.Hesab
         {
             InitializeComponent();
             _type = htype;
+            DGrid.Focus();
+        }
+        public frmSelectTafsil(bool isFromReception)
+        {
+            InitializeComponent();
+            _isFromReception = isFromReception;
             DGrid.Focus();
         }
 

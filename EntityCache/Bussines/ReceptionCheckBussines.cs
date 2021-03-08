@@ -14,6 +14,8 @@ namespace EntityCache.Bussines
         public bool Status { get; set; }
         public string BankName { get; set; }
         public DateTime DateM { get; set; }
+        public DateTime DateSarResid { get; set; }
+        public string DateSarresidSh => Calendar.MiladiToShamsi(DateSarResid);
         public Guid MasterGuid { get; set; }
         public string Description { get; set; }
         public string CheckNumber { get; set; }

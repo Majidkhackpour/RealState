@@ -106,7 +106,7 @@ namespace EntityCache.SqlServerPersistence
 
                     await cn.OpenAsync();
                     var obj = await cmd.ExecuteScalarAsync();
-                    if (obj != null) res = (long)obj;
+                    if (obj != null) res = obj.ToString().ParseToLong();
                     cn.Close();
                 }
             }

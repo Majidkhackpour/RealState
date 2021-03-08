@@ -91,6 +91,7 @@ namespace Accounting.Reception
             this.txtSearch.TabIndex = 55754;
             this.txtSearch.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtSearch.WatermarkText = "مورد جستجو را وارد نمایید ...";
+            this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
             // 
             // mnuView
             // 
@@ -424,6 +425,7 @@ namespace Accounting.Reception
             this.Style = MetroFramework.MetroColorStyle.Green;
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmShowReception_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmShowReception_KeyDown);
             this.contextMenu.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ReceptionBindingSource)).EndInit();

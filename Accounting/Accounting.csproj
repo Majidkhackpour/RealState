@@ -226,11 +226,29 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Reception\frmReceptionCheck.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reception\frmReceptionCheck.Designer.cs">
+      <DependentUpon>frmReceptionCheck.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reception\frmReceptionHavale.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reception\frmReceptionHavale.Designer.cs">
+      <DependentUpon>frmReceptionHavale.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reception\frmReceptionMain.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Reception\frmReceptionMain.Designer.cs">
       <DependentUpon>frmReceptionMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reception\frmReceptionNaqd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reception\frmReceptionNaqd.Designer.cs">
+      <DependentUpon>frmReceptionNaqd.cs</DependentUpon>
     </Compile>
     <Compile Include="Reception\frmShowReception.cs">
       <SubType>Form</SubType>
@@ -331,8 +349,17 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reception\frmReceptionCheck.resx">
+      <DependentUpon>frmReceptionCheck.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reception\frmReceptionHavale.resx">
+      <DependentUpon>frmReceptionHavale.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reception\frmReceptionMain.resx">
       <DependentUpon>frmReceptionMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reception\frmReceptionNaqd.resx">
+      <DependentUpon>frmReceptionNaqd.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reception\frmShowReception.resx">
       <DependentUpon>frmShowReception.cs</DependentUpon>

@@ -37,6 +37,7 @@ namespace EntityCache.SqlServerPersistence
                 item.PoshtNomre = dr["PoshtNomre"].ToString();
                 item.Price = (decimal)dr["Price"];
                 item.CheckStatus = (EnCheckM)dr["CheckStatus"];
+                item.DateSarResid = (DateTime) dr["DateSarResid"];
             }
             catch (Exception ex)
             {
@@ -128,6 +129,7 @@ namespace EntityCache.SqlServerPersistence
                     cmd.Parameters.AddWithValue("@poshtNomre", item.PoshtNomre ?? "");
                     cmd.Parameters.AddWithValue("@price", item.Price);
                     cmd.Parameters.AddWithValue("@checkStatus", (int)item.CheckStatus);
+                    cmd.Parameters.AddWithValue("@sarResid", item.DateSarResid);
 
                     await cn.OpenAsync();
                     await cmd.ExecuteNonQueryAsync();

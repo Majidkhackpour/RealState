@@ -39,9 +39,19 @@ namespace Accounting.Reception
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmReceptionMain));
             this.DGrid = new DevComponents.DotNetBar.Controls.DataGridViewX();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DGType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DGDescription = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DGPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DgGuid = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DGSandoghGuid = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DG_TempDescription = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DGNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DGDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DGHavaleBankGuid = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DGHavale_Peygiri = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DGCheckBankName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DGCheckStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DGPoshtNomre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.contextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.mnuAddNaqd = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuAddCheck = new System.Windows.Forms.ToolStripMenuItem();
@@ -53,8 +63,8 @@ namespace Accounting.Reception
             this.btnTafsilSearch = new DevComponents.DotNetBar.ButtonX();
             this.txtTafsilName = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.txtNumber = new System.Windows.Forms.NumericUpDown();
+            this.txtSanadNo = new System.Windows.Forms.NumericUpDown();
             this.txtDate = new BPersianCalender.BPersianCalenderTextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.txtDesc = new System.Windows.Forms.TextBox();
@@ -62,19 +72,21 @@ namespace Accounting.Reception
             this.label3 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.panelEx2 = new DevComponents.DotNetBar.PanelEx();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.lblSumDebit = new System.Windows.Forms.Label();
+            this.lblSumHavale = new System.Windows.Forms.Label();
+            this.lblSumCheck = new System.Windows.Forms.Label();
+            this.lblSum = new System.Windows.Forms.Label();
+            this.lblSumNaqdi = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.btnCancel = new DevComponents.DotNetBar.ButtonX();
             this.btnFinish = new DevComponents.DotNetBar.ButtonX();
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).BeginInit();
             this.contextMenu.SuspendLayout();
             this.grp.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNumber)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtSanadNo)).BeginInit();
             this.panelEx2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -105,9 +117,19 @@ namespace Accounting.Reception
             this.DGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
-            this.Column2,
-            this.Column3,
-            this.Column4});
+            this.DGType,
+            this.DGDescription,
+            this.DGPrice,
+            this.DgGuid,
+            this.DGSandoghGuid,
+            this.DG_TempDescription,
+            this.DGNumber,
+            this.DGDate,
+            this.DGHavaleBankGuid,
+            this.DGHavale_Peygiri,
+            this.DGCheckBankName,
+            this.DGCheckStatus,
+            this.DGPoshtNomre});
             this.DGrid.ContextMenuStrip = this.contextMenu;
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
             dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
@@ -141,7 +163,7 @@ namespace Accounting.Reception
             this.DGrid.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.DGrid.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             this.DGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DGrid.Size = new System.Drawing.Size(793, 306);
+            this.DGrid.Size = new System.Drawing.Size(793, 282);
             this.DGrid.TabIndex = 55756;
             // 
             // Column1
@@ -151,31 +173,101 @@ namespace Accounting.Reception
             this.Column1.ReadOnly = true;
             this.Column1.Width = 50;
             // 
-            // Column2
+            // DGType
             // 
-            this.Column2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Column2.HeaderText = "نوع";
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            this.Column2.Width = 51;
+            this.DGType.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.DGType.HeaderText = "نوع";
+            this.DGType.Name = "DGType";
+            this.DGType.ReadOnly = true;
+            this.DGType.Width = 51;
             // 
-            // Column3
+            // DGDescription
             // 
-            this.Column3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column3.HeaderText = "شرح";
-            this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
+            this.DGDescription.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.DGDescription.HeaderText = "شرح";
+            this.DGDescription.Name = "DGDescription";
+            this.DGDescription.ReadOnly = true;
             // 
-            // Column4
+            // DGPrice
             // 
-            this.Column4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.DGPrice.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             dataGridViewCellStyle3.Format = "N0";
             dataGridViewCellStyle3.NullValue = null;
-            this.Column4.DefaultCellStyle = dataGridViewCellStyle3;
-            this.Column4.HeaderText = "مبلغ";
-            this.Column4.Name = "Column4";
-            this.Column4.ReadOnly = true;
-            this.Column4.Width = 54;
+            this.DGPrice.DefaultCellStyle = dataGridViewCellStyle3;
+            this.DGPrice.HeaderText = "مبلغ";
+            this.DGPrice.Name = "DGPrice";
+            this.DGPrice.ReadOnly = true;
+            this.DGPrice.Width = 54;
+            // 
+            // DgGuid
+            // 
+            this.DgGuid.HeaderText = "Guid";
+            this.DgGuid.Name = "DgGuid";
+            this.DgGuid.ReadOnly = true;
+            this.DgGuid.Visible = false;
+            // 
+            // DGSandoghGuid
+            // 
+            this.DGSandoghGuid.HeaderText = "SandouqGuid";
+            this.DGSandoghGuid.Name = "DGSandoghGuid";
+            this.DGSandoghGuid.ReadOnly = true;
+            this.DGSandoghGuid.Visible = false;
+            // 
+            // DG_TempDescription
+            // 
+            this.DG_TempDescription.HeaderText = "TempDesc";
+            this.DG_TempDescription.Name = "DG_TempDescription";
+            this.DG_TempDescription.ReadOnly = true;
+            this.DG_TempDescription.Visible = false;
+            // 
+            // DGNumber
+            // 
+            this.DGNumber.HeaderText = "Number";
+            this.DGNumber.Name = "DGNumber";
+            this.DGNumber.ReadOnly = true;
+            this.DGNumber.Visible = false;
+            // 
+            // DGDate
+            // 
+            this.DGDate.HeaderText = "Date";
+            this.DGDate.Name = "DGDate";
+            this.DGDate.ReadOnly = true;
+            this.DGDate.Visible = false;
+            // 
+            // DGHavaleBankGuid
+            // 
+            this.DGHavaleBankGuid.HeaderText = "HavaleBankGuid";
+            this.DGHavaleBankGuid.Name = "DGHavaleBankGuid";
+            this.DGHavaleBankGuid.ReadOnly = true;
+            this.DGHavaleBankGuid.Visible = false;
+            // 
+            // DGHavale_Peygiri
+            // 
+            this.DGHavale_Peygiri.HeaderText = "HavalePeygiri";
+            this.DGHavale_Peygiri.Name = "DGHavale_Peygiri";
+            this.DGHavale_Peygiri.ReadOnly = true;
+            this.DGHavale_Peygiri.Visible = false;
+            // 
+            // DGCheckBankName
+            // 
+            this.DGCheckBankName.HeaderText = "ChackBankName";
+            this.DGCheckBankName.Name = "DGCheckBankName";
+            this.DGCheckBankName.ReadOnly = true;
+            this.DGCheckBankName.Visible = false;
+            // 
+            // DGCheckStatus
+            // 
+            this.DGCheckStatus.HeaderText = "CheckStatus";
+            this.DGCheckStatus.Name = "DGCheckStatus";
+            this.DGCheckStatus.ReadOnly = true;
+            this.DGCheckStatus.Visible = false;
+            // 
+            // DGPoshtNomre
+            // 
+            this.DGPoshtNomre.HeaderText = "PoshtNomre";
+            this.DGPoshtNomre.Name = "DGPoshtNomre";
+            this.DGPoshtNomre.ReadOnly = true;
+            this.DGPoshtNomre.Visible = false;
             // 
             // contextMenu
             // 
@@ -197,6 +289,7 @@ namespace Accounting.Reception
             this.mnuAddNaqd.Name = "mnuAddNaqd";
             this.mnuAddNaqd.Size = new System.Drawing.Size(212, 24);
             this.mnuAddNaqd.Text = "افزودن دریافت نقدی (F1)";
+            this.mnuAddNaqd.Click += new System.EventHandler(this.mnuAddNaqd_Click);
             // 
             // mnuAddCheck
             // 
@@ -204,6 +297,7 @@ namespace Accounting.Reception
             this.mnuAddCheck.Name = "mnuAddCheck";
             this.mnuAddCheck.Size = new System.Drawing.Size(212, 24);
             this.mnuAddCheck.Text = "افزودن دریافت چک (F2)";
+            this.mnuAddCheck.Click += new System.EventHandler(this.mnuAddCheck_Click);
             // 
             // mnuAddHavale
             // 
@@ -211,6 +305,7 @@ namespace Accounting.Reception
             this.mnuAddHavale.Name = "mnuAddHavale";
             this.mnuAddHavale.Size = new System.Drawing.Size(212, 24);
             this.mnuAddHavale.Text = "افزودن دریافت حواله (F3)";
+            this.mnuAddHavale.Click += new System.EventHandler(this.mnuAddHavale_Click);
             // 
             // toolStripMenuItem1
             // 
@@ -240,8 +335,8 @@ namespace Accounting.Reception
             this.grp.Controls.Add(this.btnTafsilSearch);
             this.grp.Controls.Add(this.txtTafsilName);
             this.grp.Controls.Add(this.label8);
-            this.grp.Controls.Add(this.numericUpDown1);
             this.grp.Controls.Add(this.txtNumber);
+            this.grp.Controls.Add(this.txtSanadNo);
             this.grp.Controls.Add(this.txtDate);
             this.grp.Controls.Add(this.label1);
             this.grp.Controls.Add(this.txtDesc);
@@ -279,6 +374,7 @@ namespace Accounting.Reception
             this.btnTafsilSearch.TabIndex = 14;
             this.btnTafsilSearch.Text = "...";
             this.btnTafsilSearch.TextColor = System.Drawing.Color.White;
+            this.btnTafsilSearch.Click += new System.EventHandler(this.btnTafsilSearch_Click);
             // 
             // txtTafsilName
             // 
@@ -301,21 +397,9 @@ namespace Accounting.Reception
             this.label8.TabIndex = 15;
             this.label8.Text = "شناسایی طرف حساب";
             // 
-            // numericUpDown1
-            // 
-            this.numericUpDown1.Location = new System.Drawing.Point(16, 13);
-            this.numericUpDown1.Maximum = new decimal(new int[] {
-            10000,
-            0,
-            0,
-            0});
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(145, 27);
-            this.numericUpDown1.TabIndex = 0;
-            // 
             // txtNumber
             // 
-            this.txtNumber.Location = new System.Drawing.Point(16, 79);
+            this.txtNumber.Location = new System.Drawing.Point(16, 13);
             this.txtNumber.Maximum = new decimal(new int[] {
             10000,
             0,
@@ -324,6 +408,18 @@ namespace Accounting.Reception
             this.txtNumber.Name = "txtNumber";
             this.txtNumber.Size = new System.Drawing.Size(145, 27);
             this.txtNumber.TabIndex = 0;
+            // 
+            // txtSanadNo
+            // 
+            this.txtSanadNo.Location = new System.Drawing.Point(16, 79);
+            this.txtSanadNo.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.txtSanadNo.Name = "txtSanadNo";
+            this.txtSanadNo.Size = new System.Drawing.Size(145, 27);
+            this.txtSanadNo.TabIndex = 0;
             // 
             // txtDate
             // 
@@ -354,8 +450,10 @@ namespace Accounting.Reception
             this.txtDesc.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.txtDesc.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.txtDesc.Location = new System.Drawing.Point(271, 46);
+            this.txtDesc.Multiline = true;
             this.txtDesc.Name = "txtDesc";
-            this.txtDesc.Size = new System.Drawing.Size(446, 27);
+            this.txtDesc.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtDesc.Size = new System.Drawing.Size(446, 55);
             this.txtDesc.TabIndex = 2;
             // 
             // label2
@@ -395,16 +493,18 @@ namespace Accounting.Reception
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panelEx2.CanvasColor = System.Drawing.SystemColors.Control;
             this.panelEx2.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.panelEx2.Controls.Add(this.label10);
-            this.panelEx2.Controls.Add(this.label6);
-            this.panelEx2.Controls.Add(this.lblSumDebit);
+            this.panelEx2.Controls.Add(this.lblSumHavale);
+            this.panelEx2.Controls.Add(this.lblSumCheck);
+            this.panelEx2.Controls.Add(this.lblSum);
+            this.panelEx2.Controls.Add(this.lblSumNaqdi);
             this.panelEx2.Controls.Add(this.label9);
             this.panelEx2.Controls.Add(this.label5);
+            this.panelEx2.Controls.Add(this.label6);
             this.panelEx2.Controls.Add(this.label4);
             this.panelEx2.DisabledBackColor = System.Drawing.Color.Empty;
-            this.panelEx2.Location = new System.Drawing.Point(8, 461);
+            this.panelEx2.Location = new System.Drawing.Point(8, 437);
             this.panelEx2.Name = "panelEx2";
-            this.panelEx2.Size = new System.Drawing.Size(786, 96);
+            this.panelEx2.Size = new System.Drawing.Size(786, 120);
             this.panelEx2.Style.Alignment = System.Drawing.StringAlignment.Center;
             this.panelEx2.Style.BackColor1.Color = System.Drawing.Color.White;
             this.panelEx2.Style.BackColor2.Color = System.Drawing.Color.White;
@@ -416,44 +516,57 @@ namespace Accounting.Reception
             this.panelEx2.Style.GradientAngle = 90;
             this.panelEx2.TabIndex = 55766;
             // 
-            // label10
+            // lblSumHavale
             // 
-            this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.lblSumHavale.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.label10.BackColor = System.Drawing.Color.Transparent;
-            this.label10.Font = new System.Drawing.Font("B Yekan", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.label10.ForeColor = System.Drawing.Color.Black;
-            this.label10.Location = new System.Drawing.Point(24, 57);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(641, 24);
-            this.label10.TabIndex = 5;
-            this.label10.Text = "00 ریال";
+            this.lblSumHavale.BackColor = System.Drawing.Color.Transparent;
+            this.lblSumHavale.Font = new System.Drawing.Font("B Yekan", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.lblSumHavale.ForeColor = System.Drawing.Color.Black;
+            this.lblSumHavale.Location = new System.Drawing.Point(24, 81);
+            this.lblSumHavale.Name = "lblSumHavale";
+            this.lblSumHavale.Size = new System.Drawing.Size(631, 24);
+            this.lblSumHavale.TabIndex = 5;
+            this.lblSumHavale.Text = "00 ریال";
             // 
-            // label6
+            // lblSumCheck
             // 
-            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.lblSumCheck.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.label6.BackColor = System.Drawing.Color.Transparent;
-            this.label6.Font = new System.Drawing.Font("B Yekan", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.label6.ForeColor = System.Drawing.Color.Black;
-            this.label6.Location = new System.Drawing.Point(24, 33);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(641, 24);
-            this.label6.TabIndex = 5;
-            this.label6.Text = "00 ریال";
+            this.lblSumCheck.BackColor = System.Drawing.Color.Transparent;
+            this.lblSumCheck.Font = new System.Drawing.Font("B Yekan", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.lblSumCheck.ForeColor = System.Drawing.Color.Black;
+            this.lblSumCheck.Location = new System.Drawing.Point(24, 57);
+            this.lblSumCheck.Name = "lblSumCheck";
+            this.lblSumCheck.Size = new System.Drawing.Size(631, 24);
+            this.lblSumCheck.TabIndex = 5;
+            this.lblSumCheck.Text = "00 ریال";
             // 
-            // lblSumDebit
+            // lblSum
             // 
-            this.lblSumDebit.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.lblSum.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblSumDebit.BackColor = System.Drawing.Color.Transparent;
-            this.lblSumDebit.Font = new System.Drawing.Font("B Yekan", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.lblSumDebit.ForeColor = System.Drawing.Color.Black;
-            this.lblSumDebit.Location = new System.Drawing.Point(24, 9);
-            this.lblSumDebit.Name = "lblSumDebit";
-            this.lblSumDebit.Size = new System.Drawing.Size(641, 24);
-            this.lblSumDebit.TabIndex = 5;
-            this.lblSumDebit.Text = "00 ریال";
+            this.lblSum.BackColor = System.Drawing.Color.Transparent;
+            this.lblSum.Font = new System.Drawing.Font("B Yekan", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.lblSum.ForeColor = System.Drawing.Color.Black;
+            this.lblSum.Location = new System.Drawing.Point(24, 9);
+            this.lblSum.Name = "lblSum";
+            this.lblSum.Size = new System.Drawing.Size(627, 24);
+            this.lblSum.TabIndex = 5;
+            this.lblSum.Text = "00 ریال";
+            // 
+            // lblSumNaqdi
+            // 
+            this.lblSumNaqdi.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblSumNaqdi.BackColor = System.Drawing.Color.Transparent;
+            this.lblSumNaqdi.Font = new System.Drawing.Font("B Yekan", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.lblSumNaqdi.ForeColor = System.Drawing.Color.Black;
+            this.lblSumNaqdi.Location = new System.Drawing.Point(24, 33);
+            this.lblSumNaqdi.Name = "lblSumNaqdi";
+            this.lblSumNaqdi.Size = new System.Drawing.Size(631, 24);
+            this.lblSumNaqdi.TabIndex = 5;
+            this.lblSumNaqdi.Text = "00 ریال";
             // 
             // label9
             // 
@@ -461,7 +574,7 @@ namespace Accounting.Reception
             this.label9.AutoSize = true;
             this.label9.BackColor = System.Drawing.Color.Transparent;
             this.label9.Font = new System.Drawing.Font("B Yekan", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.label9.Location = new System.Drawing.Point(680, 57);
+            this.label9.Location = new System.Drawing.Point(680, 81);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(93, 24);
             this.label9.TabIndex = 5;
@@ -473,11 +586,23 @@ namespace Accounting.Reception
             this.label5.AutoSize = true;
             this.label5.BackColor = System.Drawing.Color.Transparent;
             this.label5.Font = new System.Drawing.Font("B Yekan", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.label5.Location = new System.Drawing.Point(689, 33);
+            this.label5.Location = new System.Drawing.Point(689, 57);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(84, 24);
             this.label5.TabIndex = 5;
             this.label5.Text = "دریافت چک:";
+            // 
+            // label6
+            // 
+            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label6.AutoSize = true;
+            this.label6.BackColor = System.Drawing.Color.Transparent;
+            this.label6.Font = new System.Drawing.Font("B Yekan", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.label6.Location = new System.Drawing.Point(665, 9);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(108, 24);
+            this.label6.TabIndex = 5;
+            this.label6.Text = "جمع کل دریافت:";
             // 
             // label4
             // 
@@ -485,7 +610,7 @@ namespace Accounting.Reception
             this.label4.AutoSize = true;
             this.label4.BackColor = System.Drawing.Color.Transparent;
             this.label4.Font = new System.Drawing.Font("B Yekan", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.label4.Location = new System.Drawing.Point(680, 9);
+            this.label4.Location = new System.Drawing.Point(680, 33);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(93, 24);
             this.label4.TabIndex = 5;
@@ -548,12 +673,14 @@ namespace Accounting.Reception
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.Style = MetroFramework.MetroColorStyle.Green;
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.frmReceptionMain_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmReceptionMain_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).EndInit();
             this.contextMenu.ResumeLayout(false);
             this.grp.ResumeLayout(false);
             this.grp.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNumber)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtSanadNo)).EndInit();
             this.panelEx2.ResumeLayout(false);
             this.panelEx2.PerformLayout();
             this.ResumeLayout(false);
@@ -564,30 +691,26 @@ namespace Accounting.Reception
 
         private DevComponents.DotNetBar.Controls.DataGridViewX DGrid;
         private DevComponents.DotNetBar.PanelEx grp;
-        private System.Windows.Forms.NumericUpDown txtNumber;
+        private System.Windows.Forms.NumericUpDown txtSanadNo;
         private BPersianCalender.BPersianCalenderTextBox txtDate;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtDesc;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.NumericUpDown txtNumber;
         private System.Windows.Forms.Label label2;
         private DevComponents.DotNetBar.ButtonX btnTafsilSearch;
         private System.Windows.Forms.TextBox txtTafsilName;
         private System.Windows.Forms.Label label8;
         private DevComponents.DotNetBar.PanelEx panelEx2;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label lblSumDebit;
+        private System.Windows.Forms.Label lblSumHavale;
+        private System.Windows.Forms.Label lblSumCheck;
+        private System.Windows.Forms.Label lblSumNaqdi;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private DevComponents.DotNetBar.ButtonX btnCancel;
         private DevComponents.DotNetBar.ButtonX btnFinish;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.ContextMenuStrip contextMenu;
         private System.Windows.Forms.ToolStripMenuItem mnuEdit;
         private System.Windows.Forms.ToolStripMenuItem mnuDelete;
@@ -595,5 +718,21 @@ namespace Accounting.Reception
         private System.Windows.Forms.ToolStripMenuItem mnuAddCheck;
         private System.Windows.Forms.ToolStripMenuItem mnuAddHavale;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
+        private System.Windows.Forms.Label lblSum;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DGType;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DGDescription;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DGPrice;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DgGuid;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DGSandoghGuid;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DG_TempDescription;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DGNumber;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DGDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DGHavaleBankGuid;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DGHavale_Peygiri;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DGCheckBankName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DGCheckStatus;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DGPoshtNomre;
     }
 }

@@ -57,6 +57,87 @@ namespace EntityCache.Bussines
         public List<ReceptionNaqdBussines> NaqdList { get; set; }
 
 
+        public void ListBankClear() => HavaleList?.Clear();
+        public void ListNaghdClear() => NaqdList?.Clear();
+        public void ListCheckClear() => CheckList?.Clear();
+        public void RemoveFromDetList<T>(T item)
+        {
+            try
+            {
+                switch (item)
+                {
+                    case ReceptionNaqdBussines naghd:
+                        var itemNaghd = NaqdList?.FirstOrDefault(p => p.Guid == naghd.Guid);
+                        if (itemNaghd != null) NaqdList.Remove(itemNaghd);
+                        break;
+                    case ReceptionCheckBussines check:
+                        var itemCheck = CheckList?.FirstOrDefault(p => p.Guid == check.Guid);
+                        if (itemCheck != null) CheckList?.Remove(itemCheck);
+                        break;
+                    case ReceptionHavaleBussines havale:
+                        var itemHavale = HavaleList?.FirstOrDefault(p => p.Guid == havale.Guid);
+                        if (itemHavale != null) HavaleList.Remove(itemHavale);
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        public void AddToDetList<T>(T item)
+        {
+            try
+            {
+                if (item == null) return;
+                switch (item)
+                {
+                    case ReceptionNaqdBussines naghd:
+                        if (NaqdList == null) NaqdList = new List<ReceptionNaqdBussines>();
+                        if (NaqdList.All(p => p.Guid != naghd.Guid))
+                        {
+                            naghd.MasterGuid = Guid;
+                            NaqdList.Add(naghd);
+                        }
+                        break;
+                    case ReceptionCheckBussines check:
+                        if (CheckList == null) CheckList = new List<ReceptionCheckBussines>();
+                        if (CheckList.All(p => p.Guid != check.Guid))
+                        {
+                            check.MasterGuid = Guid;
+                            CheckList.Add(check);
+                        }
+                        break;
+                    case ReceptionHavaleBussines havale:
+                        if (HavaleList == null) HavaleList = new List<ReceptionHavaleBussines>();
+                        if (HavaleList.All(p => p.Guid != havale.Guid))
+                        {
+                            havale.MasterGuid = Guid;
+                            HavaleList.Add(havale);
+                        }
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        public void AddRangeToDetList<T>(List<T> detList)
+        {
+            try
+            {
+                if (detList == null || detList.Count <= 0) return;
+                foreach (var item in detList)
+                    AddToDetList(item);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+
         public static async Task<List<ReceptionBussines>> GetAllAsync() => await UnitOfWork.Reception.GetAllAsync();
         public static async Task<List<ReceptionBussines>> GetAllAsync(string search)
         {
@@ -299,5 +380,7 @@ namespace EntityCache.Bussines
             }
             return sanad;
         }
+        public static async Task<long> NextCodeAsync() => await UnitOfWork.Reception.NextNumberAsync();
+        public async Task<bool> CheckCodeAsync(Guid guid, long number) => await UnitOfWork.Reception.CheckCodeAsync(guid, number);
     }
 }

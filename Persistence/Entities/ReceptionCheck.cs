@@ -15,6 +15,8 @@ namespace Persistence.Entities
         [MaxLength(200)]
         public string BankName { get; set; }
         public DateTime DateM { get; set; }
+        public DateTime DateSarResid { get; set; }
+
         [ForeignKey("Reception")]
         public Guid MasterGuid { get; set; }
         public string Description { get; set; }
