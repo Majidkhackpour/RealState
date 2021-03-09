@@ -101,7 +101,6 @@ namespace Accounting.Reception
                 cls.Description = txtDesc.Text;
                 cls.BankTafsilGuid = (Guid)cmbBank.SelectedValue;
                 cls.Price = txtPrice.TextDecimal;
-                cls.BankMoeinGuid = ParentDefaults.MoeinCoding.CLSMoein10101;
             }
             catch (Exception ex)
             {

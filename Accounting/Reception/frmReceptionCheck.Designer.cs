@@ -32,6 +32,14 @@ namespace Accounting.Reception
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmReceptionCheck));
             this.grp = new DevComponents.DotNetBar.PanelEx();
+            this.cmbSandouq = new System.Windows.Forms.ComboBox();
+            this.SandouqBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.label5 = new System.Windows.Forms.Label();
+            this.txtDate = new BPersianCalender.BPersianCalenderTextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtBankName = new System.Windows.Forms.TextBox();
+            this.txtPoshtNomre = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.txtCheckNo = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.txtPrice = new WindowsSerivces.CurrencyTextBox();
@@ -39,20 +47,18 @@ namespace Accounting.Reception
             this.label2 = new System.Windows.Forms.Label();
             this.txtDesc = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.txtDate = new BPersianCalender.BPersianCalenderTextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.txtBankName = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.txtPoshtNomre = new System.Windows.Forms.TextBox();
             this.btnCancel = new DevComponents.DotNetBar.ButtonX();
             this.btnFinish = new DevComponents.DotNetBar.ButtonX();
             this.grp.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.SandouqBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // grp
             // 
             this.grp.CanvasColor = System.Drawing.SystemColors.Control;
             this.grp.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.grp.Controls.Add(this.cmbSandouq);
+            this.grp.Controls.Add(this.label5);
             this.grp.Controls.Add(this.txtDate);
             this.grp.Controls.Add(this.label1);
             this.grp.Controls.Add(this.txtBankName);
@@ -68,7 +74,7 @@ namespace Accounting.Reception
             this.grp.DisabledBackColor = System.Drawing.Color.Empty;
             this.grp.Location = new System.Drawing.Point(7, 24);
             this.grp.Name = "grp";
-            this.grp.Size = new System.Drawing.Size(389, 324);
+            this.grp.Size = new System.Drawing.Size(389, 355);
             this.grp.Style.Alignment = System.Drawing.StringAlignment.Center;
             this.grp.Style.BackColor1.Color = System.Drawing.Color.White;
             this.grp.Style.BackColor2.Color = System.Drawing.Color.White;
@@ -79,6 +85,87 @@ namespace Accounting.Reception
             this.grp.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText;
             this.grp.Style.GradientAngle = 90;
             this.grp.TabIndex = 0;
+            // 
+            // cmbSandouq
+            // 
+            this.cmbSandouq.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cmbSandouq.DataSource = this.SandouqBindingSource;
+            this.cmbSandouq.DisplayMember = "Name";
+            this.cmbSandouq.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbSandouq.FormattingEnabled = true;
+            this.cmbSandouq.Location = new System.Drawing.Point(16, 179);
+            this.cmbSandouq.Name = "cmbSandouq";
+            this.cmbSandouq.Size = new System.Drawing.Size(283, 28);
+            this.cmbSandouq.TabIndex = 5;
+            this.cmbSandouq.ValueMember = "Guid";
+            // 
+            // SandouqBindingSource
+            // 
+            this.SandouqBindingSource.DataSource = typeof(EntityCache.Bussines.TafsilBussines);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.BackColor = System.Drawing.Color.Transparent;
+            this.label5.Location = new System.Drawing.Point(305, 182);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(74, 20);
+            this.label5.TabIndex = 28;
+            this.label5.Text = "صندوق مقصد";
+            // 
+            // txtDate
+            // 
+            this.txtDate.Location = new System.Drawing.Point(16, 47);
+            this.txtDate.Miladi = new System.DateTime(2020, 10, 25, 17, 11, 28, 0);
+            this.txtDate.Name = "txtDate";
+            this.txtDate.NowDateSelected = false;
+            this.txtDate.ReadOnly = true;
+            this.txtDate.SelectedDate = null;
+            this.txtDate.Shamsi = null;
+            this.txtDate.Size = new System.Drawing.Size(283, 27);
+            this.txtDate.TabIndex = 1;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Location = new System.Drawing.Point(327, 50);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(51, 20);
+            this.label1.TabIndex = 26;
+            this.label1.Text = "سررسید";
+            // 
+            // txtBankName
+            // 
+            this.txtBankName.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.txtBankName.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.txtBankName.Location = new System.Drawing.Point(16, 80);
+            this.txtBankName.Name = "txtBankName";
+            this.txtBankName.Size = new System.Drawing.Size(283, 27);
+            this.txtBankName.TabIndex = 2;
+            this.txtBankName.Enter += new System.EventHandler(this.txtBankName_Enter);
+            this.txtBankName.Leave += new System.EventHandler(this.txtBankName_Leave);
+            // 
+            // txtPoshtNomre
+            // 
+            this.txtPoshtNomre.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.txtPoshtNomre.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.txtPoshtNomre.Location = new System.Drawing.Point(16, 146);
+            this.txtPoshtNomre.Name = "txtPoshtNomre";
+            this.txtPoshtNomre.Size = new System.Drawing.Size(283, 27);
+            this.txtPoshtNomre.TabIndex = 4;
+            this.txtPoshtNomre.Enter += new System.EventHandler(this.txtPoshtNomre_Enter);
+            this.txtPoshtNomre.Leave += new System.EventHandler(this.txtPoshtNomre_Leave);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.BackColor = System.Drawing.Color.Transparent;
+            this.label4.Location = new System.Drawing.Point(319, 149);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(58, 20);
+            this.label4.TabIndex = 24;
+            this.label4.Text = "پشت نمره";
             // 
             // txtCheckNo
             // 
@@ -143,75 +230,21 @@ namespace Accounting.Reception
             // 
             this.txtDesc.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.txtDesc.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.txtDesc.Location = new System.Drawing.Point(16, 179);
+            this.txtDesc.Location = new System.Drawing.Point(16, 215);
             this.txtDesc.Multiline = true;
             this.txtDesc.Name = "txtDesc";
             this.txtDesc.Size = new System.Drawing.Size(283, 130);
-            this.txtDesc.TabIndex = 5;
+            this.txtDesc.TabIndex = 6;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.Transparent;
-            this.label3.Location = new System.Drawing.Point(325, 182);
+            this.label3.Location = new System.Drawing.Point(325, 218);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(54, 20);
             this.label3.TabIndex = 4;
             this.label3.Text = "توضیحات";
-            // 
-            // txtDate
-            // 
-            this.txtDate.Location = new System.Drawing.Point(16, 47);
-            this.txtDate.Miladi = new System.DateTime(2020, 10, 25, 17, 11, 28, 0);
-            this.txtDate.Name = "txtDate";
-            this.txtDate.NowDateSelected = false;
-            this.txtDate.ReadOnly = true;
-            this.txtDate.SelectedDate = null;
-            this.txtDate.Shamsi = null;
-            this.txtDate.Size = new System.Drawing.Size(283, 27);
-            this.txtDate.TabIndex = 1;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Location = new System.Drawing.Point(327, 50);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(51, 20);
-            this.label1.TabIndex = 26;
-            this.label1.Text = "سررسید";
-            // 
-            // txtBankName
-            // 
-            this.txtBankName.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.txtBankName.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.txtBankName.Location = new System.Drawing.Point(16, 80);
-            this.txtBankName.Name = "txtBankName";
-            this.txtBankName.Size = new System.Drawing.Size(283, 27);
-            this.txtBankName.TabIndex = 2;
-            this.txtBankName.Enter += new System.EventHandler(this.txtBankName_Enter);
-            this.txtBankName.Leave += new System.EventHandler(this.txtBankName_Leave);
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.BackColor = System.Drawing.Color.Transparent;
-            this.label4.Location = new System.Drawing.Point(319, 149);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(58, 20);
-            this.label4.TabIndex = 24;
-            this.label4.Text = "پشت نمره";
-            // 
-            // txtPoshtNomre
-            // 
-            this.txtPoshtNomre.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.txtPoshtNomre.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.txtPoshtNomre.Location = new System.Drawing.Point(16, 146);
-            this.txtPoshtNomre.Name = "txtPoshtNomre";
-            this.txtPoshtNomre.Size = new System.Drawing.Size(283, 27);
-            this.txtPoshtNomre.TabIndex = 4;
-            this.txtPoshtNomre.Enter += new System.EventHandler(this.txtPoshtNomre_Enter);
-            this.txtPoshtNomre.Leave += new System.EventHandler(this.txtPoshtNomre_Leave);
             // 
             // btnCancel
             // 
@@ -223,7 +256,7 @@ namespace Accounting.Reception
             this.btnCancel.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Image = global::Accounting.Properties.Resources.tab_close_;
-            this.btnCancel.Location = new System.Drawing.Point(12, 356);
+            this.btnCancel.Location = new System.Drawing.Point(12, 386);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
             this.btnCancel.Size = new System.Drawing.Size(125, 31);
@@ -242,7 +275,7 @@ namespace Accounting.Reception
             this.btnFinish.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnFinish.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnFinish.Image = global::Accounting.Properties.Resources.tab_checkbox__;
-            this.btnFinish.Location = new System.Drawing.Point(246, 356);
+            this.btnFinish.Location = new System.Drawing.Point(246, 386);
             this.btnFinish.Name = "btnFinish";
             this.btnFinish.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
             this.btnFinish.Size = new System.Drawing.Size(125, 31);
@@ -256,7 +289,7 @@ namespace Accounting.Reception
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(401, 399);
+            this.ClientSize = new System.Drawing.Size(401, 429);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnFinish);
             this.Controls.Add(this.grp);
@@ -265,7 +298,9 @@ namespace Accounting.Reception
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(401, 429);
             this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(401, 429);
             this.Name = "frmReceptionCheck";
             this.Padding = new System.Windows.Forms.Padding(27, 92, 27, 31);
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -274,6 +309,7 @@ namespace Accounting.Reception
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmReceptionCheck_KeyDown);
             this.grp.ResumeLayout(false);
             this.grp.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.SandouqBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -295,5 +331,8 @@ namespace Accounting.Reception
         private System.Windows.Forms.Label label4;
         private DevComponents.DotNetBar.ButtonX btnCancel;
         private DevComponents.DotNetBar.ButtonX btnFinish;
+        private System.Windows.Forms.ComboBox cmbSandouq;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.BindingSource SandouqBindingSource;
     }
 }

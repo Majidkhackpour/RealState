@@ -22,6 +22,8 @@ namespace EntityCache.Bussines
         public string PoshtNomre { get; set; }
         public decimal Price { get; set; }
         public EnCheckM CheckStatus { get; set; }
+        public Guid SandouqTafsilGuid { get; set; }
+        public Guid SandouqMoeinGuid { get; set; }
 
 
         public static async Task<List<ReceptionCheckBussines>> GetAllAsync(Guid masterGuid) => await UnitOfWork.ReceptionCheck.GetAllAsync(masterGuid);

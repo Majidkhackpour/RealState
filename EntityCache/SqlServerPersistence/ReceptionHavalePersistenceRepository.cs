@@ -8,6 +8,7 @@ using EntityCache.Core;
 using Persistence.Entities;
 using Persistence.Model;
 using Services;
+using Services.DefaultCoding;
 
 namespace EntityCache.SqlServerPersistence
 {
@@ -125,7 +126,7 @@ namespace EntityCache.SqlServerPersistence
                     cmd.Parameters.AddWithValue("@price", item.Price);
                     cmd.Parameters.AddWithValue("@peygiriNo", item.PeygiriNumber ?? "");
                     cmd.Parameters.AddWithValue("@bankTafsilGuid", item.BankTafsilGuid);
-                    cmd.Parameters.AddWithValue("@bankMoeinGuid", item.BankMoeinGuid);
+                    cmd.Parameters.AddWithValue("@bankMoeinGuid", ParentDefaults.MoeinCoding.CLSMoein10101);
 
                     await cn.OpenAsync();
                     await cmd.ExecuteNonQueryAsync();

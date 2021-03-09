@@ -38,20 +38,6 @@ namespace Accounting.Reception
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmReceptionMain));
             this.DGrid = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DGType = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DGDescription = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DGPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DgGuid = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DGSandoghGuid = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DG_TempDescription = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DGNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DGDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DGHavaleBankGuid = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DGHavale_Peygiri = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DGCheckBankName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DGCheckStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DGPoshtNomre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.contextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.mnuAddNaqd = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuAddCheck = new System.Windows.Forms.ToolStripMenuItem();
@@ -82,6 +68,20 @@ namespace Accounting.Reception
             this.label4 = new System.Windows.Forms.Label();
             this.btnCancel = new DevComponents.DotNetBar.ButtonX();
             this.btnFinish = new DevComponents.DotNetBar.ButtonX();
+            this.dgRadif = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DGType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DGDescription = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DGPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DgGuid = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DGTafsilGuid = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DG_TempDescription = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DGNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DGDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DGHavale_Peygiri = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DGCheckBankName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DGCheckStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DGPoshtNomre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DGDateSarresid = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).BeginInit();
             this.contextMenu.SuspendLayout();
             this.grp.SuspendLayout();
@@ -116,20 +116,20 @@ namespace Accounting.Reception
             this.DGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.DGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column1,
+            this.dgRadif,
             this.DGType,
             this.DGDescription,
             this.DGPrice,
             this.DgGuid,
-            this.DGSandoghGuid,
+            this.DGTafsilGuid,
             this.DG_TempDescription,
             this.DGNumber,
             this.DGDate,
-            this.DGHavaleBankGuid,
             this.DGHavale_Peygiri,
             this.DGCheckBankName,
             this.DGCheckStatus,
-            this.DGPoshtNomre});
+            this.DGPoshtNomre,
+            this.DGDateSarresid});
             this.DGrid.ContextMenuStrip = this.contextMenu;
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
             dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
@@ -165,109 +165,7 @@ namespace Accounting.Reception
             this.DGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DGrid.Size = new System.Drawing.Size(793, 282);
             this.DGrid.TabIndex = 55756;
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "ردیف";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            this.Column1.Width = 50;
-            // 
-            // DGType
-            // 
-            this.DGType.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.DGType.HeaderText = "نوع";
-            this.DGType.Name = "DGType";
-            this.DGType.ReadOnly = true;
-            this.DGType.Width = 51;
-            // 
-            // DGDescription
-            // 
-            this.DGDescription.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.DGDescription.HeaderText = "شرح";
-            this.DGDescription.Name = "DGDescription";
-            this.DGDescription.ReadOnly = true;
-            // 
-            // DGPrice
-            // 
-            this.DGPrice.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle3.Format = "N0";
-            dataGridViewCellStyle3.NullValue = null;
-            this.DGPrice.DefaultCellStyle = dataGridViewCellStyle3;
-            this.DGPrice.HeaderText = "مبلغ";
-            this.DGPrice.Name = "DGPrice";
-            this.DGPrice.ReadOnly = true;
-            this.DGPrice.Width = 54;
-            // 
-            // DgGuid
-            // 
-            this.DgGuid.HeaderText = "Guid";
-            this.DgGuid.Name = "DgGuid";
-            this.DgGuid.ReadOnly = true;
-            this.DgGuid.Visible = false;
-            // 
-            // DGSandoghGuid
-            // 
-            this.DGSandoghGuid.HeaderText = "SandouqGuid";
-            this.DGSandoghGuid.Name = "DGSandoghGuid";
-            this.DGSandoghGuid.ReadOnly = true;
-            this.DGSandoghGuid.Visible = false;
-            // 
-            // DG_TempDescription
-            // 
-            this.DG_TempDescription.HeaderText = "TempDesc";
-            this.DG_TempDescription.Name = "DG_TempDescription";
-            this.DG_TempDescription.ReadOnly = true;
-            this.DG_TempDescription.Visible = false;
-            // 
-            // DGNumber
-            // 
-            this.DGNumber.HeaderText = "Number";
-            this.DGNumber.Name = "DGNumber";
-            this.DGNumber.ReadOnly = true;
-            this.DGNumber.Visible = false;
-            // 
-            // DGDate
-            // 
-            this.DGDate.HeaderText = "Date";
-            this.DGDate.Name = "DGDate";
-            this.DGDate.ReadOnly = true;
-            this.DGDate.Visible = false;
-            // 
-            // DGHavaleBankGuid
-            // 
-            this.DGHavaleBankGuid.HeaderText = "HavaleBankGuid";
-            this.DGHavaleBankGuid.Name = "DGHavaleBankGuid";
-            this.DGHavaleBankGuid.ReadOnly = true;
-            this.DGHavaleBankGuid.Visible = false;
-            // 
-            // DGHavale_Peygiri
-            // 
-            this.DGHavale_Peygiri.HeaderText = "HavalePeygiri";
-            this.DGHavale_Peygiri.Name = "DGHavale_Peygiri";
-            this.DGHavale_Peygiri.ReadOnly = true;
-            this.DGHavale_Peygiri.Visible = false;
-            // 
-            // DGCheckBankName
-            // 
-            this.DGCheckBankName.HeaderText = "ChackBankName";
-            this.DGCheckBankName.Name = "DGCheckBankName";
-            this.DGCheckBankName.ReadOnly = true;
-            this.DGCheckBankName.Visible = false;
-            // 
-            // DGCheckStatus
-            // 
-            this.DGCheckStatus.HeaderText = "CheckStatus";
-            this.DGCheckStatus.Name = "DGCheckStatus";
-            this.DGCheckStatus.ReadOnly = true;
-            this.DGCheckStatus.Visible = false;
-            // 
-            // DGPoshtNomre
-            // 
-            this.DGPoshtNomre.HeaderText = "PoshtNomre";
-            this.DGPoshtNomre.Name = "DGPoshtNomre";
-            this.DGPoshtNomre.ReadOnly = true;
-            this.DGPoshtNomre.Visible = false;
+            this.DGrid.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DGrid_CellFormatting);
             // 
             // contextMenu
             // 
@@ -318,6 +216,7 @@ namespace Accounting.Reception
             this.mnuEdit.Name = "mnuEdit";
             this.mnuEdit.Size = new System.Drawing.Size(212, 24);
             this.mnuEdit.Text = "ویرایش سطر جاری (F7)";
+            this.mnuEdit.Click += new System.EventHandler(this.mnuEdit_Click);
             // 
             // mnuDelete
             // 
@@ -325,6 +224,7 @@ namespace Accounting.Reception
             this.mnuDelete.Name = "mnuDelete";
             this.mnuDelete.Size = new System.Drawing.Size(212, 24);
             this.mnuDelete.Text = "حذف سطر جاری (Del)";
+            this.mnuDelete.Click += new System.EventHandler(this.mnuDelete_Click);
             // 
             // grp
             // 
@@ -634,6 +534,7 @@ namespace Accounting.Reception
             this.btnCancel.TabIndex = 55768;
             this.btnCancel.Text = "انصراف (Esc)";
             this.btnCancel.TextColor = System.Drawing.Color.Black;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // btnFinish
             // 
@@ -652,6 +553,109 @@ namespace Accounting.Reception
             this.btnFinish.TabIndex = 55767;
             this.btnFinish.Text = "تایید (F5)";
             this.btnFinish.TextColor = System.Drawing.Color.Black;
+            // 
+            // dgRadif
+            // 
+            this.dgRadif.HeaderText = "ردیف";
+            this.dgRadif.Name = "dgRadif";
+            this.dgRadif.ReadOnly = true;
+            this.dgRadif.Width = 50;
+            // 
+            // DGType
+            // 
+            this.DGType.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.DGType.HeaderText = "نوع";
+            this.DGType.Name = "DGType";
+            this.DGType.ReadOnly = true;
+            this.DGType.Width = 51;
+            // 
+            // DGDescription
+            // 
+            this.DGDescription.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.DGDescription.HeaderText = "شرح";
+            this.DGDescription.Name = "DGDescription";
+            this.DGDescription.ReadOnly = true;
+            // 
+            // DGPrice
+            // 
+            this.DGPrice.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridViewCellStyle3.Format = "N0";
+            dataGridViewCellStyle3.NullValue = null;
+            this.DGPrice.DefaultCellStyle = dataGridViewCellStyle3;
+            this.DGPrice.HeaderText = "مبلغ";
+            this.DGPrice.Name = "DGPrice";
+            this.DGPrice.ReadOnly = true;
+            this.DGPrice.Width = 54;
+            // 
+            // DgGuid
+            // 
+            this.DgGuid.HeaderText = "Guid";
+            this.DgGuid.Name = "DgGuid";
+            this.DgGuid.ReadOnly = true;
+            this.DgGuid.Visible = false;
+            // 
+            // DGTafsilGuid
+            // 
+            this.DGTafsilGuid.HeaderText = "SandouqGuid";
+            this.DGTafsilGuid.Name = "DGTafsilGuid";
+            this.DGTafsilGuid.ReadOnly = true;
+            this.DGTafsilGuid.Visible = false;
+            // 
+            // DG_TempDescription
+            // 
+            this.DG_TempDescription.HeaderText = "TempDesc";
+            this.DG_TempDescription.Name = "DG_TempDescription";
+            this.DG_TempDescription.ReadOnly = true;
+            this.DG_TempDescription.Visible = false;
+            // 
+            // DGNumber
+            // 
+            this.DGNumber.HeaderText = "Number";
+            this.DGNumber.Name = "DGNumber";
+            this.DGNumber.ReadOnly = true;
+            this.DGNumber.Visible = false;
+            // 
+            // DGDate
+            // 
+            this.DGDate.HeaderText = "Date";
+            this.DGDate.Name = "DGDate";
+            this.DGDate.ReadOnly = true;
+            this.DGDate.Visible = false;
+            // 
+            // DGHavale_Peygiri
+            // 
+            this.DGHavale_Peygiri.HeaderText = "HavalePeygiri";
+            this.DGHavale_Peygiri.Name = "DGHavale_Peygiri";
+            this.DGHavale_Peygiri.ReadOnly = true;
+            this.DGHavale_Peygiri.Visible = false;
+            // 
+            // DGCheckBankName
+            // 
+            this.DGCheckBankName.HeaderText = "ChackBankName";
+            this.DGCheckBankName.Name = "DGCheckBankName";
+            this.DGCheckBankName.ReadOnly = true;
+            this.DGCheckBankName.Visible = false;
+            // 
+            // DGCheckStatus
+            // 
+            this.DGCheckStatus.HeaderText = "CheckStatus";
+            this.DGCheckStatus.Name = "DGCheckStatus";
+            this.DGCheckStatus.ReadOnly = true;
+            this.DGCheckStatus.Visible = false;
+            // 
+            // DGPoshtNomre
+            // 
+            this.DGPoshtNomre.HeaderText = "PoshtNomre";
+            this.DGPoshtNomre.Name = "DGPoshtNomre";
+            this.DGPoshtNomre.ReadOnly = true;
+            this.DGPoshtNomre.Visible = false;
+            // 
+            // DGDateSarresid
+            // 
+            this.DGDateSarresid.HeaderText = "DateSarresid";
+            this.DGDateSarresid.Name = "DGDateSarresid";
+            this.DGDateSarresid.ReadOnly = true;
+            this.DGDateSarresid.Visible = false;
             // 
             // frmReceptionMain
             // 
@@ -720,19 +724,19 @@ namespace Accounting.Reception
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
         private System.Windows.Forms.Label lblSum;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgRadif;
         private System.Windows.Forms.DataGridViewTextBoxColumn DGType;
         private System.Windows.Forms.DataGridViewTextBoxColumn DGDescription;
         private System.Windows.Forms.DataGridViewTextBoxColumn DGPrice;
         private System.Windows.Forms.DataGridViewTextBoxColumn DgGuid;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DGSandoghGuid;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DGTafsilGuid;
         private System.Windows.Forms.DataGridViewTextBoxColumn DG_TempDescription;
         private System.Windows.Forms.DataGridViewTextBoxColumn DGNumber;
         private System.Windows.Forms.DataGridViewTextBoxColumn DGDate;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DGHavaleBankGuid;
         private System.Windows.Forms.DataGridViewTextBoxColumn DGHavale_Peygiri;
         private System.Windows.Forms.DataGridViewTextBoxColumn DGCheckBankName;
         private System.Windows.Forms.DataGridViewTextBoxColumn DGCheckStatus;
         private System.Windows.Forms.DataGridViewTextBoxColumn DGPoshtNomre;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DGDateSarresid;
     }
 }

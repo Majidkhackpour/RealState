@@ -8,6 +8,7 @@ using EntityCache.Core;
 using Persistence.Entities;
 using Persistence.Model;
 using Services;
+using Services.DefaultCoding;
 
 namespace EntityCache.SqlServerPersistence
 {
@@ -38,6 +39,8 @@ namespace EntityCache.SqlServerPersistence
                 item.Price = (decimal)dr["Price"];
                 item.CheckStatus = (EnCheckM)dr["CheckStatus"];
                 item.DateSarResid = (DateTime) dr["DateSarResid"];
+                item.SandouqTafsilGuid = (Guid) dr["SandouqTafsilGuid"];
+                item.SandouqMoeinGuid = (Guid)dr["SandouqMoeinGuid"];
             }
             catch (Exception ex)
             {
@@ -130,6 +133,8 @@ namespace EntityCache.SqlServerPersistence
                     cmd.Parameters.AddWithValue("@price", item.Price);
                     cmd.Parameters.AddWithValue("@checkStatus", (int)item.CheckStatus);
                     cmd.Parameters.AddWithValue("@sarResid", item.DateSarResid);
+                    cmd.Parameters.AddWithValue("@sandouqTafsilGuid", item.SandouqTafsilGuid);
+                    cmd.Parameters.AddWithValue("@sandouqMoeinGuid", ParentDefaults.MoeinCoding.CLSMoein10104);
 
                     await cn.OpenAsync();
                     await cmd.ExecuteNonQueryAsync();

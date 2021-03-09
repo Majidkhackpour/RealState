@@ -13,16 +13,33 @@ namespace Accounting.Reception
     public partial class frmReceptionCheck : MetroForm
     {
         public ReceptionCheckBussines cls { get; set; }
-        private void SetData()
+        private async Task SetDataAsync()
         {
             try
             {
+                await FillSandouqAsync();
+
                 txtPrice.TextDecimal = cls?.Price ?? 0;
                 txtDesc.Text = cls?.Description;
                 txtDate.Text = cls?.DateSarresidSh;
                 txtBankName.Text = cls?.BankName;
                 txtCheckNo.Text = cls?.CheckNumber;
                 txtPoshtNomre.Text = cls?.PoshtNomre;
+
+                if (cls.Guid == Guid.Empty && SandouqBindingSource.Count > 0) cmbSandouq.SelectedIndex = 0;
+                else cmbSandouq.SelectedValue = cls.SandouqTafsilGuid;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private async Task FillSandouqAsync()
+        {
+            try
+            {
+                var list = await TafsilBussines.GetAllAsync("", HesabType.Sandouq);
+                SandouqBindingSource.DataSource = list?.Where(q => q.Status)?.OrderBy(q => q.Name)?.ToList();
             }
             catch (Exception ex)
             {
@@ -40,7 +57,7 @@ namespace Accounting.Reception
         {
             try
             {
-                SetData();
+                await SetDataAsync();
 
                 var myCollection = new AutoCompleteStringCollection();
                 var list = await BankSegestBussines.GetAllAsync();
@@ -102,7 +119,7 @@ namespace Accounting.Reception
                 if (string.IsNullOrEmpty(txtDate.Text)) res.AddError("لطفا تاریخ سررسید چک را وارد نمایید");
                 if (string.IsNullOrEmpty(txtBankName.Text)) res.AddError("لطفا بانک صادر کننده چک را وارد نمایید");
                 if (string.IsNullOrEmpty(txtCheckNo.Text)) res.AddError("لطفا شماره چک را وارد نمایید");
-
+                if (SandouqBindingSource.Count <= 0) res.AddError("لطفا صندوق مقصد را انتخاب نمایید");
 
                 cls.Modified = DateTime.Now;
                 cls.Status = true;
@@ -113,6 +130,7 @@ namespace Accounting.Reception
                 cls.PoshtNomre = txtPoshtNomre.Text;
                 cls.Price = txtPrice.TextDecimal;
                 cls.CheckStatus = EnCheckM.Mojoud;
+                cls.SandouqTafsilGuid = (Guid)cmbSandouq.SelectedValue;
             }
             catch (Exception ex)
             {

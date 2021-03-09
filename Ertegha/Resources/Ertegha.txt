@@ -3379,7 +3379,9 @@ Alter PROCEDURE sp_ReceptionCheck_Insert
 	@poshtNomre nvarchar(200),
 	@price decimal,
 	@checkStatus int,
-	@sarResid datetime
+	@sarResid datetime,
+	@sandouqTafsilGuid uniqueidentifier,
+	@sandouqMoeinGuid uniqueidentifier
 AS
 BEGIN
 	INSERT INTO [dbo].[ReceptionChecks]
@@ -3394,7 +3396,9 @@ BEGIN
           ,[PoshtNomre]
           ,[Price]
           ,[CheckStatus]
-		  ,[DateSarResid])
+		  ,[DateSarResid]
+		  ,[SandouqTafsilGuid]
+		  ,[SandouqMoeinGuid])
 	VALUES
           (@guid
           ,@modif
@@ -3407,7 +3411,9 @@ BEGIN
           ,@poshtNomre
           ,@price
           ,@checkStatus
-		  ,@sarResid)
+		  ,@sarResid
+		  ,@sandouqTafsilGuid
+		  ,@sandouqMoeinGuid)
 END
 GO
 --========================================================================================================

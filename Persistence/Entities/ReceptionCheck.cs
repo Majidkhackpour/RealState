@@ -26,6 +26,12 @@ namespace Persistence.Entities
         public string PoshtNomre { get; set; }
         public decimal Price { get; set; }
         public EnCheckM CheckStatus { get; set; }
+        [ForeignKey("Tafsil")]
+        public Guid SandouqTafsilGuid { get; set; }
+        [ForeignKey("Moein")]
+        public Guid SandouqMoeinGuid { get; set; }
+        public virtual Moein Moein { get; set; }
+        public virtual Tafsil Tafsil { get; set; }
         public virtual Reception Reception { get; set; }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WindowsSerivces;
 using Accounting.Hesab;
 using EntityCache.Bussines;
 using MetroFramework.Forms;
@@ -78,7 +79,7 @@ namespace Accounting.Reception
                     DGrid[DGType.Index, DGrid.RowCount - 1].Value = "نقد";
                     DGrid[DGPrice.Index, DGrid.RowCount - 1].Value = ((ReceptionNaqdBussines)temp).Price;
                     DGrid[DgGuid.Index, DGrid.RowCount - 1].Value = ((ReceptionNaqdBussines)temp).Guid;
-                    DGrid[DGSandoghGuid.Index, DGrid.RowCount - 1].Value = ((ReceptionNaqdBussines)temp).SandouqTafsilGuid;
+                    DGrid[DGTafsilGuid.Index, DGrid.RowCount - 1].Value = ((ReceptionNaqdBussines)temp).SandouqTafsilGuid;
                     DGrid[DGDescription.Index, DGrid.RowCount - 1].Value =
                         TafsilBussines.Get(((ReceptionNaqdBussines)temp).SandouqTafsilGuid).Name + " " +
                         ((ReceptionNaqdBussines)temp).Description;
@@ -90,7 +91,7 @@ namespace Accounting.Reception
                 {
                     DGrid.Rows.Add(1);
                     DGrid[DGType.Index, DGrid.RowCount - 1].Value = "حواله";
-                    DGrid[DGHavaleBankGuid.Index, DGrid.RowCount - 1].Value = ((ReceptionHavaleBussines)temp).BankTafsilGuid;
+                    DGrid[DGTafsilGuid.Index, DGrid.RowCount - 1].Value = ((ReceptionHavaleBussines)temp).BankTafsilGuid;
                     DGrid[DGDate.Index, DGrid.RowCount - 1].Value = ((ReceptionHavaleBussines)temp).DateM;
                     DGrid[DGNumber.Index, DGrid.RowCount - 1].Value = ((ReceptionHavaleBussines)temp).PeygiriNumber;
                     DGrid[DGPrice.Index, DGrid.RowCount - 1].Value = ((ReceptionHavaleBussines)temp).Price;
@@ -111,6 +112,7 @@ namespace Accounting.Reception
                         DGrid[DGPrice.Index, DGrid.RowCount - 1].Value = ((ReceptionCheckBussines)temp).Price;
                         DGrid[DGCheckBankName.Index, DGrid.RowCount - 1].Value = ((ReceptionCheckBussines)temp).BankName;
                         DGrid[DGDate.Index, DGrid.RowCount - 1].Value = ((ReceptionCheckBussines)temp).DateM;
+                        DGrid[DGDateSarresid.Index, DGrid.RowCount - 1].Value = ((ReceptionCheckBussines)temp).DateSarResid;
                         DGrid[DGCheckStatus.Index, DGrid.RowCount - 1].Value = (int)((ReceptionCheckBussines)temp).CheckStatus;
                         DGrid[DGPoshtNomre.Index, DGrid.RowCount - 1].Value = ((ReceptionCheckBussines)temp).PoshtNomre;
                         DGrid[DGNumber.Index, DGrid.RowCount - 1].Value = ((ReceptionCheckBussines)temp).CheckNumber;
@@ -119,11 +121,12 @@ namespace Accounting.Reception
                             "تاريخ سررسيد : " + ((ReceptionCheckBussines)temp).DateSarresidSh + " * " +
                             "شماره : " + ((ReceptionCheckBussines)temp).CheckNumber + " * " +
                             "بانک :" + DGrid[DGCheckBankName.Index, DGrid.RowCount - 1].Value + " * " +
-                            "شرح: " + ((ReceptionCheckBussines)temp).Description + " * ";
-                        DGrid[DGDescription.Index, DGrid.RowCount - 1].Value =
-                            DGrid[DGDescription.Index, DGrid.RowCount - 1].Value + " وضعيت در سيستم : " +
-                            ((ReceptionCheckBussines)temp).CheckStatus.GetDisplay();
+                            "شرح: " + ((ReceptionCheckBussines)temp).Description + " * " +
+                            "وضعيت در سيستم: " + ((ReceptionCheckBussines)temp).CheckStatus.GetDisplay() + " * " +
+                            "محل واگذاری: " + TafsilBussines.Get(((ReceptionCheckBussines)temp).SandouqTafsilGuid)
+                                ?.Name;
                         DGrid[DgGuid.Index, DGrid.RowCount - 1].Value = ((ReceptionCheckBussines)temp).Guid;
+                        DGrid[DGTafsilGuid.Index, DGrid.RowCount - 1].Value = ((ReceptionCheckBussines)temp).SandouqTafsilGuid;
                     }
                 }
                 SetLables();
@@ -138,9 +141,9 @@ namespace Accounting.Reception
             try
             {
                 lblSum.Text = cls?.Sum.ToString("N0");
-                lblSumCheck.Text = $"{NumberToString.Num2Str(cls?.CountCheck.ToString())} فقره - جمع: {NumberToString.Num2Str(cls?.SumCheck.ToString())} ریال";
-                lblSumHavale.Text = $"{NumberToString.Num2Str(cls?.CountHavale.ToString())} فقره - جمع: {NumberToString.Num2Str(cls?.SumHavale.ToString())} ریال";
-                lblSumNaqdi.Text = $"{NumberToString.Num2Str(cls?.CountNaqd.ToString())} فقره - جمع: {NumberToString.Num2Str(cls?.SumNaqd.ToString())} ریال";
+                lblSumCheck.Text = cls?.CheckDesc;
+                lblSumHavale.Text = cls?.HavaleDesc;
+                lblSumNaqdi.Text = cls?.NaqdDesc;
             }
             catch (Exception ex)
             {
@@ -187,7 +190,7 @@ namespace Accounting.Reception
                     {
                         Guid = (Guid)(DGrid[DgGuid.Index, index].Value),
                         Price = (DGrid[DGPrice.Index, index].Value.ToString().ParseToDecimal()),
-                        SandouqTafsilGuid = (Guid)(DGrid[DGSandoghGuid.Index, index].Value),
+                        SandouqTafsilGuid = (Guid)(DGrid[DGTafsilGuid.Index, index].Value),
                         DateM = (DateTime)(DGrid[DGDate.Index, index].Value),
                         Description = DGrid[DG_TempDescription.Index, index].Value.ToString()
                     };
@@ -204,7 +207,9 @@ namespace Accounting.Reception
                         CheckNumber = DGrid[DGNumber.Index, index].Value.ToString(),
                         CheckStatus = (EnCheckM)(DGrid[DGCheckStatus.Index, index].Value),
                         PoshtNomre = DGrid[DGPoshtNomre.Index, index].Value.ToString(),
-                        Description = DGrid[DG_TempDescription.Index, index].Value.ToString()
+                        Description = DGrid[DG_TempDescription.Index, index].Value.ToString(),
+                        SandouqTafsilGuid = (Guid)(DGrid[DGTafsilGuid.Index, index].Value),
+                        DateSarResid = (DateTime)(DGrid[DGDateSarresid.Index, index].Value)
                     };
                     o = temp;
                 }
@@ -214,7 +219,7 @@ namespace Accounting.Reception
                     {
                         Guid = (Guid)(DGrid[DgGuid.Index, index].Value),
                         Price = (DGrid[DGPrice.Index, index].Value.ToString().ParseToDecimal()),
-                        BankTafsilGuid = (Guid)(DGrid[DGHavaleBankGuid.Index, index].Value),
+                        BankTafsilGuid = (Guid)(DGrid[DGTafsilGuid.Index, index].Value),
                         DateM = (DateTime)(DGrid[DGDate.Index, index].Value),
                         PeygiriNumber = DGrid[DGNumber.Index, index].Value.ToString(),
                         Description = DGrid[DG_TempDescription.Index, index].Value.ToString(),
@@ -325,6 +330,89 @@ namespace Accounting.Reception
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
+        }
+        private void DGrid_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+            => DGrid.Rows[e.RowIndex].Cells["dgRadif"].Value = e.RowIndex + 1;
+        private void mnuEdit_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (DGrid.RowCount == 0 || DGrid.CurrentRow == null) return;
+
+                if (DGrid[DGType.Index, DGrid.CurrentRow.Index].Value.ToString() == "نقد")
+                {
+                    var str = (ReceptionNaqdBussines)GetRowInfo(DGrid.CurrentRow.Index);
+                    var frm = new frmReceptionNaqd(str);
+                    if (frm.ShowDialog(this) != DialogResult.OK) return;
+                    DGrid.Rows.RemoveAt(DGrid.CurrentRow.Index);
+                    AddToGrid(frm.cls);
+                }
+                else if (DGrid[DGType.Index, DGrid.CurrentRow.Index].Value.ToString() == "چک")
+                {
+                    var str = (ReceptionCheckBussines)GetRowInfo(DGrid.CurrentRow.Index);
+                    var frm = new frmReceptionCheck(str);
+                    if (frm.ShowDialog(this) != DialogResult.OK) return;
+                    DGrid.Rows.RemoveAt(DGrid.CurrentRow.Index);
+                    AddToGrid(frm.cls);
+                }
+                else if (DGrid[DGType.Index, DGrid.CurrentRow.Index].Value.ToString() == "حواله")
+                {
+                    var str = (ReceptionHavaleBussines)GetRowInfo(DGrid.CurrentRow.Index);
+                    var frm = new frmReceptionHavale(str);
+                    if (frm.ShowDialog(this) != DialogResult.OK) return;
+                    DGrid.Rows.RemoveAt(DGrid.CurrentRow.Index);
+                    AddToGrid(frm.cls);
+                }
+                FetchData();
+                SetLables();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private void mnuDelete_Click(object sender, EventArgs e)
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                if (DGrid.RowCount <= 0 || DGrid.CurrentRow == null) return;
+                if (DGrid[DGType.Index, DGrid.CurrentRow.Index].Value.ToString() == "چک")
+                {
+                    var str = (ReceptionCheckBussines)GetRowInfo(DGrid.CurrentRow.Index);
+                    if (str.CheckStatus != EnCheckM.Mojoud)
+                    {
+                        res.AddError("جهت ابطال چک از صفحه چکها استفاده نمایید .");
+                        return;
+                    }
+                }
+
+                if (MessageBox.Show("مایل به حذف سطر جاری هستید ؟", "هشدار", MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2, MessageBoxOptions.RightAlign) ==
+                    DialogResult.No)
+                    return;
+                DGrid.Rows.RemoveAt(DGrid.CurrentRow.Index);
+                DGrid.Focus();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+            finally
+            {
+                if (res.HasError) this.ShowError(res, "خطا در حذف ریز دریافت");
+                else
+                {
+                    FetchData();
+                    SetLables();
+                }
+            }
+        }
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.Cancel;
+            Close();
         }
     }
 }

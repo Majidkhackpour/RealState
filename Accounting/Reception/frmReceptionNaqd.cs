@@ -96,7 +96,6 @@ namespace Accounting.Reception
                 cls.Description = txtDesc.Text;
                 cls.SandouqTafsilGuid = (Guid)cmbSandouq.SelectedValue;
                 cls.Price = txtPrice.TextDecimal;
-                cls.SandouqMoeinGuid = ParentDefaults.MoeinCoding.CLSMoein10102;
             }
             catch (Exception ex)
             {

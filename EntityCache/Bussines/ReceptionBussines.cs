@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using EntityCache.Assistence;
 using Nito.AsyncEx;
 using Services;
+using Services.DefaultCoding;
 using Services.Interfaces.Building;
 
 namespace EntityCache.Bussines
@@ -13,9 +14,9 @@ namespace EntityCache.Bussines
     {
         public Guid Guid { get; set; }
         public DateTime Modified { get; set; }
-        public bool Status { get; set; }
+        public bool Status { get; set; } = true;
         public long Number { get; set; }
-        public DateTime DateM { get; set; }
+        public DateTime DateM { get; set; } = DateTime.Now;
         public string DateSh => Calendar.MiladiToShamsi(DateM);
         public string Description { get; set; }
         public Guid TafsilGuid { get; set; }
@@ -136,8 +137,9 @@ namespace EntityCache.Bussines
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-
-
+        public string NaqdDesc => $"{NumberToString.Num2Str(CountNaqd.ToString())} فقره - جمع: {NumberToString.Num2Str(SumNaqd.ToString())} ریال";
+        public string HavaleDesc => $"{NumberToString.Num2Str(CountHavale.ToString())} فقره - جمع: {NumberToString.Num2Str(SumHavale.ToString())} ریال";
+        public string CheckDesc => $"{NumberToString.Num2Str(CountCheck.ToString())} فقره - جمع: {NumberToString.Num2Str(SumCheck.ToString())} ریال";
         public static async Task<List<ReceptionBussines>> GetAllAsync() => await UnitOfWork.Reception.GetAllAsync();
         public static async Task<List<ReceptionBussines>> GetAllAsync(string search)
         {
@@ -187,7 +189,21 @@ namespace EntityCache.Bussines
                 { //BeginTransaction
                 }
 
+                res.AddReturnedValue(CheckValidation());
+                if (res.HasError) return res;
+
                 res.AddReturnedValue(await UnitOfWork.Reception.SaveAsync(this, tranName));
+                if (res.HasError) return res;
+
+                res.AddReturnedValue(await ReceptionNaqdBussines.SaveRangeAsync(NaqdList));
+                if (res.HasError) return res;
+                res.AddReturnedValue(await ReceptionHavaleBussines.SaveRangeAsync(HavaleList));
+                if (res.HasError) return res;
+                res.AddReturnedValue(await ReceptionCheckBussines.SaveRangeAsync(CheckList));
+                if (res.HasError) return res;
+
+                var sanad = await GenerateSanadAsync();
+                res.AddReturnedValue(await sanad.SaveAsync());
                 if (res.HasError) return res;
 
                 if (autoTran)
@@ -243,50 +259,38 @@ namespace EntityCache.Bussines
 
             return res;
         }
-        public async Task<ReturnedSaveFuncInfo> CheckValidationAsync()
+        public ReturnedSaveFuncInfo CheckValidation()
         {
             var res = new ReturnedSaveFuncInfo();
             try
             {
-                //ChangeIntegrity.CheckChangesValidation(res, this);
-                //if (ListBank?.Count > 0)
-                //    foreach (var bank in ListBank)
-                //    {
-                //        if (bank == null)
-                //        {
-                //            res.AddReturnedValue(ReturnedState.Error, "در لیست حواله ها مقدار نال موجود میباشد.");
-                //            continue;
-                //        }
-                //        if (bank.TafsilGuid == Guid.Empty || (bank.bankInfo?.HType != HesabType.Bank))
-                //            res.AddReturnedValue(ReturnedState.Error, "حساب وارد شده جهت بانک معتبر نمیباشد.");
-                //        if (bank.Price <= 0)
-                //            res.AddReturnedValue(ReturnedState.Error, "مبلغ وارد شده جهت حواله بانکی معتبر نمیباشد.");
-                //    }
+                if (HavaleList?.Count > 0)
+                    foreach (var bank in HavaleList)
+                    {
+                        if (bank == null)
+                        {
+                            res.AddError("در لیست حواله ها مقدار نال موجود میباشد");
+                            continue;
+                        }
+                        if (bank.BankTafsilGuid == Guid.Empty) res.AddError("حساب وارد شده جهت بانک معتبر نمیباشد");
+                        if (bank.Price <= 0) res.AddError("مبلغ وارد شده جهت حواله بانکی معتبر نمیباشد");
+                    }
 
-                //if (ListNaghd?.Count > 0)
-                //    foreach (var naghd in ListNaghd)
-                //    {
-                //        if (naghd == null)
-                //        {
-                //            res.AddReturnedValue(ReturnedState.Error, "در لیست در یافتی های نقدی مقدار نال موجود میباشد.");
-                //            continue;
-                //        }
-                //        if (naghd.sandoghInfo?.HType != HesabType.Sandogh)
-                //            res.AddReturnedValue(ReturnedState.Error, "حساب وارد شده جهت صندوق معتبر نمیباشد.");
-                //        if (naghd.Price <= 0)
-                //            res.AddReturnedValue(ReturnedState.Error, "مبلغ وارد شده جهت واریز به صندوق بانکی معتبر نمیباشد.");
-                //    }
+                if (NaqdList?.Count > 0)
+                    foreach (var naghd in NaqdList)
+                    {
+                        if (naghd == null)
+                        {
+                            res.AddError("در لیست دریافتی های نقدی مقدار نال موجود میباشد");
+                            continue;
+                        }
+                        if (naghd.SandouqTafsilGuid== Guid.Empty) res.AddError("حساب وارد شده جهت صندوق معتبر نمیباشد");
+                        if (naghd.Price <= 0) res.AddError("مبلغ وارد شده جهت واریز به صندوق معتبر نمیباشد");
+                    }
 
-                //if (Date < new DateTime(2010, 01, 01) || Date > new DateTime(2099, 01, 01))
-                //    res.AddReturnedValue(ReturnedState.Error, "تاریخ وارد شده جهت برگه دریافت معتبر نمی باشد");
-                //if (TafsilGuid == Guid.Empty)
-                //    res.AddReturnedValue(ReturnedState.Error, "ردیف طرف حساب انتخاب شده جهت صدور برگه دریافت معتبر نمی باشد");
-                //if (UserGuid == Guid.Empty)
-                //    res.AddReturnedValue(ReturnedState.Error, "ردیف کاربر انتخاب شده جهت برگه دریافت معتبر نمی باشد");
-                //if (Sum <= 0)
-                //    res.AddReturnedValue(ReturnedState.Error, "برگه دریافت با مبلغ صفر یا منفی قابل ثبت نمیباشد.");
-                //if (Guid == null || Guid == Guid.Empty)
-                //    Guid = Guid.NewGuid();
+                if (TafsilGuid == Guid.Empty) res.AddError("ردیف طرف حساب انتخاب شده جهت صدور برگه دریافت معتبر نمی باشد");
+                if (Sum <= 0) res.AddError("برگه دریافت با مبلغ صفر یا منفی قابل ثبت نمیباشد");
+                if (Guid == Guid.Empty) Guid = Guid.NewGuid();
             }
             catch (Exception ex)
             {
@@ -294,85 +298,81 @@ namespace EntityCache.Bussines
             }
             return res;
         }
-        public SanadBussines GenerateSanad()
+        public async Task<SanadBussines> GenerateSanadAsync()
         {
-            var sanad = new SanadBussines();
-            //{
-            //    Description = $"دریافت({Id2}) {Description }",
-            //    SanadNo = SanadNo,
-            //    DateM = Date,
-            //    UserGuid = UserGuid
-            //};
+            SanadBussines sanad = null;
             try
             {
+                sanad = await SanadBussines.GetAsync(SanadNumber) ?? new SanadBussines()
+                {
+                    Description = $"دریافت({Number}) {Description }",
+                    Number = SanadNumber,
+                    DateM = DateM,
+                    UserGuid = UserGuid,
+                    Guid = Guid.NewGuid(),
+                    Modified = DateTime.Now,
+                    Status = true,
+                    SanadStatus = EnSanadStatus.Temporary,
+                    SanadType = EnSanadType.Auto
+                };
                 //طرف حساب بستانکار دریافت
-                //sanad.AddToListSanad(new Sanad_DetBusiness()
-                //{
-                //    Credit = Sum,
-                //    Debit = 0,
-                //    MoeinGuid = MoeinGuid,
-                //    TafsilGuid = TafsilGuid,
-                //    Description = $"دریافت({ Id2} {Description})",
-                //    DecimalGuid = Guid.Empty,
-                //    Guid = Guid.NewGuid(),
-                //    Qt = 0
-                //});
+                sanad.AddToListSanad(new SanadDetailBussines()
+                {
+                    Credit = Sum,
+                    Debit = 0,
+                    MoeinGuid = ParentDefaults.MoeinCoding.CLSMoein10304,
+                    TafsilGuid = TafsilGuid,
+                    Description = $"دریافت({ Number} {Description})",
+                    Guid = Guid.NewGuid(),
+                    Modified = DateTime.Now,
+                    Status = true,
+                    MasterGuid = sanad.Guid
+                });
 
-                //if (ListNaghd?.Count > 0)
-                //    foreach (ReceptionNaghdBusiness naghd in ListNaghd)
-                //        sanad.AddToListSanad(new Sanad_DetBusiness()
-                //        {
-                //            Credit = 0,
-                //            Debit = naghd.Price,
-                //            MoeinGuid = naghd.MoeinGuid,
-                //            TafsilGuid = naghd.TafsilGuid,
-                //            Description = $"دریافت({ Id2} {Description} {naghd.Description})",
-                //            DecimalGuid = naghd.DecimalGuid,
-                //            Guid = naghd.Guid,
-                //            Qt = 0
-                //        });
+                if (NaqdList?.Count > 0)
+                    foreach (var naghd in NaqdList)
+                        sanad.AddToListSanad(new SanadDetailBussines()
+                        {
+                            Credit = 0,
+                            Debit = naghd.Price,
+                            MoeinGuid = ParentDefaults.MoeinCoding.CLSMoein10102,
+                            TafsilGuid = naghd.SandouqTafsilGuid,
+                            Description = $"دریافت({ Number} {Description} {naghd.Description})",
+                            Guid = Guid.NewGuid(),
+                            Modified = DateTime.Now,
+                            Status = true,
+                            MasterGuid = sanad.Guid
+                        });
 
-                //if (ListBank?.Count > 0)
-                //    foreach (ReceptionHavaleBusiness bank in ListBank)
-                //        sanad.AddToListSanad(new Sanad_DetBusiness()
-                //        {
-                //            Credit = 0,
-                //            Debit = bank.Price,
-                //            MoeinGuid = bank.MoeinGuid,
-                //            TafsilGuid = bank.TafsilGuid,
-                //            Description = $"دریافت({Id2} {Description} {bank.Description})",
-                //            DecimalGuid = bank.DecimalGuid,
-                //            Guid = Guid.NewGuid(),
-                //            Qt = bank.Qt
-                //        });
+                if (HavaleList?.Count > 0)
+                    foreach (var bank in HavaleList)
+                        sanad.AddToListSanad(new SanadDetailBussines()
+                        {
+                            Credit = 0,
+                            Debit = bank.Price,
+                            MoeinGuid = ParentDefaults.MoeinCoding.CLSMoein10101,
+                            TafsilGuid = bank.BankTafsilGuid,
+                            Description = $"دریافت({null} {Description} {bank.Description})",
+                            Guid = Guid.NewGuid(),
+                            Modified = DateTime.Now,
+                            Status = true,
+                            MasterGuid = sanad.Guid
+                        });
 
-                //if (ListCheck?.Count > 0)
-                //    foreach (ReceptionCheckBusiness check in ListCheck)
-                //        sanad.AddToListSanad(new Sanad_DetBusiness()
-                //        {
-                //            Credit = 0,
-                //            Debit = check.Price,
-                //            MoeinGuid = LocalSettingBusiness.Settings.CodeSetting.CheckMCoding.Debit_MoeinGuid_Reception,
-                //            TafsilGuid = LocalSettingBusiness.Settings.CodeSetting.CheckMCoding.Debit_TafsilGuid_Reception,
-                //            Description = $"دریافت({ Id2} {Description} {check.Description})",
-                //            DecimalGuid = check.DecimalGuid,
-                //            Guid = check.Guid,
-                //            Qt = 0
-                //        });
-
-                //if (ListEnteghal?.Count > 0)
-                //    foreach (Sanad_DetBusiness enteghal in ListEnteghal)
-                //        sanad.AddToListSanad(new Sanad_DetBusiness()
-                //        {
-                //            Credit = enteghal.Credit,
-                //            Debit = enteghal.Debit,
-                //            MoeinGuid = enteghal.MoeinGuid,
-                //            TafsilGuid = enteghal.TafsilGuid,
-                //            Description = $"دریافت({ Id2} {Description} {enteghal.Description})",
-                //            DecimalGuid = enteghal.DecimalGuid,
-                //            Guid = enteghal.Guid,
-                //            Qt = enteghal.Qt
-                //        });
+                if (CheckList?.Count > 0)
+                    foreach (var check in CheckList)
+                        sanad.AddToListSanad(new SanadDetailBussines()
+                        {
+                            Credit = 0,
+                            Debit = check.Price,
+                            MoeinGuid = ParentDefaults.MoeinCoding.CLSMoein10104,
+                            TafsilGuid = check.SandouqTafsilGuid,
+                            Description = $"دریافت({ Number} {Description} {check.Description})",
+                            Guid = Guid.NewGuid(),
+                            Modified = DateTime.Now,
+                            Status = true,
+                            MasterGuid = sanad.Guid
+                        });
             }
             catch (Exception ex)
             {
