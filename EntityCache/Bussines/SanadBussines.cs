@@ -291,5 +291,6 @@ namespace EntityCache.Bussines
 
             return res;
         }
+        public void DetailClear() => Details?.Clear();
     }
 }

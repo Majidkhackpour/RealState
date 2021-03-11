@@ -195,9 +195,17 @@ namespace EntityCache.Bussines
                 res.AddReturnedValue(await UnitOfWork.Reception.SaveAsync(this, tranName));
                 if (res.HasError) return res;
 
+                res.AddReturnedValue(await ReceptionNaqdBussines.RemoveRangeAsync(Guid));
+                if (res.HasError) return res;
                 res.AddReturnedValue(await ReceptionNaqdBussines.SaveRangeAsync(NaqdList));
                 if (res.HasError) return res;
+
+                res.AddReturnedValue(await ReceptionHavaleBussines.RemoveRangeAsync(Guid));
+                if (res.HasError) return res;
                 res.AddReturnedValue(await ReceptionHavaleBussines.SaveRangeAsync(HavaleList));
+                if (res.HasError) return res;
+
+                res.AddReturnedValue(await ReceptionCheckBussines.RemoveRangeAsync(Guid));
                 if (res.HasError) return res;
                 res.AddReturnedValue(await ReceptionCheckBussines.SaveRangeAsync(CheckList));
                 if (res.HasError) return res;
@@ -234,11 +242,29 @@ namespace EntityCache.Bussines
             try
             {
                 if (autoTran)
-                { //BeginTransaction
+                {
+                    //BeginTransaction
                 }
 
-                res.AddReturnedValue(await UnitOfWork.Sanad.RemoveAsync(Guid, tranName));
+                res.AddReturnedValue(await ReceptionNaqdBussines.RemoveRangeAsync(Guid));
                 if (res.HasError) return res;
+
+                res.AddReturnedValue(await ReceptionHavaleBussines.RemoveRangeAsync(Guid));
+                if (res.HasError) return res;
+
+                res.AddReturnedValue(await ReceptionCheckBussines.RemoveRangeAsync(Guid));
+                if (res.HasError) return res;
+
+                res.AddReturnedValue(await UnitOfWork.Reception.RemoveAsync(Guid, tranName));
+                if (res.HasError) return res;
+
+                var sanad = await SanadBussines.GetAsync(SanadNumber);
+                if (sanad != null)
+                {
+                    res.AddReturnedValue(await sanad.RemoveAsync());
+                    if (res.HasError) return res;
+                }
+
                 if (autoTran)
                 {
                     //CommitTransAction
@@ -274,6 +300,7 @@ namespace EntityCache.Bussines
                         }
                         if (bank.BankTafsilGuid == Guid.Empty) res.AddError("حساب وارد شده جهت بانک معتبر نمیباشد");
                         if (bank.Price <= 0) res.AddError("مبلغ وارد شده جهت حواله بانکی معتبر نمیباشد");
+                        bank.MasterGuid = Guid;
                     }
 
                 if (NaqdList?.Count > 0)
@@ -284,9 +311,14 @@ namespace EntityCache.Bussines
                             res.AddError("در لیست دریافتی های نقدی مقدار نال موجود میباشد");
                             continue;
                         }
-                        if (naghd.SandouqTafsilGuid== Guid.Empty) res.AddError("حساب وارد شده جهت صندوق معتبر نمیباشد");
+                        if (naghd.SandouqTafsilGuid == Guid.Empty) res.AddError("حساب وارد شده جهت صندوق معتبر نمیباشد");
                         if (naghd.Price <= 0) res.AddError("مبلغ وارد شده جهت واریز به صندوق معتبر نمیباشد");
+                        naghd.MasterGuid = Guid;
                     }
+
+                if (CheckList?.Count > 0)
+                    foreach (var check in CheckList)
+                        check.MasterGuid = Guid;
 
                 if (TafsilGuid == Guid.Empty) res.AddError("ردیف طرف حساب انتخاب شده جهت صدور برگه دریافت معتبر نمی باشد");
                 if (Sum <= 0) res.AddError("برگه دریافت با مبلغ صفر یا منفی قابل ثبت نمیباشد");
@@ -315,6 +347,7 @@ namespace EntityCache.Bussines
                     SanadStatus = EnSanadStatus.Temporary,
                     SanadType = EnSanadType.Auto
                 };
+                sanad.DetailClear();
                 //طرف حساب بستانکار دریافت
                 sanad.AddToListSanad(new SanadDetailBussines()
                 {
@@ -352,7 +385,7 @@ namespace EntityCache.Bussines
                             Debit = bank.Price,
                             MoeinGuid = ParentDefaults.MoeinCoding.CLSMoein10101,
                             TafsilGuid = bank.BankTafsilGuid,
-                            Description = $"دریافت({null} {Description} {bank.Description})",
+                            Description = $"دریافت({Number} {Description} {bank.Description})",
                             Guid = Guid.NewGuid(),
                             Modified = DateTime.Now,
                             Status = true,

@@ -10,8 +10,8 @@ namespace EntityCache.Bussines
     public class ReceptionCheckBussines : IReceptionCheck
     {
         public Guid Guid { get; set; }
-        public DateTime Modified { get; set; }
-        public bool Status { get; set; }
+        public DateTime Modified { get; set; } = DateTime.Now;
+        public bool Status { get; set; } = true;
         public string BankName { get; set; }
         public DateTime DateM { get; set; }
         public DateTime DateSarResid { get; set; }

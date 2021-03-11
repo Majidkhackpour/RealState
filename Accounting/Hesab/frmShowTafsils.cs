@@ -211,6 +211,7 @@ namespace Accounting.Hesab
                     if (tafsil.HesabType == HesabType.Customer)
                     {
                         var cus = await PeoplesBussines.GetAsync(tafsil.Guid);
+                        if (cus == null) return;
                         res.AddReturnedValue(await cus.ChangeStatusAsync(false));
                         return;
                     }

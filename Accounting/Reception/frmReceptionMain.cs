@@ -240,6 +240,14 @@ namespace Accounting.Reception
             InitializeComponent();
             cls = new ReceptionBussines();
         }
+        public frmReceptionMain(Guid guid, bool isShowMode)
+        {
+            InitializeComponent();
+            cls = ReceptionBussines.Get(guid);
+            grp.Enabled = !isShowMode;
+            btnFinish.Enabled = !isShowMode;
+            contextMenu.Enabled = !isShowMode;
+        }
 
         private void mnuAddNaqd_Click(object sender, System.EventArgs e)
         {
@@ -317,6 +325,9 @@ namespace Accounting.Reception
                         break;
                     case Keys.F7:
                         mnuEdit.PerformClick();
+                        break;
+                    case Keys.F5:
+                        btnFinish.PerformClick();
                         break;
                     case Keys.Delete:
                         mnuDelete.PerformClick();
@@ -413,6 +424,42 @@ namespace Accounting.Reception
         {
             DialogResult = DialogResult.Cancel;
             Close();
+        }
+        private async void btnFinish_Click(object sender, EventArgs e)
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                if (cls.Guid == Guid.Empty)
+                {
+                    cls.Guid = Guid.NewGuid();
+                    cls.DateM = DateTime.Now;
+                    cls.UserGuid = User.clsUser.CurrentUser.Guid;
+                }
+
+                cls.Modified = DateTime.Now;
+                cls.Status = true;
+                cls.Number = (long)txtNumber.Value;
+                cls.Description = txtDesc.Text;
+                cls.TafsilGuid = _tafsilGuid;
+                cls.SanadNumber = (long)txtSanadNo.Value;
+
+                res.AddReturnedValue(await cls.SaveAsync());
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+            finally
+            {
+                if (res.HasError) this.ShowError(res, "خطا در ثبت برگه دریافت");
+                else
+                {
+                    DialogResult = DialogResult.OK;
+                    Close();
+                }
+            }
         }
     }
 }

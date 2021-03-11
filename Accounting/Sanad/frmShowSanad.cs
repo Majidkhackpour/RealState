@@ -107,6 +107,11 @@ namespace Accounting.Sanad
                     frmNotification.PublicInfo.ShowMessage("شما مجاز به ویرایش سند دائمی نمی باشید ");
                     return;
                 }
+                if (sanad.SanadType == EnSanadType.Auto)
+                {
+                    frmNotification.PublicInfo.ShowMessage("شما مجاز به ویرایش سند اتومات نمی باشید ");
+                    return;
+                }
 
                 var frm = new frmSanadMain(guid, false);
                 if (frm.ShowDialog(this) == DialogResult.OK)
@@ -130,6 +135,11 @@ namespace Accounting.Sanad
                 if (sanad.SanadStatus == EnSanadStatus.Permament)
                 {
                     res.AddError("شما مجاز به حذف سند دائمی نمی باشید");
+                    return;
+                }
+                if (sanad.SanadType == EnSanadType.Auto)
+                {
+                    res.AddError("شما مجاز به حذف سند اتومات نمی باشید");
                     return;
                 }
 

@@ -9,6 +9,7 @@ using Nito.AsyncEx;
 using Persistence.Entities;
 using Persistence.Model;
 using Services;
+using Services.DefaultCoding;
 
 namespace EntityCache.SqlServerPersistence
 {
@@ -155,7 +156,7 @@ namespace EntityCache.SqlServerPersistence
                     cmd.Parameters.AddWithValue("@number", item.Number);
                     cmd.Parameters.AddWithValue("@tafsilGuid", item.TafsilGuid);
                     cmd.Parameters.AddWithValue("@userGuid", item.UserGuid);
-                    cmd.Parameters.AddWithValue("@moeinGuid", item.MoeinGuid);
+                    cmd.Parameters.AddWithValue("@moeinGuid", ParentDefaults.MoeinCoding.CLSMoein10304);
                     cmd.Parameters.AddWithValue("@sanadNumber", item.SanadNumber);
 
                     await cn.OpenAsync();

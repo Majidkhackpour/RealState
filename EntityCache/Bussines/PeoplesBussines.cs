@@ -59,12 +59,12 @@ namespace EntityCache.Bussines
                 res.AddReturnedValue(await SaveTafsilAsync());
                 if (res.HasError) return res;
 
-                if (TellList.Count > 0)
+                if (TellList?.Count > 0)
                 {
                     res.AddReturnedValue(await SaveMobileAsync());
                     if (res.HasError) return res;
                 }
-                if (BankList.Count > 0)
+                if (BankList?.Count > 0)
                 {
                     res.AddReturnedValue(await SaveBankAccountAsync());
                     if (res.HasError) return res;

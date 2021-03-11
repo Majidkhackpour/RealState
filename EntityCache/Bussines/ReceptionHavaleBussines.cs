@@ -10,8 +10,8 @@ namespace EntityCache.Bussines
     public class ReceptionHavaleBussines : IReceptionHavale
     {
         public Guid Guid { get; set; }
-        public DateTime Modified { get; set; }
-        public bool Status { get; set; }
+        public DateTime Modified { get; set; } = DateTime.Now;
+        public bool Status { get; set; } = true;
         public DateTime DateM { get; set; }
         public Guid MasterGuid { get; set; }
         public string Description { get; set; }

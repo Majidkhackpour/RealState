@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Linq;
 using System.Threading.Tasks;
 using EntityCache.Bussines;
 using EntityCache.Core;
@@ -98,6 +99,7 @@ namespace EntityCache.SqlServerPersistence
             var res = new ReturnedSaveFuncInfo();
             try
             {
+                if (items == null || !items.Any()) return res;
                 foreach (var item in items)
                     res.AddReturnedValue(await SaveAsync(item, tranName));
             }

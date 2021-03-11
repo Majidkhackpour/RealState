@@ -48,16 +48,17 @@ namespace Accounting.Reception
             this.mnuAdd = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.DGrid = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.numberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ReceptionBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.dgNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dateShDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tafsilNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.descriptionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.sumCheckDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.sumHavaleDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.sumNaqdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.sumDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgSum = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.userNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.guidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgGuid = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.modifiedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.statusDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.dateMDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -68,7 +69,6 @@ namespace Accounting.Reception
             this.countNaqdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.countHavaleDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.countCheckDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ReceptionBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.contextMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ReceptionBindingSource)).BeginInit();
@@ -99,6 +99,7 @@ namespace Accounting.Reception
             this.mnuView.Name = "mnuView";
             this.mnuView.Size = new System.Drawing.Size(212, 24);
             this.mnuView.Text = "مشاهده (F12)";
+            this.mnuView.Click += new System.EventHandler(this.mnuView_Click);
             // 
             // toolStripMenuItem1
             // 
@@ -111,6 +112,7 @@ namespace Accounting.Reception
             this.mnuDelete.Name = "mnuDelete";
             this.mnuDelete.Size = new System.Drawing.Size(212, 24);
             this.mnuDelete.Text = "حذف دریافت جاری (Del)";
+            this.mnuDelete.Click += new System.EventHandler(this.mnuDelete_Click);
             // 
             // mnuEdit
             // 
@@ -118,6 +120,7 @@ namespace Accounting.Reception
             this.mnuEdit.Name = "mnuEdit";
             this.mnuEdit.Size = new System.Drawing.Size(212, 24);
             this.mnuEdit.Text = "ویرایش دریافت جاری (F7)";
+            this.mnuEdit.Click += new System.EventHandler(this.mnuEdit_Click);
             // 
             // mnuAdd
             // 
@@ -167,16 +170,16 @@ namespace Accounting.Reception
             this.DGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.DGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.numberDataGridViewTextBoxColumn,
+            this.dgNumber,
             this.dateShDataGridViewTextBoxColumn,
             this.tafsilNameDataGridViewTextBoxColumn,
             this.descriptionDataGridViewTextBoxColumn,
             this.sumCheckDataGridViewTextBoxColumn,
             this.sumHavaleDataGridViewTextBoxColumn,
             this.sumNaqdDataGridViewTextBoxColumn,
-            this.sumDataGridViewTextBoxColumn,
+            this.dgSum,
             this.userNameDataGridViewTextBoxColumn,
-            this.guidDataGridViewTextBoxColumn,
+            this.dgGuid,
             this.modifiedDataGridViewTextBoxColumn,
             this.statusDataGridViewCheckBoxColumn,
             this.dateMDataGridViewTextBoxColumn,
@@ -224,14 +227,18 @@ namespace Accounting.Reception
             this.DGrid.Size = new System.Drawing.Size(793, 528);
             this.DGrid.TabIndex = 55755;
             // 
-            // numberDataGridViewTextBoxColumn
+            // ReceptionBindingSource
             // 
-            this.numberDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.numberDataGridViewTextBoxColumn.DataPropertyName = "Number";
-            this.numberDataGridViewTextBoxColumn.HeaderText = "شماره";
-            this.numberDataGridViewTextBoxColumn.Name = "numberDataGridViewTextBoxColumn";
-            this.numberDataGridViewTextBoxColumn.ReadOnly = true;
-            this.numberDataGridViewTextBoxColumn.Width = 63;
+            this.ReceptionBindingSource.DataSource = typeof(EntityCache.Bussines.ReceptionBussines);
+            // 
+            // dgNumber
+            // 
+            this.dgNumber.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dgNumber.DataPropertyName = "Number";
+            this.dgNumber.HeaderText = "شماره";
+            this.dgNumber.Name = "dgNumber";
+            this.dgNumber.ReadOnly = true;
+            this.dgNumber.Width = 63;
             // 
             // dateShDataGridViewTextBoxColumn
             // 
@@ -294,17 +301,17 @@ namespace Accounting.Reception
             this.sumNaqdDataGridViewTextBoxColumn.ReadOnly = true;
             this.sumNaqdDataGridViewTextBoxColumn.Width = 73;
             // 
-            // sumDataGridViewTextBoxColumn
+            // dgSum
             // 
-            this.sumDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.sumDataGridViewTextBoxColumn.DataPropertyName = "Sum";
+            this.dgSum.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dgSum.DataPropertyName = "Sum";
             dataGridViewCellStyle6.Format = "N0";
             dataGridViewCellStyle6.NullValue = null;
-            this.sumDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle6;
-            this.sumDataGridViewTextBoxColumn.HeaderText = "جمع کل";
-            this.sumDataGridViewTextBoxColumn.Name = "sumDataGridViewTextBoxColumn";
-            this.sumDataGridViewTextBoxColumn.ReadOnly = true;
-            this.sumDataGridViewTextBoxColumn.Width = 71;
+            this.dgSum.DefaultCellStyle = dataGridViewCellStyle6;
+            this.dgSum.HeaderText = "جمع کل";
+            this.dgSum.Name = "dgSum";
+            this.dgSum.ReadOnly = true;
+            this.dgSum.Width = 71;
             // 
             // userNameDataGridViewTextBoxColumn
             // 
@@ -315,13 +322,13 @@ namespace Accounting.Reception
             this.userNameDataGridViewTextBoxColumn.ReadOnly = true;
             this.userNameDataGridViewTextBoxColumn.Width = 58;
             // 
-            // guidDataGridViewTextBoxColumn
+            // dgGuid
             // 
-            this.guidDataGridViewTextBoxColumn.DataPropertyName = "Guid";
-            this.guidDataGridViewTextBoxColumn.HeaderText = "Guid";
-            this.guidDataGridViewTextBoxColumn.Name = "guidDataGridViewTextBoxColumn";
-            this.guidDataGridViewTextBoxColumn.ReadOnly = true;
-            this.guidDataGridViewTextBoxColumn.Visible = false;
+            this.dgGuid.DataPropertyName = "Guid";
+            this.dgGuid.HeaderText = "Guid";
+            this.dgGuid.Name = "dgGuid";
+            this.dgGuid.ReadOnly = true;
+            this.dgGuid.Visible = false;
             // 
             // modifiedDataGridViewTextBoxColumn
             // 
@@ -403,10 +410,6 @@ namespace Accounting.Reception
             this.countCheckDataGridViewTextBoxColumn.ReadOnly = true;
             this.countCheckDataGridViewTextBoxColumn.Visible = false;
             // 
-            // ReceptionBindingSource
-            // 
-            this.ReceptionBindingSource.DataSource = typeof(EntityCache.Bussines.ReceptionBussines);
-            // 
             // frmShowReception
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -444,16 +447,16 @@ namespace Accounting.Reception
         private System.Windows.Forms.ToolStripMenuItem mnuAdd;
         private System.Windows.Forms.ContextMenuStrip contextMenu;
         private DevComponents.DotNetBar.Controls.DataGridViewX DGrid;
-        private System.Windows.Forms.DataGridViewTextBoxColumn numberDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgNumber;
         private System.Windows.Forms.DataGridViewTextBoxColumn dateShDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn tafsilNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn descriptionDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn sumCheckDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn sumHavaleDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn sumNaqdDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn sumDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgSum;
         private System.Windows.Forms.DataGridViewTextBoxColumn userNameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn guidDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgGuid;
         private System.Windows.Forms.DataGridViewTextBoxColumn modifiedDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewCheckBoxColumn statusDataGridViewCheckBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn dateMDataGridViewTextBoxColumn;
