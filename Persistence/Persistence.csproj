@@ -87,6 +87,11 @@
     <Compile Include="Entities\Moein.cs" />
     <Compile Include="Entities\Naqz.cs" />
     <Compile Include="Entities\Note.cs" />
+    <Compile Include="Entities\Pardakht.cs" />
+    <Compile Include="Entities\PardakhtCheckMoshtari.cs" />
+    <Compile Include="Entities\PardakhtCheckShakhsi.cs" />
+    <Compile Include="Entities\PardakhtHavale.cs" />
+    <Compile Include="Entities\PardakhtNaqd.cs" />
     <Compile Include="Entities\PeopleBankAccount.cs" />
     <Compile Include="Entities\PeopleGroup.cs" />
     <Compile Include="Entities\Peoples.cs" />
@@ -421,6 +426,10 @@
     <Compile Include="Migrations\202103111622448__78.designer.cs">
       <DependentUpon>202103111622448__78.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202103111839461__79.cs" />
+    <Compile Include="Migrations\202103111839461__79.designer.cs">
+      <DependentUpon>202103111839461__79.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\ModelContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -669,6 +678,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202103111622448__78.resx">
       <DependentUpon>202103111622448__78.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202103111839461__79.resx">
+      <DependentUpon>202103111839461__79.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

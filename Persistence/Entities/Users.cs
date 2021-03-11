@@ -31,5 +31,6 @@ namespace Persistence.Entities
         public string Access { get; set; }
         public virtual ICollection<Sanad> Sanad { get; set; }
         public virtual ICollection<Reception> Reception { get; set; }
+        public virtual ICollection<Pardakht> Pardakht { get; set; }
     }
 }
