@@ -49,7 +49,6 @@ namespace Persistence.Model
         public virtual DbSet<BuildingGallery> BuildingGallery { get; set; }
         public virtual DbSet<BuildingRequest> BuildingRequest { get; set; }
         public virtual DbSet<BuildingRequestRegion> BuildingRequestRegions { get; set; }
-        public virtual DbSet<Pardakht> Pardakht { get; set; }
         public virtual DbSet<Contract> Contract { get; set; }
         public virtual DbSet<ContractFinance> ContractFinance { get; set; }
         public virtual DbSet<UserLog> UserLog { get; set; }

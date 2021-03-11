@@ -1,5 +1,4 @@
 ﻿using Accounting.Hazine;
-using Accounting.Payement;
 using Advertise.Forms;
 using Building.Building;
 using Building.BuildingAccountType;
@@ -260,7 +259,6 @@ namespace RealState
                 var allReq = await BuildingRequestBussines.DbCount(Guid.Empty);
                 var myReq = await BuildingRequestBussines.DbCount(clsUser.CurrentUser.Guid);
                 var myCon = await ContractBussines.DbCount(clsUser.CurrentUser.Guid);
-                var pardakhtCheck = await PardakhtBussines.DbCheckCount(Calendar.MiladiToShamsi(DateTime.Now));
                 var disCharge = await ContractBussines.DischargeDbCount();
 
                 BirthdayList = await PeoplesBussines.GetAllBirthDayAsync(Calendar.MiladiToShamsi(DateTime.Now));
@@ -286,12 +284,12 @@ namespace RealState
                     lblBirthday.Text = BirthdayList.Count.ToString();
                     lblNotes.Text = allNote.Count.ToString();
                     //lblReceptionCheck.Text = receptionCheck.ToString();
-                    lblPardakhtCheck.Text = pardakhtCheck.ToString();
+                    //lblPardakhtCheck.Text = pardakhtCheck.ToString();
                     lblSarresidEjare.Text = disCharge.ToString();
                     btnBirthday.Enabled = BirthdayList.Count != 0;
                     btnReminderNotes.Enabled = allNote.Count != 0;
                     //btnReceptionCheck.Enabled = receptionCheck != 0;
-                    btnPardakhtCheck.Enabled = pardakhtCheck != 0;
+                    //btnPardakhtCheck.Enabled = pardakhtCheck != 0;
                     btnDischarge.Enabled = disCharge != 0;
                 }));
             }
@@ -585,8 +583,6 @@ namespace RealState
         {
             try
             {
-                var frm = new frmPayeMentFilter();
-                frm.ShowDialog(this);
             }
             catch (Exception ex)
             {
@@ -792,8 +788,8 @@ namespace RealState
         {
             try
             {
-                var frm = new frmPardakhtCheckToday();
-                frm.ShowDialog();
+                //var frm = new frmPardakhtCheckToday();
+                //frm.ShowDialog();
             }
             catch (Exception ex)
             {

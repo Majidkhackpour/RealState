@@ -68,7 +68,9 @@ namespace RealState
                 }
 
                 if (chbPardakht.Checked)
-                    await WebPardakht.SaveAsync(await PardakhtBussines.GetAllAsync());
+                {
+                    //await WebPardakht.SaveAsync(await PardakhtBussines.GetAllAsync());
+                }
 
 
                 Invoke(new MethodInvoker(() => MessageBox.Show("انتقال داده ها به سرور با موفقیت انجام شد")));

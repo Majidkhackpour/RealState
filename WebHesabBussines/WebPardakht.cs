@@ -7,7 +7,7 @@ using Servicess.Interfaces.Building;
 
 namespace WebHesabBussines
 {
-    public class WebPardakht : IPardakht
+    public class WebPardakht 
     {
         private static string Url = Utilities.WebApi + "/api/BuildingPardakht/SaveAsync";
 
@@ -30,90 +30,90 @@ namespace WebHesabBussines
 
         public async Task SaveAsync()
         {
-            try
-            {
-                var res = await Extentions.PostToApi<PardakhtBussines, WebPardakht>(this, Url);
-                if (res.ResponseStatus != ResponseStatus.Success)
-                {
-                    var temp = new TempBussines()
-                    {
-                        ObjectGuid = Guid,
-                        Type = EnTemp.Pardakht
-                    };
-                    await temp.SaveAsync();
-                }
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
+            //try
+            //{
+            //    var res = await Extentions.PostToApi<PardakhtBussines, WebPardakht>(this, Url);
+            //    if (res.ResponseStatus != ResponseStatus.Success)
+            //    {
+            //        var temp = new TempBussines()
+            //        {
+            //            ObjectGuid = Guid,
+            //            Type = EnTemp.Pardakht
+            //        };
+            //        await temp.SaveAsync();
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            //}
         }
-        public static async Task<ReturnedSaveFuncInfo> SaveAsync(PardakhtBussines cls)
-        {
-            var res = new ReturnedSaveFuncInfo();
-            try
-            {
-                var obj = new WebPardakht()
-                {
-                    Guid = cls.Guid,
-                    Modified = cls.Modified,
-                    Status = cls.Status,
-                    Description = cls.Description,
-                    CreateDate = cls.CreateDate,
-                    NaqdPrice = cls.NaqdPrice,
-                    BankPrice = cls.BankPrice,
-                    BankName = cls.BankName,
-                    CheckNo = cls.CheckNo,
-                    SarResid = cls.SarResid,
-                    Payer = cls.Payer,
-                    Check = cls.Check,
-                    FishNo = cls.FishNo,
-                    HardSerial = cls.HardSerial
-                };
-                await obj.SaveAsync();
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-                res.AddReturnedValue(ex);
-            }
+        //public static async Task<ReturnedSaveFuncInfo> SaveAsync(PardakhtBussines cls)
+        //{
+        //    var res = new ReturnedSaveFuncInfo();
+        //    try
+        //    {
+        //        var obj = new WebPardakht()
+        //        {
+        //            Guid = cls.Guid,
+        //            Modified = cls.Modified,
+        //            Status = cls.Status,
+        //            Description = cls.Description,
+        //            CreateDate = cls.CreateDate,
+        //            NaqdPrice = cls.NaqdPrice,
+        //            BankPrice = cls.BankPrice,
+        //            BankName = cls.BankName,
+        //            CheckNo = cls.CheckNo,
+        //            SarResid = cls.SarResid,
+        //            Payer = cls.Payer,
+        //            Check = cls.Check,
+        //            FishNo = cls.FishNo,
+        //            HardSerial = cls.HardSerial
+        //        };
+        //        await obj.SaveAsync();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        WebErrorLog.ErrorInstence.StartErrorLog(ex);
+        //        res.AddReturnedValue(ex);
+        //    }
 
-            return res;
-        }
-        public static async Task<ReturnedSaveFuncInfo> SaveAsync(List<PardakhtBussines> item)
-        {
-            var res = new ReturnedSaveFuncInfo();
-            try
-            {
-                foreach (var cls in item)
-                {
-                    var obj = new WebPardakht()
-                    {
-                        Guid = cls.Guid,
-                        Modified = cls.Modified,
-                        Status = cls.Status,
-                        Description = cls.Description,
-                        CreateDate = cls.CreateDate,
-                        NaqdPrice = cls.NaqdPrice,
-                        BankPrice = cls.BankPrice,
-                        BankName = cls.BankName,
-                        CheckNo = cls.CheckNo,
-                        SarResid = cls.SarResid,
-                        Payer = cls.Payer,
-                        Check = cls.Check,
-                        FishNo = cls.FishNo,
-                        HardSerial = cls.HardSerial
-                    };
-                    await obj.SaveAsync();
-                }
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-                res.AddReturnedValue(ex);
-            }
+        //    return res;
+        //}
+        //public static async Task<ReturnedSaveFuncInfo> SaveAsync(List<PardakhtBussines> item)
+        //{
+        //    var res = new ReturnedSaveFuncInfo();
+        //    try
+        //    {
+        //        foreach (var cls in item)
+        //        {
+        //            var obj = new WebPardakht()
+        //            {
+        //                Guid = cls.Guid,
+        //                Modified = cls.Modified,
+        //                Status = cls.Status,
+        //                Description = cls.Description,
+        //                CreateDate = cls.CreateDate,
+        //                NaqdPrice = cls.NaqdPrice,
+        //                BankPrice = cls.BankPrice,
+        //                BankName = cls.BankName,
+        //                CheckNo = cls.CheckNo,
+        //                SarResid = cls.SarResid,
+        //                Payer = cls.Payer,
+        //                Check = cls.Check,
+        //                FishNo = cls.FishNo,
+        //                HardSerial = cls.HardSerial
+        //            };
+        //            await obj.SaveAsync();
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        WebErrorLog.ErrorInstence.StartErrorLog(ex);
+        //        res.AddReturnedValue(ex);
+        //    }
 
-            return res;
-        }
+        //    return res;
+        //}
     }
 }

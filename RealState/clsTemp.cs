@@ -134,9 +134,9 @@ namespace RealState
                                 //    await WebReception.SaveAsync(rec);
                                 break;
                             case EnTemp.Pardakht:
-                                var pa = await PardakhtBussines.GetAsync(item.ObjectGuid);
-                                if (pa != null)
-                                    await WebPardakht.SaveAsync(pa);
+                                //var pa = await PardakhtBussines.GetAsync(item.ObjectGuid);
+                                //if (pa != null)
+                                //    await WebPardakht.SaveAsync(pa);
                                 break;
                         }
 
