@@ -61,6 +61,11 @@ namespace EntityCache.Assistence
         private static IReceptionHavaleRepository _receptionHavaleRepository;
         private static IReceptionNaqdRepository _receptionNaqdRepository;
         private static IBankSegestRepository _bankSegestRepository;
+        private static IPardakhtRepository _pardakhtRepository;
+        private static IPardakhtNaqdRepository _pardakhtNaqdRepository;
+        private static IPardakhtHavaleRepository _pardakhtHavaleRepository;
+        private static IPardakhtCheckShakhsiRepository _pardakhtCheckShakhsiRepository;
+        private static IPardakhtCheckMoshtariRepository _pardakhtCheckMoshtariRepository;
 
         public static void Dispose() => db?.Dispose();
         public static void Set_Save() => db.SaveChanges();
@@ -300,5 +305,30 @@ namespace EntityCache.Assistence
         public static IBankSegestRepository BankSegest => _bankSegestRepository ??
                                                                 (_bankSegestRepository =
                                                                     new BankSegestPersistenseRepository(db, _connectionString));
+
+
+        public static IPardakhtRepository Pardakht => _pardakhtRepository ??
+                                                        (_pardakhtRepository =
+                                                            new PardakhtPersistenceRepository(db, _connectionString));
+
+
+        public static IPardakhtNaqdRepository PardakhtNaqd => _pardakhtNaqdRepository ??
+                                                                  (_pardakhtNaqdRepository =
+                                                                      new PardakhtNaqdPersistenceRepository(db, _connectionString));
+
+
+        public static IPardakhtHavaleRepository PardakhtHavale => _pardakhtHavaleRepository ??
+                                                                    (_pardakhtHavaleRepository =
+                                                                        new PardakhtHavalePersistenceRepository(db, _connectionString));
+
+
+        public static IPardakhtCheckShakhsiRepository PardakhtCheckShakhsi => _pardakhtCheckShakhsiRepository ??
+                                                                (_pardakhtCheckShakhsiRepository =
+                                                                    new PardakhtCheckShakhsiPersistenceRepository(db, _connectionString));
+
+
+        public static IPardakhtCheckMoshtariRepository PardakhtCheckMoshtari => _pardakhtCheckMoshtariRepository ??
+                                                          (_pardakhtCheckMoshtariRepository =
+                                                              new PardakhtCheckMoshtariPersistenceRepository(db, _connectionString));
     }
 }

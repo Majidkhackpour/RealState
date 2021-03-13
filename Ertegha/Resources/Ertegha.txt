@@ -1096,114 +1096,6 @@ BEGIN
 End
 GO
 -- ==========================================================================================
---IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Pardakht_Save]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
---	exec('Create Procedure [dbo].[sp_Pardakht_Save]	As Begin print 11 end')
---GO
-
---ALTER PROCEDURE [dbo].[sp_Pardakht_Save]
---	@guid uniqueidentifier,
---	@modif datetime,
---	@dateSh nvarchar(20),
---	@st bit='true',
---	@payer uniqueidentifier,
---	@createdate datetime,
---	@desc nvarchar(max)='',
---	@naqdprice bigint=0,
---	@bankprice bigint=0,
---	@checkprice bigint=0,
---	@fishNo nvarchar(50)='',
---	@checkNo nvarchar(50)='',
---	@sarresid nvarchar(50)='',
---	@bankname nvarchar(50)=''
---AS
---BEGIN
---	declare @gardeshprice bigint
---	declare @totalPrice bigint
---	declare @tarafHesab uniqueidentifier
-
-
---	set @gardeshprice=(ISNULL((select Price from GardeshHesabs
---		where ParentGuid=@guid and PeopleGuid=@payer),0))
-
---	set @totalPrice=(@naqdprice+@bankprice+@checkprice)
-
---	if(@gardeshprice<>0)
---	begin
---		update GardeshHesabs
---		set Price=@totalPrice
---		where ParentGuid=@guid and PeopleGuid=@payer
---	end
---	else
---	begin
---		insert into GardeshHesabs(Babat,Description,Guid,Modified,ParentGuid,PeopleGuid,Price,Status,Type)
---		values(4,N' ثبت سند پرداخت در تاریخ'+@dateSh,NEWID(), GETDATE(),@guid,@payer,@totalPrice,'true',2)
---	end
-
---	set @tarafHesab=(ISNULL((select Guid from Peoples
---		where Guid=@payer),'00000000-0000-0000-0000-000000000000'))
-
---	if (@tarafHesab='00000000-0000-0000-0000-000000000000')
---	begin
---		set @tarafHesab=(ISNULL((select Guid from Users
---		where Guid=@payer),'00000000-0000-0000-0000-000000000000'))
-
---		if(@tarafHesab='00000000-0000-0000-0000-000000000000')
---		begin
---			set @tarafHesab=(ISNULL((select Guid from Hazines
---			where Guid=@payer),'00000000-0000-0000-0000-000000000000'))
-
---			update Hazines
---			set Account=Account-@gardeshprice
---			where Guid=@payer
-
---			update Hazines
---			set Account=Account+@totalPrice
---			where Guid=@payer
---		end
---		else
---		begin
---			update Users
---			set Account=Account-@gardeshprice
---			where Guid=@payer
-
---			update Users
---			set Account=Account+@totalPrice
---			where Guid=@payer
---		end
---	end
---	else
---	begin
---		    update Peoples
---			set Account=Account-@gardeshprice
---			where Guid=@payer
-
---			update Peoples
---			set Account=Account+@totalPrice
---			where Guid=@payer
---	end
-
---	update Pardakhts
---	set Modified=@modif,
---	Status=@st,
---	Payer=@payer,
---	NaqdPrice=@naqdprice,
---	BankPrice=@bankprice,
---	[Check]=@checkprice,
---	Description=@desc,
---	FishNo=@fishNo,
---	CheckNo=@checkNo,
---	SarResid=@sarresid,
---	BankName=@bankname
---	where Guid=@guid
-
---	if (@@ROWCOUNT=0)
---	begin
---		insert into Pardakhts(BankName,BankPrice,[Check],CheckNo,CreateDate,Description,FishNo,Guid,Modified,NaqdPrice,Payer,SarResid,Status)
---		values(@bankname,@bankprice,@checkprice,@checkNo,GETDATE(),@desc,@fishNo,@guid,GETDATE(),@naqdprice,@payer,@sarresid,@st)
---	end
---END
---GO
--- ==========================================================================================
 IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Contract_ChangeStatus]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
 	exec('Create Procedure [dbo].[sp_Contract_ChangeStatus]	As Begin print 11 end')
 GO
@@ -1468,186 +1360,6 @@ BEGIN
 END
 GO
 -- ==========================================================================================
---IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Pardakht_ChangeStatus]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
---	exec('Create Procedure [dbo].[sp_Pardakht_ChangeStatus]	As Begin print 11 end')
---GO
-
---Alter PROCEDURE sp_Pardakht_ChangeStatus	
---	@guid uniqueidentifier,
---	@hesabGuid uniqueidentifier,
---	@st bit,
---	@price bigint
---AS
---BEGIN
---	update GardeshHesabs
---	set Status=@st
---	where PeopleGuid=@hesabGuid and ParentGuid=@guid
-
---	declare @tarafHesab uniqueidentifier
-
---	if (@st='true')
---	begin
---		set @tarafHesab=(ISNULL((select Guid from Peoples
---		where Guid=@hesabGuid),'00000000-0000-0000-0000-000000000000'))
-
---		if (@tarafHesab='00000000-0000-0000-0000-000000000000')
---		begin
---		set @tarafHesab=(ISNULL((select Guid from Users
---		where Guid=@hesabGuid),'00000000-0000-0000-0000-000000000000'))
-
---		if(@tarafHesab='00000000-0000-0000-0000-000000000000')
---		begin
---			set @tarafHesab=(ISNULL((select Guid from Hazines
---			where Guid=@hesabGuid),'00000000-0000-0000-0000-000000000000'))
-
---			update Hazines
---			set Account=Account+@price
---			where Guid=@hesabGuid
---		end
---		else
---		begin
---			update Users
---			set Account=Account+@price
---			where Guid=@hesabGuid
---		end
---end
---else
---begin
---		update Peoples
---		set Account=Account+@price
---		where Guid=@hesabGuid
---end
---	end
---	else
---	begin
---		set @tarafHesab=(ISNULL((select Guid from Peoples
---		where Guid=@hesabGuid),'00000000-0000-0000-0000-000000000000'))
-
---		if (@tarafHesab='00000000-0000-0000-0000-000000000000')
---		begin
---		set @tarafHesab=(ISNULL((select Guid from Users
---		where Guid=@hesabGuid),'00000000-0000-0000-0000-000000000000'))
-
---		if(@tarafHesab='00000000-0000-0000-0000-000000000000')
---		begin
---			set @tarafHesab=(ISNULL((select Guid from Hazines
---			where Guid=@hesabGuid),'00000000-0000-0000-0000-000000000000'))
-
---			update Hazines
---			set Account=Account-@price
---			where Guid=@hesabGuid
---		end
---		else
---		begin
---			update Users
---			set Account=Account-@price
---			where Guid=@hesabGuid
---		end
---		end
---		else
---		begin
---			update Peoples
---			set Account=Account-@price
---			where Guid=@hesabGuid
---		end
---	end
-
---	update Pardakhts
---	set Status=@st
---	where Guid=@guid
---END
---GO
--- ==========================================================================================
---IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Reception_ChangeStatus]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
---	exec('Create Procedure [dbo].[sp_Reception_ChangeStatus]	As Begin print 11 end')
---GO
-
---Alter PROCEDURE sp_Reception_ChangeStatus	
---	@guid uniqueidentifier,
---	@hesabGuid uniqueidentifier,
---	@st bit,
---	@price bigint
---AS
---BEGIN
---	update GardeshHesabs
---	set Status=@st
---	where PeopleGuid=@hesabGuid and ParentGuid=@guid
-
---	declare @tarafHesab uniqueidentifier
-
---	if (@st='true')
---	begin
---		set @tarafHesab=(ISNULL((select Guid from Peoples
---		where Guid=@hesabGuid),'00000000-0000-0000-0000-000000000000'))
-
---		if (@tarafHesab='00000000-0000-0000-0000-000000000000')
---		begin
---		set @tarafHesab=(ISNULL((select Guid from Users
---		where Guid=@hesabGuid),'00000000-0000-0000-0000-000000000000'))
-
---		if(@tarafHesab='00000000-0000-0000-0000-000000000000')
---		begin
---			set @tarafHesab=(ISNULL((select Guid from Hazines
---			where Guid=@hesabGuid),'00000000-0000-0000-0000-000000000000'))
-
---			update Hazines
---			set Account=Account-@price
---			where Guid=@hesabGuid
---		end
---		else
---		begin
---			update Users
---			set Account=Account-@price
---			where Guid=@tarafHesab
---		end
---end
---else
---begin
---		update Peoples
---		set Account=Account-@price
---		where Guid=@hesabGuid
---end
---	end
---	else
---	begin
---		set @tarafHesab=(ISNULL((select Guid from Peoples
---		where Guid=@hesabGuid),'00000000-0000-0000-0000-000000000000'))
-
---		if (@tarafHesab='00000000-0000-0000-0000-000000000000')
---		begin
---		set @tarafHesab=(ISNULL((select Guid from Users
---		where Guid=@hesabGuid),'00000000-0000-0000-0000-000000000000'))
-
---		if(@tarafHesab='00000000-0000-0000-0000-000000000000')
---		begin
---			set @tarafHesab=(ISNULL((select Guid from Hazines
---			where Guid=@hesabGuid),'00000000-0000-0000-0000-000000000000'))
-
---			update Hazines
---			set Account=Account+@price
---			where Guid=@tarafHesab
---		end
---		else
---		begin
---			update Users
---			set Account=Account+@price
---			where Guid=@tarafHesab
---		end
---		end
---		else
---		begin
---			update Peoples
---			set Account=Account+@price
---			where Guid=@tarafHesab
---		end
---	end
-
---	update Receptions
---	set Status=@st
---	where Guid=@guid
---END
---GO
--- ==========================================================================================
 IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Peoples_GetAllBirthDay]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
 	exec('Create Procedure [dbo].[sp_Peoples_GetAllBirthDay]	As Begin print 11 end')
 GO
@@ -1781,53 +1493,6 @@ BEGIN
 		return @count
 	end
 
-END
-GO
--- ==========================================================================================
-IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Pardakht_CheckCount]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
-	exec('Create Procedure [dbo].[sp_Pardakht_CheckCount]	As Begin print 11 end')
-GO
-Alter PROCEDURE sp_Pardakht_CheckCount	
-	@dateSh nvarchar(50)
-AS
-BEGIN	
-	declare @count int
-	set @count = (select COUNT(*) from Pardakhts where SarResid like @dateSh)
-	select @count
-	return @count
-END
-GO
--- ==========================================================================================
-IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Reception_CheckCount]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
-	exec('Create Procedure [dbo].[sp_Reception_CheckCount]	As Begin print 11 end')
-GO
-Alter PROCEDURE sp_Reception_CheckCount	
-	@dateSh nvarchar(50)
-AS
-BEGIN	
-	declare @count int
-	set @count = (select COUNT(*) from Pardakhts where SarResid like @dateSh)
-	select @count
-	return @count
-END
-GO
--- ==========================================================================================
-IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Pardakht_CheckReport]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
-	exec('Create Procedure [dbo].[sp_Pardakht_CheckReport]	As Begin print 11 end')
-GO
-Alter PROCEDURE sp_Pardakht_CheckReport
-	@dateSh nvarchar(50)
-AS
-BEGIN
-	select  Peoples.Name As PeopleName,
-			Pardakhts.[Check] As Price,
-			Pardakhts.CheckNo As Number,
-			Pardakhts.BankName As BankName,
-			Pardakhts.CreateDate As CreateDate
-	from Pardakhts left outer join Peoples on
-		 Pardakhts.Payer = Peoples.Guid
-	where Pardakhts.[Check]>0
-	and Pardakhts.SarResid=@dateSh
 END
 GO
 -- =================================================================================
@@ -2391,30 +2056,6 @@ Alter PROCEDURE sp_BuildingRequest_Get
 AS
 BEGIN
 	SELECT * from BuildingRequests
-	where Guid=@guid
-END
-GO
--- ==========================================================================================
-IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Reception_Get]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
-	exec('Create Procedure [dbo].[sp_Reception_Get]	As Begin print 11 end')
-GO
-Alter PROCEDURE sp_Reception_Get
-	@guid uniqueidentifier
-AS
-BEGIN
-	SELECT * from Receptions
-	where Guid=@guid
-END
-GO
--- ==========================================================================================
-IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Pardakht_Get]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
-	exec('Create Procedure [dbo].[sp_Pardakht_Get]	As Begin print 11 end')
-GO
-Alter PROCEDURE sp_Pardakht_Get
-	@guid uniqueidentifier
-AS
-BEGIN
-	SELECT * from Pardakhts
 	where Guid=@guid
 END
 GO
@@ -3587,3 +3228,371 @@ BEGIN
            ,@st
            ,@name)
 END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Pardakht_GetAll]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Pardakht_GetAll]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_Pardakht_GetAll
+AS
+BEGIN
+	Select Pardakhts.*,Tafsils.Name As TafsilName,
+		   Moeins.Name As MoeinName, Users.Name As UserName
+	from Pardakhts inner join Tafsils on
+		 Pardakhts.TafsilGuid=Tafsils.Guid inner join Moeins on
+		 Pardakhts.MoeinGuid=Moeins.Guid inner join Users on
+		 Pardakhts.UserGuid=Users.Guid
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Pardakht_GetByGuid]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Pardakht_GetByGuid]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_Pardakht_GetByGuid
+	@guid uniqueidentifier
+AS
+BEGIN
+	Select Pardakhts.*,Tafsils.Name As TafsilName,
+		   Moeins.Name As MoeinName, Users.Name As UserName
+	from Pardakhts inner join Tafsils on
+		 Pardakhts.TafsilGuid=Tafsils.Guid inner join Moeins on
+		 Pardakhts.MoeinGuid=Moeins.Guid inner join Users on
+		 Pardakhts.UserGuid=Users.Guid
+	where Pardakhts.Guid=@guid
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Pardakht_NextCode]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Pardakht_NextCode]	As Begin print 11 end')  
+GO
+ALTER PROCEDURE [dbo].[sp_Pardakht_NextCode]
+AS
+BEGIN
+	declare @nextCode nvarchar(10)
+	select @nextCode = MAX(Number) From Pardakhts
+	set @nextCode = (isnull(@nextCode , 0))
+	set @nextCode = CAST(@nextCode AS bigint) + 1
+	select @nextCode
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Pardakht_CheckCode]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Pardakht_CheckCode]	As Begin print 11 end')  
+GO
+ALTER PROCEDURE [dbo].[sp_Pardakht_CheckCode]
+	@guid uniqueidentifier,
+	@code bigint
+AS
+BEGIN
+	select COUNT(*) from Pardakhts
+	where Number=@code and Guid<>@guid
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Pardakht_Remove]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Pardakht_Remove]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_Pardakht_Remove
+	@guid uniqueidentifier
+AS
+BEGIN
+	delete from Pardakhts
+	where Guid=@guid
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Pardakht_Save]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Pardakht_Save]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_Pardakht_Save
+	@guid uniqueidentifier,
+	@modif datetime,
+	@st bit,
+	@tafsilGuid uniqueidentifier,
+	@moeinGuid uniqueidentifier,
+	@dateM datetime,
+	@desc nvarchar(max),
+	@userGuid uniqueidentifier,
+	@number bigint,
+	@sanadNumber bigint
+AS
+BEGIN
+	UPDATE [dbo].[Pardakhts]
+	   SET [Modified] = @modif
+		  ,[Status] = @st
+		  ,[TafsilGuid] = @tafsilGuid
+		  ,[MoeinGuid] = @moeinGuid
+		  ,[DateM] = @dateM
+		  ,[Description] = @desc
+		  ,[UserGuid] = @userGuid
+		  ,[Number] = @number
+		  ,[SanadNumber] = @sanadNumber
+	 WHERE [Guid] = @guid
+	 if @@ROWCOUNT=0
+	 begin
+		INSERT INTO [dbo].[Pardakhts]
+           ([Guid]
+           ,[Modified]
+           ,[Status]
+           ,[TafsilGuid]
+           ,[MoeinGuid]
+           ,[DateM]
+           ,[Description]
+           ,[UserGuid]
+           ,[Number]
+           ,[SanadNumber])
+		VALUES
+           (@guid
+           ,@modif
+           ,@st
+           ,@tafsilGuid
+           ,@moeinGuid
+           ,@dateM
+           ,@desc
+           ,@userGuid
+           ,@number
+           ,@sanadNumber)
+	 end
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_PardakhtNaqd_GetAllByMaster]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_PardakhtNaqd_GetAllByMaster]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_PardakhtNaqd_GetAllByMaster
+	@masterGuid uniqueidentifier
+AS
+BEGIN
+	select * from PardakhtNaqds
+	where MasterGuid=@masterGuid
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_PardakhtNaqd_RemoveByMaster]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_PardakhtNaqd_RemoveByMaster]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_PardakhtNaqd_RemoveByMaster
+	@masterGuid uniqueidentifier
+AS
+BEGIN
+	delete from PardakhtNaqds
+	where MasterGuid=@masterGuid
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_PardakhtNaqd_Insert]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_PardakhtNaqd_Insert]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_PardakhtNaqd_Insert
+	@guid uniqueidentifier,
+	@modif datetime,
+	@st bit,
+	@desc nvarchar(max),
+	@price decimal,
+	@sandiuqTafsilGuid uniqueidentifier,
+	@sandouqMoeinGuid uniqueidentifier,
+	@masterGuid uniqueidentifier
+AS
+BEGIN
+	INSERT INTO [dbo].[PardakhtNaqds]
+           ([Guid]
+           ,[Modified]
+           ,[Status]
+           ,[Description]
+           ,[Price]
+           ,[SandouqTafsilGuid]
+           ,[SandouqMoeinGuid]
+           ,[MasterGuid])
+		VALUES
+           (@guid
+           ,@modif
+           ,@st
+           ,@desc
+           ,@price
+           ,@sandiuqTafsilGuid
+           ,@sandouqMoeinGuid
+           ,@masterGuid)
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_PardakhtHavale_GetAllByMaster]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_PardakhtHavale_GetAllByMaster]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_PardakhtHavale_GetAllByMaster
+	@masterGuid uniqueidentifier
+AS
+BEGIN
+	select * from PardakhtHavales
+	where MasterGuid=@masterGuid
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_PardakhtHavale_RemoveByMaster]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_PardakhtHavale_RemoveByMaster]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_PardakhtHavale_RemoveByMaster
+	@masterGuid uniqueidentifier
+AS
+BEGIN
+	delete from PardakhtHavales
+	where MasterGuid=@masterGuid
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_PardakhtHavale_Insert]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_PardakhtHavale_Insert]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_PardakhtHavale_Insert
+	@guid uniqueidentifier,
+	@modif datetime,
+	@st bit,
+	@desc nvarchar(max),
+	@price decimal,
+	@bankTafsilGuid uniqueidentifier,
+	@bankMoeinGuid uniqueidentifier,
+	@masterGuid uniqueidentifier,
+	@peygiryNo nvarchar(200)
+AS
+BEGIN
+	INSERT INTO [dbo].[PardakhtHavales]
+           ([Guid]
+           ,[Modified]
+           ,[Status]
+           ,[MasterGuid]
+           ,[Description]
+           ,[Price]
+           ,[BankTafsilGuid]
+           ,[BankMoeinGuid]
+		   ,[Number])
+		 VALUES
+           (@guid
+           ,@modif
+           ,@st
+           ,@masterGuid
+           ,@desc
+           ,@price
+           ,@bankTafsilGuid
+           ,@bankMoeinGuid
+		   ,@peygiryNo)
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_PardakhtCheckSh_GetAllByMaster]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_PardakhtCheckSh_GetAllByMaster]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_PardakhtCheckSh_GetAllByMaster
+	@masterGuid uniqueidentifier
+AS
+BEGIN
+	select * from PardakhtCheckShakhsis
+	where MasterGuid=@masterGuid
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_PardakhtChackSh_RemoveByMaster]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_PardakhtChackSh_RemoveByMaster]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_PardakhtChackSh_RemoveByMaster
+	@masterGuid uniqueidentifier
+AS
+BEGIN
+	delete from PardakhtCheckShakhsis
+	where MasterGuid=@masterGuid
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_PardakhtCheckSh_Insert]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_PardakhtCheckSh_Insert]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_PardakhtCheckSh_Insert
+	@guid uniqueidentifier,
+	@modif datetime,
+	@st bit,
+	@desc nvarchar(max),
+	@dateSarResid datetime,
+	@price decimal,
+	@checkPageGuid uniqueidentifier,
+	@dateM datetime,
+	@masterGuid uniqueidentifier,
+	@number nvarchar(200)
+AS
+BEGIN
+	INSERT INTO [dbo].[PardakhtCheckShakhsis]
+           ([Guid]
+           ,[Modified]
+           ,[Status]
+           ,[DateSarResid]
+           ,[Description]
+           ,[Number]
+           ,[Price]
+           ,[DateM]
+           ,[CheckPageGuid]
+           ,[MasterGuid])
+     VALUES
+           (@guid
+           ,@modif
+           ,@st
+           ,@dateSarResid
+           ,@desc
+           ,@number
+           ,@price
+           ,@dateM
+           ,@checkPageGuid
+           ,@masterGuid)
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_PardakhtCheckM_GetAllByMaster]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_PardakhtCheckM_GetAllByMaster]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_PardakhtCheckM_GetAllByMaster
+	@masterGuid uniqueidentifier
+AS
+BEGIN
+	select PardakhtCheckMoshtaris.*,ReceptionChecks.Price
+	from PardakhtCheckMoshtaris inner join ReceptionChecks on
+	     PardakhtCheckMoshtaris.CheckGuid=ReceptionChecks.Guid
+	where PardakhtCheckMoshtaris.MasterGuid=@masterGuid
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_PardakhtChackM_RemoveByMaster]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_PardakhtChackM_RemoveByMaster]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_PardakhtChackM_RemoveByMaster
+	@masterGuid uniqueidentifier
+AS
+BEGIN
+	delete from PardakhtCheckMoshtaris
+	where MasterGuid=@masterGuid
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_PardakhtCheckSh_Insert]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_PardakhtCheckSh_Insert]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_PardakhtCheckSh_Insert
+	@guid uniqueidentifier,
+	@modif datetime,
+	@st bit,
+	@desc nvarchar(max),
+	@checkGuid uniqueidentifier,
+	@masterGuid uniqueidentifier
+AS
+BEGIN
+	INSERT INTO [dbo].[PardakhtCheckMoshtaris]
+           ([Guid]
+           ,[Modified]
+           ,[Status]
+           ,[Description]
+           ,[CheckGuid]
+           ,[MasterGuid])
+     VALUES
+           (@guid
+           ,@modif
+           ,@st
+           ,@desc
+           ,@checkGuid
+           ,@masterGuid)
+END
+GO
