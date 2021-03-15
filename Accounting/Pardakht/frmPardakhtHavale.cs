@@ -6,13 +6,12 @@ using WindowsSerivces;
 using EntityCache.Bussines;
 using MetroFramework.Forms;
 using Services;
-using Services.DefaultCoding;
 
-namespace Accounting.Reception
+namespace Accounting.Pardakht
 {
-    public partial class frmReceptionHavale : MetroForm
+    public partial class frmPardakhtHavale : MetroForm
     {
-        public ReceptionHavaleBussines cls { get; set; }
+        public PardakhtHavaleBussines cls { get; set; }
         private async Task SetDataAsync()
         {
             try
@@ -21,7 +20,7 @@ namespace Accounting.Reception
 
                 txtPrice.TextDecimal = cls?.Price ?? 0;
                 txtDesc.Text = cls?.Description;
-                txtPeygiriNo.Text = cls?.PeygiriNumber;
+                txtPeygiriNo.Text = cls?.Number;
 
                 if (cls.Guid == Guid.Empty && BankBindingSource.Count > 0) cmbBank.SelectedIndex = 0;
                 else cmbBank.SelectedValue = cls.BankTafsilGuid;
@@ -44,14 +43,14 @@ namespace Accounting.Reception
             }
         }
 
-        public frmReceptionHavale(ReceptionHavaleBussines temp)
+        public frmPardakhtHavale(PardakhtHavaleBussines temp)
         {
             InitializeComponent();
-            cls = temp ?? new ReceptionHavaleBussines();
+            cls = temp ?? new PardakhtHavaleBussines();
         }
 
-        private async void frmReceptionHavale_Load(object sender, EventArgs e) => await SetDataAsync();
-        private void frmReceptionHavale_KeyDown(object sender, KeyEventArgs e)
+        private async void frmPardakhtHavale_Load(object sender, EventArgs e) => await SetDataAsync();
+        private void frmPardakhtHavale_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
@@ -87,17 +86,14 @@ namespace Accounting.Reception
             try
             {
                 if (cls.Guid == Guid.Empty)
-                {
                     cls.Guid = Guid.NewGuid();
-                    cls.DateM = DateTime.Now;
-                }
 
-                if (BankBindingSource.Count <= 0) res.AddError("لطفا بانک مقصد را انتخاب نمایید");
+                if (BankBindingSource.Count <= 0) res.AddError("لطفا بانک مبدا را انتخاب نمایید");
                 if (txtPrice.TextDecimal <= 0) res.AddError("لطفا مبلغ را وارد نمایید");
 
                 cls.Modified = DateTime.Now;
                 cls.Status = true;
-                cls.PeygiriNumber = txtPeygiriNo.Text;
+                cls.Number = txtPeygiriNo.Text;
                 cls.Description = txtDesc.Text;
                 cls.BankTafsilGuid = (Guid)cmbBank.SelectedValue;
                 cls.Price = txtPrice.TextDecimal;
@@ -110,7 +106,7 @@ namespace Accounting.Reception
             finally
             {
                 if (res.HasError)
-                    this.ShowError(res, "خطا در ثبت دریافت حواله");
+                    this.ShowError(res, "خطا در ثبت پرداخت حواله");
                 else
                 {
                     DialogResult = DialogResult.OK;

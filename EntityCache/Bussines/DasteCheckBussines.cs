@@ -15,6 +15,7 @@ namespace EntityCache.Bussines
         public DateTime Modified { get; set; }
         public bool Status { get; set; }
         public string SerialNumber { get; set; }
+        public string Name => $"{BankName} سریال {SerialNumber} / {PageCount} برگی";
         public Guid BankGuid { get; set; }
         public string BankName { get; set; }
         public long FromNumber { get; set; }

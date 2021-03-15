@@ -10,8 +10,8 @@ namespace EntityCache.Bussines
     public class PardakhtNaqdBussines : IPardakhtNaqd
     {
         public Guid Guid { get; set; }
-        public DateTime Modified { get; set; }
-        public bool Status { get; set; }
+        public DateTime Modified { get; set; } = DateTime.Now;
+        public bool Status { get; set; } = true;
         public string Description { get; set; }
         public decimal Price { get; set; }
         public Guid SandouqTafsilGuid { get; set; }

@@ -7,16 +7,16 @@ using EntityCache.Bussines;
 using MetroFramework.Forms;
 using Services;
 
-namespace Accounting.Reception
+namespace Accounting.Pardakht
 {
-    public partial class frmShowReception : MetroForm
+    public partial class frmShowPardakht : MetroForm
     {
         private async Task LoadDataAsync(string search = "")
         {
             try
             {
-                var list = await ReceptionBussines.GetAllAsync(search);
-                Invoke(new MethodInvoker(() => ReceptionBindingSource.DataSource =
+                var list = await PardakhtBussines.GetAllAsync(search);
+                Invoke(new MethodInvoker(() => PardakhtBindingSource.DataSource =
                     list.OrderByDescending(q => q.Number).ToSortableBindingList()));
             }
             catch (Exception ex)
@@ -25,23 +25,10 @@ namespace Accounting.Reception
             }
         }
 
-        public frmShowReception() => InitializeComponent();
+        public frmShowPardakht()=>InitializeComponent();
 
-        private async void mnuAdd_Click(object sender, System.EventArgs e)
-        {
-            try
-            {
-                var frm = new frmReceptionMain();
-                if (frm.ShowDialog() == DialogResult.OK)
-                    await LoadDataAsync();
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-        private async void frmShowReception_Load(object sender, EventArgs e) => await LoadDataAsync();
-        private void frmShowReception_KeyDown(object sender, KeyEventArgs e)
+        private async void frmShowPardakht_Load(object sender, EventArgs e) => await LoadDataAsync();
+        private void frmShowPardakht_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
@@ -96,6 +83,19 @@ namespace Accounting.Reception
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
+        private async void mnuAdd_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var frm = new frmPardakhtMain();
+                if (frm.ShowDialog() == DialogResult.OK)
+                    await LoadDataAsync();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
         private async void mnuEdit_Click(object sender, EventArgs e)
         {
             try
@@ -104,7 +104,7 @@ namespace Accounting.Reception
                 if (DGrid.CurrentRow == null) return;
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
 
-                var frm = new frmReceptionMain(guid, false);
+                var frm = new frmPardakhtMain(guid, false);
                 if (frm.ShowDialog(this) == DialogResult.OK)
                     await LoadDataAsync(txtSearch.Text);
             }
@@ -121,7 +121,7 @@ namespace Accounting.Reception
                 if (DGrid.CurrentRow == null) return;
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
 
-                var frm = new frmReceptionMain(guid, true);
+                var frm = new frmPardakhtMain(guid, true);
                 frm.ShowDialog(this);
             }
             catch (Exception ex)
@@ -137,12 +137,12 @@ namespace Accounting.Reception
                 if (DGrid.RowCount <= 0) return;
                 if (DGrid.CurrentRow == null) return;
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
-                var hazine = await ReceptionBussines.GetAsync(guid);
+                var hazine = await PardakhtBussines.GetAsync(guid);
                 if (hazine == null) return;
                 var sum = (decimal)DGrid[dgSum.Index, DGrid.CurrentRow.Index].Value;
 
                 if (MessageBox.Show(this,
-                        $@"آیا از حذف دریافت به شماره {DGrid[dgNumber.Index, DGrid.CurrentRow.Index].Value} و به جمع {sum:N0} اطمینان دارید؟",
+                        $@"آیا از حذف پرداخت به شماره {DGrid[dgNumber.Index, DGrid.CurrentRow.Index].Value} و به جمع {sum:N0} اطمینان دارید؟",
                         "حذف",
                         MessageBoxButtons.YesNo,
                         MessageBoxIcon.Question) == DialogResult.No) return;
@@ -155,7 +155,7 @@ namespace Accounting.Reception
             }
             finally
             {
-                if (res.HasError) this.ShowError(res, "خطا در حذف برگه دریافت");
+                if (res.HasError) this.ShowError(res, "خطا در حذف برگه پرداخت");
                 else await LoadDataAsync(txtSearch.Text);
             }
         }

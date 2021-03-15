@@ -28,6 +28,7 @@ namespace EntityCache.Bussines
 
         public static async Task<List<CheckPageBussines>> GetAllAsync(Guid checkGuid) =>
             await UnitOfWork.CheckPage.GetAllAsync(checkGuid);
+        public static async Task<CheckPageBussines> GetAsync(Guid guid) => await UnitOfWork.CheckPage.GetAsync(guid);
         public static async Task<ReturnedSaveFuncInfo> RemoveAllAsync(Guid checkGuid)
             => await UnitOfWork.CheckPage.RemoveAllAsync(checkGuid);
         public static async Task<ReturnedSaveFuncInfo> SaveRangeAsync(List<CheckPageBussines> lst, string tranName = "")

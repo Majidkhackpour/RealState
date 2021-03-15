@@ -196,6 +196,36 @@
     <Compile Include="Hesab\frmTafsilMain.Designer.cs">
       <DependentUpon>frmTafsilMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="Pardakht\frmPardakhtCheckSh.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Pardakht\frmPardakhtCheckSh.Designer.cs">
+      <DependentUpon>frmPardakhtCheckSh.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Pardakht\frmPardakhtHavale.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Pardakht\frmPardakhtHavale.Designer.cs">
+      <DependentUpon>frmPardakhtHavale.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Pardakht\frmPardakhtMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Pardakht\frmPardakhtMain.Designer.cs">
+      <DependentUpon>frmPardakhtMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Pardakht\frmPardakhtNaqd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Pardakht\frmPardakhtNaqd.Designer.cs">
+      <DependentUpon>frmPardakhtNaqd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Pardakht\frmShowPardakht.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Pardakht\frmShowPardakht.Designer.cs">
+      <DependentUpon>frmShowPardakht.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -308,6 +338,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Hesab\frmTafsilMain.resx">
       <DependentUpon>frmTafsilMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pardakht\frmPardakhtCheckSh.resx">
+      <DependentUpon>frmPardakhtCheckSh.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pardakht\frmPardakhtHavale.resx">
+      <DependentUpon>frmPardakhtHavale.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pardakht\frmPardakhtMain.resx">
+      <DependentUpon>frmPardakhtMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pardakht\frmPardakhtNaqd.resx">
+      <DependentUpon>frmPardakhtNaqd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pardakht\frmShowPardakht.resx">
+      <DependentUpon>frmShowPardakht.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

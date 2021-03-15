@@ -165,8 +165,8 @@ namespace EntityCache.Bussines
         public string HavaleDesc => $"{NumberToString.Num2Str(CountHavale.ToString())} فقره - جمع: {NumberToString.Num2Str(SumHavale.ToString())} ریال";
         public string CheckShDesc => $"{NumberToString.Num2Str(CountCheckShakhsi.ToString())} فقره - جمع: {NumberToString.Num2Str(SumCheckShakhsi.ToString())} ریال";
         public string CheckMDesc => $"{NumberToString.Num2Str(CountCheckMoshtari.ToString())} فقره - جمع: {NumberToString.Num2Str(SumCheckMoshtari.ToString())} ریال";
-        public static async Task<List<ReceptionBussines>> GetAllAsync() => await UnitOfWork.Reception.GetAllAsync();
-        public static async Task<List<ReceptionBussines>> GetAllAsync(string search)
+        public static async Task<List<PardakhtBussines>> GetAllAsync() => await UnitOfWork.Pardakht.GetAllAsync();
+        public static async Task<List<PardakhtBussines>> GetAllAsync(string search)
         {
             try
             {
@@ -183,7 +183,8 @@ namespace EntityCache.Bussines
                                                  x.Description.ToLower().Contains(item.ToLower()) ||
                                                  x.Sum.ToString().ToLower().Contains(item.ToLower()) ||
                                                  x.SumHavale.ToString().ToLower().Contains(item.ToLower()) ||
-                                                 x.SumCheck.ToString().ToLower().Contains(item.ToLower()) ||
+                                                 x.SumCheckShakhsi.ToString().ToLower().Contains(item.ToLower()) ||
+                                                 x.SumCheckMoshtari.ToString().ToLower().Contains(item.ToLower()) ||
                                                  x.SumNaqd.ToString().ToLower().Contains(item.ToLower()) ||
                                                  x.UserName.ToLower().Contains(item.ToLower()))
                                 ?.ToList();
@@ -198,11 +199,11 @@ namespace EntityCache.Bussines
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
-                return new List<ReceptionBussines>();
+                return new List<PardakhtBussines>();
             }
         }
-        public static async Task<ReceptionBussines> GetAsync(Guid guid) => await UnitOfWork.Reception.GetAsync(guid);
-        public static ReceptionBussines Get(Guid guid) => AsyncContext.Run(() => GetAsync(guid));
+        public static async Task<PardakhtBussines> GetAsync(Guid guid) => await UnitOfWork.Pardakht.GetAsync(guid);
+        public static PardakhtBussines Get(Guid guid) => AsyncContext.Run(() => GetAsync(guid));
         public async Task<ReturnedSaveFuncInfo> SaveAsync(string tranName = "")
         {
             var res = new ReturnedSaveFuncInfo();

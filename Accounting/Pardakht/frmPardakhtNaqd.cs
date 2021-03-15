@@ -6,37 +6,34 @@ using WindowsSerivces;
 using EntityCache.Bussines;
 using MetroFramework.Forms;
 using Services;
-using Services.DefaultCoding;
 
-namespace Accounting.Reception
+namespace Accounting.Pardakht
 {
-    public partial class frmReceptionHavale : MetroForm
+    public partial class frmPardakhtNaqd : MetroForm
     {
-        public ReceptionHavaleBussines cls { get; set; }
+        public PardakhtNaqdBussines cls { get; set; }
         private async Task SetDataAsync()
         {
             try
             {
-                await FillBankAsync();
+                await FillSandouqAsync();
 
                 txtPrice.TextDecimal = cls?.Price ?? 0;
                 txtDesc.Text = cls?.Description;
-                txtPeygiriNo.Text = cls?.PeygiriNumber;
-
-                if (cls.Guid == Guid.Empty && BankBindingSource.Count > 0) cmbBank.SelectedIndex = 0;
-                else cmbBank.SelectedValue = cls.BankTafsilGuid;
+                if (cls.Guid == Guid.Empty && SandouqBindingSource.Count > 0) cmbSandouq.SelectedIndex = 0;
+                else cmbSandouq.SelectedValue = cls.SandouqTafsilGuid;
             }
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private async Task FillBankAsync()
+        private async Task FillSandouqAsync()
         {
             try
             {
-                var list = await TafsilBussines.GetAllAsync("", HesabType.Bank);
-                BankBindingSource.DataSource = list?.Where(q => q.Status)?.OrderBy(q => q.Name)?.ToList();
+                var list = await TafsilBussines.GetAllAsync("", HesabType.Sandouq);
+                SandouqBindingSource.DataSource = list?.Where(q => q.Status)?.OrderBy(q => q.Name)?.ToList();
             }
             catch (Exception ex)
             {
@@ -44,14 +41,14 @@ namespace Accounting.Reception
             }
         }
 
-        public frmReceptionHavale(ReceptionHavaleBussines temp)
+        public frmPardakhtNaqd(PardakhtNaqdBussines temp)
         {
             InitializeComponent();
-            cls = temp ?? new ReceptionHavaleBussines();
+            cls = temp ?? new PardakhtNaqdBussines();
         }
 
-        private async void frmReceptionHavale_Load(object sender, EventArgs e) => await SetDataAsync();
-        private void frmReceptionHavale_KeyDown(object sender, KeyEventArgs e)
+        private async void frmPardakhtNaqd_Load(object sender, EventArgs e) => await SetDataAsync();
+        private void frmPardakhtNaqd_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
@@ -74,8 +71,6 @@ namespace Accounting.Reception
                 WebErrorLog.ErrorInstence.StartErrorLog(exception);
             }
         }
-        private void txtPeygiriNo_Enter(object sender, EventArgs e) => txtSetter.Focus(txtPeygiriNo);
-        private void txtPeygiriNo_Leave(object sender, EventArgs e) => txtSetter.Follow(txtPeygiriNo);
         private void btnCancel_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Cancel;
@@ -87,19 +82,15 @@ namespace Accounting.Reception
             try
             {
                 if (cls.Guid == Guid.Empty)
-                {
                     cls.Guid = Guid.NewGuid();
-                    cls.DateM = DateTime.Now;
-                }
 
-                if (BankBindingSource.Count <= 0) res.AddError("لطفا بانک مقصد را انتخاب نمایید");
+                if (SandouqBindingSource.Count <= 0) res.AddError("لطفا صندوق مبدا را انتخاب نمایید");
                 if (txtPrice.TextDecimal <= 0) res.AddError("لطفا مبلغ را وارد نمایید");
 
                 cls.Modified = DateTime.Now;
                 cls.Status = true;
-                cls.PeygiriNumber = txtPeygiriNo.Text;
                 cls.Description = txtDesc.Text;
-                cls.BankTafsilGuid = (Guid)cmbBank.SelectedValue;
+                cls.SandouqTafsilGuid = (Guid)cmbSandouq.SelectedValue;
                 cls.Price = txtPrice.TextDecimal;
             }
             catch (Exception ex)
@@ -110,7 +101,7 @@ namespace Accounting.Reception
             finally
             {
                 if (res.HasError)
-                    this.ShowError(res, "خطا در ثبت دریافت حواله");
+                    this.ShowError(res, "خطا در ثبت پرداخت نقدی");
                 else
                 {
                     DialogResult = DialogResult.OK;

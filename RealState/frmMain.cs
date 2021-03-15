@@ -39,6 +39,7 @@ using WindowsSerivces;
 using Accounting.Bank;
 using Accounting.Check.DasteCheck;
 using Accounting.Hesab;
+using Accounting.Pardakht;
 using Accounting.Reception;
 using Accounting.Sanad;
 using Accounting.Sandouq;
@@ -583,6 +584,8 @@ namespace RealState
         {
             try
             {
+                var frm = new frmShowPardakht();
+                frm.ShowDialog(this);
             }
             catch (Exception ex)
             {

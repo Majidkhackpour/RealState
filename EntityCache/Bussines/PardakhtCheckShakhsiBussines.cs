@@ -10,13 +10,14 @@ namespace EntityCache.Bussines
     public class PardakhtCheckShakhsiBussines : IPardakhtCheckShakhsi
     {
         public Guid Guid { get; set; }
-        public DateTime Modified { get; set; }
-        public bool Status { get; set; }
+        public DateTime Modified { get; set; } = DateTime.Now;
+        public bool Status { get; set; } = true;
         public DateTime DateSarResid { get; set; }
+        public string DateSarresidSh => Calendar.MiladiToShamsi(DateSarResid);
         public string Description { get; set; }
         public string Number { get; set; }
         public decimal Price { get; set; }
-        public DateTime DateM { get; set; }
+        public DateTime DateM { get; set; } = DateTime.Now;
         public Guid CheckPageGuid { get; set; }
         public Guid MasterGuid { get; set; }
 
