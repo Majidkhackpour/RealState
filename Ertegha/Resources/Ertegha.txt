@@ -3596,3 +3596,17 @@ BEGIN
            ,@masterGuid)
 END
 GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_ReceptionCheck_GetAllFromView]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_ReceptionCheck_GetAllFromView]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_ReceptionCheck_GetAllFromView
+AS
+BEGIN
+	select ReceptionChecks.*,Tafsils.Name As SandouqTafsilName
+		   ,P.Name As Pardazande
+	from ReceptionChecks inner join Receptions as T on 
+		 T.Guid=ReceptionChecks.MasterGuid inner join Tafsils on
+		 ReceptionChecks.SandouqTafsilGuid=Tafsils.Guid inner join Tafsils as P on
+		 T.TafsilGuid=P.Guid
+END

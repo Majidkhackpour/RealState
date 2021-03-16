@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using EntityCache.Bussines;
 using EntityCache.Core;
+using EntityCache.ViewModels;
 using Persistence.Entities;
 using Persistence.Model;
 using Services;
@@ -42,6 +43,32 @@ namespace EntityCache.SqlServerPersistence
                 item.DateSarResid = (DateTime) dr["DateSarResid"];
                 item.SandouqTafsilGuid = (Guid) dr["SandouqTafsilGuid"];
                 item.SandouqMoeinGuid = (Guid)dr["SandouqMoeinGuid"];
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+
+            return item;
+        }
+        private ReceptionCheckViewModel LoadDataViewModel(SqlDataReader dr)
+        {
+            var item = new ReceptionCheckViewModel();
+
+            try
+            {
+                item.Guid = (Guid)dr["Guid"];
+                item.BankName = dr["BankName"].ToString();
+                item.DateM = (DateTime)dr["DateM"];
+                item.MasterGuid = (Guid)dr["MasterGuid"];
+                item.Description = dr["Description"].ToString();
+                item.CheckNumber = dr["CheckNumber"].ToString();
+                item.PoshtNomre = dr["PoshtNomre"].ToString();
+                item.Price = (decimal)dr["Price"];
+                item.CheckStatus = (EnCheckM)dr["CheckStatus"];
+                item.DateSarResid = (DateTime)dr["DateSarResid"];
+                item.SandouqTafsilName = dr["SandouqTafsilName"].ToString();
+                item.Pardazande = dr["Pardazande"].ToString();
             }
             catch (Exception ex)
             {
@@ -97,6 +124,29 @@ namespace EntityCache.SqlServerPersistence
             }
 
             return res;
+        }
+        public async Task<List<ReceptionCheckViewModel>> GetAllViewModelAsync()
+        {
+            var list = new List<ReceptionCheckViewModel>();
+            try
+            {
+                using (var cn = new SqlConnection(_connectionString))
+                {
+                    var cmd = new SqlCommand("sp_ReceptionCheck_GetAllFromView", cn)
+                        { CommandType = CommandType.StoredProcedure };
+
+                    await cn.OpenAsync();
+                    var dr = await cmd.ExecuteReaderAsync();
+                    while (dr.Read()) list.Add(LoadDataViewModel(dr));
+                    cn.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+
+            return list;
         }
         public override async Task<ReturnedSaveFuncInfo> SaveRangeAsync(IEnumerable<ReceptionCheckBussines> items, string tranName)
         {

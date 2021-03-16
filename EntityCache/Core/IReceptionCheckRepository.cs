@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using EntityCache.Bussines;
+using EntityCache.ViewModels;
 using Services;
 
 namespace EntityCache.Core
@@ -10,5 +11,6 @@ namespace EntityCache.Core
     {
         Task<List<ReceptionCheckBussines>> GetAllAsync(Guid masterGuid);
         Task<ReturnedSaveFuncInfo> RemoveRangeAsync(Guid masterGuid);
+        Task<List<ReceptionCheckViewModel>> GetAllViewModelAsync();
     }
 }

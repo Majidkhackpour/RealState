@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using EntityCache.Assistence;
+using EntityCache.ViewModels;
 using Services;
 using Services.Interfaces.Building;
 
@@ -14,6 +15,7 @@ namespace EntityCache.Bussines
         public bool Status { get; set; } = true;
         public string BankName { get; set; }
         public DateTime DateM { get; set; }
+        public string DateSh => Calendar.MiladiToShamsi(DateM);
         public DateTime DateSarResid { get; set; }
         public string DateSarresidSh => Calendar.MiladiToShamsi(DateSarResid);
         public Guid MasterGuid { get; set; }
@@ -90,5 +92,6 @@ namespace EntityCache.Bussines
 
             return res;
         }
+        public static async Task<List<ReceptionCheckViewModel>> GetAllViewModeAsync() => await UnitOfWork.ReceptionCheck.GetAllViewModelAsync();
     }
 }

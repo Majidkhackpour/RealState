@@ -682,6 +682,7 @@ namespace Accounting.Pardakht
             this.mnuAddCheckM.Name = "mnuAddCheckM";
             this.mnuAddCheckM.Size = new System.Drawing.Size(242, 24);
             this.mnuAddCheckM.Text = "خرج چک دریافتی (F4)";
+            this.mnuAddCheckM.Click += new System.EventHandler(this.mnuAddCheckM_Click);
             // 
             // toolStripMenuItem1
             // 

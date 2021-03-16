@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Accounting.Check;
 using Accounting.Hesab;
 using EntityCache.Bussines;
 using MetroFramework.Forms;
@@ -354,6 +355,17 @@ namespace Accounting.Pardakht
                 AddToGrid(frm.cls);
                 FetchData();
                 SetLables();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private void mnuAddCheckM_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                new frmShowCheckM(true).ShowDialog();
             }
             catch (Exception ex)
             {

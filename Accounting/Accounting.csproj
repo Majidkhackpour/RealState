@@ -166,6 +166,12 @@
     <Compile Include="Check\DasteCheck\frmShowDasteCheck.Designer.cs">
       <DependentUpon>frmShowDasteCheck.cs</DependentUpon>
     </Compile>
+    <Compile Include="Check\frmShowCheckM.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Check\frmShowCheckM.Designer.cs">
+      <DependentUpon>frmShowCheckM.cs</DependentUpon>
+    </Compile>
     <Compile Include="Hazine\frmShowHazine.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -201,6 +207,12 @@
     </Compile>
     <Compile Include="Pardakht\frmPardakhtCheckSh.Designer.cs">
       <DependentUpon>frmPardakhtCheckSh.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Pardakht\frmPardakhtChreckM.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Pardakht\frmPardakhtChreckM.Designer.cs">
+      <DependentUpon>frmPardakhtChreckM.cs</DependentUpon>
     </Compile>
     <Compile Include="Pardakht\frmPardakhtHavale.cs">
       <SubType>Form</SubType>
@@ -324,6 +336,9 @@
     <EmbeddedResource Include="Check\DasteCheck\frmShowDasteCheck.resx">
       <DependentUpon>frmShowDasteCheck.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Check\frmShowCheckM.resx">
+      <DependentUpon>frmShowCheckM.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Hazine\frmShowHazine.resx">
       <DependentUpon>frmShowHazine.cs</DependentUpon>
     </EmbeddedResource>
@@ -341,6 +356,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Pardakht\frmPardakhtCheckSh.resx">
       <DependentUpon>frmPardakhtCheckSh.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pardakht\frmPardakhtChreckM.resx">
+      <DependentUpon>frmPardakhtChreckM.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Pardakht\frmPardakhtHavale.resx">
       <DependentUpon>frmPardakhtHavale.cs</DependentUpon>
@@ -424,6 +442,7 @@
     <None Include="Properties\DataSources\EntityCache.Bussines.SanadDetailBussines.datasource" />
     <None Include="Properties\DataSources\EntityCache.Bussines.TafsilBussines.datasource" />
     <None Include="Properties\DataSources\EntityCache.ViewModels.CheckViewModel.datasource" />
+    <None Include="Properties\DataSources\EntityCache.ViewModels.ReceptionCheckViewModel.datasource" />
     <None Include="Resources\add.png" />
   </ItemGroup>
   <ItemGroup>
