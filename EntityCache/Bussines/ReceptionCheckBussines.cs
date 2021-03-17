@@ -93,5 +93,6 @@ namespace EntityCache.Bussines
             return res;
         }
         public static async Task<List<ReceptionCheckViewModel>> GetAllViewModeAsync() => await UnitOfWork.ReceptionCheck.GetAllViewModelAsync();
+        public static async Task<ReceptionCheckBussines> GetAsync(Guid guid) => await UnitOfWork.ReceptionCheck.GetAsync(guid);
     }
 }

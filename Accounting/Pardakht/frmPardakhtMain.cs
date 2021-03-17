@@ -365,7 +365,11 @@ namespace Accounting.Pardakht
         {
             try
             {
-                new frmShowCheckM(true).ShowDialog();
+                var frm = new frmPardakhtCheckM(null);
+                if (frm.ShowDialog(this) != DialogResult.OK) return;
+                AddToGrid(frm.cls);
+                FetchData();
+                SetLables();
             }
             catch (Exception ex)
             {

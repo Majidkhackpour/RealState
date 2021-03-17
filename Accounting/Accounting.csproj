@@ -202,17 +202,17 @@
     <Compile Include="Hesab\frmTafsilMain.Designer.cs">
       <DependentUpon>frmTafsilMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="Pardakht\frmPardakhtCheckM.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Pardakht\frmPardakhtCheckM.Designer.cs">
+      <DependentUpon>frmPardakhtCheckM.cs</DependentUpon>
+    </Compile>
     <Compile Include="Pardakht\frmPardakhtCheckSh.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Pardakht\frmPardakhtCheckSh.Designer.cs">
       <DependentUpon>frmPardakhtCheckSh.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Pardakht\frmPardakhtChreckM.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Pardakht\frmPardakhtChreckM.Designer.cs">
-      <DependentUpon>frmPardakhtChreckM.cs</DependentUpon>
     </Compile>
     <Compile Include="Pardakht\frmPardakhtHavale.cs">
       <SubType>Form</SubType>
@@ -354,11 +354,11 @@
     <EmbeddedResource Include="Hesab\frmTafsilMain.resx">
       <DependentUpon>frmTafsilMain.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Pardakht\frmPardakhtCheckM.resx">
+      <DependentUpon>frmPardakhtCheckM.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Pardakht\frmPardakhtCheckSh.resx">
       <DependentUpon>frmPardakhtCheckSh.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Pardakht\frmPardakhtChreckM.resx">
-      <DependentUpon>frmPardakhtChreckM.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Pardakht\frmPardakhtHavale.resx">
       <DependentUpon>frmPardakhtHavale.cs</DependentUpon>

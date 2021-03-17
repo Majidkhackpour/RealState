@@ -40,8 +40,8 @@ namespace EntityCache.SqlServerPersistence
                 item.PoshtNomre = dr["PoshtNomre"].ToString();
                 item.Price = (decimal)dr["Price"];
                 item.CheckStatus = (EnCheckM)dr["CheckStatus"];
-                item.DateSarResid = (DateTime) dr["DateSarResid"];
-                item.SandouqTafsilGuid = (Guid) dr["SandouqTafsilGuid"];
+                item.DateSarResid = (DateTime)dr["DateSarResid"];
+                item.SandouqTafsilGuid = (Guid)dr["SandouqTafsilGuid"];
                 item.SandouqMoeinGuid = (Guid)dr["SandouqMoeinGuid"];
             }
             catch (Exception ex)
@@ -101,6 +101,30 @@ namespace EntityCache.SqlServerPersistence
 
             return list;
         }
+        public override async Task<ReceptionCheckBussines> GetAsync(Guid guid)
+        {
+            ReceptionCheckBussines item = null;
+            try
+            {
+                using (var cn = new SqlConnection(_connectionString))
+                {
+                    var cmd = new SqlCommand("sp_ReceptionCheck_Get", cn)
+                    { CommandType = CommandType.StoredProcedure };
+                    cmd.Parameters.AddWithValue("@Guid", guid);
+
+                    await cn.OpenAsync();
+                    var dr = await cmd.ExecuteReaderAsync();
+                    if (dr.Read()) item = LoadData(dr);
+                    cn.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+
+            return item;
+        }
         public async Task<ReturnedSaveFuncInfo> RemoveRangeAsync(Guid masterGuid)
         {
             var res = new ReturnedSaveFuncInfo();
@@ -133,7 +157,7 @@ namespace EntityCache.SqlServerPersistence
                 using (var cn = new SqlConnection(_connectionString))
                 {
                     var cmd = new SqlCommand("sp_ReceptionCheck_GetAllFromView", cn)
-                        { CommandType = CommandType.StoredProcedure };
+                    { CommandType = CommandType.StoredProcedure };
 
                     await cn.OpenAsync();
                     var dr = await cmd.ExecuteReaderAsync();
