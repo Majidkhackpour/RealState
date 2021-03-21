@@ -22,15 +22,18 @@ namespace Accounting.Pardakht
                 txtDesc.Text = cls?.Description;
                 txtDate.Text = cls?.DateSarresidSh;
 
-                if (cls.Guid == Guid.Empty && CheckBookBindingSource.Count > 0) cmbCheckBook.SelectedIndex = 0;
+                if (cls.Guid == Guid.Empty && CheckBookBindingSource.Count > 0)
+                {
+                    cmbCheckBook.SelectedIndex = 0;
+                    cmbCheckBook_SelectedIndexChanged(null, null);
+                }
                 else
                 {
                     var checkPage = await CheckPageBussines.GetAsync(cls.CheckPageGuid);
                     if (checkPage == null) return;
-                    var check = await DasteCheckBussines.GetAsync(checkPage.Guid);
+                    var check = await DasteCheckBussines.GetAsync(checkPage.CheckGuid);
                     if (check == null) return;
                     cmbCheckBook.SelectedValue = check.Guid;
-                    cmbCheckPage.SelectedValue = cls.CheckPageGuid;
                 }
             }
             catch (Exception ex)
@@ -64,8 +67,8 @@ namespace Accounting.Pardakht
             {
                 if (CheckBookBindingSource.Count <= 0 || cmbCheckBook.SelectedValue == null) return;
                 var list = await CheckPageBussines.GetAllAsync((Guid)cmbCheckBook.SelectedValue);
-                CheckPageBindingSource.DataSource = list?.Where(q => q.CheckStatus == EnCheckSh.Mojoud)
-                    .OrderBy(q => q.Number)?.ToList();
+                CheckPageBindingSource.DataSource = list?.ToList();
+                if (cls.Guid != Guid.Empty) cmbCheckPage.SelectedValue = cls.CheckPageGuid;
             }
             catch (Exception ex)
             {

@@ -25,7 +25,7 @@ namespace Accounting.Pardakht
             }
         }
 
-        public frmShowPardakht()=>InitializeComponent();
+        public frmShowPardakht() => InitializeComponent();
 
         private async void frmShowPardakht_Load(object sender, EventArgs e) => await LoadDataAsync();
         private void frmShowPardakht_KeyDown(object sender, KeyEventArgs e)

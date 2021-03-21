@@ -5,6 +5,7 @@ using WindowsSerivces;
 using Accounting.Check;
 using EntityCache.Bussines;
 using MetroFramework.Forms;
+using Notification;
 using Services;
 
 namespace Accounting.Pardakht
@@ -35,6 +36,11 @@ namespace Accounting.Pardakht
                     lblBankName.Text = lblNumber.Text = lblPrice.Text = lblSarresid.Text = "";
                 else
                 {
+                    if (check.CheckStatus != EnCheckM.Mojoud)
+                    {
+                        frmNotification.PublicInfo.ShowMessage($"شما مجاز به خرج چک {check.StatusName} نمی باشید");
+                        return;
+                    }
                     receptionCheck = check;
                     lblBankName.Text = check.BankName;
                     lblNumber.Text = check.CheckNumber;

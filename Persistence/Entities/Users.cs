@@ -32,5 +32,7 @@ namespace Persistence.Entities
         public virtual ICollection<Sanad> Sanad { get; set; }
         public virtual ICollection<Reception> Reception { get; set; }
         public virtual ICollection<Pardakht> Pardakht { get; set; }
+        public virtual ICollection<PardakhtCheckAvalDore> PardakhtCheckAvalDore { get; set; }
+        public virtual ICollection<ReceptionCheckAvalDore> ReceptionCheckAvalDore { get; set; }
     }
 }

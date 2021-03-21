@@ -19,7 +19,7 @@ namespace EntityCache.Bussines
         public string TafsilName { get; set; }
         public Guid MoeinGuid { get; set; }
         public string MoeinName { get; set; }
-        public DateTime DateM { get; set; }
+        public DateTime DateM { get; set; } = DateTime.Now;
         public string DateSh => Calendar.MiladiToShamsi(DateM);
         public string Description { get; set; }
         public Guid UserGuid { get; set; }
@@ -215,26 +215,99 @@ namespace EntityCache.Bussines
                 { //BeginTransaction
                 }
 
+                var oldPardakht = await GetAsync(Guid);
+                if (oldPardakht != null)
+                {
+                    var checkSh = await PardakhtCheckShakhsiBussines.GetAllAsync(Guid);
+                    if (checkSh != null && checkSh.Count > 0)
+                    {
+                        foreach (var item in checkSh)
+                        {
+                            var check = await CheckPageBussines.GetAsync(item.CheckPageGuid);
+                            if (check == null) continue;
+                            check.CheckStatus = EnCheckSh.Mojoud;
+                            check.DatePardakht = null;
+                            check.DateSarresid = null;
+                            check.Description = "";
+                            check.Modified = DateTime.Now;
+                            check.Price = 0;
+                            check.Status = true;
+                            check.ReceptorGuid = null;
+                            res.AddReturnedValue(await check.SaveAsync());
+                            if (res.HasError) return res;
+                        }
+                    }
+
+                    var checkM = await PardakhtCheckMoshtariBussines.GetAllAsync(Guid);
+                    if (checkM != null && checkM.Count > 0)
+                    {
+                        foreach (var item in checkM)
+                        {
+                            var check = await ReceptionCheckBussines.GetAsync(item.CheckGuid);
+                            if (check == null) continue;
+                            check.CheckStatus = EnCheckM.Mojoud;
+                            check.Modified = DateTime.Now;
+                            res.AddReturnedValue(await check.SaveAsync());
+                            if (res.HasError) return res;
+                        }
+                    }
+                }
+
                 res.AddReturnedValue(CheckValidation());
                 if (res.HasError) return res;
 
                 res.AddReturnedValue(await UnitOfWork.Pardakht.SaveAsync(this, tranName));
                 if (res.HasError) return res;
 
-                //res.AddReturnedValue(await ReceptionNaqdBussines.RemoveRangeAsync(Guid));
-                //if (res.HasError) return res;
-                //res.AddReturnedValue(await ReceptionNaqdBussines.SaveRangeAsync(NaqdList));
-                //if (res.HasError) return res;
+                res.AddReturnedValue(await PardakhtNaqdBussines.RemoveRangeAsync(Guid));
+                if (res.HasError) return res;
+                res.AddReturnedValue(await PardakhtNaqdBussines.SaveRangeAsync(NaqdList));
+                if (res.HasError) return res;
 
-                //res.AddReturnedValue(await ReceptionHavaleBussines.RemoveRangeAsync(Guid));
-                //if (res.HasError) return res;
-                //res.AddReturnedValue(await ReceptionHavaleBussines.SaveRangeAsync(HavaleList));
-                //if (res.HasError) return res;
+                res.AddReturnedValue(await PardakhtHavaleBussines.RemoveRangeAsync(Guid));
+                if (res.HasError) return res;
+                res.AddReturnedValue(await PardakhtHavaleBussines.SaveRangeAsync(HavaleList));
+                if (res.HasError) return res;
 
-                //res.AddReturnedValue(await ReceptionCheckBussines.RemoveRangeAsync(Guid));
-                //if (res.HasError) return res;
-                //res.AddReturnedValue(await ReceptionCheckBussines.SaveRangeAsync(CheckList));
-                //if (res.HasError) return res;
+                res.AddReturnedValue(await PardakhtCheckShakhsiBussines.RemoveRangeAsync(Guid));
+                if (res.HasError) return res;
+                res.AddReturnedValue(await PardakhtCheckShakhsiBussines.SaveRangeAsync(CheckShakhsiList));
+                if (res.HasError) return res;
+
+                if (CheckShakhsiList?.Count > 0)
+                {
+                    foreach (var item in CheckShakhsiList)
+                    {
+                        var checkPage = await CheckPageBussines.GetAsync(item.CheckPageGuid);
+                        checkPage.CheckStatus = EnCheckSh.KharjShode;
+                        checkPage.DatePardakht = DateTime.Now;
+                        checkPage.DateSarresid = item.DateSarResid;
+                        checkPage.Description = item.Description;
+                        checkPage.Modified = DateTime.Now;
+                        checkPage.Price = item.Price;
+                        checkPage.Status = true;
+                        checkPage.ReceptorGuid = TafsilGuid;
+                        res.AddReturnedValue(await checkPage.SaveAsync());
+                        if (res.HasError) return res;
+                    }
+                }
+
+                res.AddReturnedValue(await PardakhtCheckMoshtariBussines.RemoveRangeAsync(Guid));
+                if (res.HasError) return res;
+                res.AddReturnedValue(await PardakhtCheckMoshtariBussines.SaveRangeAsync(CheckMoshtariList));
+                if (res.HasError) return res;
+
+                if (CheckMoshtariList?.Count > 0)
+                {
+                    foreach (var item in CheckMoshtariList)
+                    {
+                        var rec = await ReceptionCheckBussines.GetAsync(item.CheckGuid);
+                        rec.CheckStatus = EnCheckM.Kharj;
+                        rec.Modified = DateTime.Now;
+                        res.AddReturnedValue(await rec.SaveAsync());
+                        if (res.HasError) return res;
+                    }
+                }
 
                 var sanad = await GenerateSanadAsync();
                 res.AddReturnedValue(await sanad.SaveAsync());
@@ -272,14 +345,55 @@ namespace EntityCache.Bussines
                     //BeginTransaction
                 }
 
-                //res.AddReturnedValue(await ReceptionNaqdBussines.RemoveRangeAsync(Guid));
-                //if (res.HasError) return res;
+                var oldPardakht = await GetAsync(Guid);
+                if (oldPardakht != null)
+                {
+                    var checkSh = await PardakhtCheckShakhsiBussines.GetAllAsync(Guid);
+                    if (checkSh != null && checkSh.Count > 0)
+                    {
+                        foreach (var item in checkSh)
+                        {
+                            var check = await CheckPageBussines.GetAsync(item.CheckPageGuid);
+                            if (check == null) continue;
+                            check.CheckStatus = EnCheckSh.Mojoud;
+                            check.DatePardakht = null;
+                            check.DateSarresid = null;
+                            check.Description = "";
+                            check.Modified = DateTime.Now;
+                            check.Price = 0;
+                            check.Status = true;
+                            check.ReceptorGuid = null;
+                            res.AddReturnedValue(await check.SaveAsync());
+                            if (res.HasError) return res;
+                        }
+                    }
 
-                //res.AddReturnedValue(await ReceptionHavaleBussines.RemoveRangeAsync(Guid));
-                //if (res.HasError) return res;
+                    var checkM = await PardakhtCheckMoshtariBussines.GetAllAsync(Guid);
+                    if (checkM != null && checkM.Count > 0)
+                    {
+                        foreach (var item in checkM)
+                        {
+                            var check = await ReceptionCheckBussines.GetAsync(item.CheckGuid);
+                            if (check == null) continue;
+                            check.CheckStatus = EnCheckM.Mojoud;
+                            check.Modified = DateTime.Now;
+                            res.AddReturnedValue(await check.SaveAsync());
+                            if (res.HasError) return res;
+                        }
+                    }
+                }
 
-                //res.AddReturnedValue(await ReceptionCheckBussines.RemoveRangeAsync(Guid));
-                //if (res.HasError) return res;
+                res.AddReturnedValue(await PardakhtNaqdBussines.RemoveRangeAsync(Guid));
+                if (res.HasError) return res;
+
+                res.AddReturnedValue(await PardakhtHavaleBussines.RemoveRangeAsync(Guid));
+                if (res.HasError) return res;
+
+                res.AddReturnedValue(await PardakhtCheckMoshtariBussines.RemoveRangeAsync(Guid));
+                if (res.HasError) return res;
+
+                res.AddReturnedValue(await PardakhtCheckShakhsiBussines.RemoveRangeAsync(Guid));
+                if (res.HasError) return res;
 
                 res.AddReturnedValue(await UnitOfWork.Pardakht.RemoveAsync(Guid, tranName));
                 if (res.HasError) return res;
@@ -314,129 +428,155 @@ namespace EntityCache.Bussines
         public ReturnedSaveFuncInfo CheckValidation()
         {
             var res = new ReturnedSaveFuncInfo();
-            //try
-            //{
-            //    if (HavaleList?.Count > 0)
-            //        foreach (var bank in HavaleList)
-            //        {
-            //            if (bank == null)
-            //            {
-            //                res.AddError("در لیست حواله ها مقدار نال موجود میباشد");
-            //                continue;
-            //            }
-            //            if (bank.BankTafsilGuid == Guid.Empty) res.AddError("حساب وارد شده جهت بانک معتبر نمیباشد");
-            //            if (bank.Price <= 0) res.AddError("مبلغ وارد شده جهت حواله بانکی معتبر نمیباشد");
-            //            bank.MasterGuid = Guid;
-            //        }
+            try
+            {
+                if (HavaleList?.Count > 0)
+                    foreach (var bank in HavaleList)
+                    {
+                        if (bank == null)
+                        {
+                            res.AddError("در لیست حواله ها مقدار نال موجود میباشد");
+                            continue;
+                        }
+                        if (bank.BankTafsilGuid == Guid.Empty) res.AddError("حساب وارد شده جهت بانک معتبر نمیباشد");
+                        if (bank.Price <= 0) res.AddError("مبلغ وارد شده جهت حواله بانکی معتبر نمیباشد");
+                        bank.MasterGuid = Guid;
+                    }
 
-            //    if (NaqdList?.Count > 0)
-            //        foreach (var naghd in NaqdList)
-            //        {
-            //            if (naghd == null)
-            //            {
-            //                res.AddError("در لیست دریافتی های نقدی مقدار نال موجود میباشد");
-            //                continue;
-            //            }
-            //            if (naghd.SandouqTafsilGuid == Guid.Empty) res.AddError("حساب وارد شده جهت صندوق معتبر نمیباشد");
-            //            if (naghd.Price <= 0) res.AddError("مبلغ وارد شده جهت واریز به صندوق معتبر نمیباشد");
-            //            naghd.MasterGuid = Guid;
-            //        }
+                if (NaqdList?.Count > 0)
+                    foreach (var naghd in NaqdList)
+                    {
+                        if (naghd == null)
+                        {
+                            res.AddError("در لیست پرداختی های نقدی مقدار نال موجود میباشد");
+                            continue;
+                        }
+                        if (naghd.SandouqTafsilGuid == Guid.Empty) res.AddError("حساب وارد شده جهت صندوق معتبر نمیباشد");
+                        if (naghd.Price <= 0) res.AddError("مبلغ وارد شده جهت واریز به صندوق معتبر نمیباشد");
+                        naghd.MasterGuid = Guid;
+                    }
 
-            //    if (CheckList?.Count > 0)
-            //        foreach (var check in CheckList)
-            //            check.MasterGuid = Guid;
+                if (CheckShakhsiList?.Count > 0)
+                    foreach (var check in CheckShakhsiList)
+                        check.MasterGuid = Guid;
 
-            //    if (TafsilGuid == Guid.Empty) res.AddError("ردیف طرف حساب انتخاب شده جهت صدور برگه دریافت معتبر نمی باشد");
-            //    if (Sum <= 0) res.AddError("برگه دریافت با مبلغ صفر یا منفی قابل ثبت نمیباشد");
-            //    if (Guid == Guid.Empty) Guid = Guid.NewGuid();
-            //}
-            //catch (Exception ex)
-            //{
-            //    res.AddReturnedValue(ex);
-            //}
+                if (CheckMoshtariList?.Count > 0)
+                    foreach (var check in CheckMoshtariList)
+                        check.MasterGuid = Guid;
+
+                if (TafsilGuid == Guid.Empty) res.AddError("ردیف طرف حساب انتخاب شده جهت صدور برگه پرداخت معتبر نمی باشد");
+                if (Sum <= 0) res.AddError("برگه پرداخت با مبلغ صفر یا منفی قابل ثبت نمیباشد");
+                if (Guid == Guid.Empty) Guid = Guid.NewGuid();
+            }
+            catch (Exception ex)
+            {
+                res.AddReturnedValue(ex);
+            }
             return res;
         }
         public async Task<SanadBussines> GenerateSanadAsync()
         {
             SanadBussines sanad = null;
-            //try
-            //{
-            //    sanad = await SanadBussines.GetAsync(SanadNumber) ?? new SanadBussines()
-            //    {
-            //        Description = $"دریافت({Number}) {Description }",
-            //        Number = SanadNumber,
-            //        DateM = DateM,
-            //        UserGuid = UserGuid,
-            //        Guid = Guid.NewGuid(),
-            //        Modified = DateTime.Now,
-            //        Status = true,
-            //        SanadStatus = EnSanadStatus.Temporary,
-            //        SanadType = EnSanadType.Auto
-            //    };
-            //    sanad.DetailClear();
-            //    //طرف حساب بستانکار دریافت
-            //    sanad.AddToListSanad(new SanadDetailBussines()
-            //    {
-            //        Credit = Sum,
-            //        Debit = 0,
-            //        MoeinGuid = ParentDefaults.MoeinCoding.CLSMoein10304,
-            //        TafsilGuid = TafsilGuid,
-            //        Description = $"دریافت({ Number} {Description})",
-            //        Guid = Guid.NewGuid(),
-            //        Modified = DateTime.Now,
-            //        Status = true,
-            //        MasterGuid = sanad.Guid
-            //    });
+            try
+            {
+                sanad = await SanadBussines.GetAsync(SanadNumber) ?? new SanadBussines()
+                {
+                    Description = $"پرداخت({Number}) {Description }",
+                    Number = SanadNumber,
+                    DateM = DateM,
+                    UserGuid = UserGuid,
+                    Guid = Guid.NewGuid(),
+                    Modified = DateTime.Now,
+                    Status = true,
+                    SanadStatus = EnSanadStatus.Temporary,
+                    SanadType = EnSanadType.Auto
+                };
+                sanad.DetailClear();
+                //طرف حساب بدهکار پرداخت
+                sanad.AddToListSanad(new SanadDetailBussines()
+                {
+                    Credit = 0,
+                    Debit = Sum,
+                    MoeinGuid = ParentDefaults.MoeinCoding.CLSMoein30103,
+                    TafsilGuid = TafsilGuid,
+                    Description = $"پرداخت({ Number} {Description})",
+                    Guid = Guid.NewGuid(),
+                    Modified = DateTime.Now,
+                    Status = true,
+                    MasterGuid = sanad.Guid
+                });
 
-            //    if (NaqdList?.Count > 0)
-            //        foreach (var naghd in NaqdList)
-            //            sanad.AddToListSanad(new SanadDetailBussines()
-            //            {
-            //                Credit = 0,
-            //                Debit = naghd.Price,
-            //                MoeinGuid = ParentDefaults.MoeinCoding.CLSMoein10102,
-            //                TafsilGuid = naghd.SandouqTafsilGuid,
-            //                Description = $"دریافت({ Number} {Description} {naghd.Description})",
-            //                Guid = Guid.NewGuid(),
-            //                Modified = DateTime.Now,
-            //                Status = true,
-            //                MasterGuid = sanad.Guid
-            //            });
+                if (NaqdList?.Count > 0)
+                    foreach (var naghd in NaqdList)
+                        sanad.AddToListSanad(new SanadDetailBussines()
+                        {
+                            Credit = naghd.Price,
+                            Debit = 0,
+                            MoeinGuid = ParentDefaults.MoeinCoding.CLSMoein10102,
+                            TafsilGuid = naghd.SandouqTafsilGuid,
+                            Description = $"پرداخت({ Number} {Description} {naghd.Description})",
+                            Guid = Guid.NewGuid(),
+                            Modified = DateTime.Now,
+                            Status = true,
+                            MasterGuid = sanad.Guid
+                        });
 
-            //    if (HavaleList?.Count > 0)
-            //        foreach (var bank in HavaleList)
-            //            sanad.AddToListSanad(new SanadDetailBussines()
-            //            {
-            //                Credit = 0,
-            //                Debit = bank.Price,
-            //                MoeinGuid = ParentDefaults.MoeinCoding.CLSMoein10101,
-            //                TafsilGuid = bank.BankTafsilGuid,
-            //                Description = $"دریافت({Number} {Description} {bank.Description})",
-            //                Guid = Guid.NewGuid(),
-            //                Modified = DateTime.Now,
-            //                Status = true,
-            //                MasterGuid = sanad.Guid
-            //            });
+                if (HavaleList?.Count > 0)
+                    foreach (var bank in HavaleList)
+                        sanad.AddToListSanad(new SanadDetailBussines()
+                        {
+                            Credit = bank.Price,
+                            Debit = 0,
+                            MoeinGuid = ParentDefaults.MoeinCoding.CLSMoein10101,
+                            TafsilGuid = bank.BankTafsilGuid,
+                            Description = $"پرداخت({Number} {Description} {bank.Description})",
+                            Guid = Guid.NewGuid(),
+                            Modified = DateTime.Now,
+                            Status = true,
+                            MasterGuid = sanad.Guid
+                        });
 
-            //    if (CheckList?.Count > 0)
-            //        foreach (var check in CheckList)
-            //            sanad.AddToListSanad(new SanadDetailBussines()
-            //            {
-            //                Credit = 0,
-            //                Debit = check.Price,
-            //                MoeinGuid = ParentDefaults.MoeinCoding.CLSMoein10104,
-            //                TafsilGuid = check.SandouqTafsilGuid,
-            //                Description = $"دریافت({ Number} {Description} {check.Description})",
-            //                Guid = Guid.NewGuid(),
-            //                Modified = DateTime.Now,
-            //                Status = true,
-            //                MasterGuid = sanad.Guid
-            //            });
-            //}
-            //catch (Exception ex)
-            //{
-            //    WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            //}
+                if (CheckShakhsiList?.Count > 0)
+                    foreach (var checkSh in CheckShakhsiList)
+                    {
+                        var checkPage = await CheckPageBussines.GetAsync(checkSh.CheckPageGuid);
+                        var check = await DasteCheckBussines.GetAsync(checkPage.CheckGuid);
+                        sanad.AddToListSanad(new SanadDetailBussines()
+                        {
+                            Credit = checkSh.Price,
+                            Debit = 0,
+                            MoeinGuid = ParentDefaults.MoeinCoding.CLSMoein30101,
+                            TafsilGuid = check.BankGuid,
+                            Description = $"پرداخت({Number} {Description} {checkSh.Description})",
+                            Guid = Guid.NewGuid(),
+                            Modified = DateTime.Now,
+                            Status = true,
+                            MasterGuid = sanad.Guid
+                        });
+                    }
+
+                if (CheckMoshtariList?.Count > 0)
+                    foreach (var checkM in CheckMoshtariList)
+                    {
+                        var rec = await ReceptionCheckBussines.GetAsync(checkM.CheckGuid);
+                        sanad.AddToListSanad(new SanadDetailBussines()
+                        {
+                            Credit = checkM.Price,
+                            Debit = 0,
+                            MoeinGuid = rec.SandouqMoeinGuid,
+                            TafsilGuid = rec.SandouqTafsilGuid,
+                            Description = $"پرداخت({Number} {Description} {checkM.Description})",
+                            Guid = Guid.NewGuid(),
+                            Modified = DateTime.Now,
+                            Status = true,
+                            MasterGuid = sanad.Guid
+                        });
+                    }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
             return sanad;
         }
         public static async Task<long> NextCodeAsync() => await UnitOfWork.Pardakht.NextNumberAsync();

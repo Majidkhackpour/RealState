@@ -2,36 +2,35 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using EntityCache.Assistence;
+using Nito.AsyncEx;
 using Services;
 using Services.Interfaces.Building;
 
 namespace EntityCache.Bussines
 {
-    public class CheckPageBussines : ICheckPage
+    public class PardakhtCheckAvalDoreBussines : IPardakhtCheckAvalDore
     {
         public Guid Guid { get; set; }
         public DateTime Modified { get; set; }
         public bool Status { get; set; }
-        public Guid CheckGuid { get; set; }
-        public DateTime? DatePardakht { get; set; }
-        public string DatePardakhtSh => Calendar.MiladiToShamsi(DatePardakht);
-        public long Number { get; set; }
-        public Guid? ReceptorGuid { get; set; }
-        public string ReceptorName => TafsilBussines.Get(ReceptorGuid ?? Guid.Empty)?.Name;
-        public DateTime? DateSarresid { get; set; }
-        public string DateSarresidSh => Calendar.MiladiToShamsi(DateSarresid);
+        public string DasteCheckName { get; set; }
         public string Description { get; set; }
         public decimal Price { get; set; }
-        public EnCheckSh CheckStatus { get; set; }
-        public string StatusName => CheckStatus.GetDisplay();
+        public DateTime DateSarresid { get; set; }
+        public string Number { get; set; }
+        public Guid CheckPageGuid { get; set; }
+        public Guid TafsilGuid { get; set; }
+        public string TafsilName { get; set; }
+        public Guid UserGuid { get; set; }
+        public string UserName { get; set; }
 
 
-        public static async Task<List<CheckPageBussines>> GetAllAsync(Guid checkGuid) =>
-            await UnitOfWork.CheckPage.GetAllAsync(checkGuid);
-        public static async Task<CheckPageBussines> GetAsync(Guid guid) => await UnitOfWork.CheckPage.GetAsync(guid);
-        public static async Task<ReturnedSaveFuncInfo> RemoveAllAsync(Guid checkGuid)
-            => await UnitOfWork.CheckPage.RemoveAllAsync(checkGuid);
-        public static async Task<ReturnedSaveFuncInfo> SaveRangeAsync(List<CheckPageBussines> lst, string tranName = "")
+        public static async Task<List<PardakhtCheckAvalDoreBussines>> GetAllAsync() =>
+            await UnitOfWork.PardakhtCheckAvalDore.GetAllAsync();
+        public static async Task<PardakhtCheckAvalDoreBussines> GetAsync(Guid guid) =>
+            await UnitOfWork.PardakhtCheckAvalDore.GetAsync(guid);
+        public static PardakhtCheckAvalDoreBussines Get(Guid guid) => AsyncContext.Run(() => GetAsync(guid));
+        public async Task<ReturnedSaveFuncInfo> SaveAsync(string tranName = "")
         {
             var res = new ReturnedSaveFuncInfo();
             var autoTran = string.IsNullOrEmpty(tranName);
@@ -42,7 +41,7 @@ namespace EntityCache.Bussines
                 { //BeginTransaction
                 }
 
-                res.AddReturnedValue(await UnitOfWork.CheckPage.SaveRangeAsync(lst, tranName));
+                res.AddReturnedValue(await UnitOfWork.PardakhtCheckAvalDore.SaveAsync(this, tranName));
                 if (res.HasError) return res;
 
                 if (autoTran)
@@ -51,7 +50,7 @@ namespace EntityCache.Bussines
                 }
 
                 //if (Cache.IsSendToServer)
-                //    _ = Task.Run(() => WebUser.SaveAsync(this));
+                //    _ = Task.Run(() => WebRental.SaveAsync(list));
             }
             catch (Exception ex)
             {
@@ -65,7 +64,7 @@ namespace EntityCache.Bussines
 
             return res;
         }
-        public async Task<ReturnedSaveFuncInfo> SaveAsync(string tranName = "")
+        public async Task<ReturnedSaveFuncInfo> RemoveAsync(string tranName = "")
         {
             var res = new ReturnedSaveFuncInfo();
             var autoTran = string.IsNullOrEmpty(tranName);
@@ -73,10 +72,11 @@ namespace EntityCache.Bussines
             try
             {
                 if (autoTran)
-                { //BeginTransaction
+                {
+                    //BeginTransaction
                 }
 
-                res.AddReturnedValue(await UnitOfWork.CheckPage.SaveAsync(this, tranName));
+                res.AddReturnedValue(await UnitOfWork.PardakhtCheckAvalDore.RemoveAsync(Guid, tranName));
                 if (res.HasError) return res;
 
                 if (autoTran)
@@ -85,7 +85,7 @@ namespace EntityCache.Bussines
                 }
 
                 //if (Cache.IsSendToServer)
-                //    _ = Task.Run(() => WebUser.SaveAsync(this));
+                //    _ = Task.Run(() => WebRental.SaveAsync(list));
             }
             catch (Exception ex)
             {

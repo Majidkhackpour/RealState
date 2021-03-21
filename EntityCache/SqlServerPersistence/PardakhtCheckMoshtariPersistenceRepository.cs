@@ -114,7 +114,7 @@ namespace EntityCache.SqlServerPersistence
             {
                 using (var cn = new SqlConnection(_connectionString))
                 {
-                    var cmd = new SqlCommand("sp_PardakhtCheckSh_Insert", cn) { CommandType = CommandType.StoredProcedure };
+                    var cmd = new SqlCommand("sp_PardakhtCheckM_Insert", cn) { CommandType = CommandType.StoredProcedure };
                     cmd.Parameters.AddWithValue("@guid", item.Guid);
                     cmd.Parameters.AddWithValue("@modif", item.Modified);
                     cmd.Parameters.AddWithValue("@st", item.Status);

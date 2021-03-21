@@ -836,6 +836,12 @@
   <ItemGroup>
     <None Include="Resources\044.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\021.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\081.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

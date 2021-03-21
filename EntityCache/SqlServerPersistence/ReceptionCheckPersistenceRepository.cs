@@ -60,7 +60,6 @@ namespace EntityCache.SqlServerPersistence
                 item.Guid = (Guid)dr["Guid"];
                 item.BankName = dr["BankName"].ToString();
                 item.DateM = (DateTime)dr["DateM"];
-                item.MasterGuid = (Guid)dr["MasterGuid"];
                 item.Description = dr["Description"].ToString();
                 item.CheckNumber = dr["CheckNumber"].ToString();
                 item.PoshtNomre = dr["PoshtNomre"].ToString();

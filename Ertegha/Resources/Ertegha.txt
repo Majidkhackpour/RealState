@@ -2352,7 +2352,7 @@ GO
 IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_CheckPage_Save]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
 	exec('Create Procedure [dbo].[sp_CheckPage_Save]	As Begin print 11 end')
 GO
-Alter PROCEDURE sp_CheckPage_Save
+ALTER PROCEDURE [dbo].[sp_CheckPage_Save]
 	@Guid uniqueidentifier,
 	@modif datetime,
 	@CheckGuid uniqueidentifier,
@@ -2365,7 +2365,21 @@ Alter PROCEDURE sp_CheckPage_Save
 	@st int
 AS
 BEGIN
-	INSERT INTO [dbo].[CheckPages]
+	UPDATE [dbo].[CheckPages]
+	   SET [Modified] = @modif
+		  ,[Status] = 'true'
+		  ,[CheckGuid] = @CheckGuid
+		  ,[DatePardakht] = @datePardakht
+		  ,[Number] = @number
+		  ,[ReceptorGuid] = @receptorGuid
+		  ,[DateSarresid] = @sarresid
+		  ,[Description] = @desc
+		  ,[Price] = @price
+		  ,[CheckStatus] = @st
+	 WHERE [Guid] = @Guid
+	 if @@ROWCOUNT=0
+	 begin
+		INSERT INTO [dbo].[CheckPages]
            ([Guid]
            ,[Modified]
            ,[Status]
@@ -2389,6 +2403,7 @@ BEGIN
            ,@desc
            ,@price
            ,@st)
+	 end
 END
 GO
 -- ==========================================================================================
@@ -3020,7 +3035,7 @@ GO
 IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_ReceptionCheck_Insert]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
 	exec('Create Procedure [dbo].[sp_ReceptionCheck_Insert]	As Begin print 11 end')  
 GO
-Alter PROCEDURE sp_ReceptionCheck_Insert
+ALTER PROCEDURE [dbo].[sp_ReceptionCheck_Insert]
 	@guid uniqueidentifier,
 	@modif datetime,
 	@st bit,
@@ -3037,7 +3052,24 @@ Alter PROCEDURE sp_ReceptionCheck_Insert
 	@sandouqMoeinGuid uniqueidentifier
 AS
 BEGIN
-	INSERT INTO [dbo].[ReceptionChecks]
+	UPDATE [dbo].[ReceptionChecks]
+	   SET [Modified] = @modif
+		  ,[Status] = @st
+		  ,[BankName] = @bankName
+		  ,[DateM] = @dateM
+		  ,[MasterGuid] = @masterGuid
+		  ,[Description] = @desc
+		  ,[CheckNumber] = @checkNumber
+		  ,[PoshtNomre] = @poshtNomre
+		  ,[Price] = @price
+		  ,[CheckStatus] = @checkStatus
+		  ,[DateSarResid] = @sarResid
+		  ,[SandouqTafsilGuid] = @sandouqTafsilGuid
+		  ,[SandouqMoeinGuid] = @sandouqMoeinGuid
+	 WHERE [Guid] = @guid
+	 if @@ROWCOUNT=0
+	 begin
+		INSERT INTO [dbo].[ReceptionChecks]
           ([Guid]
           ,[Modified]
           ,[Status]
@@ -3067,6 +3099,7 @@ BEGIN
 		  ,@sarResid
 		  ,@sandouqTafsilGuid
 		  ,@sandouqMoeinGuid)
+	 end
 END
 GO
 --========================================================================================================
@@ -3401,7 +3434,7 @@ Alter PROCEDURE sp_PardakhtNaqd_Insert
 	@st bit,
 	@desc nvarchar(max),
 	@price decimal,
-	@sandiuqTafsilGuid uniqueidentifier,
+	@sandouqTafsilGuid uniqueidentifier,
 	@sandouqMoeinGuid uniqueidentifier,
 	@masterGuid uniqueidentifier
 AS
@@ -3421,7 +3454,7 @@ BEGIN
            ,@st
            ,@desc
            ,@price
-           ,@sandiuqTafsilGuid
+           ,@sandouqTafsilGuid
            ,@sandouqMoeinGuid
            ,@masterGuid)
 END
@@ -3516,16 +3549,16 @@ GO
 IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_PardakhtCheckSh_Insert]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
 	exec('Create Procedure [dbo].[sp_PardakhtCheckSh_Insert]	As Begin print 11 end')  
 GO
-Alter PROCEDURE sp_PardakhtCheckSh_Insert
+ALTER PROCEDURE [dbo].[sp_PardakhtCheckSh_Insert]
 	@guid uniqueidentifier,
 	@modif datetime,
 	@st bit,
 	@desc nvarchar(max),
-	@dateSarResid datetime,
-	@price decimal,
-	@checkPageGuid uniqueidentifier,
-	@dateM datetime,
+	@checkGuid uniqueidentifier,
 	@masterGuid uniqueidentifier,
+	@sarresid datetime,
+	@price decimal,
+	@dateM datetime,
 	@number nvarchar(200)
 AS
 BEGIN
@@ -3533,24 +3566,24 @@ BEGIN
            ([Guid]
            ,[Modified]
            ,[Status]
-           ,[DateSarResid]
            ,[Description]
-           ,[Number]
-           ,[Price]
-           ,[DateM]
            ,[CheckPageGuid]
-           ,[MasterGuid])
+           ,[MasterGuid]
+		   ,[DateSarResid]
+		   ,[Price]
+		   ,[DateM]
+		   ,[Number])
      VALUES
            (@guid
            ,@modif
            ,@st
-           ,@dateSarResid
            ,@desc
-           ,@number
-           ,@price
-           ,@dateM
-           ,@checkPageGuid
-           ,@masterGuid)
+           ,@checkGuid
+           ,@masterGuid
+		   ,@sarresid
+		   ,@price
+		   ,@dateM
+		   ,@number)
 END
 GO
 --========================================================================================================
@@ -3580,10 +3613,10 @@ BEGIN
 END
 GO
 --========================================================================================================
-IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_PardakhtCheckSh_Insert]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
-	exec('Create Procedure [dbo].[sp_PardakhtCheckSh_Insert]	As Begin print 11 end')  
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_PardakhtCheckM_Insert]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_PardakhtCheckM_Insert]	As Begin print 11 end')  
 GO
-Alter PROCEDURE sp_PardakhtCheckSh_Insert
+Alter PROCEDURE sp_PardakhtCheckM_Insert
 	@guid uniqueidentifier,
 	@modif datetime,
 	@st bit,
@@ -3615,10 +3648,250 @@ GO
 Alter PROCEDURE sp_ReceptionCheck_GetAllFromView
 AS
 BEGIN
-	select ReceptionChecks.*,Tafsils.Name As SandouqTafsilName
-		   ,P.Name As Pardazande
+select        ReceptionChecks.Guid
+			, ReceptionChecks.BankName
+			, ReceptionChecks.DateM
+			, ReceptionChecks.Description
+			, ReceptionChecks.CheckNumber
+			, ReceptionChecks.PoshtNomre
+			, ReceptionChecks.Price
+			, ReceptionChecks.CheckStatus
+			, ReceptionChecks.DateSarResid
+			, Tafsils.Name As SandouqTafsilName
+		    , P.Name As Pardazande
 	from ReceptionChecks inner join Receptions as T on 
 		 T.Guid=ReceptionChecks.MasterGuid inner join Tafsils on
 		 ReceptionChecks.SandouqTafsilGuid=Tafsils.Guid inner join Tafsils as P on
 		 T.TafsilGuid=P.Guid
+	union All
+	select    ReceptionCheckAvalDores.Guid
+			, ReceptionCheckAvalDores.BankName
+			, ReceptionCheckAvalDores.DateM
+			, ReceptionCheckAvalDores.Description
+			, ReceptionCheckAvalDores.CheckNumber
+			, ReceptionCheckAvalDores.PoshtNomre
+			, ReceptionCheckAvalDores.Price
+			, ReceptionCheckAvalDores.CheckStatus
+			, ReceptionCheckAvalDores.DateSarResid
+			, P.Name As Pardazande
+			, Tafsils.Name As SandouqTafsilName
+	from ReceptionCheckAvalDores inner join Tafsils on
+		 ReceptionCheckAvalDores.TafsilGuid=Tafsils.Guid Left outer join Tafsils As P on
+		 ReceptionCheckAvalDores.SandouqTafsilGuid=P.Guid
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_ReceptionCheckAvalDore_GetAll]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_ReceptionCheckAvalDore_GetAll]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_ReceptionCheckAvalDore_GetAll
+AS
+BEGIN
+	Select    ReceptionCheckAvalDores.*
+			, Tafsils.Name As TafsilName
+			, P.Name As SandouqName
+			, Users.Name As UserName
+	from ReceptionCheckAvalDores inner join Tafsils on
+		 ReceptionCheckAvalDores.TafsilGuid=Tafsils.Guid Left outer join Tafsils As P on
+		 ReceptionCheckAvalDores.SandouqTafsilGuid=P.Guid inner join Users on
+		 ReceptionCheckAvalDores.UserGuid=Users.Guid
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_ReceptionCheckAvalDore_Get]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_ReceptionCheckAvalDore_Get]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_ReceptionCheckAvalDore_Get
+	@guid uniqueidentifier
+AS
+BEGIN
+	Select    ReceptionCheckAvalDores.*
+			, Tafsils.Name As TafsilName
+			, P.Name As SandouqName
+			, Users.Name As UserName
+	from ReceptionCheckAvalDores inner join Tafsils on
+		 ReceptionCheckAvalDores.TafsilGuid=Tafsils.Guid Left outer join Tafsils As P on
+		 ReceptionCheckAvalDores.SandouqTafsilGuid=P.Guid inner join Users on
+		 ReceptionCheckAvalDores.UserGuid=Users.Guid
+	where ReceptionCheckAvalDores.Guid=@guid
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_ReceptionCheckAvalDore_Remove]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_ReceptionCheckAvalDore_Remove]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_ReceptionCheckAvalDore_Remove
+	@guid uniqueidentifier
+AS
+BEGIN
+	delete from ReceptionCheckAvalDores
+	where Guid=@guid
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_ReceptionCheckAvalDore_Save]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_ReceptionCheckAvalDore_Save]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_ReceptionCheckAvalDore_Save
+	@guid uniqueidentifier,
+	@modif datetime,
+	@bankName nvarchar(200),
+	@dateM datetime,
+	@sarresid datetime,
+	@desc nvarchar(Max),
+	@number nvarchar(200),
+	@poshNomre nvarchar(200),
+	@price decimal,
+	@st int,
+	@sandouqTafsilGuid uniqueidentifier,
+	@sandouqMoeinGuid uniqueidentifier,
+	@tafsilGuid uniqueidentifier,
+	@userGuid uniqueidentifier
+AS
+BEGIN
+	UPDATE [dbo].[ReceptionCheckAvalDores]
+	   SET [Modified] = @modif
+		  ,[BankName] = @bankName
+		  ,[DateM] = @dateM
+		  ,[DateSarResid] = @sarresid
+		  ,[Description] = @desc
+		  ,[CheckNumber] = @number
+		  ,[PoshtNomre] = @poshNomre
+		  ,[Price] = @price
+		  ,[CheckStatus] = @st
+		  ,[SandouqTafsilGuid] = @sandouqTafsilGuid
+		  ,[SandouqMoeinGuid] = @sandouqMoeinGuid
+		  ,[TafsilGuid] = @tafsilGuid
+		  ,[UserGuid] = @userGuid
+		WHERE [Guid] = @guid
+	if @@ROWCOUNT = 0
+	begin
+		INSERT INTO [dbo].[ReceptionCheckAvalDores]
+           ([Guid]
+           ,[Modified]
+           ,[Status]
+           ,[BankName]
+           ,[DateM]
+           ,[DateSarResid]
+           ,[Description]
+           ,[CheckNumber]
+           ,[PoshtNomre]
+           ,[Price]
+           ,[CheckStatus]
+           ,[SandouqTafsilGuid]
+           ,[SandouqMoeinGuid]
+           ,[TafsilGuid]
+           ,[UserGuid])
+		VALUES
+           (@guid
+           ,@modif
+           ,'true'
+           ,@bankName
+           ,@dateM
+           ,@sarresid
+           ,@desc
+           ,@number
+           ,@poshNomre
+           ,@price
+           ,@st
+           ,@sandouqTafsilGuid
+           ,@sandouqMoeinGuid
+           ,@tafsilGuid
+           ,@userGuid)
+	end
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_PardakhtCheckAvalDore_GetAll]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_PardakhtCheckAvalDore_GetAll]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_PardakhtCheckAvalDore_GetAll
+AS
+BEGIN
+	select    PardakhtCheckAvalDores.*
+			, CheckPages.Description As Description
+			, CheckPages.Price As Price 
+			, CheckPages.DateSarresid As DateSarresid
+			, CheckPages.Number As Number
+			, Tafsils.Name As TafsilName
+			, Users.Name As UserName
+	From PardakhtCheckAvalDores inner join CheckPages on
+		 PardakhtCheckAvalDores.CheckPageGuid=CheckPages.Guid inner join Tafsils on
+		 PardakhtCheckAvalDores.TafsilGuid=Tafsils.Guid inner join Users on
+		 PardakhtCheckAvalDores.UserGuid=Users.Guid
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_PardakhtCheckAvalDore_Get]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_PardakhtCheckAvalDore_Get]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_PardakhtCheckAvalDore_Get
+	@guid uniqueidentifier
+AS
+BEGIN
+	select    PardakhtCheckAvalDores.*
+			, CheckPages.Description As Description
+			, CheckPages.Price As Price 
+			, CheckPages.DateSarresid As DateSarresid
+			, CheckPages.Number As Number
+			, Tafsils.Name As TafsilName
+			, Users.Name As UserName
+	From PardakhtCheckAvalDores inner join CheckPages on
+		 PardakhtCheckAvalDores.CheckPageGuid=CheckPages.Guid inner join Tafsils on
+		 PardakhtCheckAvalDores.TafsilGuid=Tafsils.Guid inner join Users on
+		 PardakhtCheckAvalDores.UserGuid=Users.Guid
+	where PardakhtCheckAvalDores.Guid=@guid
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_PardakhtCheckAvalDore_Remove]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_PardakhtCheckAvalDore_Remove]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_PardakhtCheckAvalDore_Remove
+	@guid uniqueidentifier
+AS
+BEGIN
+	delete from PardakhtCheckAvalDores
+	where Guid=@guid
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_PardakhtCheckAvalDore_Save]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_PardakhtCheckAvalDore_Save]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_PardakhtCheckAvalDore_Save
+	@guid uniqueidentifier,
+	@modif datetime,
+	@checkPageGuid uniqueidentifier,
+	@tafsilGuid uniqueidentifier,
+	@userGuid uniqueidentifier,
+	@dasteCheckName nvarchar(200)
+AS
+BEGIN
+	UPDATE [dbo].[PardakhtCheckAvalDores]
+	   SET [Modified] = @modif
+		  ,[CheckPageGuid] = @checkPageGuid
+		  ,[TafsilGuid] = @tafsilGuid
+		  ,[UserGuid] = @userGuid
+		  ,[DasteCheckName] = @dasteCheckName
+		 WHERE [Guid] = @guid
+	if @@ROWCOUNT = 0
+	begin
+		INSERT INTO [dbo].[PardakhtCheckAvalDores]
+           ([Guid]
+           ,[Modified]
+           ,[Status]
+           ,[CheckPageGuid]
+           ,[TafsilGuid]
+           ,[UserGuid]
+           ,[DasteCheckName])
+		 VALUES
+           (@guid
+           ,@modif
+           ,'true'
+           ,@checkPageGuid
+           ,@tafsilGuid
+           ,@userGuid
+           ,@dasteCheckName)
+	end
 END

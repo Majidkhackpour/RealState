@@ -360,6 +360,7 @@ namespace Accounting.Pardakht
             this.btnFinish.TabIndex = 55778;
             this.btnFinish.Text = "تایید (F5)";
             this.btnFinish.TextColor = System.Drawing.Color.Black;
+            this.btnFinish.Click += new System.EventHandler(this.btnFinish_Click);
             // 
             // panelEx2
             // 
@@ -650,7 +651,7 @@ namespace Accounting.Pardakht
             this.mnuDelete});
             this.contextMenu.Name = "contextMenu";
             this.contextMenu.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.contextMenu.Size = new System.Drawing.Size(243, 176);
+            this.contextMenu.Size = new System.Drawing.Size(243, 154);
             // 
             // mnuAddNaqd
             // 
@@ -695,6 +696,7 @@ namespace Accounting.Pardakht
             this.mnuEdit.Name = "mnuEdit";
             this.mnuEdit.Size = new System.Drawing.Size(242, 24);
             this.mnuEdit.Text = "ویرایش سطر جاری (F7)";
+            this.mnuEdit.Click += new System.EventHandler(this.mnuEdit_Click);
             // 
             // mnuDelete
             // 
@@ -702,6 +704,7 @@ namespace Accounting.Pardakht
             this.mnuDelete.Name = "mnuDelete";
             this.mnuDelete.Size = new System.Drawing.Size(242, 24);
             this.mnuDelete.Text = "حذف سطر جاری (Del)";
+            this.mnuDelete.Click += new System.EventHandler(this.mnuDelete_Click);
             // 
             // frmPardakhtMain
             // 

@@ -78,5 +78,7 @@ namespace Persistence.Model
         public virtual DbSet<PardakhtHavale> PardakhtHavale { get; set; }
         public virtual DbSet<PardakhtCheckMoshtari> PardakhtCheckMoshtari { get; set; }
         public virtual DbSet<PardakhtNaqd> PardakhtNaqd { get; set; }
+        public virtual DbSet<PardakhtCheckAvalDore> PardakhtCheckAvalDore { get; set; }
+        public virtual DbSet<ReceptionCheckAvalDore> ReceptionCheckAvalDore { get; set; }
     }
 }

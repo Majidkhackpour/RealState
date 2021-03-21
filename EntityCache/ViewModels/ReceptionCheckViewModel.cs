@@ -11,7 +11,6 @@ namespace EntityCache.ViewModels
         public string DateSh => Calendar.MiladiToShamsi(DateM);
         public DateTime DateSarResid { get; set; }
         public string DateSarresidSh => Calendar.MiladiToShamsi(DateSarResid);
-        public Guid MasterGuid { get; set; }
         public string Description { get; set; }
         public string CheckNumber { get; set; }
         public string PoshtNomre { get; set; }

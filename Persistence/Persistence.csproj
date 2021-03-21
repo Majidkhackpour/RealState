@@ -88,6 +88,7 @@
     <Compile Include="Entities\Naqz.cs" />
     <Compile Include="Entities\Note.cs" />
     <Compile Include="Entities\Pardakht.cs" />
+    <Compile Include="Entities\PardakhtCheckAvalDore.cs" />
     <Compile Include="Entities\PardakhtCheckMoshtari.cs" />
     <Compile Include="Entities\PardakhtCheckShakhsi.cs" />
     <Compile Include="Entities\PardakhtHavale.cs" />
@@ -98,6 +99,7 @@
     <Compile Include="Entities\PhoneBook.cs" />
     <Compile Include="Entities\Reception.cs" />
     <Compile Include="Entities\ReceptionCheck.cs" />
+    <Compile Include="Entities\ReceptionCheckAvalDore.cs" />
     <Compile Include="Entities\ReceptionHavale.cs" />
     <Compile Include="Entities\ReceptionNaqd.cs" />
     <Compile Include="Entities\Regions.cs" />
@@ -430,6 +432,22 @@
     <Compile Include="Migrations\202103111839461__79.designer.cs">
       <DependentUpon>202103111839461__79.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202103211400562__80.cs" />
+    <Compile Include="Migrations\202103211400562__80.designer.cs">
+      <DependentUpon>202103211400562__80.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202103211424184__81.cs" />
+    <Compile Include="Migrations\202103211424184__81.designer.cs">
+      <DependentUpon>202103211424184__81.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202103211444269__82.cs" />
+    <Compile Include="Migrations\202103211444269__82.designer.cs">
+      <DependentUpon>202103211444269__82.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202103211449444__83.cs" />
+    <Compile Include="Migrations\202103211449444__83.designer.cs">
+      <DependentUpon>202103211449444__83.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\ModelContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -681,6 +699,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202103111839461__79.resx">
       <DependentUpon>202103111839461__79.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202103211400562__80.resx">
+      <DependentUpon>202103211400562__80.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202103211424184__81.resx">
+      <DependentUpon>202103211424184__81.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202103211444269__82.resx">
+      <DependentUpon>202103211444269__82.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202103211449444__83.resx">
+      <DependentUpon>202103211449444__83.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

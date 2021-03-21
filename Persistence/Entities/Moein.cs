@@ -24,6 +24,7 @@ namespace Persistence.Entities
         public virtual ICollection<ReceptionNaqd> ReceptionNaqd { get; set; }
         public virtual ICollection<ReceptionHavale> ReceptionHavale { get; set; }
         public virtual ICollection<ReceptionCheck> ReceptionCheck { get; set; }
+        public virtual ICollection<ReceptionCheckAvalDore> ReceptionCheckAvalDore { get; set; }
         public virtual ICollection<Pardakht> Pardakht { get; set; }
         public virtual ICollection<PardakhtHavale> PardakhtHavale { get; set; }
         public virtual ICollection<PardakhtNaqd> PardakhtNaqd { get; set; }

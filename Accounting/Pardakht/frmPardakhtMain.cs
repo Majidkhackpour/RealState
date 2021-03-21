@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WindowsSerivces;
 using Accounting.Check;
 using Accounting.Hesab;
 using EntityCache.Bussines;
@@ -374,6 +375,116 @@ namespace Accounting.Pardakht
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private void mnuEdit_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (DGrid.RowCount == 0 || DGrid.CurrentRow == null) return;
+
+                if (DGrid[DGType.Index, DGrid.CurrentRow.Index].Value.ToString() == "نقد")
+                {
+                    var str = (PardakhtNaqdBussines)GetRowInfo(DGrid.CurrentRow.Index);
+                    var frm = new frmPardakhtNaqd(str);
+                    if (frm.ShowDialog(this) != DialogResult.OK) return;
+                    DGrid.Rows.RemoveAt(DGrid.CurrentRow.Index);
+                    AddToGrid(frm.cls);
+                }
+                else if (DGrid[DGType.Index, DGrid.CurrentRow.Index].Value.ToString() == "چک دریافتی")
+                {
+                    var str = (PardakhtCheckMoshtariBussines)GetRowInfo(DGrid.CurrentRow.Index);
+                    var frm = new frmPardakhtCheckM(str);
+                    if (frm.ShowDialog(this) != DialogResult.OK) return;
+                    DGrid.Rows.RemoveAt(DGrid.CurrentRow.Index);
+                    AddToGrid(frm.cls);
+                }
+                else if (DGrid[DGType.Index, DGrid.CurrentRow.Index].Value.ToString() == "حواله")
+                {
+                    var str = (PardakhtHavaleBussines)GetRowInfo(DGrid.CurrentRow.Index);
+                    var frm = new frmPardakhtHavale(str);
+                    if (frm.ShowDialog(this) != DialogResult.OK) return;
+                    DGrid.Rows.RemoveAt(DGrid.CurrentRow.Index);
+                    AddToGrid(frm.cls);
+                }
+                else if (DGrid[DGType.Index, DGrid.CurrentRow.Index].Value.ToString() == "چک شخصی")
+                {
+                    var str = (PardakhtCheckShakhsiBussines)GetRowInfo(DGrid.CurrentRow.Index);
+                    var frm = new frmPardakhtCheckSh(str);
+                    if (frm.ShowDialog(this) != DialogResult.OK) return;
+                    DGrid.Rows.RemoveAt(DGrid.CurrentRow.Index);
+                    AddToGrid(frm.cls);
+                }
+                FetchData();
+                SetLables();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private void mnuDelete_Click(object sender, EventArgs e)
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                if (DGrid.RowCount <= 0 || DGrid.CurrentRow == null) return;
+                if (MessageBox.Show("مایل به حذف سطر جاری هستید ؟", "هشدار", MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2, MessageBoxOptions.RightAlign) ==
+                    DialogResult.No)
+                    return;
+                DGrid.Rows.RemoveAt(DGrid.CurrentRow.Index);
+                DGrid.Focus();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+            finally
+            {
+                if (res.HasError) this.ShowError(res, "خطا در حذف ریز پرداخت");
+                else
+                {
+                    FetchData();
+                    SetLables();
+                }
+            }
+        }
+        private async void btnFinish_Click(object sender, EventArgs e)
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                if (cls.Guid == Guid.Empty)
+                {
+                    cls.Guid = Guid.NewGuid();
+                    cls.DateM = DateTime.Now;
+                    cls.UserGuid = User.clsUser.CurrentUser.Guid;
+                }
+
+                cls.Modified = DateTime.Now;
+                cls.Status = true;
+                cls.Number = (long)txtNumber.Value;
+                cls.Description = txtDesc.Text;
+                cls.TafsilGuid = _tafsilGuid;
+                cls.SanadNumber = (long)txtSanadNo.Value;
+
+                res.AddReturnedValue(await cls.SaveAsync());
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+            finally
+            {
+                if (res.HasError) this.ShowError(res, "خطا در ثبت برگه دریافت");
+                else
+                {
+                    DialogResult = DialogResult.OK;
+                    Close();
+                }
             }
         }
     }

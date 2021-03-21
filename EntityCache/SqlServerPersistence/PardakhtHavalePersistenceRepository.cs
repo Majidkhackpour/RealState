@@ -126,7 +126,7 @@ namespace EntityCache.SqlServerPersistence
                     cmd.Parameters.AddWithValue("@price", item.Price);
                     cmd.Parameters.AddWithValue("@peygiryNo", item.Number);
                     cmd.Parameters.AddWithValue("@bankTafsilGuid", item.BankTafsilGuid);
-                    cmd.Parameters.AddWithValue("@bankMoeinGuid", ParentDefaults.MoeinCoding.CLSMoein10102);
+                    cmd.Parameters.AddWithValue("@bankMoeinGuid", ParentDefaults.MoeinCoding.CLSMoein10101);
 
                     await cn.OpenAsync();
                     await cmd.ExecuteNonQueryAsync();

@@ -12,7 +12,7 @@ namespace EntityCache.Bussines
         public Guid Guid { get; set; }
         public DateTime Modified { get; set; } = DateTime.Now;
         public bool Status { get; set; } = true;
-        public DateTime DateSarResid { get; set; }
+        public DateTime DateSarResid { get; set; } = DateTime.Now;
         public string DateSarresidSh => Calendar.MiladiToShamsi(DateSarResid);
         public string Description { get; set; }
         public string Number { get; set; }

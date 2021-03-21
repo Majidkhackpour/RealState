@@ -124,11 +124,11 @@ namespace EntityCache.SqlServerPersistence
                     cmd.Parameters.AddWithValue("@st", item.Status);
                     cmd.Parameters.AddWithValue("@desc", item.Description ?? "");
                     cmd.Parameters.AddWithValue("@masterGuid", item.MasterGuid);
+                    cmd.Parameters.AddWithValue("@checkGuid", item.CheckPageGuid);
+                    cmd.Parameters.AddWithValue("@sarresid", item.DateSarResid);
                     cmd.Parameters.AddWithValue("@price", item.Price);
-                    cmd.Parameters.AddWithValue("@number", item.Number);
-                    cmd.Parameters.AddWithValue("@dateSarResid", item.DateSarResid);
-                    cmd.Parameters.AddWithValue("@checkPageGuid", item.CheckPageGuid);
                     cmd.Parameters.AddWithValue("@dateM", item.DateM);
+                    cmd.Parameters.AddWithValue("@number", item.Number);
 
                     await cn.OpenAsync();
                     await cmd.ExecuteNonQueryAsync();
