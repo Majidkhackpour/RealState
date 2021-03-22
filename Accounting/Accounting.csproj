@@ -148,6 +148,12 @@
     <Compile Include="Bank\frmShowBanks.Designer.cs">
       <DependentUpon>frmShowBanks.cs</DependentUpon>
     </Compile>
+    <Compile Include="Check\CheckMoshtari\frmCheckM_AvalDore.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Check\CheckMoshtari\frmCheckM_AvalDore.Designer.cs">
+      <DependentUpon>frmCheckM_AvalDore.cs</DependentUpon>
+    </Compile>
     <Compile Include="Check\DasteCheck\frmDasteCheckMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -166,10 +172,10 @@
     <Compile Include="Check\DasteCheck\frmShowDasteCheck.Designer.cs">
       <DependentUpon>frmShowDasteCheck.cs</DependentUpon>
     </Compile>
-    <Compile Include="Check\frmShowCheckM.cs">
+    <Compile Include="Check\CheckMoshtari\frmShowCheckM.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Check\frmShowCheckM.Designer.cs">
+    <Compile Include="Check\CheckMoshtari\frmShowCheckM.Designer.cs">
       <DependentUpon>frmShowCheckM.cs</DependentUpon>
     </Compile>
     <Compile Include="Hazine\frmShowHazine.cs">
@@ -327,6 +333,9 @@
     <EmbeddedResource Include="Bank\frmShowBanks.resx">
       <DependentUpon>frmShowBanks.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Check\CheckMoshtari\frmCheckM_AvalDore.resx">
+      <DependentUpon>frmCheckM_AvalDore.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Check\DasteCheck\frmDasteCheckMain.resx">
       <DependentUpon>frmDasteCheckMain.cs</DependentUpon>
     </EmbeddedResource>
@@ -336,7 +345,7 @@
     <EmbeddedResource Include="Check\DasteCheck\frmShowDasteCheck.resx">
       <DependentUpon>frmShowDasteCheck.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Check\frmShowCheckM.resx">
+    <EmbeddedResource Include="Check\CheckMoshtari\frmShowCheckM.resx">
       <DependentUpon>frmShowCheckM.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Hazine\frmShowHazine.resx">

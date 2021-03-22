@@ -68,6 +68,7 @@ namespace EntityCache.SqlServerPersistence
                 item.DateSarResid = (DateTime)dr["DateSarResid"];
                 item.SandouqTafsilName = dr["SandouqTafsilName"].ToString();
                 item.Pardazande = dr["Pardazande"].ToString();
+                item.IsAvalDore = (bool) dr["AvalDore"];
             }
             catch (Exception ex)
             {

@@ -7,7 +7,7 @@ using EntityCache.Bussines;
 using MetroFramework.Forms;
 using Services;
 
-namespace Accounting.Check
+namespace Accounting.Check.CheckMoshtari
 {
     public partial class frmShowCheckM : MetroForm
     {
@@ -17,9 +17,8 @@ namespace Accounting.Check
         {
             try
             {
-                var list = await ReceptionCheckBussines.GetAllViewModeAsync();
-                Invoke(new MethodInvoker(() => CheckBindingSource.DataSource =
-                    list.OrderByDescending(q => q.DateM).ToSortableBindingList()));
+                var list = await ReceptionCheckBussines.GetAllViewModeAsync(search);
+                Invoke(new MethodInvoker(() => CheckBindingSource.DataSource = list.ToSortableBindingList()));
             }
             catch (Exception ex)
             {
@@ -30,6 +29,7 @@ namespace Accounting.Check
         {
             try
             {
+                if (!isSelectMode) return;
                 if (DGrid.RowCount <= 0) return;
                 if (DGrid.CurrentRow == null) return;
                 SelectedGuid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
@@ -46,6 +46,7 @@ namespace Accounting.Check
         {
             InitializeComponent();
             isSelectMode = _isSelectMode;
+            contextMenu.Enabled = !_isSelectMode;
         }
 
         private async void frmShowCheckM_Load(object sender, EventArgs e) => await LoadDataAsync();
@@ -82,7 +83,8 @@ namespace Accounting.Check
                         if (e.Control) txtSearch.Focus();
                         break;
                     case Keys.Enter:
-                        SelectCheck();
+                        if (isSelectMode) SelectCheck();
+                        else mnuEdit.PerformClick();
                         break;
                 }
             }
@@ -94,5 +96,18 @@ namespace Accounting.Check
         private void DGrid_DoubleClick(object sender, EventArgs e) => SelectCheck();
         private void DGrid_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
             => DGrid.Rows[e.RowIndex].Cells["dgRadif"].Value = e.RowIndex + 1;
+        private async void mnuAdd_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var frm = new frmCheckM_AvalDore();
+                if (frm.ShowDialog() == DialogResult.OK)
+                    await LoadDataAsync();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
     }
 }

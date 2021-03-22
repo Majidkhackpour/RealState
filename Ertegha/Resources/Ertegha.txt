@@ -2710,6 +2710,7 @@ ALTER PROCEDURE [dbo].[sp_Sanad_Update_Eftetahie]
 AS
 BEGIN
 	declare @materGuid uniqueidentifier
+	
 	set @materGuid=(select Guid from Sanads where Number=1)
 	if (@materGuid is null or @materGuid='00000000-0000-0000-0000-000000000000')
 	begin
@@ -2787,6 +2788,34 @@ BEGIN
 		from Tafsils where AccountFirst < 0
 					 and HesabType = 5
 					 and Tafsils.Status='true'
+	union all
+		--اسناد دریافتنی ابتدای دوره
+		select    NEWID() As Guid
+				, ReceptionCheckAvalDores.Modified
+				, ReceptionCheckAvalDores.Status
+				, CAST('215e08ec-253d-4a10-a217-2462d8600226' as uniqueidentifier) As MoeinGuid
+				, Tafsils.Guid As TafsilGuid
+				, ReceptionCheckAvalDores.Price As Debit
+				, 0 As Credit
+				, N'چکهای دریافتنی ابتدای دوره' As Description
+				, @materGuid As MasterGuid
+		from ReceptionCheckAvalDores inner join Tafsils on
+			 ReceptionCheckAvalDores.SandouqTafsilGuid=Tafsils.Guid
+	union all
+		--اسناد پرداختنی ابتدای دوره
+		select    NEWID() As Guid
+				, PardakhtCheckAvalDores.Modified
+				, PardakhtCheckAvalDores.Status
+				, CAST('814d8ac1-bae2-465c-9ed4-865838ec064b' As uniqueidentifier) As MoeinGuid
+				, Tafsils.Guid As TafsilGuid
+				, 0 As Debit
+				, CheckPages.Price As Credit
+				, N'اسناد پرداختنی ابتدای دوره' As Description
+				, @materGuid As MasterGuid
+		from PardakhtCheckAvalDores inner join CheckPages on
+			 PardakhtCheckAvalDores.CheckPageGuid=CheckPages.Guid inner join DasteChecks on
+			 CheckPages.CheckGuid=DasteChecks.Guid inner join Tafsils on
+			 DasteChecks.BankGuid=Tafsils.Guid
 
 	declare @Sum Decimal(18,3)
 	set @Sum=(select sum(Credit-Debit)
@@ -3645,7 +3674,7 @@ GO
 IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_ReceptionCheck_GetAllFromView]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
 	exec('Create Procedure [dbo].[sp_ReceptionCheck_GetAllFromView]	As Begin print 11 end')  
 GO
-Alter PROCEDURE sp_ReceptionCheck_GetAllFromView
+ALTER PROCEDURE [dbo].[sp_ReceptionCheck_GetAllFromView]
 AS
 BEGIN
 select        ReceptionChecks.Guid
@@ -3659,6 +3688,7 @@ select        ReceptionChecks.Guid
 			, ReceptionChecks.DateSarResid
 			, Tafsils.Name As SandouqTafsilName
 		    , P.Name As Pardazande
+			, CAST(0 as bit) As AvalDore
 	from ReceptionChecks inner join Receptions as T on 
 		 T.Guid=ReceptionChecks.MasterGuid inner join Tafsils on
 		 ReceptionChecks.SandouqTafsilGuid=Tafsils.Guid inner join Tafsils as P on
@@ -3675,6 +3705,7 @@ select        ReceptionChecks.Guid
 			, ReceptionCheckAvalDores.DateSarResid
 			, P.Name As Pardazande
 			, Tafsils.Name As SandouqTafsilName
+			, CAST(1 as bit) As AvalDore
 	from ReceptionCheckAvalDores inner join Tafsils on
 		 ReceptionCheckAvalDores.TafsilGuid=Tafsils.Guid Left outer join Tafsils As P on
 		 ReceptionCheckAvalDores.SandouqTafsilGuid=P.Guid
@@ -3732,7 +3763,7 @@ GO
 IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_ReceptionCheckAvalDore_Save]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
 	exec('Create Procedure [dbo].[sp_ReceptionCheckAvalDore_Save]	As Begin print 11 end')  
 GO
-Alter PROCEDURE sp_ReceptionCheckAvalDore_Save
+ALTER PROCEDURE [dbo].[sp_ReceptionCheckAvalDore_Save]
 	@guid uniqueidentifier,
 	@modif datetime,
 	@bankName nvarchar(200),
@@ -3746,7 +3777,12 @@ Alter PROCEDURE sp_ReceptionCheckAvalDore_Save
 	@sandouqTafsilGuid uniqueidentifier,
 	@sandouqMoeinGuid uniqueidentifier,
 	@tafsilGuid uniqueidentifier,
-	@userGuid uniqueidentifier
+	@userGuid uniqueidentifier,
+	@sarmayeTafsilGuid uniqueidentifier,
+	@sarmayeMoeinGuid uniqueidentifier,
+	@tafsilCreditMoeinGuid uniqueidentifier,
+	@bankCreditMoeinGuid uniqueidentifier,
+	@sandouqCreditMoeinGuid uniqueidentifier
 AS
 BEGIN
 	UPDATE [dbo].[ReceptionCheckAvalDores]
@@ -3799,6 +3835,9 @@ BEGIN
            ,@tafsilGuid
            ,@userGuid)
 	end
+
+	EXEC sp_Sanad_Update_Eftetahie @userGuid,@sarmayeTafsilGuid,@sarmayeMoeinGuid,@tafsilCreditMoeinGuid,@bankCreditMoeinGuid,@sandouqCreditMoeinGuid
+
 END
 GO
 --========================================================================================================

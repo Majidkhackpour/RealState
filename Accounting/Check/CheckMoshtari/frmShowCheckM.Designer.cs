@@ -1,5 +1,5 @@
 ﻿
-namespace Accounting.Check
+namespace Accounting.Check.CheckMoshtari
 {
     partial class frmShowCheckM
     {
@@ -49,14 +49,30 @@ namespace Accounting.Check
             this.sandouqTafsilNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.StatusName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.descriptionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IsAvalDore = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.dgGuid = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.poshtNomreDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dateMDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dateSarResidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.masterGuidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.checkStatusDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.contextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.mnuAdd = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuInsAvalDore = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuEdit = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
+            this.mnuView = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuViewSanad = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuViewPardazande = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
+            this.mnuKharj = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuVagozarSandouq = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuVagozarBank = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuBargasht = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuNaqd = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuBatel = new System.Windows.Forms.ToolStripMenuItem();
             this.CheckBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).BeginInit();
+            this.contextMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CheckBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -116,12 +132,13 @@ namespace Accounting.Check
             this.sandouqTafsilNameDataGridViewTextBoxColumn,
             this.StatusName,
             this.descriptionDataGridViewTextBoxColumn,
+            this.IsAvalDore,
             this.dgGuid,
             this.poshtNomreDataGridViewTextBoxColumn,
             this.dateMDataGridViewTextBoxColumn,
             this.dateSarResidDataGridViewTextBoxColumn,
-            this.masterGuidDataGridViewTextBoxColumn,
             this.checkStatusDataGridViewTextBoxColumn});
+            this.DGrid.ContextMenuStrip = this.contextMenu;
             this.DGrid.DataSource = this.CheckBindingSource;
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
             dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
@@ -249,6 +266,15 @@ namespace Accounting.Check
             this.descriptionDataGridViewTextBoxColumn.Name = "descriptionDataGridViewTextBoxColumn";
             this.descriptionDataGridViewTextBoxColumn.ReadOnly = true;
             // 
+            // IsAvalDore
+            // 
+            this.IsAvalDore.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.IsAvalDore.DataPropertyName = "IsAvalDore";
+            this.IsAvalDore.HeaderText = "اول دوره";
+            this.IsAvalDore.Name = "IsAvalDore";
+            this.IsAvalDore.ReadOnly = true;
+            this.IsAvalDore.Width = 60;
+            // 
             // dgGuid
             // 
             this.dgGuid.DataPropertyName = "Guid";
@@ -281,14 +307,6 @@ namespace Accounting.Check
             this.dateSarResidDataGridViewTextBoxColumn.ReadOnly = true;
             this.dateSarResidDataGridViewTextBoxColumn.Visible = false;
             // 
-            // masterGuidDataGridViewTextBoxColumn
-            // 
-            this.masterGuidDataGridViewTextBoxColumn.DataPropertyName = "MasterGuid";
-            this.masterGuidDataGridViewTextBoxColumn.HeaderText = "MasterGuid";
-            this.masterGuidDataGridViewTextBoxColumn.Name = "masterGuidDataGridViewTextBoxColumn";
-            this.masterGuidDataGridViewTextBoxColumn.ReadOnly = true;
-            this.masterGuidDataGridViewTextBoxColumn.Visible = false;
-            // 
             // checkStatusDataGridViewTextBoxColumn
             // 
             this.checkStatusDataGridViewTextBoxColumn.DataPropertyName = "CheckStatus";
@@ -296,6 +314,117 @@ namespace Accounting.Check
             this.checkStatusDataGridViewTextBoxColumn.Name = "checkStatusDataGridViewTextBoxColumn";
             this.checkStatusDataGridViewTextBoxColumn.ReadOnly = true;
             this.checkStatusDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // contextMenu
+            // 
+            this.contextMenu.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.contextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnuAdd,
+            this.mnuInsAvalDore,
+            this.mnuEdit,
+            this.toolStripMenuItem1,
+            this.mnuView,
+            this.mnuViewSanad,
+            this.mnuViewPardazande,
+            this.toolStripMenuItem2,
+            this.mnuKharj,
+            this.mnuVagozarSandouq,
+            this.mnuVagozarBank,
+            this.mnuBargasht,
+            this.mnuNaqd,
+            this.mnuBatel});
+            this.contextMenu.Name = "contextMenu";
+            this.contextMenu.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.contextMenu.Size = new System.Drawing.Size(236, 326);
+            // 
+            // mnuAdd
+            // 
+            this.mnuAdd.Image = global::Accounting.Properties.Resources.add_2_;
+            this.mnuAdd.Name = "mnuAdd";
+            this.mnuAdd.Size = new System.Drawing.Size(235, 24);
+            this.mnuAdd.Text = "افزودن چک دریافتی جدید (Ins)";
+            this.mnuAdd.Click += new System.EventHandler(this.mnuAdd_Click);
+            // 
+            // mnuInsAvalDore
+            // 
+            this.mnuInsAvalDore.Image = global::Accounting.Properties.Resources.add_2_;
+            this.mnuInsAvalDore.Name = "mnuInsAvalDore";
+            this.mnuInsAvalDore.Size = new System.Drawing.Size(235, 24);
+            this.mnuInsAvalDore.Text = "افزودن چک دریافتی اول دوره";
+            // 
+            // mnuEdit
+            // 
+            this.mnuEdit.Image = global::Accounting.Properties.Resources.edit_1_;
+            this.mnuEdit.Name = "mnuEdit";
+            this.mnuEdit.Size = new System.Drawing.Size(235, 24);
+            this.mnuEdit.Text = "ویرایش چک دریافتی جاری (F7)";
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(232, 6);
+            // 
+            // mnuView
+            // 
+            this.mnuView.Image = global::Accounting.Properties.Resources.article_1_;
+            this.mnuView.Name = "mnuView";
+            this.mnuView.Size = new System.Drawing.Size(235, 24);
+            this.mnuView.Text = "مشاهده (F12)";
+            // 
+            // mnuViewSanad
+            // 
+            this.mnuViewSanad.Image = global::Accounting.Properties.Resources.article_1_;
+            this.mnuViewSanad.Name = "mnuViewSanad";
+            this.mnuViewSanad.Size = new System.Drawing.Size(235, 24);
+            this.mnuViewSanad.Text = "مشاهده سند دریافت";
+            // 
+            // mnuViewPardazande
+            // 
+            this.mnuViewPardazande.Image = global::Accounting.Properties.Resources.article_1_;
+            this.mnuViewPardazande.Name = "mnuViewPardazande";
+            this.mnuViewPardazande.Size = new System.Drawing.Size(235, 24);
+            this.mnuViewPardazande.Text = "مشاهده مشخصات پردازنده";
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(232, 6);
+            // 
+            // mnuKharj
+            // 
+            this.mnuKharj.Name = "mnuKharj";
+            this.mnuKharj.Size = new System.Drawing.Size(235, 24);
+            this.mnuKharj.Text = "خرج کردن";
+            // 
+            // mnuVagozarSandouq
+            // 
+            this.mnuVagozarSandouq.Name = "mnuVagozarSandouq";
+            this.mnuVagozarSandouq.Size = new System.Drawing.Size(235, 24);
+            this.mnuVagozarSandouq.Text = "واگذار کردن به صندوق";
+            // 
+            // mnuVagozarBank
+            // 
+            this.mnuVagozarBank.Name = "mnuVagozarBank";
+            this.mnuVagozarBank.Size = new System.Drawing.Size(235, 24);
+            this.mnuVagozarBank.Text = "واگذار کردن به بانک";
+            // 
+            // mnuBargasht
+            // 
+            this.mnuBargasht.Name = "mnuBargasht";
+            this.mnuBargasht.Size = new System.Drawing.Size(235, 24);
+            this.mnuBargasht.Text = "برگشت زدن";
+            // 
+            // mnuNaqd
+            // 
+            this.mnuNaqd.Name = "mnuNaqd";
+            this.mnuNaqd.Size = new System.Drawing.Size(235, 24);
+            this.mnuNaqd.Text = "نقد کردن";
+            // 
+            // mnuBatel
+            // 
+            this.mnuBatel.Name = "mnuBatel";
+            this.mnuBatel.Size = new System.Drawing.Size(235, 24);
+            this.mnuBatel.Text = "باطل کردن";
             // 
             // CheckBindingSource
             // 
@@ -321,6 +450,7 @@ namespace Accounting.Check
             this.Load += new System.EventHandler(this.frmShowCheckM_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmShowCheckM_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).EndInit();
+            this.contextMenu.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.CheckBindingSource)).EndInit();
             this.ResumeLayout(false);
 
@@ -331,6 +461,7 @@ namespace Accounting.Check
         private DevComponents.DotNetBar.Controls.TextBoxX txtSearch;
         private DevComponents.DotNetBar.Controls.DataGridViewX DGrid;
         private System.Windows.Forms.BindingSource CheckBindingSource;
+        private System.Windows.Forms.DataGridViewTextBoxColumn masterGuidDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgRadif;
         private System.Windows.Forms.DataGridViewTextBoxColumn dateShDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn bankNameDataGridViewTextBoxColumn;
@@ -341,11 +472,26 @@ namespace Accounting.Check
         private System.Windows.Forms.DataGridViewTextBoxColumn sandouqTafsilNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn StatusName;
         private System.Windows.Forms.DataGridViewTextBoxColumn descriptionDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn IsAvalDore;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgGuid;
         private System.Windows.Forms.DataGridViewTextBoxColumn poshtNomreDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn dateMDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn dateSarResidDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn masterGuidDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn checkStatusDataGridViewTextBoxColumn;
+        private System.Windows.Forms.ContextMenuStrip contextMenu;
+        private System.Windows.Forms.ToolStripMenuItem mnuAdd;
+        private System.Windows.Forms.ToolStripMenuItem mnuEdit;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem mnuView;
+        private System.Windows.Forms.ToolStripMenuItem mnuInsAvalDore;
+        private System.Windows.Forms.ToolStripMenuItem mnuViewSanad;
+        private System.Windows.Forms.ToolStripMenuItem mnuViewPardazande;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem mnuKharj;
+        private System.Windows.Forms.ToolStripMenuItem mnuVagozarSandouq;
+        private System.Windows.Forms.ToolStripMenuItem mnuVagozarBank;
+        private System.Windows.Forms.ToolStripMenuItem mnuBargasht;
+        private System.Windows.Forms.ToolStripMenuItem mnuNaqd;
+        private System.Windows.Forms.ToolStripMenuItem mnuBatel;
     }
 }

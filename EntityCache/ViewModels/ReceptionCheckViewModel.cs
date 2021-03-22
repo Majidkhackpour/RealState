@@ -19,5 +19,6 @@ namespace EntityCache.ViewModels
         public string StatusName => CheckStatus.GetDisplay();
         public string SandouqTafsilName { get; set; }
         public string Pardazande { get; set; }
+        public bool IsAvalDore { get; set; }
     }
 }

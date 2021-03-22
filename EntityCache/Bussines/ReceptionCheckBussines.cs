@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using EntityCache.Assistence;
 using EntityCache.ViewModels;
@@ -126,7 +127,40 @@ namespace EntityCache.Bussines
 
             return res;
         }
-        public static async Task<List<ReceptionCheckViewModel>> GetAllViewModeAsync() => await UnitOfWork.ReceptionCheck.GetAllViewModelAsync();
+        public static async Task<List<ReceptionCheckViewModel>> GetAllViewModeAsync(string search = "")
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(search)) search = "";
+                var res = await UnitOfWork.ReceptionCheck.GetAllViewModelAsync();
+                var searchItems = search.SplitString();
+                if (searchItems?.Count > 0)
+                    foreach (var item in searchItems)
+                    {
+                        if (!string.IsNullOrEmpty(item) && item.Trim() != "")
+                        {
+                            res = res.Where(x => x.BankName.ToLower().Contains(item.ToLower()) ||
+                                                 x.Pardazande.ToLower().Contains(item.ToLower()) ||
+                                                 x.CheckNumber.ToLower().Contains(item.ToLower()) ||
+                                                 x.Price.ToString().ToLower().Contains(item.ToLower()) ||
+                                                 x.SandouqTafsilName.ToLower().Contains(item.ToLower()) ||
+                                                 x.StatusName.ToLower().Contains(item.ToLower()) ||
+                                                 x.Description.ToLower().Contains(item.ToLower()))
+                                ?.ToList();
+                        }
+                    }
+
+                res = res?.OrderByDescending(o => o.DateSarResid).ToList();
+                return res;
+            }
+            catch (OperationCanceledException)
+            { return null; }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                return new List<ReceptionCheckViewModel>();
+            }
+        }
         public static async Task<ReceptionCheckBussines> GetAsync(Guid guid) => await UnitOfWork.ReceptionCheck.GetAsync(guid);
     }
 }
