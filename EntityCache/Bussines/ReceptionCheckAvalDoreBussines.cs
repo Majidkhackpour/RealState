@@ -51,6 +51,13 @@ namespace EntityCache.Bussines
                 res.AddReturnedValue(CheckValidation());
                 if (res.HasError) return res;
 
+                var oldSanad = await GetAsync(Guid);
+                if (oldSanad != null)
+                {
+                    res.AddReturnedValue(await UpdateAccountsAsync(oldSanad, true));
+                    if (res.HasError) return res;
+                }
+
                 res.AddReturnedValue(await UnitOfWork.ReceptionCheckAvalDore.SaveAsync(this, tranName));
                 if (res.HasError) return res;
 
@@ -89,6 +96,8 @@ namespace EntityCache.Bussines
                     //BeginTransaction
                 }
 
+                res.AddReturnedValue(await UpdateAccountsAsync(this, true));
+                if (res.HasError) return res;
                 res.AddReturnedValue(await UnitOfWork.ReceptionCheckAvalDore.RemoveAsync(Guid, tranName));
                 if (res.HasError) return res;
 

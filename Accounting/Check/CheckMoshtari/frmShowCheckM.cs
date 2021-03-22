@@ -3,8 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WindowsSerivces;
+using Accounting.Bank;
+using Accounting.Hesab;
+using Accounting.Pardakht;
+using Accounting.Reception;
+using Accounting.Sanad;
 using EntityCache.Bussines;
 using MetroFramework.Forms;
+using Notification;
+using Peoples;
 using Services;
 
 namespace Accounting.Check.CheckMoshtari
@@ -100,6 +108,19 @@ namespace Accounting.Check.CheckMoshtari
         {
             try
             {
+                var frm = new frmReceptionMain(EnOperation.CheckM);
+                if (frm.ShowDialog() == DialogResult.OK)
+                    await LoadDataAsync();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private async void mnuInsAvalDore_Click(object sender, EventArgs e)
+        {
+            try
+            {
                 var frm = new frmCheckM_AvalDore();
                 if (frm.ShowDialog() == DialogResult.OK)
                     await LoadDataAsync();
@@ -107,6 +128,210 @@ namespace Accounting.Check.CheckMoshtari
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private async void mnuEdit_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (DGrid.RowCount <= 0 || DGrid.CurrentRow == null) return;
+                var avalDore = (bool)DGrid[dgAvalDore.Index, DGrid.CurrentRow.Index].Value;
+                if (!avalDore)
+                {
+                    frmNotification.PublicInfo.ShowMessage("جهت حذف چک طی دوره، لطفا از سند دریافت اقدام نمایید");
+                    return;
+                }
+
+                var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
+
+                var frm = new frmCheckM_AvalDore(guid, false);
+                if (frm.ShowDialog(this) == DialogResult.OK)
+                    await LoadDataAsync(txtSearch.Text);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private void mnuView_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (DGrid.RowCount <= 0 || DGrid.CurrentRow == null) return;
+                var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
+                var avalDore = (bool)DGrid[dgAvalDore.Index, DGrid.CurrentRow.Index].Value;
+                if (!avalDore)
+                {
+                    var frm_ = new frmReceptionCheck(guid);
+                    frm_.ShowDialog();
+                    return;
+                }
+
+                var frm = new frmCheckM_AvalDore(guid, true);
+                frm.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private async void mnuViewSanad_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (DGrid.RowCount <= 0 || DGrid.CurrentRow == null) return;
+                var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
+                var avalDore = (bool)DGrid[dgAvalDore.Index, DGrid.CurrentRow.Index].Value;
+                if (!avalDore)
+                {
+                    var str = await ReceptionCheckBussines.GetAsync(guid);
+                    var rec = await ReceptionBussines.GetAsync(str.MasterGuid);
+                    var sanad = await SanadBussines.GetAsync(rec.SanadNumber);
+                    var frm_ = new frmSanadMain(sanad.Guid, true);
+                    frm_.ShowDialog();
+                    return;
+                }
+
+                var frm = new frmCheckM_AvalDore(guid, true);
+                frm.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private async void mnuViewPardazande_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (DGrid.RowCount <= 0 || DGrid.CurrentRow == null) return;
+                var guid = (Guid)DGrid[DgPardazandeGuid.Index, DGrid.CurrentRow.Index].Value;
+
+                var tafsil = await TafsilBussines.GetAsync(guid);
+                if (tafsil == null) return;
+
+                if (tafsil.HesabType == HesabType.Bank)
+                {
+                    var frm = new frmBankMain(guid, true);
+                    frm.ShowDialog();
+                    return;
+                }
+
+                if (tafsil.HesabType == HesabType.Customer)
+                {
+                    var frm = new frmPeoples(guid, true);
+                    frm.ShowDialog();
+                    return;
+                }
+
+                var _frm = new frmTafsilMain(guid, true);
+                _frm.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private async void mnuKharj_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (DGrid.RowCount <= 0 || DGrid.CurrentRow == null) return;
+                var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
+                var price = (decimal)DGrid[dgPrice.Index, DGrid.CurrentRow.Index].Value;
+                var bankName = DGrid[dgBankName.Index, DGrid.CurrentRow.Index].Value.ToString();
+                var checkNumber = DGrid[dgCheckNumber.Index, DGrid.CurrentRow.Index].Value.ToString();
+                var sarresid = DGrid[dgSarresid.Index, DGrid.CurrentRow.Index].Value.ToString();
+
+                var cls = new PardakhtBussines();
+                var pardakhtcheck = new PardakhtCheckMoshtariBussines()
+                {
+                    Guid = Guid.NewGuid(),
+                    Modified = DateTime.Now,
+                    Status = true,
+                    Description = $"خرج چک {checkNumber} {bankName} به سررسید {sarresid}",
+                    Price = price,
+                    CheckGuid = guid,
+                    MasterGuid = cls.Guid
+                };
+                cls.AddToDetList(pardakhtcheck);
+                var frm = new frmPardakhtMain(cls);
+                if (frm.ShowDialog() == DialogResult.OK)
+                    await LoadDataAsync();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private async void mnuBatel_Click(object sender, EventArgs e)
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                if (DGrid.RowCount <= 0 || DGrid.CurrentRow == null) return;
+                var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
+                var avalDore = (bool)DGrid[dgAvalDore.Index, DGrid.CurrentRow.Index].Value;
+
+                if (MessageBox.Show("آیا از ابطال چک اطمینان دارید؟", "پیغام سیستم", MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Question) ==
+                    DialogResult.No) return;
+
+                if (!avalDore)
+                {
+                    var str = await ReceptionCheckBussines.GetAsync(guid);
+                    var rec = await ReceptionBussines.GetAsync(str.MasterGuid);
+                    rec.RemoveFromDetList(str);
+                    res.AddReturnedValue(await rec.SaveAsync());
+                    return;
+                }
+
+                var cls = await ReceptionCheckAvalDoreBussines.GetAsync(guid);
+                res.AddReturnedValue(await cls.RemoveAsync());
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+            finally
+            {
+                if (res.HasError) this.ShowError(res, "خطا در ابطال چک دریافتنی");
+                else await LoadDataAsync(txtSearch.Text);
+            }
+        }
+        private async void mnuNaqd_Click(object sender, EventArgs e)
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                if (DGrid.RowCount <= 0 || DGrid.CurrentRow == null) return;
+                var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
+                var avalDore = (bool)DGrid[dgAvalDore.Index, DGrid.CurrentRow.Index].Value;
+
+                if (MessageBox.Show("آیا از نقدکردن چک اطمینان دارید؟", "پیغام سیستم", MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Question) ==
+                    DialogResult.No) return;
+
+                if (!avalDore)
+                {
+                    var str = await ReceptionCheckBussines.GetAsync(guid);
+                    res.AddReturnedValue(await clsCheckM.NaqdAsync(str));
+                    return;
+                }
+
+                var cls = await ReceptionCheckAvalDoreBussines.GetAsync(guid);
+                res.AddReturnedValue(await clsCheckM.NaqdAvalDoreAsync(cls));
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+            finally
+            {
+                if (res.HasError) this.ShowError(res, "خطا در نقد کردن چک دریافتنی");
+                else await LoadDataAsync(txtSearch.Text);
             }
         }
     }

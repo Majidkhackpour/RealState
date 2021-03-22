@@ -148,6 +148,7 @@
     <Compile Include="Bank\frmShowBanks.Designer.cs">
       <DependentUpon>frmShowBanks.cs</DependentUpon>
     </Compile>
+    <Compile Include="Check\CheckMoshtari\clsCheckM.cs" />
     <Compile Include="Check\CheckMoshtari\frmCheckM_AvalDore.cs">
       <SubType>Form</SubType>
     </Compile>

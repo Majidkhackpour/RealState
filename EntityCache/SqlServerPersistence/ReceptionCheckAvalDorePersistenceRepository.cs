@@ -143,10 +143,17 @@ namespace EntityCache.SqlServerPersistence
             var res = new ReturnedSaveFuncInfo();
             try
             {
+                var item = await GetAsync(guid);
                 using (var cn = new SqlConnection(_connectionString))
                 {
                     var cmd = new SqlCommand("sp_ReceptionCheckAvalDore_Remove", cn) { CommandType = CommandType.StoredProcedure };
                     cmd.Parameters.AddWithValue("@guid", guid);
+                    cmd.Parameters.AddWithValue("@userGuid", item.UserGuid);
+                    cmd.Parameters.AddWithValue("@sarmayeTafsilGuid", ParentDefaults.TafsilCoding.CLSTafsil5011001);
+                    cmd.Parameters.AddWithValue("@sarmayeMoeinGuid", ParentDefaults.MoeinCoding.CLSMoein50110);
+                    cmd.Parameters.AddWithValue("@tafsilCreditMoeinGuid", ParentDefaults.MoeinCoding.CLSMoein10304);
+                    cmd.Parameters.AddWithValue("@bankCreditMoeinGuid", ParentDefaults.MoeinCoding.CLSMoein10101);
+                    cmd.Parameters.AddWithValue("@sandouqCreditMoeinGuid", ParentDefaults.MoeinCoding.CLSMoein10102);
 
                     await cn.OpenAsync();
                     await cmd.ExecuteNonQueryAsync();

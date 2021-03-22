@@ -250,6 +250,11 @@ namespace Accounting.Pardakht
             InitializeComponent();
             cls = new PardakhtBussines();
         }
+        public frmPardakhtMain(PardakhtBussines temp)
+        {
+            InitializeComponent();
+            cls = temp;
+        }
         public frmPardakhtMain(Guid guid, bool isShowMode)
         {
             InitializeComponent();

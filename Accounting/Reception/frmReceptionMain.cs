@@ -13,6 +13,7 @@ namespace Accounting.Reception
     {
         private ReceptionBussines cls;
         private Guid _tafsilGuid = Guid.Empty;
+        private bool _isLoaded = false;
 
         private async Task SetDataAsync()
         {
@@ -34,17 +35,20 @@ namespace Accounting.Reception
                     txtSanadNo.Value = cls.SanadNumber;
                 }
 
-                if (cls.NaqdList != null)
-                    foreach (var item in cls.NaqdList)
-                        AddToGrid(item);
+                if (!_isLoaded)
+                {
+                    if (cls.NaqdList != null)
+                        foreach (var item in cls.NaqdList)
+                            AddToGrid(item);
 
-                if (cls.HavaleList != null)
-                    foreach (var item in cls.HavaleList)
-                        AddToGrid(item);
+                    if (cls.HavaleList != null)
+                        foreach (var item in cls.HavaleList)
+                            AddToGrid(item);
 
-                if (cls.CheckList != null)
-                    foreach (var item in cls.CheckList)
-                        AddToGrid(item);
+                    if (cls.CheckList != null)
+                        foreach (var item in cls.CheckList)
+                            AddToGrid(item);
+                }
 
                 SetLables();
             }
@@ -239,6 +243,24 @@ namespace Accounting.Reception
         {
             InitializeComponent();
             cls = new ReceptionBussines();
+        }
+        public frmReceptionMain(EnOperation op)
+        {
+            InitializeComponent();
+            cls = new ReceptionBussines();
+            _isLoaded = true;
+            switch (op)
+            {
+                case EnOperation.CheckM:
+                    mnuAddCheck.PerformClick();
+                    break;
+                case EnOperation.Havale:
+                    mnuAddHavale.PerformClick();
+                    break;
+                case EnOperation.Naqd:
+                    mnuAddNaqd.PerformClick();
+                    break;
+            }
         }
         public frmReceptionMain(Guid guid, bool isShowMode)
         {

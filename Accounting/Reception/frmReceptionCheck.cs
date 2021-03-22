@@ -52,6 +52,13 @@ namespace Accounting.Reception
             InitializeComponent();
             cls = temp ?? new ReceptionCheckBussines();
         }
+        public frmReceptionCheck(Guid guid)
+        {
+            InitializeComponent();
+            cls = ReceptionCheckBussines.Get(guid);
+            grp.Enabled = false;
+            btnFinish.Enabled = false;
+        }
 
         private async void frmReceptionCheck_Load(object sender, EventArgs e)
         {

@@ -41,20 +41,22 @@ namespace Accounting.Check.CheckMoshtari
             this.DGrid = new DevComponents.DotNetBar.Controls.DataGridViewX();
             this.dgRadif = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dateShDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.bankNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgBankName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pardazandeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dateSarresidShDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.checkNumberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.priceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgSarresid = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgCheckNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.sandouqTafsilNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.StatusName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.descriptionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.IsAvalDore = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.dgAvalDore = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.dgGuid = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.poshtNomreDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dateMDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dateSarResidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.checkStatusDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DgPardazandeGuid = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SandouqTafsilGuid = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.contextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.mnuAdd = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuInsAvalDore = new System.Windows.Forms.ToolStripMenuItem();
@@ -124,20 +126,22 @@ namespace Accounting.Check.CheckMoshtari
             this.DGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dgRadif,
             this.dateShDataGridViewTextBoxColumn,
-            this.bankNameDataGridViewTextBoxColumn,
+            this.dgBankName,
             this.pardazandeDataGridViewTextBoxColumn,
-            this.dateSarresidShDataGridViewTextBoxColumn,
-            this.checkNumberDataGridViewTextBoxColumn,
-            this.priceDataGridViewTextBoxColumn,
+            this.dgSarresid,
+            this.dgCheckNumber,
+            this.dgPrice,
             this.sandouqTafsilNameDataGridViewTextBoxColumn,
             this.StatusName,
             this.descriptionDataGridViewTextBoxColumn,
-            this.IsAvalDore,
+            this.dgAvalDore,
             this.dgGuid,
             this.poshtNomreDataGridViewTextBoxColumn,
             this.dateMDataGridViewTextBoxColumn,
             this.dateSarResidDataGridViewTextBoxColumn,
-            this.checkStatusDataGridViewTextBoxColumn});
+            this.checkStatusDataGridViewTextBoxColumn,
+            this.DgPardazandeGuid,
+            this.SandouqTafsilGuid});
             this.DGrid.ContextMenuStrip = this.contextMenu;
             this.DGrid.DataSource = this.CheckBindingSource;
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
@@ -193,14 +197,14 @@ namespace Accounting.Check.CheckMoshtari
             this.dateShDataGridViewTextBoxColumn.ReadOnly = true;
             this.dateShDataGridViewTextBoxColumn.Width = 97;
             // 
-            // bankNameDataGridViewTextBoxColumn
+            // dgBankName
             // 
-            this.bankNameDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.bankNameDataGridViewTextBoxColumn.DataPropertyName = "BankName";
-            this.bankNameDataGridViewTextBoxColumn.HeaderText = "بانک صادرکننده";
-            this.bankNameDataGridViewTextBoxColumn.Name = "bankNameDataGridViewTextBoxColumn";
-            this.bankNameDataGridViewTextBoxColumn.ReadOnly = true;
-            this.bankNameDataGridViewTextBoxColumn.Width = 109;
+            this.dgBankName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dgBankName.DataPropertyName = "BankName";
+            this.dgBankName.HeaderText = "بانک صادرکننده";
+            this.dgBankName.Name = "dgBankName";
+            this.dgBankName.ReadOnly = true;
+            this.dgBankName.Width = 109;
             // 
             // pardazandeDataGridViewTextBoxColumn
             // 
@@ -210,35 +214,35 @@ namespace Accounting.Check.CheckMoshtari
             this.pardazandeDataGridViewTextBoxColumn.Name = "pardazandeDataGridViewTextBoxColumn";
             this.pardazandeDataGridViewTextBoxColumn.ReadOnly = true;
             // 
-            // dateSarresidShDataGridViewTextBoxColumn
+            // dgSarresid
             // 
-            this.dateSarresidShDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dateSarresidShDataGridViewTextBoxColumn.DataPropertyName = "DateSarresidSh";
-            this.dateSarresidShDataGridViewTextBoxColumn.HeaderText = "سررسید";
-            this.dateSarresidShDataGridViewTextBoxColumn.Name = "dateSarresidShDataGridViewTextBoxColumn";
-            this.dateSarresidShDataGridViewTextBoxColumn.ReadOnly = true;
-            this.dateSarresidShDataGridViewTextBoxColumn.Width = 76;
+            this.dgSarresid.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dgSarresid.DataPropertyName = "DateSarresidSh";
+            this.dgSarresid.HeaderText = "سررسید";
+            this.dgSarresid.Name = "dgSarresid";
+            this.dgSarresid.ReadOnly = true;
+            this.dgSarresid.Width = 76;
             // 
-            // checkNumberDataGridViewTextBoxColumn
+            // dgCheckNumber
             // 
-            this.checkNumberDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.checkNumberDataGridViewTextBoxColumn.DataPropertyName = "CheckNumber";
-            this.checkNumberDataGridViewTextBoxColumn.HeaderText = "شماره چک";
-            this.checkNumberDataGridViewTextBoxColumn.Name = "checkNumberDataGridViewTextBoxColumn";
-            this.checkNumberDataGridViewTextBoxColumn.ReadOnly = true;
-            this.checkNumberDataGridViewTextBoxColumn.Width = 84;
+            this.dgCheckNumber.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dgCheckNumber.DataPropertyName = "CheckNumber";
+            this.dgCheckNumber.HeaderText = "شماره چک";
+            this.dgCheckNumber.Name = "dgCheckNumber";
+            this.dgCheckNumber.ReadOnly = true;
+            this.dgCheckNumber.Width = 84;
             // 
-            // priceDataGridViewTextBoxColumn
+            // dgPrice
             // 
-            this.priceDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.priceDataGridViewTextBoxColumn.DataPropertyName = "Price";
+            this.dgPrice.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dgPrice.DataPropertyName = "Price";
             dataGridViewCellStyle3.Format = "N0";
             dataGridViewCellStyle3.NullValue = null;
-            this.priceDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle3;
-            this.priceDataGridViewTextBoxColumn.HeaderText = "مبلغ";
-            this.priceDataGridViewTextBoxColumn.Name = "priceDataGridViewTextBoxColumn";
-            this.priceDataGridViewTextBoxColumn.ReadOnly = true;
-            this.priceDataGridViewTextBoxColumn.Width = 54;
+            this.dgPrice.DefaultCellStyle = dataGridViewCellStyle3;
+            this.dgPrice.HeaderText = "مبلغ";
+            this.dgPrice.Name = "dgPrice";
+            this.dgPrice.ReadOnly = true;
+            this.dgPrice.Width = 54;
             // 
             // sandouqTafsilNameDataGridViewTextBoxColumn
             // 
@@ -266,14 +270,14 @@ namespace Accounting.Check.CheckMoshtari
             this.descriptionDataGridViewTextBoxColumn.Name = "descriptionDataGridViewTextBoxColumn";
             this.descriptionDataGridViewTextBoxColumn.ReadOnly = true;
             // 
-            // IsAvalDore
+            // dgAvalDore
             // 
-            this.IsAvalDore.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.IsAvalDore.DataPropertyName = "IsAvalDore";
-            this.IsAvalDore.HeaderText = "اول دوره";
-            this.IsAvalDore.Name = "IsAvalDore";
-            this.IsAvalDore.ReadOnly = true;
-            this.IsAvalDore.Width = 60;
+            this.dgAvalDore.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dgAvalDore.DataPropertyName = "IsAvalDore";
+            this.dgAvalDore.HeaderText = "اول دوره";
+            this.dgAvalDore.Name = "dgAvalDore";
+            this.dgAvalDore.ReadOnly = true;
+            this.dgAvalDore.Width = 60;
             // 
             // dgGuid
             // 
@@ -315,6 +319,22 @@ namespace Accounting.Check.CheckMoshtari
             this.checkStatusDataGridViewTextBoxColumn.ReadOnly = true;
             this.checkStatusDataGridViewTextBoxColumn.Visible = false;
             // 
+            // DgPardazandeGuid
+            // 
+            this.DgPardazandeGuid.DataPropertyName = "PardazandeGuid";
+            this.DgPardazandeGuid.HeaderText = "PardazandeGuid";
+            this.DgPardazandeGuid.Name = "DgPardazandeGuid";
+            this.DgPardazandeGuid.ReadOnly = true;
+            this.DgPardazandeGuid.Visible = false;
+            // 
+            // SandouqTafsilGuid
+            // 
+            this.SandouqTafsilGuid.DataPropertyName = "SandouqTafsilGuid";
+            this.SandouqTafsilGuid.HeaderText = "DgSandouqTafsilGuid";
+            this.SandouqTafsilGuid.Name = "SandouqTafsilGuid";
+            this.SandouqTafsilGuid.ReadOnly = true;
+            this.SandouqTafsilGuid.Visible = false;
+            // 
             // contextMenu
             // 
             this.contextMenu.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
@@ -351,6 +371,7 @@ namespace Accounting.Check.CheckMoshtari
             this.mnuInsAvalDore.Name = "mnuInsAvalDore";
             this.mnuInsAvalDore.Size = new System.Drawing.Size(235, 24);
             this.mnuInsAvalDore.Text = "افزودن چک دریافتی اول دوره";
+            this.mnuInsAvalDore.Click += new System.EventHandler(this.mnuInsAvalDore_Click);
             // 
             // mnuEdit
             // 
@@ -358,6 +379,7 @@ namespace Accounting.Check.CheckMoshtari
             this.mnuEdit.Name = "mnuEdit";
             this.mnuEdit.Size = new System.Drawing.Size(235, 24);
             this.mnuEdit.Text = "ویرایش چک دریافتی جاری (F7)";
+            this.mnuEdit.Click += new System.EventHandler(this.mnuEdit_Click);
             // 
             // toolStripMenuItem1
             // 
@@ -370,6 +392,7 @@ namespace Accounting.Check.CheckMoshtari
             this.mnuView.Name = "mnuView";
             this.mnuView.Size = new System.Drawing.Size(235, 24);
             this.mnuView.Text = "مشاهده (F12)";
+            this.mnuView.Click += new System.EventHandler(this.mnuView_Click);
             // 
             // mnuViewSanad
             // 
@@ -377,6 +400,7 @@ namespace Accounting.Check.CheckMoshtari
             this.mnuViewSanad.Name = "mnuViewSanad";
             this.mnuViewSanad.Size = new System.Drawing.Size(235, 24);
             this.mnuViewSanad.Text = "مشاهده سند دریافت";
+            this.mnuViewSanad.Click += new System.EventHandler(this.mnuViewSanad_Click);
             // 
             // mnuViewPardazande
             // 
@@ -384,6 +408,7 @@ namespace Accounting.Check.CheckMoshtari
             this.mnuViewPardazande.Name = "mnuViewPardazande";
             this.mnuViewPardazande.Size = new System.Drawing.Size(235, 24);
             this.mnuViewPardazande.Text = "مشاهده مشخصات پردازنده";
+            this.mnuViewPardazande.Click += new System.EventHandler(this.mnuViewPardazande_Click);
             // 
             // toolStripMenuItem2
             // 
@@ -395,6 +420,7 @@ namespace Accounting.Check.CheckMoshtari
             this.mnuKharj.Name = "mnuKharj";
             this.mnuKharj.Size = new System.Drawing.Size(235, 24);
             this.mnuKharj.Text = "خرج کردن";
+            this.mnuKharj.Click += new System.EventHandler(this.mnuKharj_Click);
             // 
             // mnuVagozarSandouq
             // 
@@ -419,12 +445,14 @@ namespace Accounting.Check.CheckMoshtari
             this.mnuNaqd.Name = "mnuNaqd";
             this.mnuNaqd.Size = new System.Drawing.Size(235, 24);
             this.mnuNaqd.Text = "نقد کردن";
+            this.mnuNaqd.Click += new System.EventHandler(this.mnuNaqd_Click);
             // 
             // mnuBatel
             // 
             this.mnuBatel.Name = "mnuBatel";
             this.mnuBatel.Size = new System.Drawing.Size(235, 24);
             this.mnuBatel.Text = "باطل کردن";
+            this.mnuBatel.Click += new System.EventHandler(this.mnuBatel_Click);
             // 
             // CheckBindingSource
             // 
@@ -462,22 +490,6 @@ namespace Accounting.Check.CheckMoshtari
         private DevComponents.DotNetBar.Controls.DataGridViewX DGrid;
         private System.Windows.Forms.BindingSource CheckBindingSource;
         private System.Windows.Forms.DataGridViewTextBoxColumn masterGuidDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgRadif;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dateShDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn bankNameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn pardazandeDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dateSarresidShDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn checkNumberDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn priceDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn sandouqTafsilNameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn StatusName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn descriptionDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn IsAvalDore;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgGuid;
-        private System.Windows.Forms.DataGridViewTextBoxColumn poshtNomreDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dateMDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dateSarResidDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn checkStatusDataGridViewTextBoxColumn;
         private System.Windows.Forms.ContextMenuStrip contextMenu;
         private System.Windows.Forms.ToolStripMenuItem mnuAdd;
         private System.Windows.Forms.ToolStripMenuItem mnuEdit;
@@ -493,5 +505,23 @@ namespace Accounting.Check.CheckMoshtari
         private System.Windows.Forms.ToolStripMenuItem mnuBargasht;
         private System.Windows.Forms.ToolStripMenuItem mnuNaqd;
         private System.Windows.Forms.ToolStripMenuItem mnuBatel;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgRadif;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dateShDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgBankName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn pardazandeDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgSarresid;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgCheckNumber;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgPrice;
+        private System.Windows.Forms.DataGridViewTextBoxColumn sandouqTafsilNameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn StatusName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn descriptionDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn dgAvalDore;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgGuid;
+        private System.Windows.Forms.DataGridViewTextBoxColumn poshtNomreDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dateMDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dateSarResidDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn checkStatusDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DgPardazandeGuid;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SandouqTafsilGuid;
     }
 }

@@ -3689,6 +3689,8 @@ select        ReceptionChecks.Guid
 			, Tafsils.Name As SandouqTafsilName
 		    , P.Name As Pardazande
 			, CAST(0 as bit) As AvalDore
+			, T.TafsilGuid As PardazandeGuid
+			, ReceptionChecks.SandouqTafsilGuid As SandouqTafsilGuid
 	from ReceptionChecks inner join Receptions as T on 
 		 T.Guid=ReceptionChecks.MasterGuid inner join Tafsils on
 		 ReceptionChecks.SandouqTafsilGuid=Tafsils.Guid inner join Tafsils as P on
@@ -3706,6 +3708,8 @@ select        ReceptionChecks.Guid
 			, P.Name As Pardazande
 			, Tafsils.Name As SandouqTafsilName
 			, CAST(1 as bit) As AvalDore
+			, ReceptionCheckAvalDores.TafsilGuid As PardazandeGuid
+			, ReceptionCheckAvalDores.SandouqTafsilGuid As SandouqTafsilGuid
 	from ReceptionCheckAvalDores inner join Tafsils on
 		 ReceptionCheckAvalDores.TafsilGuid=Tafsils.Guid Left outer join Tafsils As P on
 		 ReceptionCheckAvalDores.SandouqTafsilGuid=P.Guid
@@ -3751,12 +3755,20 @@ GO
 IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_ReceptionCheckAvalDore_Remove]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
 	exec('Create Procedure [dbo].[sp_ReceptionCheckAvalDore_Remove]	As Begin print 11 end')  
 GO
-Alter PROCEDURE sp_ReceptionCheckAvalDore_Remove
-	@guid uniqueidentifier
+ALTER PROCEDURE [dbo].[sp_ReceptionCheckAvalDore_Remove]
+	@guid uniqueidentifier,
+	@userGuid uniqueidentifier,
+	@sarmayeTafsilGuid uniqueidentifier,
+	@sarmayeMoeinGuid uniqueidentifier,
+	@tafsilCreditMoeinGuid uniqueidentifier,
+	@bankCreditMoeinGuid uniqueidentifier,
+	@sandouqCreditMoeinGuid uniqueidentifier
 AS
 BEGIN
 	delete from ReceptionCheckAvalDores
 	where Guid=@guid
+
+	EXEC sp_Sanad_Update_Eftetahie @userGuid,@sarmayeTafsilGuid,@sarmayeMoeinGuid,@tafsilCreditMoeinGuid,@bankCreditMoeinGuid,@sandouqCreditMoeinGuid
 END
 GO
 --========================================================================================================

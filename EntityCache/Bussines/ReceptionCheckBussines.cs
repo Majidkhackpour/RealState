@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using EntityCache.Assistence;
 using EntityCache.ViewModels;
+using Nito.AsyncEx;
 using Services;
 using Services.Interfaces.Building;
 
@@ -162,5 +163,6 @@ namespace EntityCache.Bussines
             }
         }
         public static async Task<ReceptionCheckBussines> GetAsync(Guid guid) => await UnitOfWork.ReceptionCheck.GetAsync(guid);
+        public static ReceptionCheckBussines Get(Guid guid) => AsyncContext.Run(() => GetAsync(guid));
     }
 }
