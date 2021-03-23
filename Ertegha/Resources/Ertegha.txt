@@ -3071,14 +3071,15 @@ ALTER PROCEDURE [dbo].[sp_ReceptionCheck_Insert]
 	@bankName nvarchar(200),
 	@desc nvarchar(max),
 	@dateM datetime,
-	@masterGuid uniqueidentifier,
+	@masterGuid uniqueidentifier=null,
 	@checkNumber nvarchar(200),
 	@poshtNomre nvarchar(200),
 	@price decimal,
 	@checkStatus int,
 	@sarResid datetime,
 	@sandouqTafsilGuid uniqueidentifier,
-	@sandouqMoeinGuid uniqueidentifier
+	@sandouqMoeinGuid uniqueidentifier,
+	@isAvalDore bit
 AS
 BEGIN
 	UPDATE [dbo].[ReceptionChecks]
@@ -3112,7 +3113,8 @@ BEGIN
           ,[CheckStatus]
 		  ,[DateSarResid]
 		  ,[SandouqTafsilGuid]
-		  ,[SandouqMoeinGuid])
+		  ,[SandouqMoeinGuid]
+		  ,[isAvalDore])
 	VALUES
           (@guid
           ,@modif
@@ -3127,7 +3129,8 @@ BEGIN
           ,@checkStatus
 		  ,@sarResid
 		  ,@sandouqTafsilGuid
-		  ,@sandouqMoeinGuid)
+		  ,@sandouqMoeinGuid
+		  ,@isAvalDore)
 	 end
 END
 GO
@@ -3701,31 +3704,32 @@ select        ReceptionChecks.Guid
 			, ReceptionChecks.DateSarResid
 			, Tafsils.Name As SandouqTafsilName
 		    , P.Name As Pardazande
-			, CAST(0 as bit) As AvalDore
+			, ReceptionChecks.isAvalDore As AvalDore
 			, T.TafsilGuid As PardazandeGuid
 			, ReceptionChecks.SandouqTafsilGuid As SandouqTafsilGuid
-	from ReceptionChecks inner join Receptions as T on 
+	from ReceptionChecks Left outer join Receptions as T on 
 		 T.Guid=ReceptionChecks.MasterGuid inner join Tafsils on
 		 ReceptionChecks.SandouqTafsilGuid=Tafsils.Guid inner join Tafsils as P on
 		 T.TafsilGuid=P.Guid
-	union All
-	select    ReceptionCheckAvalDores.Guid
-			, ReceptionCheckAvalDores.BankName
-			, ReceptionCheckAvalDores.DateM
-			, ReceptionCheckAvalDores.Description
-			, ReceptionCheckAvalDores.CheckNumber
-			, ReceptionCheckAvalDores.PoshtNomre
-			, ReceptionCheckAvalDores.Price
-			, ReceptionCheckAvalDores.CheckStatus
-			, ReceptionCheckAvalDores.DateSarResid
-			, P.Name As Pardazande
+	union all
+	select    ReceptionChecks.Guid
+			, ReceptionChecks.BankName
+			, ReceptionChecks.DateM
+			, ReceptionChecks.Description
+			, ReceptionChecks.CheckNumber
+			, ReceptionChecks.PoshtNomre
+			, ReceptionChecks.Price
+			, ReceptionChecks.CheckStatus
+			, ReceptionChecks.DateSarResid
 			, Tafsils.Name As SandouqTafsilName
-			, CAST(1 as bit) As AvalDore
-			, ReceptionCheckAvalDores.TafsilGuid As PardazandeGuid
-			, ReceptionCheckAvalDores.SandouqTafsilGuid As SandouqTafsilGuid
-	from ReceptionCheckAvalDores inner join Tafsils on
-		 ReceptionCheckAvalDores.TafsilGuid=Tafsils.Guid Left outer join Tafsils As P on
-		 ReceptionCheckAvalDores.SandouqTafsilGuid=P.Guid
+		    , P.Name As Pardazande
+			, ReceptionChecks.isAvalDore As AvalDore
+			, T.TafsilGuid As PardazandeGuid
+			, ReceptionChecks.SandouqTafsilGuid As SandouqTafsilGuid
+	from ReceptionChecks inner join ReceptionCheckAvalDores as T on 
+		 T.Guid=ReceptionChecks.Guid inner join Tafsils on
+		 ReceptionChecks.SandouqTafsilGuid=Tafsils.Guid inner join Tafsils as P on
+		 T.TafsilGuid=P.Guid
 END
 GO
 --========================================================================================================
@@ -3779,6 +3783,9 @@ ALTER PROCEDURE [dbo].[sp_ReceptionCheckAvalDore_Remove]
 AS
 BEGIN
 	delete from ReceptionCheckAvalDores
+	where Guid=@guid
+
+	delete from ReceptionChecks 
 	where Guid=@guid
 
 	EXEC sp_Sanad_Update_Eftetahie @userGuid,@sarmayeTafsilGuid,@sarmayeMoeinGuid,@tafsilCreditMoeinGuid,@bankCreditMoeinGuid,@sandouqCreditMoeinGuid
@@ -3862,7 +3869,7 @@ BEGIN
 	end
 
 	EXEC sp_Sanad_Update_Eftetahie @userGuid,@sarmayeTafsilGuid,@sarmayeMoeinGuid,@tafsilCreditMoeinGuid,@bankCreditMoeinGuid,@sandouqCreditMoeinGuid
-
+	EXEC sp_ReceptionCheck_Insert @guid,@modif,'true',@bankName,@desc,@dateM,null,@number,@poshNomre,@price,@st,@sarresid,@sandouqTafsilGuid,@sandouqMoeinGuid,'true'
 END
 GO
 --========================================================================================================

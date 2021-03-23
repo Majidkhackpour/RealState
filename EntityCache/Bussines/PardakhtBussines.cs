@@ -247,6 +247,7 @@ namespace EntityCache.Bussines
                             if (check == null) continue;
                             check.CheckStatus = EnCheckM.Mojoud;
                             check.Modified = DateTime.Now;
+                            if (check.isAvalDore) check.MasterGuid = null;
                             res.AddReturnedValue(await check.SaveAsync());
                             if (res.HasError) return res;
                         }
@@ -377,6 +378,7 @@ namespace EntityCache.Bussines
                             if (check == null) continue;
                             check.CheckStatus = EnCheckM.Mojoud;
                             check.Modified = DateTime.Now;
+                            if (check.isAvalDore) check.MasterGuid = null;
                             res.AddReturnedValue(await check.SaveAsync());
                             if (res.HasError) return res;
                         }

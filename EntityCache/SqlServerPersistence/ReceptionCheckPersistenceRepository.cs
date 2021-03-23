@@ -34,7 +34,7 @@ namespace EntityCache.SqlServerPersistence
                 item.Status = (bool)dr["Status"];
                 item.BankName = dr["BankName"].ToString();
                 item.DateM = (DateTime)dr["DateM"];
-                item.MasterGuid = (Guid)dr["MasterGuid"];
+                if (dr["MasterGuid"] != DBNull.Value) item.MasterGuid = (Guid)dr["MasterGuid"];
                 item.Description = dr["Description"].ToString();
                 item.CheckNumber = dr["CheckNumber"].ToString();
                 item.PoshtNomre = dr["PoshtNomre"].ToString();
@@ -215,6 +215,7 @@ namespace EntityCache.SqlServerPersistence
                     if (item.SandouqMoeinGuid == Guid.Empty)
                         item.SandouqMoeinGuid = ParentDefaults.MoeinCoding.CLSMoein10104;
                     cmd.Parameters.AddWithValue("@sandouqMoeinGuid", item.SandouqMoeinGuid);
+                    cmd.Parameters.AddWithValue("@isAvalDore", item.isAvalDore);
 
                     await cn.OpenAsync();
                     await cmd.ExecuteNonQueryAsync();

@@ -18,7 +18,8 @@ namespace Persistence.Entities
         public DateTime DateSarResid { get; set; }
 
         [ForeignKey("Reception")]
-        public Guid MasterGuid { get; set; }
+        public Guid? MasterGuid { get; set; }
+        public bool isAvalDore { get; set; }
         public string Description { get; set; }
         [MaxLength(200)]
         public string CheckNumber { get; set; }

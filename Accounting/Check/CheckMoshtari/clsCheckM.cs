@@ -19,7 +19,7 @@ namespace Accounting.Check.CheckMoshtari
                     ? ParentDefaults.MoeinCoding.CLSMoein10101
                     : ParentDefaults.MoeinCoding.CLSMoein10102;
 
-                var reception = await ReceptionBussines.GetAsync(cls.MasterGuid);
+                var reception = await ReceptionBussines.GetAsync(cls.MasterGuid.Value);
                 var pardazande = await TafsilBussines.GetAsync(reception.TafsilGuid);
 
                 var sanad = new SanadBussines()
@@ -165,7 +165,7 @@ namespace Accounting.Check.CheckMoshtari
             var res = new ReturnedSaveFuncInfo();
             try
             {
-                var reception = await ReceptionBussines.GetAsync(cls.MasterGuid);
+                var reception = await ReceptionBussines.GetAsync(cls.MasterGuid.Value);
                 var pardazande = await TafsilBussines.GetAsync(reception.TafsilGuid);
 
                 var sanad = new SanadBussines()
@@ -292,7 +292,7 @@ namespace Accounting.Check.CheckMoshtari
             var res = new ReturnedSaveFuncInfo();
             try
             {
-                var reception = await ReceptionBussines.GetAsync(cls.MasterGuid);
+                var reception = await ReceptionBussines.GetAsync(cls.MasterGuid.Value);
                 var pardazande = await TafsilBussines.GetAsync(reception.TafsilGuid);
 
                 var sanad = new SanadBussines()
@@ -423,7 +423,7 @@ namespace Accounting.Check.CheckMoshtari
                 cls.Modified = DateTime.Now;
                 res.AddReturnedValue(await cls.SaveAsync());
 
-                var reception = await ReceptionBussines.GetAsync(cls.MasterGuid);
+                var reception = await ReceptionBussines.GetAsync(cls.MasterGuid.Value);
                 var pardazande = await TafsilBussines.GetAsync(reception.TafsilGuid);
 
                 var sanad = new SanadBussines()
@@ -540,7 +540,7 @@ namespace Accounting.Check.CheckMoshtari
             var res = new ReturnedSaveFuncInfo();
             try
             {
-                var reception = await ReceptionBussines.GetAsync(cls.MasterGuid);
+                var reception = await ReceptionBussines.GetAsync(cls.MasterGuid.Value);
                 var pardazande = await TafsilBussines.GetAsync(reception.TafsilGuid);
 
                 //بستانکار--شخص

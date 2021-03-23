@@ -185,7 +185,7 @@ namespace Accounting.Check.CheckMoshtari
                 if (!avalDore)
                 {
                     var str = await ReceptionCheckBussines.GetAsync(guid);
-                    var rec = await ReceptionBussines.GetAsync(str.MasterGuid);
+                    var rec = await ReceptionBussines.GetAsync(str.MasterGuid.Value);
                     var sanad = await SanadBussines.GetAsync(rec.SanadNumber);
                     var frm_ = new frmSanadMain(sanad.Guid, true);
                     frm_.ShowDialog();
@@ -280,7 +280,7 @@ namespace Accounting.Check.CheckMoshtari
                 if (!avalDore)
                 {
                     var str = await ReceptionCheckBussines.GetAsync(guid);
-                    var rec = await ReceptionBussines.GetAsync(str.MasterGuid);
+                    var rec = await ReceptionBussines.GetAsync(str.MasterGuid.Value);
                     rec.RemoveFromDetList(str);
                     res.AddReturnedValue(await rec.SaveAsync());
                     return;
