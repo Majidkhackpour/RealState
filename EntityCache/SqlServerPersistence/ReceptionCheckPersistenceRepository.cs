@@ -68,9 +68,9 @@ namespace EntityCache.SqlServerPersistence
                 item.DateSarResid = (DateTime)dr["DateSarResid"];
                 item.SandouqTafsilName = dr["SandouqTafsilName"].ToString();
                 item.Pardazande = dr["Pardazande"].ToString();
-                item.IsAvalDore = (bool) dr["AvalDore"];
-                item.PardazandeGuid = (Guid) dr["PardazandeGuid"];
-                item.SandouqTafsilGuid = (Guid) dr["SandouqTafsilGuid"];
+                item.IsAvalDore = (bool)dr["AvalDore"];
+                item.PardazandeGuid = (Guid)dr["PardazandeGuid"];
+                item.SandouqTafsilGuid = (Guid)dr["SandouqTafsilGuid"];
             }
             catch (Exception ex)
             {
@@ -212,7 +212,9 @@ namespace EntityCache.SqlServerPersistence
                     cmd.Parameters.AddWithValue("@checkStatus", (int)item.CheckStatus);
                     cmd.Parameters.AddWithValue("@sarResid", item.DateSarResid);
                     cmd.Parameters.AddWithValue("@sandouqTafsilGuid", item.SandouqTafsilGuid);
-                    cmd.Parameters.AddWithValue("@sandouqMoeinGuid", ParentDefaults.MoeinCoding.CLSMoein10104);
+                    if (item.SandouqMoeinGuid == Guid.Empty)
+                        item.SandouqMoeinGuid = ParentDefaults.MoeinCoding.CLSMoein10104;
+                    cmd.Parameters.AddWithValue("@sandouqMoeinGuid", item.SandouqMoeinGuid);
 
                     await cn.OpenAsync();
                     await cmd.ExecuteNonQueryAsync();

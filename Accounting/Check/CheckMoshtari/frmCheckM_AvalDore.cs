@@ -169,7 +169,7 @@ namespace Accounting.Check.CheckMoshtari
                 cls.SandouqTafsilGuid = (Guid)cmbSandouq.SelectedValue;
                 cls.TafsilGuid = _tafsilGuid;
 
-                res.AddReturnedValue(await cls.SaveAsync());
+                res.AddReturnedValue(await cls.SaveAsync(true));
             }
             catch (Exception ex)
             {

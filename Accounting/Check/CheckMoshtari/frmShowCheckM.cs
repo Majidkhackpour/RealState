@@ -334,5 +334,97 @@ namespace Accounting.Check.CheckMoshtari
                 else await LoadDataAsync(txtSearch.Text);
             }
         }
+        private async void mnuVagozarSandouq_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (DGrid.RowCount <= 0 || DGrid.CurrentRow == null) return;
+                var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
+                var avalDore = (bool)DGrid[dgAvalDore.Index, DGrid.CurrentRow.Index].Value;
+
+                if (MessageBox.Show("آیا از واگذارکردن چک اطمینان دارید؟", "پیغام سیستم", MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Question) ==
+                    DialogResult.No) return;
+
+                if (!avalDore)
+                {
+                    var str = await ReceptionCheckBussines.GetAsync(guid);
+                    var frm = new frmCheckM_Vagozar(str, HesabType.Sandouq);
+                    if (frm.ShowDialog() == DialogResult.OK) await LoadDataAsync(txtSearch.Text);
+                    return;
+                }
+
+                var cls = await ReceptionCheckAvalDoreBussines.GetAsync(guid);
+                var frm_ = new frmCheckM_Vagozar(cls, HesabType.Sandouq);
+                if (frm_.ShowDialog() == DialogResult.OK) await LoadDataAsync(txtSearch.Text);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private async void mnuVagozarBank_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (DGrid.RowCount <= 0 || DGrid.CurrentRow == null) return;
+                var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
+                var avalDore = (bool)DGrid[dgAvalDore.Index, DGrid.CurrentRow.Index].Value;
+
+                if (MessageBox.Show("آیا از واگذارکردن چک اطمینان دارید؟", "پیغام سیستم", MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Question) ==
+                    DialogResult.No) return;
+
+                if (!avalDore)
+                {
+                    var str = await ReceptionCheckBussines.GetAsync(guid);
+                    var frm = new frmCheckM_Vagozar(str, HesabType.Bank);
+                    if (frm.ShowDialog() == DialogResult.OK) await LoadDataAsync(txtSearch.Text);
+                    return;
+                }
+
+                var cls = await ReceptionCheckAvalDoreBussines.GetAsync(guid);
+                var frm_ = new frmCheckM_Vagozar(cls, HesabType.Bank);
+                if (frm_.ShowDialog() == DialogResult.OK) await LoadDataAsync(txtSearch.Text);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private async void mnuBargasht_Click(object sender, EventArgs e)
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                if (DGrid.RowCount <= 0 || DGrid.CurrentRow == null) return;
+                var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
+                var avalDore = (bool)DGrid[dgAvalDore.Index, DGrid.CurrentRow.Index].Value;
+
+                if (MessageBox.Show("آیا از برگشت زدن چک اطمینان دارید؟", "پیغام سیستم", MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Question) ==
+                    DialogResult.No) return;
+
+                if (!avalDore)
+                {
+                    var str = await ReceptionCheckBussines.GetAsync(guid);
+                    res.AddReturnedValue(await clsCheckM.BargashtAsync(str));
+                    return;
+                }
+
+                var cls = await ReceptionCheckAvalDoreBussines.GetAsync(guid);
+                res.AddReturnedValue(await clsCheckM.BargashtAvalDoreAsync(cls));
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+            finally
+            {
+                if (res.HasError) this.ShowError(res, "خطا در برگشت زدن چک دریافتنی");
+                else await LoadDataAsync(txtSearch.Text);
+            }
+        }
     }
 }

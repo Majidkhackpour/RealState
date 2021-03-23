@@ -37,7 +37,7 @@ namespace EntityCache.Bussines
         public static async Task<ReceptionCheckAvalDoreBussines> GetAsync(Guid guid) =>
             await UnitOfWork.ReceptionCheckAvalDore.GetAsync(guid);
         public static ReceptionCheckAvalDoreBussines Get(Guid guid) => AsyncContext.Run(() => GetAsync(guid));
-        public async Task<ReturnedSaveFuncInfo> SaveAsync(string tranName = "")
+        public async Task<ReturnedSaveFuncInfo> SaveAsync(bool isUpdateAccount, string tranName = "")
         {
             var res = new ReturnedSaveFuncInfo();
             var autoTran = string.IsNullOrEmpty(tranName);
@@ -51,18 +51,24 @@ namespace EntityCache.Bussines
                 res.AddReturnedValue(CheckValidation());
                 if (res.HasError) return res;
 
-                var oldSanad = await GetAsync(Guid);
-                if (oldSanad != null)
+                if (isUpdateAccount)
                 {
-                    res.AddReturnedValue(await UpdateAccountsAsync(oldSanad, true));
-                    if (res.HasError) return res;
+                    var oldSanad = await GetAsync(Guid);
+                    if (oldSanad != null)
+                    {
+                        res.AddReturnedValue(await UpdateAccountsAsync(oldSanad, true));
+                        if (res.HasError) return res;
+                    }
                 }
 
                 res.AddReturnedValue(await UnitOfWork.ReceptionCheckAvalDore.SaveAsync(this, tranName));
                 if (res.HasError) return res;
 
-                res.AddReturnedValue(await UpdateAccountsAsync(this, false));
-                if (res.HasError) return res;
+                if (isUpdateAccount)
+                {
+                    res.AddReturnedValue(await UpdateAccountsAsync(this, false));
+                    if (res.HasError) return res;
+                }
 
                 if (autoTran)
                 {

@@ -12,6 +12,7 @@ namespace Peoples
     public partial class frmChangeGroup : MetroForm
     {
         private PeoplesBussines cls;
+
         private async Task LoadGroupsAsync()
         {
             try
@@ -24,6 +25,7 @@ namespace Peoples
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
+
         public frmChangeGroup(PeoplesBussines _cls)
         {
             InitializeComponent();
@@ -31,13 +33,11 @@ namespace Peoples
         }
 
         private async void frmChangeGroup_Load(object sender, EventArgs e) => await LoadGroupsAsync();
-
         private void btnCancel_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Cancel;
             Close();
         }
-
         private void frmChangeGroup_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -61,7 +61,6 @@ namespace Peoples
                 WebErrorLog.ErrorInstence.StartErrorLog(exception);
             }
         }
-
         private async void btnFinish_Click(object sender, EventArgs e)
         {
             var res = new ReturnedSaveFuncInfo();

@@ -56,7 +56,7 @@ namespace Accounting.Check.CheckMoshtari
             this.dateSarResidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.checkStatusDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DgPardazandeGuid = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SandouqTafsilGuid = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DgSandouqTafsilGuid = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.contextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.mnuAdd = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuInsAvalDore = new System.Windows.Forms.ToolStripMenuItem();
@@ -141,7 +141,7 @@ namespace Accounting.Check.CheckMoshtari
             this.dateSarResidDataGridViewTextBoxColumn,
             this.checkStatusDataGridViewTextBoxColumn,
             this.DgPardazandeGuid,
-            this.SandouqTafsilGuid});
+            this.DgSandouqTafsilGuid});
             this.DGrid.ContextMenuStrip = this.contextMenu;
             this.DGrid.DataSource = this.CheckBindingSource;
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
@@ -327,13 +327,13 @@ namespace Accounting.Check.CheckMoshtari
             this.DgPardazandeGuid.ReadOnly = true;
             this.DgPardazandeGuid.Visible = false;
             // 
-            // SandouqTafsilGuid
+            // DgSandouqTafsilGuid
             // 
-            this.SandouqTafsilGuid.DataPropertyName = "SandouqTafsilGuid";
-            this.SandouqTafsilGuid.HeaderText = "DgSandouqTafsilGuid";
-            this.SandouqTafsilGuid.Name = "SandouqTafsilGuid";
-            this.SandouqTafsilGuid.ReadOnly = true;
-            this.SandouqTafsilGuid.Visible = false;
+            this.DgSandouqTafsilGuid.DataPropertyName = "SandouqTafsilGuid";
+            this.DgSandouqTafsilGuid.HeaderText = "DgSandouqTafsilGuid";
+            this.DgSandouqTafsilGuid.Name = "DgSandouqTafsilGuid";
+            this.DgSandouqTafsilGuid.ReadOnly = true;
+            this.DgSandouqTafsilGuid.Visible = false;
             // 
             // contextMenu
             // 
@@ -427,18 +427,21 @@ namespace Accounting.Check.CheckMoshtari
             this.mnuVagozarSandouq.Name = "mnuVagozarSandouq";
             this.mnuVagozarSandouq.Size = new System.Drawing.Size(235, 24);
             this.mnuVagozarSandouq.Text = "واگذار کردن به صندوق";
+            this.mnuVagozarSandouq.Click += new System.EventHandler(this.mnuVagozarSandouq_Click);
             // 
             // mnuVagozarBank
             // 
             this.mnuVagozarBank.Name = "mnuVagozarBank";
             this.mnuVagozarBank.Size = new System.Drawing.Size(235, 24);
             this.mnuVagozarBank.Text = "واگذار کردن به بانک";
+            this.mnuVagozarBank.Click += new System.EventHandler(this.mnuVagozarBank_Click);
             // 
             // mnuBargasht
             // 
             this.mnuBargasht.Name = "mnuBargasht";
             this.mnuBargasht.Size = new System.Drawing.Size(235, 24);
             this.mnuBargasht.Text = "برگشت زدن";
+            this.mnuBargasht.Click += new System.EventHandler(this.mnuBargasht_Click);
             // 
             // mnuNaqd
             // 
@@ -522,6 +525,6 @@ namespace Accounting.Check.CheckMoshtari
         private System.Windows.Forms.DataGridViewTextBoxColumn dateSarResidDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn checkStatusDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn DgPardazandeGuid;
-        private System.Windows.Forms.DataGridViewTextBoxColumn SandouqTafsilGuid;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DgSandouqTafsilGuid;
     }
 }

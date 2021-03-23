@@ -107,16 +107,18 @@ namespace EntityCache.SqlServerPersistence
                     var cmd = new SqlCommand("sp_ReceptionCheckAvalDore_Save", cn) { CommandType = CommandType.StoredProcedure };
                     cmd.Parameters.AddWithValue("@guid", item.Guid);
                     cmd.Parameters.AddWithValue("@modif", item.Modified);
-                    cmd.Parameters.AddWithValue("@bankName", item.BankName??"");
+                    cmd.Parameters.AddWithValue("@bankName", item.BankName ?? "");
                     cmd.Parameters.AddWithValue("@dateM", item.DateM);
                     cmd.Parameters.AddWithValue("@sarresid", item.DateSarResid);
-                    cmd.Parameters.AddWithValue("@desc", item.Description??"");
-                    cmd.Parameters.AddWithValue("@number", item.CheckNumber??"");
+                    cmd.Parameters.AddWithValue("@desc", item.Description ?? "");
+                    cmd.Parameters.AddWithValue("@number", item.CheckNumber ?? "");
                     cmd.Parameters.AddWithValue("@poshNomre", item.PoshtNomre);
                     cmd.Parameters.AddWithValue("@price", item.Price);
                     cmd.Parameters.AddWithValue("@st", (int)item.CheckStatus);
                     cmd.Parameters.AddWithValue("@sandouqTafsilGuid", item.SandouqTafsilGuid);
-                    cmd.Parameters.AddWithValue("@sandouqMoeinGuid", ParentDefaults.MoeinCoding.CLSMoein10104);
+                    if (item.SandouqMoeinGuid == Guid.Empty)
+                        item.SandouqMoeinGuid = ParentDefaults.MoeinCoding.CLSMoein10104;
+                    cmd.Parameters.AddWithValue("@sandouqMoeinGuid", item.SandouqMoeinGuid);
                     cmd.Parameters.AddWithValue("@tafsilGuid", item.TafsilGuid);
                     cmd.Parameters.AddWithValue("@userGuid", item.UserGuid);
                     cmd.Parameters.AddWithValue("@sarmayeTafsilGuid", ParentDefaults.TafsilCoding.CLSTafsil5011001);
