@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using EntityCache.Bussines;
 using EntityCache.Core;
+using EntityCache.ViewModels;
 using Persistence.Entities;
 using Persistence.Model;
 using Services;
@@ -46,6 +47,32 @@ namespace EntityCache.SqlServerPersistence
 
             return item;
         }
+        private PardakhtCheckViewModel LoadDataViewModel(SqlDataReader dr)
+        {
+            var item = new PardakhtCheckViewModel();
+
+            try
+            {
+                item.Guid = (Guid)dr["Guid"];
+                item.BankName = dr["BankName"].ToString();
+                item.BankGuid = (Guid) dr["BankGuid"];
+                item.DateM = (DateTime)dr["DateM"];
+                item.Description = dr["Description"].ToString();
+                item.CheckNumber = dr["Number"].ToString();
+                item.Price = (decimal)dr["Price"];
+                item.CheckStatus = (EnCheckSh)dr["CheckStatus"];
+                item.DateSarResid = (DateTime)dr["DateSarResid"];
+                item.Girande = dr["Girande"].ToString();
+                item.IsAvalDore = (bool)dr["AvalDore"];
+                item.GirandeGuid = (Guid)dr["GirandeGuid"];
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+
+            return item;
+        }
         public async Task<List<PardakhtCheckShakhsiBussines>> GetAllAsync(Guid masterGuid)
         {
             var list = new List<PardakhtCheckShakhsiBussines>();
@@ -60,6 +87,29 @@ namespace EntityCache.SqlServerPersistence
                     await cn.OpenAsync();
                     var dr = await cmd.ExecuteReaderAsync();
                     while (dr.Read()) list.Add(LoadData(dr));
+                    cn.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+
+            return list;
+        }
+        public async Task<List<PardakhtCheckViewModel>> GetAllViewModelAsync()
+        {
+            var list = new List<PardakhtCheckViewModel>();
+            try
+            {
+                using (var cn = new SqlConnection(_connectionString))
+                {
+                    var cmd = new SqlCommand("sp_PardakhtCheckShakhsi_GetAllFromView", cn)
+                        { CommandType = CommandType.StoredProcedure };
+
+                    await cn.OpenAsync();
+                    var dr = await cmd.ExecuteReaderAsync();
+                    while (dr.Read()) list.Add(LoadDataViewModel(dr));
                     cn.Close();
                 }
             }
@@ -142,6 +192,30 @@ namespace EntityCache.SqlServerPersistence
             }
 
             return res;
+        }
+        public override async Task<PardakhtCheckShakhsiBussines> GetAsync(Guid guid)
+        {
+            PardakhtCheckShakhsiBussines item = null;
+            try
+            {
+                using (var cn = new SqlConnection(_connectionString))
+                {
+                    var cmd = new SqlCommand("sp_PardakhtCheckShakhsi_Get", cn)
+                        { CommandType = CommandType.StoredProcedure };
+                    cmd.Parameters.AddWithValue("@Guid", guid);
+
+                    await cn.OpenAsync();
+                    var dr = await cmd.ExecuteReaderAsync();
+                    if (dr.Read()) item = LoadData(dr);
+                    cn.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+
+            return item;
         }
     }
 }

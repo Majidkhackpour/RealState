@@ -38,6 +38,7 @@ using System.Windows.Forms;
 using WindowsSerivces;
 using Accounting.Bank;
 using Accounting.Check.CheckMoshtari;
+using Accounting.Check.CheckShakhsi;
 using Accounting.Check.DasteCheck;
 using Accounting.Hesab;
 using Accounting.Pardakht;
@@ -913,6 +914,18 @@ namespace RealState
             try
             {
                 var frm = new frmShowCheckM(false);
+                frm.ShowDialog(this);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private void btnPardakhtCheck_Click_1(object sender, EventArgs e)
+        {
+            try
+            {
+                var frm = new frmShowCheckSh();
                 frm.ShowDialog(this);
             }
             catch (Exception ex)

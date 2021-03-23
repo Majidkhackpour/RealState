@@ -14,6 +14,7 @@ namespace Accounting.Pardakht
     {
         private PardakhtBussines cls;
         private Guid _tafsilGuid = Guid.Empty;
+        private bool _isLoaded = false;
 
         private async Task SetDataAsync()
         {
@@ -35,21 +36,24 @@ namespace Accounting.Pardakht
                     txtSanadNo.Value = cls.SanadNumber;
                 }
 
-                if (cls.NaqdList != null)
-                    foreach (var item in cls.NaqdList)
-                        AddToGrid(item);
+                if (!_isLoaded)
+                {
+                    if (cls.NaqdList != null)
+                        foreach (var item in cls.NaqdList)
+                            AddToGrid(item);
 
-                if (cls.HavaleList != null)
-                    foreach (var item in cls.HavaleList)
-                        AddToGrid(item);
+                    if (cls.HavaleList != null)
+                        foreach (var item in cls.HavaleList)
+                            AddToGrid(item);
 
-                if (cls.CheckMoshtariList != null)
-                    foreach (var item in cls.CheckMoshtariList)
-                        AddToGrid(item);
+                    if (cls.CheckMoshtariList != null)
+                        foreach (var item in cls.CheckMoshtariList)
+                            AddToGrid(item);
 
-                if (cls.CheckShakhsiList != null)
-                    foreach (var item in cls.CheckShakhsiList)
-                        AddToGrid(item);
+                    if (cls.CheckShakhsiList != null)
+                        foreach (var item in cls.CheckShakhsiList)
+                            AddToGrid(item);
+                }
 
                 SetLables();
             }
@@ -254,6 +258,27 @@ namespace Accounting.Pardakht
         {
             InitializeComponent();
             cls = temp;
+        }
+        public frmPardakhtMain(EnOperation op)
+        {
+            InitializeComponent();
+            cls = new PardakhtBussines();
+            _isLoaded = true;
+            switch (op)
+            {
+                case EnOperation.CheckM:
+                    mnuAddCheckM.PerformClick();
+                    break;
+                case EnOperation.CheckSh:
+                    mnuAddCheckSh.PerformClick();
+                    break;
+                case EnOperation.Havale:
+                    mnuAddHavale.PerformClick();
+                    break;
+                case EnOperation.Naqd:
+                    mnuAddNaqd.PerformClick();
+                    break;
+            }
         }
         public frmPardakhtMain(Guid guid, bool isShowMode)
         {

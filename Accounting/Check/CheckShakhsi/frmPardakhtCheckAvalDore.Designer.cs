@@ -1,7 +1,7 @@
 ﻿
-namespace Accounting.Pardakht
+namespace Accounting.Check.CheckShakhsi
 {
-    partial class frmPardakhtCheckSh
+    partial class frmPardakhtCheckAvalDore
     {
         /// <summary>
         /// Required designer variable.
@@ -30,8 +30,11 @@ namespace Accounting.Pardakht
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPardakhtCheckSh));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPardakhtCheckAvalDore));
             this.grp = new DevComponents.DotNetBar.PanelEx();
+            this.btnTafsilSearch = new DevComponents.DotNetBar.ButtonX();
+            this.txtTafsilName = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
             this.txtDate = new BPersianCalender.BPersianCalenderTextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.txtPrice = new WindowsSerivces.CurrencyTextBox();
@@ -55,6 +58,9 @@ namespace Accounting.Pardakht
             // 
             this.grp.CanvasColor = System.Drawing.SystemColors.Control;
             this.grp.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.grp.Controls.Add(this.btnTafsilSearch);
+            this.grp.Controls.Add(this.txtTafsilName);
+            this.grp.Controls.Add(this.label8);
             this.grp.Controls.Add(this.txtDate);
             this.grp.Controls.Add(this.label7);
             this.grp.Controls.Add(this.txtPrice);
@@ -66,9 +72,9 @@ namespace Accounting.Pardakht
             this.grp.Controls.Add(this.txtDesc);
             this.grp.Controls.Add(this.label3);
             this.grp.DisabledBackColor = System.Drawing.Color.Empty;
-            this.grp.Location = new System.Drawing.Point(7, 26);
+            this.grp.Location = new System.Drawing.Point(7, 23);
             this.grp.Name = "grp";
-            this.grp.Size = new System.Drawing.Size(389, 292);
+            this.grp.Size = new System.Drawing.Size(389, 329);
             this.grp.Style.Alignment = System.Drawing.StringAlignment.Center;
             this.grp.Style.BackColor1.Color = System.Drawing.Color.White;
             this.grp.Style.BackColor2.Color = System.Drawing.Color.White;
@@ -78,11 +84,50 @@ namespace Accounting.Pardakht
             this.grp.Style.CornerType = DevComponents.DotNetBar.eCornerType.Rounded;
             this.grp.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText;
             this.grp.Style.GradientAngle = 90;
-            this.grp.TabIndex = 0;
+            this.grp.TabIndex = 4;
+            // 
+            // btnTafsilSearch
+            // 
+            this.btnTafsilSearch.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnTafsilSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnTafsilSearch.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.btnTafsilSearch.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnTafsilSearch.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.btnTafsilSearch.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnTafsilSearch.Location = new System.Drawing.Point(15, 81);
+            this.btnTafsilSearch.Name = "btnTafsilSearch";
+            this.btnTafsilSearch.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
+            this.btnTafsilSearch.Size = new System.Drawing.Size(30, 27);
+            this.btnTafsilSearch.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
+            this.btnTafsilSearch.TabIndex = 31;
+            this.btnTafsilSearch.Text = "...";
+            this.btnTafsilSearch.TextColor = System.Drawing.Color.White;
+            this.btnTafsilSearch.Click += new System.EventHandler(this.btnTafsilSearch_Click);
+            // 
+            // txtTafsilName
+            // 
+            this.txtTafsilName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtTafsilName.Enabled = false;
+            this.txtTafsilName.Location = new System.Drawing.Point(51, 81);
+            this.txtTafsilName.Name = "txtTafsilName";
+            this.txtTafsilName.ReadOnly = true;
+            this.txtTafsilName.Size = new System.Drawing.Size(247, 27);
+            this.txtTafsilName.TabIndex = 33;
+            // 
+            // label8
+            // 
+            this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label8.AutoSize = true;
+            this.label8.BackColor = System.Drawing.Color.Transparent;
+            this.label8.Location = new System.Drawing.Point(336, 84);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(41, 20);
+            this.label8.TabIndex = 32;
+            this.label8.Text = "گیرنده";
             // 
             // txtDate
             // 
-            this.txtDate.Location = new System.Drawing.Point(15, 81);
+            this.txtDate.Location = new System.Drawing.Point(15, 114);
             this.txtDate.Miladi = new System.DateTime(2020, 10, 25, 17, 11, 28, 0);
             this.txtDate.Name = "txtDate";
             this.txtDate.NowDateSelected = false;
@@ -96,7 +141,7 @@ namespace Accounting.Pardakht
             // 
             this.label7.AutoSize = true;
             this.label7.BackColor = System.Drawing.Color.Transparent;
-            this.label7.Location = new System.Drawing.Point(326, 84);
+            this.label7.Location = new System.Drawing.Point(326, 117);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(51, 20);
             this.label7.TabIndex = 24;
@@ -109,7 +154,7 @@ namespace Accounting.Pardakht
             this.txtPrice.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.txtPrice.Cursor = System.Windows.Forms.Cursors.Hand;
             this.txtPrice.Font = new System.Drawing.Font("B Titr", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.txtPrice.Location = new System.Drawing.Point(15, 115);
+            this.txtPrice.Location = new System.Drawing.Point(15, 148);
             this.txtPrice.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtPrice.Name = "txtPrice";
             this.txtPrice.Size = new System.Drawing.Size(283, 31);
@@ -124,7 +169,7 @@ namespace Accounting.Pardakht
             // 
             this.label16.AutoSize = true;
             this.label16.BackColor = System.Drawing.Color.Transparent;
-            this.label16.Location = new System.Drawing.Point(348, 119);
+            this.label16.Location = new System.Drawing.Point(348, 152);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(29, 20);
             this.label16.TabIndex = 22;
@@ -189,7 +234,7 @@ namespace Accounting.Pardakht
             // 
             this.txtDesc.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.txtDesc.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.txtDesc.Location = new System.Drawing.Point(15, 152);
+            this.txtDesc.Location = new System.Drawing.Point(15, 185);
             this.txtDesc.Multiline = true;
             this.txtDesc.Name = "txtDesc";
             this.txtDesc.Size = new System.Drawing.Size(283, 130);
@@ -199,7 +244,7 @@ namespace Accounting.Pardakht
             // 
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.Transparent;
-            this.label3.Location = new System.Drawing.Point(324, 155);
+            this.label3.Location = new System.Drawing.Point(324, 188);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(54, 20);
             this.label3.TabIndex = 4;
@@ -215,12 +260,12 @@ namespace Accounting.Pardakht
             this.btnCancel.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Image = global::Accounting.Properties.Resources.tab_close_;
-            this.btnCancel.Location = new System.Drawing.Point(22, 327);
+            this.btnCancel.Location = new System.Drawing.Point(22, 358);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
             this.btnCancel.Size = new System.Drawing.Size(125, 31);
             this.btnCancel.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
-            this.btnCancel.TabIndex = 2;
+            this.btnCancel.TabIndex = 6;
             this.btnCancel.Text = "انصراف (Esc)";
             this.btnCancel.TextColor = System.Drawing.Color.Black;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
@@ -228,27 +273,26 @@ namespace Accounting.Pardakht
             // btnFinish
             // 
             this.btnFinish.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnFinish.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnFinish.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.btnFinish.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnFinish.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnFinish.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnFinish.Image = global::Accounting.Properties.Resources.tab_checkbox__;
-            this.btnFinish.Location = new System.Drawing.Point(256, 327);
+            this.btnFinish.Location = new System.Drawing.Point(255, 358);
             this.btnFinish.Name = "btnFinish";
             this.btnFinish.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
             this.btnFinish.Size = new System.Drawing.Size(125, 31);
             this.btnFinish.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
-            this.btnFinish.TabIndex = 1;
+            this.btnFinish.TabIndex = 5;
             this.btnFinish.Text = "تایید (F5)";
             this.btnFinish.TextColor = System.Drawing.Color.Black;
             this.btnFinish.Click += new System.EventHandler(this.btnFinish_Click);
             // 
-            // frmPardakhtCheckSh
+            // frmPardakhtCheckAvalDore
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(405, 367);
+            this.ClientSize = new System.Drawing.Size(405, 401);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnFinish);
             this.Controls.Add(this.grp);
@@ -257,15 +301,15 @@ namespace Accounting.Pardakht
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(405, 367);
+            this.MaximumSize = new System.Drawing.Size(405, 401);
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(405, 367);
-            this.Name = "frmPardakhtCheckSh";
+            this.MinimumSize = new System.Drawing.Size(405, 401);
+            this.Name = "frmPardakhtCheckAvalDore";
             this.Padding = new System.Windows.Forms.Padding(27, 92, 27, 31);
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.Style = MetroFramework.MetroColorStyle.Green;
-            this.Load += new System.EventHandler(this.frmPardakhtCheckSh_Load);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmPardakhtCheckSh_KeyDown);
+            this.Load += new System.EventHandler(this.frmPardakhtCheckAvalDore_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmPardakhtCheckAvalDore_KeyDown);
             this.grp.ResumeLayout(false);
             this.grp.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CheckBookBindingSource)).EndInit();
@@ -277,19 +321,22 @@ namespace Accounting.Pardakht
         #endregion
 
         private DevComponents.DotNetBar.PanelEx grp;
+        private BPersianCalender.BPersianCalenderTextBox txtDate;
         private System.Windows.Forms.Label label7;
         private WindowsSerivces.CurrencyTextBox txtPrice;
         private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.ComboBox cmbCheckBook;
+        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox cmbCheckPage;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtDesc;
         private System.Windows.Forms.Label label3;
+        private DevComponents.DotNetBar.ButtonX btnTafsilSearch;
+        private System.Windows.Forms.TextBox txtTafsilName;
+        private System.Windows.Forms.Label label8;
         private DevComponents.DotNetBar.ButtonX btnCancel;
         private DevComponents.DotNetBar.ButtonX btnFinish;
-        private BPersianCalender.BPersianCalenderTextBox txtDate;
-        private System.Windows.Forms.BindingSource CheckPageBindingSource;
-        private System.Windows.Forms.ComboBox cmbCheckBook;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.BindingSource CheckBookBindingSource;
+        private System.Windows.Forms.BindingSource CheckPageBindingSource;
     }
 }

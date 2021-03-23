@@ -291,6 +291,7 @@
     <Compile Include="ViewModels\DivarCities.cs" />
     <Compile Include="ViewModels\DivarRegion.cs" />
     <Compile Include="ViewModels\ForoshViewModel.cs" />
+    <Compile Include="ViewModels\PardakhtCheckViewModel.cs" />
     <Compile Include="ViewModels\RahnViewModel.cs" />
     <Compile Include="ViewModels\ReceptionCheckViewModel.cs" />
     <Compile Include="ViewModels\SheypoorCities.cs" />

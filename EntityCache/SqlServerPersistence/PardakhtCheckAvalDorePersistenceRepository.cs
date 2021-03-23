@@ -8,6 +8,7 @@ using EntityCache.Core;
 using Persistence.Entities;
 using Persistence.Model;
 using Services;
+using Services.DefaultCoding;
 
 namespace EntityCache.SqlServerPersistence
 {
@@ -34,7 +35,7 @@ namespace EntityCache.SqlServerPersistence
                 item.DasteCheckName = dr["DasteCheckName"].ToString();
                 item.Description = dr["Description"].ToString();
                 item.Price = (decimal)dr["Price"];
-                item.DateSarresid = (DateTime)dr["DateSarresid"];
+                if (dr["DateSarresid"] != DBNull.Value) item.DateSarresid = (DateTime)dr["DateSarresid"];
                 item.Number = dr["Number"].ToString();
                 item.TafsilName = dr["TafsilName"].ToString();
                 item.UserName = dr["UserName"].ToString();
@@ -105,6 +106,11 @@ namespace EntityCache.SqlServerPersistence
                     cmd.Parameters.AddWithValue("@dasteCheckName", item.DasteCheckName ?? "");
                     cmd.Parameters.AddWithValue("@tafsilGuid", item.TafsilGuid);
                     cmd.Parameters.AddWithValue("@userGuid", item.UserGuid);
+                    cmd.Parameters.AddWithValue("@sarmayeTafsilGuid", ParentDefaults.TafsilCoding.CLSTafsil5011001);
+                    cmd.Parameters.AddWithValue("@sarmayeMoeinGuid", ParentDefaults.MoeinCoding.CLSMoein50110);
+                    cmd.Parameters.AddWithValue("@tafsilCreditMoeinGuid", ParentDefaults.MoeinCoding.CLSMoein10304);
+                    cmd.Parameters.AddWithValue("@bankCreditMoeinGuid", ParentDefaults.MoeinCoding.CLSMoein10101);
+                    cmd.Parameters.AddWithValue("@sandouqCreditMoeinGuid", ParentDefaults.MoeinCoding.CLSMoein10102);
 
                     await cn.OpenAsync();
                     await cmd.ExecuteNonQueryAsync();
@@ -124,10 +130,17 @@ namespace EntityCache.SqlServerPersistence
             var res = new ReturnedSaveFuncInfo();
             try
             {
+                var item = await GetAsync(guid);
                 using (var cn = new SqlConnection(_connectionString))
                 {
                     var cmd = new SqlCommand("sp_PardakhtCheckAvalDore_Remove", cn) { CommandType = CommandType.StoredProcedure };
                     cmd.Parameters.AddWithValue("@guid", guid);
+                    cmd.Parameters.AddWithValue("@userGuid", item.UserGuid);
+                    cmd.Parameters.AddWithValue("@sarmayeTafsilGuid", ParentDefaults.TafsilCoding.CLSTafsil5011001);
+                    cmd.Parameters.AddWithValue("@sarmayeMoeinGuid", ParentDefaults.MoeinCoding.CLSMoein50110);
+                    cmd.Parameters.AddWithValue("@tafsilCreditMoeinGuid", ParentDefaults.MoeinCoding.CLSMoein10304);
+                    cmd.Parameters.AddWithValue("@bankCreditMoeinGuid", ParentDefaults.MoeinCoding.CLSMoein10101);
+                    cmd.Parameters.AddWithValue("@sandouqCreditMoeinGuid", ParentDefaults.MoeinCoding.CLSMoein10102);
 
                     await cn.OpenAsync();
                     await cmd.ExecuteNonQueryAsync();

@@ -3,20 +3,25 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WindowsSerivces;
+using Accounting.Hesab;
 using EntityCache.Bussines;
 using MetroFramework.Forms;
 using Services;
+using User;
 
-namespace Accounting.Pardakht
+namespace Accounting.Check.CheckShakhsi
 {
-    public partial class frmPardakhtCheckSh : MetroForm
+    public partial class frmPardakhtCheckAvalDore : MetroForm
     {
-        public PardakhtCheckShakhsiBussines cls { get; set; }
+        private Guid _tafsilGuid = Guid.Empty;
+        public PardakhtCheckAvalDoreBussines cls { get; set; }
+
         private async Task SetDataAsync()
         {
             try
             {
                 await FillDasteCheckAsync();
+                await SetTafilAsync(cls?.TafsilGuid ?? Guid.Empty);
 
                 txtPrice.TextDecimal = cls?.Price ?? 0;
                 txtDesc.Text = cls?.Description;
@@ -54,28 +59,57 @@ namespace Accounting.Pardakht
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
+        private async Task SetTafilAsync(Guid guid)
+        {
+            try
+            {
+                if (guid == Guid.Empty) return;
+                var tf = await TafsilBussines.GetAsync(guid);
+                if (tf == null) return;
 
-        public frmPardakhtCheckSh(PardakhtCheckShakhsiBussines temp)
+                _tafsilGuid = tf.Guid;
+                txtTafsilName.Text = tf.Name;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        public frmPardakhtCheckAvalDore()
         {
             InitializeComponent();
-            cls = temp ?? new PardakhtCheckShakhsiBussines();
+            cls = new PardakhtCheckAvalDoreBussines();
         }
-        public frmPardakhtCheckSh(Guid guid)
+        public frmPardakhtCheckAvalDore(Guid guid, bool isShowMode)
         {
             InitializeComponent();
-            cls = PardakhtCheckShakhsiBussines.Get(guid);
-            grp.Enabled = false;
-            btnFinish.Enabled = false;
+            cls = PardakhtCheckAvalDoreBussines.Get(guid);
+            grp.Enabled = !isShowMode;
+            btnFinish.Enabled = !isShowMode;
         }
 
-        private async void frmPardakhtCheckSh_Load(object sender, EventArgs e) => await SetDataAsync();
+        private async void btnTafsilSearch_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var frm = new frmSelectTafsil();
+                if (frm.ShowDialog() == DialogResult.OK)
+                    await SetTafilAsync(frm.SelectedGuid);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
         private async void cmbCheckBook_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
             {
                 if (CheckBookBindingSource.Count <= 0 || cmbCheckBook.SelectedValue == null) return;
                 var list = await CheckPageBussines.GetAllAsync((Guid)cmbCheckBook.SelectedValue);
-                CheckPageBindingSource.DataSource = list?.ToList();
+                CheckPageBindingSource.DataSource = list?.OrderBy(q => q.Number).ToList();
                 if (cls.Guid != Guid.Empty) cmbCheckPage.SelectedValue = cls.CheckPageGuid;
             }
             catch (Exception ex)
@@ -83,7 +117,8 @@ namespace Accounting.Pardakht
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void frmPardakhtCheckSh_KeyDown(object sender, KeyEventArgs e)
+        private async void frmPardakhtCheckAvalDore_Load(object sender, EventArgs e) => await SetDataAsync();
+        private void frmPardakhtCheckAvalDore_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
@@ -111,7 +146,7 @@ namespace Accounting.Pardakht
             DialogResult = DialogResult.Cancel;
             Close();
         }
-        private void btnFinish_Click(object sender, EventArgs e)
+        private async void btnFinish_Click(object sender, EventArgs e)
         {
             var res = new ReturnedSaveFuncInfo();
             try
@@ -119,21 +154,21 @@ namespace Accounting.Pardakht
                 if (cls.Guid == Guid.Empty)
                 {
                     cls.Guid = Guid.NewGuid();
-                    cls.DateM = DateTime.Now;
+                    cls.UserGuid = clsUser.CurrentUser.Guid;
                 }
 
-                if (CheckBookBindingSource.Count <= 0) res.AddError("لطفا دسته چک را انتخاب نمایید");
-                if (CheckPageBindingSource.Count <= 0) res.AddError("لطفا برگه چک را انتخاب نمایید");
-                if (string.IsNullOrEmpty(txtDate.Text)) res.AddError("لطفا تاریخ سررسید چک را وارد نمایید");
-                if (txtPrice.TextDecimal <= 0) res.AddError("لطفا مبلغ را وارد نمایید");
 
                 cls.Modified = DateTime.Now;
                 cls.Status = true;
+                cls.DasteCheckName = cmbCheckBook.Text;
                 cls.Description = txtDesc.Text;
                 cls.Price = txtPrice.TextDecimal;
-                cls.DateSarResid = Calendar.ShamsiToMiladi(txtDate.Text);
+                cls.DateSarresid = Calendar.ShamsiToMiladi(txtDate.Text);
                 cls.Number = cmbCheckPage.Text;
-                cls.CheckPageGuid = (Guid) cmbCheckPage.SelectedValue;
+                cls.CheckPageGuid = (Guid)cmbCheckPage.SelectedValue;
+                cls.TafsilGuid = _tafsilGuid;
+
+                res.AddReturnedValue(await cls.SaveAsync(true));
             }
             catch (Exception ex)
             {
@@ -143,7 +178,7 @@ namespace Accounting.Pardakht
             finally
             {
                 if (res.HasError)
-                    this.ShowError(res, "خطا در ثبت پرداخت چک شخصی");
+                    this.ShowError(res, "خطا در ثبت پرداخت چک شخصی اول دوره");
                 else
                 {
                     DialogResult = DialogResult.OK;

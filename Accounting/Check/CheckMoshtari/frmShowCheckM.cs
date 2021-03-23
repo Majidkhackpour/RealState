@@ -138,7 +138,7 @@ namespace Accounting.Check.CheckMoshtari
                 var avalDore = (bool)DGrid[dgAvalDore.Index, DGrid.CurrentRow.Index].Value;
                 if (!avalDore)
                 {
-                    frmNotification.PublicInfo.ShowMessage("جهت حذف چک طی دوره، لطفا از سند دریافت اقدام نمایید");
+                    frmNotification.PublicInfo.ShowMessage("جهت ویرایش چک طی دوره، لطفا از سند دریافت اقدام نمایید");
                     return;
                 }
 

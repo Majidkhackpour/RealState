@@ -161,6 +161,19 @@
     <Compile Include="Check\CheckMoshtari\frmCheckM_Vagozar.Designer.cs">
       <DependentUpon>frmCheckM_Vagozar.cs</DependentUpon>
     </Compile>
+    <Compile Include="Check\CheckShakhsi\clsCheckSh.cs" />
+    <Compile Include="Check\CheckShakhsi\frmPardakhtCheckAvalDore.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Check\CheckShakhsi\frmPardakhtCheckAvalDore.Designer.cs">
+      <DependentUpon>frmPardakhtCheckAvalDore.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Check\CheckShakhsi\frmShowCheckSh.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Check\CheckShakhsi\frmShowCheckSh.Designer.cs">
+      <DependentUpon>frmShowCheckSh.cs</DependentUpon>
+    </Compile>
     <Compile Include="Check\DasteCheck\frmDasteCheckMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -346,6 +359,12 @@
     <EmbeddedResource Include="Check\CheckMoshtari\frmCheckM_Vagozar.resx">
       <DependentUpon>frmCheckM_Vagozar.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Check\CheckShakhsi\frmPardakhtCheckAvalDore.resx">
+      <DependentUpon>frmPardakhtCheckAvalDore.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Check\CheckShakhsi\frmShowCheckSh.resx">
+      <DependentUpon>frmShowCheckSh.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Check\DasteCheck\frmDasteCheckMain.resx">
       <DependentUpon>frmDasteCheckMain.cs</DependentUpon>
     </EmbeddedResource>
@@ -461,6 +480,7 @@
     <None Include="Properties\DataSources\EntityCache.Bussines.SanadDetailBussines.datasource" />
     <None Include="Properties\DataSources\EntityCache.Bussines.TafsilBussines.datasource" />
     <None Include="Properties\DataSources\EntityCache.ViewModels.CheckViewModel.datasource" />
+    <None Include="Properties\DataSources\EntityCache.ViewModels.PardakhtCheckViewModel.datasource" />
     <None Include="Properties\DataSources\EntityCache.ViewModels.ReceptionCheckViewModel.datasource" />
     <None Include="Resources\add.png" />
   </ItemGroup>

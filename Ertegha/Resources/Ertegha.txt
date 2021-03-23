@@ -3566,7 +3566,7 @@ GO
 IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_PardakhtChackSh_RemoveByMaster]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
 	exec('Create Procedure [dbo].[sp_PardakhtChackSh_RemoveByMaster]	As Begin print 11 end')  
 GO
-Alter PROCEDURE sp_PardakhtChackSh_RemoveByMaster
+ALTER PROCEDURE [dbo].[sp_PardakhtChackSh_RemoveByMaster]
 	@masterGuid uniqueidentifier
 AS
 BEGIN
@@ -3591,7 +3591,19 @@ ALTER PROCEDURE [dbo].[sp_PardakhtCheckSh_Insert]
 	@number nvarchar(200)
 AS
 BEGIN
-	INSERT INTO [dbo].[PardakhtCheckShakhsis]
+	UPDATE [dbo].[PardakhtCheckShakhsis]
+	   SET [Modified] = @modif
+		  ,[DateSarResid] = @sarresid
+		  ,[Description] = @desc
+		  ,[Number] = @number
+		  ,[Price] = @price
+		  ,[DateM] = @dateM
+		  ,[CheckPageGuid] = @checkGuid
+		  ,[MasterGuid] = @masterGuid
+	 WHERE [Guid] = @guid
+	 if @@ROWCOUNT = 0
+	 begin
+		INSERT INTO [dbo].[PardakhtCheckShakhsis]
            ([Guid]
            ,[Modified]
            ,[Status]
@@ -3613,6 +3625,7 @@ BEGIN
 		   ,@price
 		   ,@dateM
 		   ,@number)
+	 end
 END
 GO
 --========================================================================================================
@@ -3899,24 +3912,37 @@ IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_PardakhtC
 	exec('Create Procedure [dbo].[sp_PardakhtCheckAvalDore_Remove]	As Begin print 11 end')  
 GO
 Alter PROCEDURE sp_PardakhtCheckAvalDore_Remove
-	@guid uniqueidentifier
+	@guid uniqueidentifier,
+	@userGuid uniqueidentifier,
+	@sarmayeTafsilGuid uniqueidentifier,
+	@sarmayeMoeinGuid uniqueidentifier,
+	@tafsilCreditMoeinGuid uniqueidentifier,
+	@bankCreditMoeinGuid uniqueidentifier,
+	@sandouqCreditMoeinGuid uniqueidentifier
 AS
 BEGIN
 	delete from PardakhtCheckAvalDores
 	where Guid=@guid
+
+	EXEC sp_Sanad_Update_Eftetahie @userGuid,@sarmayeTafsilGuid,@sarmayeMoeinGuid,@tafsilCreditMoeinGuid,@bankCreditMoeinGuid,@sandouqCreditMoeinGuid
 END
 GO
 --========================================================================================================
 IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_PardakhtCheckAvalDore_Save]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
 	exec('Create Procedure [dbo].[sp_PardakhtCheckAvalDore_Save]	As Begin print 11 end')  
 GO
-Alter PROCEDURE sp_PardakhtCheckAvalDore_Save
+ALTER PROCEDURE [dbo].[sp_PardakhtCheckAvalDore_Save]
 	@guid uniqueidentifier,
 	@modif datetime,
 	@checkPageGuid uniqueidentifier,
 	@tafsilGuid uniqueidentifier,
 	@userGuid uniqueidentifier,
-	@dasteCheckName nvarchar(200)
+	@dasteCheckName nvarchar(200),
+	@sarmayeTafsilGuid uniqueidentifier,
+	@sarmayeMoeinGuid uniqueidentifier,
+	@tafsilCreditMoeinGuid uniqueidentifier,
+	@bankCreditMoeinGuid uniqueidentifier,
+	@sandouqCreditMoeinGuid uniqueidentifier
 AS
 BEGIN
 	UPDATE [dbo].[PardakhtCheckAvalDores]
@@ -3945,4 +3971,64 @@ BEGIN
            ,@userGuid
            ,@dasteCheckName)
 	end
+
+	EXEC sp_Sanad_Update_Eftetahie @userGuid,@sarmayeTafsilGuid,@sarmayeMoeinGuid,@tafsilCreditMoeinGuid,@bankCreditMoeinGuid,@sandouqCreditMoeinGuid
+
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_PardakhtCheckShakhsi_Get]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_PardakhtCheckShakhsi_Get]	As Begin print 11 end')  
+GO
+ALTER PROCEDURE [dbo].[sp_PardakhtCheckShakhsi_Get]
+	@Guid uniqueidentifier
+AS
+BEGIN
+	select * from PardakhtCheckShakhsis
+	where Guid=@Guid
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_PardakhtCheckShakhsi_GetAllFromView]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_PardakhtCheckShakhsi_GetAllFromView]	As Begin print 11 end')  
+GO
+ALTER PROCEDURE [dbo].[sp_PardakhtCheckShakhsi_GetAllFromView]
+AS
+BEGIN
+select        PardakhtCheckShakhsis.Guid
+			, Bank.Name As BankName
+			, DasteChecks.BankGuid As BankGuid
+			, PardakhtCheckShakhsis.Description
+			, CheckPages.Number
+			, PardakhtCheckShakhsis.Price
+			, CheckPages.CheckStatus
+			, PardakhtCheckShakhsis.DateSarResid
+		    , P.Name As Girande
+			, CAST(0 as bit) As AvalDore
+			, T.TafsilGuid As GirandeGuid
+			, PardakhtCheckShakhsis.DateM
+	from PardakhtCheckShakhsis inner join Pardakhts as T on 
+		 T.Guid=PardakhtCheckShakhsis.MasterGuid inner join CheckPages on
+		 PardakhtCheckShakhsis.CheckPageGuid=CheckPages.Guid inner join Tafsils as P on
+		 T.TafsilGuid=P.Guid inner join DasteChecks on
+		 CheckPages.CheckGuid=DasteChecks.Guid inner join Tafsils As Bank on
+		 DasteChecks.BankGuid=Bank.Guid
+	union All
+	select    PardakhtCheckAvalDores.Guid
+			, Bank.Name
+			, DasteChecks.BankGuid As BankGuid
+			, CheckPages.Description
+			, CheckPages.Number
+			, CheckPages.Price
+			, CheckPages.CheckStatus
+			, CheckPages.DateSarResid
+			, Tafsils.Name As Pardazande
+			, CAST(1 as bit) As AvalDore
+			, PardakhtCheckAvalDores.TafsilGuid As GirandeGuid
+			, PardakhtCheckAvalDores.Modified As DateM
+	from PardakhtCheckAvalDores inner join Tafsils on
+		 PardakhtCheckAvalDores.TafsilGuid=Tafsils.Guid inner join CheckPages on
+		 PardakhtCheckAvalDores.CheckPageGuid=CheckPages.Guid inner join DasteChecks on
+		 CheckPages.CheckGuid=DasteChecks.Guid inner join Tafsils As Bank on
+		 DasteChecks.BankGuid=Bank.Guid
 END
