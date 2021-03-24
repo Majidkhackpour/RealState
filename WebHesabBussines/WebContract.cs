@@ -37,8 +37,19 @@ namespace WebHesabBussines
         public decimal Delay { get; set; }
         public string Description { get; set; }
         public EnRequestType Type { get; set; }
-        public Guid BazaryabGuid { get; set; }
+        public Guid? BazaryabGuid { get; set; }
         public decimal BazaryabPrice { get; set; }
+        public long SanadNumber { get; set; }
+        public EnContractBabat fBabat { get; set; }
+        public EnContractBabat sBabat { get; set; }
+        public decimal FirstDiscount { get; set; }
+        public decimal SecondDiscount { get; set; }
+        public decimal FirstTax { get; set; }
+        public decimal FirstAvarez { get; set; }
+        public decimal SecondTax { get; set; }
+        public decimal SecondAvarez { get; set; }
+        public decimal FirstTotalPrice { get; set; }
+        public decimal SecondTotalPrice { get; set; }
         public string HardSerial { get; set; }
         public ContractFinanceBussines Finance { get; set; }
 

@@ -48,14 +48,14 @@ namespace Accounting.Sood_Zian
                 lblDate1.Text = Calendar.MiladiToShamsi(_date1);
                 lblDate2.Text = Calendar.MiladiToShamsi(_date2);
 
-                txtBazarYab.Text = cls.TotalBazarYab.ToString("N0");
-                txtBeforeTax.Text = cls.Sood_BeforeTax.ToString("N0");
-                txtCommition.Text = cls.TotalCommition.ToString("N0");
-                txtNakhales.Text = cls.Sood_Nakhales.ToString("N0");
-                txtSood.Text = cls.Sood_Total.ToString("N0");
-                txtTax.Text = cls.TotalTax.ToString("N0");
+                //txtBazarYab.Text = cls.TotalBazarYab.ToString("N0");
+                //txtBeforeTax.Text = cls.Sood_BeforeTax.ToString("N0");
+                //txtCommition.Text = cls.TotalCommition.ToString("N0");
+                //txtNakhales.Text = cls.Sood_Nakhales.ToString("N0");
+                //txtSood.Text = cls.Sood_Total.ToString("N0");
+                //txtTax.Text = cls.TotalTax.ToString("N0");
 
-                lblBallance.Text = cls.Ballance;
+                //lblBallance.Text = cls.Ballance;
             }
             catch (Exception ex)
             {

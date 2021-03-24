@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using Services;
 using Servicess.Interfaces.Building;
@@ -74,5 +75,6 @@ namespace Persistence.Entities
 
         [MaxLength(100)]
         public string Image { get; set; }
+        public virtual ICollection<Contract> Contract { get; set; }
     }
 }

@@ -126,7 +126,6 @@
     <Compile Include="Bussines\CheckPageBussines.cs" />
     <Compile Include="Bussines\CitiesBussines.cs" />
     <Compile Include="Bussines\ContractBussines.cs" />
-    <Compile Include="Bussines\ContractFinanceBussines.cs" />
     <Compile Include="Bussines\DasteCheckBussines.cs" />
     <Compile Include="Bussines\DocumentTypeBussines.cs" />
     <Compile Include="Bussines\FileInfoBussines.cs" />
@@ -183,7 +182,6 @@
     <Compile Include="Core\IBuildingViewRepository.cs" />
     <Compile Include="Core\ICheckPageRepository.cs" />
     <Compile Include="Core\ICitiesRepository.cs" />
-    <Compile Include="Core\IContractFinanceRepository.cs" />
     <Compile Include="Core\IContractRepository.cs" />
     <Compile Include="Core\IDasteCheckRepository.cs" />
     <Compile Include="Core\IDocumentTypeRepository.cs" />

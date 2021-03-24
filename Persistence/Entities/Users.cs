@@ -34,5 +34,6 @@ namespace Persistence.Entities
         public virtual ICollection<Pardakht> Pardakht { get; set; }
         public virtual ICollection<PardakhtCheckAvalDore> PardakhtCheckAvalDore { get; set; }
         public virtual ICollection<ReceptionCheckAvalDore> ReceptionCheckAvalDore { get; set; }
+        public virtual ICollection<Contract> Contract { get; set; }
     }
 }

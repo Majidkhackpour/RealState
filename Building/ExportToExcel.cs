@@ -42,8 +42,8 @@ namespace Building
 
                     ws.Cells[index, 1] = item.DateSh;
                     ws.Cells[index, 2] = item.Code;
-                    ws.Cells[index, 3] = item.fName;
-                    ws.Cells[index, 4] = item.sName;
+                    ws.Cells[index, 3] = item.FirstSideName;
+                    ws.Cells[index, 4] = item.SecondSideName;
                     ws.Cells[index, 5] = item.UserName;
                 }
 

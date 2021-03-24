@@ -40,8 +40,6 @@
             this.dgRadif = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DateSh = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.sNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DischargeDateSh = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.userNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.isTempDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
@@ -65,22 +63,21 @@
             this.sarQofliDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.delayDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.descriptionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.conBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.contextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.mnuAdd = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuEdit = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuDelete = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.mnuView = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuStatus = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
-            this.mnuShowStandard = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuPrint = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuChangeTemp = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
+            this.mnuShowStandard = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuPrint = new System.Windows.Forms.ToolStripMenuItem();
+            this.conBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.conBindingSource)).BeginInit();
             this.contextMenu.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.conBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // txtSearch
@@ -132,8 +129,6 @@
             this.dgRadif,
             this.DateSh,
             this.dgCode,
-            this.fNameDataGridViewTextBoxColumn,
-            this.sNameDataGridViewTextBoxColumn,
             this.DischargeDateSh,
             this.userNameDataGridViewTextBoxColumn,
             this.isTempDataGridViewCheckBoxColumn,
@@ -209,7 +204,7 @@
             this.DateSh.HeaderText = "تاریخ ثبت";
             this.DateSh.Name = "DateSh";
             this.DateSh.ReadOnly = true;
-            this.DateSh.Width = 74;
+            this.DateSh.Width = 80;
             // 
             // dgCode
             // 
@@ -218,24 +213,7 @@
             this.dgCode.HeaderText = "کد قرارداد";
             this.dgCode.Name = "dgCode";
             this.dgCode.ReadOnly = true;
-            this.dgCode.Width = 80;
-            // 
-            // fNameDataGridViewTextBoxColumn
-            // 
-            this.fNameDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.fNameDataGridViewTextBoxColumn.DataPropertyName = "fName";
-            this.fNameDataGridViewTextBoxColumn.HeaderText = "طرف اول/فروشنده/موجر";
-            this.fNameDataGridViewTextBoxColumn.Name = "fNameDataGridViewTextBoxColumn";
-            this.fNameDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // sNameDataGridViewTextBoxColumn
-            // 
-            this.sNameDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.sNameDataGridViewTextBoxColumn.DataPropertyName = "sName";
-            this.sNameDataGridViewTextBoxColumn.HeaderText = "طرف دوم/خریدار/مستاجر";
-            this.sNameDataGridViewTextBoxColumn.Name = "sNameDataGridViewTextBoxColumn";
-            this.sNameDataGridViewTextBoxColumn.ReadOnly = true;
-            this.sNameDataGridViewTextBoxColumn.Width = 146;
+            this.dgCode.Width = 87;
             // 
             // DischargeDateSh
             // 
@@ -244,7 +222,7 @@
             this.DischargeDateSh.HeaderText = "تاریخ تحویل";
             this.DischargeDateSh.Name = "DischargeDateSh";
             this.DischargeDateSh.ReadOnly = true;
-            this.DischargeDateSh.Width = 84;
+            this.DischargeDateSh.Width = 91;
             // 
             // userNameDataGridViewTextBoxColumn
             // 
@@ -253,7 +231,7 @@
             this.userNameDataGridViewTextBoxColumn.HeaderText = "کاربر ثبت کننده";
             this.userNameDataGridViewTextBoxColumn.Name = "userNameDataGridViewTextBoxColumn";
             this.userNameDataGridViewTextBoxColumn.ReadOnly = true;
-            this.userNameDataGridViewTextBoxColumn.Width = 99;
+            this.userNameDataGridViewTextBoxColumn.Width = 108;
             // 
             // isTempDataGridViewCheckBoxColumn
             // 
@@ -424,10 +402,6 @@
             this.descriptionDataGridViewTextBoxColumn.ReadOnly = true;
             this.descriptionDataGridViewTextBoxColumn.Visible = false;
             // 
-            // conBindingSource
-            // 
-            this.conBindingSource.DataSource = typeof(EntityCache.Bussines.ContractBussines);
-            // 
             // contextMenu
             // 
             this.contextMenu.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
@@ -437,7 +411,6 @@
             this.mnuDelete,
             this.toolStripMenuItem1,
             this.mnuView,
-            this.mnuStatus,
             this.toolStripMenuItem2,
             this.mnuChangeTemp,
             this.toolStripMenuItem3,
@@ -445,7 +418,7 @@
             this.mnuPrint});
             this.contextMenu.Name = "contextMenu";
             this.contextMenu.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.contextMenu.Size = new System.Drawing.Size(327, 236);
+            this.contextMenu.Size = new System.Drawing.Size(327, 212);
             // 
             // mnuAdd
             // 
@@ -484,18 +457,23 @@
             this.mnuView.Text = "مشاهده (F12)";
             this.mnuView.Click += new System.EventHandler(this.mnuView_Click);
             // 
-            // mnuStatus
-            // 
-            this.mnuStatus.Image = global::Building.Properties.Resources.refresh_round_symbol;
-            this.mnuStatus.Name = "mnuStatus";
-            this.mnuStatus.Size = new System.Drawing.Size(326, 24);
-            this.mnuStatus.Text = "غیرفعال (Ctrl+S)";
-            this.mnuStatus.Click += new System.EventHandler(this.mnuStatus_Click);
-            // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
             this.toolStripMenuItem2.Size = new System.Drawing.Size(323, 6);
+            // 
+            // mnuChangeTemp
+            // 
+            this.mnuChangeTemp.Image = global::Building.Properties.Resources.profile;
+            this.mnuChangeTemp.Name = "mnuChangeTemp";
+            this.mnuChangeTemp.Size = new System.Drawing.Size(326, 24);
+            this.mnuChangeTemp.Text = "نهایی کردن و بستن قولنامه";
+            this.mnuChangeTemp.Click += new System.EventHandler(this.mnuChangeTemp_Click);
+            // 
+            // toolStripMenuItem3
+            // 
+            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(323, 6);
             // 
             // mnuShowStandard
             // 
@@ -513,18 +491,9 @@
             this.mnuPrint.Text = "چاپ لیست قولنامه ها";
             this.mnuPrint.Click += new System.EventHandler(this.mnuPrint_Click);
             // 
-            // mnuChangeTemp
+            // conBindingSource
             // 
-            this.mnuChangeTemp.Image = global::Building.Properties.Resources.profile;
-            this.mnuChangeTemp.Name = "mnuChangeTemp";
-            this.mnuChangeTemp.Size = new System.Drawing.Size(326, 24);
-            this.mnuChangeTemp.Text = "نهایی کردن و بستن قولنامه";
-            this.mnuChangeTemp.Click += new System.EventHandler(this.mnuChangeTemp_Click);
-            // 
-            // toolStripMenuItem3
-            // 
-            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(323, 6);
+            this.conBindingSource.DataSource = typeof(EntityCache.Bussines.ContractBussines);
             // 
             // frmShowContract
             // 
@@ -546,8 +515,8 @@
             this.Load += new System.EventHandler(this.frmShowContract_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmShowContract_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.conBindingSource)).EndInit();
             this.contextMenu.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.conBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -590,7 +559,6 @@
         private System.Windows.Forms.ToolStripMenuItem mnuDelete;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem mnuView;
-        private System.Windows.Forms.ToolStripMenuItem mnuStatus;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem mnuShowStandard;
         private System.Windows.Forms.ToolStripMenuItem mnuPrint;

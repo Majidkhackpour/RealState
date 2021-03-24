@@ -38,7 +38,6 @@ namespace EntityCache.Assistence
         private static IBuildingRequestRepository _buildingRequestRepository;
         private static IBuildingRequestRegionRepository _buildingRequestRegionRepository;
         private static IContractRepository _contractRepository;
-        private static IContractFinanceRepository _contractFinanceRepository;
         private static IUserLogRepository _userLogRepository;
         private static ISmsLogRepository _smsLogRepository;
         private static INoteRepository _noteRepository;
@@ -190,11 +189,6 @@ namespace EntityCache.Assistence
         public static IContractRepository Contract => _contractRepository ??
                                                         (_contractRepository =
                                                             new ContractPersistenceRepository(db, _connectionString));
-
-
-        public static IContractFinanceRepository ContractFinance => _contractFinanceRepository ??
-                                                      (_contractFinanceRepository =
-                                                          new ContractFinancePersisteceRepository(db, _connectionString));
 
 
         public static IUserLogRepository UserLog => _userLogRepository ??

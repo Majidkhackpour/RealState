@@ -53,26 +53,10 @@ namespace Building.Contract
 
                 txtDesc.Text = cls?.Description;
 
-                if (cls?.Finance != null)
-                {
-                    cls.FPrice = (cls.Finance.FirstTotalPrice + cls.Finance.FirstAddedValue) -
-                            cls.Finance.FirstDiscount;
-
-                    cls.SPrice = (cls.Finance.SecondTotalPrice + cls.Finance.SecondAddedValue) -
-                             cls.Finance.SecondDiscount;
-
-                    cmbfBabat.SelectedIndex = (int)cls?.Finance?.fBabat;
-                    cmbsBabat.SelectedIndex = (int)cls?.Finance?.sBabat;
-                    SetFirstSallary();
-                    SetSecondSallary();
-                }
-                else
-                {
-                    cmbfBabat.SelectedIndex = 0;
-                    cmbsBabat.SelectedIndex = 0;
-                    lblfTotal.Text = lblsTotal.Text = "0";
-                    lblTotalCommition.Text = "0";
-                }
+                cmbfBabat.SelectedIndex = (int)cls?.fBabat;
+                cmbsBabat.SelectedIndex = (int)cls?.sBabat;
+                SetFirstSallary();
+                SetSecondSallary();
 
                 cmbBazaryab.SelectedValue = cls?.BazaryabGuid;
                 txtBazaryabPrice.TextDecimal = cls?.BazaryabPrice ?? 0;
@@ -256,24 +240,12 @@ namespace Building.Contract
                     txtBeyane.TextDecimal = cls?.MinorPrice ?? 0;
                 }
 
-                if (cls?.Finance == null)
-                {
-                    txtfTotalPrice.TextDecimal = 0;
-                    txtfDiscount.TextDecimal = 0;
-                    txtfAddedValue.TextDecimal = 0;
-                    txtsTotalPrice.TextDecimal = 0;
-                    txtsDiscount.TextDecimal = 0;
-                    txtsAddedValue.TextDecimal = 0;
-                }
-                else
-                {
-                    txtfTotalPrice.TextDecimal = cls?.Finance?.FirstTotalPrice ?? 0;
-                    txtfDiscount.TextDecimal = cls?.Finance?.FirstDiscount ?? 0;
-                    txtfAddedValue.TextDecimal = cls?.Finance?.FirstAddedValue ?? 0;
-                    txtsTotalPrice.TextDecimal = cls?.Finance?.SecondTotalPrice ?? 0;
-                    txtsDiscount.TextDecimal = cls?.Finance?.SecondDiscount ?? 0;
-                    txtsAddedValue.TextDecimal = cls?.Finance?.SecondAddedValue ?? 0;
-                }
+                txtfTotalPrice.TextDecimal = cls?.FirstTotalPrice ?? 0;
+                txtfDiscount.TextDecimal = cls?.FirstDiscount ?? 0;
+                txtfAddedValue.TextDecimal = cls?.FirstTax ?? 0;
+                txtsTotalPrice.TextDecimal = cls?.SecondTotalPrice ?? 0;
+                txtsDiscount.TextDecimal = cls?.SecondDiscount ?? 0;
+                txtsAddedValue.TextDecimal = cls?.SecondTax ?? 0;
             }
             catch (Exception ex)
             {
@@ -394,19 +366,15 @@ namespace Building.Contract
                 cls.Description = txtDesc.Text;
                 cls.Delay = txtDelay.TextDecimal;
 
-                if (cls.Finance == null)
-                    cls.Finance = new ContractFinanceBussines { Guid = Guid.NewGuid() };
+                cls.FirstTax = txtfAddedValue.TextDecimal;
+                cls.FirstDiscount = txtfDiscount.TextDecimal;
+                cls.FirstTotalPrice = txtfTotalPrice.TextDecimal;
+                cls.SecondTax = txtsAddedValue.TextDecimal;
+                cls.SecondDiscount = txtsDiscount.TextDecimal;
+                cls.SecondTotalPrice = txtsTotalPrice.TextDecimal;
 
-                cls.Finance.FirstAddedValue = txtfAddedValue.TextDecimal;
-                cls.Finance.FirstDiscount = txtfDiscount.TextDecimal;
-                cls.Finance.FirstTotalPrice = txtfTotalPrice.TextDecimal;
-                cls.Finance.SecondAddedValue = txtsAddedValue.TextDecimal;
-                cls.Finance.SecondDiscount = txtsDiscount.TextDecimal;
-                cls.Finance.SecondTotalPrice = txtsTotalPrice.TextDecimal;
-
-                cls.Finance.fBabat = (EnContractBabat)cmbfBabat.SelectedIndex;
-                cls.Finance.sBabat = (EnContractBabat)cmbsBabat.SelectedIndex;
-                cls.Finance.ConGuid = cls.Guid;
+                cls.fBabat = (EnContractBabat)cmbfBabat.SelectedIndex;
+                cls.sBabat = (EnContractBabat)cmbsBabat.SelectedIndex;
                 cls.BazaryabGuid = (Guid)cmbBazaryab.SelectedValue;
                 cls.BazaryabPrice = txtBazaryabPrice.TextDecimal;
 

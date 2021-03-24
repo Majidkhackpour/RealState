@@ -17,13 +17,13 @@ namespace Building.Contract
     {
         private bool _st = true;
         private List<ContractBussines> list;
-        private async Task LoadDataAsync(bool status, string search = "")
+        private async Task LoadDataAsync(string search = "")
         {
             try
             {
                 list = await ContractBussines.GetAllAsync(search);
                 Invoke(new MethodInvoker(() => conBindingSource.DataSource =
-                    list.Where(q => q.Status == status).OrderByDescending(q => q.Modified).ToSortableBindingList()));
+                    list.OrderByDescending(q => q.Modified).ToSortableBindingList()));
             }
             catch (Exception ex)
             {
@@ -38,33 +38,12 @@ namespace Building.Contract
                 mnuAdd.Enabled = access?.Contract.Contract_Insert ?? false;
                 mnuEdit.Enabled = access?.Contract.Contract_Update ?? false;
                 mnuDelete.Enabled = access?.Contract.Contract_Delete ?? false;
-                mnuStatus.Enabled = access?.Contract.Contract_Disable ?? false;
                 mnuView.Enabled = access?.Contract.Contract_View ?? false;
                 mnuChangeTemp.Enabled = access?.Contract.Contract_Finish ?? false;
             }
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-        public bool ST
-        {
-            get => _st;
-            set
-            {
-                _st = value;
-                if (_st)
-                {
-                    mnuStatus.Text = "غیرفعال (Ctrl+S)";
-                    Task.Run(() => LoadDataAsync(ST, txtSearch.Text));
-                    mnuDelete.Text = "حذف (Del)";
-                }
-                else
-                {
-                    mnuStatus.Text = "فعال (Ctrl+S)";
-                    Task.Run(() => LoadDataAsync(ST, txtSearch.Text));
-                    mnuDelete.Text = "فعال کردن";
-                }
             }
         }
 
@@ -74,10 +53,7 @@ namespace Building.Contract
             SetAccess();
         }
 
-        private async void frmShowContract_Load(object sender, EventArgs e)
-        {
-            await LoadDataAsync(ST);
-        }
+        private async void frmShowContract_Load(object sender, EventArgs e) => await LoadDataAsync();
         private void DGrid_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
             DGrid.Rows[e.RowIndex].Cells["dgRadif"].Value = e.RowIndex + 1;
@@ -86,7 +62,7 @@ namespace Building.Contract
         {
             try
             {
-                await LoadDataAsync(ST, txtSearch.Text);
+                await LoadDataAsync(txtSearch.Text);
             }
             catch (Exception ex)
             {
@@ -110,9 +86,6 @@ namespace Building.Contract
                         break;
                     case Keys.F12:
                         mnuView.PerformClick();
-                        break;
-                    case Keys.S:
-                        if (e.Control) ST = !ST;
                         break;
                     case Keys.Escape:
                         if (!string.IsNullOrEmpty(txtSearch.Text))
@@ -145,7 +118,7 @@ namespace Building.Contract
             {
                 var frm = new frmContractMain();
                 if (frm.ShowDialog(this) == DialogResult.OK)
-                    await LoadDataAsync(ST, txtSearch.Text);
+                    await LoadDataAsync(txtSearch.Text);
             }
             catch (Exception ex)
             {
@@ -226,7 +199,7 @@ namespace Building.Contract
                         Sarqofli = contract?.SarQofli ?? 0,
                         Delay = contract?.Delay ?? 0,
                         UnitCity = unitCity?.Name,
-                        Commition = contract?.Finance?.FirstTotalPrice ?? 0,
+                        Commition = contract?.FirstTotalPrice ?? 0,
                         ContractDate = contract?.DateSh,
                         ContractTime = contract?.DateM.ToShortTimeString()
                     };
@@ -270,7 +243,7 @@ namespace Building.Contract
                         BuildingAccountType = buildingAccountType?.Name,
                         Delay = contract?.Delay ?? 0,
                         UnitCity = unitCity?.Name,
-                        Commition = contract?.Finance?.FirstTotalPrice ?? 0,
+                        Commition = contract?.FirstTotalPrice ?? 0,
                         ContractDate = contract?.DateSh,
                         ContractTime = contract?.DateM.ToShortTimeString()
                     };
@@ -323,10 +296,9 @@ namespace Building.Contract
                     frm.ShowDialog(this);
                     frm.Dispose();
                 }
-                else await LoadDataAsync(ST, txtSearch.Text);
+                else await LoadDataAsync(txtSearch.Text);
             }
         }
-        private void mnuStatus_Click(object sender, EventArgs e) => ST = !ST;
         private async void mnuDelete_Click(object sender, EventArgs e)
         {
             var res = new ReturnedSaveFuncInfo();
@@ -335,37 +307,19 @@ namespace Building.Contract
                 if (DGrid.RowCount <= 0) return;
                 if (DGrid.CurrentRow == null) return;
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
-                if (ST)
+                if (MessageBox.Show(this,
+                        $@"آیا از حذف قرارداد اطمینان دارید؟", "حذف",
+                        MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Question) == DialogResult.No) return;
+                var prd = await ContractBussines.GetAsync(guid);
+                if (!prd.IsTemp)
                 {
-                    if (MessageBox.Show(this,
-                            $@"آیا از حذف قرارداد اطمینان دارید؟", "حذف",
-                            MessageBoxButtons.YesNo,
-                            MessageBoxIcon.Question) == DialogResult.No) return;
-                    var prd = await ContractBussines.GetAsync(guid);
-                    if (!prd.IsTemp)
-                    {
-                        frmNotification.PublicInfo.ShowMessage(
-                            "شما مجاز به حذف داده نهایی شده نمی باشید");
-                        return;
-                    }
-
-                    res.AddReturnedValue(await prd.ChangeStatusAsync(false));
-                    if (res.HasError) return;
-                    UserLog.Save(EnLogAction.Delete, EnLogPart.Contracts);
+                    frmNotification.PublicInfo.ShowMessage(
+                        "شما مجاز به حذف داده نهایی شده نمی باشید");
+                    return;
                 }
-                else
-                {
-                    if (MessageBox.Show(this,
-                            $@"آیا از فعال کردن سند پرداخت اطمینان دارید؟", "حذف",
-                            MessageBoxButtons.YesNo,
-                            MessageBoxIcon.Question) == DialogResult.No) return;
-                    var prd = await ContractBussines.GetAsync(guid);
 
-
-                    res.AddReturnedValue(await prd.ChangeStatusAsync(true));
-                    if (res.HasError) return;
-                    UserLog.Save(EnLogAction.Enable, EnLogPart.Contracts);
-                }
+                res.AddReturnedValue(await prd.RemoveAsync());
             }
             catch (Exception ex)
             {
@@ -376,11 +330,11 @@ namespace Building.Contract
             {
                 if (res.HasError)
                 {
-                    var frm = new FrmShowErrorMessage(res, "خطا در تغییر وضعیت قولنامه");
+                    var frm = new FrmShowErrorMessage(res, "خطا در حذف قولنامه");
                     frm.ShowDialog(this);
                     frm.Dispose();
                 }
-                else await LoadDataAsync(ST, txtSearch.Text);
+                else await LoadDataAsync(txtSearch.Text);
             }
         }
         private void mnuView_Click(object sender, EventArgs e)
@@ -404,12 +358,6 @@ namespace Building.Contract
             {
                 if (DGrid.RowCount <= 0) return;
                 if (DGrid.CurrentRow == null) return;
-                if (!ST)
-                {
-                    frmNotification.PublicInfo.ShowMessage(
-                        "شما مجاز به ویرایش داده حذف شده نمی باشید \r\n برای این منظور، ابتدا فیلد موردنظر را از حالت حذف شده به فعال، تغییر وضعیت دهید");
-                    return;
-                }
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
                 var con = ContractBussines.Get(guid);
                 if (con == null) return;
@@ -421,7 +369,7 @@ namespace Building.Contract
                 }
                 var frm = new frmContractMain(guid, false);
                 if (frm.ShowDialog(this) == DialogResult.OK)
-                    await LoadDataAsync(ST, txtSearch.Text);
+                    await LoadDataAsync(txtSearch.Text);
             }
             catch (Exception ex)
             {

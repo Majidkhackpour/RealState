@@ -99,6 +99,7 @@ namespace EntityCache.Assistence.Defualts
                 list.Add(SetDef("سرمایه اهدایی از دولت", "5010401", ParentDefaults.TafsilCoding.CLSTafsil5010401, HesabType.Tafsil));
                 list.Add(SetDef("سهام خزانه", "5010601", ParentDefaults.TafsilCoding.CLSTafsil5010601, HesabType.Tafsil));
                 list.Add(SetDef("سرمایه پرداخت شده", "5011001", ParentDefaults.TafsilCoding.CLSTafsil5011001, HesabType.Tafsil));
+                list.Add(SetDef("تخفیفات نقدی فروش", "6010301", ParentDefaults.TafsilCoding.CLSTafsil6010301, HesabType.Tafsil));
                 list.Add(SetDef("درآمدناخالص", "6020101", ParentDefaults.TafsilCoding.CLSTafsil6020101, HesabType.Tafsil));
                 list.Add(SetDef("بهای تمام شده مواد مستقیم", "7010101", ParentDefaults.TafsilCoding.CLSTafsil7010101, HesabType.Tafsil));
                 list.Add(SetDef("بهای تمام شده دستمزد مستقیم", "7010102", ParentDefaults.TafsilCoding.CLSTafsil7010102, HesabType.Tafsil));

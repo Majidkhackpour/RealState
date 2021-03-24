@@ -1025,23 +1025,6 @@ select [dbo].[BuildingRequests].*,[dbo].[Peoples].Name As AskerName,
 End
 GO
 -- ==========================================================================================
-IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Contract_SelectAll]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
-	exec('Create Procedure [dbo].[sp_Contract_SelectAll]	As Begin print 11 end')
-GO
-
-ALTER PROCEDURE [dbo].[sp_Contract_SelectAll] 
-AS
-BEGIN
-	select [dbo].[Contracts].*,[dbo].[Peoples].Name as fName,
-	(select [dbo].[Peoples].Name from [dbo].[Peoples] where Guid=[dbo].[Contracts].SecondSideGuid) as sName,
-	[dbo].[Users].Name as UserName
-	from [dbo].[Contracts] left Outer join [dbo].[Peoples]
-	on [dbo].[Contracts].FirstSideGuid=[dbo].[Peoples].Guid
-	left outer join [dbo].[Users]
-	on [dbo].[Contracts].UserGuid=[dbo].[Users].Guid
-End
-GO
--- ==========================================================================================
 IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_UserLog_SelectAll_ByUser_And_Date]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
 	exec('Create Procedure [dbo].[sp_UserLog_SelectAll_ByUser_And_Date]	As Begin print 11 end')
 GO
@@ -1096,109 +1079,15 @@ BEGIN
 End
 GO
 -- ==========================================================================================
-IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Contract_ChangeStatus]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
-	exec('Create Procedure [dbo].[sp_Contract_ChangeStatus]	As Begin print 11 end')
-GO
-
-ALTER PROCEDURE [dbo].[sp_Contract_ChangeStatus]
-	@conGuid uniqueidentifier,
-	@st bit
-AS
-BEGIN	
-	update ContractFinances
-	set Status=@st
-	where ConGuid=@conGuid
-
-	update GardeshHesabs
-	set Status=@st
-	where ParentGuid=@conGuid
-
-	update Contracts
-	set Status=@st 
-	where Guid=@conGuid
-
-	declare @buildingGuid uniqueidentifier
-	set @buildingGuid=(select BuildingGuid from Contracts where Guid=@conGuid)
-
-	declare @fPrice bigint
-	set @fPrice= (select FirstTotalPrice from ContractFinances where ConGuid=@conGuid)
-	declare @fAddedd bigint
-	set @fAddedd= (select FirstAddedValue from ContractFinances where ConGuid=@conGuid)
-	declare @fDis bigint
-	set @fDis= (select FirstDiscount from ContractFinances where ConGuid=@conGuid)
-	declare @fGuid uniqueidentifier
-	set @fGuid=(select FirstSideGuid from Contracts where Guid=@conGuid)
-
-	set @fPrice=(@fPrice+@fAddedd)-@fDis
-
-	declare @sPrice bigint
-	set @sPrice= (select SecondTotalPrice from ContractFinances where ConGuid=@conGuid)
-	declare @sAddedd bigint
-	set @sAddedd= (select SecondAddedValue from ContractFinances where ConGuid=@conGuid)
-	declare @sDis bigint
-	set @sDis= (select SecondDiscount from ContractFinances where ConGuid=@conGuid)
-	declare @sGuid uniqueidentifier
-	set @sGuid=(select SecondSideGuid from Contracts where Guid=@conGuid)
-
-	set @sPrice=(@sPrice+@sAddedd)-@sDis
-
-	declare @bPrice bigint
-	set @bPrice= (select BazaryabPrice from Contracts where Guid=@conGuid)
-
-	declare @bGuid uniqueidentifier
-	set @bGuid=(select BazaryabGuid from Contracts where Guid=@conGuid)
-
-	if(@st='true')
-	begin
-		--update Peoples
-		--set Account=Account+@fPrice
-		--where Guid=@fGuid
-
-		--update Peoples
-		--set Account=Account+@SPrice
-		--where Guid=@sGuid
-
-		--update Users
-		--set Account =Account-@bPrice
-		--where Guid=@bGuid
-
-		update Buildings
-		set IsArchive='true'
-		where Guid=@buildingGuid
-	end
-	else
-	begin
-		--update Peoples
-		--set Account=Account-@fPrice
-		--where Guid=@fGuid
-
-		--update Peoples
-		--set Account=Account-@SPrice
-		--where Guid=@sGuid
-
-		--update Users
-		--set Account =Account+@bPrice
-		--where Guid=@bGuid
-
-		update Buildings
-		set IsArchive='false'
-		where Guid=@buildingGuid
-	end
-END
-GO
--- ==========================================================================================
 IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Contract_Save]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
 	exec('Create Procedure [dbo].[sp_Contract_Save]	As Begin print 11 end')
 GO
 
 ALTER PROCEDURE [dbo].[sp_Contract_Save]
 	@Guid uniqueidentifier,
-	@st bit,
 	@modif datetime,
 	@code bigint,
 	@isTemp bit,
-	@fGuid uniqueidentifier,
-	@sGuid uniqueidentifier,
 	@term int,
 	@fromDate datetime,
 	@totalPrice bigint=0,
@@ -1217,146 +1106,145 @@ ALTER PROCEDURE [dbo].[sp_Contract_Save]
 	@buGuid uniqueidentifier,
 	@type smallint,
 	@dateM datetime,
-	@dateSh nvarchar(20)='',
-	@fPrice bigint=0,
-	@sPrice bigint=0,
-	@fSidePrice bigint=0,
-	@sSidePrice bigint=0,
-	@bazaryabGuid uniqueidentifier='00000000-0000-0000-0000-000000000000',
-	@bazaryabPrice bigint=0
+	@bazaryabGuid uniqueidentifier=null,
+	@bazaryabPrice bigint=0,
+	@fSideGuid uniqueidentifier,
+	@sSideGuid uniqueidentifier,
+	@sanadNumber bigint,
+	@fBabat smallint,
+	@sBabat smallint,
+	@fDiscount decimal,
+	@sDiscount decimal,
+	@fTax decimal,
+	@sTax decimal,
+	@fAvarez decimal,
+	@sAvarez decimal,
+	@fTotalPrice decimal,
+	@sTotalPrice decimal
 AS
 BEGIN	
-	--update Peoples
-	--set Account=Account-@fPrice
-	--where Guid=@fGuid
-	--update Peoples
-	--set Account=Account+@fSidePrice
-	--where Guid=@fGuid
+	 update Buildings
+	 set IsArchive='true'
+	 where Guid=@buGuid
 
-
-	--update Peoples
-	--set Account=Account-@sPrice
-	--where Guid=@sGuid
-	--update Peoples
-	--set Account=Account+@sSidePrice
-	--where Guid=@sGuid
-
-	delete from GardeshHesabs
-	where ParentGuid=@Guid
-
-	declare @gardeshGuid uniqueidentifier
-	set @gardeshGuid=(isnull((select Guid from GardeshHesabs where ParentGuid=@Guid and PeopleGuid=@fGuid),'00000000-0000-0000-0000-000000000000'))
-
-	if @gardeshGuid='00000000-0000-0000-0000-000000000000'
-	begin
-		insert into GardeshHesabs(Babat,Description,Guid,Modified,ParentGuid,PeopleGuid,Price,Status,Type)
-		values(2,N'عقد قرارداد به شماره '+CAST(@code AS nvarchar(100))+' در تاریخ '+@dateSh,NEWID(), GETDATE(),@guid,@fGuid,@fSidePrice,'true',2)
-
-		insert into GardeshHesabs(Babat,Description,Guid,Modified,ParentGuid,PeopleGuid,Price,Status,Type)
-		values(2,N'عقد قرارداد به شماره '+CAST(@code AS nvarchar(100))+' در تاریخ '+@dateSh,NEWID(), GETDATE(),@guid,@sGuid,@sSidePrice,'true',2)
-	end
-	else
-	begin
-		update GardeshHesabs
-		set Price=@fSidePrice
-		where ParentGuid=@Guid and PeopleGuid=@fGuid
-		update GardeshHesabs
-		set Price=@sSidePrice
-		where ParentGuid=@Guid and PeopleGuid=@sGuid
-	end
-
-	update Buildings
-	set IsArchive='true'
-	where Guid=@buGuid
-
-	declare @contractGuid uniqueidentifier
-	set @contractGuid=(isnull((select Guid from Contracts where Guid=@Guid),'00000000-0000-0000-0000-000000000000'))
-
-	declare @contractPrice bigint
-	set @contractPrice=(isnull((select BazaryabPrice from Contracts where Guid=@Guid),0))
-
-	declare @contractBazaryab uniqueidentifier
-	set @contractBazaryab=(isnull((select BazaryabGuid from Contracts where Guid=@Guid),'00000000-0000-0000-0000-000000000000'))
-
-	if @contractGuid<>'00000000-0000-0000-0000-000000000000'
-	begin
-		--update Users
-		--set Account=Account+@contractPrice
-		--where Guid=@contractBazaryab
-
-		delete from GardeshHesabs
-		where ParentGuid=@Guid and PeopleGuid=@contractBazaryab
-	end
-
-	if @bazaryabGuid<>'00000000-0000-0000-0000-000000000000'
-	begin
-		declare @bGardeshGuid uniqueidentifier
-		set @bGardeshGuid=(isnull((select Guid from GardeshHesabs where ParentGuid=@Guid and PeopleGuid=@bazaryabGuid),'00000000-0000-0000-0000-000000000000'))
-
-		declare @bGardeshPrice bigint
-		set @bGardeshPrice=(isnull((select Price from GardeshHesabs where ParentGuid=@Guid and PeopleGuid=@bazaryabGuid),0))
-
-		if @bGardeshGuid='00000000-0000-0000-0000-000000000000'
-		begin
-			insert into GardeshHesabs(Babat,Description,Guid,Modified,ParentGuid,PeopleGuid,Price,Status,Type)
-			values(2,N'پورسانت عقد قرارداد به شماره '+CAST(@code AS nvarchar(100))+' در تاریخ '+@dateSh,NEWID(), GETDATE(),@guid,@bazaryabGuid,@bazaryabPrice,'true',3)
-		end
-		else
-		begin
-			update GardeshHesabs
-			set Price=@bazaryabPrice
-			where ParentGuid=@Guid and PeopleGuid=@bazaryabGuid
-		end
-
-		--update Users
-		--set Account=Account-@bazaryabPrice
-		--where Guid=@bazaryabGuid
-	end
-
-	update Contracts 
-	set Status=@st,
-	Modified=@modif,
-	Code=@code,
-	IsTemp=@isTemp,
-	FirstSideGuid=@fGuid,
-	SecondSideGuid=@sGuid,
-	Term=@term,
-	FromDate=@fromDate,
-	TotalPrice=@totalPrice,
-	MinorPrice=@minorPrice,
-	CheckNo=@checkNo,
-	BankName=@bankName,
-	Shobe=@shobe,
-	SarResid=@sareresid,
-	DischargeDate=@discharcgDate,
-	SetDocDate=@setDocDate,
-	SetDocPlace=@setDocPlace,
-	SarQofli=@sarqofli,
-	Delay=@delay,
-	Description=@desc,
-	UserGuid=@userGuid,
-	BuildingGuid=@buGuid,
-	Type=@type,
-	DateM=@dateM,
-	BazaryabGuid=@bazaryabGuid,
-	BazaryabPrice=@bazaryabPrice
-	where Guid=@Guid
-
-	if (@@ROWCOUNT=0)
-	begin
-		insert into Contracts(
-				Guid,Status,Modified,IsTemp,Code,FirstSideGuid,SecondSideGuid,Term,FromDate,
-				TotalPrice,MinorPrice,CheckNo,BankName,Shobe,SarResid,DischargeDate,
-				SetDocDate,SetDocPlace,SarQofli,Delay,Description,UserGuid,BuildingGuid,
-				Type,DateM,BazaryabGuid,BazaryabPrice
-		)
-		values(
-				@Guid,@st,@modif,@isTemp,@code,@fGuid,@sGuid,@term,@fromDate,
-				@totalPrice,@minorPrice,@checkNo,@bankName,@shobe,@sareresid,@discharcgDate,
-				@setDocDate,@setDocPlace,@sarqofli,@delay,@desc,@userGuid,@buGuid,
-				@type,@dateM,@bazaryabGuid,@bazaryabPrice
-		)
-	end
+	 UPDATE [dbo].[Contracts]
+	   SET [Modified] = @modif
+		  ,[Code] = @code
+		  ,[IsTemp] = @isTemp
+		  ,[FirstSideGuid] = @fSideGuid
+		  ,[SecondSideGuid] = @sSideGuid
+		  ,[Term] = @term
+		  ,[FromDate] = @fromDate
+		  ,[TotalPrice] = @totalPrice
+		  ,[MinorPrice] = @minorPrice
+		  ,[CheckNo] = @checkNo
+		  ,[BankName] = @bankName
+		  ,[Shobe] = @shobe
+		  ,[SarResid] = @sareresid
+		  ,[DischargeDate] = @discharcgDate
+		  ,[SetDocDate] = @SetDocDate
+		  ,[SetDocPlace] = @SetDocPlace
+		  ,[SarQofli] = @SarQofli
+		  ,[Delay] = @Delay
+		  ,[Description] = @desc
+		  ,[BuildingGuid] = @buGuid
+		  ,[Type] = @type
+		  ,[DateM] = @dateM
+		  ,[BazaryabGuid] = @bazaryabGuid
+		  ,[BazaryabPrice] = @bazaryabPrice
+		  ,[SanadNumber] = @sanadNumber
+		  ,[fBabat] = @fBabat
+		  ,[sBabat] = @sBabat
+		  ,[FirstDiscount] = @fDiscount
+		  ,[SecondDiscount] = @sDiscount
+		  ,[FirstTax] = @fTax
+		  ,[FirstAvarez] = @fAvarez
+		  ,[SecondTax] = @sTax
+		  ,[SecondAvarez] = @sAvarez
+		  ,[FirstTotalPrice] = @fTotalPrice
+		  ,[SecondTotalPrice] = @sTotalPrice
+	 WHERE [Guid] = @Guid
+	 if @@ROWCOUNT = 0
+	 begin
+		INSERT INTO [dbo].[Contracts]
+           ([Guid]
+           ,[Modified]
+           ,[Status]
+           ,[Code]
+           ,[IsTemp]
+           ,[FirstSideGuid]
+           ,[SecondSideGuid]
+           ,[Term]
+           ,[FromDate]
+           ,[TotalPrice]
+           ,[MinorPrice]
+           ,[CheckNo]
+           ,[BankName]
+           ,[Shobe]
+           ,[SarResid]
+           ,[DischargeDate]
+           ,[SetDocDate]
+           ,[SetDocPlace]
+           ,[SarQofli]
+           ,[Delay]
+           ,[Description]
+           ,[UserGuid]
+           ,[BuildingGuid]
+           ,[Type]
+           ,[DateM]
+           ,[BazaryabGuid]
+           ,[BazaryabPrice]
+           ,[SanadNumber]
+           ,[fBabat]
+           ,[sBabat]
+           ,[FirstDiscount]
+           ,[SecondDiscount]
+           ,[FirstTax]
+           ,[FirstAvarez]
+           ,[SecondTax]
+           ,[SecondAvarez]
+           ,[FirstTotalPrice]
+           ,[SecondTotalPrice])
+		VALUES
+           (@Guid
+           ,@modif
+           ,'true'
+           ,@code
+           ,@isTemp
+           ,@fSideGuid
+           ,@sSideGuid
+           ,@term
+           ,@fromDate
+           ,@totalPrice
+           ,@minorPrice
+           ,@checkNo
+           ,@bankName
+           ,@shobe
+           ,@sareresid
+           ,@discharcgDate
+           ,@setDocDate
+           ,@setDocPlace
+           ,@sarqofli
+           ,@delay
+           ,@desc
+           ,@userGuid
+           ,@buGuid
+           ,@type
+           ,@dateM
+           ,@bazaryabGuid
+           ,@bazaryabPrice
+           ,@sanadNumber
+           ,@fBabat
+           ,@sBabat
+           ,@fDiscount
+           ,@sDiscount
+           ,@fTax
+           ,@fAvarez
+           ,@sTax
+           ,@sAvarez
+           ,@fTotalPrice
+           ,@sTotalPrice)
+	 end
 END
 GO
 -- ==========================================================================================
@@ -1508,8 +1396,7 @@ BEGIN
 	declare @count int
 	set @count = (select COUNT(*) from Contracts where 
 					DATEADD(month, Term, FromDate)>=@date1 and 
-					DATEADD(month, Term, FromDate)<=@date2 and
-					Status='true')
+					DATEADD(month, Term, FromDate)<=@date2)
 	select @count
 	return @count
 END
@@ -1524,20 +1411,20 @@ ALTER PROCEDURE [dbo].[sp_Building_Discharge_List]
 AS
 BEGIN
 	select  Contracts.Code As Code,
-			Peoples.Name As FSideName,
-			Contracts.FirstSideGuid As FSideGuid,
-			Contracts.SecondSideGuid As SSideGuid,
-			(select [dbo].[Peoples].Name from [dbo].[Peoples] where Guid=[dbo].[Contracts].SecondSideGuid) as SSideName,
+			Tafsils.Name As FirstSideName,
+			Contracts.FirstSideGuid As FirstSideGuid,
+			Contracts.SecondSideGuid As SecondSideGuid,
+			P.Name As SecondSideName,
 			Contracts.Term As Term,
 			Contracts.FromDate As FromDate,
 			DATEADD(month, Contracts.Term, Contracts.FromDate) As ToDate,
 			Buildings.Code As BuildingCode
-			from [dbo].[Contracts] left Outer join [dbo].[Peoples]
-			on [dbo].[Contracts].FirstSideGuid=[dbo].[Peoples].Guid left outer join Buildings
-			on [dbo].[Contracts].BuildingGuid=Buildings.Guid
+			from [dbo].[Contracts] left Outer join [dbo].[Tafsils] on 
+				 [dbo].[Contracts].FirstSideGuid=[dbo].[Tafsils].Guid inner join Buildings on
+				 [dbo].[Contracts].BuildingGuid=Buildings.Guid inner join Tafsils As P on
+				 [dbo].[Contracts].SecondSideGuid=P.Guid
 			where  DATEADD(month, Term, FromDate)>=@d1 and 
-				   DATEADD(month, Term, FromDate)<=@d2 and
-				   [Contracts].Status='true'
+				   DATEADD(month, Term, FromDate)<=@d2
 END
 GO
 -- ==========================================================================================
@@ -1600,20 +1487,6 @@ AS
 BEGIN
 	Select * From [dbo].[BuildingRequestRegions]
 	where RequestGuid=@reqGuid
-	and Status=@st
-END
-GO
--- ==========================================================================================
-IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_ContractFinance_Get]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
-	exec('Create Procedure [dbo].[sp_ContractFinance_Get]	As Begin print 11 end')
-GO
-Alter PROCEDURE sp_ContractFinance_Get
-	@conGuid uniqueidentifier,
-	@st bit
-AS
-BEGIN
-	Select * From [dbo].[ContractFinances]
-	where ConGuid=@conGuid
 	and Status=@st
 END
 GO
@@ -1868,18 +1741,6 @@ BEGIN
 END
 GO
 -- ==========================================================================================
-IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Contract_GetByGuid]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
-	exec('Create Procedure [dbo].[sp_Contract_GetByGuid]	As Begin print 11 end')
-GO
-Alter PROCEDURE sp_Contract_GetByGuid
-	@guid uniqueidentifier
-AS
-BEGIN
-	Select * From [dbo].[Contracts]
-	where Guid=@guid
-END
-GO
--- ==========================================================================================
 IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Buildings_GetByGuid]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
 	exec('Create Procedure [dbo].[sp_Buildings_GetByGuid]	As Begin print 11 end')
 GO
@@ -2120,10 +1981,10 @@ BEGIN
 END
 GO
 -- ==========================================================================================
-IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_ContractFinance_GetTotalCommition]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
-	exec('Create Procedure [dbo].[sp_ContractFinance_GetTotalCommition]	As Begin print 11 end')
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Contract_GetTotalCommition]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Contract_GetTotalCommition]	As Begin print 11 end')
 GO
-Alter PROCEDURE sp_ContractFinance_GetTotalCommition
+Alter PROCEDURE sp_Contract_GetTotalCommition
 	@d1 datetime,
 	@d2 datetime
 AS
@@ -2140,21 +2001,17 @@ BEGIN
 	declare @Total decimal
 	set @Total=0
 
-	set @dis1=(select SUM(FirstDiscount) from ContractFinances inner join Contracts
-				on Contracts.Guid=ContractFinances.ConGuid
-				where ContractFinances.Status='true' and Contracts.DateM between @d1 and @d2)
+	set @dis1=(select SUM(FirstDiscount) from Contracts 
+				where Contracts.DateM between @d1 and @d2)
 
-	set @dis2=(select SUM(SecondDiscount) from ContractFinances inner join Contracts
-				on Contracts.Guid=ContractFinances.ConGuid
-				where ContractFinances.Status='true' and Contracts.DateM between @d1 and @d2)
+	set @dis2=(select SUM(SecondDiscount) from Contracts 
+				where Contracts.DateM between @d1 and @d2)
 
-	set @Sum1=(select SUM(FirstTotalPrice) from ContractFinances inner join Contracts
-				on Contracts.Guid=ContractFinances.ConGuid
-				where ContractFinances.Status='true' and Contracts.DateM between @d1 and @d2)
+	set @Sum1=(select SUM(FirstTotalPrice) from Contracts
+				where Contracts.DateM between @d1 and @d2)
 
-	set @Sum2=(select SUM(SecondTotalPrice) from ContractFinances inner join Contracts
-				on Contracts.Guid=ContractFinances.ConGuid
-				where ContractFinances.Status='true' and Contracts.DateM between @d1 and @d2)
+	set @Sum2=(select SUM(SecondTotalPrice) from Contracts
+				where Contracts.DateM between @d1 and @d2)
 
 	set @SumRet1=@Sum1-@dis1
 	set @SumRet2=@Sum2-@dis2
@@ -2166,10 +2023,10 @@ BEGIN
 END
 GO
 -- ==========================================================================================
-IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_ContractFinance_GetTotalTax]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
-	exec('Create Procedure [dbo].[sp_ContractFinance_GetTotalTax]	As Begin print 11 end')
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Contract_GetTotalTax]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Contract_GetTotalTax]	As Begin print 11 end')
 GO
-Alter PROCEDURE sp_ContractFinance_GetTotalTax
+Alter PROCEDURE sp_Contract_GetTotalTax
 	@d1 datetime,
 	@d2 datetime
 AS
@@ -2181,13 +2038,11 @@ BEGIN
 	set @Total=0
 
 	
-	set @Sum1=(select SUM(FirstAddedValue) from ContractFinances inner join Contracts
-				on Contracts.Guid=ContractFinances.ConGuid
-				where ContractFinances.Status='true' and Contracts.DateM between @d1 and @d2)
+	set @Sum1=(select SUM(FirstTax) from Contracts 
+				where Contracts.DateM between @d1 and @d2)
 
-	set @Sum2=(select SUM(SecondAddedValue) from ContractFinances inner join Contracts
-				on Contracts.Guid=ContractFinances.ConGuid
-				where ContractFinances.Status='true' and Contracts.DateM between @d1 and @d2)
+	set @Sum2=(select SUM(SecondTax) from Contracts
+				where Contracts.DateM between @d1 and @d2)
 
 	set @Total=@Sum1+@Sum2
 
@@ -2209,7 +2064,7 @@ BEGIN
 
 	
 	set @Total=(select SUM(BazaryabPrice) from Contracts 
-				where Status='true' and Contracts.DateM between @d1 and @d2)
+				where Contracts.DateM between @d1 and @d2)
 
 	select @Total
 	return @Total
@@ -4038,4 +3893,82 @@ select        PardakhtCheckShakhsis.Guid
 		 PardakhtCheckAvalDores.CheckPageGuid=CheckPages.Guid inner join DasteChecks on
 		 CheckPages.CheckGuid=DasteChecks.Guid inner join Tafsils As Bank on
 		 DasteChecks.BankGuid=Bank.Guid
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Contract_GetAll]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Contract_GetAll]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_Contract_GetAll
+AS
+BEGIN
+	select Contracts.*, Tafsils.Name As FirstSideName,
+		   P.Name As SecondSideName, Users.Name As UserName	
+	from Contracts inner join Tafsils on
+	     Contracts.FirstSideGuid=Tafsils.Guid inner join Tafsils As P on
+		 Contracts.SecondSideGuid=P.Guid inner join Users on
+		 Contracts.UserGuid=Users.Guid
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Contract_Get]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Contract_Get]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_Contract_Get
+	@guid uniqueidentifier
+AS
+BEGIN
+	select Contracts.*, Tafsils.Name As FirstSideName,
+		   P.Name As SecondSideName, Users.Name As UserName	
+	from Contracts inner join Tafsils on
+	     Contracts.FirstSideGuid=Tafsils.Guid inner join Tafsils As P on
+		 Contracts.SecondSideGuid=P.Guid inner join Users on
+		 Contracts.UserGuid=Users.Guid
+	where Contracts.Guid=@guid
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Contract_NextCode]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Contract_NextCode]	As Begin print 11 end')  
+GO
+ALTER PROCEDURE [dbo].[sp_Contract_NextCode]
+AS
+BEGIN
+	declare @nextCode nvarchar(10)
+	select @nextCode = MAX(Code) From Contracts
+	set @nextCode = (isnull(@nextCode , 0))
+	set @nextCode = CAST(@nextCode AS bigint) + 1
+	select @nextCode
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Contract_CheckCode]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Contract_CheckCode]	As Begin print 11 end')  
+GO
+ALTER PROCEDURE [dbo].[sp_Contract_CheckCode]
+	@guid uniqueidentifier,
+	@code bigint
+AS
+BEGIN
+	select COUNT(*) from Contracts
+	where Code=@code and Guid<>@guid
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Contract_Remove]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Contract_Remove]	As Begin print 11 end')  
+GO
+ALTER PROCEDURE [dbo].[sp_Contract_Remove]
+	@guid uniqueidentifier
+AS
+BEGIN
+	declare @buGuid uniqueidentifier
+	set @buGuid=(select BuildingGuid from Contracts where Guid=@guid)
+
+	update Buildings
+	set IsArchive='false'
+	where Guid = @buGuid
+
+	delete from Contracts
+	where Guid=@guid
 END
