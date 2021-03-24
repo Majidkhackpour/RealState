@@ -237,6 +237,12 @@ namespace Accounting.Check.CheckMoshtari
             try
             {
                 if (DGrid.RowCount <= 0 || DGrid.CurrentRow == null) return;
+                var st = (EnCheckM)DGrid[dgStatus.Index, DGrid.CurrentRow.Index].Value;
+                if (st == EnCheckM.Kharj || st == EnCheckM.Naqd)
+                {
+                    frmNotification.PublicInfo.ShowMessage($"شما مجاز به خرج چک {st.GetDisplay()} نمی باشید");
+                    return;
+                }
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
                 var price = (decimal)DGrid[dgPrice.Index, DGrid.CurrentRow.Index].Value;
                 var bankName = DGrid[dgBankName.Index, DGrid.CurrentRow.Index].Value.ToString();
@@ -270,6 +276,12 @@ namespace Accounting.Check.CheckMoshtari
             try
             {
                 if (DGrid.RowCount <= 0 || DGrid.CurrentRow == null) return;
+                var st = (EnCheckM)DGrid[dgStatus.Index, DGrid.CurrentRow.Index].Value;
+                if (st == EnCheckM.Bargashti || st == EnCheckM.Naqd)
+                {
+                    frmNotification.PublicInfo.ShowMessage($"شما مجاز به ابطال چک {st.GetDisplay()} نمی باشید");
+                    return;
+                }
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
                 var avalDore = (bool)DGrid[dgAvalDore.Index, DGrid.CurrentRow.Index].Value;
 
@@ -306,6 +318,12 @@ namespace Accounting.Check.CheckMoshtari
             try
             {
                 if (DGrid.RowCount <= 0 || DGrid.CurrentRow == null) return;
+                var st = (EnCheckM)DGrid[dgStatus.Index, DGrid.CurrentRow.Index].Value;
+                if (st == EnCheckM.Naqd)
+                {
+                    frmNotification.PublicInfo.ShowMessage($"شما مجاز به نقد چک {st.GetDisplay()} نمی باشید");
+                    return;
+                }
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
                 var avalDore = (bool)DGrid[dgAvalDore.Index, DGrid.CurrentRow.Index].Value;
 
@@ -339,6 +357,12 @@ namespace Accounting.Check.CheckMoshtari
             try
             {
                 if (DGrid.RowCount <= 0 || DGrid.CurrentRow == null) return;
+                var st = (EnCheckM)DGrid[dgStatus.Index, DGrid.CurrentRow.Index].Value;
+                if (st == EnCheckM.Kharj || st == EnCheckM.Naqd)
+                {
+                    frmNotification.PublicInfo.ShowMessage($"شما مجاز به واگذارکردن چک {st.GetDisplay()} نمی باشید");
+                    return;
+                }
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
                 var avalDore = (bool)DGrid[dgAvalDore.Index, DGrid.CurrentRow.Index].Value;
 
@@ -368,6 +392,12 @@ namespace Accounting.Check.CheckMoshtari
             try
             {
                 if (DGrid.RowCount <= 0 || DGrid.CurrentRow == null) return;
+                var st = (EnCheckM)DGrid[dgStatus.Index, DGrid.CurrentRow.Index].Value;
+                if (st == EnCheckM.Kharj || st == EnCheckM.Naqd)
+                {
+                    frmNotification.PublicInfo.ShowMessage($"شما مجاز به واگذارکردن چک {st.GetDisplay()} نمی باشید");
+                    return;
+                }
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
                 var avalDore = (bool)DGrid[dgAvalDore.Index, DGrid.CurrentRow.Index].Value;
 
@@ -398,6 +428,12 @@ namespace Accounting.Check.CheckMoshtari
             try
             {
                 if (DGrid.RowCount <= 0 || DGrid.CurrentRow == null) return;
+                var st = (EnCheckM)DGrid[dgStatus.Index, DGrid.CurrentRow.Index].Value;
+                if (st == EnCheckM.Naqd)
+                {
+                    frmNotification.PublicInfo.ShowMessage($"شما مجاز به برگشت چک {st.GetDisplay()} نمی باشید");
+                    return;
+                }
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
                 var avalDore = (bool)DGrid[dgAvalDore.Index, DGrid.CurrentRow.Index].Value;
 

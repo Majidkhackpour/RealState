@@ -176,6 +176,12 @@ namespace Accounting.Check.CheckShakhsi
             try
             {
                 if (DGrid.RowCount <= 0 || DGrid.CurrentRow == null) return;
+                var st = (EnCheckSh)DGrid[dgStatus.Index, DGrid.CurrentRow.Index].Value;
+                if (st == EnCheckSh.Bargashti)
+                {
+                    frmNotification.PublicInfo.ShowMessage($"شما مجاز به ابطال چک {st.GetDisplay()} نمی باشید");
+                    return;
+                }
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
                 var avalDore = (bool)DGrid[dgAvalDore.Index, DGrid.CurrentRow.Index].Value;
 
@@ -212,6 +218,12 @@ namespace Accounting.Check.CheckShakhsi
             try
             {
                 if (DGrid.RowCount <= 0 || DGrid.CurrentRow == null) return;
+                var st = (EnCheckSh)DGrid[dgStatus.Index, DGrid.CurrentRow.Index].Value;
+                if (st == EnCheckSh.Pass)
+                {
+                    frmNotification.PublicInfo.ShowMessage($"شما مجاز به نقدکردن چک {st.GetDisplay()} نمی باشید");
+                    return;
+                }
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
                 var avalDore = (bool)DGrid[dgAvalDore.Index, DGrid.CurrentRow.Index].Value;
 
@@ -246,6 +258,12 @@ namespace Accounting.Check.CheckShakhsi
             try
             {
                 if (DGrid.RowCount <= 0 || DGrid.CurrentRow == null) return;
+                var st = (EnCheckSh)DGrid[dgStatus.Index, DGrid.CurrentRow.Index].Value;
+                if (st == EnCheckSh.Pass)
+                {
+                    frmNotification.PublicInfo.ShowMessage($"شما مجاز به برگشت چک {st.GetDisplay()} نمی باشید");
+                    return;
+                }
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
                 var avalDore = (bool)DGrid[dgAvalDore.Index, DGrid.CurrentRow.Index].Value;
 

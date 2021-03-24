@@ -65,7 +65,7 @@ namespace Accounting.Check.CheckShakhsi
             this.bankGuidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dateMDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dateSarResidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.checkStatusDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.girandeGuidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.contextMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CheckBindingSource)).BeginInit();
@@ -88,7 +88,7 @@ namespace Accounting.Check.CheckShakhsi
             this.mnuBatel});
             this.contextMenu.Name = "contextMenu";
             this.contextMenu.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.contextMenu.Size = new System.Drawing.Size(238, 230);
+            this.contextMenu.Size = new System.Drawing.Size(238, 208);
             // 
             // mnuAdd
             // 
@@ -225,7 +225,7 @@ namespace Accounting.Check.CheckShakhsi
             this.bankGuidDataGridViewTextBoxColumn,
             this.dateMDataGridViewTextBoxColumn,
             this.dateSarResidDataGridViewTextBoxColumn,
-            this.checkStatusDataGridViewTextBoxColumn,
+            this.dgStatus,
             this.girandeGuidDataGridViewTextBoxColumn});
             this.DGrid.ContextMenuStrip = this.contextMenu;
             this.DGrid.DataSource = this.CheckBindingSource;
@@ -386,13 +386,13 @@ namespace Accounting.Check.CheckShakhsi
             this.dateSarResidDataGridViewTextBoxColumn.ReadOnly = true;
             this.dateSarResidDataGridViewTextBoxColumn.Visible = false;
             // 
-            // checkStatusDataGridViewTextBoxColumn
+            // dgStatus
             // 
-            this.checkStatusDataGridViewTextBoxColumn.DataPropertyName = "CheckStatus";
-            this.checkStatusDataGridViewTextBoxColumn.HeaderText = "CheckStatus";
-            this.checkStatusDataGridViewTextBoxColumn.Name = "checkStatusDataGridViewTextBoxColumn";
-            this.checkStatusDataGridViewTextBoxColumn.ReadOnly = true;
-            this.checkStatusDataGridViewTextBoxColumn.Visible = false;
+            this.dgStatus.DataPropertyName = "CheckStatus";
+            this.dgStatus.HeaderText = "CheckStatus";
+            this.dgStatus.Name = "dgStatus";
+            this.dgStatus.ReadOnly = true;
+            this.dgStatus.Visible = false;
             // 
             // girandeGuidDataGridViewTextBoxColumn
             // 
@@ -457,7 +457,7 @@ namespace Accounting.Check.CheckShakhsi
         private System.Windows.Forms.DataGridViewTextBoxColumn bankGuidDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn dateMDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn dateSarResidDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn checkStatusDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgStatus;
         private System.Windows.Forms.DataGridViewTextBoxColumn girandeGuidDataGridViewTextBoxColumn;
     }
 }
