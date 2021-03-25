@@ -3972,3 +3972,77 @@ BEGIN
 	delete from Contracts
 	where Guid=@guid
 END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Advisor_GetAll]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Advisor_GetAll]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_Advisor_GetAll
+AS
+BEGIN
+	Select Advisors.* , Tafsils.Account,Tafsils.AccountFirst
+	from Advisors inner join Tafsils on
+	     Advisors.Guid=Tafsils.Guid
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Advisor_Get]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Advisor_Get]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_Advisor_Get
+	@guid uniqueidentifier
+AS
+BEGIN
+	Select Advisors.* , Tafsils.Account,Tafsils.AccountFirst
+	from Advisors inner join Tafsils on
+	     Advisors.Guid=Tafsils.Guid
+	where Advisors.Guid=@guid
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Advisor_ChangeStatus]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Advisor_ChangeStatus]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_Advisor_ChangeStatus
+	@guid uniqueidentifier,
+	@st bit
+AS
+BEGIN
+	update Advisors
+	set Status=@st
+	where Guid=@guid
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Advisor_Save]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Advisor_Save]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_Advisor_Save
+	@guid uniqueidentifier,
+	@st bit,
+	@name nvarchar(200),
+	@address nvarchar(max)
+AS
+BEGIN
+	UPDATE [dbo].[Advisors]
+	   SET [Modified] = GETDATE()
+		  ,[Status] = @st
+		  ,[Name] = @name
+		  ,[Address] = @address
+	 WHERE [Guid] = @guid
+	 if @@ROWCOUNT = 0
+	 begin
+		INSERT INTO [dbo].[Advisors]
+           ([Guid]
+           ,[Modified]
+           ,[Status]
+           ,[Name]
+           ,[Address])
+		VALUES
+           (@guid
+           ,GETDATE()
+           ,@st
+           ,@name
+           ,@address)
+	 end
+END

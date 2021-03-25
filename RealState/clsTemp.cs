@@ -119,9 +119,9 @@ namespace RealState
                                     await WebBuilding.SaveAsync(bu, Application.StartupPath);
                                 break;
                             case EnTemp.Contract:
-                                var con = await ContractBussines.GetAsync(item.ObjectGuid);
-                                if (con != null)
-                                    await WebContract.SaveAsync(con);
+                                //var con = await ContractBussines.GetAsync(item.ObjectGuid);
+                                //if (con != null)
+                                //    await WebContract.SaveAsync(con);
                                 break;
                             case EnTemp.Requests:
                                 var req = await BuildingRequestBussines.GetAsync(item.ObjectGuid);

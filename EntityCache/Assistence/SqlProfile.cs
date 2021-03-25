@@ -65,6 +65,7 @@ namespace EntityCache.Assistence
             CreateMap<PardakhtCheckMoshtariBussines, PardakhtCheckMoshtari>().ReverseMap();
             CreateMap<ReceptionCheckAvalDoreBussines, ReceptionCheckAvalDore>().ReverseMap();
             CreateMap<PardakhtCheckAvalDoreBussines, PardakhtCheckAvalDore>().ReverseMap();
+            CreateMap<AdvisorBussines, Advisor>().ReverseMap();
         }
     }
 }

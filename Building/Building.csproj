@@ -592,6 +592,7 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\EntityCache.Bussines.AdvisorBussines.datasource" />
     <None Include="Properties\DataSources\EntityCache.Bussines.BuildingAccountTypeBussines.datasource" />
     <None Include="Properties\DataSources\EntityCache.Bussines.BuildingBussines.datasource" />
     <None Include="Properties\DataSources\EntityCache.Bussines.BuildingConditionBussines.datasource" />

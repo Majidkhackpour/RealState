@@ -50,6 +50,7 @@ using Building;
 using Building.BuildingMatchesItem;
 using TMS.Class;
 using User;
+using User.Advisor;
 using Calendar = Services.Calendar;
 
 namespace RealState
@@ -926,6 +927,18 @@ namespace RealState
             try
             {
                 var frm = new frmShowCheckSh();
+                frm.ShowDialog(this);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private void btnAdvisors_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var frm = new frmShowAdvisor();
                 frm.ShowDialog(this);
             }
             catch (Exception ex)

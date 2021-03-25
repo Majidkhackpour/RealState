@@ -136,6 +136,18 @@
   <ItemGroup>
     <Compile Include="AccessLevel\AccessLevelClass.cs" />
     <Compile Include="AccessLevel\PropertyInfoClass.cs" />
+    <Compile Include="Advisor\frmAdvisorMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Advisor\frmAdvisorMain.Designer.cs">
+      <DependentUpon>frmAdvisorMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Advisor\frmShowAdvisor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Advisor\frmShowAdvisor.Designer.cs">
+      <DependentUpon>frmShowAdvisor.cs</DependentUpon>
+    </Compile>
     <Compile Include="clsUser.cs" />
     <Compile Include="ExportToExcel.cs" />
     <Compile Include="frmAccessLevel.cs">
@@ -199,6 +211,12 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Advisor\frmAdvisorMain.resx">
+      <DependentUpon>frmAdvisorMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Advisor\frmShowAdvisor.resx">
+      <DependentUpon>frmShowAdvisor.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmAccessLevel.resx">
       <DependentUpon>frmAccessLevel.cs</DependentUpon>
     </EmbeddedResource>
@@ -229,6 +247,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Properties\DataSources\EntityCache.Bussines.AdvisorBussines.datasource" />
     <None Include="Properties\DataSources\EntityCache.Bussines.UserBussines.datasource" />
     <None Include="Properties\DataSources\EntityCache.Bussines.UserLogBussines.datasource" />
     <None Include="Properties\DataSources\User.AccessLevel.AccessLevelClass.datasource" />

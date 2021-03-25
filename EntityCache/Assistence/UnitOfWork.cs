@@ -67,6 +67,7 @@ namespace EntityCache.Assistence
         private static IPardakhtCheckMoshtariRepository _pardakhtCheckMoshtariRepository;
         private static IReceptionCheckAvalDoreRepository _receptionCheckAvalDoreRepository;
         private static IPardakhtCheckAvalDoreRepository _pardakhtCheckAvalDoreRepository;
+        private static IAdvisorRepository _advisorRepository;
 
         public static void Dispose() => db?.Dispose();
         public static void Set_Save() => db.SaveChanges();
@@ -336,5 +337,10 @@ namespace EntityCache.Assistence
         public static IPardakhtCheckAvalDoreRepository PardakhtCheckAvalDore => _pardakhtCheckAvalDoreRepository ??
                                                                                 (_pardakhtCheckAvalDoreRepository =
                                                                                     new PardakhtCheckAvalDorePersistenceRepository(db, _connectionString));
+
+
+        public static IAdvisorRepository Advisor => _advisorRepository ??
+                                                    (_advisorRepository =
+                                                        new AdvisorPersistenceRepository(db, _connectionString));
     }
 }

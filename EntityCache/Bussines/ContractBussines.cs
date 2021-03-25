@@ -58,6 +58,8 @@ namespace EntityCache.Bussines
         public decimal SecondAvarez { get; set; }
         public decimal FirstTotalPrice { get; set; }
         public decimal SecondTotalPrice { get; set; }
+        public decimal FirstSum => FirstTotalPrice + FirstAvarez + FirstTax;
+        public decimal SecondSum => SecondTotalPrice + SecondAvarez + SecondTax;
         public string HardSerial => Cache.HardSerial;
 
 
@@ -107,9 +109,16 @@ namespace EntityCache.Bussines
                 { //BeginTransaction
                 }
 
+                res.AddReturnedValue(await CheckValidationAsync());
+                if (res.HasError) return res;
 
                 res.AddReturnedValue(await UnitOfWork.Contract.SaveAsync(this, tranName));
                 if (res.HasError) return res;
+
+                var sanad = await GenerateSanadAsync();
+                res.AddReturnedValue(await sanad.SaveAsync());
+                if (res.HasError) return res;
+
                 if (autoTran)
                 {
                     //CommitTransAction
@@ -144,6 +153,14 @@ namespace EntityCache.Bussines
 
                 res.AddReturnedValue(await UnitOfWork.Contract.RemoveAsync(Guid, tranName));
                 if (res.HasError) return res;
+
+                var sanad = await SanadBussines.GetAsync(SanadNumber);
+                if (sanad != null)
+                {
+                    res.AddReturnedValue(await sanad.RemoveAsync());
+                    if (res.HasError) return res;
+                }
+
                 if (autoTran)
                 {
                     //CommitTransAction
@@ -208,7 +225,7 @@ namespace EntityCache.Bussines
                 sanad.AddToListSanad(new SanadDetailBussines()
                 {
                     Credit = 0,
-                    Debit = FirstTotalPrice - FirstDiscount,
+                    Debit = FirstSum - FirstDiscount,
                     MoeinGuid = ParentDefaults.MoeinCoding.CLSMoein10304,
                     TafsilGuid = FirstSideGuid,
                     Description = $"قرارداد({Code}) منعقد شده در تاریخ {DateSh}",
@@ -221,7 +238,7 @@ namespace EntityCache.Bussines
                 sanad.AddToListSanad(new SanadDetailBussines()
                 {
                     Credit = 0,
-                    Debit = SecondTotalPrice - SecondDiscount,
+                    Debit = SecondSum - SecondDiscount,
                     MoeinGuid = ParentDefaults.MoeinCoding.CLSMoein10304,
                     TafsilGuid = SecondSideGuid,
                     Description = $"قرارداد({Code}) منعقد شده در تاریخ {DateSh}",
@@ -233,7 +250,7 @@ namespace EntityCache.Bussines
                 //طرف حساب بستانکار درآمد اول
                 sanad.AddToListSanad(new SanadDetailBussines()
                 {
-                    Credit = (FirstTotalPrice - FirstTax) + FirstDiscount,
+                    Credit = ((FirstTotalPrice - FirstTax - FirstAvarez) + FirstDiscount) - (BazaryabPrice / 2),
                     Debit = 0,
                     MoeinGuid = ParentDefaults.MoeinCoding.CLSMoein60201,
                     TafsilGuid = ParentDefaults.TafsilCoding.CLSTafsil6020101,
@@ -246,7 +263,7 @@ namespace EntityCache.Bussines
                 //طرف حساب بستانکار درآمد دوم
                 sanad.AddToListSanad(new SanadDetailBussines()
                 {
-                    Credit = (SecondTotalPrice - SecondTax) + SecondDiscount,
+                    Credit = ((SecondTotalPrice - SecondTax - SecondAvarez) + SecondDiscount) - (BazaryabPrice / 2),
                     Debit = 0,
                     MoeinGuid = ParentDefaults.MoeinCoding.CLSMoein60201,
                     TafsilGuid = ParentDefaults.TafsilCoding.CLSTafsil6020101,
@@ -290,13 +307,116 @@ namespace EntityCache.Bussines
                     });
                 }
 
+                if (FirstTax > 0)
+                {
+                    //طرف حساب بستانکار مالیات اول
+                    sanad.AddToListSanad(new SanadDetailBussines()
+                    {
+                        Credit = FirstTax,
+                        Debit = 0,
+                        MoeinGuid = ParentDefaults.MoeinCoding.CLSMoein30204,
+                        TafsilGuid = ParentDefaults.TafsilCoding.CLSTafsil3020305,
+                        Description = $"قرارداد({Code}) منعقد شده در تاریخ {DateSh}",
+                        Guid = Guid.NewGuid(),
+                        Modified = DateTime.Now,
+                        Status = true,
+                        MasterGuid = sanad.Guid
+                    });
+                }
+                if (SecondTax > 0)
+                {
+                    //طرف حساب بستانکار مالیات دوم
+                    sanad.AddToListSanad(new SanadDetailBussines()
+                    {
+                        Credit = SecondTax,
+                        Debit = 0,
+                        MoeinGuid = ParentDefaults.MoeinCoding.CLSMoein30204,
+                        TafsilGuid = ParentDefaults.TafsilCoding.CLSTafsil3020305,
+                        Description = $"قرارداد({Code}) منعقد شده در تاریخ {DateSh}",
+                        Guid = Guid.NewGuid(),
+                        Modified = DateTime.Now,
+                        Status = true,
+                        MasterGuid = sanad.Guid
+                    });
+                }
 
+                if (FirstAvarez > 0)
+                {
+                    //طرف حساب بستانکار عوارض اول
+                    sanad.AddToListSanad(new SanadDetailBussines()
+                    {
+                        Credit = FirstAvarez,
+                        Debit = 0,
+                        MoeinGuid = ParentDefaults.MoeinCoding.CLSMoein30207,
+                        TafsilGuid = ParentDefaults.TafsilCoding.CLSTafsil3020306,
+                        Description = $"قرارداد({Code}) منعقد شده در تاریخ {DateSh}",
+                        Guid = Guid.NewGuid(),
+                        Modified = DateTime.Now,
+                        Status = true,
+                        MasterGuid = sanad.Guid
+                    });
+                }
+                if (SecondTax > 0)
+                {
+                    //طرف حساب بستانکار عوارض دوم
+                    sanad.AddToListSanad(new SanadDetailBussines()
+                    {
+                        Credit = SecondAvarez,
+                        Debit = 0,
+                        MoeinGuid = ParentDefaults.MoeinCoding.CLSMoein30207,
+                        TafsilGuid = ParentDefaults.TafsilCoding.CLSTafsil3020306,
+                        Description = $"قرارداد({Code}) منعقد شده در تاریخ {DateSh}",
+                        Guid = Guid.NewGuid(),
+                        Modified = DateTime.Now,
+                        Status = true,
+                        MasterGuid = sanad.Guid
+                    });
+                }
+
+                if (BazaryabPrice > 0 && BazaryabGuid != null && BazaryabGuid != Guid.Empty)
+                {
+                    //طرف حساب بستانکار مشاور
+                    sanad.AddToListSanad(new SanadDetailBussines()
+                    {
+                        Credit = BazaryabPrice,
+                        Debit = 0,
+                        MoeinGuid = ParentDefaults.MoeinCoding.CLSMoein10304,
+                        TafsilGuid = BazaryabGuid.Value,
+                        Description = $"قرارداد({Code}) منعقد شده در تاریخ {DateSh}",
+                        Guid = Guid.NewGuid(),
+                        Modified = DateTime.Now,
+                        Status = true,
+                        MasterGuid = sanad.Guid
+                    });
+                }
             }
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
             return sanad;
+        }
+        private async Task<ReturnedSaveFuncInfo> CheckValidationAsync()
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                if (Code <= 0) res.AddError("کد قرارداد نمی تواند خالی باشد");
+                if (!await CheckCodeAsync(Code.ToString().Trim(), Guid)) res.AddError("کد ملک وارد شده تکراری است");
+                if (FirstSideGuid == Guid.Empty) res.AddError("لطفا طرف اول قرارداد را انتخاب نمایید");
+                if (SecondSideGuid == Guid.Empty) res.AddError("لطفا طرف دوم قرارداد را انتخاب نمایید");
+                if (BuildingGuid == Guid.Empty) res.AddError("لطفا ملک موضوع قرارداد را انتخاب نمایید");
+                if (MinorPrice == 0 && TotalPrice == 0) res.AddError("لطفا یکی از فیلدهای مبلغ را وارد نمایید");
+                if ((BazaryabGuid == null || BazaryabGuid == Guid.Empty) && BazaryabPrice > 0) res.AddError("لطفا بازاریاب را انتخاب نمایید");
+                if (BazaryabGuid != Guid.Empty && BazaryabPrice <= 0) res.AddError("لطفا مبلغ پورسانت بازاریاب را مشخص نمایید");
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+
+            return res;
         }
     }
 }
