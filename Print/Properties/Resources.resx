@@ -169,6 +169,12 @@
   <data name="Reception_One_A4" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Reception_One_A4.mrt;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="Sanad_One_A4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Sanad_One_A4.mrt;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Sanad_One_A5" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Sanad_One_A5.mrt;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="SmsLog_A4" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\SmsLog_A4.mrt;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>

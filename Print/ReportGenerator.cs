@@ -95,6 +95,9 @@ namespace Print
                     case StiType.Sood_Zian:
                         Sti = clsSood_Zian.One.GetSti(Sti, peper);
                         break;
+                    case StiType.Sanad:
+                        Sti = clsSanad.One.GetSti(Sti, peper);
+                        break;
                 }
             }
             catch (Exception ex)

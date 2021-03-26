@@ -3,14 +3,20 @@ using MetroFramework.Forms;
 using Notification;
 using Services;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WindowsSerivces;
+using EntityCache.ViewModels;
+using Print;
 
 namespace Accounting.Sanad
 {
     public partial class frmShowSanad : MetroForm
     {
+        private List<SanadPrintViewModel> list;
+
         private async Task LoadDataAsync(string search = "")
         {
             try
@@ -170,6 +176,49 @@ namespace Accounting.Sanad
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
                 var frm = new frmSanadMain(guid, true);
                 frm.ShowDialog(this);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private async void mnuPrint_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (DGrid.RowCount <= 0) return;
+                if (DGrid.CurrentRow == null) return;
+                var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
+
+                var frm = new frmSetPrintSize(false);
+                if (frm.ShowDialog(this) != DialogResult.OK) return;
+
+                var sanad = await SanadBussines.GetAsync(guid);
+                list = new List<SanadPrintViewModel>();
+                foreach (var item in sanad.Details)
+                {
+                    list.Add(new SanadPrintViewModel()
+                    {
+                        Debit = item.Debit,
+                        Credit = item.Credit,
+                        SanadNumber = sanad.Number,
+                        DetailDesc = $"{item.MoeinName} * {item.TafsilCode} {item.TafsilName} * {item.Description}",
+                        PrintDateSh = Calendar.MiladiToShamsi(DateTime.Now),
+                        PrintTime = DateTime.Now.ToShortTimeString(),
+                        SanadDateSh = sanad.DateSh,
+                        SanadDesc = sanad.Description,
+                        SanadTime = sanad.DateM.ToShortTimeString(),
+                        UserName = sanad.UserName,
+                        SumCredit = sanad.SumCredit,
+                        SumDebit = sanad.SumDebit
+                    });
+                }
+
+                list = list?.OrderBy(q => q.Credit)?.ToList();
+
+                if (frm._PrintType == EnPrintType.Excel) return;
+                var cls = new ReportGenerator(StiType.Sanad, frm._PrintType) { Lst = new List<object>(list) };
+                cls.PrintNew();
             }
             catch (Exception ex)
             {

@@ -8,9 +8,10 @@ namespace Print
     public partial class frmSetPrintSize : MetroForm
     {
         public EnPrintType _PrintType { get; set; }
-        public frmSetPrintSize()
+        public frmSetPrintSize(bool isHasExcel = true)
         {
             InitializeComponent();
+            if (!isHasExcel) radioButton1.Enabled = false;
         }
         private void btnCancel_Click(object sender, System.EventArgs e)
         {
@@ -55,7 +56,7 @@ namespace Print
         private void btnFinish_Click(object sender, EventArgs e)
         {
             if (rbtnA4.Checked) _PrintType = EnPrintType.Pdf_A4;
-            else if(rbtnA5.Checked) _PrintType = EnPrintType.Pdf_A5;
+            else if (rbtnA5.Checked) _PrintType = EnPrintType.Pdf_A5;
             else _PrintType = EnPrintType.Excel;
 
 

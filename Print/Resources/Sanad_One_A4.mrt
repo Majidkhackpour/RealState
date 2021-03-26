@@ -1,0 +1,1956 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<StiSerializer version="1.02" type="Net" application="StiReport">
+  <Dictionary Ref="1" type="Dictionary" isKey="true">
+    <BusinessObjects isList="true" count="1">
+      <لیست_x0020_داده_x0020_ها Ref="2" type="Stimulsoft.Report.Dictionary.StiBusinessObject" isKey="true">
+        <Alias>لیست داده ها</Alias>
+        <BusinessObjects isList="true" count="0" />
+        <Category>Sanad</Category>
+        <Columns isList="true" count="12">
+          <value>SanadDateSh,System.String</value>
+          <value>SanadTime,System.String</value>
+          <value>PrintDateSh,System.String</value>
+          <value>PrintTime,System.String</value>
+          <value>SanadNumber,System.Int64</value>
+          <value>SanadDesc,System.String</value>
+          <value>DetailDesc,System.String</value>
+          <value>Debit,System.Decimal</value>
+          <value>Credit,System.Decimal</value>
+          <value>UserName,System.String</value>
+          <value>SumDebit,System.Decimal</value>
+          <value>SumCredit,System.Decimal</value>
+        </Columns>
+        <Dictionary isRef="1" />
+        <Guid>523ef5bd511c41deb00faaf479e9a935</Guid>
+        <Name>لیست داده ها</Name>
+      </لیست_x0020_داده_x0020_ها>
+    </BusinessObjects>
+    <Databases isList="true" count="0" />
+    <DataSources isList="true" count="1">
+      <Sanads Ref="3" type="Stimulsoft.Report.Dictionary.StiBusinessObjectSource" isKey="true">
+        <Alias>Sanads</Alias>
+        <Columns isList="true" count="0" />
+        <Dictionary isRef="1" />
+        <Name>Sanads</Name>
+        <NameInSource>Sanas</NameInSource>
+      </Sanads>
+    </DataSources>
+    <Relations isList="true" count="0" />
+    <Report isRef="0" />
+    <Resources isList="true" count="0" />
+    <Variables isList="true" count="0" />
+  </Dictionary>
+  <EngineVersion>EngineV2</EngineVersion>
+  <GlobalizationStrings isList="true" count="0" />
+  <MetaTags isList="true" count="0" />
+  <Pages isList="true" count="1">
+    <Page1 Ref="4" type="Page" isKey="true">
+      <Border>None;Black;2;Solid;False;4;Black</Border>
+      <Brush>Transparent</Brush>
+      <Components isList="true" count="4">
+        <HeaderBand2 Ref="5" type="HeaderBand" isKey="true">
+          <Border>All;Black;1;Solid;False;4;Black</Border>
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0,0.4,19,3.4</ClientRectangle>
+          <Components isList="true" count="17">
+            <Text26 Ref="6" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>12,0.8,4.6,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Yekan,11</Font>
+              <Guid>00d4547b3b2c45d2b905a300169c7c5e</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text26</Name>
+              <Page isRef="4" />
+              <Parent isRef="5" />
+              <Text>........................................................................</Text>
+              <TextBrush>Silver</TextBrush>
+              <VertAlignment>Center</VertAlignment>
+            </Text26>
+            <Text25 Ref="7" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>12,0.2,4.6,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Yekan,11</Font>
+              <Guid>a114bd609fb34be28dc23a3f813748d0</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text25</Name>
+              <Page isRef="4" />
+              <Parent isRef="5" />
+              <Text>........................................................................</Text>
+              <TextBrush>Silver</TextBrush>
+              <VertAlignment>Center</VertAlignment>
+            </Text25>
+            <Text27 Ref="8" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0.2,2.6,16.4,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Yekan,11</Font>
+              <Guid>49f4cefc12924dc08fcbdacf9607060b</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text27</Name>
+              <Page isRef="4" />
+              <Parent isRef="5" />
+              <Text>................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................</Text>
+              <TextBrush>Gainsboro</TextBrush>
+              <VertAlignment>Center</VertAlignment>
+            </Text27>
+            <Text2 Ref="9" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,2.6,16.6,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Yekan,11,Bold</Font>
+              <Guid>51fbb7e9796b41aeaaca1217619446c6</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text2</Name>
+              <Page isRef="4" />
+              <Parent isRef="5" />
+              <Text>{لیست_داده_ها.SanadDesc}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,RightToLeft=True,,,A=0</TextOptions>
+              <Type>Expression</Type>
+            </Text2>
+            <Text29 Ref="10" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>12,0.2,4.6,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Yekan,11</Font>
+              <Guid>09c8cbfade1f4df9a37cc36739d8615d</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text29</Name>
+              <Page isRef="4" />
+              <Parent isRef="5" />
+              <Text>........................................................................</Text>
+              <TextBrush>Gainsboro</TextBrush>
+              <VertAlignment>Center</VertAlignment>
+            </Text29>
+            <Text28 Ref="11" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>12,0.8,4.6,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Yekan,11</Font>
+              <Guid>1a4b9d0d467e461abaa03c3f39e5e8e1</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text28</Name>
+              <Page isRef="4" />
+              <Parent isRef="5" />
+              <Text>........................................................................</Text>
+              <TextBrush>Gainsboro</TextBrush>
+              <VertAlignment>Center</VertAlignment>
+            </Text28>
+            <Text35 Ref="12" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>13.8,0.8,2.8,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Yekan,11,Bold</Font>
+              <Guid>535af848e7d541f5872e6a193057d4c1</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text35</Name>
+              <Page isRef="4" />
+              <Parent isRef="5" />
+              <Text>{لیست_داده_ها.SanadDateSh}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text35>
+            <Text9 Ref="13" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>13.8,0.2,2.8,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Yekan,11,Bold</Font>
+              <Guid>5ee12448db2a48c4974c52a98331df91</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text9</Name>
+              <Page isRef="4" />
+              <Parent isRef="5" />
+              <Text>{لیست_داده_ها.PrintDateSh}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text9>
+            <Text24 Ref="14" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0.2,0.2,2.4,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Yekan,11</Font>
+              <Guid>9250c664eec645a0bfb3ef3e54650db0</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text24</Name>
+              <Page isRef="4" />
+              <Parent isRef="5" />
+              <Text>....................................</Text>
+              <TextBrush>Gainsboro</TextBrush>
+              <VertAlignment>Center</VertAlignment>
+            </Text24>
+            <Text36 Ref="15" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0.2,0.2,2.4,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Yekan,11,Bold</Font>
+              <Guid>2ee6133586c0421490db82d9a6d09029</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text36</Name>
+              <Page isRef="4" />
+              <Parent isRef="5" />
+              <Text>{لیست_داده_ها.SanadNumber}</Text>
+              <TextBrush>Red</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text36>
+            <Text14 Ref="16" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>16.6,0.2,2.2,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Yekan,11</Font>
+              <Guid>aeffa341b6804580b9dae907225bd660</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text14</Name>
+              <Page isRef="4" />
+              <Parent isRef="5" />
+              <Text>تاریخ چـــاپ :</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,RightToLeft=True,,,A=0</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </Text14>
+            <Text15 Ref="17" type="Text" isKey="true">
+              <Border>All;Black;1;None;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>2.6,0.2,2.2,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Yekan,11</Font>
+              <Guid>ccf014c1272444c2a24a7f62bb8d4908</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text15</Name>
+              <Page isRef="4" />
+              <Parent isRef="5" />
+              <Text>شماره سند :</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,RightToLeft=True,,,A=0</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </Text15>
+            <Text11 Ref="18" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>16.6,0.8,2.2,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Yekan,11</Font>
+              <Guid>ba797431752c45dab6c7a9788743c147</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text11</Name>
+              <Page isRef="4" />
+              <Parent isRef="5" />
+              <Text>تاریخ صدور :</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,RightToLeft=True,,,A=0</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </Text11>
+            <Text56 Ref="19" type="Text" isKey="true">
+              <Border>All;Black;1;None;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>6.4,1,5,1</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Homa,20,Underline</Font>
+              <Guid>26f092debf334979a4512d9a42bc1164</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text56</Name>
+              <Page isRef="4" />
+              <Parent isRef="5" />
+              <Text>سند حسابداری</Text>
+              <TextBrush>Black</TextBrush>
+              <VertAlignment>Center</VertAlignment>
+            </Text56>
+            <Text71 Ref="20" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>12,0.2,2,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Yekan,11,Bold</Font>
+              <Guid>d5f185ceff0d41a0b609221097e9412b</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text71</Name>
+              <Page isRef="4" />
+              <Parent isRef="5" />
+              <Text>{لیست_داده_ها.PrintTime}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text71>
+            <Text74 Ref="21" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>12,0.8,2,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Yekan,11,Bold</Font>
+              <Guid>1571fa5217b94998afc6e716c62981a0</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text74</Name>
+              <Page isRef="4" />
+              <Parent isRef="5" />
+              <Text>{لیست_داده_ها.SanadTime}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text74>
+            <Text1 Ref="22" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>16.6,2.6,2.2,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Yekan,11</Font>
+              <Guid>c468b102b8aa4421a1d2999730f9f10d</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text1</Name>
+              <Page isRef="4" />
+              <Parent isRef="5" />
+              <Text>شـرح سنـد :</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,RightToLeft=True,,,A=0</TextOptions>
+            </Text1>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <Guid>c912aa509edc4ddab6b5b67805f5be6a</Guid>
+          <Name>HeaderBand2</Name>
+          <Page isRef="4" />
+          <Parent isRef="4" />
+          <PrintOnAllPages>False</PrintOnAllPages>
+        </HeaderBand2>
+        <HeaderBand1 Ref="23" type="HeaderBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0,4.6,19,0.8</ClientRectangle>
+          <Components isList="true" count="4">
+            <Text5 Ref="24" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,0,3.4,0.8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Yekan,11</Font>
+              <Guid>fd4ec1ef92aa498f882445371d7c4848</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text5</Name>
+              <Page isRef="4" />
+              <Parent isRef="23" />
+              <Text>بستانکار</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,RightToLeft=True,,,A=0</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </Text5>
+            <Text6 Ref="25" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>3.4,0,3.6,0.8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Yekan,11</Font>
+              <Guid>95cb86f3fe5e47d19e7afe614aaeb930</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text6</Name>
+              <Page isRef="4" />
+              <Parent isRef="23" />
+              <Text>بدهکار</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,RightToLeft=True,,,A=0</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </Text6>
+            <Text7 Ref="26" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>7,0,11,0.8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Yekan,11</Font>
+              <Guid>eedbd287f4694bb28a62bcb5499c608b</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text7</Name>
+              <Page isRef="4" />
+              <Parent isRef="23" />
+              <Text>شرح</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,RightToLeft=True,,,A=0</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </Text7>
+            <Text10 Ref="27" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>18,0,1,0.8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Yekan,11</Font>
+              <Guid>636c640bc18646b48d79fc70a080db65</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text10</Name>
+              <Page isRef="4" />
+              <Parent isRef="23" />
+              <Text>ردیف</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,RightToLeft=True,,,A=0</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </Text10>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <Guid>246ebc3f7f1c441b9039b759469d2ef4</Guid>
+          <Name>HeaderBand1</Name>
+          <Page isRef="4" />
+          <Parent isRef="4" />
+        </HeaderBand1>
+        <DataBand1 Ref="28" type="DataBand" isKey="true">
+          <Border>All;Black;1;Solid;False;4;Black</Border>
+          <Brush>Transparent</Brush>
+          <BusinessObjectGuid>523ef5bd511c41deb00faaf479e9a935</BusinessObjectGuid>
+          <ClientRectangle>0,6.2,19,0.6</ClientRectangle>
+          <Components isList="true" count="5">
+            <Text3 Ref="29" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,0,3.4,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Yekan,11</Font>
+              <GrowToHeight>True</GrowToHeight>
+              <Guid>50430a6e4bf74197acffbcb0fe04906d</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text3</Name>
+              <Page isRef="4" />
+              <Parent isRef="28" />
+              <Text>{لیست_داده_ها.Credit}</Text>
+              <TextBrush>Lime</TextBrush>
+              <TextFormat Ref="30" type="CurrencyFormat" isKey="true">
+                <DecimalDigits>0</DecimalDigits>
+                <GroupSeparator>,</GroupSeparator>
+                <NegativePattern>0</NegativePattern>
+                <PositivePattern>0</PositivePattern>
+                <Symbol />
+                <UseLocalSetting>False</UseLocalSetting>
+              </TextFormat>
+              <TextOptions>,,RightToLeft=True,,,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text3>
+            <Text4 Ref="31" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>3.4,0,3.6,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Yekan,11</Font>
+              <GrowToHeight>True</GrowToHeight>
+              <Guid>9ec2ed3b6d8f448389a361457d472e1e</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text4</Name>
+              <Page isRef="4" />
+              <Parent isRef="28" />
+              <Text>{لیست_داده_ها.Debit}</Text>
+              <TextBrush>Red</TextBrush>
+              <TextFormat Ref="32" type="CurrencyFormat" isKey="true">
+                <DecimalDigits>0</DecimalDigits>
+                <GroupSeparator>,</GroupSeparator>
+                <NegativePattern>0</NegativePattern>
+                <PositivePattern>0</PositivePattern>
+                <Symbol />
+                <UseLocalSetting>False</UseLocalSetting>
+              </TextFormat>
+              <TextOptions>,,RightToLeft=True,,,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text4>
+            <SystemText1 Ref="33" type="SystemText" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>18,0,1,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Yekan,11</Font>
+              <GrowToHeight>True</GrowToHeight>
+              <Guid>4cf2f1e3d4344faf8f2ab57a4d2786ec</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>SystemText1</Name>
+              <Page isRef="4" />
+              <Parent isRef="28" />
+              <Text>{Line}</Text>
+              <TextBrush>Black</TextBrush>
+              <VertAlignment>Center</VertAlignment>
+            </SystemText1>
+            <Text8 Ref="34" type="Text" isKey="true">
+              <Border>Top, Left, Right;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>7,0,11,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Yekan,10</Font>
+              <GrowToHeight>True</GrowToHeight>
+              <Guid>3862c5bb9c284b219ca4ac9e1c6037a6</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text8</Name>
+              <Page isRef="4" />
+              <Parent isRef="28" />
+              <Text>{لیست_داده_ها.DetailDesc}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+            </Text8>
+            <شرح_سطر Ref="35" type="Text" isKey="true">
+              <Border>Left, Bottom;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>7,0.6,11,0</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Yekan,10</Font>
+              <GrowToHeight>True</GrowToHeight>
+              <Guid>a742ab96f1f447bb8138a83c024f4b86</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>شرح_سطر</Name>
+              <Page isRef="4" />
+              <Parent isRef="28" />
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="36" type="CurrencyFormat" isKey="true">
+                <DecimalDigits>0</DecimalDigits>
+                <GroupSeparator>,</GroupSeparator>
+                <NegativePattern>0</NegativePattern>
+                <PositivePattern>0</PositivePattern>
+                <Symbol />
+                <UseLocalSetting>False</UseLocalSetting>
+              </TextFormat>
+              <TextOptions>,,RightToLeft=True,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+            </شرح_سطر>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <DataSourceName isNull="true" />
+          <Filters isList="true" count="0" />
+          <Guid>d1be47a15df848d4b23cdfc35a03ef43</Guid>
+          <Name>DataBand1</Name>
+          <Page isRef="4" />
+          <Parent isRef="4" />
+          <Sort isList="true" count="0" />
+        </DataBand1>
+        <FooterBand1 Ref="37" type="FooterBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0,7.6,19,2.8</ClientRectangle>
+          <Components isList="true" count="7">
+            <Text17 Ref="38" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,0,3.4,0.8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Yekan,11</Font>
+              <Guid>bbccca55e81e4eaeb13b67a31930503d</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text17</Name>
+              <Page isRef="4" />
+              <Parent isRef="37" />
+              <Text>{لیست_داده_ها.SumCredit}</Text>
+              <TextBrush>Lime</TextBrush>
+              <TextFormat Ref="39" type="CurrencyFormat" isKey="true">
+                <DecimalDigits>0</DecimalDigits>
+                <GroupSeparator>,</GroupSeparator>
+                <NegativePattern>0</NegativePattern>
+                <PositivePattern>0</PositivePattern>
+                <Symbol />
+                <UseLocalSetting>False</UseLocalSetting>
+              </TextFormat>
+              <TextOptions>,,RightToLeft=True,,,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text17>
+            <Text18 Ref="40" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>3.4,0,3.6,0.8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Yekan,11</Font>
+              <Guid>56ef99d71dc647a09893208e5747cc7b</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text18</Name>
+              <Page isRef="4" />
+              <Parent isRef="37" />
+              <Text>{لیست_داده_ها.SumDebit}</Text>
+              <TextBrush>Red</TextBrush>
+              <TextFormat Ref="41" type="CurrencyFormat" isKey="true">
+                <DecimalDigits>0</DecimalDigits>
+                <GroupSeparator>,</GroupSeparator>
+                <NegativePattern>0</NegativePattern>
+                <PositivePattern>0</PositivePattern>
+                <Symbol />
+                <UseLocalSetting>False</UseLocalSetting>
+              </TextFormat>
+              <TextOptions>,,RightToLeft=True,,,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text18>
+            <Text12 Ref="42" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>12,2.2,3.8,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Yekan,11</Font>
+              <Guid>cb47a72a6807495a936ad6fc73e946f5</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text12</Name>
+              <Page isRef="4" />
+              <Parent isRef="37" />
+              <Text>امضاء مدیر عامل</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,RightToLeft=True,,,A=0</TextOptions>
+            </Text12>
+            <Text19 Ref="43" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>7.6,2.2,3.8,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Yekan,11</Font>
+              <Guid>05d42dfb735049428dbb7b570b12c0f3</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text19</Name>
+              <Page isRef="4" />
+              <Parent isRef="37" />
+              <Text>امضاء مدیر مالی</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,RightToLeft=True,,,A=0</TextOptions>
+            </Text19>
+            <Text20 Ref="44" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>3.2,2.2,3.8,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Yekan,11</Font>
+              <Guid>04868dd8bb9d4799bdd12ebfd7627f30</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text20</Name>
+              <Page isRef="4" />
+              <Parent isRef="37" />
+              <Text>امضاء تنظیم کننده</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,RightToLeft=True,,,A=0</TextOptions>
+            </Text20>
+            <Text21 Ref="45" type="Text" isKey="true">
+              <Border>All;Black;1;None;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>9.6,0,6.6,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Yekan,11,Bold</Font>
+              <Guid>c567a1cfbb654ed9b1fdc276011590ff</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text21</Name>
+              <Page isRef="4" />
+              <Parent isRef="37" />
+              <Text>{لیست_داده_ها.UserName}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,RightToLeft=True,,,A=0</TextOptions>
+              <Type>Expression</Type>
+            </Text21>
+            <Text30 Ref="46" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>16.2,0,2.8,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Yekan,11</Font>
+              <Guid>df66195e38424f54a601488164412bf3</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text30</Name>
+              <Page isRef="4" />
+              <Parent isRef="37" />
+              <Text>کاربر صادر کننده :</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,RightToLeft=True,,,A=0</TextOptions>
+            </Text30>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <Guid>54703cead4964c3e94a5ac37a28ebd09</Guid>
+          <Name>FooterBand1</Name>
+          <Page isRef="4" />
+          <Parent isRef="4" />
+        </FooterBand1>
+      </Components>
+      <Conditions isList="true" count="0" />
+      <Guid>4273444866b94089b6cfd7129a898e03</Guid>
+      <Margins>1,1,1,1</Margins>
+      <Name>Page1</Name>
+      <PageHeight>29.7</PageHeight>
+      <PageWidth>21</PageWidth>
+      <Report isRef="0" />
+      <Watermark Ref="47" type="Stimulsoft.Report.Components.StiWatermark" isKey="true">
+        <Font>Arial,100</Font>
+        <TextBrush>[50:0:0:0]</TextBrush>
+      </Watermark>
+    </Page1>
+  </Pages>
+  <PrinterSettings Ref="48" type="Stimulsoft.Report.Print.StiPrinterSettings" isKey="true" />
+  <ReferencedAssemblies isList="true" count="8">
+    <value>System.Dll</value>
+    <value>System.Drawing.Dll</value>
+    <value>System.Windows.Forms.Dll</value>
+    <value>System.Data.Dll</value>
+    <value>System.Xml.Dll</value>
+    <value>Stimulsoft.Controls.Dll</value>
+    <value>Stimulsoft.Base.Dll</value>
+    <value>Stimulsoft.Report.Dll</value>
+  </ReferencedAssemblies>
+  <ReportAlias>Report</ReportAlias>
+  <ReportChanged>3/26/2021 5:20:25 PM</ReportChanged>
+  <ReportCreated>3/26/2021 4:46:57 PM</ReportCreated>
+  <ReportFile>D:\Projects\RealState\RealState\Print\Resources\Sanad_One_A4.mrt</ReportFile>
+  <ReportGuid>bf908dae993d43e4a25c00884faea743</ReportGuid>
+  <ReportName>Report</ReportName>
+  <ReportUnit>Centimeters</ReportUnit>
+  <ReportVersion>2018.1.6.0</ReportVersion>
+  <Script>using System;
+using System.Drawing;
+using System.Windows.Forms;
+using System.Data;
+using Stimulsoft.Controls;
+using Stimulsoft.Base.Drawing;
+using Stimulsoft.Report;
+using Stimulsoft.Report.Dialogs;
+using Stimulsoft.Report.Components;
+
+namespace Reports
+{
+    public class Report : Stimulsoft.Report.StiReport
+    {
+        public Report()        {
+            this.InitializeComponent();
+        }
+
+        #region StiReport Designer generated code - do not modify
+        public Stimulsoft.Report.Components.StiPage Page1;
+        public Stimulsoft.Report.Components.StiHeaderBand HeaderBand2;
+        public Stimulsoft.Report.Components.StiText Text26;
+        public Stimulsoft.Report.Components.StiText Text25;
+        public Stimulsoft.Report.Components.StiText Text27;
+        public Stimulsoft.Report.Components.StiText Text2;
+        public Stimulsoft.Report.Components.StiText Text29;
+        public Stimulsoft.Report.Components.StiText Text28;
+        public Stimulsoft.Report.Components.StiText Text35;
+        public Stimulsoft.Report.Components.StiText Text9;
+        public Stimulsoft.Report.Components.StiText Text24;
+        public Stimulsoft.Report.Components.StiText Text36;
+        public Stimulsoft.Report.Components.StiText Text14;
+        public Stimulsoft.Report.Components.StiText Text15;
+        public Stimulsoft.Report.Components.StiText Text11;
+        public Stimulsoft.Report.Components.StiText Text56;
+        public Stimulsoft.Report.Components.StiText Text71;
+        public Stimulsoft.Report.Components.StiText Text74;
+        public Stimulsoft.Report.Components.StiText Text1;
+        public Stimulsoft.Report.Components.StiHeaderBand HeaderBand1;
+        public Stimulsoft.Report.Components.StiText Text5;
+        public Stimulsoft.Report.Components.StiText Text6;
+        public Stimulsoft.Report.Components.StiText Text7;
+        public Stimulsoft.Report.Components.StiText Text10;
+        public Stimulsoft.Report.Components.StiDataBand DataBand1;
+        public Stimulsoft.Report.Components.StiText Text3;
+        public Stimulsoft.Report.Components.StiText Text4;
+        public Stimulsoft.Report.Components.StiSystemText SystemText1;
+        public Stimulsoft.Report.Components.StiText Text8;
+        public Stimulsoft.Report.Components.StiText شرح_سطر;
+        public Stimulsoft.Report.Components.StiFooterBand FooterBand1;
+        public Stimulsoft.Report.Components.StiText Text17;
+        public Stimulsoft.Report.Components.StiText Text18;
+        public Stimulsoft.Report.Components.StiText Text12;
+        public Stimulsoft.Report.Components.StiText Text19;
+        public Stimulsoft.Report.Components.StiText Text20;
+        public Stimulsoft.Report.Components.StiText Text21;
+        public Stimulsoft.Report.Components.StiText Text30;
+        public Stimulsoft.Report.Components.StiWatermark Page1_Watermark;
+        public Stimulsoft.Report.Print.StiPrinterSettings Report_PrinterSettings;
+        public SanadsDataSource Sanads;
+        public لیست_داده_هاBusinessObject لیست_داده_ها;
+        
+        public void Text26__GetValue(object sender, Stimulsoft.Report.Events.StiGetValueEventArgs e)
+        {
+            // CheckerInfo: Text Text26
+            e.Value = "........................................................................";
+        }
+        
+        public void Text25__GetValue(object sender, Stimulsoft.Report.Events.StiGetValueEventArgs e)
+        {
+            // CheckerInfo: Text Text25
+            e.Value = "........................................................................";
+        }
+        
+        public void Text27__GetValue(object sender, Stimulsoft.Report.Events.StiGetValueEventArgs e)
+        {
+            // CheckerInfo: Text Text27
+            e.Value = "................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................";
+        }
+        
+        public void Text2__GetValue(object sender, Stimulsoft.Report.Events.StiGetValueEventArgs e)
+        {
+            // CheckerInfo: Text Text2
+            e.Value = ToString(sender, لیست_داده_ها.SanadDesc, true);
+        }
+        
+        public void Text29__GetValue(object sender, Stimulsoft.Report.Events.StiGetValueEventArgs e)
+        {
+            // CheckerInfo: Text Text29
+            e.Value = "........................................................................";
+        }
+        
+        public void Text28__GetValue(object sender, Stimulsoft.Report.Events.StiGetValueEventArgs e)
+        {
+            // CheckerInfo: Text Text28
+            e.Value = "........................................................................";
+        }
+        
+        public void Text35__GetValue(object sender, Stimulsoft.Report.Events.StiGetValueEventArgs e)
+        {
+            // CheckerInfo: Text Text35
+            e.Value = ToString(sender, لیست_داده_ها.SanadDateSh, true);
+        }
+        
+        public void Text9__GetValue(object sender, Stimulsoft.Report.Events.StiGetValueEventArgs e)
+        {
+            // CheckerInfo: Text Text9
+            e.Value = ToString(sender, لیست_داده_ها.PrintDateSh, true);
+        }
+        
+        public void Text24__GetValue(object sender, Stimulsoft.Report.Events.StiGetValueEventArgs e)
+        {
+            // CheckerInfo: Text Text24
+            e.Value = "....................................";
+        }
+        
+        public void Text36__GetValue(object sender, Stimulsoft.Report.Events.StiGetValueEventArgs e)
+        {
+            // CheckerInfo: Text Text36
+            e.Value = ToString(sender, لیست_داده_ها.SanadNumber, true);
+        }
+        
+        public void Text14__GetValue(object sender, Stimulsoft.Report.Events.StiGetValueEventArgs e)
+        {
+            // CheckerInfo: Text Text14
+            e.Value = "تاریخ چـــاپ :";
+        }
+        
+        public void Text15__GetValue(object sender, Stimulsoft.Report.Events.StiGetValueEventArgs e)
+        {
+            // CheckerInfo: Text Text15
+            e.Value = "شماره سند :";
+        }
+        
+        public void Text11__GetValue(object sender, Stimulsoft.Report.Events.StiGetValueEventArgs e)
+        {
+            // CheckerInfo: Text Text11
+            e.Value = "تاریخ صدور :";
+        }
+        
+        public void Text56__GetValue(object sender, Stimulsoft.Report.Events.StiGetValueEventArgs e)
+        {
+            // CheckerInfo: Text Text56
+            e.Value = "سند حسابداری";
+        }
+        
+        public void Text71__GetValue(object sender, Stimulsoft.Report.Events.StiGetValueEventArgs e)
+        {
+            // CheckerInfo: Text Text71
+            e.Value = ToString(sender, لیست_داده_ها.PrintTime, true);
+        }
+        
+        public void Text74__GetValue(object sender, Stimulsoft.Report.Events.StiGetValueEventArgs e)
+        {
+            // CheckerInfo: Text Text74
+            e.Value = ToString(sender, لیست_داده_ها.SanadTime, true);
+        }
+        
+        public void Text1__GetValue(object sender, Stimulsoft.Report.Events.StiGetValueEventArgs e)
+        {
+            // CheckerInfo: Text Text1
+            e.Value = "شـرح سنـد :";
+        }
+        
+        public void Text5__GetValue(object sender, Stimulsoft.Report.Events.StiGetValueEventArgs e)
+        {
+            // CheckerInfo: Text Text5
+            e.Value = "بستانکار";
+        }
+        
+        public void Text6__GetValue(object sender, Stimulsoft.Report.Events.StiGetValueEventArgs e)
+        {
+            // CheckerInfo: Text Text6
+            e.Value = "بدهکار";
+        }
+        
+        public void Text7__GetValue(object sender, Stimulsoft.Report.Events.StiGetValueEventArgs e)
+        {
+            // CheckerInfo: Text Text7
+            e.Value = "شرح";
+        }
+        
+        public void Text10__GetValue(object sender, Stimulsoft.Report.Events.StiGetValueEventArgs e)
+        {
+            // CheckerInfo: Text Text10
+            e.Value = "ردیف";
+        }
+        
+        public void Text3__GetValue(object sender, Stimulsoft.Report.Events.StiGetValueEventArgs e)
+        {
+            // CheckerInfo: Text Text3
+            e.Value = this.Text3.TextFormat.Format(CheckExcelValue(sender, لیست_داده_ها.Credit));
+        }
+        
+        public void Text4__GetValue(object sender, Stimulsoft.Report.Events.StiGetValueEventArgs e)
+        {
+            // CheckerInfo: Text Text4
+            e.Value = this.Text4.TextFormat.Format(CheckExcelValue(sender, لیست_داده_ها.Debit));
+        }
+        
+        public void SystemText1__GetValue(object sender, Stimulsoft.Report.Events.StiGetValueEventArgs e)
+        {
+            // CheckerInfo: Text SystemText1
+            e.Value = ToString(sender, Line, true);
+        }
+        
+        public void Text8__GetValue(object sender, Stimulsoft.Report.Events.StiGetValueEventArgs e)
+        {
+            // CheckerInfo: Text Text8
+            e.Value = ToString(sender, لیست_داده_ها.DetailDesc, true);
+        }
+        
+        public void شرح_سطر__GetValue(object sender, Stimulsoft.Report.Events.StiGetValueEventArgs e)
+        {
+            // CheckerInfo: Text شرح_سطر
+            //e.Value = this.شرح_سطر.TextFormat.Format(CheckExcelValue(sender, IIF(اقلام_سند_حسابداری.شرح_سطر&lt;&gt;""," &gt;&gt;&gt;   ","") +اقلام_سند_حسابداری.شرح_سطر));
+        }
+        
+        public void DataBand1_BeforePrint(object sender, System.EventArgs e)
+        {
+            // CheckerInfo: BeforePrintEvent DataBand1
+            
+        }
+        
+        public void Text17__GetValue(object sender, Stimulsoft.Report.Events.StiGetValueEventArgs e)
+        {
+            // CheckerInfo: Text Text17
+            e.Value = this.Text17.TextFormat.Format(CheckExcelValue(sender, لیست_داده_ها.SumCredit));
+        }
+        
+        public void Text18__GetValue(object sender, Stimulsoft.Report.Events.StiGetValueEventArgs e)
+        {
+            // CheckerInfo: Text Text18
+            e.Value = this.Text18.TextFormat.Format(CheckExcelValue(sender, لیست_داده_ها.SumDebit));
+        }
+        
+        public void Text12__GetValue(object sender, Stimulsoft.Report.Events.StiGetValueEventArgs e)
+        {
+            // CheckerInfo: Text Text12
+            e.Value = "امضاء مدیر عامل";
+        }
+        
+        public void Text19__GetValue(object sender, Stimulsoft.Report.Events.StiGetValueEventArgs e)
+        {
+            // CheckerInfo: Text Text19
+            e.Value = "امضاء مدیر مالی";
+        }
+        
+        public void Text20__GetValue(object sender, Stimulsoft.Report.Events.StiGetValueEventArgs e)
+        {
+            // CheckerInfo: Text Text20
+            e.Value = "امضاء تنظیم کننده";
+        }
+        
+        public void Text21__GetValue(object sender, Stimulsoft.Report.Events.StiGetValueEventArgs e)
+        {
+            // CheckerInfo: Text Text21
+            e.Value = ToString(sender, لیست_داده_ها.UserName, true);
+        }
+        
+        public void Text30__GetValue(object sender, Stimulsoft.Report.Events.StiGetValueEventArgs e)
+        {
+            // CheckerInfo: Text Text30
+            e.Value = "کاربر صادر کننده :";
+        }
+        
+        private void InitializeComponent()
+        {
+            this.لیست_داده_ها = new لیست_داده_هاBusinessObject();
+            this.Sanads = new SanadsDataSource();
+            this.NeedsCompiling = false;
+            this.EngineVersion = Stimulsoft.Report.Engine.StiEngineVersion.EngineV2;
+            this.ReferencedAssemblies = new string[] {
+                    "System.Dll",
+                    "System.Drawing.Dll",
+                    "System.Windows.Forms.Dll",
+                    "System.Data.Dll",
+                    "System.Xml.Dll",
+                    "Stimulsoft.Controls.Dll",
+                    "Stimulsoft.Base.Dll",
+                    "Stimulsoft.Report.Dll"};
+            this.ReportAlias = "Report";
+            // 
+            // ReportChanged
+            // 
+            this.ReportChanged = new DateTime(2021, 3, 26, 17, 18, 39, 65);
+            // 
+            // ReportCreated
+            // 
+            this.ReportCreated = new DateTime(2021, 3, 26, 16, 46, 57, 0);
+            this.ReportFile = "D:\\Projects\\RealState\\RealState\\Print\\Resources\\Sanad_One_A4.mrt";
+            this.ReportGuid = "acb86b5ce24b452eb773bcdc9e0a4f37";
+            this.ReportName = "Report";
+            this.ReportUnit = Stimulsoft.Report.StiReportUnitType.Centimeters;
+            this.ReportVersion = "2018.1.6.0";
+            this.ScriptLanguage = Stimulsoft.Report.StiReportLanguageType.CSharp;
+            // 
+            // Page1
+            // 
+            this.Page1 = new Stimulsoft.Report.Components.StiPage();
+            this.Page1.Guid = "4273444866b94089b6cfd7129a898e03";
+            this.Page1.Name = "Page1";
+            this.Page1.PageHeight = 29.7;
+            this.Page1.PageWidth = 21;
+            this.Page1.Border = new Stimulsoft.Base.Drawing.StiBorder(Stimulsoft.Base.Drawing.StiBorderSides.None, System.Drawing.Color.Black, 2, Stimulsoft.Base.Drawing.StiPenStyle.Solid, false, 4, new Stimulsoft.Base.Drawing.StiSolidBrush(System.Drawing.Color.Black), false);
+            this.Page1.Brush = new Stimulsoft.Base.Drawing.StiSolidBrush(System.Drawing.Color.Transparent);
+            // 
+            // HeaderBand2
+            // 
+            this.HeaderBand2 = new Stimulsoft.Report.Components.StiHeaderBand();
+            this.HeaderBand2.ClientRectangle = new Stimulsoft.Base.Drawing.RectangleD(0, 0.4, 19, 3.4);
+            this.HeaderBand2.Guid = "c912aa509edc4ddab6b5b67805f5be6a";
+            this.HeaderBand2.Name = "HeaderBand2";
+            this.HeaderBand2.PrintOnAllPages = false;
+            this.HeaderBand2.Border = new Stimulsoft.Base.Drawing.StiBorder(Stimulsoft.Base.Drawing.StiBorderSides.All, System.Drawing.Color.Black, 1, Stimulsoft.Base.Drawing.StiPenStyle.Solid, false, 4, new Stimulsoft.Base.Drawing.StiSolidBrush(System.Drawing.Color.Black), false);
+            this.HeaderBand2.Brush = new Stimulsoft.Base.Drawing.StiSolidBrush(System.Drawing.Color.Transparent);
+            // 
+            // Text26
+            // 
+            this.Text26 = new Stimulsoft.Report.Components.StiText();
+            this.Text26.ClientRectangle = new Stimulsoft.Base.Drawing.RectangleD(12, 0.8, 4.6, 0.6);
+            this.Text26.Guid = "00d4547b3b2c45d2b905a300169c7c5e";
+            this.Text26.HorAlignment = Stimulsoft.Base.Drawing.StiTextHorAlignment.Right;
+            this.Text26.Name = "Text26";
+            this.Text26.GetValue += new Stimulsoft.Report.Events.StiGetValueEventHandler(this.Text26__GetValue);
+            this.Text26.VertAlignment = Stimulsoft.Base.Drawing.StiVertAlignment.Center;
+            this.Text26.Border = new Stimulsoft.Base.Drawing.StiBorder(Stimulsoft.Base.Drawing.StiBorderSides.None, System.Drawing.Color.Black, 1, Stimulsoft.Base.Drawing.StiPenStyle.Solid, false, 4, new Stimulsoft.Base.Drawing.StiSolidBrush(System.Drawing.Color.Black), false);
+            this.Text26.Brush = new Stimulsoft.Base.Drawing.StiSolidBrush(System.Drawing.Color.Transparent);
+            this.Text26.Font = new System.Drawing.Font("B Yekan", 11F);
+            this.Text26.Indicator = null;
+            this.Text26.Interaction = null;
+            this.Text26.Margins = new Stimulsoft.Report.Components.StiMargins(0, 0, 0, 0);
+            this.Text26.TextBrush = new Stimulsoft.Base.Drawing.StiSolidBrush(System.Drawing.Color.Silver);
+            this.Text26.TextOptions = new Stimulsoft.Base.Drawing.StiTextOptions(false, false, false, 0F, System.Drawing.Text.HotkeyPrefix.None, System.Drawing.StringTrimming.None);
+            // 
+            // Text25
+            // 
+            this.Text25 = new Stimulsoft.Report.Components.StiText();
+            this.Text25.ClientRectangle = new Stimulsoft.Base.Drawing.RectangleD(12, 0.2, 4.6, 0.6);
+            this.Text25.Guid = "a114bd609fb34be28dc23a3f813748d0";
+            this.Text25.HorAlignment = Stimulsoft.Base.Drawing.StiTextHorAlignment.Right;
+            this.Text25.Name = "Text25";
+            this.Text25.GetValue += new Stimulsoft.Report.Events.StiGetValueEventHandler(this.Text25__GetValue);
+            this.Text25.VertAlignment = Stimulsoft.Base.Drawing.StiVertAlignment.Center;
+            this.Text25.Border = new Stimulsoft.Base.Drawing.StiBorder(Stimulsoft.Base.Drawing.StiBorderSides.None, System.Drawing.Color.Black, 1, Stimulsoft.Base.Drawing.StiPenStyle.Solid, false, 4, new Stimulsoft.Base.Drawing.StiSolidBrush(System.Drawing.Color.Black), false);
+            this.Text25.Brush = new Stimulsoft.Base.Drawing.StiSolidBrush(System.Drawing.Color.Transparent);
+            this.Text25.Font = new System.Drawing.Font("B Yekan", 11F);
+            this.Text25.Indicator = null;
+            this.Text25.Interaction = null;
+            this.Text25.Margins = new Stimulsoft.Report.Components.StiMargins(0, 0, 0, 0);
+            this.Text25.TextBrush = new Stimulsoft.Base.Drawing.StiSolidBrush(System.Drawing.Color.Silver);
+            this.Text25.TextOptions = new Stimulsoft.Base.Drawing.StiTextOptions(false, false, false, 0F, System.Drawing.Text.HotkeyPrefix.None, System.Drawing.StringTrimming.None);
+            // 
+            // Text27
+            // 
+            this.Text27 = new Stimulsoft.Report.Components.StiText();
+            this.Text27.ClientRectangle = new Stimulsoft.Base.Drawing.RectangleD(0.2, 2.6, 16.4, 0.6);
+            this.Text27.Guid = "49f4cefc12924dc08fcbdacf9607060b";
+            this.Text27.HorAlignment = Stimulsoft.Base.Drawing.StiTextHorAlignment.Right;
+            this.Text27.Name = "Text27";
+            this.Text27.GetValue += new Stimulsoft.Report.Events.StiGetValueEventHandler(this.Text27__GetValue);
+            this.Text27.VertAlignment = Stimulsoft.Base.Drawing.StiVertAlignment.Center;
+            this.Text27.Border = new Stimulsoft.Base.Drawing.StiBorder(Stimulsoft.Base.Drawing.StiBorderSides.None, System.Drawing.Color.Black, 1, Stimulsoft.Base.Drawing.StiPenStyle.Solid, false, 4, new Stimulsoft.Base.Drawing.StiSolidBrush(System.Drawing.Color.Black), false);
+            this.Text27.Brush = new Stimulsoft.Base.Drawing.StiSolidBrush(System.Drawing.Color.Transparent);
+            this.Text27.Font = new System.Drawing.Font("B Yekan", 11F);
+            this.Text27.Indicator = null;
+            this.Text27.Interaction = null;
+            this.Text27.Margins = new Stimulsoft.Report.Components.StiMargins(0, 0, 0, 0);
+            this.Text27.TextBrush = new Stimulsoft.Base.Drawing.StiSolidBrush(System.Drawing.Color.Gainsboro);
+            this.Text27.TextOptions = new Stimulsoft.Base.Drawing.StiTextOptions(false, false, false, 0F, System.Drawing.Text.HotkeyPrefix.None, System.Drawing.StringTrimming.None);
+            // 
+            // Text2
+            // 
+            this.Text2 = new Stimulsoft.Report.Components.StiText();
+            this.Text2.ClientRectangle = new Stimulsoft.Base.Drawing.RectangleD(0, 2.6, 16.6, 0.6);
+            this.Text2.Guid = "51fbb7e9796b41aeaaca1217619446c6";
+            this.Text2.Name = "Text2";
+            this.Text2.GetValue += new Stimulsoft.Report.Events.StiGetValueEventHandler(this.Text2__GetValue);
+            this.Text2.Type = Stimulsoft.Report.Components.StiSystemTextType.Expression;
+            this.Text2.Border = new Stimulsoft.Base.Drawing.StiBorder(Stimulsoft.Base.Drawing.StiBorderSides.None, System.Drawing.Color.Black, 1, Stimulsoft.Base.Drawing.StiPenStyle.Solid, false, 4, new Stimulsoft.Base.Drawing.StiSolidBrush(System.Drawing.Color.Black), false);
+            this.Text2.Brush = new Stimulsoft.Base.Drawing.StiSolidBrush(System.Drawing.Color.Transparent);
+            this.Text2.Font = new System.Drawing.Font("B Yekan", 11F, System.Drawing.FontStyle.Bold);
+            this.Text2.Indicator = null;
+            this.Text2.Interaction = null;
+            this.Text2.Margins = new Stimulsoft.Report.Components.StiMargins(0, 0, 0, 0);
+            this.Text2.TextBrush = new Stimulsoft.Base.Drawing.StiSolidBrush(System.Drawing.Color.Black);
+            this.Text2.TextOptions = new Stimulsoft.Base.Drawing.StiTextOptions(true, false, false, 0F, System.Drawing.Text.HotkeyPrefix.None, System.Drawing.StringTrimming.None);
+            // 
+            // Text29
+            // 
+            this.Text29 = new Stimulsoft.Report.Components.StiText();
+            this.Text29.ClientRectangle = new Stimulsoft.Base.Drawing.RectangleD(12, 0.2, 4.6, 0.6);
+            this.Text29.Guid = "09c8cbfade1f4df9a37cc36739d8615d";
+            this.Text29.HorAlignment = Stimulsoft.Base.Drawing.StiTextHorAlignment.Right;
+            this.Text29.Name = "Text29";
+            this.Text29.GetValue += new Stimulsoft.Report.Events.StiGetValueEventHandler(this.Text29__GetValue);
+            this.Text29.VertAlignment = Stimulsoft.Base.Drawing.StiVertAlignment.Center;
+            this.Text29.Border = new Stimulsoft.Base.Drawing.StiBorder(Stimulsoft.Base.Drawing.StiBorderSides.None, System.Drawing.Color.Black, 1, Stimulsoft.Base.Drawing.StiPenStyle.Solid, false, 4, new Stimulsoft.Base.Drawing.StiSolidBrush(System.Drawing.Color.Black), false);
+            this.Text29.Brush = new Stimulsoft.Base.Drawing.StiSolidBrush(System.Drawing.Color.Transparent);
+            this.Text29.Font = new System.Drawing.Font("B Yekan", 11F);
+            this.Text29.Indicator = null;
+            this.Text29.Interaction = null;
+            this.Text29.Margins = new Stimulsoft.Report.Components.StiMargins(0, 0, 0, 0);
+            this.Text29.TextBrush = new Stimulsoft.Base.Drawing.StiSolidBrush(System.Drawing.Color.Gainsboro);
+            this.Text29.TextOptions = new Stimulsoft.Base.Drawing.StiTextOptions(false, false, false, 0F, System.Drawing.Text.HotkeyPrefix.None, System.Drawing.StringTrimming.None);
+            // 
+            // Text28
+            // 
+            this.Text28 = new Stimulsoft.Report.Components.StiText();
+            this.Text28.ClientRectangle = new Stimulsoft.Base.Drawing.RectangleD(12, 0.8, 4.6, 0.6);
+            this.Text28.Guid = "1a4b9d0d467e461abaa03c3f39e5e8e1";
+            this.Text28.HorAlignment = Stimulsoft.Base.Drawing.StiTextHorAlignment.Right;
+            this.Text28.Name = "Text28";
+            this.Text28.GetValue += new Stimulsoft.Report.Events.StiGetValueEventHandler(this.Text28__GetValue);
+            this.Text28.VertAlignment = Stimulsoft.Base.Drawing.StiVertAlignment.Center;
+            this.Text28.Border = new Stimulsoft.Base.Drawing.StiBorder(Stimulsoft.Base.Drawing.StiBorderSides.None, System.Drawing.Color.Black, 1, Stimulsoft.Base.Drawing.StiPenStyle.Solid, false, 4, new Stimulsoft.Base.Drawing.StiSolidBrush(System.Drawing.Color.Black), false);
+            this.Text28.Brush = new Stimulsoft.Base.Drawing.StiSolidBrush(System.Drawing.Color.Transparent);
+            this.Text28.Font = new System.Drawing.Font("B Yekan", 11F);
+            this.Text28.Indicator = null;
+            this.Text28.Interaction = null;
+            this.Text28.Margins = new Stimulsoft.Report.Components.StiMargins(0, 0, 0, 0);
+            this.Text28.TextBrush = new Stimulsoft.Base.Drawing.StiSolidBrush(System.Drawing.Color.Gainsboro);
+            this.Text28.TextOptions = new Stimulsoft.Base.Drawing.StiTextOptions(false, false, false, 0F, System.Drawing.Text.HotkeyPrefix.None, System.Drawing.StringTrimming.None);
+            // 
+            // Text35
+            // 
+            this.Text35 = new Stimulsoft.Report.Components.StiText();
+            this.Text35.ClientRectangle = new Stimulsoft.Base.Drawing.RectangleD(13.8, 0.8, 2.8, 0.6);
+            this.Text35.Guid = "535af848e7d541f5872e6a193057d4c1";
+            this.Text35.HorAlignment = Stimulsoft.Base.Drawing.StiTextHorAlignment.Right;
+            this.Text35.Name = "Text35";
+            this.Text35.GetValue += new Stimulsoft.Report.Events.StiGetValueEventHandler(this.Text35__GetValue);
+            this.Text35.Type = Stimulsoft.Report.Components.StiSystemTextType.Expression;
+            this.Text35.VertAlignment = Stimulsoft.Base.Drawing.StiVertAlignment.Center;
+            this.Text35.Border = new Stimulsoft.Base.Drawing.StiBorder(Stimulsoft.Base.Drawing.StiBorderSides.None, System.Drawing.Color.Black, 1, Stimulsoft.Base.Drawing.StiPenStyle.Solid, false, 4, new Stimulsoft.Base.Drawing.StiSolidBrush(System.Drawing.Color.Black), false);
+            this.Text35.Brush = new Stimulsoft.Base.Drawing.StiSolidBrush(System.Drawing.Color.Transparent);
+            this.Text35.Font = new System.Drawing.Font("B Yekan", 11F, System.Drawing.FontStyle.Bold);
+            this.Text35.Indicator = null;
+            this.Text35.Interaction = null;
+            this.Text35.Margins = new Stimulsoft.Report.Components.StiMargins(0, 0, 0, 0);
+            this.Text35.TextBrush = new Stimulsoft.Base.Drawing.StiSolidBrush(System.Drawing.Color.Black);
+            this.Text35.TextOptions = new Stimulsoft.Base.Drawing.StiTextOptions(false, false, false, 0F, System.Drawing.Text.HotkeyPrefix.None, System.Drawing.StringTrimming.None);
+            // 
+            // Text9
+            // 
+            this.Text9 = new Stimulsoft.Report.Components.StiText();
+            this.Text9.ClientRectangle = new Stimulsoft.Base.Drawing.RectangleD(13.8, 0.2, 2.8, 0.6);
+            this.Text9.Guid = "5ee12448db2a48c4974c52a98331df91";
+            this.Text9.HorAlignment = Stimulsoft.Base.Drawing.StiTextHorAlignment.Right;
+            this.Text9.Name = "Text9";
+            this.Text9.GetValue += new Stimulsoft.Report.Events.StiGetValueEventHandler(this.Text9__GetValue);
+            this.Text9.Type = Stimulsoft.Report.Components.StiSystemTextType.Expression;
+            this.Text9.VertAlignment = Stimulsoft.Base.Drawing.StiVertAlignment.Center;
+            this.Text9.Border = new Stimulsoft.Base.Drawing.StiBorder(Stimulsoft.Base.Drawing.StiBorderSides.None, System.Drawing.Color.Black, 1, Stimulsoft.Base.Drawing.StiPenStyle.Solid, false, 4, new Stimulsoft.Base.Drawing.StiSolidBrush(System.Drawing.Color.Black), false);
+            this.Text9.Brush = new Stimulsoft.Base.Drawing.StiSolidBrush(System.Drawing.Color.Transparent);
+            this.Text9.Font = new System.Drawing.Font("B Yekan", 11F, System.Drawing.FontStyle.Bold);
+            this.Text9.Indicator = null;
+            this.Text9.Interaction = null;
+            this.Text9.Margins = new Stimulsoft.Report.Components.StiMargins(0, 0, 0, 0);
+            this.Text9.TextBrush = new Stimulsoft.Base.Drawing.StiSolidBrush(System.Drawing.Color.Black);
+            this.Text9.TextOptions = new Stimulsoft.Base.Drawing.StiTextOptions(false, false, false, 0F, System.Drawing.Text.HotkeyPrefix.None, System.Drawing.StringTrimming.None);
+            // 
+            // Text24
+            // 
+            this.Text24 = new Stimulsoft.Report.Components.StiText();
+            this.Text24.ClientRectangle = new Stimulsoft.Base.Drawing.RectangleD(0.2, 0.2, 2.4, 0.6);
+            this.Text24.Guid = "9250c664eec645a0bfb3ef3e54650db0";
+            this.Text24.HorAlignment = Stimulsoft.Base.Drawing.StiTextHorAlignment.Right;
+            this.Text24.Name = "Text24";
+            this.Text24.GetValue += new Stimulsoft.Report.Events.StiGetValueEventHandler(this.Text24__GetValue);
+            this.Text24.VertAlignment = Stimulsoft.Base.Drawing.StiVertAlignment.Center;
+            this.Text24.Border = new Stimulsoft.Base.Drawing.StiBorder(Stimulsoft.Base.Drawing.StiBorderSides.None, System.Drawing.Color.Black, 1, Stimulsoft.Base.Drawing.StiPenStyle.Solid, false, 4, new Stimulsoft.Base.Drawing.StiSolidBrush(System.Drawing.Color.Black), false);
+            this.Text24.Brush = new Stimulsoft.Base.Drawing.StiSolidBrush(System.Drawing.Color.Transparent);
+            this.Text24.Font = new System.Drawing.Font("B Yekan", 11F);
+            this.Text24.Indicator = null;
+            this.Text24.Interaction = null;
+            this.Text24.Margins = new Stimulsoft.Report.Components.StiMargins(0, 0, 0, 0);
+            this.Text24.TextBrush = new Stimulsoft.Base.Drawing.StiSolidBrush(System.Drawing.Color.Gainsboro);
+            this.Text24.TextOptions = new Stimulsoft.Base.Drawing.StiTextOptions(false, false, false, 0F, System.Drawing.Text.HotkeyPrefix.None, System.Drawing.StringTrimming.None);
+            // 
+            // Text36
+            // 
+            this.Text36 = new Stimulsoft.Report.Components.StiText();
+            this.Text36.ClientRectangle = new Stimulsoft.Base.Drawing.RectangleD(0.2, 0.2, 2.4, 0.6);
+            this.Text36.Guid = "2ee6133586c0421490db82d9a6d09029";
+            this.Text36.HorAlignment = Stimulsoft.Base.Drawing.StiTextHorAlignment.Center;
+            this.Text36.Name = "Text36";
+            this.Text36.GetValue += new Stimulsoft.Report.Events.StiGetValueEventHandler(this.Text36__GetValue);
+            this.Text36.Type = Stimulsoft.Report.Components.StiSystemTextType.Expression;
+            this.Text36.VertAlignment = Stimulsoft.Base.Drawing.StiVertAlignment.Center;
+            this.Text36.Border = new Stimulsoft.Base.Drawing.StiBorder(Stimulsoft.Base.Drawing.StiBorderSides.None, System.Drawing.Color.Black, 1, Stimulsoft.Base.Drawing.StiPenStyle.Solid, false, 4, new Stimulsoft.Base.Drawing.StiSolidBrush(System.Drawing.Color.Black), false);
+            this.Text36.Brush = new Stimulsoft.Base.Drawing.StiSolidBrush(System.Drawing.Color.Transparent);
+            this.Text36.Font = new System.Drawing.Font("B Yekan", 11F, System.Drawing.FontStyle.Bold);
+            this.Text36.Indicator = null;
+            this.Text36.Interaction = null;
+            this.Text36.Margins = new Stimulsoft.Report.Components.StiMargins(0, 0, 0, 0);
+            this.Text36.TextBrush = new Stimulsoft.Base.Drawing.StiSolidBrush(System.Drawing.Color.Red);
+            this.Text36.TextOptions = new Stimulsoft.Base.Drawing.StiTextOptions(false, false, false, 0F, System.Drawing.Text.HotkeyPrefix.None, System.Drawing.StringTrimming.None);
+            // 
+            // Text14
+            // 
+            this.Text14 = new Stimulsoft.Report.Components.StiText();
+            this.Text14.ClientRectangle = new Stimulsoft.Base.Drawing.RectangleD(16.6, 0.2, 2.2, 0.6);
+            this.Text14.Guid = "aeffa341b6804580b9dae907225bd660";
+            this.Text14.HorAlignment = Stimulsoft.Base.Drawing.StiTextHorAlignment.Right;
+            this.Text14.Name = "Text14";
+            this.Text14.GetValue += new Stimulsoft.Report.Events.StiGetValueEventHandler(this.Text14__GetValue);
+            this.Text14.VertAlignment = Stimulsoft.Base.Drawing.StiVertAlignment.Center;
+            this.Text14.Border = new Stimulsoft.Base.Drawing.StiBorder(Stimulsoft.Base.Drawing.StiBorderSides.None, System.Drawing.Color.Black, 1, Stimulsoft.Base.Drawing.StiPenStyle.Solid, false, 4, new Stimulsoft.Base.Drawing.StiSolidBrush(System.Drawing.Color.Black), false);
+            this.Text14.Brush = new Stimulsoft.Base.Drawing.StiSolidBrush(System.Drawing.Color.Transparent);
+            this.Text14.Font = new System.Drawing.Font("B Yekan", 11F);
+            this.Text14.Indicator = null;
+            this.Text14.Interaction = null;
+            this.Text14.Margins = new Stimulsoft.Report.Components.StiMargins(0, 0, 0, 0);
+            this.Text14.TextBrush = new Stimulsoft.Base.Drawing.StiSolidBrush(System.Drawing.Color.Black);
+            this.Text14.TextOptions = new Stimulsoft.Base.Drawing.StiTextOptions(true, false, false, 0F, System.Drawing.Text.HotkeyPrefix.None, System.Drawing.StringTrimming.None);
+            // 
+            // Text15
+            // 
+            this.Text15 = new Stimulsoft.Report.Components.StiText();
+            this.Text15.ClientRectangle = new Stimulsoft.Base.Drawing.RectangleD(2.6, 0.2, 2.2, 0.6);
+            this.Text15.Guid = "ccf014c1272444c2a24a7f62bb8d4908";
+            this.Text15.HorAlignment = Stimulsoft.Base.Drawing.StiTextHorAlignment.Right;
+            this.Text15.Name = "Text15";
+            this.Text15.GetValue += new Stimulsoft.Report.Events.StiGetValueEventHandler(this.Text15__GetValue);
+            this.Text15.VertAlignment = Stimulsoft.Base.Drawing.StiVertAlignment.Center;
+            this.Text15.Border = new Stimulsoft.Base.Drawing.StiBorder(Stimulsoft.Base.Drawing.StiBorderSides.All, System.Drawing.Color.Black, 1, Stimulsoft.Base.Drawing.StiPenStyle.None, false, 4, new Stimulsoft.Base.Drawing.StiSolidBrush(System.Drawing.Color.Black), false);
+            this.Text15.Brush = new Stimulsoft.Base.Drawing.StiSolidBrush(System.Drawing.Color.Transparent);
+            this.Text15.Font = new System.Drawing.Font("B Yekan", 11F);
+            this.Text15.Indicator = null;
+            this.Text15.Interaction = null;
+            this.Text15.Margins = new Stimulsoft.Report.Components.StiMargins(0, 0, 0, 0);
+            this.Text15.TextBrush = new Stimulsoft.Base.Drawing.StiSolidBrush(System.Drawing.Color.Black);
+            this.Text15.TextOptions = new Stimulsoft.Base.Drawing.StiTextOptions(true, false, false, 0F, System.Drawing.Text.HotkeyPrefix.None, System.Drawing.StringTrimming.None);
+            // 
+            // Text11
+            // 
+            this.Text11 = new Stimulsoft.Report.Components.StiText();
+            this.Text11.ClientRectangle = new Stimulsoft.Base.Drawing.RectangleD(16.6, 0.8, 2.2, 0.6);
+            this.Text11.Guid = "ba797431752c45dab6c7a9788743c147";
+            this.Text11.HorAlignment = Stimulsoft.Base.Drawing.StiTextHorAlignment.Right;
+            this.Text11.Name = "Text11";
+            this.Text11.GetValue += new Stimulsoft.Report.Events.StiGetValueEventHandler(this.Text11__GetValue);
+            this.Text11.VertAlignment = Stimulsoft.Base.Drawing.StiVertAlignment.Center;
+            this.Text11.Border = new Stimulsoft.Base.Drawing.StiBorder(Stimulsoft.Base.Drawing.StiBorderSides.None, System.Drawing.Color.Black, 1, Stimulsoft.Base.Drawing.StiPenStyle.Solid, false, 4, new Stimulsoft.Base.Drawing.StiSolidBrush(System.Drawing.Color.Black), false);
+            this.Text11.Brush = new Stimulsoft.Base.Drawing.StiSolidBrush(System.Drawing.Color.Transparent);
+            this.Text11.Font = new System.Drawing.Font("B Yekan", 11F);
+            this.Text11.Indicator = null;
+            this.Text11.Interaction = null;
+            this.Text11.Margins = new Stimulsoft.Report.Components.StiMargins(0, 0, 0, 0);
+            this.Text11.TextBrush = new Stimulsoft.Base.Drawing.StiSolidBrush(System.Drawing.Color.Black);
+            this.Text11.TextOptions = new Stimulsoft.Base.Drawing.StiTextOptions(true, false, false, 0F, System.Drawing.Text.HotkeyPrefix.None, System.Drawing.StringTrimming.None);
+            // 
+            // Text56
+            // 
+            this.Text56 = new Stimulsoft.Report.Components.StiText();
+            this.Text56.ClientRectangle = new Stimulsoft.Base.Drawing.RectangleD(6.4, 1, 5, 1);
+            this.Text56.Guid = "26f092debf334979a4512d9a42bc1164";
+            this.Text56.HorAlignment = Stimulsoft.Base.Drawing.StiTextHorAlignment.Center;
+            this.Text56.Name = "Text56";
+            this.Text56.GetValue += new Stimulsoft.Report.Events.StiGetValueEventHandler(this.Text56__GetValue);
+            this.Text56.VertAlignment = Stimulsoft.Base.Drawing.StiVertAlignment.Center;
+            this.Text56.Border = new Stimulsoft.Base.Drawing.StiBorder(Stimulsoft.Base.Drawing.StiBorderSides.All, System.Drawing.Color.Black, 1, Stimulsoft.Base.Drawing.StiPenStyle.None, false, 4, new Stimulsoft.Base.Drawing.StiSolidBrush(System.Drawing.Color.Black), false);
+            this.Text56.Brush = new Stimulsoft.Base.Drawing.StiSolidBrush(System.Drawing.Color.Transparent);
+            this.Text56.Font = new System.Drawing.Font("B Homa", 20F, System.Drawing.FontStyle.Underline);
+            this.Text56.Indicator = null;
+            this.Text56.Interaction = null;
+            this.Text56.Margins = new Stimulsoft.Report.Components.StiMargins(0, 0, 0, 0);
+            this.Text56.TextBrush = new Stimulsoft.Base.Drawing.StiSolidBrush(System.Drawing.Color.Black);
+            this.Text56.TextOptions = new Stimulsoft.Base.Drawing.StiTextOptions(false, false, false, 0F, System.Drawing.Text.HotkeyPrefix.None, System.Drawing.StringTrimming.None);
+            // 
+            // Text71
+            // 
+            this.Text71 = new Stimulsoft.Report.Components.StiText();
+            this.Text71.ClientRectangle = new Stimulsoft.Base.Drawing.RectangleD(12, 0.2, 2, 0.6);
+            this.Text71.Guid = "d5f185ceff0d41a0b609221097e9412b";
+            this.Text71.Name = "Text71";
+            this.Text71.GetValue += new Stimulsoft.Report.Events.StiGetValueEventHandler(this.Text71__GetValue);
+            this.Text71.Type = Stimulsoft.Report.Components.StiSystemTextType.Expression;
+            this.Text71.VertAlignment = Stimulsoft.Base.Drawing.StiVertAlignment.Center;
+            this.Text71.Border = new Stimulsoft.Base.Drawing.StiBorder(Stimulsoft.Base.Drawing.StiBorderSides.None, System.Drawing.Color.Black, 1, Stimulsoft.Base.Drawing.StiPenStyle.Solid, false, 4, new Stimulsoft.Base.Drawing.StiSolidBrush(System.Drawing.Color.Black), false);
+            this.Text71.Brush = new Stimulsoft.Base.Drawing.StiSolidBrush(System.Drawing.Color.Transparent);
+            this.Text71.Font = new System.Drawing.Font("B Yekan", 11F, System.Drawing.FontStyle.Bold);
+            this.Text71.Indicator = null;
+            this.Text71.Interaction = null;
+            this.Text71.Margins = new Stimulsoft.Report.Components.StiMargins(0, 0, 0, 0);
+            this.Text71.TextBrush = new Stimulsoft.Base.Drawing.StiSolidBrush(System.Drawing.Color.Black);
+            this.Text71.TextOptions = new Stimulsoft.Base.Drawing.StiTextOptions(false, false, false, 0F, System.Drawing.Text.HotkeyPrefix.None, System.Drawing.StringTrimming.None);
+            // 
+            // Text74
+            // 
+            this.Text74 = new Stimulsoft.Report.Components.StiText();
+            this.Text74.ClientRectangle = new Stimulsoft.Base.Drawing.RectangleD(12, 0.8, 2, 0.6);
+            this.Text74.Guid = "1571fa5217b94998afc6e716c62981a0";
+            this.Text74.Name = "Text74";
+            this.Text74.GetValue += new Stimulsoft.Report.Events.StiGetValueEventHandler(this.Text74__GetValue);
+            this.Text74.Type = Stimulsoft.Report.Components.StiSystemTextType.Expression;
+            this.Text74.VertAlignment = Stimulsoft.Base.Drawing.StiVertAlignment.Center;
+            this.Text74.Border = new Stimulsoft.Base.Drawing.StiBorder(Stimulsoft.Base.Drawing.StiBorderSides.None, System.Drawing.Color.Black, 1, Stimulsoft.Base.Drawing.StiPenStyle.Solid, false, 4, new Stimulsoft.Base.Drawing.StiSolidBrush(System.Drawing.Color.Black), false);
+            this.Text74.Brush = new Stimulsoft.Base.Drawing.StiSolidBrush(System.Drawing.Color.Transparent);
+            this.Text74.Font = new System.Drawing.Font("B Yekan", 11F, System.Drawing.FontStyle.Bold);
+            this.Text74.Indicator = null;
+            this.Text74.Interaction = null;
+            this.Text74.Margins = new Stimulsoft.Report.Components.StiMargins(0, 0, 0, 0);
+            this.Text74.TextBrush = new Stimulsoft.Base.Drawing.StiSolidBrush(System.Drawing.Color.Black);
+            this.Text74.TextOptions = new Stimulsoft.Base.Drawing.StiTextOptions(false, false, false, 0F, System.Drawing.Text.HotkeyPrefix.None, System.Drawing.StringTrimming.None);
+            // 
+            // Text1
+            // 
+            this.Text1 = new Stimulsoft.Report.Components.StiText();
+            this.Text1.ClientRectangle = new Stimulsoft.Base.Drawing.RectangleD(16.6, 2.6, 2.2, 0.6);
+            this.Text1.Guid = "c468b102b8aa4421a1d2999730f9f10d";
+            this.Text1.HorAlignment = Stimulsoft.Base.Drawing.StiTextHorAlignment.Right;
+            this.Text1.Name = "Text1";
+            this.Text1.GetValue += new Stimulsoft.Report.Events.StiGetValueEventHandler(this.Text1__GetValue);
+            this.Text1.Border = new Stimulsoft.Base.Drawing.StiBorder(Stimulsoft.Base.Drawing.StiBorderSides.None, System.Drawing.Color.Black, 1, Stimulsoft.Base.Drawing.StiPenStyle.Solid, false, 4, new Stimulsoft.Base.Drawing.StiSolidBrush(System.Drawing.Color.Black), false);
+            this.Text1.Brush = new Stimulsoft.Base.Drawing.StiSolidBrush(System.Drawing.Color.Transparent);
+            this.Text1.Font = new System.Drawing.Font("B Yekan", 11F);
+            this.Text1.Indicator = null;
+            this.Text1.Interaction = null;
+            this.Text1.Margins = new Stimulsoft.Report.Components.StiMargins(0, 0, 0, 0);
+            this.Text1.TextBrush = new Stimulsoft.Base.Drawing.StiSolidBrush(System.Drawing.Color.Black);
+            this.Text1.TextOptions = new Stimulsoft.Base.Drawing.StiTextOptions(true, false, false, 0F, System.Drawing.Text.HotkeyPrefix.None, System.Drawing.StringTrimming.None);
+            this.HeaderBand2.Interaction = null;
+            // 
+            // HeaderBand1
+            // 
+            this.HeaderBand1 = new Stimulsoft.Report.Components.StiHeaderBand();
+            this.HeaderBand1.ClientRectangle = new Stimulsoft.Base.Drawing.RectangleD(0, 4.6, 19, 0.8);
+            this.HeaderBand1.Guid = "246ebc3f7f1c441b9039b759469d2ef4";
+            this.HeaderBand1.Name = "HeaderBand1";
+            this.HeaderBand1.Border = new Stimulsoft.Base.Drawing.StiBorder(Stimulsoft.Base.Drawing.StiBorderSides.None, System.Drawing.Color.Black, 1, Stimulsoft.Base.Drawing.StiPenStyle.Solid, false, 4, new Stimulsoft.Base.Drawing.StiSolidBrush(System.Drawing.Color.Black), false);
+            this.HeaderBand1.Brush = new Stimulsoft.Base.Drawing.StiSolidBrush(System.Drawing.Color.Transparent);
+            // 
+            // Text5
+            // 
+            this.Text5 = new Stimulsoft.Report.Components.StiText();
+            this.Text5.ClientRectangle = new Stimulsoft.Base.Drawing.RectangleD(0, 0, 3.4, 0.8);
+            this.Text5.Guid = "fd4ec1ef92aa498f882445371d7c4848";
+            this.Text5.HorAlignment = Stimulsoft.Base.Drawing.StiTextHorAlignment.Center;
+            this.Text5.Name = "Text5";
+            this.Text5.GetValue += new Stimulsoft.Report.Events.StiGetValueEventHandler(this.Text5__GetValue);
+            this.Text5.VertAlignment = Stimulsoft.Base.Drawing.StiVertAlignment.Center;
+            this.Text5.Border = new Stimulsoft.Base.Drawing.StiBorder(Stimulsoft.Base.Drawing.StiBorderSides.All, System.Drawing.Color.Black, 1, Stimulsoft.Base.Drawing.StiPenStyle.Solid, false, 4, new Stimulsoft.Base.Drawing.StiSolidBrush(System.Drawing.Color.Black), false);
+            this.Text5.Brush = new Stimulsoft.Base.Drawing.StiSolidBrush(System.Drawing.Color.Transparent);
+            this.Text5.Font = new System.Drawing.Font("B Yekan", 11F);
+            this.Text5.Indicator = null;
+            this.Text5.Interaction = null;
+            this.Text5.Margins = new Stimulsoft.Report.Components.StiMargins(0, 0, 0, 0);
+            this.Text5.TextBrush = new Stimulsoft.Base.Drawing.StiSolidBrush(System.Drawing.Color.Black);
+            this.Text5.TextOptions = new Stimulsoft.Base.Drawing.StiTextOptions(true, false, false, 0F, System.Drawing.Text.HotkeyPrefix.None, System.Drawing.StringTrimming.None);
+            // 
+            // Text6
+            // 
+            this.Text6 = new Stimulsoft.Report.Components.StiText();
+            this.Text6.ClientRectangle = new Stimulsoft.Base.Drawing.RectangleD(3.4, 0, 3.6, 0.8);
+            this.Text6.Guid = "95cb86f3fe5e47d19e7afe614aaeb930";
+            this.Text6.HorAlignment = Stimulsoft.Base.Drawing.StiTextHorAlignment.Center;
+            this.Text6.Name = "Text6";
+            this.Text6.GetValue += new Stimulsoft.Report.Events.StiGetValueEventHandler(this.Text6__GetValue);
+            this.Text6.VertAlignment = Stimulsoft.Base.Drawing.StiVertAlignment.Center;
+            this.Text6.Border = new Stimulsoft.Base.Drawing.StiBorder(Stimulsoft.Base.Drawing.StiBorderSides.All, System.Drawing.Color.Black, 1, Stimulsoft.Base.Drawing.StiPenStyle.Solid, false, 4, new Stimulsoft.Base.Drawing.StiSolidBrush(System.Drawing.Color.Black), false);
+            this.Text6.Brush = new Stimulsoft.Base.Drawing.StiSolidBrush(System.Drawing.Color.Transparent);
+            this.Text6.Font = new System.Drawing.Font("B Yekan", 11F);
+            this.Text6.Indicator = null;
+            this.Text6.Interaction = null;
+            this.Text6.Margins = new Stimulsoft.Report.Components.StiMargins(0, 0, 0, 0);
+            this.Text6.TextBrush = new Stimulsoft.Base.Drawing.StiSolidBrush(System.Drawing.Color.Black);
+            this.Text6.TextOptions = new Stimulsoft.Base.Drawing.StiTextOptions(true, false, false, 0F, System.Drawing.Text.HotkeyPrefix.None, System.Drawing.StringTrimming.None);
+            // 
+            // Text7
+            // 
+            this.Text7 = new Stimulsoft.Report.Components.StiText();
+            this.Text7.ClientRectangle = new Stimulsoft.Base.Drawing.RectangleD(7, 0, 11, 0.8);
+            this.Text7.Guid = "eedbd287f4694bb28a62bcb5499c608b";
+            this.Text7.HorAlignment = Stimulsoft.Base.Drawing.StiTextHorAlignment.Center;
+            this.Text7.Name = "Text7";
+            this.Text7.GetValue += new Stimulsoft.Report.Events.StiGetValueEventHandler(this.Text7__GetValue);
+            this.Text7.VertAlignment = Stimulsoft.Base.Drawing.StiVertAlignment.Center;
+            this.Text7.Border = new Stimulsoft.Base.Drawing.StiBorder(Stimulsoft.Base.Drawing.StiBorderSides.All, System.Drawing.Color.Black, 1, Stimulsoft.Base.Drawing.StiPenStyle.Solid, false, 4, new Stimulsoft.Base.Drawing.StiSolidBrush(System.Drawing.Color.Black), false);
+            this.Text7.Brush = new Stimulsoft.Base.Drawing.StiSolidBrush(System.Drawing.Color.Transparent);
+            this.Text7.Font = new System.Drawing.Font("B Yekan", 11F);
+            this.Text7.Indicator = null;
+            this.Text7.Interaction = null;
+            this.Text7.Margins = new Stimulsoft.Report.Components.StiMargins(0, 0, 0, 0);
+            this.Text7.TextBrush = new Stimulsoft.Base.Drawing.StiSolidBrush(System.Drawing.Color.Black);
+            this.Text7.TextOptions = new Stimulsoft.Base.Drawing.StiTextOptions(true, false, false, 0F, System.Drawing.Text.HotkeyPrefix.None, System.Drawing.StringTrimming.None);
+            // 
+            // Text10
+            // 
+            this.Text10 = new Stimulsoft.Report.Components.StiText();
+            this.Text10.ClientRectangle = new Stimulsoft.Base.Drawing.RectangleD(18, 0, 1, 0.8);
+            this.Text10.Guid = "636c640bc18646b48d79fc70a080db65";
+            this.Text10.HorAlignment = Stimulsoft.Base.Drawing.StiTextHorAlignment.Center;
+            this.Text10.Name = "Text10";
+            this.Text10.GetValue += new Stimulsoft.Report.Events.StiGetValueEventHandler(this.Text10__GetValue);
+            this.Text10.VertAlignment = Stimulsoft.Base.Drawing.StiVertAlignment.Center;
+            this.Text10.Border = new Stimulsoft.Base.Drawing.StiBorder(Stimulsoft.Base.Drawing.StiBorderSides.All, System.Drawing.Color.Black, 1, Stimulsoft.Base.Drawing.StiPenStyle.Solid, false, 4, new Stimulsoft.Base.Drawing.StiSolidBrush(System.Drawing.Color.Black), false);
+            this.Text10.Brush = new Stimulsoft.Base.Drawing.StiSolidBrush(System.Drawing.Color.Transparent);
+            this.Text10.Font = new System.Drawing.Font("B Yekan", 11F);
+            this.Text10.Indicator = null;
+            this.Text10.Interaction = null;
+            this.Text10.Margins = new Stimulsoft.Report.Components.StiMargins(0, 0, 0, 0);
+            this.Text10.TextBrush = new Stimulsoft.Base.Drawing.StiSolidBrush(System.Drawing.Color.Black);
+            this.Text10.TextOptions = new Stimulsoft.Base.Drawing.StiTextOptions(true, false, false, 0F, System.Drawing.Text.HotkeyPrefix.None, System.Drawing.StringTrimming.None);
+            this.HeaderBand1.Interaction = null;
+            // 
+            // DataBand1
+            // 
+            this.DataBand1 = new Stimulsoft.Report.Components.StiDataBand();
+            this.DataBand1.BusinessObjectGuid = "523ef5bd511c41deb00faaf479e9a935";
+            this.DataBand1.ClientRectangle = new Stimulsoft.Base.Drawing.RectangleD(0, 6.2, 19, 0.6);
+            this.DataBand1.Guid = "d1be47a15df848d4b23cdfc35a03ef43";
+            this.DataBand1.Name = "DataBand1";
+            this.DataBand1.Sort = new string[0];
+            this.DataBand1.Border = new Stimulsoft.Base.Drawing.StiBorder(Stimulsoft.Base.Drawing.StiBorderSides.All, System.Drawing.Color.Black, 1, Stimulsoft.Base.Drawing.StiPenStyle.Solid, false, 4, new Stimulsoft.Base.Drawing.StiSolidBrush(System.Drawing.Color.Black), false);
+            this.DataBand1.Brush = new Stimulsoft.Base.Drawing.StiSolidBrush(System.Drawing.Color.Transparent);
+            // 
+            // Text3
+            // 
+            this.Text3 = new Stimulsoft.Report.Components.StiText();
+            this.Text3.ClientRectangle = new Stimulsoft.Base.Drawing.RectangleD(0, 0, 3.4, 0.6);
+            this.Text3.GrowToHeight = true;
+            this.Text3.Guid = "50430a6e4bf74197acffbcb0fe04906d";
+            this.Text3.HorAlignment = Stimulsoft.Base.Drawing.StiTextHorAlignment.Center;
+            this.Text3.Name = "Text3";
+            this.Text3.GetValue += new Stimulsoft.Report.Events.StiGetValueEventHandler(this.Text3__GetValue);
+            this.Text3.Type = Stimulsoft.Report.Components.StiSystemTextType.Expression;
+            this.Text3.VertAlignment = Stimulsoft.Base.Drawing.StiVertAlignment.Center;
+            this.Text3.Border = new Stimulsoft.Base.Drawing.StiBorder(Stimulsoft.Base.Drawing.StiBorderSides.All, System.Drawing.Color.Black, 1, Stimulsoft.Base.Drawing.StiPenStyle.Solid, false, 4, new Stimulsoft.Base.Drawing.StiSolidBrush(System.Drawing.Color.Black), false);
+            this.Text3.Brush = new Stimulsoft.Base.Drawing.StiSolidBrush(System.Drawing.Color.Transparent);
+            this.Text3.Font = new System.Drawing.Font("B Yekan", 11F);
+            this.Text3.Indicator = null;
+            this.Text3.Interaction = null;
+            this.Text3.Margins = new Stimulsoft.Report.Components.StiMargins(0, 0, 0, 0);
+            this.Text3.TextBrush = new Stimulsoft.Base.Drawing.StiSolidBrush(System.Drawing.Color.Lime);
+            this.Text3.TextFormat = new Stimulsoft.Report.Components.TextFormats.StiCurrencyFormatService(0, 0, ".", 0, ",", 3, "", true, false, " ");
+            this.Text3.TextOptions = new Stimulsoft.Base.Drawing.StiTextOptions(true, false, false, 0F, System.Drawing.Text.HotkeyPrefix.None, System.Drawing.StringTrimming.None);
+            // 
+            // Text4
+            // 
+            this.Text4 = new Stimulsoft.Report.Components.StiText();
+            this.Text4.ClientRectangle = new Stimulsoft.Base.Drawing.RectangleD(3.4, 0, 3.6, 0.6);
+            this.Text4.GrowToHeight = true;
+            this.Text4.Guid = "9ec2ed3b6d8f448389a361457d472e1e";
+            this.Text4.HorAlignment = Stimulsoft.Base.Drawing.StiTextHorAlignment.Center;
+            this.Text4.Name = "Text4";
+            this.Text4.GetValue += new Stimulsoft.Report.Events.StiGetValueEventHandler(this.Text4__GetValue);
+            this.Text4.Type = Stimulsoft.Report.Components.StiSystemTextType.Expression;
+            this.Text4.VertAlignment = Stimulsoft.Base.Drawing.StiVertAlignment.Center;
+            this.Text4.Border = new Stimulsoft.Base.Drawing.StiBorder(Stimulsoft.Base.Drawing.StiBorderSides.All, System.Drawing.Color.Black, 1, Stimulsoft.Base.Drawing.StiPenStyle.Solid, false, 4, new Stimulsoft.Base.Drawing.StiSolidBrush(System.Drawing.Color.Black), false);
+            this.Text4.Brush = new Stimulsoft.Base.Drawing.StiSolidBrush(System.Drawing.Color.Transparent);
+            this.Text4.Font = new System.Drawing.Font("B Yekan", 11F);
+            this.Text4.Indicator = null;
+            this.Text4.Interaction = null;
+            this.Text4.Margins = new Stimulsoft.Report.Components.StiMargins(0, 0, 0, 0);
+            this.Text4.TextBrush = new Stimulsoft.Base.Drawing.StiSolidBrush(System.Drawing.Color.Red);
+            this.Text4.TextFormat = new Stimulsoft.Report.Components.TextFormats.StiCurrencyFormatService(0, 0, ".", 0, ",", 3, "", true, false, " ");
+            this.Text4.TextOptions = new Stimulsoft.Base.Drawing.StiTextOptions(true, false, false, 0F, System.Drawing.Text.HotkeyPrefix.None, System.Drawing.StringTrimming.None);
+            // 
+            // SystemText1
+            // 
+            this.SystemText1 = new Stimulsoft.Report.Components.StiSystemText();
+            this.SystemText1.ClientRectangle = new Stimulsoft.Base.Drawing.RectangleD(18, 0, 1, 0.6);
+            this.SystemText1.GrowToHeight = true;
+            this.SystemText1.Guid = "4cf2f1e3d4344faf8f2ab57a4d2786ec";
+            this.SystemText1.HorAlignment = Stimulsoft.Base.Drawing.StiTextHorAlignment.Center;
+            this.SystemText1.Name = "SystemText1";
+            this.SystemText1.GetValue += new Stimulsoft.Report.Events.StiGetValueEventHandler(this.SystemText1__GetValue);
+            this.SystemText1.VertAlignment = Stimulsoft.Base.Drawing.StiVertAlignment.Center;
+            this.SystemText1.Border = new Stimulsoft.Base.Drawing.StiBorder(Stimulsoft.Base.Drawing.StiBorderSides.All, System.Drawing.Color.Black, 1, Stimulsoft.Base.Drawing.StiPenStyle.Solid, false, 4, new Stimulsoft.Base.Drawing.StiSolidBrush(System.Drawing.Color.Black), false);
+            this.SystemText1.Brush = new Stimulsoft.Base.Drawing.StiSolidBrush(System.Drawing.Color.Transparent);
+            this.SystemText1.Font = new System.Drawing.Font("B Yekan", 11F);
+            this.SystemText1.Indicator = null;
+            this.SystemText1.Interaction = null;
+            this.SystemText1.Margins = new Stimulsoft.Report.Components.StiMargins(0, 0, 0, 0);
+            this.SystemText1.TextBrush = new Stimulsoft.Base.Drawing.StiSolidBrush(System.Drawing.Color.Black);
+            this.SystemText1.TextOptions = new Stimulsoft.Base.Drawing.StiTextOptions(false, false, false, 0F, System.Drawing.Text.HotkeyPrefix.None, System.Drawing.StringTrimming.None);
+            // 
+            // Text8
+            // 
+            this.Text8 = new Stimulsoft.Report.Components.StiText();
+            this.Text8.CanGrow = true;
+            this.Text8.ClientRectangle = new Stimulsoft.Base.Drawing.RectangleD(7, 0, 11, 0.6);
+            this.Text8.GrowToHeight = true;
+            this.Text8.Guid = "3862c5bb9c284b219ca4ac9e1c6037a6";
+            this.Text8.HorAlignment = Stimulsoft.Base.Drawing.StiTextHorAlignment.Right;
+            this.Text8.Name = "Text8";
+            this.Text8.GetValue += new Stimulsoft.Report.Events.StiGetValueEventHandler(this.Text8__GetValue);
+            this.Text8.Type = Stimulsoft.Report.Components.StiSystemTextType.Expression;
+            this.Text8.Border = new Stimulsoft.Base.Drawing.StiBorder((((Stimulsoft.Base.Drawing.StiBorderSides.None | Stimulsoft.Base.Drawing.StiBorderSides.Top) 
+                            | Stimulsoft.Base.Drawing.StiBorderSides.Left) 
+                            | Stimulsoft.Base.Drawing.StiBorderSides.Right), System.Drawing.Color.Black, 1, Stimulsoft.Base.Drawing.StiPenStyle.Solid, false, 4, new Stimulsoft.Base.Drawing.StiSolidBrush(System.Drawing.Color.Black), false);
+            this.Text8.Brush = new Stimulsoft.Base.Drawing.StiSolidBrush(System.Drawing.Color.Transparent);
+            this.Text8.Font = new System.Drawing.Font("B Yekan", 10F);
+            this.Text8.Indicator = null;
+            this.Text8.Interaction = null;
+            this.Text8.Margins = new Stimulsoft.Report.Components.StiMargins(0, 0, 0, 0);
+            this.Text8.TextBrush = new Stimulsoft.Base.Drawing.StiSolidBrush(System.Drawing.Color.Black);
+            this.Text8.TextOptions = new Stimulsoft.Base.Drawing.StiTextOptions(false, false, true, 0F, System.Drawing.Text.HotkeyPrefix.None, System.Drawing.StringTrimming.None);
+            // 
+            // شرح_سطر
+            // 
+            this.شرح_سطر = new Stimulsoft.Report.Components.StiText();
+            this.شرح_سطر.CanGrow = true;
+            this.شرح_سطر.ClientRectangle = new Stimulsoft.Base.Drawing.RectangleD(7, 0.6, 11, 0);
+            this.شرح_سطر.GrowToHeight = true;
+            this.شرح_سطر.Guid = "a742ab96f1f447bb8138a83c024f4b86";
+            this.شرح_سطر.Name = "شرح_سطر";
+            this.شرح_سطر.GetValue += new Stimulsoft.Report.Events.StiGetValueEventHandler(this.شرح_سطر__GetValue);
+            this.شرح_سطر.Border = new Stimulsoft.Base.Drawing.StiBorder(((Stimulsoft.Base.Drawing.StiBorderSides.None | Stimulsoft.Base.Drawing.StiBorderSides.Left) 
+                            | Stimulsoft.Base.Drawing.StiBorderSides.Bottom), System.Drawing.Color.Black, 1, Stimulsoft.Base.Drawing.StiPenStyle.Solid, false, 4, new Stimulsoft.Base.Drawing.StiSolidBrush(System.Drawing.Color.Black), false);
+            this.شرح_سطر.Brush = new Stimulsoft.Base.Drawing.StiSolidBrush(System.Drawing.Color.Transparent);
+            this.شرح_سطر.Font = new System.Drawing.Font("B Yekan", 10F);
+            this.شرح_سطر.Indicator = null;
+            this.شرح_سطر.Interaction = null;
+            this.شرح_سطر.Margins = new Stimulsoft.Report.Components.StiMargins(0, 0, 0, 0);
+            this.شرح_سطر.TextBrush = new Stimulsoft.Base.Drawing.StiSolidBrush(System.Drawing.Color.Black);
+            this.شرح_سطر.TextFormat = new Stimulsoft.Report.Components.TextFormats.StiCurrencyFormatService(0, 0, ".", 0, ",", 3, "", true, false, " ");
+            this.شرح_سطر.TextOptions = new Stimulsoft.Base.Drawing.StiTextOptions(true, false, true, 0F, System.Drawing.Text.HotkeyPrefix.None, System.Drawing.StringTrimming.None);
+            this.DataBand1.DataSourceName = null;
+            this.DataBand1.Interaction = null;
+            this.DataBand1.BeforePrint += new System.EventHandler(this.DataBand1_BeforePrint);
+            // 
+            // FooterBand1
+            // 
+            this.FooterBand1 = new Stimulsoft.Report.Components.StiFooterBand();
+            this.FooterBand1.ClientRectangle = new Stimulsoft.Base.Drawing.RectangleD(0, 7.6, 19, 2.8);
+            this.FooterBand1.Guid = "54703cead4964c3e94a5ac37a28ebd09";
+            this.FooterBand1.Name = "FooterBand1";
+            this.FooterBand1.Border = new Stimulsoft.Base.Drawing.StiBorder(Stimulsoft.Base.Drawing.StiBorderSides.None, System.Drawing.Color.Black, 1, Stimulsoft.Base.Drawing.StiPenStyle.Solid, false, 4, new Stimulsoft.Base.Drawing.StiSolidBrush(System.Drawing.Color.Black), false);
+            this.FooterBand1.Brush = new Stimulsoft.Base.Drawing.StiSolidBrush(System.Drawing.Color.Transparent);
+            // 
+            // Text17
+            // 
+            this.Text17 = new Stimulsoft.Report.Components.StiText();
+            this.Text17.ClientRectangle = new Stimulsoft.Base.Drawing.RectangleD(0, 0, 3.4, 0.8);
+            this.Text17.Guid = "bbccca55e81e4eaeb13b67a31930503d";
+            this.Text17.HorAlignment = Stimulsoft.Base.Drawing.StiTextHorAlignment.Center;
+            this.Text17.Name = "Text17";
+            this.Text17.GetValue += new Stimulsoft.Report.Events.StiGetValueEventHandler(this.Text17__GetValue);
+            this.Text17.Type = Stimulsoft.Report.Components.StiSystemTextType.Expression;
+            this.Text17.VertAlignment = Stimulsoft.Base.Drawing.StiVertAlignment.Center;
+            this.Text17.Border = new Stimulsoft.Base.Drawing.StiBorder(Stimulsoft.Base.Drawing.StiBorderSides.All, System.Drawing.Color.Black, 1, Stimulsoft.Base.Drawing.StiPenStyle.Solid, false, 4, new Stimulsoft.Base.Drawing.StiSolidBrush(System.Drawing.Color.Black), false);
+            this.Text17.Brush = new Stimulsoft.Base.Drawing.StiSolidBrush(System.Drawing.Color.Transparent);
+            this.Text17.Font = new System.Drawing.Font("B Yekan", 11F);
+            this.Text17.Indicator = null;
+            this.Text17.Interaction = null;
+            this.Text17.Margins = new Stimulsoft.Report.Components.StiMargins(0, 0, 0, 0);
+            this.Text17.TextBrush = new Stimulsoft.Base.Drawing.StiSolidBrush(System.Drawing.Color.Lime);
+            this.Text17.TextFormat = new Stimulsoft.Report.Components.TextFormats.StiCurrencyFormatService(0, 0, ".", 0, ",", 3, "", true, false, " ");
+            this.Text17.TextOptions = new Stimulsoft.Base.Drawing.StiTextOptions(true, false, false, 0F, System.Drawing.Text.HotkeyPrefix.None, System.Drawing.StringTrimming.None);
+            // 
+            // Text18
+            // 
+            this.Text18 = new Stimulsoft.Report.Components.StiText();
+            this.Text18.ClientRectangle = new Stimulsoft.Base.Drawing.RectangleD(3.4, 0, 3.6, 0.8);
+            this.Text18.Guid = "56ef99d71dc647a09893208e5747cc7b";
+            this.Text18.HorAlignment = Stimulsoft.Base.Drawing.StiTextHorAlignment.Center;
+            this.Text18.Name = "Text18";
+            this.Text18.GetValue += new Stimulsoft.Report.Events.StiGetValueEventHandler(this.Text18__GetValue);
+            this.Text18.Type = Stimulsoft.Report.Components.StiSystemTextType.Expression;
+            this.Text18.VertAlignment = Stimulsoft.Base.Drawing.StiVertAlignment.Center;
+            this.Text18.Border = new Stimulsoft.Base.Drawing.StiBorder(Stimulsoft.Base.Drawing.StiBorderSides.All, System.Drawing.Color.Black, 1, Stimulsoft.Base.Drawing.StiPenStyle.Solid, false, 4, new Stimulsoft.Base.Drawing.StiSolidBrush(System.Drawing.Color.Black), false);
+            this.Text18.Brush = new Stimulsoft.Base.Drawing.StiSolidBrush(System.Drawing.Color.Transparent);
+            this.Text18.Font = new System.Drawing.Font("B Yekan", 11F);
+            this.Text18.Indicator = null;
+            this.Text18.Interaction = null;
+            this.Text18.Margins = new Stimulsoft.Report.Components.StiMargins(0, 0, 0, 0);
+            this.Text18.TextBrush = new Stimulsoft.Base.Drawing.StiSolidBrush(System.Drawing.Color.Red);
+            this.Text18.TextFormat = new Stimulsoft.Report.Components.TextFormats.StiCurrencyFormatService(0, 0, ".", 0, ",", 3, "", true, false, " ");
+            this.Text18.TextOptions = new Stimulsoft.Base.Drawing.StiTextOptions(true, false, false, 0F, System.Drawing.Text.HotkeyPrefix.None, System.Drawing.StringTrimming.None);
+            // 
+            // Text12
+            // 
+            this.Text12 = new Stimulsoft.Report.Components.StiText();
+            this.Text12.ClientRectangle = new Stimulsoft.Base.Drawing.RectangleD(12, 2.2, 3.8, 0.6);
+            this.Text12.Guid = "cb47a72a6807495a936ad6fc73e946f5";
+            this.Text12.HorAlignment = Stimulsoft.Base.Drawing.StiTextHorAlignment.Center;
+            this.Text12.Name = "Text12";
+            this.Text12.GetValue += new Stimulsoft.Report.Events.StiGetValueEventHandler(this.Text12__GetValue);
+            this.Text12.Border = new Stimulsoft.Base.Drawing.StiBorder(Stimulsoft.Base.Drawing.StiBorderSides.None, System.Drawing.Color.Black, 1, Stimulsoft.Base.Drawing.StiPenStyle.Solid, false, 4, new Stimulsoft.Base.Drawing.StiSolidBrush(System.Drawing.Color.Black), false);
+            this.Text12.Brush = new Stimulsoft.Base.Drawing.StiSolidBrush(System.Drawing.Color.Transparent);
+            this.Text12.Font = new System.Drawing.Font("B Yekan", 11F);
+            this.Text12.Indicator = null;
+            this.Text12.Interaction = null;
+            this.Text12.Margins = new Stimulsoft.Report.Components.StiMargins(0, 0, 0, 0);
+            this.Text12.TextBrush = new Stimulsoft.Base.Drawing.StiSolidBrush(System.Drawing.Color.Black);
+            this.Text12.TextOptions = new Stimulsoft.Base.Drawing.StiTextOptions(true, false, false, 0F, System.Drawing.Text.HotkeyPrefix.None, System.Drawing.StringTrimming.None);
+            // 
+            // Text19
+            // 
+            this.Text19 = new Stimulsoft.Report.Components.StiText();
+            this.Text19.ClientRectangle = new Stimulsoft.Base.Drawing.RectangleD(7.6, 2.2, 3.8, 0.6);
+            this.Text19.Guid = "05d42dfb735049428dbb7b570b12c0f3";
+            this.Text19.HorAlignment = Stimulsoft.Base.Drawing.StiTextHorAlignment.Center;
+            this.Text19.Name = "Text19";
+            this.Text19.GetValue += new Stimulsoft.Report.Events.StiGetValueEventHandler(this.Text19__GetValue);
+            this.Text19.Border = new Stimulsoft.Base.Drawing.StiBorder(Stimulsoft.Base.Drawing.StiBorderSides.None, System.Drawing.Color.Black, 1, Stimulsoft.Base.Drawing.StiPenStyle.Solid, false, 4, new Stimulsoft.Base.Drawing.StiSolidBrush(System.Drawing.Color.Black), false);
+            this.Text19.Brush = new Stimulsoft.Base.Drawing.StiSolidBrush(System.Drawing.Color.Transparent);
+            this.Text19.Font = new System.Drawing.Font("B Yekan", 11F);
+            this.Text19.Indicator = null;
+            this.Text19.Interaction = null;
+            this.Text19.Margins = new Stimulsoft.Report.Components.StiMargins(0, 0, 0, 0);
+            this.Text19.TextBrush = new Stimulsoft.Base.Drawing.StiSolidBrush(System.Drawing.Color.Black);
+            this.Text19.TextOptions = new Stimulsoft.Base.Drawing.StiTextOptions(true, false, false, 0F, System.Drawing.Text.HotkeyPrefix.None, System.Drawing.StringTrimming.None);
+            // 
+            // Text20
+            // 
+            this.Text20 = new Stimulsoft.Report.Components.StiText();
+            this.Text20.ClientRectangle = new Stimulsoft.Base.Drawing.RectangleD(3.2, 2.2, 3.8, 0.6);
+            this.Text20.Guid = "04868dd8bb9d4799bdd12ebfd7627f30";
+            this.Text20.HorAlignment = Stimulsoft.Base.Drawing.StiTextHorAlignment.Center;
+            this.Text20.Name = "Text20";
+            this.Text20.GetValue += new Stimulsoft.Report.Events.StiGetValueEventHandler(this.Text20__GetValue);
+            this.Text20.Border = new Stimulsoft.Base.Drawing.StiBorder(Stimulsoft.Base.Drawing.StiBorderSides.None, System.Drawing.Color.Black, 1, Stimulsoft.Base.Drawing.StiPenStyle.Solid, false, 4, new Stimulsoft.Base.Drawing.StiSolidBrush(System.Drawing.Color.Black), false);
+            this.Text20.Brush = new Stimulsoft.Base.Drawing.StiSolidBrush(System.Drawing.Color.Transparent);
+            this.Text20.Font = new System.Drawing.Font("B Yekan", 11F);
+            this.Text20.Indicator = null;
+            this.Text20.Interaction = null;
+            this.Text20.Margins = new Stimulsoft.Report.Components.StiMargins(0, 0, 0, 0);
+            this.Text20.TextBrush = new Stimulsoft.Base.Drawing.StiSolidBrush(System.Drawing.Color.Black);
+            this.Text20.TextOptions = new Stimulsoft.Base.Drawing.StiTextOptions(true, false, false, 0F, System.Drawing.Text.HotkeyPrefix.None, System.Drawing.StringTrimming.None);
+            // 
+            // Text21
+            // 
+            this.Text21 = new Stimulsoft.Report.Components.StiText();
+            this.Text21.ClientRectangle = new Stimulsoft.Base.Drawing.RectangleD(9.6, 0, 6.6, 0.6);
+            this.Text21.Guid = "c567a1cfbb654ed9b1fdc276011590ff";
+            this.Text21.Name = "Text21";
+            this.Text21.GetValue += new Stimulsoft.Report.Events.StiGetValueEventHandler(this.Text21__GetValue);
+            this.Text21.Type = Stimulsoft.Report.Components.StiSystemTextType.Expression;
+            this.Text21.Border = new Stimulsoft.Base.Drawing.StiBorder(Stimulsoft.Base.Drawing.StiBorderSides.All, System.Drawing.Color.Black, 1, Stimulsoft.Base.Drawing.StiPenStyle.None, false, 4, new Stimulsoft.Base.Drawing.StiSolidBrush(System.Drawing.Color.Black), false);
+            this.Text21.Brush = new Stimulsoft.Base.Drawing.StiSolidBrush(System.Drawing.Color.Transparent);
+            this.Text21.Font = new System.Drawing.Font("B Yekan", 11F, System.Drawing.FontStyle.Bold);
+            this.Text21.Indicator = null;
+            this.Text21.Interaction = null;
+            this.Text21.Margins = new Stimulsoft.Report.Components.StiMargins(0, 0, 0, 0);
+            this.Text21.TextBrush = new Stimulsoft.Base.Drawing.StiSolidBrush(System.Drawing.Color.Black);
+            this.Text21.TextOptions = new Stimulsoft.Base.Drawing.StiTextOptions(true, false, false, 0F, System.Drawing.Text.HotkeyPrefix.None, System.Drawing.StringTrimming.None);
+            // 
+            // Text30
+            // 
+            this.Text30 = new Stimulsoft.Report.Components.StiText();
+            this.Text30.ClientRectangle = new Stimulsoft.Base.Drawing.RectangleD(16.2, 0, 2.8, 0.6);
+            this.Text30.Guid = "df66195e38424f54a601488164412bf3";
+            this.Text30.Name = "Text30";
+            this.Text30.GetValue += new Stimulsoft.Report.Events.StiGetValueEventHandler(this.Text30__GetValue);
+            this.Text30.Border = new Stimulsoft.Base.Drawing.StiBorder(Stimulsoft.Base.Drawing.StiBorderSides.None, System.Drawing.Color.Black, 1, Stimulsoft.Base.Drawing.StiPenStyle.Solid, false, 4, new Stimulsoft.Base.Drawing.StiSolidBrush(System.Drawing.Color.Black), false);
+            this.Text30.Brush = new Stimulsoft.Base.Drawing.StiSolidBrush(System.Drawing.Color.Transparent);
+            this.Text30.Font = new System.Drawing.Font("B Yekan", 11F);
+            this.Text30.Indicator = null;
+            this.Text30.Interaction = null;
+            this.Text30.Margins = new Stimulsoft.Report.Components.StiMargins(0, 0, 0, 0);
+            this.Text30.TextBrush = new Stimulsoft.Base.Drawing.StiSolidBrush(System.Drawing.Color.Black);
+            this.Text30.TextOptions = new Stimulsoft.Base.Drawing.StiTextOptions(true, false, false, 0F, System.Drawing.Text.HotkeyPrefix.None, System.Drawing.StringTrimming.None);
+            this.FooterBand1.Interaction = null;
+            this.Page1.Interaction = null;
+            this.Page1.Margins = new Stimulsoft.Report.Components.StiMargins(1, 1, 1, 1);
+            this.Page1_Watermark = new Stimulsoft.Report.Components.StiWatermark();
+            this.Page1_Watermark.Font = new System.Drawing.Font("Arial", 100F);
+            this.Page1_Watermark.TextBrush = new Stimulsoft.Base.Drawing.StiSolidBrush(System.Drawing.Color.FromArgb(50, 0, 0, 0));
+            this.Report_PrinterSettings = new Stimulsoft.Report.Print.StiPrinterSettings();
+            this.PrinterSettings = this.Report_PrinterSettings;
+            this.Page1.Report = this;
+            this.Page1.Watermark = this.Page1_Watermark;
+            this.HeaderBand2.Page = this.Page1;
+            this.HeaderBand2.Parent = this.Page1;
+            this.Text26.Page = this.Page1;
+            this.Text26.Parent = this.HeaderBand2;
+            this.Text25.Page = this.Page1;
+            this.Text25.Parent = this.HeaderBand2;
+            this.Text27.Page = this.Page1;
+            this.Text27.Parent = this.HeaderBand2;
+            this.Text2.Page = this.Page1;
+            this.Text2.Parent = this.HeaderBand2;
+            this.Text29.Page = this.Page1;
+            this.Text29.Parent = this.HeaderBand2;
+            this.Text28.Page = this.Page1;
+            this.Text28.Parent = this.HeaderBand2;
+            this.Text35.Page = this.Page1;
+            this.Text35.Parent = this.HeaderBand2;
+            this.Text9.Page = this.Page1;
+            this.Text9.Parent = this.HeaderBand2;
+            this.Text24.Page = this.Page1;
+            this.Text24.Parent = this.HeaderBand2;
+            this.Text36.Page = this.Page1;
+            this.Text36.Parent = this.HeaderBand2;
+            this.Text14.Page = this.Page1;
+            this.Text14.Parent = this.HeaderBand2;
+            this.Text15.Page = this.Page1;
+            this.Text15.Parent = this.HeaderBand2;
+            this.Text11.Page = this.Page1;
+            this.Text11.Parent = this.HeaderBand2;
+            this.Text56.Page = this.Page1;
+            this.Text56.Parent = this.HeaderBand2;
+            this.Text71.Page = this.Page1;
+            this.Text71.Parent = this.HeaderBand2;
+            this.Text74.Page = this.Page1;
+            this.Text74.Parent = this.HeaderBand2;
+            this.Text1.Page = this.Page1;
+            this.Text1.Parent = this.HeaderBand2;
+            this.HeaderBand1.Page = this.Page1;
+            this.HeaderBand1.Parent = this.Page1;
+            this.Text5.Page = this.Page1;
+            this.Text5.Parent = this.HeaderBand1;
+            this.Text6.Page = this.Page1;
+            this.Text6.Parent = this.HeaderBand1;
+            this.Text7.Page = this.Page1;
+            this.Text7.Parent = this.HeaderBand1;
+            this.Text10.Page = this.Page1;
+            this.Text10.Parent = this.HeaderBand1;
+            this.DataBand1.Page = this.Page1;
+            this.DataBand1.Parent = this.Page1;
+            this.Text3.Page = this.Page1;
+            this.Text3.Parent = this.DataBand1;
+            this.Text4.Page = this.Page1;
+            this.Text4.Parent = this.DataBand1;
+            this.SystemText1.Page = this.Page1;
+            this.SystemText1.Parent = this.DataBand1;
+            this.Text8.Page = this.Page1;
+            this.Text8.Parent = this.DataBand1;
+            this.شرح_سطر.Page = this.Page1;
+            this.شرح_سطر.Parent = this.DataBand1;
+            this.FooterBand1.Page = this.Page1;
+            this.FooterBand1.Parent = this.Page1;
+            this.Text17.Page = this.Page1;
+            this.Text17.Parent = this.FooterBand1;
+            this.Text18.Page = this.Page1;
+            this.Text18.Parent = this.FooterBand1;
+            this.Text12.Page = this.Page1;
+            this.Text12.Parent = this.FooterBand1;
+            this.Text19.Page = this.Page1;
+            this.Text19.Parent = this.FooterBand1;
+            this.Text20.Page = this.Page1;
+            this.Text20.Parent = this.FooterBand1;
+            this.Text21.Page = this.Page1;
+            this.Text21.Parent = this.FooterBand1;
+            this.Text30.Page = this.Page1;
+            this.Text30.Parent = this.FooterBand1;
+            // 
+            // Add to HeaderBand2.Components
+            // 
+            this.HeaderBand2.Components.Clear();
+            this.HeaderBand2.Components.AddRange(new Stimulsoft.Report.Components.StiComponent[] {
+                        this.Text26,
+                        this.Text25,
+                        this.Text27,
+                        this.Text2,
+                        this.Text29,
+                        this.Text28,
+                        this.Text35,
+                        this.Text9,
+                        this.Text24,
+                        this.Text36,
+                        this.Text14,
+                        this.Text15,
+                        this.Text11,
+                        this.Text56,
+                        this.Text71,
+                        this.Text74,
+                        this.Text1});
+            // 
+            // Add to HeaderBand1.Components
+            // 
+            this.HeaderBand1.Components.Clear();
+            this.HeaderBand1.Components.AddRange(new Stimulsoft.Report.Components.StiComponent[] {
+                        this.Text5,
+                        this.Text6,
+                        this.Text7,
+                        this.Text10});
+            // 
+            // Add to DataBand1.Components
+            // 
+            this.DataBand1.Components.Clear();
+            this.DataBand1.Components.AddRange(new Stimulsoft.Report.Components.StiComponent[] {
+                        this.Text3,
+                        this.Text4,
+                        this.SystemText1,
+                        this.Text8,
+                        this.شرح_سطر});
+            // 
+            // Add to FooterBand1.Components
+            // 
+            this.FooterBand1.Components.Clear();
+            this.FooterBand1.Components.AddRange(new Stimulsoft.Report.Components.StiComponent[] {
+                        this.Text17,
+                        this.Text18,
+                        this.Text12,
+                        this.Text19,
+                        this.Text20,
+                        this.Text21,
+                        this.Text30});
+            // 
+            // Add to Page1.Components
+            // 
+            this.Page1.Components.Clear();
+            this.Page1.Components.AddRange(new Stimulsoft.Report.Components.StiComponent[] {
+                        this.HeaderBand2,
+                        this.HeaderBand1,
+                        this.DataBand1,
+                        this.FooterBand1});
+            // 
+            // Add to Pages
+            // 
+            this.Pages.Clear();
+            this.Pages.AddRange(new Stimulsoft.Report.Components.StiPage[] {
+                        this.Page1});
+            this.DataSources.Add(this.Sanads);
+            this.لیست_داده_ها.Columns.AddRange(new Stimulsoft.Report.Dictionary.StiDataColumn[] {
+                        new Stimulsoft.Report.Dictionary.StiDataColumn("SanadDateSh", "SanadDateSh", "SanadDateSh", typeof(string), null),
+                        new Stimulsoft.Report.Dictionary.StiDataColumn("SanadTime", "SanadTime", "SanadTime", typeof(string), null),
+                        new Stimulsoft.Report.Dictionary.StiDataColumn("PrintDateSh", "PrintDateSh", "PrintDateSh", typeof(string), null),
+                        new Stimulsoft.Report.Dictionary.StiDataColumn("PrintTime", "PrintTime", "PrintTime", typeof(string), null),
+                        new Stimulsoft.Report.Dictionary.StiDataColumn("SanadNumber", "SanadNumber", "SanadNumber", typeof(long), null),
+                        new Stimulsoft.Report.Dictionary.StiDataColumn("SanadDesc", "SanadDesc", "SanadDesc", typeof(string), null),
+                        new Stimulsoft.Report.Dictionary.StiDataColumn("DetailDesc", "DetailDesc", "DetailDesc", typeof(string), null),
+                        new Stimulsoft.Report.Dictionary.StiDataColumn("Debit", "Debit", "Debit", typeof(decimal), null),
+                        new Stimulsoft.Report.Dictionary.StiDataColumn("Credit", "Credit", "Credit", typeof(decimal), null),
+                        new Stimulsoft.Report.Dictionary.StiDataColumn("UserName", "UserName", "UserName", typeof(string), null),
+                        new Stimulsoft.Report.Dictionary.StiDataColumn("SumDebit", "SumDebit", "SumDebit", typeof(decimal), null),
+                        new Stimulsoft.Report.Dictionary.StiDataColumn("SumCredit", "SumCredit", "SumCredit", typeof(decimal), null)});
+            this.Dictionary.BusinessObjects.Add(this.لیست_داده_ها);
+        }
+        
+        #region DataSource Sanads
+        public class SanadsDataSource : Stimulsoft.Report.Dictionary.StiBusinessObjectSource
+        {
+            
+            public SanadsDataSource() : 
+                    base("Sanas", "Sanads", "Sanads", null)
+            {
+            }
+        }
+        #endregion DataSource Sanads
+        
+        #region BusinessObject لیست_داده_ها
+        public class لیست_داده_هاBusinessObject : Stimulsoft.Report.Dictionary.StiBusinessObject
+        {
+            
+            public لیست_داده_هاBusinessObject() : 
+                    base("Sanad", "لیست داده ها", "لیست داده ها", "523ef5bd511c41deb00faaf479e9a935", null)
+            {
+            }
+            
+            public virtual string SanadDateSh
+            {
+                get
+                {
+                    return ((string)(StiReport.ChangeType(this["SanadDateSh"], typeof(string), true)));
+                }
+            }
+            
+            public virtual string SanadTime
+            {
+                get
+                {
+                    return ((string)(StiReport.ChangeType(this["SanadTime"], typeof(string), true)));
+                }
+            }
+            
+            public virtual string PrintDateSh
+            {
+                get
+                {
+                    return ((string)(StiReport.ChangeType(this["PrintDateSh"], typeof(string), true)));
+                }
+            }
+            
+            public virtual string PrintTime
+            {
+                get
+                {
+                    return ((string)(StiReport.ChangeType(this["PrintTime"], typeof(string), true)));
+                }
+            }
+            
+            public virtual long SanadNumber
+            {
+                get
+                {
+                    return ((long)(StiReport.ChangeType(this["SanadNumber"], typeof(long), true)));
+                }
+            }
+            
+            public virtual string SanadDesc
+            {
+                get
+                {
+                    return ((string)(StiReport.ChangeType(this["SanadDesc"], typeof(string), true)));
+                }
+            }
+            
+            public virtual string DetailDesc
+            {
+                get
+                {
+                    return ((string)(StiReport.ChangeType(this["DetailDesc"], typeof(string), true)));
+                }
+            }
+            
+            public virtual decimal Debit
+            {
+                get
+                {
+                    return ((decimal)(StiReport.ChangeType(this["Debit"], typeof(decimal), true)));
+                }
+            }
+            
+            public virtual decimal Credit
+            {
+                get
+                {
+                    return ((decimal)(StiReport.ChangeType(this["Credit"], typeof(decimal), true)));
+                }
+            }
+            
+            public virtual string UserName
+            {
+                get
+                {
+                    return ((string)(StiReport.ChangeType(this["UserName"], typeof(string), true)));
+                }
+            }
+            
+            public virtual decimal SumDebit
+            {
+                get
+                {
+                    return ((decimal)(StiReport.ChangeType(this["SumDebit"], typeof(decimal), true)));
+                }
+            }
+            
+            public virtual decimal SumCredit
+            {
+                get
+                {
+                    return ((decimal)(StiReport.ChangeType(this["SumCredit"], typeof(decimal), true)));
+                }
+            }
+        }
+        #endregion BusinessObject لیست_داده_ها
+        #endregion StiReport Designer generated code - do not modify
+    }
+}
+</Script>
+  <ScriptLanguage>CSharp</ScriptLanguage>
+  <Styles isList="true" count="0" />
+</StiSerializer>

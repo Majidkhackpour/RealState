@@ -233,6 +233,26 @@ namespace Print.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
+        internal static byte[] Sanad_One_A4 {
+            get {
+                object obj = ResourceManager.GetObject("Sanad_One_A4", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] Sanad_One_A5 {
+            get {
+                object obj = ResourceManager.GetObject("Sanad_One_A5", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
         internal static byte[] SmsLog_A4 {
             get {
                 object obj = ResourceManager.GetObject("SmsLog_A4", resourceCulture);

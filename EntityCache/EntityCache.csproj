@@ -295,6 +295,7 @@
     <Compile Include="ViewModels\PardakhtCheckViewModel.cs" />
     <Compile Include="ViewModels\RahnViewModel.cs" />
     <Compile Include="ViewModels\ReceptionCheckViewModel.cs" />
+    <Compile Include="ViewModels\SanadPrintViewModel.cs" />
     <Compile Include="ViewModels\SheypoorCities.cs" />
     <Compile Include="ViewModels\SheypoorRegion.cs" />
   </ItemGroup>

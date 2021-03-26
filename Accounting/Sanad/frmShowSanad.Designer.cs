@@ -49,8 +49,6 @@ namespace Accounting.Sanad
             this.contextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
             this.DGrid = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dateShDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.sanadTypeNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -66,6 +64,8 @@ namespace Accounting.Sanad
             this.userGuidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.sanadStatusDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.sanadTypeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.SanadBindingSource)).BeginInit();
             this.contextMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).BeginInit();
@@ -100,6 +100,7 @@ namespace Accounting.Sanad
             this.mnuPrint.Name = "mnuPrint";
             this.mnuPrint.Size = new System.Drawing.Size(196, 24);
             this.mnuPrint.Text = "چاپ سند";
+            this.mnuPrint.Click += new System.EventHandler(this.mnuPrint_Click);
             // 
             // mnuView
             // 
@@ -237,20 +238,6 @@ namespace Accounting.Sanad
             this.DGrid.Size = new System.Drawing.Size(793, 528);
             this.DGrid.TabIndex = 55755;
             // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "SanadStatus";
-            this.dataGridViewTextBoxColumn1.HeaderText = "SanadStatus";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.Visible = false;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.DataPropertyName = "SanadType";
-            this.dataGridViewTextBoxColumn2.HeaderText = "SanadType";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.Visible = false;
-            // 
             // dgNumber
             // 
             this.dgNumber.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
@@ -383,6 +370,20 @@ namespace Accounting.Sanad
             this.sanadTypeDataGridViewTextBoxColumn.Name = "sanadTypeDataGridViewTextBoxColumn";
             this.sanadTypeDataGridViewTextBoxColumn.ReadOnly = true;
             this.sanadTypeDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "SanadStatus";
+            this.dataGridViewTextBoxColumn1.HeaderText = "SanadStatus";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "SanadType";
+            this.dataGridViewTextBoxColumn2.HeaderText = "SanadType";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.Visible = false;
             // 
             // frmShowSanad
             // 

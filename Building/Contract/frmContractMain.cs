@@ -280,12 +280,18 @@ namespace Building.Contract
             var res = new ReturnedSaveFuncInfo();
             try
             {
-                if (cls.Guid == Guid.Empty) cls.Guid = Guid.NewGuid();
+                if (cls.Guid == Guid.Empty)
+                {
+                    cls.Guid = Guid.NewGuid();
+                    cls.SanadNumber = await SanadBussines.NextNumberAsync();
+                }
 
                 cls.Code = txtCode.Text.ParseToLong();
                 cls.UserGuid = (Guid)cmbUser.SelectedValue;
                 cls.FirstSideGuid = fSide.Guid;
+                cls.FirstSideName = fSide.Name;
                 cls.SecondSideGuid = sSide.Guid;
+                cls.SecondSideName = sSide.Name;
                 cls.BuildingGuid = building.Guid;
 
                 cls.Term = txtTerm.Text.ParseToInt();

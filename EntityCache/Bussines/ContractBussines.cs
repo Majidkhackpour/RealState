@@ -228,7 +228,7 @@ namespace EntityCache.Bussines
                     Debit = FirstSum - FirstDiscount,
                     MoeinGuid = ParentDefaults.MoeinCoding.CLSMoein10304,
                     TafsilGuid = FirstSideGuid,
-                    Description = $"قرارداد({Code}) منعقد شده در تاریخ {DateSh}",
+                    Description = $"قرارداد({Code}) طرف: {FirstSideName} منعقد شده در تاریخ {DateSh}",
                     Guid = Guid.NewGuid(),
                     Modified = DateTime.Now,
                     Status = true,
@@ -241,7 +241,7 @@ namespace EntityCache.Bussines
                     Debit = SecondSum - SecondDiscount,
                     MoeinGuid = ParentDefaults.MoeinCoding.CLSMoein10304,
                     TafsilGuid = SecondSideGuid,
-                    Description = $"قرارداد({Code}) منعقد شده در تاریخ {DateSh}",
+                    Description = $"قرارداد({Code}) طرف: {SecondSideName} منعقد شده در تاریخ {DateSh}",
                     Guid = Guid.NewGuid(),
                     Modified = DateTime.Now,
                     Status = true,
@@ -250,11 +250,11 @@ namespace EntityCache.Bussines
                 //طرف حساب بستانکار درآمد اول
                 sanad.AddToListSanad(new SanadDetailBussines()
                 {
-                    Credit = ((FirstTotalPrice - FirstTax - FirstAvarez) + FirstDiscount) - (BazaryabPrice / 2),
+                    Credit = FirstTotalPrice  - (BazaryabPrice / 2),
                     Debit = 0,
                     MoeinGuid = ParentDefaults.MoeinCoding.CLSMoein60201,
                     TafsilGuid = ParentDefaults.TafsilCoding.CLSTafsil6020101,
-                    Description = $"قرارداد({Code}) منعقد شده در تاریخ {DateSh}",
+                    Description = $"قرارداد({Code}) طرف: {FirstSideName} منعقد شده در تاریخ {DateSh}",
                     Guid = Guid.NewGuid(),
                     Modified = DateTime.Now,
                     Status = true,
@@ -263,11 +263,11 @@ namespace EntityCache.Bussines
                 //طرف حساب بستانکار درآمد دوم
                 sanad.AddToListSanad(new SanadDetailBussines()
                 {
-                    Credit = ((SecondTotalPrice - SecondTax - SecondAvarez) + SecondDiscount) - (BazaryabPrice / 2),
+                    Credit = SecondTotalPrice - (BazaryabPrice / 2),
                     Debit = 0,
                     MoeinGuid = ParentDefaults.MoeinCoding.CLSMoein60201,
                     TafsilGuid = ParentDefaults.TafsilCoding.CLSTafsil6020101,
-                    Description = $"قرارداد({Code}) منعقد شده در تاریخ {DateSh}",
+                    Description = $"قرارداد({Code}) طرف: {SecondSideName} منعقد شده در تاریخ {DateSh}",
                     Guid = Guid.NewGuid(),
                     Modified = DateTime.Now,
                     Status = true,
@@ -283,7 +283,7 @@ namespace EntityCache.Bussines
                         Debit = FirstDiscount,
                         MoeinGuid = ParentDefaults.MoeinCoding.CLSMoein60103,
                         TafsilGuid = ParentDefaults.TafsilCoding.CLSTafsil6010301,
-                        Description = $"قرارداد({Code}) منعقد شده در تاریخ {DateSh}",
+                        Description = $"قرارداد({Code}) طرف: {FirstSideName} منعقد شده در تاریخ {DateSh}",
                         Guid = Guid.NewGuid(),
                         Modified = DateTime.Now,
                         Status = true,
@@ -299,7 +299,7 @@ namespace EntityCache.Bussines
                         Debit = SecondDiscount,
                         MoeinGuid = ParentDefaults.MoeinCoding.CLSMoein60103,
                         TafsilGuid = ParentDefaults.TafsilCoding.CLSTafsil6010301,
-                        Description = $"قرارداد({Code}) منعقد شده در تاریخ {DateSh}",
+                        Description = $"قرارداد({Code}) طرف: {SecondSideName} منعقد شده در تاریخ {DateSh}",
                         Guid = Guid.NewGuid(),
                         Modified = DateTime.Now,
                         Status = true,
@@ -316,7 +316,7 @@ namespace EntityCache.Bussines
                         Debit = 0,
                         MoeinGuid = ParentDefaults.MoeinCoding.CLSMoein30204,
                         TafsilGuid = ParentDefaults.TafsilCoding.CLSTafsil3020305,
-                        Description = $"قرارداد({Code}) منعقد شده در تاریخ {DateSh}",
+                        Description = $"قرارداد({Code}) طرف: {FirstSideName} منعقد شده در تاریخ {DateSh}",
                         Guid = Guid.NewGuid(),
                         Modified = DateTime.Now,
                         Status = true,
@@ -332,7 +332,7 @@ namespace EntityCache.Bussines
                         Debit = 0,
                         MoeinGuid = ParentDefaults.MoeinCoding.CLSMoein30204,
                         TafsilGuid = ParentDefaults.TafsilCoding.CLSTafsil3020305,
-                        Description = $"قرارداد({Code}) منعقد شده در تاریخ {DateSh}",
+                        Description = $"قرارداد({Code}) طرف: {SecondSideName} منعقد شده در تاریخ {DateSh}",
                         Guid = Guid.NewGuid(),
                         Modified = DateTime.Now,
                         Status = true,
@@ -349,7 +349,7 @@ namespace EntityCache.Bussines
                         Debit = 0,
                         MoeinGuid = ParentDefaults.MoeinCoding.CLSMoein30207,
                         TafsilGuid = ParentDefaults.TafsilCoding.CLSTafsil3020306,
-                        Description = $"قرارداد({Code}) منعقد شده در تاریخ {DateSh}",
+                        Description = $"قرارداد({Code}) طرف: {FirstSideName} منعقد شده در تاریخ {DateSh}",
                         Guid = Guid.NewGuid(),
                         Modified = DateTime.Now,
                         Status = true,
@@ -365,7 +365,7 @@ namespace EntityCache.Bussines
                         Debit = 0,
                         MoeinGuid = ParentDefaults.MoeinCoding.CLSMoein30207,
                         TafsilGuid = ParentDefaults.TafsilCoding.CLSTafsil3020306,
-                        Description = $"قرارداد({Code}) منعقد شده در تاریخ {DateSh}",
+                        Description = $"قرارداد({Code}) طرف: {SecondSideName} منعقد شده در تاریخ {DateSh}",
                         Guid = Guid.NewGuid(),
                         Modified = DateTime.Now,
                         Status = true,
@@ -382,7 +382,7 @@ namespace EntityCache.Bussines
                         Debit = 0,
                         MoeinGuid = ParentDefaults.MoeinCoding.CLSMoein10304,
                         TafsilGuid = BazaryabGuid.Value,
-                        Description = $"قرارداد({Code}) منعقد شده در تاریخ {DateSh}",
+                        Description = $"پورسانت عقدقرارداد({Code}) فی مابین {FirstSideName} و {SecondSideName} منعقد شده در تاریخ {DateSh}",
                         Guid = Guid.NewGuid(),
                         Modified = DateTime.Now,
                         Status = true,
@@ -405,6 +405,7 @@ namespace EntityCache.Bussines
                 if (!await CheckCodeAsync(Code.ToString().Trim(), Guid)) res.AddError("کد ملک وارد شده تکراری است");
                 if (FirstSideGuid == Guid.Empty) res.AddError("لطفا طرف اول قرارداد را انتخاب نمایید");
                 if (SecondSideGuid == Guid.Empty) res.AddError("لطفا طرف دوم قرارداد را انتخاب نمایید");
+                if (SecondSideGuid == FirstSideGuid) res.AddError("دوطرف قرارداد نمی تواند یکسان باشد");
                 if (BuildingGuid == Guid.Empty) res.AddError("لطفا ملک موضوع قرارداد را انتخاب نمایید");
                 if (MinorPrice == 0 && TotalPrice == 0) res.AddError("لطفا یکی از فیلدهای مبلغ را وارد نمایید");
                 if ((BazaryabGuid == null || BazaryabGuid == Guid.Empty) && BazaryabPrice > 0) res.AddError("لطفا بازاریاب را انتخاب نمایید");

@@ -1495,7 +1495,7 @@ namespace Building.Building
             var res = "";
             try
             {
-                res = Settings.Classes.clsTelegram.Text;
+                res = clsTelegram.Text;
 
                 if (res.Contains(Replacor.TelegramBuilding.Code)) res = res.Replace(Replacor.TelegramBuilding.Code, bu.Code);
                 if (res.Contains(Replacor.TelegramBuilding.Type))
