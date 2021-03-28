@@ -4046,3 +4046,24 @@ BEGIN
            ,@address)
 	 end
 END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Gardesh_GetAll]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Gardesh_GetAll]	As Begin print 11 end')  
+GO
+ALTER PROCEDURE [dbo].[sp_Gardesh_GetAll]
+	@tafsilGuid uniqueidentifier
+AS
+BEGIN
+	Select    SanadDetails.*
+			, Moeins.Code As MoeinCode
+			, Moeins.Name As MoeinName
+			, Tafsils.Code As TafsilCode
+			, Tafsils.Name As TafsilName
+			, Sanads.DateM As DateM
+	from SanadDetails inner join Moeins on
+		 SanadDetails.MoeinGuid = Moeins.Guid inner join Tafsils on
+		 SanadDetails.TafsilGuid = Tafsils.Guid inner join Sanads on
+		 SanadDetails.MasterGuid = Sanads.Guid
+	where SanadDetails.TafsilGuid=@tafsilGuid
+END

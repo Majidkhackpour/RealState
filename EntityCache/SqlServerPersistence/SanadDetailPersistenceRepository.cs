@@ -31,13 +31,38 @@ namespace EntityCache.SqlServerPersistence
                 item.MoeinGuid = (Guid)dr["MoeinGuid"];
                 item.MoeinCode = dr["MoeinCode"].ToString();
                 item.MoeinName = dr["MoeinName"].ToString();
-                item.TafsilGuid = (Guid) dr["TafsilGuid"];
+                item.TafsilGuid = (Guid)dr["TafsilGuid"];
                 item.TafsilCode = dr["TafsilCode"].ToString();
                 item.TafsilName = dr["TafsilName"].ToString();
                 item.Description = dr["Description"].ToString();
                 item.MasterGuid = (Guid)dr["MasterGuid"];
                 item.Debit = (decimal)dr["Debit"];
                 item.Credit = (decimal)dr["Credit"];
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+
+            return item;
+        }
+        private GardeshBussines LoadDataGardesh(SqlDataReader dr)
+        {
+            var item = new GardeshBussines();
+            try
+            {
+                item.Guid = (Guid)dr["Guid"];
+                item.Status = (bool)dr["Status"];
+                item.MoeinGuid = (Guid)dr["MoeinGuid"];
+                item.MoeinCode = dr["MoeinCode"].ToString();
+                item.MoeinName = dr["MoeinName"].ToString();
+                item.TafsilGuid = (Guid)dr["TafsilGuid"];
+                item.TafsilCode = dr["TafsilCode"].ToString();
+                item.TafsilName = dr["TafsilName"].ToString();
+                item.Description = dr["Description"].ToString();
+                item.Debit = (decimal)dr["Debit"];
+                item.Credit = (decimal)dr["Credit"];
+                item.DateM = (DateTime)dr["DateM"];
             }
             catch (Exception ex)
             {
@@ -54,7 +79,7 @@ namespace EntityCache.SqlServerPersistence
                 using (var cn = new SqlConnection(_connectionString))
                 {
                     var cmd = new SqlCommand("sp_SanadDetail_GetAllByMaster", cn)
-                        {CommandType = CommandType.StoredProcedure};
+                    { CommandType = CommandType.StoredProcedure };
                     cmd.Parameters.AddWithValue("@masterGuid", masterGuid);
 
                     await cn.OpenAsync();
@@ -78,7 +103,7 @@ namespace EntityCache.SqlServerPersistence
                 using (var cn = new SqlConnection(_connectionString))
                 {
                     var cmd = new SqlCommand("sp_SanadDetail_RemoveByMasterGuid", cn)
-                        {CommandType = CommandType.StoredProcedure};
+                    { CommandType = CommandType.StoredProcedure };
                     cmd.Parameters.AddWithValue("@masterGuid", masterGuid);
 
                     await cn.OpenAsync();
@@ -93,6 +118,30 @@ namespace EntityCache.SqlServerPersistence
             }
 
             return res;
+        }
+        public async Task<List<GardeshBussines>> GetAllGardeshAsync(Guid tafsilGuid)
+        {
+            var list = new List<GardeshBussines>();
+            try
+            {
+                using (var cn = new SqlConnection(_connectionString))
+                {
+                    var cmd = new SqlCommand("sp_Gardesh_GetAll", cn)
+                    { CommandType = CommandType.StoredProcedure };
+                    cmd.Parameters.AddWithValue("@tafsilGuid", tafsilGuid);
+
+                    await cn.OpenAsync();
+                    var dr = await cmd.ExecuteReaderAsync();
+                    while (dr.Read()) list.Add(LoadDataGardesh(dr));
+                    cn.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+
+            return list;
         }
         public override async Task<ReturnedSaveFuncInfo> SaveRangeAsync(IEnumerable<SanadDetailBussines> items, string tranName)
         {

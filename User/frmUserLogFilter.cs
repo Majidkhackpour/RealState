@@ -36,13 +36,13 @@ namespace User
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
+
         public frmUserLogFilter()
         {
             InitializeComponent();
         }
 
         private async void frmUserLogFilter_Load(object sender, EventArgs e) => await SetDataAsync();
-
         private void btnCancel_Click(object sender, EventArgs e) => Close();
         private void frmUserLogFilter_KeyDown(object sender, KeyEventArgs e)
         {

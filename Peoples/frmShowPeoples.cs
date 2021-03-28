@@ -6,6 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WindowsSerivces;
+using Accounting.Gardesh;
 using EntityCache.Bussines;
 using MetroFramework.Forms;
 using Microsoft.Office.Interop.Excel;
@@ -761,6 +762,21 @@ namespace Peoples
                     peopleBindingSource.Add(item);
                     addedItem++;
                 }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private void mnuGardesh_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (DGrid.RowCount <= 0) return;
+                if (DGrid.CurrentRow == null) return;
+                var tafsilGuid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
+                var frm = new frmGardeshTafsil(tafsilGuid);
+                frm.ShowDialog();
             }
             catch (Exception ex)
             {

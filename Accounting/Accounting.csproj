@@ -198,6 +198,12 @@
     <Compile Include="Check\CheckMoshtari\frmShowCheckM.Designer.cs">
       <DependentUpon>frmShowCheckM.cs</DependentUpon>
     </Compile>
+    <Compile Include="Gardesh\frmGardeshTafsil.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Gardesh\frmGardeshTafsil.Designer.cs">
+      <DependentUpon>frmGardeshTafsil.cs</DependentUpon>
+    </Compile>
     <Compile Include="Hazine\frmShowHazine.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -338,6 +344,7 @@
     <None Include="Properties\DataSources\EntityCache.Bussines.BankBussines.datasource" />
     <None Include="Properties\DataSources\EntityCache.Bussines.CheckPageBussines.datasource" />
     <None Include="Properties\DataSources\EntityCache.Bussines.DasteCheckBussines.datasource" />
+    <None Include="Properties\DataSources\EntityCache.Bussines.GardeshBussines.datasource" />
     <None Include="Properties\DataSources\EntityCache.Bussines.GardeshHesabBussines.datasource" />
     <None Include="Properties\DataSources\EntityCache.Bussines.HazineBussines.datasource" />
     <None Include="Properties\DataSources\EntityCache.Bussines.KolBussines.datasource" />
@@ -376,6 +383,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Check\CheckMoshtari\frmShowCheckM.resx">
       <DependentUpon>frmShowCheckM.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Gardesh\frmGardeshTafsil.resx">
+      <DependentUpon>frmGardeshTafsil.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Hazine\frmShowHazine.resx">
       <DependentUpon>frmShowHazine.cs</DependentUpon>

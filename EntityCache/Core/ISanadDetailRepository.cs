@@ -10,5 +10,6 @@ namespace EntityCache.Core
     {
         Task<List<SanadDetailBussines>> GetAllAsync(Guid masterGuid);
         Task<ReturnedSaveFuncInfo> RemoveRangeAsync(Guid masterGuid);
+        Task<List<GardeshBussines>> GetAllGardeshAsync(Guid tafsilGuid);
     }
 }

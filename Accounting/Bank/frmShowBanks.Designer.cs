@@ -40,18 +40,14 @@ namespace Accounting.Bank
             this.txtSearch = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
             this.contextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
-            this.DGrid = new DevComponents.DotNetBar.Controls.DataGridViewX();
             this.mnuAdd = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuEdit = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuDelete = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.mnuView = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuStatus = new System.Windows.Forms.ToolStripMenuItem();
-            this.مشاهدهگردشامروزToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.مشاهده10گردشآخرToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.مشاهده30گردشآخرToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.مشاهدهکلگردشهاToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.BankBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.mnuTop = new System.Windows.Forms.ToolStripMenuItem();
+            this.DGrid = new DevComponents.DotNetBar.Controls.DataGridViewX();
             this.codeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.shobeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -65,6 +61,7 @@ namespace Accounting.Bank
             this.descriptionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dateMDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.accountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BankBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.contextMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BankBindingSource)).BeginInit();
@@ -105,18 +102,63 @@ namespace Accounting.Bank
             this.mnuView,
             this.mnuStatus,
             this.toolStripMenuItem2,
-            this.مشاهدهگردشامروزToolStripMenuItem,
-            this.مشاهده10گردشآخرToolStripMenuItem,
-            this.مشاهده30گردشآخرToolStripMenuItem,
-            this.مشاهدهکلگردشهاToolStripMenuItem});
+            this.mnuTop});
             this.contextMenu.Name = "contextMenu";
             this.contextMenu.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.contextMenu.Size = new System.Drawing.Size(235, 254);
+            this.contextMenu.Size = new System.Drawing.Size(235, 182);
+            // 
+            // mnuAdd
+            // 
+            this.mnuAdd.Image = global::Accounting.Properties.Resources.add_2_;
+            this.mnuAdd.Name = "mnuAdd";
+            this.mnuAdd.Size = new System.Drawing.Size(234, 24);
+            this.mnuAdd.Text = "افزودن حساب بانکی جدید (Ins)";
+            this.mnuAdd.Click += new System.EventHandler(this.mnuAdd_Click);
+            // 
+            // mnuEdit
+            // 
+            this.mnuEdit.Image = global::Accounting.Properties.Resources.edit_1_;
+            this.mnuEdit.Name = "mnuEdit";
+            this.mnuEdit.Size = new System.Drawing.Size(234, 24);
+            this.mnuEdit.Text = "ویرایش حساب بانکی جاری (F7)";
+            this.mnuEdit.Click += new System.EventHandler(this.mnuEdit_Click);
+            // 
+            // mnuDelete
+            // 
+            this.mnuDelete.Image = global::Accounting.Properties.Resources.delete_1_;
+            this.mnuDelete.Name = "mnuDelete";
+            this.mnuDelete.Size = new System.Drawing.Size(234, 24);
+            this.mnuDelete.Text = "حذف حساب بانکی جاری (Del)";
+            this.mnuDelete.Click += new System.EventHandler(this.mnuDelete_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
             this.toolStripMenuItem1.Size = new System.Drawing.Size(231, 6);
+            // 
+            // mnuView
+            // 
+            this.mnuView.Image = global::Accounting.Properties.Resources.article_1_;
+            this.mnuView.Name = "mnuView";
+            this.mnuView.Size = new System.Drawing.Size(234, 24);
+            this.mnuView.Text = "مشاهده (F12)";
+            this.mnuView.Click += new System.EventHandler(this.mnuView_Click);
+            // 
+            // mnuStatus
+            // 
+            this.mnuStatus.Image = global::Accounting.Properties.Resources.refresh_round_symbol;
+            this.mnuStatus.Name = "mnuStatus";
+            this.mnuStatus.Size = new System.Drawing.Size(234, 24);
+            this.mnuStatus.Text = "غیرفعال (Ctrl+S)";
+            this.mnuStatus.Click += new System.EventHandler(this.mnuStatus_Click);
+            // 
+            // mnuTop
+            // 
+            this.mnuTop.Image = global::Accounting.Properties.Resources.article_1_;
+            this.mnuTop.Name = "mnuTop";
+            this.mnuTop.Size = new System.Drawing.Size(234, 24);
+            this.mnuTop.Text = "مشاهده گردش حساب";
+            this.mnuTop.Click += new System.EventHandler(this.mnuTop_Click);
             // 
             // DGrid
             // 
@@ -194,78 +236,6 @@ namespace Accounting.Bank
             this.DGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DGrid.Size = new System.Drawing.Size(793, 528);
             this.DGrid.TabIndex = 55753;
-            // 
-            // mnuAdd
-            // 
-            this.mnuAdd.Image = global::Accounting.Properties.Resources.add_2_;
-            this.mnuAdd.Name = "mnuAdd";
-            this.mnuAdd.Size = new System.Drawing.Size(234, 24);
-            this.mnuAdd.Text = "افزودن حساب بانکی جدید (Ins)";
-            this.mnuAdd.Click += new System.EventHandler(this.mnuAdd_Click);
-            // 
-            // mnuEdit
-            // 
-            this.mnuEdit.Image = global::Accounting.Properties.Resources.edit_1_;
-            this.mnuEdit.Name = "mnuEdit";
-            this.mnuEdit.Size = new System.Drawing.Size(234, 24);
-            this.mnuEdit.Text = "ویرایش حساب بانکی جاری (F7)";
-            this.mnuEdit.Click += new System.EventHandler(this.mnuEdit_Click);
-            // 
-            // mnuDelete
-            // 
-            this.mnuDelete.Image = global::Accounting.Properties.Resources.delete_1_;
-            this.mnuDelete.Name = "mnuDelete";
-            this.mnuDelete.Size = new System.Drawing.Size(234, 24);
-            this.mnuDelete.Text = "حذف حساب بانکی جاری (Del)";
-            this.mnuDelete.Click += new System.EventHandler(this.mnuDelete_Click);
-            // 
-            // mnuView
-            // 
-            this.mnuView.Image = global::Accounting.Properties.Resources.article_1_;
-            this.mnuView.Name = "mnuView";
-            this.mnuView.Size = new System.Drawing.Size(234, 24);
-            this.mnuView.Text = "مشاهده (F12)";
-            this.mnuView.Click += new System.EventHandler(this.mnuView_Click);
-            // 
-            // mnuStatus
-            // 
-            this.mnuStatus.Image = global::Accounting.Properties.Resources.refresh_round_symbol;
-            this.mnuStatus.Name = "mnuStatus";
-            this.mnuStatus.Size = new System.Drawing.Size(234, 24);
-            this.mnuStatus.Text = "غیرفعال (Ctrl+S)";
-            this.mnuStatus.Click += new System.EventHandler(this.mnuStatus_Click);
-            // 
-            // مشاهدهگردشامروزToolStripMenuItem
-            // 
-            this.مشاهدهگردشامروزToolStripMenuItem.Image = global::Accounting.Properties.Resources.add_2_;
-            this.مشاهدهگردشامروزToolStripMenuItem.Name = "مشاهدهگردشامروزToolStripMenuItem";
-            this.مشاهدهگردشامروزToolStripMenuItem.Size = new System.Drawing.Size(234, 24);
-            this.مشاهدهگردشامروزToolStripMenuItem.Text = "مشاهده گردش امروز";
-            // 
-            // مشاهده10گردشآخرToolStripMenuItem
-            // 
-            this.مشاهده10گردشآخرToolStripMenuItem.Image = global::Accounting.Properties.Resources.article_1_;
-            this.مشاهده10گردشآخرToolStripMenuItem.Name = "مشاهده10گردشآخرToolStripMenuItem";
-            this.مشاهده10گردشآخرToolStripMenuItem.Size = new System.Drawing.Size(234, 24);
-            this.مشاهده10گردشآخرToolStripMenuItem.Text = "مشاهده 10 گردش آخر";
-            // 
-            // مشاهده30گردشآخرToolStripMenuItem
-            // 
-            this.مشاهده30گردشآخرToolStripMenuItem.Image = global::Accounting.Properties.Resources.article_1_;
-            this.مشاهده30گردشآخرToolStripMenuItem.Name = "مشاهده30گردشآخرToolStripMenuItem";
-            this.مشاهده30گردشآخرToolStripMenuItem.Size = new System.Drawing.Size(234, 24);
-            this.مشاهده30گردشآخرToolStripMenuItem.Text = "مشاهده 30 گردش آخر";
-            // 
-            // مشاهدهکلگردشهاToolStripMenuItem
-            // 
-            this.مشاهدهکلگردشهاToolStripMenuItem.Image = global::Accounting.Properties.Resources.article_1_;
-            this.مشاهدهکلگردشهاToolStripMenuItem.Name = "مشاهدهکلگردشهاToolStripMenuItem";
-            this.مشاهدهکلگردشهاToolStripMenuItem.Size = new System.Drawing.Size(234, 24);
-            this.مشاهدهکلگردشهاToolStripMenuItem.Text = "مشاهده کل گردش ها";
-            // 
-            // BankBindingSource
-            // 
-            this.BankBindingSource.DataSource = typeof(EntityCache.Bussines.BankBussines);
             // 
             // codeDataGridViewTextBoxColumn
             // 
@@ -380,6 +350,10 @@ namespace Accounting.Bank
             this.accountDataGridViewTextBoxColumn.ReadOnly = true;
             this.accountDataGridViewTextBoxColumn.Visible = false;
             // 
+            // BankBindingSource
+            // 
+            this.BankBindingSource.DataSource = typeof(EntityCache.Bussines.BankBussines);
+            // 
             // frmShowBanks
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -410,9 +384,6 @@ namespace Accounting.Bank
 
         private System.Windows.Forms.BindingSource BankBindingSource;
         private DevComponents.DotNetBar.Controls.TextBoxX txtSearch;
-        private System.Windows.Forms.ToolStripMenuItem مشاهده30گردشآخرToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem مشاهده10گردشآخرToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem مشاهدهگردشامروزToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem mnuStatus;
         private System.Windows.Forms.ToolStripMenuItem mnuView;
@@ -421,7 +392,7 @@ namespace Accounting.Bank
         private System.Windows.Forms.ToolStripMenuItem mnuAdd;
         private System.Windows.Forms.ContextMenuStrip contextMenu;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem مشاهدهکلگردشهاToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mnuTop;
         private DevComponents.DotNetBar.Controls.DataGridViewX DGrid;
         private System.Windows.Forms.DataGridViewTextBoxColumn codeDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgName;

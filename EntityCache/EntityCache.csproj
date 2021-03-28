@@ -131,6 +131,7 @@
     <Compile Include="Bussines\DocumentTypeBussines.cs" />
     <Compile Include="Bussines\FileInfoBussines.cs" />
     <Compile Include="Bussines\FloorCoverBussines.cs" />
+    <Compile Include="Bussines\GardeshBussines.cs" />
     <Compile Include="Bussines\KitchenServiceBussines.cs" />
     <Compile Include="Bussines\KolBussines.cs" />
     <Compile Include="Bussines\MoeinBussines.cs" />

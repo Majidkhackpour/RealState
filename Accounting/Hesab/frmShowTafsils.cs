@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using WindowsSerivces;
 using Accounting.Bank;
+using Accounting.Gardesh;
 using EntityCache.Bussines;
 using MetroFramework.Forms;
 using Notification;
@@ -291,6 +292,21 @@ namespace Accounting.Hesab
 
                 var _frm = new frmTafsilMain(guid, true);
                 _frm.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private void mnuGardesh_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (DGrid.RowCount <= 0) return;
+                if (DGrid.CurrentRow == null) return;
+                var tafsilGuid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
+                var frm = new frmGardeshTafsil(tafsilGuid);
+                frm.ShowDialog();
             }
             catch (Exception ex)
             {

@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WindowsSerivces;
+using Accounting.Gardesh;
 using Accounting.Hesab;
 using EntityCache.Bussines;
 using MetroFramework.Forms;
@@ -220,6 +221,21 @@ namespace Accounting.Bank
             {
                 if (res.HasError) this.ShowError(res, "خطا در تغییر وضعیت حساب بانکی");
                 else await LoadDataAsync(ST, txtSearch.Text);
+            }
+        }
+        private void mnuTop_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (DGrid.RowCount <= 0) return;
+                if (DGrid.CurrentRow == null) return;
+                var tafsilGuid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
+                var frm = new frmGardeshTafsil(tafsilGuid);
+                frm.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
     }

@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -38,37 +37,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmShowPeoples));
             this.txtSearch = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.DGrid = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.contextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.mnuAdd = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuEdit = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuDelete = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
-            this.mnuView = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuStatus = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
-            this.ارسالپیامکToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuSendSMS = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
-            this.mnuTell = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuBank = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuPrint = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuIpmortFromExcel = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripSeparator();
-            this.مدیریتستونهاToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuCode = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuName = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuNatName = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuFatherName = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuAccount = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuAddress = new System.Windows.Forms.ToolStripMenuItem();
-            this.peopleBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.trvGroup = new System.Windows.Forms.TreeView();
-            this.contextMenuGroup = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.mnuInsGroup = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuUpGroup = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuDelGroup = new System.Windows.Forms.ToolStripMenuItem();
-            this.groupBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.ucPagger = new WindowsSerivces.Pagging.UC_FooterPaging();
             this.dgRadif = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -86,6 +54,37 @@
             this.issuedFromDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.postalCodeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupGuidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.contextMenu = new System.Windows.Forms.ContextMenuStrip();
+            this.mnuAdd = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuEdit = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuDelete = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
+            this.mnuView = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuStatus = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
+            this.mnuGardesh = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuSendSMS = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
+            this.mnuTell = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuBank = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuPrint = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuIpmortFromExcel = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripSeparator();
+            this.مدیریتستونهاToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuCode = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuName = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuNatName = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuFatherName = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuAccount = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuAddress = new System.Windows.Forms.ToolStripMenuItem();
+            this.peopleBindingSource = new System.Windows.Forms.BindingSource();
+            this.trvGroup = new System.Windows.Forms.TreeView();
+            this.contextMenuGroup = new System.Windows.Forms.ContextMenuStrip();
+            this.mnuInsGroup = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuUpGroup = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuDelGroup = new System.Windows.Forms.ToolStripMenuItem();
+            this.groupBindingSource = new System.Windows.Forms.BindingSource();
+            this.ucPagger = new WindowsSerivces.Pagging.UC_FooterPaging();
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).BeginInit();
             this.contextMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.peopleBindingSource)).BeginInit();
@@ -196,6 +195,151 @@
             this.DGrid.Scroll += new System.Windows.Forms.ScrollEventHandler(this.DGrid_Scroll);
             this.DGrid.DoubleClick += new System.EventHandler(this.DGrid_DoubleClick);
             // 
+            // dgRadif
+            // 
+            this.dgRadif.HeaderText = "ردیف";
+            this.dgRadif.Name = "dgRadif";
+            this.dgRadif.ReadOnly = true;
+            this.dgRadif.Width = 50;
+            // 
+            // dgCode
+            // 
+            this.dgCode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dgCode.DataPropertyName = "Code";
+            this.dgCode.HeaderText = "کد";
+            this.dgCode.Name = "dgCode";
+            this.dgCode.ReadOnly = true;
+            this.dgCode.Width = 46;
+            // 
+            // dgName
+            // 
+            this.dgName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dgName.DataPropertyName = "Name";
+            this.dgName.HeaderText = "عنوان";
+            this.dgName.MinimumWidth = 150;
+            this.dgName.Name = "dgName";
+            this.dgName.ReadOnly = true;
+            // 
+            // dgNatCode
+            // 
+            this.dgNatCode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dgNatCode.DataPropertyName = "NationalCode";
+            this.dgNatCode.HeaderText = "کدملی";
+            this.dgNatCode.Name = "dgNatCode";
+            this.dgNatCode.ReadOnly = true;
+            this.dgNatCode.Visible = false;
+            // 
+            // dgFatherName
+            // 
+            this.dgFatherName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dgFatherName.DataPropertyName = "FatherName";
+            this.dgFatherName.HeaderText = "نام پدر";
+            this.dgFatherName.Name = "dgFatherName";
+            this.dgFatherName.ReadOnly = true;
+            this.dgFatherName.Visible = false;
+            // 
+            // dgAccount
+            // 
+            this.dgAccount.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dgAccount.DataPropertyName = "Account_";
+            dataGridViewCellStyle3.Format = "N0";
+            dataGridViewCellStyle3.NullValue = null;
+            this.dgAccount.DefaultCellStyle = dataGridViewCellStyle3;
+            this.dgAccount.HeaderText = "مانده حساب";
+            this.dgAccount.Name = "dgAccount";
+            this.dgAccount.ReadOnly = true;
+            this.dgAccount.Visible = false;
+            // 
+            // dgAccountType
+            // 
+            this.dgAccountType.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dgAccountType.DataPropertyName = "AccountType";
+            this.dgAccountType.HeaderText = "تشخیص";
+            this.dgAccountType.Name = "dgAccountType";
+            this.dgAccountType.ReadOnly = true;
+            this.dgAccountType.Visible = false;
+            // 
+            // dgAddress
+            // 
+            this.dgAddress.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dgAddress.DataPropertyName = "Address";
+            this.dgAddress.HeaderText = "آدرس";
+            this.dgAddress.Name = "dgAddress";
+            this.dgAddress.ReadOnly = true;
+            this.dgAddress.Visible = false;
+            // 
+            // dgGuid
+            // 
+            this.dgGuid.DataPropertyName = "Guid";
+            this.dgGuid.HeaderText = "Guid";
+            this.dgGuid.Name = "dgGuid";
+            this.dgGuid.ReadOnly = true;
+            this.dgGuid.Visible = false;
+            // 
+            // modifiedDataGridViewTextBoxColumn
+            // 
+            this.modifiedDataGridViewTextBoxColumn.DataPropertyName = "Modified";
+            this.modifiedDataGridViewTextBoxColumn.HeaderText = "Modified";
+            this.modifiedDataGridViewTextBoxColumn.Name = "modifiedDataGridViewTextBoxColumn";
+            this.modifiedDataGridViewTextBoxColumn.ReadOnly = true;
+            this.modifiedDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // statusDataGridViewCheckBoxColumn
+            // 
+            this.statusDataGridViewCheckBoxColumn.DataPropertyName = "Status";
+            this.statusDataGridViewCheckBoxColumn.HeaderText = "Status";
+            this.statusDataGridViewCheckBoxColumn.Name = "statusDataGridViewCheckBoxColumn";
+            this.statusDataGridViewCheckBoxColumn.ReadOnly = true;
+            this.statusDataGridViewCheckBoxColumn.Visible = false;
+            // 
+            // idCodeDataGridViewTextBoxColumn
+            // 
+            this.idCodeDataGridViewTextBoxColumn.DataPropertyName = "IdCode";
+            this.idCodeDataGridViewTextBoxColumn.HeaderText = "IdCode";
+            this.idCodeDataGridViewTextBoxColumn.Name = "idCodeDataGridViewTextBoxColumn";
+            this.idCodeDataGridViewTextBoxColumn.ReadOnly = true;
+            this.idCodeDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // placeBirthDataGridViewTextBoxColumn
+            // 
+            this.placeBirthDataGridViewTextBoxColumn.DataPropertyName = "PlaceBirth";
+            this.placeBirthDataGridViewTextBoxColumn.HeaderText = "PlaceBirth";
+            this.placeBirthDataGridViewTextBoxColumn.Name = "placeBirthDataGridViewTextBoxColumn";
+            this.placeBirthDataGridViewTextBoxColumn.ReadOnly = true;
+            this.placeBirthDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // dateBirthDataGridViewTextBoxColumn
+            // 
+            this.dateBirthDataGridViewTextBoxColumn.DataPropertyName = "DateBirth";
+            this.dateBirthDataGridViewTextBoxColumn.HeaderText = "DateBirth";
+            this.dateBirthDataGridViewTextBoxColumn.Name = "dateBirthDataGridViewTextBoxColumn";
+            this.dateBirthDataGridViewTextBoxColumn.ReadOnly = true;
+            this.dateBirthDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // issuedFromDataGridViewTextBoxColumn
+            // 
+            this.issuedFromDataGridViewTextBoxColumn.DataPropertyName = "IssuedFrom";
+            this.issuedFromDataGridViewTextBoxColumn.HeaderText = "IssuedFrom";
+            this.issuedFromDataGridViewTextBoxColumn.Name = "issuedFromDataGridViewTextBoxColumn";
+            this.issuedFromDataGridViewTextBoxColumn.ReadOnly = true;
+            this.issuedFromDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // postalCodeDataGridViewTextBoxColumn
+            // 
+            this.postalCodeDataGridViewTextBoxColumn.DataPropertyName = "PostalCode";
+            this.postalCodeDataGridViewTextBoxColumn.HeaderText = "PostalCode";
+            this.postalCodeDataGridViewTextBoxColumn.Name = "postalCodeDataGridViewTextBoxColumn";
+            this.postalCodeDataGridViewTextBoxColumn.ReadOnly = true;
+            this.postalCodeDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // groupGuidDataGridViewTextBoxColumn
+            // 
+            this.groupGuidDataGridViewTextBoxColumn.DataPropertyName = "GroupGuid";
+            this.groupGuidDataGridViewTextBoxColumn.HeaderText = "GroupGuid";
+            this.groupGuidDataGridViewTextBoxColumn.Name = "groupGuidDataGridViewTextBoxColumn";
+            this.groupGuidDataGridViewTextBoxColumn.ReadOnly = true;
+            this.groupGuidDataGridViewTextBoxColumn.Visible = false;
+            // 
             // contextMenu
             // 
             this.contextMenu.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
@@ -207,7 +351,7 @@
             this.mnuView,
             this.mnuStatus,
             this.toolStripMenuItem2,
-            this.ارسالپیامکToolStripMenuItem,
+            this.mnuGardesh,
             this.mnuSendSMS,
             this.toolStripMenuItem3,
             this.mnuTell,
@@ -218,7 +362,7 @@
             this.مدیریتستونهاToolStripMenuItem});
             this.contextMenu.Name = "contextMenu";
             this.contextMenu.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.contextMenu.Size = new System.Drawing.Size(237, 316);
+            this.contextMenu.Size = new System.Drawing.Size(237, 338);
             // 
             // mnuAdd
             // 
@@ -270,11 +414,13 @@
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
             this.toolStripMenuItem2.Size = new System.Drawing.Size(233, 6);
             // 
-            // ارسالپیامکToolStripMenuItem
+            // mnuGardesh
             // 
-            this.ارسالپیامکToolStripMenuItem.Name = "ارسالپیامکToolStripMenuItem";
-            this.ارسالپیامکToolStripMenuItem.Size = new System.Drawing.Size(236, 24);
-            this.ارسالپیامکToolStripMenuItem.Text = "ارسال پیامک";
+            this.mnuGardesh.Image = global::Peoples.Properties.Resources.article_1_;
+            this.mnuGardesh.Name = "mnuGardesh";
+            this.mnuGardesh.Size = new System.Drawing.Size(236, 24);
+            this.mnuGardesh.Text = "مشاهده گردش حساب";
+            this.mnuGardesh.Click += new System.EventHandler(this.mnuGardesh_Click);
             // 
             // mnuSendSMS
             // 
@@ -458,156 +604,6 @@
             this.ucPagger.Size = new System.Drawing.Size(765, 32);
             this.ucPagger.TabIndex = 55760;
             // 
-            // dgRadif
-            // 
-            this.dgRadif.HeaderText = "ردیف";
-            this.dgRadif.Name = "dgRadif";
-            this.dgRadif.ReadOnly = true;
-            this.dgRadif.Width = 50;
-            // 
-            // dgCode
-            // 
-            this.dgCode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dgCode.DataPropertyName = "Code";
-            this.dgCode.HeaderText = "کد";
-            this.dgCode.Name = "dgCode";
-            this.dgCode.ReadOnly = true;
-            this.dgCode.Width = 46;
-            // 
-            // dgName
-            // 
-            this.dgName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dgName.DataPropertyName = "Name";
-            this.dgName.HeaderText = "عنوان";
-            this.dgName.MinimumWidth = 150;
-            this.dgName.Name = "dgName";
-            this.dgName.ReadOnly = true;
-            // 
-            // dgNatCode
-            // 
-            this.dgNatCode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dgNatCode.DataPropertyName = "NationalCode";
-            this.dgNatCode.HeaderText = "کدملی";
-            this.dgNatCode.Name = "dgNatCode";
-            this.dgNatCode.ReadOnly = true;
-            this.dgNatCode.Visible = false;
-            this.dgNatCode.Width = 63;
-            // 
-            // dgFatherName
-            // 
-            this.dgFatherName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dgFatherName.DataPropertyName = "FatherName";
-            this.dgFatherName.HeaderText = "نام پدر";
-            this.dgFatherName.Name = "dgFatherName";
-            this.dgFatherName.ReadOnly = true;
-            this.dgFatherName.Visible = false;
-            this.dgFatherName.Width = 68;
-            // 
-            // dgAccount
-            // 
-            this.dgAccount.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dgAccount.DataPropertyName = "Account_";
-            dataGridViewCellStyle3.Format = "N0";
-            dataGridViewCellStyle3.NullValue = null;
-            this.dgAccount.DefaultCellStyle = dataGridViewCellStyle3;
-            this.dgAccount.HeaderText = "مانده حساب";
-            this.dgAccount.Name = "dgAccount";
-            this.dgAccount.ReadOnly = true;
-            this.dgAccount.Visible = false;
-            this.dgAccount.Width = 91;
-            // 
-            // dgAccountType
-            // 
-            this.dgAccountType.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dgAccountType.DataPropertyName = "AccountType";
-            this.dgAccountType.HeaderText = "تشخیص";
-            this.dgAccountType.Name = "dgAccountType";
-            this.dgAccountType.ReadOnly = true;
-            this.dgAccountType.Visible = false;
-            this.dgAccountType.Width = 74;
-            // 
-            // dgAddress
-            // 
-            this.dgAddress.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dgAddress.DataPropertyName = "Address";
-            this.dgAddress.HeaderText = "آدرس";
-            this.dgAddress.Name = "dgAddress";
-            this.dgAddress.ReadOnly = true;
-            this.dgAddress.Visible = false;
-            this.dgAddress.Width = 64;
-            // 
-            // dgGuid
-            // 
-            this.dgGuid.DataPropertyName = "Guid";
-            this.dgGuid.HeaderText = "Guid";
-            this.dgGuid.Name = "dgGuid";
-            this.dgGuid.ReadOnly = true;
-            this.dgGuid.Visible = false;
-            // 
-            // modifiedDataGridViewTextBoxColumn
-            // 
-            this.modifiedDataGridViewTextBoxColumn.DataPropertyName = "Modified";
-            this.modifiedDataGridViewTextBoxColumn.HeaderText = "Modified";
-            this.modifiedDataGridViewTextBoxColumn.Name = "modifiedDataGridViewTextBoxColumn";
-            this.modifiedDataGridViewTextBoxColumn.ReadOnly = true;
-            this.modifiedDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // statusDataGridViewCheckBoxColumn
-            // 
-            this.statusDataGridViewCheckBoxColumn.DataPropertyName = "Status";
-            this.statusDataGridViewCheckBoxColumn.HeaderText = "Status";
-            this.statusDataGridViewCheckBoxColumn.Name = "statusDataGridViewCheckBoxColumn";
-            this.statusDataGridViewCheckBoxColumn.ReadOnly = true;
-            this.statusDataGridViewCheckBoxColumn.Visible = false;
-            // 
-            // idCodeDataGridViewTextBoxColumn
-            // 
-            this.idCodeDataGridViewTextBoxColumn.DataPropertyName = "IdCode";
-            this.idCodeDataGridViewTextBoxColumn.HeaderText = "IdCode";
-            this.idCodeDataGridViewTextBoxColumn.Name = "idCodeDataGridViewTextBoxColumn";
-            this.idCodeDataGridViewTextBoxColumn.ReadOnly = true;
-            this.idCodeDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // placeBirthDataGridViewTextBoxColumn
-            // 
-            this.placeBirthDataGridViewTextBoxColumn.DataPropertyName = "PlaceBirth";
-            this.placeBirthDataGridViewTextBoxColumn.HeaderText = "PlaceBirth";
-            this.placeBirthDataGridViewTextBoxColumn.Name = "placeBirthDataGridViewTextBoxColumn";
-            this.placeBirthDataGridViewTextBoxColumn.ReadOnly = true;
-            this.placeBirthDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // dateBirthDataGridViewTextBoxColumn
-            // 
-            this.dateBirthDataGridViewTextBoxColumn.DataPropertyName = "DateBirth";
-            this.dateBirthDataGridViewTextBoxColumn.HeaderText = "DateBirth";
-            this.dateBirthDataGridViewTextBoxColumn.Name = "dateBirthDataGridViewTextBoxColumn";
-            this.dateBirthDataGridViewTextBoxColumn.ReadOnly = true;
-            this.dateBirthDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // issuedFromDataGridViewTextBoxColumn
-            // 
-            this.issuedFromDataGridViewTextBoxColumn.DataPropertyName = "IssuedFrom";
-            this.issuedFromDataGridViewTextBoxColumn.HeaderText = "IssuedFrom";
-            this.issuedFromDataGridViewTextBoxColumn.Name = "issuedFromDataGridViewTextBoxColumn";
-            this.issuedFromDataGridViewTextBoxColumn.ReadOnly = true;
-            this.issuedFromDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // postalCodeDataGridViewTextBoxColumn
-            // 
-            this.postalCodeDataGridViewTextBoxColumn.DataPropertyName = "PostalCode";
-            this.postalCodeDataGridViewTextBoxColumn.HeaderText = "PostalCode";
-            this.postalCodeDataGridViewTextBoxColumn.Name = "postalCodeDataGridViewTextBoxColumn";
-            this.postalCodeDataGridViewTextBoxColumn.ReadOnly = true;
-            this.postalCodeDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // groupGuidDataGridViewTextBoxColumn
-            // 
-            this.groupGuidDataGridViewTextBoxColumn.DataPropertyName = "GroupGuid";
-            this.groupGuidDataGridViewTextBoxColumn.HeaderText = "GroupGuid";
-            this.groupGuidDataGridViewTextBoxColumn.Name = "groupGuidDataGridViewTextBoxColumn";
-            this.groupGuidDataGridViewTextBoxColumn.ReadOnly = true;
-            this.groupGuidDataGridViewTextBoxColumn.Visible = false;
-            // 
             // frmShowPeoples
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -660,7 +656,7 @@
         private System.Windows.Forms.ToolStripMenuItem mnuTell;
         private System.Windows.Forms.ToolStripMenuItem mnuBank;
         private System.Windows.Forms.ToolStripMenuItem mnuPrint;
-        private System.Windows.Forms.ToolStripMenuItem ارسالپیامکToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mnuGardesh;
         private System.Windows.Forms.ToolStripMenuItem mnuSendSMS;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem3;
         private System.Windows.Forms.ToolStripMenuItem mnuIpmortFromExcel;

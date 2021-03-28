@@ -46,12 +46,8 @@ namespace Accounting.Sandouq
             this.mnuView = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuStatus = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
-            this.مشاهدهگردشامروزToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.مشاهده10گردشآخرToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.مشاهده30گردشآخرToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.مشاهدهکلگردشهاToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuGardesh = new System.Windows.Forms.ToolStripMenuItem();
             this.DGrid = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.TafsilBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.codeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.accountDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -64,6 +60,7 @@ namespace Accounting.Sandouq
             this.dateMDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.accountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.isSystemDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.TafsilBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.contextMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TafsilBindingSource)).BeginInit();
@@ -104,13 +101,10 @@ namespace Accounting.Sandouq
             this.mnuView,
             this.mnuStatus,
             this.toolStripMenuItem2,
-            this.مشاهدهگردشامروزToolStripMenuItem,
-            this.مشاهده10گردشآخرToolStripMenuItem,
-            this.مشاهده30گردشآخرToolStripMenuItem,
-            this.مشاهدهکلگردشهاToolStripMenuItem});
+            this.mnuGardesh});
             this.contextMenu.Name = "contextMenu";
             this.contextMenu.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.contextMenu.Size = new System.Drawing.Size(212, 232);
+            this.contextMenu.Size = new System.Drawing.Size(212, 182);
             // 
             // mnuAdd
             // 
@@ -157,33 +151,13 @@ namespace Accounting.Sandouq
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
             this.toolStripMenuItem2.Size = new System.Drawing.Size(208, 6);
             // 
-            // مشاهدهگردشامروزToolStripMenuItem
+            // mnuGardesh
             // 
-            this.مشاهدهگردشامروزToolStripMenuItem.Image = global::Accounting.Properties.Resources.add_2_;
-            this.مشاهدهگردشامروزToolStripMenuItem.Name = "مشاهدهگردشامروزToolStripMenuItem";
-            this.مشاهدهگردشامروزToolStripMenuItem.Size = new System.Drawing.Size(211, 24);
-            this.مشاهدهگردشامروزToolStripMenuItem.Text = "مشاهده گردش امروز";
-            // 
-            // مشاهده10گردشآخرToolStripMenuItem
-            // 
-            this.مشاهده10گردشآخرToolStripMenuItem.Image = global::Accounting.Properties.Resources.article_1_;
-            this.مشاهده10گردشآخرToolStripMenuItem.Name = "مشاهده10گردشآخرToolStripMenuItem";
-            this.مشاهده10گردشآخرToolStripMenuItem.Size = new System.Drawing.Size(211, 24);
-            this.مشاهده10گردشآخرToolStripMenuItem.Text = "مشاهده 10 گردش آخر";
-            // 
-            // مشاهده30گردشآخرToolStripMenuItem
-            // 
-            this.مشاهده30گردشآخرToolStripMenuItem.Image = global::Accounting.Properties.Resources.article_1_;
-            this.مشاهده30گردشآخرToolStripMenuItem.Name = "مشاهده30گردشآخرToolStripMenuItem";
-            this.مشاهده30گردشآخرToolStripMenuItem.Size = new System.Drawing.Size(211, 24);
-            this.مشاهده30گردشآخرToolStripMenuItem.Text = "مشاهده 30 گردش آخر";
-            // 
-            // مشاهدهکلگردشهاToolStripMenuItem
-            // 
-            this.مشاهدهکلگردشهاToolStripMenuItem.Image = global::Accounting.Properties.Resources.article_1_;
-            this.مشاهدهکلگردشهاToolStripMenuItem.Name = "مشاهدهکلگردشهاToolStripMenuItem";
-            this.مشاهدهکلگردشهاToolStripMenuItem.Size = new System.Drawing.Size(211, 24);
-            this.مشاهدهکلگردشهاToolStripMenuItem.Text = "مشاهده کل گردش ها";
+            this.mnuGardesh.Image = global::Accounting.Properties.Resources.article_1_;
+            this.mnuGardesh.Name = "mnuGardesh";
+            this.mnuGardesh.Size = new System.Drawing.Size(211, 24);
+            this.mnuGardesh.Text = "مشاهده گردش حساب";
+            this.mnuGardesh.Click += new System.EventHandler(this.mnuGardesh_Click);
             // 
             // DGrid
             // 
@@ -260,10 +234,6 @@ namespace Accounting.Sandouq
             this.DGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DGrid.Size = new System.Drawing.Size(793, 528);
             this.DGrid.TabIndex = 55751;
-            // 
-            // TafsilBindingSource
-            // 
-            this.TafsilBindingSource.DataSource = typeof(EntityCache.Bussines.TafsilBussines);
             // 
             // codeDataGridViewTextBoxColumn
             // 
@@ -367,6 +337,10 @@ namespace Accounting.Sandouq
             this.isSystemDataGridViewCheckBoxColumn.ReadOnly = true;
             this.isSystemDataGridViewCheckBoxColumn.Visible = false;
             // 
+            // TafsilBindingSource
+            // 
+            this.TafsilBindingSource.DataSource = typeof(EntityCache.Bussines.TafsilBussines);
+            // 
             // frmShowSandouq
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -406,10 +380,7 @@ namespace Accounting.Sandouq
         private System.Windows.Forms.BindingSource TafsilBindingSource;
         private DevComponents.DotNetBar.Controls.DataGridViewX DGrid;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
-        private System.Windows.Forms.ToolStripMenuItem مشاهدهگردشامروزToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem مشاهده10گردشآخرToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem مشاهده30گردشآخرToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem مشاهدهکلگردشهاToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mnuGardesh;
         private System.Windows.Forms.DataGridViewTextBoxColumn codeDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgName;
         private System.Windows.Forms.DataGridViewTextBoxColumn accountDataGridViewTextBoxColumn1;
