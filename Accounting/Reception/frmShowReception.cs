@@ -1,10 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WindowsSerivces;
 using EntityCache.Bussines;
+using EntityCache.ViewModels;
 using MetroFramework.Forms;
+using Print;
 using Services;
 
 namespace Accounting.Reception
@@ -157,6 +160,119 @@ namespace Accounting.Reception
             {
                 if (res.HasError) this.ShowError(res, "خطا در حذف برگه دریافت");
                 else await LoadDataAsync(txtSearch.Text);
+            }
+        }
+        private async void mnuPrintList_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (DGrid.RowCount <= 0) return;
+                if (DGrid.CurrentRow == null) return;
+
+                var frm = new frmSetPrintSize(false);
+                if (frm.ShowDialog(this) != DialogResult.OK) return;
+
+                var reception = await ReceptionBussines.GetAllAsync();
+                var list = new List<OperationListPrintViewModel>();
+                foreach (var item in reception)
+                {
+                    var totalSum = reception.Sum(q => q.SumCheck) + reception.Sum(q => q.SumHavale) +
+                                   reception.Sum(q => q.SumNaqd);
+                    list.Add(new OperationListPrintViewModel()
+                    {
+                        PrintDateSh = Calendar.MiladiToShamsi(DateTime.Now),
+                        PrintTime = DateTime.Now.ToShortTimeString(),
+                        DateM = item.DateM,
+                        Count = reception.Count,
+                        Description = item.Description,
+                        Number = item.Number,
+                        Check = item.SumCheck,
+                        DateSh = item.DateSh,
+                        TafsilName = item.TafsilName,
+                        Havale = item.SumHavale,
+                        Naqd = item.SumNaqd,
+                        TotalRow = totalSum,
+                        TotalSum = item.Sum,
+                        TotalHorouf = $"{NumberToString.Num2Str(totalSum.ToString())} ریال"
+                    });
+                }
+
+                list = list?.OrderBy(q => q.DateM)?.ToList();
+
+                if (frm._PrintType == EnPrintType.Excel) return;
+                var cls = new ReportGenerator(StiType.Reception_List, frm._PrintType) { Lst = new List<object>(list) };
+                cls.PrintNew();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private async void mnuPrintOne_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (DGrid.RowCount <= 0) return;
+                if (DGrid.CurrentRow == null) return;
+
+                var frm = new frmSetPrintSize(false);
+                if (frm.ShowDialog(this) != DialogResult.OK) return;
+                var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
+                var reception = await ReceptionBussines.GetAsync(guid);
+                var list = new List<OperationOnePrintViewModel>();
+                foreach (var item in reception.NaqdList)
+                {
+                    list.Add(new OperationOnePrintViewModel()
+                    {
+                        PrintDateSh = Calendar.MiladiToShamsi(DateTime.Now),
+                        Description = reception.Description,
+                        Type = "نقد",
+                        Price = item.Price,
+                        SanadNumber = reception.SanadNumber,
+                        DateSh = reception.DateSh,
+                        TafsilName = reception.TafsilName,
+                        TotalSum = reception.Sum,
+                        RowDesc = item.Description
+                    });
+                }
+                foreach (var item in reception.HavaleList)
+                {
+                    list.Add(new OperationOnePrintViewModel()
+                    {
+                        PrintDateSh = Calendar.MiladiToShamsi(DateTime.Now),
+                        Description = reception.Description,
+                        Type = "حواله",
+                        Price = item.Price,
+                        SanadNumber = reception.SanadNumber,
+                        DateSh = reception.DateSh,
+                        TafsilName = reception.TafsilName,
+                        TotalSum = reception.Sum,
+                        RowDesc = item.Description
+                    });
+                }
+                foreach (var item in reception.CheckList)
+                {
+                    list.Add(new OperationOnePrintViewModel()
+                    {
+                        PrintDateSh = Calendar.MiladiToShamsi(DateTime.Now),
+                        Description = reception.Description,
+                        Type = "چک",
+                        Price = item.Price,
+                        SanadNumber = reception.SanadNumber,
+                        DateSh = reception.DateSh,
+                        TafsilName = reception.TafsilName,
+                        TotalSum = reception.Sum,
+                        RowDesc = item.Description
+                    });
+                }
+
+                if (frm._PrintType == EnPrintType.Excel) return;
+                var cls = new ReportGenerator(StiType.Reception_One, frm._PrintType) { Lst = new List<object>(list) };
+                cls.PrintNew();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
     }

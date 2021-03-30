@@ -41,8 +41,6 @@ namespace Accounting.Gardesh
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmGardeshTafsil));
             this.DGrid = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.GardeshBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.btnPrint = new DevComponents.DotNetBar.ButtonX();
             this.dgRadif = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DateSh = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.descriptionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -51,7 +49,6 @@ namespace Accounting.Gardesh
             this.Rem_ = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.remDiagnosisDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.guidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.modifiedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.statusDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.remDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.moeinGuidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -60,6 +57,8 @@ namespace Accounting.Gardesh
             this.tafsilGuidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tafsilCodeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tafsilNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.GardeshBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.btnPrint = new DevComponents.DotNetBar.ButtonX();
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.GardeshBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -99,7 +98,6 @@ namespace Accounting.Gardesh
             this.Rem_,
             this.remDiagnosisDataGridViewTextBoxColumn,
             this.guidDataGridViewTextBoxColumn,
-            this.modifiedDataGridViewTextBoxColumn,
             this.statusDataGridViewCheckBoxColumn,
             this.remDataGridViewTextBoxColumn,
             this.moeinGuidDataGridViewTextBoxColumn,
@@ -145,28 +143,6 @@ namespace Accounting.Gardesh
             this.DGrid.Size = new System.Drawing.Size(794, 535);
             this.DGrid.TabIndex = 1;
             this.DGrid.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DGrid_CellFormatting);
-            // 
-            // GardeshBindingSource
-            // 
-            this.GardeshBindingSource.DataSource = typeof(EntityCache.Bussines.GardeshBussines);
-            // 
-            // btnPrint
-            // 
-            this.btnPrint.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnPrint.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnPrint.BackColor = System.Drawing.Color.DarkSlateGray;
-            this.btnPrint.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnPrint.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
-            this.btnPrint.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnPrint.Location = new System.Drawing.Point(215, 566);
-            this.btnPrint.Name = "btnPrint";
-            this.btnPrint.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
-            this.btnPrint.Size = new System.Drawing.Size(356, 27);
-            this.btnPrint.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
-            this.btnPrint.TabIndex = 6;
-            this.btnPrint.Text = "چاپ";
-            this.btnPrint.TextColor = System.Drawing.Color.White;
             // 
             // dgRadif
             // 
@@ -246,14 +222,6 @@ namespace Accounting.Gardesh
             this.guidDataGridViewTextBoxColumn.ReadOnly = true;
             this.guidDataGridViewTextBoxColumn.Visible = false;
             // 
-            // modifiedDataGridViewTextBoxColumn
-            // 
-            this.modifiedDataGridViewTextBoxColumn.DataPropertyName = "Modified";
-            this.modifiedDataGridViewTextBoxColumn.HeaderText = "Modified";
-            this.modifiedDataGridViewTextBoxColumn.Name = "modifiedDataGridViewTextBoxColumn";
-            this.modifiedDataGridViewTextBoxColumn.ReadOnly = true;
-            this.modifiedDataGridViewTextBoxColumn.Visible = false;
-            // 
             // statusDataGridViewCheckBoxColumn
             // 
             this.statusDataGridViewCheckBoxColumn.DataPropertyName = "Status";
@@ -273,7 +241,6 @@ namespace Accounting.Gardesh
             this.remDataGridViewTextBoxColumn.Name = "remDataGridViewTextBoxColumn";
             this.remDataGridViewTextBoxColumn.ReadOnly = true;
             this.remDataGridViewTextBoxColumn.Visible = false;
-            this.remDataGridViewTextBoxColumn.Width = 58;
             // 
             // moeinGuidDataGridViewTextBoxColumn
             // 
@@ -322,6 +289,29 @@ namespace Accounting.Gardesh
             this.tafsilNameDataGridViewTextBoxColumn.Name = "tafsilNameDataGridViewTextBoxColumn";
             this.tafsilNameDataGridViewTextBoxColumn.ReadOnly = true;
             this.tafsilNameDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // GardeshBindingSource
+            // 
+            this.GardeshBindingSource.DataSource = typeof(EntityCache.Bussines.GardeshBussines);
+            // 
+            // btnPrint
+            // 
+            this.btnPrint.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnPrint.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnPrint.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.btnPrint.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnPrint.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.btnPrint.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnPrint.Location = new System.Drawing.Point(215, 566);
+            this.btnPrint.Name = "btnPrint";
+            this.btnPrint.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
+            this.btnPrint.Size = new System.Drawing.Size(356, 27);
+            this.btnPrint.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
+            this.btnPrint.TabIndex = 6;
+            this.btnPrint.Text = "چاپ";
+            this.btnPrint.TextColor = System.Drawing.Color.White;
+            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
             // 
             // frmGardeshTafsil
             // 

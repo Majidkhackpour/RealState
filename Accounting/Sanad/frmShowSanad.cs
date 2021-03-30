@@ -15,8 +15,6 @@ namespace Accounting.Sanad
 {
     public partial class frmShowSanad : MetroForm
     {
-        private List<SanadPrintViewModel> list;
-
         private async Task LoadDataAsync(string search = "")
         {
             try
@@ -194,7 +192,7 @@ namespace Accounting.Sanad
                 if (frm.ShowDialog(this) != DialogResult.OK) return;
 
                 var sanad = await SanadBussines.GetAsync(guid);
-                list = new List<SanadPrintViewModel>();
+                var list = new List<SanadPrintViewModel>();
                 foreach (var item in sanad.Details)
                 {
                     list.Add(new SanadPrintViewModel()

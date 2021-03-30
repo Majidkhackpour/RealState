@@ -41,7 +41,6 @@ namespace Accounting.Pardakht
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmShowPardakht));
-            this.PardakhtBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.DGrid = new DevComponents.DotNetBar.Controls.DataGridViewX();
             this.contextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.mnuAdd = new System.Windows.Forms.ToolStripMenuItem();
@@ -50,6 +49,9 @@ namespace Accounting.Pardakht
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.mnuView = new System.Windows.Forms.ToolStripMenuItem();
             this.txtSearch = new DevComponents.DotNetBar.Controls.TextBoxX();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
+            this.mnuPrintOne = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuPrintList = new System.Windows.Forms.ToolStripMenuItem();
             this.dgNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dateShDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tafsilNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -77,14 +79,11 @@ namespace Accounting.Pardakht
             this.havaleDescDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.checkShDescDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.checkMDescDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            ((System.ComponentModel.ISupportInitialize)(this.PardakhtBindingSource)).BeginInit();
+            this.PardakhtBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).BeginInit();
             this.contextMenu.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PardakhtBindingSource)).BeginInit();
             this.SuspendLayout();
-            // 
-            // PardakhtBindingSource
-            // 
-            this.PardakhtBindingSource.DataSource = typeof(EntityCache.Bussines.PardakhtBussines);
             // 
             // DGrid
             // 
@@ -185,10 +184,13 @@ namespace Accounting.Pardakht
             this.mnuEdit,
             this.mnuDelete,
             this.toolStripMenuItem1,
-            this.mnuView});
+            this.mnuView,
+            this.toolStripMenuItem2,
+            this.mnuPrintOne,
+            this.mnuPrintList});
             this.contextMenu.Name = "contextMenu";
             this.contextMenu.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.contextMenu.Size = new System.Drawing.Size(215, 106);
+            this.contextMenu.Size = new System.Drawing.Size(215, 182);
             // 
             // mnuAdd
             // 
@@ -246,6 +248,27 @@ namespace Accounting.Pardakht
             this.txtSearch.WatermarkText = "مورد جستجو را وارد نمایید ...";
             this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
             // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(211, 6);
+            // 
+            // mnuPrintOne
+            // 
+            this.mnuPrintOne.Image = global::Accounting.Properties.Resources.printer;
+            this.mnuPrintOne.Name = "mnuPrintOne";
+            this.mnuPrintOne.Size = new System.Drawing.Size(214, 24);
+            this.mnuPrintOne.Text = "چاپ برگه پرداخت";
+            this.mnuPrintOne.Click += new System.EventHandler(this.mnuPrintOne_Click);
+            // 
+            // mnuPrintList
+            // 
+            this.mnuPrintList.Image = global::Accounting.Properties.Resources.printer;
+            this.mnuPrintList.Name = "mnuPrintList";
+            this.mnuPrintList.Size = new System.Drawing.Size(214, 24);
+            this.mnuPrintList.Text = "چاپ لیست پرداخت ها";
+            this.mnuPrintList.Click += new System.EventHandler(this.mnuPrintList_Click);
+            // 
             // dgNumber
             // 
             this.dgNumber.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
@@ -302,7 +325,7 @@ namespace Accounting.Pardakht
             this.sumHavaleDataGridViewTextBoxColumn.HeaderText = "جمع حواله";
             this.sumHavaleDataGridViewTextBoxColumn.Name = "sumHavaleDataGridViewTextBoxColumn";
             this.sumHavaleDataGridViewTextBoxColumn.ReadOnly = true;
-            this.sumHavaleDataGridViewTextBoxColumn.Width = 84;
+            this.sumHavaleDataGridViewTextBoxColumn.Width = 78;
             // 
             // sumCheckShakhsiDataGridViewTextBoxColumn
             // 
@@ -314,7 +337,7 @@ namespace Accounting.Pardakht
             this.sumCheckShakhsiDataGridViewTextBoxColumn.HeaderText = "جمع چک شخصی";
             this.sumCheckShakhsiDataGridViewTextBoxColumn.Name = "sumCheckShakhsiDataGridViewTextBoxColumn";
             this.sumCheckShakhsiDataGridViewTextBoxColumn.ReadOnly = true;
-            this.sumCheckShakhsiDataGridViewTextBoxColumn.Width = 112;
+            this.sumCheckShakhsiDataGridViewTextBoxColumn.Width = 103;
             // 
             // sumCheckMoshtariDataGridViewTextBoxColumn
             // 
@@ -326,7 +349,7 @@ namespace Accounting.Pardakht
             this.sumCheckMoshtariDataGridViewTextBoxColumn.HeaderText = "جمع چک مشتری";
             this.sumCheckMoshtariDataGridViewTextBoxColumn.Name = "sumCheckMoshtariDataGridViewTextBoxColumn";
             this.sumCheckMoshtariDataGridViewTextBoxColumn.ReadOnly = true;
-            this.sumCheckMoshtariDataGridViewTextBoxColumn.Width = 112;
+            this.sumCheckMoshtariDataGridViewTextBoxColumn.Width = 103;
             // 
             // dgSum
             // 
@@ -338,7 +361,7 @@ namespace Accounting.Pardakht
             this.dgSum.HeaderText = "جمع کل";
             this.dgSum.Name = "dgSum";
             this.dgSum.ReadOnly = true;
-            this.dgSum.Width = 71;
+            this.dgSum.Width = 66;
             // 
             // userNameDataGridViewTextBoxColumn
             // 
@@ -485,6 +508,10 @@ namespace Accounting.Pardakht
             this.checkMDescDataGridViewTextBoxColumn.ReadOnly = true;
             this.checkMDescDataGridViewTextBoxColumn.Visible = false;
             // 
+            // PardakhtBindingSource
+            // 
+            this.PardakhtBindingSource.DataSource = typeof(EntityCache.Bussines.PardakhtBussines);
+            // 
             // frmShowPardakht
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -504,9 +531,9 @@ namespace Accounting.Pardakht
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmShowPardakht_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmShowPardakht_KeyDown);
-            ((System.ComponentModel.ISupportInitialize)(this.PardakhtBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).EndInit();
             this.contextMenu.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.PardakhtBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -549,5 +576,8 @@ namespace Accounting.Pardakht
         private System.Windows.Forms.DataGridViewTextBoxColumn havaleDescDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn checkShDescDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn checkMDescDataGridViewTextBoxColumn;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem mnuPrintOne;
+        private System.Windows.Forms.ToolStripMenuItem mnuPrintList;
     }
 }

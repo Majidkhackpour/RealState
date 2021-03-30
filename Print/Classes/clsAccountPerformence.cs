@@ -6,7 +6,7 @@ namespace Print.Classes
 {
     public class clsAccountPerformence
     {
-        public static string FolderName => "عملکرد اشخاص";
+        public static string FolderName => "عملکرد حساب";
         public class List
         {
             public static Stimulsoft.Report.StiReport GetSti(Stimulsoft.Report.StiReport sti, EnPrintType peper)

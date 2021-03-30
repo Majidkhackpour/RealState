@@ -284,10 +284,17 @@
     <None Include="Resources\Contract_List_A5.mrt" />
     <None Include="Resources\Contract_One_A4.mrt" />
     <None Include="Resources\Contract_One_A5.mrt" />
+    <None Include="Resources\Pardakht_List_A4.mrt" />
+    <None Include="Resources\Pardakht_List_A5.mrt" />
     <None Include="Resources\Pardakht_One_A4.mrt" />
+    <None Include="Resources\Pardakht_One_A4_.mrt" />
+    <None Include="Resources\Pardakht_One_A5.mrt" />
     <None Include="Resources\Peoples_A4.mrt" />
     <None Include="Resources\Peoples_A5.mrt" />
+    <None Include="Resources\Reception_List_A4.mrt" />
+    <None Include="Resources\Reception_List_A5.mrt" />
     <None Include="Resources\Reception_One_A4.mrt" />
+    <None Include="Resources\Reception_One_A5.mrt" />
     <None Include="Resources\Sanad_One_A4.mrt" />
     <None Include="Resources\Sanad_One_A5.mrt" />
     <None Include="Resources\SmsLog_A4.mrt" />

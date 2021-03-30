@@ -1,10 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WindowsSerivces;
 using EntityCache.Bussines;
+using EntityCache.ViewModels;
 using MetroFramework.Forms;
+using Print;
 using Services;
 
 namespace Accounting.Pardakht
@@ -157,6 +160,134 @@ namespace Accounting.Pardakht
             {
                 if (res.HasError) this.ShowError(res, "خطا در حذف برگه پرداخت");
                 else await LoadDataAsync(txtSearch.Text);
+            }
+        }
+        private async void mnuPrintList_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (DGrid.RowCount <= 0) return;
+                if (DGrid.CurrentRow == null) return;
+
+                var frm = new frmSetPrintSize(false);
+                if (frm.ShowDialog(this) != DialogResult.OK) return;
+
+                var pardakht = await PardakhtBussines.GetAllAsync();
+                var list = new List<OperationListPrintViewModel>();
+                foreach (var item in pardakht)
+                {
+                    var totalSum = pardakht.Sum(q => q.SumCheckMoshtari) + pardakht.Sum(q => q.SumHavale) +
+                               pardakht.Sum(q => q.SumNaqd) + pardakht.Sum(q => q.SumCheckShakhsi);
+                    list.Add(new OperationListPrintViewModel()
+                    {
+                        PrintDateSh = Calendar.MiladiToShamsi(DateTime.Now),
+                        PrintTime = DateTime.Now.ToShortTimeString(),
+                        DateM = item.DateM,
+                        Count = pardakht.Count,
+                        Description = item.Description,
+                        Number = item.Number,
+                        Check = 0,
+                        DateSh = item.DateSh,
+                        TafsilName = item.TafsilName,
+                        Havale = 0,
+                        Naqd = 0,
+                        TotalRow = item.Sum,
+                        TotalSum = totalSum,
+                        TotalHorouf = $"{NumberToString.Num2Str(totalSum.ToString())} ریال"
+                    });
+                }
+
+                list = list?.OrderBy(q => q.DateM)?.ToList();
+
+                if (frm._PrintType == EnPrintType.Excel) return;
+                var cls = new ReportGenerator(StiType.Pardakht_List, frm._PrintType) { Lst = new List<object>(list) };
+                cls.PrintNew();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private async void mnuPrintOne_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (DGrid.RowCount <= 0) return;
+                if (DGrid.CurrentRow == null) return;
+
+                var frm = new frmSetPrintSize(false);
+                if (frm.ShowDialog(this) != DialogResult.OK) return;
+                var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
+                var pardakht = await PardakhtBussines.GetAsync(guid);
+                var list = new List<OperationOnePrintViewModel>();
+                foreach (var item in pardakht.NaqdList)
+                {
+                    list.Add(new OperationOnePrintViewModel()
+                    {
+                        PrintDateSh = Calendar.MiladiToShamsi(DateTime.Now),
+                        Description = pardakht.Description,
+                        Type = "نقد",
+                        Price = item.Price,
+                        SanadNumber = pardakht.SanadNumber,
+                        DateSh = pardakht.DateSh,
+                        TafsilName = pardakht.TafsilName,
+                        TotalSum = pardakht.Sum,
+                        RowDesc = item.Description
+                    });
+                }
+                foreach (var item in pardakht.HavaleList)
+                {
+                    list.Add(new OperationOnePrintViewModel()
+                    {
+                        PrintDateSh = Calendar.MiladiToShamsi(DateTime.Now),
+                        Description = pardakht.Description,
+                        Type = "حواله",
+                        Price = item.Price,
+                        SanadNumber = pardakht.SanadNumber,
+                        DateSh = pardakht.DateSh,
+                        TafsilName = pardakht.TafsilName,
+                        TotalSum = pardakht.Sum,
+                        RowDesc = item.Description
+                    });
+                }
+                foreach (var item in pardakht.CheckMoshtariList)
+                {
+                    list.Add(new OperationOnePrintViewModel()
+                    {
+                        PrintDateSh = Calendar.MiladiToShamsi(DateTime.Now),
+                        Description = pardakht.Description,
+                        Type = "چک دریافتی",
+                        Price = item.Price,
+                        SanadNumber = pardakht.SanadNumber,
+                        DateSh = pardakht.DateSh,
+                        TafsilName = pardakht.TafsilName,
+                        TotalSum = pardakht.Sum,
+                        RowDesc = item.Description
+                    });
+                }
+                foreach (var item in pardakht.CheckShakhsiList)
+                {
+                    list.Add(new OperationOnePrintViewModel()
+                    {
+                        PrintDateSh = Calendar.MiladiToShamsi(DateTime.Now),
+                        Description = pardakht.Description,
+                        Type = "چک شخصی",
+                        Price = item.Price,
+                        SanadNumber = pardakht.SanadNumber,
+                        DateSh = pardakht.DateSh,
+                        TafsilName = pardakht.TafsilName,
+                        TotalSum = pardakht.Sum,
+                        RowDesc = item.Description
+                    });
+                }
+
+                if (frm._PrintType == EnPrintType.Excel) return;
+                var cls = new ReportGenerator(StiType.Pardakht_One, frm._PrintType) { Lst = new List<object>(list) };
+                cls.PrintNew();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
     }

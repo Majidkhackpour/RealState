@@ -48,7 +48,6 @@ namespace Accounting.Reception
             this.mnuAdd = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.DGrid = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.ReceptionBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dgNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dateShDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tafsilNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -69,6 +68,10 @@ namespace Accounting.Reception
             this.countNaqdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.countHavaleDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.countCheckDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ReceptionBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
+            this.mnuPrintOne = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuPrintList = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ReceptionBindingSource)).BeginInit();
@@ -138,10 +141,13 @@ namespace Accounting.Reception
             this.mnuEdit,
             this.mnuDelete,
             this.toolStripMenuItem1,
-            this.mnuView});
+            this.mnuView,
+            this.toolStripMenuItem2,
+            this.mnuPrintOne,
+            this.mnuPrintList});
             this.contextMenu.Name = "contextMenu";
             this.contextMenu.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.contextMenu.Size = new System.Drawing.Size(213, 106);
+            this.contextMenu.Size = new System.Drawing.Size(213, 182);
             // 
             // DGrid
             // 
@@ -226,10 +232,6 @@ namespace Accounting.Reception
             this.DGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DGrid.Size = new System.Drawing.Size(793, 528);
             this.DGrid.TabIndex = 55755;
-            // 
-            // ReceptionBindingSource
-            // 
-            this.ReceptionBindingSource.DataSource = typeof(EntityCache.Bussines.ReceptionBussines);
             // 
             // dgNumber
             // 
@@ -410,6 +412,31 @@ namespace Accounting.Reception
             this.countCheckDataGridViewTextBoxColumn.ReadOnly = true;
             this.countCheckDataGridViewTextBoxColumn.Visible = false;
             // 
+            // ReceptionBindingSource
+            // 
+            this.ReceptionBindingSource.DataSource = typeof(EntityCache.Bussines.ReceptionBussines);
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(209, 6);
+            // 
+            // mnuPrintOne
+            // 
+            this.mnuPrintOne.Image = global::Accounting.Properties.Resources.printer;
+            this.mnuPrintOne.Name = "mnuPrintOne";
+            this.mnuPrintOne.Size = new System.Drawing.Size(212, 24);
+            this.mnuPrintOne.Text = "چاپ برگه دریافت";
+            this.mnuPrintOne.Click += new System.EventHandler(this.mnuPrintOne_Click);
+            // 
+            // mnuPrintList
+            // 
+            this.mnuPrintList.Image = global::Accounting.Properties.Resources.printer;
+            this.mnuPrintList.Name = "mnuPrintList";
+            this.mnuPrintList.Size = new System.Drawing.Size(212, 24);
+            this.mnuPrintList.Text = "چاپ لیست دریافت ها";
+            this.mnuPrintList.Click += new System.EventHandler(this.mnuPrintList_Click);
+            // 
             // frmShowReception
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -467,5 +494,8 @@ namespace Accounting.Reception
         private System.Windows.Forms.DataGridViewTextBoxColumn countNaqdDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn countHavaleDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn countCheckDataGridViewTextBoxColumn;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem mnuPrintOne;
+        private System.Windows.Forms.ToolStripMenuItem mnuPrintList;
     }
 }

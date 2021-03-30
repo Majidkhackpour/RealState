@@ -83,8 +83,14 @@ namespace Print
                     case StiType.Reception_One:
                         Sti = clsReception.One.GetSti(Sti, peper);
                         break;
+                    case StiType.Reception_List:
+                        Sti = clsReception.List.GetSti(Sti, peper);
+                        break;
                     case StiType.Pardakht_One:
                         Sti = clsPardakht.One.GetSti(Sti, peper);
+                        break;
+                    case StiType.Pardakht_List:
+                        Sti = clsPardakht.List.GetSti(Sti, peper);
                         break;
                     case StiType.SmsSent_List:
                         Sti = clsSms.List.GetSti(Sti, peper);

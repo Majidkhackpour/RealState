@@ -9,7 +9,7 @@
         <Columns isList="true" count="9">
           <value>PrintDateSh,System.String</value>
           <value>DateSh,System.String</value>
-          <value>SanadNumber,System.String</value>
+          <value>SanadNumber,System.Int64</value>
           <value>TafsilName,System.String</value>
           <value>Type,System.String</value>
           <value>RowDesc,System.String</value>
@@ -18,7 +18,7 @@
           <value>TotalSum,System.Decimal</value>
         </Columns>
         <Dictionary isRef="1" />
-        <Guid>c247501d7fec4948a0aec7aae9ffb464</Guid>
+        <Guid>0b9259ac281f487dabcdb609bf2053ed</Guid>
         <Name>لیست داده ها</Name>
       </لیست_x0020_داده_x0020_ها>
     </BusinessObjects>
@@ -44,14 +44,14 @@
     <Page1 Ref="4" type="Page" isKey="true">
       <Border>None;Black;2;Solid;False;4;Black</Border>
       <Brush>Transparent</Brush>
-      <Components isList="true" count="10">
+      <Components isList="true" count="8">
         <SystemText1 Ref="5" type="SystemText" isKey="true">
           <Border>All;Black;1;Solid;False;4;Black</Border>
           <Brush>Transparent</Brush>
-          <ClientRectangle>24.6,8.6,1.6,0.6</ClientRectangle>
+          <ClientRectangle>24.4,8.8,1.6,0.6</ClientRectangle>
           <Conditions isList="true" count="0" />
           <Font>B Nazanin,12,Bold</Font>
-          <Guid>42025245b3a14785b5727c590d372d71</Guid>
+          <Guid>a4020684a8dc436c9e99ef7feb999bd9</Guid>
           <Margins>0,0,0,0</Margins>
           <Name>SystemText1</Name>
           <Page isRef="4" />
@@ -61,10 +61,10 @@
         </SystemText1>
         <Text20 Ref="6" type="Text" isKey="true">
           <Brush>Transparent</Brush>
-          <ClientRectangle>25.2,12,1.6,0.6</ClientRectangle>
+          <ClientRectangle>25,12.2,1.6,0.6</ClientRectangle>
           <Conditions isList="true" count="0" />
           <Font>B Nazanin,12,Bold</Font>
-          <Guid>cc32c42b1833409890119be487713752</Guid>
+          <Guid>dc17713706fb41458a41a79d024e1b1d</Guid>
           <Margins>0,0,0,0</Margins>
           <Name>Text20</Name>
           <Page isRef="4" />
@@ -74,10 +74,10 @@
         </Text20>
         <Text33 Ref="7" type="Text" isKey="true">
           <Brush>Transparent</Brush>
-          <ClientRectangle>25.4,2.4,1.6,0.6</ClientRectangle>
+          <ClientRectangle>25.2,2.6,1.6,0.6</ClientRectangle>
           <Conditions isList="true" count="0" />
           <Font>B Nazanin,12,Bold</Font>
-          <Guid>24be6987466d4cac893669d08632bb7e</Guid>
+          <Guid>f8d261b14fb8445a9fa13849afea84ab</Guid>
           <Margins>0,0,0,0</Margins>
           <Name>Text33</Name>
           <Page isRef="4" />
@@ -88,14 +88,14 @@
         <HeaderBand2 Ref="8" type="HeaderBand" isKey="true">
           <Border>All;Black;1;Solid;False;4;Black</Border>
           <Brush>Transparent</Brush>
-          <ClientRectangle>0,0.4,19,2.6</ClientRectangle>
+          <ClientRectangle>0,0.4,13.8,2.6</ClientRectangle>
           <Components isList="true" count="9">
             <Text14 Ref="9" type="Text" isKey="true">
               <Brush>Transparent</Brush>
-              <ClientRectangle>16.6,0.2,1.6,0.6</ClientRectangle>
+              <ClientRectangle>12,0.2,1.6,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
-              <Font>B Nazanin,11,Bold</Font>
-              <Guid>9e481ef3da4c42c49ba4e657de040012</Guid>
+              <Font>B Nazanin,10,Bold</Font>
+              <Guid>037e846d5db6493692cd51b1b7624272</Guid>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text14</Name>
@@ -108,10 +108,10 @@
             <Text15 Ref="10" type="Text" isKey="true">
               <Border>All;Black;1;None;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>2.6,0.2,2.2,0.8</ClientRectangle>
+              <ClientRectangle>1.6,0.2,2.2,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
-              <Font>B Nazanin,11,Bold</Font>
-              <Guid>343cc14161f144d7bb0b7584eb47ff8b</Guid>
+              <Font>B Nazanin,10,Bold</Font>
+              <Guid>606680b9a5ca4915a0359aecfe020105</Guid>
               <Margins>0,0,0,0</Margins>
               <Name>Text15</Name>
               <Page isRef="4" />
@@ -122,10 +122,10 @@
             </Text15>
             <Text9 Ref="11" type="Text" isKey="true">
               <Brush>Transparent</Brush>
-              <ClientRectangle>14.4,0.2,2.2,0.6</ClientRectangle>
+              <ClientRectangle>9.8,0.2,2.2,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
-              <Font>B Nazanin,11,Bold</Font>
-              <Guid>762e91a10fc14d88b6400e12d06301ca</Guid>
+              <Font>B Nazanin,10,Bold</Font>
+              <Guid>6eb7f6b4f82644bcb8624704d140e20c</Guid>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text9</Name>
@@ -138,10 +138,10 @@
             </Text9>
             <Text11 Ref="12" type="Text" isKey="true">
               <Brush>Transparent</Brush>
-              <ClientRectangle>16.6,0.8,1.8,0.6</ClientRectangle>
+              <ClientRectangle>12,0.8,1.8,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
-              <Font>B Nazanin,11,Bold</Font>
-              <Guid>90b721f840f740ca880f5d68ace051d3</Guid>
+              <Font>B Nazanin,10,Bold</Font>
+              <Guid>4d7bae5c5afd47f0b1e359920a4a5207</Guid>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text11</Name>
@@ -153,10 +153,10 @@
             </Text11>
             <Text27 Ref="13" type="Text" isKey="true">
               <Brush>Transparent</Brush>
-              <ClientRectangle>16.2,1.6,2.2,0.8</ClientRectangle>
+              <ClientRectangle>12,1.6,1.8,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
-              <Font>B Nazanin,11,Bold</Font>
-              <Guid>af301dd2f7ad49d6a90e990b35af2f4f</Guid>
+              <Font>B Nazanin,10,Bold</Font>
+              <Guid>be3ed04dbc5546129bbb49a4319c3ce3</Guid>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text27</Name>
@@ -169,10 +169,10 @@
             <Text56 Ref="14" type="Text" isKey="true">
               <Border>All;Black;1;Double;False;4;Black</Border>
               <Brush>WhiteSmoke</Brush>
-              <ClientRectangle>7,0.2,5,1</ClientRectangle>
+              <ClientRectangle>5.6,0.2,2.6,1</ClientRectangle>
               <Conditions isList="true" count="0" />
-              <Font>B Nazanin,16,Bold</Font>
-              <Guid>78aa7aa7e4d54883a09f4e12cdb836cd</Guid>
+              <Font>B Nazanin,10,Bold</Font>
+              <Guid>5304a98a3722411ab041ec22c375d7e7</Guid>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text56</Name>
@@ -184,10 +184,10 @@
             </Text56>
             <Text4 Ref="15" type="Text" isKey="true">
               <Brush>Transparent</Brush>
-              <ClientRectangle>0.2,1.6,16,0.8</ClientRectangle>
+              <ClientRectangle>0.4,1.6,11.6,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
-              <Font>B Nazanin,12,Bold</Font>
-              <Guid>bfc611e081ab4858bfbb5c353cad3d86</Guid>
+              <Font>B Nazanin,10,Bold</Font>
+              <Guid>ed45cd3dfe3245f4813b4ef65256b609</Guid>
               <HorAlignment>Right</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text4</Name>
@@ -200,10 +200,10 @@
             </Text4>
             <Text17 Ref="16" type="Text" isKey="true">
               <Brush>Transparent</Brush>
-              <ClientRectangle>0.2,0.2,2.4,0.8</ClientRectangle>
+              <ClientRectangle>0.4,0.2,1.2,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
-              <Font>B Nazanin,12,Bold</Font>
-              <Guid>38067817fa9245739c787aef3cf286fb</Guid>
+              <Font>B Nazanin,10,Bold</Font>
+              <Guid>e6b71ee38da345b2a40d6c1e59439dea</Guid>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text17</Name>
@@ -216,10 +216,10 @@
             </Text17>
             <Text34 Ref="17" type="Text" isKey="true">
               <Brush>Transparent</Brush>
-              <ClientRectangle>14.4,0.8,2.2,0.6</ClientRectangle>
+              <ClientRectangle>9.8,0.8,2.2,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
-              <Font>B Nazanin,11,Bold</Font>
-              <Guid>d8b3b3fc37644933ab16a9e618ee3f37</Guid>
+              <Font>B Nazanin,10,Bold</Font>
+              <Guid>c74a3fbc934e435dae409d47724c167c</Guid>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text34</Name>
@@ -232,7 +232,7 @@
             </Text34>
           </Components>
           <Conditions isList="true" count="0" />
-          <Guid>b8aa5ecec6404991a895ba71aacf3b52</Guid>
+          <Guid>d2cb9fae832a4e0eb3a14bc75443362d</Guid>
           <Name>HeaderBand2</Name>
           <Page isRef="4" />
           <Parent isRef="4" />
@@ -240,15 +240,15 @@
         </HeaderBand2>
         <HeaderBand1 Ref="18" type="HeaderBand" isKey="true">
           <Brush>WhiteSmoke</Brush>
-          <ClientRectangle>0,3.8,19,0.8</ClientRectangle>
+          <ClientRectangle>0,3.8,13.8,0.8</ClientRectangle>
           <Components isList="true" count="4">
             <Text7 Ref="19" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>17.6,0,1.4,0.8</ClientRectangle>
+              <ClientRectangle>12.6,0,1.2,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
-              <Font>B Nazanin,12,Bold</Font>
-              <Guid>9ec3db4a27ec4a2ba1ee2835d779bbc0</Guid>
+              <Font>B Nazanin,10,Bold</Font>
+              <Guid>fc703130211244d7b2190095f377f544</Guid>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text7</Name>
@@ -261,10 +261,10 @@
             <Text8 Ref="20" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>14.8,0,2.8,0.8</ClientRectangle>
+              <ClientRectangle>10.4,0,2.2,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
-              <Font>B Nazanin,12,Bold</Font>
-              <Guid>7547aee14a0b4ccea05f6517f9217b0f</Guid>
+              <Font>B Nazanin,10,Bold</Font>
+              <Guid>0c41822eebb047e181f1e114697b3f1a</Guid>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text8</Name>
@@ -277,10 +277,10 @@
             <Text10 Ref="21" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>3.6,0,11.2,0.8</ClientRectangle>
+              <ClientRectangle>3,0,7.4,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
-              <Font>B Nazanin,12,Bold</Font>
-              <Guid>9f165667c5c24cf289b5ba074c2ef26f</Guid>
+              <Font>B Nazanin,10,Bold</Font>
+              <Guid>1dfe311282b94c22ae9498834e8708ef</Guid>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text10</Name>
@@ -293,10 +293,10 @@
             <Text12 Ref="22" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>0,0,3.6,0.8</ClientRectangle>
+              <ClientRectangle>0,0,3,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
-              <Font>B Nazanin,12,Bold</Font>
-              <Guid>031505b3590446cabf9e6bd48d7bf2c6</Guid>
+              <Font>B Nazanin,10,Bold</Font>
+              <Guid>86870a97ee574632bd6f1f6a0c14a161</Guid>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text12</Name>
@@ -308,24 +308,24 @@
             </Text12>
           </Components>
           <Conditions isList="true" count="0" />
-          <Guid>f57514ac7f40493dab4e9e1a863883e9</Guid>
+          <Guid>a1f1170759084144ba1861c7b27752f4</Guid>
           <Name>HeaderBand1</Name>
           <Page isRef="4" />
           <Parent isRef="4" />
         </HeaderBand1>
         <DataBand1 Ref="23" type="DataBand" isKey="true">
           <Brush>Transparent</Brush>
-          <BusinessObjectGuid>c247501d7fec4948a0aec7aae9ffb464</BusinessObjectGuid>
-          <ClientRectangle>0,5.4,19,0.8</ClientRectangle>
+          <BusinessObjectGuid>0b9259ac281f487dabcdb609bf2053ed</BusinessObjectGuid>
+          <ClientRectangle>0,5.4,13.8,0.8</ClientRectangle>
           <Components isList="true" count="4">
             <Text1 Ref="24" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>14.8,0,2.8,0.8</ClientRectangle>
+              <ClientRectangle>10.4,0,2.2,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
-              <Font>B Nazanin,12,Bold</Font>
+              <Font>B Nazanin,10,Bold</Font>
               <GrowToHeight>True</GrowToHeight>
-              <Guid>aecdc63aef1246c7b4c42341356f7078</Guid>
+              <Guid>d2caf6c744fe404b9db16665fba1d7e2</Guid>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text1</Name>
@@ -340,11 +340,11 @@
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
-              <ClientRectangle>3.6,0,11.2,0.8</ClientRectangle>
+              <ClientRectangle>3,0,7.4,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
-              <Font>B Nazanin,12,Bold</Font>
+              <Font>B Nazanin,10,Bold</Font>
               <GrowToHeight>True</GrowToHeight>
-              <Guid>e8e361b9735a4837a51b54c8f63c42b6</Guid>
+              <Guid>9a0caafae02d416ab10338779a56ee01</Guid>
               <Margins>0,0,0,0</Margins>
               <Name>Text2</Name>
               <Page isRef="4" />
@@ -352,18 +352,18 @@
               <Text>{لیست_داده_ها.RowDesc}</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>,,RightToLeft=True,,WordWrap=True,A=0</TextOptions>
-              <Type>DataColumn</Type>
+              <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text2>
             <Text3 Ref="26" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
-              <ClientRectangle>0,0,3.6,0.8</ClientRectangle>
+              <ClientRectangle>0,0,3,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
-              <Font>B Nazanin,12,Bold</Font>
+              <Font>B Nazanin,10,Bold</Font>
               <GrowToHeight>True</GrowToHeight>
-              <Guid>9c4a650b6f86440a8c809aeb1cf4699b</Guid>
+              <Guid>4f1739b9c8e94a2dabfa0cab00fe673a</Guid>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text3</Name>
@@ -387,11 +387,11 @@
             <SystemText2 Ref="28" type="SystemText" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>17.6,0,1.4,0.8</ClientRectangle>
+              <ClientRectangle>12.6,0,1.2,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
-              <Font>B Nazanin,12,Bold</Font>
+              <Font>B Nazanin,10,Bold</Font>
               <GrowToHeight>True</GrowToHeight>
-              <Guid>a27764ac08104fe99da178dda8f4d7e7</Guid>
+              <Guid>44a35a44060a4a5886f709c72a861c49</Guid>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>SystemText2</Name>
@@ -406,7 +406,7 @@
           <DataSourceName isNull="true" />
           <EvenStyle>سبک1</EvenStyle>
           <Filters isList="true" count="0" />
-          <Guid>fad6f1b6998240bb9fa3582a7f846d53</Guid>
+          <Guid>b5e3705fb17a470cafb7f1bb3cae6862</Guid>
           <Name>DataBand1</Name>
           <Page isRef="4" />
           <Parent isRef="4" />
@@ -414,15 +414,15 @@
         </DataBand1>
         <FooterBand1 Ref="29" type="FooterBand" isKey="true">
           <Brush>Transparent</Brush>
-          <ClientRectangle>0,7,19,2.6</ClientRectangle>
-          <Components isList="true" count="7">
+          <ClientRectangle>0,7,13.8,2.6</ClientRectangle>
+          <Components isList="true" count="9">
             <Text18 Ref="30" type="Text" isKey="true">
               <Border>All;Black;1;None;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>17.2,0,1.6,0.6</ClientRectangle>
+              <ClientRectangle>12.2,0,1.6,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
-              <Font>B Nazanin,11,Bold</Font>
-              <Guid>603a68ff94fc4925813dc0a1855f3122</Guid>
+              <Font>B Nazanin,10,Bold</Font>
+              <Guid>c47b062738e746afa9c9ceae3bcc6435</Guid>
               <HorAlignment>Right</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text18</Name>
@@ -435,10 +435,10 @@
             <Text41 Ref="31" type="Text" isKey="true">
               <Border>All;Black;1;None;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>3.6,0,2,0.6</ClientRectangle>
+              <ClientRectangle>3,0,2,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
-              <Font>B Nazanin,11,Bold</Font>
-              <Guid>1c3aa30025254171b4c18062e7b1b76c</Guid>
+              <Font>B Nazanin,10,Bold</Font>
+              <Guid>1f93a5d5d5fd4366b9691efe9d7ebb3c</Guid>
               <Margins>0,0,0,0</Margins>
               <Name>Text41</Name>
               <Page isRef="4" />
@@ -450,10 +450,10 @@
             <Text19 Ref="32" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
-              <ClientRectangle>6.4,0.6,12.4,1</ClientRectangle>
+              <ClientRectangle>5.8,0.6,8,1.2</ClientRectangle>
               <Conditions isList="true" count="0" />
-              <Font>B Nazanin,12,Bold</Font>
-              <Guid>5c8c7e23eb8f48e7adfd9c894e39a83d</Guid>
+              <Font>B Nazanin,10,Bold</Font>
+              <Guid>307ae4ab0f244a2abdb79277d7acc6d3</Guid>
               <Margins>0,0,0,0</Margins>
               <Name>Text19</Name>
               <Page isRef="4" />
@@ -466,10 +466,10 @@
             <Text35 Ref="33" type="Text" isKey="true">
               <Border>Left, Right;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>0,0,3.6,0.6</ClientRectangle>
+              <ClientRectangle>0,0,3,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
-              <Font>B Nazanin,12,Bold</Font>
-              <Guid>463a60cd53134e7aa2ff6a274e8ff612</Guid>
+              <Font>B Nazanin,10,Bold</Font>
+              <Guid>1415c02b466f484a9262e881d4c0ac01</Guid>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text35</Name>
@@ -490,12 +490,12 @@
               <VertAlignment>Center</VertAlignment>
             </Text35>
             <HorizontalLinePrimitive1 Ref="35" type="HorizontalLinePrimitive" isKey="true">
-              <ClientRectangle>0,1.8,19,0.0254</ClientRectangle>
+              <ClientRectangle>0,1.8,13.8,0.0254</ClientRectangle>
               <Color>Black</Color>
               <EndCap Ref="36" type="Cap" isKey="true">
                 <Color>Black</Color>
               </EndCap>
-              <Guid>544e4e87e3764ed1bab9de4969e0afb0</Guid>
+              <Guid>501d211eda5841909b60018875fd53b4</Guid>
               <Name>HorizontalLinePrimitive1</Name>
               <Page isRef="4" />
               <Parent isRef="29" />
@@ -504,63 +504,63 @@
               </StartCap>
             </HorizontalLinePrimitive1>
             <StartPointPrimitive1 Ref="38" type="Stimulsoft.Report.Components.StiStartPointPrimitive" isKey="true">
-              <ClientRectangle>19,0,0,0</ClientRectangle>
-              <Guid>ba3ee5adec1d4e9094f7a5e3cbf0766f</Guid>
+              <ClientRectangle>13.8,0,0,0</ClientRectangle>
+              <Guid>38abb45e181b43d1b84776d34a180c14</Guid>
               <Name>StartPointPrimitive1</Name>
               <Page isRef="4" />
               <Parent isRef="29" />
-              <ReferenceToGuid>366ed40295f14152b0ab292a93e8e5f5</ReferenceToGuid>
+              <ReferenceToGuid>a2913473c82843188614ca4e7dc3c5cf</ReferenceToGuid>
             </StartPointPrimitive1>
             <EndPointPrimitive1 Ref="39" type="Stimulsoft.Report.Components.StiEndPointPrimitive" isKey="true">
-              <ClientRectangle>19,1.8,0,0</ClientRectangle>
-              <Guid>c9911691162346ed9fcef4c030a05c53</Guid>
+              <ClientRectangle>13.8,1.8,0,0</ClientRectangle>
+              <Guid>ee5120f659484dffa7154cef107a87df</Guid>
               <Name>EndPointPrimitive1</Name>
               <Page isRef="4" />
               <Parent isRef="29" />
-              <ReferenceToGuid>366ed40295f14152b0ab292a93e8e5f5</ReferenceToGuid>
+              <ReferenceToGuid>a2913473c82843188614ca4e7dc3c5cf</ReferenceToGuid>
             </EndPointPrimitive1>
+            <StartPointPrimitive2 Ref="40" type="Stimulsoft.Report.Components.StiStartPointPrimitive" isKey="true">
+              <ClientRectangle>13.8,0,0,0</ClientRectangle>
+              <Name>StartPointPrimitive2</Name>
+              <Page isRef="4" />
+              <Parent isRef="29" />
+              <ReferenceToGuid>a2913473c82843188614ca4e7dc3c5cf</ReferenceToGuid>
+            </StartPointPrimitive2>
+            <EndPointPrimitive2 Ref="41" type="Stimulsoft.Report.Components.StiEndPointPrimitive" isKey="true">
+              <ClientRectangle>13.8,1.8,0,0</ClientRectangle>
+              <Name>EndPointPrimitive2</Name>
+              <Page isRef="4" />
+              <Parent isRef="29" />
+              <ReferenceToGuid>a2913473c82843188614ca4e7dc3c5cf</ReferenceToGuid>
+            </EndPointPrimitive2>
           </Components>
           <Conditions isList="true" count="0" />
-          <Guid>f39c1529ffc549d684c44414bd48b122</Guid>
+          <Guid>85254971ff62489091476600d6517064</Guid>
           <Name>FooterBand1</Name>
           <Page isRef="4" />
           <Parent isRef="4" />
         </FooterBand1>
-        <VerticalLinePrimitive1 Ref="40" type="VerticalLinePrimitive" isKey="true">
-          <ClientRectangle>19,7,0.0254,1.8</ClientRectangle>
+        <VerticalLinePrimitive1 Ref="42" type="VerticalLinePrimitive" isKey="true">
+          <ClientRectangle>13.8,7,0.0254,1.8</ClientRectangle>
           <Color>Black</Color>
-          <EndCap Ref="41" type="Cap" isKey="true">
+          <EndCap Ref="43" type="Cap" isKey="true">
             <Color>Black</Color>
           </EndCap>
-          <Guid>366ed40295f14152b0ab292a93e8e5f5</Guid>
+          <Guid>a2913473c82843188614ca4e7dc3c5cf</Guid>
           <Name>VerticalLinePrimitive1</Name>
           <Page isRef="4" />
           <Parent isRef="4" />
-          <StartCap Ref="42" type="Cap" isKey="true">
+          <StartCap Ref="44" type="Cap" isKey="true">
             <Color>Black</Color>
           </StartCap>
         </VerticalLinePrimitive1>
-        <StartPointPrimitive2 Ref="43" type="Stimulsoft.Report.Components.StiStartPointPrimitive" isKey="true">
-          <ClientRectangle>19.2,9.8,0,0</ClientRectangle>
-          <Name>StartPointPrimitive2</Name>
-          <Page isRef="4" />
-          <Parent isRef="4" />
-          <ReferenceToGuid>366ed40295f14152b0ab292a93e8e5f5</ReferenceToGuid>
-        </StartPointPrimitive2>
-        <EndPointPrimitive2 Ref="44" type="Stimulsoft.Report.Components.StiEndPointPrimitive" isKey="true">
-          <ClientRectangle>19.2,11.6,0,0</ClientRectangle>
-          <Name>EndPointPrimitive2</Name>
-          <Page isRef="4" />
-          <Parent isRef="4" />
-          <ReferenceToGuid>366ed40295f14152b0ab292a93e8e5f5</ReferenceToGuid>
-        </EndPointPrimitive2>
       </Components>
       <Conditions isList="true" count="0" />
-      <Guid>ce2b568401c449ceb2eb58edb36f732c</Guid>
-      <Margins>1,1,1,1</Margins>
+      <Guid>fa9a91d1151346c187010db1641aa52e</Guid>
+      <Margins>0.5,0.5,0.5,0.2</Margins>
       <Name>Page1</Name>
-      <PageHeight>29.7</PageHeight>
-      <PageWidth>21</PageWidth>
+      <PageHeight>21</PageHeight>
+      <PageWidth>14.8</PageWidth>
       <Report isRef="0" />
       <Watermark Ref="45" type="Stimulsoft.Report.Components.StiWatermark" isKey="true">
         <Font>Arial,100</Font>
@@ -580,10 +580,10 @@
     <value>Stimulsoft.Report.Dll</value>
   </ReferencedAssemblies>
   <ReportAlias>Report</ReportAlias>
-  <ReportChanged>3/30/2021 5:17:30 PM</ReportChanged>
-  <ReportCreated>3/30/2021 5:12:54 PM</ReportCreated>
-  <ReportFile>C:\Users\Arad\Desktop\Reception_One_A4.mrt</ReportFile>
-  <ReportGuid>e0ba430ef3cf482d8c850f4096869cae</ReportGuid>
+  <ReportChanged>3/30/2021 5:22:32 PM</ReportChanged>
+  <ReportCreated>3/30/2021 5:17:46 PM</ReportCreated>
+  <ReportFile>C:\Users\Arad\Desktop\Reception_One_A5.mrt</ReportFile>
+  <ReportGuid>e97529c8b77b42efbb7eda6da67b3d34</ReportGuid>
   <ReportName>Report</ReportName>
   <ReportUnit>Centimeters</ReportUnit>
   <ReportVersion>2018.1.6.0</ReportVersion>
