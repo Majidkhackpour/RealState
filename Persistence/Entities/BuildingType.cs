@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using Servicess.Interfaces.Building;
 
@@ -12,5 +13,7 @@ namespace Persistence.Entities
         public bool Status { get; set; }
         [MaxLength(200)]
         public string Name { get; set; }
+        public virtual ICollection<Building> Building { get; set; }
+        public virtual ICollection<BuildingRequest> BuildingRequest { get; set; }
     }
 }

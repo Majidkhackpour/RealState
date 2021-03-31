@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using Servicess.Interfaces.Building;
 
 namespace Persistence.Entities
@@ -29,6 +31,10 @@ namespace Persistence.Entities
         public string IssuedFrom { get; set; }
         [MaxLength(50)]
         public string PostalCode { get; set; }
+        [ForeignKey("Group")]
         public Guid GroupGuid { get; set; }
+        public virtual PeopleGroup Group { get; set; }
+        public virtual ICollection<Building> Building { get; set; }
+        public virtual ICollection<PhoneBook> PhoneBook { get; set; }
     }
 }

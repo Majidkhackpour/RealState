@@ -36,5 +36,8 @@ namespace Persistence.Entities
         public virtual ICollection<Contract> fSideContract { get; set; }
         public virtual ICollection<Contract> sSideContract { get; set; }
         public virtual ICollection<Contract> BazaryabContract { get; set; }
+        public virtual ICollection<BuildingRequest> BuildingRequest { get; set; }
+        public virtual ICollection<CheckPage> CheckPage { get; set; }
+        public virtual ICollection<PeopleBankAccount> PeopleBankAccount { get; set; }
     }
 }

@@ -21,20 +21,20 @@ namespace Accounting.Sood_Zian
         public string DateSh1 => Calendar.MiladiToShamsi(_date1);
         public string DateSh2 => Calendar.MiladiToShamsi(_date2);
         public string CompanyName => Settings.Classes.clsEconomyUnit.EconomyName;
-        //public decimal TotalCommition => ContractFinanceBussines.GetTotalCommition(_date1, _date2);
+        public decimal TotalCommition => ContractBussines.GetTotalCommition(_date1, _date2);
         public decimal TotalBazarYab => ContractBussines.GetTotalBazaryab(_date1, _date2);
-        //public decimal Sood_Nakhales => TotalCommition - TotalBazarYab;
-        //public decimal Sood_BeforeTax => Sood_Nakhales;
-        //public decimal TotalTax => ContractFinanceBussines.GetTotalTax(_date1, _date2);
-       // public decimal Sood_Total => Sood_BeforeTax - TotalTax;
-        //public string Ballance
-        //{
-        //    get
-        //    {
-        //        if (Sood_Total > 0) return "مجموعه سود ده";
-        //        if (Sood_Total < 0) return "مجموعه زیان ده";
-        //        return "مجموعه بی اثر";
-        //    }
-        //}
+        public decimal Sood_Nakhales => TotalCommition - TotalBazarYab;
+        public decimal Sood_BeforeTax => Sood_Nakhales;
+        public decimal TotalTax => ContractBussines.GetTotalTax(_date1, _date2);
+        public decimal Sood_Total => Sood_BeforeTax - TotalTax;
+        public string Ballance
+        {
+            get
+            {
+                if (Sood_Total > 0) return "مجموعه سود ده";
+                if (Sood_Total < 0) return "مجموعه زیان ده";
+                return "مجموعه بی اثر";
+            }
+        }
     }
 }

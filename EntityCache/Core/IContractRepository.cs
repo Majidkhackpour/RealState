@@ -14,5 +14,7 @@ namespace EntityCache.Core
         Task<int> DischargeDbCount(DateTime d1, DateTime d2);
         Task<List<BuildingDischargeViewModel>> DischargeListAsync(DateTime d1, DateTime d2);
         Task<decimal> GetTotalBazaryab(DateTime d1, DateTime d2);
+        Task<decimal> GetTotalCommitionAsync(DateTime d1, DateTime d2);
+        Task<decimal> GetTotalTaxAsync(DateTime d1, DateTime d2);
     }
 }

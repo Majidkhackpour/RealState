@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using Services.Interfaces.Building;
 
@@ -22,5 +23,6 @@ namespace Persistence.Entities
         public string HesabNumber { get; set; }
         public string Description { get; set; }
         public DateTime DateM { get; set; }
+        public virtual ICollection<DasteCheck> DasteCheck { get; set; }
     }
 }

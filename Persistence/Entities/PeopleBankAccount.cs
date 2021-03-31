@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using Servicess.Interfaces.Building;
 
 namespace Persistence.Entities
@@ -16,6 +17,8 @@ namespace Persistence.Entities
         public string AccountNumber { get; set; }
         [MaxLength(200)]
         public string Shobe { get; set; }
+        [ForeignKey("Tafsil")]
         public Guid ParentGuid { get; set; }
+        public virtual Tafsil Tafsil { get; set; }
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using Services.Interfaces.Building;
 
 namespace Persistence.Entities
@@ -16,9 +17,11 @@ namespace Persistence.Entities
         public string Name { get; set; }
         [MaxLength(10)]
         public string Code { get; set; }
+        [ForeignKey("Kol")]
         public Guid KolGuid { get; set; }
         public DateTime DateM { get; set; }
         public decimal Account { get; set; }
+        public virtual Kol Kol { get; set; }
         public virtual ICollection<SanadDetail> SanadDetails { get; set; }
         public virtual ICollection<Reception> Reception { get; set; }
         public virtual ICollection<ReceptionNaqd> ReceptionNaqd { get; set; }

@@ -1,0 +1,156 @@
+﻿namespace Persistence.Migrations
+{
+    using System;
+    using System.Data.Entity.Migrations;
+    
+    public partial class _89 : DbMigration
+    {
+        public override void Up()
+        {
+            CreateIndex("dbo.DasteChecks", "BankGuid");
+            CreateIndex("dbo.CheckPages", "CheckGuid");
+            CreateIndex("dbo.CheckPages", "ReceptorGuid");
+            CreateIndex("dbo.Buildings", "OwnerGuid");
+            CreateIndex("dbo.Buildings", "UserGuid");
+            CreateIndex("dbo.Buildings", "RentalAutorityGuid");
+            CreateIndex("dbo.Buildings", "CityGuid");
+            CreateIndex("dbo.Buildings", "RegionGuid");
+            CreateIndex("dbo.Buildings", "BuildingConditionGuid");
+            CreateIndex("dbo.Buildings", "BuildingTypeGuid");
+            CreateIndex("dbo.Buildings", "BuildingAccountTypeGuid");
+            CreateIndex("dbo.Buildings", "BuildingViewGuid");
+            CreateIndex("dbo.Buildings", "FloorCoverGuid");
+            CreateIndex("dbo.Buildings", "KitchenServiceGuid");
+            CreateIndex("dbo.BuildingRequests", "AskerGuid");
+            CreateIndex("dbo.BuildingRequests", "UserGuid");
+            CreateIndex("dbo.BuildingRequests", "RentalAutorityGuid");
+            CreateIndex("dbo.BuildingRequests", "CityGuid");
+            CreateIndex("dbo.BuildingRequests", "BuildingTypeGuid");
+            CreateIndex("dbo.BuildingRequests", "BuildingAccountTypeGuid");
+            CreateIndex("dbo.BuildingRequests", "BuildingConditionGuid");
+            CreateIndex("dbo.BuildingRequestRegions", "RequestGuid");
+            CreateIndex("dbo.BuildingRequestRegions", "RegionGuid");
+            CreateIndex("dbo.Regions", "CityGuid");
+            CreateIndex("dbo.Cities", "StateGuid");
+            CreateIndex("dbo.Notes", "UserGuid");
+            CreateIndex("dbo.Moeins", "KolGuid");
+            CreateIndex("dbo.SmsLogs", "UserGuid");
+            CreateIndex("dbo.UserLogs", "UserGuid");
+            CreateIndex("dbo.BuildingGalleries", "BuildingGuid");
+            CreateIndex("dbo.BuildingRelatedOptions", "BuildinGuid");
+            CreateIndex("dbo.BuildingRelatedOptions", "BuildingOptionGuid");
+            CreateIndex("dbo.Peoples", "GroupGuid");
+            CreateIndex("dbo.PhoneBooks", "ParentGuid");
+            CreateIndex("dbo.PeopleBankAccounts", "ParentGuid");
+            AddForeignKey("dbo.DasteChecks", "BankGuid", "dbo.Banks", "Guid");
+            AddForeignKey("dbo.CheckPages", "CheckGuid", "dbo.DasteChecks", "Guid");
+            AddForeignKey("dbo.BuildingRequests", "BuildingAccountTypeGuid", "dbo.BuildingAccountTypes", "Guid");
+            AddForeignKey("dbo.BuildingRequests", "BuildingTypeGuid", "dbo.BuildingTypes", "Guid");
+            AddForeignKey("dbo.Cities", "StateGuid", "dbo.States", "Guid");
+            AddForeignKey("dbo.Regions", "CityGuid", "dbo.Cities", "Guid");
+            AddForeignKey("dbo.BuildingRequestRegions", "RegionGuid", "dbo.Regions", "Guid");
+            AddForeignKey("dbo.BuildingRequestRegions", "RequestGuid", "dbo.BuildingRequests", "Guid");
+            AddForeignKey("dbo.BuildingRequests", "CityGuid", "dbo.Cities", "Guid");
+            AddForeignKey("dbo.BuildingRequests", "BuildingConditionGuid", "dbo.BuildingConditions", "Guid");
+            AddForeignKey("dbo.BuildingRequests", "RentalAutorityGuid", "dbo.RentalAuthorities", "Guid");
+            AddForeignKey("dbo.BuildingRequests", "AskerGuid", "dbo.Tafsils", "Guid");
+            AddForeignKey("dbo.Notes", "UserGuid", "dbo.Users", "Guid");
+            AddForeignKey("dbo.Moeins", "KolGuid", "dbo.Kols", "Guid");
+            AddForeignKey("dbo.SmsLogs", "UserGuid", "dbo.Users", "Guid");
+            AddForeignKey("dbo.UserLogs", "UserGuid", "dbo.Users", "Guid");
+            AddForeignKey("dbo.BuildingRequests", "UserGuid", "dbo.Users", "Guid");
+            AddForeignKey("dbo.Buildings", "BuildingAccountTypeGuid", "dbo.BuildingAccountTypes", "Guid");
+            AddForeignKey("dbo.Buildings", "BuildingTypeGuid", "dbo.BuildingTypes", "Guid");
+            AddForeignKey("dbo.BuildingGalleries", "BuildingGuid", "dbo.Buildings", "Guid");
+            AddForeignKey("dbo.BuildingRelatedOptions", "BuildinGuid", "dbo.Buildings", "Guid");
+            AddForeignKey("dbo.BuildingRelatedOptions", "BuildingOptionGuid", "dbo.BuildingOptions", "Guid");
+            AddForeignKey("dbo.Buildings", "BuildingViewGuid", "dbo.BuildingViews", "Guid");
+            AddForeignKey("dbo.Buildings", "CityGuid", "dbo.Cities", "Guid");
+            AddForeignKey("dbo.Buildings", "BuildingConditionGuid", "dbo.BuildingConditions", "Guid");
+            AddForeignKey("dbo.Buildings", "FloorCoverGuid", "dbo.FloorCovers", "Guid");
+            AddForeignKey("dbo.Buildings", "KitchenServiceGuid", "dbo.KitchenServices", "Guid");
+            AddForeignKey("dbo.Peoples", "GroupGuid", "dbo.PeopleGroups", "Guid");
+            AddForeignKey("dbo.PhoneBooks", "ParentGuid", "dbo.Peoples", "Guid");
+            AddForeignKey("dbo.Buildings", "OwnerGuid", "dbo.Peoples", "Guid");
+            AddForeignKey("dbo.Buildings", "RegionGuid", "dbo.Regions", "Guid");
+            AddForeignKey("dbo.Buildings", "RentalAutorityGuid", "dbo.RentalAuthorities", "Guid");
+            AddForeignKey("dbo.Buildings", "UserGuid", "dbo.Users", "Guid");
+            AddForeignKey("dbo.PeopleBankAccounts", "ParentGuid", "dbo.Tafsils", "Guid");
+            AddForeignKey("dbo.CheckPages", "ReceptorGuid", "dbo.Tafsils", "Guid");
+        }
+        
+        public override void Down()
+        {
+            DropForeignKey("dbo.CheckPages", "ReceptorGuid", "dbo.Tafsils");
+            DropForeignKey("dbo.PeopleBankAccounts", "ParentGuid", "dbo.Tafsils");
+            DropForeignKey("dbo.Buildings", "UserGuid", "dbo.Users");
+            DropForeignKey("dbo.Buildings", "RentalAutorityGuid", "dbo.RentalAuthorities");
+            DropForeignKey("dbo.Buildings", "RegionGuid", "dbo.Regions");
+            DropForeignKey("dbo.Buildings", "OwnerGuid", "dbo.Peoples");
+            DropForeignKey("dbo.PhoneBooks", "ParentGuid", "dbo.Peoples");
+            DropForeignKey("dbo.Peoples", "GroupGuid", "dbo.PeopleGroups");
+            DropForeignKey("dbo.Buildings", "KitchenServiceGuid", "dbo.KitchenServices");
+            DropForeignKey("dbo.Buildings", "FloorCoverGuid", "dbo.FloorCovers");
+            DropForeignKey("dbo.Buildings", "BuildingConditionGuid", "dbo.BuildingConditions");
+            DropForeignKey("dbo.Buildings", "CityGuid", "dbo.Cities");
+            DropForeignKey("dbo.Buildings", "BuildingViewGuid", "dbo.BuildingViews");
+            DropForeignKey("dbo.BuildingRelatedOptions", "BuildingOptionGuid", "dbo.BuildingOptions");
+            DropForeignKey("dbo.BuildingRelatedOptions", "BuildinGuid", "dbo.Buildings");
+            DropForeignKey("dbo.BuildingGalleries", "BuildingGuid", "dbo.Buildings");
+            DropForeignKey("dbo.Buildings", "BuildingTypeGuid", "dbo.BuildingTypes");
+            DropForeignKey("dbo.Buildings", "BuildingAccountTypeGuid", "dbo.BuildingAccountTypes");
+            DropForeignKey("dbo.BuildingRequests", "UserGuid", "dbo.Users");
+            DropForeignKey("dbo.UserLogs", "UserGuid", "dbo.Users");
+            DropForeignKey("dbo.SmsLogs", "UserGuid", "dbo.Users");
+            DropForeignKey("dbo.Moeins", "KolGuid", "dbo.Kols");
+            DropForeignKey("dbo.Notes", "UserGuid", "dbo.Users");
+            DropForeignKey("dbo.BuildingRequests", "AskerGuid", "dbo.Tafsils");
+            DropForeignKey("dbo.BuildingRequests", "RentalAutorityGuid", "dbo.RentalAuthorities");
+            DropForeignKey("dbo.BuildingRequests", "BuildingConditionGuid", "dbo.BuildingConditions");
+            DropForeignKey("dbo.BuildingRequests", "CityGuid", "dbo.Cities");
+            DropForeignKey("dbo.BuildingRequestRegions", "RequestGuid", "dbo.BuildingRequests");
+            DropForeignKey("dbo.BuildingRequestRegions", "RegionGuid", "dbo.Regions");
+            DropForeignKey("dbo.Regions", "CityGuid", "dbo.Cities");
+            DropForeignKey("dbo.Cities", "StateGuid", "dbo.States");
+            DropForeignKey("dbo.BuildingRequests", "BuildingTypeGuid", "dbo.BuildingTypes");
+            DropForeignKey("dbo.BuildingRequests", "BuildingAccountTypeGuid", "dbo.BuildingAccountTypes");
+            DropForeignKey("dbo.CheckPages", "CheckGuid", "dbo.DasteChecks");
+            DropForeignKey("dbo.DasteChecks", "BankGuid", "dbo.Banks");
+            DropIndex("dbo.PeopleBankAccounts", new[] { "ParentGuid" });
+            DropIndex("dbo.PhoneBooks", new[] { "ParentGuid" });
+            DropIndex("dbo.Peoples", new[] { "GroupGuid" });
+            DropIndex("dbo.BuildingRelatedOptions", new[] { "BuildingOptionGuid" });
+            DropIndex("dbo.BuildingRelatedOptions", new[] { "BuildinGuid" });
+            DropIndex("dbo.BuildingGalleries", new[] { "BuildingGuid" });
+            DropIndex("dbo.UserLogs", new[] { "UserGuid" });
+            DropIndex("dbo.SmsLogs", new[] { "UserGuid" });
+            DropIndex("dbo.Moeins", new[] { "KolGuid" });
+            DropIndex("dbo.Notes", new[] { "UserGuid" });
+            DropIndex("dbo.Cities", new[] { "StateGuid" });
+            DropIndex("dbo.Regions", new[] { "CityGuid" });
+            DropIndex("dbo.BuildingRequestRegions", new[] { "RegionGuid" });
+            DropIndex("dbo.BuildingRequestRegions", new[] { "RequestGuid" });
+            DropIndex("dbo.BuildingRequests", new[] { "BuildingConditionGuid" });
+            DropIndex("dbo.BuildingRequests", new[] { "BuildingAccountTypeGuid" });
+            DropIndex("dbo.BuildingRequests", new[] { "BuildingTypeGuid" });
+            DropIndex("dbo.BuildingRequests", new[] { "CityGuid" });
+            DropIndex("dbo.BuildingRequests", new[] { "RentalAutorityGuid" });
+            DropIndex("dbo.BuildingRequests", new[] { "UserGuid" });
+            DropIndex("dbo.BuildingRequests", new[] { "AskerGuid" });
+            DropIndex("dbo.Buildings", new[] { "KitchenServiceGuid" });
+            DropIndex("dbo.Buildings", new[] { "FloorCoverGuid" });
+            DropIndex("dbo.Buildings", new[] { "BuildingViewGuid" });
+            DropIndex("dbo.Buildings", new[] { "BuildingAccountTypeGuid" });
+            DropIndex("dbo.Buildings", new[] { "BuildingTypeGuid" });
+            DropIndex("dbo.Buildings", new[] { "BuildingConditionGuid" });
+            DropIndex("dbo.Buildings", new[] { "RegionGuid" });
+            DropIndex("dbo.Buildings", new[] { "CityGuid" });
+            DropIndex("dbo.Buildings", new[] { "RentalAutorityGuid" });
+            DropIndex("dbo.Buildings", new[] { "UserGuid" });
+            DropIndex("dbo.Buildings", new[] { "OwnerGuid" });
+            DropIndex("dbo.CheckPages", new[] { "ReceptorGuid" });
+            DropIndex("dbo.CheckPages", new[] { "CheckGuid" });
+            DropIndex("dbo.DasteChecks", new[] { "BankGuid" });
+        }
+    }
+}

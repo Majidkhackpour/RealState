@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using Services.Interfaces.Building;
 
 namespace Persistence.Entities
@@ -12,9 +14,12 @@ namespace Persistence.Entities
         public bool Status { get; set; }
         [MaxLength(100)]
         public string SerialNumber { get; set; }
+        [ForeignKey("Bank")]
         public Guid BankGuid { get; set; }
         public long FromNumber { get; set; }
         public long ToNumber { get; set; }
         public string Description { get; set; }
+        public virtual Bank Bank { get; set; }
+        public virtual ICollection<CheckPage> CheckPage { get; set; }
     }
 }

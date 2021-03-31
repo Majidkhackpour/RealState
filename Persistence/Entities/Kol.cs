@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using Services;
 using Services.Interfaces.Building;
@@ -17,5 +18,6 @@ namespace Persistence.Entities
         [MaxLength(10)]
         public string Code { get; set; }
         public decimal Account { get; set; }
+        public virtual ICollection<Moein> Moein { get; set; }
     }
 }

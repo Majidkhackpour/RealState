@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using Services;
 using Servicess.Interfaces.Building;
 
@@ -16,6 +17,8 @@ namespace Persistence.Entities
         [MaxLength(50)]
         public string Tell { get; set; }
         public EnPhoneBookGroup Group { get; set; }
+        [ForeignKey("People")]
         public Guid ParentGuid { get; set; }
+        public virtual Peoples People { get; set; }
     }
 }

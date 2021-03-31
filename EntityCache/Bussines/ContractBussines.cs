@@ -419,5 +419,12 @@ namespace EntityCache.Bussines
 
             return res;
         }
+        public static async Task<decimal> GetTotalCommitionAsync(DateTime d1, DateTime d2) =>
+            await UnitOfWork.Contract.GetTotalCommitionAsync(d1, d2);
+        public static decimal GetTotalCommition(DateTime d1, DateTime d2) =>
+            AsyncContext.Run(() => GetTotalCommitionAsync(d1, d2));
+        public static async Task<decimal> GetTotalTaxAsync(DateTime d1, DateTime d2) =>
+            await UnitOfWork.Contract.GetTotalTaxAsync(d1, d2);
+        public static decimal GetTotalTax(DateTime d1, DateTime d2) => AsyncContext.Run(() => GetTotalTaxAsync(d1, d2));
     }
 }
