@@ -535,117 +535,117 @@ namespace Advertise.Classes
             return _me ?? (_me = new SheypoorAdv());
         }
         private static SheypoorAdv _me;
-        public async Task<bool> UpdateAllAdvStatus(int TakeCount, int dayCount = 0)
-        {
-            try
-            {
-                _driver = Utility.RefreshDriver(clsAdvertise.IsSilent);
-                List<AdvertiseLogBussines> allAdvertiseLog = null;
-                if (DateTime.Now.DayOfWeek == DayOfWeek.Friday)
-                {
-                    dayCount = 7;
-                    var lastWeek = DateTime.Now.AddDays(-dayCount);
-                    var lst = await AdvertiseLogBussines.GetAllSpecialAsync(p =>
-                        p.DateM > lastWeek && p.AdvType == AdvertiseType.Sheypoor);
-                    allAdvertiseLog = lst.OrderBy(q => q.LastUpdate).ToList();
-                    if (allAdvertiseLog.Count <= 0) return true;
-                }
-                else
-                {
-                    if (dayCount == 0)
-                        dayCount = clsAdvertise.Sheypoor_DayCountForUpdateState;
-                    var lastWeek = DateTime.Now.AddDays(-dayCount);
-                    var lst = await AdvertiseLogBussines.GetAllSpecialAsync(p =>
-                        p.DateM > lastWeek && p.AdvType == AdvertiseType.Sheypoor);
-                    allAdvertiseLog = lst.OrderBy(q => q.LastUpdate).ToList();
-                    if (allAdvertiseLog.Count <= 0) return true;
-                    if (TakeCount != 0)
-                    {
-                        var dayOfWeek = allAdvertiseLog.First().LastUpdate.DayOfWeek;
-                        if (dayOfWeek == DateTime.Now.DayOfWeek) return true;
-                        if (allAdvertiseLog.Count > TakeCount)
-                            allAdvertiseLog = allAdvertiseLog.Take(TakeCount).ToList();
-                    }
-                }
+        //public async Task<bool> UpdateAllAdvStatus(int TakeCount, int dayCount = 0)
+        //{
+        //    try
+        //    {
+        //        _driver = Utility.RefreshDriver(clsAdvertise.IsSilent);
+        //        List<AdvertiseLogBussines> allAdvertiseLog = null;
+        //        if (DateTime.Now.DayOfWeek == DayOfWeek.Friday)
+        //        {
+        //            dayCount = 7;
+        //            var lastWeek = DateTime.Now.AddDays(-dayCount);
+        //            var lst = await AdvertiseLogBussines.GetAllSpecialAsync(p =>
+        //                p.DateM > lastWeek && p.AdvType == AdvertiseType.Sheypoor);
+        //            allAdvertiseLog = lst.OrderBy(q => q.LastUpdate).ToList();
+        //            if (allAdvertiseLog.Count <= 0) return true;
+        //        }
+        //        else
+        //        {
+        //            if (dayCount == 0)
+        //                dayCount = clsAdvertise.Sheypoor_DayCountForUpdateState;
+        //            var lastWeek = DateTime.Now.AddDays(-dayCount);
+        //            var lst = await AdvertiseLogBussines.GetAllSpecialAsync(p =>
+        //                p.DateM > lastWeek && p.AdvType == AdvertiseType.Sheypoor);
+        //            allAdvertiseLog = lst.OrderBy(q => q.LastUpdate).ToList();
+        //            if (allAdvertiseLog.Count <= 0) return true;
+        //            if (TakeCount != 0)
+        //            {
+        //                var dayOfWeek = allAdvertiseLog.First().LastUpdate.DayOfWeek;
+        //                if (dayOfWeek == DateTime.Now.DayOfWeek) return true;
+        //                if (allAdvertiseLog.Count > TakeCount)
+        //                    allAdvertiseLog = allAdvertiseLog.Take(TakeCount).ToList();
+        //            }
+        //        }
 
-                if (allAdvertiseLog == null || allAdvertiseLog.Count <= 0) return false;
-                var tryCount = 0;
-                long mobile = 0;
-                foreach (var adv in allAdvertiseLog)
-                {
-                    if (tryCount >= 3) continue;
-                    try
-                    {
-                        var sim = await SimcardBussines.GetAsync(adv.SimcardNumber);
-                        if (sim.isSheypoorBlocked) continue;
-                        if (mobile != adv.SimcardNumber)
-                        {
-                            var ls = await Utility.CheckToken(adv.SimcardNumber, AdvertiseType.Sheypoor);
-                            if (ls.HasError) continue;
-                            mobile = adv.SimcardNumber;
-                            var log = await Login(adv.SimcardNumber, false);
-                            if (!log)
-                            {
-                                mobile = 0;
-                                continue;
-                            }
-                        }
+        //        if (allAdvertiseLog == null || allAdvertiseLog.Count <= 0) return false;
+        //        var tryCount = 0;
+        //        long mobile = 0;
+        //        foreach (var adv in allAdvertiseLog)
+        //        {
+        //            if (tryCount >= 3) continue;
+        //            try
+        //            {
+        //                var sim = await SimcardBussines.GetAsync(adv.SimcardNumber);
+        //                if (sim.isSheypoorBlocked) continue;
+        //                if (mobile != adv.SimcardNumber)
+        //                {
+        //                    var ls = await Utility.CheckToken(adv.SimcardNumber, AdvertiseType.Sheypoor);
+        //                    if (ls.HasError) continue;
+        //                    mobile = adv.SimcardNumber;
+        //                    var log = await Login(adv.SimcardNumber, false);
+        //                    if (!log)
+        //                    {
+        //                        mobile = 0;
+        //                        continue;
+        //                    }
+        //                }
 
-                        if (adv.URL == "---") continue;
-                        var code = adv.URL.Remove(0, 25) ?? null;
-                        await Utility.Wait();
-                        var el = _driver.FindElements(By.TagName("img")).Any(q =>
-                            q.GetAttribute("src").Contains("/img/empty-state/mylistings.png"));
-                        if (el)
-                        {
-                            adv.UpdateDesc = "در انتظار تایید ادمین/ رد شده/ حذف شده";
-                            adv.StatusCode = StatusCode.Failed;
-                            adv.LastUpdate = DateTime.Now;
-                            await adv.SaveAsync();
-                            continue;
-                        }
+        //                if (adv.URL == "---") continue;
+        //                var code = adv.URL.Remove(0, 25) ?? null;
+        //                await Utility.Wait();
+        //                var el = _driver.FindElements(By.TagName("img")).Any(q =>
+        //                    q.GetAttribute("src").Contains("/img/empty-state/mylistings.png"));
+        //                if (el)
+        //                {
+        //                    adv.UpdateDesc = "در انتظار تایید ادمین/ رد شده/ حذف شده";
+        //                    adv.StatusCode = StatusCode.Failed;
+        //                    adv.LastUpdate = DateTime.Now;
+        //                    await adv.SaveAsync();
+        //                    continue;
+        //                }
 
-                        var element = _driver.FindElements(By.Id("listing-" + code)).Any();
-                        await Utility.Wait();
-                        if (!element || string.IsNullOrEmpty(code))
-                        {
-                            adv.UpdateDesc = "در انتظار تایید ادمین/ رد شده/ حذف شده";
-                            adv.StatusCode = StatusCode.Failed;
-                            adv.LastUpdate = DateTime.Now;
-                            await adv.SaveAsync();
-                            continue;
-                        }
+        //                var element = _driver.FindElements(By.Id("listing-" + code)).Any();
+        //                await Utility.Wait();
+        //                if (!element || string.IsNullOrEmpty(code))
+        //                {
+        //                    adv.UpdateDesc = "در انتظار تایید ادمین/ رد شده/ حذف شده";
+        //                    adv.StatusCode = StatusCode.Failed;
+        //                    adv.LastUpdate = DateTime.Now;
+        //                    await adv.SaveAsync();
+        //                    continue;
+        //                }
 
-                        _driver.FindElement(By.Id("listing-" + code))?.Click();
-                        await Utility.Wait();
-                        adv.UpdateDesc = "آگهی منتشر شده و در لیست آگهی های شیپور قرار گرفته است";
-                        var counter = _driver.FindElement(By.ClassName("stat-view"))?.Text.FixString() ?? "0";
-                        adv.VisitCount = counter.ParseToInt();
-                        adv.StatusCode = StatusCode.Published;
-                        adv.AdvType = AdvertiseType.Sheypoor;
-                        adv.LastUpdate = DateTime.Now;
-                        await adv.SaveAsync();
-                        tryCount = 0;
-                        _driver.Navigate().Back();
-                        await Utility.Wait();
-                    }
-                    catch (Exception ex)
-                    {
-                        if (ex.Source != "WebDriver")
-                            WebErrorLog.ErrorInstence.StartErrorLog(ex);
-                        await Utility.Wait();
-                        tryCount++;
-                    }
-                }
-                return true;
-            }
-            catch (Exception ex)
-            {
-                if (ex.Source != "WebDriver")
-                    WebErrorLog.ErrorInstence.StartErrorLog(ex);
-                return false;
-            }
-        }
+        //                _driver.FindElement(By.Id("listing-" + code))?.Click();
+        //                await Utility.Wait();
+        //                adv.UpdateDesc = "آگهی منتشر شده و در لیست آگهی های شیپور قرار گرفته است";
+        //                var counter = _driver.FindElement(By.ClassName("stat-view"))?.Text.FixString() ?? "0";
+        //                adv.VisitCount = counter.ParseToInt();
+        //                adv.StatusCode = StatusCode.Published;
+        //                adv.AdvType = AdvertiseType.Sheypoor;
+        //                adv.LastUpdate = DateTime.Now;
+        //                await adv.SaveAsync();
+        //                tryCount = 0;
+        //                _driver.Navigate().Back();
+        //                await Utility.Wait();
+        //            }
+        //            catch (Exception ex)
+        //            {
+        //                if (ex.Source != "WebDriver")
+        //                    WebErrorLog.ErrorInstence.StartErrorLog(ex);
+        //                await Utility.Wait();
+        //                tryCount++;
+        //            }
+        //        }
+        //        return true;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        if (ex.Source != "WebDriver")
+        //            WebErrorLog.ErrorInstence.StartErrorLog(ex);
+        //        return false;
+        //    }
+        //}
         private async Task<string> MakeUrl(string url)
         {
             try

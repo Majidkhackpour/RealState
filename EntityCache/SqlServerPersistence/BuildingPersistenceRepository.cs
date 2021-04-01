@@ -22,20 +22,108 @@ namespace EntityCache.SqlServerPersistence
             db = _db;
             _connectionString = connectionString;
         }
-
-        public async Task<List<BuildingBussines>> GetAllAsyncBySp()
+        public override async Task<List<BuildingBussines>> GetAllAsync()
         {
+            var list = new List<BuildingBussines>();
             try
             {
-                var res = db.Database.SqlQuery<BuildingBussines>("sp_Buildings_SelectAll");
-                var a = await res.ToListAsync();
-                return a;
+                using (var cn = new SqlConnection(_connectionString))
+                {
+                    var cmd = new SqlCommand("sp_Buildings_SelectAll", cn) { CommandType = CommandType.StoredProcedure };
+
+                    await cn.OpenAsync();
+                    var dr = await cmd.ExecuteReaderAsync();
+                    while (dr.Read()) list.Add(LoadData(dr));
+                    cn.Close();
+                }
             }
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
-                return null;
             }
+
+            return list;
+        }
+        public override async Task<ReturnedSaveFuncInfo> SaveAsync(BuildingBussines item, string tranName)
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                using (var cn = new SqlConnection(_connectionString))
+                {
+                    var cmd = new SqlCommand("sp_Building_Save", cn) { CommandType = CommandType.StoredProcedure };
+                    cmd.Parameters.AddWithValue("@guid", item.Guid);
+                    cmd.Parameters.AddWithValue("@st", item.Status);
+                    cmd.Parameters.AddWithValue("@ownerGuid", item.OwnerGuid);
+                    cmd.Parameters.AddWithValue("@modif", item.Modified);
+                    cmd.Parameters.AddWithValue("@sellPrice", item.SellPrice);
+                    cmd.Parameters.AddWithValue("@vamPrice", item.VamPrice);
+                    cmd.Parameters.AddWithValue("@qestPrice", item.QestPrice);
+                    cmd.Parameters.AddWithValue("@dong", item.Dang);
+                    cmd.Parameters.AddWithValue("@docTypeGuid", item.DocumentType);
+                    cmd.Parameters.AddWithValue("@tarakom", item.Tarakom);
+                    cmd.Parameters.AddWithValue("@rahnPrice1", item.RahnPrice1);
+                    cmd.Parameters.AddWithValue("@rahnPrice2", item.RahnPrice2);
+                    cmd.Parameters.AddWithValue("@ejarePrice1", item.EjarePrice1);
+                    cmd.Parameters.AddWithValue("@ejarePrice2", item.EjarePrice2);
+                    cmd.Parameters.AddWithValue("@rentalGuid", item.RentalAutorityGuid);
+                    cmd.Parameters.AddWithValue("@isShortTime", item.IsShortTime);
+                    cmd.Parameters.AddWithValue("@isOwnerHere", item.IsOwnerHere);
+                    cmd.Parameters.AddWithValue("@pishTotalPrice", item.PishTotalPrice);
+                    cmd.Parameters.AddWithValue("@pishPrice", item.PishPrice);
+                    cmd.Parameters.AddWithValue("@deliveryDate", item.DeliveryDate);
+                    cmd.Parameters.AddWithValue("@pishDesc", item.PishDesc??"");
+                    cmd.Parameters.AddWithValue("@moavezeDesc", item.MoavezeDesc??"");
+                    cmd.Parameters.AddWithValue("@mosharekatDesc", item.MosharekatDesc ?? "");
+                    cmd.Parameters.AddWithValue("@masahat", item.Masahat);
+                    cmd.Parameters.AddWithValue("@zirbana", item.ZirBana);
+                    cmd.Parameters.AddWithValue("@cityGuid", item.CityGuid);
+                    cmd.Parameters.AddWithValue("@regionGuid", item.RegionGuid);
+                    cmd.Parameters.AddWithValue("@address", item.Address??"");
+                    cmd.Parameters.AddWithValue("@conditionGuid", item.BuildingConditionGuid);
+                    cmd.Parameters.AddWithValue("@side", (int)item.Side);
+                    cmd.Parameters.AddWithValue("@typeGuid", item.BuildingTypeGuid);
+                    cmd.Parameters.AddWithValue("@shortDesc", item.ShortDesc??"");
+                    cmd.Parameters.AddWithValue("@accountTypeGuid", item.BuildingAccountTypeGuid);
+                    cmd.Parameters.AddWithValue("@metrazhTejari", item.MetrazhTejari);
+                    cmd.Parameters.AddWithValue("@viewGuid", item.BuildingViewGuid);
+                    cmd.Parameters.AddWithValue("@floorCoverGuid", item.FloorCoverGuid);
+                    cmd.Parameters.AddWithValue("@kitchenServiceGuid", item.KitchenServiceGuid);
+                    cmd.Parameters.AddWithValue("@water", (short)item.Water);
+                    cmd.Parameters.AddWithValue("@barq", (short)item.Barq);
+                    cmd.Parameters.AddWithValue("@gas", (short)item.Gas);
+                    cmd.Parameters.AddWithValue("@tell", (short)item.Tell);
+                    cmd.Parameters.AddWithValue("@tedadTabaqe", item.TedadTabaqe);
+                    cmd.Parameters.AddWithValue("@tabaqeNo", item.TabaqeNo);
+                    cmd.Parameters.AddWithValue("@vahedPerTabaqe", item.VahedPerTabaqe);
+                    cmd.Parameters.AddWithValue("@metrazheKouche", item.MetrazhKouche);
+                    cmd.Parameters.AddWithValue("@ertefaSaqf", item.ErtefaSaqf);
+                    cmd.Parameters.AddWithValue("@hashie", item.Hashie);
+                    cmd.Parameters.AddWithValue("@saleSakht", item.SaleSakht??"");
+                    cmd.Parameters.AddWithValue("@dateParvane", item.DateParvane??"");
+                    cmd.Parameters.AddWithValue("@parvaneSerial", item.ParvaneSerial??"");
+                    cmd.Parameters.AddWithValue("@bonBast", item.BonBast);
+                    cmd.Parameters.AddWithValue("@mamarJoda", item.MamarJoda);
+                    cmd.Parameters.AddWithValue("@roomCount", item.RoomCount);
+                    cmd.Parameters.AddWithValue("@code", item.Code??"");
+                    cmd.Parameters.AddWithValue("@userGuid", item.UserGuid);
+                    cmd.Parameters.AddWithValue("@createDate", item.CreateDate);
+                    cmd.Parameters.AddWithValue("@image", item.Image ?? "");
+                    cmd.Parameters.AddWithValue("@priority", (short)item.Priority);
+                    cmd.Parameters.AddWithValue("@isArchive", item.IsArchive);
+
+                    await cn.OpenAsync();
+                    await cmd.ExecuteNonQueryAsync();
+                    cn.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+
+            return res;
         }
         public async Task<string> NextCodeAsync()
         {

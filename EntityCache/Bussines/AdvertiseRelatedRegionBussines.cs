@@ -53,10 +53,8 @@ namespace EntityCache.Bussines
 
             return res;
         }
-
         public static async Task<List<AdvertiseRelatedRegionBussines>> GetAllAsync(string onlineRegion, bool status) =>
             await UnitOfWork.AdvertiseRelatedRegion.GetAllAsync(onlineRegion, status);
-
         public static async Task<ReturnedSaveFuncInfo> RemoveRangeAsync(List<AdvertiseRelatedRegionBussines> list,
             string tranName = "")
         {
@@ -89,12 +87,9 @@ namespace EntityCache.Bussines
 
             return res;
         }
-
         public static async Task<List<AdvertiseRelatedRegionBussines>> GetAllAsync() =>
             await UnitOfWork.AdvertiseRelatedRegion.GetAllAsync();
-
         public static async Task<AdvertiseRelatedRegionBussines> GetByRegionGuidAsync(Guid regionGuid) =>
             await UnitOfWork.AdvertiseRelatedRegion.GetByRegionGuidAsync(regionGuid);
-
     }
 }

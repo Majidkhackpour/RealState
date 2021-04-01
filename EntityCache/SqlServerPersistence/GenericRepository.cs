@@ -66,7 +66,7 @@ namespace EntityCache.SqlServerPersistence
                 return new ReturnedSaveFuncInfo(ex);
             }
         }
-        public async Task<ReturnedSaveFuncInfo> RemoveAllAsync(string tranName)
+        public virtual async Task<ReturnedSaveFuncInfo> RemoveAllAsync(string tranName)
         {
             try
             {
@@ -129,7 +129,7 @@ namespace EntityCache.SqlServerPersistence
                 return new ReturnedSaveFuncInfo(ex);
             }
         }
-        public async Task<ReturnedSaveFuncInfo> RemoveRangeAsync(IEnumerable<Guid> items, string tranName)
+        public virtual async Task<ReturnedSaveFuncInfo> RemoveRangeAsync(IEnumerable<Guid> items, string tranName)
         {
             try
             {

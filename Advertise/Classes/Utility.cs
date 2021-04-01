@@ -187,27 +187,27 @@ namespace Advertise.Classes
             }
             finally { notifyIcon.Dispose(); }
         }
-        private static async Task UpdateAdvStatus(int dayCount = 0)
-        {
-            try
-            {
-                TelegramSender.GetAdvertiseLog_bot()
-                    .Send($"سیستم مرجع: {await Utilities.GetNetworkIpAddress()} \r\n آغاز فرایند بروز رسانی آگهی ها");
-                DeleteTemp();
+        //private static async Task UpdateAdvStatus(int dayCount = 0)
+        //{
+        //    try
+        //    {
+        //        TelegramSender.GetAdvertiseLog_bot()
+        //            .Send($"سیستم مرجع: {await Utilities.GetNetworkIpAddress()} \r\n آغاز فرایند بروز رسانی آگهی ها");
+        //        DeleteTemp();
 
-                var divar = DivarAdv.GetInstance();
-                await divar.UpdateAllAdvStatus(500, dayCount);
+        //        var divar = DivarAdv.GetInstance();
+        //        await divar.UpdateAllAdvStatus(500, dayCount);
 
-                var sheypoor = SheypoorAdv.GetInstance();
-                await sheypoor.UpdateAllAdvStatus(500, dayCount);
+        //        var sheypoor = SheypoorAdv.GetInstance();
+        //        await sheypoor.UpdateAllAdvStatus(500, dayCount);
 
-                DeleteTemp();
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
+        //        DeleteTemp();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        WebErrorLog.ErrorInstence.StartErrorLog(ex);
+        //    }
+        //}
 
         #region DeleteTemp
         private static void DeleteLocalTemp(string path)
@@ -607,7 +607,7 @@ namespace Advertise.Classes
             {
                 var divar = DivarAdv.GetInstance();
                 res.AddReturnedValue(await divar.StartRegisterAdv(number));
-                Utility.Navigate("https://divar.ir/new");
+                Navigate("https://divar.ir/new");
             }
             catch (Exception ex)
             {

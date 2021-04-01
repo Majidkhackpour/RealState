@@ -44,7 +44,7 @@ namespace Advertise.Classes
         private List<string> lstMessage = new List<string>();
         public async Task<ReturnedSaveFuncInfo> StartRegisterAdv(long number)
         {
-            var ret=new ReturnedSaveFuncInfo();
+            var ret = new ReturnedSaveFuncInfo();
             try
             {
                 var res = await Utilities.PingHostAsync();
@@ -835,159 +835,159 @@ namespace Advertise.Classes
 
             return region;
         }
-        public async Task<bool> UpdateAllAdvStatus(int takeCount, int dayCount = 0, long number = 0,
-            bool isRaisEvent = true, string date1 = null, string date2 = null)
-        {
-            while (true)
-            {
-                try
-                {
-                    List<AdvertiseLogBussines> allAdvertiseLog = null;
-                    _driver = Utility.RefreshDriver(clsAdvertise.IsSilent);
-                    if (DateTime.Now.DayOfWeek == DayOfWeek.Friday)
-                    {
-                        dayCount = 7;
-                        var lastWeek = DateTime.Now.AddDays(-dayCount);
-                        var lst = await AdvertiseLogBussines
-                            .GetAllSpecialAsync(p => p.DateM > lastWeek && p.URL.Contains("manage"));
-                        allAdvertiseLog = lst.OrderBy(q => q.LastUpdate).ToList();
-                        if (allAdvertiseLog.Count <= 0) return true;
-                    }
-                    else
-                    {
-                        if (dayCount == 0)
-                            dayCount = clsAdvertise.Divar_DayCountForUpdateState;
-                        var lastWeek = DateTime.Now.AddDays(-dayCount);
-                        if (number == 0)
-                        {
-                            var lst = await AdvertiseLogBussines
-                                .GetAllSpecialAsync(p => p.DateM > lastWeek && p.URL.Contains("manage"));
-                            allAdvertiseLog = lst.OrderBy(q => q.LastUpdate).ToList();
-                            if (allAdvertiseLog.Count <= 0) return true;
-                            if (takeCount != 0)
-                            {
-                                var dayOfWeek = allAdvertiseLog.First().LastUpdate.DayOfWeek;
-                                if (dayOfWeek == DateTime.Now.DayOfWeek) return true;
-                                if (allAdvertiseLog.Count > takeCount)
-                                    allAdvertiseLog = allAdvertiseLog.Take(takeCount).ToList();
-                            }
-                        }
-                        else
-                        {
-                            var lst = await AdvertiseLogBussines
-                                .GetAllSpecialAsync(p =>
-                                    p.DateM > lastWeek && p.URL.Contains("manage") && p.SimcardNumber == number);
-                            allAdvertiseLog = lst.OrderByDescending(q => q.LastUpdate).ToList();
-                            if (allAdvertiseLog.Count <= 0) return true;
-                            if (takeCount != 0)
-                            {
-                                if (allAdvertiseLog.Count > takeCount)
-                                    allAdvertiseLog = allAdvertiseLog.Take(takeCount).ToList();
-                            }
-                        }
+        //public async Task<bool> UpdateAllAdvStatus(int takeCount, int dayCount = 0, long number = 0,
+        //    bool isRaisEvent = true, string date1 = null, string date2 = null)
+        //{
+        //    while (true)
+        //    {
+        //        try
+        //        {
+        //            List<AdvertiseLogBussines> allAdvertiseLog = null;
+        //            _driver = Utility.RefreshDriver(clsAdvertise.IsSilent);
+        //            if (DateTime.Now.DayOfWeek == DayOfWeek.Friday)
+        //            {
+        //                dayCount = 7;
+        //                var lastWeek = DateTime.Now.AddDays(-dayCount);
+        //                var lst = await AdvertiseLogBussines
+        //                    .GetAllSpecialAsync(p => p.DateM > lastWeek && p.URL.Contains("manage"));
+        //                allAdvertiseLog = lst.OrderBy(q => q.LastUpdate).ToList();
+        //                if (allAdvertiseLog.Count <= 0) return true;
+        //            }
+        //            else
+        //            {
+        //                if (dayCount == 0)
+        //                    dayCount = clsAdvertise.Divar_DayCountForUpdateState;
+        //                var lastWeek = DateTime.Now.AddDays(-dayCount);
+        //                if (number == 0)
+        //                {
+        //                    var lst = await AdvertiseLogBussines
+        //                        .GetAllSpecialAsync(p => p.DateM > lastWeek && p.URL.Contains("manage"));
+        //                    allAdvertiseLog = lst.OrderBy(q => q.LastUpdate).ToList();
+        //                    if (allAdvertiseLog.Count <= 0) return true;
+        //                    if (takeCount != 0)
+        //                    {
+        //                        var dayOfWeek = allAdvertiseLog.First().LastUpdate.DayOfWeek;
+        //                        if (dayOfWeek == DateTime.Now.DayOfWeek) return true;
+        //                        if (allAdvertiseLog.Count > takeCount)
+        //                            allAdvertiseLog = allAdvertiseLog.Take(takeCount).ToList();
+        //                    }
+        //                }
+        //                else
+        //                {
+        //                    var lst = await AdvertiseLogBussines
+        //                        .GetAllSpecialAsync(p =>
+        //                            p.DateM > lastWeek && p.URL.Contains("manage") && p.SimcardNumber == number);
+        //                    allAdvertiseLog = lst.OrderByDescending(q => q.LastUpdate).ToList();
+        //                    if (allAdvertiseLog.Count <= 0) return true;
+        //                    if (takeCount != 0)
+        //                    {
+        //                        if (allAdvertiseLog.Count > takeCount)
+        //                            allAdvertiseLog = allAdvertiseLog.Take(takeCount).ToList();
+        //                    }
+        //                }
 
-                        if (date1 != null)
-                        {
-                            var from = Calendar.ShamsiToMiladi(date1);
-                            var to = Calendar.ShamsiToMiladi(date2);
-                            var lst = await AdvertiseLogBussines
-                                .GetAllSpecialAsync(p =>
-                                    p.DateM >= from && p.DateM <= to && p.URL.Contains("manage"));
-                            allAdvertiseLog = lst.OrderByDescending(q => q.LastUpdate).ToList();
-                            if (allAdvertiseLog.Count <= 0) return true;
-                        }
-                    }
+        //                if (date1 != null)
+        //                {
+        //                    var from = Calendar.ShamsiToMiladi(date1);
+        //                    var to = Calendar.ShamsiToMiladi(date2);
+        //                    var lst = await AdvertiseLogBussines
+        //                        .GetAllSpecialAsync(p =>
+        //                            p.DateM >= from && p.DateM <= to && p.URL.Contains("manage"));
+        //                    allAdvertiseLog = lst.OrderByDescending(q => q.LastUpdate).ToList();
+        //                    if (allAdvertiseLog.Count <= 0) return true;
+        //                }
+        //            }
 
-                    //var listNumbers = new List<long>();
-                    foreach (var adv in allAdvertiseLog)
-                    {
-                        try
-                        {
-                            _driver.Navigate().GoToUrl(adv.URL);
-                            await Utility.Wait(2);
-                            //listNumbers.Add(adv.SimCardNumber);
-                            var notFound = _driver
-                                .FindElements(By.ClassName("title")).Any(q => q.Text == "این راه به جایی نمیرسد!");
-                            if (notFound)
-                            {
-                                adv.UpdateDesc = "لینک مدیریتی باطل شده";
-                                adv.StatusCode = StatusCode.Failed;
-                                adv.LastUpdate = DateTime.Now;
-                                adv.URL = "---";
-                                await adv.SaveAsync();
-                                continue;
-                            }
-
-
-                            var notAllowed = _driver
-                                .FindElements(By.ClassName("ui")).Any(q =>
-                                    q.Text == "برای ادامهٔ استفاده از دیوار، نیاز است وارد حساب خود شوید.");
-                            if (notAllowed)
-                            {
-                                _driver.FindElement(By.ClassName("close"))?.Click();
-                                await Utility.Wait();
-                            }
+        //            //var listNumbers = new List<long>();
+        //            foreach (var adv in allAdvertiseLog)
+        //            {
+        //                try
+        //                {
+        //                    _driver.Navigate().GoToUrl(adv.URL);
+        //                    await Utility.Wait(2);
+        //                    //listNumbers.Add(adv.SimCardNumber);
+        //                    var notFound = _driver
+        //                        .FindElements(By.ClassName("title")).Any(q => q.Text == "این راه به جایی نمیرسد!");
+        //                    if (notFound)
+        //                    {
+        //                        adv.UpdateDesc = "لینک مدیریتی باطل شده";
+        //                        adv.StatusCode = StatusCode.Failed;
+        //                        adv.LastUpdate = DateTime.Now;
+        //                        adv.URL = "---";
+        //                        await adv.SaveAsync();
+        //                        continue;
+        //                    }
 
 
-
-                            await Utility.Wait(2);
-                            var element = _driver.FindElement(By.ClassName("manage-header__status"));
-                            if (element == null) continue;
-                            var advStatus = element.Text;
-                            element = _driver.FindElement(By.ClassName("manage-header__description"));
-                            if (element == null) continue;
-                            adv.UpdateDesc = element.Text;
-                            adv.StatusCode = Utility.GetAdvStatusCodeByStatus(advStatus);
-                            var tel = _driver.FindElement(By.ClassName("kt-unexpandable-row__action"));
-                            if (tel != null)
-                                adv.SimcardNumber = tel.Text.FixString().ParseToLong();
+        //                    var notAllowed = _driver
+        //                        .FindElements(By.ClassName("ui")).Any(q =>
+        //                            q.Text == "برای ادامهٔ استفاده از دیوار، نیاز است وارد حساب خود شوید.");
+        //                    if (notAllowed)
+        //                    {
+        //                        _driver.FindElement(By.ClassName("close"))?.Click();
+        //                        await Utility.Wait();
+        //                    }
 
 
-                            //بروزرسانی آمار بازدید منتشر شده ها
-                            if (adv.StatusCode == StatusCode.Published)
-                            {
-                                var visitCountEl = _driver.FindElement(By.ClassName("post-stats__summary"));
-                                if (visitCountEl != null && visitCountEl.Text.Length > 11)
-                                {
-                                    int.TryParse(visitCountEl.Text.Substring(11).Trim().FixString(), out var cnt);
-                                    adv.VisitCount = cnt;
-                                }
-                            }
 
-                            adv.LastUpdate = DateTime.Now;
-                            await adv.SaveAsync();
-                            if (isRaisEvent) RaiseEvent();
+        //                    await Utility.Wait(2);
+        //                    var element = _driver.FindElement(By.ClassName("manage-header__status"));
+        //                    if (element == null) continue;
+        //                    var advStatus = element.Text;
+        //                    element = _driver.FindElement(By.ClassName("manage-header__description"));
+        //                    if (element == null) continue;
+        //                    adv.UpdateDesc = element.Text;
+        //                    adv.StatusCode = Utility.GetAdvStatusCodeByStatus(advStatus);
+        //                    var tel = _driver.FindElement(By.ClassName("kt-unexpandable-row__action"));
+        //                    if (tel != null)
+        //                        adv.SimcardNumber = tel.Text.FixString().ParseToLong();
 
-                        }
-                        catch (Exception ex)
-                        {
-                            if (ex.Source != "WebDriver")
-                                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-                            await Utility.Wait();
-                        }
-                    }
-                    //var t = listNumbers.GroupBy(q => q).Where(q => q.Count() == 1).Select(q => q.Key).ToList();
-                    //listNumbers.Clear();
-                    //listNumbers.AddRange(t);
-                    //if (t.Count <= 0) return true;
-                    //foreach (var adv in t)
-                    //{
-                    //    var token = await AdvTokensBusiness.GetToken(adv, AdvertiseType.DivarChat);
-                    //    if (string.IsNullOrEmpty(token.Token)) continue;
-                    //    await Utility.SendChat(adv);
-                    //}
 
-                    return true;
-                }
-                catch (Exception ex)
-                {
-                    if (ex.Source != "WebDriver")
-                        WebErrorLog.ErrorInstence.StartErrorLog(ex);
-                    return false;
-                }
-            }
+        //                    //بروزرسانی آمار بازدید منتشر شده ها
+        //                    if (adv.StatusCode == StatusCode.Published)
+        //                    {
+        //                        var visitCountEl = _driver.FindElement(By.ClassName("post-stats__summary"));
+        //                        if (visitCountEl != null && visitCountEl.Text.Length > 11)
+        //                        {
+        //                            int.TryParse(visitCountEl.Text.Substring(11).Trim().FixString(), out var cnt);
+        //                            adv.VisitCount = cnt;
+        //                        }
+        //                    }
 
-        }
+        //                    adv.LastUpdate = DateTime.Now;
+        //                    await adv.SaveAsync();
+        //                    if (isRaisEvent) RaiseEvent();
+
+        //                }
+        //                catch (Exception ex)
+        //                {
+        //                    if (ex.Source != "WebDriver")
+        //                        WebErrorLog.ErrorInstence.StartErrorLog(ex);
+        //                    await Utility.Wait();
+        //                }
+        //            }
+        //            //var t = listNumbers.GroupBy(q => q).Where(q => q.Count() == 1).Select(q => q.Key).ToList();
+        //            //listNumbers.Clear();
+        //            //listNumbers.AddRange(t);
+        //            //if (t.Count <= 0) return true;
+        //            //foreach (var adv in t)
+        //            //{
+        //            //    var token = await AdvTokensBusiness.GetToken(adv, AdvertiseType.DivarChat);
+        //            //    if (string.IsNullOrEmpty(token.Token)) continue;
+        //            //    await Utility.SendChat(adv);
+        //            //}
+
+        //            return true;
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            if (ex.Source != "WebDriver")
+        //                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+        //            return false;
+        //        }
+        //    }
+
+        //}
         private async Task<bool> UpdateAdvStatus(AdvertiseLogBussines adv, long number = 0)
         {
             try
@@ -1131,24 +1131,24 @@ namespace Advertise.Classes
                 return false;
             }
         }
-        public async Task DeleteAllAdvFromDivar(int fromNDayBefore, StatusCode statusCode)
-        {
-            try
-            {
-                var date = DateTime.Now.AddDays(-fromNDayBefore);
-                var advList = await
-                    AdvertiseLogBussines.GetAllSpecialAsync(p => p.DateM < date && p.StatusCode == statusCode);
-                advList = advList.OrderByDescending(q => q.DateM).ToList();
-                foreach (var adv in advList)
-                {
-                    await DeleteAdvFromDivar(adv);
-                }
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
+        //public async Task DeleteAllAdvFromDivar(int fromNDayBefore, StatusCode statusCode)
+        //{
+        //    try
+        //    {
+        //        var date = DateTime.Now.AddDays(-fromNDayBefore);
+        //        var advList = await
+        //            AdvertiseLogBussines.GetAllSpecialAsync(p => p.DateM < date && p.StatusCode == statusCode);
+        //        advList = advList.OrderByDescending(q => q.DateM).ToList();
+        //        foreach (var adv in advList)
+        //        {
+        //            await DeleteAdvFromDivar(adv);
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        WebErrorLog.ErrorInstence.StartErrorLog(ex);
+        //    }
+        //}
         private async Task GetEditNeededAdv(long number)
         {
             try
@@ -2053,7 +2053,7 @@ namespace Advertise.Classes
                         while (true)
                         {
                             var j = _driver.FindElements(By.ClassName("kt-post-card__body")).ToList();
-                            for (var i = 0; i < j.Count-1; i++)
+                            for (var i = 0; i < j.Count - 1; i++)
                             {
                                 if (_driver.Url.Contains("https://divar.ir/v/")) _driver.Navigate().Back();
 

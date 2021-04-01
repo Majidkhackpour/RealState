@@ -70,11 +70,5 @@ namespace EntityCache.Bussines
             return res;
         }
         public static async Task<AdvertiseLogBussines> GetAsync(string url) => await UnitOfWork.AdvertiseLog.GetAsync(url);
-
-        public static async Task<List<AdvertiseLogBussines>> GetAllSpecialAsync(
-            Expression<Func<IAdvertiseLog, bool>> @where = null,
-            Func<IQueryable<IAdvertiseLog>, IOrderedQueryable<IAdvertiseLog>> @orderby = null, string includes = "",
-            int takeCount = -1) =>
-            await UnitOfWork.AdvertiseLog.GetAllSpecialAsync(@where, orderby, includes, takeCount);
     }
 }

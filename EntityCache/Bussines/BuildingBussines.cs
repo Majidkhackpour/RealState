@@ -117,7 +117,7 @@ namespace EntityCache.Bussines
         }
         #endregion
 
-        public static async Task<List<BuildingBussines>> GetAllAsync() => await UnitOfWork.Building.GetAllAsyncBySp();
+        public static async Task<List<BuildingBussines>> GetAllAsync() => await UnitOfWork.Building.GetAllAsync();
         public static async Task<BuildingBussines> GetAsync(Guid guid) => await UnitOfWork.Building.GetAsync(guid);
         public static BuildingBussines Get(Guid guid) => AsyncContext.Run(() => GetAsync(guid));
         public async Task<ReturnedSaveFuncInfo> SaveAsync(string tranName = "")
@@ -150,14 +150,14 @@ namespace EntityCache.Bussines
                 {
                     var list = await BuildingGalleryBussines.GetAllAsync(Guid, Status);
                     res.AddReturnedValue(
-                        await UnitOfWork.BuildingGallery.RemoveRangeAsync(list.Select(q => q.Guid).ToList(),
+                        await BuildingGalleryBussines.RemoveRangeAsync(list.Select(q => q.Guid).ToList(),
                             tranName));
                     if (res.HasError) return res;
 
                     foreach (var item in GalleryList)
                         item.BuildingGuid = Guid;
                     res.AddReturnedValue(
-                        await UnitOfWork.BuildingGallery.SaveRangeAsync(GalleryList, tranName));
+                        await BuildingGalleryBussines.SaveRangeAsync(GalleryList, tranName));
                     if (res.HasError) return res;
                 }
 
