@@ -19,7 +19,7 @@ namespace EntityCache.Bussines
 
         public static async Task<List<BuildingGalleryBussines>> GetAllAsync(Guid parentGuid, bool status) =>
             await UnitOfWork.BuildingGallery.GetAllAsync(parentGuid, status);
-        public async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(bool status, string tranName = "")
+        public static async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(Guid masterGuid, bool status, string tranName = "")
         {
             var res = new ReturnedSaveFuncInfo();
             var autoTran = string.IsNullOrEmpty(tranName);
@@ -30,7 +30,7 @@ namespace EntityCache.Bussines
                 { //BeginTransaction
                 }
 
-                res.AddReturnedValue(await UnitOfWork.BuildingGallery.ChangeStatusAsync(this, status, tranName));
+                res.AddReturnedValue(await UnitOfWork.BuildingGallery.ChangeStatusAsync(masterGuid, status));
                 if (res.HasError) return res;
                 if (autoTran)
                 {
@@ -51,7 +51,7 @@ namespace EntityCache.Bussines
         }
         public static async Task<ReturnedSaveFuncInfo> SaveRangeAsync(List<BuildingGalleryBussines> list,
             string tranName = "") => await UnitOfWork.BuildingGallery.SaveRangeAsync(list, tranName);
-        public static async Task<ReturnedSaveFuncInfo> RemoveRangeAsync(List<Guid> list,
-            string tranName = "") => await UnitOfWork.BuildingGallery.RemoveRangeAsync(list, tranName);
+        public static async Task<ReturnedSaveFuncInfo> RemoveRangeAsync(Guid masterGuid,
+            string tranName = "") => await UnitOfWork.BuildingGallery.RemoveRangeAsync(masterGuid, tranName);
     }
 }

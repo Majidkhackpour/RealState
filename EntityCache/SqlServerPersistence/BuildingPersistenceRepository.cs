@@ -72,18 +72,18 @@ namespace EntityCache.SqlServerPersistence
                     cmd.Parameters.AddWithValue("@pishTotalPrice", item.PishTotalPrice);
                     cmd.Parameters.AddWithValue("@pishPrice", item.PishPrice);
                     cmd.Parameters.AddWithValue("@deliveryDate", item.DeliveryDate);
-                    cmd.Parameters.AddWithValue("@pishDesc", item.PishDesc??"");
-                    cmd.Parameters.AddWithValue("@moavezeDesc", item.MoavezeDesc??"");
+                    cmd.Parameters.AddWithValue("@pishDesc", item.PishDesc ?? "");
+                    cmd.Parameters.AddWithValue("@moavezeDesc", item.MoavezeDesc ?? "");
                     cmd.Parameters.AddWithValue("@mosharekatDesc", item.MosharekatDesc ?? "");
                     cmd.Parameters.AddWithValue("@masahat", item.Masahat);
                     cmd.Parameters.AddWithValue("@zirbana", item.ZirBana);
                     cmd.Parameters.AddWithValue("@cityGuid", item.CityGuid);
                     cmd.Parameters.AddWithValue("@regionGuid", item.RegionGuid);
-                    cmd.Parameters.AddWithValue("@address", item.Address??"");
+                    cmd.Parameters.AddWithValue("@address", item.Address ?? "");
                     cmd.Parameters.AddWithValue("@conditionGuid", item.BuildingConditionGuid);
                     cmd.Parameters.AddWithValue("@side", (int)item.Side);
                     cmd.Parameters.AddWithValue("@typeGuid", item.BuildingTypeGuid);
-                    cmd.Parameters.AddWithValue("@shortDesc", item.ShortDesc??"");
+                    cmd.Parameters.AddWithValue("@shortDesc", item.ShortDesc ?? "");
                     cmd.Parameters.AddWithValue("@accountTypeGuid", item.BuildingAccountTypeGuid);
                     cmd.Parameters.AddWithValue("@metrazhTejari", item.MetrazhTejari);
                     cmd.Parameters.AddWithValue("@viewGuid", item.BuildingViewGuid);
@@ -99,13 +99,13 @@ namespace EntityCache.SqlServerPersistence
                     cmd.Parameters.AddWithValue("@metrazheKouche", item.MetrazhKouche);
                     cmd.Parameters.AddWithValue("@ertefaSaqf", item.ErtefaSaqf);
                     cmd.Parameters.AddWithValue("@hashie", item.Hashie);
-                    cmd.Parameters.AddWithValue("@saleSakht", item.SaleSakht??"");
-                    cmd.Parameters.AddWithValue("@dateParvane", item.DateParvane??"");
-                    cmd.Parameters.AddWithValue("@parvaneSerial", item.ParvaneSerial??"");
+                    cmd.Parameters.AddWithValue("@saleSakht", item.SaleSakht ?? "");
+                    cmd.Parameters.AddWithValue("@dateParvane", item.DateParvane ?? "");
+                    cmd.Parameters.AddWithValue("@parvaneSerial", item.ParvaneSerial ?? "");
                     cmd.Parameters.AddWithValue("@bonBast", item.BonBast);
                     cmd.Parameters.AddWithValue("@mamarJoda", item.MamarJoda);
                     cmd.Parameters.AddWithValue("@roomCount", item.RoomCount);
-                    cmd.Parameters.AddWithValue("@code", item.Code??"");
+                    cmd.Parameters.AddWithValue("@code", item.Code ?? "");
                     cmd.Parameters.AddWithValue("@userGuid", item.UserGuid);
                     cmd.Parameters.AddWithValue("@createDate", item.CreateDate);
                     cmd.Parameters.AddWithValue("@image", item.Image ?? "");
@@ -125,67 +125,71 @@ namespace EntityCache.SqlServerPersistence
 
             return res;
         }
-        public async Task<string> NextCodeAsync()
+        public override async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(BuildingBussines item, bool status, string tranName)
         {
+            var res = new ReturnedSaveFuncInfo();
             try
             {
-                var all = await GetAllAsync();
-                if (all.Count <= 0) return "001001";
-                var code = all.ToList()?.Max(q => long.Parse(q.Code)) ?? 0;
-                code += 1;
-                var new_code = code.ToString();
-                if (code < 10)
+                using (var cn = new SqlConnection(_connectionString))
                 {
-                    new_code = "00000" + code;
-                    return new_code;
-                }
-                if (code >= 10 && code < 100)
-                {
-                    new_code = "0000" + code;
-                    return new_code;
-                }
-                if (code >= 100 && code < 1000)
-                {
-                    new_code = "000" + code;
-                    return new_code;
-                }
+                    var cmd = new SqlCommand("sp_Building_ChangeStatus", cn) { CommandType = CommandType.StoredProcedure };
+                    cmd.Parameters.AddWithValue("@Guid", item.Guid);
+                    cmd.Parameters.AddWithValue("@st", status);
 
-                if (code >= 1000 && code < 10000)
-                {
-                    new_code = "00" + code;
-                    return new_code;
+                    await cn.OpenAsync();
+                    await cmd.ExecuteNonQueryAsync();
+                    cn.Close();
                 }
-                if (code >= 10000 && code < 100000)
-                {
-                    new_code = "0" + code;
-                    return new_code;
-                }
-                if (code >= 100000 && code < 1000000)
-                {
-                    new_code = code.ToString();
-                    return new_code;
-                }
-
-                return new_code;
             }
-            catch (Exception exception)
+            catch (Exception ex)
             {
-                WebErrorLog.ErrorInstence.StartErrorLog(exception);
-                return "001001";
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
             }
+
+            return res;
+        }
+        public async Task<string> NextCodeAsync()
+        {
+            var res = "0";
+            try
+            {
+                using (var cn = new SqlConnection(_connectionString))
+                {
+                    var cmd = new SqlCommand("sp_Building_NextCode", cn) { CommandType = CommandType.StoredProcedure };
+
+                    await cn.OpenAsync();
+                    var obj = await cmd.ExecuteScalarAsync();
+                    if (obj != null) res = obj.ToString();
+                    cn.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+
+            return res;
         }
         public async Task<bool> CheckCodeAsync(string code, Guid guid)
         {
             try
             {
-                var acc = db.Building.AsNoTracking()
-                    .Where(q => q.Code == code.Trim() && q.Guid != guid)
-                    .ToList();
-                return acc.Count == 0;
+                using (var cn = new SqlConnection(_connectionString))
+                {
+                    var cmd = new SqlCommand("sp_Building_CheckCode", cn) { CommandType = CommandType.StoredProcedure };
+                    cmd.Parameters.AddWithValue("@guid", guid);
+                    cmd.Parameters.AddWithValue("@code", code);
+
+                    await cn.OpenAsync();
+                    var count = (int)await cmd.ExecuteScalarAsync();
+                    cn.Close();
+                    return count <= 0;
+                }
             }
-            catch (Exception exception)
+            catch (Exception ex)
             {
-                WebErrorLog.ErrorInstence.StartErrorLog(exception);
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
                 return false;
             }
         }
@@ -216,9 +220,9 @@ namespace EntityCache.SqlServerPersistence
             var res = new ReturnedSaveFuncInfo();
             try
             {
-                using (var cn=new SqlConnection(_connectionString))
+                using (var cn = new SqlConnection(_connectionString))
                 {
-                    var cmd = new SqlCommand("sp_Building_FixImages", cn) {CommandType = CommandType.StoredProcedure};
+                    var cmd = new SqlCommand("sp_Building_FixImages", cn) { CommandType = CommandType.StoredProcedure };
 
                     await cn.OpenAsync();
                     await cmd.ExecuteNonQueryAsync();

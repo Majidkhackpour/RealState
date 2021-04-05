@@ -4373,7 +4373,7 @@ AS
 BEGIN
 	update BuildingGalleries
 	set Status=@st
-	where Guid=@guid
+	where BuildingGuid=@guid
 END
 GO
 --========================================================================================================
@@ -4420,7 +4420,7 @@ Alter PROCEDURE sp_BuildingGallery_Remove
 AS
 BEGIN
 	delete from BuildingGalleries
-	where Guid=@guid
+	where BuildingGuid=@guid
 END
 GO
 --========================================================================================================
@@ -4740,3 +4740,104 @@ BEGIN
 	end
 END
 GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Building_ChangeStatus]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Building_ChangeStatus]	As Begin print 11 end')  
+GO
+ALTER PROCEDURE [dbo].[sp_Building_ChangeStatus]
+	@Guid uniqueidentifier,
+	@st bit
+AS
+BEGIN
+	update Buildings
+	set Status=@st
+	where Guid=@Guid
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Building_NextCode]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Building_NextCode]	As Begin print 11 end')  
+GO
+ALTER PROCEDURE [dbo].[sp_Building_NextCode]
+AS
+BEGIN
+	declare @nextCode nvarchar(10)
+	select @nextCode = MAX(Code) From Buildings
+	set @nextCode = (isnull(@nextCode , 0))
+	set @nextCode = CAST(@nextCode AS bigint) + 1
+	select @nextCode
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Building_CheckCode]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Building_CheckCode]	As Begin print 11 end')  
+GO
+ALTER PROCEDURE [dbo].[sp_Building_CheckCode]
+	@guid uniqueidentifier,
+	@code nvarchar(20)
+AS
+BEGIN
+	select COUNT(*) from Buildings
+	where Code=@code and Guid<>@guid
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_BuildingRelatedOption_ChangeStatus]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_BuildingRelatedOption_ChangeStatus]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_BuildingRelatedOption_ChangeStatus
+	@guid uniqueidentifier,
+	@st bit
+AS
+BEGIN
+	update BuildingRelatedOptions
+	set Status=@st
+	where BuildinGuid=@guid
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_BuildingRelatedOption_Remove]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_BuildingRelatedOption_Remove]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_BuildingRelatedOption_Remove
+	@guid uniqueidentifier
+AS
+BEGIN
+	delete from BuildingRelatedOptions
+	where BuildinGuid=@guid
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_BuildingRelatedOptopn_Save]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_BuildingRelatedOptopn_Save]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_BuildingRelatedOptopn_Save
+	@guid uniqueidentifier,
+	@st bit,
+	@modif datetime,
+	@buGuid uniqueidentifier,
+	@buOptionGuid uniqueidentifier
+AS
+BEGIN
+	UPDATE [dbo].[BuildingRelatedOptions]
+	   SET [Modified] = @modif
+		  ,[Status] = @st
+		  ,[BuildinGuid] = @buGuid
+		  ,[BuildingOptionGuid] = @buOptionGuid
+	 WHERE [Guid] = @guid
+	 if @@ROWCOUNT = 0
+	 begin
+		INSERT INTO [dbo].[BuildingRelatedOptions]
+           ([Guid]
+           ,[Modified]
+           ,[Status]
+           ,[BuildinGuid]
+           ,[BuildingOptionGuid])
+		VALUES
+           (@guid
+           ,@modif
+           ,@st
+           ,@buGuid
+           ,@buOptionGuid)
+	 end
+END

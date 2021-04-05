@@ -44,7 +44,7 @@ namespace EntityCache.SqlServerPersistence
 
             return list;
         }
-        public override async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(BuildingGalleryBussines item, bool status, string tranName)
+        public async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(Guid masterGuid, bool status)
         {
             var res = new ReturnedSaveFuncInfo();
             try
@@ -52,7 +52,7 @@ namespace EntityCache.SqlServerPersistence
                 using (var cn = new SqlConnection(_connectionString))
                 {
                     var cmd = new SqlCommand("sp_BuildingGallery_ChangeStatus", cn) { CommandType = CommandType.StoredProcedure };
-                    cmd.Parameters.AddWithValue("@Guid", item.Guid);
+                    cmd.Parameters.AddWithValue("@Guid", masterGuid);
                     cmd.Parameters.AddWithValue("@st", status);
 
                     await cn.OpenAsync();
@@ -66,6 +66,28 @@ namespace EntityCache.SqlServerPersistence
                 res.AddReturnedValue(ex);
             }
 
+            return res;
+        }
+        public async Task<ReturnedSaveFuncInfo> RemoveRangeAsync(Guid masterGuid, string tranName)
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                using (var cn = new SqlConnection(_connectionString))
+                {
+                    var cmd = new SqlCommand("sp_BuildingGallery_Remove", cn) { CommandType = CommandType.StoredProcedure };
+                    cmd.Parameters.AddWithValue("@guid", masterGuid);
+
+                    await cn.OpenAsync();
+                    await cmd.ExecuteNonQueryAsync();
+                    cn.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
             return res;
         }
         public override async Task<ReturnedSaveFuncInfo> SaveAsync(BuildingGalleryBussines item, string tranName)
@@ -103,46 +125,6 @@ namespace EntityCache.SqlServerPersistence
                 foreach (var item in items)
                 {
                     res.AddReturnedValue(await SaveAsync(item, tranName));
-                    if (res.HasError) return res;
-                }
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-                res.AddReturnedValue(ex);
-            }
-            return res;
-        }
-        public override async Task<ReturnedSaveFuncInfo> RemoveAsync(Guid guid, string tranName)
-        {
-            var res = new ReturnedSaveFuncInfo();
-            try
-            {
-                using (var cn = new SqlConnection(_connectionString))
-                {
-                    var cmd = new SqlCommand("sp_BuildingGallery_Remove", cn) { CommandType = CommandType.StoredProcedure };
-                    cmd.Parameters.AddWithValue("@guid", guid);
-
-                    await cn.OpenAsync();
-                    await cmd.ExecuteNonQueryAsync();
-                    cn.Close();
-                }
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-                res.AddReturnedValue(ex);
-            }
-            return res;
-        }
-        public override async Task<ReturnedSaveFuncInfo> RemoveRangeAsync(IEnumerable<Guid> items, string tranName)
-        {
-            var res = new ReturnedSaveFuncInfo();
-            try
-            {
-                foreach (var item in items)
-                {
-                    res.AddReturnedValue(await RemoveAsync(item, tranName));
                     if (res.HasError) return res;
                 }
             }

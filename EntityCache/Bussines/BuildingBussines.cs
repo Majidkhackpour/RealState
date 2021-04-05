@@ -133,31 +133,24 @@ namespace EntityCache.Bussines
 
                 if (OptionList.Count > 0)
                 {
-                    var list = await BuildingRelatedOptionsBussines.GetAllAsync(Guid, Status);
-                    res.AddReturnedValue(
-                        await UnitOfWork.BuildingRelatedOptions.RemoveRangeAsync(list.Select(q => q.Guid).ToList(),
-                            tranName));
+                    res.AddReturnedValue(await BuildingRelatedOptionsBussines.RemoveRangeAsync(Guid, tranName));
                     if (res.HasError) return res;
 
                     foreach (var item in OptionList)
                         item.BuildinGuid = Guid;
-                    res.AddReturnedValue(
-                        await UnitOfWork.BuildingRelatedOptions.SaveRangeAsync(OptionList, tranName));
+                    res.AddReturnedValue(await BuildingRelatedOptionsBussines.SaveRangeAsync(OptionList, tranName));
                     if (res.HasError) return res;
                 }
 
                 if (GalleryList.Count > 0)
                 {
-                    var list = await BuildingGalleryBussines.GetAllAsync(Guid, Status);
-                    res.AddReturnedValue(
-                        await BuildingGalleryBussines.RemoveRangeAsync(list.Select(q => q.Guid).ToList(),
-                            tranName));
+                    res.AddReturnedValue(await BuildingGalleryBussines.RemoveRangeAsync(Guid, tranName));
                     if (res.HasError) return res;
 
                     foreach (var item in GalleryList)
                         item.BuildingGuid = Guid;
-                    res.AddReturnedValue(
-                        await BuildingGalleryBussines.SaveRangeAsync(GalleryList, tranName));
+
+                    res.AddReturnedValue(await BuildingGalleryBussines.SaveRangeAsync(GalleryList, tranName));
                     if (res.HasError) return res;
                 }
 
@@ -197,22 +190,14 @@ namespace EntityCache.Bussines
 
                 if (OptionList.Count > 0)
                 {
-                    foreach (var item in OptionList)
-                    {
-                        res.AddReturnedValue(
-                            await item.ChangeStatusAsync(status, tranName));
-                        if (res.HasError) return res;
-                    }
+                    res.AddReturnedValue(await BuildingRelatedOptionsBussines.ChangeStatusAsync(Guid, status));
+                    if (res.HasError) return res;
                 }
 
                 if (GalleryList.Count > 0)
                 {
-                    foreach (var item in GalleryList)
-                    {
-                        res.AddReturnedValue(
-                            await item.ChangeStatusAsync(status, tranName));
-                        if (res.HasError) return res;
-                    }
+                    res.AddReturnedValue(await BuildingGalleryBussines.ChangeStatusAsync(Guid, status, tranName));
+                    if (res.HasError) return res;
                 }
 
 
