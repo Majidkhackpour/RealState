@@ -21,9 +21,7 @@ namespace EntityCache.Bussines
 
         public static async Task<List<BuildingRequestRegionBussines>> GetAllAsync(Guid parentGuid, bool status) =>
             await UnitOfWork.BuildingRequestRegion.GetAllAsync(parentGuid, status);
-        public static async Task<List<BuildingRequestRegionBussines>> GetAllAsync() =>
-            await UnitOfWork.BuildingRequestRegion.GetAllAsync();
-        public async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(bool status, string tranName = "")
+        public static async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(Guid masterGuid, bool status, string tranName = "")
         {
             var res = new ReturnedSaveFuncInfo();
             var autoTran = string.IsNullOrEmpty(tranName);
@@ -34,7 +32,7 @@ namespace EntityCache.Bussines
                 { //BeginTransaction
                 }
 
-                res.AddReturnedValue(await UnitOfWork.BuildingRequestRegion.ChangeStatusAsync(this, status, tranName));
+                res.AddReturnedValue(await UnitOfWork.BuildingRequestRegion.ChangeStatusAsync(masterGuid, status, tranName));
                 if (res.HasError) return res;
                 if (autoTran)
                 {
@@ -53,5 +51,9 @@ namespace EntityCache.Bussines
 
             return res;
         }
+        public static async Task<ReturnedSaveFuncInfo> SaveRangeAsync(List<BuildingRequestRegionBussines> list,
+            string tranName = "") => await UnitOfWork.BuildingRequestRegion.SaveRangeAsync(list, tranName);
+        public static async Task<ReturnedSaveFuncInfo> RemoveRangeAsync(Guid masterGuid,
+            string tranName = "") => await UnitOfWork.BuildingRequestRegion.RemoveRangeAsync(masterGuid, tranName);
     }
 }

@@ -59,37 +59,6 @@ namespace EntityCache.Bussines
         }
         public static async Task<SmsLogBussines> GetAsync(Guid guid) => await UnitOfWork.SmsLog.GetAsync(guid);
         public static async Task<List<SmsLogBussines>> GetAllAsync() => await UnitOfWork.SmsLog.GetAllBySpAsync();
-        public async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(bool status, string tranName = "")
-        {
-            var res = new ReturnedSaveFuncInfo();
-            var autoTran = string.IsNullOrEmpty(tranName);
-            if (autoTran) tranName = Guid.NewGuid().ToString();
-            try
-            {
-                if (autoTran)
-                { //BeginTransaction
-                }
-
-
-                res.AddReturnedValue(await UnitOfWork.SmsLog.ChangeStatusAsync(this, status, tranName));
-                if (res.HasError) return res;
-                if (autoTran)
-                {
-                    //CommitTransAction
-                }
-            }
-            catch (Exception ex)
-            {
-                if (autoTran)
-                {
-                    //RollBackTransAction
-                }
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-                res.AddReturnedValue(ex);
-            }
-
-            return res;
-        }
         public static async Task<List<SmsLogBussines>> GetAllAsync(string search, Guid userGuid)
         {
             try

@@ -1,15 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Threading.Tasks;
-using EntityCache.Assistence;
-using EntityCache.Bussines;
+﻿using EntityCache.Bussines;
 using EntityCache.Core;
 using Persistence.Entities;
 using Persistence.Model;
 using Services;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
+using System.Threading.Tasks;
 
 namespace EntityCache.SqlServerPersistence
 {
@@ -41,6 +39,79 @@ namespace EntityCache.SqlServerPersistence
             catch (Exception exception)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(exception);
+            }
+
+            return list;
+        }
+        public override async Task<ReturnedSaveFuncInfo> SaveAsync(SettingsBussines item, string tranName)
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                using (var cn = new SqlConnection(_connectionString))
+                {
+                    var cmd = new SqlCommand("sp_Setting_Save", cn) { CommandType = CommandType.StoredProcedure };
+                    cmd.Parameters.AddWithValue("@guid", item.Guid);
+                    cmd.Parameters.AddWithValue("@st", item.Status);
+                    cmd.Parameters.AddWithValue("@name", item.Name ?? "");
+                    cmd.Parameters.AddWithValue("@val", item.Value ?? "");
+                    cmd.Parameters.AddWithValue("@modif", item.Modified);
+
+                    await cn.OpenAsync();
+                    await cmd.ExecuteNonQueryAsync();
+                    cn.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+
+            return res;
+        }
+        public override async Task<ReturnedSaveFuncInfo> RemoveAsync(Guid guid, string tranName)
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                using (var cn = new SqlConnection(_connectionString))
+                {
+                    var cmd = new SqlCommand("sp_Setting_Remove", cn)
+                    { CommandType = CommandType.StoredProcedure };
+                    cmd.Parameters.AddWithValue("@guid", guid);
+
+                    await cn.OpenAsync();
+                    await cmd.ExecuteNonQueryAsync();
+                    cn.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+
+            return res;
+        }
+        public override async Task<List<SettingsBussines>> GetAllAsync()
+        {
+            var list = new List<SettingsBussines>();
+            try
+            {
+                using (var cn = new SqlConnection(_connectionString))
+                {
+                    var cmd = new SqlCommand("sp_Setting_GetAll", cn) { CommandType = CommandType.StoredProcedure };
+
+                    await cn.OpenAsync();
+                    var dr = await cmd.ExecuteReaderAsync();
+                    while (dr.Read()) list.Add(LoadData(dr));
+                    cn.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
 
             return list;

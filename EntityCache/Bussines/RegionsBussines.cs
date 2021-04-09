@@ -24,8 +24,7 @@ namespace EntityCache.Bussines
         public CitiesBussines City => CitiesBussines.Get(CityGuid);
         public string HardSerial => Cache.HardSerial;
 
-        public static async Task<List<RegionsBussines>> GetAllAsync() => await UnitOfWork.Regions.GetAllAsyncBySp();
-        public static async Task<List<RegionsBussines>> GetAllAsyncEf() => await UnitOfWork.Regions.GetAllAsync();
+        public static async Task<List<RegionsBussines>> GetAllAsync() => await UnitOfWork.Regions.GetAllAsync();
         public static async Task<ReturnedSaveFuncInfo> SaveRangeAsync(List<RegionsBussines> list,
             string tranName = "")
         {

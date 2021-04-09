@@ -384,7 +384,7 @@ Alter PROCEDURE sp_Tafsil_CheckName
 AS
 BEGIN
 	select COUNT(*) from Tafsils
-	where Name=@name
+	where Name=@name And Guid<>@guid
 END
 GO
 -- ==========================================================================================
@@ -815,10 +815,10 @@ GO
 ALTER PROCEDURE [dbo].[sp_Regions_SelectAll] 
 AS
 BEGIN
-	select Regions.*,Cities.Name As CityName,States.Name As StateName
-	from Regions left outer join Cities on Regions.CityGuid=Cities.Guid
-	inner join States on Cities.StateGuid=States.Guid
-	order by StateName,CityName
+	Select Regions.*,P.Name As CityName, States.Name As StateName
+	From Regions inner join Cities As P on
+	Regions.CityGuid=P.Guid inner join States on
+	P.StateGuid=States.Guid
 END
 GO
 -- ==========================================================================================
@@ -829,11 +829,11 @@ ALTER PROCEDURE [dbo].[sp_Regions_SelectAllByCityGuid]
 	@cityGuid uniqueidentifier
 AS
 BEGIN
-	select Regions.*,Cities.Name As CityName,States.Name As StateName
-	from Regions inner join Cities on Regions.CityGuid=Cities.Guid
-	inner join States on Cities.StateGuid=States.Guid
+	Select Regions.*,P.Name As CityName, States.Name As StateName
+	From Regions inner join Cities As P on
+	Regions.CityGuid=P.Guid inner join States on
+	P.StateGuid=States.Guid
 	where Regions.CityGuid=@cityGuid
-	order by StateName,CityName
 END
 GO
 -- ==========================================================================================
@@ -1667,8 +1667,10 @@ Alter PROCEDURE sp_Cities_Get
 	@guid uniqueidentifier
 AS
 BEGIN
-	Select * From Cities
-	Where Guid=@guid
+	select Cities.*,States.Name As StateName
+	from Cities inner join States 
+	on Cities.StateGuid=States.Guid
+	where Cities.Guid=@guid
 END
 GO
 -- ==========================================================================================
@@ -1679,8 +1681,11 @@ Alter PROCEDURE sp_Regions_Get
 	@guid uniqueidentifier
 AS
 BEGIN
-	Select * From Regions
-	Where Guid=@guid
+	Select Regions.*,P.Name As CityName, States.Name As StateName
+	From Regions inner join Cities As P on
+		 Regions.CityGuid=P.Guid inner join States on
+		 P.StateGuid=States.Guid
+	Where Regions.Guid=@guid
 END
 GO
 -- ==========================================================================================
@@ -1811,8 +1816,12 @@ Alter PROCEDURE sp_BuildingRequest_Get
 	@guid uniqueidentifier
 AS
 BEGIN
-	SELECT * from BuildingRequests
-	where Guid=@guid
+select [dbo].[BuildingRequests].*,[dbo].[Peoples].Name As AskerName,
+	   [dbo].[Users].Name As UserName
+	   From [dbo].[BuildingRequests] 
+	   inner join [dbo].[Peoples] on [dbo].[BuildingRequests].AskerGuid=[dbo].[Peoples].Guid
+	   inner join [dbo].[Users] on [dbo].[BuildingRequests].UserGuid=[dbo].[Users].Guid
+	   where BuildingRequests.Guid=@guid
 END
 GO
 -- ==========================================================================================
@@ -1835,8 +1844,11 @@ Alter PROCEDURE sp_Regions_GetByName
 	@name nvarchar(200)
 AS
 BEGIN
-	Select * From Regions
-	Where Name=@name
+	Select Regions.*,P.Name As CityName, States.Name As StateName
+	From Regions inner join Cities As P on
+	Regions.CityGuid=P.Guid inner join States on
+	P.StateGuid=States.Guid
+	Where Regions.Name=@name
 END
 GO
 -- ==========================================================================================
@@ -4841,3 +4853,1386 @@ BEGIN
            ,@buOptionGuid)
 	 end
 END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_BuildingRequest_ChangeStatus]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_BuildingRequest_ChangeStatus]	As Begin print 11 end')  
+GO
+ALTER PROCEDURE [dbo].[sp_BuildingRequest_ChangeStatus]
+	@guid uniqueidentifier,
+	@st bit
+AS
+BEGIN
+	update BuildingRequests
+	set Status=@st
+	where Guid=@guid
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_BuildingRequest_Save]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_BuildingRequest_Save]	As Begin print 11 end')  
+GO
+ALTER PROCEDURE [dbo].[sp_BuildingRequest_Save]
+	@guid uniqueidentifier,
+	@st bit,
+	@modif datetime,
+	@createDtae datetime,
+	@askerGuid uniqueidentifier,
+	@userGuid uniqueidentifier,
+	@sellPrice1 decimal,
+	@sellPrice2 decimal,
+	@hasVam bit=null,
+	@rahn1 decimal,
+	@rahn2 decimal,
+	@ejare1 decimal,
+	@ejare2 decimal,
+	@peopleCount smallint=null,
+	@hasOwner bit=null,
+	@shortDate bit=null,
+	@rentalGuid uniqueidentifier=null,
+	@cityGuid uniqueidentifier,
+	@typeGuid uniqueidentifier,
+	@masahat1 int,
+	@masahat2 int,
+	@roomCount int,
+	@accTypeGuid uniqueidentifier,
+	@conditionGuid uniqueidentifier,
+	@shortDesc nvarchar(max)
+AS
+BEGIN
+	UPDATE [dbo].[BuildingRequests]
+	   SET [Modified] = @modif
+		  ,[Status] = @st
+		  ,[AskerGuid] = @askerGuid
+		  ,[SellPrice1] = @sellPrice1
+		  ,[SellPrice2] = @sellPrice2
+		  ,[HasVam] = @hasVam
+		  ,[RahnPrice1] = @rahn1
+		  ,[RahnPrice2] = @rahn2
+		  ,[EjarePrice1] = @ejare1
+		  ,[EjarePrice2] = @ejare2
+		  ,[PeopleCount] = @peopleCount
+		  ,[HasOwner] = @hasOwner
+		  ,[ShortDate] = @shortDate
+		  ,[RentalAutorityGuid] = @rentalGuid
+		  ,[CityGuid] = @cityGuid
+		  ,[BuildingTypeGuid] = @typeGuid
+		  ,[Masahat1] = @masahat1
+		  ,[Masahat2] = @masahat2
+		  ,[RoomCount] = @roomCount
+		  ,[BuildingAccountTypeGuid] = @accTypeGuid
+		  ,[BuildingConditionGuid] = @conditionGuid
+		  ,[ShortDesc] = @shortDesc
+	 WHERE [Guid] = @guid
+	 if @@ROWCOUNT = 0
+	 begin
+		INSERT INTO [dbo].[BuildingRequests]
+           ([Guid]
+           ,[Modified]
+           ,[Status]
+           ,[CreateDate]
+           ,[AskerGuid]
+           ,[UserGuid]
+           ,[SellPrice1]
+           ,[SellPrice2]
+           ,[HasVam]
+           ,[RahnPrice1]
+           ,[RahnPrice2]
+           ,[EjarePrice1]
+           ,[EjarePrice2]
+           ,[PeopleCount]
+           ,[HasOwner]
+           ,[ShortDate]
+           ,[RentalAutorityGuid]
+           ,[CityGuid]
+           ,[BuildingTypeGuid]
+           ,[Masahat1]
+           ,[Masahat2]
+           ,[RoomCount]
+           ,[BuildingAccountTypeGuid]
+           ,[BuildingConditionGuid]
+           ,[ShortDesc])
+		VALUES
+           (@guid
+           ,@modif
+           ,@st
+           ,@createDtae
+           ,@askerGuid
+           ,@userGuid
+           ,@sellPrice1
+           ,@sellPrice2
+           ,@hasVam
+           ,@rahn1
+           ,@rahn2
+           ,@ejare1
+           ,@ejare2
+           ,@peopleCount
+           ,@hasOwner
+           ,@shortDate
+           ,@rentalGuid
+           ,@cityGuid
+           ,@typeGuid
+           ,@masahat1
+           ,@masahat2
+           ,@roomCount
+           ,@accTypeGuid
+           ,@conditionGuid
+           ,@shortDesc)
+	 end
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_BuildingRequestRegion_ChangeStatus]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_BuildingRequestRegion_ChangeStatus]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_BuildingRequestRegion_ChangeStatus
+	@masterGuid uniqueidentifier,
+	@st bit
+AS
+BEGIN
+	update BuildingRequestRegions
+	set Status=@st
+	where RequestGuid=@masterGuid
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_BuildingRequestRegion_RemoveRange]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_BuildingRequestRegion_RemoveRange]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_BuildingRequestRegion_RemoveRange
+	@masterGuid uniqueidentifier
+AS
+BEGIN
+	delete from BuildingRequestRegions
+	where RequestGuid=@masterGuid
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_BuildingRequestRegion_Save]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_BuildingRequestRegion_Save]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_BuildingRequestRegion_Save
+	@masterGuid uniqueidentifier,
+	@guid uniqueidentifier,
+	@modif datetime,
+	@st bit,
+	@regionGuid uniqueidentifier
+AS
+BEGIN
+	UPDATE [dbo].[BuildingRequestRegions]
+	   SET [Modified] = @modif
+		  ,[Status] = @st
+		  ,[RequestGuid] = @masterGuid
+		  ,[RegionGuid] = @regionGuid
+	 WHERE [Guid] = @guid
+	 if @@ROWCOUNT = 0
+	 begin
+		INSERT INTO [dbo].[BuildingRequestRegions]
+           ([Guid]
+           ,[Modified]
+           ,[Status]
+           ,[RequestGuid]
+           ,[RegionGuid])
+		VALUES
+           (@guid
+           ,@modif
+           ,@st
+           ,@masterGuid
+           ,@regionGuid)
+	 end
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_BuildingType_CheckName]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_BuildingType_CheckName]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_BuildingType_CheckName
+	@guid uniqueidentifier,
+	@name nvarchar(250)
+AS
+BEGIN
+	select COUNT(*) from BuildingTypes
+	where Name=@name and Guid<>@guid
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_BuildingType_GetAll]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_BuildingType_GetAll]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_BuildingType_GetAll
+AS
+BEGIN
+	select * from BuildingTypes
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_BuildingType_Save]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_BuildingType_Save]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_BuildingType_Save
+	@guid uniqueidentifier,
+	@modif datetime,
+	@st bit,
+	@name nvarchar(250)
+AS
+BEGIN
+	UPDATE [dbo].[BuildingTypes]
+	   SET [Modified] = @modif
+		  ,[Status] = @st
+		  ,[Name] = @name
+	 WHERE [Guid] = @guid
+	 if @@ROWCOUNT = 0
+	 begin
+		INSERT INTO [dbo].[BuildingTypes]
+           ([Guid]
+           ,[Modified]
+           ,[Status]
+           ,[Name])
+		VALUES
+           (@guid
+           ,@modif
+           ,@st
+           ,@name)
+	 end
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_BuildingType_ChangeStatus]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_BuildingType_ChangeStatus]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_BuildingType_ChangeStatus
+	@guid uniqueidentifier,
+	@st bit
+AS
+BEGIN
+	update BuildingTypes
+	set Status=@st
+	where Guid=@guid
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_BuildingView_CheckName]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_BuildingView_CheckName]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_BuildingView_CheckName
+	@guid uniqueidentifier,
+	@name nvarchar(250)
+AS
+BEGIN
+	select COUNT(*) from BuildingViews
+	where Name=@name and Guid<>@guid
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_BuildingView_GetAll]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_BuildingView_GetAll]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_BuildingView_GetAll
+AS
+BEGIN
+	select * from BuildingViews
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_BuildingView_Save]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_BuildingView_Save]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_BuildingView_Save
+	@guid uniqueidentifier,
+	@modif datetime,
+	@st bit,
+	@name nvarchar(250)
+AS
+BEGIN
+	UPDATE [dbo].[BuildingViews]
+	   SET [Modified] = @modif
+		  ,[Status] = @st
+		  ,[Name] = @name
+	 WHERE [Guid] = @guid
+	 if @@ROWCOUNT = 0
+	 begin
+		INSERT INTO [dbo].[BuildingViews]
+           ([Guid]
+           ,[Modified]
+           ,[Status]
+           ,[Name])
+		VALUES
+           (@guid
+           ,@modif
+           ,@st
+           ,@name)
+	 end
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_BuildingView_ChangeStatus]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_BuildingView_ChangeStatus]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_BuildingView_ChangeStatus
+	@guid uniqueidentifier,
+	@st bit
+AS
+BEGIN
+	update BuildingViews
+	set Status=@st
+	where Guid=@guid
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Cities_Save]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Cities_Save]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_Cities_Save
+	@guid uniqueidentifier,
+	@modif datetime,
+	@st bit,
+	@name nvarchar(200),
+	@stateGuid uniqueidentifier
+AS
+BEGIN
+	UPDATE [dbo].[Cities]
+	   SET [Modified] = @modif
+		  ,[Status] = @st
+		  ,[Name] = @name
+		  ,[StateGuid] = @stateGuid
+	 WHERE [Guid] = @guid
+	 if @@ROWCOUNT = 0
+	 begin
+		INSERT INTO [dbo].[Cities]
+           ([Guid]
+           ,[Modified]
+           ,[Status]
+           ,[Name]
+           ,[StateGuid])
+		VALUES
+           (@guid
+           ,@modif
+           ,@st
+           ,@name
+           ,@stateGuid)
+	 end
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_City_ChangeStatus]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_City_ChangeStatus]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_City_ChangeStatus
+	@guid uniqueidentifier,
+	@st bit
+AS
+BEGIN
+	update Cities
+	set Status=@st
+	where Guid=@guid
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_City_CheckName]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_City_CheckName]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_City_CheckName
+	@guid uniqueidentifier,
+	@name nvarchar(200),
+	@stateGuid uniqueidentifier
+AS
+BEGIN
+	select COUNT(*) from Cities
+	where Name=@name and StateGuid=@stateGuid and Guid<>@guid
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_DocumentType_CheckName]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_DocumentType_CheckName]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_DocumentType_CheckName
+	@guid uniqueidentifier,
+	@name nvarchar(250)
+AS
+BEGIN
+	select COUNT(*) from DocumentTypes
+	where Name=@name and Guid<>@guid
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_DocumentType_GetAll]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_DocumentType_GetAll]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_DocumentType_GetAll
+AS
+BEGIN
+	select * from DocumentTypes
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_DocumentType_Save]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_DocumentType_Save]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_DocumentType_Save
+	@guid uniqueidentifier,
+	@modif datetime,
+	@st bit,
+	@name nvarchar(250)
+AS
+BEGIN
+	UPDATE [dbo].[DocumentTypes]
+	   SET [Modified] = @modif
+		  ,[Status] = @st
+		  ,[Name] = @name
+	 WHERE [Guid] = @guid
+	 if @@ROWCOUNT = 0
+	 begin
+		INSERT INTO [dbo].[DocumentTypes]
+           ([Guid]
+           ,[Modified]
+           ,[Status]
+           ,[Name])
+		VALUES
+           (@guid
+           ,@modif
+           ,@st
+           ,@name)
+	 end
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_DocumentType_ChangeStatus]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_DocumentType_ChangeStatus]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_DocumentType_ChangeStatus
+	@guid uniqueidentifier,
+	@st bit
+AS
+BEGIN
+	update DocumentTypes
+	set Status=@st
+	where Guid=@guid
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_FileInfo_Get]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_FileInfo_Get]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_FileInfo_Get
+	@fileName nvarchar(max)
+AS
+BEGIN
+	select * from FileInfoes
+	where FileName=@fileName
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_FileInfo_Save]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_FileInfo_Save]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_FileInfo_Save
+	@fileName nvarchar(max),
+	@guid uniqueidentifier,
+	@modif datetime,
+	@st bit
+AS
+BEGIN
+	UPDATE [dbo].[FileInfoes]
+	   SET [Modified] = @modif
+		  ,[Status] = @st
+		  ,[FileName] = @fileName
+	 WHERE [Guid] = @guid
+	 if @@ROWCOUNT = 0
+	 begin
+		INSERT INTO [dbo].[FileInfoes]
+           ([Guid]
+           ,[Modified]
+           ,[Status]
+           ,[FileName])
+		VALUES
+           (@guid
+           ,@modif
+           ,@st
+           ,@fileName)
+	 end
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_FloorCover_CheckName]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_FloorCover_CheckName]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_FloorCover_CheckName
+	@guid uniqueidentifier,
+	@name nvarchar(250)
+AS
+BEGIN
+	select COUNT(*) from FloorCovers
+	where Name=@name and Guid<>@guid
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_FloorCover_GetAll]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_FloorCover_GetAll]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_FloorCover_GetAll
+AS
+BEGIN
+	select * from FloorCovers
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_FloorCover_Save]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_FloorCover_Save]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_FloorCover_Save
+	@guid uniqueidentifier,
+	@modif datetime,
+	@st bit,
+	@name nvarchar(250)
+AS
+BEGIN
+	UPDATE [dbo].[FloorCovers]
+	   SET [Modified] = @modif
+		  ,[Status] = @st
+		  ,[Name] = @name
+	 WHERE [Guid] = @guid
+	 if @@ROWCOUNT = 0
+	 begin
+		INSERT INTO [dbo].[FloorCovers]
+           ([Guid]
+           ,[Modified]
+           ,[Status]
+           ,[Name])
+		VALUES
+           (@guid
+           ,@modif
+           ,@st
+           ,@name)
+	 end
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_FloorCover_ChangeStatus]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_FloorCover_ChangeStatus]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_FloorCover_ChangeStatus
+	@guid uniqueidentifier,
+	@st bit
+AS
+BEGIN
+	update FloorCovers
+	set Status=@st
+	where Guid=@guid
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_KitchenService_CheckName]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_KitchenService_CheckName]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_KitchenService_CheckName
+	@guid uniqueidentifier,
+	@name nvarchar(250)
+AS
+BEGIN
+	select COUNT(*) from KitchenServices
+	where Name=@name and Guid<>@guid
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_KitchenService_GetAll]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_KitchenService_GetAll]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_KitchenService_GetAll
+AS
+BEGIN
+	select * from KitchenServices
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_KitchenService_Save]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_KitchenService_Save]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_KitchenService_Save
+	@guid uniqueidentifier,
+	@modif datetime,
+	@st bit,
+	@name nvarchar(250)
+AS
+BEGIN
+	UPDATE [dbo].[KitchenServices]
+	   SET [Modified] = @modif
+		  ,[Status] = @st
+		  ,[Name] = @name
+	 WHERE [Guid] = @guid
+	 if @@ROWCOUNT = 0
+	 begin
+		INSERT INTO [dbo].[KitchenServices]
+           ([Guid]
+           ,[Modified]
+           ,[Status]
+           ,[Name])
+		VALUES
+           (@guid
+           ,@modif
+           ,@st
+           ,@name)
+	 end
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_KitchenService_ChangeStatus]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_KitchenService_ChangeStatus]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_KitchenService_ChangeStatus
+	@guid uniqueidentifier,
+	@st bit
+AS
+BEGIN
+	update KitchenServices
+	set Status=@st
+	where Guid=@guid
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Naqz_GetAll]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Naqz_GetAll]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_Naqz_GetAll
+AS
+BEGIN
+	select * from Naqzs
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Naqz_Save]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Naqz_Save]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_Naqz_Save
+	@guid uniqueidentifier,
+	@modif datetime,
+	@st bit,
+	@message nvarchar(max),
+	@useCount int
+AS
+BEGIN
+	UPDATE [dbo].[Naqzs]
+	   SET [Modified] = @modif
+		  ,[Status] = @st
+		  ,[Message] = @message
+		  ,[UseCount] = @useCount
+	 WHERE [Guid] = @guid
+	 if @@ROWCOUNT = 0
+	 begin
+		INSERT INTO [dbo].[Naqzs]
+           ([Guid]
+           ,[Modified]
+           ,[Status]
+           ,[Message]
+           ,[UseCount])
+		VALUES
+           (@guid
+           ,@modif
+           ,@st
+           ,@message
+           ,@useCount)
+	 end
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Note_Save]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Note_Save]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_Note_Save
+	@guid uniqueidentifier,
+	@modif datetime,
+	@st bit,
+	@title nvarchar(500),
+	@desc nvarchar(max),
+	@dateSabt datetime,
+	@dateSarresid datetime=null,
+	@userGuid uniqueidentifier,
+	@priority smallint,
+	@status smallint
+AS
+BEGIN
+	UPDATE [dbo].[Notes]
+	   SET [Modified] = @modif
+		  ,[Status] = @st
+		  ,[Title] = @title
+		  ,[Description] = @desc
+		  ,[DateSarresid] = @dateSarresid
+		  ,[UserGuid] = @userGuid
+		  ,[Priority] = @priority
+		  ,[NoteStatus] = @status
+	 WHERE [Guid] = @guid
+	 if @@ROWCOUNT = 0
+	 begin
+		INSERT INTO [dbo].[Notes]
+           ([Guid]
+           ,[Modified]
+           ,[Status]
+           ,[Title]
+           ,[Description]
+           ,[DateSabt]
+           ,[DateSarresid]
+           ,[UserGuid]
+           ,[Priority]
+           ,[NoteStatus])
+		VALUES
+           (@guid
+           ,@modif
+           ,@st
+           ,@title
+           ,@desc
+           ,@dateSabt
+           ,@dateSarresid
+           ,@userGuid
+           ,@priority
+           ,@status)
+	 end
+END
+GO
+-- ==========================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Note_Get]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Note_Get]	As Begin print 11 end')
+GO
+
+ALTER PROCEDURE [dbo].[sp_Note_Get] 
+	@guid uniqueidentifier
+AS
+BEGIN
+	select [dbo].[Notes].*,[dbo].[Users].Name as UserName
+	from [dbo].[Notes] inner join [dbo].[Users]
+	on [dbo].[Notes].UserGuid=[dbo].[Users].Guid
+	where Notes.Guid=@guid
+End
+GO
+-- ==========================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_PeopleGroup_GetAll]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_PeopleGroup_GetAll]	As Begin print 11 end')
+GO
+
+ALTER PROCEDURE [dbo].[sp_PeopleGroup_GetAll] 
+AS
+BEGIN
+	select * from PeopleGroups
+End
+GO
+-- ==========================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_PeopleGroup_Save]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_PeopleGroup_Save]	As Begin print 11 end')
+GO
+
+ALTER PROCEDURE [dbo].[sp_PeopleGroup_Save] 
+	@guid uniqueidentifier,
+	@modif datetime,
+	@st bit,
+	@name nvarchar(250),
+	@parentGuid uniqueidentifier
+AS
+BEGIN
+	UPDATE [dbo].[PeopleGroups]
+	   SET [Modified] = @modif
+		  ,[Status] = @st
+		  ,[Name] = @name
+		  ,[ParentGuid] = @parentGuid
+	 WHERE [Guid] = @guid
+	 if @@ROWCOUNT = 0
+	 begin
+		INSERT INTO [dbo].[PeopleGroups]
+           ([Guid]
+           ,[Modified]
+           ,[Status]
+           ,[Name]
+           ,[ParentGuid])
+		VALUES
+           (@guid
+           ,@modif
+           ,@st
+           ,@name
+           ,@parentGuid)
+	 end
+End
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_PeopleGroup_ChangeStatus]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_PeopleGroup_ChangeStatus]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_PeopleGroup_ChangeStatus
+	@guid uniqueidentifier,
+	@st bit
+AS
+BEGIN
+	update PeopleGroups
+	set Status=@st
+	where Guid=@guid
+END
+GO
+-- ==========================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_PeopleGroup_CheckName]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_PeopleGroup_CheckName]	As Begin print 11 end')
+GO
+Alter PROCEDURE sp_PeopleGroup_CheckName
+	@guid uniqueidentifier,
+	@name nvarchar(200)
+AS
+BEGIN
+	select COUNT(*) from PeopleGroups
+	where Name=@name and Guid<>@guid
+END
+GO
+-- ==========================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_PeopleGroup_ChildCount]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_PeopleGroup_ChildCount]	As Begin print 11 end')
+GO
+Alter PROCEDURE sp_PeopleGroup_ChildCount
+	@parentGuid uniqueidentifier
+AS
+BEGIN
+	select COUNT(*) from PeopleGroups
+	where ParentGuid=@parentGuid
+END
+GO
+-- ==========================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Regions_Save]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Regions_Save]	As Begin print 11 end')
+GO
+Alter PROCEDURE sp_Regions_Save
+	@guid uniqueidentifier,
+	@modif datetime,
+	@st bit,
+	@name nvarchar(200),
+	@cityGuid uniqueidentifier
+AS
+BEGIN
+	UPDATE [dbo].[Regions]
+	   SET [Modified] = @modif
+		  ,[Status] = @st
+		  ,[Name] = @name
+		  ,[CityGuid] = @cityGuid
+	 WHERE [Guid] = @guid
+	 if @@ROWCOUNT = 0
+	 begin
+		INSERT INTO [dbo].[Regions]
+           ([Guid]
+           ,[Modified]
+           ,[Status]
+           ,[Name]
+           ,[CityGuid])
+		VALUES
+           (@guid
+           ,@modif
+           ,@st
+           ,@name
+           ,@cityGuid)
+	 end
+END
+GO
+-- ==========================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Regions_ChangeStatus]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Regions_ChangeStatus]	As Begin print 11 end')
+GO
+Alter PROCEDURE sp_Regions_ChangeStatus
+	@guid uniqueidentifier,
+	@st bit
+AS
+BEGIN
+	update Regions
+	set Status=@st
+	where Guid=@guid
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Rental_CheckName]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Rental_CheckName]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_Rental_CheckName
+	@guid uniqueidentifier,
+	@name nvarchar(250)
+AS
+BEGIN
+	select COUNT(*) from RentalAuthorities
+	where Name=@name and Guid<>@guid
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Rental_GetAll]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Rental_GetAll]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_Rental_GetAll
+AS
+BEGIN
+	select * from RentalAuthorities
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Rental_Save]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Rental_Save]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_Rental_Save
+	@guid uniqueidentifier,
+	@modif datetime,
+	@st bit,
+	@name nvarchar(250)
+AS
+BEGIN
+	UPDATE [dbo].[RentalAuthorities]
+	   SET [Modified] = @modif
+		  ,[Status] = @st
+		  ,[Name] = @name
+	 WHERE [Guid] = @guid
+	 if @@ROWCOUNT = 0
+	 begin
+		INSERT INTO [dbo].[RentalAuthorities]
+           ([Guid]
+           ,[Modified]
+           ,[Status]
+           ,[Name])
+		VALUES
+           (@guid
+           ,@modif
+           ,@st
+           ,@name)
+	 end
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Rental_ChangeStatus]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Rental_ChangeStatus]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_Rental_ChangeStatus
+	@guid uniqueidentifier,
+	@st bit
+AS
+BEGIN
+	update RentalAuthorities
+	set Status=@st
+	where Guid=@guid
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_SerializedData_Get]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_SerializedData_Get]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_SerializedData_Get
+	@memberName nvarchar(200)
+AS
+BEGIN
+	select * from SerializedDatas
+	where Name=@memberName
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_SerializedData_Save]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_SerializedData_Save]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_SerializedData_Save
+	@guid uniqueidentifier,
+	@modif datetime,
+	@st bit,
+	@name nvarchar(250),
+	@data nvarchar(Max)
+AS
+BEGIN
+	UPDATE [dbo].[SerializedDatas]
+	   SET [Modified] = @modif
+		  ,[Status] = @st
+		  ,[Name] = @name
+		  ,[Data] = @data
+	 WHERE [Guid] = @guid
+	 if @@ROWCOUNT = 0
+	 begin
+		INSERT INTO [dbo].[SerializedDatas]
+           ([Guid]
+           ,[Modified]
+           ,[Status]
+           ,[Name]
+           ,[Data])
+		VALUES
+           (@guid
+           ,@modif
+           ,@st
+           ,@name
+           ,@data)
+	 end
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_SerializedData_Remove]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_SerializedData_Remove]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_SerializedData_Remove
+	@guid uniqueidentifier
+AS
+BEGIN
+	delete from SerializedDatas
+	where Guid=@guid
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Setting_Remove]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Setting_Remove]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_Setting_Remove
+	@guid uniqueidentifier
+AS
+BEGIN
+	delete from Settings
+	where Guid=@guid
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Setting_Save]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Setting_Save]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_Setting_Save
+	@guid uniqueidentifier,
+	@modif datetime,
+	@st bit,
+	@name nvarchar(250),
+	@val nvarchar(Max)
+AS
+BEGIN
+	UPDATE [dbo].[Settings]
+	   SET [Modified] = @modif
+		  ,[Status] = @st
+		  ,[Name] = @name
+		  ,[Value] = @val
+	 WHERE [Guid] = @guid
+	 if @@ROWCOUNT = 0
+	 begin
+		INSERT INTO [dbo].[Settings]
+           ([Guid]
+           ,[Modified]
+           ,[Status]
+           ,[Name]
+           ,[Value])
+		VALUES
+           (@guid
+           ,@modif
+           ,@st
+           ,@name
+           ,@val)
+	 end
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Setting_GetAll]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Setting_GetAll]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_Setting_GetAll
+AS
+BEGIN
+	select * from Settings
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Simcard_GetAll]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Simcard_GetAll]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_Simcard_GetAll
+AS
+BEGIN
+	select * from Simcards
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Simcard_Save]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Simcard_Save]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_Simcard_Save
+	@guid uniqueidentifier,
+	@modif datetime,
+	@st bit,
+	@number bigint,
+	@owner nvarchar(200),
+	@operator nvarchar(50),
+	@shBlock bit,
+	@nextUseSh datetime,
+	@nextUseD datetime
+AS
+BEGIN
+	UPDATE [dbo].[Simcards]
+	   SET [Modified] = @modif
+		  ,[Status] = @st
+		  ,[Number] = @number
+		  ,[Owner] = @owner
+		  ,[Operator] = @operator
+		  ,[isSheypoorBlocked] = @shBlock
+		  ,[NextUseSheypoor] = @nextUseSh
+		  ,[NextUseDivar] = @nextUseD
+	 WHERE [Guid] = @guid
+	 if @@ROWCOUNT = 0
+	 begin
+		INSERT INTO [dbo].[Simcards]
+           ([Guid]
+           ,[Modified]
+           ,[Status]
+           ,[Number]
+           ,[Owner]
+           ,[Operator]
+           ,[isSheypoorBlocked]
+           ,[NextUseSheypoor]
+           ,[NextUseDivar])
+		VALUES
+           (@guid
+           ,@modif
+           ,@st
+           ,@number
+           ,@owner
+           ,@operator
+           ,@shBlock
+           ,@nextUseSh
+           ,@nextUseD)
+	 end
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Simcard_GetByNumber]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Simcard_GetByNumber]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_Simcard_GetByNumber
+	@number bigint
+AS
+BEGIN
+	select * from Simcards
+	where Number=@number
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Simcard_Get]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Simcard_Get]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_Simcard_Get
+	@guid uniqueidentifier
+AS
+BEGIN
+	select * from Simcards
+	where Guid=@guid
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Simcard_ChangeStatus]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Simcard_ChangeStatus]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_Simcard_ChangeStatus
+	@guid uniqueidentifier,
+	@st bit
+AS
+BEGIN
+	update Simcards
+	set Status=@st
+	where Guid=@guid
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Simcard_CheckNumber]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Simcard_CheckNumber]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_Simcard_CheckNumber
+	@guid uniqueidentifier,
+	@number bigint
+AS
+BEGIN
+	select COUNT(*) from Simcards
+	where Number=@number and Guid<>@guid
+END
+GO
+-- ==========================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_SmsLog_Get]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_SmsLog_Get]	As Begin print 11 end')
+GO
+
+ALTER PROCEDURE [dbo].sp_SmsLog_Get 
+	@guid uniqueidentifier
+AS
+BEGIN
+	select [dbo].[SmsLogs].*,[dbo].[Users].Name As UserName
+	from [dbo].[SmsLogs] inner join [dbo].[Users]
+	on [dbo].[SmsLogs].UserGuid=[dbo].[Users].Guid
+	where [SmsLogs].Guid = @guid
+End
+GO
+-- ==========================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_SmsLog_GetByMessageId]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_SmsLog_GetByMessageId]	As Begin print 11 end')
+GO
+
+ALTER PROCEDURE [dbo].sp_SmsLog_GetByMessageId
+	@messageId bigint
+AS
+BEGIN
+	select [dbo].[SmsLogs].*,[dbo].[Users].Name As UserName
+	from [dbo].[SmsLogs] inner join [dbo].[Users]
+	on [dbo].[SmsLogs].UserGuid=[dbo].[Users].Guid
+	where [SmsLogs].MessageId = @messageId
+End
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_SmsLog_Save]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_SmsLog_Save]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_SmsLog_Save
+	@guid uniqueidentifier,
+	@modif datetime,
+	@st bit,
+	@date datetime,
+	@userGuid uniqueidentifier,
+	@sender nvarchar(200),
+	@reciver nvarchar(200),
+	@message nvarchar(max),
+	@cost decimal,
+	@messageId bigint,
+	@statusText nvarchar(50)
+AS
+BEGIN
+	UPDATE [dbo].[SmsLogs]
+	   SET [Modified] = @modif
+		  ,[Status] = @st
+		  ,[Sender] = @sender
+		  ,[Reciver] = @reciver
+		  ,[Message] = @message
+		  ,[Cost] = @cost
+		  ,[MessageId] = @messageId
+		  ,[StatusText] = @statusText
+	 WHERE [Guid] = @guid
+	 if @@ROWCOUNT = 0
+	 begin
+		INSERT INTO [dbo].[SmsLogs]
+           ([Guid]
+           ,[Modified]
+           ,[Status]
+           ,[Date]
+           ,[UserGuid]
+           ,[Sender]
+           ,[Reciver]
+           ,[Message]
+           ,[Cost]
+           ,[MessageId]
+           ,[StatusText])
+		VALUES
+           (@guid
+           ,@modif
+           ,@st
+           ,@date
+           ,@userGuid
+           ,@sender
+           ,@reciver
+           ,@message
+           ,@cost
+           ,@messageId
+           ,@statusText)
+	 end
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_SmsPanel_Get]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_SmsPanel_Get]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_SmsPanel_Get
+	@guid uniqueidentifier
+AS
+BEGIN
+	select * from SmsPanels
+	where Guid=@guid
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_SmsPanel_GetAll]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_SmsPanel_GetAll]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_SmsPanel_GetAll
+AS
+BEGIN
+	select * from SmsPanels
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_SmsPanel_Save]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_SmsPanel_Save]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_SmsPanel_Save
+	@guid uniqueidentifier,
+	@modif datetime,
+	@st bit,
+	@sender nvarchar(200),
+	@api nvarchar(max),
+	@name nvarchar(200)
+AS
+BEGIN
+	UPDATE [dbo].[SmsPanels]
+	   SET [Modified] = @modif
+		  ,[Status] = @st
+		  ,[Sender] = @sender
+		  ,[API] = @api
+		  ,[Name] = @name
+	 WHERE [Guid] = @guid
+	 if @@ROWCOUNT = 0
+	 begin
+		INSERT INTO [dbo].[SmsPanels]
+           ([Guid]
+           ,[Modified]
+           ,[Status]
+           ,[Sender]
+           ,[API]
+           ,[Name])
+		VALUES
+           (@guid
+           ,@modif
+           ,@st
+           ,@sender
+           ,@api
+           ,@name)
+	 end
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_SmsPanel_ChangeStatus]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_SmsPanel_ChangeStatus]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_SmsPanel_ChangeStatus
+	@guid uniqueidentifier,
+	@st bit
+AS
+BEGIN
+	update SmsPanels
+	set Status=@st
+	where Guid=@guid
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_State_GetAll]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_State_GetAll]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_State_GetAll
+AS
+BEGIN
+	select * from States
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_State_Save]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_State_Save]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_State_Save
+	@guid uniqueidentifier,
+	@modif datetime,
+	@st bit,
+	@name nvarchar(250)
+AS
+BEGIN
+	UPDATE [dbo].[States]
+	   SET [Modified] = @modif
+		  ,[Status] = @st
+		  ,[Name] = @name
+	 WHERE [Guid] = @guid
+	 if @@ROWCOUNT = 0
+	 begin
+		INSERT INTO [dbo].[States]
+           ([Guid]
+           ,[Modified]
+           ,[Status]
+           ,[Name])
+		VALUES
+           (@guid
+           ,@modif
+           ,@st
+           ,@name)
+	 end
+END
+GO

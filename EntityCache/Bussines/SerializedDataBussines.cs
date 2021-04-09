@@ -44,7 +44,7 @@ namespace EntityCache.Bussines
                 var sett = await GetAsync(key);
                 if (sett != null)
                 {
-                    res.AddReturnedValue(await UnitOfWork.SerializedData.RemoveAsync(sett.Guid, tranName));
+                    res.AddReturnedValue(await RemoveAsync(sett.Guid, tranName));
                     if (res.HasError) return res;
                 }
 
@@ -75,7 +75,7 @@ namespace EntityCache.Bussines
 
             return res;
         }
-        public async Task<ReturnedSaveFuncInfo> RemoveAsync(string tranName = "")
+        public static async Task<ReturnedSaveFuncInfo> RemoveAsync(Guid guid, string tranName = "")
         {
             var res = new ReturnedSaveFuncInfo();
             var autoTran = string.IsNullOrEmpty(tranName);
@@ -86,7 +86,7 @@ namespace EntityCache.Bussines
                 { //BeginTransaction
                 }
 
-                res.AddReturnedValue(await UnitOfWork.SerializedData.RemoveAsync(Guid, tranName));
+                res.AddReturnedValue(await UnitOfWork.SerializedData.RemoveAsync(guid, tranName));
                 if (res.HasError) return res;
                 if (autoTran)
                 {
@@ -105,7 +105,5 @@ namespace EntityCache.Bussines
 
             return res;
         }
-        public static ReturnedSaveFuncInfo Save(string key, string value, string tranName = "") =>
-            AsyncContext.Run(() => SaveAsync(key, value, tranName));
     }
 }

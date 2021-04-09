@@ -24,21 +24,28 @@ namespace EntityCache.SqlServerPersistence
 
         public async Task<List<UserLogBussines>> GetAllAsync(Guid userGuid, DateTime d1, DateTime d2)
         {
+            var list = new List<UserLogBussines>();
             try
             {
-                var ctGuid = new SqlParameter("@userGuid", userGuid);
-                var date1 = new SqlParameter("@date1", d1);
-                var date2 = new SqlParameter("@date2", d2);
-                var res = db.Database.SqlQuery<UserLogBussines>(
-                    "sp_UserLog_SelectAll_ByUser_And_Date @userGuid,@date1,@date2", ctGuid, date1, date2);
-                var a = res.ToList();
-                return a;
+                using (var cn = new SqlConnection(_connectionString))
+                {
+                    var cmd = new SqlCommand("sp_UserLog_SelectAll_ByUser_And_Date", cn) { CommandType = CommandType.StoredProcedure };
+                    cmd.Parameters.AddWithValue("@userGuid", userGuid);
+                    cmd.Parameters.AddWithValue("@date1", d1);
+                    cmd.Parameters.AddWithValue("@date2", d2);
+
+                    await cn.OpenAsync();
+                    var dr = await cmd.ExecuteReaderAsync();
+                    while (dr.Read()) list.Add(LoadData(dr));
+                    cn.Close();
+                }
             }
-            catch (Exception exception)
+            catch (Exception ex)
             {
-                WebErrorLog.ErrorInstence.StartErrorLog(exception);
-                return null;
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
+
+            return list;
         }
         public override async Task<ReturnedSaveFuncInfo> SaveAsync(UserLogBussines item, string tranName)
         {
@@ -69,6 +76,28 @@ namespace EntityCache.SqlServerPersistence
             }
 
             return res;
+        }
+        private UserLogBussines LoadData(SqlDataReader dr)
+        {
+            var item = new UserLogBussines();
+            try
+            {
+                item.Guid = (Guid)dr["Guid"];
+                item.Modified = (DateTime)dr["Modified"];
+                item.Status = (bool)dr["Status"];
+                item.UserGuid = (Guid)dr["UserGuid"];
+                item.UserName = dr["UserName"].ToString();
+                item.Date =(DateTime) dr["Date"];
+                item.Action =(EnLogAction) dr["Action"];
+                item.Part = (EnLogPart)dr["Part"];
+                item.Description = dr["Description"].ToString();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+
+            return item;
         }
     }
 }

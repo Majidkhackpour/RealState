@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
@@ -25,14 +26,21 @@ namespace EntityCache.SqlServerPersistence
         {
             try
             {
-                var acc = db.KitchenService.AsNoTracking()
-                    .Where(q => q.Name == name && q.Guid != guid)
-                    .ToList();
-                return acc.Count == 0;
+                using (var cn = new SqlConnection(_connectionString))
+                {
+                    var cmd = new SqlCommand("sp_KitchenService_CheckName", cn) { CommandType = CommandType.StoredProcedure };
+                    cmd.Parameters.AddWithValue("@guid", guid);
+                    cmd.Parameters.AddWithValue("@name", name ?? "");
+
+                    await cn.OpenAsync();
+                    var count = (int)await cmd.ExecuteScalarAsync();
+                    cn.Close();
+                    return count <= 0;
+                }
             }
-            catch (Exception exception)
+            catch (Exception ex)
             {
-                WebErrorLog.ErrorInstence.StartErrorLog(exception);
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
                 return false;
             }
         }
@@ -57,6 +65,96 @@ namespace EntityCache.SqlServerPersistence
             }
 
             return obj;
+        }
+        public override async Task<List<KitchenServiceBussines>> GetAllAsync()
+        {
+            var list = new List<KitchenServiceBussines>();
+            try
+            {
+                using (var cn = new SqlConnection(_connectionString))
+                {
+                    var cmd = new SqlCommand("sp_KitchenService_GetAll", cn) { CommandType = CommandType.StoredProcedure };
+
+                    await cn.OpenAsync();
+                    var dr = await cmd.ExecuteReaderAsync();
+                    while (dr.Read()) list.Add(LoadData(dr));
+                    cn.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+
+            return list;
+        }
+        public override async Task<ReturnedSaveFuncInfo> SaveAsync(KitchenServiceBussines item, string tranName)
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                using (var cn = new SqlConnection(_connectionString))
+                {
+                    var cmd = new SqlCommand("sp_KitchenService_Save", cn) { CommandType = CommandType.StoredProcedure };
+                    cmd.Parameters.AddWithValue("@guid", item.Guid);
+                    cmd.Parameters.AddWithValue("@st", item.Status);
+                    cmd.Parameters.AddWithValue("@name", item.Name ?? "");
+                    cmd.Parameters.AddWithValue("@modif", item.Modified);
+
+                    await cn.OpenAsync();
+                    await cmd.ExecuteNonQueryAsync();
+                    cn.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+
+            return res;
+        }
+        public override async Task<ReturnedSaveFuncInfo> SaveRangeAsync(IEnumerable<KitchenServiceBussines> items, string tranName)
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                foreach (var item in items)
+                {
+                    res.AddReturnedValue(await SaveAsync(item, tranName));
+                    if (res.HasError) return res;
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+            return res;
+        }
+        public override async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(KitchenServiceBussines item, bool status, string tranName)
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                using (var cn = new SqlConnection(_connectionString))
+                {
+                    var cmd = new SqlCommand("sp_KitchenService_ChangeStatus", cn) { CommandType = CommandType.StoredProcedure };
+                    cmd.Parameters.AddWithValue("@Guid", item.Guid);
+                    cmd.Parameters.AddWithValue("@st", status);
+
+                    await cn.OpenAsync();
+                    await cmd.ExecuteNonQueryAsync();
+                    cn.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+
+            return res;
         }
         private KitchenServiceBussines LoadData(SqlDataReader dr)
         {

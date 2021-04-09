@@ -111,7 +111,7 @@ namespace EntityCache.Assistence
                 #endregion
 
                 #region Cities
-                var allCities = await CitiesBussines.GetAllAsyncEf();
+                var allCities = await CitiesBussines.GetAllAsync();
                 if (allCities == null || allCities.Count <= 0)
                 {
                     var city = DefaultCities.SetDef();
@@ -121,7 +121,7 @@ namespace EntityCache.Assistence
                 #endregion
 
                 #region Regions
-                var allRegions = await RegionsBussines.GetAllAsyncEf();
+                var allRegions = await RegionsBussines.GetAllAsync();
                 if (allRegions == null || allRegions.Count <= 0)
                 {
                     var reg = DefaultRegions.SetDef();

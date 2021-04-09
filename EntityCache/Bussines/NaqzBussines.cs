@@ -64,9 +64,7 @@ namespace EntityCache.Bussines
 
                 var res = new ReturnedSaveFuncInfo();
                 res.AddReturnedValue(await UnitOfWork.Naqz.SaveAsync(one, tranName));
-                if (res.HasError) return "";
-
-                return one.Message;
+                return res.HasError ? "" : one.Message;
             }
             catch (Exception ex)
             {

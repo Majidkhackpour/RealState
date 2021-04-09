@@ -54,6 +54,5 @@ namespace EntityCache.Bussines
             return res;
         }
         public static async Task<StatesBussines> GetAsync(Guid guid) => await UnitOfWork.States.GetAsync(guid);
-        public static StatesBussines Get(Guid guid) => AsyncContext.Run(() => GetAsync(guid));
     }
 }

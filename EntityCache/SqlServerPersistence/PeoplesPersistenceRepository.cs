@@ -1,6 +1,6 @@
-﻿using EntityCache.Assistence;
-using EntityCache.Bussines;
+﻿using EntityCache.Bussines;
 using EntityCache.Core;
+using Nito.AsyncEx;
 using Persistence.Entities;
 using Persistence.Model;
 using Services;
@@ -8,9 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
 using System.Threading.Tasks;
-using Nito.AsyncEx;
 
 namespace EntityCache.SqlServerPersistence
 {

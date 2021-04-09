@@ -8,7 +8,6 @@ namespace EntityCache.Core
     public interface IRegionsRepository : IRepository<RegionsBussines>
     {
         Task<List<RegionsBussines>> GetAllAsync(Guid cityGuid);
-        Task<List<RegionsBussines>> GetAllAsyncBySp();
         Task<RegionsBussines> GetAsync(string name);
     }
 }

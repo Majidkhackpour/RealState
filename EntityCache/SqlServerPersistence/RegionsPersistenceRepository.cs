@@ -1,15 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Threading.Tasks;
-using EntityCache.Assistence;
-using EntityCache.Bussines;
+﻿using EntityCache.Bussines;
 using EntityCache.Core;
 using Persistence.Entities;
 using Persistence.Model;
 using Services;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
+using System.Threading.Tasks;
 
 namespace EntityCache.SqlServerPersistence
 {
@@ -25,32 +23,48 @@ namespace EntityCache.SqlServerPersistence
 
         public async Task<List<RegionsBussines>> GetAllAsync(Guid cityGuid)
         {
+            var list = new List<RegionsBussines>();
             try
             {
-                var ctGuid = new SqlParameter("@cityGuid", cityGuid);
-                var res = db.Database.SqlQuery<RegionsBussines>("sp_Regions_SelectAllByCityGuid @cityGuid", ctGuid);
-                var a = res.ToList();
-                return a;
-            }
-            catch (Exception exception)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(exception);
-                return null;
-            }
-        }
-        public async Task<List<RegionsBussines>> GetAllAsyncBySp()
-        {
-            try
-            {
-                var res = db.Database.SqlQuery<RegionsBussines>("sp_Regions_SelectAll");
-                var a = await res.ToListAsync();
-                return a;
+                using (var cn = new SqlConnection(_connectionString))
+                {
+                    var cmd = new SqlCommand("sp_Regions_SelectAllByCityGuid", cn) { CommandType = CommandType.StoredProcedure };
+                    cmd.Parameters.AddWithValue("@cityGuid", cityGuid);
+
+                    await cn.OpenAsync();
+                    var dr = await cmd.ExecuteReaderAsync();
+                    while (dr.Read()) list.Add(LoadData(dr));
+                    cn.Close();
+                }
             }
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
-                return null;
             }
+
+            return list;
+        }
+        public override async Task<List<RegionsBussines>> GetAllAsync()
+        {
+            var list = new List<RegionsBussines>();
+            try
+            {
+                using (var cn = new SqlConnection(_connectionString))
+                {
+                    var cmd = new SqlCommand("sp_Regions_SelectAll", cn) { CommandType = CommandType.StoredProcedure };
+
+                    await cn.OpenAsync();
+                    var dr = await cmd.ExecuteReaderAsync();
+                    while (dr.Read()) list.Add(LoadData(dr));
+                    cn.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+
+            return list;
         }
         public async Task<RegionsBussines> GetAsync(string name)
         {
@@ -96,6 +110,75 @@ namespace EntityCache.SqlServerPersistence
 
             return obj;
         }
+        public override async Task<ReturnedSaveFuncInfo> SaveAsync(RegionsBussines item, string tranName)
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                using (var cn = new SqlConnection(_connectionString))
+                {
+                    var cmd = new SqlCommand("sp_Regions_Save", cn) { CommandType = CommandType.StoredProcedure };
+                    cmd.Parameters.AddWithValue("@guid", item.Guid);
+                    cmd.Parameters.AddWithValue("@modif", item.Modified);
+                    cmd.Parameters.AddWithValue("@st", item.Status);
+                    cmd.Parameters.AddWithValue("@name", item.Name ?? "");
+                    cmd.Parameters.AddWithValue("@cityGuid", item.CityGuid);
+
+                    await cn.OpenAsync();
+                    await cmd.ExecuteNonQueryAsync();
+                    cn.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+
+            return res;
+        }
+        public override async Task<ReturnedSaveFuncInfo> SaveRangeAsync(IEnumerable<RegionsBussines> items, string tranName)
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                foreach (var item in items)
+                {
+                    res.AddReturnedValue(await SaveAsync(item, tranName));
+                    if (res.HasError) return res;
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+            return res;
+        }
+        public override async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(RegionsBussines item, bool status, string tranName)
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                using (var cn = new SqlConnection(_connectionString))
+                {
+                    var cmd = new SqlCommand("sp_Regions_ChangeStatus", cn) { CommandType = CommandType.StoredProcedure };
+                    cmd.Parameters.AddWithValue("@Guid", item.Guid);
+                    cmd.Parameters.AddWithValue("@st", status);
+
+                    await cn.OpenAsync();
+                    await cmd.ExecuteNonQueryAsync();
+                    cn.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+
+            return res;
+        }
         private RegionsBussines LoadData(SqlDataReader dr)
         {
             var item = new RegionsBussines();
@@ -106,6 +189,8 @@ namespace EntityCache.SqlServerPersistence
                 item.Status = (bool)dr["Status"];
                 item.Name = dr["Name"].ToString();
                 item.CityGuid = (Guid)dr["CityGuid"];
+                item.CityName = dr["CityName"].ToString();
+                item.StateName = dr["StateName"].ToString();
             }
             catch (Exception ex)
             {

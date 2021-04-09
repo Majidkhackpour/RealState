@@ -7,7 +7,6 @@ namespace EntityCache.Core
 {
     public interface IBuildingRequestRepository : IRepository<BuildingRequestBussines>
     {
-        Task<List<BuildingRequestBussines>> GetAllAsyncBySp();
         Task<int> DbCount(Guid userGuid);
     }
 }

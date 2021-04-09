@@ -30,7 +30,7 @@ namespace EntityCache.Bussines
 
 
         public static async Task<NoteBussines> GetAsync(Guid guid) => await UnitOfWork.Note.GetAsync(guid);
-        public static async Task<List<NoteBussines>> GetAllAsync() => await UnitOfWork.Note.GetAllAsyncBySp();
+        public static async Task<List<NoteBussines>> GetAllAsync() => await UnitOfWork.Note.GetAllAsync();
         public async Task<ReturnedSaveFuncInfo> SaveAsync(string tranName = "")
         {
             var res = new ReturnedSaveFuncInfo();
@@ -43,37 +43,6 @@ namespace EntityCache.Bussines
                 }
 
                 res.AddReturnedValue(await UnitOfWork.Note.SaveAsync(this, tranName));
-                if (res.HasError) return res;
-                if (autoTran)
-                {
-                    //CommitTransAction
-                }
-            }
-            catch (Exception ex)
-            {
-                if (autoTran)
-                {
-                    //RollBackTransAction
-                }
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-                res.AddReturnedValue(ex);
-            }
-
-            return res;
-        }
-        public async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(bool status, string tranName = "")
-        {
-            var res = new ReturnedSaveFuncInfo();
-            var autoTran = string.IsNullOrEmpty(tranName);
-            if (autoTran) tranName = Guid.NewGuid().ToString();
-            try
-            {
-                if (autoTran)
-                { //BeginTransaction
-                }
-
-
-                res.AddReturnedValue(await UnitOfWork.Note.ChangeStatusAsync(this, status, tranName));
                 if (res.HasError) return res;
                 if (autoTran)
                 {

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Threading.Tasks;
@@ -41,6 +42,72 @@ namespace EntityCache.SqlServerPersistence
             }
 
             return obj;
+        }
+        public override async Task<List<StatesBussines>> GetAllAsync()
+        {
+            var list = new List<StatesBussines>();
+            try
+            {
+                using (var cn = new SqlConnection(_connectionString))
+                {
+                    var cmd = new SqlCommand("sp_State_GetAll", cn) { CommandType = CommandType.StoredProcedure };
+
+                    await cn.OpenAsync();
+                    var dr = await cmd.ExecuteReaderAsync();
+                    while (dr.Read()) list.Add(LoadData(dr));
+                    cn.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+
+            return list;
+        }
+        public override async Task<ReturnedSaveFuncInfo> SaveAsync(StatesBussines item, string tranName)
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                using (var cn = new SqlConnection(_connectionString))
+                {
+                    var cmd = new SqlCommand("sp_State_Save", cn) { CommandType = CommandType.StoredProcedure };
+                    cmd.Parameters.AddWithValue("@guid", item.Guid);
+                    cmd.Parameters.AddWithValue("@st", item.Status);
+                    cmd.Parameters.AddWithValue("@name", item.Name ?? "");
+                    cmd.Parameters.AddWithValue("@modif", item.Modified);
+
+                    await cn.OpenAsync();
+                    await cmd.ExecuteNonQueryAsync();
+                    cn.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+
+            return res;
+        }
+        public override async Task<ReturnedSaveFuncInfo> SaveRangeAsync(IEnumerable<StatesBussines> items, string tranName)
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                foreach (var item in items)
+                {
+                    res.AddReturnedValue(await SaveAsync(item, tranName));
+                    if (res.HasError) return res;
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+            return res;
         }
         private StatesBussines LoadData(SqlDataReader dr)
         {

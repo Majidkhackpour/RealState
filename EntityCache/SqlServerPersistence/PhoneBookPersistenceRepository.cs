@@ -1,15 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Threading.Tasks;
-using EntityCache.Assistence;
-using EntityCache.Bussines;
+﻿using EntityCache.Bussines;
 using EntityCache.Core;
 using Persistence.Entities;
 using Persistence.Model;
 using Services;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
+using System.Threading.Tasks;
 
 namespace EntityCache.SqlServerPersistence
 {
@@ -123,7 +121,7 @@ namespace EntityCache.SqlServerPersistence
                 using (var cn = new SqlConnection(_connectionString))
                 {
                     var cmd = new SqlCommand("sp_PhoneBook_ChangeStatusByParenGuid", cn)
-                        {CommandType = CommandType.StoredProcedure};
+                    { CommandType = CommandType.StoredProcedure };
                     cmd.Parameters.AddWithValue("@parentGuid", parentGuid);
                     cmd.Parameters.AddWithValue("@st", status);
 
@@ -148,7 +146,7 @@ namespace EntityCache.SqlServerPersistence
                 using (var cn = new SqlConnection(_connectionString))
                 {
                     var cmd = new SqlCommand("sp_PhoneBook_RemoveByParentGuid", cn)
-                        { CommandType = CommandType.StoredProcedure };
+                    { CommandType = CommandType.StoredProcedure };
                     cmd.Parameters.AddWithValue("@parentGuid", parentGuid);
 
                     await cn.OpenAsync();
@@ -176,7 +174,7 @@ namespace EntityCache.SqlServerPersistence
                     cmd.Parameters.AddWithValue("@modif", item.Modified);
                     cmd.Parameters.AddWithValue("@st", item.Status);
                     cmd.Parameters.AddWithValue("@name", item.Name);
-                    cmd.Parameters.AddWithValue("@tell", item.Tell??"");
+                    cmd.Parameters.AddWithValue("@tell", item.Tell ?? "");
                     cmd.Parameters.AddWithValue("@group", (short)item.Group);
                     cmd.Parameters.AddWithValue("@parentGuid", item.ParentGuid);
 
@@ -201,7 +199,7 @@ namespace EntityCache.SqlServerPersistence
                 using (var cn = new SqlConnection(_connectionString))
                 {
                     var cmd = new SqlCommand("sp_PhoneBook_Remove", cn)
-                        { CommandType = CommandType.StoredProcedure };
+                    { CommandType = CommandType.StoredProcedure };
                     cmd.Parameters.AddWithValue("@guid", guid);
 
                     await cn.OpenAsync();

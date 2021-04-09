@@ -56,7 +56,7 @@ namespace EntityCache.Bussines
         }
         #endregion
 
-        public static async Task<List<BuildingRequestBussines>> GetAllAsync() => await UnitOfWork.BuildingRequest.GetAllAsyncBySp();
+        public static async Task<List<BuildingRequestBussines>> GetAllAsync() => await UnitOfWork.BuildingRequest.GetAllAsync();
         public static async Task<BuildingRequestBussines> GetAsync(Guid guid) => await UnitOfWork.BuildingRequest.GetAsync(guid);
         public static BuildingRequestBussines Get(Guid guid) => AsyncContext.Run(() => GetAsync(guid));
         public async Task<ReturnedSaveFuncInfo> SaveAsync(string tranName = "")
@@ -72,16 +72,12 @@ namespace EntityCache.Bussines
 
                 if (RegionList.Count > 0)
                 {
-                    var list = await BuildingRequestRegionBussines.GetAllAsync(Guid, Status);
-                    res.AddReturnedValue(
-                        await UnitOfWork.BuildingRequestRegion.RemoveRangeAsync(list.Select(q => q.Guid).ToList(),
-                            tranName));
+                    res.AddReturnedValue(await BuildingRequestRegionBussines.RemoveRangeAsync(Guid, tranName));
                     if (res.HasError) return res;
 
                     foreach (var item in RegionList)
                         item.RequestGuid = Guid;
-                    res.AddReturnedValue(
-                        await UnitOfWork.BuildingRequestRegion.SaveRangeAsync(RegionList, tranName));
+                    res.AddReturnedValue(await BuildingRequestRegionBussines.SaveRangeAsync(RegionList, tranName));
                     if (res.HasError) return res;
                 }
 
@@ -120,12 +116,8 @@ namespace EntityCache.Bussines
 
                 if (RegionList.Count > 0)
                 {
-                    foreach (var item in RegionList)
-                    {
-                        res.AddReturnedValue(
-                            await item.ChangeStatusAsync(status, tranName));
-                        if (res.HasError) return res;
-                    }
+                    res.AddReturnedValue(await BuildingRequestRegionBussines.ChangeStatusAsync(Guid, status, tranName));
+                    if (res.HasError) return res;
                 }
 
                 res.AddReturnedValue(await UnitOfWork.BuildingRequest.ChangeStatusAsync(this, status, tranName));
