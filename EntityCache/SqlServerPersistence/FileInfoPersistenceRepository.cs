@@ -12,17 +12,10 @@ using System.Threading.Tasks;
 
 namespace EntityCache.SqlServerPersistence
 {
-    public class FileInfoPersistenceRepository : GenericRepository<FileInfoBussines, FileInfo>, IFileInfoRepository
+    public class FileInfoPersistenceRepository : IFileInfoRepository
     {
-        private string connectionString;
-        private ModelContext db;
-        public FileInfoPersistenceRepository(ModelContext _db, string _connectionString) : base(_db, _connectionString)
-        {
-            db = _db;
-            connectionString = _connectionString;
-        }
-
-        public async Task<FileInfoBussines> GetAsync(string fileName)
+        public FileInfoPersistenceRepository() { }
+        public async Task<FileInfoBussines> GetAsync(string connectionString, string fileName)
         {
             var obj = new FileInfoBussines();
             try
@@ -44,23 +37,19 @@ namespace EntityCache.SqlServerPersistence
 
             return obj;
         }
-        public override async Task<ReturnedSaveFuncInfo> SaveAsync(FileInfoBussines item, string tranName)
+        public async Task<ReturnedSaveFuncInfo> SaveAsync(FileInfoBussines item, SqlTransaction tr)
         {
             var res = new ReturnedSaveFuncInfo();
             try
             {
-                using (var cn = new SqlConnection(connectionString))
-                {
-                    var cmd = new SqlCommand("sp_FileInfo_Save", cn) { CommandType = CommandType.StoredProcedure };
-                    cmd.Parameters.AddWithValue("@guid", item.Guid);
-                    cmd.Parameters.AddWithValue("@st", item.Status);
-                    cmd.Parameters.AddWithValue("@fileName", item.FileName ?? "");
-                    cmd.Parameters.AddWithValue("@modif", item.Modified);
+                var cmd = new SqlCommand("sp_FileInfo_Save", tr.Connection, tr) { CommandType = CommandType.StoredProcedure };
+                cmd.Parameters.AddWithValue("@guid", item.Guid);
+                cmd.Parameters.AddWithValue("@fileName", item.FileName ?? "");
+                cmd.Parameters.AddWithValue("@modif", item.Modified);
+                cmd.Parameters.AddWithValue("@serverSt", (short)item.ServerStatus);
+                cmd.Parameters.AddWithValue("@serverDate", item.ServerDeliveryDate);
 
-                    await cn.OpenAsync();
-                    await cmd.ExecuteNonQueryAsync();
-                    cn.Close();
-                }
+                await cmd.ExecuteNonQueryAsync();
             }
             catch (Exception ex)
             {
@@ -77,8 +66,9 @@ namespace EntityCache.SqlServerPersistence
             {
                 item.Guid = (Guid)dr["Guid"];
                 item.Modified = (DateTime)dr["Modified"];
-                item.Status = (bool)dr["Status"];
                 item.FileName = dr["FileName"].ToString();
+                item.ServerDeliveryDate = (DateTime)dr["ServerDeliveryDate"];
+                item.ServerStatus = (ServerStatus)dr["ServerStatus"];
             }
             catch (Exception ex)
             {

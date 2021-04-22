@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 using EntityCache.Assistence;
@@ -17,6 +18,8 @@ namespace EntityCache.Bussines
     {
         public Guid Guid { get; set; }
         public DateTime Modified { get; set; } = DateTime.Now;
+        public ServerStatus ServerStatus { get; set; } = ServerStatus.None;
+        public DateTime ServerDeliveryDate { get; set; } = DateTime.Now;
         public string DateSh => Calendar.MiladiToShamsi(DateM);
         public bool Status { get; set; } = true;
         public DateTime DateM { get; set; } = DateTime.Now;
@@ -64,7 +67,7 @@ namespace EntityCache.Bussines
 
 
 
-        public static async Task<List<ContractBussines>> GetAllAsync() => await UnitOfWork.Contract.GetAllAsync();
+        public static async Task<List<ContractBussines>> GetAllAsync() => await UnitOfWork.Contract.GetAllAsync(Cache.ConnectionString);
         public static async Task<List<ContractBussines>> GetAllAsync(string search)
         {
             try
@@ -96,74 +99,73 @@ namespace EntityCache.Bussines
                 return new List<ContractBussines>();
             }
         }
-        public static async Task<ContractBussines> GetAsync(Guid guid) => await UnitOfWork.Contract.GetAsync(guid);
+        public static async Task<ContractBussines> GetAsync(Guid guid) => await UnitOfWork.Contract.GetAsync(Cache.ConnectionString, guid);
         public static ContractBussines Get(Guid guid) => AsyncContext.Run(() => GetAsync(guid));
-        public async Task<ReturnedSaveFuncInfo> SaveAsync(string tranName = "")
+        public async Task<ReturnedSaveFuncInfo> SaveAsync(SqlTransaction tr = null)
         {
             var res = new ReturnedSaveFuncInfo();
-            var autoTran = string.IsNullOrEmpty(tranName);
-            if (autoTran) tranName = Guid.NewGuid().ToString();
+            var autoTran = tr == null;
+            SqlConnection cn = null;
             try
             {
                 if (autoTran)
-                { //BeginTransaction
+                {
+                    cn = new SqlConnection(Cache.ConnectionString);
+                    await cn.OpenAsync();
+                    tr = cn.BeginTransaction();
                 }
 
                 res.AddReturnedValue(await CheckValidationAsync());
                 if (res.HasError) return res;
 
-                res.AddReturnedValue(await UnitOfWork.Contract.SaveAsync(this, tranName));
+                res.AddReturnedValue(await UnitOfWork.Contract.SaveAsync(this, tr));
                 if (res.HasError) return res;
 
                 var sanad = await GenerateSanadAsync();
-                res.AddReturnedValue(await sanad.SaveAsync());
+                res.AddReturnedValue(await sanad.SaveAsync(tr));
                 if (res.HasError) return res;
 
-                if (autoTran)
-                {
-                    //CommitTransAction
-                }
 
                 //if (Cache.IsSendToServer)
                 //    _ = Task.Run(() => WebContract.SaveAsync(this));
             }
             catch (Exception ex)
             {
-                if (autoTran)
-                {
-                    //RollBackTransAction
-                }
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
                 res.AddReturnedValue(ex);
             }
-
+            finally
+            {
+                if (autoTran)
+                {
+                    res.AddReturnedValue(tr.TransactionDestiny(res.HasError));
+                    res.AddReturnedValue(cn.CloseConnection());
+                }
+            }
             return res;
         }
-        public async Task<ReturnedSaveFuncInfo> RemoveAsync(string tranName = "")
+        public async Task<ReturnedSaveFuncInfo> RemoveAsync(SqlTransaction tr = null)
         {
             var res = new ReturnedSaveFuncInfo();
-            var autoTran = string.IsNullOrEmpty(tranName);
-            if (autoTran) tranName = Guid.NewGuid().ToString();
+            var autoTran = tr == null;
+            SqlConnection cn = null;
             try
             {
                 if (autoTran)
-                { //BeginTransaction
+                {
+                    cn = new SqlConnection(Cache.ConnectionString);
+                    await cn.OpenAsync();
+                    tr = cn.BeginTransaction();
                 }
 
-
-                res.AddReturnedValue(await UnitOfWork.Contract.RemoveAsync(Guid, tranName));
+                res.AddReturnedValue(await UnitOfWork.Contract.RemoveAsync(Guid, tr));
                 if (res.HasError) return res;
 
                 var sanad = await SanadBussines.GetAsync(SanadNumber);
                 if (sanad != null)
                 {
-                    res.AddReturnedValue(await sanad.RemoveAsync());
+                    res.AddReturnedValue(await sanad.RemoveAsync(tr));
                     if (res.HasError) return res;
-                }
-
-                if (autoTran)
-                {
-                    //CommitTransAction
                 }
 
                 //if (Cache.IsSendToServer)
@@ -171,36 +173,39 @@ namespace EntityCache.Bussines
             }
             catch (Exception ex)
             {
-                if (autoTran)
-                {
-                    //RollBackTransAction
-                }
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
                 res.AddReturnedValue(ex);
             }
-
+            finally
+            {
+                if (autoTran)
+                {
+                    res.AddReturnedValue(tr.TransactionDestiny(res.HasError));
+                    res.AddReturnedValue(cn.CloseConnection());
+                }
+            }
             return res;
         }
-        public static async Task<string> NextCodeAsync() => await UnitOfWork.Contract.NextCodeAsync();
+        public static async Task<string> NextCodeAsync() => await UnitOfWork.Contract.NextCodeAsync(Cache.ConnectionString);
         public static async Task<bool> CheckCodeAsync(string code, Guid guid) =>
-            await UnitOfWork.Contract.CheckCodeAsync(code, guid);
-        public static async Task<int> DbCount(Guid userGuid) => await UnitOfWork.Contract.DbCount(userGuid);
+            await UnitOfWork.Contract.CheckCodeAsync(Cache.ConnectionString, code, guid);
+        public static async Task<int> DbCount(Guid userGuid) => await UnitOfWork.Contract.DbCount(Cache.ConnectionString, userGuid);
         public static async Task<int> DischargeDbCount()
         {
             var d1 = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, 0, 0);
             var d2 = new DateTime(DateTime.Now.Year, DateTime.Now.Month + 1, DateTime.Now.Day, 23, 59, 59);
 
-            return await UnitOfWork.Contract.DischargeDbCount(d1, d2);
+            return await UnitOfWork.Contract.DischargeDbCount(Cache.ConnectionString, d1, d2);
         }
         public static async Task<List<BuildingDischargeViewModel>> DischargeListAsync()
         {
             var d1 = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, 0, 0);
             var d2 = new DateTime(DateTime.Now.Year, DateTime.Now.Month + 1, DateTime.Now.Day, 23, 59, 59);
 
-            return await UnitOfWork.Contract.DischargeListAsync(d1, d2);
+            return await UnitOfWork.Contract.DischargeListAsync(Cache.ConnectionString, d1, d2);
         }
         public static async Task<decimal> GetTotalBazaryabAsync(DateTime d1, DateTime d2) =>
-            await UnitOfWork.Contract.GetTotalBazaryab(d1, d2);
+            await UnitOfWork.Contract.GetTotalBazaryab(Cache.ConnectionString, d1, d2);
         public static decimal GetTotalBazaryab(DateTime d1, DateTime d2) =>
             AsyncContext.Run(() => GetTotalBazaryabAsync(d1, d2));
         public async Task<SanadBussines> GenerateSanadAsync()
@@ -216,7 +221,6 @@ namespace EntityCache.Bussines
                     UserGuid = UserGuid,
                     Guid = Guid.NewGuid(),
                     Modified = DateTime.Now,
-                    Status = true,
                     SanadStatus = EnSanadStatus.Temporary,
                     SanadType = EnSanadType.Auto
                 };
@@ -231,7 +235,6 @@ namespace EntityCache.Bussines
                     Description = $"قرارداد({Code}) طرف: {FirstSideName} منعقد شده در تاریخ {DateSh}",
                     Guid = Guid.NewGuid(),
                     Modified = DateTime.Now,
-                    Status = true,
                     MasterGuid = sanad.Guid
                 });
                 //طرف حساب بدهکار دوم
@@ -244,20 +247,18 @@ namespace EntityCache.Bussines
                     Description = $"قرارداد({Code}) طرف: {SecondSideName} منعقد شده در تاریخ {DateSh}",
                     Guid = Guid.NewGuid(),
                     Modified = DateTime.Now,
-                    Status = true,
                     MasterGuid = sanad.Guid
                 });
                 //طرف حساب بستانکار درآمد اول
                 sanad.AddToListSanad(new SanadDetailBussines()
                 {
-                    Credit = FirstTotalPrice  - (BazaryabPrice / 2),
+                    Credit = FirstTotalPrice - (BazaryabPrice / 2),
                     Debit = 0,
                     MoeinGuid = ParentDefaults.MoeinCoding.CLSMoein60201,
                     TafsilGuid = ParentDefaults.TafsilCoding.CLSTafsil6020101,
                     Description = $"قرارداد({Code}) طرف: {FirstSideName} منعقد شده در تاریخ {DateSh}",
                     Guid = Guid.NewGuid(),
                     Modified = DateTime.Now,
-                    Status = true,
                     MasterGuid = sanad.Guid
                 });
                 //طرف حساب بستانکار درآمد دوم
@@ -270,7 +271,6 @@ namespace EntityCache.Bussines
                     Description = $"قرارداد({Code}) طرف: {SecondSideName} منعقد شده در تاریخ {DateSh}",
                     Guid = Guid.NewGuid(),
                     Modified = DateTime.Now,
-                    Status = true,
                     MasterGuid = sanad.Guid
                 });
 
@@ -286,7 +286,6 @@ namespace EntityCache.Bussines
                         Description = $"قرارداد({Code}) طرف: {FirstSideName} منعقد شده در تاریخ {DateSh}",
                         Guid = Guid.NewGuid(),
                         Modified = DateTime.Now,
-                        Status = true,
                         MasterGuid = sanad.Guid
                     });
                 }
@@ -302,7 +301,6 @@ namespace EntityCache.Bussines
                         Description = $"قرارداد({Code}) طرف: {SecondSideName} منعقد شده در تاریخ {DateSh}",
                         Guid = Guid.NewGuid(),
                         Modified = DateTime.Now,
-                        Status = true,
                         MasterGuid = sanad.Guid
                     });
                 }
@@ -319,7 +317,6 @@ namespace EntityCache.Bussines
                         Description = $"قرارداد({Code}) طرف: {FirstSideName} منعقد شده در تاریخ {DateSh}",
                         Guid = Guid.NewGuid(),
                         Modified = DateTime.Now,
-                        Status = true,
                         MasterGuid = sanad.Guid
                     });
                 }
@@ -335,7 +332,6 @@ namespace EntityCache.Bussines
                         Description = $"قرارداد({Code}) طرف: {SecondSideName} منعقد شده در تاریخ {DateSh}",
                         Guid = Guid.NewGuid(),
                         Modified = DateTime.Now,
-                        Status = true,
                         MasterGuid = sanad.Guid
                     });
                 }
@@ -352,7 +348,6 @@ namespace EntityCache.Bussines
                         Description = $"قرارداد({Code}) طرف: {FirstSideName} منعقد شده در تاریخ {DateSh}",
                         Guid = Guid.NewGuid(),
                         Modified = DateTime.Now,
-                        Status = true,
                         MasterGuid = sanad.Guid
                     });
                 }
@@ -368,7 +363,6 @@ namespace EntityCache.Bussines
                         Description = $"قرارداد({Code}) طرف: {SecondSideName} منعقد شده در تاریخ {DateSh}",
                         Guid = Guid.NewGuid(),
                         Modified = DateTime.Now,
-                        Status = true,
                         MasterGuid = sanad.Guid
                     });
                 }
@@ -385,7 +379,6 @@ namespace EntityCache.Bussines
                         Description = $"پورسانت عقدقرارداد({Code}) فی مابین {FirstSideName} و {SecondSideName} منعقد شده در تاریخ {DateSh}",
                         Guid = Guid.NewGuid(),
                         Modified = DateTime.Now,
-                        Status = true,
                         MasterGuid = sanad.Guid
                     });
                 }
@@ -420,11 +413,11 @@ namespace EntityCache.Bussines
             return res;
         }
         public static async Task<decimal> GetTotalCommitionAsync(DateTime d1, DateTime d2) =>
-            await UnitOfWork.Contract.GetTotalCommitionAsync(d1, d2);
+            await UnitOfWork.Contract.GetTotalCommitionAsync(Cache.ConnectionString, d1, d2);
         public static decimal GetTotalCommition(DateTime d1, DateTime d2) =>
             AsyncContext.Run(() => GetTotalCommitionAsync(d1, d2));
         public static async Task<decimal> GetTotalTaxAsync(DateTime d1, DateTime d2) =>
-            await UnitOfWork.Contract.GetTotalTaxAsync(d1, d2);
+            await UnitOfWork.Contract.GetTotalTaxAsync(Cache.ConnectionString, d1, d2);
         public static decimal GetTotalTax(DateTime d1, DateTime d2) => AsyncContext.Run(() => GetTotalTaxAsync(d1, d2));
     }
 }

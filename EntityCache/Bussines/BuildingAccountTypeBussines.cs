@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 using EntityCache.Assistence;
@@ -16,109 +17,115 @@ namespace EntityCache.Bussines
         public Guid Guid { get; set; }
         public DateTime Modified { get; set; } = DateTime.Now;
         public bool Status { get; set; } = true;
+        public ServerStatus ServerStatus { get; set; } = ServerStatus.None;
+        public DateTime ServerDeliveryDate { get; set; } = DateTime.Now;
         public string Name { get; set; }
         public string HardSerial => Cache.HardSerial;
 
 
-        public static async Task<List<BuildingAccountTypeBussines>> GetAllAsync() => await UnitOfWork.BuildingAccountType.GetAllAsync();
-        public static async Task<ReturnedSaveFuncInfo> SaveRangeAsync(List<BuildingAccountTypeBussines> list, string tranName = "")
+        public static async Task<List<BuildingAccountTypeBussines>> GetAllAsync() => await UnitOfWork.BuildingAccountType.GetAllAsync(Cache.ConnectionString);
+        public static async Task<ReturnedSaveFuncInfo> SaveRangeAsync(List<BuildingAccountTypeBussines> list, SqlTransaction tr = null)
         {
             var res = new ReturnedSaveFuncInfo();
-            var autoTran = string.IsNullOrEmpty(tranName);
-            if (autoTran) tranName = Guid.NewGuid().ToString();
+            var autoTran = tr == null;
+            SqlConnection cn = null;
             try
             {
                 if (autoTran)
-                { //BeginTransaction
+                {
+                    cn = new SqlConnection(Cache.ConnectionString);
+                    await cn.OpenAsync();
+                    tr = cn.BeginTransaction();
                 }
 
-                res.AddReturnedValue(await UnitOfWork.BuildingAccountType.SaveRangeAsync(list, tranName));
-                if (res.HasError) return res;
-                if (autoTran)
-                {
-                    //CommitTransAction
-                }
+                res.AddReturnedValue(await UnitOfWork.BuildingAccountType.SaveRangeAsync(list, tr));
 
                 if (Cache.IsSendToServer)
                     _ = Task.Run(() => WebBuildingAccountType.SaveAsync(list));
             }
             catch (Exception ex)
             {
-                if (autoTran)
-                {
-                    //RollBackTransAction
-                }
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
                 res.AddReturnedValue(ex);
             }
-
+            finally
+            {
+                if (autoTran)
+                {
+                    res.AddReturnedValue(tr.TransactionDestiny(res.HasError));
+                    res.AddReturnedValue(cn.CloseConnection());
+                }
+            }
             return res;
         }
-        public static async Task<BuildingAccountTypeBussines> GetAsync(Guid guid) => await UnitOfWork.BuildingAccountType.GetAsync(guid);
-        public async Task<ReturnedSaveFuncInfo> SaveAsync(string tranName = "")
+        public static async Task<BuildingAccountTypeBussines> GetAsync(Guid guid) => await UnitOfWork.BuildingAccountType.GetAsync(Cache.ConnectionString, guid);
+        public async Task<ReturnedSaveFuncInfo> SaveAsync(SqlTransaction tr)
         {
             var res = new ReturnedSaveFuncInfo();
-            var autoTran = string.IsNullOrEmpty(tranName);
-            if (autoTran) tranName = Guid.NewGuid().ToString();
+            var autoTran = tr == null;
+            SqlConnection cn = null;
             try
             {
                 if (autoTran)
-                { //BeginTransaction
+                {
+                    cn = new SqlConnection(Cache.ConnectionString);
+                    await cn.OpenAsync();
+                    tr = cn.BeginTransaction();
                 }
 
-                res.AddReturnedValue(await UnitOfWork.BuildingAccountType.SaveAsync(this, tranName));
-                if (res.HasError) return res;
-                if (autoTran)
-                {
-                    //CommitTransAction
-                }
+                res.AddReturnedValue(await UnitOfWork.BuildingAccountType.SaveAsync(this, tr));
 
                 if (Cache.IsSendToServer)
                     _ = Task.Run(() => WebBuildingAccountType.SaveAsync(this));
             }
             catch (Exception ex)
             {
-                if (autoTran)
-                {
-                    //RollBackTransAction
-                }
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
                 res.AddReturnedValue(ex);
             }
-
+            finally
+            {
+                if (autoTran)
+                {
+                    res.AddReturnedValue(tr.TransactionDestiny(res.HasError));
+                    res.AddReturnedValue(cn.CloseConnection());
+                }
+            }
             return res;
         }
-        public async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(bool status, string tranName = "")
+        public async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(bool status, SqlTransaction tr)
         {
             var res = new ReturnedSaveFuncInfo();
-            var autoTran = string.IsNullOrEmpty(tranName);
-            if (autoTran) tranName = Guid.NewGuid().ToString();
+            var autoTran = tr == null;
+            SqlConnection cn = null;
             try
             {
                 if (autoTran)
-                { //BeginTransaction
+                {
+                    cn = new SqlConnection(Cache.ConnectionString);
+                    await cn.OpenAsync();
+                    tr = cn.BeginTransaction();
                 }
 
-                res.AddReturnedValue(await UnitOfWork.BuildingAccountType.ChangeStatusAsync(this, status, tranName));
+                res.AddReturnedValue(await UnitOfWork.BuildingAccountType.ChangeStatusAsync(this, status, tr));
                 if (res.HasError) return res;
-                if (autoTran)
-                {
-                    //CommitTransAction
-                }
 
                 if (Cache.IsSendToServer)
                     _ = Task.Run(() => WebBuildingAccountType.SaveAsync(this));
             }
             catch (Exception ex)
             {
-                if (autoTran)
-                {
-                    //RollBackTransAction
-                }
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
                 res.AddReturnedValue(ex);
             }
-
+            finally
+            {
+                if (autoTran)
+                {
+                    res.AddReturnedValue(tr.TransactionDestiny(res.HasError));
+                    res.AddReturnedValue(cn.CloseConnection());
+                }
+            }
             return res;
         }
         public static async Task<List<BuildingAccountTypeBussines>> GetAllAsync(string search)
@@ -152,6 +159,6 @@ namespace EntityCache.Bussines
         }
         public static BuildingAccountTypeBussines Get(Guid guid) => AsyncContext.Run(() => GetAsync(guid));
         public static async Task<bool> CheckNameAsync(string name, Guid guid) =>
-            await UnitOfWork.BuildingAccountType.CheckNameAsync(name, guid);
+            await UnitOfWork.BuildingAccountType.CheckNameAsync(Cache.ConnectionString, name, guid);
     }
 }

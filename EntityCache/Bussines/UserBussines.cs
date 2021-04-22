@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 using EntityCache.Assistence;
@@ -17,6 +18,8 @@ namespace EntityCache.Bussines
         public Guid Guid { get; set; }
         public DateTime Modified { get; set; } = DateTime.Now;
         public bool Status { get; set; } = true;
+        public ServerStatus ServerStatus { get; set; } = ServerStatus.None;
+        public DateTime ServerDeliveryDate { get; set; } = DateTime.Now;
         public string Name { get; set; }
         public string UserName { get; set; }
         public string Password { get; set; }
@@ -51,75 +54,81 @@ namespace EntityCache.Bussines
         public string Mobile { get; set; }
         public string HardSerial => Cache.HardSerial;
 
-        public static async Task<UserBussines> GetAsync(Guid guid) => await UnitOfWork.Users.GetAsync(guid);
-        public static async Task<List<UserBussines>> GetAllAsync() => await UnitOfWork.Users.GetAllAsync();
-        public async Task<ReturnedSaveFuncInfo> SaveAsync(string tranName = "")
+        public static async Task<UserBussines> GetAsync(Guid guid) => await UnitOfWork.Users.GetAsync(Cache.ConnectionString, guid);
+        public static async Task<List<UserBussines>> GetAllAsync() => await UnitOfWork.Users.GetAllAsync(Cache.ConnectionString);
+        public async Task<ReturnedSaveFuncInfo> SaveAsync(SqlTransaction tr = null)
         {
             var res = new ReturnedSaveFuncInfo();
-            var autoTran = string.IsNullOrEmpty(tranName);
-            if (autoTran) tranName = Guid.NewGuid().ToString();
+            var autoTran = tr == null;
+            SqlConnection cn = null;
             try
             {
                 if (autoTran)
-                { //BeginTransaction
+                {
+                    cn = new SqlConnection(Cache.ConnectionString);
+                    await cn.OpenAsync();
+                    tr = cn.BeginTransaction();
                 }
 
                 res.AddReturnedValue(await CheckValidationAsync());
                 if (res.HasError) return res;
-                res.AddReturnedValue(await SaveMobileAsync());
+                res.AddReturnedValue(await SaveMobileAsync(tr));
                 if (res.HasError) return res;
 
-                res.AddReturnedValue(await UnitOfWork.Users.SaveAsync(this, tranName));
+                res.AddReturnedValue(await UnitOfWork.Users.SaveAsync(this, tr));
                 if (res.HasError) return res;
-                if (autoTran)
-                {
-                    //CommitTransAction
-                }
 
                 //if (Cache.IsSendToServer)
                 //    _ = Task.Run(() => WebUser.SaveAsync(this));
             }
             catch (Exception ex)
             {
-                if (autoTran)
-                {
-                    //RollBackTransAction
-                }
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
                 res.AddReturnedValue(ex);
             }
-
+            finally
+            {
+                if (autoTran)
+                {
+                    res.AddReturnedValue(tr.TransactionDestiny(res.HasError));
+                    res.AddReturnedValue(cn.CloseConnection());
+                }
+            }
             return res;
         }
-        public async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(bool status, string tranName = "")
+        public async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(bool status, SqlTransaction tr = null)
         {
             var res = new ReturnedSaveFuncInfo();
-            var autoTran = string.IsNullOrEmpty(tranName);
-            if (autoTran) tranName = Guid.NewGuid().ToString();
+            var autoTran = tr == null;
+            SqlConnection cn = null;
             try
             {
                 if (autoTran)
-                { //BeginTransaction
+                {
+                    cn = new SqlConnection(Cache.ConnectionString);
+                    await cn.OpenAsync();
+                    tr = cn.BeginTransaction();
                 }
 
-                res.AddReturnedValue(await PhoneBookBussines.ChangeStatusAsync(Guid, status));
-                res.AddReturnedValue(await UnitOfWork.Users.ChangeStatusAsync(this, status, tranName));
+
+                res.AddReturnedValue(await PhoneBookBussines.ChangeStatusAsync(Guid, status, tr));
                 if (res.HasError) return res;
-                if (autoTran)
-                {
-                    //CommitTransAction
-                }
+                res.AddReturnedValue(await UnitOfWork.Users.ChangeStatusAsync(this, status, tr));
+                if (res.HasError) return res;
             }
             catch (Exception ex)
             {
-                if (autoTran)
-                {
-                    //RollBackTransAction
-                }
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
                 res.AddReturnedValue(ex);
             }
-
+            finally
+            {
+                if (autoTran)
+                {
+                    res.AddReturnedValue(tr.TransactionDestiny(res.HasError));
+                    res.AddReturnedValue(cn.CloseConnection());
+                }
+            }
             return res;
         }
         public static async Task<List<UserBussines>> GetAllAsync(string search)
@@ -156,13 +165,12 @@ namespace EntityCache.Bussines
             }
         }
         public static UserBussines Get(Guid guid) => AsyncContext.Run(() => GetAsync(guid));
-        public static async Task<bool> CheckUserNameAsync(Guid guid, string userName) =>
-            await UnitOfWork.Users.CheckUserNameAsync(guid, userName);
-        public static async Task<UserBussines> GetAsync(string userName) => await UnitOfWork.Users.GetAsync(userName);
-        public static async Task<UserBussines> GetByEmailAsync(string email) => await UnitOfWork.Users.GetByEmailAsync(email);
-        public static async Task<UserBussines> GetByMobileAsync(string mobile) => await UnitOfWork.Users.GetByMobilAsync(mobile);
+        public static async Task<bool> CheckUserNameAsync(Guid guid, string userName) => await UnitOfWork.Users.CheckUserNameAsync(Cache.ConnectionString, guid, userName);
+        public static async Task<UserBussines> GetAsync(string userName) => await UnitOfWork.Users.GetAsync(Cache.ConnectionString, userName);
+        public static async Task<UserBussines> GetByEmailAsync(string email) => await UnitOfWork.Users.GetByEmailAsync(Cache.ConnectionString, email);
+        public static async Task<UserBussines> GetByMobileAsync(string mobile) => await UnitOfWork.Users.GetByMobilAsync(Cache.ConnectionString, mobile);
         public static async Task<List<UserBussines>> GetAllAsync(EnSecurityQuestion question, string answer) =>
-            await UnitOfWork.Users.GetAllAsync(question, answer);
+            await UnitOfWork.Users.GetAllAsync(Cache.ConnectionString, question, answer);
         private async Task<ReturnedSaveFuncInfo> CheckValidationAsync()
         {
             var res = new ReturnedSaveFuncInfo();
@@ -189,12 +197,12 @@ namespace EntityCache.Bussines
 
             return res;
         }
-        private async Task<ReturnedSaveFuncInfo> SaveMobileAsync()
+        private async Task<ReturnedSaveFuncInfo> SaveMobileAsync(SqlTransaction tr)
         {
             var res = new ReturnedSaveFuncInfo();
             try
             {
-                res.AddReturnedValue(await PhoneBookBussines.RemoveAsync(Guid));
+                res.AddReturnedValue(await PhoneBookBussines.RemoveAsync(Guid, tr));
                 if (res.HasError) return res;
 
                 var tel = new PhoneBookBussines()
@@ -207,7 +215,7 @@ namespace EntityCache.Bussines
                     Modified = Modified,
                     Status = true
                 };
-                res.AddReturnedValue(await tel.SaveAsync());
+                res.AddReturnedValue(await tel.SaveAsync(tr));
             }
             catch (Exception ex)
             {

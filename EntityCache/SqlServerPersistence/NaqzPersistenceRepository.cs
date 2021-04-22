@@ -11,25 +11,16 @@ using Services;
 
 namespace EntityCache.SqlServerPersistence
 {
-    public class NaqzPersistenceRepository : GenericRepository<NaqzBussines, Naqz>, INaqzRepository
+    public class NaqzPersistenceRepository : INaqzRepository
     {
-        private ModelContext db;
-        private string _connectionString;
-        public NaqzPersistenceRepository(ModelContext _db, string connectionString) : base(_db, connectionString)
-        {
-            db = _db;
-            _connectionString = connectionString;
-        }
         private NaqzBussines LoadData(SqlDataReader dr)
         {
             var item = new NaqzBussines();
             try
             {
                 item.Guid = (Guid)dr["Guid"];
-                item.Modified = (DateTime)dr["Modified"];
-                item.Status = (bool)dr["Status"];
                 item.Message = dr["Message"].ToString();
-                item.UseCount = (int) dr["UseCount"];
+                item.UseCount = (int)dr["UseCount"];
             }
             catch (Exception ex)
             {
@@ -38,7 +29,7 @@ namespace EntityCache.SqlServerPersistence
 
             return item;
         }
-        public override async Task<List<NaqzBussines>> GetAllAsync()
+        public async Task<List<NaqzBussines>> GetAllAsync(string _connectionString)
         {
             var list = new List<NaqzBussines>();
             try
@@ -60,24 +51,17 @@ namespace EntityCache.SqlServerPersistence
 
             return list;
         }
-        public override async Task<ReturnedSaveFuncInfo> SaveAsync(NaqzBussines item, string tranName)
+        public async Task<ReturnedSaveFuncInfo> SaveAsync(NaqzBussines item, SqlTransaction tr)
         {
             var res = new ReturnedSaveFuncInfo();
             try
             {
-                using (var cn = new SqlConnection(_connectionString))
-                {
-                    var cmd = new SqlCommand("sp_Naqz_Save", cn) { CommandType = CommandType.StoredProcedure };
-                    cmd.Parameters.AddWithValue("@guid", item.Guid);
-                    cmd.Parameters.AddWithValue("@st", item.Status);
-                    cmd.Parameters.AddWithValue("@message", item.Message ?? "");
-                    cmd.Parameters.AddWithValue("@modif", item.Modified);
-                    cmd.Parameters.AddWithValue("@useCount", item.UseCount);
+                var cmd = new SqlCommand("sp_Naqz_Save", tr.Connection,tr) { CommandType = CommandType.StoredProcedure };
+                cmd.Parameters.AddWithValue("@guid", item.Guid);
+                cmd.Parameters.AddWithValue("@message", item.Message ?? "");
+                cmd.Parameters.AddWithValue("@useCount", item.UseCount);
 
-                    await cn.OpenAsync();
-                    await cmd.ExecuteNonQueryAsync();
-                    cn.Close();
-                }
+                await cmd.ExecuteNonQueryAsync();
             }
             catch (Exception ex)
             {
@@ -87,14 +71,14 @@ namespace EntityCache.SqlServerPersistence
 
             return res;
         }
-        public override async Task<ReturnedSaveFuncInfo> SaveRangeAsync(IEnumerable<NaqzBussines> items, string tranName)
+        public async Task<ReturnedSaveFuncInfo> SaveRangeAsync(IEnumerable<NaqzBussines> items, SqlTransaction tr)
         {
             var res = new ReturnedSaveFuncInfo();
             try
             {
                 foreach (var item in items)
                 {
-                    res.AddReturnedValue(await SaveAsync(item, tranName));
+                    res.AddReturnedValue(await SaveAsync(item, tr));
                     if (res.HasError) return res;
                 }
             }

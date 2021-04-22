@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 using EntityCache.Assistence;
 using Nito.AsyncEx;
+using Persistence;
 using Services;
 using Servicess.Interfaces.Building;
 
@@ -12,16 +14,15 @@ namespace EntityCache.Bussines
     public class SmsPanelsBussines : ISmsPanels
     {
         public Guid Guid { get; set; }
-        public DateTime Modified { get; set; } = DateTime.Now;
-        public bool Status { get; set; } = true;
         public string Name { get; set; }
         public string Sender { get; set; }
         public string API { get; set; }
+        public bool Status { get; set; }
         public bool IsDefult
         {
             get
             {
-                var defPanel= SettingsBussines.Get("defPanel");
+                var defPanel = SettingsBussines.Get("defPanel");
                 if (defPanel == null) return false;
                 if (Guid.Parse(defPanel.Value) != Guid) return false;
                 return true;
@@ -30,66 +31,68 @@ namespace EntityCache.Bussines
 
 
 
-        public static async Task<SmsPanelsBussines> GetAsync(Guid guid) => await UnitOfWork.SmsPanels.GetAsync(guid);
-        public static async Task<List<SmsPanelsBussines>> GetAllAsync() => await UnitOfWork.SmsPanels.GetAllAsync();
-        public async Task<ReturnedSaveFuncInfo> SaveAsync(string tranName = "")
+        public static async Task<SmsPanelsBussines> GetAsync(Guid guid) => await UnitOfWork.SmsPanels.GetAsync(Cache.ConnectionString, guid);
+        public static async Task<List<SmsPanelsBussines>> GetAllAsync() => await UnitOfWork.SmsPanels.GetAllAsync(Cache.ConnectionString);
+        public async Task<ReturnedSaveFuncInfo> SaveAsync(SqlTransaction tr = null)
         {
             var res = new ReturnedSaveFuncInfo();
-            var autoTran = string.IsNullOrEmpty(tranName);
-            if (autoTran) tranName = Guid.NewGuid().ToString();
+            var autoTran = tr == null;
+            SqlConnection cn = null;
             try
             {
                 if (autoTran)
-                { //BeginTransaction
+                {
+                    cn = new SqlConnection(Cache.ConnectionString);
+                    await cn.OpenAsync();
+                    tr = cn.BeginTransaction();
                 }
 
-                res.AddReturnedValue(await UnitOfWork.SmsPanels.SaveAsync(this, tranName));
-                if (res.HasError) return res;
-                if (autoTran)
-                {
-                    //CommitTransAction
-                }
+                res.AddReturnedValue(await UnitOfWork.SmsPanels.SaveAsync(this, tr));
             }
             catch (Exception ex)
             {
-                if (autoTran)
-                {
-                    //RollBackTransAction
-                }
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
                 res.AddReturnedValue(ex);
             }
-
+            finally
+            {
+                if (autoTran)
+                {
+                    res.AddReturnedValue(tr.TransactionDestiny(res.HasError));
+                    res.AddReturnedValue(cn.CloseConnection());
+                }
+            }
             return res;
         }
-        public async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(bool status, string tranName = "")
+        public async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(bool status, SqlTransaction tr = null)
         {
             var res = new ReturnedSaveFuncInfo();
-            var autoTran = string.IsNullOrEmpty(tranName);
-            if (autoTran) tranName = Guid.NewGuid().ToString();
+            var autoTran = tr == null;
+            SqlConnection cn = null;
             try
             {
                 if (autoTran)
-                { //BeginTransaction
+                {
+                    cn = new SqlConnection(Cache.ConnectionString);
+                    await cn.OpenAsync();
+                    tr = cn.BeginTransaction();
                 }
 
-                res.AddReturnedValue(await UnitOfWork.SmsPanels.ChangeStatusAsync(this, status, tranName));
-                if (res.HasError) return res;
-                if (autoTran)
-                {
-                    //CommitTransAction
-                }
+                res.AddReturnedValue(await UnitOfWork.SmsPanels.ChangeStatusAsync(this, status, tr));
             }
             catch (Exception ex)
             {
-                if (autoTran)
-                {
-                    //RollBackTransAction
-                }
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
                 res.AddReturnedValue(ex);
             }
-
+            finally
+            {
+                if (autoTran)
+                {
+                    res.AddReturnedValue(tr.TransactionDestiny(res.HasError));
+                    res.AddReturnedValue(cn.CloseConnection());
+                }
+            }
             return res;
         }
         public static async Task<List<SmsPanelsBussines>> GetAllAsync(string search)

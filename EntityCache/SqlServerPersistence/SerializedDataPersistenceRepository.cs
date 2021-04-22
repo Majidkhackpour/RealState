@@ -10,16 +10,9 @@ using System.Threading.Tasks;
 
 namespace EntityCache.SqlServerPersistence
 {
-    public class SerializedDataPersistenceRepository : GenericRepository<SerializedDataBussines, SerializedData>, ISerializedDataRepository
+    public class SerializedDataPersistenceRepository : ISerializedDataRepository
     {
-        private ModelContext db;
-        private string _connectionString;
-        public SerializedDataPersistenceRepository(ModelContext _db, string connectionString) : base(_db, connectionString)
-        {
-            db = _db;
-            _connectionString = connectionString;
-        }
-        public async Task<SerializedDataBussines> GetAsync(string memberName)
+        public async Task<SerializedDataBussines> GetAsync(string _connectionString, string memberName)
         {
             var obj = new SerializedDataBussines();
             try
@@ -41,24 +34,17 @@ namespace EntityCache.SqlServerPersistence
 
             return obj;
         }
-        public override async Task<ReturnedSaveFuncInfo> SaveAsync(SerializedDataBussines item, string tranName)
+        public async Task<ReturnedSaveFuncInfo> SaveAsync(SerializedDataBussines item, SqlTransaction tr)
         {
             var res = new ReturnedSaveFuncInfo();
             try
             {
-                using (var cn = new SqlConnection(_connectionString))
-                {
-                    var cmd = new SqlCommand("sp_SerializedData_Save", cn) { CommandType = CommandType.StoredProcedure };
-                    cmd.Parameters.AddWithValue("@guid", item.Guid);
-                    cmd.Parameters.AddWithValue("@st", item.Status);
-                    cmd.Parameters.AddWithValue("@name", item.Name ?? "");
-                    cmd.Parameters.AddWithValue("@data", item.Data ?? "");
-                    cmd.Parameters.AddWithValue("@modif", item.Modified);
+                var cmd = new SqlCommand("sp_SerializedData_Save", tr.Connection, tr) { CommandType = CommandType.StoredProcedure };
+                cmd.Parameters.AddWithValue("@guid", item.Guid);
+                cmd.Parameters.AddWithValue("@name", item.Name ?? "");
+                cmd.Parameters.AddWithValue("@data", item.Data ?? "");
 
-                    await cn.OpenAsync();
-                    await cmd.ExecuteNonQueryAsync();
-                    cn.Close();
-                }
+                await cmd.ExecuteNonQueryAsync();
             }
             catch (Exception ex)
             {
@@ -68,21 +54,16 @@ namespace EntityCache.SqlServerPersistence
 
             return res;
         }
-        public override async Task<ReturnedSaveFuncInfo> RemoveAsync(Guid guid, string tranName)
+        public async Task<ReturnedSaveFuncInfo> RemoveAsync(Guid guid, SqlTransaction tr)
         {
             var res = new ReturnedSaveFuncInfo();
             try
             {
-                using (var cn = new SqlConnection(_connectionString))
-                {
-                    var cmd = new SqlCommand("sp_SerializedData_Remove", cn)
-                    { CommandType = CommandType.StoredProcedure };
-                    cmd.Parameters.AddWithValue("@guid", guid);
+                var cmd = new SqlCommand("sp_SerializedData_Remove", tr.Connection, tr)
+                { CommandType = CommandType.StoredProcedure };
+                cmd.Parameters.AddWithValue("@guid", guid);
 
-                    await cn.OpenAsync();
-                    await cmd.ExecuteNonQueryAsync();
-                    cn.Close();
-                }
+                await cmd.ExecuteNonQueryAsync();
             }
             catch (Exception ex)
             {
@@ -98,8 +79,6 @@ namespace EntityCache.SqlServerPersistence
             try
             {
                 item.Guid = (Guid)dr["Guid"];
-                item.Modified = (DateTime)dr["Modified"];
-                item.Status = (bool)dr["Status"];
                 item.Name = dr["Name"].ToString();
                 item.Data = dr["Data"].ToString();
             }

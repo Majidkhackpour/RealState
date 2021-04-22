@@ -12,17 +12,9 @@ using Services;
 
 namespace EntityCache.SqlServerPersistence
 {
-    public class NotePersistenceRepository : GenericRepository<NoteBussines, Note>, INoteRepository
+    public class NotePersistenceRepository : INoteRepository
     {
-        private ModelContext db;
-        private string _connectionString;
-        public NotePersistenceRepository(ModelContext _db, string connectionString) : base(_db, connectionString)
-        {
-            db = _db;
-            _connectionString = connectionString;
-        }
-
-        public override async Task<List<NoteBussines>> GetAllAsync()
+        public async Task<List<NoteBussines>> GetAllAsync(string _connectionString)
         {
             var list = new List<NoteBussines>();
             try
@@ -44,7 +36,7 @@ namespace EntityCache.SqlServerPersistence
 
             return list;
         }
-        public override async Task<NoteBussines> GetAsync(Guid guid)
+        public async Task<NoteBussines> GetAsync(string _connectionString, Guid guid)
         {
             var obj = new NoteBussines();
             try
@@ -66,29 +58,22 @@ namespace EntityCache.SqlServerPersistence
 
             return obj;
         }
-        public override async Task<ReturnedSaveFuncInfo> SaveAsync(NoteBussines item, string tranName)
+        public async Task<ReturnedSaveFuncInfo> SaveAsync(NoteBussines item, SqlTransaction tr)
         {
             var res = new ReturnedSaveFuncInfo();
             try
             {
-                using (var cn = new SqlConnection(_connectionString))
-                {
-                    var cmd = new SqlCommand("sp_Note_Save", cn) { CommandType = CommandType.StoredProcedure };
-                    cmd.Parameters.AddWithValue("@guid", item.Guid);
-                    cmd.Parameters.AddWithValue("@st", item.Status);
-                    cmd.Parameters.AddWithValue("@title", item.Title ?? "");
-                    cmd.Parameters.AddWithValue("@modif", item.Modified);
-                    cmd.Parameters.AddWithValue("@desc", item.Description ?? "");
-                    cmd.Parameters.AddWithValue("@dateSabt", item.DateSabt);
-                    cmd.Parameters.AddWithValue("@dateSarresid", item.DateSarresid);
-                    cmd.Parameters.AddWithValue("@userGuid", item.UserGuid);
-                    cmd.Parameters.AddWithValue("@priority", (short)item.Priority);
-                    cmd.Parameters.AddWithValue("@status", (short)item.NoteStatus);
+                var cmd = new SqlCommand("sp_Note_Save", tr.Connection, tr) { CommandType = CommandType.StoredProcedure };
+                cmd.Parameters.AddWithValue("@guid", item.Guid);
+                cmd.Parameters.AddWithValue("@title", item.Title ?? "");
+                cmd.Parameters.AddWithValue("@desc", item.Description ?? "");
+                cmd.Parameters.AddWithValue("@dateSabt", item.DateSabt);
+                cmd.Parameters.AddWithValue("@dateSarresid", item.DateSarresid);
+                cmd.Parameters.AddWithValue("@userGuid", item.UserGuid);
+                cmd.Parameters.AddWithValue("@priority", (short)item.Priority);
+                cmd.Parameters.AddWithValue("@status", (short)item.NoteStatus);
 
-                    await cn.OpenAsync();
-                    await cmd.ExecuteNonQueryAsync();
-                    cn.Close();
-                }
+                await cmd.ExecuteNonQueryAsync();
             }
             catch (Exception ex)
             {
@@ -104,16 +89,14 @@ namespace EntityCache.SqlServerPersistence
             try
             {
                 item.Guid = (Guid)dr["Guid"];
-                item.Modified = (DateTime)dr["Modified"];
-                item.Status = (bool)dr["Status"];
                 item.Title = dr["Title"].ToString();
                 item.Description = dr["Description"].ToString();
-                item.DateSabt = (DateTime) dr["DateSabt"];
-                if (dr["DateSarresid"] != DBNull.Value) item.DateSarresid = (DateTime) dr["DateSarresid"];
-                item.UserGuid = (Guid) dr["UserGuid"];
+                item.DateSabt = (DateTime)dr["DateSabt"];
+                if (dr["DateSarresid"] != DBNull.Value) item.DateSarresid = (DateTime)dr["DateSarresid"];
+                item.UserGuid = (Guid)dr["UserGuid"];
                 item.UserName = dr["UserName"].ToString();
-                item.Priority = (EnNotePriority) dr["Priority"];
-                item.NoteStatus = (EnNoteStatus) dr["NoteStatus"];
+                item.Priority = (EnNotePriority)dr["Priority"];
+                item.NoteStatus = (EnNoteStatus)dr["NoteStatus"];
             }
             catch (Exception ex)
             {

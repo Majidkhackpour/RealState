@@ -8,8 +8,6 @@ namespace Persistence.Entities
     {
         [Key]
         public Guid Guid { get; set; }
-        public DateTime Modified { get; set; }
-        public bool Status { get; set; }
         public string Message { get; set; }
         public int UseCount { get; set; }
     }

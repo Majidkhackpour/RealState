@@ -1,16 +1,23 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Threading.Tasks;
 using EntityCache.Bussines;
 using Services;
 
 namespace EntityCache.Core
 {
-    public interface ITafsilRepository : IRepository<TafsilBussines>
+    public interface ITafsilRepository
     {
-        Task<string> NextCodeAsync(HesabType type);
-        Task<bool> CheckCodeAsync(Guid guid, string code);
-        Task<bool> CheckNameAsync(string name);
-        Task<ReturnedSaveFuncInfo> UpdateAccountAsync(Guid guid, decimal price);
-        Task<TafsilBussines> GetAsync(string code);
+        Task<ReturnedSaveFuncInfo> SaveRangeAsync(IEnumerable<TafsilBussines> items, SqlTransaction tr);
+        Task<ReturnedSaveFuncInfo> SaveAsync(TafsilBussines item, SqlTransaction tr);
+        Task<List<TafsilBussines>> GetAllAsync(string _connectionString);
+        Task<TafsilBussines> GetAsync(Guid guid, SqlTransaction tr);
+        Task<ReturnedSaveFuncInfo> ChangeStatusAsync(TafsilBussines item, bool status, SqlTransaction tr);
+        Task<string> NextCodeAsync(string _connectionString, HesabType type);
+        Task<bool> CheckCodeAsync(string _connectionString, Guid guid, string code);
+        Task<bool> CheckNameAsync(string _connectionString, string name);
+        Task<ReturnedSaveFuncInfo> UpdateAccountAsync(Guid guid, decimal price, SqlTransaction tr);
+        Task<TafsilBussines> GetAsync(string _connectionString, string code);
     }
 }

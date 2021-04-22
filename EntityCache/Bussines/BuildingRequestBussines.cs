@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 using EntityCache.Assistence;
@@ -17,6 +18,8 @@ namespace EntityCache.Bussines
         public Guid Guid { get; set; }
         public DateTime Modified { get; set; } = DateTime.Now;
         public bool Status { get; set; } = true;
+        public ServerStatus ServerStatus { get; set; } = ServerStatus.None;
+        public DateTime ServerDeliveryDate { get; set; } = DateTime.Now;
         public DateTime CreateDate { get; set; } = DateTime.Now;
         public string DateSh => Calendar.MiladiToShamsi(CreateDate);
         public Guid AskerGuid { get; set; }
@@ -43,103 +46,92 @@ namespace EntityCache.Bussines
         public Guid BuildingConditionGuid { get; set; }
         public string ShortDesc { get; set; }
         public string HardSerial => Cache.HardSerial;
-        private List<BuildingRequestRegionBussines> _regList;
-        public List<BuildingRequestRegionBussines> RegionList
-        {
-            get
-            {
-                if (_regList != null) return _regList;
-                _regList = AsyncContext.Run(() => BuildingRequestRegionBussines.GetAllAsync(Guid, Status));
-                return _regList;
-            }
-            set => _regList = value;
-        }
+        public List<BuildingRequestRegionBussines> RegionList { get; set; }
         #endregion
 
-        public static async Task<List<BuildingRequestBussines>> GetAllAsync() => await UnitOfWork.BuildingRequest.GetAllAsync();
-        public static async Task<BuildingRequestBussines> GetAsync(Guid guid) => await UnitOfWork.BuildingRequest.GetAsync(guid);
+        public static async Task<List<BuildingRequestBussines>> GetAllAsync() => await UnitOfWork.BuildingRequest.GetAllAsync(Cache.ConnectionString);
+        public static async Task<BuildingRequestBussines> GetAsync(Guid guid) => await UnitOfWork.BuildingRequest.GetAsync(Cache.ConnectionString, guid);
         public static BuildingRequestBussines Get(Guid guid) => AsyncContext.Run(() => GetAsync(guid));
-        public async Task<ReturnedSaveFuncInfo> SaveAsync(string tranName = "")
+        public async Task<ReturnedSaveFuncInfo> SaveAsync(SqlTransaction tr = null)
         {
             var res = new ReturnedSaveFuncInfo();
-            var autoTran = string.IsNullOrEmpty(tranName);
-            if (autoTran) tranName = Guid.NewGuid().ToString();
+            var autoTran = tr == null;
+            SqlConnection cn = null;
             try
             {
                 if (autoTran)
-                { //BeginTransaction
+                {
+                    cn = new SqlConnection(Cache.ConnectionString);
+                    await cn.OpenAsync();
+                    tr = cn.BeginTransaction();
                 }
 
                 if (RegionList.Count > 0)
                 {
-                    res.AddReturnedValue(await BuildingRequestRegionBussines.RemoveRangeAsync(Guid, tranName));
+                    res.AddReturnedValue(await BuildingRequestRegionBussines.RemoveRangeAsync(Guid, tr));
                     if (res.HasError) return res;
 
                     foreach (var item in RegionList)
                         item.RequestGuid = Guid;
-                    res.AddReturnedValue(await BuildingRequestRegionBussines.SaveRangeAsync(RegionList, tranName));
+                    res.AddReturnedValue(await BuildingRequestRegionBussines.SaveRangeAsync(RegionList, tr));
                     if (res.HasError) return res;
                 }
 
-                res.AddReturnedValue(await UnitOfWork.BuildingRequest.SaveAsync(this, tranName));
+                res.AddReturnedValue(await UnitOfWork.BuildingRequest.SaveAsync(this, tr));
                 if (res.HasError) return res;
-                if (autoTran)
-                {
-                    //CommitTransAction
-                }
 
                 if (Cache.IsSendToServer)
                     _ = Task.Run(() => WebBuildingRequest.SaveAsync(this));
             }
             catch (Exception ex)
             {
-                if (autoTran)
-                {
-                    //RollBackTransAction
-                }
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
                 res.AddReturnedValue(ex);
+            }
+            finally
+            {
+                if (autoTran)
+                {
+                    res.AddReturnedValue(tr.TransactionDestiny(res.HasError));
+                    res.AddReturnedValue(cn.CloseConnection());
+                }
             }
 
             return res;
         }
-        public async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(bool status, string tranName = "")
+        public async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(bool status, SqlTransaction tr = null)
         {
             var res = new ReturnedSaveFuncInfo();
-            var autoTran = string.IsNullOrEmpty(tranName);
-            if (autoTran) tranName = Guid.NewGuid().ToString();
+            var autoTran = tr == null;
+            SqlConnection cn = null;
             try
             {
                 if (autoTran)
-                { //BeginTransaction
-                }
-
-                if (RegionList.Count > 0)
                 {
-                    res.AddReturnedValue(await BuildingRequestRegionBussines.ChangeStatusAsync(Guid, status, tranName));
-                    if (res.HasError) return res;
+                    cn = new SqlConnection(Cache.ConnectionString);
+                    await cn.OpenAsync();
+                    tr = cn.BeginTransaction();
                 }
 
-                res.AddReturnedValue(await UnitOfWork.BuildingRequest.ChangeStatusAsync(this, status, tranName));
+                res.AddReturnedValue(await UnitOfWork.BuildingRequest.ChangeStatusAsync(this, status, tr));
                 if (res.HasError) return res;
-                if (autoTran)
-                {
-                    //CommitTransAction
-                }
 
                 if (Cache.IsSendToServer)
                     _ = Task.Run(() => WebBuildingRequest.SaveAsync(this));
             }
             catch (Exception ex)
             {
-                if (autoTran)
-                {
-                    //RollBackTransAction
-                }
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
                 res.AddReturnedValue(ex);
             }
-
+            finally
+            {
+                if (autoTran)
+                {
+                    res.AddReturnedValue(tr.TransactionDestiny(res.HasError));
+                    res.AddReturnedValue(cn.CloseConnection());
+                }
+            }
             return res;
         }
         public static async Task<List<BuildingRequestBussines>> GetAllAsync(string search)
@@ -174,7 +166,7 @@ namespace EntityCache.Bussines
                 return new List<BuildingRequestBussines>();
             }
         }
-        public static async Task<int> DbCount(Guid userGuid) => await UnitOfWork.BuildingRequest.DbCount(userGuid);
+        public static async Task<int> DbCount(Guid userGuid) => await UnitOfWork.BuildingRequest.DbCount(Cache.ConnectionString, userGuid);
         public static async Task<List<BuildingRequestBussines>> GetAllAsync(EnRequestType type, decimal price1,
             decimal price2, int masahat,
             int roomCount, Guid accountTypeGuid, Guid conditionGuid, Guid regionGuid)

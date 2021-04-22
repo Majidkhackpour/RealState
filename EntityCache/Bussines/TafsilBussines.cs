@@ -4,9 +4,10 @@ using Services;
 using Services.Interfaces.Building;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
-using Services.DefaultCoding;
+using Persistence;
 
 namespace EntityCache.Bussines
 {
@@ -15,6 +16,8 @@ namespace EntityCache.Bussines
         public Guid Guid { get; set; }
         public DateTime Modified { get; set; } = DateTime.Now;
         public bool Status { get; set; } = true;
+        public ServerStatus ServerStatus { get; set; } = ServerStatus.None;
+        public DateTime ServerDeliveryDate { get; set; } = DateTime.Now;
         public string Name { get; set; }
         public string Code { get; set; }
         public string Description { get; set; }
@@ -27,77 +30,103 @@ namespace EntityCache.Bussines
         public string Diagnosis => Account.AccountDiagnosis();
 
 
-        public static async Task<List<TafsilBussines>> GetAllAsync() => await UnitOfWork.Tafsil.GetAllAsync();
-        public static async Task<ReturnedSaveFuncInfo> SaveRangeAsync(List<TafsilBussines> list, string tranName = "")
+        public static async Task<List<TafsilBussines>> GetAllAsync() => await UnitOfWork.Tafsil.GetAllAsync(Cache.ConnectionString);
+        public static async Task<ReturnedSaveFuncInfo> SaveRangeAsync(List<TafsilBussines> list, SqlTransaction tr = null)
         {
             var res = new ReturnedSaveFuncInfo();
-            var autoTran = string.IsNullOrEmpty(tranName);
-            if (autoTran) tranName = Guid.NewGuid().ToString();
+            var autoTran = tr == null;
+            SqlConnection cn = null;
             try
             {
                 if (autoTran)
-                { //BeginTransaction
-                }
-
-                res.AddReturnedValue(await UnitOfWork.Tafsil.SaveRangeAsync(list, tranName));
-                if (res.HasError) return res;
-                if (autoTran)
                 {
-                    //CommitTransAction
+                    cn = new SqlConnection(Cache.ConnectionString);
+                    await cn.OpenAsync();
+                    tr = cn.BeginTransaction();
                 }
 
-                //if (Cache.IsSendToServer)
-                //    _ = Task.Run(() => WebRental.SaveAsync(list));
+                res.AddReturnedValue(await UnitOfWork.Tafsil.SaveRangeAsync(list, tr));
             }
             catch (Exception ex)
             {
-                if (autoTran)
-                {
-                    //RollBackTransAction
-                }
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
                 res.AddReturnedValue(ex);
             }
-
+            finally
+            {
+                if (autoTran)
+                {
+                    res.AddReturnedValue(tr.TransactionDestiny(res.HasError));
+                    res.AddReturnedValue(cn.CloseConnection());
+                }
+            }
             return res;
         }
-        public async Task<ReturnedSaveFuncInfo> SaveAsync(string tranName = "")
+        public async Task<ReturnedSaveFuncInfo> SaveAsync(SqlTransaction tr = null)
         {
             var res = new ReturnedSaveFuncInfo();
-            var autoTran = string.IsNullOrEmpty(tranName);
-            if (autoTran) tranName = Guid.NewGuid().ToString();
+            var autoTran = tr == null;
+            SqlConnection cn = null;
             try
             {
                 if (autoTran)
-                { //BeginTransaction
+                {
+                    cn = new SqlConnection(Cache.ConnectionString);
+                    await cn.OpenAsync();
+                    tr = cn.BeginTransaction();
                 }
 
                 res.AddReturnedValue(await CheckValidationAsync());
                 if (res.HasError) return res;
-                res.AddReturnedValue(await UnitOfWork.Tafsil.SaveAsync(this, tranName));
-                if (res.HasError) return res;
-
-                if (autoTran)
-                {
-                    //CommitTransAction
-                }
-
-                //if (Cache.IsSendToServer)
-                //    _ = Task.Run(() => WebRental.SaveAsync(list));
+                res.AddReturnedValue(await UnitOfWork.Tafsil.SaveAsync(this, tr));
             }
             catch (Exception ex)
             {
-                if (autoTran)
-                {
-                    //RollBackTransAction
-                }
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
                 res.AddReturnedValue(ex);
             }
-
+            finally
+            {
+                if (autoTran)
+                {
+                    res.AddReturnedValue(tr.TransactionDestiny(res.HasError));
+                    res.AddReturnedValue(cn.CloseConnection());
+                }
+            }
             return res;
         }
-        public static async Task<TafsilBussines> GetAsync(Guid guid) => await UnitOfWork.Tafsil.GetAsync(guid);
+        public static async Task<TafsilBussines> GetAsync(Guid guid, SqlTransaction tr = null)
+        {
+            var res = new TafsilBussines();
+            var ret = new ReturnedSaveFuncInfo();
+            var autoTran = tr == null;
+            SqlConnection cn = null;
+            try
+            {
+                if (autoTran)
+                {
+                    cn = new SqlConnection(Cache.ConnectionString);
+                    await cn.OpenAsync();
+                    tr = cn.BeginTransaction();
+                }
+
+                res = await UnitOfWork.Tafsil.GetAsync(guid, tr);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                ret.AddReturnedValue(ex);
+            }
+            finally
+            {
+                if (autoTran)
+                {
+                    tr.TransactionDestiny(ret.HasError);
+                    cn.CloseConnection();
+                }
+            }
+            return res;
+        }
         public static async Task<List<TafsilBussines>> GetAllAsync(string search, HesabType htype = HesabType.All)
         {
             try
@@ -130,12 +159,41 @@ namespace EntityCache.Bussines
             }
         }
         public static TafsilBussines Get(Guid guid) => AsyncContext.Run(() => GetAsync(guid));
-        public static async Task<string> NextCodeAsync(HesabType hType) => await UnitOfWork.Tafsil.NextCodeAsync(hType);
+        public static async Task<string> NextCodeAsync(HesabType hType) => await UnitOfWork.Tafsil.NextCodeAsync(Cache.ConnectionString, hType);
         public static string NextCode(HesabType hType) => AsyncContext.Run(() => NextCodeAsync(hType));
-        public async Task<bool> CheckCodeAsync(Guid guid, string code) => await UnitOfWork.Tafsil.CheckCodeAsync(guid, code);
-        public static async Task<bool> CheckNameAsync(string name) => await UnitOfWork.Tafsil.CheckNameAsync(name);
-        public async Task<ReturnedSaveFuncInfo> UpdateAccountAsync(decimal price) =>
-            await UnitOfWork.Tafsil.UpdateAccountAsync(Guid, price);
+        public async Task<bool> CheckCodeAsync(Guid guid, string code) => await UnitOfWork.Tafsil.CheckCodeAsync(Cache.ConnectionString, guid, code);
+        public static async Task<bool> CheckNameAsync(string name) => await UnitOfWork.Tafsil.CheckNameAsync(Cache.ConnectionString, name);
+        public async Task<ReturnedSaveFuncInfo> UpdateAccountAsync(decimal price, SqlTransaction tr = null)
+        {
+            var res = new ReturnedSaveFuncInfo();
+            var autoTran = tr == null;
+            SqlConnection cn = null;
+            try
+            {
+                if (autoTran)
+                {
+                    cn = new SqlConnection(Cache.ConnectionString);
+                    await cn.OpenAsync();
+                    tr = cn.BeginTransaction();
+                }
+
+                res.AddReturnedValue(await UnitOfWork.Tafsil.UpdateAccountAsync(Guid, price, tr));
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+            finally
+            {
+                if (autoTran)
+                {
+                    res.AddReturnedValue(tr.TransactionDestiny(res.HasError));
+                    res.AddReturnedValue(cn.CloseConnection());
+                }
+            }
+            return res;
+        }
         private async Task<ReturnedSaveFuncInfo> CheckValidationAsync()
         {
             var res = new ReturnedSaveFuncInfo();
@@ -155,40 +213,38 @@ namespace EntityCache.Bussines
 
             return res;
         }
-        public async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(bool status, string tranName = "")
+        public async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(bool status, SqlTransaction tr = null)
         {
             var res = new ReturnedSaveFuncInfo();
-            var autoTran = string.IsNullOrEmpty(tranName);
-            if (autoTran) tranName = Guid.NewGuid().ToString();
+            var autoTran = tr == null;
+            SqlConnection cn = null;
             try
             {
                 if (autoTran)
-                { //BeginTransaction
-                }
-
-                res.AddReturnedValue(await UnitOfWork.Tafsil.ChangeStatusAsync(this, status, tranName));
-                if (res.HasError) return res;
-                if (autoTran)
                 {
-                    //CommitTransAction
+                    cn = new SqlConnection(Cache.ConnectionString);
+                    await cn.OpenAsync();
+                    tr = cn.BeginTransaction();
                 }
 
-                //if (Cache.IsSendToServer)
-                //    _ = Task.Run(() => WebHazine.SaveAsync(this));
+                res.AddReturnedValue(await UnitOfWork.Tafsil.ChangeStatusAsync(this, status, tr));
             }
             catch (Exception ex)
             {
-                if (autoTran)
-                {
-                    //RollBackTransAction
-                }
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
                 res.AddReturnedValue(ex);
             }
-
+            finally
+            {
+                if (autoTran)
+                {
+                    res.AddReturnedValue(tr.TransactionDestiny(res.HasError));
+                    res.AddReturnedValue(cn.CloseConnection());
+                }
+            }
             return res;
         }
-        public static async Task<TafsilBussines> GetAsync(string code) => await UnitOfWork.Tafsil.GetAsync(code);
+        public static async Task<TafsilBussines> GetAsync(string code) => await UnitOfWork.Tafsil.GetAsync(Cache.ConnectionString, code);
         public static TafsilBussines Get(string code) => AsyncContext.Run(() => GetAsync(code));
     }
 }

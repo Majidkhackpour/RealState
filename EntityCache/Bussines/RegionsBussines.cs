@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 using EntityCache.Assistence;
@@ -16,6 +17,8 @@ namespace EntityCache.Bussines
         public Guid Guid { get; set; }
         public DateTime Modified { get; set; } = DateTime.Now;
         public bool Status { get; set; } = true;
+        public ServerStatus ServerStatus { get; set; } = ServerStatus.None;
+        public DateTime ServerDeliveryDate { get; set; } = DateTime.Now;
         public string Name { get; set; }
         public Guid CityGuid { get; set; }
         public string StateName { get; set; }
@@ -24,43 +27,44 @@ namespace EntityCache.Bussines
         public CitiesBussines City => CitiesBussines.Get(CityGuid);
         public string HardSerial => Cache.HardSerial;
 
-        public static async Task<List<RegionsBussines>> GetAllAsync() => await UnitOfWork.Regions.GetAllAsync();
-        public static async Task<ReturnedSaveFuncInfo> SaveRangeAsync(List<RegionsBussines> list,
-            string tranName = "")
+        public static async Task<List<RegionsBussines>> GetAllAsync() => await UnitOfWork.Regions.GetAllAsync(Cache.ConnectionString);
+        public static async Task<ReturnedSaveFuncInfo> SaveRangeAsync(List<RegionsBussines> list, SqlTransaction tr = null)
         {
             var res = new ReturnedSaveFuncInfo();
-            var autoTran = string.IsNullOrEmpty(tranName);
-            if (autoTran) tranName = Guid.NewGuid().ToString();
+            var autoTran = tr == null;
+            SqlConnection cn = null;
             try
             {
                 if (autoTran)
-                { //BeginTransaction
+                {
+                    cn = new SqlConnection(Cache.ConnectionString);
+                    await cn.OpenAsync();
+                    tr = cn.BeginTransaction();
                 }
 
-                res.AddReturnedValue(await UnitOfWork.Regions.SaveRangeAsync(list, tranName));
+                res.AddReturnedValue(await UnitOfWork.Regions.SaveRangeAsync(list, tr));
                 if (res.HasError) return res;
-                if (autoTran)
-                {
-                    //CommitTransAction
-                }
 
                 if (Cache.IsSendToServer)
                     _ = Task.Run(() => WebRegion.SaveAsync(list));
             }
             catch (Exception ex)
             {
-                if (autoTran)
-                {
-                    //RollBackTransAction
-                }
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
                 res.AddReturnedValue(ex);
             }
-
+            finally
+            {
+                if (autoTran)
+                {
+                    res.AddReturnedValue(tr.TransactionDestiny(res.HasError));
+                    res.AddReturnedValue(cn.CloseConnection());
+                }
+            }
             return res;
         }
-        public static async Task<RegionsBussines> GetAsync(Guid guid) => await UnitOfWork.Regions.GetAsync(guid);
-        public static async Task<RegionsBussines> GetAsync(string name) => await UnitOfWork.Regions.GetAsync(name);
+        public static async Task<RegionsBussines> GetAsync(Guid guid) => await UnitOfWork.Regions.GetAsync(Cache.ConnectionString, guid);
+        public static async Task<RegionsBussines> GetAsync(string name) => await UnitOfWork.Regions.GetAsync(Cache.ConnectionString, name);
         public static RegionsBussines Get(Guid guid) => AsyncContext.Run(() => GetAsync(guid));
         public static async Task<List<RegionsBussines>> GetAllAsync(string search, Guid cityGuid)
         {
@@ -94,73 +98,77 @@ namespace EntityCache.Bussines
                 return new List<RegionsBussines>();
             }
         }
-        public async Task<ReturnedSaveFuncInfo> SaveAsync(string tranName = "")
+        public async Task<ReturnedSaveFuncInfo> SaveAsync(SqlTransaction tr = null)
         {
             var res = new ReturnedSaveFuncInfo();
-            var autoTran = string.IsNullOrEmpty(tranName);
-            if (autoTran) tranName = Guid.NewGuid().ToString();
+            var autoTran = tr == null;
+            SqlConnection cn = null;
             try
             {
                 if (autoTran)
-                { //BeginTransaction
+                {
+                    cn = new SqlConnection(Cache.ConnectionString);
+                    await cn.OpenAsync();
+                    tr = cn.BeginTransaction();
                 }
 
-                res.AddReturnedValue(await UnitOfWork.Regions.SaveAsync(this, tranName));
+                res.AddReturnedValue(await UnitOfWork.Regions.SaveAsync(this, tr));
                 if (res.HasError) return res;
-                if (autoTran)
-                {
-                    //CommitTransAction
-                }
 
                 if (Cache.IsSendToServer)
                     _ = Task.Run(() => WebRegion.SaveAsync(this));
             }
             catch (Exception ex)
             {
-                if (autoTran)
-                {
-                    //RollBackTransAction
-                }
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
                 res.AddReturnedValue(ex);
             }
-
+            finally
+            {
+                if (autoTran)
+                {
+                    res.AddReturnedValue(tr.TransactionDestiny(res.HasError));
+                    res.AddReturnedValue(cn.CloseConnection());
+                }
+            }
             return res;
         }
-        public async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(bool status, string tranName = "")
+        public async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(bool status, SqlTransaction tr = null)
         {
             var res = new ReturnedSaveFuncInfo();
-            var autoTran = string.IsNullOrEmpty(tranName);
-            if (autoTran) tranName = Guid.NewGuid().ToString();
+            var autoTran = tr == null;
+            SqlConnection cn = null;
             try
             {
                 if (autoTran)
-                { //BeginTransaction
+                {
+                    cn = new SqlConnection(Cache.ConnectionString);
+                    await cn.OpenAsync();
+                    tr = cn.BeginTransaction();
                 }
 
-                res.AddReturnedValue(await UnitOfWork.Regions.ChangeStatusAsync(this, status, tranName));
+                res.AddReturnedValue(await UnitOfWork.Regions.ChangeStatusAsync(this, status, tr));
                 if (res.HasError) return res;
-                if (autoTran)
-                {
-                    //CommitTransAction
-                }
 
                 if (Cache.IsSendToServer)
                     _ = Task.Run(() => WebRegion.SaveAsync(this));
             }
             catch (Exception ex)
             {
-                if (autoTran)
-                {
-                    //RollBackTransAction
-                }
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
                 res.AddReturnedValue(ex);
             }
-
+            finally
+            {
+                if (autoTran)
+                {
+                    res.AddReturnedValue(tr.TransactionDestiny(res.HasError));
+                    res.AddReturnedValue(cn.CloseConnection());
+                }
+            }
             return res;
         }
         public static async Task<List<RegionsBussines>> GetAllAsync(Guid cityGuid) =>
-            await UnitOfWork.Regions.GetAllAsync(cityGuid);
+            await UnitOfWork.Regions.GetAllAsync(Cache.ConnectionString, cityGuid);
     }
 }

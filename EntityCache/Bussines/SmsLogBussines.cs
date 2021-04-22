@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 using EntityCache.Assistence;
 using Nito.AsyncEx;
+using Persistence;
 using Services;
 using Servicess.Interfaces.Building;
 
@@ -12,8 +14,6 @@ namespace EntityCache.Bussines
     public class SmsLogBussines : ISmsLog
     {
         public Guid Guid { get; set; }
-        public DateTime Modified { get; set; } = DateTime.Now;
-        public bool Status { get; set; } = true;
         public DateTime Date { get; set; } = DateTime.Now;
         public string DateSh => Calendar.MiladiToShamsi(Date);
         public Guid UserGuid { get; set; }
@@ -27,38 +27,39 @@ namespace EntityCache.Bussines
 
 
 
-        public async Task<ReturnedSaveFuncInfo> SaveAsync(string tranName = "")
+        public async Task<ReturnedSaveFuncInfo> SaveAsync(SqlTransaction tr = null)
         {
             var res = new ReturnedSaveFuncInfo();
-            var autoTran = string.IsNullOrEmpty(tranName);
-            if (autoTran) tranName = Guid.NewGuid().ToString();
+            var autoTran = tr == null;
+            SqlConnection cn = null;
             try
             {
                 if (autoTran)
-                { //BeginTransaction
+                {
+                    cn = new SqlConnection(Cache.ConnectionString);
+                    await cn.OpenAsync();
+                    tr = cn.BeginTransaction();
                 }
 
-                res.AddReturnedValue(await UnitOfWork.SmsLog.SaveAsync(this, tranName));
-                if (res.HasError) return res;
-                if (autoTran)
-                {
-                    //CommitTransAction
-                }
+                res.AddReturnedValue(await UnitOfWork.SmsLog.SaveAsync(this, tr));
             }
             catch (Exception ex)
             {
-                if (autoTran)
-                {
-                    //RollBackTransAction
-                }
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
                 res.AddReturnedValue(ex);
             }
-
+            finally
+            {
+                if (autoTran)
+                {
+                    res.AddReturnedValue(tr.TransactionDestiny(res.HasError));
+                    res.AddReturnedValue(cn.CloseConnection());
+                }
+            }
             return res;
         }
-        public static async Task<SmsLogBussines> GetAsync(Guid guid) => await UnitOfWork.SmsLog.GetAsync(guid);
-        public static async Task<List<SmsLogBussines>> GetAllAsync() => await UnitOfWork.SmsLog.GetAllBySpAsync();
+        public static async Task<SmsLogBussines> GetAsync(Guid guid) => await UnitOfWork.SmsLog.GetAsync(Cache.ConnectionString, guid);
+        public static async Task<List<SmsLogBussines>> GetAllAsync() => await UnitOfWork.SmsLog.GetAllAsync(Cache.ConnectionString);
         public static async Task<List<SmsLogBussines>> GetAllAsync(string search, Guid userGuid)
         {
             try
@@ -95,7 +96,6 @@ namespace EntityCache.Bussines
             }
         }
         public static SmsLogBussines Get(Guid guid) => AsyncContext.Run(() => GetAsync(guid));
-        public static async Task<SmsLogBussines> GetAsync(long messageId) =>
-            await UnitOfWork.SmsLog.GetAsync(messageId);
+        public static async Task<SmsLogBussines> GetAsync(long messageId) => await UnitOfWork.SmsLog.GetAsync(Cache.ConnectionString, messageId);
     }
 }

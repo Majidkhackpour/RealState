@@ -11,16 +11,9 @@ using Services;
 
 namespace EntityCache.SqlServerPersistence
 {
-    public class AdvisorPersistenceRepository : GenericRepository<AdvisorBussines, Advisor>, IAdvisorRepository
+    public class AdvisorPersistenceRepository : IAdvisorRepository
     {
-        private ModelContext _db;
-        private string connectionString;
-        public AdvisorPersistenceRepository(ModelContext db, string _connectionString) : base(db, _connectionString)
-        {
-            _db = db;
-            connectionString = _connectionString;
-        }
-        public override async Task<List<AdvisorBussines>> GetAllAsync()
+        public async Task<List<AdvisorBussines>> GetAllAsync(string connectionString)
         {
             var list = new List<AdvisorBussines>();
             try
@@ -32,6 +25,7 @@ namespace EntityCache.SqlServerPersistence
                     await cn.OpenAsync();
                     var dr = await cmd.ExecuteReaderAsync();
                     while (dr.Read()) list.Add(LoadData(dr));
+                    dr.Close();
                     cn.Close();
                 }
             }
@@ -42,7 +36,7 @@ namespace EntityCache.SqlServerPersistence
 
             return list;
         }
-        public override async Task<AdvisorBussines> GetAsync(Guid guid)
+        public async Task<AdvisorBussines> GetAsync(string connectionString, Guid guid)
         {
             AdvisorBussines res = null;
             try
@@ -55,6 +49,7 @@ namespace EntityCache.SqlServerPersistence
                     await cn.OpenAsync();
                     var dr = await cmd.ExecuteReaderAsync();
                     if (dr.Read()) res = LoadData(dr);
+                    dr.Close();
                     cn.Close();
                 }
             }
@@ -65,23 +60,20 @@ namespace EntityCache.SqlServerPersistence
 
             return res;
         }
-        public override async Task<ReturnedSaveFuncInfo> SaveAsync(AdvisorBussines item, string tranName)
+        public async Task<ReturnedSaveFuncInfo> SaveAsync(AdvisorBussines item, SqlTransaction tr)
         {
             var res = new ReturnedSaveFuncInfo();
             try
             {
-                using (var cn = new SqlConnection(connectionString))
-                {
-                    var cmd = new SqlCommand("sp_Advisor_Save", cn) { CommandType = CommandType.StoredProcedure };
-                    cmd.Parameters.AddWithValue("@guid", item.Guid);
-                    cmd.Parameters.AddWithValue("@st", item.Status);
-                    cmd.Parameters.AddWithValue("@name", item.Name ?? "");
-                    cmd.Parameters.AddWithValue("@address", item.Address ?? "");
+                var cmd = new SqlCommand("sp_Advisor_Save", tr.Connection, tr) { CommandType = CommandType.StoredProcedure };
+                cmd.Parameters.AddWithValue("@guid", item.Guid);
+                cmd.Parameters.AddWithValue("@st", item.Status);
+                cmd.Parameters.AddWithValue("@name", item.Name ?? "");
+                cmd.Parameters.AddWithValue("@address", item.Address ?? "");
+                cmd.Parameters.AddWithValue("@serverSt", (short)item.ServerStatus);
+                cmd.Parameters.AddWithValue("@serverDate", item.ServerDeliveryDate);
 
-                    await cn.OpenAsync();
-                    await cmd.ExecuteNonQueryAsync();
-                    cn.Close();
-                }
+                await cmd.ExecuteNonQueryAsync();
             }
             catch (Exception ex)
             {
@@ -91,21 +83,16 @@ namespace EntityCache.SqlServerPersistence
 
             return res;
         }
-        public override async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(AdvisorBussines item, bool status, string tranName)
+        public async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(AdvisorBussines item, bool status, SqlTransaction tr)
         {
             var res = new ReturnedSaveFuncInfo();
             try
             {
-                using (var cn = new SqlConnection(connectionString))
-                {
-                    var cmd = new SqlCommand("sp_Advisor_ChangeStatus", cn) { CommandType = CommandType.StoredProcedure };
-                    cmd.Parameters.AddWithValue("@Guid", item.Guid);
-                    cmd.Parameters.AddWithValue("@st", status);
+                var cmd = new SqlCommand("sp_Advisor_ChangeStatus", tr.Connection, tr) { CommandType = CommandType.StoredProcedure };
+                cmd.Parameters.AddWithValue("@Guid", item.Guid);
+                cmd.Parameters.AddWithValue("@st", status);
 
-                    await cn.OpenAsync();
-                    await cmd.ExecuteNonQueryAsync();
-                    cn.Close();
-                }
+                await cmd.ExecuteNonQueryAsync();
             }
             catch (Exception ex)
             {
@@ -127,6 +114,8 @@ namespace EntityCache.SqlServerPersistence
                 item.Account = (decimal)dr["Account"];
                 item.AccountFirst = (decimal)dr["AccountFirst"];
                 item.Address = dr["Address"].ToString();
+                item.ServerDeliveryDate = (DateTime) dr["ServerDeliveryDate"];
+                item.ServerStatus = (ServerStatus) dr["ServerStatus"];
                 var tellList = PhoneBookBussines.GetAll(item.Guid, true);
                 if (tellList?.Count == 1) item.Mobile1 = tellList[0]?.Tell;
                 if (tellList?.Count > 1)

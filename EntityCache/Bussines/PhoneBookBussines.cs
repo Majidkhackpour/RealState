@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 using EntityCache.Assistence;
@@ -15,6 +16,8 @@ namespace EntityCache.Bussines
         public Guid Guid { get; set; }
         public DateTime Modified { get; set; } = DateTime.Now;
         public bool Status { get; set; } = true;
+        public ServerStatus ServerStatus { get; set; } = ServerStatus.None;
+        public DateTime ServerDeliveryDate { get; set; } = DateTime.Now;
         public string Name { get; set; }
         public string Tell { get; set; }
         public EnPhoneBookGroup Group { get; set; }
@@ -25,68 +28,70 @@ namespace EntityCache.Bussines
 
 
         public static async Task<List<PhoneBookBussines>> GetAllAsync(Guid parentGuid, bool status) =>
-            await UnitOfWork.PhoneBook.GetAllAsync(parentGuid, status);
+            await UnitOfWork.PhoneBook.GetAllAsync(Cache.ConnectionString, parentGuid, status);
         public static List<PhoneBookBussines> GetAll(Guid parentGuid, bool status) =>
             AsyncContext.Run(() => GetAllAsync(parentGuid, status));
-        public static async Task<List<PhoneBookBussines>> GetAllAsync() => await UnitOfWork.PhoneBook.GetAllAsync();
-        public async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(bool status, string tranName = "")
+        public static async Task<List<PhoneBookBussines>> GetAllAsync() => await UnitOfWork.PhoneBook.GetAllAsync(Cache.ConnectionString);
+        public async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(bool status, SqlTransaction tr)
         {
             var res = new ReturnedSaveFuncInfo();
-            var autoTran = string.IsNullOrEmpty(tranName);
-            if (autoTran) tranName = Guid.NewGuid().ToString();
+            var autoTran = tr == null;
+            SqlConnection cn = null;
             try
             {
                 if (autoTran)
-                { //BeginTransaction
+                {
+                    cn = new SqlConnection(Cache.ConnectionString);
+                    await cn.OpenAsync();
+                    tr = cn.BeginTransaction();
                 }
 
-                res.AddReturnedValue(await UnitOfWork.PhoneBook.ChangeStatusAsync(this, status, tranName));
-                if (res.HasError) return res;
-                if (autoTran)
-                {
-                    //CommitTransAction
-                }
+                res.AddReturnedValue(await UnitOfWork.PhoneBook.ChangeStatusAsync(this, status, tr));
             }
             catch (Exception ex)
             {
-                if (autoTran)
-                {
-                    //RollBackTransAction
-                }
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
                 res.AddReturnedValue(ex);
             }
-
+            finally
+            {
+                if (autoTran)
+                {
+                    res.AddReturnedValue(tr.TransactionDestiny(res.HasError));
+                    res.AddReturnedValue(cn.CloseConnection());
+                }
+            }
             return res;
         }
-        public static async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(Guid parentGuid, bool status, string tranName = "")
+        public static async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(Guid parentGuid, bool status, SqlTransaction tr = null)
         {
             var res = new ReturnedSaveFuncInfo();
-            var autoTran = string.IsNullOrEmpty(tranName);
-            if (autoTran) tranName = Guid.NewGuid().ToString();
+            var autoTran = tr == null;
+            SqlConnection cn = null;
             try
             {
                 if (autoTran)
-                { //BeginTransaction
+                {
+                    cn = new SqlConnection(Cache.ConnectionString);
+                    await cn.OpenAsync();
+                    tr = cn.BeginTransaction();
                 }
 
-                res.AddReturnedValue(await UnitOfWork.PhoneBook.ChangeStatusAsync(parentGuid, status, tranName));
-                if (res.HasError) return res;
-                if (autoTran)
-                {
-                    //CommitTransAction
-                }
+                res.AddReturnedValue(await UnitOfWork.PhoneBook.ChangeStatusAsync(parentGuid, status, tr));
             }
             catch (Exception ex)
             {
-                if (autoTran)
-                {
-                    //RollBackTransAction
-                }
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
                 res.AddReturnedValue(ex);
             }
-
+            finally
+            {
+                if (autoTran)
+                {
+                    res.AddReturnedValue(tr.TransactionDestiny(res.HasError));
+                    res.AddReturnedValue(cn.CloseConnection());
+                }
+            }
             return res;
         }
         public static async Task<List<PhoneBookBussines>> GetAllAsync(Guid parentGuid, string search, EnPhoneBookGroup group)
@@ -126,99 +131,130 @@ namespace EntityCache.Bussines
                 return new List<PhoneBookBussines>();
             }
         }
-        public static async Task<PhoneBookBussines> GetAsync(Guid guid) => await UnitOfWork.PhoneBook.GetAsync(guid);
+        public static async Task<PhoneBookBussines> GetAsync(Guid guid) => await UnitOfWork.PhoneBook.GetAsync(Cache.ConnectionString, guid);
         public static PhoneBookBussines Get(Guid guid) => AsyncContext.Run(() => GetAsync(guid));
-        public async Task<ReturnedSaveFuncInfo> SaveAsync(string tranName = "")
+        public async Task<ReturnedSaveFuncInfo> SaveAsync(SqlTransaction tr = null)
         {
             var res = new ReturnedSaveFuncInfo();
-            var autoTran = string.IsNullOrEmpty(tranName);
-            if (autoTran) tranName = Guid.NewGuid().ToString();
+            var autoTran = tr == null;
+            SqlConnection cn = null;
             try
             {
                 if (autoTran)
-                { //BeginTransaction
+                {
+                    cn = new SqlConnection(Cache.ConnectionString);
+                    await cn.OpenAsync();
+                    tr = cn.BeginTransaction();
                 }
 
-                res.AddReturnedValue(await UnitOfWork.PhoneBook.SaveAsync(this, tranName));
-                if (res.HasError) return res;
-                if (autoTran)
-                {
-                    //CommitTransAction
-                }
+                res.AddReturnedValue(await UnitOfWork.PhoneBook.SaveAsync(this, tr));
             }
             catch (Exception ex)
             {
-                if (autoTran)
-                {
-                    //RollBackTransAction
-                }
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
                 res.AddReturnedValue(ex);
             }
-
+            finally
+            {
+                if (autoTran)
+                {
+                    res.AddReturnedValue(tr.TransactionDestiny(res.HasError));
+                    res.AddReturnedValue(cn.CloseConnection());
+                }
+            }
             return res;
         }
-        public static async Task<ReturnedSaveFuncInfo> SaveRangeAsync(List<PhoneBookBussines> list,
-            string tranName = "")
-            => await UnitOfWork.PhoneBook.SaveRangeAsync(list, tranName);
-        public async Task<ReturnedSaveFuncInfo> RemoveAsync(string tranName = "")
+        public static async Task<ReturnedSaveFuncInfo> SaveRangeAsync(List<PhoneBookBussines> list, SqlTransaction tr = null)
         {
             var res = new ReturnedSaveFuncInfo();
-            var autoTran = string.IsNullOrEmpty(tranName);
-            if (autoTran) tranName = Guid.NewGuid().ToString();
+            var autoTran = tr == null;
+            SqlConnection cn = null;
             try
             {
                 if (autoTran)
-                { //BeginTransaction
+                {
+                    cn = new SqlConnection(Cache.ConnectionString);
+                    await cn.OpenAsync();
+                    tr = cn.BeginTransaction();
                 }
 
-                res.AddReturnedValue(await UnitOfWork.PhoneBook.RemoveAsync(Guid, tranName));
-                if (res.HasError) return res;
-                if (autoTran)
-                {
-                    //CommitTransAction
-                }
+                res.AddReturnedValue(await UnitOfWork.PhoneBook.SaveRangeAsync(list, tr));
             }
             catch (Exception ex)
             {
-                if (autoTran)
-                {
-                    //RollBackTransAction
-                }
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
                 res.AddReturnedValue(ex);
             }
-
+            finally
+            {
+                if (autoTran)
+                {
+                    res.AddReturnedValue(tr.TransactionDestiny(res.HasError));
+                    res.AddReturnedValue(cn.CloseConnection());
+                }
+            }
             return res;
         }
-        public static async Task<ReturnedSaveFuncInfo> RemoveAsync(Guid parentGuid, string tranName = "")
+        public async Task<ReturnedSaveFuncInfo> RemoveAsync(SqlTransaction tr)
         {
             var res = new ReturnedSaveFuncInfo();
-            var autoTran = string.IsNullOrEmpty(tranName);
-            if (autoTran) tranName = Guid.NewGuid().ToString();
+            var autoTran = tr == null;
+            SqlConnection cn = null;
             try
             {
                 if (autoTran)
-                { //BeginTransaction
+                {
+                    cn = new SqlConnection(Cache.ConnectionString);
+                    await cn.OpenAsync();
+                    tr = cn.BeginTransaction();
                 }
 
-                res.AddReturnedValue(await UnitOfWork.PhoneBook.RemoveAsync(parentGuid, tranName));
-                if (res.HasError) return res;
-                if (autoTran)
-                {
-                    //CommitTransAction
-                }
+                res.AddReturnedValue(await UnitOfWork.PhoneBook.RemoveAsync(Guid, tr));
             }
             catch (Exception ex)
             {
-                if (autoTran)
-                {
-                    //RollBackTransAction
-                }
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
                 res.AddReturnedValue(ex);
             }
+            finally
+            {
+                if (autoTran)
+                {
+                    res.AddReturnedValue(tr.TransactionDestiny(res.HasError));
+                    res.AddReturnedValue(cn.CloseConnection());
+                }
+            }
+            return res;
+        }
+        public static async Task<ReturnedSaveFuncInfo> RemoveAsync(Guid parentGuid, SqlTransaction tr = null)
+        {
+            var res = new ReturnedSaveFuncInfo();
+            var autoTran = tr == null;
+            SqlConnection cn = null;
+            try
+            {
+                if (autoTran)
+                {
+                    cn = new SqlConnection(Cache.ConnectionString);
+                    await cn.OpenAsync();
+                    tr = cn.BeginTransaction();
+                }
 
+                res.AddReturnedValue(await UnitOfWork.PhoneBook.RemoveByParentAsync(parentGuid, tr));
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+            finally
+            {
+                if (autoTran)
+                {
+                    res.AddReturnedValue(tr.TransactionDestiny(res.HasError));
+                    res.AddReturnedValue(cn.CloseConnection());
+                }
+            }
             return res;
         }
     }

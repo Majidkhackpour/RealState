@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 using EntityCache.Assistence;
 using Nito.AsyncEx;
+using Persistence;
 using Services;
 using Services.Interfaces.Building;
 
@@ -13,7 +15,8 @@ namespace EntityCache.Bussines
     {
         public Guid Guid { get; set; }
         public DateTime Modified { get; set; } = DateTime.Now;
-        public bool Status { get; set; } = true;
+        public ServerStatus ServerStatus { get; set; } = ServerStatus.None;
+        public DateTime ServerDeliveryDate { get; set; } = DateTime.Now;
         public string Name { get; set; }
         public EnHesabGroup HesabGroup { get; set; }
         public string Code { get; set; }
@@ -22,42 +25,43 @@ namespace EntityCache.Bussines
         public string Diagnosis => Account.AccountDiagnosis();
 
 
-        public static async Task<List<KolBussines>> GetAllAsync() => await UnitOfWork.Kol.GetAllAsync();
-        public static async Task<ReturnedSaveFuncInfo> SaveRangeAsync(List<KolBussines> list,
-            string tranName = "")
+        public static async Task<List<KolBussines>> GetAllAsync() => await UnitOfWork.Kol.GetAllAsync(Cache.ConnectionString);
+        public static async Task<ReturnedSaveFuncInfo> SaveRangeAsync(List<KolBussines> list, SqlTransaction tr = null)
         {
             var res = new ReturnedSaveFuncInfo();
-            var autoTran = string.IsNullOrEmpty(tranName);
-            if (autoTran) tranName = Guid.NewGuid().ToString();
+            var autoTran = tr == null;
+            SqlConnection cn = null;
             try
             {
                 if (autoTran)
-                { //BeginTransaction
+                {
+                    cn = new SqlConnection(Cache.ConnectionString);
+                    await cn.OpenAsync();
+                    tr = cn.BeginTransaction();
                 }
 
-                res.AddReturnedValue(await UnitOfWork.Kol.SaveRangeAsync(list, tranName));
+                res.AddReturnedValue(await UnitOfWork.Kol.SaveRangeAsync(list, tr));
                 if (res.HasError) return res;
-                if (autoTran)
-                {
-                    //CommitTransAction
-                }
 
                 //if (Cache.IsSendToServer)
                 //    _ = Task.Run(() => WebRental.SaveAsync(list));
             }
             catch (Exception ex)
             {
-                if (autoTran)
-                {
-                    //RollBackTransAction
-                }
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
                 res.AddReturnedValue(ex);
             }
-
+            finally
+            {
+                if (autoTran)
+                {
+                    res.AddReturnedValue(tr.TransactionDestiny(res.HasError));
+                    res.AddReturnedValue(cn.CloseConnection());
+                }
+            }
             return res;
         }
-        public static async Task<KolBussines> GetAsync(Guid guid) => await UnitOfWork.Kol.GetAsync(guid);
+        public static async Task<KolBussines> GetAsync(Guid guid) => await UnitOfWork.Kol.GetAsync(Cache.ConnectionString, guid);
         public static async Task<List<KolBussines>> GetAllAsync(string search)
         {
             try
@@ -71,8 +75,8 @@ namespace EntityCache.Bussines
                     {
                         if (!string.IsNullOrEmpty(item) && item.Trim() != "")
                         {
-                            res = res.Where(x => x.Name.ToLower().Contains(item.ToLower())||
-                                                 x.Code.ToLower().Contains(item.ToLower())||
+                            res = res.Where(x => x.Name.ToLower().Contains(item.ToLower()) ||
+                                                 x.Code.ToLower().Contains(item.ToLower()) ||
                                                  x.Account.ToString().ToLower().Contains(item.ToLower()))
                                 ?.ToList();
                         }

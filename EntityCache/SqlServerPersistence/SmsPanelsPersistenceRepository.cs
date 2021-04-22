@@ -11,16 +11,9 @@ using Services;
 
 namespace EntityCache.SqlServerPersistence
 {
-    public class SmsPanelsPersistenceRepository : GenericRepository<SmsPanelsBussines, SmsPanels>, ISmsPanelsRepository
+    public class SmsPanelsPersistenceRepository : ISmsPanelsRepository
     {
-        private ModelContext db;
-        private string _connectionString;
-        public SmsPanelsPersistenceRepository(ModelContext _db, string connectionString) : base(_db, connectionString)
-        {
-            db = _db;
-            _connectionString = connectionString;
-        }
-        public override async Task<SmsPanelsBussines> GetAsync(Guid guid)
+        public async Task<SmsPanelsBussines> GetAsync(string _connectionString, Guid guid)
         {
             var obj = new SmsPanelsBussines();
             try
@@ -42,7 +35,7 @@ namespace EntityCache.SqlServerPersistence
 
             return obj;
         }
-        public override async Task<List<SmsPanelsBussines>> GetAllAsync()
+        public async Task<List<SmsPanelsBussines>> GetAllAsync(string _connectionString)
         {
             var list = new List<SmsPanelsBussines>();
             try
@@ -64,25 +57,19 @@ namespace EntityCache.SqlServerPersistence
 
             return list;
         }
-        public override async Task<ReturnedSaveFuncInfo> SaveAsync(SmsPanelsBussines item, string tranName)
+        public async Task<ReturnedSaveFuncInfo> SaveAsync(SmsPanelsBussines item, SqlTransaction tr)
         {
             var res = new ReturnedSaveFuncInfo();
             try
             {
-                using (var cn = new SqlConnection(_connectionString))
-                {
-                    var cmd = new SqlCommand("sp_SmsPanel_Save", cn) { CommandType = CommandType.StoredProcedure };
-                    cmd.Parameters.AddWithValue("@guid", item.Guid);
-                    cmd.Parameters.AddWithValue("@st", item.Status);
-                    cmd.Parameters.AddWithValue("@name", item.Name ?? "");
-                    cmd.Parameters.AddWithValue("@modif", item.Modified);
-                    cmd.Parameters.AddWithValue("@sender", item.Sender ?? "");
-                    cmd.Parameters.AddWithValue("@api", item.API ?? "");
+                var cmd = new SqlCommand("sp_SmsPanel_Save", tr.Connection) { CommandType = CommandType.StoredProcedure };
+                cmd.Parameters.AddWithValue("@guid", item.Guid);
+                cmd.Parameters.AddWithValue("@st", item.Status);
+                cmd.Parameters.AddWithValue("@name", item.Name ?? "");
+                cmd.Parameters.AddWithValue("@sender", item.Sender ?? "");
+                cmd.Parameters.AddWithValue("@api", item.API ?? "");
 
-                    await cn.OpenAsync();
-                    await cmd.ExecuteNonQueryAsync();
-                    cn.Close();
-                }
+                await cmd.ExecuteNonQueryAsync();
             }
             catch (Exception ex)
             {
@@ -92,21 +79,16 @@ namespace EntityCache.SqlServerPersistence
 
             return res;
         }
-        public override async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(SmsPanelsBussines item, bool status, string tranName)
+        public async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(SmsPanelsBussines item, bool status, SqlTransaction tr)
         {
             var res = new ReturnedSaveFuncInfo();
             try
             {
-                using (var cn = new SqlConnection(_connectionString))
-                {
-                    var cmd = new SqlCommand("sp_SmsPanel_ChangeStatus", cn) { CommandType = CommandType.StoredProcedure };
-                    cmd.Parameters.AddWithValue("@Guid", item.Guid);
-                    cmd.Parameters.AddWithValue("@st", status);
+                var cmd = new SqlCommand("sp_SmsPanel_ChangeStatus", tr.Connection, tr) { CommandType = CommandType.StoredProcedure };
+                cmd.Parameters.AddWithValue("@Guid", item.Guid);
+                cmd.Parameters.AddWithValue("@st", status);
 
-                    await cn.OpenAsync();
-                    await cmd.ExecuteNonQueryAsync();
-                    cn.Close();
-                }
+                await cmd.ExecuteNonQueryAsync();
             }
             catch (Exception ex)
             {
@@ -122,8 +104,6 @@ namespace EntityCache.SqlServerPersistence
             try
             {
                 item.Guid = (Guid)dr["Guid"];
-                item.Modified = (DateTime)dr["Modified"];
-                item.Status = (bool)dr["Status"];
                 item.Name = dr["Name"].ToString();
                 item.Sender = dr["Sender"].ToString();
                 item.API = dr["API"].ToString();

@@ -1,26 +1,17 @@
-﻿using System;
+﻿using EntityCache.Bussines;
+using EntityCache.Core;
+using Services;
+using Services.DefaultCoding;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Threading.Tasks;
-using EntityCache.Bussines;
-using EntityCache.Core;
-using Persistence.Entities;
-using Persistence.Model;
-using Services;
-using Services.DefaultCoding;
 
 namespace EntityCache.SqlServerPersistence
 {
-    public class PardakhtCheckAvalDorePersistenceRepository : GenericRepository<PardakhtCheckAvalDoreBussines, PardakhtCheckAvalDore>, IPardakhtCheckAvalDoreRepository
+    public class PardakhtCheckAvalDorePersistenceRepository : IPardakhtCheckAvalDoreRepository
     {
-        private ModelContext db;
-        private string _connectionString;
-        public PardakhtCheckAvalDorePersistenceRepository(ModelContext _db, string connectionString) : base(_db, connectionString)
-        {
-            db = _db;
-            _connectionString = connectionString;
-        }
         private PardakhtCheckAvalDoreBussines LoadData(SqlDataReader dr)
         {
             var item = new PardakhtCheckAvalDoreBussines();
@@ -28,7 +19,6 @@ namespace EntityCache.SqlServerPersistence
             {
                 item.Guid = (Guid)dr["Guid"];
                 item.Modified = (DateTime)dr["Modified"];
-                item.Status = (bool)dr["Status"];
                 item.CheckPageGuid = (Guid)dr["CheckPageGuid"];
                 item.TafsilGuid = (Guid)dr["TafsilGuid"];
                 item.UserGuid = (Guid)dr["UserGuid"];
@@ -39,6 +29,8 @@ namespace EntityCache.SqlServerPersistence
                 item.Number = dr["Number"].ToString();
                 item.TafsilName = dr["TafsilName"].ToString();
                 item.UserName = dr["UserName"].ToString();
+                item.ServerDeliveryDate = (DateTime)dr["ServerDeliveryDate"];
+                item.ServerStatus = (ServerStatus)dr["ServerStatus"];
             }
             catch (Exception ex)
             {
@@ -47,7 +39,7 @@ namespace EntityCache.SqlServerPersistence
 
             return item;
         }
-        public override async Task<List<PardakhtCheckAvalDoreBussines>> GetAllAsync()
+        public async Task<List<PardakhtCheckAvalDoreBussines>> GetAllAsync(string _connectionString)
         {
             var list = new List<PardakhtCheckAvalDoreBussines>();
             try
@@ -69,7 +61,7 @@ namespace EntityCache.SqlServerPersistence
 
             return list;
         }
-        public override async Task<PardakhtCheckAvalDoreBussines> GetAsync(Guid guid)
+        public async Task<PardakhtCheckAvalDoreBussines> GetAsync(string _connectionString, Guid guid)
         {
             PardakhtCheckAvalDoreBussines res = null;
             try
@@ -92,30 +84,27 @@ namespace EntityCache.SqlServerPersistence
 
             return res;
         }
-        public override async Task<ReturnedSaveFuncInfo> SaveAsync(PardakhtCheckAvalDoreBussines item, string tranName)
+        public async Task<ReturnedSaveFuncInfo> SaveAsync(PardakhtCheckAvalDoreBussines item, SqlTransaction tr)
         {
             var res = new ReturnedSaveFuncInfo();
             try
             {
-                using (var cn = new SqlConnection(_connectionString))
-                {
-                    var cmd = new SqlCommand("sp_PardakhtCheckAvalDore_Save", cn) { CommandType = CommandType.StoredProcedure };
-                    cmd.Parameters.AddWithValue("@guid", item.Guid);
-                    cmd.Parameters.AddWithValue("@modif", item.Modified);
-                    cmd.Parameters.AddWithValue("@checkPageGuid", item.CheckPageGuid);
-                    cmd.Parameters.AddWithValue("@dasteCheckName", item.DasteCheckName ?? "");
-                    cmd.Parameters.AddWithValue("@tafsilGuid", item.TafsilGuid);
-                    cmd.Parameters.AddWithValue("@userGuid", item.UserGuid);
-                    cmd.Parameters.AddWithValue("@sarmayeTafsilGuid", ParentDefaults.TafsilCoding.CLSTafsil5011001);
-                    cmd.Parameters.AddWithValue("@sarmayeMoeinGuid", ParentDefaults.MoeinCoding.CLSMoein50110);
-                    cmd.Parameters.AddWithValue("@tafsilCreditMoeinGuid", ParentDefaults.MoeinCoding.CLSMoein10304);
-                    cmd.Parameters.AddWithValue("@bankCreditMoeinGuid", ParentDefaults.MoeinCoding.CLSMoein10101);
-                    cmd.Parameters.AddWithValue("@sandouqCreditMoeinGuid", ParentDefaults.MoeinCoding.CLSMoein10102);
+                var cmd = new SqlCommand("sp_PardakhtCheckAvalDore_Save", tr.Connection, tr) { CommandType = CommandType.StoredProcedure };
+                cmd.Parameters.AddWithValue("@guid", item.Guid);
+                cmd.Parameters.AddWithValue("@modif", item.Modified);
+                cmd.Parameters.AddWithValue("@checkPageGuid", item.CheckPageGuid);
+                cmd.Parameters.AddWithValue("@dasteCheckName", item.DasteCheckName ?? "");
+                cmd.Parameters.AddWithValue("@tafsilGuid", item.TafsilGuid);
+                cmd.Parameters.AddWithValue("@userGuid", item.UserGuid);
+                cmd.Parameters.AddWithValue("@sarmayeTafsilGuid", ParentDefaults.TafsilCoding.CLSTafsil5011001);
+                cmd.Parameters.AddWithValue("@sarmayeMoeinGuid", ParentDefaults.MoeinCoding.CLSMoein50110);
+                cmd.Parameters.AddWithValue("@tafsilCreditMoeinGuid", ParentDefaults.MoeinCoding.CLSMoein10304);
+                cmd.Parameters.AddWithValue("@bankCreditMoeinGuid", ParentDefaults.MoeinCoding.CLSMoein10101);
+                cmd.Parameters.AddWithValue("@sandouqCreditMoeinGuid", ParentDefaults.MoeinCoding.CLSMoein10102);
+                cmd.Parameters.AddWithValue("@serverSt", (short)item.ServerStatus);
+                cmd.Parameters.AddWithValue("@serverDate", item.ServerDeliveryDate);
 
-                    await cn.OpenAsync();
-                    await cmd.ExecuteNonQueryAsync();
-                    cn.Close();
-                }
+                await cmd.ExecuteNonQueryAsync();
             }
             catch (Exception ex)
             {
@@ -125,27 +114,22 @@ namespace EntityCache.SqlServerPersistence
 
             return res;
         }
-        public override async Task<ReturnedSaveFuncInfo> RemoveAsync(Guid guid, string tranName)
+        public async Task<ReturnedSaveFuncInfo> RemoveAsync(Guid guid, SqlTransaction tr)
         {
             var res = new ReturnedSaveFuncInfo();
             try
             {
-                var item = await GetAsync(guid);
-                using (var cn = new SqlConnection(_connectionString))
-                {
-                    var cmd = new SqlCommand("sp_PardakhtCheckAvalDore_Remove", cn) { CommandType = CommandType.StoredProcedure };
-                    cmd.Parameters.AddWithValue("@guid", guid);
-                    cmd.Parameters.AddWithValue("@userGuid", item.UserGuid);
-                    cmd.Parameters.AddWithValue("@sarmayeTafsilGuid", ParentDefaults.TafsilCoding.CLSTafsil5011001);
-                    cmd.Parameters.AddWithValue("@sarmayeMoeinGuid", ParentDefaults.MoeinCoding.CLSMoein50110);
-                    cmd.Parameters.AddWithValue("@tafsilCreditMoeinGuid", ParentDefaults.MoeinCoding.CLSMoein10304);
-                    cmd.Parameters.AddWithValue("@bankCreditMoeinGuid", ParentDefaults.MoeinCoding.CLSMoein10101);
-                    cmd.Parameters.AddWithValue("@sandouqCreditMoeinGuid", ParentDefaults.MoeinCoding.CLSMoein10102);
+                var item = await GetAsync(tr.Connection.ConnectionString, guid);
+                var cmd = new SqlCommand("sp_PardakhtCheckAvalDore_Remove", tr.Connection, tr) { CommandType = CommandType.StoredProcedure };
+                cmd.Parameters.AddWithValue("@guid", guid);
+                cmd.Parameters.AddWithValue("@userGuid", item.UserGuid);
+                cmd.Parameters.AddWithValue("@sarmayeTafsilGuid", ParentDefaults.TafsilCoding.CLSTafsil5011001);
+                cmd.Parameters.AddWithValue("@sarmayeMoeinGuid", ParentDefaults.MoeinCoding.CLSMoein50110);
+                cmd.Parameters.AddWithValue("@tafsilCreditMoeinGuid", ParentDefaults.MoeinCoding.CLSMoein10304);
+                cmd.Parameters.AddWithValue("@bankCreditMoeinGuid", ParentDefaults.MoeinCoding.CLSMoein10101);
+                cmd.Parameters.AddWithValue("@sandouqCreditMoeinGuid", ParentDefaults.MoeinCoding.CLSMoein10102);
 
-                    await cn.OpenAsync();
-                    await cmd.ExecuteNonQueryAsync();
-                    cn.Close();
-                }
+                await cmd.ExecuteNonQueryAsync();
             }
             catch (Exception ex)
             {

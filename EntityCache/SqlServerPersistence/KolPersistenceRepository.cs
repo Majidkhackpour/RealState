@@ -11,23 +11,15 @@ using Services;
 
 namespace EntityCache.SqlServerPersistence
 {
-    public class KolPersistenceRepository : GenericRepository<KolBussines, Kol>, IKolRepository
+    public class KolPersistenceRepository : IKolRepository
     {
-        private ModelContext db;
-        private string _connectionString;
-        public KolPersistenceRepository(ModelContext _db, string connectionString) : base(_db, connectionString)
-        {
-            db = _db;
-            _connectionString = connectionString;
-        }
-
-        public override async Task<ReturnedSaveFuncInfo> SaveRangeAsync(IEnumerable<KolBussines> items, string tranName)
+        public async Task<ReturnedSaveFuncInfo> SaveRangeAsync(IEnumerable<KolBussines> items, SqlTransaction tr)
         {
             var res = new ReturnedSaveFuncInfo();
             try
             {
                 foreach (var item in items)
-                    res.AddReturnedValue(await SaveAsync(item, tranName));
+                    res.AddReturnedValue(await SaveAsync(item, tr));
             }
             catch (Exception ex)
             {
@@ -37,26 +29,22 @@ namespace EntityCache.SqlServerPersistence
 
             return res;
         }
-        public override async Task<ReturnedSaveFuncInfo> SaveAsync(KolBussines item, string tranName)
+        public async Task<ReturnedSaveFuncInfo> SaveAsync(KolBussines item, SqlTransaction tr)
         {
             var res = new ReturnedSaveFuncInfo();
             try
             {
-                using (var cn = new SqlConnection(_connectionString))
-                {
-                    var cmd = new SqlCommand("sp_Kol_Save", cn) { CommandType = CommandType.StoredProcedure };
-                    cmd.Parameters.AddWithValue("@guid", item.Guid);
-                    cmd.Parameters.AddWithValue("@modif", item.Modified);
-                    cmd.Parameters.AddWithValue("@st", item.Status);
-                    cmd.Parameters.AddWithValue("@name", item.Name ?? "");
-                    cmd.Parameters.AddWithValue("@code", item.Code ?? "");
-                    cmd.Parameters.AddWithValue("@account", item.Account);
-                    cmd.Parameters.AddWithValue("@hGroup", (short)item.HesabGroup);
+                var cmd = new SqlCommand("sp_Kol_Save", tr.Connection,tr) { CommandType = CommandType.StoredProcedure };
+                cmd.Parameters.AddWithValue("@guid", item.Guid);
+                cmd.Parameters.AddWithValue("@modif", item.Modified);
+                cmd.Parameters.AddWithValue("@name", item.Name ?? "");
+                cmd.Parameters.AddWithValue("@code", item.Code ?? "");
+                cmd.Parameters.AddWithValue("@account", item.Account);
+                cmd.Parameters.AddWithValue("@hGroup", (short)item.HesabGroup);
+                cmd.Parameters.AddWithValue("@serverSt", (short)item.ServerStatus);
+                cmd.Parameters.AddWithValue("@serverDate", item.ServerDeliveryDate);
 
-                    await cn.OpenAsync();
-                    await cmd.ExecuteNonQueryAsync();
-                    cn.Close();
-                }
+                await cmd.ExecuteNonQueryAsync();
             }
             catch (Exception ex)
             {
@@ -66,7 +54,7 @@ namespace EntityCache.SqlServerPersistence
 
             return res;
         }
-        public override async Task<List<KolBussines>> GetAllAsync()
+        public async Task<List<KolBussines>> GetAllAsync(string _connectionString)
         {
             var list = new List<KolBussines>();
             try
@@ -88,7 +76,7 @@ namespace EntityCache.SqlServerPersistence
 
             return list;
         }
-        public override async Task<KolBussines> GetAsync(Guid guid)
+        public async Task<KolBussines> GetAsync(string _connectionString, Guid guid)
         {
             KolBussines res = null;
             try
@@ -118,11 +106,12 @@ namespace EntityCache.SqlServerPersistence
             {
                 item.Guid = (Guid)dr["Guid"];
                 item.Modified = (DateTime)dr["Modified"];
-                item.Status = (bool)dr["Status"];
                 item.Name = dr["Name"].ToString();
                 item.Code = dr["Code"].ToString();
                 item.Account = (decimal)dr["Account"];
                 item.HesabGroup = (EnHesabGroup)dr["HesabGroup"];
+                item.ServerDeliveryDate = (DateTime)dr["ServerDeliveryDate"];
+                item.ServerStatus = (ServerStatus)dr["ServerStatus"];
             }
             catch (Exception ex)
             {

@@ -9,8 +9,6 @@ namespace Persistence.Entities
     {
         [Key]
         public Guid Guid { get; set; }
-        public DateTime Modified { get; set; }
-        public bool Status { get; set; }
         public DateTime InsertedDate { get; set; }
         [MaxLength(1000)]
         public string Path { get; set; }

@@ -11,22 +11,16 @@ using Services;
 
 namespace EntityCache.SqlServerPersistence
 {
-    public class MoeinPersistenceRepository : GenericRepository<MoeinBussines, Moein>, IMoeinRepository
+    public class MoeinPersistenceRepository : IMoeinRepository
     {
-        private ModelContext db;
-        private string _connectionString;
-        public MoeinPersistenceRepository(ModelContext _db, string connectionString) : base(_db, connectionString)
-        {
-            db = _db;
-            _connectionString = connectionString;
-        }
-        public override async Task<ReturnedSaveFuncInfo> SaveRangeAsync(IEnumerable<MoeinBussines> items, string tranName)
+        public MoeinPersistenceRepository() { }
+        public async Task<ReturnedSaveFuncInfo> SaveRangeAsync(IEnumerable<MoeinBussines> items, SqlTransaction tr)
         {
             var res = new ReturnedSaveFuncInfo();
             try
             {
                 foreach (var item in items)
-                    res.AddReturnedValue(await SaveAsync(item, tranName));
+                    res.AddReturnedValue(await SaveAsync(item, tr));
             }
             catch (Exception ex)
             {
@@ -36,21 +30,16 @@ namespace EntityCache.SqlServerPersistence
 
             return res;
         }
-        public async Task<ReturnedSaveFuncInfo> UpdateAccountAsync(Guid guid, decimal price)
+        public async Task<ReturnedSaveFuncInfo> UpdateAccountAsync(Guid guid, decimal price, SqlTransaction tr)
         {
             var res = new ReturnedSaveFuncInfo();
             try
             {
-                using (var cn = new SqlConnection(_connectionString))
-                {
-                    var cmd = new SqlCommand("sp_Moein_UpdateAccount", cn) { CommandType = CommandType.StoredProcedure };
-                    cmd.Parameters.AddWithValue("@guid", guid);
-                    cmd.Parameters.AddWithValue("@price", price);
+                var cmd = new SqlCommand("sp_Moein_UpdateAccount", tr.Connection, tr) { CommandType = CommandType.StoredProcedure };
+                cmd.Parameters.AddWithValue("@guid", guid);
+                cmd.Parameters.AddWithValue("@price", price);
 
-                    await cn.OpenAsync();
-                    await cmd.ExecuteNonQueryAsync();
-                    cn.Close();
-                }
+                await cmd.ExecuteNonQueryAsync();
             }
             catch (Exception ex)
             {
@@ -60,14 +49,14 @@ namespace EntityCache.SqlServerPersistence
 
             return res;
         }
-        public async Task<MoeinBussines> GetAsync(string code)
+        public async Task<MoeinBussines> GetAsync(string _connectionString, string code)
         {
             MoeinBussines res = null;
             try
             {
                 using (var cn = new SqlConnection(_connectionString))
                 {
-                    var cmd = new SqlCommand("sp_Moein_GetByCode", cn) {CommandType = CommandType.StoredProcedure};
+                    var cmd = new SqlCommand("sp_Moein_GetByCode", cn) { CommandType = CommandType.StoredProcedure };
                     cmd.Parameters.AddWithValue("@code", code);
 
                     await cn.OpenAsync();
@@ -83,26 +72,22 @@ namespace EntityCache.SqlServerPersistence
 
             return res;
         }
-        public override async Task<ReturnedSaveFuncInfo> SaveAsync(MoeinBussines item, string tranName)
+        public async Task<ReturnedSaveFuncInfo> SaveAsync(MoeinBussines item, SqlTransaction tr)
         {
             var res = new ReturnedSaveFuncInfo();
             try
             {
-                using (var cn = new SqlConnection(_connectionString))
-                {
-                    var cmd = new SqlCommand("sp_Moein_Save", cn) { CommandType = CommandType.StoredProcedure };
-                    cmd.Parameters.AddWithValue("@guid", item.Guid);
-                    cmd.Parameters.AddWithValue("@modif", item.Modified);
-                    cmd.Parameters.AddWithValue("@st", item.Status);
-                    cmd.Parameters.AddWithValue("@name", item.Name ?? "");
-                    cmd.Parameters.AddWithValue("@code", item.Code ?? "");
-                    cmd.Parameters.AddWithValue("@account", item.Account);
-                    cmd.Parameters.AddWithValue("@kolGuid", item.KolGuid);
+                var cmd = new SqlCommand("sp_Moein_Save", tr.Connection, tr) { CommandType = CommandType.StoredProcedure };
+                cmd.Parameters.AddWithValue("@guid", item.Guid);
+                cmd.Parameters.AddWithValue("@modif", item.Modified);
+                cmd.Parameters.AddWithValue("@name", item.Name ?? "");
+                cmd.Parameters.AddWithValue("@code", item.Code ?? "");
+                cmd.Parameters.AddWithValue("@account", item.Account);
+                cmd.Parameters.AddWithValue("@kolGuid", item.KolGuid);
+                cmd.Parameters.AddWithValue("@serverSt", (short)item.ServerStatus);
+                cmd.Parameters.AddWithValue("@serverDate", item.ServerDeliveryDate);
 
-                    await cn.OpenAsync();
-                    await cmd.ExecuteNonQueryAsync();
-                    cn.Close();
-                }
+                await cmd.ExecuteNonQueryAsync();
             }
             catch (Exception ex)
             {
@@ -112,7 +97,7 @@ namespace EntityCache.SqlServerPersistence
 
             return res;
         }
-        public override async Task<List<MoeinBussines>> GetAllAsync()
+        public async Task<List<MoeinBussines>> GetAllAsync(string _connectionString)
         {
             var list = new List<MoeinBussines>();
             try
@@ -134,7 +119,7 @@ namespace EntityCache.SqlServerPersistence
 
             return list;
         }
-        public override async Task<MoeinBussines> GetAsync(Guid guid)
+        public async Task<MoeinBussines> GetAsync(string _connectionString, Guid guid)
         {
             MoeinBussines res = null;
             try
@@ -164,12 +149,13 @@ namespace EntityCache.SqlServerPersistence
             {
                 item.Guid = (Guid)dr["Guid"];
                 item.Modified = (DateTime)dr["Modified"];
-                item.Status = (bool)dr["Status"];
                 item.Name = dr["Name"].ToString();
                 item.Code = dr["Code"].ToString();
                 item.Account = (decimal)dr["Account"];
                 item.KolGuid = (Guid)dr["KolGuid"];
                 item.DateM = (DateTime)dr["DateM"];
+                item.ServerDeliveryDate = (DateTime)dr["ServerDeliveryDate"];
+                item.ServerStatus = (ServerStatus)dr["ServerStatus"];
             }
             catch (Exception ex)
             {

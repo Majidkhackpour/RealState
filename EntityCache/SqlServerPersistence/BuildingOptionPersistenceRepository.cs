@@ -13,17 +13,10 @@ using Services;
 
 namespace EntityCache.SqlServerPersistence
 {
-    public class BuildingOptionPersistenceRepository : GenericRepository<BuildingOptionsBussines, BuildingOptions>, IBuildingOptionRepository
+    public class BuildingOptionPersistenceRepository : IBuildingOptionRepository
     {
-        private ModelContext db;
-        private string _connectionString;
-        public BuildingOptionPersistenceRepository(ModelContext _db, string connectionString) : base(_db, connectionString)
-        {
-            db = _db;
-            _connectionString = connectionString;
-        }
-
-        public async Task<BuildingOptionsBussines> GetAsync(string name)
+        public BuildingOptionPersistenceRepository() { }
+        public async Task<BuildingOptionsBussines> GetAsync(string _connectionString, string name)
         {
             var list = new BuildingOptionsBussines();
             try
@@ -35,6 +28,7 @@ namespace EntityCache.SqlServerPersistence
                     await cn.OpenAsync();
                     var dr = await cmd.ExecuteReaderAsync();
                     if (dr.Read()) list = LoadData(dr);
+                    dr.Close();
                     cn.Close();
                 }
             }
@@ -45,7 +39,7 @@ namespace EntityCache.SqlServerPersistence
 
             return list;
         }
-        public override async Task<BuildingOptionsBussines> GetAsync(Guid guid)
+        public async Task<BuildingOptionsBussines> GetAsync(string _connectionString, Guid guid)
         {
             var list = new BuildingOptionsBussines();
             try
@@ -57,6 +51,7 @@ namespace EntityCache.SqlServerPersistence
                     await cn.OpenAsync();
                     var dr = await cmd.ExecuteReaderAsync();
                     if (dr.Read()) list = LoadData(dr);
+                    dr.Close();
                     cn.Close();
                 }
             }
@@ -67,7 +62,7 @@ namespace EntityCache.SqlServerPersistence
 
             return list;
         }
-        public async Task<bool> CheckNameAsync(string name, Guid guid)
+        public async Task<bool> CheckNameAsync(string _connectionString, string name, Guid guid)
         {
             try
             {
@@ -89,7 +84,7 @@ namespace EntityCache.SqlServerPersistence
                 return false;
             }
         }
-        public override async Task<List<BuildingOptionsBussines>> GetAllAsync()
+        public async Task<List<BuildingOptionsBussines>> GetAllAsync(string _connectionString)
         {
             var list = new List<BuildingOptionsBussines>();
             try
@@ -101,6 +96,7 @@ namespace EntityCache.SqlServerPersistence
                     await cn.OpenAsync();
                     var dr = await cmd.ExecuteReaderAsync();
                     while (dr.Read()) list.Add(LoadData(dr));
+                    dr.Close();
                     cn.Close();
                 }
             }
@@ -111,23 +107,20 @@ namespace EntityCache.SqlServerPersistence
 
             return list;
         }
-        public override async Task<ReturnedSaveFuncInfo> SaveAsync(BuildingOptionsBussines item, string tranName)
+        public async Task<ReturnedSaveFuncInfo> SaveAsync(BuildingOptionsBussines item, SqlTransaction tr)
         {
             var res = new ReturnedSaveFuncInfo();
             try
             {
-                using (var cn = new SqlConnection(_connectionString))
-                {
-                    var cmd = new SqlCommand("sp_BuildingOption_Save", cn) { CommandType = CommandType.StoredProcedure };
-                    cmd.Parameters.AddWithValue("@guid", item.Guid);
-                    cmd.Parameters.AddWithValue("@st", item.Status);
-                    cmd.Parameters.AddWithValue("@name", item.Name ?? "");
-                    cmd.Parameters.AddWithValue("@modif", item.Modified);
+                var cmd = new SqlCommand("sp_BuildingOption_Save", tr.Connection, tr) { CommandType = CommandType.StoredProcedure };
+                cmd.Parameters.AddWithValue("@guid", item.Guid);
+                cmd.Parameters.AddWithValue("@st", item.Status);
+                cmd.Parameters.AddWithValue("@name", item.Name ?? "");
+                cmd.Parameters.AddWithValue("@modif", item.Modified);
+                cmd.Parameters.AddWithValue("@serverSt", (short)item.ServerStatus);
+                cmd.Parameters.AddWithValue("@serverDate", item.ServerDeliveryDate);
 
-                    await cn.OpenAsync();
-                    await cmd.ExecuteNonQueryAsync();
-                    cn.Close();
-                }
+                await cmd.ExecuteNonQueryAsync();
             }
             catch (Exception ex)
             {
@@ -137,14 +130,14 @@ namespace EntityCache.SqlServerPersistence
 
             return res;
         }
-        public override async Task<ReturnedSaveFuncInfo> SaveRangeAsync(IEnumerable<BuildingOptionsBussines> items, string tranName)
+        public async Task<ReturnedSaveFuncInfo> SaveRangeAsync(IEnumerable<BuildingOptionsBussines> items, SqlTransaction tr)
         {
             var res = new ReturnedSaveFuncInfo();
             try
             {
                 foreach (var item in items)
                 {
-                    res.AddReturnedValue(await SaveAsync(item, tranName));
+                    res.AddReturnedValue(await SaveAsync(item, tr));
                     if (res.HasError) return res;
                 }
             }
@@ -155,21 +148,16 @@ namespace EntityCache.SqlServerPersistence
             }
             return res;
         }
-        public override async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(BuildingOptionsBussines item, bool status, string tranName)
+        public async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(BuildingOptionsBussines item, bool status, SqlTransaction tr)
         {
             var res = new ReturnedSaveFuncInfo();
             try
             {
-                using (var cn = new SqlConnection(_connectionString))
-                {
-                    var cmd = new SqlCommand("sp_BuildingOption_ChangeStatus", cn) { CommandType = CommandType.StoredProcedure };
-                    cmd.Parameters.AddWithValue("@Guid", item.Guid);
-                    cmd.Parameters.AddWithValue("@st", status);
+                var cmd = new SqlCommand("sp_BuildingOption_ChangeStatus", tr.Connection, tr) { CommandType = CommandType.StoredProcedure };
+                cmd.Parameters.AddWithValue("@Guid", item.Guid);
+                cmd.Parameters.AddWithValue("@st", status);
 
-                    await cn.OpenAsync();
-                    await cmd.ExecuteNonQueryAsync();
-                    cn.Close();
-                }
+                await cmd.ExecuteNonQueryAsync();
             }
             catch (Exception ex)
             {
@@ -188,6 +176,8 @@ namespace EntityCache.SqlServerPersistence
                 res.Modified = (DateTime)dr["Modified"];
                 res.Status = (bool)dr["Status"];
                 res.Name = dr["Name"].ToString();
+                res.ServerDeliveryDate = (DateTime)dr["ServerDeliveryDate"];
+                res.ServerStatus = (ServerStatus)dr["ServerStatus"];
             }
             catch (Exception ex)
             {

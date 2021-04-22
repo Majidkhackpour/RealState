@@ -12,17 +12,9 @@ using Services;
 
 namespace EntityCache.SqlServerPersistence
 {
-    public class UserLogPersistenceRepository : GenericRepository<UserLogBussines, UserLog>, IUserLogRepository
+    public class UserLogPersistenceRepository : IUserLogRepository
     {
-        private ModelContext db;
-        private string _connectionString;
-        public UserLogPersistenceRepository(ModelContext _db, string connectionString) : base(_db, connectionString)
-        {
-            db = _db;
-            _connectionString = connectionString;
-        }
-
-        public async Task<List<UserLogBussines>> GetAllAsync(Guid userGuid, DateTime d1, DateTime d2)
+        public async Task<List<UserLogBussines>> GetAllAsync(string _connectionString, Guid userGuid, DateTime d1, DateTime d2)
         {
             var list = new List<UserLogBussines>();
             try
@@ -47,27 +39,20 @@ namespace EntityCache.SqlServerPersistence
 
             return list;
         }
-        public override async Task<ReturnedSaveFuncInfo> SaveAsync(UserLogBussines item, string tranName)
+        public async Task<ReturnedSaveFuncInfo> SaveAsync(UserLogBussines item, SqlTransaction tr)
         {
             var res = new ReturnedSaveFuncInfo();
             try
             {
-                using (var cn = new SqlConnection(_connectionString))
-                {
-                    var cmd = new SqlCommand("sp_UserLog_Insert", cn) {CommandType = CommandType.StoredProcedure};
-                    cmd.Parameters.AddWithValue("@guid", item.Guid);
-                    cmd.Parameters.AddWithValue("@modif", item.Modified);
-                    cmd.Parameters.AddWithValue("@st", item.Status);
-                    cmd.Parameters.AddWithValue("@userGuid", item.UserGuid);
-                    cmd.Parameters.AddWithValue("@date", item.Date);
-                    cmd.Parameters.AddWithValue("@action", (short) item.Action);
-                    cmd.Parameters.AddWithValue("@part", (short) item.Part);
-                    cmd.Parameters.AddWithValue("@desc", item.Description);
+                var cmd = new SqlCommand("sp_UserLog_Insert", tr.Connection, tr) { CommandType = CommandType.StoredProcedure };
+                cmd.Parameters.AddWithValue("@guid", item.Guid);
+                cmd.Parameters.AddWithValue("@userGuid", item.UserGuid);
+                cmd.Parameters.AddWithValue("@date", item.Date);
+                cmd.Parameters.AddWithValue("@action", (short)item.Action);
+                cmd.Parameters.AddWithValue("@part", (short)item.Part);
+                cmd.Parameters.AddWithValue("@desc", item.Description);
 
-                    await cn.OpenAsync();
-                    await cmd.ExecuteNonQueryAsync();
-                    cn.Close();
-                }
+                await cmd.ExecuteNonQueryAsync();
             }
             catch (Exception ex)
             {
@@ -83,12 +68,10 @@ namespace EntityCache.SqlServerPersistence
             try
             {
                 item.Guid = (Guid)dr["Guid"];
-                item.Modified = (DateTime)dr["Modified"];
-                item.Status = (bool)dr["Status"];
                 item.UserGuid = (Guid)dr["UserGuid"];
                 item.UserName = dr["UserName"].ToString();
-                item.Date =(DateTime) dr["Date"];
-                item.Action =(EnLogAction) dr["Action"];
+                item.Date = (DateTime)dr["Date"];
+                item.Action = (EnLogAction)dr["Action"];
                 item.Part = (EnLogPart)dr["Part"];
                 item.Description = dr["Description"].ToString();
             }

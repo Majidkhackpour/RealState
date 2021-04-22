@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 using EntityCache.Assistence;
 using Nito.AsyncEx;
+using Persistence;
 using Services;
 using Servicess.Interfaces.Building;
 
@@ -12,12 +14,11 @@ namespace EntityCache.Bussines
     public class SimcardBussines : ISimcard
     {
         public Guid Guid { get; set; }
-        public DateTime Modified { get; set; } = DateTime.Now;
-        public bool Status { get; set; } = true;
         public long Number { get; set; }
         public string Owner { get; set; }
         public string Operator { get; set; }
         public bool isSheypoorBlocked { get; set; }
+        public bool Status { get; set; }
         public DateTime NextUseSheypoor { get; set; } = DateTime.Now;
         public DateTime NextUseDivar { get; set; } = DateTime.Now;
         public bool HasDivarToken
@@ -38,38 +39,39 @@ namespace EntityCache.Bussines
         }
 
 
-        public static async Task<List<SimcardBussines>> GetAllAsync() => await UnitOfWork.Simcard.GetAllAsync();
-        public async Task<ReturnedSaveFuncInfo> SaveAsync(string tranName = "")
+        public static async Task<List<SimcardBussines>> GetAllAsync() => await UnitOfWork.Simcard.GetAllAsync(Cache.ConnectionString);
+        public async Task<ReturnedSaveFuncInfo> SaveAsync(SqlTransaction tr = null)
         {
             var res = new ReturnedSaveFuncInfo();
-            var autoTran = string.IsNullOrEmpty(tranName);
-            if (autoTran) tranName = Guid.NewGuid().ToString();
+            var autoTran = tr == null;
+            SqlConnection cn = null;
             try
             {
                 if (autoTran)
-                { //BeginTransaction
+                {
+                    cn = new SqlConnection(Cache.ConnectionString);
+                    await cn.OpenAsync();
+                    tr = cn.BeginTransaction();
                 }
 
-                res.AddReturnedValue(await UnitOfWork.Simcard.SaveAsync(this, tranName));
-                if (res.HasError) return res;
-                if (autoTran)
-                {
-                    //CommitTransAction
-                }
+                res.AddReturnedValue(await UnitOfWork.Simcard.SaveAsync(this, tr));
             }
             catch (Exception ex)
             {
-                if (autoTran)
-                {
-                    //RollBackTransAction
-                }
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
                 res.AddReturnedValue(ex);
             }
-
+            finally
+            {
+                if (autoTran)
+                {
+                    res.AddReturnedValue(tr.TransactionDestiny(res.HasError));
+                    res.AddReturnedValue(cn.CloseConnection());
+                }
+            }
             return res;
         }
-        public static async Task<SimcardBussines> GetAsync(long number) => await UnitOfWork.Simcard.GetAsync(number);
+        public static async Task<SimcardBussines> GetAsync(long number) => await UnitOfWork.Simcard.GetAsync(Cache.ConnectionString, number);
         public static async Task<List<SimcardBussines>> GetAllAsync(string search)
         {
             try
@@ -83,8 +85,8 @@ namespace EntityCache.Bussines
                     {
                         if (!string.IsNullOrEmpty(item) && item.Trim() != "")
                         {
-                            res = res.Where(x => x.Owner.ToLower().Contains(item.ToLower())||
-                                                 x.Number.ToString().ToLower().Contains(item.ToLower())||
+                            res = res.Where(x => x.Owner.ToLower().Contains(item.ToLower()) ||
+                                                 x.Number.ToString().ToLower().Contains(item.ToLower()) ||
                                                  x.Operator.ToLower().Contains(item.ToLower()))
                                 ?.ToList();
                         }
@@ -101,39 +103,40 @@ namespace EntityCache.Bussines
                 return new List<SimcardBussines>();
             }
         }
-        public static async Task<SimcardBussines> GetAsync(Guid guid) => await UnitOfWork.Simcard.GetAsync(guid);
+        public static async Task<SimcardBussines> GetAsync(Guid guid) => await UnitOfWork.Simcard.GetAsync(Cache.ConnectionString, guid);
         public static SimcardBussines Get(Guid guid) => AsyncContext.Run(() => GetAsync(guid));
-        public async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(bool status, string tranName = "")
+        public async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(bool status, SqlTransaction tr = null)
         {
             var res = new ReturnedSaveFuncInfo();
-            var autoTran = string.IsNullOrEmpty(tranName);
-            if (autoTran) tranName = Guid.NewGuid().ToString();
+            var autoTran = tr == null;
+            SqlConnection cn = null;
             try
             {
                 if (autoTran)
-                { //BeginTransaction
+                {
+                    cn = new SqlConnection(Cache.ConnectionString);
+                    await cn.OpenAsync();
+                    tr = cn.BeginTransaction();
                 }
 
-                res.AddReturnedValue(await UnitOfWork.Simcard.ChangeStatusAsync(this, status, tranName));
-                if (res.HasError) return res;
-                if (autoTran)
-                {
-                    //CommitTransAction
-                }
+                res.AddReturnedValue(await UnitOfWork.Simcard.ChangeStatusAsync(this, status, tr));
             }
             catch (Exception ex)
             {
-                if (autoTran)
-                {
-                    //RollBackTransAction
-                }
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
                 res.AddReturnedValue(ex);
             }
-
+            finally
+            {
+                if (autoTran)
+                {
+                    res.AddReturnedValue(tr.TransactionDestiny(res.HasError));
+                    res.AddReturnedValue(cn.CloseConnection());
+                }
+            }
             return res;
         }
         public static async Task<bool> CheckNumberAsync(long number, Guid guid) =>
-            await UnitOfWork.Simcard.CheckNumberAsync(number, guid);
+            await UnitOfWork.Simcard.CheckNumberAsync(Cache.ConnectionString, number, guid);
     }
 }

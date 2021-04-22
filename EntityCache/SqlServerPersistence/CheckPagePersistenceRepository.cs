@@ -11,17 +11,9 @@ using Services;
 
 namespace EntityCache.SqlServerPersistence
 {
-    public class CheckPagePersistenceRepository : GenericRepository<CheckPageBussines, CheckPage>, ICheckPageRepository
+    public class CheckPagePersistenceRepository : ICheckPageRepository
     {
-        private ModelContext db;
-
-        private string _connectionString;
-        public CheckPagePersistenceRepository(ModelContext _db, string connectionString) : base(_db, connectionString)
-        {
-            db = _db;
-            _connectionString = connectionString;
-        }
-
+        public CheckPagePersistenceRepository() { }
         private CheckPageBussines LoadData(SqlDataReader dr)
         {
             var item = new CheckPageBussines();
@@ -29,7 +21,6 @@ namespace EntityCache.SqlServerPersistence
             {
                 item.Guid = (Guid)dr["Guid"];
                 item.Modified = (DateTime)dr["Modified"];
-                item.Status = (bool)dr["Status"];
                 item.CheckGuid = (Guid)dr["CheckGuid"];
                 if (dr["DatePardakht"] != DBNull.Value) item.DatePardakht = (DateTime?)dr["DatePardakht"];
                 item.Number = (long)dr["Number"];
@@ -38,6 +29,8 @@ namespace EntityCache.SqlServerPersistence
                 item.Description = dr["Description"].ToString();
                 item.Price = (decimal)dr["Price"];
                 item.CheckStatus = (EnCheckSh)dr["CheckStatus"];
+                item.ServerDeliveryDate = (DateTime)dr["ServerDeliveryDate"];
+                item.ServerStatus = (ServerStatus)dr["ServerStatus"];
             }
             catch (Exception ex)
             {
@@ -46,7 +39,7 @@ namespace EntityCache.SqlServerPersistence
 
             return item;
         }
-        public async Task<List<CheckPageBussines>> GetAllAsync(Guid checkGuid)
+        public async Task<List<CheckPageBussines>> GetAllAsync(string _connectionString, Guid checkGuid)
         {
             var list = new List<CheckPageBussines>();
             try
@@ -69,7 +62,7 @@ namespace EntityCache.SqlServerPersistence
 
             return list;
         }
-        public override async Task<CheckPageBussines> GetAsync(Guid guid)
+        public async Task<CheckPageBussines> GetAsync(string _connectionString, Guid guid)
         {
             CheckPageBussines res = null;
             try
@@ -92,29 +85,26 @@ namespace EntityCache.SqlServerPersistence
 
             return res;
         }
-        public override async Task<ReturnedSaveFuncInfo> SaveAsync(CheckPageBussines item, string tranName)
+        public async Task<ReturnedSaveFuncInfo> SaveAsync(CheckPageBussines item, SqlTransaction tr)
         {
             var res = new ReturnedSaveFuncInfo();
             try
             {
-                using (var cn = new SqlConnection(_connectionString))
-                {
-                    var cmd = new SqlCommand("sp_CheckPage_Save", cn) { CommandType = CommandType.StoredProcedure };
-                    cmd.Parameters.AddWithValue("@guid", item.Guid);
-                    cmd.Parameters.AddWithValue("@modif", item.Modified);
-                    cmd.Parameters.AddWithValue("@CheckGuid", item.CheckGuid);
-                    cmd.Parameters.AddWithValue("@datePardakht", item.DatePardakht);
-                    cmd.Parameters.AddWithValue("@number", item.Number);
-                    cmd.Parameters.AddWithValue("@receptorGuid", item.ReceptorGuid);
-                    cmd.Parameters.AddWithValue("@sarresid", item.DateSarresid);
-                    cmd.Parameters.AddWithValue("@desc", item.Description ?? "");
-                    cmd.Parameters.AddWithValue("@price", item.Price);
-                    cmd.Parameters.AddWithValue("@st", (int)item.CheckStatus);
+                var cmd = new SqlCommand("sp_CheckPage_Save", tr.Connection, tr) { CommandType = CommandType.StoredProcedure };
+                cmd.Parameters.AddWithValue("@guid", item.Guid);
+                cmd.Parameters.AddWithValue("@modif", item.Modified);
+                cmd.Parameters.AddWithValue("@CheckGuid", item.CheckGuid);
+                cmd.Parameters.AddWithValue("@datePardakht", item.DatePardakht);
+                cmd.Parameters.AddWithValue("@number", item.Number);
+                cmd.Parameters.AddWithValue("@receptorGuid", item.ReceptorGuid);
+                cmd.Parameters.AddWithValue("@sarresid", item.DateSarresid);
+                cmd.Parameters.AddWithValue("@desc", item.Description ?? "");
+                cmd.Parameters.AddWithValue("@price", item.Price);
+                cmd.Parameters.AddWithValue("@st", (int)item.CheckStatus);
+                cmd.Parameters.AddWithValue("@serverSt", (short)item.ServerStatus);
+                cmd.Parameters.AddWithValue("@serverDate", item.ServerDeliveryDate);
 
-                    await cn.OpenAsync();
-                    await cmd.ExecuteNonQueryAsync();
-                    cn.Close();
-                }
+                await cmd.ExecuteNonQueryAsync();
             }
             catch (Exception ex)
             {
@@ -124,20 +114,15 @@ namespace EntityCache.SqlServerPersistence
 
             return res;
         }
-        public async Task<ReturnedSaveFuncInfo> RemoveAllAsync(Guid checkGuid)
+        public async Task<ReturnedSaveFuncInfo> RemoveAllAsync(Guid checkGuid, SqlTransaction tr)
         {
             var res = new ReturnedSaveFuncInfo();
             try
             {
-                using (var cn = new SqlConnection(_connectionString))
-                {
-                    var cmd = new SqlCommand("sp_CheckPage_RemoveAll", cn) { CommandType = CommandType.StoredProcedure };
-                    cmd.Parameters.AddWithValue("@guid", checkGuid);
+                var cmd = new SqlCommand("sp_CheckPage_RemoveAll", tr.Connection, tr) { CommandType = CommandType.StoredProcedure };
+                cmd.Parameters.AddWithValue("@guid", checkGuid);
 
-                    await cn.OpenAsync();
-                    await cmd.ExecuteNonQueryAsync();
-                    cn.Close();
-                }
+                await cmd.ExecuteNonQueryAsync();
             }
             catch (Exception ex)
             {
@@ -147,13 +132,13 @@ namespace EntityCache.SqlServerPersistence
 
             return res;
         }
-        public override async Task<ReturnedSaveFuncInfo> SaveRangeAsync(IEnumerable<CheckPageBussines> items, string tranName)
+        public async Task<ReturnedSaveFuncInfo> SaveRangeAsync(IEnumerable<CheckPageBussines> items, SqlTransaction tr)
         {
             var res = new ReturnedSaveFuncInfo();
             try
             {
                 foreach (var item in items)
-                    res.AddReturnedValue(await SaveAsync(item, tranName));
+                    res.AddReturnedValue(await SaveAsync(item, tr));
             }
             catch (Exception ex)
             {

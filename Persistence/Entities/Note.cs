@@ -10,8 +10,6 @@ namespace Persistence.Entities
     {
         [Key]
         public Guid Guid { get; set; }
-        public DateTime Modified { get; set; }
-        public bool Status { get; set; }
         [MaxLength(500)]
         public string Title { get; set; }
         public string Description { get; set; }

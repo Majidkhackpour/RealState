@@ -11,23 +11,15 @@ using Services;
 
 namespace EntityCache.SqlServerPersistence
 {
-    public class BankSegestPersistenseRepository : GenericRepository<BankSegestBussines, BankSegest>, IBankSegestRepository
+    public class BankSegestPersistenseRepository : IBankSegestRepository
     {
-        private ModelContext db;
-        private string _connectionString;
-        public BankSegestPersistenseRepository(ModelContext _db, string connectionString) : base(_db, connectionString)
-        {
-            db = _db;
-            _connectionString = connectionString;
-        }
+        public BankSegestPersistenseRepository() { }
         private BankSegestBussines LoadData(SqlDataReader dr)
         {
             var item = new BankSegestBussines();
             try
             {
                 item.Guid = (Guid)dr["Guid"];
-                item.Modified = (DateTime)dr["Modified"];
-                item.Status = (bool)dr["Status"];
                 item.BankName = dr["BankName"].ToString();
             }
             catch (Exception ex)
@@ -37,7 +29,7 @@ namespace EntityCache.SqlServerPersistence
 
             return item;
         }
-        public override async Task<List<BankSegestBussines>> GetAllAsync()
+        public async Task<List<BankSegestBussines>> GetAllAsync(string _connectionString)
         {
             var list = new List<BankSegestBussines>();
             try
@@ -49,6 +41,7 @@ namespace EntityCache.SqlServerPersistence
                     await cn.OpenAsync();
                     var dr = await cmd.ExecuteReaderAsync();
                     while (dr.Read()) list.Add(LoadData(dr));
+                    dr.Close();
                     cn.Close();
                 }
             }
@@ -59,7 +52,7 @@ namespace EntityCache.SqlServerPersistence
 
             return list;
         }
-        public async Task<BankSegestBussines> GetAsync(string bankName)
+        public async Task<BankSegestBussines> GetAsync(string _connectionString, string bankName)
         {
             BankSegestBussines res = null;
             try
@@ -72,6 +65,7 @@ namespace EntityCache.SqlServerPersistence
                     await cn.OpenAsync();
                     var dr = await cmd.ExecuteReaderAsync();
                     if (dr.Read()) res = LoadData(dr);
+                    dr.Close();
                     cn.Close();
                 }
             }
@@ -82,23 +76,32 @@ namespace EntityCache.SqlServerPersistence
 
             return res;
         }
-        public override async Task<ReturnedSaveFuncInfo> SaveAsync(BankSegestBussines item, string tranName)
+        public async Task<ReturnedSaveFuncInfo> SaveAsync(BankSegestBussines item, SqlTransaction tr)
         {
             var res = new ReturnedSaveFuncInfo();
             try
             {
-                using (var cn = new SqlConnection(_connectionString))
-                {
-                    var cmd = new SqlCommand("sp_BankSegest_Insert", cn) { CommandType = CommandType.StoredProcedure };
-                    cmd.Parameters.AddWithValue("@guid", item.Guid);
-                    cmd.Parameters.AddWithValue("@modif", item.Modified);
-                    cmd.Parameters.AddWithValue("@st", item.Status);
-                    cmd.Parameters.AddWithValue("@name", item.BankName ?? "");
+                var cmd = new SqlCommand("sp_BankSegest_Insert", tr.Connection, tr) { CommandType = CommandType.StoredProcedure };
+                cmd.Parameters.AddWithValue("@guid", item.Guid);
+                cmd.Parameters.AddWithValue("@name", item.BankName ?? "");
 
-                    await cn.OpenAsync();
-                    await cmd.ExecuteNonQueryAsync();
-                    cn.Close();
-                }
+                await cmd.ExecuteNonQueryAsync();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+
+            return res;
+        }
+        public async Task<ReturnedSaveFuncInfo> SaveRangeAsync(IEnumerable<BankSegestBussines> items, SqlTransaction tr)
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                foreach (var item in items)
+                    res.AddReturnedValue(await SaveAsync(item, tr));
             }
             catch (Exception ex)
             {

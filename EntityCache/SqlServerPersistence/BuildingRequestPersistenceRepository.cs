@@ -12,17 +12,10 @@ using Services;
 
 namespace EntityCache.SqlServerPersistence
 {
-    public class BuildingRequestPersistenceRepository : GenericRepository<BuildingRequestBussines, BuildingRequest>, IBuildingRequestRepository
+    public class BuildingRequestPersistenceRepository : IBuildingRequestRepository
     {
-        private ModelContext db;
-        private string _connectionString;
-        public BuildingRequestPersistenceRepository(ModelContext _db, string connectionString) : base(_db, connectionString)
-        {
-            db = _db;
-            _connectionString = connectionString;
-        }
-
-        public override async Task<List<BuildingRequestBussines>> GetAllAsync()
+        public BuildingRequestPersistenceRepository() { }
+        public async Task<List<BuildingRequestBussines>> GetAllAsync(string _connectionString)
         {
             var list = new List<BuildingRequestBussines>();
             try
@@ -32,7 +25,7 @@ namespace EntityCache.SqlServerPersistence
                     var cmd = new SqlCommand("sp_BuildingsReq_SelectAll", cn) { CommandType = CommandType.StoredProcedure };
                     await cn.OpenAsync();
                     var dr = await cmd.ExecuteReaderAsync();
-                    if (dr.Read()) list.Add(LoadData(dr));
+                    if (dr.Read()) list.Add(LoadData(dr, false));
                     cn.Close();
                 }
             }
@@ -43,7 +36,7 @@ namespace EntityCache.SqlServerPersistence
 
             return list;
         }
-        public async Task<int> DbCount(Guid userGuid)
+        public async Task<int> DbCount(string _connectionString, Guid userGuid)
         {
             var count = 0;
             try
@@ -64,7 +57,7 @@ namespace EntityCache.SqlServerPersistence
 
             return count;
         }
-        public override async Task<BuildingRequestBussines> GetAsync(Guid guid)
+        public async Task<BuildingRequestBussines> GetAsync(string _connectionString, Guid guid)
         {
             var list = new BuildingRequestBussines();
             try
@@ -75,7 +68,7 @@ namespace EntityCache.SqlServerPersistence
                     cmd.Parameters.AddWithValue("@guid", guid);
                     await cn.OpenAsync();
                     var dr = await cmd.ExecuteReaderAsync();
-                    if (dr.Read()) list = LoadData(dr);
+                    if (dr.Read()) list = LoadData(dr, true);
                     cn.Close();
                 }
             }
@@ -86,21 +79,16 @@ namespace EntityCache.SqlServerPersistence
 
             return list;
         }
-        public override async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(BuildingRequestBussines item, bool status, string tranName)
+        public async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(BuildingRequestBussines item, bool status, SqlTransaction tr)
         {
             var res = new ReturnedSaveFuncInfo();
             try
             {
-                using (var cn = new SqlConnection(_connectionString))
-                {
-                    var cmd = new SqlCommand("sp_BuildingRequest_ChangeStatus", cn) { CommandType = CommandType.StoredProcedure };
-                    cmd.Parameters.AddWithValue("@Guid", item.Guid);
-                    cmd.Parameters.AddWithValue("@st", status);
+                var cmd = new SqlCommand("sp_BuildingRequest_ChangeStatus", tr.Connection, tr) { CommandType = CommandType.StoredProcedure };
+                cmd.Parameters.AddWithValue("@Guid", item.Guid);
+                cmd.Parameters.AddWithValue("@st", status);
 
-                    await cn.OpenAsync();
-                    await cmd.ExecuteNonQueryAsync();
-                    cn.Close();
-                }
+                await cmd.ExecuteNonQueryAsync();
             }
             catch (Exception ex)
             {
@@ -110,44 +98,41 @@ namespace EntityCache.SqlServerPersistence
 
             return res;
         }
-        public override async Task<ReturnedSaveFuncInfo> SaveAsync(BuildingRequestBussines item, string tranName)
+        public async Task<ReturnedSaveFuncInfo> SaveAsync(BuildingRequestBussines item, SqlTransaction tr)
         {
             var res = new ReturnedSaveFuncInfo();
             try
             {
-                using (var cn = new SqlConnection(_connectionString))
-                {
-                    var cmd = new SqlCommand("sp_BuildingRequest_Save", cn) { CommandType = CommandType.StoredProcedure };
-                    cmd.Parameters.AddWithValue("@guid", item.Guid);
-                    cmd.Parameters.AddWithValue("@st", item.Status);
-                    cmd.Parameters.AddWithValue("@createDtae", item.CreateDate);
-                    cmd.Parameters.AddWithValue("@modif", item.Modified);
-                    cmd.Parameters.AddWithValue("@askerGuid", item.AskerGuid);
-                    cmd.Parameters.AddWithValue("@userGuid", item.UserGuid);
-                    cmd.Parameters.AddWithValue("@sellPrice1", item.SellPrice1);
-                    cmd.Parameters.AddWithValue("@sellPrice2", item.SellPrice2);
-                    cmd.Parameters.AddWithValue("@hasVam", item.HasVam);
-                    cmd.Parameters.AddWithValue("@rahn1", item.RahnPrice1);
-                    cmd.Parameters.AddWithValue("@rahn2", item.RahnPrice2);
-                    cmd.Parameters.AddWithValue("@ejare1", item.EjarePrice1);
-                    cmd.Parameters.AddWithValue("@ejare2", item.EjarePrice2);
-                    cmd.Parameters.AddWithValue("@peopleCount", item.PeopleCount);
-                    cmd.Parameters.AddWithValue("@hasOwner", item.HasOwner);
-                    cmd.Parameters.AddWithValue("@shortDate", item.ShortDate);
-                    cmd.Parameters.AddWithValue("@rentalGuid", item.RentalAutorityGuid);
-                    cmd.Parameters.AddWithValue("@cityGuid", item.CityGuid);
-                    cmd.Parameters.AddWithValue("@typeGuid", item.BuildingTypeGuid);
-                    cmd.Parameters.AddWithValue("@masahat1", item.Masahat1);
-                    cmd.Parameters.AddWithValue("@masahat2", item.Masahat2);
-                    cmd.Parameters.AddWithValue("@roomCount", item.RoomCount);
-                    cmd.Parameters.AddWithValue("@accTypeGuid", item.BuildingAccountTypeGuid);
-                    cmd.Parameters.AddWithValue("@conditionGuid", item.BuildingConditionGuid);
-                    cmd.Parameters.AddWithValue("@shortDesc", item.ShortDesc ?? "");
+                var cmd = new SqlCommand("sp_BuildingRequest_Save", tr.Connection, tr) { CommandType = CommandType.StoredProcedure };
+                cmd.Parameters.AddWithValue("@guid", item.Guid);
+                cmd.Parameters.AddWithValue("@st", item.Status);
+                cmd.Parameters.AddWithValue("@createDtae", item.CreateDate);
+                cmd.Parameters.AddWithValue("@modif", item.Modified);
+                cmd.Parameters.AddWithValue("@askerGuid", item.AskerGuid);
+                cmd.Parameters.AddWithValue("@userGuid", item.UserGuid);
+                cmd.Parameters.AddWithValue("@sellPrice1", item.SellPrice1);
+                cmd.Parameters.AddWithValue("@sellPrice2", item.SellPrice2);
+                cmd.Parameters.AddWithValue("@hasVam", item.HasVam);
+                cmd.Parameters.AddWithValue("@rahn1", item.RahnPrice1);
+                cmd.Parameters.AddWithValue("@rahn2", item.RahnPrice2);
+                cmd.Parameters.AddWithValue("@ejare1", item.EjarePrice1);
+                cmd.Parameters.AddWithValue("@ejare2", item.EjarePrice2);
+                cmd.Parameters.AddWithValue("@peopleCount", item.PeopleCount);
+                cmd.Parameters.AddWithValue("@hasOwner", item.HasOwner);
+                cmd.Parameters.AddWithValue("@shortDate", item.ShortDate);
+                cmd.Parameters.AddWithValue("@rentalGuid", item.RentalAutorityGuid);
+                cmd.Parameters.AddWithValue("@cityGuid", item.CityGuid);
+                cmd.Parameters.AddWithValue("@typeGuid", item.BuildingTypeGuid);
+                cmd.Parameters.AddWithValue("@masahat1", item.Masahat1);
+                cmd.Parameters.AddWithValue("@masahat2", item.Masahat2);
+                cmd.Parameters.AddWithValue("@roomCount", item.RoomCount);
+                cmd.Parameters.AddWithValue("@accTypeGuid", item.BuildingAccountTypeGuid);
+                cmd.Parameters.AddWithValue("@conditionGuid", item.BuildingConditionGuid);
+                cmd.Parameters.AddWithValue("@shortDesc", item.ShortDesc ?? "");
+                cmd.Parameters.AddWithValue("@serverSt", (short)item.ServerStatus);
+                cmd.Parameters.AddWithValue("@serverDate", item.ServerDeliveryDate);
 
-                    await cn.OpenAsync();
-                    await cmd.ExecuteNonQueryAsync();
-                    cn.Close();
-                }
+                await cmd.ExecuteNonQueryAsync();
             }
             catch (Exception ex)
             {
@@ -157,7 +142,7 @@ namespace EntityCache.SqlServerPersistence
 
             return res;
         }
-        private BuildingRequestBussines LoadData(SqlDataReader dr)
+        private BuildingRequestBussines LoadData(SqlDataReader dr, bool isLoadDet)
         {
             var res = new BuildingRequestBussines();
             try
@@ -188,7 +173,10 @@ namespace EntityCache.SqlServerPersistence
                 res.BuildingConditionGuid = (Guid)dr["BuildingConditionGuid"];
                 res.ShortDesc = dr["ShortDesc"].ToString();
                 res.UserName = dr["UserName"].ToString();
-                res.RegionList = AsyncContext.Run(() => BuildingRequestRegionBussines.GetAllAsync(res.Guid, true));
+                res.ServerDeliveryDate = (DateTime)dr["ServerDeliveryDate"];
+                res.ServerStatus = (ServerStatus)dr["ServerStatus"];
+                if (isLoadDet)
+                    res.RegionList = AsyncContext.Run(() => BuildingRequestRegionBussines.GetAllAsync(res.Guid));
             }
             catch (Exception ex)
             {

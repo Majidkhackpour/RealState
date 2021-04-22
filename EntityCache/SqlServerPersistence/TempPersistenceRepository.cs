@@ -11,33 +11,19 @@ using Services;
 
 namespace EntityCache.SqlServerPersistence
 {
-    public class TempPersistenceRepository : GenericRepository<TempBussines, Temp>, ITempRepository
+    public class TempPersistenceRepository : ITempRepository
     {
-        private ModelContext db;
-        private string connectionString;
-        public TempPersistenceRepository(ModelContext _db, string _connectionString) : base(_db, _connectionString)
-        {
-            db = _db;
-            connectionString = _connectionString;
-        }
-
-        public override async Task<ReturnedSaveFuncInfo> SaveAsync(TempBussines item, string tranName)
+        public async Task<ReturnedSaveFuncInfo> SaveAsync(TempBussines item, SqlTransaction tr)
         {
             var res = new ReturnedSaveFuncInfo();
             try
             {
-                using (var cn = new SqlConnection(connectionString))
-                {
-                    var cmd = new SqlCommand("sp_Temp_Save", cn) { CommandType = CommandType.StoredProcedure };
-                    cmd.Parameters.AddWithValue("@guid", item.Guid);
-                    cmd.Parameters.AddWithValue("@modif", item.Modified);
-                    cmd.Parameters.AddWithValue("@type", (short)item.Type);
-                    cmd.Parameters.AddWithValue("@objGuid", item.ObjectGuid);
+                var cmd = new SqlCommand("sp_Temp_Save", tr.Connection, tr) { CommandType = CommandType.StoredProcedure };
+                cmd.Parameters.AddWithValue("@guid", item.Guid);
+                cmd.Parameters.AddWithValue("@type", (short)item.Type);
+                cmd.Parameters.AddWithValue("@objGuid", item.ObjectGuid);
 
-                    await cn.OpenAsync();
-                    await cmd.ExecuteNonQueryAsync();
-                    cn.Close();
-                }
+                await cmd.ExecuteNonQueryAsync();
             }
             catch (Exception ex)
             {
@@ -47,7 +33,7 @@ namespace EntityCache.SqlServerPersistence
 
             return res;
         }
-        public override async Task<List<TempBussines>> GetAllAsync()
+        public async Task<List<TempBussines>> GetAllAsync(string connectionString)
         {
             var list = new List<TempBussines>();
             try
@@ -68,20 +54,15 @@ namespace EntityCache.SqlServerPersistence
 
             return list;
         }
-        public override async Task<ReturnedSaveFuncInfo> RemoveAsync(Guid guid, string tranName)
+        public async Task<ReturnedSaveFuncInfo> RemoveAsync(Guid guid, SqlTransaction tr)
         {
             var res = new ReturnedSaveFuncInfo();
             try
             {
-                using (var cn = new SqlConnection(connectionString))
-                {
-                    var cmd = new SqlCommand("sp_Temp_Remove", cn) { CommandType = CommandType.StoredProcedure };
-                    cmd.Parameters.AddWithValue("@guid", guid);
+                var cmd = new SqlCommand("sp_Temp_Remove", tr.Connection, tr) { CommandType = CommandType.StoredProcedure };
+                cmd.Parameters.AddWithValue("@guid", guid);
 
-                    await cn.OpenAsync();
-                    await cmd.ExecuteNonQueryAsync();
-                    cn.Close();
-                }
+                await cmd.ExecuteNonQueryAsync();
             }
             catch (Exception ex)
             {
@@ -97,8 +78,6 @@ namespace EntityCache.SqlServerPersistence
             try
             {
                 if (dr["Guid"] != DBNull.Value) item.Guid = (Guid)dr["Guid"];
-                if (dr["Modified"] != DBNull.Value) item.Modified = (DateTime)dr["Modified"];
-                if (dr["Status"] != DBNull.Value) item.Status = (bool)dr["Status"];
                 if (dr["Type"] != DBNull.Value) item.Type = (EnTemp)dr["Type"];
                 if (dr["ObjectGuid"] != DBNull.Value) item.ObjectGuid = (Guid)dr["ObjectGuid"];
             }

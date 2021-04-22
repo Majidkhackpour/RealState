@@ -13,17 +13,9 @@ using Services;
 
 namespace EntityCache.SqlServerPersistence
 {
-    public class SmsLogPersistenceRepository : GenericRepository<SmsLogBussines, SmsLog>, ISmsLogRepository
+    public class SmsLogPersistenceRepository : ISmsLogRepository
     {
-        private ModelContext db;
-        private string _connectionString;
-        public SmsLogPersistenceRepository(ModelContext _db, string connectionString) : base(_db, connectionString)
-        {
-            db = _db;
-            _connectionString = connectionString;
-        }
-
-        public async Task<SmsLogBussines> GetAsync(long messageId)
+        public async Task<SmsLogBussines> GetAsync(string _connectionString, long messageId)
         {
             var obj = new SmsLogBussines();
             try
@@ -45,7 +37,7 @@ namespace EntityCache.SqlServerPersistence
 
             return obj;
         }
-        public override async Task<SmsLogBussines> GetAsync(Guid guid)
+        public async Task<SmsLogBussines> GetAsync(string _connectionString, Guid guid)
         {
             var obj = new SmsLogBussines();
             try
@@ -67,7 +59,7 @@ namespace EntityCache.SqlServerPersistence
 
             return obj;
         }
-        public async Task<List<SmsLogBussines>> GetAllBySpAsync()
+        public async Task<List<SmsLogBussines>> GetAllAsync(string _connectionString)
         {
             var list = new List<SmsLogBussines>();
             try
@@ -89,30 +81,23 @@ namespace EntityCache.SqlServerPersistence
 
             return list;
         }
-        public override async Task<ReturnedSaveFuncInfo> SaveAsync(SmsLogBussines item, string tranName)
+        public async Task<ReturnedSaveFuncInfo> SaveAsync(SmsLogBussines item, SqlTransaction tr)
         {
             var res = new ReturnedSaveFuncInfo();
             try
             {
-                using (var cn = new SqlConnection(_connectionString))
-                {
-                    var cmd = new SqlCommand("sp_SmsLog_Save", cn) { CommandType = CommandType.StoredProcedure };
-                    cmd.Parameters.AddWithValue("@guid", item.Guid);
-                    cmd.Parameters.AddWithValue("@modif", item.Modified);
-                    cmd.Parameters.AddWithValue("@st", item.Status);
-                    cmd.Parameters.AddWithValue("@date", item.Date);
-                    cmd.Parameters.AddWithValue("@userGuid", item.UserGuid);
-                    cmd.Parameters.AddWithValue("@sender", item.Sender ?? "");
-                    cmd.Parameters.AddWithValue("@reciver", item.Reciver ?? "");
-                    cmd.Parameters.AddWithValue("@message", item.Message ?? "");
-                    cmd.Parameters.AddWithValue("@cost", item.Cost);
-                    cmd.Parameters.AddWithValue("@messageId", item.MessageId);
-                    cmd.Parameters.AddWithValue("@statusText", item.StatusText ?? "");
+                var cmd = new SqlCommand("sp_SmsLog_Save", tr.Connection, tr) { CommandType = CommandType.StoredProcedure };
+                cmd.Parameters.AddWithValue("@guid", item.Guid);
+                cmd.Parameters.AddWithValue("@date", item.Date);
+                cmd.Parameters.AddWithValue("@userGuid", item.UserGuid);
+                cmd.Parameters.AddWithValue("@sender", item.Sender ?? "");
+                cmd.Parameters.AddWithValue("@reciver", item.Reciver ?? "");
+                cmd.Parameters.AddWithValue("@message", item.Message ?? "");
+                cmd.Parameters.AddWithValue("@cost", item.Cost);
+                cmd.Parameters.AddWithValue("@messageId", item.MessageId);
+                cmd.Parameters.AddWithValue("@statusText", item.StatusText ?? "");
 
-                    await cn.OpenAsync();
-                    await cmd.ExecuteNonQueryAsync();
-                    cn.Close();
-                }
+                await cmd.ExecuteNonQueryAsync();
             }
             catch (Exception ex)
             {
@@ -128,8 +113,6 @@ namespace EntityCache.SqlServerPersistence
             try
             {
                 item.Guid = (Guid)dr["Guid"];
-                item.Modified = (DateTime)dr["Modified"];
-                item.Status = (bool)dr["Status"];
                 item.Date = (DateTime)dr["Date"];
                 item.UserGuid = (Guid)dr["UserGuid"];
                 item.UserName = dr["UserName"].ToString();

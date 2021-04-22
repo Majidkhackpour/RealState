@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 using EntityCache.Assistence;
 using Nito.AsyncEx;
+using Persistence;
 using Services;
 using Services.Interfaces.Building;
 
@@ -13,7 +15,8 @@ namespace EntityCache.Bussines
     {
         public Guid Guid { get; set; }
         public DateTime Modified { get; set; } = DateTime.Now;
-        public bool Status { get; set; } = true;
+        public ServerStatus ServerStatus { get; set; } = ServerStatus.None;
+        public DateTime ServerDeliveryDate { get; set; } = DateTime.Now;
         public string Name { get; set; }
         public string Code { get; set; }
         public Guid KolGuid { get; set; }
@@ -23,42 +26,44 @@ namespace EntityCache.Bussines
         public string Diagnosis => Account.AccountDiagnosis();
 
 
-        public static async Task<List<MoeinBussines>> GetAllAsync() => await UnitOfWork.Moein.GetAllAsync();
-        public static async Task<ReturnedSaveFuncInfo> SaveRangeAsync(List<MoeinBussines> list,
-            string tranName = "")
+        public static async Task<List<MoeinBussines>> GetAllAsync() => await UnitOfWork.Moein.GetAllAsync(Cache.ConnectionString);
+        public static async Task<ReturnedSaveFuncInfo> SaveRangeAsync(List<MoeinBussines> list, SqlTransaction tr = null)
         {
             var res = new ReturnedSaveFuncInfo();
-            var autoTran = string.IsNullOrEmpty(tranName);
-            if (autoTran) tranName = Guid.NewGuid().ToString();
+            var autoTran = tr == null;
+            SqlConnection cn = null;
             try
             {
                 if (autoTran)
-                { //BeginTransaction
+                {
+                    cn = new SqlConnection(Cache.ConnectionString);
+                    await cn.OpenAsync();
+                    tr = cn.BeginTransaction();
                 }
 
-                res.AddReturnedValue(await UnitOfWork.Moein.SaveRangeAsync(list, tranName));
+                res.AddReturnedValue(await UnitOfWork.Moein.SaveRangeAsync(list, tr));
                 if (res.HasError) return res;
-                if (autoTran)
-                {
-                    //CommitTransAction
-                }
 
                 //if (Cache.IsSendToServer)
                 //    _ = Task.Run(() => WebRental.SaveAsync(list));
             }
             catch (Exception ex)
             {
-                if (autoTran)
-                {
-                    //RollBackTransAction
-                }
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
                 res.AddReturnedValue(ex);
+            }
+            finally
+            {
+                if (autoTran)
+                {
+                    res.AddReturnedValue(tr.TransactionDestiny(res.HasError));
+                    res.AddReturnedValue(cn.CloseConnection());
+                }
             }
 
             return res;
         }
-        public static async Task<MoeinBussines> GetAsync(Guid guid) => await UnitOfWork.Moein.GetAsync(guid);
+        public static async Task<MoeinBussines> GetAsync(Guid guid) => await UnitOfWork.Moein.GetAsync(Cache.ConnectionString, guid);
         public static async Task<List<MoeinBussines>> GetAllAsync(string search, Guid kolGuid)
         {
             try
@@ -92,9 +97,43 @@ namespace EntityCache.Bussines
             }
         }
         public static MoeinBussines Get(Guid guid) => AsyncContext.Run(() => GetAsync(guid));
-        public async Task<ReturnedSaveFuncInfo> UpdateAccountAsync(decimal price) =>
-            await UnitOfWork.Moein.UpdateAccountAsync(Guid, price);
-        public static async Task<MoeinBussines> GetAsync(string code) => await UnitOfWork.Moein.GetAsync(code);
+        public async Task<ReturnedSaveFuncInfo> UpdateAccountAsync(decimal price, SqlTransaction tr = null)
+        {
+            var res = new ReturnedSaveFuncInfo();
+            var autoTran = tr == null;
+            SqlConnection cn = null;
+            try
+            {
+                if (autoTran)
+                {
+                    cn = new SqlConnection(Cache.ConnectionString);
+                    await cn.OpenAsync();
+                    tr = cn.BeginTransaction();
+                }
+
+                res.AddReturnedValue(await UnitOfWork.Moein.UpdateAccountAsync(Guid, price, tr));
+                if (res.HasError) return res;
+
+                //if (Cache.IsSendToServer)
+                //    _ = Task.Run(() => WebRental.SaveAsync(list));
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+            finally
+            {
+                if (autoTran)
+                {
+                    res.AddReturnedValue(tr.TransactionDestiny(res.HasError));
+                    res.AddReturnedValue(cn.CloseConnection());
+                }
+            }
+
+            return res;
+        }
+        public static async Task<MoeinBussines> GetAsync(string code) => await UnitOfWork.Moein.GetAsync(Cache.ConnectionString, code);
         public static MoeinBussines Get(string code) => AsyncContext.Run(() => GetAsync(code));
     }
 }

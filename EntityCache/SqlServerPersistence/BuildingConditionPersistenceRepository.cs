@@ -11,17 +11,10 @@ using System.Threading.Tasks;
 
 namespace EntityCache.SqlServerPersistence
 {
-    public class BuildingConditionPersistenceRepository : GenericRepository<BuildingConditionBussines, BuildingCondition>, IBuildingConditionRepository
+    public class BuildingConditionPersistenceRepository : IBuildingConditionRepository
     {
-        private ModelContext db;
-
-        private string _connectionString;
-        public BuildingConditionPersistenceRepository(ModelContext _db, string connectionString) : base(_db, connectionString)
-        {
-            db = _db;
-            _connectionString = connectionString;
-        }
-        public async Task<bool> CheckNameAsync(string name, Guid guid)
+        public BuildingConditionPersistenceRepository() { }
+        public async Task<bool> CheckNameAsync(string _connectionString, string name, Guid guid)
         {
             try
             {
@@ -43,7 +36,7 @@ namespace EntityCache.SqlServerPersistence
                 return false;
             }
         }
-        public override async Task<List<BuildingConditionBussines>> GetAllAsync()
+        public async Task<List<BuildingConditionBussines>> GetAllAsync(string _connectionString)
         {
             var list = new List<BuildingConditionBussines>();
             try
@@ -55,6 +48,7 @@ namespace EntityCache.SqlServerPersistence
                     await cn.OpenAsync();
                     var dr = await cmd.ExecuteReaderAsync();
                     while (dr.Read()) list.Add(LoadData(dr));
+                    dr.Close();
                     cn.Close();
                 }
             }
@@ -65,7 +59,7 @@ namespace EntityCache.SqlServerPersistence
 
             return list;
         }
-        public override async Task<BuildingConditionBussines> GetAsync(Guid guid)
+        public async Task<BuildingConditionBussines> GetAsync(string _connectionString, Guid guid)
         {
             var obj = new BuildingConditionBussines();
             try
@@ -77,6 +71,7 @@ namespace EntityCache.SqlServerPersistence
                     await cn.OpenAsync();
                     var dr = await cmd.ExecuteReaderAsync();
                     if (dr.Read()) obj = LoadData(dr);
+                    dr.Close();
                     cn.Close();
                 }
             }
@@ -87,23 +82,20 @@ namespace EntityCache.SqlServerPersistence
 
             return obj;
         }
-        public override async Task<ReturnedSaveFuncInfo> SaveAsync(BuildingConditionBussines item, string tranName)
+        public async Task<ReturnedSaveFuncInfo> SaveAsync(BuildingConditionBussines item, SqlTransaction tr)
         {
             var res = new ReturnedSaveFuncInfo();
             try
             {
-                using (var cn = new SqlConnection(_connectionString))
-                {
-                    var cmd = new SqlCommand("sp_BuildingCondition_Save", cn) { CommandType = CommandType.StoredProcedure };
-                    cmd.Parameters.AddWithValue("@guid", item.Guid);
-                    cmd.Parameters.AddWithValue("@st", item.Status);
-                    cmd.Parameters.AddWithValue("@name", item.Name ?? "");
-                    cmd.Parameters.AddWithValue("@modif", item.Modified);
+                var cmd = new SqlCommand("sp_BuildingCondition_Save", tr.Connection, tr) { CommandType = CommandType.StoredProcedure };
+                cmd.Parameters.AddWithValue("@guid", item.Guid);
+                cmd.Parameters.AddWithValue("@st", item.Status);
+                cmd.Parameters.AddWithValue("@name", item.Name ?? "");
+                cmd.Parameters.AddWithValue("@modif", item.Modified);
+                cmd.Parameters.AddWithValue("@serverSt", (short)item.ServerStatus);
+                cmd.Parameters.AddWithValue("@serverDate", item.ServerDeliveryDate);
 
-                    await cn.OpenAsync();
-                    await cmd.ExecuteNonQueryAsync();
-                    cn.Close();
-                }
+                await cmd.ExecuteNonQueryAsync();
             }
             catch (Exception ex)
             {
@@ -113,14 +105,14 @@ namespace EntityCache.SqlServerPersistence
 
             return res;
         }
-        public override async Task<ReturnedSaveFuncInfo> SaveRangeAsync(IEnumerable<BuildingConditionBussines> items, string tranName)
+        public async Task<ReturnedSaveFuncInfo> SaveRangeAsync(IEnumerable<BuildingConditionBussines> items, SqlTransaction tr)
         {
             var res = new ReturnedSaveFuncInfo();
             try
             {
                 foreach (var item in items)
                 {
-                    res.AddReturnedValue(await SaveAsync(item, tranName));
+                    res.AddReturnedValue(await SaveAsync(item, tr));
                     if (res.HasError) return res;
                 }
             }
@@ -131,21 +123,16 @@ namespace EntityCache.SqlServerPersistence
             }
             return res;
         }
-        public override async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(BuildingConditionBussines item, bool status, string tranName)
+        public async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(BuildingConditionBussines item, bool status, SqlTransaction tr)
         {
             var res = new ReturnedSaveFuncInfo();
             try
             {
-                using (var cn = new SqlConnection(_connectionString))
-                {
-                    var cmd = new SqlCommand("sp_BuildingCondition_ChangeStatus", cn) { CommandType = CommandType.StoredProcedure };
-                    cmd.Parameters.AddWithValue("@Guid", item.Guid);
-                    cmd.Parameters.AddWithValue("@st", status);
+                var cmd = new SqlCommand("sp_BuildingCondition_ChangeStatus", tr.Connection, tr) { CommandType = CommandType.StoredProcedure };
+                cmd.Parameters.AddWithValue("@Guid", item.Guid);
+                cmd.Parameters.AddWithValue("@st", status);
 
-                    await cn.OpenAsync();
-                    await cmd.ExecuteNonQueryAsync();
-                    cn.Close();
-                }
+                await cmd.ExecuteNonQueryAsync();
             }
             catch (Exception ex)
             {
@@ -164,6 +151,8 @@ namespace EntityCache.SqlServerPersistence
                 item.Modified = (DateTime)dr["Modified"];
                 item.Status = (bool)dr["Status"];
                 item.Name = dr["Name"].ToString();
+                item.ServerDeliveryDate = (DateTime)dr["ServerDeliveryDate"];
+                item.ServerStatus = (ServerStatus)dr["ServerStatus"];
             }
             catch (Exception ex)
             {

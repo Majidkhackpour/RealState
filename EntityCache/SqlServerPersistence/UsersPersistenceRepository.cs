@@ -13,17 +13,9 @@ using Services;
 
 namespace EntityCache.SqlServerPersistence
 {
-    public class UsersPersistenceRepository : GenericRepository<UserBussines, Users>, IUsersRepository
+    public class UsersPersistenceRepository : IUsersRepository
     {
-        private ModelContext db;
-        private string _connectionString;
-        public UsersPersistenceRepository(ModelContext _db, string connectionString) : base(_db, connectionString)
-        {
-            db = _db;
-            _connectionString = connectionString;
-        }
-
-        public async Task<bool> CheckUserNameAsync(Guid guid, string userName)
+        public async Task<bool> CheckUserNameAsync(string _connectionString, Guid guid, string userName)
         {
             try
             {
@@ -45,7 +37,7 @@ namespace EntityCache.SqlServerPersistence
                 return false;
             }
         }
-        public async Task<UserBussines> GetAsync(string userName)
+        public async Task<UserBussines> GetAsync(string _connectionString, string userName)
         {
             var obj = new UserBussines();
             try
@@ -67,7 +59,7 @@ namespace EntityCache.SqlServerPersistence
 
             return obj;
         }
-        public async Task<UserBussines> GetByEmailAsync(string email)
+        public async Task<UserBussines> GetByEmailAsync(string _connectionString, string email)
         {
             var obj = new UserBussines();
             try
@@ -89,7 +81,7 @@ namespace EntityCache.SqlServerPersistence
 
             return obj;
         }
-        public async Task<UserBussines> GetByMobilAsync(string mobile)
+        public async Task<UserBussines> GetByMobilAsync(string _connectionString, string mobile)
         {
             var obj = new UserBussines();
             try
@@ -111,7 +103,7 @@ namespace EntityCache.SqlServerPersistence
 
             return obj;
         }
-        public async Task<List<UserBussines>> GetAllAsync(EnSecurityQuestion question, string answer)
+        public async Task<List<UserBussines>> GetAllAsync(string _connectionString, EnSecurityQuestion question, string answer)
         {
             var list = new List<UserBussines>();
             try
@@ -119,8 +111,8 @@ namespace EntityCache.SqlServerPersistence
                 using (var cn = new SqlConnection(_connectionString))
                 {
                     var cmd = new SqlCommand("sp_User_GetAllByQuestion", cn)
-                        {CommandType = CommandType.StoredProcedure};
-                    cmd.Parameters.AddWithValue("@question", (short) question);
+                    { CommandType = CommandType.StoredProcedure };
+                    cmd.Parameters.AddWithValue("@question", (short)question);
                     cmd.Parameters.AddWithValue("@answer", answer);
 
                     await cn.OpenAsync();
@@ -136,7 +128,7 @@ namespace EntityCache.SqlServerPersistence
 
             return list;
         }
-        public override async Task<UserBussines> GetAsync(Guid guid)
+        public async Task<UserBussines> GetAsync(string _connectionString, Guid guid)
         {
             var obj = new UserBussines();
             try
@@ -158,7 +150,7 @@ namespace EntityCache.SqlServerPersistence
 
             return obj;
         }
-        public override async Task<List<UserBussines>> GetAllAsync()
+        public async Task<List<UserBussines>> GetAllAsync(string _connectionString)
         {
             var list = new List<UserBussines>();
             try
@@ -180,30 +172,27 @@ namespace EntityCache.SqlServerPersistence
 
             return list;
         }
-        public override async Task<ReturnedSaveFuncInfo> SaveAsync(UserBussines item, string tranName)
+        public async Task<ReturnedSaveFuncInfo> SaveAsync(UserBussines item, SqlTransaction tr)
         {
             var res = new ReturnedSaveFuncInfo();
             try
             {
-                using (var cn = new SqlConnection(_connectionString))
-                {
-                    var cmd = new SqlCommand("sp_User_Save", cn) { CommandType = CommandType.StoredProcedure };
-                    cmd.Parameters.AddWithValue("@guid", item.Guid);
-                    cmd.Parameters.AddWithValue("@modif", item.Modified);
-                    cmd.Parameters.AddWithValue("@st", item.Status);
-                    cmd.Parameters.AddWithValue("@name", item.Name ?? "");
-                    cmd.Parameters.AddWithValue("@userName", item.UserName ?? "");
-                    cmd.Parameters.AddWithValue("@pass", item.Password ?? "");
-                    cmd.Parameters.AddWithValue("@access", item.Access ?? "");
-                    cmd.Parameters.AddWithValue("@answer", item.AnswerQuestion ?? "");
-                    cmd.Parameters.AddWithValue("@questiion", (short)item.SecurityQuestion);
-                    cmd.Parameters.AddWithValue("@email", item.Email);
-                    cmd.Parameters.AddWithValue("@mobile", item.Mobile);
+                var cmd = new SqlCommand("sp_User_Save", tr.Connection, tr) { CommandType = CommandType.StoredProcedure };
+                cmd.Parameters.AddWithValue("@guid", item.Guid);
+                cmd.Parameters.AddWithValue("@modif", item.Modified);
+                cmd.Parameters.AddWithValue("@st", item.Status);
+                cmd.Parameters.AddWithValue("@name", item.Name ?? "");
+                cmd.Parameters.AddWithValue("@userName", item.UserName ?? "");
+                cmd.Parameters.AddWithValue("@pass", item.Password ?? "");
+                cmd.Parameters.AddWithValue("@access", item.Access ?? "");
+                cmd.Parameters.AddWithValue("@answer", item.AnswerQuestion ?? "");
+                cmd.Parameters.AddWithValue("@questiion", (short)item.SecurityQuestion);
+                cmd.Parameters.AddWithValue("@email", item.Email);
+                cmd.Parameters.AddWithValue("@mobile", item.Mobile);
+                cmd.Parameters.AddWithValue("@serverSt", (short)item.ServerStatus);
+                cmd.Parameters.AddWithValue("@serverDate", item.ServerDeliveryDate);
 
-                    await cn.OpenAsync();
-                    await cmd.ExecuteNonQueryAsync();
-                    cn.Close();
-                }
+                await cmd.ExecuteNonQueryAsync();
             }
             catch (Exception ex)
             {
@@ -213,21 +202,16 @@ namespace EntityCache.SqlServerPersistence
 
             return res;
         }
-        public override async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(UserBussines item, bool status, string tranName)
+        public async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(UserBussines item, bool status, SqlTransaction tr)
         {
             var res = new ReturnedSaveFuncInfo();
             try
             {
-                using (var cn = new SqlConnection(_connectionString))
-                {
-                    var cmd = new SqlCommand("sp_User_ChangeStatus", cn) { CommandType = CommandType.StoredProcedure };
-                    cmd.Parameters.AddWithValue("@Guid", item.Guid);
-                    cmd.Parameters.AddWithValue("@st", status);
+                var cmd = new SqlCommand("sp_User_ChangeStatus", tr.Connection, tr) { CommandType = CommandType.StoredProcedure };
+                cmd.Parameters.AddWithValue("@Guid", item.Guid);
+                cmd.Parameters.AddWithValue("@st", status);
 
-                    await cn.OpenAsync();
-                    await cmd.ExecuteNonQueryAsync();
-                    cn.Close();
-                }
+                await cmd.ExecuteNonQueryAsync();
             }
             catch (Exception ex)
             {
@@ -253,6 +237,8 @@ namespace EntityCache.SqlServerPersistence
                 item.AnswerQuestion = dr["AnswerQuestion"].ToString();
                 item.Email = dr["Email"].ToString();
                 item.Mobile = dr["Mobile"].ToString();
+                item.ServerDeliveryDate = (DateTime)dr["ServerDeliveryDate"];
+                item.ServerStatus = (ServerStatus)dr["ServerStatus"];
             }
             catch (Exception ex)
             {

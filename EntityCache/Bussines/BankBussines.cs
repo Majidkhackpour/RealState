@@ -3,9 +3,11 @@ using Services;
 using Services.Interfaces.Building;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 using Nito.AsyncEx;
+using Persistence;
 using Services.DefaultCoding;
 
 namespace EntityCache.Bussines
@@ -15,6 +17,8 @@ namespace EntityCache.Bussines
         public Guid Guid { get; set; }
         public DateTime Modified { get; set; } = DateTime.Now;
         public bool Status { get; set; } = true;
+        public ServerStatus ServerStatus { get; set; } = ServerStatus.None;
+        public DateTime ServerDeliveryDate { get; set; } = DateTime.Now;
         public string Code { get; set; }
         public string Name { get; set; }
         public string Shobe { get; set; }
@@ -28,43 +32,40 @@ namespace EntityCache.Bussines
         public string Diagnosis => Account.AccountDiagnosis();
 
 
-        public static async Task<List<BankBussines>> GetAllAsync() => await UnitOfWork.Bank.GetAllAsync();
-        public async Task<ReturnedSaveFuncInfo> SaveAsync(string tranName = "")
+        public static async Task<List<BankBussines>> GetAllAsync() => await UnitOfWork.Bank.GetAllAsync(Cache.ConnectionString);
+        public async Task<ReturnedSaveFuncInfo> SaveAsync(SqlTransaction tr = null)
         {
             var res = new ReturnedSaveFuncInfo();
-            var autoTran = string.IsNullOrEmpty(tranName);
-            if (autoTran) tranName = Guid.NewGuid().ToString();
+            var autoTran = tr == null;
+            SqlConnection cn = null;
             try
             {
                 if (autoTran)
-                { //BeginTransaction
+                {
+                    cn = new SqlConnection(Cache.ConnectionString);
+                    await cn.OpenAsync();
+                    tr = cn.BeginTransaction();
                 }
 
                 res.AddReturnedValue(await CheckValidationAsync());
                 if (res.HasError) return res;
-                res.AddReturnedValue(await SaveTafsilAsync());
+                res.AddReturnedValue(await SaveTafsilAsync(tr));
                 if (res.HasError) return res;
-                res.AddReturnedValue(await UnitOfWork.Bank.SaveAsync(this, tranName));
-                if (res.HasError) return res;
-
-                if (autoTran)
-                {
-                    //CommitTransAction
-                }
-
-                //if (Cache.IsSendToServer)
-                //    _ = Task.Run(() => WebUser.SaveAsync(this));
+                res.AddReturnedValue(await UnitOfWork.Bank.SaveAsync(this, tr));
             }
             catch (Exception ex)
             {
-                if (autoTran)
-                {
-                    //RollBackTransAction
-                }
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
                 res.AddReturnedValue(ex);
             }
-
+            finally
+            {
+                if (autoTran)
+                {
+                    res.AddReturnedValue(tr.TransactionDestiny(res.HasError));
+                    res.AddReturnedValue(cn.CloseConnection());
+                }
+            }
             return res;
         }
         public static async Task<List<BankBussines>> GetAllAsync(string search)
@@ -101,9 +102,9 @@ namespace EntityCache.Bussines
                 return new List<BankBussines>();
             }
         }
-        public static async Task<BankBussines> GetAsync(Guid guid) => await UnitOfWork.Bank.GetAsync(guid);
+        public static async Task<BankBussines> GetAsync(Guid guid) => await UnitOfWork.Bank.GetAsync(Cache.ConnectionString, guid);
         public static BankBussines Get(Guid guid) => AsyncContext.Run(() => GetAsync(guid));
-        public async Task<bool> CheckCodeAsync(Guid guid, string code) => await UnitOfWork.Tafsil.CheckCodeAsync(guid, code);
+        public async Task<bool> CheckCodeAsync(Guid guid, string code) => await UnitOfWork.Tafsil.CheckCodeAsync(Cache.ConnectionString, guid, code);
         private async Task<ReturnedSaveFuncInfo> CheckValidationAsync()
         {
             var res = new ReturnedSaveFuncInfo();
@@ -120,12 +121,12 @@ namespace EntityCache.Bussines
 
             return res;
         }
-        private async Task<ReturnedSaveFuncInfo> SaveTafsilAsync()
+        private async Task<ReturnedSaveFuncInfo> SaveTafsilAsync(SqlTransaction tr)
         {
             var res = new ReturnedSaveFuncInfo();
             try
             {
-                var tf = await TafsilBussines.GetAsync(Guid) ?? new TafsilBussines
+                var tf = await TafsilBussines.GetAsync(Guid, tr) ?? new TafsilBussines
                 {
                     Guid = Guid,
                     DateM = DateM,
@@ -141,7 +142,7 @@ namespace EntityCache.Bussines
                 tf.Description = Description;
                 tf.AccountFirst = AccountFirst;
 
-                res.AddReturnedValue(await tf.SaveAsync());
+                res.AddReturnedValue(await tf.SaveAsync(tr));
             }
             catch (Exception ex)
             {
@@ -151,46 +152,44 @@ namespace EntityCache.Bussines
 
             return res;
         }
-        public async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(bool status, string tranName = "")
+        public async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(bool status, SqlTransaction tr = null)
         {
             var res = new ReturnedSaveFuncInfo();
-            var autoTran = string.IsNullOrEmpty(tranName);
-            if (autoTran) tranName = Guid.NewGuid().ToString();
+            var autoTran = tr == null;
+            SqlConnection cn = null;
             try
             {
                 if (autoTran)
-                { //BeginTransaction
+                {
+                    cn = new SqlConnection(Cache.ConnectionString);
+                    await cn.OpenAsync();
+                    tr = cn.BeginTransaction();
                 }
 
-                var tafsil = await TafsilBussines.GetAsync(Guid);
+                var tafsil = await TafsilBussines.GetAsync(Guid, tr);
                 if (tafsil == null)
                 {
                     res.AddError("حساب انتخاب شده معتبر نمی باشد");
                     return res;
                 }
 
-                res.AddReturnedValue(await tafsil.ChangeStatusAsync(status));
+                res.AddReturnedValue(await tafsil.ChangeStatusAsync(status, tr));
                 if (res.HasError) return res;
-                res.AddReturnedValue(await UnitOfWork.Bank.ChangeStatusAsync(this, status, tranName));
-                if (res.HasError) return res;
-                if (autoTran)
-                {
-                    //CommitTransAction
-                }
-
-                //if (Cache.IsSendToServer)
-                //    _ = Task.Run(() => WebHazine.SaveAsync(this));
+                res.AddReturnedValue(await UnitOfWork.Bank.ChangeStatusAsync(this, status, tr));
             }
             catch (Exception ex)
             {
-                if (autoTran)
-                {
-                    //RollBackTransAction
-                }
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
                 res.AddReturnedValue(ex);
             }
-
+            finally
+            {
+                if (autoTran)
+                {
+                    res.AddReturnedValue(tr.TransactionDestiny(res.HasError));
+                    res.AddReturnedValue(cn.CloseConnection());
+                }
+            }
             return res;
         }
     }

@@ -13,17 +13,9 @@ using Services;
 
 namespace EntityCache.SqlServerPersistence
 {
-    public class PeopleGroupPersistenceRepository : GenericRepository<PeopleGroupBussines, PeopleGroup>, IPeopleGroupRepository
+    public class PeopleGroupPersistenceRepository : IPeopleGroupRepository
     {
-        private ModelContext db;
-        private string _connectionString;
-        public PeopleGroupPersistenceRepository(ModelContext _db, string connectionString) : base(_db, connectionString)
-        {
-            db = _db;
-            _connectionString = connectionString;
-        }
-
-        public async Task<PeopleGroupBussines> GetAsync(string name)
+        public async Task<PeopleGroupBussines> GetAsync(string _connectionString, string name)
         {
             var obj = new PeopleGroupBussines();
             try
@@ -45,7 +37,7 @@ namespace EntityCache.SqlServerPersistence
 
             return obj;
         }
-        public async Task<int> ChildCountAsync(Guid guid)
+        public async Task<int> ChildCountAsync(string _connectionString, Guid guid)
         {
             var res = 0;
             try
@@ -67,7 +59,7 @@ namespace EntityCache.SqlServerPersistence
 
             return res;
         }
-        public override async Task<PeopleGroupBussines> GetAsync(Guid guid)
+        public async Task<PeopleGroupBussines> GetAsync(string _connectionString, Guid guid)
         {
             var obj = new PeopleGroupBussines();
             try
@@ -89,7 +81,7 @@ namespace EntityCache.SqlServerPersistence
 
             return obj;
         }
-        public override async Task<List<PeopleGroupBussines>> GetAllAsync()
+        public async Task<List<PeopleGroupBussines>> GetAllAsync(string _connectionString)
         {
             var list = new List<PeopleGroupBussines>();
             try
@@ -111,24 +103,21 @@ namespace EntityCache.SqlServerPersistence
 
             return list;
         }
-        public override async Task<ReturnedSaveFuncInfo> SaveAsync(PeopleGroupBussines item, string tranName)
+        public async Task<ReturnedSaveFuncInfo> SaveAsync(PeopleGroupBussines item, SqlTransaction tr)
         {
             var res = new ReturnedSaveFuncInfo();
             try
             {
-                using (var cn = new SqlConnection(_connectionString))
-                {
-                    var cmd = new SqlCommand("sp_PeopleGroup_Save", cn) { CommandType = CommandType.StoredProcedure };
-                    cmd.Parameters.AddWithValue("@guid", item.Guid);
-                    cmd.Parameters.AddWithValue("@st", item.Status);
-                    cmd.Parameters.AddWithValue("@name", item.Name ?? "");
-                    cmd.Parameters.AddWithValue("@modif", item.Modified);
-                    cmd.Parameters.AddWithValue("@parentGuid", item.ParentGuid);
+                var cmd = new SqlCommand("sp_PeopleGroup_Save", tr.Connection, tr) { CommandType = CommandType.StoredProcedure };
+                cmd.Parameters.AddWithValue("@guid", item.Guid);
+                cmd.Parameters.AddWithValue("@st", item.Status);
+                cmd.Parameters.AddWithValue("@name", item.Name ?? "");
+                cmd.Parameters.AddWithValue("@modif", item.Modified);
+                cmd.Parameters.AddWithValue("@parentGuid", item.ParentGuid);
+                cmd.Parameters.AddWithValue("@serverSt", (short)item.ServerStatus);
+                cmd.Parameters.AddWithValue("@serverDate", item.ServerDeliveryDate);
 
-                    await cn.OpenAsync();
-                    await cmd.ExecuteNonQueryAsync();
-                    cn.Close();
-                }
+                await cmd.ExecuteNonQueryAsync();
             }
             catch (Exception ex)
             {
@@ -138,14 +127,14 @@ namespace EntityCache.SqlServerPersistence
 
             return res;
         }
-        public override async Task<ReturnedSaveFuncInfo> SaveRangeAsync(IEnumerable<PeopleGroupBussines> items, string tranName)
+        public async Task<ReturnedSaveFuncInfo> SaveRangeAsync(IEnumerable<PeopleGroupBussines> items, SqlTransaction tr)
         {
             var res = new ReturnedSaveFuncInfo();
             try
             {
                 foreach (var item in items)
                 {
-                    res.AddReturnedValue(await SaveAsync(item, tranName));
+                    res.AddReturnedValue(await SaveAsync(item, tr));
                     if (res.HasError) return res;
                 }
             }
@@ -156,21 +145,17 @@ namespace EntityCache.SqlServerPersistence
             }
             return res;
         }
-        public override async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(PeopleGroupBussines item, bool status, string tranName)
+        public async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(PeopleGroupBussines item, bool status, SqlTransaction tr)
         {
             var res = new ReturnedSaveFuncInfo();
             try
             {
-                using (var cn = new SqlConnection(_connectionString))
-                {
-                    var cmd = new SqlCommand("sp_PeopleGroup_ChangeStatus", cn) { CommandType = CommandType.StoredProcedure };
-                    cmd.Parameters.AddWithValue("@Guid", item.Guid);
-                    cmd.Parameters.AddWithValue("@st", status);
+                var cmd = new SqlCommand("sp_PeopleGroup_ChangeStatus", tr.Connection, tr)
+                { CommandType = CommandType.StoredProcedure };
+                cmd.Parameters.AddWithValue("@Guid", item.Guid);
+                cmd.Parameters.AddWithValue("@st", status);
 
-                    await cn.OpenAsync();
-                    await cmd.ExecuteNonQueryAsync();
-                    cn.Close();
-                }
+                await cmd.ExecuteNonQueryAsync();
             }
             catch (Exception ex)
             {
@@ -180,7 +165,7 @@ namespace EntityCache.SqlServerPersistence
 
             return res;
         }
-        public async Task<bool> CheckNameAsync(string name, Guid guid)
+        public async Task<bool> CheckNameAsync(string _connectionString, string name, Guid guid)
         {
             try
             {
@@ -212,6 +197,8 @@ namespace EntityCache.SqlServerPersistence
                 item.Status = (bool)dr["Status"];
                 item.Name = dr["Name"].ToString();
                 item.ParentGuid = (Guid)dr["ParentGuid"];
+                item.ServerDeliveryDate = (DateTime)dr["ServerDeliveryDate"];
+                item.ServerStatus = (ServerStatus)dr["ServerStatus"];
             }
             catch (Exception ex)
             {

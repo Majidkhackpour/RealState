@@ -11,17 +11,10 @@ using Services;
 
 namespace EntityCache.SqlServerPersistence
 {
-    public class BankPersistenceRepository : GenericRepository<BankBussines, Bank>, IBankRepository
+    public class BankPersistenceRepository : IBankRepository
     {
-        private ModelContext db;
-        private string _connectionString;
-        public BankPersistenceRepository(ModelContext _db, string connectionString) : base(_db, connectionString)
-        {
-            db = _db;
-            _connectionString = connectionString;
-        }
-
-        public override async Task<List<BankBussines>> GetAllAsync()
+        public BankPersistenceRepository() { }
+        public async Task<List<BankBussines>> GetAllAsync(string _connectionString)
         {
             var list = new List<BankBussines>();
             try
@@ -33,6 +26,7 @@ namespace EntityCache.SqlServerPersistence
                     await cn.OpenAsync();
                     var dr = await cmd.ExecuteReaderAsync();
                     while (dr.Read()) list.Add(LoadData(dr));
+                    dr.Close();
                     cn.Close();
                 }
             }
@@ -43,7 +37,7 @@ namespace EntityCache.SqlServerPersistence
 
             return list;
         }
-        public override async Task<BankBussines> GetAsync(Guid guid)
+        public async Task<BankBussines> GetAsync(string _connectionString, Guid guid)
         {
             BankBussines res = null;
             try
@@ -56,6 +50,7 @@ namespace EntityCache.SqlServerPersistence
                     await cn.OpenAsync();
                     var dr = await cmd.ExecuteReaderAsync();
                     if (dr.Read()) res = LoadData(dr);
+                    dr.Close();
                     cn.Close();
                 }
             }
@@ -66,28 +61,25 @@ namespace EntityCache.SqlServerPersistence
 
             return res;
         }
-        public override async Task<ReturnedSaveFuncInfo> SaveAsync(BankBussines item, string tranName)
+        public async Task<ReturnedSaveFuncInfo> SaveAsync(BankBussines item, SqlTransaction tr)
         {
             var res = new ReturnedSaveFuncInfo();
             try
             {
-                using (var cn = new SqlConnection(_connectionString))
-                {
-                    var cmd = new SqlCommand("sp_Banks_Save", cn) { CommandType = CommandType.StoredProcedure };
-                    cmd.Parameters.AddWithValue("@guid", item.Guid);
-                    cmd.Parameters.AddWithValue("@modif", item.Modified);
-                    cmd.Parameters.AddWithValue("@st", item.Status);
-                    cmd.Parameters.AddWithValue("@name", item.Name);
-                    cmd.Parameters.AddWithValue("@code", item.Code);
-                    cmd.Parameters.AddWithValue("@desc", item.Description ?? "");
-                    cmd.Parameters.AddWithValue("@shobe", item.Shobe ?? "");
-                    cmd.Parameters.AddWithValue("@codeShobe", item.CodeShobe ?? "");
-                    cmd.Parameters.AddWithValue("@hesabNumber", item.HesabNumber ?? "");
+                var cmd = new SqlCommand("sp_Banks_Save", tr.Connection, tr) { CommandType = CommandType.StoredProcedure };
+                cmd.Parameters.AddWithValue("@guid", item.Guid);
+                cmd.Parameters.AddWithValue("@modif", item.Modified);
+                cmd.Parameters.AddWithValue("@st", item.Status);
+                cmd.Parameters.AddWithValue("@name", item.Name);
+                cmd.Parameters.AddWithValue("@code", item.Code);
+                cmd.Parameters.AddWithValue("@desc", item.Description ?? "");
+                cmd.Parameters.AddWithValue("@shobe", item.Shobe ?? "");
+                cmd.Parameters.AddWithValue("@codeShobe", item.CodeShobe ?? "");
+                cmd.Parameters.AddWithValue("@hesabNumber", item.HesabNumber ?? "");
+                cmd.Parameters.AddWithValue("@serverSt", (short)item.ServerStatus);
+                cmd.Parameters.AddWithValue("@serverDate", item.ServerDeliveryDate);
 
-                    await cn.OpenAsync();
-                    await cmd.ExecuteNonQueryAsync();
-                    cn.Close();
-                }
+                await cmd.ExecuteNonQueryAsync();
             }
             catch (Exception ex)
             {
@@ -97,21 +89,16 @@ namespace EntityCache.SqlServerPersistence
 
             return res;
         }
-        public override async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(BankBussines item, bool status, string tranName)
+        public async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(BankBussines item, bool status, SqlTransaction tr)
         {
             var res = new ReturnedSaveFuncInfo();
             try
             {
-                using (var cn = new SqlConnection(_connectionString))
-                {
-                    var cmd = new SqlCommand("sp_Banks_ChangeStatus", cn) { CommandType = CommandType.StoredProcedure };
-                    cmd.Parameters.AddWithValue("@Guid", item.Guid);
-                    cmd.Parameters.AddWithValue("@st", status);
+                var cmd = new SqlCommand("sp_Banks_ChangeStatus", tr.Connection, tr) { CommandType = CommandType.StoredProcedure };
+                cmd.Parameters.AddWithValue("@Guid", item.Guid);
+                cmd.Parameters.AddWithValue("@st", status);
 
-                    await cn.OpenAsync();
-                    await cmd.ExecuteNonQueryAsync();
-                    cn.Close();
-                }
+                await cmd.ExecuteNonQueryAsync();
             }
             catch (Exception ex)
             {
@@ -138,6 +125,8 @@ namespace EntityCache.SqlServerPersistence
                 item.HesabNumber = dr["HesabNumber"].ToString();
                 item.Description = dr["Description"].ToString();
                 item.DateM = (DateTime)dr["DateM"];
+                item.ServerDeliveryDate = (DateTime)dr["ServerDeliveryDate"];
+                item.ServerStatus = (ServerStatus)dr["ServerStatus"];
             }
             catch (Exception ex)
             {

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Services;
 using Servicess.Interfaces.Building;
 
 namespace Persistence.Entities
@@ -9,8 +10,8 @@ namespace Persistence.Entities
     {
         [Key]
         public Guid Guid { get; set; }
-        public DateTime Modified { get; set; }
-        public bool Status { get; set; }
+        public ServerStatus ServerStatus { get; set; }
+        public DateTime ServerDeliveryDate { get; set; }
         [ForeignKey("Request")]
         public Guid RequestGuid { get; set; }
         [ForeignKey("Region")]

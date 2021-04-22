@@ -13,15 +13,8 @@ using Services.DefaultCoding;
 
 namespace EntityCache.SqlServerPersistence
 {
-    public class PardakhtNaqdPersistenceRepository : GenericRepository<PardakhtNaqdBussines, PardakhtNaqd>, IPardakhtNaqdRepository
+    public class PardakhtNaqdPersistenceRepository : IPardakhtNaqdRepository
     {
-        private ModelContext db;
-        private string _connectionString;
-        public PardakhtNaqdPersistenceRepository(ModelContext _db, string connectionString) : base(_db, connectionString)
-        {
-            db = _db;
-            _connectionString = connectionString;
-        }
         private PardakhtNaqdBussines LoadData(SqlDataReader dr)
         {
             var item = new PardakhtNaqdBussines();
@@ -30,12 +23,13 @@ namespace EntityCache.SqlServerPersistence
             {
                 item.Guid = (Guid)dr["Guid"];
                 item.Modified = (DateTime)dr["Modified"];
-                item.Status = (bool)dr["Status"];
                 item.MasterGuid = (Guid)dr["MasterGuid"];
                 item.Description = dr["Description"].ToString();
                 item.Price = (decimal)dr["Price"];
                 item.SandouqTafsilGuid = (Guid)dr["SandouqTafsilGuid"];
                 item.SandouqMoeinGuid = (Guid)dr["SandouqMoeinGuid"];
+                item.ServerDeliveryDate = (DateTime)dr["ServerDeliveryDate"];
+                item.ServerStatus = (ServerStatus)dr["ServerStatus"];
             }
             catch (Exception ex)
             {
@@ -44,7 +38,7 @@ namespace EntityCache.SqlServerPersistence
 
             return item;
         }
-        public async Task<List<PardakhtNaqdBussines>> GetAllAsync(Guid masterGuid)
+        public async Task<List<PardakhtNaqdBussines>> GetAllAsync(string _connectionString, Guid masterGuid)
         {
             var list = new List<PardakhtNaqdBussines>();
             try
@@ -68,21 +62,16 @@ namespace EntityCache.SqlServerPersistence
 
             return list;
         }
-        public async Task<ReturnedSaveFuncInfo> RemoveRangeAsync(Guid masterGuid)
+        public async Task<ReturnedSaveFuncInfo> RemoveRangeAsync(Guid masterGuid, SqlTransaction tr)
         {
             var res = new ReturnedSaveFuncInfo();
             try
             {
-                using (var cn = new SqlConnection(_connectionString))
-                {
-                    var cmd = new SqlCommand("sp_PardakhtNaqd_RemoveByMaster", cn)
-                    { CommandType = CommandType.StoredProcedure };
-                    cmd.Parameters.AddWithValue("@masterGuid", masterGuid);
+                var cmd = new SqlCommand("sp_PardakhtNaqd_RemoveByMaster", tr.Connection, tr)
+                { CommandType = CommandType.StoredProcedure };
+                cmd.Parameters.AddWithValue("@masterGuid", masterGuid);
 
-                    await cn.OpenAsync();
-                    await cmd.ExecuteNonQueryAsync();
-                    cn.Close();
-                }
+                await cmd.ExecuteNonQueryAsync();
             }
             catch (Exception ex)
             {
@@ -92,14 +81,14 @@ namespace EntityCache.SqlServerPersistence
 
             return res;
         }
-        public override async Task<ReturnedSaveFuncInfo> SaveRangeAsync(IEnumerable<PardakhtNaqdBussines> items, string tranName)
+        public async Task<ReturnedSaveFuncInfo> SaveRangeAsync(IEnumerable<PardakhtNaqdBussines> items, SqlTransaction tr)
         {
             var res = new ReturnedSaveFuncInfo();
             try
             {
                 if (items == null || !items.Any()) return res;
                 foreach (var item in items)
-                    res.AddReturnedValue(await SaveAsync(item, tranName));
+                    res.AddReturnedValue(await SaveAsync(item, tr));
             }
             catch (Exception ex)
             {
@@ -109,27 +98,23 @@ namespace EntityCache.SqlServerPersistence
 
             return res;
         }
-        public override async Task<ReturnedSaveFuncInfo> SaveAsync(PardakhtNaqdBussines item, string tranName)
+        public async Task<ReturnedSaveFuncInfo> SaveAsync(PardakhtNaqdBussines item, SqlTransaction tr)
         {
             var res = new ReturnedSaveFuncInfo();
             try
             {
-                using (var cn = new SqlConnection(_connectionString))
-                {
-                    var cmd = new SqlCommand("sp_PardakhtNaqd_Insert", cn) { CommandType = CommandType.StoredProcedure };
-                    cmd.Parameters.AddWithValue("@guid", item.Guid);
-                    cmd.Parameters.AddWithValue("@modif", item.Modified);
-                    cmd.Parameters.AddWithValue("@st", item.Status);
-                    cmd.Parameters.AddWithValue("@desc", item.Description ?? "");
-                    cmd.Parameters.AddWithValue("@masterGuid", item.MasterGuid);
-                    cmd.Parameters.AddWithValue("@price", item.Price);
-                    cmd.Parameters.AddWithValue("@sandouqTafsilGuid", item.SandouqTafsilGuid);
-                    cmd.Parameters.AddWithValue("@sandouqMoeinGuid", ParentDefaults.MoeinCoding.CLSMoein10102);
+                var cmd = new SqlCommand("sp_PardakhtNaqd_Insert", tr.Connection, tr) { CommandType = CommandType.StoredProcedure };
+                cmd.Parameters.AddWithValue("@guid", item.Guid);
+                cmd.Parameters.AddWithValue("@modif", item.Modified);
+                cmd.Parameters.AddWithValue("@desc", item.Description ?? "");
+                cmd.Parameters.AddWithValue("@masterGuid", item.MasterGuid);
+                cmd.Parameters.AddWithValue("@price", item.Price);
+                cmd.Parameters.AddWithValue("@sandouqTafsilGuid", item.SandouqTafsilGuid);
+                cmd.Parameters.AddWithValue("@sandouqMoeinGuid", ParentDefaults.MoeinCoding.CLSMoein10102);
+                cmd.Parameters.AddWithValue("@serverSt", (short)item.ServerStatus);
+                cmd.Parameters.AddWithValue("@serverDate", item.ServerDeliveryDate);
 
-                    await cn.OpenAsync();
-                    await cmd.ExecuteNonQueryAsync();
-                    cn.Close();
-                }
+                await cmd.ExecuteNonQueryAsync();
             }
             catch (Exception ex)
             {

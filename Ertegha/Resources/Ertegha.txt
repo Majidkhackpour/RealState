@@ -4,20 +4,22 @@ GO
 Alter PROCEDURE sp_Kol_Save
 	@guid uniqueidentifier,
 	@modif datetime,
-	@st bit,
 	@name nvarchar(200),
 	@code nvarchar(10),
 	@account decimal,
-	@hGroup smallint
+	@hGroup smallint,
+	@serverSt smallint,
+	@serverDate datetime
 AS
 BEGIN
 	UPDATE [dbo].[Kols]
    SET [Modified] = @modif
-      ,[Status] = @st
       ,[Name] = @name
       ,[Code] = @name
       ,[Account] = @account
       ,[HesabGroup] = @hGroup
+	  ,[ServerStatus] = @serverSt
+	  ,[ServerDeliveryDate] = @serverDate
 	WHERE [Guid] = @guid
 	
 	if @@ROWCOUNT=0
@@ -25,19 +27,21 @@ BEGIN
 		INSERT INTO [dbo].[Kols]
 			   ([Guid]
 			   ,[Modified]
-			   ,[Status]
 			   ,[Name]
 			   ,[Code]
 			   ,[Account]
-			   ,[HesabGroup])
+			   ,[HesabGroup]
+			   ,[ServerStatus]
+		       ,[ServerDeliveryDate])
 		 VALUES
 			   (@guid
 			   ,@modif
-			   ,@st
 			   ,@name
 			   ,@code
 			   ,@account
-			   ,@hGroup)
+			   ,@hGroup
+			   ,@serverSt
+		       ,@serverDate)
 	end
 END
 GO
@@ -71,41 +75,45 @@ GO
 Alter PROCEDURE sp_Moein_Save
 	@guid uniqueidentifier,
 	@modif datetime,
-	@st bit,
 	@name nvarchar(200),
 	@code nvarchar(10),
 	@account decimal,
-	@kolGuid uniqueidentifier
+	@kolGuid uniqueidentifier,
+	@serverSt smallint,
+	@serverDate datetime
 AS
 BEGIN
 	UPDATE [dbo].[Moeins]
 	   SET [Modified] = @modif
-		  ,[Status] = @st
 		  ,[Name] = @name
 		  ,[Code] = @code
 		  ,[KolGuid] = @kolGuid
 		  ,[Account] = @account
+		  ,[ServerStatus] = @serverSt
+		  ,[ServerDeliveryDate] = @serverDate
 	 WHERE [Guid] = @guid
 	 if @@ROWCOUNT=0
 	 begin
 		INSERT INTO [dbo].[Moeins]
            ([Guid]
            ,[Modified]
-           ,[Status]
            ,[Name]
            ,[Code]
            ,[KolGuid]
            ,[DateM]
-           ,[Account])
+           ,[Account]
+		   ,[ServerStatus]
+		   ,[ServerDeliveryDate])
 		VALUES
            (@guid
            ,@modif
-           ,@st
 		   ,@name
            ,@code
            ,@kolGuid
            ,GETDATE()
-           ,@account)
+           ,@account
+		   ,@serverSt
+		   ,@serverDate)
 	 end
 END
 GO
@@ -187,7 +195,9 @@ ALTER PROCEDURE [dbo].[sp_Tafsil_Save]
 	@TafsilCreditMoeinGuid uniqueidentifier,
 	@userGuid uniqueidentifier,
 	@sarmayeMoeinGuid uniqueidentifier,
-	@sarmayeTafsilGuid uniqueidentifier
+	@sarmayeTafsilGuid uniqueidentifier,
+	@serverSt smallint,
+	@serverDate datetime
 AS
 BEGIN
 	declare @AccountF_Before decimal
@@ -204,6 +214,8 @@ BEGIN
 		  ,[Account] = @account
 		  ,[AccountFirst] = @accFirst
 		  ,[isSystem] = @isSystem
+		  ,[ServerStatus] = @serverSt
+		  ,[ServerDeliveryDate] = @serverDate
 	 WHERE [Guid] = @guid
 	if @@ROWCOUNT=0
 	begin
@@ -218,7 +230,9 @@ BEGIN
            ,[DateM]
            ,[Account]
 		   ,[AccountFirst]
-           ,[isSystem])
+           ,[isSystem]
+		   ,[ServerStatus]
+		   ,[ServerDeliveryDate])
 		VALUES
            (@guid
            ,@modif
@@ -230,7 +244,9 @@ BEGIN
            ,GETDATE()
            ,@account
 		   ,@accFirst
-           ,@isSystem)
+           ,@isSystem
+		   ,@serverSt
+		   ,@serverDate)
 	 end
 
 	if isnull(@accFirst,0) <> @AccountF_Before
@@ -454,7 +470,9 @@ Alter PROCEDURE sp_Banks_Save
 	@desc nvarchar(max),
 	@shobe nvarchar(200),
 	@codeShobe nvarchar(20),
-	@hesabNumber nvarchar(200)
+	@hesabNumber nvarchar(200),
+	@serverSt smallint,
+	@serverDate datetime
 AS
 BEGIN
 	UPDATE [dbo].[Banks]
@@ -466,6 +484,8 @@ BEGIN
 		  ,[CodeShobe] = @codeShobe
 		  ,[HesabNumber] = @hesabNumber
 		  ,[Description] = @desc
+		  ,[ServerStatus] = @serverSt
+		  ,[ServerDeliveryDate] = @serverDate
 	 WHERE [Guid] = @guid
 	 if @@ROWCOUNT=0
 	 begin
@@ -479,7 +499,9 @@ BEGIN
            ,[CodeShobe]
            ,[HesabNumber]
            ,[Description]
-           ,[DateM])
+           ,[DateM]
+		   ,[ServerStatus]
+		   ,[ServerDeliveryDate])
 		VALUES
            (@guid
            ,@modif
@@ -490,7 +512,9 @@ BEGIN
            ,@codeShobe
            ,@hesabNumber
            ,@desc
-           ,GETDATE())
+           ,GETDATE()
+		   ,@serverSt
+		   ,@serverDate)
 	 end
 END
 GO
@@ -568,7 +592,9 @@ Alter PROCEDURE sp_Peoples_Save
 	@address nvarchar(max),
 	@issued nvarchar(200),
 	@postalCode nvarchar(50),
-	@groupGuid uniqueidentifier
+	@groupGuid uniqueidentifier,
+	@serverSt smallint,
+	@serverDate datetime
 AS
 BEGIN
 	UPDATE [dbo].[Peoples]
@@ -585,6 +611,8 @@ BEGIN
 		  ,[IssuedFrom] = @issued
 		  ,[PostalCode] = @postalCode
 		  ,[GroupGuid] = @groupGuid
+		  ,[ServerStatus] = @serverSt
+		  ,[ServerDeliveryDate] = @serverDate
 	 WHERE [Guid] = @Guid
 	 if @@ROWCOUNT=0
 	 begin
@@ -602,7 +630,9 @@ BEGIN
            ,[Address]
            ,[IssuedFrom]
            ,[PostalCode]
-           ,[GroupGuid])
+           ,[GroupGuid]
+		   ,[ServerStatus]
+		   ,[ServerDeliveryDate])
 		 VALUES
            (@Guid
            ,@modif
@@ -617,7 +647,9 @@ BEGIN
            ,@address
            ,@issued
            ,@postalCode
-           ,@groupGuid)
+           ,@groupGuid
+		   ,@serverSt
+		   ,@serverDate)
 	 end
 END
 GO
@@ -672,7 +704,9 @@ Alter PROCEDURE sp_User_Save
 	@questiion smallint,
 	@answer nvarchar(400),
 	@email nvarchar(50),
-	@mobile nvarchar(50)
+	@mobile nvarchar(50),
+	@serverSt smallint,
+	@serverDate datetime
 AS
 BEGIN
 	UPDATE [dbo].[Users]
@@ -686,6 +720,8 @@ BEGIN
 		  ,[AnswerQuestion] = @answer
 		  ,[Email] = @email
 		  ,[Mobile] = @mobile
+		  ,[ServerStatus] = @serverSt
+		  ,[ServerDeliveryDate] = @serverDate
 	 WHERE [Guid] = @guid
 	 if @@ROWCOUNT=0
 	 begin
@@ -700,7 +736,9 @@ BEGIN
            ,[SecurityQuestion]
            ,[AnswerQuestion]
            ,[Email]
-           ,[Mobile])
+           ,[Mobile]
+		   ,[ServerStatus]
+		   ,[ServerDeliveryDate])
 		VALUES
            (@guid
            ,@modif
@@ -712,7 +750,9 @@ BEGIN
            ,@questiion
            ,@answer
            ,@email
-           ,@mobile)
+           ,@mobile
+		   ,@serverSt
+		   ,@serverDate)
 	 end
 END
 GO
@@ -1015,7 +1055,9 @@ ALTER PROCEDURE [dbo].[sp_Contract_Save]
 	@fAvarez decimal,
 	@sAvarez decimal,
 	@fTotalPrice decimal,
-	@sTotalPrice decimal
+	@sTotalPrice decimal,
+	@serverSt smallint,
+	@serverDate datetime
 AS
 BEGIN	
 	 update Buildings
@@ -1058,6 +1100,8 @@ BEGIN
 		  ,[SecondAvarez] = @sAvarez
 		  ,[FirstTotalPrice] = @fTotalPrice
 		  ,[SecondTotalPrice] = @sTotalPrice
+		  ,[ServerStatus] = @serverSt
+		  ,[ServerDeliveryDate] = @serverDate
 	 WHERE [Guid] = @Guid
 	 if @@ROWCOUNT = 0
 	 begin
@@ -1099,7 +1143,9 @@ BEGIN
            ,[SecondTax]
            ,[SecondAvarez]
            ,[FirstTotalPrice]
-           ,[SecondTotalPrice])
+           ,[SecondTotalPrice]
+		   ,[ServerStatus]
+		   ,[ServerDeliveryDate])
 		VALUES
            (@Guid
            ,@modif
@@ -1138,7 +1184,9 @@ BEGIN
            ,@sTax
            ,@sAvarez
            ,@fTotalPrice
-           ,@sTotalPrice)
+           ,@sTotalPrice
+		   ,@serverSt
+		   ,@serverDate)
 	 end
 END
 GO
@@ -1170,22 +1218,17 @@ IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Temp_Save
 GO
 Alter PROCEDURE sp_Temp_Save
 	@guid uniqueidentifier,
-	@modif datetime,
 	@type smallint,
 	@objGuid uniqueidentifier
 AS
 BEGIN
 	insert into [dbo].[Temps](
 		 Guid
-		,Modified
 		,ObjectGuid
-		,Status
 		,Type)
 		values(
 		 @guid
-		,@modif
 		,@objGuid
-		,'true'
 		,@type)
 END
 GO
@@ -1328,8 +1371,6 @@ IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_UserLog_I
 GO
 Alter PROCEDURE sp_UserLog_Insert
 	@guid uniqueidentifier,
-	@modif datetime,
-	@st bit,
 	@userGuid uniqueidentifier,
 	@date datetime,
 	@action smallint,
@@ -1339,8 +1380,6 @@ AS
 BEGIN	
 	insert into [dbo].[UserLogs](
 			 Guid
-			,Modified
-			,Status
 			,UserGuid
 			,Date
 			,Action
@@ -1348,8 +1387,6 @@ BEGIN
 			,Description)
 			values(
 			 @guid
-			,@modif
-			,@st
 			,@userGuid
 			,@date
 			,@action
@@ -1362,13 +1399,11 @@ IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_BuildingR
 	exec('Create Procedure [dbo].[sp_BuildingRelatedOptions_GetAll]	As Begin print 11 end')
 GO
 Alter PROCEDURE sp_BuildingRelatedOptions_GetAll	
-	@buGuid uniqueidentifier,
-	@st bit
+	@buGuid uniqueidentifier
 AS
 BEGIN
 	Select * From [dbo].[BuildingRelatedOptions]
 	where BuildinGuid=@buGuid
-	and Status=@st
 END
 GO
 -- ==========================================================================================
@@ -1376,13 +1411,11 @@ IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_BuildingR
 	exec('Create Procedure [dbo].[sp_BuildingRequestRegion_GetAll]	As Begin print 11 end')
 GO
 Alter PROCEDURE sp_BuildingRequestRegion_GetAll
-	@reqGuid uniqueidentifier,
-	@st bit
+	@reqGuid uniqueidentifier
 AS
 BEGIN
 	Select * From [dbo].[BuildingRequestRegions]
 	where RequestGuid=@reqGuid
-	and Status=@st
 END
 GO
 -- ==========================================================================================
@@ -1484,7 +1517,9 @@ Alter PROCEDURE sp_PhoneBook_Save
 	@name nvarchar(500),
 	@tell nvarchar(50),
 	@group smallint,
-	@parentGuid uniqueidentifier
+	@parentGuid uniqueidentifier,
+	@serverSt smallint,
+	@serverDate datetime
 AS
 BEGIN
 	UPDATE [dbo].[PhoneBooks]
@@ -1494,6 +1529,8 @@ BEGIN
 		  ,[Tell] = @tell
 		  ,[Group] = @group
 		  ,[ParentGuid] = @parentGuid
+		  ,[ServerStatus] = @serverSt
+		  ,[ServerDeliveryDate] = @serverDate
 	 WHERE [Guid] = @Guid
 	 if @@ROWCOUNT=0
 	 begin
@@ -1504,7 +1541,9 @@ BEGIN
            ,[Name]
            ,[Tell]
            ,[Group]
-           ,[ParentGuid])
+           ,[ParentGuid]
+		   ,[ServerStatus]
+		   ,[ServerDeliveryDate])
 		 VALUES
            (@Guid
            ,@modif
@@ -1512,7 +1551,9 @@ BEGIN
            ,@name
            ,@tell
            ,@group
-           ,@parentGuid)
+           ,@parentGuid
+		   ,@serverSt
+		   ,@serverDate)
 	 end
 END
 GO
@@ -1521,13 +1562,11 @@ IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_People_Ba
 	exec('Create Procedure [dbo].[sp_People_BankAccount_GetAllByParent]	As Begin print 11 end')
 GO
 Alter PROCEDURE sp_People_BankAccount_GetAllByParent
-	@pGuid uniqueidentifier,
-	@st bit
+	@pGuid uniqueidentifier
 AS
 BEGIN
 	Select * From [dbo].[PeopleBankAccounts]
 	where ParentGuid=@pGuid
-	and Status=@st
 END
 GO
 -- ==========================================================================================
@@ -1548,18 +1587,14 @@ IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_People_Ba
 GO
 Alter PROCEDURE sp_People_BankAccount_Save
 	@guid uniqueidentifier,
-	@modif datetime,
 	@parentGuid uniqueidentifier,
-	@st bit,
 	@bankname nvarchar(200),
 	@accountNumber nvarchar(200),
 	@shobe nvarchar(200)
 AS
 BEGIN
 	UPDATE [dbo].[PeopleBankAccounts]
-	   SET [Modified] = @modif
-		  ,[Status] = @st
-		  ,[BankName] = @bankname
+	   SET [BankName] = @bankname
 		  ,[AccountNumber] = @accountNumber
 		  ,[Shobe] = @shobe
 		  ,[ParentGuid] = @parentGuid
@@ -1568,16 +1603,12 @@ BEGIN
 	 begin
 		INSERT INTO [dbo].[PeopleBankAccounts]
            ([Guid]
-           ,[Modified]
-           ,[Status]
            ,[BankName]
            ,[AccountNumber]
            ,[Shobe]
            ,[ParentGuid])
 		 VALUES
            (@guid
-           ,@modif
-           ,@st
            ,@bankname
            ,@accountNumber
            ,@shobe
@@ -1590,13 +1621,11 @@ IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_BuildingG
 	exec('Create Procedure [dbo].[sp_BuildingGallery_GetAll]	As Begin print 11 end')
 GO
 Alter PROCEDURE sp_BuildingGallery_GetAll
-	@buGuid uniqueidentifier,
-	@st bit
+	@buGuid uniqueidentifier
 AS
 BEGIN
 	Select * From [dbo].[BuildingGalleries]
 	where BuildingGuid=@buGuid
-	and Status=@st
 END
 GO
 -- ==========================================================================================
@@ -2051,7 +2080,9 @@ Alter PROCEDURE sp_DasteCheck_Save
 	@bankGuid uniqueidentifier,
 	@fNumber bigint,
 	@toNumber bigint,
-	@desc nvarchar(Max)
+	@desc nvarchar(Max),
+	@serverSt smallint,
+	@serverDate datetime
 AS
 BEGIN
 	UPDATE [dbo].[DasteChecks]
@@ -2062,6 +2093,8 @@ BEGIN
 		  ,[FromNumber] = @fNumber
 		  ,[ToNumber] = @toNumber
 		  ,[Description] = @desc
+		  ,[ServerStatus] = @serverSt
+		  ,[ServerDeliveryDate] = @serverDate
 	 WHERE [Guid] = @Guid
 	 if @@ROWCOUNT=0
 	 begin
@@ -2073,7 +2106,9 @@ BEGIN
            ,[BankGuid]
            ,[FromNumber]
            ,[ToNumber]
-           ,[Description])
+           ,[Description]
+		   ,[ServerStatus]
+		   ,[ServerDeliveryDate])
 		 VALUES
            (@Guid
            ,@modif
@@ -2082,7 +2117,9 @@ BEGIN
            ,@bankGuid
            ,@fNumber
            ,@toNumber
-           ,@desc)
+           ,@desc
+		   ,@serverSt
+		   ,@serverDate)
 	 end
 END
 GO
@@ -2124,12 +2161,13 @@ ALTER PROCEDURE [dbo].[sp_CheckPage_Save]
 	@sarresid datetime=null,
 	@desc nvarchar(max),
 	@price decimal,
-	@st int
+	@st int,
+	@serverSt smallint,
+	@serverDate datetime
 AS
 BEGIN
 	UPDATE [dbo].[CheckPages]
 	   SET [Modified] = @modif
-		  ,[Status] = 'true'
 		  ,[CheckGuid] = @CheckGuid
 		  ,[DatePardakht] = @datePardakht
 		  ,[Number] = @number
@@ -2138,13 +2176,14 @@ BEGIN
 		  ,[Description] = @desc
 		  ,[Price] = @price
 		  ,[CheckStatus] = @st
+		  ,[ServerStatus] = @serverSt
+		  ,[ServerDeliveryDate] = @serverDate
 	 WHERE [Guid] = @Guid
 	 if @@ROWCOUNT=0
 	 begin
 		INSERT INTO [dbo].[CheckPages]
            ([Guid]
            ,[Modified]
-           ,[Status]
            ,[CheckGuid]
            ,[DatePardakht]
            ,[Number]
@@ -2152,11 +2191,12 @@ BEGIN
            ,[DateSarresid]
            ,[Description]
            ,[Price]
-           ,[CheckStatus])
+           ,[CheckStatus]
+		   ,[ServerStatus]
+		   ,[ServerDeliveryDate])
 		VALUES
            (@Guid
            ,@modif
-           ,'true'
            ,@CheckGuid
            ,@datePardakht
            ,@number
@@ -2164,7 +2204,9 @@ BEGIN
            ,@sarresid
            ,@desc
            ,@price
-           ,@st)
+           ,@st
+		   ,@serverSt
+		   ,@serverDate)
 	 end
 END
 GO
@@ -2229,14 +2271,15 @@ IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Sanad_Sav
 GO
 Alter PROCEDURE sp_Sanad_Save
 	@guid uniqueidentifier,
-	@st bit, 
 	@dateM datetime,
 	@modif datetime,
 	@desc nvarchar(max),
 	@number bigint,
 	@sanadst smallint,
 	@userGuid uniqueidentifier,
-	@sanadType smallint
+	@sanadType smallint,
+	@serverSt smallint,
+	@serverDate datetime
 AS
 BEGIN
 	UPDATE [dbo].[Sanads]
@@ -2247,6 +2290,8 @@ BEGIN
 		  ,[Number] = @number
 		  ,[SanadStatus] = @sanadst
 		  ,[SanadType] = @sanadType
+		  ,[ServerStatus] = @serverSt
+		  ,[ServerDeliveryDate] = @serverDate
 	 WHERE [Guid] = @guid
 	 if @@ROWCOUNT = 0
 	 begin
@@ -2259,7 +2304,9 @@ BEGIN
            ,[Number]
            ,[SanadStatus]
            ,[UserGuid]
-           ,[SanadType])
+           ,[SanadType]
+		   ,[ServerStatus]
+		   ,[ServerDeliveryDate])
 		 VALUES
            (@guid
            ,@modif
@@ -2269,7 +2316,9 @@ BEGIN
            ,@number
            ,@sanadst
            ,@userGuid
-           ,@sanadType)
+           ,@sanadType
+		   ,@serverSt
+		   ,@serverDate)
 	 end
 END
 GO
@@ -2312,24 +2361,26 @@ GO
 Alter PROCEDURE sp_SanadDetail_Save
 	@Guid uniqueidentifier,
 	@modif datetime,
-	@st bit,
 	@moeinGuid uniqueidentifier,
 	@tafsilGuid uniqueidentifier,
 	@debit decimal,
 	@credit decimal,
 	@desc nvarchar(Max),
-	@masterGuid uniqueidentifier
+	@masterGuid uniqueidentifier,
+	@serverSt smallint,
+	@serverDate datetime
 AS
 BEGIN
 	UPDATE [dbo].[SanadDetails]
 	   SET [Modified] = @modif
-		  ,[Status] = @st
 		  ,[MoeinGuid] = @moeinGuid
 		  ,[TafsilGuid] = @tafsilGuid
 		  ,[Debit] = @debit
 		  ,[Credit] = @credit
 		  ,[Description] = @desc
 		  ,[MasterGuid] = @masterGuid
+		  ,[ServerStatus] = @serverSt
+		  ,[ServerDeliveryDate] = @serverDate
 	 WHERE [Guid] = @Guid
 	 if @@ROWCOUNT = 0
 	 begin
@@ -2342,7 +2393,9 @@ BEGIN
            ,[Debit]
            ,[Credit]
            ,[Description]
-           ,[MasterGuid])
+           ,[MasterGuid]
+		   ,[ServerStatus]
+		   ,[ServerDeliveryDate])
 		VALUES
            (@Guid
            ,@modif
@@ -2352,7 +2405,9 @@ BEGIN
            ,@debit
            ,@credit
            ,@desc
-           ,@masterGuid)
+           ,@masterGuid
+		   ,@serverSt
+		   ,@serverDate)
 	 end
 END
 GO
@@ -2726,51 +2781,54 @@ GO
 Alter PROCEDURE sp_Reception_Save
 	@guid uniqueidentifier,
 	@modif datetime,
-	@st bit,
 	@number bigint,
 	@desc nvarchar(max),
 	@dateM datetime,
 	@tafsilGuid uniqueidentifier,
 	@moeinGuid uniqueidentifier,
 	@userGuid uniqueidentifier,
-	@sanadNumber bigint
+	@sanadNumber bigint,
+	@serverSt smallint,
+	@serverDate datetime
 AS
 BEGIN
 	UPDATE [dbo].[Receptions]
 	   SET [Modified] = @modif
-		  ,[Status] = @st
 		  ,[Description] = @desc
 		  ,[Number] = @number
 		  ,[DateM] = @dateM
 		  ,[TafsilGuid] = @tafsilGuid
 		  ,[MoeinGuid] = @moeinGuid
-		  ,[UserGuid] = @userGuid
 		  ,[SanadNumber] = @sanadNumber
+		  ,[ServerStatus] = @serverSt
+		  ,[ServerDeliveryDate] = @serverDate
 	 WHERE Guid=@guid
 	 if @@ROWCOUNT=0
 	 begin
 		INSERT INTO [dbo].[Receptions]
            ([Guid]
            ,[Modified]
-           ,[Status]
            ,[Description]
            ,[Number]
            ,[DateM]
            ,[TafsilGuid]
            ,[MoeinGuid]
            ,[UserGuid]
-           ,[SanadNumber])
+           ,[SanadNumber]
+		   ,[ServerStatus]
+		   ,[ServerDeliveryDate])
 		VALUES
            (@guid
            ,@modif
-           ,@st
            ,@desc
            ,@number
            ,@dateM
            ,@tafsilGuid
            ,@moeinGuid
            ,@userGuid
-           ,@sanadNumber)
+           ,@sanadNumber
+		   ,@serverSt
+		   ,@serverDate)
 	 end
 END
 GO
@@ -2829,7 +2887,6 @@ GO
 ALTER PROCEDURE [dbo].[sp_ReceptionCheck_Insert]
 	@guid uniqueidentifier,
 	@modif datetime,
-	@st bit,
 	@bankName nvarchar(200),
 	@desc nvarchar(max),
 	@dateM datetime,
@@ -2841,12 +2898,13 @@ ALTER PROCEDURE [dbo].[sp_ReceptionCheck_Insert]
 	@sarResid datetime,
 	@sandouqTafsilGuid uniqueidentifier,
 	@sandouqMoeinGuid uniqueidentifier,
-	@isAvalDore bit
+	@isAvalDore bit,
+	@serverSt smallint,
+	@serverDate datetime
 AS
 BEGIN
 	UPDATE [dbo].[ReceptionChecks]
 	   SET [Modified] = @modif
-		  ,[Status] = @st
 		  ,[BankName] = @bankName
 		  ,[DateM] = @dateM
 		  ,[MasterGuid] = @masterGuid
@@ -2858,13 +2916,14 @@ BEGIN
 		  ,[DateSarResid] = @sarResid
 		  ,[SandouqTafsilGuid] = @sandouqTafsilGuid
 		  ,[SandouqMoeinGuid] = @sandouqMoeinGuid
+		  ,[ServerStatus] = @serverSt
+		  ,[ServerDeliveryDate] = @serverDate
 	 WHERE [Guid] = @guid
 	 if @@ROWCOUNT=0
 	 begin
 		INSERT INTO [dbo].[ReceptionChecks]
           ([Guid]
           ,[Modified]
-          ,[Status]
           ,[BankName]
           ,[DateM]
           ,[MasterGuid]
@@ -2876,11 +2935,12 @@ BEGIN
 		  ,[DateSarResid]
 		  ,[SandouqTafsilGuid]
 		  ,[SandouqMoeinGuid]
-		  ,[isAvalDore])
+		  ,[isAvalDore]
+		  ,[ServerStatus]
+		  ,[ServerDeliveryDate])
 	VALUES
           (@guid
           ,@modif
-          ,@st
           ,@bankName
           ,@dateM
           ,@masterGuid
@@ -2892,7 +2952,9 @@ BEGIN
 		  ,@sarResid
 		  ,@sandouqTafsilGuid
 		  ,@sandouqMoeinGuid
-		  ,@isAvalDore)
+		  ,@isAvalDore
+		  ,@serverSt
+		  ,@serverDate)
 	 end
 END
 GO
@@ -2927,35 +2989,38 @@ GO
 Alter PROCEDURE sp_ReceptionNaqd_Insert
 	@guid uniqueidentifier,
 	@modif datetime,
-	@st bit,
 	@desc nvarchar(max),
 	@dateM datetime,
 	@masterGuid uniqueidentifier,
 	@price decimal,
 	@sandouqTafsilGuid uniqueidentifier,
-	@sandouqMoeinGuid uniqueidentifier
+	@sandouqMoeinGuid uniqueidentifier,
+	@serverSt smallint,
+	@serverDate datetime
 AS
 BEGIN
 	INSERT INTO [dbo].[ReceptionNaqds]
            ([Guid]
            ,[Modified]
-           ,[Status]
            ,[DateM]
            ,[MasterGuid]
            ,[Description]
            ,[Price]
            ,[SandouqTafsilGuid]
-           ,[SandouqMoeinGuid])
+           ,[SandouqMoeinGuid]
+		   ,[ServerStatus]
+		   ,[ServerDeliveryDate])
      VALUES
            (@guid
            ,@modif
-           ,@st
            ,@dateM
            ,@masterGuid
            ,@desc
            ,@price
            ,@sandouqTafsilGuid
-           ,@sandouqMoeinGuid)
+           ,@sandouqMoeinGuid
+		   ,@serverSt
+		   ,@serverDate)
 END
 GO
 --========================================================================================================
@@ -2989,38 +3054,41 @@ GO
 Alter PROCEDURE sp_ReceptionHavale_Insert
 	@guid uniqueidentifier,
 	@modif datetime,
-	@st bit,
 	@desc nvarchar(max),
 	@dateM datetime,
 	@masterGuid uniqueidentifier,
 	@price decimal,
 	@peygiriNo nvarchar(200),
 	@bankTafsilGuid uniqueidentifier,
-	@bankMoeinGuid uniqueidentifier
+	@bankMoeinGuid uniqueidentifier,
+	@serverSt smallint,
+	@serverDate datetime
 AS
 BEGIN
 	INSERT INTO [dbo].[ReceptionHavales]
            ([Guid]
            ,[Modified]
-           ,[Status]
            ,[DateM]
            ,[MasterGuid]
            ,[Description]
            ,[Price]
            ,[PeygiriNumber]
            ,[BankTafsilGuid]
-           ,[BankMoeinGuid])
+           ,[BankMoeinGuid]
+		   ,[ServerStatus]
+		   ,[ServerDeliveryDate])
      VALUES
            (@guid
            ,@modif
-           ,@st
            ,@dateM
            ,@masterGuid
            ,@desc
            ,@price
            ,@peygiriNo
            ,@bankTafsilGuid
-           ,@bankMoeinGuid)
+           ,@bankMoeinGuid
+		   ,@serverSt
+		   ,@serverDate)
 END
 GO
 --========================================================================================================
@@ -3051,20 +3119,14 @@ IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_BankSeges
 GO
 Alter PROCEDURE sp_BankSegest_Insert
 	@guid uniqueidentifier,
-	@modif datetime,
-	@st bit,
 	@name nvarchar(200)
 AS
 BEGIN
 	INSERT INTO [dbo].[BankSegests]
            ([Guid]
-           ,[Modified]
-           ,[Status]
            ,[BankName])
      VALUES
            (@guid
-           ,@modif
-           ,@st
            ,@name)
 END
 GO
@@ -3146,19 +3208,19 @@ GO
 Alter PROCEDURE sp_Pardakht_Save
 	@guid uniqueidentifier,
 	@modif datetime,
-	@st bit,
 	@tafsilGuid uniqueidentifier,
 	@moeinGuid uniqueidentifier,
 	@dateM datetime,
 	@desc nvarchar(max),
 	@userGuid uniqueidentifier,
 	@number bigint,
-	@sanadNumber bigint
+	@sanadNumber bigint,
+	@serverSt smallint,
+	@serverDate datetime
 AS
 BEGIN
 	UPDATE [dbo].[Pardakhts]
 	   SET [Modified] = @modif
-		  ,[Status] = @st
 		  ,[TafsilGuid] = @tafsilGuid
 		  ,[MoeinGuid] = @moeinGuid
 		  ,[DateM] = @dateM
@@ -3166,31 +3228,35 @@ BEGIN
 		  ,[UserGuid] = @userGuid
 		  ,[Number] = @number
 		  ,[SanadNumber] = @sanadNumber
+		  ,[ServerStatus] = @serverSt
+		  ,[ServerDeliveryDate] = @serverDate
 	 WHERE [Guid] = @guid
 	 if @@ROWCOUNT=0
 	 begin
 		INSERT INTO [dbo].[Pardakhts]
            ([Guid]
            ,[Modified]
-           ,[Status]
            ,[TafsilGuid]
            ,[MoeinGuid]
            ,[DateM]
            ,[Description]
            ,[UserGuid]
            ,[Number]
-           ,[SanadNumber])
+           ,[SanadNumber]
+		   ,[ServerStatus]
+		   ,[ServerDeliveryDate])
 		VALUES
            (@guid
            ,@modif
-           ,@st
            ,@tafsilGuid
            ,@moeinGuid
            ,@dateM
            ,@desc
            ,@userGuid
            ,@number
-           ,@sanadNumber)
+           ,@sanadNumber
+		   ,@serverSt
+		   ,@serverDate)
 	 end
 END
 GO
@@ -3225,32 +3291,35 @@ GO
 Alter PROCEDURE sp_PardakhtNaqd_Insert
 	@guid uniqueidentifier,
 	@modif datetime,
-	@st bit,
 	@desc nvarchar(max),
 	@price decimal,
 	@sandouqTafsilGuid uniqueidentifier,
 	@sandouqMoeinGuid uniqueidentifier,
-	@masterGuid uniqueidentifier
+	@masterGuid uniqueidentifier,
+	@serverSt smallint,
+	@serverDate datetime
 AS
 BEGIN
 	INSERT INTO [dbo].[PardakhtNaqds]
            ([Guid]
            ,[Modified]
-           ,[Status]
            ,[Description]
            ,[Price]
            ,[SandouqTafsilGuid]
            ,[SandouqMoeinGuid]
-           ,[MasterGuid])
+           ,[MasterGuid]
+		   ,[ServerStatus]
+		   ,[ServerDeliveryDate])
 		VALUES
            (@guid
            ,@modif
-           ,@st
            ,@desc
            ,@price
            ,@sandouqTafsilGuid
            ,@sandouqMoeinGuid
-           ,@masterGuid)
+           ,@masterGuid
+		   ,@serverSt
+		   ,@serverDate)
 END
 GO
 --========================================================================================================
@@ -3284,35 +3353,38 @@ GO
 Alter PROCEDURE sp_PardakhtHavale_Insert
 	@guid uniqueidentifier,
 	@modif datetime,
-	@st bit,
 	@desc nvarchar(max),
 	@price decimal,
 	@bankTafsilGuid uniqueidentifier,
 	@bankMoeinGuid uniqueidentifier,
 	@masterGuid uniqueidentifier,
-	@peygiryNo nvarchar(200)
+	@peygiryNo nvarchar(200),
+	@serverSt smallint,
+	@serverDate datetime
 AS
 BEGIN
 	INSERT INTO [dbo].[PardakhtHavales]
            ([Guid]
            ,[Modified]
-           ,[Status]
            ,[MasterGuid]
            ,[Description]
            ,[Price]
            ,[BankTafsilGuid]
            ,[BankMoeinGuid]
-		   ,[Number])
+		   ,[Number]
+		   ,[ServerStatus]
+		   ,[ServerDeliveryDate])
 		 VALUES
            (@guid
            ,@modif
-           ,@st
            ,@masterGuid
            ,@desc
            ,@price
            ,@bankTafsilGuid
            ,@bankMoeinGuid
-		   ,@peygiryNo)
+		   ,@peygiryNo
+		   ,@serverSt
+		   ,@serverDate)
 END
 GO
 --========================================================================================================
@@ -3346,14 +3418,15 @@ GO
 ALTER PROCEDURE [dbo].[sp_PardakhtCheckSh_Insert]
 	@guid uniqueidentifier,
 	@modif datetime,
-	@st bit,
 	@desc nvarchar(max),
 	@checkGuid uniqueidentifier,
 	@masterGuid uniqueidentifier,
 	@sarresid datetime,
 	@price decimal,
 	@dateM datetime,
-	@number nvarchar(200)
+	@number nvarchar(200),
+	@serverSt smallint,
+	@serverDate datetime
 AS
 BEGIN
 	UPDATE [dbo].[PardakhtCheckShakhsis]
@@ -3365,31 +3438,35 @@ BEGIN
 		  ,[DateM] = @dateM
 		  ,[CheckPageGuid] = @checkGuid
 		  ,[MasterGuid] = @masterGuid
+		  ,[ServerStatus] = @serverSt
+		  ,[ServerDeliveryDate] = @serverDate
 	 WHERE [Guid] = @guid
 	 if @@ROWCOUNT = 0
 	 begin
 		INSERT INTO [dbo].[PardakhtCheckShakhsis]
            ([Guid]
            ,[Modified]
-           ,[Status]
            ,[Description]
            ,[CheckPageGuid]
            ,[MasterGuid]
 		   ,[DateSarResid]
 		   ,[Price]
 		   ,[DateM]
-		   ,[Number])
+		   ,[Number]
+		   ,[ServerStatus]
+		   ,[ServerDeliveryDate])
      VALUES
            (@guid
            ,@modif
-           ,@st
            ,@desc
            ,@checkGuid
            ,@masterGuid
 		   ,@sarresid
 		   ,@price
 		   ,@dateM
-		   ,@number)
+		   ,@number
+		   ,@serverSt
+		   ,@serverDate)
 	 end
 END
 GO
@@ -3426,26 +3503,30 @@ GO
 Alter PROCEDURE sp_PardakhtCheckM_Insert
 	@guid uniqueidentifier,
 	@modif datetime,
-	@st bit,
 	@desc nvarchar(max),
 	@checkGuid uniqueidentifier,
-	@masterGuid uniqueidentifier
+	@masterGuid uniqueidentifier,
+	@serverSt smallint,
+	@serverDate datetime
 AS
 BEGIN
 	INSERT INTO [dbo].[PardakhtCheckMoshtaris]
            ([Guid]
            ,[Modified]
-           ,[Status]
            ,[Description]
            ,[CheckGuid]
-           ,[MasterGuid])
+           ,[MasterGuid]
+		   ,[ServerStatus]
+		   ,[ServerDeliveryDate])
      VALUES
            (@guid
            ,@modif
            ,@st
            ,@desc
            ,@checkGuid
-           ,@masterGuid)
+           ,@masterGuid
+		   ,@serverSt
+		   ,@serverDate)
 END
 GO
 --========================================================================================================
@@ -3576,7 +3657,9 @@ ALTER PROCEDURE [dbo].[sp_ReceptionCheckAvalDore_Save]
 	@sarmayeMoeinGuid uniqueidentifier,
 	@tafsilCreditMoeinGuid uniqueidentifier,
 	@bankCreditMoeinGuid uniqueidentifier,
-	@sandouqCreditMoeinGuid uniqueidentifier
+	@sandouqCreditMoeinGuid uniqueidentifier,
+	@serverSt smallint,
+	@serverDate datetime
 AS
 BEGIN
 	UPDATE [dbo].[ReceptionCheckAvalDores]
@@ -3592,14 +3675,14 @@ BEGIN
 		  ,[SandouqTafsilGuid] = @sandouqTafsilGuid
 		  ,[SandouqMoeinGuid] = @sandouqMoeinGuid
 		  ,[TafsilGuid] = @tafsilGuid
-		  ,[UserGuid] = @userGuid
+		  ,[ServerStatus] = @serverSt
+		  ,[ServerDeliveryDate] = @serverDate
 		WHERE [Guid] = @guid
 	if @@ROWCOUNT = 0
 	begin
 		INSERT INTO [dbo].[ReceptionCheckAvalDores]
            ([Guid]
            ,[Modified]
-           ,[Status]
            ,[BankName]
            ,[DateM]
            ,[DateSarResid]
@@ -3611,11 +3694,12 @@ BEGIN
            ,[SandouqTafsilGuid]
            ,[SandouqMoeinGuid]
            ,[TafsilGuid]
-           ,[UserGuid])
+           ,[UserGuid]
+		   ,[ServerStatus]
+		   ,[ServerDeliveryDate])
 		VALUES
            (@guid
            ,@modif
-           ,'true'
            ,@bankName
            ,@dateM
            ,@sarresid
@@ -3627,11 +3711,13 @@ BEGIN
            ,@sandouqTafsilGuid
            ,@sandouqMoeinGuid
            ,@tafsilGuid
-           ,@userGuid)
+           ,@userGuid
+		   ,@serverSt
+		   ,@serverDate)
 	end
 
 	EXEC sp_Sanad_Update_Eftetahie @userGuid,@sarmayeTafsilGuid,@sarmayeMoeinGuid,@tafsilCreditMoeinGuid,@bankCreditMoeinGuid,@sandouqCreditMoeinGuid
-	EXEC sp_ReceptionCheck_Insert @guid,@modif,'true',@bankName,@desc,@dateM,null,@number,@poshNomre,@price,@st,@sarresid,@sandouqTafsilGuid,@sandouqMoeinGuid,'true'
+	EXEC sp_ReceptionCheck_Insert @guid,@modif,@bankName,@desc,@dateM,null,@number,@poshNomre,@price,@st,@sarresid,@sandouqTafsilGuid,@sandouqMoeinGuid,'true',@serverSt,@serverDate
 END
 GO
 --========================================================================================================
@@ -3711,7 +3797,9 @@ ALTER PROCEDURE [dbo].[sp_PardakhtCheckAvalDore_Save]
 	@sarmayeMoeinGuid uniqueidentifier,
 	@tafsilCreditMoeinGuid uniqueidentifier,
 	@bankCreditMoeinGuid uniqueidentifier,
-	@sandouqCreditMoeinGuid uniqueidentifier
+	@sandouqCreditMoeinGuid uniqueidentifier,
+	@serverSt smallint,
+	@serverDate datetime
 AS
 BEGIN
 	UPDATE [dbo].[PardakhtCheckAvalDores]
@@ -3720,25 +3808,29 @@ BEGIN
 		  ,[TafsilGuid] = @tafsilGuid
 		  ,[UserGuid] = @userGuid
 		  ,[DasteCheckName] = @dasteCheckName
+		  ,[ServerStatus] = @serverSt
+		  ,[ServerDeliveryDate] = @serverDate
 		 WHERE [Guid] = @guid
 	if @@ROWCOUNT = 0
 	begin
 		INSERT INTO [dbo].[PardakhtCheckAvalDores]
            ([Guid]
            ,[Modified]
-           ,[Status]
            ,[CheckPageGuid]
            ,[TafsilGuid]
            ,[UserGuid]
-           ,[DasteCheckName])
+           ,[DasteCheckName]
+		   ,[ServerStatus]
+		   ,[ServerDeliveryDate])
 		 VALUES
            (@guid
            ,@modif
-           ,'true'
            ,@checkPageGuid
            ,@tafsilGuid
            ,@userGuid
-           ,@dasteCheckName)
+           ,@dasteCheckName
+		   ,@serverSt
+		   ,@serverDate)
 	end
 
 	EXEC sp_Sanad_Update_Eftetahie @userGuid,@sarmayeTafsilGuid,@sarmayeMoeinGuid,@tafsilCreditMoeinGuid,@bankCreditMoeinGuid,@sandouqCreditMoeinGuid
@@ -3928,7 +4020,9 @@ Alter PROCEDURE sp_Advisor_Save
 	@guid uniqueidentifier,
 	@st bit,
 	@name nvarchar(200),
-	@address nvarchar(max)
+	@address nvarchar(max),
+	@serverSt smallint,
+	@serverDate datetime
 AS
 BEGIN
 	UPDATE [dbo].[Advisors]
@@ -3936,6 +4030,8 @@ BEGIN
 		  ,[Status] = @st
 		  ,[Name] = @name
 		  ,[Address] = @address
+		  ,[ServerStatus] = @serverSt
+		  ,[ServerDeliveryDate] = @serverDate
 	 WHERE [Guid] = @guid
 	 if @@ROWCOUNT = 0
 	 begin
@@ -3944,13 +4040,17 @@ BEGIN
            ,[Modified]
            ,[Status]
            ,[Name]
-           ,[Address])
+           ,[Address]
+		   ,[ServerStatus]
+		   ,[ServerDeliveryDate])
 		VALUES
            (@guid
            ,GETDATE()
            ,@st
            ,@name
-           ,@address)
+           ,@address
+		   ,@serverSt
+		   ,@serverDate)
 	 end
 END
 GO
@@ -3981,8 +4081,6 @@ IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Advertise
 GO
 Alter PROCEDURE sp_AdvertiseLog_Save
 	@guid uniqueidentifier,
-	@modif datetime,
-	@st bit,
 	@number bigint,
 	@dateM datetime,
 	@cat nvarchar(100),
@@ -4005,9 +4103,7 @@ Alter PROCEDURE sp_AdvertiseLog_Save
 AS
 BEGIN
 	UPDATE [dbo].[AdvertiseLogs]
-	   SET [Modified] = @modif
-		  ,[Status] = @st
-		  ,[SimcardNumber] = @number
+	   SET [SimcardNumber] = @number
 		  ,[DateM] = @dateM
 		  ,[Category] = @cat
 		  ,[SubCategory1] = @subCat1
@@ -4031,8 +4127,6 @@ BEGIN
 	 begin
 		INSERT INTO [dbo].[AdvertiseLogs]
            ([Guid]
-           ,[Modified]
-           ,[Status]
            ,[SimcardNumber]
            ,[DateM]
            ,[Category]
@@ -4054,8 +4148,6 @@ BEGIN
            ,[State])
 		VALUES
            (@guid
-           ,@modif
-           ,@st
            ,@number
            ,@dateM
            ,@cat
@@ -4096,30 +4188,22 @@ IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Advertise
 GO
 Alter PROCEDURE sp_AdvertiseRelatedRegion_Save
 	@guid uniqueidentifier,
-	@modif datetime,
-	@st bit,
 	@onlineRegionName nvarchar(200),
 	@localRegionGuid uniqueidentifier
 AS
 BEGIN
 	UPDATE [dbo].[AdvertiseRelatedRegions]
-	   SET [Modified] = @modif
-		  ,[Status] = @st
-		  ,[OnlineRegionName] = @onlineRegionName
+	   SET [OnlineRegionName] = @onlineRegionName
 		  ,[LocalRegionGuid] = @localRegionGuid
 	 WHERE [Guid] = @guid
 	 if @@ROWCOUNT = 0
 	 begin
 		INSERT INTO [dbo].[AdvertiseRelatedRegions]
            ([Guid]
-           ,[Modified]
-           ,[Status]
            ,[OnlineRegionName]
            ,[LocalRegionGuid])
 		VALUES
            (@guid
-           ,@modif
-           ,@st
            ,@onlineRegionName
            ,@localRegionGuid)
 	 end
@@ -4130,13 +4214,11 @@ IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Advertise
 	exec('Create Procedure [dbo].[sp_AdvertiseRelatedRegion_GetAllByOnlineRegionName]	As Begin print 11 end')  
 GO
 Alter PROCEDURE sp_AdvertiseRelatedRegion_GetAllByOnlineRegionName
-	@st bit,
 	@onlineRegionName nvarchar(200)
 AS
 BEGIN
 	select * from AdvertiseRelatedRegions
-	where OnlineRegionName=@onlineRegionName and
-		  Status=@st
+	where OnlineRegionName=@onlineRegionName
 END
 GO
 --========================================================================================================
@@ -4194,16 +4276,12 @@ GO
 Alter PROCEDURE sp_AdvToken_Save
 	@number bigint,
 	@guid uniqueidentifier,
-	@modif datetime,
-	@st bit,
 	@type smallint,
 	@token nvarchar(max)
 AS
 BEGIN
 	UPDATE [dbo].[AdvTokens]
-	   SET [Modified] = @modif
-		  ,[Status] = @st
-		  ,[Token] = @token
+	   SET [Token] = @token
 		  ,[Number] = @number
 		  ,[Type] = @type
 	 WHERE [Guid] = @guid
@@ -4211,15 +4289,11 @@ BEGIN
 	 begin
 		INSERT INTO [dbo].[AdvTokens]
            ([Guid]
-           ,[Modified]
-           ,[Status]
            ,[Token]
            ,[Number]
            ,[Type])
 		VALUES
            (@guid
-           ,@modif
-           ,@st
            ,@token
            ,@number
            ,@type)
@@ -4256,13 +4330,17 @@ Alter PROCEDURE sp_BuildingAccountType_Save
 	@guid uniqueidentifier,
 	@modif datetime,
 	@st bit,
-	@name nvarchar(250)
+	@name nvarchar(250),
+	@serverSt smallint,
+	@serverDate datetime
 AS
 BEGIN
 	UPDATE [dbo].[BuildingAccountTypes]
 	   SET [Modified] = @modif
 		  ,[Status] = @st
 		  ,[Name] = @name
+		  ,[ServerStatus] = @serverSt
+		  ,[ServerDeliveryDate] = @serverDate
 	 WHERE [Guid] = @guid
 	 if @@ROWCOUNT = 0
 	 begin
@@ -4270,12 +4348,16 @@ BEGIN
            ([Guid]
            ,[Modified]
            ,[Status]
-           ,[Name])
+           ,[Name]
+		   ,[ServerStatus]
+		   ,[ServerDeliveryDate])
 		VALUES
            (@guid
            ,@modif
            ,@st
-           ,@name)
+           ,@name
+		   ,@serverSt
+		   ,@serverDate)
 	 end
 END
 GO
@@ -4324,13 +4406,17 @@ Alter PROCEDURE sp_BuildingCondition_Save
 	@guid uniqueidentifier,
 	@modif datetime,
 	@st bit,
-	@name nvarchar(250)
+	@name nvarchar(250),
+	@serverSt smallint,
+	@serverDate datetime
 AS
 BEGIN
 	UPDATE [dbo].[BuildingConditions]
 	   SET [Modified] = @modif
 		  ,[Status] = @st
 		  ,[Name] = @name
+		  ,[ServerStatus] = @serverSt
+		  ,[ServerDeliveryDate] = @serverDate
 	 WHERE [Guid] = @guid
 	 if @@ROWCOUNT = 0
 	 begin
@@ -4338,12 +4424,16 @@ BEGIN
            ([Guid]
            ,[Modified]
            ,[Status]
-           ,[Name])
+           ,[Name]
+		   ,[ServerStatus]
+		   ,[ServerDeliveryDate])
 		VALUES
            (@guid
            ,@modif
            ,@st
-           ,@name)
+           ,@name
+		   ,@serverSt
+		   ,@serverDate)
 	 end
 END
 GO
@@ -4375,51 +4465,41 @@ BEGIN
 END
 GO
 --========================================================================================================
-IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_BuildingGallery_ChangeStatus]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
-	exec('Create Procedure [dbo].[sp_BuildingGallery_ChangeStatus]	As Begin print 11 end')  
-GO
-Alter PROCEDURE sp_BuildingGallery_ChangeStatus
-	@guid uniqueidentifier,
-	@st bit
-AS
-BEGIN
-	update BuildingGalleries
-	set Status=@st
-	where BuildingGuid=@guid
-END
-GO
---========================================================================================================
 IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_BuildingGallery_Save]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
 	exec('Create Procedure [dbo].[sp_BuildingGallery_Save]	As Begin print 11 end')  
 GO
 Alter PROCEDURE sp_BuildingGallery_Save
 	@guid uniqueidentifier,
-	@st bit,
 	@modif datetime,
 	@buGuid uniqueidentifier,
-	@imageName nvarchar(100)
+	@imageName nvarchar(100),
+	@serverSt smallint,
+	@serverDate datetime
 AS
 BEGIN
 	UPDATE [dbo].[BuildingGalleries]
 	   SET [Modified] = @modif
-		  ,[Status] = @st
 		  ,[BuildingGuid] = @buGuid
 		  ,[ImageName] = @imageName
+		  ,[ServerStatus] = @serverSt
+		  ,[ServerDeliveryDate] = @serverDate
 	 WHERE [Guid] = @guid
 	 if @@ROWCOUNT = 0
 	 begin
 		INSERT INTO [dbo].[BuildingGalleries]
            ([Guid]
            ,[Modified]
-           ,[Status]
            ,[BuildingGuid]
-           ,[ImageName])
+           ,[ImageName]
+		   ,[ServerStatus]
+		   ,[ServerDeliveryDate])
 		VALUES
            (@guid
            ,@modif
-           ,@st
            ,@buGuid
-           ,@imageName)
+           ,@imageName
+		   ,@serverSt
+		   ,@serverDate)
 	 end
 END
 GO
@@ -4453,13 +4533,17 @@ Alter PROCEDURE sp_BuildingOption_Save
 	@guid uniqueidentifier,
 	@modif datetime,
 	@st bit,
-	@name nvarchar(250)
+	@name nvarchar(250),
+	@serverSt smallint,
+	@serverDate datetime
 AS
 BEGIN
 	UPDATE [dbo].[BuildingOptions]
 	   SET [Modified] = @modif
 		  ,[Status] = @st
 		  ,[Name] = @name
+		  ,[ServerStatus] = @serverSt
+		  ,[ServerDeliveryDate] = @serverDate
 	 WHERE [Guid] = @guid
 	 if @@ROWCOUNT = 0
 	 begin
@@ -4467,12 +4551,16 @@ BEGIN
            ([Guid]
            ,[Modified]
            ,[Status]
-           ,[Name])
+           ,[Name]
+		   ,[ServerStatus]
+		   ,[ServerDeliveryDate])
 		VALUES
            (@guid
            ,@modif
            ,@st
-           ,@name)
+           ,@name
+		   ,@serverSt
+		   ,@serverDate)
 	 end
 END
 GO
@@ -4566,7 +4654,9 @@ Alter PROCEDURE sp_Building_Save
 	@createDate datetime,
 	@image nvarchar(100)=null,
 	@priority smallint,
-	@isArchive bit
+	@isArchive bit,
+	@serverSt smallint,
+	@serverDate datetime
 AS
 BEGIN
 	UPDATE [dbo].[Buildings]
@@ -4626,6 +4716,8 @@ BEGIN
 		  ,[Image] = @image
 		  ,[Priority] = @priority
 		  ,[IsArchive] = @isArchive
+		  ,[ServerStatus] = @serverSt
+		  ,[ServerDeliveryDate] = @serverDate
 	 WHERE [Guid] = @guid
 	if @@ROWCOUNT = 0
 	begin
@@ -4688,7 +4780,9 @@ BEGIN
            ,[CreateDate]
            ,[Image]
            ,[Priority]
-           ,[IsArchive])
+           ,[IsArchive]
+		   ,[ServerStatus]
+		   ,[ServerDeliveryDate])
 		VALUES
            (@guid
            ,@modif
@@ -4748,7 +4842,9 @@ BEGIN
            ,@createDate
            ,@image
            ,@priority
-           ,@isArchive)
+           ,@isArchive
+		   ,@serverSt
+		   ,@serverDate)
 	end
 END
 GO
@@ -4794,20 +4890,6 @@ BEGIN
 END
 GO
 --========================================================================================================
-IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_BuildingRelatedOption_ChangeStatus]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
-	exec('Create Procedure [dbo].[sp_BuildingRelatedOption_ChangeStatus]	As Begin print 11 end')  
-GO
-Alter PROCEDURE sp_BuildingRelatedOption_ChangeStatus
-	@guid uniqueidentifier,
-	@st bit
-AS
-BEGIN
-	update BuildingRelatedOptions
-	set Status=@st
-	where BuildinGuid=@guid
-END
-GO
---========================================================================================================
 IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_BuildingRelatedOption_Remove]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
 	exec('Create Procedure [dbo].[sp_BuildingRelatedOption_Remove]	As Begin print 11 end')  
 GO
@@ -4825,10 +4907,11 @@ IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_BuildingR
 GO
 Alter PROCEDURE sp_BuildingRelatedOptopn_Save
 	@guid uniqueidentifier,
-	@st bit,
 	@modif datetime,
 	@buGuid uniqueidentifier,
-	@buOptionGuid uniqueidentifier
+	@buOptionGuid uniqueidentifier,
+	@serverSt smallint,
+	@serverDate datetime
 AS
 BEGIN
 	UPDATE [dbo].[BuildingRelatedOptions]
@@ -4836,21 +4919,25 @@ BEGIN
 		  ,[Status] = @st
 		  ,[BuildinGuid] = @buGuid
 		  ,[BuildingOptionGuid] = @buOptionGuid
+		  ,[ServerStatus] = @serverSt
+		  ,[ServerDeliveryDate] = @serverDate
 	 WHERE [Guid] = @guid
 	 if @@ROWCOUNT = 0
 	 begin
 		INSERT INTO [dbo].[BuildingRelatedOptions]
            ([Guid]
            ,[Modified]
-           ,[Status]
            ,[BuildinGuid]
-           ,[BuildingOptionGuid])
+           ,[BuildingOptionGuid]
+		   ,[ServerStatus]
+		   ,[ServerDeliveryDate])
 		VALUES
            (@guid
            ,@modif
-           ,@st
            ,@buGuid
-           ,@buOptionGuid)
+           ,@buOptionGuid
+		   ,@serverSt
+		   ,@serverDate)
 	 end
 END
 GO
@@ -4897,7 +4984,9 @@ ALTER PROCEDURE [dbo].[sp_BuildingRequest_Save]
 	@roomCount int,
 	@accTypeGuid uniqueidentifier,
 	@conditionGuid uniqueidentifier,
-	@shortDesc nvarchar(max)
+	@shortDesc nvarchar(max),
+	@serverSt smallint,
+	@serverDate datetime
 AS
 BEGIN
 	UPDATE [dbo].[BuildingRequests]
@@ -4923,6 +5012,8 @@ BEGIN
 		  ,[BuildingAccountTypeGuid] = @accTypeGuid
 		  ,[BuildingConditionGuid] = @conditionGuid
 		  ,[ShortDesc] = @shortDesc
+		  ,[ServerStatus] = @serverSt
+		  ,[ServerDeliveryDate] = @serverDate
 	 WHERE [Guid] = @guid
 	 if @@ROWCOUNT = 0
 	 begin
@@ -4951,7 +5042,9 @@ BEGIN
            ,[RoomCount]
            ,[BuildingAccountTypeGuid]
            ,[BuildingConditionGuid]
-           ,[ShortDesc])
+           ,[ShortDesc]
+		   ,[ServerStatus]
+		   ,[ServerDeliveryDate])
 		VALUES
            (@guid
            ,@modif
@@ -4977,7 +5070,9 @@ BEGIN
            ,@roomCount
            ,@accTypeGuid
            ,@conditionGuid
-           ,@shortDesc)
+           ,@shortDesc
+		   ,@serverSt
+		   ,@serverDate)
 	 end
 END
 GO
@@ -5015,30 +5110,34 @@ Alter PROCEDURE sp_BuildingRequestRegion_Save
 	@masterGuid uniqueidentifier,
 	@guid uniqueidentifier,
 	@modif datetime,
-	@st bit,
-	@regionGuid uniqueidentifier
+	@regionGuid uniqueidentifier,
+	@serverSt smallint,
+	@serverDate datetime
 AS
 BEGIN
 	UPDATE [dbo].[BuildingRequestRegions]
 	   SET [Modified] = @modif
-		  ,[Status] = @st
 		  ,[RequestGuid] = @masterGuid
 		  ,[RegionGuid] = @regionGuid
+		  ,[ServerStatus] = @serverSt
+		  ,[ServerDeliveryDate] = @serverDate
 	 WHERE [Guid] = @guid
 	 if @@ROWCOUNT = 0
 	 begin
 		INSERT INTO [dbo].[BuildingRequestRegions]
            ([Guid]
            ,[Modified]
-           ,[Status]
            ,[RequestGuid]
-           ,[RegionGuid])
+           ,[RegionGuid]
+		   ,[ServerStatus]
+		   ,[ServerDeliveryDate])
 		VALUES
            (@guid
            ,@modif
-           ,@st
            ,@masterGuid
-           ,@regionGuid)
+           ,@regionGuid
+		   ,@serverSt
+		   ,@serverDate)
 	 end
 END
 GO
@@ -5073,13 +5172,17 @@ Alter PROCEDURE sp_BuildingType_Save
 	@guid uniqueidentifier,
 	@modif datetime,
 	@st bit,
-	@name nvarchar(250)
+	@name nvarchar(250),
+	@serverSt smallint,
+	@serverDate datetime
 AS
 BEGIN
 	UPDATE [dbo].[BuildingTypes]
 	   SET [Modified] = @modif
 		  ,[Status] = @st
 		  ,[Name] = @name
+		  ,[ServerStatus] = @serverSt
+		  ,[ServerDeliveryDate] = @serverDate
 	 WHERE [Guid] = @guid
 	 if @@ROWCOUNT = 0
 	 begin
@@ -5087,12 +5190,16 @@ BEGIN
            ([Guid]
            ,[Modified]
            ,[Status]
-           ,[Name])
+           ,[Name]
+		   ,[ServerStatus]
+		   ,[ServerDeliveryDate])
 		VALUES
            (@guid
            ,@modif
            ,@st
-           ,@name)
+           ,@name
+		   ,@serverSt
+		   ,@serverDate)
 	 end
 END
 GO
@@ -5141,13 +5248,17 @@ Alter PROCEDURE sp_BuildingView_Save
 	@guid uniqueidentifier,
 	@modif datetime,
 	@st bit,
-	@name nvarchar(250)
+	@name nvarchar(250),
+	@serverSt smallint,
+	@serverDate datetime
 AS
 BEGIN
 	UPDATE [dbo].[BuildingViews]
 	   SET [Modified] = @modif
 		  ,[Status] = @st
 		  ,[Name] = @name
+		  ,[ServerStatus] = @serverSt
+		  ,[ServerDeliveryDate] = @serverDate
 	 WHERE [Guid] = @guid
 	 if @@ROWCOUNT = 0
 	 begin
@@ -5155,12 +5266,16 @@ BEGIN
            ([Guid]
            ,[Modified]
            ,[Status]
-           ,[Name])
+           ,[Name]
+		   ,[ServerStatus]
+		   ,[ServerDeliveryDate])
 		VALUES
            (@guid
            ,@modif
            ,@st
-           ,@name)
+           ,@name
+		   ,@serverSt
+		   ,@serverDate)
 	 end
 END
 GO
@@ -5187,7 +5302,9 @@ Alter PROCEDURE sp_Cities_Save
 	@modif datetime,
 	@st bit,
 	@name nvarchar(200),
-	@stateGuid uniqueidentifier
+	@stateGuid uniqueidentifier,
+	@serverSt smallint,
+	@serverDate datetime
 AS
 BEGIN
 	UPDATE [dbo].[Cities]
@@ -5195,6 +5312,8 @@ BEGIN
 		  ,[Status] = @st
 		  ,[Name] = @name
 		  ,[StateGuid] = @stateGuid
+		  ,[ServerStatus] = @serverSt
+		  ,[ServerDeliveryDate] = @serverDate
 	 WHERE [Guid] = @guid
 	 if @@ROWCOUNT = 0
 	 begin
@@ -5203,13 +5322,17 @@ BEGIN
            ,[Modified]
            ,[Status]
            ,[Name]
-           ,[StateGuid])
+           ,[StateGuid]
+		   ,[ServerStatus]
+		   ,[ServerDeliveryDate])
 		VALUES
            (@guid
            ,@modif
            ,@st
            ,@name
-           ,@stateGuid)
+           ,@stateGuid
+		   ,@serverSt
+		   ,@serverDate)
 	 end
 END
 GO
@@ -5272,13 +5395,17 @@ Alter PROCEDURE sp_DocumentType_Save
 	@guid uniqueidentifier,
 	@modif datetime,
 	@st bit,
-	@name nvarchar(250)
+	@name nvarchar(250),
+	@serverSt smallint,
+	@serverDate datetime
 AS
 BEGIN
 	UPDATE [dbo].[DocumentTypes]
 	   SET [Modified] = @modif
 		  ,[Status] = @st
 		  ,[Name] = @name
+		  ,[ServerStatus] = @serverSt
+		  ,[ServerDeliveryDate] = @serverDate
 	 WHERE [Guid] = @guid
 	 if @@ROWCOUNT = 0
 	 begin
@@ -5286,12 +5413,16 @@ BEGIN
            ([Guid]
            ,[Modified]
            ,[Status]
-           ,[Name])
+           ,[Name]
+		   ,[ServerStatus]
+		   ,[ServerDeliveryDate])
 		VALUES
            (@guid
            ,@modif
            ,@st
-           ,@name)
+           ,@name
+		   ,@serverSt
+		   ,@serverDate)
 	 end
 END
 GO
@@ -5329,26 +5460,30 @@ Alter PROCEDURE sp_FileInfo_Save
 	@fileName nvarchar(max),
 	@guid uniqueidentifier,
 	@modif datetime,
-	@st bit
+	@serverSt smallint,
+	@serverDate datetime
 AS
 BEGIN
 	UPDATE [dbo].[FileInfoes]
 	   SET [Modified] = @modif
-		  ,[Status] = @st
 		  ,[FileName] = @fileName
+		  ,[ServerStatus] = @serverSt
+		  ,[ServerDeliveryDate] = @serverDate
 	 WHERE [Guid] = @guid
 	 if @@ROWCOUNT = 0
 	 begin
 		INSERT INTO [dbo].[FileInfoes]
            ([Guid]
            ,[Modified]
-           ,[Status]
-           ,[FileName])
+           ,[FileName]
+		   ,[ServerStatus]
+		   ,[ServerDeliveryDate])
 		VALUES
            (@guid
            ,@modif
-           ,@st
-           ,@fileName)
+           ,@fileName
+		   ,@serverSt
+		   ,@serverDate)
 	 end
 END
 GO
@@ -5383,13 +5518,17 @@ Alter PROCEDURE sp_FloorCover_Save
 	@guid uniqueidentifier,
 	@modif datetime,
 	@st bit,
-	@name nvarchar(250)
+	@name nvarchar(250),
+	@serverSt smallint,
+	@serverDate datetime
 AS
 BEGIN
 	UPDATE [dbo].[FloorCovers]
 	   SET [Modified] = @modif
 		  ,[Status] = @st
 		  ,[Name] = @name
+		  ,[ServerStatus] = @serverSt
+		  ,[ServerDeliveryDate] = @serverDate
 	 WHERE [Guid] = @guid
 	 if @@ROWCOUNT = 0
 	 begin
@@ -5397,12 +5536,16 @@ BEGIN
            ([Guid]
            ,[Modified]
            ,[Status]
-           ,[Name])
+           ,[Name]
+		   ,[ServerStatus]
+		   ,[ServerDeliveryDate])
 		VALUES
            (@guid
            ,@modif
            ,@st
-           ,@name)
+           ,@name
+		   ,@serverSt
+		   ,@serverDate)
 	 end
 END
 GO
@@ -5451,13 +5594,17 @@ Alter PROCEDURE sp_KitchenService_Save
 	@guid uniqueidentifier,
 	@modif datetime,
 	@st bit,
-	@name nvarchar(250)
+	@name nvarchar(250),
+	@serverSt smallint,
+	@serverDate datetime
 AS
 BEGIN
 	UPDATE [dbo].[KitchenServices]
 	   SET [Modified] = @modif
 		  ,[Status] = @st
 		  ,[Name] = @name
+		  ,[ServerStatus] = @serverSt
+		  ,[ServerDeliveryDate] = @serverDate
 	 WHERE [Guid] = @guid
 	 if @@ROWCOUNT = 0
 	 begin
@@ -5465,12 +5612,16 @@ BEGIN
            ([Guid]
            ,[Modified]
            ,[Status]
-           ,[Name])
+           ,[Name]
+		   ,[ServerStatus]
+		   ,[ServerDeliveryDate])
 		VALUES
            (@guid
            ,@modif
            ,@st
-           ,@name)
+           ,@name
+		   ,@serverSt
+		   ,@serverDate)
 	 end
 END
 GO
@@ -5504,30 +5655,22 @@ IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Naqz_Save
 GO
 Alter PROCEDURE sp_Naqz_Save
 	@guid uniqueidentifier,
-	@modif datetime,
-	@st bit,
 	@message nvarchar(max),
 	@useCount int
 AS
 BEGIN
 	UPDATE [dbo].[Naqzs]
-	   SET [Modified] = @modif
-		  ,[Status] = @st
-		  ,[Message] = @message
+	   SET [Message] = @message
 		  ,[UseCount] = @useCount
 	 WHERE [Guid] = @guid
 	 if @@ROWCOUNT = 0
 	 begin
 		INSERT INTO [dbo].[Naqzs]
            ([Guid]
-           ,[Modified]
-           ,[Status]
            ,[Message]
            ,[UseCount])
 		VALUES
            (@guid
-           ,@modif
-           ,@st
            ,@message
            ,@useCount)
 	 end
@@ -5539,8 +5682,6 @@ IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Note_Save
 GO
 Alter PROCEDURE sp_Note_Save
 	@guid uniqueidentifier,
-	@modif datetime,
-	@st bit,
 	@title nvarchar(500),
 	@desc nvarchar(max),
 	@dateSabt datetime,
@@ -5551,9 +5692,7 @@ Alter PROCEDURE sp_Note_Save
 AS
 BEGIN
 	UPDATE [dbo].[Notes]
-	   SET [Modified] = @modif
-		  ,[Status] = @st
-		  ,[Title] = @title
+	   SET [Title] = @title
 		  ,[Description] = @desc
 		  ,[DateSarresid] = @dateSarresid
 		  ,[UserGuid] = @userGuid
@@ -5564,8 +5703,6 @@ BEGIN
 	 begin
 		INSERT INTO [dbo].[Notes]
            ([Guid]
-           ,[Modified]
-           ,[Status]
            ,[Title]
            ,[Description]
            ,[DateSabt]
@@ -5575,8 +5712,6 @@ BEGIN
            ,[NoteStatus])
 		VALUES
            (@guid
-           ,@modif
-           ,@st
            ,@title
            ,@desc
            ,@dateSabt
@@ -5623,7 +5758,9 @@ ALTER PROCEDURE [dbo].[sp_PeopleGroup_Save]
 	@modif datetime,
 	@st bit,
 	@name nvarchar(250),
-	@parentGuid uniqueidentifier
+	@parentGuid uniqueidentifier,
+	@serverSt smallint,
+	@serverDate datetime
 AS
 BEGIN
 	UPDATE [dbo].[PeopleGroups]
@@ -5631,6 +5768,8 @@ BEGIN
 		  ,[Status] = @st
 		  ,[Name] = @name
 		  ,[ParentGuid] = @parentGuid
+		  ,[ServerStatus] = @serverSt
+		  ,[ServerDeliveryDate] = @serverDate
 	 WHERE [Guid] = @guid
 	 if @@ROWCOUNT = 0
 	 begin
@@ -5639,13 +5778,17 @@ BEGIN
            ,[Modified]
            ,[Status]
            ,[Name]
-           ,[ParentGuid])
+           ,[ParentGuid]
+		   ,[ServerStatus]
+		   ,[ServerDeliveryDate])
 		VALUES
            (@guid
            ,@modif
            ,@st
            ,@name
-           ,@parentGuid)
+           ,@parentGuid
+		   ,@serverSt
+		   ,@serverDate)
 	 end
 End
 GO
@@ -5697,7 +5840,9 @@ Alter PROCEDURE sp_Regions_Save
 	@modif datetime,
 	@st bit,
 	@name nvarchar(200),
-	@cityGuid uniqueidentifier
+	@cityGuid uniqueidentifier,
+	@serverSt smallint,
+	@serverDate datetime
 AS
 BEGIN
 	UPDATE [dbo].[Regions]
@@ -5705,6 +5850,8 @@ BEGIN
 		  ,[Status] = @st
 		  ,[Name] = @name
 		  ,[CityGuid] = @cityGuid
+		  ,[ServerStatus] = @serverSt
+		  ,[ServerDeliveryDate] = @serverDate
 	 WHERE [Guid] = @guid
 	 if @@ROWCOUNT = 0
 	 begin
@@ -5713,13 +5860,17 @@ BEGIN
            ,[Modified]
            ,[Status]
            ,[Name]
-           ,[CityGuid])
+           ,[CityGuid]
+		   ,[ServerStatus]
+		   ,[ServerDeliveryDate])
 		VALUES
            (@guid
            ,@modif
            ,@st
            ,@name
-           ,@cityGuid)
+           ,@cityGuid
+		   ,@serverSt
+		   ,@serverDate)
 	 end
 END
 GO
@@ -5768,13 +5919,17 @@ Alter PROCEDURE sp_Rental_Save
 	@guid uniqueidentifier,
 	@modif datetime,
 	@st bit,
-	@name nvarchar(250)
+	@name nvarchar(250),
+	@serverSt smallint,
+	@serverDate datetime
 AS
 BEGIN
 	UPDATE [dbo].[RentalAuthorities]
 	   SET [Modified] = @modif
 		  ,[Status] = @st
 		  ,[Name] = @name
+		  ,[ServerStatus] = @serverSt
+		  ,[ServerDeliveryDate] = @serverDate
 	 WHERE [Guid] = @guid
 	 if @@ROWCOUNT = 0
 	 begin
@@ -5782,12 +5937,16 @@ BEGIN
            ([Guid]
            ,[Modified]
            ,[Status]
-           ,[Name])
+           ,[Name]
+		   ,[ServerStatus]
+		   ,[ServerDeliveryDate])
 		VALUES
            (@guid
            ,@modif
            ,@st
-           ,@name)
+           ,@name
+		   ,@serverSt
+		   ,@serverDate)
 	 end
 END
 GO
@@ -5823,30 +5982,22 @@ IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Serialize
 GO
 Alter PROCEDURE sp_SerializedData_Save
 	@guid uniqueidentifier,
-	@modif datetime,
-	@st bit,
 	@name nvarchar(250),
 	@data nvarchar(Max)
 AS
 BEGIN
 	UPDATE [dbo].[SerializedDatas]
-	   SET [Modified] = @modif
-		  ,[Status] = @st
-		  ,[Name] = @name
+	   SET [Name] = @name
 		  ,[Data] = @data
 	 WHERE [Guid] = @guid
 	 if @@ROWCOUNT = 0
 	 begin
 		INSERT INTO [dbo].[SerializedDatas]
            ([Guid]
-           ,[Modified]
-           ,[Status]
            ,[Name]
            ,[Data])
 		VALUES
            (@guid
-           ,@modif
-           ,@st
            ,@name
            ,@data)
 	 end
@@ -5882,30 +6033,22 @@ IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Setting_S
 GO
 Alter PROCEDURE sp_Setting_Save
 	@guid uniqueidentifier,
-	@modif datetime,
-	@st bit,
 	@name nvarchar(250),
 	@val nvarchar(Max)
 AS
 BEGIN
 	UPDATE [dbo].[Settings]
-	   SET [Modified] = @modif
-		  ,[Status] = @st
-		  ,[Name] = @name
+	   SET [Name] = @name
 		  ,[Value] = @val
 	 WHERE [Guid] = @guid
 	 if @@ROWCOUNT = 0
 	 begin
 		INSERT INTO [dbo].[Settings]
            ([Guid]
-           ,[Modified]
-           ,[Status]
            ,[Name]
            ,[Value])
 		VALUES
            (@guid
-           ,@modif
-           ,@st
            ,@name
            ,@val)
 	 end
@@ -5937,7 +6080,6 @@ IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Simcard_S
 GO
 Alter PROCEDURE sp_Simcard_Save
 	@guid uniqueidentifier,
-	@modif datetime,
 	@st bit,
 	@number bigint,
 	@owner nvarchar(200),
@@ -5948,8 +6090,7 @@ Alter PROCEDURE sp_Simcard_Save
 AS
 BEGIN
 	UPDATE [dbo].[Simcards]
-	   SET [Modified] = @modif
-		  ,[Status] = @st
+	   SET [Status] = @st
 		  ,[Number] = @number
 		  ,[Owner] = @owner
 		  ,[Operator] = @operator
@@ -5961,7 +6102,6 @@ BEGIN
 	 begin
 		INSERT INTO [dbo].[Simcards]
            ([Guid]
-           ,[Modified]
            ,[Status]
            ,[Number]
            ,[Owner]
@@ -5971,7 +6111,6 @@ BEGIN
            ,[NextUseDivar])
 		VALUES
            (@guid
-           ,@modif
            ,@st
            ,@number
            ,@owner
@@ -6069,8 +6208,6 @@ IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_SmsLog_Sa
 GO
 Alter PROCEDURE sp_SmsLog_Save
 	@guid uniqueidentifier,
-	@modif datetime,
-	@st bit,
 	@date datetime,
 	@userGuid uniqueidentifier,
 	@sender nvarchar(200),
@@ -6082,9 +6219,7 @@ Alter PROCEDURE sp_SmsLog_Save
 AS
 BEGIN
 	UPDATE [dbo].[SmsLogs]
-	   SET [Modified] = @modif
-		  ,[Status] = @st
-		  ,[Sender] = @sender
+	   SET [Sender] = @sender
 		  ,[Reciver] = @reciver
 		  ,[Message] = @message
 		  ,[Cost] = @cost
@@ -6095,8 +6230,6 @@ BEGIN
 	 begin
 		INSERT INTO [dbo].[SmsLogs]
            ([Guid]
-           ,[Modified]
-           ,[Status]
            ,[Date]
            ,[UserGuid]
            ,[Sender]
@@ -6107,8 +6240,6 @@ BEGIN
            ,[StatusText])
 		VALUES
            (@guid
-           ,@modif
-           ,@st
            ,@date
            ,@userGuid
            ,@sender
@@ -6148,7 +6279,6 @@ IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_SmsPanel_
 GO
 Alter PROCEDURE sp_SmsPanel_Save
 	@guid uniqueidentifier,
-	@modif datetime,
 	@st bit,
 	@sender nvarchar(200),
 	@api nvarchar(max),
@@ -6156,8 +6286,7 @@ Alter PROCEDURE sp_SmsPanel_Save
 AS
 BEGIN
 	UPDATE [dbo].[SmsPanels]
-	   SET [Modified] = @modif
-		  ,[Status] = @st
+	   SET [Status] = @st
 		  ,[Sender] = @sender
 		  ,[API] = @api
 		  ,[Name] = @name
@@ -6166,14 +6295,12 @@ BEGIN
 	 begin
 		INSERT INTO [dbo].[SmsPanels]
            ([Guid]
-           ,[Modified]
            ,[Status]
            ,[Sender]
            ,[API]
            ,[Name])
 		VALUES
            (@guid
-           ,@modif
            ,@st
            ,@sender
            ,@api
@@ -6213,13 +6340,17 @@ Alter PROCEDURE sp_State_Save
 	@guid uniqueidentifier,
 	@modif datetime,
 	@st bit,
-	@name nvarchar(250)
+	@name nvarchar(250),
+	@serverSt smallint,
+	@serverDate datetime
 AS
 BEGIN
 	UPDATE [dbo].[States]
 	   SET [Modified] = @modif
 		  ,[Status] = @st
 		  ,[Name] = @name
+		  ,[ServerStatus] = @serverSt
+		  ,[ServerDeliveryDate] = @serverDate
 	 WHERE [Guid] = @guid
 	 if @@ROWCOUNT = 0
 	 begin
@@ -6227,12 +6358,82 @@ BEGIN
            ([Guid]
            ,[Modified]
            ,[Status]
-           ,[Name])
+           ,[Name]
+		   ,[ServerStatus]
+		   ,[ServerDeliveryDate])
 		VALUES
            (@guid
            ,@modif
            ,@st
-           ,@name)
+           ,@name
+		   ,@serverSt
+		   ,@serverDate)
 	 end
 END
 GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_BackUpLog_GetAll]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_BackUpLog_GetAll]	As Begin print 11 end')  
+GO
+ALTER PROCEDURE [dbo].[sp_BackUpLog_GetAll]
+AS
+BEGIN
+	select * from BackUpLogs
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_BackUpLog_Get]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_BackUpLog_Get]	As Begin print 11 end')  
+GO
+ALTER PROCEDURE [dbo].[sp_BackUpLog_Get]
+	@guid uniqueidentifier
+AS
+BEGIN
+	select * from BackUpLogs
+	where Guid=@guid
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_BackUpLog_Save]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_BackUpLog_Save]	As Begin print 11 end')  
+GO
+ALTER PROCEDURE [dbo].[sp_BackUpLog_Save]
+	@guid uniqueidentifier,
+	@insDate datetime,
+	@path nvarchar(100),
+	@type smallint,
+	@st smallint,
+	@desc nvarchar(1000),
+	@size smallint
+AS
+BEGIN
+	UPDATE [dbo].[BackUpLogs]
+	   SET [InsertedDate] = @insDate
+		  ,[Path] = @path
+		  ,[Type] = @type
+		  ,[BackUpStatus] = @st
+		  ,[StatusDesc] = @desc
+		  ,[Size] = @size
+	 WHERE [Guid] = @guid
+	 if @@ROWCOUNT = 0
+	 begin
+		INSERT INTO [dbo].[BackUpLogs]
+           ([Guid]
+           ,[InsertedDate]
+           ,[Path]
+           ,[Type]
+           ,[BackUpStatus]
+           ,[StatusDesc]
+           ,[Size])
+		VALUES
+           (@guid
+           ,@insDate
+           ,@path
+           ,@type
+           ,@st
+           ,@desc
+           ,@size)
+	 end
+END
+
+

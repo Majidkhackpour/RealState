@@ -10,8 +10,6 @@ namespace Persistence.Entities
     {
         [Key]
         public Guid Guid { get; set; }
-        public DateTime Modified { get; set; }
-        public bool Status { get; set; }
         [ForeignKey("User")]
         public Guid UserGuid { get; set; }
         public DateTime Date { get; set; }

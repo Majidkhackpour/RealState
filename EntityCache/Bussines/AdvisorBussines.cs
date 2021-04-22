@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 using EntityCache.Assistence;
 using Nito.AsyncEx;
+using Persistence;
 using Services;
 using Services.Interfaces.Building;
 
@@ -13,6 +15,8 @@ namespace EntityCache.Bussines
     {
         public Guid Guid { get; set; }
         public DateTime Modified { get; set; }
+        public ServerStatus ServerStatus { get; set; } = ServerStatus.None;
+        public DateTime ServerDeliveryDate { get; set; } = DateTime.Now;
         public bool Status { get; set; }
         public string Name { get; set; }
         public string Address { get; set; }
@@ -24,43 +28,41 @@ namespace EntityCache.Bussines
         public string Diagnosis => Account.AccountDiagnosis();
 
 
-        public static async Task<List<AdvisorBussines>> GetAllAsync() => await UnitOfWork.Advisor.GetAllAsync();
-        public async Task<ReturnedSaveFuncInfo> SaveAsync(string tranName = "")
+        public static async Task<List<AdvisorBussines>> GetAllAsync() => await UnitOfWork.Advisor.GetAllAsync(Cache.ConnectionString);
+        public async Task<ReturnedSaveFuncInfo> SaveAsync(SqlTransaction tr = null)
         {
             var res = new ReturnedSaveFuncInfo();
-            var autoTran = string.IsNullOrEmpty(tranName);
-            if (autoTran) tranName = Guid.NewGuid().ToString();
+            var autoTran = tr == null;
+            SqlConnection cn = null;
             try
             {
                 if (autoTran)
-                { //BeginTransaction
+                {
+                    cn = new SqlConnection(Cache.ConnectionString);
+                    await cn.OpenAsync();
+                    tr = cn.BeginTransaction();
                 }
 
                 res.AddReturnedValue(CheckValidation());
                 if (res.HasError) return res;
-                res.AddReturnedValue(await SaveTafsilAsync());
+                res.AddReturnedValue(await SaveTafsilAsync(tr));
                 if (res.HasError) return res;
-                res.AddReturnedValue(await SaveMobileAsync());
+                res.AddReturnedValue(await SaveMobileAsync(tr));
                 if (res.HasError) return res;
-                res.AddReturnedValue(await UnitOfWork.Advisor.SaveAsync(this, tranName));
-                if (res.HasError) return res;
-
-                if (autoTran)
-                {
-                    //CommitTransAction
-                }
-
-                //if (Cache.IsSendToServer)
-                //    _ = Task.Run(() => WebUser.SaveAsync(this));
+                res.AddReturnedValue(await UnitOfWork.Advisor.SaveAsync(this, tr));
             }
             catch (Exception ex)
             {
-                if (autoTran)
-                {
-                    //RollBackTransAction
-                }
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
                 res.AddReturnedValue(ex);
+            }
+            finally
+            {
+                if (autoTran)
+                {
+                    res.AddReturnedValue(tr.TransactionDestiny(res.HasError));
+                    res.AddReturnedValue(cn.CloseConnection());
+                }
             }
 
             return res;
@@ -95,7 +97,7 @@ namespace EntityCache.Bussines
                 return new List<AdvisorBussines>();
             }
         }
-        public static async Task<AdvisorBussines> GetAsync(Guid guid) => await UnitOfWork.Advisor.GetAsync(guid);
+        public static async Task<AdvisorBussines> GetAsync(Guid guid) => await UnitOfWork.Advisor.GetAsync(Cache.ConnectionString, guid);
         public static AdvisorBussines Get(Guid guid) => AsyncContext.Run(() => GetAsync(guid));
         private ReturnedSaveFuncInfo CheckValidation()
         {
@@ -111,12 +113,12 @@ namespace EntityCache.Bussines
 
             return res;
         }
-        private async Task<ReturnedSaveFuncInfo> SaveTafsilAsync()
+        private async Task<ReturnedSaveFuncInfo> SaveTafsilAsync(SqlTransaction tr)
         {
             var res = new ReturnedSaveFuncInfo();
             try
             {
-                var tf = await TafsilBussines.GetAsync(Guid) ?? new TafsilBussines
+                var tf = await TafsilBussines.GetAsync(Guid, tr) ?? new TafsilBussines
                 {
                     Guid = Guid,
                     DateM = DateTime.Now,
@@ -132,7 +134,7 @@ namespace EntityCache.Bussines
                 tf.Description = "";
                 tf.AccountFirst = AccountFirst;
 
-                res.AddReturnedValue(await tf.SaveAsync());
+                res.AddReturnedValue(await tf.SaveAsync(tr));
             }
             catch (Exception ex)
             {
@@ -142,59 +144,57 @@ namespace EntityCache.Bussines
 
             return res;
         }
-        public async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(bool status, string tranName = "")
+        public async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(bool status, SqlTransaction tr = null)
         {
             var res = new ReturnedSaveFuncInfo();
-            var autoTran = string.IsNullOrEmpty(tranName);
-            if (autoTran) tranName = Guid.NewGuid().ToString();
+            var autoTran = tr == null;
+            SqlConnection cn = null;
             try
             {
                 if (autoTran)
-                { //BeginTransaction
+                {
+                    cn = new SqlConnection(Cache.ConnectionString);
+                    await cn.OpenAsync();
+                    tr = cn.BeginTransaction();
                 }
 
-                var tafsil = await TafsilBussines.GetAsync(Guid);
+                var tafsil = await TafsilBussines.GetAsync(Guid, tr);
                 if (tafsil == null)
                 {
                     res.AddError("حساب انتخاب شده معتبر نمی باشد");
                     return res;
                 }
 
-                res.AddReturnedValue(await tafsil.ChangeStatusAsync(status));
+                res.AddReturnedValue(await tafsil.ChangeStatusAsync(status, tr));
                 if (res.HasError) return res;
-                res.AddReturnedValue(await PhoneBookBussines.ChangeStatusAsync(Guid, status));
+                res.AddReturnedValue(await PhoneBookBussines.ChangeStatusAsync(Guid, status, tr));
                 if (res.HasError) return res;
-                res.AddReturnedValue(await UnitOfWork.Advisor.ChangeStatusAsync(this, status, tranName));
-                if (res.HasError) return res;
-                if (autoTran)
-                {
-                    //CommitTransAction
-                }
-
-                //if (Cache.IsSendToServer)
-                //    _ = Task.Run(() => WebHazine.SaveAsync(this));
+                res.AddReturnedValue(await UnitOfWork.Advisor.ChangeStatusAsync(this, status, tr));
             }
             catch (Exception ex)
             {
-                if (autoTran)
-                {
-                    //RollBackTransAction
-                }
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
                 res.AddReturnedValue(ex);
             }
-
+            finally
+            {
+                if (autoTran)
+                {
+                    res.AddReturnedValue(tr.TransactionDestiny(res.HasError));
+                    res.AddReturnedValue(cn.CloseConnection());
+                }
+            }
             return res;
         }
-        private async Task<ReturnedSaveFuncInfo> SaveMobileAsync()
+        private async Task<ReturnedSaveFuncInfo> SaveMobileAsync(SqlTransaction tr)
         {
             var res = new ReturnedSaveFuncInfo();
             try
             {
-                res.AddReturnedValue(await PhoneBookBussines.RemoveAsync(Guid));
+                res.AddReturnedValue(await PhoneBookBussines.RemoveAsync(Guid, tr));
                 if (res.HasError) return res;
 
-                var tellList=new List<PhoneBookBussines>();
+                var tellList = new List<PhoneBookBussines>();
                 if (!string.IsNullOrEmpty(Mobile1))
                 {
                     var mob1 = new PhoneBookBussines()
@@ -223,7 +223,7 @@ namespace EntityCache.Bussines
                     };
                     tellList.Add(mob1);
                 }
-                res.AddReturnedValue(await PhoneBookBussines.SaveRangeAsync(tellList));
+                res.AddReturnedValue(await PhoneBookBussines.SaveRangeAsync(tellList, tr));
             }
             catch (Exception ex)
             {

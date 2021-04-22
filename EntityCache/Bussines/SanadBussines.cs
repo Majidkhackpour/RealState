@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 using EntityCache.Assistence;
 using Nito.AsyncEx;
+using Persistence;
 using Services;
 using Services.Interfaces.Building;
 
@@ -13,7 +15,8 @@ namespace EntityCache.Bussines
     {
         public Guid Guid { get; set; }
         public DateTime Modified { get; set; } = DateTime.Now;
-        public bool Status { get; set; } = true;
+        public ServerStatus ServerStatus { get; set; } = ServerStatus.None;
+        public DateTime ServerDeliveryDate { get; set; } = DateTime.Now;
         public DateTime DateM { get; set; } = DateTime.Now;
         public string DateSh => Calendar.MiladiToShamsi(DateM);
         public string Description { get; set; }
@@ -43,19 +46,22 @@ namespace EntityCache.Bussines
         public List<SanadDetailBussines> Details { get; set; }
 
 
-        public static async Task<List<SanadBussines>> GetAllAsync() => await UnitOfWork.Sanad.GetAllAsync();
-        public static async Task<SanadBussines> GetAsync(Guid guid) => await UnitOfWork.Sanad.GetAsync(guid);
+        public static async Task<List<SanadBussines>> GetAllAsync() => await UnitOfWork.Sanad.GetAllAsync(Cache.ConnectionString);
+        public static async Task<SanadBussines> GetAsync(Guid guid) => await UnitOfWork.Sanad.GetAsync(Cache.ConnectionString, guid);
         public static SanadBussines Get(Guid guid) => AsyncContext.Run(() => GetAsync(guid));
-        public static async Task<SanadBussines> GetAsync(long number) => await UnitOfWork.Sanad.GetAsync(number);
-        public async Task<ReturnedSaveFuncInfo> SaveAsync(string tranName = "")
+        public static async Task<SanadBussines> GetAsync(long number) => await UnitOfWork.Sanad.GetAsync(Cache.ConnectionString, number);
+        public async Task<ReturnedSaveFuncInfo> SaveAsync(SqlTransaction tr = null)
         {
             var res = new ReturnedSaveFuncInfo();
-            var autoTran = string.IsNullOrEmpty(tranName);
-            if (autoTran) tranName = Guid.NewGuid().ToString();
+            var autoTran = tr == null;
+            SqlConnection cn = null;
             try
             {
                 if (autoTran)
-                { //BeginTransaction
+                {
+                    cn = new SqlConnection(Cache.ConnectionString);
+                    await cn.OpenAsync();
+                    tr = cn.BeginTransaction();
                 }
 
                 res.AddReturnedValue(await CheckvalidationAsync());
@@ -64,78 +70,78 @@ namespace EntityCache.Bussines
                 var oldSanad = await GetAsync(Guid);
                 if (oldSanad != null)
                 {
-                    res.AddReturnedValue(await UpdateAccounts(oldSanad.Details, true));
+                    res.AddReturnedValue(await UpdateAccounts(oldSanad.Details, true, tr));
                     if (res.HasError) return res;
                 }
 
-                res.AddReturnedValue(await UnitOfWork.Sanad.SaveAsync(this, tranName));
+                res.AddReturnedValue(await UnitOfWork.Sanad.SaveAsync(this, tr));
                 if (res.HasError) return res;
                 foreach (var item in Details) item.MasterGuid = Guid;
-                res.AddReturnedValue(await SanadDetailBussines.RemoveRangeAsync(Guid));
+                res.AddReturnedValue(await SanadDetailBussines.RemoveRangeAsync(Guid, tr));
                 if (res.HasError) return res;
-                res.AddReturnedValue(await SanadDetailBussines.SaveRangeAsync(Details, tranName));
+                res.AddReturnedValue(await SanadDetailBussines.SaveRangeAsync(Details, tr));
                 if (res.HasError) return res;
-                res.AddReturnedValue(await UpdateAccounts(Details, false));
+                res.AddReturnedValue(await UpdateAccounts(Details, false, tr));
                 if (res.HasError) return res;
-
-                if (autoTran)
-                {
-                    //CommitTransAction
-                }
 
                 //if (Cache.IsSendToServer)
                 //    _ = Task.Run(() => WebRental.SaveAsync(list));
             }
             catch (Exception ex)
             {
-                if (autoTran)
-                {
-                    //RollBackTransAction
-                }
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
                 res.AddReturnedValue(ex);
             }
-
+            finally
+            {
+                if (autoTran)
+                {
+                    res.AddReturnedValue(tr.TransactionDestiny(res.HasError));
+                    res.AddReturnedValue(cn.CloseConnection());
+                }
+            }
             return res;
         }
-        public async Task<ReturnedSaveFuncInfo> RemoveAsync(string tranName = "")
+        public async Task<ReturnedSaveFuncInfo> RemoveAsync(SqlTransaction tr = null)
         {
             var res = new ReturnedSaveFuncInfo();
-            var autoTran = string.IsNullOrEmpty(tranName);
-            if (autoTran) tranName = Guid.NewGuid().ToString();
+            var autoTran = tr == null;
+            SqlConnection cn = null;
             try
             {
                 if (autoTran)
-                { //BeginTransaction
+                {
+                    cn = new SqlConnection(Cache.ConnectionString);
+                    await cn.OpenAsync();
+                    tr = cn.BeginTransaction();
                 }
 
-                res.AddReturnedValue(await UpdateAccounts(Details, true));
+                res.AddReturnedValue(await UpdateAccounts(Details, true, tr));
                 if (res.HasError) return res;
-                res.AddReturnedValue(await SanadDetailBussines.RemoveRangeAsync(Guid, tranName));
+                res.AddReturnedValue(await SanadDetailBussines.RemoveRangeAsync(Guid, tr));
                 if (res.HasError) return res;
-                res.AddReturnedValue(await UnitOfWork.Sanad.RemoveAsync(Guid, tranName));
+                res.AddReturnedValue(await UnitOfWork.Sanad.RemoveAsync(Guid, tr));
                 if (res.HasError) return res;
-                if (autoTran)
-                {
-                    //CommitTransAction
-                }
 
                 //if (Cache.IsSendToServer)
                 //    _ = Task.Run(() => WebRental.SaveAsync(list));
             }
             catch (Exception ex)
             {
-                if (autoTran)
-                {
-                    //RollBackTransAction
-                }
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
                 res.AddReturnedValue(ex);
             }
-
+            finally
+            {
+                if (autoTran)
+                {
+                    res.AddReturnedValue(tr.TransactionDestiny(res.HasError));
+                    res.AddReturnedValue(cn.CloseConnection());
+                }
+            }
             return res;
         }
-        private static async Task<ReturnedSaveFuncInfo> UpdateAccounts(List<SanadDetailBussines> dets, bool isRemove)
+        private static async Task<ReturnedSaveFuncInfo> UpdateAccounts(List<SanadDetailBussines> dets, bool isRemove, SqlTransaction tr)
         {
             var res = new ReturnedSaveFuncInfo();
             try
@@ -167,8 +173,8 @@ namespace EntityCache.Bussines
                         return res;
                     }
 
-                    res.AddReturnedValue(await moein.UpdateAccountAsync(price));
-                    res.AddReturnedValue(await tafsil.UpdateAccountAsync(price));
+                    res.AddReturnedValue(await moein.UpdateAccountAsync(price, tr));
+                    res.AddReturnedValue(await tafsil.UpdateAccountAsync(price, tr));
                 }
             }
             catch (Exception ex)
@@ -270,9 +276,9 @@ namespace EntityCache.Bussines
                 return new List<SanadBussines>();
             }
         }
-        public static async Task<long> NextNumberAsync() => await UnitOfWork.Sanad.NextNumberAsync();
+        public static async Task<long> NextNumberAsync() => await UnitOfWork.Sanad.NextNumberAsync(Cache.ConnectionString);
         public static long NextNumber() => AsyncContext.Run(NextNumberAsync);
-        public async Task<bool> CheckCodeAsync(Guid guid, long code) => await UnitOfWork.Sanad.CheckCodeAsync(guid, code);
+        public async Task<bool> CheckCodeAsync(Guid guid, long code) => await UnitOfWork.Sanad.CheckCodeAsync(Cache.ConnectionString, guid, code);
         private async Task<ReturnedSaveFuncInfo> CheckvalidationAsync()
         {
             var res = new ReturnedSaveFuncInfo();

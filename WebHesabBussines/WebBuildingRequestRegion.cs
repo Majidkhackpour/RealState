@@ -14,7 +14,6 @@ namespace WebHesabBussines
 
         public Guid Guid { get; set; }
         public DateTime Modified { get; set; }
-        public bool Status { get; set; }
         public Guid RequestGuid { get; set; }
         public Guid RegionGuid { get; set; }
         public string HardSerial { get; set; }
@@ -42,7 +41,6 @@ namespace WebHesabBussines
                     {
                         Guid = cls.Guid,
                         Modified = cls.Modified,
-                        Status = cls.Status,
                         HardSerial = cls.HardSerial,
                         RegionGuid = cls.RegionGuid,
                         RequestGuid = cls.RequestGuid

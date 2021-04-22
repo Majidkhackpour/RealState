@@ -1,12 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Threading.Tasks;
 using EntityCache.Bussines;
+using Services;
 
 namespace EntityCache.Core
 {
-    public interface IBuildingRequestRepository : IRepository<BuildingRequestBussines>
+    public interface IBuildingRequestRepository
     {
-        Task<int> DbCount(Guid userGuid);
+        Task<List<BuildingRequestBussines>> GetAllAsync(string _connectionString);
+        Task<int> DbCount(string _connectionString, Guid userGuid);
+        Task<BuildingRequestBussines> GetAsync(string _connectionString, Guid guid);
+        Task<ReturnedSaveFuncInfo> ChangeStatusAsync(BuildingRequestBussines item, bool status, SqlTransaction tr);
+        Task<ReturnedSaveFuncInfo> SaveAsync(BuildingRequestBussines item, SqlTransaction tr);
     }
 }

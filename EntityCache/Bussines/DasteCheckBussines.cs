@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 using EntityCache.Assistence;
 using Nito.AsyncEx;
+using Persistence;
 using Services;
 using Services.Interfaces.Building;
 
@@ -14,6 +16,8 @@ namespace EntityCache.Bussines
         public Guid Guid { get; set; }
         public DateTime Modified { get; set; }
         public bool Status { get; set; }
+        public ServerStatus ServerStatus { get; set; } = ServerStatus.None;
+        public DateTime ServerDeliveryDate { get; set; } = DateTime.Now;
         public string SerialNumber { get; set; }
         public string Name => $"{BankName} سریال {SerialNumber} / {PageCount} برگی";
         public Guid BankGuid { get; set; }
@@ -25,7 +29,7 @@ namespace EntityCache.Bussines
         public List<CheckPageBussines> CheckPages { get; set; }
 
 
-        public static async Task<List<DasteCheckBussines>> GetAllAsync() => await UnitOfWork.DasteCheck.GetAllAsync();
+        public static async Task<List<DasteCheckBussines>> GetAllAsync() => await UnitOfWork.DasteCheck.GetAllAsync(Cache.ConnectionString);
         public static async Task<List<DasteCheckBussines>> GetAllAsync(string search)
         {
             try
@@ -60,78 +64,82 @@ namespace EntityCache.Bussines
                 return new List<DasteCheckBussines>();
             }
         }
-        public static async Task<DasteCheckBussines> GetAsync(Guid guid) => await UnitOfWork.DasteCheck.GetAsync(guid);
+        public static async Task<DasteCheckBussines> GetAsync(Guid guid) => await UnitOfWork.DasteCheck.GetAsync(Cache.ConnectionString, guid);
         public static DasteCheckBussines Get(Guid guid) => AsyncContext.Run(() => GetAsync(guid));
-        public async Task<ReturnedSaveFuncInfo> SaveAsync(string tranName = "")
+        public async Task<ReturnedSaveFuncInfo> SaveAsync(SqlTransaction tr = null)
         {
             var res = new ReturnedSaveFuncInfo();
-            var autoTran = string.IsNullOrEmpty(tranName);
-            if (autoTran) tranName = Guid.NewGuid().ToString();
+            var autoTran = tr == null;
+            SqlConnection cn = null;
             try
             {
                 if (autoTran)
-                { //BeginTransaction
+                {
+                    cn = new SqlConnection(Cache.ConnectionString);
+                    await cn.OpenAsync();
+                    tr = cn.BeginTransaction();
                 }
 
                 res.AddReturnedValue(CheckValidation());
                 if (res.HasError) return res;
-                res.AddReturnedValue(await CheckPageBussines.RemoveAllAsync(Guid));
+                res.AddReturnedValue(await CheckPageBussines.RemoveAllAsync(Guid, tr));
                 if (res.HasError) return res;
-                res.AddReturnedValue(await UnitOfWork.DasteCheck.SaveAsync(this, tranName));
+                res.AddReturnedValue(await UnitOfWork.DasteCheck.SaveAsync(this, tr));
                 if (res.HasError) return res;
-                res.AddReturnedValue(await CheckPageBussines.SaveRangeAsync(CheckPages));
+                res.AddReturnedValue(await CheckPageBussines.SaveRangeAsync(CheckPages, tr));
                 if (res.HasError) return res;
-
-                if (autoTran)
-                {
-                    //CommitTransAction
-                }
 
                 //if (Cache.IsSendToServer)
                 //    _ = Task.Run(() => WebUser.SaveAsync(this));
             }
             catch (Exception ex)
             {
-                if (autoTran)
-                {
-                    //RollBackTransAction
-                }
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
                 res.AddReturnedValue(ex);
             }
-
+            finally
+            {
+                if (autoTran)
+                {
+                    res.AddReturnedValue(tr.TransactionDestiny(res.HasError));
+                    res.AddReturnedValue(cn.CloseConnection());
+                }
+            }
             return res;
         }
-        public async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(bool status, string tranName = "")
+        public async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(bool status, SqlTransaction tr = null)
         {
             var res = new ReturnedSaveFuncInfo();
-            var autoTran = string.IsNullOrEmpty(tranName);
-            if (autoTran) tranName = Guid.NewGuid().ToString();
+            var autoTran = tr == null;
+            SqlConnection cn = null;
             try
             {
                 if (autoTran)
-                { //BeginTransaction
-                }
-                res.AddReturnedValue(await UnitOfWork.DasteCheck.ChangeStatusAsync(this, status, tranName));
-                if (res.HasError) return res;
-                if (autoTran)
                 {
-                    //CommitTransAction
+                    cn = new SqlConnection(Cache.ConnectionString);
+                    await cn.OpenAsync();
+                    tr = cn.BeginTransaction();
                 }
+
+                res.AddReturnedValue(await UnitOfWork.DasteCheck.ChangeStatusAsync(this, status, tr));
+                if (res.HasError) return res;
 
                 //if (Cache.IsSendToServer)
                 //    _ = Task.Run(() => WebHazine.SaveAsync(this));
             }
             catch (Exception ex)
             {
-                if (autoTran)
-                {
-                    //RollBackTransAction
-                }
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
                 res.AddReturnedValue(ex);
             }
-
+            finally
+            {
+                if (autoTran)
+                {
+                    res.AddReturnedValue(tr.TransactionDestiny(res.HasError));
+                    res.AddReturnedValue(cn.CloseConnection());
+                }
+            }
             return res;
         }
         private ReturnedSaveFuncInfo CheckValidation()

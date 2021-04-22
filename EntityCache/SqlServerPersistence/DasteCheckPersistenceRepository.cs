@@ -12,16 +12,9 @@ using Services;
 
 namespace EntityCache.SqlServerPersistence
 {
-    public class DasteCheckPersistenceRepository : GenericRepository<DasteCheckBussines, DasteCheck>, IDasteCheckRepository
+    public class DasteCheckPersistenceRepository : IDasteCheckRepository
     {
-        private ModelContext db;
-
-        private string _connectionString;
-        public DasteCheckPersistenceRepository(ModelContext _db, string connectionString) : base(_db, connectionString)
-        {
-            db = _db;
-            _connectionString = connectionString;
-        }
+        public DasteCheckPersistenceRepository() { }
         private DasteCheckBussines LoadData(SqlDataReader dr)
         {
             var item = new DasteCheckBussines();
@@ -36,6 +29,8 @@ namespace EntityCache.SqlServerPersistence
                 item.ToNumber = (long)dr["ToNumber"];
                 item.Description = dr["Description"].ToString();
                 item.BankName = dr["BankName"].ToString();
+                item.ServerDeliveryDate = (DateTime)dr["ServerDeliveryDate"];
+                item.ServerStatus = (ServerStatus)dr["ServerStatus"];
                 item.CheckPages = AsyncContext.Run(() => CheckPageBussines.GetAllAsync(item.Guid));
             }
             catch (Exception ex)
@@ -45,27 +40,23 @@ namespace EntityCache.SqlServerPersistence
 
             return item;
         }
-        public override async Task<ReturnedSaveFuncInfo> SaveAsync(DasteCheckBussines item, string tranName)
+        public async Task<ReturnedSaveFuncInfo> SaveAsync(DasteCheckBussines item, SqlTransaction tr)
         {
             var res = new ReturnedSaveFuncInfo();
             try
             {
-                using (var cn = new SqlConnection(_connectionString))
-                {
-                    var cmd = new SqlCommand("sp_DasteCheck_Save", cn) { CommandType = CommandType.StoredProcedure };
-                    cmd.Parameters.AddWithValue("@guid", item.Guid);
-                    cmd.Parameters.AddWithValue("@modif", item.Modified);
-                    cmd.Parameters.AddWithValue("@st", item.Status);
-                    cmd.Parameters.AddWithValue("@serial", item.SerialNumber??"");
-                    cmd.Parameters.AddWithValue("@bankGuid", item.BankGuid);
-                    cmd.Parameters.AddWithValue("@desc", item.Description);
-                    cmd.Parameters.AddWithValue("@fNumber", item.FromNumber);
-                    cmd.Parameters.AddWithValue("@toNumber", item.ToNumber);
-
-                    await cn.OpenAsync();
-                    await cmd.ExecuteNonQueryAsync();
-                    cn.Close();
-                }
+                var cmd = new SqlCommand("sp_DasteCheck_Save", tr.Connection, tr) { CommandType = CommandType.StoredProcedure };
+                cmd.Parameters.AddWithValue("@guid", item.Guid);
+                cmd.Parameters.AddWithValue("@modif", item.Modified);
+                cmd.Parameters.AddWithValue("@st", item.Status);
+                cmd.Parameters.AddWithValue("@serial", item.SerialNumber ?? "");
+                cmd.Parameters.AddWithValue("@bankGuid", item.BankGuid);
+                cmd.Parameters.AddWithValue("@desc", item.Description);
+                cmd.Parameters.AddWithValue("@fNumber", item.FromNumber);
+                cmd.Parameters.AddWithValue("@toNumber", item.ToNumber);
+                cmd.Parameters.AddWithValue("@serverSt", (short)item.ServerStatus);
+                cmd.Parameters.AddWithValue("@serverDate", item.ServerDeliveryDate);
+                await cmd.ExecuteNonQueryAsync();
             }
             catch (Exception ex)
             {
@@ -75,7 +66,7 @@ namespace EntityCache.SqlServerPersistence
 
             return res;
         }
-        public override async Task<List<DasteCheckBussines>> GetAllAsync()
+        public async Task<List<DasteCheckBussines>> GetAllAsync(string _connectionString)
         {
             var list = new List<DasteCheckBussines>();
             try
@@ -97,7 +88,7 @@ namespace EntityCache.SqlServerPersistence
 
             return list;
         }
-        public override async Task<DasteCheckBussines> GetAsync(Guid guid)
+        public async Task<DasteCheckBussines> GetAsync(string _connectionString, Guid guid)
         {
             DasteCheckBussines res = null;
             try
@@ -120,21 +111,16 @@ namespace EntityCache.SqlServerPersistence
 
             return res;
         }
-        public override async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(DasteCheckBussines item, bool status, string tranName)
+        public async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(DasteCheckBussines item, bool status, SqlTransaction tr)
         {
             var res = new ReturnedSaveFuncInfo();
             try
             {
-                using (var cn = new SqlConnection(_connectionString))
-                {
-                    var cmd = new SqlCommand("sp_DasteCheck_ChangeStatus", cn) { CommandType = CommandType.StoredProcedure };
-                    cmd.Parameters.AddWithValue("@Guid", item.Guid);
-                    cmd.Parameters.AddWithValue("@st", status);
+                var cmd = new SqlCommand("sp_DasteCheck_ChangeStatus", tr.Connection, tr) { CommandType = CommandType.StoredProcedure };
+                cmd.Parameters.AddWithValue("@Guid", item.Guid);
+                cmd.Parameters.AddWithValue("@st", status);
 
-                    await cn.OpenAsync();
-                    await cmd.ExecuteNonQueryAsync();
-                    cn.Close();
-                }
+                await cmd.ExecuteNonQueryAsync();
             }
             catch (Exception ex)
             {

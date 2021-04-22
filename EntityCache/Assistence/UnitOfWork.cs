@@ -136,9 +136,7 @@ namespace EntityCache.Assistence
                                                                 new PeoplesPersistenceRepository(db, _connectionString));
 
 
-        public static IPhoneBookRepository PhoneBook => _phoneBookRepository ??
-                                                            (_phoneBookRepository =
-                                                                new PhoneBookPersistenceRepository(db, _connectionString));
+        public static IPhoneBookRepository PhoneBook => _phoneBookRepository ?? (_phoneBookRepository = new PhoneBookPersistenceRepository());
 
 
         public static IPeoplesBankAccountRepository PeopleBankAccount => _peopleBankRepository ??

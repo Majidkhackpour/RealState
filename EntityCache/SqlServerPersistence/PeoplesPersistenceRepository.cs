@@ -12,17 +12,9 @@ using System.Threading.Tasks;
 
 namespace EntityCache.SqlServerPersistence
 {
-    public class PeoplesPersistenceRepository : GenericRepository<PeoplesBussines, Peoples>, IPeoplesRepository
+    public class PeoplesPersistenceRepository : IPeoplesRepository
     {
-        ModelContext db;
-        private string _connectionString;
-        public PeoplesPersistenceRepository(ModelContext _db, string connectionString) : base(_db, connectionString)
-        {
-            db = _db;
-            _connectionString = connectionString;
-        }
-
-        public async Task<List<PeoplesBussines>> GetAllAsync(Guid parentGuid, bool status)
+        public async Task<List<PeoplesBussines>> GetAllAsync(string _connectionString, Guid parentGuid, bool status)
         {
             var list = new List<PeoplesBussines>();
             try
@@ -47,7 +39,7 @@ namespace EntityCache.SqlServerPersistence
 
             return list;
         }
-        public override async Task<List<PeoplesBussines>> GetAllAsync()
+        public async Task<List<PeoplesBussines>> GetAllAsync(string _connectionString)
         {
             var list = new List<PeoplesBussines>();
             try
@@ -69,7 +61,7 @@ namespace EntityCache.SqlServerPersistence
 
             return list;
         }
-        public override async Task<PeoplesBussines> GetAsync(Guid guid)
+        public async Task<PeoplesBussines> GetAsync(string _connectionString, Guid guid)
         {
             PeoplesBussines res = null;
             try
@@ -92,33 +84,30 @@ namespace EntityCache.SqlServerPersistence
 
             return res;
         }
-        public override async Task<ReturnedSaveFuncInfo> SaveAsync(PeoplesBussines item, string tranName)
+        public async Task<ReturnedSaveFuncInfo> SaveAsync(PeoplesBussines item, SqlTransaction tr)
         {
             var res = new ReturnedSaveFuncInfo();
             try
             {
-                using (var cn = new SqlConnection(_connectionString))
-                {
-                    var cmd = new SqlCommand("sp_Peoples_Save", cn) { CommandType = CommandType.StoredProcedure };
-                    cmd.Parameters.AddWithValue("@guid", item.Guid);
-                    cmd.Parameters.AddWithValue("@modif", item.Modified);
-                    cmd.Parameters.AddWithValue("@st", item.Status);
-                    cmd.Parameters.AddWithValue("@name", item.Name);
-                    cmd.Parameters.AddWithValue("@code", item.Code);
-                    cmd.Parameters.AddWithValue("@nCode", item.NationalCode ?? "");
-                    cmd.Parameters.AddWithValue("@idCode", item.IdCode ?? "");
-                    cmd.Parameters.AddWithValue("@fName", item.FatherName ?? "");
-                    cmd.Parameters.AddWithValue("@pBirth", item.PlaceBirth ?? "");
-                    cmd.Parameters.AddWithValue("@dBirth", item.DateBirth ?? "");
-                    cmd.Parameters.AddWithValue("@address", item.Address ?? "");
-                    cmd.Parameters.AddWithValue("@issued", item.IssuedFrom ?? "");
-                    cmd.Parameters.AddWithValue("@postalCode", item.PostalCode ?? "");
-                    cmd.Parameters.AddWithValue("@groupGuid", item.GroupGuid);
+                var cmd = new SqlCommand("sp_Peoples_Save", tr.Connection, tr) { CommandType = CommandType.StoredProcedure };
+                cmd.Parameters.AddWithValue("@guid", item.Guid);
+                cmd.Parameters.AddWithValue("@modif", item.Modified);
+                cmd.Parameters.AddWithValue("@st", item.Status);
+                cmd.Parameters.AddWithValue("@name", item.Name);
+                cmd.Parameters.AddWithValue("@code", item.Code);
+                cmd.Parameters.AddWithValue("@nCode", item.NationalCode ?? "");
+                cmd.Parameters.AddWithValue("@idCode", item.IdCode ?? "");
+                cmd.Parameters.AddWithValue("@fName", item.FatherName ?? "");
+                cmd.Parameters.AddWithValue("@pBirth", item.PlaceBirth ?? "");
+                cmd.Parameters.AddWithValue("@dBirth", item.DateBirth ?? "");
+                cmd.Parameters.AddWithValue("@address", item.Address ?? "");
+                cmd.Parameters.AddWithValue("@issued", item.IssuedFrom ?? "");
+                cmd.Parameters.AddWithValue("@postalCode", item.PostalCode ?? "");
+                cmd.Parameters.AddWithValue("@groupGuid", item.GroupGuid);
+                cmd.Parameters.AddWithValue("@serverSt", (short)item.ServerStatus);
+                cmd.Parameters.AddWithValue("@serverDate", item.ServerDeliveryDate);
 
-                    await cn.OpenAsync();
-                    await cmd.ExecuteNonQueryAsync();
-                    cn.Close();
-                }
+                await cmd.ExecuteNonQueryAsync();
             }
             catch (Exception ex)
             {
@@ -128,21 +117,16 @@ namespace EntityCache.SqlServerPersistence
 
             return res;
         }
-        public override async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(PeoplesBussines item, bool status, string tranName)
+        public async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(PeoplesBussines item, bool status, SqlTransaction tr)
         {
             var res = new ReturnedSaveFuncInfo();
             try
             {
-                using (var cn = new SqlConnection(_connectionString))
-                {
-                    var cmd = new SqlCommand("sp_Peoples_ChangeStatus", cn) { CommandType = CommandType.StoredProcedure };
-                    cmd.Parameters.AddWithValue("@Guid", item.Guid);
-                    cmd.Parameters.AddWithValue("@st", status);
+                var cmd = new SqlCommand("sp_Peoples_ChangeStatus", tr.Connection, tr) { CommandType = CommandType.StoredProcedure };
+                cmd.Parameters.AddWithValue("@Guid", item.Guid);
+                cmd.Parameters.AddWithValue("@st", status);
 
-                    await cn.OpenAsync();
-                    await cmd.ExecuteNonQueryAsync();
-                    cn.Close();
-                }
+                await cmd.ExecuteNonQueryAsync();
             }
             catch (Exception ex)
             {
@@ -152,7 +136,7 @@ namespace EntityCache.SqlServerPersistence
 
             return res;
         }
-        public async Task<List<PeoplesBussines>> GetAllBirthDayAsync(string dateSh)
+        public async Task<List<PeoplesBussines>> GetAllBirthDayAsync(string _connectionString, string dateSh)
         {
             var list = new List<PeoplesBussines>();
             try
@@ -196,7 +180,9 @@ namespace EntityCache.SqlServerPersistence
                 item.IssuedFrom = dr["IssuedFrom"].ToString();
                 item.PostalCode = dr["PostalCode"].ToString();
                 item.GroupGuid = (Guid)dr["GroupGuid"];
-                item.BankList = AsyncContext.Run(() => PeoplesBankAccountBussines.GetAllAsync(item.Guid, true));
+                item.ServerDeliveryDate = (DateTime)dr["ServerDeliveryDate"];
+                item.ServerStatus = (ServerStatus)dr["ServerStatus"];
+                item.BankList = AsyncContext.Run(() => PeoplesBankAccountBussines.GetAllAsync(item.Guid));
                 item.TellList = PhoneBookBussines.GetAll(item.Guid, true);
             }
             catch (Exception ex)

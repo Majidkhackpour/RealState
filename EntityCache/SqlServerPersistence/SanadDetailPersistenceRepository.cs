@@ -11,15 +11,9 @@ using Services;
 
 namespace EntityCache.SqlServerPersistence
 {
-    public class SanadDetailPersistenceRepository : GenericRepository<SanadDetailBussines, SanadDetail>, ISanadDetailRepository
+    public class SanadDetailPersistenceRepository : ISanadDetailRepository
     {
-        private ModelContext db;
-        private string _connectionString;
-        public SanadDetailPersistenceRepository(ModelContext _db, string connectionString) : base(_db, connectionString)
-        {
-            db = _db;
-            _connectionString = connectionString;
-        }
+        public SanadDetailPersistenceRepository() { }
         private SanadDetailBussines LoadData(SqlDataReader dr)
         {
             var item = new SanadDetailBussines();
@@ -27,7 +21,6 @@ namespace EntityCache.SqlServerPersistence
             {
                 item.Guid = (Guid)dr["Guid"];
                 item.Modified = (DateTime)dr["Modified"];
-                item.Status = (bool)dr["Status"];
                 item.MoeinGuid = (Guid)dr["MoeinGuid"];
                 item.MoeinCode = dr["MoeinCode"].ToString();
                 item.MoeinName = dr["MoeinName"].ToString();
@@ -38,6 +31,8 @@ namespace EntityCache.SqlServerPersistence
                 item.MasterGuid = (Guid)dr["MasterGuid"];
                 item.Debit = (decimal)dr["Debit"];
                 item.Credit = (decimal)dr["Credit"];
+                item.ServerDeliveryDate = (DateTime)dr["ServerDeliveryDate"];
+                item.ServerStatus = (ServerStatus)dr["ServerStatus"];
             }
             catch (Exception ex)
             {
@@ -71,7 +66,7 @@ namespace EntityCache.SqlServerPersistence
 
             return item;
         }
-        public async Task<List<SanadDetailBussines>> GetAllAsync(Guid masterGuid)
+        public async Task<List<SanadDetailBussines>> GetAllAsync(string _connectionString, Guid masterGuid)
         {
             var list = new List<SanadDetailBussines>();
             try
@@ -95,21 +90,16 @@ namespace EntityCache.SqlServerPersistence
 
             return list;
         }
-        public async Task<ReturnedSaveFuncInfo> RemoveRangeAsync(Guid masterGuid)
+        public async Task<ReturnedSaveFuncInfo> RemoveRangeAsync(Guid masterGuid, SqlTransaction tr)
         {
             var res = new ReturnedSaveFuncInfo();
             try
             {
-                using (var cn = new SqlConnection(_connectionString))
-                {
-                    var cmd = new SqlCommand("sp_SanadDetail_RemoveByMasterGuid", cn)
-                    { CommandType = CommandType.StoredProcedure };
-                    cmd.Parameters.AddWithValue("@masterGuid", masterGuid);
+                var cmd = new SqlCommand("sp_SanadDetail_RemoveByMasterGuid", tr.Connection, tr)
+                { CommandType = CommandType.StoredProcedure };
+                cmd.Parameters.AddWithValue("@masterGuid", masterGuid);
 
-                    await cn.OpenAsync();
-                    await cmd.ExecuteNonQueryAsync();
-                    cn.Close();
-                }
+                await cmd.ExecuteNonQueryAsync();
             }
             catch (Exception ex)
             {
@@ -119,7 +109,7 @@ namespace EntityCache.SqlServerPersistence
 
             return res;
         }
-        public async Task<List<GardeshBussines>> GetAllGardeshAsync(Guid tafsilGuid)
+        public async Task<List<GardeshBussines>> GetAllGardeshAsync(string _connectionString, Guid tafsilGuid)
         {
             var list = new List<GardeshBussines>();
             try
@@ -143,13 +133,13 @@ namespace EntityCache.SqlServerPersistence
 
             return list;
         }
-        public override async Task<ReturnedSaveFuncInfo> SaveRangeAsync(IEnumerable<SanadDetailBussines> items, string tranName)
+        public async Task<ReturnedSaveFuncInfo> SaveRangeAsync(IEnumerable<SanadDetailBussines> items, SqlTransaction tr)
         {
             var res = new ReturnedSaveFuncInfo();
             try
             {
                 foreach (var item in items)
-                    res.AddReturnedValue(await SaveAsync(item, tranName));
+                    res.AddReturnedValue(await SaveAsync(item, tr));
             }
             catch (Exception ex)
             {
@@ -159,28 +149,24 @@ namespace EntityCache.SqlServerPersistence
 
             return res;
         }
-        public override async Task<ReturnedSaveFuncInfo> SaveAsync(SanadDetailBussines item, string tranName)
+        public async Task<ReturnedSaveFuncInfo> SaveAsync(SanadDetailBussines item, SqlTransaction tr)
         {
             var res = new ReturnedSaveFuncInfo();
             try
             {
-                using (var cn = new SqlConnection(_connectionString))
-                {
-                    var cmd = new SqlCommand("sp_SanadDetail_Save", cn) { CommandType = CommandType.StoredProcedure };
-                    cmd.Parameters.AddWithValue("@guid", item.Guid);
-                    cmd.Parameters.AddWithValue("@modif", item.Modified);
-                    cmd.Parameters.AddWithValue("@st", item.Status);
-                    cmd.Parameters.AddWithValue("@moeinGuid", item.MoeinGuid);
-                    cmd.Parameters.AddWithValue("@desc", item.Description ?? "");
-                    cmd.Parameters.AddWithValue("@tafsilGuid", item.TafsilGuid);
-                    cmd.Parameters.AddWithValue("@debit", item.Debit);
-                    cmd.Parameters.AddWithValue("@credit", item.Credit);
-                    cmd.Parameters.AddWithValue("@masterGuid", item.MasterGuid);
+                var cmd = new SqlCommand("sp_SanadDetail_Save", tr.Connection, tr) { CommandType = CommandType.StoredProcedure };
+                cmd.Parameters.AddWithValue("@guid", item.Guid);
+                cmd.Parameters.AddWithValue("@modif", item.Modified);
+                cmd.Parameters.AddWithValue("@moeinGuid", item.MoeinGuid);
+                cmd.Parameters.AddWithValue("@desc", item.Description ?? "");
+                cmd.Parameters.AddWithValue("@tafsilGuid", item.TafsilGuid);
+                cmd.Parameters.AddWithValue("@debit", item.Debit);
+                cmd.Parameters.AddWithValue("@credit", item.Credit);
+                cmd.Parameters.AddWithValue("@masterGuid", item.MasterGuid);
+                cmd.Parameters.AddWithValue("@serverSt", (short)item.ServerStatus);
+                cmd.Parameters.AddWithValue("@serverDate", item.ServerDeliveryDate);
 
-                    await cn.OpenAsync();
-                    await cmd.ExecuteNonQueryAsync();
-                    cn.Close();
-                }
+                await cmd.ExecuteNonQueryAsync();
             }
             catch (Exception ex)
             {

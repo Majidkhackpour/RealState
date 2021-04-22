@@ -8,8 +8,6 @@ namespace User
     public class UserLog : IUserLog
     {
         public Guid Guid { get; set; }
-        public DateTime Modified { get; set; } = DateTime.Now;
-        public bool Status { get; set; } = true;
         public Guid UserGuid { get; set; }
         public DateTime Date { get; set; } = DateTime.Now;
         public string DateSh => Calendar.MiladiToShamsi(Date);

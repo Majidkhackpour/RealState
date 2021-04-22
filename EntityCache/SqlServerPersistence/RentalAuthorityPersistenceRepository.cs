@@ -12,17 +12,9 @@ using Services;
 
 namespace EntityCache.SqlServerPersistence
 {
-    public class RentalAuthorityPersistenceRepository : GenericRepository<RentalAuthorityBussines, RentalAuthority>, IRentalAuthorityRepository
+    public class RentalAuthorityPersistenceRepository : IRentalAuthorityRepository
     {
-        private ModelContext db;
-        private string _connectionString;
-        public RentalAuthorityPersistenceRepository(ModelContext _db, string connectionString) : base(_db, connectionString)
-        {
-            db = _db;
-            _connectionString = connectionString;
-        }
-
-        public async Task<bool> CheckNameAsync(string name, Guid guid)
+        public async Task<bool> CheckNameAsync(string _connectionString, string name, Guid guid)
         {
             try
             {
@@ -44,7 +36,7 @@ namespace EntityCache.SqlServerPersistence
                 return false;
             }
         }
-        public async Task<RentalAuthorityBussines> GetAsync(string name)
+        public async Task<RentalAuthorityBussines> GetAsync(string _connectionString, string name)
         {
             var obj = new RentalAuthorityBussines();
             try
@@ -66,7 +58,7 @@ namespace EntityCache.SqlServerPersistence
 
             return obj;
         }
-        public override async Task<RentalAuthorityBussines> GetAsync(Guid guid)
+        public async Task<RentalAuthorityBussines> GetAsync(string _connectionString, Guid guid)
         {
             var obj = new RentalAuthorityBussines();
             try
@@ -88,7 +80,7 @@ namespace EntityCache.SqlServerPersistence
 
             return obj;
         }
-        public override async Task<List<RentalAuthorityBussines>> GetAllAsync()
+        public async Task<List<RentalAuthorityBussines>> GetAllAsync(string _connectionString)
         {
             var list = new List<RentalAuthorityBussines>();
             try
@@ -110,23 +102,20 @@ namespace EntityCache.SqlServerPersistence
 
             return list;
         }
-        public override async Task<ReturnedSaveFuncInfo> SaveAsync(RentalAuthorityBussines item, string tranName)
+        public async Task<ReturnedSaveFuncInfo> SaveAsync(RentalAuthorityBussines item, SqlTransaction tr)
         {
             var res = new ReturnedSaveFuncInfo();
             try
             {
-                using (var cn = new SqlConnection(_connectionString))
-                {
-                    var cmd = new SqlCommand("sp_Rental_Save", cn) { CommandType = CommandType.StoredProcedure };
-                    cmd.Parameters.AddWithValue("@guid", item.Guid);
-                    cmd.Parameters.AddWithValue("@st", item.Status);
-                    cmd.Parameters.AddWithValue("@name", item.Name ?? "");
-                    cmd.Parameters.AddWithValue("@modif", item.Modified);
+                var cmd = new SqlCommand("sp_Rental_Save", tr.Connection, tr) { CommandType = CommandType.StoredProcedure };
+                cmd.Parameters.AddWithValue("@guid", item.Guid);
+                cmd.Parameters.AddWithValue("@st", item.Status);
+                cmd.Parameters.AddWithValue("@name", item.Name ?? "");
+                cmd.Parameters.AddWithValue("@modif", item.Modified);
+                cmd.Parameters.AddWithValue("@serverSt", (short)item.ServerStatus);
+                cmd.Parameters.AddWithValue("@serverDate", item.ServerDeliveryDate);
 
-                    await cn.OpenAsync();
-                    await cmd.ExecuteNonQueryAsync();
-                    cn.Close();
-                }
+                await cmd.ExecuteNonQueryAsync();
             }
             catch (Exception ex)
             {
@@ -136,14 +125,14 @@ namespace EntityCache.SqlServerPersistence
 
             return res;
         }
-        public override async Task<ReturnedSaveFuncInfo> SaveRangeAsync(IEnumerable<RentalAuthorityBussines> items, string tranName)
+        public async Task<ReturnedSaveFuncInfo> SaveRangeAsync(IEnumerable<RentalAuthorityBussines> items, SqlTransaction tr)
         {
             var res = new ReturnedSaveFuncInfo();
             try
             {
                 foreach (var item in items)
                 {
-                    res.AddReturnedValue(await SaveAsync(item, tranName));
+                    res.AddReturnedValue(await SaveAsync(item, tr));
                     if (res.HasError) return res;
                 }
             }
@@ -154,21 +143,16 @@ namespace EntityCache.SqlServerPersistence
             }
             return res;
         }
-        public override async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(RentalAuthorityBussines item, bool status, string tranName)
+        public async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(RentalAuthorityBussines item, bool status, SqlTransaction tr)
         {
             var res = new ReturnedSaveFuncInfo();
             try
             {
-                using (var cn = new SqlConnection(_connectionString))
-                {
-                    var cmd = new SqlCommand("sp_Rental_ChangeStatus", cn) { CommandType = CommandType.StoredProcedure };
-                    cmd.Parameters.AddWithValue("@Guid", item.Guid);
-                    cmd.Parameters.AddWithValue("@st", status);
+                var cmd = new SqlCommand("sp_Rental_ChangeStatus", tr.Connection, tr) { CommandType = CommandType.StoredProcedure };
+                cmd.Parameters.AddWithValue("@Guid", item.Guid);
+                cmd.Parameters.AddWithValue("@st", status);
 
-                    await cn.OpenAsync();
-                    await cmd.ExecuteNonQueryAsync();
-                    cn.Close();
-                }
+                await cmd.ExecuteNonQueryAsync();
             }
             catch (Exception ex)
             {
@@ -187,6 +171,8 @@ namespace EntityCache.SqlServerPersistence
                 item.Modified = (DateTime)dr["Modified"];
                 item.Status = (bool)dr["Status"];
                 item.Name = dr["Name"].ToString();
+                item.ServerDeliveryDate = (DateTime)dr["ServerDeliveryDate"];
+                item.ServerStatus = (ServerStatus)dr["ServerStatus"];
             }
             catch (Exception ex)
             {

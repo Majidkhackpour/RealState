@@ -1,7 +1,5 @@
 ﻿using EntityCache.Bussines;
 using EntityCache.Core;
-using Persistence.Entities;
-using Persistence.Model;
 using Services;
 using System;
 using System.Collections.Generic;
@@ -11,17 +9,9 @@ using System.Threading.Tasks;
 
 namespace EntityCache.SqlServerPersistence
 {
-    public class PhoneBookPersistenceRepository : GenericRepository<PhoneBookBussines, PhoneBook>, IPhoneBookRepository
+    public class PhoneBookPersistenceRepository : IPhoneBookRepository
     {
-        private ModelContext db;
-        private string _connectionString;
-        public PhoneBookPersistenceRepository(ModelContext _db, string connectionString) : base(_db, connectionString)
-        {
-            db = _db;
-            _connectionString = connectionString;
-        }
-
-        public async Task<List<PhoneBookBussines>> GetAllAsync(Guid parentGuid, bool status)
+        public async Task<List<PhoneBookBussines>> GetAllAsync(string _connectionString, Guid parentGuid, bool status)
         {
             var list = new List<PhoneBookBussines>();
             try
@@ -34,6 +24,7 @@ namespace EntityCache.SqlServerPersistence
                     await cn.OpenAsync();
                     var dr = await cmd.ExecuteReaderAsync();
                     while (dr.Read()) list.Add(LoadData(dr));
+                    dr.Close();
                     cn.Close();
                 }
             }
@@ -44,7 +35,7 @@ namespace EntityCache.SqlServerPersistence
 
             return list;
         }
-        public override async Task<PhoneBookBussines> GetAsync(Guid guid)
+        public async Task<PhoneBookBussines> GetAsync(string _connectionString, Guid guid)
         {
             PhoneBookBussines res = null;
             try
@@ -57,6 +48,7 @@ namespace EntityCache.SqlServerPersistence
                     await cn.OpenAsync();
                     var dr = await cmd.ExecuteReaderAsync();
                     if (dr.Read()) res = LoadData(dr);
+                    dr.Close();
                     cn.Close();
                 }
             }
@@ -67,7 +59,7 @@ namespace EntityCache.SqlServerPersistence
 
             return res;
         }
-        public override async Task<List<PhoneBookBussines>> GetAllAsync()
+        public async Task<List<PhoneBookBussines>> GetAllAsync(string _connectionString)
         {
             var list = new List<PhoneBookBussines>();
             try
@@ -79,6 +71,7 @@ namespace EntityCache.SqlServerPersistence
                     await cn.OpenAsync();
                     var dr = await cmd.ExecuteReaderAsync();
                     while (dr.Read()) list.Add(LoadData(dr));
+                    dr.Close();
                     cn.Close();
                 }
             }
@@ -89,21 +82,16 @@ namespace EntityCache.SqlServerPersistence
 
             return list;
         }
-        public override async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(PhoneBookBussines item, bool status, string tranName)
+        public async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(PhoneBookBussines item, bool status, SqlTransaction tr)
         {
             var res = new ReturnedSaveFuncInfo();
             try
             {
-                using (var cn = new SqlConnection(_connectionString))
-                {
-                    var cmd = new SqlCommand("sp_PhoneBook_ChangeStatus", cn) { CommandType = CommandType.StoredProcedure };
-                    cmd.Parameters.AddWithValue("@Guid", item.Guid);
-                    cmd.Parameters.AddWithValue("@st", status);
+                var cmd = new SqlCommand("sp_PhoneBook_ChangeStatus", tr.Connection, tr) { CommandType = CommandType.StoredProcedure };
+                cmd.Parameters.AddWithValue("@Guid", item.Guid);
+                cmd.Parameters.AddWithValue("@st", status);
 
-                    await cn.OpenAsync();
-                    await cmd.ExecuteNonQueryAsync();
-                    cn.Close();
-                }
+                await cmd.ExecuteNonQueryAsync();
             }
             catch (Exception ex)
             {
@@ -113,22 +101,17 @@ namespace EntityCache.SqlServerPersistence
 
             return res;
         }
-        public async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(Guid parentGuid, bool status, string tranName)
+        public async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(Guid parentGuid, bool status, SqlTransaction tr)
         {
             var res = new ReturnedSaveFuncInfo();
             try
             {
-                using (var cn = new SqlConnection(_connectionString))
-                {
-                    var cmd = new SqlCommand("sp_PhoneBook_ChangeStatusByParenGuid", cn)
-                    { CommandType = CommandType.StoredProcedure };
-                    cmd.Parameters.AddWithValue("@parentGuid", parentGuid);
-                    cmd.Parameters.AddWithValue("@st", status);
+                var cmd = new SqlCommand("sp_PhoneBook_ChangeStatusByParenGuid", tr.Connection, tr)
+                { CommandType = CommandType.StoredProcedure };
+                cmd.Parameters.AddWithValue("@parentGuid", parentGuid);
+                cmd.Parameters.AddWithValue("@st", status);
 
-                    await cn.OpenAsync();
-                    await cmd.ExecuteNonQueryAsync();
-                    cn.Close();
-                }
+                await cmd.ExecuteNonQueryAsync();
             }
             catch (Exception ex)
             {
@@ -138,21 +121,16 @@ namespace EntityCache.SqlServerPersistence
 
             return res;
         }
-        public async Task<ReturnedSaveFuncInfo> RemoveAsync(Guid parentGuid)
+        public async Task<ReturnedSaveFuncInfo> RemoveByParentAsync(Guid parentGuid, SqlTransaction tr)
         {
             var res = new ReturnedSaveFuncInfo();
             try
             {
-                using (var cn = new SqlConnection(_connectionString))
-                {
-                    var cmd = new SqlCommand("sp_PhoneBook_RemoveByParentGuid", cn)
-                    { CommandType = CommandType.StoredProcedure };
-                    cmd.Parameters.AddWithValue("@parentGuid", parentGuid);
+                var cmd = new SqlCommand("sp_PhoneBook_RemoveByParentGuid", tr.Connection, tr)
+                { CommandType = CommandType.StoredProcedure };
+                cmd.Parameters.AddWithValue("@parentGuid", parentGuid);
 
-                    await cn.OpenAsync();
-                    await cmd.ExecuteNonQueryAsync();
-                    cn.Close();
-                }
+                await cmd.ExecuteNonQueryAsync();
             }
             catch (Exception ex)
             {
@@ -162,26 +140,23 @@ namespace EntityCache.SqlServerPersistence
 
             return res;
         }
-        public override async Task<ReturnedSaveFuncInfo> SaveAsync(PhoneBookBussines item, string tranName)
+        public async Task<ReturnedSaveFuncInfo> SaveAsync(PhoneBookBussines item, SqlTransaction tr)
         {
             var res = new ReturnedSaveFuncInfo();
             try
             {
-                using (var cn = new SqlConnection(_connectionString))
-                {
-                    var cmd = new SqlCommand("sp_PhoneBook_Save", cn) { CommandType = CommandType.StoredProcedure };
-                    cmd.Parameters.AddWithValue("@guid", item.Guid);
-                    cmd.Parameters.AddWithValue("@modif", item.Modified);
-                    cmd.Parameters.AddWithValue("@st", item.Status);
-                    cmd.Parameters.AddWithValue("@name", item.Name);
-                    cmd.Parameters.AddWithValue("@tell", item.Tell ?? "");
-                    cmd.Parameters.AddWithValue("@group", (short)item.Group);
-                    cmd.Parameters.AddWithValue("@parentGuid", item.ParentGuid);
+                var cmd = new SqlCommand("sp_PhoneBook_Save", tr.Connection, tr) { CommandType = CommandType.StoredProcedure };
+                cmd.Parameters.AddWithValue("@guid", item.Guid);
+                cmd.Parameters.AddWithValue("@modif", item.Modified);
+                cmd.Parameters.AddWithValue("@st", item.Status);
+                cmd.Parameters.AddWithValue("@name", item.Name);
+                cmd.Parameters.AddWithValue("@tell", item.Tell ?? "");
+                cmd.Parameters.AddWithValue("@group", (short)item.Group);
+                cmd.Parameters.AddWithValue("@parentGuid", item.ParentGuid);
+                cmd.Parameters.AddWithValue("@serverSt", (short)item.ServerStatus);
+                cmd.Parameters.AddWithValue("@serverDate", item.ServerDeliveryDate);
 
-                    await cn.OpenAsync();
-                    await cmd.ExecuteNonQueryAsync();
-                    cn.Close();
-                }
+                await cmd.ExecuteNonQueryAsync();
             }
             catch (Exception ex)
             {
@@ -191,21 +166,16 @@ namespace EntityCache.SqlServerPersistence
 
             return res;
         }
-        public override async Task<ReturnedSaveFuncInfo> RemoveAsync(Guid guid, string tranName)
+        public async Task<ReturnedSaveFuncInfo> RemoveAsync(Guid guid, SqlTransaction tr)
         {
             var res = new ReturnedSaveFuncInfo();
             try
             {
-                using (var cn = new SqlConnection(_connectionString))
-                {
-                    var cmd = new SqlCommand("sp_PhoneBook_Remove", cn)
-                    { CommandType = CommandType.StoredProcedure };
-                    cmd.Parameters.AddWithValue("@guid", guid);
+                var cmd = new SqlCommand("sp_PhoneBook_Remove", tr.Connection, tr)
+                { CommandType = CommandType.StoredProcedure };
+                cmd.Parameters.AddWithValue("@guid", guid);
 
-                    await cn.OpenAsync();
-                    await cmd.ExecuteNonQueryAsync();
-                    cn.Close();
-                }
+                await cmd.ExecuteNonQueryAsync();
             }
             catch (Exception ex)
             {
@@ -213,6 +183,24 @@ namespace EntityCache.SqlServerPersistence
                 res.AddReturnedValue(ex);
             }
 
+            return res;
+        }
+        public async Task<ReturnedSaveFuncInfo> SaveRangeAsync(IEnumerable<PhoneBookBussines> items, SqlTransaction tr)
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                foreach (var item in items)
+                {
+                    res.AddReturnedValue(await SaveAsync(item, tr));
+                    if (res.HasError) return res;
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
             return res;
         }
         private PhoneBookBussines LoadData(SqlDataReader dr)

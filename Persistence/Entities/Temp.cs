@@ -9,8 +9,6 @@ namespace Persistence.Entities
     {
         [Key]
         public Guid Guid { get; set; }
-        public DateTime Modified { get; set; }
-        public bool Status { get; set; }
         public EnTemp Type { get; set; }
         public Guid ObjectGuid { get; set; }
     }

@@ -1,15 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Threading.Tasks;
 using EntityCache.Bussines;
 using Services;
 
 namespace EntityCache.Core
 {
-    public interface ISanadDetailRepository : IRepository<SanadDetailBussines>
+    public interface ISanadDetailRepository
     {
-        Task<List<SanadDetailBussines>> GetAllAsync(Guid masterGuid);
-        Task<ReturnedSaveFuncInfo> RemoveRangeAsync(Guid masterGuid);
-        Task<List<GardeshBussines>> GetAllGardeshAsync(Guid tafsilGuid);
+        Task<ReturnedSaveFuncInfo> SaveAsync(SanadDetailBussines item, SqlTransaction tr);
+        Task<List<SanadDetailBussines>> GetAllAsync(string _connectionString, Guid masterGuid);
+        Task<ReturnedSaveFuncInfo> RemoveRangeAsync(Guid masterGuid, SqlTransaction tr);
+        Task<List<GardeshBussines>> GetAllGardeshAsync(string _connectionString, Guid tafsilGuid);
+        Task<ReturnedSaveFuncInfo> SaveRangeAsync(IEnumerable<SanadDetailBussines> items, SqlTransaction tr);
     }
 }

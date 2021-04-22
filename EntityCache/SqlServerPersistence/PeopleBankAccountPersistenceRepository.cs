@@ -13,17 +13,9 @@ using Services;
 
 namespace EntityCache.SqlServerPersistence
 {
-    public class PeopleBankAccountPersistenceRepository : GenericRepository<PeoplesBankAccountBussines, PeopleBankAccount>, IPeoplesBankAccountRepository
+    public class PeopleBankAccountPersistenceRepository : IPeoplesBankAccountRepository
     {
-        private ModelContext db;
-        private string _connectionString;
-        public PeopleBankAccountPersistenceRepository(ModelContext _db, string connectionString) : base(_db, connectionString)
-        {
-            db = _db;
-            _connectionString = connectionString;
-        }
-
-        public async Task<List<PeoplesBankAccountBussines>> GetAllAsync(Guid parentGuid, bool status)
+        public async Task<List<PeoplesBankAccountBussines>> GetAllAsync(string _connectionString, Guid parentGuid)
         {
             var list = new List<PeoplesBankAccountBussines>();
             try
@@ -32,7 +24,6 @@ namespace EntityCache.SqlServerPersistence
                 {
                     var cmd = new SqlCommand("sp_People_BankAccount_GetAllByParent", cn) { CommandType = CommandType.StoredProcedure };
                     cmd.Parameters.AddWithValue("@pGuid", parentGuid);
-                    cmd.Parameters.AddWithValue("@st", status);
                     await cn.OpenAsync();
                     var dr = await cmd.ExecuteReaderAsync();
                     while (dr.Read()) list.Add(LoadData(dr));
@@ -46,19 +37,14 @@ namespace EntityCache.SqlServerPersistence
 
             return list;
         }
-        public async Task<ReturnedSaveFuncInfo> RemoveAsync(Guid parentGuid)
+        public async Task<ReturnedSaveFuncInfo> RemoveAsync(Guid parentGuid, SqlTransaction tr)
         {
             var res = new ReturnedSaveFuncInfo();
             try
             {
-                using (var cn = new SqlConnection(_connectionString))
-                {
-                    var cmd = new SqlCommand("sp_People_BankAccount_RemoveByParent", cn) { CommandType = CommandType.StoredProcedure };
-                    cmd.Parameters.AddWithValue("@parentGuid", parentGuid);
-                    await cn.OpenAsync();
-                    await cmd.ExecuteNonQueryAsync();
-                    cn.Close();
-                }
+                var cmd = new SqlCommand("sp_People_BankAccount_RemoveByParent", tr.Connection, tr) { CommandType = CommandType.StoredProcedure };
+                cmd.Parameters.AddWithValue("@parentGuid", parentGuid);
+                await cmd.ExecuteNonQueryAsync();
             }
             catch (Exception exception)
             {
@@ -67,13 +53,13 @@ namespace EntityCache.SqlServerPersistence
 
             return res;
         }
-        public override async Task<ReturnedSaveFuncInfo> SaveRangeAsync(IEnumerable<PeoplesBankAccountBussines> items, string tranName)
+        public async Task<ReturnedSaveFuncInfo> SaveRangeAsync(IEnumerable<PeoplesBankAccountBussines> items, SqlTransaction tr)
         {
             var res = new ReturnedSaveFuncInfo();
             try
             {
                 foreach (var item in items)
-                    res.AddReturnedValue(await SaveAsync(item, tranName));
+                    res.AddReturnedValue(await SaveAsync(item, tr));
             }
             catch (Exception ex)
             {
@@ -83,27 +69,20 @@ namespace EntityCache.SqlServerPersistence
 
             return res;
         }
-        public override async Task<ReturnedSaveFuncInfo> SaveAsync(PeoplesBankAccountBussines item, string tranName)
+        public async Task<ReturnedSaveFuncInfo> SaveAsync(PeoplesBankAccountBussines item, SqlTransaction tr)
         {
             var res = new ReturnedSaveFuncInfo();
             try
             {
-                using (var cn = new SqlConnection(_connectionString))
-                {
-                    var cmd = new SqlCommand("sp_People_BankAccount_Save", cn)
-                    { CommandType = CommandType.StoredProcedure };
-                    cmd.Parameters.AddWithValue("@guid", item.Guid);
-                    cmd.Parameters.AddWithValue("@modif", item.Modified);
-                    cmd.Parameters.AddWithValue("@st", item.Status);
-                    cmd.Parameters.AddWithValue("@parentGuid", item.ParentGuid);
-                    cmd.Parameters.AddWithValue("@bankname", item.BankName ?? "");
-                    cmd.Parameters.AddWithValue("@accountNumber", item.AccountNumber ?? "");
-                    cmd.Parameters.AddWithValue("@shobe", item.Shobe ?? "");
+                var cmd = new SqlCommand("sp_People_BankAccount_Save", tr.Connection, tr)
+                { CommandType = CommandType.StoredProcedure };
+                cmd.Parameters.AddWithValue("@guid", item.Guid);
+                cmd.Parameters.AddWithValue("@parentGuid", item.ParentGuid);
+                cmd.Parameters.AddWithValue("@bankname", item.BankName ?? "");
+                cmd.Parameters.AddWithValue("@accountNumber", item.AccountNumber ?? "");
+                cmd.Parameters.AddWithValue("@shobe", item.Shobe ?? "");
 
-                    await cn.OpenAsync();
-                    await cmd.ExecuteNonQueryAsync();
-                    cn.Close();
-                }
+                await cmd.ExecuteNonQueryAsync();
             }
             catch (Exception ex)
             {
@@ -119,8 +98,6 @@ namespace EntityCache.SqlServerPersistence
             try
             {
                 res.Guid = (Guid)dr["Guid"];
-                res.Modified = (DateTime)dr["Modified"];
-                res.Status = (bool)dr["Status"];
                 res.BankName = dr["BankName"].ToString();
                 res.AccountNumber = dr["AccountNumber"].ToString();
                 res.Shobe = dr["Shobe"].ToString();

@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Threading.Tasks;
 using EntityCache.Assistence;
 using EntityCache.ViewModels;
-using Nito.AsyncEx;
+using Persistence;
 using Services;
 using Servicess.Interfaces.Building;
 
@@ -12,39 +13,40 @@ namespace EntityCache.Bussines
     public class SerializedDataBussines : ISerializedData
     {
         public Guid Guid { get; set; }
-        public DateTime Modified { get; set; } = DateTime.Now;
-        public bool Status { get; set; } = true;
         public string Name { get; set; }
         public string Data { get; set; }
 
 
         public static async Task<List<DivarCities>> GetDivarCityAsync()
         {
-            var list = await UnitOfWork.SerializedData.GetAsync("DivarCities");
+            var list = await UnitOfWork.SerializedData.GetAsync(Cache.ConnectionString, "DivarCities");
             return list?.Data.FromJson<List<DivarCities>>();
         }
         public static async Task<List<DivarRegion>> GetDivarRegionAsync()
         {
-            var list = await UnitOfWork.SerializedData.GetAsync("DivarRegions");
+            var list = await UnitOfWork.SerializedData.GetAsync(Cache.ConnectionString, "DivarRegions");
             return list?.Data.FromJson<List<DivarRegion>>();
         }
         public static async Task<SerializedDataBussines> GetAsync(string memberName) =>
-            await UnitOfWork.SerializedData.GetAsync(memberName);
-        public static async Task<ReturnedSaveFuncInfo> SaveAsync(string key, string value, string tranName = "")
+            await UnitOfWork.SerializedData.GetAsync(Cache.ConnectionString, memberName);
+        public static async Task<ReturnedSaveFuncInfo> SaveAsync(string key, string value, SqlTransaction tr = null)
         {
             var res = new ReturnedSaveFuncInfo();
-            var autoTran = string.IsNullOrEmpty(tranName);
-            if (autoTran) tranName = Guid.NewGuid().ToString();
+            var autoTran = tr == null;
+            SqlConnection cn = null;
             try
             {
                 if (autoTran)
-                { //BeginTransaction
+                {
+                    cn = new SqlConnection(Cache.ConnectionString);
+                    await cn.OpenAsync();
+                    tr = cn.BeginTransaction();
                 }
 
                 var sett = await GetAsync(key);
                 if (sett != null)
                 {
-                    res.AddReturnedValue(await RemoveAsync(sett.Guid, tranName));
+                    res.AddReturnedValue(await RemoveAsync(sett.Guid, tr));
                     if (res.HasError) return res;
                 }
 
@@ -53,56 +55,54 @@ namespace EntityCache.Bussines
                     Guid = Guid.NewGuid(),
                     Name = key,
                     Data = value,
-                    Modified = DateTime.Now
                 };
 
-                res.AddReturnedValue(await UnitOfWork.SerializedData.SaveAsync(set, tranName));
-                if (res.HasError) return res;
-                if (autoTran)
-                {
-                    //CommitTransAction
-                }
+                res.AddReturnedValue(await UnitOfWork.SerializedData.SaveAsync(set, tr));
             }
             catch (Exception ex)
             {
-                if (autoTran)
-                {
-                    //RollBackTransAction
-                }
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
                 res.AddReturnedValue(ex);
             }
-
+            finally
+            {
+                if (autoTran)
+                {
+                    res.AddReturnedValue(tr.TransactionDestiny(res.HasError));
+                    res.AddReturnedValue(cn.CloseConnection());
+                }
+            }
             return res;
         }
-        public static async Task<ReturnedSaveFuncInfo> RemoveAsync(Guid guid, string tranName = "")
+        public static async Task<ReturnedSaveFuncInfo> RemoveAsync(Guid guid, SqlTransaction tr = null)
         {
             var res = new ReturnedSaveFuncInfo();
-            var autoTran = string.IsNullOrEmpty(tranName);
-            if (autoTran) tranName = Guid.NewGuid().ToString();
+            var autoTran = tr == null;
+            SqlConnection cn = null;
             try
             {
                 if (autoTran)
-                { //BeginTransaction
+                {
+                    cn = new SqlConnection(Cache.ConnectionString);
+                    await cn.OpenAsync();
+                    tr = cn.BeginTransaction();
                 }
 
-                res.AddReturnedValue(await UnitOfWork.SerializedData.RemoveAsync(guid, tranName));
-                if (res.HasError) return res;
-                if (autoTran)
-                {
-                    //CommitTransAction
-                }
+                res.AddReturnedValue(await UnitOfWork.SerializedData.RemoveAsync(guid, tr));
             }
             catch (Exception ex)
             {
-                if (autoTran)
-                {
-                    //RollBackTransAction
-                }
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
                 res.AddReturnedValue(ex);
             }
-
+            finally
+            {
+                if (autoTran)
+                {
+                    res.AddReturnedValue(tr.TransactionDestiny(res.HasError));
+                    res.AddReturnedValue(cn.CloseConnection());
+                }
+            }
             return res;
         }
     }

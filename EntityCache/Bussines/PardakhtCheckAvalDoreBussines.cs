@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Threading.Tasks;
 using EntityCache.Assistence;
 using Nito.AsyncEx;
+using Persistence;
 using Services;
 using Services.DefaultCoding;
 using Services.Interfaces.Building;
@@ -13,7 +15,8 @@ namespace EntityCache.Bussines
     {
         public Guid Guid { get; set; }
         public DateTime Modified { get; set; } = DateTime.Now;
-        public bool Status { get; set; } = true;
+        public ServerStatus ServerStatus { get; set; } = ServerStatus.None;
+        public DateTime ServerDeliveryDate { get; set; } = DateTime.Now;
         public string DasteCheckName { get; set; }
         public string Description { get; set; }
         public decimal Price { get; set; }
@@ -28,19 +31,22 @@ namespace EntityCache.Bussines
 
 
         public static async Task<List<PardakhtCheckAvalDoreBussines>> GetAllAsync() =>
-            await UnitOfWork.PardakhtCheckAvalDore.GetAllAsync();
+            await UnitOfWork.PardakhtCheckAvalDore.GetAllAsync(Cache.ConnectionString);
         public static async Task<PardakhtCheckAvalDoreBussines> GetAsync(Guid guid) =>
-            await UnitOfWork.PardakhtCheckAvalDore.GetAsync(guid);
+            await UnitOfWork.PardakhtCheckAvalDore.GetAsync(Cache.ConnectionString, guid);
         public static PardakhtCheckAvalDoreBussines Get(Guid guid) => AsyncContext.Run(() => GetAsync(guid));
-        public async Task<ReturnedSaveFuncInfo> SaveAsync(bool isUpdateAccount, string tranName = "")
+        public async Task<ReturnedSaveFuncInfo> SaveAsync(bool isUpdateAccount, SqlTransaction tr = null)
         {
             var res = new ReturnedSaveFuncInfo();
-            var autoTran = string.IsNullOrEmpty(tranName);
-            if (autoTran) tranName = Guid.NewGuid().ToString();
+            var autoTran = tr == null;
+            SqlConnection cn = null;
             try
             {
                 if (autoTran)
-                { //BeginTransaction
+                {
+                    cn = new SqlConnection(Cache.ConnectionString);
+                    await cn.OpenAsync();
+                    tr = cn.BeginTransaction();
                 }
 
                 res.AddReturnedValue(CheckValidation());
@@ -56,9 +62,8 @@ namespace EntityCache.Bussines
                     check.Description = "";
                     check.Modified = DateTime.Now;
                     check.Price = 0;
-                    check.Status = true;
                     check.ReceptorGuid = null;
-                    res.AddReturnedValue(await check.SaveAsync());
+                    res.AddReturnedValue(await check.SaveAsync(tr));
                     if (res.HasError) return res;
                 }
 
@@ -66,7 +71,7 @@ namespace EntityCache.Bussines
                 {
                     if (oldSanad != null)
                     {
-                        res.AddReturnedValue(await UpdateAccountsAsync(oldSanad, true));
+                        res.AddReturnedValue(await UpdateAccountsAsync(oldSanad, true, tr));
                         if (res.HasError) return res;
                     }
                 }
@@ -79,23 +84,17 @@ namespace EntityCache.Bussines
                 checkPage.Description = Description;
                 checkPage.Modified = DateTime.Now;
                 checkPage.Price = Price;
-                checkPage.Status = true;
                 checkPage.ReceptorGuid = TafsilGuid;
-                res.AddReturnedValue(await checkPage.SaveAsync());
+                res.AddReturnedValue(await checkPage.SaveAsync(tr));
                 if (res.HasError) return res;
 
-                res.AddReturnedValue(await UnitOfWork.PardakhtCheckAvalDore.SaveAsync(this, tranName));
+                res.AddReturnedValue(await UnitOfWork.PardakhtCheckAvalDore.SaveAsync(this, tr));
                 if (res.HasError) return res;
 
                 if (isUpdateAccount)
                 {
-                    res.AddReturnedValue(await UpdateAccountsAsync(this, false));
+                    res.AddReturnedValue(await UpdateAccountsAsync(this, false, tr));
                     if (res.HasError) return res;
-                }
-
-                if (autoTran)
-                {
-                    //CommitTransAction
                 }
 
                 //if (Cache.IsSendToServer)
@@ -103,29 +102,34 @@ namespace EntityCache.Bussines
             }
             catch (Exception ex)
             {
-                if (autoTran)
-                {
-                    //RollBackTransAction
-                }
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
                 res.AddReturnedValue(ex);
             }
-
+            finally
+            {
+                if (autoTran)
+                {
+                    res.AddReturnedValue(tr.TransactionDestiny(res.HasError));
+                    res.AddReturnedValue(cn.CloseConnection());
+                }
+            }
             return res;
         }
-        public async Task<ReturnedSaveFuncInfo> RemoveAsync(string tranName = "")
+        public async Task<ReturnedSaveFuncInfo> RemoveAsync(SqlTransaction tr = null)
         {
             var res = new ReturnedSaveFuncInfo();
-            var autoTran = string.IsNullOrEmpty(tranName);
-            if (autoTran) tranName = Guid.NewGuid().ToString();
+            var autoTran = tr == null;
+            SqlConnection cn = null;
             try
             {
                 if (autoTran)
                 {
-                    //BeginTransaction
+                    cn = new SqlConnection(Cache.ConnectionString);
+                    await cn.OpenAsync();
+                    tr = cn.BeginTransaction();
                 }
 
-                res.AddReturnedValue(await UpdateAccountsAsync(this, true));
+                res.AddReturnedValue(await UpdateAccountsAsync(this, true, tr));
                 if (res.HasError) return res;
 
                 var check = await CheckPageBussines.GetAsync(CheckPageGuid);
@@ -135,32 +139,29 @@ namespace EntityCache.Bussines
                 check.Description = "";
                 check.Modified = DateTime.Now;
                 check.Price = 0;
-                check.Status = true;
                 check.ReceptorGuid = null;
                 res.AddReturnedValue(await check.SaveAsync());
                 if (res.HasError) return res;
 
-                res.AddReturnedValue(await UnitOfWork.PardakhtCheckAvalDore.RemoveAsync(Guid, tranName));
+                res.AddReturnedValue(await UnitOfWork.PardakhtCheckAvalDore.RemoveAsync(Guid, tr));
                 if (res.HasError) return res;
-
-                if (autoTran)
-                {
-                    //CommitTransAction
-                }
 
                 //if (Cache.IsSendToServer)
                 //    _ = Task.Run(() => WebRental.SaveAsync(list));
             }
             catch (Exception ex)
             {
-                if (autoTran)
-                {
-                    //RollBackTransAction
-                }
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
                 res.AddReturnedValue(ex);
             }
-
+            finally
+            {
+                if (autoTran)
+                {
+                    res.AddReturnedValue(tr.TransactionDestiny(res.HasError));
+                    res.AddReturnedValue(cn.CloseConnection());
+                }
+            }
             return res;
         }
         private ReturnedSaveFuncInfo CheckValidation()
@@ -181,7 +182,7 @@ namespace EntityCache.Bussines
 
             return res;
         }
-        private static async Task<ReturnedSaveFuncInfo> UpdateAccountsAsync(PardakhtCheckAvalDoreBussines item, bool isRemove)
+        private static async Task<ReturnedSaveFuncInfo> UpdateAccountsAsync(PardakhtCheckAvalDoreBussines item, bool isRemove, SqlTransaction tr)
         {
             var res = new ReturnedSaveFuncInfo();
             try
@@ -207,8 +208,8 @@ namespace EntityCache.Bussines
                     return res;
                 }
 
-                res.AddReturnedValue(await moein.UpdateAccountAsync(price));
-                res.AddReturnedValue(await tafsil.UpdateAccountAsync(price));
+                res.AddReturnedValue(await moein.UpdateAccountAsync(price, tr));
+                res.AddReturnedValue(await tafsil.UpdateAccountAsync(price, tr));
             }
             catch (Exception ex)
             {

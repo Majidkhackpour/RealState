@@ -8,7 +8,7 @@ using Services;
 
 namespace EntityCache.Assistence
 {
-    public class ClsCache
+    public static class ClsCache
     {
         public static void Init(string connectionString, string hardSerial)
         {
@@ -61,6 +61,72 @@ namespace EntityCache.Assistence
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
+        }
+        public static ReturnedSaveFuncInfo TransactionDestiny(this SqlTransaction tr, bool isRollBack)
+        {
+            var ret = new ReturnedSaveFuncInfo();
+            try
+            {
+                ret.AddReturnedValue(isRollBack ? RollBackTran(tr) : CommitTran(tr));
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                ret.AddReturnedValue(ex);
+            }
+            return ret;
+        }
+        public static ReturnedSaveFuncInfo CommitTran(this SqlTransaction tr, SqlConnection cn = null)
+        {
+            var ret = new ReturnedSaveFuncInfo();
+            try
+            {
+                tr?.Commit();
+            }
+            catch (Exception ex)
+            {
+                ret.AddReturnedValue(ex);
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+            finally
+            {
+                ret.AddReturnedValue(CloseConnection(cn));
+            }
+            return ret;
+        }
+        public static ReturnedSaveFuncInfo RollBackTran(this SqlTransaction tr, SqlConnection cn = null)
+        {
+            var ret = new ReturnedSaveFuncInfo();
+            try
+            {
+                tr?.Rollback();
+            }
+            catch (Exception ex)
+            {
+                ret.AddReturnedValue(ex);
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+            finally
+            {
+                ret.AddReturnedValue(CloseConnection(cn));
+            }
+            return ret;
+        }
+        public static ReturnedSaveFuncInfo CloseConnection(this SqlConnection cn)
+        {
+            var ret = new ReturnedSaveFuncInfo();
+            try
+            {
+                if (cn == null) return ret;
+                if (cn.State == System.Data.ConnectionState.Open) return ret;
+                cn?.Close();
+            }
+            catch (Exception ex)
+            {
+                ret.AddReturnedValue(ex);
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+            return ret;
         }
     }
 }

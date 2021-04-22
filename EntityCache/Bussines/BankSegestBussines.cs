@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Threading.Tasks;
 using EntityCache.Assistence;
+using Persistence;
 using Services;
 using Services.Interfaces.Building;
 
@@ -10,81 +12,75 @@ namespace EntityCache.Bussines
     public class BankSegestBussines : IBankSegest
     {
         public Guid Guid { get; set; }
-        public DateTime Modified { get; set; } = DateTime.Now;
-        public bool Status { get; set; } = true;
         public string BankName { get; set; }
 
 
-        public static async Task<List<BankSegestBussines>> GetAllAsync() => await UnitOfWork.BankSegest.GetAllAsync();
-        public async Task<ReturnedSaveFuncInfo> SaveAsync(string tranName = "")
+        public static async Task<List<BankSegestBussines>> GetAllAsync() => await UnitOfWork.BankSegest.GetAllAsync(Cache.ConnectionString);
+        public async Task<ReturnedSaveFuncInfo> SaveAsync(SqlTransaction tr = null)
         {
             var res = new ReturnedSaveFuncInfo();
-            var autoTran = string.IsNullOrEmpty(tranName);
-            if (autoTran) tranName = Guid.NewGuid().ToString();
+            var autoTran = tr == null;
+            SqlConnection cn = null;
             try
             {
-                if (autoTran)
-                { //BeginTransaction
-                }
-
-                res.AddReturnedValue(await UnitOfWork.BankSegest.SaveAsync(this, tranName));
-                if (res.HasError) return res;
 
                 if (autoTran)
                 {
-                    //CommitTransAction
+                    cn = new SqlConnection(Cache.ConnectionString);
+                    await cn.OpenAsync();
+                    tr = cn.BeginTransaction();
                 }
 
-                //if (Cache.IsSendToServer)
-                //    _ = Task.Run(() => WebUser.SaveAsync(this));
+                res.AddReturnedValue(await UnitOfWork.BankSegest.SaveAsync(this, tr));
             }
             catch (Exception ex)
             {
-                if (autoTran)
-                {
-                    //RollBackTransAction
-                }
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
                 res.AddReturnedValue(ex);
             }
-
+            finally
+            {
+                if (autoTran)
+                {
+                    res.AddReturnedValue(tr.TransactionDestiny(res.HasError));
+                    res.AddReturnedValue(cn.CloseConnection());
+                }
+            }
             return res;
         }
-        public static async Task<ReturnedSaveFuncInfo> SaveRangeAsync(List<BankSegestBussines> list, string tranName = "")
+        public static async Task<ReturnedSaveFuncInfo> SaveRangeAsync(List<BankSegestBussines> list, SqlTransaction tr = null)
         {
             var res = new ReturnedSaveFuncInfo();
-            var autoTran = string.IsNullOrEmpty(tranName);
-            if (autoTran) tranName = Guid.NewGuid().ToString();
+            var autoTran = tr == null;
+            SqlConnection cn = null;
             try
             {
                 if (autoTran)
-                { //BeginTransaction
-                }
-
-                res.AddReturnedValue(await UnitOfWork.BankSegest.SaveRangeAsync(list, tranName));
-                if (res.HasError) return res;
-                if (autoTran)
                 {
-                    //CommitTransAction
+                    cn = new SqlConnection(Cache.ConnectionString);
+                    await cn.OpenAsync();
+                    tr = cn.BeginTransaction();
                 }
 
-                //if (Cache.IsSendToServer)
-                //    _ = Task.Run(() => WebRental.SaveAsync(list));
+                res.AddReturnedValue(await UnitOfWork.BankSegest.SaveRangeAsync(list, tr));
             }
             catch (Exception ex)
             {
-                if (autoTran)
-                {
-                    //RollBackTransAction
-                }
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
                 res.AddReturnedValue(ex);
             }
-
+            finally
+            {
+                if (autoTran)
+                {
+                    res.AddReturnedValue(tr.TransactionDestiny(res.HasError));
+                    res.AddReturnedValue(cn.CloseConnection());
+                }
+            }
             return res;
         }
-        public static async Task<BankSegestBussines> GetAsync(string bankName) => await UnitOfWork.BankSegest.GetAsync(bankName);
-        public static async Task<ReturnedSaveFuncInfo> CheckBankAsync(string bankName)
+        public static async Task<BankSegestBussines> GetAsync(string bankName) => await UnitOfWork.BankSegest.GetAsync(Cache.ConnectionString, bankName);
+        public static async Task<ReturnedSaveFuncInfo> CheckBankAsync(string bankName, SqlTransaction tr)
         {
             var res = new ReturnedSaveFuncInfo();
             try
@@ -94,11 +90,9 @@ namespace EntityCache.Bussines
                 bank = new BankSegestBussines()
                 {
                     Guid = Guid.NewGuid(),
-                    Modified = DateTime.Now,
-                    Status = true,
                     BankName = bankName
                 };
-                res.AddReturnedValue(await bank.SaveAsync());
+                res.AddReturnedValue(await bank.SaveAsync(tr));
             }
             catch (Exception ex)
             {

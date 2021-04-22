@@ -13,10 +13,9 @@ namespace WebHesabBussines
 
 
         public Guid Guid { get; set; }
-        public DateTime Modified { get; set; }
-        public bool Status { get; set; }
         public Guid BuildinGuid { get; set; }
         public Guid BuildingOptionGuid { get; set; }
+        public DateTime Modified { get; set; }
         public string HardSerial { get; set; }
 
 
@@ -42,11 +41,10 @@ namespace WebHesabBussines
                     var obj = new WebBuildingRelatedOptions()
                     {
                         Guid = cls.Guid,
-                        Modified = cls.Modified,
-                        Status = cls.Status,
                         HardSerial = cls.HardSerial,
                         BuildingOptionGuid = cls.BuildingOptionGuid,
-                        BuildinGuid = cls.BuildinGuid
+                        BuildinGuid = cls.BuildinGuid,
+                        Modified = cls.Modified
                     };
                     await obj.SaveAsync();
                 }

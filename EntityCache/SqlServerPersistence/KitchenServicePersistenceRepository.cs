@@ -12,17 +12,10 @@ using Services;
 
 namespace EntityCache.SqlServerPersistence
 {
-    public class KitchenServicePersistenceRepository : GenericRepository<KitchenServiceBussines, KitchenService>, IKitchenServiceRepository
+    public class KitchenServicePersistenceRepository : IKitchenServiceRepository
     {
-        private ModelContext db;
-        private string _connectionString;
-        public KitchenServicePersistenceRepository(ModelContext _db, string connectionString) : base(_db, connectionString)
-        {
-            db = _db;
-            _connectionString = connectionString;
-        }
-
-        public async Task<bool> CheckNameAsync(string name, Guid guid)
+        public KitchenServicePersistenceRepository() { }
+        public async Task<bool> CheckNameAsync(string _connectionString, string name, Guid guid)
         {
             try
             {
@@ -44,7 +37,7 @@ namespace EntityCache.SqlServerPersistence
                 return false;
             }
         }
-        public override async Task<KitchenServiceBussines> GetAsync(Guid guid)
+        public async Task<KitchenServiceBussines> GetAsync(string _connectionString, Guid guid)
         {
             var obj = new KitchenServiceBussines();
             try
@@ -66,7 +59,7 @@ namespace EntityCache.SqlServerPersistence
 
             return obj;
         }
-        public override async Task<List<KitchenServiceBussines>> GetAllAsync()
+        public async Task<List<KitchenServiceBussines>> GetAllAsync(string _connectionString)
         {
             var list = new List<KitchenServiceBussines>();
             try
@@ -88,23 +81,20 @@ namespace EntityCache.SqlServerPersistence
 
             return list;
         }
-        public override async Task<ReturnedSaveFuncInfo> SaveAsync(KitchenServiceBussines item, string tranName)
+        public async Task<ReturnedSaveFuncInfo> SaveAsync(KitchenServiceBussines item, SqlTransaction tr)
         {
             var res = new ReturnedSaveFuncInfo();
             try
             {
-                using (var cn = new SqlConnection(_connectionString))
-                {
-                    var cmd = new SqlCommand("sp_KitchenService_Save", cn) { CommandType = CommandType.StoredProcedure };
-                    cmd.Parameters.AddWithValue("@guid", item.Guid);
-                    cmd.Parameters.AddWithValue("@st", item.Status);
-                    cmd.Parameters.AddWithValue("@name", item.Name ?? "");
-                    cmd.Parameters.AddWithValue("@modif", item.Modified);
+                var cmd = new SqlCommand("sp_KitchenService_Save", tr.Connection, tr) { CommandType = CommandType.StoredProcedure };
+                cmd.Parameters.AddWithValue("@guid", item.Guid);
+                cmd.Parameters.AddWithValue("@st", item.Status);
+                cmd.Parameters.AddWithValue("@name", item.Name ?? "");
+                cmd.Parameters.AddWithValue("@modif", item.Modified);
+                cmd.Parameters.AddWithValue("@serverSt", (short)item.ServerStatus);
+                cmd.Parameters.AddWithValue("@serverDate", item.ServerDeliveryDate);
 
-                    await cn.OpenAsync();
-                    await cmd.ExecuteNonQueryAsync();
-                    cn.Close();
-                }
+                await cmd.ExecuteNonQueryAsync();
             }
             catch (Exception ex)
             {
@@ -114,14 +104,14 @@ namespace EntityCache.SqlServerPersistence
 
             return res;
         }
-        public override async Task<ReturnedSaveFuncInfo> SaveRangeAsync(IEnumerable<KitchenServiceBussines> items, string tranName)
+        public async Task<ReturnedSaveFuncInfo> SaveRangeAsync(IEnumerable<KitchenServiceBussines> items, SqlTransaction tr)
         {
             var res = new ReturnedSaveFuncInfo();
             try
             {
                 foreach (var item in items)
                 {
-                    res.AddReturnedValue(await SaveAsync(item, tranName));
+                    res.AddReturnedValue(await SaveAsync(item, tr));
                     if (res.HasError) return res;
                 }
             }
@@ -132,21 +122,16 @@ namespace EntityCache.SqlServerPersistence
             }
             return res;
         }
-        public override async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(KitchenServiceBussines item, bool status, string tranName)
+        public async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(KitchenServiceBussines item, bool status, SqlTransaction tr)
         {
             var res = new ReturnedSaveFuncInfo();
             try
             {
-                using (var cn = new SqlConnection(_connectionString))
-                {
-                    var cmd = new SqlCommand("sp_KitchenService_ChangeStatus", cn) { CommandType = CommandType.StoredProcedure };
-                    cmd.Parameters.AddWithValue("@Guid", item.Guid);
-                    cmd.Parameters.AddWithValue("@st", status);
+                var cmd = new SqlCommand("sp_KitchenService_ChangeStatus", tr.Connection, tr) { CommandType = CommandType.StoredProcedure };
+                cmd.Parameters.AddWithValue("@Guid", item.Guid);
+                cmd.Parameters.AddWithValue("@st", status);
 
-                    await cn.OpenAsync();
-                    await cmd.ExecuteNonQueryAsync();
-                    cn.Close();
-                }
+                await cmd.ExecuteNonQueryAsync();
             }
             catch (Exception ex)
             {
@@ -165,6 +150,8 @@ namespace EntityCache.SqlServerPersistence
                 item.Modified = (DateTime)dr["Modified"];
                 item.Status = (bool)dr["Status"];
                 item.Name = dr["Name"].ToString();
+                item.ServerDeliveryDate = (DateTime)dr["ServerDeliveryDate"];
+                item.ServerStatus = (ServerStatus)dr["ServerStatus"];
             }
             catch (Exception ex)
             {

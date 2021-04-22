@@ -12,6 +12,8 @@ namespace Persistence.Entities
         public Guid Guid { get; set; }
         public DateTime Modified { get; set; }
         public bool Status { get; set; }
+        public ServerStatus ServerStatus { get; set; }
+        public DateTime ServerDeliveryDate { get; set; }
         [MaxLength(500)]
         public string Name { get; set; }
         [MaxLength(50)]

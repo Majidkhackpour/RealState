@@ -9,8 +9,6 @@ namespace Persistence.Entities
     {
         [Key]
         public Guid Guid { get; set; }
-        public DateTime Modified { get; set; }
-        public bool Status { get; set; }
         public long SimcardNumber { get; set; }
         public DateTime DateM { get; set; }
         [MaxLength(100)]

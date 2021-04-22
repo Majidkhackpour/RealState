@@ -13,17 +13,10 @@ using Services;
 
 namespace EntityCache.SqlServerPersistence
 {
-    public class ContractPersistenceRepository : GenericRepository<ContractBussines, Contract>, IContractRepository
+    public class ContractPersistenceRepository : IContractRepository
     {
-        private ModelContext db;
-        private string _connectionString;
-        public ContractPersistenceRepository(ModelContext _db, string connectionString) : base(_db, connectionString)
-        {
-            db = _db;
-            _connectionString = connectionString;
-        }
-
-        public override async Task<List<ContractBussines>> GetAllAsync()
+        public ContractPersistenceRepository() { }
+        public async Task<List<ContractBussines>> GetAllAsync(string _connectionString)
         {
             var list = new List<ContractBussines>();
             try
@@ -45,7 +38,7 @@ namespace EntityCache.SqlServerPersistence
 
             return list;
         }
-        public async Task<string> NextCodeAsync()
+        public async Task<string> NextCodeAsync(string _connectionString)
         {
             var res = "0";
             try
@@ -67,7 +60,7 @@ namespace EntityCache.SqlServerPersistence
 
             return res;
         }
-        public async Task<bool> CheckCodeAsync(string code, Guid guid)
+        public async Task<bool> CheckCodeAsync(string _connectionString, string code, Guid guid)
         {
             try
             {
@@ -89,55 +82,53 @@ namespace EntityCache.SqlServerPersistence
                 return false;
             }
         }
-        public override async Task<ReturnedSaveFuncInfo> SaveAsync(ContractBussines item, string tranName)
+        public async Task<ReturnedSaveFuncInfo> SaveAsync(ContractBussines item, SqlTransaction tr)
         {
             var res = new ReturnedSaveFuncInfo();
             try
             {
-                using (var cn = new SqlConnection(_connectionString))
-                {
-                    var cmd = new SqlCommand("sp_Contract_Save", cn) { CommandType = CommandType.StoredProcedure };
-                    cmd.Parameters.AddWithValue("@Guid", item.Guid);
-                    cmd.Parameters.AddWithValue("@modif", item.Modified);
-                    cmd.Parameters.AddWithValue("@code", item.Code);
-                    cmd.Parameters.AddWithValue("@isTemp", item.IsTemp);
-                    cmd.Parameters.AddWithValue("@term", item.Term);
-                    cmd.Parameters.AddWithValue("@fromDate", item.FromDate);
-                    cmd.Parameters.AddWithValue("@totalPrice", item.TotalPrice);
-                    cmd.Parameters.AddWithValue("@minorPrice", item.MinorPrice);
-                    cmd.Parameters.AddWithValue("@checkNo", item.CheckNo);
-                    cmd.Parameters.AddWithValue("@bankName", item.BankName);
-                    cmd.Parameters.AddWithValue("@shobe", item.Shobe);
-                    cmd.Parameters.AddWithValue("@sareresid", item.SarResid);
-                    cmd.Parameters.AddWithValue("@discharcgDate", item.DischargeDate);
-                    cmd.Parameters.AddWithValue("@setDocDate", item.SetDocDate);
-                    cmd.Parameters.AddWithValue("@setDocPlace", item.SetDocPlace);
-                    cmd.Parameters.AddWithValue("@sarqofli", item.SarQofli);
-                    cmd.Parameters.AddWithValue("@delay", item.Delay);
-                    cmd.Parameters.AddWithValue("@desc", item.Description);
-                    cmd.Parameters.AddWithValue("@userGuid", item.UserGuid);
-                    cmd.Parameters.AddWithValue("@buGuid", item.BuildingGuid);
-                    cmd.Parameters.AddWithValue("@type", (short)item.Type);
-                    cmd.Parameters.AddWithValue("@dateM", item.DateM);
-                    cmd.Parameters.AddWithValue("@bazaryabGuid", item.BazaryabGuid);
-                    cmd.Parameters.AddWithValue("@bazaryabPrice", item.BazaryabPrice);
-                    cmd.Parameters.AddWithValue("@fSideGuid", item.FirstSideGuid);
-                    cmd.Parameters.AddWithValue("@sSideGuid", item.SecondSideGuid);
-                    cmd.Parameters.AddWithValue("@sanadNumber", item.SanadNumber);
-                    cmd.Parameters.AddWithValue("@fBabat", item.fBabat);
-                    cmd.Parameters.AddWithValue("@sBabat", item.sBabat);
-                    cmd.Parameters.AddWithValue("@fDiscount", item.FirstDiscount);
-                    cmd.Parameters.AddWithValue("@sDiscount", item.SecondDiscount);
-                    cmd.Parameters.AddWithValue("@fTax", item.FirstTax);
-                    cmd.Parameters.AddWithValue("@sTax", item.SecondTax);
-                    cmd.Parameters.AddWithValue("@fAvarez", item.FirstAvarez);
-                    cmd.Parameters.AddWithValue("@sAvarez", item.SecondAvarez);
-                    cmd.Parameters.AddWithValue("@fTotalPrice", item.FirstTotalPrice);
-                    cmd.Parameters.AddWithValue("@sTotalPrice", item.SecondTotalPrice);
-                    await cn.OpenAsync();
-                    await cmd.ExecuteNonQueryAsync();
-                    cn.Close();
-                }
+                var cmd = new SqlCommand("sp_Contract_Save", tr.Connection, tr) { CommandType = CommandType.StoredProcedure };
+                cmd.Parameters.AddWithValue("@Guid", item.Guid);
+                cmd.Parameters.AddWithValue("@modif", item.Modified);
+                cmd.Parameters.AddWithValue("@code", item.Code);
+                cmd.Parameters.AddWithValue("@isTemp", item.IsTemp);
+                cmd.Parameters.AddWithValue("@term", item.Term);
+                cmd.Parameters.AddWithValue("@fromDate", item.FromDate);
+                cmd.Parameters.AddWithValue("@totalPrice", item.TotalPrice);
+                cmd.Parameters.AddWithValue("@minorPrice", item.MinorPrice);
+                cmd.Parameters.AddWithValue("@checkNo", item.CheckNo);
+                cmd.Parameters.AddWithValue("@bankName", item.BankName);
+                cmd.Parameters.AddWithValue("@shobe", item.Shobe);
+                cmd.Parameters.AddWithValue("@sareresid", item.SarResid);
+                cmd.Parameters.AddWithValue("@discharcgDate", item.DischargeDate);
+                cmd.Parameters.AddWithValue("@setDocDate", item.SetDocDate);
+                cmd.Parameters.AddWithValue("@setDocPlace", item.SetDocPlace);
+                cmd.Parameters.AddWithValue("@sarqofli", item.SarQofli);
+                cmd.Parameters.AddWithValue("@delay", item.Delay);
+                cmd.Parameters.AddWithValue("@desc", item.Description);
+                cmd.Parameters.AddWithValue("@userGuid", item.UserGuid);
+                cmd.Parameters.AddWithValue("@buGuid", item.BuildingGuid);
+                cmd.Parameters.AddWithValue("@type", (short)item.Type);
+                cmd.Parameters.AddWithValue("@dateM", item.DateM);
+                cmd.Parameters.AddWithValue("@bazaryabGuid", item.BazaryabGuid);
+                cmd.Parameters.AddWithValue("@bazaryabPrice", item.BazaryabPrice);
+                cmd.Parameters.AddWithValue("@fSideGuid", item.FirstSideGuid);
+                cmd.Parameters.AddWithValue("@sSideGuid", item.SecondSideGuid);
+                cmd.Parameters.AddWithValue("@sanadNumber", item.SanadNumber);
+                cmd.Parameters.AddWithValue("@fBabat", item.fBabat);
+                cmd.Parameters.AddWithValue("@sBabat", item.sBabat);
+                cmd.Parameters.AddWithValue("@fDiscount", item.FirstDiscount);
+                cmd.Parameters.AddWithValue("@sDiscount", item.SecondDiscount);
+                cmd.Parameters.AddWithValue("@fTax", item.FirstTax);
+                cmd.Parameters.AddWithValue("@sTax", item.SecondTax);
+                cmd.Parameters.AddWithValue("@fAvarez", item.FirstAvarez);
+                cmd.Parameters.AddWithValue("@sAvarez", item.SecondAvarez);
+                cmd.Parameters.AddWithValue("@fTotalPrice", item.FirstTotalPrice);
+                cmd.Parameters.AddWithValue("@sTotalPrice", item.SecondTotalPrice);
+                cmd.Parameters.AddWithValue("@serverSt", (short)item.ServerStatus);
+                cmd.Parameters.AddWithValue("@serverDate", item.ServerDeliveryDate);
+
+                await cmd.ExecuteNonQueryAsync();
             }
             catch (Exception ex)
             {
@@ -147,7 +138,7 @@ namespace EntityCache.SqlServerPersistence
 
             return res;
         }
-        public async Task<int> DbCount(Guid userGuid)
+        public async Task<int> DbCount(string _connectionString, Guid userGuid)
         {
             var count = 0;
             try
@@ -168,7 +159,7 @@ namespace EntityCache.SqlServerPersistence
 
             return count;
         }
-        public override async Task<ContractBussines> GetAsync(Guid guid)
+        public async Task<ContractBussines> GetAsync(string _connectionString, Guid guid)
         {
             var list = new ContractBussines();
             try
@@ -190,7 +181,7 @@ namespace EntityCache.SqlServerPersistence
 
             return list;
         }
-        public async Task<int> DischargeDbCount(DateTime d1, DateTime d2)
+        public async Task<int> DischargeDbCount(string _connectionString, DateTime d1, DateTime d2)
         {
             var count = 0;
             try
@@ -212,7 +203,7 @@ namespace EntityCache.SqlServerPersistence
 
             return count;
         }
-        public async Task<List<BuildingDischargeViewModel>> DischargeListAsync(DateTime d1, DateTime d2)
+        public async Task<List<BuildingDischargeViewModel>> DischargeListAsync(string _connectionString, DateTime d1, DateTime d2)
         {
             var list = new List<BuildingDischargeViewModel>();
             try
@@ -236,7 +227,7 @@ namespace EntityCache.SqlServerPersistence
 
             return list;
         }
-        public async Task<decimal> GetTotalBazaryab(DateTime d1, DateTime d2)
+        public async Task<decimal> GetTotalBazaryab(string _connectionString, DateTime d1, DateTime d2)
         {
             var res = (decimal)0;
             try
@@ -260,20 +251,15 @@ namespace EntityCache.SqlServerPersistence
 
             return res;
         }
-        public override async Task<ReturnedSaveFuncInfo> RemoveAsync(Guid guid, string tranName)
+        public async Task<ReturnedSaveFuncInfo> RemoveAsync(Guid guid, SqlTransaction tr)
         {
             var res = new ReturnedSaveFuncInfo();
             try
             {
-                using (var cn = new SqlConnection(_connectionString))
-                {
-                    var cmd = new SqlCommand("sp_Contract_Remove", cn) { CommandType = CommandType.StoredProcedure };
-                    cmd.Parameters.AddWithValue("@guid", guid);
+                var cmd = new SqlCommand("sp_Contract_Remove", tr.Connection, tr) { CommandType = CommandType.StoredProcedure };
+                cmd.Parameters.AddWithValue("@guid", guid);
 
-                    await cn.OpenAsync();
-                    await cmd.ExecuteNonQueryAsync();
-                    cn.Close();
-                }
+                await cmd.ExecuteNonQueryAsync();
             }
             catch (Exception ex)
             {
@@ -283,7 +269,7 @@ namespace EntityCache.SqlServerPersistence
 
             return res;
         }
-        public async Task<decimal> GetTotalCommitionAsync(DateTime d1, DateTime d2)
+        public async Task<decimal> GetTotalCommitionAsync(string _connectionString, DateTime d1, DateTime d2)
         {
             var res = (decimal)0;
             try
@@ -307,7 +293,7 @@ namespace EntityCache.SqlServerPersistence
 
             return res;
         }
-        public async Task<decimal> GetTotalTaxAsync(DateTime d1, DateTime d2)
+        public async Task<decimal> GetTotalTaxAsync(string _connectionString, DateTime d1, DateTime d2)
         {
             var res = (decimal)0;
             try
@@ -377,6 +363,8 @@ namespace EntityCache.SqlServerPersistence
                 res.FirstSideName = dr["FirstSideName"].ToString();
                 res.SecondSideName = dr["SecondSideName"].ToString();
                 res.UserName = dr["UserName"].ToString();
+                res.ServerDeliveryDate = (DateTime)dr["ServerDeliveryDate"];
+                res.ServerStatus = (ServerStatus)dr["ServerStatus"];
             }
             catch (Exception ex)
             {

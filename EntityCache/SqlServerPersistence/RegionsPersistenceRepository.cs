@@ -11,17 +11,9 @@ using System.Threading.Tasks;
 
 namespace EntityCache.SqlServerPersistence
 {
-    public class RegionsPersistenceRepository : GenericRepository<RegionsBussines, Regions>, IRegionsRepository
+    public class RegionsPersistenceRepository : IRegionsRepository
     {
-        private ModelContext db;
-        private string _connectionString;
-        public RegionsPersistenceRepository(ModelContext _db, string connectionString) : base(_db, connectionString)
-        {
-            db = _db;
-            _connectionString = connectionString;
-        }
-
-        public async Task<List<RegionsBussines>> GetAllAsync(Guid cityGuid)
+        public async Task<List<RegionsBussines>> GetAllAsync(string _connectionString, Guid cityGuid)
         {
             var list = new List<RegionsBussines>();
             try
@@ -44,7 +36,7 @@ namespace EntityCache.SqlServerPersistence
 
             return list;
         }
-        public override async Task<List<RegionsBussines>> GetAllAsync()
+        public async Task<List<RegionsBussines>> GetAllAsync(string _connectionString)
         {
             var list = new List<RegionsBussines>();
             try
@@ -66,7 +58,7 @@ namespace EntityCache.SqlServerPersistence
 
             return list;
         }
-        public async Task<RegionsBussines> GetAsync(string name)
+        public async Task<RegionsBussines> GetAsync(string _connectionString, string name)
         {
             var obj = new RegionsBussines();
             try
@@ -88,7 +80,7 @@ namespace EntityCache.SqlServerPersistence
 
             return obj;
         }
-        public override async Task<RegionsBussines> GetAsync(Guid guid)
+        public async Task<RegionsBussines> GetAsync(string _connectionString, Guid guid)
         {
             var obj = new RegionsBussines();
             try
@@ -110,24 +102,21 @@ namespace EntityCache.SqlServerPersistence
 
             return obj;
         }
-        public override async Task<ReturnedSaveFuncInfo> SaveAsync(RegionsBussines item, string tranName)
+        public async Task<ReturnedSaveFuncInfo> SaveAsync(RegionsBussines item, SqlTransaction tr)
         {
             var res = new ReturnedSaveFuncInfo();
             try
             {
-                using (var cn = new SqlConnection(_connectionString))
-                {
-                    var cmd = new SqlCommand("sp_Regions_Save", cn) { CommandType = CommandType.StoredProcedure };
-                    cmd.Parameters.AddWithValue("@guid", item.Guid);
-                    cmd.Parameters.AddWithValue("@modif", item.Modified);
-                    cmd.Parameters.AddWithValue("@st", item.Status);
-                    cmd.Parameters.AddWithValue("@name", item.Name ?? "");
-                    cmd.Parameters.AddWithValue("@cityGuid", item.CityGuid);
+                var cmd = new SqlCommand("sp_Regions_Save", tr.Connection, tr) { CommandType = CommandType.StoredProcedure };
+                cmd.Parameters.AddWithValue("@guid", item.Guid);
+                cmd.Parameters.AddWithValue("@modif", item.Modified);
+                cmd.Parameters.AddWithValue("@st", item.Status);
+                cmd.Parameters.AddWithValue("@name", item.Name ?? "");
+                cmd.Parameters.AddWithValue("@cityGuid", item.CityGuid);
+                cmd.Parameters.AddWithValue("@serverSt", (short)item.ServerStatus);
+                cmd.Parameters.AddWithValue("@serverDate", item.ServerDeliveryDate);
 
-                    await cn.OpenAsync();
-                    await cmd.ExecuteNonQueryAsync();
-                    cn.Close();
-                }
+                await cmd.ExecuteNonQueryAsync();
             }
             catch (Exception ex)
             {
@@ -137,14 +126,14 @@ namespace EntityCache.SqlServerPersistence
 
             return res;
         }
-        public override async Task<ReturnedSaveFuncInfo> SaveRangeAsync(IEnumerable<RegionsBussines> items, string tranName)
+        public async Task<ReturnedSaveFuncInfo> SaveRangeAsync(IEnumerable<RegionsBussines> items, SqlTransaction tr)
         {
             var res = new ReturnedSaveFuncInfo();
             try
             {
                 foreach (var item in items)
                 {
-                    res.AddReturnedValue(await SaveAsync(item, tranName));
+                    res.AddReturnedValue(await SaveAsync(item, tr));
                     if (res.HasError) return res;
                 }
             }
@@ -155,21 +144,16 @@ namespace EntityCache.SqlServerPersistence
             }
             return res;
         }
-        public override async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(RegionsBussines item, bool status, string tranName)
+        public async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(RegionsBussines item, bool status, SqlTransaction tr)
         {
             var res = new ReturnedSaveFuncInfo();
             try
             {
-                using (var cn = new SqlConnection(_connectionString))
-                {
-                    var cmd = new SqlCommand("sp_Regions_ChangeStatus", cn) { CommandType = CommandType.StoredProcedure };
-                    cmd.Parameters.AddWithValue("@Guid", item.Guid);
-                    cmd.Parameters.AddWithValue("@st", status);
+                var cmd = new SqlCommand("sp_Regions_ChangeStatus", tr.Connection, tr) { CommandType = CommandType.StoredProcedure };
+                cmd.Parameters.AddWithValue("@Guid", item.Guid);
+                cmd.Parameters.AddWithValue("@st", status);
 
-                    await cn.OpenAsync();
-                    await cmd.ExecuteNonQueryAsync();
-                    cn.Close();
-                }
+                await cmd.ExecuteNonQueryAsync();
             }
             catch (Exception ex)
             {
@@ -191,6 +175,8 @@ namespace EntityCache.SqlServerPersistence
                 item.CityGuid = (Guid)dr["CityGuid"];
                 item.CityName = dr["CityName"].ToString();
                 item.StateName = dr["StateName"].ToString();
+                item.ServerDeliveryDate = (DateTime)dr["ServerDeliveryDate"];
+                item.ServerStatus = (ServerStatus)dr["ServerStatus"];
             }
             catch (Exception ex)
             {

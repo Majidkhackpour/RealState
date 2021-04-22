@@ -1,36 +1,23 @@
-﻿using System;
+﻿using EntityCache.Bussines;
+using EntityCache.Core;
+using Services;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
 using System.Threading.Tasks;
-using EntityCache.Assistence;
-using EntityCache.Bussines;
-using EntityCache.Core;
-using Persistence.Entities;
-using Persistence.Model;
-using Services;
 
 namespace EntityCache.SqlServerPersistence
 {
-    public class AdvertiseRelatedRegionPersistenceRepository : GenericRepository<AdvertiseRelatedRegionBussines, AdvertiseRelatedRegion>, IAdvertiseRelatedRegionRepository
+    public class AdvertiseRelatedRegionPersistenceRepository : IAdvertiseRelatedRegionRepository
     {
-        private ModelContext db;
-
-        private string _connectionString;
-        public AdvertiseRelatedRegionPersistenceRepository(ModelContext _db, string connectionString) : base(_db, connectionString)
-        {
-            db = _db;
-            _connectionString = connectionString;
-        }
+        public AdvertiseRelatedRegionPersistenceRepository() { }
         private AdvertiseRelatedRegionBussines LoadData(SqlDataReader dr)
         {
             var item = new AdvertiseRelatedRegionBussines();
             try
             {
                 item.Guid = (Guid)dr["Guid"];
-                item.Modified = (DateTime)dr["Modified"];
-                item.Status = (bool)dr["Status"];
                 item.OnlineRegionName = dr["OnlineRegionName"].ToString();
                 item.LocalRegionGuid = (Guid)dr["LocalRegionGuid"];
             }
@@ -40,22 +27,18 @@ namespace EntityCache.SqlServerPersistence
             }
             return item;
         }
-        public async Task<List<AdvertiseRelatedRegionBussines>> GetAllAsync(string onlineRegion, bool status)
+        public async Task<List<AdvertiseRelatedRegionBussines>> GetAllAsync(string onlineRegion, SqlTransaction tr)
         {
             var list = new List<AdvertiseRelatedRegionBussines>();
             try
             {
-                using (var cn = new SqlConnection(_connectionString))
-                {
-                    var cmd = new SqlCommand("sp_AdvertiseRelatedRegion_GetAllByOnlineRegionName", cn) { CommandType = CommandType.StoredProcedure };
-                    cmd.Parameters.AddWithValue("@st", status);
-                    cmd.Parameters.AddWithValue("@onlineRegionName", onlineRegion ?? "");
+                var cmd = new SqlCommand("sp_AdvertiseRelatedRegion_GetAllByOnlineRegionName", tr.Connection, tr)
+                { CommandType = CommandType.StoredProcedure };
+                cmd.Parameters.AddWithValue("@onlineRegionName", onlineRegion ?? "");
 
-                    await cn.OpenAsync();
-                    var dr = await cmd.ExecuteReaderAsync();
-                    while (dr.Read()) list.Add(LoadData(dr));
-                    cn.Close();
-                }
+                var dr = await cmd.ExecuteReaderAsync();
+                while (dr.Read()) list.Add(LoadData(dr));
+                dr.Close();
             }
             catch (Exception ex)
             {
@@ -64,24 +47,17 @@ namespace EntityCache.SqlServerPersistence
 
             return list;
         }
-        public override async Task<ReturnedSaveFuncInfo> SaveAsync(AdvertiseRelatedRegionBussines item, string tranName)
+        public async Task<ReturnedSaveFuncInfo> SaveAsync(AdvertiseRelatedRegionBussines item, SqlTransaction tr)
         {
             var res = new ReturnedSaveFuncInfo();
             try
             {
-                using (var cn = new SqlConnection(_connectionString))
-                {
-                    var cmd = new SqlCommand("sp_AdvertiseRelatedRegion_Save", cn) { CommandType = CommandType.StoredProcedure };
-                    cmd.Parameters.AddWithValue("@guid", item.Guid);
-                    cmd.Parameters.AddWithValue("@modif", item.Modified);
-                    cmd.Parameters.AddWithValue("@st", item.Status);
-                    cmd.Parameters.AddWithValue("@onlineRegionName", item.OnlineRegionName ?? "");
-                    cmd.Parameters.AddWithValue("@localRegionGuid", item.LocalRegionGuid);
+                var cmd = new SqlCommand("sp_AdvertiseRelatedRegion_Save", tr.Connection, tr) { CommandType = CommandType.StoredProcedure };
+                cmd.Parameters.AddWithValue("@guid", item.Guid);
+                cmd.Parameters.AddWithValue("@onlineRegionName", item.OnlineRegionName ?? "");
+                cmd.Parameters.AddWithValue("@localRegionGuid", item.LocalRegionGuid);
 
-                    await cn.OpenAsync();
-                    await cmd.ExecuteNonQueryAsync();
-                    cn.Close();
-                }
+                await cmd.ExecuteNonQueryAsync();
             }
             catch (Exception ex)
             {
@@ -91,14 +67,14 @@ namespace EntityCache.SqlServerPersistence
 
             return res;
         }
-        public override async Task<ReturnedSaveFuncInfo> SaveRangeAsync(IEnumerable<AdvertiseRelatedRegionBussines> items, string tranName)
+        public async Task<ReturnedSaveFuncInfo> SaveRangeAsync(IEnumerable<AdvertiseRelatedRegionBussines> items, SqlTransaction tr)
         {
             var res = new ReturnedSaveFuncInfo();
             try
             {
                 foreach (var item in items)
                 {
-                    res.AddReturnedValue(await SaveAsync(item, tranName));
+                    res.AddReturnedValue(await SaveAsync(item, tr));
                     if (res.HasError) return res;
                 }
             }
@@ -109,20 +85,15 @@ namespace EntityCache.SqlServerPersistence
             }
             return res;
         }
-        public override async Task<ReturnedSaveFuncInfo> RemoveAsync(Guid guid, string tranName)
+        public async Task<ReturnedSaveFuncInfo> RemoveAsync(Guid guid, SqlTransaction tr)
         {
             var res = new ReturnedSaveFuncInfo();
             try
             {
-                using (var cn = new SqlConnection(_connectionString))
-                {
-                    var cmd = new SqlCommand("sp_AdvertiseRelatedRegion_Remove", cn) { CommandType = CommandType.StoredProcedure };
-                    cmd.Parameters.AddWithValue("@guid", guid);
+                var cmd = new SqlCommand("sp_AdvertiseRelatedRegion_Remove", tr.Connection, tr) { CommandType = CommandType.StoredProcedure };
+                cmd.Parameters.AddWithValue("@guid", guid);
 
-                    await cn.OpenAsync();
-                    await cmd.ExecuteNonQueryAsync();
-                    cn.Close();
-                }
+                await cmd.ExecuteNonQueryAsync();
             }
             catch (Exception ex)
             {
@@ -131,14 +102,14 @@ namespace EntityCache.SqlServerPersistence
             }
             return res;
         }
-        public override async Task<ReturnedSaveFuncInfo> RemoveRangeAsync(IEnumerable<Guid> items, string tranName)
+        public async Task<ReturnedSaveFuncInfo> RemoveRangeAsync(IEnumerable<Guid> items, SqlTransaction tr)
         {
             var res = new ReturnedSaveFuncInfo();
             try
             {
                 foreach (var item in items)
                 {
-                    res.AddReturnedValue(await RemoveAsync(item, tranName));
+                    res.AddReturnedValue(await RemoveAsync(item, tr));
                     if (res.HasError) return res;
                 }
             }
@@ -149,12 +120,12 @@ namespace EntityCache.SqlServerPersistence
             }
             return res;
         }
-        public async Task<AdvertiseRelatedRegionBussines> GetByRegionGuidAsync(Guid regionGuid)
+        public async Task<AdvertiseRelatedRegionBussines> GetByRegionGuidAsync(string connectionString, Guid regionGuid)
         {
             AdvertiseRelatedRegionBussines res = null;
             try
             {
-                using (var cn = new SqlConnection(_connectionString))
+                using (var cn = new SqlConnection(connectionString))
                 {
                     var cmd = new SqlCommand("sp_AdvertiseRelatedRegion_GetByLocalRegionGuid", cn) { CommandType = CommandType.StoredProcedure };
                     cmd.Parameters.AddWithValue("@localRegionGuid", regionGuid);
@@ -162,6 +133,7 @@ namespace EntityCache.SqlServerPersistence
                     await cn.OpenAsync();
                     var dr = await cmd.ExecuteReaderAsync();
                     if (dr.Read()) res = LoadData(dr);
+                    dr.Close();
                     cn.Close();
                 }
             }
@@ -172,18 +144,19 @@ namespace EntityCache.SqlServerPersistence
 
             return res;
         }
-        public override async Task<List<AdvertiseRelatedRegionBussines>> GetAllAsync()
+        public async Task<List<AdvertiseRelatedRegionBussines>> GetAllAsync(string connectionString)
         {
             var list = new List<AdvertiseRelatedRegionBussines>();
             try
             {
-                using (var cn = new SqlConnection(_connectionString))
+                using (var cn = new SqlConnection(connectionString))
                 {
                     var cmd = new SqlCommand("sp_AdvertiseRelatedRegion_GetAll", cn) { CommandType = CommandType.StoredProcedure };
 
                     await cn.OpenAsync();
                     var dr = await cmd.ExecuteReaderAsync();
                     while (dr.Read()) list.Add(LoadData(dr));
+                    dr.Close();
                     cn.Close();
                 }
             }

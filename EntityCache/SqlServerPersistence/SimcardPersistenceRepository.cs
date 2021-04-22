@@ -11,17 +11,9 @@ using System.Threading.Tasks;
 
 namespace EntityCache.SqlServerPersistence
 {
-    public class SimcardPersistenceRepository : GenericRepository<SimcardBussines, Simcard>, ISimcardRepository
+    public class SimcardPersistenceRepository : ISimcardRepository
     {
-        private ModelContext db;
-        private string _connectionString;
-        public SimcardPersistenceRepository(ModelContext _db, string connectionString) : base(_db, connectionString)
-        {
-            db = _db;
-            _connectionString = connectionString;
-        }
-
-        public async Task<SimcardBussines> GetAsync(long number)
+        public async Task<SimcardBussines> GetAsync(string _connectionString, long number)
         {
             var obj = new SimcardBussines();
             try
@@ -43,7 +35,7 @@ namespace EntityCache.SqlServerPersistence
 
             return obj;
         }
-        public override async Task<SimcardBussines> GetAsync(Guid guid)
+        public async Task<SimcardBussines> GetAsync(string _connectionString, Guid guid)
         {
             var obj = new SimcardBussines();
             try
@@ -65,7 +57,7 @@ namespace EntityCache.SqlServerPersistence
 
             return obj;
         }
-        public override async Task<List<SimcardBussines>> GetAllAsync()
+        public async Task<List<SimcardBussines>> GetAllAsync(string _connectionString)
         {
             var list = new List<SimcardBussines>();
             try
@@ -87,7 +79,7 @@ namespace EntityCache.SqlServerPersistence
 
             return list;
         }
-        public async Task<bool> CheckNumberAsync(long number, Guid guid)
+        public async Task<bool> CheckNumberAsync(string _connectionString, long number, Guid guid)
         {
             try
             {
@@ -109,21 +101,16 @@ namespace EntityCache.SqlServerPersistence
                 return false;
             }
         }
-        public override async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(SimcardBussines item, bool status, string tranName)
+        public async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(SimcardBussines item, bool status, SqlTransaction tr)
         {
             var res = new ReturnedSaveFuncInfo();
             try
             {
-                using (var cn = new SqlConnection(_connectionString))
-                {
-                    var cmd = new SqlCommand("sp_Simcard_ChangeStatus", cn) { CommandType = CommandType.StoredProcedure };
-                    cmd.Parameters.AddWithValue("@Guid", item.Guid);
-                    cmd.Parameters.AddWithValue("@st", status);
+                var cmd = new SqlCommand("sp_Simcard_ChangeStatus", tr.Connection, tr) { CommandType = CommandType.StoredProcedure };
+                cmd.Parameters.AddWithValue("@Guid", item.Guid);
+                cmd.Parameters.AddWithValue("@st", status);
 
-                    await cn.OpenAsync();
-                    await cmd.ExecuteNonQueryAsync();
-                    cn.Close();
-                }
+                await cmd.ExecuteNonQueryAsync();
             }
             catch (Exception ex)
             {
@@ -133,28 +120,22 @@ namespace EntityCache.SqlServerPersistence
 
             return res;
         }
-        public override async Task<ReturnedSaveFuncInfo> SaveAsync(SimcardBussines item, string tranName)
+        public async Task<ReturnedSaveFuncInfo> SaveAsync(SimcardBussines item, SqlTransaction tr)
         {
             var res = new ReturnedSaveFuncInfo();
             try
             {
-                using (var cn = new SqlConnection(_connectionString))
-                {
-                    var cmd = new SqlCommand("sp_Simcard_Save", cn) { CommandType = CommandType.StoredProcedure };
-                    cmd.Parameters.AddWithValue("@guid", item.Guid);
-                    cmd.Parameters.AddWithValue("@modif", item.Modified);
-                    cmd.Parameters.AddWithValue("@st", item.Status);
-                    cmd.Parameters.AddWithValue("@number", item.Number);
-                    cmd.Parameters.AddWithValue("@owner", item.Owner ?? "");
-                    cmd.Parameters.AddWithValue("@operator", item.Operator ?? "");
-                    cmd.Parameters.AddWithValue("@shBlock", item.isSheypoorBlocked);
-                    cmd.Parameters.AddWithValue("@nextUseSh", item.NextUseSheypoor);
-                    cmd.Parameters.AddWithValue("@nextUseD", item.NextUseDivar);
+                var cmd = new SqlCommand("sp_Simcard_Save", tr.Connection, tr) { CommandType = CommandType.StoredProcedure };
+                cmd.Parameters.AddWithValue("@guid", item.Guid);
+                cmd.Parameters.AddWithValue("@st", item.Status);
+                cmd.Parameters.AddWithValue("@number", item.Number);
+                cmd.Parameters.AddWithValue("@owner", item.Owner ?? "");
+                cmd.Parameters.AddWithValue("@operator", item.Operator ?? "");
+                cmd.Parameters.AddWithValue("@shBlock", item.isSheypoorBlocked);
+                cmd.Parameters.AddWithValue("@nextUseSh", item.NextUseSheypoor);
+                cmd.Parameters.AddWithValue("@nextUseD", item.NextUseDivar);
 
-                    await cn.OpenAsync();
-                    await cmd.ExecuteNonQueryAsync();
-                    cn.Close();
-                }
+                await cmd.ExecuteNonQueryAsync();
             }
             catch (Exception ex)
             {
@@ -170,7 +151,6 @@ namespace EntityCache.SqlServerPersistence
             try
             {
                 item.Guid = (Guid)dr["Guid"];
-                item.Modified = (DateTime)dr["Modified"];
                 item.Status = (bool)dr["Status"];
                 item.Number = (long)dr["Number"];
                 item.Owner = dr["Owner"].ToString();

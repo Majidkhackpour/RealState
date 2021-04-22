@@ -14,15 +14,8 @@ using Services.DefaultCoding;
 
 namespace EntityCache.SqlServerPersistence
 {
-    public class PardakhtCheckShakhsiPersistenceRepository : GenericRepository<PardakhtCheckShakhsiBussines, PardakhtCheckShakhsi>, IPardakhtCheckShakhsiRepository
+    public class PardakhtCheckShakhsiPersistenceRepository : IPardakhtCheckShakhsiRepository
     {
-        private ModelContext db;
-        private string _connectionString;
-        public PardakhtCheckShakhsiPersistenceRepository(ModelContext _db, string connectionString) : base(_db, connectionString)
-        {
-            db = _db;
-            _connectionString = connectionString;
-        }
         private PardakhtCheckShakhsiBussines LoadData(SqlDataReader dr)
         {
             var item = new PardakhtCheckShakhsiBussines();
@@ -31,14 +24,15 @@ namespace EntityCache.SqlServerPersistence
             {
                 item.Guid = (Guid)dr["Guid"];
                 item.Modified = (DateTime)dr["Modified"];
-                item.Status = (bool)dr["Status"];
                 item.MasterGuid = (Guid)dr["MasterGuid"];
                 item.Description = dr["Description"].ToString();
                 item.Price = (decimal)dr["Price"];
                 item.Number = dr["Number"].ToString();
-                item.DateSarResid = (DateTime) dr["DateSarResid"];
-                item.DateM = (DateTime) dr["DateM"];
+                item.DateSarResid = (DateTime)dr["DateSarResid"];
+                item.DateM = (DateTime)dr["DateM"];
                 item.CheckPageGuid = (Guid)dr["CheckPageGuid"];
+                item.ServerDeliveryDate = (DateTime)dr["ServerDeliveryDate"];
+                item.ServerStatus = (ServerStatus)dr["ServerStatus"];
             }
             catch (Exception ex)
             {
@@ -55,7 +49,7 @@ namespace EntityCache.SqlServerPersistence
             {
                 item.Guid = (Guid)dr["Guid"];
                 item.BankName = dr["BankName"].ToString();
-                item.BankGuid = (Guid) dr["BankGuid"];
+                item.BankGuid = (Guid)dr["BankGuid"];
                 item.DateM = (DateTime)dr["DateM"];
                 item.Description = dr["Description"].ToString();
                 item.CheckNumber = dr["Number"].ToString();
@@ -73,7 +67,7 @@ namespace EntityCache.SqlServerPersistence
 
             return item;
         }
-        public async Task<List<PardakhtCheckShakhsiBussines>> GetAllAsync(Guid masterGuid)
+        public async Task<List<PardakhtCheckShakhsiBussines>> GetAllAsync(string _connectionString, Guid masterGuid)
         {
             var list = new List<PardakhtCheckShakhsiBussines>();
             try
@@ -97,7 +91,7 @@ namespace EntityCache.SqlServerPersistence
 
             return list;
         }
-        public async Task<List<PardakhtCheckViewModel>> GetAllViewModelAsync()
+        public async Task<List<PardakhtCheckViewModel>> GetAllViewModelAsync(string _connectionString)
         {
             var list = new List<PardakhtCheckViewModel>();
             try
@@ -105,7 +99,7 @@ namespace EntityCache.SqlServerPersistence
                 using (var cn = new SqlConnection(_connectionString))
                 {
                     var cmd = new SqlCommand("sp_PardakhtCheckShakhsi_GetAllFromView", cn)
-                        { CommandType = CommandType.StoredProcedure };
+                    { CommandType = CommandType.StoredProcedure };
 
                     await cn.OpenAsync();
                     var dr = await cmd.ExecuteReaderAsync();
@@ -120,21 +114,16 @@ namespace EntityCache.SqlServerPersistence
 
             return list;
         }
-        public async Task<ReturnedSaveFuncInfo> RemoveRangeAsync(Guid masterGuid)
+        public async Task<ReturnedSaveFuncInfo> RemoveRangeAsync(Guid masterGuid, SqlTransaction tr)
         {
             var res = new ReturnedSaveFuncInfo();
             try
             {
-                using (var cn = new SqlConnection(_connectionString))
-                {
-                    var cmd = new SqlCommand("sp_PardakhtChackSh_RemoveByMaster", cn)
-                    { CommandType = CommandType.StoredProcedure };
-                    cmd.Parameters.AddWithValue("@masterGuid", masterGuid);
+                var cmd = new SqlCommand("sp_PardakhtChackSh_RemoveByMaster", tr.Connection, tr)
+                { CommandType = CommandType.StoredProcedure };
+                cmd.Parameters.AddWithValue("@masterGuid", masterGuid);
 
-                    await cn.OpenAsync();
-                    await cmd.ExecuteNonQueryAsync();
-                    cn.Close();
-                }
+                await cmd.ExecuteNonQueryAsync();
             }
             catch (Exception ex)
             {
@@ -144,14 +133,14 @@ namespace EntityCache.SqlServerPersistence
 
             return res;
         }
-        public override async Task<ReturnedSaveFuncInfo> SaveRangeAsync(IEnumerable<PardakhtCheckShakhsiBussines> items, string tranName)
+        public async Task<ReturnedSaveFuncInfo> SaveRangeAsync(IEnumerable<PardakhtCheckShakhsiBussines> items, SqlTransaction tr)
         {
             var res = new ReturnedSaveFuncInfo();
             try
             {
                 if (items == null || !items.Any()) return res;
                 foreach (var item in items)
-                    res.AddReturnedValue(await SaveAsync(item, tranName));
+                    res.AddReturnedValue(await SaveAsync(item, tr));
             }
             catch (Exception ex)
             {
@@ -161,29 +150,25 @@ namespace EntityCache.SqlServerPersistence
 
             return res;
         }
-        public override async Task<ReturnedSaveFuncInfo> SaveAsync(PardakhtCheckShakhsiBussines item, string tranName)
+        public async Task<ReturnedSaveFuncInfo> SaveAsync(PardakhtCheckShakhsiBussines item, SqlTransaction tr)
         {
             var res = new ReturnedSaveFuncInfo();
             try
             {
-                using (var cn = new SqlConnection(_connectionString))
-                {
-                    var cmd = new SqlCommand("sp_PardakhtCheckSh_Insert", cn) { CommandType = CommandType.StoredProcedure };
-                    cmd.Parameters.AddWithValue("@guid", item.Guid);
-                    cmd.Parameters.AddWithValue("@modif", item.Modified);
-                    cmd.Parameters.AddWithValue("@st", item.Status);
-                    cmd.Parameters.AddWithValue("@desc", item.Description ?? "");
-                    cmd.Parameters.AddWithValue("@masterGuid", item.MasterGuid);
-                    cmd.Parameters.AddWithValue("@checkGuid", item.CheckPageGuid);
-                    cmd.Parameters.AddWithValue("@sarresid", item.DateSarResid);
-                    cmd.Parameters.AddWithValue("@price", item.Price);
-                    cmd.Parameters.AddWithValue("@dateM", item.DateM);
-                    cmd.Parameters.AddWithValue("@number", item.Number);
+                var cmd = new SqlCommand("sp_PardakhtCheckSh_Insert", tr.Connection, tr) { CommandType = CommandType.StoredProcedure };
+                cmd.Parameters.AddWithValue("@guid", item.Guid);
+                cmd.Parameters.AddWithValue("@modif", item.Modified);
+                cmd.Parameters.AddWithValue("@desc", item.Description ?? "");
+                cmd.Parameters.AddWithValue("@masterGuid", item.MasterGuid);
+                cmd.Parameters.AddWithValue("@checkGuid", item.CheckPageGuid);
+                cmd.Parameters.AddWithValue("@sarresid", item.DateSarResid);
+                cmd.Parameters.AddWithValue("@price", item.Price);
+                cmd.Parameters.AddWithValue("@dateM", item.DateM);
+                cmd.Parameters.AddWithValue("@number", item.Number);
+                cmd.Parameters.AddWithValue("@serverSt", (short)item.ServerStatus);
+                cmd.Parameters.AddWithValue("@serverDate", item.ServerDeliveryDate);
 
-                    await cn.OpenAsync();
-                    await cmd.ExecuteNonQueryAsync();
-                    cn.Close();
-                }
+                await cmd.ExecuteNonQueryAsync();
             }
             catch (Exception ex)
             {
@@ -193,7 +178,7 @@ namespace EntityCache.SqlServerPersistence
 
             return res;
         }
-        public override async Task<PardakhtCheckShakhsiBussines> GetAsync(Guid guid)
+        public async Task<PardakhtCheckShakhsiBussines> GetAsync(string _connectionString, Guid guid)
         {
             PardakhtCheckShakhsiBussines item = null;
             try
@@ -201,7 +186,7 @@ namespace EntityCache.SqlServerPersistence
                 using (var cn = new SqlConnection(_connectionString))
                 {
                     var cmd = new SqlCommand("sp_PardakhtCheckShakhsi_Get", cn)
-                        { CommandType = CommandType.StoredProcedure };
+                    { CommandType = CommandType.StoredProcedure };
                     cmd.Parameters.AddWithValue("@Guid", guid);
 
                     await cn.OpenAsync();

@@ -11,17 +11,9 @@ using System.Threading.Tasks;
 
 namespace EntityCache.SqlServerPersistence
 {
-    public class SettingsPersistenceRepository : GenericRepository<SettingsBussines, Settings>, ISettingsRepository
+    public class SettingsPersistenceRepository : ISettingsRepository
     {
-        private ModelContext db;
-        private string _connectionString;
-        public SettingsPersistenceRepository(ModelContext _db, string connectionString) : base(_db, connectionString)
-        {
-            db = _db;
-            _connectionString = connectionString;
-        }
-
-        public async Task<SettingsBussines> GetAsync(string memberName)
+        public async Task<SettingsBussines> GetAsync(string _connectionString, string memberName)
         {
             var list = new SettingsBussines();
             try
@@ -43,24 +35,17 @@ namespace EntityCache.SqlServerPersistence
 
             return list;
         }
-        public override async Task<ReturnedSaveFuncInfo> SaveAsync(SettingsBussines item, string tranName)
+        public async Task<ReturnedSaveFuncInfo> SaveAsync(SettingsBussines item, SqlTransaction tr)
         {
             var res = new ReturnedSaveFuncInfo();
             try
             {
-                using (var cn = new SqlConnection(_connectionString))
-                {
-                    var cmd = new SqlCommand("sp_Setting_Save", cn) { CommandType = CommandType.StoredProcedure };
-                    cmd.Parameters.AddWithValue("@guid", item.Guid);
-                    cmd.Parameters.AddWithValue("@st", item.Status);
-                    cmd.Parameters.AddWithValue("@name", item.Name ?? "");
-                    cmd.Parameters.AddWithValue("@val", item.Value ?? "");
-                    cmd.Parameters.AddWithValue("@modif", item.Modified);
+                var cmd = new SqlCommand("sp_Setting_Save", tr.Connection, tr) { CommandType = CommandType.StoredProcedure };
+                cmd.Parameters.AddWithValue("@guid", item.Guid);
+                cmd.Parameters.AddWithValue("@name", item.Name ?? "");
+                cmd.Parameters.AddWithValue("@val", item.Value ?? "");
 
-                    await cn.OpenAsync();
-                    await cmd.ExecuteNonQueryAsync();
-                    cn.Close();
-                }
+                await cmd.ExecuteNonQueryAsync();
             }
             catch (Exception ex)
             {
@@ -70,21 +55,16 @@ namespace EntityCache.SqlServerPersistence
 
             return res;
         }
-        public override async Task<ReturnedSaveFuncInfo> RemoveAsync(Guid guid, string tranName)
+        public async Task<ReturnedSaveFuncInfo> RemoveAsync(Guid guid, SqlTransaction tr)
         {
             var res = new ReturnedSaveFuncInfo();
             try
             {
-                using (var cn = new SqlConnection(_connectionString))
-                {
-                    var cmd = new SqlCommand("sp_Setting_Remove", cn)
-                    { CommandType = CommandType.StoredProcedure };
-                    cmd.Parameters.AddWithValue("@guid", guid);
+                var cmd = new SqlCommand("sp_Setting_Remove", tr.Connection, tr)
+                { CommandType = CommandType.StoredProcedure };
+                cmd.Parameters.AddWithValue("@guid", guid);
 
-                    await cn.OpenAsync();
-                    await cmd.ExecuteNonQueryAsync();
-                    cn.Close();
-                }
+                await cmd.ExecuteNonQueryAsync();
             }
             catch (Exception ex)
             {
@@ -94,7 +74,7 @@ namespace EntityCache.SqlServerPersistence
 
             return res;
         }
-        public override async Task<List<SettingsBussines>> GetAllAsync()
+        public async Task<List<SettingsBussines>> GetAllAsync(string _connectionString)
         {
             var list = new List<SettingsBussines>();
             try
@@ -122,8 +102,6 @@ namespace EntityCache.SqlServerPersistence
             try
             {
                 res.Guid = (Guid)dr["Guid"];
-                res.Modified = (DateTime)dr["Modified"];
-                res.Status = (bool)dr["Status"];
                 res.Name = dr["Name"].ToString();
                 res.Value = dr["Value"].ToString();
             }

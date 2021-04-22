@@ -13,16 +13,10 @@ using Services;
 
 namespace EntityCache.SqlServerPersistence
 {
-    public class BuildingPersistenceRepository : GenericRepository<BuildingBussines, Building>, IBuildingRepository
+    public class BuildingPersistenceRepository : IBuildingRepository
     {
-        private ModelContext db;
-        private string _connectionString;
-        public BuildingPersistenceRepository(ModelContext _db, string connectionString) : base(_db, connectionString)
-        {
-            db = _db;
-            _connectionString = connectionString;
-        }
-        public override async Task<List<BuildingBussines>> GetAllAsync()
+        public BuildingPersistenceRepository() { }
+        public async Task<List<BuildingBussines>> GetAllAsync(string _connectionString)
         {
             var list = new List<BuildingBussines>();
             try
@@ -33,7 +27,8 @@ namespace EntityCache.SqlServerPersistence
 
                     await cn.OpenAsync();
                     var dr = await cmd.ExecuteReaderAsync();
-                    while (dr.Read()) list.Add(LoadData(dr));
+                    while (dr.Read()) list.Add(LoadData(dr, false));
+                    dr.Close();
                     cn.Close();
                 }
             }
@@ -44,78 +39,75 @@ namespace EntityCache.SqlServerPersistence
 
             return list;
         }
-        public override async Task<ReturnedSaveFuncInfo> SaveAsync(BuildingBussines item, string tranName)
+        public async Task<ReturnedSaveFuncInfo> SaveAsync(BuildingBussines item, SqlTransaction tr)
         {
             var res = new ReturnedSaveFuncInfo();
             try
             {
-                using (var cn = new SqlConnection(_connectionString))
-                {
-                    var cmd = new SqlCommand("sp_Building_Save", cn) { CommandType = CommandType.StoredProcedure };
-                    cmd.Parameters.AddWithValue("@guid", item.Guid);
-                    cmd.Parameters.AddWithValue("@st", item.Status);
-                    cmd.Parameters.AddWithValue("@ownerGuid", item.OwnerGuid);
-                    cmd.Parameters.AddWithValue("@modif", item.Modified);
-                    cmd.Parameters.AddWithValue("@sellPrice", item.SellPrice);
-                    cmd.Parameters.AddWithValue("@vamPrice", item.VamPrice);
-                    cmd.Parameters.AddWithValue("@qestPrice", item.QestPrice);
-                    cmd.Parameters.AddWithValue("@dong", item.Dang);
-                    cmd.Parameters.AddWithValue("@docTypeGuid", item.DocumentType);
-                    cmd.Parameters.AddWithValue("@tarakom", item.Tarakom);
-                    cmd.Parameters.AddWithValue("@rahnPrice1", item.RahnPrice1);
-                    cmd.Parameters.AddWithValue("@rahnPrice2", item.RahnPrice2);
-                    cmd.Parameters.AddWithValue("@ejarePrice1", item.EjarePrice1);
-                    cmd.Parameters.AddWithValue("@ejarePrice2", item.EjarePrice2);
-                    cmd.Parameters.AddWithValue("@rentalGuid", item.RentalAutorityGuid);
-                    cmd.Parameters.AddWithValue("@isShortTime", item.IsShortTime);
-                    cmd.Parameters.AddWithValue("@isOwnerHere", item.IsOwnerHere);
-                    cmd.Parameters.AddWithValue("@pishTotalPrice", item.PishTotalPrice);
-                    cmd.Parameters.AddWithValue("@pishPrice", item.PishPrice);
-                    cmd.Parameters.AddWithValue("@deliveryDate", item.DeliveryDate);
-                    cmd.Parameters.AddWithValue("@pishDesc", item.PishDesc ?? "");
-                    cmd.Parameters.AddWithValue("@moavezeDesc", item.MoavezeDesc ?? "");
-                    cmd.Parameters.AddWithValue("@mosharekatDesc", item.MosharekatDesc ?? "");
-                    cmd.Parameters.AddWithValue("@masahat", item.Masahat);
-                    cmd.Parameters.AddWithValue("@zirbana", item.ZirBana);
-                    cmd.Parameters.AddWithValue("@cityGuid", item.CityGuid);
-                    cmd.Parameters.AddWithValue("@regionGuid", item.RegionGuid);
-                    cmd.Parameters.AddWithValue("@address", item.Address ?? "");
-                    cmd.Parameters.AddWithValue("@conditionGuid", item.BuildingConditionGuid);
-                    cmd.Parameters.AddWithValue("@side", (int)item.Side);
-                    cmd.Parameters.AddWithValue("@typeGuid", item.BuildingTypeGuid);
-                    cmd.Parameters.AddWithValue("@shortDesc", item.ShortDesc ?? "");
-                    cmd.Parameters.AddWithValue("@accountTypeGuid", item.BuildingAccountTypeGuid);
-                    cmd.Parameters.AddWithValue("@metrazhTejari", item.MetrazhTejari);
-                    cmd.Parameters.AddWithValue("@viewGuid", item.BuildingViewGuid);
-                    cmd.Parameters.AddWithValue("@floorCoverGuid", item.FloorCoverGuid);
-                    cmd.Parameters.AddWithValue("@kitchenServiceGuid", item.KitchenServiceGuid);
-                    cmd.Parameters.AddWithValue("@water", (short)item.Water);
-                    cmd.Parameters.AddWithValue("@barq", (short)item.Barq);
-                    cmd.Parameters.AddWithValue("@gas", (short)item.Gas);
-                    cmd.Parameters.AddWithValue("@tell", (short)item.Tell);
-                    cmd.Parameters.AddWithValue("@tedadTabaqe", item.TedadTabaqe);
-                    cmd.Parameters.AddWithValue("@tabaqeNo", item.TabaqeNo);
-                    cmd.Parameters.AddWithValue("@vahedPerTabaqe", item.VahedPerTabaqe);
-                    cmd.Parameters.AddWithValue("@metrazheKouche", item.MetrazhKouche);
-                    cmd.Parameters.AddWithValue("@ertefaSaqf", item.ErtefaSaqf);
-                    cmd.Parameters.AddWithValue("@hashie", item.Hashie);
-                    cmd.Parameters.AddWithValue("@saleSakht", item.SaleSakht ?? "");
-                    cmd.Parameters.AddWithValue("@dateParvane", item.DateParvane ?? "");
-                    cmd.Parameters.AddWithValue("@parvaneSerial", item.ParvaneSerial ?? "");
-                    cmd.Parameters.AddWithValue("@bonBast", item.BonBast);
-                    cmd.Parameters.AddWithValue("@mamarJoda", item.MamarJoda);
-                    cmd.Parameters.AddWithValue("@roomCount", item.RoomCount);
-                    cmd.Parameters.AddWithValue("@code", item.Code ?? "");
-                    cmd.Parameters.AddWithValue("@userGuid", item.UserGuid);
-                    cmd.Parameters.AddWithValue("@createDate", item.CreateDate);
-                    cmd.Parameters.AddWithValue("@image", item.Image ?? "");
-                    cmd.Parameters.AddWithValue("@priority", (short)item.Priority);
-                    cmd.Parameters.AddWithValue("@isArchive", item.IsArchive);
+                var cmd = new SqlCommand("sp_Building_Save", tr.Connection, tr) { CommandType = CommandType.StoredProcedure };
+                cmd.Parameters.AddWithValue("@guid", item.Guid);
+                cmd.Parameters.AddWithValue("@st", item.Status);
+                cmd.Parameters.AddWithValue("@ownerGuid", item.OwnerGuid);
+                cmd.Parameters.AddWithValue("@modif", item.Modified);
+                cmd.Parameters.AddWithValue("@sellPrice", item.SellPrice);
+                cmd.Parameters.AddWithValue("@vamPrice", item.VamPrice);
+                cmd.Parameters.AddWithValue("@qestPrice", item.QestPrice);
+                cmd.Parameters.AddWithValue("@dong", item.Dang);
+                cmd.Parameters.AddWithValue("@docTypeGuid", item.DocumentType);
+                cmd.Parameters.AddWithValue("@tarakom", item.Tarakom);
+                cmd.Parameters.AddWithValue("@rahnPrice1", item.RahnPrice1);
+                cmd.Parameters.AddWithValue("@rahnPrice2", item.RahnPrice2);
+                cmd.Parameters.AddWithValue("@ejarePrice1", item.EjarePrice1);
+                cmd.Parameters.AddWithValue("@ejarePrice2", item.EjarePrice2);
+                cmd.Parameters.AddWithValue("@rentalGuid", item.RentalAutorityGuid);
+                cmd.Parameters.AddWithValue("@isShortTime", item.IsShortTime);
+                cmd.Parameters.AddWithValue("@isOwnerHere", item.IsOwnerHere);
+                cmd.Parameters.AddWithValue("@pishTotalPrice", item.PishTotalPrice);
+                cmd.Parameters.AddWithValue("@pishPrice", item.PishPrice);
+                cmd.Parameters.AddWithValue("@deliveryDate", item.DeliveryDate);
+                cmd.Parameters.AddWithValue("@pishDesc", item.PishDesc ?? "");
+                cmd.Parameters.AddWithValue("@moavezeDesc", item.MoavezeDesc ?? "");
+                cmd.Parameters.AddWithValue("@mosharekatDesc", item.MosharekatDesc ?? "");
+                cmd.Parameters.AddWithValue("@masahat", item.Masahat);
+                cmd.Parameters.AddWithValue("@zirbana", item.ZirBana);
+                cmd.Parameters.AddWithValue("@cityGuid", item.CityGuid);
+                cmd.Parameters.AddWithValue("@regionGuid", item.RegionGuid);
+                cmd.Parameters.AddWithValue("@address", item.Address ?? "");
+                cmd.Parameters.AddWithValue("@conditionGuid", item.BuildingConditionGuid);
+                cmd.Parameters.AddWithValue("@side", (int)item.Side);
+                cmd.Parameters.AddWithValue("@typeGuid", item.BuildingTypeGuid);
+                cmd.Parameters.AddWithValue("@shortDesc", item.ShortDesc ?? "");
+                cmd.Parameters.AddWithValue("@accountTypeGuid", item.BuildingAccountTypeGuid);
+                cmd.Parameters.AddWithValue("@metrazhTejari", item.MetrazhTejari);
+                cmd.Parameters.AddWithValue("@viewGuid", item.BuildingViewGuid);
+                cmd.Parameters.AddWithValue("@floorCoverGuid", item.FloorCoverGuid);
+                cmd.Parameters.AddWithValue("@kitchenServiceGuid", item.KitchenServiceGuid);
+                cmd.Parameters.AddWithValue("@water", (short)item.Water);
+                cmd.Parameters.AddWithValue("@barq", (short)item.Barq);
+                cmd.Parameters.AddWithValue("@gas", (short)item.Gas);
+                cmd.Parameters.AddWithValue("@tell", (short)item.Tell);
+                cmd.Parameters.AddWithValue("@tedadTabaqe", item.TedadTabaqe);
+                cmd.Parameters.AddWithValue("@tabaqeNo", item.TabaqeNo);
+                cmd.Parameters.AddWithValue("@vahedPerTabaqe", item.VahedPerTabaqe);
+                cmd.Parameters.AddWithValue("@metrazheKouche", item.MetrazhKouche);
+                cmd.Parameters.AddWithValue("@ertefaSaqf", item.ErtefaSaqf);
+                cmd.Parameters.AddWithValue("@hashie", item.Hashie);
+                cmd.Parameters.AddWithValue("@saleSakht", item.SaleSakht ?? "");
+                cmd.Parameters.AddWithValue("@dateParvane", item.DateParvane ?? "");
+                cmd.Parameters.AddWithValue("@parvaneSerial", item.ParvaneSerial ?? "");
+                cmd.Parameters.AddWithValue("@bonBast", item.BonBast);
+                cmd.Parameters.AddWithValue("@mamarJoda", item.MamarJoda);
+                cmd.Parameters.AddWithValue("@roomCount", item.RoomCount);
+                cmd.Parameters.AddWithValue("@code", item.Code ?? "");
+                cmd.Parameters.AddWithValue("@userGuid", item.UserGuid);
+                cmd.Parameters.AddWithValue("@createDate", item.CreateDate);
+                cmd.Parameters.AddWithValue("@image", item.Image ?? "");
+                cmd.Parameters.AddWithValue("@priority", (short)item.Priority);
+                cmd.Parameters.AddWithValue("@isArchive", item.IsArchive);
+                cmd.Parameters.AddWithValue("@serverSt", (short)item.ServerStatus);
+                cmd.Parameters.AddWithValue("@serverDate", item.ServerDeliveryDate);
 
-                    await cn.OpenAsync();
-                    await cmd.ExecuteNonQueryAsync();
-                    cn.Close();
-                }
+                await cmd.ExecuteNonQueryAsync();
             }
             catch (Exception ex)
             {
@@ -125,21 +117,16 @@ namespace EntityCache.SqlServerPersistence
 
             return res;
         }
-        public override async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(BuildingBussines item, bool status, string tranName)
+        public async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(BuildingBussines item, bool status, SqlTransaction tr)
         {
             var res = new ReturnedSaveFuncInfo();
             try
             {
-                using (var cn = new SqlConnection(_connectionString))
-                {
-                    var cmd = new SqlCommand("sp_Building_ChangeStatus", cn) { CommandType = CommandType.StoredProcedure };
-                    cmd.Parameters.AddWithValue("@Guid", item.Guid);
-                    cmd.Parameters.AddWithValue("@st", status);
+                var cmd = new SqlCommand("sp_Building_ChangeStatus", tr.Connection, tr) { CommandType = CommandType.StoredProcedure };
+                cmd.Parameters.AddWithValue("@Guid", item.Guid);
+                cmd.Parameters.AddWithValue("@st", status);
 
-                    await cn.OpenAsync();
-                    await cmd.ExecuteNonQueryAsync();
-                    cn.Close();
-                }
+                await cmd.ExecuteNonQueryAsync();
             }
             catch (Exception ex)
             {
@@ -149,7 +136,7 @@ namespace EntityCache.SqlServerPersistence
 
             return res;
         }
-        public async Task<string> NextCodeAsync()
+        public async Task<string> NextCodeAsync(string _connectionString)
         {
             var res = "0";
             try
@@ -171,7 +158,7 @@ namespace EntityCache.SqlServerPersistence
 
             return res;
         }
-        public async Task<bool> CheckCodeAsync(string code, Guid guid)
+        public async Task<bool> CheckCodeAsync(string _connectionString, string code, Guid guid)
         {
             try
             {
@@ -193,7 +180,7 @@ namespace EntityCache.SqlServerPersistence
                 return false;
             }
         }
-        public async Task<int> DbCount(Guid userGuid, short type)
+        public async Task<int> DbCount(string _connectionString, Guid userGuid, short type)
         {
             var count = 0;
             try
@@ -215,7 +202,7 @@ namespace EntityCache.SqlServerPersistence
 
             return count;
         }
-        public async Task<ReturnedSaveFuncInfo> FixImageAsync()
+        public async Task<ReturnedSaveFuncInfo> FixImageAsync(string _connectionString)
         {
             var res = new ReturnedSaveFuncInfo();
             try
@@ -237,7 +224,7 @@ namespace EntityCache.SqlServerPersistence
 
             return res;
         }
-        public override async Task<BuildingBussines> GetAsync(Guid guid)
+        public async Task<BuildingBussines> GetAsync(string _connectionString, Guid guid)
         {
             var list = new BuildingBussines();
             try
@@ -248,7 +235,8 @@ namespace EntityCache.SqlServerPersistence
                     cmd.Parameters.AddWithValue("@guid", guid);
                     await cn.OpenAsync();
                     var dr = await cmd.ExecuteReaderAsync();
-                    if (dr.Read()) list = LoadData(dr);
+                    if (dr.Read()) list = LoadData(dr, true);
+                    dr.Close();
                     cn.Close();
                 }
             }
@@ -259,7 +247,7 @@ namespace EntityCache.SqlServerPersistence
 
             return list;
         }
-        private BuildingBussines LoadData(SqlDataReader dr)
+        private BuildingBussines LoadData(SqlDataReader dr, bool isloadDet)
         {
             var res = new BuildingBussines();
             try
@@ -324,8 +312,13 @@ namespace EntityCache.SqlServerPersistence
                 res.Image = dr["Image"].ToString();
                 res.Priority = (EnBuildingPriority)dr["Priority"];
                 res.IsArchive = (bool)dr["IsArchive"];
-                res.GalleryList = AsyncContext.Run(() => BuildingGalleryBussines.GetAllAsync(res.Guid, true));
-                res.OptionList = BuildingRelatedOptionsBussines.GetAll(res.Guid, true);
+                if (isloadDet)
+                {
+                    res.GalleryList = AsyncContext.Run(() => BuildingGalleryBussines.GetAllAsync(res.Guid));
+                    res.OptionList = BuildingRelatedOptionsBussines.GetAll(res.Guid);
+                }
+                res.ServerDeliveryDate = (DateTime)dr["ServerDeliveryDate"];
+                res.ServerStatus = (ServerStatus)dr["ServerStatus"];
             }
             catch (Exception ex)
             {

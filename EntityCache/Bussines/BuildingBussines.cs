@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 using EntityCache.Assistence;
@@ -14,11 +15,12 @@ namespace EntityCache.Bussines
 {
     public class BuildingBussines : IBuilding
     {
-
         #region Properties
         public Guid Guid { get; set; }
         public DateTime Modified { get; set; } = DateTime.Now;
         public bool Status { get; set; } = true;
+        public ServerStatus ServerStatus { get; set; } = ServerStatus.None;
+        public DateTime ServerDeliveryDate { get; set; } = DateTime.Now;
         public DateTime CreateDate { get; set; } = DateTime.Now;
         public string DateSh => Calendar.MiladiToShamsi(CreateDate);
         public string Code { get; set; }
@@ -93,135 +95,104 @@ namespace EntityCache.Bussines
         public bool IsArchive { get; set; }
         public string HardSerial => Cache.HardSerial;
         public string Image { get; set; }
-        private List<BuildingRelatedOptionsBussines> _optionList;
-        public List<BuildingRelatedOptionsBussines> OptionList
-        {
-            get
-            {
-                if (_optionList != null) return _optionList;
-                _optionList = BuildingRelatedOptionsBussines.GetAll(Guid, Status);
-                return _optionList;
-            }
-            set => _optionList = value;
-        }
-        private List<BuildingGalleryBussines> _galleryList;
-        public List<BuildingGalleryBussines> GalleryList
-        {
-            get
-            {
-                if (_galleryList != null) return _galleryList;
-                _galleryList = AsyncContext.Run(() => BuildingGalleryBussines.GetAllAsync(Guid, Status));
-                return _galleryList;
-            }
-            set => _galleryList = value;
-        }
+        public List<BuildingRelatedOptionsBussines> OptionList { get; set; }
+        public List<BuildingGalleryBussines> GalleryList { get; set; }
         #endregion
 
-        public static async Task<List<BuildingBussines>> GetAllAsync() => await UnitOfWork.Building.GetAllAsync();
-        public static async Task<BuildingBussines> GetAsync(Guid guid) => await UnitOfWork.Building.GetAsync(guid);
+        public static async Task<List<BuildingBussines>> GetAllAsync() => await UnitOfWork.Building.GetAllAsync(Cache.ConnectionString);
+        public static async Task<BuildingBussines> GetAsync(Guid guid) => await UnitOfWork.Building.GetAsync(Cache.ConnectionString,guid);
         public static BuildingBussines Get(Guid guid) => AsyncContext.Run(() => GetAsync(guid));
-        public async Task<ReturnedSaveFuncInfo> SaveAsync(string tranName = "")
+        public async Task<ReturnedSaveFuncInfo> SaveAsync(SqlTransaction tr=null)
         {
             var res = new ReturnedSaveFuncInfo();
-            var autoTran = string.IsNullOrEmpty(tranName);
-            if (autoTran) tranName = Guid.NewGuid().ToString();
+            var autoTran = tr == null;
+            SqlConnection cn = null;
             try
             {
                 if (autoTran)
-                { //BeginTransaction
+                {
+                    cn = new SqlConnection(Cache.ConnectionString);
+                    await cn.OpenAsync();
+                    tr = cn.BeginTransaction();
                 }
 
                 if (OptionList.Count > 0)
                 {
-                    res.AddReturnedValue(await BuildingRelatedOptionsBussines.RemoveRangeAsync(Guid, tranName));
+                    res.AddReturnedValue(await BuildingRelatedOptionsBussines.RemoveRangeAsync(Guid, tr));
                     if (res.HasError) return res;
 
                     foreach (var item in OptionList)
                         item.BuildinGuid = Guid;
-                    res.AddReturnedValue(await BuildingRelatedOptionsBussines.SaveRangeAsync(OptionList, tranName));
+                    res.AddReturnedValue(await BuildingRelatedOptionsBussines.SaveRangeAsync(OptionList, tr));
                     if (res.HasError) return res;
                 }
-
                 if (GalleryList.Count > 0)
                 {
-                    res.AddReturnedValue(await BuildingGalleryBussines.RemoveRangeAsync(Guid, tranName));
+                    res.AddReturnedValue(await BuildingGalleryBussines.RemoveRangeAsync(Guid, tr));
                     if (res.HasError) return res;
 
                     foreach (var item in GalleryList)
                         item.BuildingGuid = Guid;
 
-                    res.AddReturnedValue(await BuildingGalleryBussines.SaveRangeAsync(GalleryList, tranName));
+                    res.AddReturnedValue(await BuildingGalleryBussines.SaveRangeAsync(GalleryList, tr));
                     if (res.HasError) return res;
                 }
 
 
-                res.AddReturnedValue(await UnitOfWork.Building.SaveAsync(this, tranName));
-                if (res.HasError) return res;
-                if (autoTran)
-                {
-                    //CommitTransAction
-                }
+                res.AddReturnedValue(await UnitOfWork.Building.SaveAsync(this, tr));
 
                 if (Cache.IsSendToServer)
                     _ = Task.Run(() => WebBuilding.SaveAsync(this, Cache.Path));
             }
             catch (Exception ex)
             {
-                if (autoTran)
-                {
-                    //RollBackTransAction
-                }
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
                 res.AddReturnedValue(ex);
             }
-
+            finally
+            {
+                if (autoTran)
+                {
+                    res.AddReturnedValue(tr.TransactionDestiny(res.HasError));
+                    res.AddReturnedValue(cn.CloseConnection());
+                }
+            }
             return res;
         }
-        public async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(bool status, string tranName = "")
+        public async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(bool status, SqlTransaction tr=null)
         {
             var res = new ReturnedSaveFuncInfo();
-            var autoTran = string.IsNullOrEmpty(tranName);
-            if (autoTran) tranName = Guid.NewGuid().ToString();
+            var autoTran = tr == null;
+            SqlConnection cn = null;
             try
             {
                 if (autoTran)
-                { //BeginTransaction
-                }
-
-                if (OptionList.Count > 0)
                 {
-                    res.AddReturnedValue(await BuildingRelatedOptionsBussines.ChangeStatusAsync(Guid, status));
-                    if (res.HasError) return res;
+                    cn = new SqlConnection(Cache.ConnectionString);
+                    await cn.OpenAsync();
+                    tr = cn.BeginTransaction();
                 }
 
-                if (GalleryList.Count > 0)
-                {
-                    res.AddReturnedValue(await BuildingGalleryBussines.ChangeStatusAsync(Guid, status, tranName));
-                    if (res.HasError) return res;
-                }
-
-
-                res.AddReturnedValue(await UnitOfWork.Building.ChangeStatusAsync(this, status, tranName));
+                
+                res.AddReturnedValue(await UnitOfWork.Building.ChangeStatusAsync(this, status, tr));
                 if (res.HasError) return res;
-                if (autoTran)
-                {
-                    //CommitTransAction
-                }
-
-
+               
                 if (Cache.IsSendToServer)
                     _ = Task.Run(() => WebBuilding.SaveAsync(this, Cache.Path));
             }
             catch (Exception ex)
             {
-                if (autoTran)
-                {
-                    //RollBackTransAction
-                }
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
                 res.AddReturnedValue(ex);
             }
-
+            finally
+            {
+                if (autoTran)
+                {
+                    res.AddReturnedValue(tr.TransactionDestiny(res.HasError));
+                    res.AddReturnedValue(cn.CloseConnection());
+                }
+            }
             return res;
         }
         public static List<BuildingBussines> GetAll(string search, bool? isArchive, bool status,
@@ -279,9 +250,9 @@ namespace EntityCache.Bussines
                 return new List<BuildingBussines>();
             }
         }
-        public static async Task<string> NextCodeAsync() => await UnitOfWork.Building.NextCodeAsync();
+        public static async Task<string> NextCodeAsync() => await UnitOfWork.Building.NextCodeAsync(Cache.ConnectionString);
         public static async Task<bool> CheckCodeAsync(string code, Guid guid) =>
-            await UnitOfWork.Building.CheckCodeAsync(code, guid);
+            await UnitOfWork.Building.CheckCodeAsync(Cache.ConnectionString,code, guid);
         public static async Task<List<BuildingViewModel>> GetAllAsync(string code, Guid buildingGuid,
             Guid buildingAccountTypeGuid, int fMasahat, int lMasahat, int roomCount, decimal fPrice1, decimal lPrice1,
             decimal fPrice2, decimal lPrice2, EnRequestType type, List<Guid> regionList)
@@ -362,7 +333,7 @@ namespace EntityCache.Bussines
             }
         }
         public static async Task<int> DbCount(Guid userGuid, short type) =>
-            await UnitOfWork.Building.DbCount(userGuid, type);
-        public static async Task<ReturnedSaveFuncInfo> FixImageAsync() => await UnitOfWork.Building.FixImageAsync();
+            await UnitOfWork.Building.DbCount(Cache.ConnectionString,userGuid, type);
+        public static async Task<ReturnedSaveFuncInfo> FixImageAsync() => await UnitOfWork.Building.FixImageAsync(Cache.ConnectionString);
     }
 }

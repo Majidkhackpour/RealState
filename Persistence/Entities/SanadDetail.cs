@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Services;
 using Services.Interfaces.Building;
 
 namespace Persistence.Entities
@@ -10,9 +11,10 @@ namespace Persistence.Entities
         [Column(Order = 1)]
         [Key]
         public Guid Guid { get; set; }
+        public ServerStatus ServerStatus { get; set; }
+        public DateTime ServerDeliveryDate { get; set; }
         [Index("IX_Sanad_Date", 2)]
         public DateTime Modified { get; set; }
-        public bool Status { get; set; }
         [Column(Order = 2)]
         [Key, ForeignKey("Sanad")]
         [Index("IX_Sanad_MasterGuid",1)]
