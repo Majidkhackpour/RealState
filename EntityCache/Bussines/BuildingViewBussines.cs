@@ -24,7 +24,7 @@ namespace EntityCache.Bussines
 
 
         public static async Task<List<BuildingViewBussines>> GetAllAsync() => await UnitOfWork.BuildingView.GetAllAsync(Cache.ConnectionString);
-        public static async Task<ReturnedSaveFuncInfo> SaveRangeAsync(List<BuildingViewBussines> list, SqlTransaction tr)
+        public static async Task<ReturnedSaveFuncInfo> SaveRangeAsync(List<BuildingViewBussines> list, SqlTransaction tr = null)
         {
             var res = new ReturnedSaveFuncInfo();
             var autoTran = tr == null;

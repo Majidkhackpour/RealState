@@ -13,7 +13,6 @@ namespace EntityCache.SqlServerPersistence
 {
     public class SanadDetailPersistenceRepository : ISanadDetailRepository
     {
-        public SanadDetailPersistenceRepository() { }
         private SanadDetailBussines LoadData(SqlDataReader dr)
         {
             var item = new SanadDetailBussines();

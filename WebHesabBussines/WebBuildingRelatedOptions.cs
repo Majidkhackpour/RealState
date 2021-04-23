@@ -17,6 +17,8 @@ namespace WebHesabBussines
         public Guid BuildingOptionGuid { get; set; }
         public DateTime Modified { get; set; }
         public string HardSerial { get; set; }
+        public ServerStatus ServerStatus { get; set; }
+        public DateTime ServerDeliveryDate { get; set; }
 
 
 

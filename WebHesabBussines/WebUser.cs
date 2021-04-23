@@ -16,6 +16,8 @@ namespace WebHesabBussines
         public DateTime Modified { get; set; }
         public bool Status { get; set; }
         public string Name { get; set; }
+        public ServerStatus ServerStatus { get; set; }
+        public DateTime ServerDeliveryDate { get; set; }
         public string UserName { get; set; }
         public string Password { get; set; }
         public string Access { get; set; }

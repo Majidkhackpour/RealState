@@ -1,20 +1,16 @@
-﻿using System;
+﻿using EntityCache.Bussines;
+using EntityCache.Core;
+using Services;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
 using System.Threading.Tasks;
-using EntityCache.Bussines;
-using EntityCache.Core;
-using Persistence.Entities;
-using Persistence.Model;
-using Services;
 
 namespace EntityCache.SqlServerPersistence
 {
     public class DocumentTypePersistenceRepository : IDocumentTypeRepository
     {
-        public DocumentTypePersistenceRepository() { }
         public async Task<bool> CheckNameAsync(string _connectionString, string name, Guid guid)
         {
             try

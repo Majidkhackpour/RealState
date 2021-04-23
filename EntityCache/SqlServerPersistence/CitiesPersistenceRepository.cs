@@ -14,7 +14,6 @@ namespace EntityCache.SqlServerPersistence
 {
     public class CitiesPersistenceRepository : ICitiesRepository
     {
-        public CitiesPersistenceRepository() { }
         public async Task<bool> CheckNameAsync(string _connectionString, Guid stateGuid, string name, Guid guid)
         {
             try

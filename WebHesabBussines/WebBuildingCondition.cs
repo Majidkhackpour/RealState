@@ -16,6 +16,8 @@ namespace WebHesabBussines
         public DateTime Modified { get; set; }
         public bool Status { get; set; }
         public string Name { get; set; }
+        public ServerStatus ServerStatus { get; set; }
+        public DateTime ServerDeliveryDate { get; set; }
         public string HardSerial { get; set; }
 
         public async Task SaveAsync()

@@ -14,7 +14,6 @@ namespace EntityCache.SqlServerPersistence
 {
     public class DasteCheckPersistenceRepository : IDasteCheckRepository
     {
-        public DasteCheckPersistenceRepository() { }
         private DasteCheckBussines LoadData(SqlDataReader dr)
         {
             var item = new DasteCheckBussines();

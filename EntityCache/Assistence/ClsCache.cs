@@ -18,11 +18,6 @@ namespace EntityCache.Assistence
                 throw new ArgumentNullException("ConnectionString Not Correct ", nameof(Cache.ConnectionString));
             UpdateMigration();
         }
-        public static void InitMapper()
-        {
-            var config = new MapperConfiguration(c => { c.AddProfile(new SqlProfile()); });
-            Mappings.Default = new Mapper(config);
-        }
         private static void UpdateMigration()
         {
             try

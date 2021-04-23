@@ -10,7 +10,6 @@ namespace EntityCache.SqlServerPersistence
 {
     public class AdvertiseLogPersistenceRepository : IAdvertiseLogRepository
     {
-        public AdvertiseLogPersistenceRepository() { }
         private AdvertiseLogBussines LoadData(SqlDataReader dr)
         {
             var item = new AdvertiseLogBussines();

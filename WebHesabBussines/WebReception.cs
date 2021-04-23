@@ -17,6 +17,8 @@ namespace WebHesabBussines
         public bool Status { get; set; }
         public Guid Receptor { get; set; }
         public DateTime CreateDate { get; set; }
+        public ServerStatus ServerStatus { get; set; }
+        public DateTime ServerDeliveryDate { get; set; }
         public string Description { get; set; }
         public decimal NaqdPrice { get; set; }
         public decimal BankPrice { get; set; }

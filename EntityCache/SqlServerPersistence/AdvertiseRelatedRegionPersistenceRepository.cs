@@ -11,7 +11,6 @@ namespace EntityCache.SqlServerPersistence
 {
     public class AdvertiseRelatedRegionPersistenceRepository : IAdvertiseRelatedRegionRepository
     {
-        public AdvertiseRelatedRegionPersistenceRepository() { }
         private AdvertiseRelatedRegionBussines LoadData(SqlDataReader dr)
         {
             var item = new AdvertiseRelatedRegionBussines();

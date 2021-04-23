@@ -10,7 +10,6 @@ namespace EntityCache.SqlServerPersistence
 {
     public class AdvTokensPersistenceRepository : IAdvTokensRepository
     {
-        public AdvTokensPersistenceRepository() { }
         private AdvTokenBussines LoadData(SqlDataReader dr)
         {
             var item = new AdvTokenBussines();

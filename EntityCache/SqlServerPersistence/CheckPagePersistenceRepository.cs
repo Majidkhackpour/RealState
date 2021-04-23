@@ -13,7 +13,6 @@ namespace EntityCache.SqlServerPersistence
 {
     public class CheckPagePersistenceRepository : ICheckPageRepository
     {
-        public CheckPagePersistenceRepository() { }
         private CheckPageBussines LoadData(SqlDataReader dr)
         {
             var item = new CheckPageBussines();

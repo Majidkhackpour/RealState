@@ -16,5 +16,6 @@ namespace Persistence.Entities
         public bool isSheypoorBlocked { get; set; }
         public DateTime NextUseSheypoor { get; set; }
         public DateTime NextUseDivar { get; set; }
+        public bool Status { get; set; }
     }
 }

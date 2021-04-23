@@ -14,7 +14,6 @@ namespace EntityCache.SqlServerPersistence
 {
     public class SanadPersistenceRepository : IsanadRepository
     {
-        public SanadPersistenceRepository() { }
         private SanadBussines LoadData(SqlDataReader dr, bool isLoadDet)
         {
             var item = new SanadBussines();

@@ -13,5 +13,6 @@ namespace Persistence.Entities
         [MaxLength(200)]
         public string Sender { get; set; }
         public string API { get; set; }
+        public bool Status { get; set; }
     }
 }

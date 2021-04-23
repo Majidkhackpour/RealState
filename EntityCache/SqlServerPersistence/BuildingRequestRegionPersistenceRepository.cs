@@ -15,7 +15,6 @@ namespace EntityCache.SqlServerPersistence
 {
     public class BuildingRequestRegionPersistenceRepository : IBuildingRequestRegionRepository
     {
-        public BuildingRequestRegionPersistenceRepository() { }
         public async Task<List<BuildingRequestRegionBussines>> GetAllAsync(string _connectionString, Guid parentGuid)
         {
             var list = new List<BuildingRequestRegionBussines>();

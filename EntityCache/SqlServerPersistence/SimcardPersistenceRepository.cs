@@ -1,7 +1,5 @@
 ﻿using EntityCache.Bussines;
 using EntityCache.Core;
-using Persistence.Entities;
-using Persistence.Model;
 using Services;
 using System;
 using System.Collections.Generic;

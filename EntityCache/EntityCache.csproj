@@ -104,8 +104,6 @@
     <Compile Include="Assistence\Defualts\DefaultRentalAuthority.cs" />
     <Compile Include="Assistence\Defualts\DefaultStates.cs" />
     <Compile Include="Assistence\Defualts\DefaultTafsil.cs" />
-    <Compile Include="Assistence\Mappings.cs" />
-    <Compile Include="Assistence\SqlProfile.cs" />
     <Compile Include="Assistence\UnitOfWork.cs" />
     <Compile Include="Bussines\AdvertiseLogBussines.cs" />
     <Compile Include="Bussines\AdvertiseRelatedRegionBussines.cs" />

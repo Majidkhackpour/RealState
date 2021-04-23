@@ -1,20 +1,17 @@
-﻿using System;
+﻿using EntityCache.Bussines;
+using EntityCache.Core;
+using Nito.AsyncEx;
+using Services;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Threading.Tasks;
-using EntityCache.Bussines;
-using EntityCache.Core;
-using Nito.AsyncEx;
-using Persistence.Entities;
-using Persistence.Model;
-using Services;
 
 namespace EntityCache.SqlServerPersistence
 {
     public class BuildingRequestPersistenceRepository : IBuildingRequestRepository
     {
-        public BuildingRequestPersistenceRepository() { }
         public async Task<List<BuildingRequestBussines>> GetAllAsync(string _connectionString)
         {
             var list = new List<BuildingRequestBussines>();

@@ -14,7 +14,6 @@ namespace EntityCache.SqlServerPersistence
 {
     public class TafsilPersistenceRepository : ITafsilRepository
     {
-        public TafsilPersistenceRepository() { }
         public async Task<ReturnedSaveFuncInfo> SaveRangeAsync(IEnumerable<TafsilBussines> items, SqlTransaction tr)
         {
             var res = new ReturnedSaveFuncInfo();

@@ -1,21 +1,16 @@
-﻿using System;
+﻿using EntityCache.Bussines;
+using EntityCache.Core;
+using Services;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
 using System.Threading.Tasks;
-using EntityCache.Assistence;
-using EntityCache.Bussines;
-using EntityCache.Core;
-using Persistence.Entities;
-using Persistence.Model;
-using Services;
 
 namespace EntityCache.SqlServerPersistence
 {
     public class BuildingOptionPersistenceRepository : IBuildingOptionRepository
     {
-        public BuildingOptionPersistenceRepository() { }
         public async Task<BuildingOptionsBussines> GetAsync(string _connectionString, string name)
         {
             var list = new BuildingOptionsBussines();

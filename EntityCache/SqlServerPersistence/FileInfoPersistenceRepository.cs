@@ -14,7 +14,6 @@ namespace EntityCache.SqlServerPersistence
 {
     public class FileInfoPersistenceRepository : IFileInfoRepository
     {
-        public FileInfoPersistenceRepository() { }
         public async Task<FileInfoBussines> GetAsync(string connectionString, string fileName)
         {
             var obj = new FileInfoBussines();

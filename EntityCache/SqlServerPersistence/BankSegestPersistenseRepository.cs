@@ -13,7 +13,6 @@ namespace EntityCache.SqlServerPersistence
 {
     public class BankSegestPersistenseRepository : IBankSegestRepository
     {
-        public BankSegestPersistenseRepository() { }
         private BankSegestBussines LoadData(SqlDataReader dr)
         {
             var item = new BankSegestBussines();

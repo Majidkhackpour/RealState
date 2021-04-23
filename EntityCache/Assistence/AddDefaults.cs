@@ -1,14 +1,14 @@
-﻿using System;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
-using EntityCache.Assistence.Defualts;
+﻿using EntityCache.Assistence.Defualts;
 using EntityCache.Bussines;
-using Persistence;
-using Persistence.Model;
 using Services;
 using Services.Access;
 using Services.DefaultCoding;
+using System;
+using System.Data.SqlClient;
+using System.Security.Cryptography;
+using System.Text;
+using System.Threading.Tasks;
+using Persistence;
 
 namespace EntityCache.Assistence
 {
@@ -16,17 +16,21 @@ namespace EntityCache.Assistence
     {
         public static async Task InsertDefaultDataAsync()
         {
+            var res = new ReturnedSaveFuncInfo();
+            SqlTransaction tr = null;
+            SqlConnection cn = null;
             try
             {
-                var dbContext = new ModelContext(Cache.ConnectionString);
-                var res = new ReturnedSaveFuncInfo();
+                cn = new SqlConnection(Cache.ConnectionString);
+                await cn.OpenAsync();
+                tr = cn.BeginTransaction();
 
                 #region Kol
                 var allKol = await KolBussines.GetAllAsync();
                 if (allKol == null || allKol.Count <= 0)
                 {
                     var kol = DefaultKol.SetDef();
-                    res.AddReturnedValue(await KolBussines.SaveRangeAsync(kol));
+                    res.AddReturnedValue(await KolBussines.SaveRangeAsync(kol, tr));
                     if (res.HasError) return;
                 }
                 #endregion
@@ -36,7 +40,7 @@ namespace EntityCache.Assistence
                 if (allMoein == null || allMoein.Count <= 0)
                 {
                     var moein = DefaultMoein.SetDef();
-                    res.AddReturnedValue(await MoeinBussines.SaveRangeAsync(moein));
+                    res.AddReturnedValue(await MoeinBussines.SaveRangeAsync(moein, tr));
                     if (res.HasError) return;
                 }
                 #endregion
@@ -46,7 +50,7 @@ namespace EntityCache.Assistence
                 if (allTafsil == null || allTafsil.Count <= 0)
                 {
                     var tafsil = DefaultTafsil.SetDef();
-                    res.AddReturnedValue(await TafsilBussines.SaveRangeAsync(tafsil));
+                    res.AddReturnedValue(await TafsilBussines.SaveRangeAsync(tafsil, tr));
                     if (res.HasError) return;
                 }
                 #endregion
@@ -61,7 +65,7 @@ namespace EntityCache.Assistence
                         Name = "حساب بانکی مرکزی",
                         Code = "1010101",
                     };
-                    res.AddReturnedValue(await user.SaveAsync());
+                    res.AddReturnedValue(await user.SaveAsync(tr));
                     if (res.HasError) return;
                 }
                 #endregion
@@ -71,7 +75,7 @@ namespace EntityCache.Assistence
                 if (allbs == null || allbs.Count <= 0)
                 {
                     var bs = DefaultBankSegest.SetDef();
-                    res.AddReturnedValue(await BankSegestBussines.SaveRangeAsync(bs));
+                    res.AddReturnedValue(await BankSegestBussines.SaveRangeAsync(bs, tr));
                     if (res.HasError) return;
                 }
                 #endregion
@@ -95,7 +99,7 @@ namespace EntityCache.Assistence
                     var hashBytes = md5.ComputeHash(bytes);
                     user.Password = System.Text.RegularExpressions.Regex.Replace(BitConverter.ToString(hashBytes), "-", "")
                         .ToLower();
-                    res.AddReturnedValue(await user.SaveAsync());
+                    res.AddReturnedValue(await user.SaveAsync(tr));
                     if (res.HasError) return;
                 }
                 #endregion
@@ -105,7 +109,7 @@ namespace EntityCache.Assistence
                 if (allStates == null || allStates.Count <= 0)
                 {
                     var states = DefaultStates.SetDef();
-                    res.AddReturnedValue(await StatesBussines.SaveRangeAsync(states));
+                    res.AddReturnedValue(await StatesBussines.SaveRangeAsync(states, tr));
                     if (res.HasError) return;
                 }
                 #endregion
@@ -115,7 +119,7 @@ namespace EntityCache.Assistence
                 if (allCities == null || allCities.Count <= 0)
                 {
                     var city = DefaultCities.SetDef();
-                    res.AddReturnedValue(await CitiesBussines.SaveRangeAsync(city));
+                    res.AddReturnedValue(await CitiesBussines.SaveRangeAsync(city, tr));
                     if (res.HasError) return;
                 }
                 #endregion
@@ -125,7 +129,7 @@ namespace EntityCache.Assistence
                 if (allRegions == null || allRegions.Count <= 0)
                 {
                     var reg = DefaultRegions.SetDef();
-                    res.AddReturnedValue(await RegionsBussines.SaveRangeAsync(reg));
+                    res.AddReturnedValue(await RegionsBussines.SaveRangeAsync(reg, tr));
                     if (res.HasError) return;
                 }
                 #endregion
@@ -135,7 +139,7 @@ namespace EntityCache.Assistence
                 if (allNaqz == null || allNaqz.Count <= 0)
                 {
                     var naqz = DefaultNaqz.SetDef();
-                    res.AddReturnedValue(await NaqzBussines.SaveRangeAsync(naqz));
+                    res.AddReturnedValue(await NaqzBussines.SaveRangeAsync(naqz, tr));
                     if (res.HasError) return;
                 }
                 #endregion
@@ -145,7 +149,7 @@ namespace EntityCache.Assistence
                 if (allbo == null || allbo.Count <= 0)
                 {
                     var bo = DefaultBuildingOptions.SetDef();
-                    res.AddReturnedValue(await BuildingOptionsBussines.SaveRangeAsync(bo));
+                    res.AddReturnedValue(await BuildingOptionsBussines.SaveRangeAsync(bo, tr));
                     if (res.HasError) return;
                 }
                 #endregion
@@ -155,7 +159,7 @@ namespace EntityCache.Assistence
                 if (allbat == null || allbat.Count <= 0)
                 {
                     var bat = DefaultBuildingAccountType.SetDef();
-                    res.AddReturnedValue(await BuildingAccountTypeBussines.SaveRangeAsync(bat));
+                    res.AddReturnedValue(await BuildingAccountTypeBussines.SaveRangeAsync(bat, tr));
                     if (res.HasError) return;
                 }
                 #endregion
@@ -165,7 +169,7 @@ namespace EntityCache.Assistence
                 if (allfc == null || allfc.Count <= 0)
                 {
                     var fc = DefaultFloorCover.SetDef();
-                    res.AddReturnedValue(await FloorCoverBussines.SaveRangeAsync(fc));
+                    res.AddReturnedValue(await FloorCoverBussines.SaveRangeAsync(fc, tr));
                     if (res.HasError) return;
                 }
                 #endregion
@@ -175,7 +179,7 @@ namespace EntityCache.Assistence
                 if (allks == null || allks.Count <= 0)
                 {
                     var ks = DefaultKitchenService.SetDef();
-                    res.AddReturnedValue(await KitchenServiceBussines.SaveRangeAsync(ks));
+                    res.AddReturnedValue(await KitchenServiceBussines.SaveRangeAsync(ks, tr));
                     if (res.HasError) return;
                 }
                 #endregion
@@ -185,7 +189,7 @@ namespace EntityCache.Assistence
                 if (alldt == null || alldt.Count <= 0)
                 {
                     var dt = DefaultDocumentType.SetDef();
-                    res.AddReturnedValue(await DocumentTypeBussines.SaveRangeAsync(dt));
+                    res.AddReturnedValue(await DocumentTypeBussines.SaveRangeAsync(dt, tr));
                     if (res.HasError) return;
                 }
                 #endregion
@@ -195,7 +199,7 @@ namespace EntityCache.Assistence
                 if (allra == null || allra.Count <= 0)
                 {
                     var ra = DefaultRentalAuthority.SetDef();
-                    res.AddReturnedValue(await RentalAuthorityBussines.SaveRangeAsync(ra));
+                    res.AddReturnedValue(await RentalAuthorityBussines.SaveRangeAsync(ra, tr));
                     if (res.HasError) return;
                 }
                 #endregion
@@ -205,7 +209,7 @@ namespace EntityCache.Assistence
                 if (allbv == null || allbv.Count <= 0)
                 {
                     var bv = DefaultBuildingView.SetDef();
-                    res.AddReturnedValue(await BuildingViewBussines.SaveRangeAsync(bv));
+                    res.AddReturnedValue(await BuildingViewBussines.SaveRangeAsync(bv, tr));
                     if (res.HasError) return;
                 }
                 #endregion
@@ -215,7 +219,7 @@ namespace EntityCache.Assistence
                 if (allbc == null || allbc.Count <= 0)
                 {
                     var bc = DefaultBuildingCondition.SetDef();
-                    res.AddReturnedValue(await BuildingConditionBussines.SaveRangeAsync(bc));
+                    res.AddReturnedValue(await BuildingConditionBussines.SaveRangeAsync(bc, tr));
                     if (res.HasError) return;
                 }
                 #endregion
@@ -225,7 +229,7 @@ namespace EntityCache.Assistence
                 if (allbt == null || allbt.Count <= 0)
                 {
                     var bo = DefaultBuildingType.SetDef();
-                    res.AddReturnedValue(await BuildingTypeBussines.SaveRangeAsync(bo));
+                    res.AddReturnedValue(await BuildingTypeBussines.SaveRangeAsync(bo, tr));
                     if (res.HasError) return;
                 }
                 #endregion
@@ -235,7 +239,7 @@ namespace EntityCache.Assistence
                 if (allpg == null || allpg.Count <= 0)
                 {
                     var reg = DefaultPeopleGroup.SetDef();
-                    res.AddReturnedValue(await PeopleGroupBussines.SaveRangeAsync(reg));
+                    res.AddReturnedValue(await PeopleGroupBussines.SaveRangeAsync(reg, tr));
                     if (res.HasError) return;
                 }
                 #endregion
@@ -244,18 +248,21 @@ namespace EntityCache.Assistence
                 var allSetting = await SettingsBussines.GetAllAsync();
                 if (allSetting == null || allSetting.Count <= 0)
                 {
-                    res.AddReturnedValue(SettingsBussines.Save("ArzeshAfzoude", "9"));
-                    res.AddReturnedValue(SettingsBussines.Save("Tabdil", "2"));
+                    res.AddReturnedValue(SettingsBussines.Save("ArzeshAfzoude", "9", tr));
+                    res.AddReturnedValue(SettingsBussines.Save("Tabdil", "2", tr));
                     if (res.HasError) return;
                 }
                 #endregion
-
-                await dbContext.SaveChangesAsync();
-                dbContext.Dispose();
             }
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+            finally
+            {
+                res.AddReturnedValue(tr.TransactionDestiny(res.HasError));
+                res.AddReturnedValue(cn.CloseConnection());
             }
         }
     }

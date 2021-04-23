@@ -13,7 +13,6 @@ namespace EntityCache.SqlServerPersistence
 {
     public class MoeinPersistenceRepository : IMoeinRepository
     {
-        public MoeinPersistenceRepository() { }
         public async Task<ReturnedSaveFuncInfo> SaveRangeAsync(IEnumerable<MoeinBussines> items, SqlTransaction tr)
         {
             var res = new ReturnedSaveFuncInfo();

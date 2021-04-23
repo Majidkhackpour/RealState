@@ -17,6 +17,8 @@ namespace WebHesabBussines
         public bool Status { get; set; }
         public string Name { get; set; }
         public string HardSerial { get; set; }
+        public ServerStatus ServerStatus { get; set; }
+        public DateTime ServerDeliveryDate { get; set; }
 
 
 

@@ -29,6 +29,8 @@ namespace WebHesabBussines
         public bool? HasOwner { get; set; }
         public bool? ShortDate { get; set; }
         public Guid? RentalAutorityGuid { get; set; }
+        public ServerStatus ServerStatus { get; set; }
+        public DateTime ServerDeliveryDate { get; set; }
         public Guid CityGuid { get; set; }
         public Guid BuildingTypeGuid { get; set; }
         public int Masahat1 { get; set; }

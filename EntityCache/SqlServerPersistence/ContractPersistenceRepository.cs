@@ -15,7 +15,6 @@ namespace EntityCache.SqlServerPersistence
 {
     public class ContractPersistenceRepository : IContractRepository
     {
-        public ContractPersistenceRepository() { }
         public async Task<List<ContractBussines>> GetAllAsync(string _connectionString)
         {
             var list = new List<ContractBussines>();

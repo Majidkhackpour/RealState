@@ -13,7 +13,6 @@ namespace EntityCache.SqlServerPersistence
 {
     public class BuildingRelatedOptionsPersistenceRepository : IBuildingRelatedOptionsRepository
     {
-        public BuildingRelatedOptionsPersistenceRepository() { }
         public async Task<List<BuildingRelatedOptionsBussines>> GetAllAsync(string _connectionString, Guid parentGuid)
         {
             var list = new List<BuildingRelatedOptionsBussines>();

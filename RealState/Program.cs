@@ -31,7 +31,6 @@ namespace RealState
             }
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            ClsCache.InitMapper();
 
             InitConfigs();
 

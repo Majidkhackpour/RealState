@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using EntityCache.Assistence;
+using Persistence;
 using Services;
 
 namespace EntityCache.Bussines
@@ -32,7 +33,7 @@ namespace EntityCache.Bussines
             IEnumerable<GardeshBussines> list = null;
             try
             {
-                list = await UnitOfWork.SanadDetail.GetAllGardeshAsync(tafsilGuid);
+                list = await UnitOfWork.SanadDetail.GetAllGardeshAsync(Cache.ConnectionString, tafsilGuid);
                 list = list?.OrderBy(q => q.DateM);
                 decimal rem = 0;
                 foreach (var item in list ?? new List<GardeshBussines>())

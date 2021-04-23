@@ -13,7 +13,6 @@ namespace EntityCache.SqlServerPersistence
 {
     public class BankPersistenceRepository : IBankRepository
     {
-        public BankPersistenceRepository() { }
         public async Task<List<BankBussines>> GetAllAsync(string _connectionString)
         {
             var list = new List<BankBussines>();

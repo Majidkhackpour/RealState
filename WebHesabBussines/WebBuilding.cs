@@ -17,6 +17,8 @@ namespace WebHesabBussines
 
         public Guid Guid { get; set; }
         public DateTime Modified { get; set; }
+        public ServerStatus ServerStatus { get; set; }
+        public DateTime ServerDeliveryDate { get; set; }
         public bool Status { get; set; }
         public DateTime CreateDate { get; set; }
         public string Code { get; set; }

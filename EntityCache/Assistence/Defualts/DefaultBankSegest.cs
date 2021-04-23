@@ -15,8 +15,6 @@ namespace EntityCache.Assistence.Defualts
                 var reg = new BankSegestBussines()
                 {
                     Guid = Guid.NewGuid(),
-                    Modified = DateTime.Now,
-                    Status = true,
                     BankName = name
                 };
                 return reg;

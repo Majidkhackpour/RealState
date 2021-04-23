@@ -1,7 +1,5 @@
 ﻿using EntityCache.Bussines;
 using EntityCache.Core;
-using Persistence.Entities;
-using Persistence.Model;
 using Services;
 using System;
 using System.Collections.Generic;
@@ -13,8 +11,6 @@ namespace EntityCache.SqlServerPersistence
 {
     public class BuildingGalleryPersistenceRepository : IBuildingGalleryRepository
     {
-        public BuildingGalleryPersistenceRepository() { }
-
         public async Task<List<BuildingGalleryBussines>> GetAllAsync(string _connectionString, Guid parentGuid)
         {
             var list = new List<BuildingGalleryBussines>();
