@@ -26,6 +26,7 @@ namespace EntityCache.Bussines
         public bool IsChecked { get; set; }
         public CitiesBussines City => CitiesBussines.Get(CityGuid);
         public string HardSerial => Cache.HardSerial;
+        public bool IsModified { get; set; } = false;
 
         public static async Task<List<RegionsBussines>> GetAllAsync() => await UnitOfWork.Regions.GetAllAsync(Cache.ConnectionString);
         public static async Task<ReturnedSaveFuncInfo> SaveRangeAsync(List<RegionsBussines> list, SqlTransaction tr = null)
@@ -115,6 +116,10 @@ namespace EntityCache.Bussines
                 res.AddReturnedValue(await UnitOfWork.Regions.SaveAsync(this, tr));
                 if (res.HasError) return res;
 
+                var action = IsModified ? EnLogAction.Update : EnLogAction.Insert;
+                res.AddReturnedValue(await UserLogBussines.SaveAsync(action, EnLogPart.Regions, tr));
+                if (res.HasError) return res;
+
                 if (Cache.IsSendToServer)
                     _ = Task.Run(() => WebRegion.SaveAsync(this));
             }
@@ -148,6 +153,10 @@ namespace EntityCache.Bussines
                 }
 
                 res.AddReturnedValue(await UnitOfWork.Regions.ChangeStatusAsync(this, status, tr));
+                if (res.HasError) return res;
+
+                var action = status ? EnLogAction.Enable : EnLogAction.Delete;
+                res.AddReturnedValue(await UserLogBussines.SaveAsync(action, EnLogPart.Regions, tr));
                 if (res.HasError) return res;
 
                 if (Cache.IsSendToServer)

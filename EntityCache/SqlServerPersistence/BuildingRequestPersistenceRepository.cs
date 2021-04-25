@@ -172,6 +172,7 @@ namespace EntityCache.SqlServerPersistence
                 res.UserName = dr["UserName"].ToString();
                 res.ServerDeliveryDate = (DateTime)dr["ServerDeliveryDate"];
                 res.ServerStatus = (ServerStatus)dr["ServerStatus"];
+                res.IsModified = true;
                 if (isLoadDet)
                     res.RegionList = AsyncContext.Run(() => BuildingRequestRegionBussines.GetAllAsync(res.Guid));
             }

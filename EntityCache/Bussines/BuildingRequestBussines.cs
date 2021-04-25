@@ -46,6 +46,7 @@ namespace EntityCache.Bussines
         public Guid BuildingConditionGuid { get; set; }
         public string ShortDesc { get; set; }
         public string HardSerial => Cache.HardSerial;
+        public bool IsModified { get; set; } = false;
         public List<BuildingRequestRegionBussines> RegionList { get; set; }
         #endregion
 
@@ -78,6 +79,10 @@ namespace EntityCache.Bussines
                 }
 
                 res.AddReturnedValue(await UnitOfWork.BuildingRequest.SaveAsync(this, tr));
+                if (res.HasError) return res;
+
+                var action = IsModified ? EnLogAction.Update : EnLogAction.Insert;
+                res.AddReturnedValue(await UserLogBussines.SaveAsync(action, EnLogPart.BuildingRequest, tr));
                 if (res.HasError) return res;
 
                 if (Cache.IsSendToServer)
@@ -114,6 +119,10 @@ namespace EntityCache.Bussines
                 }
 
                 res.AddReturnedValue(await UnitOfWork.BuildingRequest.ChangeStatusAsync(this, status, tr));
+                if (res.HasError) return res;
+
+                var action = status ? EnLogAction.Enable : EnLogAction.Delete;
+                res.AddReturnedValue(await UserLogBussines.SaveAsync(action, EnLogPart.BuildingRequest, tr));
                 if (res.HasError) return res;
 
                 if (Cache.IsSendToServer)

@@ -57,7 +57,45 @@ namespace EntityCache.Bussines
             }
             return res;
         }
-        public ReturnedSaveFuncInfo Save(SqlTransaction tr = null) => AsyncContext.Run(() => SaveAsync(tr));
+        public static async Task<ReturnedSaveFuncInfo> SaveAsync(EnLogAction action, EnLogPart part, SqlTransaction tr)
+        {
+            var res = new ReturnedSaveFuncInfo();
+            var autoTran = tr == null;
+            SqlConnection cn = null;
+            try
+            {
+                if (autoTran)
+                {
+                    cn = new SqlConnection(Cache.ConnectionString);
+                    await cn.OpenAsync();
+                    tr = cn.BeginTransaction();
+                }
+                var log = new UserLogBussines
+                {
+                    Guid = Guid.NewGuid(),
+                    UserGuid = UserBussines.CurrentUser.Guid,
+                    Description =
+                        $"انجام عملیات {action.GetDisplay()} در بخش {part.GetDisplay()} در تاریخ {Calendar.MiladiToShamsi(DateTime.Now)} در ساعت {DateTime.Now.ToShortTimeString()}",
+                    Action = action,
+                    Part = part
+                };
+                res.AddReturnedValue(await UnitOfWork.UserLog.SaveAsync(log, tr));
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+            finally
+            {
+                if (autoTran)
+                {
+                    res.AddReturnedValue(tr.TransactionDestiny(res.HasError));
+                    res.AddReturnedValue(cn.CloseConnection());
+                }
+            }
+            return res;
+        }
         public static async Task<List<UserLogBussines>> GetAllAsync(Guid userGuid, DateTime d1, DateTime d2) =>
             await UnitOfWork.UserLog.GetAllAsync(Cache.ConnectionString, userGuid, d1, d2);
     }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Security;
 using System.Threading.Tasks;
 using EntityCache.Bussines;
 using EntityCache.Core;
@@ -34,6 +35,7 @@ namespace EntityCache.SqlServerPersistence
                 item.UserName = dr["UserName"].ToString();
                 item.ServerDeliveryDate = (DateTime)dr["ServerDeliveryDate"];
                 item.ServerStatus = (ServerStatus)dr["ServerStatus"];
+                item.IsModified = true;
                 item.CheckList = AsyncContext.Run(() => ReceptionCheckBussines.GetAllAsync(item.Guid));
                 item.HavaleList = AsyncContext.Run(() => ReceptionHavaleBussines.GetAllAsync(item.Guid));
                 item.NaqdList = AsyncContext.Run(() => ReceptionNaqdBussines.GetAllAsync(item.Guid));

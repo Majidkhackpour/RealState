@@ -70,7 +70,7 @@ namespace EntityCache.Bussines
         public int CountHavale => HavaleList?.Count ?? 0;
         public int CountCheckMoshtari => CheckMoshtariList?.Count() ?? 0;
         public int CountCheckShakhsi => CheckShakhsiList?.Count() ?? 0;
-
+        public bool IsModified { get; set; } = false;
 
         public void ListBankClear() => HavaleList?.Clear();
         public void ListNaghdClear() => NaqdList?.Clear();
@@ -318,6 +318,10 @@ namespace EntityCache.Bussines
                 res.AddReturnedValue(await sanad.SaveAsync(tr));
                 if (res.HasError) return res;
 
+                var action = IsModified ? EnLogAction.Update : EnLogAction.Insert;
+                res.AddReturnedValue(await UserLogBussines.SaveAsync(action, EnLogPart.Pardakht, tr));
+                if (res.HasError) return res;
+
                 //if (Cache.IsSendToServer)
                 //    _ = Task.Run(() => WebRental.SaveAsync(list));
             }
@@ -409,6 +413,9 @@ namespace EntityCache.Bussines
                     res.AddReturnedValue(await sanad.RemoveAsync(tr));
                     if (res.HasError) return res;
                 }
+
+                res.AddReturnedValue(await UserLogBussines.SaveAsync(EnLogAction.Delete, EnLogPart.Pardakht, tr));
+                if (res.HasError) return res;
 
                 //if (Cache.IsSendToServer)
                 //    _ = Task.Run(() => WebRental.SaveAsync(list));

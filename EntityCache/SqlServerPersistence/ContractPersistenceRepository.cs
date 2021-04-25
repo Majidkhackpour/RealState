@@ -364,6 +364,7 @@ namespace EntityCache.SqlServerPersistence
                 res.UserName = dr["UserName"].ToString();
                 res.ServerDeliveryDate = (DateTime)dr["ServerDeliveryDate"];
                 res.ServerStatus = (ServerStatus)dr["ServerStatus"];
+                res.IsModified = true;
             }
             catch (Exception ex)
             {

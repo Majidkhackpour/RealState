@@ -64,6 +64,7 @@ namespace EntityCache.Bussines
         public decimal FirstSum => FirstTotalPrice + FirstAvarez + FirstTax;
         public decimal SecondSum => SecondTotalPrice + SecondAvarez + SecondTax;
         public string HardSerial => Cache.HardSerial;
+        public bool IsModified { get; set; } = false;
 
 
 
@@ -125,6 +126,9 @@ namespace EntityCache.Bussines
                 res.AddReturnedValue(await sanad.SaveAsync(tr));
                 if (res.HasError) return res;
 
+                var action = IsModified ? EnLogAction.Update : EnLogAction.Insert;
+                res.AddReturnedValue(await UserLogBussines.SaveAsync(action, EnLogPart.Contracts, tr));
+                if (res.HasError) return res;
 
                 //if (Cache.IsSendToServer)
                 //    _ = Task.Run(() => WebContract.SaveAsync(this));
@@ -167,6 +171,9 @@ namespace EntityCache.Bussines
                     res.AddReturnedValue(await sanad.RemoveAsync(tr));
                     if (res.HasError) return res;
                 }
+
+                res.AddReturnedValue(await UserLogBussines.SaveAsync(EnLogAction.Delete, EnLogPart.Contracts, tr));
+                if (res.HasError) return res;
 
                 //if (Cache.IsSendToServer)
                 //    _ = Task.Run(() => WebContract.SaveAsync(this));

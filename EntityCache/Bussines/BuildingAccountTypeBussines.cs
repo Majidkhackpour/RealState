@@ -21,6 +21,7 @@ namespace EntityCache.Bussines
         public DateTime ServerDeliveryDate { get; set; } = DateTime.Now;
         public string Name { get; set; }
         public string HardSerial => Cache.HardSerial;
+        public bool IsModified { get; set; } = false;
 
 
         public static async Task<List<BuildingAccountTypeBussines>> GetAllAsync() => await UnitOfWork.BuildingAccountType.GetAllAsync(Cache.ConnectionString);
@@ -59,7 +60,7 @@ namespace EntityCache.Bussines
             return res;
         }
         public static async Task<BuildingAccountTypeBussines> GetAsync(Guid guid) => await UnitOfWork.BuildingAccountType.GetAsync(Cache.ConnectionString, guid);
-        public async Task<ReturnedSaveFuncInfo> SaveAsync(SqlTransaction tr)
+        public async Task<ReturnedSaveFuncInfo> SaveAsync(SqlTransaction tr=null)
         {
             var res = new ReturnedSaveFuncInfo();
             var autoTran = tr == null;
@@ -74,6 +75,11 @@ namespace EntityCache.Bussines
                 }
 
                 res.AddReturnedValue(await UnitOfWork.BuildingAccountType.SaveAsync(this, tr));
+                if (res.HasError) return res;
+
+                var action = IsModified ? EnLogAction.Update : EnLogAction.Insert;
+                res.AddReturnedValue(await UserLogBussines.SaveAsync(action, EnLogPart.BuildingAccountType, tr));
+                if (res.HasError) return res;
 
                 if (Cache.IsSendToServer)
                     _ = Task.Run(() => WebBuildingAccountType.SaveAsync(this));
@@ -108,6 +114,10 @@ namespace EntityCache.Bussines
                 }
 
                 res.AddReturnedValue(await UnitOfWork.BuildingAccountType.ChangeStatusAsync(this, status, tr));
+                if (res.HasError) return res;
+
+                var action = status ? EnLogAction.Enable : EnLogAction.Delete;
+                res.AddReturnedValue(await UserLogBussines.SaveAsync(action, EnLogPart.BuildingAccountType, tr));
                 if (res.HasError) return res;
 
                 if (Cache.IsSendToServer)

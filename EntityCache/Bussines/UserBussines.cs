@@ -53,6 +53,11 @@ namespace EntityCache.Bussines
         public string Email { get; set; }
         public string Mobile { get; set; }
         public string HardSerial => Cache.HardSerial;
+        public bool IsModified { get; set; } = false;
+        public static UserBussines CurrentUser { get; set; }
+        public static DateTime DateVorrod { get; set; }
+        public static string DateSh => Calendar.MiladiToShamsi(DateVorrod);
+
 
         public static async Task<UserBussines> GetAsync(Guid guid) => await UnitOfWork.Users.GetAsync(Cache.ConnectionString, guid);
         public static async Task<List<UserBussines>> GetAllAsync() => await UnitOfWork.Users.GetAllAsync(Cache.ConnectionString);
@@ -76,6 +81,10 @@ namespace EntityCache.Bussines
                 if (res.HasError) return res;
 
                 res.AddReturnedValue(await UnitOfWork.Users.SaveAsync(this, tr));
+                if (res.HasError) return res;
+
+                var action = IsModified ? EnLogAction.Update : EnLogAction.Insert;
+                res.AddReturnedValue(await UserLogBussines.SaveAsync(action, EnLogPart.Users, tr));
                 if (res.HasError) return res;
 
                 //if (Cache.IsSendToServer)
@@ -114,6 +123,10 @@ namespace EntityCache.Bussines
                 res.AddReturnedValue(await PhoneBookBussines.ChangeStatusAsync(Guid, status, tr));
                 if (res.HasError) return res;
                 res.AddReturnedValue(await UnitOfWork.Users.ChangeStatusAsync(this, status, tr));
+                if (res.HasError) return res;
+
+                var action = status ? EnLogAction.Enable : EnLogAction.Delete;
+                res.AddReturnedValue(await UserLogBussines.SaveAsync(action, EnLogPart.Users, tr));
                 if (res.HasError) return res;
             }
             catch (Exception ex)

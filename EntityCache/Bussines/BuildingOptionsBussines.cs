@@ -22,10 +22,11 @@ namespace EntityCache.Bussines
         public string Name { get; set; }
         public bool Checked { get; set; }
         public string HardSerial => Cache.HardSerial;
+        public bool IsModified { get; set; } = false;
 
 
         public static async Task<List<BuildingOptionsBussines>> GetAllAsync() => await UnitOfWork.BuildingOption.GetAllAsync(Cache.ConnectionString);
-        public static async Task<ReturnedSaveFuncInfo> SaveRangeAsync(List<BuildingOptionsBussines> list, SqlTransaction tr=null)
+        public static async Task<ReturnedSaveFuncInfo> SaveRangeAsync(List<BuildingOptionsBussines> list, SqlTransaction tr = null)
         {
             var res = new ReturnedSaveFuncInfo();
             var autoTran = tr == null;
@@ -59,9 +60,9 @@ namespace EntityCache.Bussines
             }
             return res;
         }
-        public static async Task<BuildingOptionsBussines> GetAsync(Guid guid) => await UnitOfWork.BuildingOption.GetAsync(Cache.ConnectionString,guid);
+        public static async Task<BuildingOptionsBussines> GetAsync(Guid guid) => await UnitOfWork.BuildingOption.GetAsync(Cache.ConnectionString, guid);
         public static async Task<BuildingOptionsBussines> GetAsync(string name) => await UnitOfWork.BuildingOption.GetAsync(Cache.ConnectionString, name);
-        public async Task<ReturnedSaveFuncInfo> SaveAsync(SqlTransaction tr=null)
+        public async Task<ReturnedSaveFuncInfo> SaveAsync(SqlTransaction tr = null)
         {
             var res = new ReturnedSaveFuncInfo();
             var autoTran = tr == null;
@@ -76,6 +77,11 @@ namespace EntityCache.Bussines
                 }
 
                 res.AddReturnedValue(await UnitOfWork.BuildingOption.SaveAsync(this, tr));
+                if (res.HasError) return res;
+
+                var action = IsModified ? EnLogAction.Update : EnLogAction.Insert;
+                res.AddReturnedValue(await UserLogBussines.SaveAsync(action, EnLogPart.BuildingOptions, tr));
+                if (res.HasError) return res;
 
                 if (Cache.IsSendToServer)
                     _ = Task.Run(() => WebBuildingOptions.SaveAsync(this));
@@ -96,7 +102,7 @@ namespace EntityCache.Bussines
 
             return res;
         }
-        public async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(bool status, SqlTransaction tr=null)
+        public async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(bool status, SqlTransaction tr = null)
         {
             var res = new ReturnedSaveFuncInfo();
             var autoTran = tr == null;
@@ -111,6 +117,11 @@ namespace EntityCache.Bussines
                 }
 
                 res.AddReturnedValue(await UnitOfWork.BuildingOption.ChangeStatusAsync(this, status, tr));
+                if (res.HasError) return res;
+
+                var action = status ? EnLogAction.Enable : EnLogAction.Delete;
+                res.AddReturnedValue(await UserLogBussines.SaveAsync(action, EnLogPart.BuildingOptions, tr));
+                if (res.HasError) return res;
 
                 if (Cache.IsSendToServer)
                     _ = Task.Run(() => WebBuildingOptions.SaveAsync(this));
@@ -161,6 +172,6 @@ namespace EntityCache.Bussines
         }
         public static BuildingOptionsBussines Get(Guid guid) => AsyncContext.Run(() => GetAsync(guid));
         public static async Task<bool> CheckNameAsync(string name, Guid guid) =>
-            await UnitOfWork.BuildingOption.CheckNameAsync(Cache.ConnectionString,name, guid);
+            await UnitOfWork.BuildingOption.CheckNameAsync(Cache.ConnectionString, name, guid);
     }
 }

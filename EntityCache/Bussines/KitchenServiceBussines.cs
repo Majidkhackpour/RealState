@@ -21,10 +21,11 @@ namespace EntityCache.Bussines
         public DateTime ServerDeliveryDate { get; set; } = DateTime.Now;
         public string Name { get; set; }
         public string HardSerial => Cache.HardSerial;
+        public bool IsModified { get; set; } = false;
 
 
         public static async Task<List<KitchenServiceBussines>> GetAllAsync() => await UnitOfWork.KitchenService.GetAllAsync(Cache.ConnectionString);
-        public static async Task<ReturnedSaveFuncInfo> SaveRangeAsync(List<KitchenServiceBussines> list, SqlTransaction tr=null)
+        public static async Task<ReturnedSaveFuncInfo> SaveRangeAsync(List<KitchenServiceBussines> list, SqlTransaction tr = null)
         {
             var res = new ReturnedSaveFuncInfo();
             var autoTran = tr == null;
@@ -59,8 +60,8 @@ namespace EntityCache.Bussines
             }
             return res;
         }
-        public static async Task<KitchenServiceBussines> GetAsync(Guid guid) => await UnitOfWork.KitchenService.GetAsync(Cache.ConnectionString,guid);
-        public async Task<ReturnedSaveFuncInfo> SaveAsync(SqlTransaction tr=null)
+        public static async Task<KitchenServiceBussines> GetAsync(Guid guid) => await UnitOfWork.KitchenService.GetAsync(Cache.ConnectionString, guid);
+        public async Task<ReturnedSaveFuncInfo> SaveAsync(SqlTransaction tr = null)
         {
             var res = new ReturnedSaveFuncInfo();
             var autoTran = tr == null;
@@ -75,6 +76,10 @@ namespace EntityCache.Bussines
                 }
 
                 res.AddReturnedValue(await UnitOfWork.KitchenService.SaveAsync(this, tr));
+                if (res.HasError) return res;
+
+                var action = IsModified ? EnLogAction.Update : EnLogAction.Insert;
+                res.AddReturnedValue(await UserLogBussines.SaveAsync(action, EnLogPart.KitchenService, tr));
                 if (res.HasError) return res;
 
                 if (Cache.IsSendToServer)
@@ -95,7 +100,7 @@ namespace EntityCache.Bussines
             }
             return res;
         }
-        public async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(bool status, SqlTransaction tr=null)
+        public async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(bool status, SqlTransaction tr = null)
         {
             var res = new ReturnedSaveFuncInfo();
             var autoTran = tr == null;
@@ -110,6 +115,10 @@ namespace EntityCache.Bussines
                 }
 
                 res.AddReturnedValue(await UnitOfWork.KitchenService.ChangeStatusAsync(this, status, tr));
+                if (res.HasError) return res;
+
+                var action = status ? EnLogAction.Enable : EnLogAction.Delete;
+                res.AddReturnedValue(await UserLogBussines.SaveAsync(action, EnLogPart.KitchenService, tr));
                 if (res.HasError) return res;
 
                 if (Cache.IsSendToServer)
@@ -161,6 +170,6 @@ namespace EntityCache.Bussines
         }
         public static KitchenServiceBussines Get(Guid guid) => AsyncContext.Run(() => GetAsync(guid));
         public static async Task<bool> CheckNameAsync(string name, Guid guid) =>
-            await UnitOfWork.KitchenService.CheckNameAsync(Cache.ConnectionString,name, guid);
+            await UnitOfWork.KitchenService.CheckNameAsync(Cache.ConnectionString, name, guid);
     }
 }

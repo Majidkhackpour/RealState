@@ -95,14 +95,15 @@ namespace EntityCache.Bussines
         public bool IsArchive { get; set; }
         public string HardSerial => Cache.HardSerial;
         public string Image { get; set; }
+        public bool IsModified { get; set; } = false;
         public List<BuildingRelatedOptionsBussines> OptionList { get; set; }
         public List<BuildingGalleryBussines> GalleryList { get; set; }
         #endregion
 
         public static async Task<List<BuildingBussines>> GetAllAsync() => await UnitOfWork.Building.GetAllAsync(Cache.ConnectionString);
-        public static async Task<BuildingBussines> GetAsync(Guid guid) => await UnitOfWork.Building.GetAsync(Cache.ConnectionString,guid);
+        public static async Task<BuildingBussines> GetAsync(Guid guid) => await UnitOfWork.Building.GetAsync(Cache.ConnectionString, guid);
         public static BuildingBussines Get(Guid guid) => AsyncContext.Run(() => GetAsync(guid));
-        public async Task<ReturnedSaveFuncInfo> SaveAsync(SqlTransaction tr=null)
+        public async Task<ReturnedSaveFuncInfo> SaveAsync(SqlTransaction tr = null)
         {
             var res = new ReturnedSaveFuncInfo();
             var autoTran = tr == null;
@@ -140,6 +141,11 @@ namespace EntityCache.Bussines
 
 
                 res.AddReturnedValue(await UnitOfWork.Building.SaveAsync(this, tr));
+                if (res.HasError) return res;
+
+                var action = IsModified ? EnLogAction.Update : EnLogAction.Insert;
+                res.AddReturnedValue(await UserLogBussines.SaveAsync(action, EnLogPart.Building, tr));
+                if (res.HasError) return res;
 
                 if (Cache.IsSendToServer)
                     _ = Task.Run(() => WebBuilding.SaveAsync(this, Cache.Path));
@@ -159,7 +165,7 @@ namespace EntityCache.Bussines
             }
             return res;
         }
-        public async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(bool status, SqlTransaction tr=null)
+        public async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(bool status, SqlTransaction tr = null)
         {
             var res = new ReturnedSaveFuncInfo();
             var autoTran = tr == null;
@@ -173,10 +179,14 @@ namespace EntityCache.Bussines
                     tr = cn.BeginTransaction();
                 }
 
-                
+
                 res.AddReturnedValue(await UnitOfWork.Building.ChangeStatusAsync(this, status, tr));
                 if (res.HasError) return res;
-               
+
+                var action = status ? EnLogAction.Enable : EnLogAction.Delete;
+                res.AddReturnedValue(await UserLogBussines.SaveAsync(action, EnLogPart.Building, tr));
+                if (res.HasError) return res;
+
                 if (Cache.IsSendToServer)
                     _ = Task.Run(() => WebBuilding.SaveAsync(this, Cache.Path));
             }
@@ -252,7 +262,7 @@ namespace EntityCache.Bussines
         }
         public static async Task<string> NextCodeAsync() => await UnitOfWork.Building.NextCodeAsync(Cache.ConnectionString);
         public static async Task<bool> CheckCodeAsync(string code, Guid guid) =>
-            await UnitOfWork.Building.CheckCodeAsync(Cache.ConnectionString,code, guid);
+            await UnitOfWork.Building.CheckCodeAsync(Cache.ConnectionString, code, guid);
         public static async Task<List<BuildingViewModel>> GetAllAsync(string code, Guid buildingGuid,
             Guid buildingAccountTypeGuid, int fMasahat, int lMasahat, int roomCount, decimal fPrice1, decimal lPrice1,
             decimal fPrice2, decimal lPrice2, EnRequestType type, List<Guid> regionList)
@@ -333,7 +343,7 @@ namespace EntityCache.Bussines
             }
         }
         public static async Task<int> DbCount(Guid userGuid, short type) =>
-            await UnitOfWork.Building.DbCount(Cache.ConnectionString,userGuid, type);
+            await UnitOfWork.Building.DbCount(Cache.ConnectionString, userGuid, type);
         public static async Task<ReturnedSaveFuncInfo> FixImageAsync() => await UnitOfWork.Building.FixImageAsync(Cache.ConnectionString);
     }
 }

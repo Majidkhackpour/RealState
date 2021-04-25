@@ -34,6 +34,7 @@ namespace EntityCache.SqlServerPersistence
                 item.UserName = dr["UserName"].ToString();
                 item.ServerDeliveryDate = (DateTime)dr["ServerDeliveryDate"];
                 item.ServerStatus = (ServerStatus)dr["ServerStatus"];
+                item.IsModified = true;
                 item.CheckMoshtariList = AsyncContext.Run(() => PardakhtCheckMoshtariBussines.GetAllAsync(item.Guid));
                 item.CheckShakhsiList = AsyncContext.Run(() => PardakhtCheckShakhsiBussines.GetAllAsync(item.Guid));
                 item.HavaleList = AsyncContext.Run(() => PardakhtHavaleBussines.GetAllAsync(item.Guid));

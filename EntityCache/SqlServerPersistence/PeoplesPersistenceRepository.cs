@@ -180,6 +180,7 @@ namespace EntityCache.SqlServerPersistence
                 item.GroupGuid = (Guid)dr["GroupGuid"];
                 item.ServerDeliveryDate = (DateTime)dr["ServerDeliveryDate"];
                 item.ServerStatus = (ServerStatus)dr["ServerStatus"];
+                item.IsModified = true;
                 item.BankList = AsyncContext.Run(() => PeoplesBankAccountBussines.GetAllAsync(item.Guid));
                 item.TellList = PhoneBookBussines.GetAll(item.Guid, true);
             }

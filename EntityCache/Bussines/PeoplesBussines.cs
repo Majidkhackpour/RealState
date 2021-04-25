@@ -40,6 +40,7 @@ namespace EntityCache.Bussines
         public string HardSerial => Cache.HardSerial;
         public List<PhoneBookBussines> TellList { get; set; }
         public List<PeoplesBankAccountBussines> BankList { get; set; }
+        public bool IsModified { get; set; } = false;
 
         public static async Task<List<PeoplesBussines>> GetAllAsync() => await UnitOfWork.Peoples.GetAllAsync(Cache.ConnectionString);
         public static async Task<PeoplesBussines> GetAsync(Guid guid) => await UnitOfWork.Peoples.GetAsync(Cache.ConnectionString, guid);
@@ -76,6 +77,10 @@ namespace EntityCache.Bussines
                 }
 
                 res.AddReturnedValue(await UnitOfWork.Peoples.SaveAsync(this, tr));
+                if (res.HasError) return res;
+
+                var action = IsModified ? EnLogAction.Update : EnLogAction.Insert;
+                res.AddReturnedValue(await UserLogBussines.SaveAsync(action, EnLogPart.Peoples, tr));
                 if (res.HasError) return res;
 
                 //if (Cache.IsSendToServer)
@@ -122,6 +127,10 @@ namespace EntityCache.Bussines
                 res.AddReturnedValue(await PhoneBookBussines.ChangeStatusAsync(Guid, status, tr));
                 if (res.HasError) return res;
                 res.AddReturnedValue(await UnitOfWork.Peoples.ChangeStatusAsync(this, status, tr));
+                if (res.HasError) return res;
+
+                var action = status ? EnLogAction.Enable : EnLogAction.Delete;
+                res.AddReturnedValue(await UserLogBussines.SaveAsync(action, EnLogPart.Peoples, tr));
                 if (res.HasError) return res;
 
                 if (Cache.IsSendToServer)

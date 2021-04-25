@@ -21,6 +21,7 @@ namespace EntityCache.Bussines
         public DateTime ServerDeliveryDate { get; set; } = DateTime.Now;
         public string Name { get; set; }
         public string HardSerial => Cache.HardSerial;
+        public bool IsModified { get; set; } = false;
 
 
 
@@ -79,6 +80,10 @@ namespace EntityCache.Bussines
                 res.AddReturnedValue(await UnitOfWork.BuildingType.SaveAsync(this, tr));
                 if (res.HasError) return res;
 
+                var action = IsModified ? EnLogAction.Update : EnLogAction.Insert;
+                res.AddReturnedValue(await UserLogBussines.SaveAsync(action, EnLogPart.BuildingType, tr));
+                if (res.HasError) return res;
+
                 if (Cache.IsSendToServer)
                     _ = Task.Run(() => WebBuildingType.SaveAsync(this));
             }
@@ -112,6 +117,10 @@ namespace EntityCache.Bussines
                 }
 
                 res.AddReturnedValue(await UnitOfWork.BuildingType.ChangeStatusAsync(this, status, tr));
+                if (res.HasError) return res;
+
+                var action = status ? EnLogAction.Enable : EnLogAction.Delete;
+                res.AddReturnedValue(await UserLogBussines.SaveAsync(action, EnLogPart.BuildingType, tr));
                 if (res.HasError) return res;
 
                 if (Cache.IsSendToServer)

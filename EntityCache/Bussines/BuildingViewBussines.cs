@@ -21,6 +21,7 @@ namespace EntityCache.Bussines
         public DateTime ServerDeliveryDate { get; set; } = DateTime.Now;
         public string Name { get; set; }
         public string HardSerial => Cache.HardSerial;
+        public bool IsModified { get; set; } = false;
 
 
         public static async Task<List<BuildingViewBussines>> GetAllAsync() => await UnitOfWork.BuildingView.GetAllAsync(Cache.ConnectionString);
@@ -77,6 +78,10 @@ namespace EntityCache.Bussines
                 res.AddReturnedValue(await UnitOfWork.BuildingView.SaveAsync(this, tr));
                 if (res.HasError) return res;
 
+                var action = IsModified ? EnLogAction.Update : EnLogAction.Insert;
+                res.AddReturnedValue(await UserLogBussines.SaveAsync(action, EnLogPart.BuildingView, tr));
+                if (res.HasError) return res;
+
                 if (Cache.IsSendToServer)
                     _ = Task.Run(() => WebBuildingView.SaveAsync(this));
             }
@@ -110,6 +115,10 @@ namespace EntityCache.Bussines
                 }
 
                 res.AddReturnedValue(await UnitOfWork.BuildingView.ChangeStatusAsync(this, status, tr));
+                if (res.HasError) return res;
+
+                var action = status ? EnLogAction.Enable : EnLogAction.Delete;
+                res.AddReturnedValue(await UserLogBussines.SaveAsync(action, EnLogPart.BuildingView, tr));
                 if (res.HasError) return res;
 
                 if (Cache.IsSendToServer)

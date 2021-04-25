@@ -148,7 +148,6 @@
     <Compile Include="Advisor\frmShowAdvisor.Designer.cs">
       <DependentUpon>frmShowAdvisor.cs</DependentUpon>
     </Compile>
-    <Compile Include="clsUser.cs" />
     <Compile Include="ExportToExcel.cs" />
     <Compile Include="frmAccessLevel.cs">
       <SubType>Form</SubType>
@@ -204,7 +203,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="UserLog.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

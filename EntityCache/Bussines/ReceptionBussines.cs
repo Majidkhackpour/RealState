@@ -56,6 +56,7 @@ namespace EntityCache.Bussines
         public int CountNaqd => NaqdList?.Count ?? 0;
         public int CountHavale => HavaleList?.Count ?? 0;
         public int CountCheck => CheckList?.Count() ?? 0;
+        public bool IsModified { get; set; } = false;
         public List<ReceptionCheckBussines> CheckList { get; set; }
         public List<ReceptionHavaleBussines> HavaleList { get; set; }
         public List<ReceptionNaqdBussines> NaqdList { get; set; }
@@ -220,6 +221,9 @@ namespace EntityCache.Bussines
                 res.AddReturnedValue(await sanad.SaveAsync(tr));
                 if (res.HasError) return res;
 
+                var action = IsModified ? EnLogAction.Update : EnLogAction.Insert;
+                res.AddReturnedValue(await UserLogBussines.SaveAsync(action, EnLogPart.Reception, tr));
+                if (res.HasError) return res;
 
                 //if (Cache.IsSendToServer)
                 //    _ = Task.Run(() => WebRental.SaveAsync(list));
@@ -272,6 +276,8 @@ namespace EntityCache.Bussines
                     if (res.HasError) return res;
                 }
 
+                res.AddReturnedValue(await UserLogBussines.SaveAsync(EnLogAction.Delete, EnLogPart.Reception, tr));
+                if (res.HasError) return res;
 
                 //if (Cache.IsSendToServer)
                 //    _ = Task.Run(() => WebRental.SaveAsync(list));
