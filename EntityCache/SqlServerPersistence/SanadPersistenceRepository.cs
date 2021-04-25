@@ -14,7 +14,7 @@ namespace EntityCache.SqlServerPersistence
 {
     public class SanadPersistenceRepository : IsanadRepository
     {
-        private SanadBussines LoadData(SqlDataReader dr, bool isLoadDet)
+        private SanadBussines LoadData(SqlDataReader dr)
         {
             var item = new SanadBussines();
             try
@@ -30,8 +30,7 @@ namespace EntityCache.SqlServerPersistence
                 item.UserName = dr["UserName"].ToString();
                 item.ServerDeliveryDate = (DateTime)dr["ServerDeliveryDate"];
                 item.ServerStatus = (ServerStatus)dr["ServerStatus"];
-                if (isLoadDet)
-                    item.Details = AsyncContext.Run(() => SanadDetailBussines.GetAllAsync(item.Guid));
+                item.Details = AsyncContext.Run(() => SanadDetailBussines.GetAllAsync(item.Guid));
             }
             catch (Exception ex)
             {
@@ -51,7 +50,7 @@ namespace EntityCache.SqlServerPersistence
 
                     await cn.OpenAsync();
                     var dr = await cmd.ExecuteReaderAsync();
-                    while (dr.Read()) list.Add(LoadData(dr, false));
+                    while (dr.Read()) list.Add(LoadData(dr));
                     cn.Close();
                 }
             }
@@ -74,7 +73,7 @@ namespace EntityCache.SqlServerPersistence
 
                     await cn.OpenAsync();
                     var dr = await cmd.ExecuteReaderAsync();
-                    if (dr.Read()) res = LoadData(dr, true);
+                    if (dr.Read()) res = LoadData(dr);
                     cn.Close();
                 }
             }
@@ -119,7 +118,7 @@ namespace EntityCache.SqlServerPersistence
 
                     await cn.OpenAsync();
                     var dr = await cmd.ExecuteReaderAsync();
-                    if (dr.Read()) res = LoadData(dr, true);
+                    if (dr.Read()) res = LoadData(dr);
                     cn.Close();
                 }
             }

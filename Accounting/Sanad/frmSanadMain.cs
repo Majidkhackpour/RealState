@@ -265,7 +265,7 @@ namespace Accounting.Sanad
                 {
                     cls.Guid = Guid.NewGuid();
                     cls.DateM = DateTime.Now;
-                    cls.UserGuid = clsUser.CurrentUser.Guid;
+                    cls.UserGuid = UserBussines.CurrentUser.Guid;
                 }
 
                 cls.Description = txtDesc.Text;

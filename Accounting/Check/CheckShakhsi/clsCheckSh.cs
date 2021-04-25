@@ -31,7 +31,7 @@ namespace Accounting.Check.CheckShakhsi
                     Number = await SanadBussines.NextNumberAsync(),
                     SanadStatus = EnSanadStatus.Temporary,
                     SanadType = EnSanadType.Auto,
-                    UserGuid = clsUser.CurrentUser.Guid
+                    UserGuid = UserBussines.CurrentUser.Guid
                 };
 
                 if (checkPage.CheckStatus == EnCheckSh.Bargashti)
@@ -101,7 +101,7 @@ namespace Accounting.Check.CheckShakhsi
                     Number = await SanadBussines.NextNumberAsync(),
                     SanadStatus = EnSanadStatus.Temporary,
                     SanadType = EnSanadType.Auto,
-                    UserGuid = clsUser.CurrentUser.Guid
+                    UserGuid = UserBussines.CurrentUser.Guid
                 };
 
                 if (checkPage.CheckStatus == EnCheckSh.Bargashti)
@@ -177,7 +177,7 @@ namespace Accounting.Check.CheckShakhsi
                     Number = await SanadBussines.NextNumberAsync(),
                     SanadStatus = EnSanadStatus.Temporary,
                     SanadType = EnSanadType.Auto,
-                    UserGuid = clsUser.CurrentUser.Guid
+                    UserGuid = UserBussines.CurrentUser.Guid
                 };
                 //بستانکار--شخص
                 sanad.AddToListSanad(new SanadDetailBussines()
@@ -240,7 +240,7 @@ namespace Accounting.Check.CheckShakhsi
                     Number = await SanadBussines.NextNumberAsync(),
                     SanadStatus = EnSanadStatus.Temporary,
                     SanadType = EnSanadType.Auto,
-                    UserGuid = clsUser.CurrentUser.Guid
+                    UserGuid = UserBussines.CurrentUser.Guid
                 };
                 //بستانکار--شخص
                 sanad.AddToListSanad(new SanadDetailBussines()

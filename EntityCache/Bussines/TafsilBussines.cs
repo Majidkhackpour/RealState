@@ -95,38 +95,7 @@ namespace EntityCache.Bussines
             }
             return res;
         }
-        public static async Task<TafsilBussines> GetAsync(Guid guid, SqlTransaction tr = null)
-        {
-            var res = new TafsilBussines();
-            var ret = new ReturnedSaveFuncInfo();
-            var autoTran = tr == null;
-            SqlConnection cn = null;
-            try
-            {
-                if (autoTran)
-                {
-                    cn = new SqlConnection(Cache.ConnectionString);
-                    await cn.OpenAsync();
-                    tr = cn.BeginTransaction();
-                }
-
-                res = await UnitOfWork.Tafsil.GetAsync(guid, tr);
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-                ret.AddReturnedValue(ex);
-            }
-            finally
-            {
-                if (autoTran)
-                {
-                    tr.TransactionDestiny(ret.HasError);
-                    cn.CloseConnection();
-                }
-            }
-            return res;
-        }
+        public static async Task<TafsilBussines> GetAsync(Guid guid) => await UnitOfWork.Tafsil.GetAsync(Cache.ConnectionString, guid);
         public static async Task<List<TafsilBussines>> GetAllAsync(string search, HesabType htype = HesabType.All)
         {
             try

@@ -31,7 +31,7 @@ namespace Accounting.Check.CheckMoshtari
                     Number = await SanadBussines.NextNumberAsync(),
                     SanadStatus = EnSanadStatus.Temporary,
                     SanadType = EnSanadType.Auto,
-                    UserGuid = clsUser.CurrentUser.Guid
+                    UserGuid = UserBussines.CurrentUser.Guid
                 };
 
                 if (cls.CheckStatus == EnCheckM.Bargashti)
@@ -105,7 +105,7 @@ namespace Accounting.Check.CheckMoshtari
                     Number = await SanadBussines.NextNumberAsync(),
                     SanadStatus = EnSanadStatus.Temporary,
                     SanadType = EnSanadType.Auto,
-                    UserGuid = clsUser.CurrentUser.Guid
+                    UserGuid = UserBussines.CurrentUser.Guid
                 };
 
                 if (cls.CheckStatus == EnCheckM.Bargashti)
@@ -171,7 +171,7 @@ namespace Accounting.Check.CheckMoshtari
                     Number = await SanadBussines.NextNumberAsync(),
                     SanadStatus = EnSanadStatus.Temporary,
                     SanadType = EnSanadType.Auto,
-                    UserGuid = clsUser.CurrentUser.Guid
+                    UserGuid = UserBussines.CurrentUser.Guid
                 };
                 //بستانکار--اسناد قبلی
                 sanad.AddToListSanad(new SanadDetailBussines()
@@ -231,7 +231,7 @@ namespace Accounting.Check.CheckMoshtari
                     Number = await SanadBussines.NextNumberAsync(),
                     SanadStatus = EnSanadStatus.Temporary,
                     SanadType = EnSanadType.Auto,
-                    UserGuid = clsUser.CurrentUser.Guid
+                    UserGuid = UserBussines.CurrentUser.Guid
                 };
                 //بستانکار--اسناد قبلی
                 sanad.AddToListSanad(new SanadDetailBussines()
@@ -292,7 +292,7 @@ namespace Accounting.Check.CheckMoshtari
                     Number = await SanadBussines.NextNumberAsync(),
                     SanadStatus = EnSanadStatus.Temporary,
                     SanadType = EnSanadType.Auto,
-                    UserGuid = clsUser.CurrentUser.Guid
+                    UserGuid = UserBussines.CurrentUser.Guid
                 };
                 //بستانکار--اسناد قبلی
                 sanad.AddToListSanad(new SanadDetailBussines()
@@ -352,7 +352,7 @@ namespace Accounting.Check.CheckMoshtari
                     Number = await SanadBussines.NextNumberAsync(),
                     SanadStatus = EnSanadStatus.Temporary,
                     SanadType = EnSanadType.Auto,
-                    UserGuid = clsUser.CurrentUser.Guid
+                    UserGuid = UserBussines.CurrentUser.Guid
                 };
                 //بستانکار--اسناد قبلی
                 sanad.AddToListSanad(new SanadDetailBussines()
@@ -417,7 +417,7 @@ namespace Accounting.Check.CheckMoshtari
                     Number = await SanadBussines.NextNumberAsync(),
                     SanadStatus = EnSanadStatus.Temporary,
                     SanadType = EnSanadType.Auto,
-                    UserGuid = clsUser.CurrentUser.Guid
+                    UserGuid = UserBussines.CurrentUser.Guid
                 };
                 //بستانکار--اسناد
                 sanad.AddToListSanad(new SanadDetailBussines()
@@ -474,7 +474,7 @@ namespace Accounting.Check.CheckMoshtari
                     Number = await SanadBussines.NextNumberAsync(),
                     SanadStatus = EnSanadStatus.Temporary,
                     SanadType = EnSanadType.Auto,
-                    UserGuid = clsUser.CurrentUser.Guid
+                    UserGuid = UserBussines.CurrentUser.Guid
                 };
                 //بستانکار--اسناد
                 sanad.AddToListSanad(new SanadDetailBussines()

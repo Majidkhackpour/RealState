@@ -17,8 +17,7 @@ namespace EntityCache.Bussines
         public Guid LocalRegionGuid { get; set; }
 
 
-        public static async Task<ReturnedSaveFuncInfo> SaveRangeAsync(List<AdvertiseRelatedRegionBussines> list,
-            SqlTransaction tr = null)
+        public static async Task<ReturnedSaveFuncInfo> SaveRangeAsync(List<AdvertiseRelatedRegionBussines> list, SqlTransaction tr = null)
         {
             var res = new ReturnedSaveFuncInfo();
             var autoTran = tr == null;
@@ -32,7 +31,7 @@ namespace EntityCache.Bussines
                     tr = cn.BeginTransaction();
                 }
 
-                var _list = await GetAllAsync(list.FirstOrDefault()?.OnlineRegionName, tr);
+                var _list = await GetAllAsync(list.FirstOrDefault()?.OnlineRegionName);
                 if (_list != null && _list.Count > 0)
                     await RemoveRangeAsync(_list, tr);
 
@@ -53,40 +52,8 @@ namespace EntityCache.Bussines
             }
             return res;
         }
-        public static async Task<List<AdvertiseRelatedRegionBussines>> GetAllAsync(string onlineRegion, SqlTransaction tr = null)
-        {
-            var res = new List<AdvertiseRelatedRegionBussines>();
-            var ret = new ReturnedSaveFuncInfo();
-            var autoTran = tr == null;
-            SqlConnection cn = null;
-            try
-            {
-                if (autoTran)
-                {
-                    cn = new SqlConnection(Cache.ConnectionString);
-                    await cn.OpenAsync();
-                    tr = cn.BeginTransaction();
-                }
-
-                await UnitOfWork.AdvertiseRelatedRegion.GetAllAsync(onlineRegion, tr);
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-                ret.AddReturnedValue(ex);
-            }
-            finally
-            {
-                if (autoTran)
-                {
-                    tr.TransactionDestiny(ret.HasError);
-                    cn.CloseConnection();
-                }
-            }
-            return res;
-        }
-        public static async Task<ReturnedSaveFuncInfo> RemoveRangeAsync(List<AdvertiseRelatedRegionBussines> list,
-            SqlTransaction tr = null)
+        public static async Task<List<AdvertiseRelatedRegionBussines>> GetAllAsync(string onlineRegion) => await UnitOfWork.AdvertiseRelatedRegion.GetAllAsync(Cache.ConnectionString, onlineRegion);
+        public static async Task<ReturnedSaveFuncInfo> RemoveRangeAsync(List<AdvertiseRelatedRegionBussines> list, SqlTransaction tr = null)
         {
             var res = new ReturnedSaveFuncInfo();
             var autoTran = tr == null;

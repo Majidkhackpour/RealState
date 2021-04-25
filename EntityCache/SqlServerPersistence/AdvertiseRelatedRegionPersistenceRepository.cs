@@ -26,18 +26,23 @@ namespace EntityCache.SqlServerPersistence
             }
             return item;
         }
-        public async Task<List<AdvertiseRelatedRegionBussines>> GetAllAsync(string onlineRegion, SqlTransaction tr)
+        public async Task<List<AdvertiseRelatedRegionBussines>> GetAllAsync(string connectionString, string onlineRegion)
         {
             var list = new List<AdvertiseRelatedRegionBussines>();
             try
             {
-                var cmd = new SqlCommand("sp_AdvertiseRelatedRegion_GetAllByOnlineRegionName", tr.Connection, tr)
-                { CommandType = CommandType.StoredProcedure };
-                cmd.Parameters.AddWithValue("@onlineRegionName", onlineRegion ?? "");
+                using (var cn = new SqlConnection(connectionString))
+                {
+                    var cmd = new SqlCommand("sp_AdvertiseRelatedRegion_GetAllByOnlineRegionName", cn)
+                        {CommandType = CommandType.StoredProcedure};
+                    cmd.Parameters.AddWithValue("@onlineRegionName", onlineRegion ?? "");
 
-                var dr = await cmd.ExecuteReaderAsync();
-                while (dr.Read()) list.Add(LoadData(dr));
-                dr.Close();
+                    await cn.OpenAsync();
+                    var dr = await cmd.ExecuteReaderAsync();
+                    while (dr.Read()) list.Add(LoadData(dr));
+                    dr.Close();
+                    cn.Close();
+                }
             }
             catch (Exception ex)
             {

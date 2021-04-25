@@ -118,7 +118,7 @@ namespace EntityCache.Bussines
             var res = new ReturnedSaveFuncInfo();
             try
             {
-                var tf = await TafsilBussines.GetAsync(Guid, tr) ?? new TafsilBussines
+                var tf = await TafsilBussines.GetAsync(Guid) ?? new TafsilBussines
                 {
                     Guid = Guid,
                     DateM = DateTime.Now,
@@ -158,7 +158,7 @@ namespace EntityCache.Bussines
                     tr = cn.BeginTransaction();
                 }
 
-                var tafsil = await TafsilBussines.GetAsync(Guid, tr);
+                var tafsil = await TafsilBussines.GetAsync(Guid);
                 if (tafsil == null)
                 {
                     res.AddError("حساب انتخاب شده معتبر نمی باشد");

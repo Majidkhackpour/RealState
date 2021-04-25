@@ -46,7 +46,6 @@ namespace EntityCache.SqlServerPersistence
             try
             {
                 item.Guid = (Guid)dr["Guid"];
-                item.Status = (bool)dr["Status"];
                 item.MoeinGuid = (Guid)dr["MoeinGuid"];
                 item.MoeinCode = dr["MoeinCode"].ToString();
                 item.MoeinName = dr["MoeinName"].ToString();

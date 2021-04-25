@@ -490,7 +490,7 @@ namespace Accounting.Pardakht
                 {
                     cls.Guid = Guid.NewGuid();
                     cls.DateM = DateTime.Now;
-                    cls.UserGuid = User.clsUser.CurrentUser.Guid;
+                    cls.UserGuid = UserBussines.CurrentUser.Guid;
                 }
 
                 cls.Modified = DateTime.Now;

@@ -13,7 +13,6 @@ namespace EntityCache.Bussines
         public Guid Guid { get; set; }
         public DateTime DateM { get; set; }
         public string DateSh => Calendar.MiladiToShamsi(DateM);
-        public bool Status { get; set; }
         public Guid MoeinGuid { get; set; }
         public string MoeinCode { get; set; }
         public string MoeinName { get; set; }

@@ -9,7 +9,7 @@ namespace EntityCache.Core
 {
     public interface IAdvertiseRelatedRegionRepository
     {
-        Task<List<AdvertiseRelatedRegionBussines>> GetAllAsync(string onlineRegion, SqlTransaction tr);
+        Task<List<AdvertiseRelatedRegionBussines>> GetAllAsync(string connectionString, string onlineRegion);
         Task<ReturnedSaveFuncInfo> SaveAsync(AdvertiseRelatedRegionBussines item, SqlTransaction tr);
         Task<ReturnedSaveFuncInfo> SaveRangeAsync(IEnumerable<AdvertiseRelatedRegionBussines> items, SqlTransaction tr);
         Task<ReturnedSaveFuncInfo> RemoveAsync(Guid guid, SqlTransaction tr);

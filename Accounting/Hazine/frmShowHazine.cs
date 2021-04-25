@@ -54,7 +54,7 @@ namespace Accounting.Hazine
         {
             try
             {
-                var access = clsUser.CurrentUser.UserAccess;
+                var access = UserBussines.CurrentUser.UserAccess;
                 mnuAdd.Enabled = access?.Hazine.Hazine_Insert ?? false;
                 mnuEdit.Enabled = access?.Hazine.Hazine_Update ?? false;
                 mnuDelete.Enabled = access?.Hazine.Hazine_Delete ?? false;

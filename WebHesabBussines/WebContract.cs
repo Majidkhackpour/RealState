@@ -53,7 +53,6 @@ namespace WebHesabBussines
         public decimal FirstTotalPrice { get; set; }
         public decimal SecondTotalPrice { get; set; }
         public string HardSerial { get; set; }
-        public ContractFinanceBussines Finance { get; set; }
 
 
         public async Task SaveAsync()
@@ -111,7 +110,6 @@ namespace WebHesabBussines
                     HardSerial = cls.HardSerial,
                     BazaryabGuid = cls.BazaryabGuid,
                     BazaryabPrice = cls.BazaryabPrice,
-                    Finance = cls.Finance
                 };
                 await obj.SaveAsync();
             }
@@ -160,7 +158,6 @@ namespace WebHesabBussines
                         HardSerial = cls.HardSerial,
                         BazaryabGuid = cls.BazaryabGuid,
                         BazaryabPrice = cls.BazaryabPrice,
-                        Finance = cls.Finance
                     };
                     await obj.SaveAsync();
                 }

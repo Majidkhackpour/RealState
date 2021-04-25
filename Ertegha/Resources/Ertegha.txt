@@ -2284,7 +2284,6 @@ AS
 BEGIN
 	UPDATE [dbo].[Sanads]
 	   SET [Modified] = @modif
-		  ,[Status] = @st
 		  ,[DateM] = @dateM
 		  ,[Description] = @desc
 		  ,[Number] = @number
@@ -2298,7 +2297,6 @@ BEGIN
 		INSERT INTO [dbo].[Sanads]
            ([Guid]
            ,[Modified]
-           ,[Status]
            ,[DateM]
            ,[Description]
            ,[Number]
@@ -2310,7 +2308,6 @@ BEGIN
 		 VALUES
            (@guid
            ,@modif
-           ,@st
            ,@dateM
            ,@desc
            ,@number
@@ -2387,7 +2384,6 @@ BEGIN
 		INSERT INTO [dbo].[SanadDetails]
            ([Guid]
            ,[Modified]
-           ,[Status]
            ,[MoeinGuid]
            ,[TafsilGuid]
            ,[Debit]
@@ -2399,7 +2395,6 @@ BEGIN
 		VALUES
            (@Guid
            ,@modif
-           ,@st
            ,@moeinGuid
            ,@tafsilGuid
            ,@debit
@@ -2543,7 +2538,6 @@ BEGIN
 	INSERT INTO [dbo].[SanadDetails]
            ([Guid]
            ,[Modified]
-           ,[Status]
            ,[MoeinGuid]
            ,[TafsilGuid]
            ,[Debit]
@@ -2553,7 +2547,6 @@ BEGIN
 		   --حسابهای دریافتنی ابتدای دوره - بستانکاران
 			select    NEWID() As Guid
 					, Tafsils.Modified
-					, Tafsils.Status
 					, @tafsilCreditMoeinGuid As MoeinGuid
 					, Tafsils.Guid As TafsilGuid
 					, 0 As Debit
@@ -2567,7 +2560,6 @@ BEGIN
 		--حسابهای دریافتنی ابتدای دوره - بدهکاران
 		select    NEWID() As Guid
 				, Tafsils.Modified
-				, Tafsils.Status
 				, @tafsilCreditMoeinGuid As MoeinGuid
 				, Tafsils.Guid As TafsilGuid
 				, ABS(AccountFirst) As Debit
@@ -2581,7 +2573,6 @@ BEGIN
 		--موجودی ابتدای دوره بانک ها
 		select    NEWID() As Guid
 				, Tafsils.Modified
-				, Tafsils.Status
 				, @bankCreditTafilGuid As MoeinGuid
 				, Tafsils.Guid As TafsilGuid
 				, ABS(AccountFirst) As Debit
@@ -2595,7 +2586,6 @@ BEGIN
 		--موجودی ابتدای دوره صندوق ها
 		select    NEWID() As Guid
 				, Tafsils.Modified
-				, Tafsils.Status
 				, @sandouqCreditTafilGuid As MoeinGuid
 				, Tafsils.Guid As TafsilGuid
 				, ABS(AccountFirst) As Debit
@@ -2609,7 +2599,6 @@ BEGIN
 		--اسناد دریافتنی ابتدای دوره
 		select    NEWID() As Guid
 				, ReceptionCheckAvalDores.Modified
-				, ReceptionCheckAvalDores.Status
 				, CAST('215e08ec-253d-4a10-a217-2462d8600226' as uniqueidentifier) As MoeinGuid
 				, Tafsils.Guid As TafsilGuid
 				, ReceptionCheckAvalDores.Price As Debit
@@ -2622,7 +2611,6 @@ BEGIN
 		--اسناد پرداختنی ابتدای دوره
 		select    NEWID() As Guid
 				, PardakhtCheckAvalDores.Modified
-				, PardakhtCheckAvalDores.Status
 				, CAST('814d8ac1-bae2-465c-9ed4-865838ec064b' As uniqueidentifier) As MoeinGuid
 				, Tafsils.Guid As TafsilGuid
 				, 0 As Debit
@@ -2645,7 +2633,6 @@ BEGIN
 		INSERT INTO [dbo].[SanadDetails]
            ([Guid]
            ,[Modified]
-           ,[Status]
            ,[MoeinGuid]
            ,[TafsilGuid]
            ,[Debit]
@@ -2655,7 +2642,6 @@ BEGIN
 			--سرمایه ابتدای دوره بستانکار
 			select    NEWID() As Guid
 					, Tafsils.Modified
-					, Tafsils.Status
 					, @sarmayeMoeinGuid As MoeinGuid
 					, Tafsils.Guid As TafsilGuid
 					, ABS(@Sum) As Debit
@@ -2669,7 +2655,6 @@ BEGIN
 		INSERT INTO [dbo].[SanadDetails]
 			   ([Guid]
 			   ,[Modified]
-			   ,[Status]
 			   ,[MoeinGuid]
 			   ,[TafsilGuid]
 			   ,[Debit]
@@ -2679,7 +2664,6 @@ BEGIN
 			--سرمایه ابتدای دوره بدهکار
 			select    NEWID() As Guid
 					, Tafsils.Modified
-					, Tafsils.Status
 					, @sarmayeMoeinGuid As MoeinGuid
 					, Tafsils.Guid As TafsilGuid
 					, 0 As Debit
@@ -3521,7 +3505,6 @@ BEGIN
      VALUES
            (@guid
            ,@modif
-           ,@st
            ,@desc
            ,@checkGuid
            ,@masterGuid
@@ -4916,7 +4899,6 @@ AS
 BEGIN
 	UPDATE [dbo].[BuildingRelatedOptions]
 	   SET [Modified] = @modif
-		  ,[Status] = @st
 		  ,[BuildinGuid] = @buGuid
 		  ,[BuildingOptionGuid] = @buOptionGuid
 		  ,[ServerStatus] = @serverSt
@@ -5074,20 +5056,6 @@ BEGIN
 		   ,@serverSt
 		   ,@serverDate)
 	 end
-END
-GO
---========================================================================================================
-IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_BuildingRequestRegion_ChangeStatus]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
-	exec('Create Procedure [dbo].[sp_BuildingRequestRegion_ChangeStatus]	As Begin print 11 end')  
-GO
-Alter PROCEDURE sp_BuildingRequestRegion_ChangeStatus
-	@masterGuid uniqueidentifier,
-	@st bit
-AS
-BEGIN
-	update BuildingRequestRegions
-	set Status=@st
-	where RequestGuid=@masterGuid
 END
 GO
 --========================================================================================================
@@ -6435,5 +6403,3 @@ BEGIN
            ,@size)
 	 end
 END
-
-

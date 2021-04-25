@@ -12,7 +12,7 @@ namespace EntityCache.Core
         Task<ReturnedSaveFuncInfo> SaveRangeAsync(IEnumerable<TafsilBussines> items, SqlTransaction tr);
         Task<ReturnedSaveFuncInfo> SaveAsync(TafsilBussines item, SqlTransaction tr);
         Task<List<TafsilBussines>> GetAllAsync(string _connectionString);
-        Task<TafsilBussines> GetAsync(Guid guid, SqlTransaction tr);
+        Task<TafsilBussines> GetAsync(string _connectionString, Guid guid);
         Task<ReturnedSaveFuncInfo> ChangeStatusAsync(TafsilBussines item, bool status, SqlTransaction tr);
         Task<string> NextCodeAsync(string _connectionString, HesabType type);
         Task<bool> CheckCodeAsync(string _connectionString, Guid guid, string code);

@@ -154,7 +154,7 @@ namespace Accounting.Check.CheckShakhsi
                 if (cls.Guid == Guid.Empty)
                 {
                     cls.Guid = Guid.NewGuid();
-                    cls.UserGuid = clsUser.CurrentUser.Guid;
+                    cls.UserGuid = UserBussines.CurrentUser.Guid;
                 }
 
 
