@@ -310,7 +310,6 @@ namespace Peoples
                 cls.BankList.Add(new PeoplesBankAccountBussines()
                 {
                     Guid = Guid.NewGuid(),
-                    Modified = DateTime.Now,
                     AccountNumber = txtAccountNumber.Text.Trim().FixString(),
                     BankName = txtBank.Text,
                     Shobe = txtShobe.Text

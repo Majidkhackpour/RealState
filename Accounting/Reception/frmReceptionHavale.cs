@@ -96,7 +96,6 @@ namespace Accounting.Reception
                 if (txtPrice.TextDecimal <= 0) res.AddError("لطفا مبلغ را وارد نمایید");
 
                 cls.Modified = DateTime.Now;
-                cls.Status = true;
                 cls.PeygiriNumber = txtPeygiriNo.Text;
                 cls.Description = txtDesc.Text;
                 cls.BankTafsilGuid = (Guid)cmbBank.SelectedValue;

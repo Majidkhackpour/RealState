@@ -42,7 +42,7 @@ namespace Advertise.Forms.MatchRegions
             try
             {
                 if (string.IsNullOrEmpty(onlineRegion)) return;
-                var op = await AdvertiseRelatedRegionBussines.GetAllAsync(onlineRegion, true);
+                var op = await AdvertiseRelatedRegionBussines.GetAllAsync(onlineRegion);
                 foreach (var item in op)
                     for (var i = 0; i < DGrid.RowCount; i++)
                         if (item.LocalRegionGuid == ((Guid?)DGrid[dgGuid.Index, i].Value ?? Guid.Empty))
@@ -67,9 +67,7 @@ namespace Advertise.Forms.MatchRegions
                             _list.Add(new AdvertiseRelatedRegionBussines()
                             {
                                 Guid = Guid.NewGuid(),
-                                Status = true,
                                 LocalRegionGuid = item.Guid,
-                                Modified = DateTime.Now,
                                 OnlineRegionName = Region.Name.Trim()
                             });
                         }
@@ -152,7 +150,7 @@ namespace Advertise.Forms.MatchRegions
         {
             try
             {
-                var list = await AdvertiseRelatedRegionBussines.GetAllAsync(Region.Name.Trim(), true);
+                var list = await AdvertiseRelatedRegionBussines.GetAllAsync(Region.Name.Trim());
 
                 var res = await AdvertiseRelatedRegionBussines.RemoveRangeAsync(list);
                 if (res.HasError)

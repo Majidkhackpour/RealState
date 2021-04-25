@@ -60,7 +60,7 @@ namespace EntityCache.Bussines
             return res;
         }
         public static async Task<BuildingAccountTypeBussines> GetAsync(Guid guid) => await UnitOfWork.BuildingAccountType.GetAsync(Cache.ConnectionString, guid);
-        public async Task<ReturnedSaveFuncInfo> SaveAsync(SqlTransaction tr=null)
+        public async Task<ReturnedSaveFuncInfo> SaveAsync(SqlTransaction tr = null)
         {
             var res = new ReturnedSaveFuncInfo();
             var autoTran = tr == null;
@@ -99,7 +99,7 @@ namespace EntityCache.Bussines
             }
             return res;
         }
-        public async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(bool status, SqlTransaction tr)
+        public async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(bool status, SqlTransaction tr = null)
         {
             var res = new ReturnedSaveFuncInfo();
             var autoTran = tr == null;

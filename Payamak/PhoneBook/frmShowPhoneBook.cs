@@ -18,7 +18,7 @@ namespace Payamak.PhoneBook
         {
             try
             {
-                var access = clsUser.CurrentUser.UserAccess;
+                var access = UserBussines.CurrentUser.UserAccess;
                 mnuAdd.Enabled = access?.PhoneBook.PhoneBook_Insert ?? false;
                 mnuEdit.Enabled = access?.PhoneBook.PhoneBook_Update ?? false;
                 mnuDelete.Enabled = access?.PhoneBook.PhoneBook_Delete ?? false;

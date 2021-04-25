@@ -11,7 +11,6 @@ namespace Building.BuildingView
     public partial class frmBuildingViewMain : MetroForm
     {
         private BuildingViewBussines cls;
-        private EnLogAction action;
         private void SetData()
         {
             try
@@ -27,7 +26,6 @@ namespace Building.BuildingView
         {
             InitializeComponent();
             cls = new BuildingViewBussines();
-            action = EnLogAction.Insert;
         }
         public frmBuildingViewMain(Guid guid, bool isShowMode)
         {
@@ -35,7 +33,6 @@ namespace Building.BuildingView
             cls = BuildingViewBussines.Get(guid);
             grp.Enabled = !isShowMode;
             btnFinish.Enabled = !isShowMode;
-            action = EnLogAction.Update;
         }
 
         private async void frmBuildingViewMain_Load(object sender, EventArgs e)
@@ -134,7 +131,6 @@ namespace Building.BuildingView
                 }
                 else
                 {
-                    User.UserLog.Save(action, EnLogPart.BuildingView);
                     DialogResult = DialogResult.OK;
                     Close();
                 }

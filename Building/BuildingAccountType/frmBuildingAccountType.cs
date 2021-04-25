@@ -11,7 +11,6 @@ namespace Building.BuildingAccountType
     public partial class frmBuildingAccountType : MetroForm
     {
         private BuildingAccountTypeBussines cls;
-        private EnLogAction action;
         private void SetData()
         {
             try
@@ -27,7 +26,6 @@ namespace Building.BuildingAccountType
         {
             InitializeComponent();
             cls = new BuildingAccountTypeBussines();
-            action = EnLogAction.Insert;
         }
         public frmBuildingAccountType(Guid guid, bool isShowMode)
         {
@@ -35,7 +33,6 @@ namespace Building.BuildingAccountType
             cls = BuildingAccountTypeBussines.Get(guid);
             grp.Enabled = !isShowMode;
             btnFinish.Enabled = !isShowMode;
-            action = EnLogAction.Update;
         }
 
         private void txtName_Enter(object sender, EventArgs e)
@@ -133,7 +130,6 @@ namespace Building.BuildingAccountType
                 }
                 else
                 {
-                    User.UserLog.Save(action, EnLogPart.BuildingAccountType);
                     DialogResult = DialogResult.OK;
                     Close();
                 }

@@ -30,7 +30,7 @@ namespace Building.KitchenService
         {
             try
             {
-                var access = clsUser.CurrentUser.UserAccess;
+                var access = UserBussines.CurrentUser.UserAccess;
                 mnuAdd.Enabled = access?.KitchenService.Kitchen_Service_Insert ?? false;
                 mnuEdit.Enabled = access?.KitchenService.Kitchen_Service_Update ?? false;
                 mnuDelete.Enabled = access?.KitchenService.Kitchen_Service_Delete ?? false;
@@ -202,8 +202,6 @@ namespace Building.KitchenService
                             MessageBoxIcon.Question) == DialogResult.No) return;
                     var prd = await KitchenServiceBussines.GetAsync(guid);
                     res.AddReturnedValue(await prd.ChangeStatusAsync(false));
-                    if (res.HasError) return;
-                    User.UserLog.Save(EnLogAction.Delete, EnLogPart.KitchenService);
                 }
                 else
                 {
@@ -214,8 +212,6 @@ namespace Building.KitchenService
                             MessageBoxIcon.Question) == DialogResult.No) return;
                     var prd = await KitchenServiceBussines.GetAsync(guid);
                     res.AddReturnedValue(await prd.ChangeStatusAsync( true));
-                    if (res.HasError) return;
-                    User.UserLog.Save(EnLogAction.Enable, EnLogPart.KitchenService);
                 }
             }
             catch (Exception ex)

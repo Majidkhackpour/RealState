@@ -30,7 +30,7 @@ namespace Building.FloorCover
         {
             try
             {
-                var access = clsUser.CurrentUser.UserAccess;
+                var access = UserBussines.CurrentUser.UserAccess;
                 mnuAdd.Enabled = access?.FloorCover.Floor_Cover_Insert ?? false;
                 mnuEdit.Enabled = access?.FloorCover.Floor_Cover_Update ?? false;
                 mnuDelete.Enabled = access?.FloorCover.Floor_Cover_Delete ?? false;
@@ -151,9 +151,6 @@ namespace Building.FloorCover
                             MessageBoxIcon.Question) == DialogResult.No) return;
                     var prd = await FloorCoverBussines.GetAsync(guid);
                     res.AddReturnedValue(await prd.ChangeStatusAsync(false));
-                    if (res.HasError) return;
-
-                    User.UserLog.Save(EnLogAction.Delete, EnLogPart.FloorCover);
                 }
                 else
                 {
@@ -164,9 +161,6 @@ namespace Building.FloorCover
                             MessageBoxIcon.Question) == DialogResult.No) return;
                     var prd = await FloorCoverBussines.GetAsync(guid);
                     res.AddReturnedValue(await prd.ChangeStatusAsync(true));
-                    if (res.HasError) return;
-
-                    User.UserLog.Save(EnLogAction.Enable, EnLogPart.FloorCover);
                 }
             }
             catch (Exception ex)

@@ -30,7 +30,7 @@ namespace Building.BuildingCondition
         {
             try
             {
-                var access = clsUser.CurrentUser.UserAccess;
+                var access = UserBussines.CurrentUser.UserAccess;
                 mnuAdd.Enabled = access?.BuildingCondition.Building_Condition_Insert ?? false;
                 mnuEdit.Enabled = access?.BuildingCondition.Building_Condition_Update ?? false;
                 mnuDelete.Enabled = access?.BuildingCondition.Building_Condition_Delete ?? false;
@@ -202,8 +202,6 @@ namespace Building.BuildingCondition
                             MessageBoxIcon.Question) == DialogResult.No) return;
                     var prd = await BuildingConditionBussines.GetAsync(guid);
                     res.AddReturnedValue(await prd.ChangeStatusAsync(false));
-                    if (res.HasError) return;
-                    User.UserLog.Save(EnLogAction.Delete, EnLogPart.BuildingCondition);
                 }
                 else
                 {
@@ -214,8 +212,6 @@ namespace Building.BuildingCondition
                             MessageBoxIcon.Question) == DialogResult.No) return;
                     var prd = await BuildingConditionBussines.GetAsync(guid);
                     res.AddReturnedValue(await prd.ChangeStatusAsync(true));
-                    if (res.HasError) return;
-                    User.UserLog.Save(EnLogAction.Enable, EnLogPart.BuildingCondition);
                 }
             }
             catch (Exception ex)

@@ -369,7 +369,6 @@ namespace Advertise.Classes
                                     Type = AdvertiseType.Sheypoor,
                                     Token = token,
                                     Number = simCardNumber,
-                                    Modified = DateTime.Now,
                                     Guid = Guid.NewGuid(),
                                 };
 
@@ -466,7 +465,6 @@ namespace Advertise.Classes
                                     Type = AdvertiseType.Sheypoor,
                                     Token = token,
                                     Number = simCardNumber,
-                                    Modified = DateTime.Now,
                                     Guid = Guid.NewGuid(),
                                 };
                         }
@@ -888,7 +886,6 @@ namespace Advertise.Classes
                         if (price == null) continue;
                         //getUrl.Price = price.Text.FixString().Replace("تومان", "").ParseToDecimal();
                     }
-                    getUrl.Modified = DateTime.Now;
 
                     //status
                     await Utility.Wait();

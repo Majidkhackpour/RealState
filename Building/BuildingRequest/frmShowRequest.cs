@@ -35,7 +35,7 @@ namespace Building.BuildingRequest
         {
             try
             {
-                var access = clsUser.CurrentUser.UserAccess;
+                var access = UserBussines.CurrentUser.UserAccess;
                 mnuAdd.Enabled = access?.BuildingRequest.Building_Request_Insert ?? false;
                 mnuEdit.Enabled = access?.BuildingRequest.Building_Request_Update ?? false;
                 mnuDelete.Enabled = access?.BuildingRequest.Building_Request_Delete ?? false;
@@ -364,8 +364,6 @@ namespace Building.BuildingRequest
                             MessageBoxIcon.Question) == DialogResult.No) return;
                     var prd = await BuildingRequestBussines.GetAsync(guid);
                     res.AddReturnedValue(await prd.ChangeStatusAsync(false));
-                    if (res.HasError) return;
-                    User.UserLog.Save(EnLogAction.Delete, EnLogPart.BuildingRequest);
                 }
                 else
                 {
@@ -376,8 +374,6 @@ namespace Building.BuildingRequest
                             MessageBoxIcon.Question) == DialogResult.No) return;
                     var prd = await BuildingRequestBussines.GetAsync(guid);
                     res.AddReturnedValue(await prd.ChangeStatusAsync(true));
-                    if (res.HasError) return;
-                    User.UserLog.Save(EnLogAction.Enable, EnLogPart.BuildingRequest);
                 }
 
                 await LoadDataAsync(ST, txtSearch.Text);

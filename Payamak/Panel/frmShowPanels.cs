@@ -30,7 +30,7 @@ namespace Payamak.Panel
         {
             try
             {
-                var access = clsUser.CurrentUser.UserAccess;
+                var access = UserBussines.CurrentUser.UserAccess;
                 mnuAdd.Enabled = access?.SmsPanel.Panel_Insert ?? false;
                 mnuEdit.Enabled = access?.SmsPanel.Panel_Update ?? false;
                 mnuDelete.Enabled = access?.SmsPanel.Panel_Delete ?? false;

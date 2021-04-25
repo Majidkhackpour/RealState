@@ -33,7 +33,7 @@ namespace Advertise.Forms.Simcard
         {
             try
             {
-                var access = clsUser.CurrentUser.UserAccess;
+                var access = UserBussines.CurrentUser.UserAccess;
                 mnuAdd.Enabled = access?.Simcard.Simcard_Insert ?? false;
                 mnuEdit.Enabled = access?.Simcard.Simcard_Update ?? false;
                 mnuDelete.Enabled = access?.Simcard.Simcard_Delete ?? false;

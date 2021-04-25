@@ -30,7 +30,7 @@ namespace Building.RentalAuthority
         {
             try
             {
-                var access = clsUser.CurrentUser.UserAccess;
+                var access = UserBussines.CurrentUser.UserAccess;
                 mnuAdd.Enabled = access?.RentalAuthority.Rental_Insert ?? false;
                 mnuEdit.Enabled = access?.RentalAuthority.Rental_Update ?? false;
                 mnuDelete.Enabled = access?.RentalAuthority.Rental_Delete ?? false;
@@ -202,8 +202,6 @@ namespace Building.RentalAuthority
                             MessageBoxIcon.Question) == DialogResult.No) return;
                     var prd = await RentalAuthorityBussines.GetAsync(guid);
                     res.AddReturnedValue(await prd.ChangeStatusAsync(false));
-                    if (res.HasError) return;
-                    User.UserLog.Save(EnLogAction.Delete, EnLogPart.RentalAuthority);
                 }
                 else
                 {
@@ -214,8 +212,6 @@ namespace Building.RentalAuthority
                             MessageBoxIcon.Question) == DialogResult.No) return;
                     var prd = await RentalAuthorityBussines.GetAsync(guid);
                     res.AddReturnedValue(await prd.ChangeStatusAsync( true));
-                    if (res.HasError) return;
-                    User.UserLog.Save(EnLogAction.Enable, EnLogPart.RentalAuthority);
                 }
             }
             catch (Exception ex)

@@ -141,7 +141,7 @@ namespace Building.Building
         {
             try
             {
-                var access = clsUser.CurrentUser.UserAccess;
+                var access = UserBussines.CurrentUser.UserAccess;
                 chbDivar.Enabled = access?.BuildingSearch.Building_Search_Divar ?? false;
                 chbSystem.Enabled = access?.BuildingSearch.Building_Search_System ?? false;
                 chbSarasari.Enabled = access?.BuildingSearch.Building_Search_Site ?? false;

@@ -34,7 +34,7 @@ namespace Building.Contract
         {
             try
             {
-                var access = clsUser.CurrentUser.UserAccess;
+                var access = UserBussines.CurrentUser.UserAccess;
                 mnuAdd.Enabled = access?.Contract.Contract_Insert ?? false;
                 mnuEdit.Enabled = access?.Contract.Contract_Update ?? false;
                 mnuDelete.Enabled = access?.Contract.Contract_Delete ?? false;

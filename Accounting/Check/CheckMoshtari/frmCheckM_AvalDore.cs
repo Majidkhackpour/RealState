@@ -158,7 +158,6 @@ namespace Accounting.Check.CheckMoshtari
 
 
                 cls.Modified = DateTime.Now;
-                cls.Status = true;
                 cls.BankName = txtBankName.Text;
                 cls.DateSarResid = Calendar.ShamsiToMiladi(txtDate.Text);
                 cls.Description = txtDesc.Text;

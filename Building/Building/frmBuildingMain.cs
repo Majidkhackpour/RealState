@@ -29,7 +29,6 @@ namespace Building.Building
         private PictureBox _fakepicBox;
         private string _picNameJari = "";
         readonly List<string> lstList = new List<string>();
-        private EnLogAction action;
         private string image;
         private bool isSendSms = false;
 
@@ -144,7 +143,7 @@ namespace Building.Building
                 if (cls?.Guid == Guid.Empty)
                 {
                     await NextCodeAsync();
-                    cmbUser.SelectedValue = clsUser.CurrentUser?.Guid;
+                    cmbUser.SelectedValue = UserBussines.CurrentUser?.Guid;
                     cmbRentalAuthority.SelectedIndex = 0;
                     cmbSellTarakom.SelectedIndex = 0;
                     cmbSellSanadType.SelectedIndex = 0;
@@ -497,7 +496,6 @@ namespace Building.Building
                             cls.OptionList.Add(new BuildingRelatedOptionsBussines()
                             {
                                 Guid = Guid.NewGuid(),
-                                Status = true,
                                 BuildingOptionGuid = item.Guid,
                                 Modified = DateTime.Now,
                                 BuildinGuid = cls.Guid
@@ -529,7 +527,7 @@ namespace Building.Building
             try
             {
                 if (buildingGuid == Guid.Empty) return;
-                var op = BuildingRelatedOptionsBussines.GetAll(buildingGuid, true);
+                var op = BuildingRelatedOptionsBussines.GetAll(buildingGuid);
                 foreach (var item in op)
                     for (var i = 0; i < DGrid.RowCount; i++)
                         if (item.BuildingOptionGuid == ((Guid?)DGrid[dgOptionGuid.Index, i].Value ?? Guid.Empty))
@@ -834,7 +832,6 @@ namespace Building.Building
                     var a = new BuildingGalleryBussines()
                     {
                         Guid = Guid.NewGuid(),
-                        Status = true,
                         ImageName = name,
                         BuildingGuid = cls.Guid,
                         Modified = DateTime.Now
@@ -962,7 +959,6 @@ namespace Building.Building
             cls = new BuildingBussines();
             superTabControl1.SelectedTab = superTabItem1;
             superTabControl2.SelectedTab = superTabItem8;
-            action = EnLogAction.Insert;
         }
         public frmBuildingMain(Guid guid, bool isShowMode)
         {
@@ -981,7 +977,6 @@ namespace Building.Building
             superTabControlPanel6.Enabled = !isShowMode;
             btnFinish.Enabled = !isShowMode;
             btnPrint.Enabled = !isShowMode;
-            action = EnLogAction.Update;
         }
 
 
@@ -1179,7 +1174,6 @@ namespace Building.Building
                 }
                 else
                 {
-                    UserLog.Save(action, EnLogPart.Building);
                     DialogResult = DialogResult.OK;
                     Close();
                 }
@@ -1444,7 +1438,6 @@ namespace Building.Building
                 }
                 else
                 {
-                    UserLog.Save(action, EnLogPart.Building);
                     DialogResult = DialogResult.OK;
                     Close();
                 }

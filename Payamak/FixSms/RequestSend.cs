@@ -56,7 +56,7 @@ namespace Payamak.FixSms
                     var smsLog = new SmsLogBussines()
                     {
                         Guid = Guid.NewGuid(),
-                        UserGuid = User.clsUser.CurrentUser.Guid,
+                        UserGuid = UserBussines.CurrentUser.Guid,
                         Cost = result.Cost,
                         Message = result.Message,
                         MessageId = result.Messageid,

@@ -20,7 +20,6 @@ namespace Building.Building
     {
         private BuildingBussines cls;
         private PeoplesBussines owner;
-        private EnLogAction action;
 
         private async Task SetDataAsync()
         {
@@ -40,7 +39,7 @@ namespace Building.Building
                 await NextCodeAsync();
 
                 lblDateNow.Text = Calendar.MiladiToShamsi(DateTime.Now);
-                cmbUser.SelectedValue = clsUser.CurrentUser?.Guid;
+                cmbUser.SelectedValue = UserBussines.CurrentUser?.Guid;
                 cmbRentalAuthority.SelectedIndex = 0;
 
                 cmbSellTarakom.SelectedIndex = 0;
@@ -380,7 +379,6 @@ namespace Building.Building
                             cls.OptionList.Add(new BuildingRelatedOptionsBussines()
                             {
                                 Guid = Guid.NewGuid(),
-                                Status = true,
                                 BuildingOptionGuid = item.Guid,
                                 Modified = DateTime.Now,
                                 BuildinGuid = cls.Guid
@@ -436,7 +434,6 @@ namespace Building.Building
             cls = new BuildingBussines();
             superTabControl1.SelectedTab = superTabItem1;
             superTabControl2.SelectedTab = superTabItem8;
-            action = EnLogAction.Insert;
         }
 
 
@@ -584,7 +581,6 @@ namespace Building.Building
                 }
                 else
                 {
-                    UserLog.Save(action, EnLogPart.Building);
                     DialogResult = DialogResult.OK;
                     Close();
                 }

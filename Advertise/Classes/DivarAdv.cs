@@ -153,7 +153,6 @@ namespace Advertise.Classes
                                     Type = AdvertiseType.Divar,
                                     Token = token,
                                     Number = simCardNumber,
-                                    Modified = DateTime.Now,
                                     Guid = Guid.NewGuid(),
                                 };
                             await advToken.SaveAsync();
@@ -396,7 +395,6 @@ namespace Advertise.Classes
                                     Type = AdvertiseType.DivarChat,
                                     Token = token,
                                     Number = simCardNumber,
-                                    Modified = DateTime.Now,
                                     Guid = Guid.NewGuid(),
                                 };
 
@@ -1221,7 +1219,6 @@ namespace Advertise.Classes
                                 getUrl.City = value;
                                 break;
                         }
-                        getUrl.Modified = DateTime.Now;
                     }
                     //status
                     await Utility.Wait();
@@ -2156,7 +2153,6 @@ namespace Advertise.Classes
                                         {
                                             Guid = Guid.NewGuid(),
                                             Modified = DateTime.Now,
-                                            Status = true,
                                             BuildingOptionGuid = evelator.Guid,
                                             BuildinGuid = viewModel.Guid
                                         };
@@ -2183,7 +2179,6 @@ namespace Advertise.Classes
                                         {
                                             Guid = Guid.NewGuid(),
                                             Modified = DateTime.Now,
-                                            Status = true,
                                             BuildingOptionGuid = parking.Guid,
                                             BuildinGuid = viewModel.Guid
                                         };
@@ -2210,7 +2205,6 @@ namespace Advertise.Classes
                                         {
                                             Guid = Guid.NewGuid(),
                                             Modified = DateTime.Now,
-                                            Status = true,
                                             BuildingOptionGuid = anbari.Guid,
                                             BuildinGuid = viewModel.Guid
                                         };
@@ -2342,7 +2336,6 @@ namespace Advertise.Classes
                                         {
                                             Guid = Guid.NewGuid(),
                                             Modified = DateTime.Now,
-                                            Status = true,
                                             ImageName = name,
                                             BuildingGuid = viewModel.Guid
                                         };

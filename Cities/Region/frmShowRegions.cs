@@ -41,7 +41,7 @@ namespace Cities.Region
         {
             try
             {
-                var access = clsUser.CurrentUser.UserAccess;
+                var access = UserBussines.CurrentUser.UserAccess;
                 mnuAdd.Enabled = access?.Regions.Region_Insert ?? false;
                 mnuEdit.Enabled = access?.Regions.Region_Update ?? false;
                 mnuDelete.Enabled = access?.Regions.Region_Delete ?? false;
@@ -202,9 +202,6 @@ namespace Cities.Region
                             MessageBoxIcon.Question) == DialogResult.No) return;
                     var prd = await RegionsBussines.GetAsync(guid);
                     res.AddReturnedValue(await prd.ChangeStatusAsync(false));
-                    if (res.HasError) return;
-
-                    UserLog.Save(EnLogAction.Delete, EnLogPart.Regions);
                 }
                 else
                 {
@@ -215,9 +212,6 @@ namespace Cities.Region
                             MessageBoxIcon.Question) == DialogResult.No) return;
                     var prd = await RegionsBussines.GetAsync(guid);
                     res.AddReturnedValue(await prd.ChangeStatusAsync(true));
-                    if (res.HasError) return;
-
-                    UserLog.Save(EnLogAction.Enable, EnLogPart.Regions);
                 }
             }
             catch (Exception ex)

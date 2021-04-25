@@ -225,7 +225,7 @@ namespace Payamak
                     var smsLog = new SmsLogBussines()
                     {
                         Guid = Guid.NewGuid(),
-                        UserGuid = clsUser.CurrentUser.Guid,
+                        UserGuid = UserBussines.CurrentUser.Guid,
                         Cost = result.Cost,
                         Message = result.Message,
                         MessageId = result.Messageid,

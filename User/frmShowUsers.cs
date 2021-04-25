@@ -32,7 +32,7 @@ namespace User
         {
             try
             {
-                var access = clsUser.CurrentUser.UserAccess;
+                var access = UserBussines.CurrentUser.UserAccess;
                 mnuAdd.Enabled = access?.User.User_Insert ?? false;
                 mnuEdit.Enabled = access?.User.User_Update ?? false;
                 mnuDelete.Enabled = access?.User.User_Delete ?? false;
@@ -214,8 +214,6 @@ namespace User
                             MessageBoxIcon.Question) == DialogResult.No) return;
                     var prd = await UserBussines.GetAsync(guid);
                     res.AddReturnedValue(await prd.ChangeStatusAsync(false));
-                    if (res.HasError) return;
-                    UserLog.Save(EnLogAction.Delete, EnLogPart.Users);
                 }
                 else
                 {
@@ -226,8 +224,6 @@ namespace User
                             MessageBoxIcon.Question) == DialogResult.No) return;
                     var prd = await UserBussines.GetAsync(guid);
                     res.AddReturnedValue(await prd.ChangeStatusAsync(true));
-                    if (res.HasError) return;
-                    UserLog.Save(EnLogAction.Enable, EnLogPart.Users);
                 }
             }
             catch (Exception ex)

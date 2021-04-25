@@ -156,7 +156,6 @@ namespace Accounting.Sanad
                     Guid = Guid.NewGuid(),
                     Modified = DateTime.Now,
                     Description = txtRowDesc.Text,
-                    Status = true,
                     Debit = txtDebit.TextDecimal,
                     Credit = txtCredit.TextDecimal,
                     TafsilGuid = (tafsil?.Guid ?? Guid.Empty),

@@ -53,7 +53,7 @@ namespace EntityCache.Bussines
             }
             return res;
         }
-        public static async Task<List<AdvertiseRelatedRegionBussines>> GetAllAsync(string onlineRegion, SqlTransaction tr)
+        public static async Task<List<AdvertiseRelatedRegionBussines>> GetAllAsync(string onlineRegion, SqlTransaction tr = null)
         {
             var res = new List<AdvertiseRelatedRegionBussines>();
             var ret = new ReturnedSaveFuncInfo();

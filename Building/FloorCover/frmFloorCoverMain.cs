@@ -11,7 +11,6 @@ namespace Building.FloorCover
     public partial class frmFloorCoverMain : MetroForm
     {
         private FloorCoverBussines cls;
-        private EnLogAction action;
         private void SetData()
         {
             try
@@ -27,7 +26,6 @@ namespace Building.FloorCover
         {
             InitializeComponent();
             cls = new FloorCoverBussines();
-            action = EnLogAction.Insert;
         }
         public frmFloorCoverMain(Guid guid, bool isShowMode)
         {
@@ -35,7 +33,6 @@ namespace Building.FloorCover
             cls = FloorCoverBussines.Get(guid);
             grp.Enabled = !isShowMode;
             btnFinish.Enabled = !isShowMode;
-            action = EnLogAction.Update;
         }
 
         private void txtName_Enter(object sender, EventArgs e)
@@ -133,7 +130,6 @@ namespace Building.FloorCover
                 }
                 else
                 {
-                    User.UserLog.Save(action, EnLogPart.FloorCover);
                     DialogResult = DialogResult.OK;
                     Close();
                 }

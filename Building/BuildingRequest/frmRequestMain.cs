@@ -18,7 +18,6 @@ namespace Building.BuildingRequest
     {
         private BuildingRequestBussines cls;
         private PeoplesBussines asker;
-        private EnLogAction action;
 
         private async Task SetDataAsync()
         {
@@ -68,7 +67,7 @@ namespace Building.BuildingRequest
 
                 if (cls?.Guid == Guid.Empty)
                 {
-                    cmbUser.SelectedValue = clsUser.CurrentUser?.Guid;
+                    cmbUser.SelectedValue = UserBussines.CurrentUser?.Guid;
                     cmbRentalAuthority.SelectedIndex = 0;
                     cmbBuildingType.SelectedIndex = 0;
                     cmbBuildingCondition.SelectedIndex = 0;
@@ -249,7 +248,6 @@ namespace Building.BuildingRequest
                             cls.RegionList.Add(new BuildingRequestRegionBussines()
                             {
                                 Guid = Guid.NewGuid(),
-                                Status = true,
                                 RegionGuid = item.Guid,
                                 Modified = DateTime.Now,
                                 RequestGuid = cls.Guid
@@ -266,7 +264,7 @@ namespace Building.BuildingRequest
             try
             {
                 if (requestGuid == Guid.Empty) return;
-                var op = await BuildingRequestRegionBussines.GetAllAsync(requestGuid, true);
+                var op = await BuildingRequestRegionBussines.GetAllAsync(requestGuid);
                 foreach (var item in op)
                     for (var i = 0; i < DGrid.RowCount; i++)
                         if (item.RegionGuid == ((Guid?)DGrid[dgGuid.Index, i].Value ?? Guid.Empty))
@@ -282,7 +280,6 @@ namespace Building.BuildingRequest
             InitializeComponent();
             cls = new BuildingRequestBussines();
             WindowState = FormWindowState.Maximized;
-            action = EnLogAction.Insert;
         }
         public frmRequestMain(Guid guid, bool isShowMode)
         {
@@ -295,7 +292,6 @@ namespace Building.BuildingRequest
             btnFinish.Enabled = !isShowMode;
             superTabControl1.SelectedTab = superTabItem1;
             WindowState = FormWindowState.Maximized;
-            action = EnLogAction.Update;
         }
 
         private async void frmRequestMain_Load(object sender, EventArgs e) => await SetDataAsync();
@@ -505,7 +501,6 @@ namespace Building.BuildingRequest
                 }
                 else
                 {
-                    UserLog.Save(action, EnLogPart.BuildingRequest);
                     DialogResult = DialogResult.OK;
                     Close();
                 }

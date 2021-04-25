@@ -32,7 +32,7 @@ namespace EntityCache.Bussines
         public static List<PhoneBookBussines> GetAll(Guid parentGuid, bool status) =>
             AsyncContext.Run(() => GetAllAsync(parentGuid, status));
         public static async Task<List<PhoneBookBussines>> GetAllAsync() => await UnitOfWork.PhoneBook.GetAllAsync(Cache.ConnectionString);
-        public async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(bool status, SqlTransaction tr)
+        public async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(bool status, SqlTransaction tr = null)
         {
             var res = new ReturnedSaveFuncInfo();
             var autoTran = tr == null;

@@ -128,7 +128,6 @@ namespace Accounting.Pardakht
                 if (txtPrice.TextDecimal <= 0) res.AddError("لطفا مبلغ را وارد نمایید");
 
                 cls.Modified = DateTime.Now;
-                cls.Status = true;
                 cls.Description = txtDesc.Text;
                 cls.Price = txtPrice.TextDecimal;
                 cls.DateSarResid = Calendar.ShamsiToMiladi(txtDate.Text);

@@ -30,7 +30,7 @@ namespace Building.BuildingAccountType
         {
             try
             {
-                var access = clsUser.CurrentUser.UserAccess;
+                var access = UserBussines.CurrentUser.UserAccess;
                 mnuAdd.Enabled = access?.BuildingAccountType.Building_Acc_Type_Insert ?? false;
                 mnuEdit.Enabled = access?.BuildingAccountType.Building_Acc_Type_Update ?? false;
                 mnuDelete.Enabled = access?.BuildingAccountType.Building_Acc_Type_Delete ?? false;
@@ -199,9 +199,6 @@ namespace Building.BuildingAccountType
                             MessageBoxIcon.Question) == DialogResult.No) return;
                     var prd = await BuildingAccountTypeBussines.GetAsync(guid);
                     res.AddReturnedValue(await prd.ChangeStatusAsync(false));
-                    if (res.HasError) return;
-
-                    UserLog.Save(EnLogAction.Delete, EnLogPart.BuildingAccountType);
                 }
                 else
                 {
@@ -212,9 +209,6 @@ namespace Building.BuildingAccountType
                             MessageBoxIcon.Question) == DialogResult.No) return;
                     var prd = await BuildingAccountTypeBussines.GetAsync(guid);
                     res.AddReturnedValue(await prd.ChangeStatusAsync(true));
-                    if (res.HasError) return;
-
-                    UserLog.Save(EnLogAction.Enable, EnLogPart.BuildingAccountType);
                 }
             }
             catch (Exception ex)

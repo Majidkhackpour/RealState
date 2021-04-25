@@ -254,7 +254,6 @@ namespace Accounting.Check.CheckMoshtari
                 {
                     Guid = Guid.NewGuid(),
                     Modified = DateTime.Now,
-                    Status = true,
                     Description = $"خرج چک {checkNumber} {bankName} به سررسید {sarresid}",
                     Price = price,
                     CheckGuid = guid,

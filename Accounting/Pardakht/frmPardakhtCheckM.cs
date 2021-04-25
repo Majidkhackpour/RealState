@@ -113,7 +113,6 @@ namespace Accounting.Pardakht
                 if (res.HasError) return;
 
                 cls.Modified = DateTime.Now;
-                cls.Status = true;
                 cls.Description = txtDesc.Text;
                 cls.Price = receptionCheck.Price;
                 cls.CheckGuid = receptionCheck.Guid;

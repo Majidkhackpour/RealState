@@ -136,13 +136,13 @@ namespace User
                     return;
                 }
 
-                clsUser.CurrentUser = user;
-                clsUser.DateVorrod = DateTime.Now;
+                UserBussines.CurrentUser = user;
+                UserBussines.DateVorrod = DateTime.Now;
 
                 clsGlobalSetting.LastUser = user.UserName;
 
 
-                UserLog.Save(EnLogAction.Login, EnLogPart.Login);
+                await UserLogBussines.SaveAsync(EnLogAction.Login, EnLogPart.Login, null);
 
 
                 DialogResult = DialogResult.OK;

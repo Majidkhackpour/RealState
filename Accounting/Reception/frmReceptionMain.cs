@@ -460,7 +460,6 @@ namespace Accounting.Reception
                 }
 
                 cls.Modified = DateTime.Now;
-                cls.Status = true;
                 cls.Number = (long)txtNumber.Value;
                 cls.Description = txtDesc.Text;
                 cls.TafsilGuid = _tafsilGuid;

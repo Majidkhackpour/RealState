@@ -129,7 +129,6 @@ namespace Accounting.Reception
                 if (SandouqBindingSource.Count <= 0) res.AddError("لطفا صندوق مقصد را انتخاب نمایید");
 
                 cls.Modified = DateTime.Now;
-                cls.Status = true;
                 cls.BankName = txtBankName.Text;
                 cls.DateSarResid = Calendar.ShamsiToMiladi(txtDate.Text);
                 cls.Description = txtDesc.Text;

@@ -202,8 +202,6 @@ namespace Accounting.Hazine
                             MessageBoxIcon.Question) == DialogResult.No) return;
                     var prd = await TafsilBussines.GetAsync(guid);
                     res.AddReturnedValue(await prd.ChangeStatusAsync(false));
-                    if (res.HasError) return;
-                    UserLog.Save(EnLogAction.Delete, EnLogPart.Hazine);
                 }
                 else
                 {
@@ -214,8 +212,6 @@ namespace Accounting.Hazine
                             MessageBoxIcon.Question) == DialogResult.No) return;
                     var prd = await TafsilBussines.GetAsync(guid);
                     res.AddReturnedValue(await prd.ChangeStatusAsync(true));
-                    if (res.HasError) return;
-                    UserLog.Save(EnLogAction.Enable, EnLogPart.Hazine);
                 }
             }
             catch (Exception ex)

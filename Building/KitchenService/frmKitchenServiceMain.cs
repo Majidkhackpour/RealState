@@ -11,7 +11,6 @@ namespace Building.KitchenService
     public partial class frmKitchenServiceMain : MetroForm
     {
         private KitchenServiceBussines cls;
-        private EnLogAction action;
         private void SetData()
         {
             try
@@ -27,7 +26,6 @@ namespace Building.KitchenService
         {
             InitializeComponent();
             cls = new KitchenServiceBussines();
-            action = EnLogAction.Insert;
         }
         public frmKitchenServiceMain(Guid guid, bool isShowMode)
         {
@@ -35,7 +33,6 @@ namespace Building.KitchenService
             cls = KitchenServiceBussines.Get(guid);
             grp.Enabled = !isShowMode;
             btnFinish.Enabled = !isShowMode;
-            action = EnLogAction.Update;
         }
 
         private void txtName_Enter(object sender, EventArgs e)
@@ -133,7 +130,6 @@ namespace Building.KitchenService
                 }
                 else
                 {
-                    User.UserLog.Save(action, EnLogPart.KitchenService);
                     DialogResult = DialogResult.OK;
                     Close();
                 }

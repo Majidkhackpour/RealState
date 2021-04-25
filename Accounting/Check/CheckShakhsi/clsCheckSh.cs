@@ -26,7 +26,6 @@ namespace Accounting.Check.CheckShakhsi
                 {
                     Guid = Guid.NewGuid(),
                     Modified = DateTime.Now,
-                    Status = true,
                     Description = $"نقد کردن چک پرداختنی * شماره: {checkPage.Number} بانک صادر کننده: {bank.Name} * گیرنده: {girande.Name}",
                     DateM = DateTime.Now,
                     Number = await SanadBussines.NextNumberAsync(),
@@ -46,7 +45,6 @@ namespace Accounting.Check.CheckShakhsi
                 {
                     Guid = Guid.NewGuid(),
                     Modified = DateTime.Now,
-                    Status = true,
                     Description = $"نقد کردن چک {checkPage.Number} {bank.Name} * گیرنده: {girande.Name}",
                     Debit = 0,
                     Credit = cls.Price,
@@ -59,7 +57,6 @@ namespace Accounting.Check.CheckShakhsi
                 {
                     Guid = Guid.NewGuid(),
                     Modified = DateTime.Now,
-                    Status = true,
                     Description = $"نقد کردن چک {checkPage.Number} {bank.Name} * گیرنده: {girande.Name}",
                     Debit = cls.Price,
                     Credit = 0,
@@ -99,7 +96,6 @@ namespace Accounting.Check.CheckShakhsi
                 {
                     Guid = Guid.NewGuid(),
                     Modified = DateTime.Now,
-                    Status = true,
                     Description = $"نقد کردن چک پرداختنی * شماره: {checkPage.Number} بانک صادر کننده: {bank.Name} * گیرنده: {girande.Name}",
                     DateM = DateTime.Now,
                     Number = await SanadBussines.NextNumberAsync(),
@@ -119,7 +115,6 @@ namespace Accounting.Check.CheckShakhsi
                 {
                     Guid = Guid.NewGuid(),
                     Modified = DateTime.Now,
-                    Status = true,
                     Description = $"نقد کردن چک {checkPage.Number} {bank.Name} * گیرنده: {girande.Name}",
                     Debit = 0,
                     Credit = cls.Price,
@@ -132,7 +127,6 @@ namespace Accounting.Check.CheckShakhsi
                 {
                     Guid = Guid.NewGuid(),
                     Modified = DateTime.Now,
-                    Status = true,
                     Description = $"نقد کردن چک {checkPage.Number} {bank.Name} * گیرنده: {girande.Name}",
                     Debit = cls.Price,
                     Credit = 0,
@@ -178,7 +172,6 @@ namespace Accounting.Check.CheckShakhsi
                 {
                     Guid = Guid.NewGuid(),
                     Modified = DateTime.Now,
-                    Status = true,
                     Description = $"برگشت زدن چک پرداختنی * شماره: {checkPage.Number} بانک صادرکننده: {bank.Name} * گیرنده: {girande.Name}",
                     DateM = DateTime.Now,
                     Number = await SanadBussines.NextNumberAsync(),
@@ -191,7 +184,6 @@ namespace Accounting.Check.CheckShakhsi
                 {
                     Guid = Guid.NewGuid(),
                     Modified = DateTime.Now,
-                    Status = true,
                     Description = $"برگشت زدن چک {checkPage.Number} {bank.Name} * گیرنده: {girande.Name}",
                     Debit = 0,
                     Credit = cls.Price,
@@ -204,7 +196,6 @@ namespace Accounting.Check.CheckShakhsi
                 {
                     Guid = Guid.NewGuid(),
                     Modified = DateTime.Now,
-                    Status = true,
                     Description = $"برگشت زدن چک {checkPage.Number} {bank.Name} * گیرنده: {girande.Name}",
                     Debit = cls.Price,
                     Credit = 0,
@@ -244,7 +235,6 @@ namespace Accounting.Check.CheckShakhsi
                 {
                     Guid = Guid.NewGuid(),
                     Modified = DateTime.Now,
-                    Status = true,
                     Description = $"برگشت زدن چک پرداختنی * شماره: {checkPage.Number} بانک صادرکننده: {bank.Name} * گیرنده: {girande.Name}",
                     DateM = DateTime.Now,
                     Number = await SanadBussines.NextNumberAsync(),
@@ -257,7 +247,6 @@ namespace Accounting.Check.CheckShakhsi
                 {
                     Guid = Guid.NewGuid(),
                     Modified = DateTime.Now,
-                    Status = true,
                     Description = $"برگشت زدن چک {checkPage.Number} {bank.Name} * گیرنده: {girande.Name}",
                     Debit = 0,
                     Credit = cls.Price,
@@ -270,7 +259,6 @@ namespace Accounting.Check.CheckShakhsi
                 {
                     Guid = Guid.NewGuid(),
                     Modified = DateTime.Now,
-                    Status = true,
                     Description = $"برگشت زدن چک {checkPage.Number} {bank.Name} * گیرنده: {girande.Name}",
                     Debit = cls.Price,
                     Credit = 0,
@@ -307,7 +295,6 @@ namespace Accounting.Check.CheckShakhsi
                 {
                     Guid = Guid.NewGuid(),
                     Modified = DateTime.Now,
-                    Status = true,
                     Description = $"استرداد چک پرداختنی * شماره: {checkPage.Number} بانک صادرکننده: {bank.Name} * گیرنده: {girande.Name}",
                     Debit = 0,
                     Credit = cls.Price,
@@ -320,7 +307,6 @@ namespace Accounting.Check.CheckShakhsi
                 {
                     Guid = Guid.NewGuid(),
                     Modified = DateTime.Now,
-                    Status = true,
                     Description = $"استرداد چک پرداختنی * شماره: {checkPage.Number} بانک صادرکننده: {bank.Name} * گیرنده: {girande.Name}",
                     Debit = cls.Price,
                     Credit = 0,
@@ -356,7 +342,6 @@ namespace Accounting.Check.CheckShakhsi
                 {
                     Guid = Guid.NewGuid(),
                     Modified = DateTime.Now,
-                    Status = true,
                     Description = $"استرداد چک پرداختنی * شماره: {checkPage.Number} بانک صادرکننده: {bank.Name} * گیرنده: {girande.Name}",
                     Debit = 0,
                     Credit = cls.Price,
@@ -369,7 +354,6 @@ namespace Accounting.Check.CheckShakhsi
                 {
                     Guid = Guid.NewGuid(),
                     Modified = DateTime.Now,
-                    Status = true,
                     Description = $"استرداد چک پرداختنی * شماره: {checkPage.Number} بانک صادرکننده: {bank.Name} * گیرنده: {girande.Name}",
                     Debit = cls.Price,
                     Credit = 0,

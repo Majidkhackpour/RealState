@@ -28,7 +28,6 @@ namespace RealState
                 var list = await TempBussines.GetAllAsync();
                 while (true)
                 {
-                    list = list?.OrderBy(q => q.Modified).ToList();
                     if (list == null || list.Count <= 0)
                     {
                         await Task.Delay(2000);

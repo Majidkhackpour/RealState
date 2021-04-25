@@ -41,7 +41,6 @@ namespace Accounting.Check.DasteCheck
                         Guid = Guid.NewGuid(),
                         Modified = DateTime.Now,
                         Description = "",
-                        Status = true,
                         Price = 0,
                         Number = (long)i,
                         DateSarresid = null,

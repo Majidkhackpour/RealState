@@ -664,8 +664,6 @@ namespace Advertise.Classes
                 var log = new AdvertiseLogBussines()
                 {
                     Guid = Guid.NewGuid(),
-                    Modified = DateTime.Now,
-                    Status = true,
                     Region = region,
                     Title = title,
                     Content = content,

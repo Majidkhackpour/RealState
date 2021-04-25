@@ -30,7 +30,7 @@ namespace Building.DocumentType
         {
             try
             {
-                var access = clsUser.CurrentUser.UserAccess;
+                var access = UserBussines.CurrentUser.UserAccess;
                 mnuAdd.Enabled = access?.DocumentType.Document_Type_Insert ?? false;
                 mnuEdit.Enabled = access?.DocumentType.Document_Type_Update ?? false;
                 mnuDelete.Enabled = access?.DocumentType.Document_Type_Delete ?? false;
@@ -202,9 +202,6 @@ namespace Building.DocumentType
                             MessageBoxIcon.Question) == DialogResult.No) return;
                     var prd = await DocumentTypeBussines.GetAsync(guid);
                     res.AddReturnedValue(await prd.ChangeStatusAsync(false));
-                    if (res.HasError) return;
-
-                    User.UserLog.Save(EnLogAction.Delete, EnLogPart.DocumentType);
                 }
                 else
                 {
@@ -215,9 +212,6 @@ namespace Building.DocumentType
                             MessageBoxIcon.Question) == DialogResult.No) return;
                     var prd = await DocumentTypeBussines.GetAsync(guid);
                     res.AddReturnedValue(await prd.ChangeStatusAsync(true));
-                    if (res.HasError) return;
-
-                    User.UserLog.Save(EnLogAction.Enable, EnLogPart.DocumentType);
                 }
             }
             catch (Exception ex)

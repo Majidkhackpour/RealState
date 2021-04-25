@@ -40,7 +40,7 @@ namespace Payamak
                     Name = "[کلیه کاربران]"
                 });
                 userBindingSource.DataSource = list.OrderBy(q => q.Name);
-                cmbUsers.SelectedValue = clsUser.CurrentUser?.Guid;
+                cmbUsers.SelectedValue = UserBussines.CurrentUser?.Guid;
             }
             catch (Exception ex)
             {

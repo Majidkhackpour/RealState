@@ -97,7 +97,7 @@ namespace Peoples
         {
             try
             {
-                var access = clsUser.CurrentUser.UserAccess;
+                var access = UserBussines.CurrentUser.UserAccess;
                 mnuAdd.Enabled = access?.Peoples.People_Insert ?? false;
                 mnuEdit.Enabled = access?.Peoples.People_Update ?? false;
                 mnuDelete.Enabled = access?.Peoples.People_Delete ?? false;

@@ -26,7 +26,6 @@ namespace Accounting.Check.CheckMoshtari
                 {
                     Guid = Guid.NewGuid(),
                     Modified = DateTime.Now,
-                    Status = true,
                     Description = $"نقد کردن چک دریافتنی * شماره: {cls.CheckNumber} بانک صادرکننده: {cls.BankName} * پردازنده: {pardazande.Name}",
                     DateM = DateTime.Now,
                     Number = await SanadBussines.NextNumberAsync(),
@@ -46,7 +45,6 @@ namespace Accounting.Check.CheckMoshtari
                 {
                     Guid = Guid.NewGuid(),
                     Modified = DateTime.Now,
-                    Status = true,
                     Description = $"نقد کردن چک {cls.CheckNumber} {cls.BankName} * پردازنده: {pardazande.Name}",
                     Debit = 0,
                     Credit = cls.Price,
@@ -59,7 +57,6 @@ namespace Accounting.Check.CheckMoshtari
                 {
                     Guid = Guid.NewGuid(),
                     Modified = DateTime.Now,
-                    Status = true,
                     Description = $"نقد کردن چک {cls.CheckNumber} {cls.BankName} * پردازنده: {pardazande.Name}",
                     Debit = cls.Price,
                     Credit = 0,
@@ -103,7 +100,6 @@ namespace Accounting.Check.CheckMoshtari
                 {
                     Guid = Guid.NewGuid(),
                     Modified = DateTime.Now,
-                    Status = true,
                     Description = $"نقد کردن چک دریافتنی * شماره: {cls.CheckNumber} بانک صادرکننده: {cls.BankName} * پردازنده: {pardazande.Name}",
                     DateM = DateTime.Now,
                     Number = await SanadBussines.NextNumberAsync(),
@@ -123,7 +119,6 @@ namespace Accounting.Check.CheckMoshtari
                 {
                     Guid = Guid.NewGuid(),
                     Modified = DateTime.Now,
-                    Status = true,
                     Description = $"نقد کردن چک {cls.CheckNumber} {cls.BankName} * پردازنده: {pardazande.Name}",
                     Debit = 0,
                     Credit = cls.Price,
@@ -136,7 +131,6 @@ namespace Accounting.Check.CheckMoshtari
                 {
                     Guid = Guid.NewGuid(),
                     Modified = DateTime.Now,
-                    Status = true,
                     Description = $"نقد کردن چک {cls.CheckNumber} {cls.BankName} * پردازنده: {pardazande.Name}",
                     Debit = cls.Price,
                     Credit = 0,
@@ -172,7 +166,6 @@ namespace Accounting.Check.CheckMoshtari
                 {
                     Guid = Guid.NewGuid(),
                     Modified = DateTime.Now,
-                    Status = true,
                     Description = $"واگذار کردن چک دریافتنی * شماره: {cls.CheckNumber} بانک صادرکننده: {cls.BankName} * پردازنده: {pardazande.Name}",
                     DateM = DateTime.Now,
                     Number = await SanadBussines.NextNumberAsync(),
@@ -185,7 +178,6 @@ namespace Accounting.Check.CheckMoshtari
                 {
                     Guid = Guid.NewGuid(),
                     Modified = DateTime.Now,
-                    Status = true,
                     Description = $"واگذار کردن چک {cls.CheckNumber} {cls.BankName} * پردازنده: {pardazande.Name}",
                     Debit = 0,
                     Credit = cls.Price,
@@ -198,7 +190,6 @@ namespace Accounting.Check.CheckMoshtari
                 {
                     Guid = Guid.NewGuid(),
                     Modified = DateTime.Now,
-                    Status = true,
                     Description = $"واگذار کردن چک {cls.CheckNumber} {cls.BankName} * پردازنده: {pardazande.Name}",
                     Debit = cls.Price,
                     Credit = 0,
@@ -235,7 +226,6 @@ namespace Accounting.Check.CheckMoshtari
                 {
                     Guid = Guid.NewGuid(),
                     Modified = DateTime.Now,
-                    Status = true,
                     Description = $"واگذار کردن چک دریافتنی * شماره: {cls.CheckNumber} بانک صادرکننده: {cls.BankName} * پردازنده: {pardazande.Name}",
                     DateM = DateTime.Now,
                     Number = await SanadBussines.NextNumberAsync(),
@@ -248,7 +238,6 @@ namespace Accounting.Check.CheckMoshtari
                 {
                     Guid = Guid.NewGuid(),
                     Modified = DateTime.Now,
-                    Status = true,
                     Description = $"واگذار کردن چک {cls.CheckNumber} {cls.BankName} * پردازنده: {pardazande.Name}",
                     Debit = 0,
                     Credit = cls.Price,
@@ -261,7 +250,6 @@ namespace Accounting.Check.CheckMoshtari
                 {
                     Guid = Guid.NewGuid(),
                     Modified = DateTime.Now,
-                    Status = true,
                     Description = $"واگذار کردن چک {cls.CheckNumber} {cls.BankName} * پردازنده: {pardazande.Name}",
                     Debit = cls.Price,
                     Credit = 0,
@@ -299,7 +287,6 @@ namespace Accounting.Check.CheckMoshtari
                 {
                     Guid = Guid.NewGuid(),
                     Modified = DateTime.Now,
-                    Status = true,
                     Description = $"واگذار کردن چک دریافتنی * شماره: {cls.CheckNumber} بانک صادرکننده:  {cls.BankName} * پردازنده: {pardazande.Name}",
                     DateM = DateTime.Now,
                     Number = await SanadBussines.NextNumberAsync(),
@@ -312,7 +299,6 @@ namespace Accounting.Check.CheckMoshtari
                 {
                     Guid = Guid.NewGuid(),
                     Modified = DateTime.Now,
-                    Status = true,
                     Description = $"واگذار کردن چک {cls.CheckNumber} {cls.BankName} * پردازنده: {pardazande.Name}",
                     Debit = 0,
                     Credit = cls.Price,
@@ -325,7 +311,6 @@ namespace Accounting.Check.CheckMoshtari
                 {
                     Guid = Guid.NewGuid(),
                     Modified = DateTime.Now,
-                    Status = true,
                     Description = $"واگذار کردن چک {cls.CheckNumber} {cls.BankName} * پردازنده: {pardazande.Name}",
                     Debit = cls.Price,
                     Credit = 0,
@@ -362,7 +347,6 @@ namespace Accounting.Check.CheckMoshtari
                 {
                     Guid = Guid.NewGuid(),
                     Modified = DateTime.Now,
-                    Status = true,
                     Description = $"واگذار کردن چک دریافتنی * شماره: {cls.CheckNumber} بانک صادرکننده: {cls.BankName} * پردازنده: {pardazande.Name}",
                     DateM = DateTime.Now,
                     Number = await SanadBussines.NextNumberAsync(),
@@ -375,7 +359,6 @@ namespace Accounting.Check.CheckMoshtari
                 {
                     Guid = Guid.NewGuid(),
                     Modified = DateTime.Now,
-                    Status = true,
                     Description = $"واگذار کردن چک {cls.CheckNumber} {cls.BankName} * پردازنده: {pardazande.Name}",
                     Debit = 0,
                     Credit = cls.Price,
@@ -388,7 +371,6 @@ namespace Accounting.Check.CheckMoshtari
                 {
                     Guid = Guid.NewGuid(),
                     Modified = DateTime.Now,
-                    Status = true,
                     Description = $"واگذار کردن چک {cls.CheckNumber} {cls.BankName} * پردازنده: {pardazande.Name}",
                     Debit = cls.Price,
                     Credit = 0,
@@ -430,7 +412,6 @@ namespace Accounting.Check.CheckMoshtari
                 {
                     Guid = Guid.NewGuid(),
                     Modified = DateTime.Now,
-                    Status = true,
                     Description = $"برگشت زدن چک دریافتنی * شناره: {cls.CheckNumber} بانک صادرکننده: {cls.BankName} * پردازنده: {pardazande.Name}",
                     DateM = DateTime.Now,
                     Number = await SanadBussines.NextNumberAsync(),
@@ -443,7 +424,6 @@ namespace Accounting.Check.CheckMoshtari
                 {
                     Guid = Guid.NewGuid(),
                     Modified = DateTime.Now,
-                    Status = true,
                     Description = $"برگشت زدن چک {cls.CheckNumber} {cls.BankName} * پردازنده: {pardazande.Name}",
                     Debit = 0,
                     Credit = cls.Price,
@@ -456,7 +436,6 @@ namespace Accounting.Check.CheckMoshtari
                 {
                     Guid = Guid.NewGuid(),
                     Modified = DateTime.Now,
-                    Status = true,
                     Description = $"برگشت زدن چک {cls.CheckNumber} {cls.BankName} * پردازنده: {pardazande.Name}",
                     Debit = cls.Price,
                     Credit = 0,
@@ -490,7 +469,6 @@ namespace Accounting.Check.CheckMoshtari
                 {
                     Guid = Guid.NewGuid(),
                     Modified = DateTime.Now,
-                    Status = true,
                     Description = $"برگشت زدن چک دریافتنی * شماره: {cls.CheckNumber} بانک صادرکننده: {cls.BankName} * پردازنده: {pardazande.Name}",
                     DateM = DateTime.Now,
                     Number = await SanadBussines.NextNumberAsync(),
@@ -503,7 +481,6 @@ namespace Accounting.Check.CheckMoshtari
                 {
                     Guid = Guid.NewGuid(),
                     Modified = DateTime.Now,
-                    Status = true,
                     Description = $"برگشت زدن چک {cls.CheckNumber} {cls.BankName} * پردازنده: {pardazande.Name}",
                     Debit = 0,
                     Credit = cls.Price,
@@ -516,7 +493,6 @@ namespace Accounting.Check.CheckMoshtari
                 {
                     Guid = Guid.NewGuid(),
                     Modified = DateTime.Now,
-                    Status = true,
                     Description = $"برگشت زدن چک {cls.CheckNumber} {cls.BankName} * پردازنده: {pardazande.Name}",
                     Debit = cls.Price,
                     Credit = 0,
@@ -548,7 +524,6 @@ namespace Accounting.Check.CheckMoshtari
                 {
                     Guid = Guid.NewGuid(),
                     Modified = DateTime.Now,
-                    Status = true,
                     Description = $"استرداد چک {cls.CheckNumber} {cls.BankName} * پردازنده: {pardazande.Name}",
                     Debit = 0,
                     Credit = cls.Price,
@@ -561,7 +536,6 @@ namespace Accounting.Check.CheckMoshtari
                 {
                     Guid = Guid.NewGuid(),
                     Modified = DateTime.Now,
-                    Status = true,
                     Description = $"استرداد چک {cls.CheckNumber} {cls.BankName} * پردازنده: {pardazande.Name}",
                     Debit = cls.Price,
                     Credit = 0,
@@ -596,7 +570,6 @@ namespace Accounting.Check.CheckMoshtari
                 {
                     Guid = Guid.NewGuid(),
                     Modified = DateTime.Now,
-                    Status = true,
                     Description = $"استرداد چک {cls.CheckNumber} {cls.BankName} * پردازنده: {pardazande.Name}",
                     Debit = 0,
                     Credit = cls.Price,
@@ -609,7 +582,6 @@ namespace Accounting.Check.CheckMoshtari
                 {
                     Guid = Guid.NewGuid(),
                     Modified = DateTime.Now,
-                    Status = true,
                     Description = $"استرداد چک {cls.CheckNumber} {cls.BankName} * پردازنده: {pardazande.Name}",
                     Debit = cls.Price,
                     Credit = 0,

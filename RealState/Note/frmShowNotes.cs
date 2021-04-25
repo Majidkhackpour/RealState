@@ -24,7 +24,7 @@ namespace RealState.Note
                     Name = "[کلیه کاربران]"
                 });
                 userBindingSource.DataSource = list.Where(q => q.Status).OrderBy(q => q.Name);
-                cmbUsers.SelectedValue = clsUser.CurrentUser.Guid;
+                cmbUsers.SelectedValue = UserBussines.CurrentUser.Guid;
 
 
                 cmbPriority.Items.Add(EnNotePriority.All.GetDisplay());

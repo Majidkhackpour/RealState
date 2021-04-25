@@ -92,7 +92,7 @@ namespace RealState
         {
             try
             {
-                var access = clsUser.CurrentUser.UserAccess;
+                var access = UserBussines.CurrentUser.UserAccess;
 
                 btnBuilding.Enabled = access?.Building.Building_ShowForm ?? false;
                 btnBuildingArchive.Enabled = access?.Building.Building_ShowForm ?? false;
@@ -197,7 +197,7 @@ namespace RealState
                         var smsLog = new SmsLogBussines()
                         {
                             Guid = Guid.NewGuid(),
-                            UserGuid = clsUser.CurrentUser?.Guid ?? Guid.Empty,
+                            UserGuid = UserBussines.CurrentUser?.Guid ?? Guid.Empty,
                             Cost = result.Cost,
                             Message = result.Message,
                             MessageId = result.Messageid,
@@ -255,12 +255,12 @@ namespace RealState
             try
             {
                 var allBuilding = await BuildingBussines.DbCount(Guid.Empty, 0);
-                var myBuilding = await BuildingBussines.DbCount(clsUser.CurrentUser.Guid, 0);
+                var myBuilding = await BuildingBussines.DbCount(UserBussines.CurrentUser.Guid, 0);
                 var rahn = await BuildingBussines.DbCount(Guid.Empty, 1);
                 var foroush = await BuildingBussines.DbCount(Guid.Empty, 2);
                 var allReq = await BuildingRequestBussines.DbCount(Guid.Empty);
-                var myReq = await BuildingRequestBussines.DbCount(clsUser.CurrentUser.Guid);
-                var myCon = await ContractBussines.DbCount(clsUser.CurrentUser.Guid);
+                var myReq = await BuildingRequestBussines.DbCount(UserBussines.CurrentUser.Guid);
+                var myCon = await ContractBussines.DbCount(UserBussines.CurrentUser.Guid);
                 var disCharge = await ContractBussines.DischargeDbCount();
 
                 BirthdayList = await PeoplesBussines.GetAllBirthDayAsync(Calendar.MiladiToShamsi(DateTime.Now));
@@ -337,9 +337,9 @@ namespace RealState
             else if (!lblSecond.Visible)
                 lblSecond.Visible = true;
         }
-        private void frmMain_FormClosing(object sender, FormClosingEventArgs e)
+        private async void frmMain_FormClosing(object sender, FormClosingEventArgs e)
         {
-            UserLog.Save(EnLogAction.Logout, EnLogPart.Logout);
+            await UserLogBussines.SaveAsync(EnLogAction.Logout, EnLogPart.Logout, null);
         }
         private void btnPeoples_Click(object sender, EventArgs e)
         {

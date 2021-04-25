@@ -69,7 +69,7 @@ namespace Building.Building
                 AccTypeBindingSource.DataSource = list4.OrderBy(q => q.Name).ToList();
 
                 cmbBuildingType.SelectedIndex = 0;
-                cmbUser.SelectedValue = clsUser.CurrentUser.Guid;
+                cmbUser.SelectedValue = UserBussines.CurrentUser.Guid;
                 cmbDocType.SelectedIndex = 0;
                 cmbAccType.SelectedIndex = 0;
             }
@@ -111,7 +111,7 @@ namespace Building.Building
         {
             try
             {
-                var access = clsUser.CurrentUser.UserAccess;
+                var access = UserBussines.CurrentUser.UserAccess;
                 mnuAdd.Enabled = access?.Building.Building_Insert ?? false;
                 mnuEdit.Enabled = access?.Building.Building_Update ?? false;
                 mnuDelete.Enabled = access?.Building.Building_Delete ?? false;
@@ -673,8 +673,6 @@ namespace Building.Building
                             MessageBoxIcon.Question) == DialogResult.No) return;
                     var prd = await BuildingBussines.GetAsync(guid);
                     res.AddReturnedValue(await prd.ChangeStatusAsync(false));
-                    if (res.HasError) return;
-                    UserLog.Save(EnLogAction.Delete, EnLogPart.Building);
                 }
                 else
                 {
@@ -685,8 +683,6 @@ namespace Building.Building
                             MessageBoxIcon.Question) == DialogResult.No) return;
                     var prd = await BuildingBussines.GetAsync(guid);
                     res.AddReturnedValue(await prd.ChangeStatusAsync(true));
-                    if (res.HasError) return;
-                    UserLog.Save(EnLogAction.Enable, EnLogPart.Building);
                 }
             }
             catch (Exception ex)

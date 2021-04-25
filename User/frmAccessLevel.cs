@@ -45,7 +45,7 @@ namespace User
             try
             {
                 var users = await UserBussines.GetAllAsync();
-                UserBindingSource.DataSource = users.Where(p => p.Guid != clsUser.CurrentUser.Guid).ToSortableBindingList();
+                UserBindingSource.DataSource = users.Where(p => p.Guid != UserBussines.CurrentUser.Guid).ToSortableBindingList();
             }
             catch (Exception ex)
             {

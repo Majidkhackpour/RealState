@@ -159,7 +159,6 @@ namespace Accounting.Check.CheckShakhsi
 
 
                 cls.Modified = DateTime.Now;
-                cls.Status = true;
                 cls.DasteCheckName = cmbCheckBook.Text;
                 cls.Description = txtDesc.Text;
                 cls.Price = txtPrice.TextDecimal;

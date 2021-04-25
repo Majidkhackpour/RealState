@@ -11,7 +11,6 @@ namespace Building.DocumentType
     public partial class frmDocumentTypeMain : MetroForm
     {
         private DocumentTypeBussines cls;
-        private EnLogAction action;
         private void SetData()
         {
             try
@@ -27,7 +26,6 @@ namespace Building.DocumentType
         {
             InitializeComponent();
             cls = new DocumentTypeBussines();
-            action = EnLogAction.Insert;
         }
         public frmDocumentTypeMain(Guid guid, bool isShowMode)
         {
@@ -35,7 +33,6 @@ namespace Building.DocumentType
             cls = DocumentTypeBussines.Get(guid);
             grp.Enabled = !isShowMode;
             btnFinish.Enabled = !isShowMode;
-            action = EnLogAction.Update;
         }
 
         private void txtName_Enter(object sender, EventArgs e)
@@ -134,7 +131,6 @@ namespace Building.DocumentType
                 }
                 else
                 {
-                    User.UserLog.Save(action, EnLogPart.DocumentType);
                     DialogResult = DialogResult.OK;
                     Close();
                 }

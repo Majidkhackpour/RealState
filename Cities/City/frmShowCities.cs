@@ -53,7 +53,7 @@ namespace Cities.City
         {
             try
             {
-                var access = clsUser.CurrentUser.UserAccess;
+                var access = UserBussines.CurrentUser.UserAccess;
                 mnuAdd.Enabled = access?.Cities.City_Insert ?? false;
                 mnuEdit.Enabled = access?.Cities.City_Update ?? false;
                 mnuDelete.Enabled = access?.Cities.City_Delete ?? false;
@@ -230,9 +230,6 @@ namespace Cities.City
                             MessageBoxIcon.Question) == DialogResult.No) return;
                     var prd = await CitiesBussines.GetAsync(guid);
                     res.AddReturnedValue(await prd.ChangeStatusAsync(false));
-                    if (res.HasError) return;
-
-                    UserLog.Save(EnLogAction.Delete, EnLogPart.Cities);
                 }
                 else
                 {
@@ -243,9 +240,6 @@ namespace Cities.City
                             MessageBoxIcon.Question) == DialogResult.No) return;
                     var prd = await CitiesBussines.GetAsync(guid);
                     res.AddReturnedValue(await prd.ChangeStatusAsync(true));
-                    if (res.HasError) return;
-
-                    UserLog.Save(EnLogAction.Enable, EnLogPart.Cities);
                 }
             }
             catch (Exception ex)

@@ -30,7 +30,7 @@ namespace Building.BuildingType
         {
             try
             {
-                var access = clsUser.CurrentUser.UserAccess;
+                var access = UserBussines.CurrentUser.UserAccess;
                 mnuAdd.Enabled = access?.BuildingType.Building_Type_Insert ?? false;
                 mnuEdit.Enabled = access?.BuildingType.Building_Type_Update ?? false;
                 mnuDelete.Enabled = access?.BuildingType.Building_Type_Delete ?? false;
@@ -202,8 +202,6 @@ namespace Building.BuildingType
                             MessageBoxIcon.Question) == DialogResult.No) return;
                     var prd = await BuildingTypeBussines.GetAsync(guid);
                     res.AddReturnedValue(await prd.ChangeStatusAsync(false));
-                    if (res.HasError) return;
-                    User.UserLog.Save(EnLogAction.Delete, EnLogPart.BuildingType);
                 }
                 else
                 {
@@ -214,8 +212,6 @@ namespace Building.BuildingType
                             MessageBoxIcon.Question) == DialogResult.No) return;
                     var prd = await BuildingTypeBussines.GetAsync(guid);
                     res.AddReturnedValue(await prd.ChangeStatusAsync(true));
-                    if (res.HasError) return;
-                    User.UserLog.Save(EnLogAction.Enable, EnLogPart.BuildingType);
                 }
             }
             catch (Exception ex)

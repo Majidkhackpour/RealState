@@ -21,7 +21,7 @@ namespace RealState.Note
 
                 var list = await UserBussines.GetAllAsync();
                 userBindingSource.DataSource = list.OrderBy(q => q.Name);
-                cmbUsers.SelectedValue = clsUser.CurrentUser.Guid;
+                cmbUsers.SelectedValue = UserBussines.CurrentUser.Guid;
 
 
 
@@ -46,7 +46,7 @@ namespace RealState.Note
                 if (cls?.Guid == Guid.Empty)
                 {
                     cmbPriority.SelectedIndex = 0;
-                    cmbUsers.SelectedValue = clsUser.CurrentUser.Guid;
+                    cmbUsers.SelectedValue = UserBussines.CurrentUser.Guid;
                 }
             }
             catch (Exception ex)

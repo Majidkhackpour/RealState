@@ -22,7 +22,6 @@ namespace Building.Contract
         private PeoplesBussines sSide;
         private BuildingBussines building;
         readonly List<string> lstList = new List<string>();
-        private EnLogAction action;
         private async Task SetDataAsync()
         {
             try
@@ -86,7 +85,7 @@ namespace Building.Contract
                 if (cls?.Guid == Guid.Empty)
                 {
                     await NextCodeAsync();
-                    cmbUser.SelectedValue = clsUser.CurrentUser?.Guid;
+                    cmbUser.SelectedValue = UserBussines.CurrentUser?.Guid;
                     cmbfBabat.SelectedIndex = 0;
                     cmbsBabat.SelectedIndex = 0;
                     txtTerm.Value = 12;
@@ -483,7 +482,6 @@ namespace Building.Contract
             cls = new ContractBussines();
             superTabControl1.SelectedTab = superTabItem5;
             superTabControl2.SelectedTab = superTabItem8;
-            action = EnLogAction.Insert;
         }
         public frmContractMain(Guid guid, bool isShowMode)
         {
@@ -506,7 +504,6 @@ namespace Building.Contract
             superTabControlPanel8.Enabled = !isShowMode;
             superTabControlPanel11.Enabled = !isShowMode;
             btnFinish.Enabled = !isShowMode;
-            action = EnLogAction.Update;
         }
 
         private async void frmContractMain_Load(object sender, EventArgs e)
@@ -608,7 +605,6 @@ namespace Building.Contract
                 }
                 else
                 {
-                    UserLog.Save(action, EnLogPart.Contracts);
                     DialogResult = DialogResult.OK;
                     Close();
                 }
@@ -639,7 +635,6 @@ namespace Building.Contract
                 }
                 else
                 {
-                    UserLog.Save(action, EnLogPart.Contracts);
                     DialogResult = DialogResult.OK;
                     Close();
                 }

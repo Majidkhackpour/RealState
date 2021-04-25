@@ -205,8 +205,6 @@ namespace Accounting.Check.DasteCheck
                             MessageBoxButtons.YesNo,
                             MessageBoxIcon.Question) == DialogResult.No) return;
                     res.AddReturnedValue(await dasteChek.ChangeStatusAsync(false));
-                    if (res.HasError) return;
-                    UserLog.Save(EnLogAction.Delete, EnLogPart.Hazine);
                 }
                 else
                 {
@@ -216,8 +214,6 @@ namespace Accounting.Check.DasteCheck
                             MessageBoxButtons.YesNo,
                             MessageBoxIcon.Question) == DialogResult.No) return;
                     res.AddReturnedValue(await dasteChek.ChangeStatusAsync(true));
-                    if (res.HasError) return;
-                    UserLog.Save(EnLogAction.Enable, EnLogPart.Hazine);
                 }
             }
             catch (Exception ex)

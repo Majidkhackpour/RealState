@@ -11,7 +11,6 @@ namespace Building.BuildingCondition
     public partial class frmBuildingConditionMain : MetroForm
     {
         private BuildingConditionBussines cls;
-        private EnLogAction action;
         private void SetData()
         {
             try
@@ -27,7 +26,6 @@ namespace Building.BuildingCondition
         {
             InitializeComponent();
             cls = new BuildingConditionBussines();
-            action = EnLogAction.Insert;
         }
         public frmBuildingConditionMain(Guid guid, bool isShowMode)
         {
@@ -35,7 +33,6 @@ namespace Building.BuildingCondition
             cls = BuildingConditionBussines.Get(guid);
             grp.Enabled = !isShowMode;
             btnFinish.Enabled = !isShowMode;
-            action = EnLogAction.Update;
         }
 
         private async void frmBuildingConditionMain_Load(object sender, EventArgs e)
@@ -133,7 +130,6 @@ namespace Building.BuildingCondition
                 }
                 else
                 {
-                    User.UserLog.Save(action, EnLogPart.BuildingCondition);
                     DialogResult = DialogResult.OK;
                     Close();
                 }
