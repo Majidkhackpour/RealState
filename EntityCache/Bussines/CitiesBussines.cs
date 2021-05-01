@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Persistence;
 using Services;
@@ -26,7 +27,7 @@ namespace EntityCache.Bussines
         public bool IsModified { get; set; } = false;
 
 
-        public static async Task<List<CitiesBussines>> GetAllAsync() => await UnitOfWork.Cities.GetAllAsync(Cache.ConnectionString);
+        public static async Task<List<CitiesBussines>> GetAllAsync(CancellationToken token) => await UnitOfWork.Cities.GetAllAsync(Cache.ConnectionString, token);
         public static async Task<ReturnedSaveFuncInfo> SaveRangeAsync(List<CitiesBussines> list, SqlTransaction tr = null)
         {
             var res = new ReturnedSaveFuncInfo();
@@ -62,21 +63,23 @@ namespace EntityCache.Bussines
             }
             return res;
         }
-        public static async Task<List<CitiesBussines>> GetAllAsync(string search, Guid stateGuid)
+        public static async Task<List<CitiesBussines>> GetAllAsync(string search, Guid stateGuid, CancellationToken token)
         {
             try
             {
-                if (string.IsNullOrEmpty(search))
-                    search = "";
+                if (string.IsNullOrEmpty(search)) search = "";
                 var res = new List<CitiesBussines>();
+                if (token.IsCancellationRequested) return null;
                 if (stateGuid == Guid.Empty)
-                    res = await GetAllAsync();
+                    res = await GetAllAsync(token);
                 else
-                    res = await GetAllAsync(stateGuid);
+                    res = await GetAllAsync(stateGuid, token);
+                if (token.IsCancellationRequested) return null;
                 var searchItems = search.SplitString();
                 if (searchItems?.Count > 0)
                     foreach (var item in searchItems)
                     {
+                        if (token.IsCancellationRequested) return null;
                         if (!string.IsNullOrEmpty(item) && item.Trim() != "")
                         {
                             res = res.Where(x => x.Name.ToLower().Contains(item.ToLower()) ||
@@ -87,8 +90,8 @@ namespace EntityCache.Bussines
 
                 return res;
             }
-            catch (OperationCanceledException)
-            { return null; }
+            catch (TaskCanceledException) { return null; }
+            catch (OperationCanceledException) { return null; }
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
@@ -110,6 +113,9 @@ namespace EntityCache.Bussines
                     await cn.OpenAsync();
                     tr = cn.BeginTransaction();
                 }
+
+                res.AddReturnedValue(await CheckValidationAsync());
+                if (res.HasError) return res;
 
                 res.AddReturnedValue(await UnitOfWork.Cities.SaveAsync(this, tr));
                 if (res.HasError) return res;
@@ -177,7 +183,24 @@ namespace EntityCache.Bussines
         }
         public static async Task<bool> CheckNameAsync(Guid stateGuid, string name, Guid guid) =>
             await UnitOfWork.Cities.CheckNameAsync(Cache.ConnectionString, stateGuid, name, guid);
-        public static async Task<List<CitiesBussines>> GetAllAsync(Guid stateGuid) =>
-            await UnitOfWork.Cities.GetAllAsync(Cache.ConnectionString, stateGuid);
+        private async Task<ReturnedSaveFuncInfo> CheckValidationAsync()
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                if (StateGuid == Guid.Empty) res.AddError("استان نمی تواند خالی باشد");
+                if (string.IsNullOrWhiteSpace(Name)) res.AddError("عنوان شهرستان نمی تواند خالی باشد");
+                if (!await CheckNameAsync(StateGuid, Name, Guid)) res.AddError("عنوان شهرستان در این استان، تکراری است");
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+
+            return res;
+        }
+        public static async Task<List<CitiesBussines>> GetAllAsync(Guid stateGuid, CancellationToken token) =>
+            await UnitOfWork.Cities.GetAllAsync(Cache.ConnectionString, stateGuid, token);
     }
 }

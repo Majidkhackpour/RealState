@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data.SqlClient;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using EntityCache.Bussines;
@@ -11,6 +12,7 @@ namespace RealState
 {
     public partial class frmAdvance : MetroForm
     {
+        private CancellationTokenSource _token = new CancellationTokenSource();
         public frmAdvance() => InitializeComponent();
         private void frmAdvance_KeyDown(object sender, KeyEventArgs e)
         {
@@ -21,11 +23,24 @@ namespace RealState
             try
             {
                 if (chbState.Checked)
-                    await WebStates.SaveAsync(await StatesBussines.GetAllAsync());
+                {
+                    _token?.Cancel();
+                    _token = new CancellationTokenSource();
+                    await WebStates.SaveAsync(await StatesBussines.GetAllAsync(_token.Token));
+                }
                 if (chbCity.Checked)
-                    await WebCity.SaveAsync(await CitiesBussines.GetAllAsync());
+                {
+                    _token?.Cancel();
+                    _token = new CancellationTokenSource();
+                    await WebCity.SaveAsync(await CitiesBussines.GetAllAsync(_token.Token));
+                }
+
                 if (chbRegion.Checked)
-                    await WebRegion.SaveAsync(await RegionsBussines.GetAllAsync());
+                {
+                    _token?.Cancel();
+                    _token = new CancellationTokenSource();
+                    await WebRegion.SaveAsync(await RegionsBussines.GetAllAsync(_token.Token));
+                }
 
 
                 if (chbUsers.Checked)
@@ -37,23 +52,67 @@ namespace RealState
 
 
                 if (chbAccountType.Checked)
-                    await WebBuildingAccountType.SaveAsync(await BuildingAccountTypeBussines.GetAllAsync());
+                {
+                    _token?.Cancel();
+                    _token = new CancellationTokenSource();
+                    await WebBuildingAccountType.SaveAsync(await BuildingAccountTypeBussines.GetAllAsync(_token.Token));
+                }
+
                 if (chbCondition.Checked)
-                    await WebBuildingCondition.SaveAsync(await BuildingConditionBussines.GetAllAsync());
+                {
+                    _token?.Cancel();
+                    _token = new CancellationTokenSource();
+                    await WebBuildingCondition.SaveAsync(await BuildingConditionBussines.GetAllAsync(_token.Token));
+                }
+
                 if (chbType.Checked)
-                    await WebBuildingType.SaveAsync(await BuildingTypeBussines.GetAllAsync());
+                {
+                    _token?.Cancel();
+                    _token = new CancellationTokenSource();
+                    await WebBuildingType.SaveAsync(await BuildingTypeBussines.GetAllAsync(_token.Token));
+                }
+
                 if (chbView.Checked)
-                    await WebBuildingView.SaveAsync(await BuildingViewBussines.GetAllAsync());
+                {
+                    _token?.Cancel();
+                    _token = new CancellationTokenSource();
+                    await WebBuildingView.SaveAsync(await BuildingViewBussines.GetAllAsync(_token.Token));
+                }
+
                 if (chbDocType.Checked)
-                    await WebDocumentType.SaveAsync(await DocumentTypeBussines.GetAllAsync());
+                {
+                    _token?.Cancel();
+                    _token = new CancellationTokenSource();
+                    await WebDocumentType.SaveAsync(await DocumentTypeBussines.GetAllAsync(_token.Token));
+                }
+
                 if (chbFloor.Checked)
-                    await WebFloorCover.SaveAsync(await FloorCoverBussines.GetAllAsync());
+                {
+                    _token?.Cancel();
+                    _token = new CancellationTokenSource();
+                    await WebFloorCover.SaveAsync(await FloorCoverBussines.GetAllAsync(_token.Token));
+                }
+
                 if (chbKitchen.Checked)
-                    await WebKitchenService.SaveAsync(await KitchenServiceBussines.GetAllAsync());
+                {
+                    _token?.Cancel();
+                    _token = new CancellationTokenSource();
+                    await WebKitchenService.SaveAsync(await KitchenServiceBussines.GetAllAsync(_token.Token));
+                }
+
                 if (chbRental.Checked)
-                    await WebRental.SaveAsync(await RentalAuthorityBussines.GetAllAsync());
+                {
+                    _token?.Cancel();
+                    _token = new CancellationTokenSource();
+                    await WebRental.SaveAsync(await RentalAuthorityBussines.GetAllAsync(_token.Token));
+                }
+
                 if (chbOptions.Checked)
-                    await WebBuildingOptions.SaveAsync(await BuildingOptionsBussines.GetAllAsync());
+                {
+                    _token?.Cancel();
+                    _token = new CancellationTokenSource();
+                    await WebBuildingOptions.SaveAsync(await BuildingOptionsBussines.GetAllAsync(_token.Token));
+                }
                 if (chbBuilding.Checked)
                     await WebBuilding.SaveAsync(await BuildingBussines.GetAllAsync(), Application.StartupPath);
 

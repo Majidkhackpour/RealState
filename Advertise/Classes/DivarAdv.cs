@@ -2255,7 +2255,7 @@ namespace Advertise.Classes
                                 }
                                 else
                                 {
-                                    var allrent = await RentalAuthorityBussines.GetAllAsync();
+                                    var allrent = await RentalAuthorityBussines.GetAllAsync(new CancellationToken());
                                     var rentRand = new Random().Next(0, allrent.Count);
                                     viewModel.RentalAutorityGuid = allrent[rentRand].Guid;
                                 }
@@ -2357,7 +2357,7 @@ namespace Advertise.Classes
                                 viewModel.QestPrice = 0;
                                 viewModel.Dang = 6;
 
-                                var allDoc = await DocumentTypeBussines.GetAllAsync();
+                                var allDoc = await DocumentTypeBussines.GetAllAsync(new CancellationToken());
                                 var docRand = new Random().Next(0, allDoc.Count);
                                 viewModel.DocumentType = allDoc[docRand].Guid;
 
@@ -2374,24 +2374,24 @@ namespace Advertise.Classes
                                 viewModel.MosharekatDesc = "";
                                 viewModel.ZirBana = viewModel.Masahat + 15;
 
-                                var allCond = await BuildingConditionBussines.GetAllAsync();
+                                var allCond = await BuildingConditionBussines.GetAllAsync(new CancellationToken());
                                 var condRand = new Random().Next(0, allCond.Count);
                                 viewModel.BuildingConditionGuid = allCond[condRand].Guid;
 
-                                var allAccType = await BuildingAccountTypeBussines.GetAllAsync();
+                                var allAccType = await BuildingAccountTypeBussines.GetAllAsync(new CancellationToken());
                                 var accTypeRand = new Random().Next(0, allAccType.Count);
                                 viewModel.BuildingAccountTypeGuid = allAccType[accTypeRand].Guid;
                                 viewModel.MetrazhTejari = 0;
 
-                                var allView = await BuildingViewBussines.GetAllAsync();
+                                var allView = await BuildingViewBussines.GetAllAsync(new CancellationToken());
                                 var viewRand = new Random().Next(0, allView.Count);
                                 viewModel.BuildingViewGuid = allView[viewRand].Guid;
 
-                                var allFloor = await FloorCoverBussines.GetAllAsync();
+                                var allFloor = await FloorCoverBussines.GetAllAsync(new CancellationToken());
                                 var floorRand = new Random().Next(0, allFloor.Count);
                                 viewModel.FloorCoverGuid = allFloor[floorRand].Guid;
 
-                                var allKitchen = await KitchenServiceBussines.GetAllAsync();
+                                var allKitchen = await KitchenServiceBussines.GetAllAsync(new CancellationToken());
                                 var kitchenRand = new Random().Next(0, allKitchen.Count);
                                 viewModel.KitchenServiceGuid = allKitchen[kitchenRand].Guid;
 

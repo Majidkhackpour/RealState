@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Building.BuildingMatchesItem;
 using EntityCache.Bussines;
 using EntityCache.ViewModels;
 using MetroFramework.Forms;
+using Nito.AsyncEx;
 using Notification;
 using Peoples;
 using Services;
@@ -20,6 +22,7 @@ namespace Building.Building
     {
         private BuildingBussines cls;
         private PeoplesBussines owner;
+        private CancellationTokenSource _token = new CancellationTokenSource();
 
         private async Task SetDataAsync()
         {
@@ -29,13 +32,15 @@ namespace Building.Building
                 LoadOwner();
                 FillCmbTarakom();
                 FillCmbMetr();
-                await FillRentalAuthorityAsync();
-                await FillSanadTypeAsync();
-                await FillStateAsync();
-                await FillBuildingConditionAsync();
-                await FillBuildingTypeAsync();
-                await FillBuildingAccountTypeAsync();
-                await FillOptionsAsync();
+                _token?.Cancel();
+                _token = new CancellationTokenSource();
+                await FillRentalAuthorityAsync(_token.Token);
+                await FillSanadTypeAsync(_token.Token);
+                await FillStateAsync(_token.Token);
+                await FillBuildingConditionAsync(_token.Token);
+                await FillBuildingTypeAsync(_token.Token);
+                await FillBuildingAccountTypeAsync(_token.Token);
+                await FillOptionsAsync(_token.Token);
                 await NextCodeAsync();
 
                 lblDateNow.Text = Calendar.MiladiToShamsi(DateTime.Now);
@@ -49,7 +54,7 @@ namespace Building.Building
                 cmbState.SelectedIndex = 0;
                 if (cmbState.SelectedValue != null && (Guid)cmbState.SelectedValue != Guid.Empty)
                     cmbState_SelectedIndexChanged(null, null);
-                cmbCity.SelectedIndex = 0;
+                if (CityBindingSource.Count > 0) cmbCity.SelectedIndex = 0;
                 if (cmbCity.SelectedValue != null && (Guid)cmbCity.SelectedValue != Guid.Empty)
                     cmbCity_SelectedIndexChanged(null, null);
                 if (RegionBindingSource.Count > 0)
@@ -150,11 +155,11 @@ namespace Building.Building
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private async Task FillRentalAuthorityAsync()
+        private async Task FillRentalAuthorityAsync(CancellationToken token)
         {
             try
             {
-                var list = await RentalAuthorityBussines.GetAllAsync();
+                var list = await RentalAuthorityBussines.GetAllAsync(token);
                 rentalBindingSource.DataSource = list.Where(q => q.Status).OrderBy(q => q.Name).ToList();
             }
             catch (Exception ex)
@@ -162,11 +167,11 @@ namespace Building.Building
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private async Task FillSanadTypeAsync()
+        private async Task FillSanadTypeAsync(CancellationToken token)
         {
             try
             {
-                var list = await DocumentTypeBussines.GetAllAsync();
+                var list = await DocumentTypeBussines.GetAllAsync(token);
                 sanadTypeBindingSource.DataSource = list.Where(q => q.Status).OrderBy(q => q.Name).ToList();
             }
             catch (Exception ex)
@@ -174,11 +179,11 @@ namespace Building.Building
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private async Task FillStateAsync()
+        private async Task FillStateAsync(CancellationToken token)
         {
             try
             {
-                var list = await StatesBussines.GetAllAsync();
+                var list = await StatesBussines.GetAllAsync(token);
                 StateBindingSource.DataSource = list.Where(q => q.Status).OrderBy(q => q.Name);
             }
             catch (Exception ex)
@@ -186,11 +191,11 @@ namespace Building.Building
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private async Task FillBuildingConditionAsync()
+        private async Task FillBuildingConditionAsync(CancellationToken token)
         {
             try
             {
-                var list = await BuildingConditionBussines.GetAllAsync();
+                var list = await BuildingConditionBussines.GetAllAsync(token);
                 bConditionBindingSource.DataSource = list.Where(q => q.Status).ToList().OrderBy(q => q.Name);
             }
             catch (Exception ex)
@@ -198,11 +203,11 @@ namespace Building.Building
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private async Task FillBuildingTypeAsync()
+        private async Task FillBuildingTypeAsync(CancellationToken token)
         {
             try
             {
-                var list = await BuildingTypeBussines.GetAllAsync();
+                var list = await BuildingTypeBussines.GetAllAsync(token);
                 bTypeBindingSource.DataSource = list.Where(q => q.Status).ToList().OrderBy(q => q.Name);
             }
             catch (Exception ex)
@@ -210,11 +215,11 @@ namespace Building.Building
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private async Task FillBuildingAccountTypeAsync()
+        private async Task FillBuildingAccountTypeAsync(CancellationToken token)
         {
             try
             {
-                var list = await BuildingAccountTypeBussines.GetAllAsync();
+                var list = await BuildingAccountTypeBussines.GetAllAsync(token);
                 batBindingSource.DataSource = list.Where(q => q.Status).ToList().OrderBy(q => q.Name);
             }
             catch (Exception ex)
@@ -222,11 +227,11 @@ namespace Building.Building
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private async Task FillOptionsAsync()
+        private async Task FillOptionsAsync(CancellationToken token)
         {
             try
             {
-                var list = await BuildingOptionsBussines.GetAllAsync();
+                var list = await BuildingOptionsBussines.GetAllAsync(token);
                 BuildingOptionBindingSource.DataSource = list.Where(q => q.Status).OrderBy(q => q.Name).ToList();
             }
             catch (Exception ex)
@@ -329,13 +334,19 @@ namespace Building.Building
                 cls.ShortDesc = txtShortDesc.Text;
                 cls.BuildingAccountTypeGuid = (Guid)cmbBAccountType.SelectedValue;
                 cls.MetrazhTejari = 0;
-                var views = await BuildingViewBussines.GetAllAsync();
+                _token?.Cancel();
+                _token = new CancellationTokenSource();
+                var views = await BuildingViewBussines.GetAllAsync(_token.Token);
                 if (views.Count > 0)
                     cls.BuildingViewGuid = views[0].Guid;
-                var fCover = await FloorCoverBussines.GetAllAsync();
+                _token?.Cancel();
+                _token = new CancellationTokenSource();
+                var fCover = await FloorCoverBussines.GetAllAsync(_token.Token);
                 if (fCover.Count > 0)
                     cls.FloorCoverGuid = fCover[0].Guid;
-                var kService = await KitchenServiceBussines.GetAllAsync();
+                _token?.Cancel();
+                _token = new CancellationTokenSource();
+                var kService = await KitchenServiceBussines.GetAllAsync(_token.Token);
                 if (kService.Count > 0)
                     cls.KitchenServiceGuid = kService[0].Guid;
                 cls.Water = EnKhadamati.Mostaqel;
@@ -369,7 +380,9 @@ namespace Building.Building
             {
                 cls.OptionList = new List<BuildingRelatedOptionsBussines>();
                 if (buildingGuid == Guid.Empty) return res;
-                var list = await BuildingOptionsBussines.GetAllAsync();
+                _token?.Cancel();
+                _token = new CancellationTokenSource();
+                var list = await BuildingOptionsBussines.GetAllAsync(_token.Token);
                 if (list.Count <= 0) return res;
                 foreach (var item in list)
                     for (var i = 0; i < DGrid.RowCount; i++)
@@ -442,8 +455,10 @@ namespace Building.Building
             try
             {
                 if (cmbState.SelectedValue == null) return;
-                var list = await CitiesBussines.GetAllAsync((Guid)cmbState.SelectedValue);
-                CityBindingSource.DataSource = list.Where(q => q.Status).OrderBy(q => q.Name).ToList();
+                _token?.Cancel();
+                _token = new CancellationTokenSource();
+                var list = await CitiesBussines.GetAllAsync((Guid)cmbState.SelectedValue, _token.Token);
+                CityBindingSource.DataSource = list?.Where(q => q.Status).OrderBy(q => q.Name).ToList();
             }
             catch (Exception ex)
             {
@@ -455,7 +470,9 @@ namespace Building.Building
             try
             {
                 if (cmbCity.SelectedValue == null) return;
-                var list = await RegionsBussines.GetAllAsync((Guid)cmbCity.SelectedValue);
+                _token?.Cancel();
+                _token = new CancellationTokenSource();
+                var list = await RegionsBussines.GetAllAsync((Guid)cmbCity.SelectedValue, _token.Token);
                 RegionBindingSource.DataSource = list.Where(q => q.Status).OrderBy(q => q.Name).ToList();
             }
             catch (Exception ex)
@@ -463,7 +480,7 @@ namespace Building.Building
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private async void frmBuildingMainFast_Load(object sender, EventArgs e) => await SetDataAsync();
+        private void frmBuildingMainFast_Load(object sender, EventArgs e) => AsyncContext.Run(SetDataAsync);
         private void btnSearchOwner_Click(object sender, EventArgs e)
         {
             try

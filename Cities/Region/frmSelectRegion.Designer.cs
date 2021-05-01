@@ -46,8 +46,8 @@
             this.cityGuidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cityDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.RegionBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.line1 = new DevComponents.DotNetBar.Controls.Line();
             this.btnSelect = new DevComponents.DotNetBar.ButtonX();
+            this.ucHeader = new WindowsSerivces.UC_Header();
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.RegionBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -98,7 +98,7 @@
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.DGrid.DefaultCellStyle = dataGridViewCellStyle3;
             this.DGrid.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
-            this.DGrid.Location = new System.Drawing.Point(5, 33);
+            this.DGrid.Location = new System.Drawing.Point(3, 59);
             this.DGrid.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.DGrid.Name = "DGrid";
             this.DGrid.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -120,7 +120,7 @@
             this.DGrid.RowsDefaultCellStyle = dataGridViewCellStyle5;
             this.DGrid.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             this.DGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DGrid.Size = new System.Drawing.Size(416, 507);
+            this.DGrid.Size = new System.Drawing.Size(416, 497);
             this.DGrid.TabIndex = 55723;
             // 
             // dgIsChecked
@@ -186,51 +186,59 @@
             this.cityDataGridViewTextBoxColumn.DataPropertyName = "City";
             this.cityDataGridViewTextBoxColumn.HeaderText = "City";
             this.cityDataGridViewTextBoxColumn.Name = "cityDataGridViewTextBoxColumn";
+            this.cityDataGridViewTextBoxColumn.ReadOnly = true;
             this.cityDataGridViewTextBoxColumn.Visible = false;
             // 
             // RegionBindingSource
             // 
             this.RegionBindingSource.DataSource = typeof(EntityCache.Bussines.RegionsBussines);
             // 
-            // line1
-            // 
-            this.line1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.line1.Location = new System.Drawing.Point(1, 540);
-            this.line1.Name = "line1";
-            this.line1.Size = new System.Drawing.Size(420, 23);
-            this.line1.TabIndex = 55722;
-            this.line1.Text = "line1";
-            this.line1.Thickness = 2;
-            // 
             // btnSelect
             // 
             this.btnSelect.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.btnSelect.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSelect.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.btnSelect.BackColor = System.Drawing.Color.LightSteelBlue;
             this.btnSelect.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnSelect.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnSelect.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnSelect.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.btnSelect.Location = new System.Drawing.Point(54, 562);
+            this.btnSelect.Location = new System.Drawing.Point(54, 564);
             this.btnSelect.Name = "btnSelect";
             this.btnSelect.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
             this.btnSelect.Size = new System.Drawing.Size(307, 31);
             this.btnSelect.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
             this.btnSelect.TabIndex = 55768;
             this.btnSelect.Text = "انتخاب";
-            this.btnSelect.TextColor = System.Drawing.Color.White;
+            this.btnSelect.TextColor = System.Drawing.Color.Black;
             this.btnSelect.Click += new System.EventHandler(this.btnSelect_Click);
+            // 
+            // ucHeader
+            // 
+            this.ucHeader.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.ucHeader.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ucHeader.BackColor = System.Drawing.Color.White;
+            this.ucHeader.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.ucHeader.Cursor = System.Windows.Forms.Cursors.Default;
+            this.ucHeader.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.ucHeader.IsModified = false;
+            this.ucHeader.Location = new System.Drawing.Point(-1, 21);
+            this.ucHeader.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ucHeader.MinimumSize = new System.Drawing.Size(297, 34);
+            this.ucHeader.Name = "ucHeader";
+            this.ucHeader.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.ucHeader.Size = new System.Drawing.Size(422, 34);
+            this.ucHeader.TabIndex = 55769;
             // 
             // frmSelectRegion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(421, 600);
+            this.Controls.Add(this.ucHeader);
             this.Controls.Add(this.btnSelect);
             this.Controls.Add(this.DGrid);
-            this.Controls.Add(this.line1);
             this.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
@@ -240,7 +248,7 @@
             this.Name = "frmSelectRegion";
             this.Padding = new System.Windows.Forms.Padding(27, 92, 27, 31);
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.Style = MetroFramework.MetroColorStyle.Green;
+            this.Style = MetroFramework.MetroColorStyle.Teal;
             this.Load += new System.EventHandler(this.frmSelectRegion_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmSelectRegion_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).EndInit();
@@ -252,7 +260,6 @@
         #endregion
         private DevComponents.DotNetBar.Controls.DataGridViewX DGrid;
         private System.Windows.Forms.BindingSource RegionBindingSource;
-        private DevComponents.DotNetBar.Controls.Line line1;
         private DevComponents.DotNetBar.ButtonX btnSelect;
         private System.Windows.Forms.DataGridViewCheckBoxColumn dgIsChecked;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgName;
@@ -263,5 +270,6 @@
         private System.Windows.Forms.DataGridViewCheckBoxColumn statusDataGridViewCheckBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn cityGuidDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn cityDataGridViewTextBoxColumn;
+        private WindowsSerivces.UC_Header ucHeader;
     }
 }

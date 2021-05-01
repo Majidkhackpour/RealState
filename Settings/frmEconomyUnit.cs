@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using EntityCache.Bussines;
@@ -11,6 +12,7 @@ namespace Settings
 {
     public partial class frmEconomyUnit : MetroForm
     {
+        private CancellationTokenSource token = new CancellationTokenSource();
         public frmEconomyUnit()
         {
             InitializeComponent();
@@ -133,7 +135,9 @@ namespace Settings
                 cmbType.Items.Add(EnEconomyType.AnbouhSaz.GetDisplay());
                 cmbType.Items.Add(EnEconomyType.Sayer.GetDisplay());
 
-                var list = await StatesBussines.GetAllAsync();
+                token?.Cancel();
+                token = new CancellationTokenSource();
+                var list = await StatesBussines.GetAllAsync(token.Token);
                 StateBindingSource.DataSource = list.Where(q => q.Status).OrderBy(q => q.Name);
             }
             catch (Exception ex)
@@ -175,7 +179,9 @@ namespace Settings
             try
             {
                 if (cmbCity.SelectedValue == null) return;
-                var list = await RegionsBussines.GetAllAsync((Guid)cmbCity.SelectedValue);
+                token?.Cancel();
+                token = new CancellationTokenSource();
+                var list = await RegionsBussines.GetAllAsync((Guid) cmbCity.SelectedValue, token.Token);
                 RegionBindingSource.DataSource = list.OrderBy(q => q.Name).ToList();
             }
             catch (Exception ex)
@@ -189,7 +195,9 @@ namespace Settings
             try
             {
                 if (cmbState.SelectedValue == null) return;
-                var list = await CitiesBussines.GetAllAsync((Guid)cmbState.SelectedValue);
+                token?.Cancel();
+                token = new CancellationTokenSource();
+                var list = await CitiesBussines.GetAllAsync((Guid)cmbState.SelectedValue,token.Token);
                 CityBindingSource.DataSource = list.OrderBy(q => q.Name).ToList();
             }
             catch (Exception ex)

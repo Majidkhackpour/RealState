@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Threading;
 using System.Windows.Forms;
 using EntityCache.Bussines;
 using MetroFramework.Forms;
@@ -11,26 +12,23 @@ namespace Building.BuildingType
     public partial class frmBuildingTypeMain : MetroForm
     {
         private BuildingTypeBussines cls;
-        private void SetData()
-        {
-            try
-            {
-                txtName.Text = cls?.Name;
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
+        private CancellationTokenSource _token = new CancellationTokenSource();
+
+        private void SetData() => txtName.Text = cls?.Name;
+
         public frmBuildingTypeMain()
         {
             InitializeComponent();
             cls = new BuildingTypeBussines();
+            ucHeader.Text = "افزودن نوع ملک جدید";
+            ucHeader.IsModified = cls.IsModified;
         }
         public frmBuildingTypeMain(Guid guid, bool isShowMode)
         {
             InitializeComponent();
             cls = BuildingTypeBussines.Get(guid);
+            ucHeader.Text = !isShowMode ? $"ویرایش نوع ملک {cls.Name}" : $"مشاهده نوع ملک {cls.Name}";
+            ucHeader.IsModified = cls.IsModified;
             grp.Enabled = !isShowMode;
             btnFinish.Enabled = !isShowMode;
         }
@@ -41,7 +39,9 @@ namespace Building.BuildingType
             {
                 SetData();
                 var myCollection = new AutoCompleteStringCollection();
-                var list = await BuildingTypeBussines.GetAllAsync();
+                _token?.Cancel();
+                _token = new CancellationTokenSource();
+                var list = await BuildingTypeBussines.GetAllAsync(_token.Token);
                 foreach (var item in list.ToList())
                     myCollection.Add(item.Name);
                 txtName.AutoCompleteCustomSource = myCollection;
@@ -51,23 +51,13 @@ namespace Building.BuildingType
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-
-        private void txtName_Enter(object sender, EventArgs e)
-        {
-            txtSetter.Focus(txtName);
-        }
-
-        private void txtName_Leave(object sender, EventArgs e)
-        {
-            txtSetter.Follow(txtName);
-        }
-
+        private void txtName_Enter(object sender, EventArgs e) => txtSetter.Focus(txtName);
+        private void txtName_Leave(object sender, EventArgs e) => txtSetter.Follow(txtName);
         private void btnCancel_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Cancel;
             Close();
         }
-
         private void frmBuildingTypeMain_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -91,25 +81,11 @@ namespace Building.BuildingType
                 WebErrorLog.ErrorInstence.StartErrorLog(exception);
             }
         }
-
         private async void btnFinish_Click(object sender, EventArgs e)
         {
             var res = new ReturnedSaveFuncInfo();
             try
             {
-                if (string.IsNullOrWhiteSpace(txtName.Text))
-                {
-                    res.AddError("عنوان نمی تواند خالی باشد");
-                    txtName.Focus();
-                }
-
-                if (!await BuildingTypeBussines.CheckNameAsync(txtName.Text.Trim(), cls.Guid))
-                {
-                    res.AddError("عنوان وارد شده تکراری است");
-                    txtName.Focus();
-                }
-
-                if (res.HasError) return;
                 if (cls.Guid == Guid.Empty) cls.Guid = Guid.NewGuid();
                 cls.Name = txtName.Text.Trim();
 

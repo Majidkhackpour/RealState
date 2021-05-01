@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Threading;
 using System.Windows.Forms;
 using EntityCache.Bussines;
 using MetroFramework.Forms;
@@ -11,47 +12,38 @@ namespace Building.KitchenService
     public partial class frmKitchenServiceMain : MetroForm
     {
         private KitchenServiceBussines cls;
-        private void SetData()
-        {
-            try
-            {
-                txtName.Text = cls?.Name;
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
+        private CancellationTokenSource _token = new CancellationTokenSource();
+
+        private void SetData() => txtName.Text = cls?.Name;
+
         public frmKitchenServiceMain()
         {
             InitializeComponent();
             cls = new KitchenServiceBussines();
+            ucHeader.Text = "افزودن سرویس آشپزخانه جدید";
+            ucHeader.IsModified = cls.IsModified;
         }
         public frmKitchenServiceMain(Guid guid, bool isShowMode)
         {
             InitializeComponent();
             cls = KitchenServiceBussines.Get(guid);
+            ucHeader.Text = !isShowMode ? $"ویرایش سرویس آشپزخانه {cls.Name}" : $"مشاهده سرویس آشپزخانه {cls.Name}";
+            ucHeader.IsModified = cls.IsModified;
             grp.Enabled = !isShowMode;
             btnFinish.Enabled = !isShowMode;
         }
 
-        private void txtName_Enter(object sender, EventArgs e)
-        {
-            txtSetter.Focus(txtName);
-        }
-
-        private void txtName_Leave(object sender, EventArgs e)
-        {
-            txtSetter.Follow(txtName);
-        }
-
+        private void txtName_Enter(object sender, EventArgs e) => txtSetter.Focus(txtName);
+        private void txtName_Leave(object sender, EventArgs e) => txtSetter.Follow(txtName);
         private async void frmKitchenServiceMain_Load(object sender, EventArgs e)
         {
             try
             {
                 SetData();
                 var myCollection = new AutoCompleteStringCollection();
-                var list = await KitchenServiceBussines.GetAllAsync();
+                _token?.Cancel();
+                _token = new CancellationTokenSource();
+                var list = await KitchenServiceBussines.GetAllAsync(_token.Token);
                 foreach (var item in list.ToList())
                     myCollection.Add(item.Name);
                 txtName.AutoCompleteCustomSource = myCollection;
@@ -61,13 +53,11 @@ namespace Building.KitchenService
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-
         private void btnCancel_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Cancel;
             Close();
         }
-
         private void frmKitchenServiceMain_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -91,25 +81,11 @@ namespace Building.KitchenService
                 WebErrorLog.ErrorInstence.StartErrorLog(exception);
             }
         }
-
         private async void btnFinish_Click(object sender, EventArgs e)
         {
             var res = new ReturnedSaveFuncInfo();
             try
             {
-                if (string.IsNullOrWhiteSpace(txtName.Text))
-                {
-                    res.AddError("عنوان نمی تواند خالی باشد");
-                    txtName.Focus();
-                }
-
-                if (!await KitchenServiceBussines.CheckNameAsync(txtName.Text.Trim(), cls.Guid))
-                {
-                    res.AddError("عنوان وارد شده تکراری است");
-                    txtName.Focus();
-                }
-
-                if (res.HasError) return;
                 if (cls.Guid == Guid.Empty) cls.Guid = Guid.NewGuid();
                 cls.Name = txtName.Text.Trim();
 

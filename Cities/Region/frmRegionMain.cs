@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using EntityCache.Bussines;
 using MetroFramework.Forms;
+using Nito.AsyncEx;
 using Notification;
 using Services;
 
@@ -12,18 +14,22 @@ namespace Cities.Region
     public partial class frmRegionMain : MetroForm
     {
         private RegionsBussines cls;
+        private CancellationTokenSource _token = new CancellationTokenSource();
+
         private async Task SetDataAsync()
         {
             try
             {
-                var list = await StatesBussines.GetAllAsync();
+                _token?.Cancel();
+                _token = new CancellationTokenSource();
+                var list = await StatesBussines.GetAllAsync(_token.Token);
                 StateBindingSource.DataSource = list.OrderBy(q => q.Name).ToList();
 
                 txtRegion.Text = cls?.Name;
                 if (cls?.Guid == Guid.Empty) cmbState.SelectedIndex = 0;
                 else
                 {
-                    cmbState.SelectedValue = (Guid)cls?.City.StateGuid;
+                    cmbState.SelectedValue = (Guid)cls?.StateGuid;
                     cmbCity.SelectedValue = cls?.CityGuid;
                 }
             }
@@ -36,32 +42,28 @@ namespace Cities.Region
         {
             InitializeComponent();
             cls = new RegionsBussines();
+            ucHeader.Text = "افزودن منطقه جدید";
+            ucHeader.IsModified = cls.IsModified;
         }
         public frmRegionMain(Guid guid, bool isShowMode)
         {
             InitializeComponent();
             cls = RegionsBussines.Get(guid);
+            ucHeader.Text = !isShowMode ? $"ویرایش منطقه {cls.Name}" : $"مشاهده منطقه {cls.Name}";
+            ucHeader.IsModified = cls.IsModified;
             grp.Enabled = !isShowMode;
             btnFinish.Enabled = !isShowMode;
         }
 
-        private void txtRegion_Enter(object sender, EventArgs e)
-        {
-            txtSetter.Focus(txtRegion);
-        }
-
-        private void txtRegion_Leave(object sender, EventArgs e)
-        {
-            txtSetter.Follow(txtRegion);
-        }
-
-        private async void frmRegionMain_Load(object sender, EventArgs e)
+        private void txtRegion_Enter(object sender, EventArgs e) => txtSetter.Focus(txtRegion);
+        private void txtRegion_Leave(object sender, EventArgs e) => txtSetter.Follow(txtRegion);
+        private void frmRegionMain_Load(object sender, EventArgs e)
         {
             try
             {
-                await SetDataAsync();
+                AsyncContext.Run(SetDataAsync);
                 var myCollection = new AutoCompleteStringCollection();
-                var list = await RegionsBussines.GetAllAsync();
+                var list = AsyncContext.Run(() => RegionsBussines.GetAllAsync(new CancellationToken()));
                 foreach (var item in list.ToList())
                     myCollection.Add(item.Name);
                 txtRegion.AutoCompleteCustomSource = myCollection;
@@ -71,13 +73,11 @@ namespace Cities.Region
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-
         private void btnCancel_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Cancel;
             Close();
         }
-
         private void frmRegionMain_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -101,46 +101,27 @@ namespace Cities.Region
                 WebErrorLog.ErrorInstence.StartErrorLog(exception);
             }
         }
-
         private async void cmbState_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
             {
                 if (cmbState.SelectedValue == null) return;
-                var list = await CitiesBussines.GetAllAsync((Guid)cmbState.SelectedValue);
-                CitiesBindingSource.DataSource = list.OrderBy(q => q.Name).ToList();
+                _token?.Cancel();
+                _token = new CancellationTokenSource();
+                var list = await CitiesBussines.GetAllAsync((Guid)cmbState.SelectedValue, _token.Token);
+                CitiesBindingSource.DataSource = list?.OrderBy(q => q.Name).ToList();
+                if (cls.Guid != Guid.Empty) cmbCity.SelectedValue = cls.CityGuid;
             }
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-
         private async void btnFinish_Click(object sender, EventArgs e)
         {
             var res = new ReturnedSaveFuncInfo();
             try
             {
-                if (StateBindingSource.Count <= 0)
-                {
-                    res.AddError("استان نمی تواند خالی باشد");
-                    cmbState.Focus();
-                }
-
-                if (CitiesBindingSource.Count <= 0)
-                {
-                    res.AddError("شهرستان نمی تواند خالی باشد");
-                    cmbCity.Focus();
-                }
-
-                if (string.IsNullOrWhiteSpace(txtRegion.Text))
-                {
-                    res.AddError("عنوان منطقه نمی تواند خالی باشد");
-                    txtRegion.Focus();
-                }
-
-                if (res.HasError) return;
-
                 if (cls.Guid == Guid.Empty) cls.Guid = Guid.NewGuid();
                 cls.Name = txtRegion.Text;
                 cls.CityGuid = (Guid)cmbCity.SelectedValue;

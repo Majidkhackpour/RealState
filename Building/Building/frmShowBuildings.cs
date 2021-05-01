@@ -23,6 +23,7 @@ namespace Building.Building
     public partial class frmShowBuildings : MetroForm
     {
         private bool _st = true;
+        private CancellationTokenSource _token = new CancellationTokenSource();
         public Guid SelectedGuid { get; set; }
         private bool isShowMode = false;
         private IEnumerable<BuildingBussines> list;
@@ -35,7 +36,9 @@ namespace Building.Building
         {
             try
             {
-                var list = await BuildingTypeBussines.GetAllAsync();
+                _token?.Cancel();
+                _token = new CancellationTokenSource();
+                var list = await BuildingTypeBussines.GetAllAsync(_token.Token);
                 list.Add(new BuildingTypeBussines()
                 {
                     Guid = Guid.Empty,
@@ -52,7 +55,9 @@ namespace Building.Building
                 });
                 userBindingSource.DataSource = list2.OrderBy(q => q.Name).ToList();
 
-                var list3 = await DocumentTypeBussines.GetAllAsync();
+                _token?.Cancel();
+                _token = new CancellationTokenSource();
+                var list3 = await DocumentTypeBussines.GetAllAsync(_token.Token);
                 list3.Add(new DocumentTypeBussines()
                 {
                     Guid = Guid.Empty,
@@ -60,7 +65,9 @@ namespace Building.Building
                 });
                 docTypeBindingSource.DataSource = list3.OrderBy(q => q.Name).ToList();
 
-                var list4 = await BuildingAccountTypeBussines.GetAllAsync();
+                _token?.Cancel();
+                _token = new CancellationTokenSource();
+                var list4 = await BuildingAccountTypeBussines.GetAllAsync(_token.Token);
                 list4.Add(new BuildingAccountTypeBussines()
                 {
                     Guid = Guid.Empty,

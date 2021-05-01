@@ -2,7 +2,6 @@
 using System.Data.SqlClient;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Nito.AsyncEx;
 using Services;
 
 namespace Ertegha
@@ -28,8 +27,5 @@ namespace Ertegha
 
             return res;
         }
-
-        public static void StartErtegha(string connectionString, IWin32Window owner) =>
-            Task.Run(() => StartErteghaAsync(connectionString, owner));
     }
 }

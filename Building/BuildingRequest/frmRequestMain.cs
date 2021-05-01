@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Building.Building;
@@ -18,20 +19,23 @@ namespace Building.BuildingRequest
     {
         private BuildingRequestBussines cls;
         private PeoplesBussines asker;
+        private CancellationTokenSource _token = new CancellationTokenSource();
 
         private async Task SetDataAsync()
         {
             try
             {
+                _token?.Cancel();
+                _token = new CancellationTokenSource();
                 await LoadUsersAsync();
                 LoadAsker();
-                await FillRentalAuthorityAsync();
+                await FillRentalAuthorityAsync(_token.Token);
                 FillCmbMetr();
                 SetTxtMetr();
-                await FillBuildingTypeAsync();
-                await FillBuildingConditionAsync();
-                await FillBuildingAccountTypeAsync();
-                await FillStateAsync();
+                await FillBuildingTypeAsync(_token.Token);
+                await FillBuildingConditionAsync(_token.Token);
+                await FillBuildingAccountTypeAsync(_token.Token);
+                await FillStateAsync(_token.Token);
 
                 lblDateNow.Text = cls?.DateSh;
                 cmbUser.SelectedValue = cls?.UserGuid;
@@ -108,11 +112,11 @@ namespace Building.BuildingRequest
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private async Task FillRentalAuthorityAsync()
+        private async Task FillRentalAuthorityAsync(CancellationToken token)
         {
             try
             {
-                var list = await RentalAuthorityBussines.GetAllAsync();
+                var list = await RentalAuthorityBussines.GetAllAsync(token);
                 rentalBindingSource.DataSource = list.Where(q => q.Status).OrderBy(q => q.Name).ToList();
             }
             catch (Exception ex)
@@ -184,11 +188,11 @@ namespace Building.BuildingRequest
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private async Task FillBuildingTypeAsync()
+        private async Task FillBuildingTypeAsync(CancellationToken token)
         {
             try
             {
-                var list = await BuildingTypeBussines.GetAllAsync();
+                var list = await BuildingTypeBussines.GetAllAsync(token);
                 bTypeBindingSource.DataSource = list.Where(q => q.Status).OrderBy(q => q.Name);
             }
             catch (Exception ex)
@@ -196,11 +200,11 @@ namespace Building.BuildingRequest
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private async Task FillBuildingConditionAsync()
+        private async Task FillBuildingConditionAsync(CancellationToken token)
         {
             try
             {
-                var list = await BuildingConditionBussines.GetAllAsync();
+                var list = await BuildingConditionBussines.GetAllAsync(token);
                 bConditionBindingSource.DataSource = list.Where(q => q.Status).OrderBy(q => q.Name);
             }
             catch (Exception ex)
@@ -208,11 +212,11 @@ namespace Building.BuildingRequest
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private async Task FillBuildingAccountTypeAsync()
+        private async Task FillBuildingAccountTypeAsync(CancellationToken token)
         {
             try
             {
-                var list = await BuildingAccountTypeBussines.GetAllAsync();
+                var list = await BuildingAccountTypeBussines.GetAllAsync(token);
                 batBindingSource.DataSource = list.Where(q => q.Status).OrderBy(q => q.Name);
             }
             catch (Exception ex)
@@ -220,11 +224,11 @@ namespace Building.BuildingRequest
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private async Task FillStateAsync()
+        private async Task FillStateAsync(CancellationToken token)
         {
             try
             {
-                var list = await StatesBussines.GetAllAsync();
+                var list = await StatesBussines.GetAllAsync(token);
                 StateBindingSource.DataSource = list.Where(q => q.Status).OrderBy(q => q.Name);
             }
             catch (Exception ex)
@@ -238,7 +242,9 @@ namespace Building.BuildingRequest
             {
                 cls.RegionList = new List<BuildingRequestRegionBussines>();
                 if (requestGuid == Guid.Empty) return;
-                var list = await RegionsBussines.GetAllAsync();
+                _token?.Cancel();
+                _token = new CancellationTokenSource();
+                var list = await RegionsBussines.GetAllAsync(_token.Token);
                 if (list.Count <= 0) return;
                 foreach (var item in list)
                     for (var i = 0; i < DGrid.RowCount; i++)
@@ -328,8 +334,11 @@ namespace Building.BuildingRequest
             try
             {
                 if (cmbState.SelectedValue == null) return;
-                var list = await CitiesBussines.GetAllAsync((Guid)cmbState.SelectedValue);
+                _token?.Cancel();
+                _token = new CancellationTokenSource();
+                var list = await CitiesBussines.GetAllAsync((Guid) cmbState.SelectedValue, _token.Token);
                 CityBindingSource.DataSource = list.Where(q => q.Status).OrderBy(q => q.Name).ToList();
+                if (cls.Guid != Guid.Empty) cmbCity.SelectedValue = cls.CityGuid;
             }
             catch (Exception ex)
             {
@@ -341,7 +350,9 @@ namespace Building.BuildingRequest
             try
             {
                 if (cmbCity.SelectedValue == null) return;
-                var list = await RegionsBussines.GetAllAsync((Guid)cmbCity.SelectedValue);
+                _token?.Cancel();
+                _token = new CancellationTokenSource();
+                var list = await RegionsBussines.GetAllAsync((Guid) cmbCity.SelectedValue, _token.Token);
                 RegionBindingSource.DataSource = list.Where(q => q.Status).OrderBy(q => q.Name).ToList();
             }
             catch (Exception ex)

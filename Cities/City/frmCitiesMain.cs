@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using EntityCache.Bussines;
 using MetroFramework.Forms;
+using Nito.AsyncEx;
 using Notification;
 using Services;
 
@@ -12,11 +14,15 @@ namespace Cities.City
     public partial class frmCitiesMain : MetroForm
     {
         private CitiesBussines cls;
+        private CancellationTokenSource token = new CancellationTokenSource();
+
         private async Task SetDataAsync()
         {
             try
             {
-                var list = await StatesBussines.GetAllAsync();
+                token?.Cancel();
+                token = new CancellationTokenSource();
+                var list = await StatesBussines.GetAllAsync(token.Token);
                 StateBindingSource.DataSource = list.OrderBy(q => q.Name).ToList();
                 txtCity.Text = cls?.Name;
                 if (cls?.Guid == Guid.Empty) cmbState.SelectedIndex = 0;
@@ -27,29 +33,35 @@ namespace Cities.City
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
+
         public frmCitiesMain()
         {
             InitializeComponent();
             cls = new CitiesBussines();
+            ucHeader.Text = "افزودن شهر جدید";
+            ucHeader.IsModified = cls.IsModified;
         }
         public frmCitiesMain(Guid guid, bool isShowMode)
         {
             InitializeComponent();
             cls = CitiesBussines.Get(guid);
+            ucHeader.Text = !isShowMode ? $"ویرایش شهر {cls.Name}" : $"مشاهده شهر {cls.Name}";
+            ucHeader.IsModified = cls.IsModified;
             grp.Enabled = !isShowMode;
             btnFinish.Enabled = !isShowMode;
         }
 
         private void txtCity_Enter(object sender, System.EventArgs e) => txtSetter.Focus(txtCity);
         private void txtCity_Leave(object sender, System.EventArgs e) => txtSetter.Follow(txtCity);
-
-        private async void frmCitiesMain_Load(object sender, EventArgs e)
+        private void frmCitiesMain_Load(object sender, EventArgs e)
         {
             try
             {
-                await SetDataAsync();
+                AsyncContext.Run(SetDataAsync);
                 var myCollection = new AutoCompleteStringCollection();
-                var list = await CitiesBussines.GetAllAsync();
+                token?.Cancel();
+                token = new CancellationTokenSource();
+                var list = AsyncContext.Run(() => CitiesBussines.GetAllAsync(token.Token));
                 foreach (var item in list.ToList())
                     myCollection.Add(item.Name);
                 txtCity.AutoCompleteCustomSource = myCollection;
@@ -59,13 +71,11 @@ namespace Cities.City
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-
         private void btnCancel_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Cancel;
             Close();
         }
-
         private void frmCitiesMain_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -89,34 +99,14 @@ namespace Cities.City
                 WebErrorLog.ErrorInstence.StartErrorLog(exception);
             }
         }
-
         private async void btnFinish_Click(object sender, EventArgs e)
         {
             var res = new ReturnedSaveFuncInfo();
             try
             {
-                if (StateBindingSource.Count <= 0)
-                {
-                    res.AddError("استان نمی تواند خالی باشد");
-                    cmbState.Focus();
-                }
-
-                if (string.IsNullOrWhiteSpace(txtCity.Text))
-                {
-                    res.AddError("عنوان شهرستان نمی تواند خالی باشد");
-                    txtCity.Focus();
-                }
-
-                if (!await CitiesBussines.CheckNameAsync((Guid) cmbState.SelectedValue, txtCity.Text, cls.Guid))
-                {
-                    res.AddError("عنوان شهرستان در این استان، تکراری است");
-                    txtCity.Focus();
-                }
-
-                if (res.HasError) return;
                 if (cls.Guid == Guid.Empty) cls.Guid = Guid.NewGuid();
                 cls.Name = txtCity.Text;
-                cls.StateGuid = (Guid) cmbState.SelectedValue;
+                cls.StateGuid = (Guid)cmbState.SelectedValue;
 
                 res.AddReturnedValue(await cls.SaveAsync());
             }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using EntityCache.Bussines;
 using EntityCache.Core;
@@ -37,7 +38,7 @@ namespace EntityCache.SqlServerPersistence
                 return false;
             }
         }
-        public async Task<List<CitiesBussines>> GetAllAsync(string _connectionString, Guid stateGuid)
+        public async Task<List<CitiesBussines>> GetAllAsync(string _connectionString, Guid stateGuid, CancellationToken token)
         {
             var list = new List<CitiesBussines>();
             try
@@ -46,13 +47,19 @@ namespace EntityCache.SqlServerPersistence
                 {
                     var cmd = new SqlCommand("sp_Cities_SelectAllByStateGuid", cn) { CommandType = CommandType.StoredProcedure };
                     cmd.Parameters.AddWithValue("@stateGuid", stateGuid);
-
+                    if (token.IsCancellationRequested) return null;
                     await cn.OpenAsync();
                     var dr = await cmd.ExecuteReaderAsync();
-                    while (dr.Read()) list.Add(LoadData(dr));
+                    while (dr.Read())
+                    {
+                        if (token.IsCancellationRequested) return null;
+                        list.Add(LoadData(dr));
+                    }
                     cn.Close();
                 }
             }
+            catch (TaskCanceledException) { }
+            catch (OperationCanceledException) { }
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
@@ -60,7 +67,7 @@ namespace EntityCache.SqlServerPersistence
 
             return list;
         }
-        public async Task<List<CitiesBussines>> GetAllAsync(string _connectionString)
+        public async Task<List<CitiesBussines>> GetAllAsync(string _connectionString, CancellationToken token)
         {
             var list = new List<CitiesBussines>();
             try

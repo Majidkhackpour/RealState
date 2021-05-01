@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using EntityCache.Assistence;
 using Nito.AsyncEx;
@@ -21,14 +22,14 @@ namespace EntityCache.Bussines
         public DateTime ServerDeliveryDate { get; set; } = DateTime.Now;
         public string Name { get; set; }
         public Guid CityGuid { get; set; }
+        public Guid StateGuid { get; set; }
         public string StateName { get; set; }
         public string CityName { get; set; }
         public bool IsChecked { get; set; }
-        public CitiesBussines City => CitiesBussines.Get(CityGuid);
         public string HardSerial => Cache.HardSerial;
         public bool IsModified { get; set; } = false;
 
-        public static async Task<List<RegionsBussines>> GetAllAsync() => await UnitOfWork.Regions.GetAllAsync(Cache.ConnectionString);
+        public static async Task<List<RegionsBussines>> GetAllAsync(CancellationToken token) => await UnitOfWork.Regions.GetAllAsync(Cache.ConnectionString, token);
         public static async Task<ReturnedSaveFuncInfo> SaveRangeAsync(List<RegionsBussines> list, SqlTransaction tr = null)
         {
             var res = new ReturnedSaveFuncInfo();
@@ -67,19 +68,21 @@ namespace EntityCache.Bussines
         public static async Task<RegionsBussines> GetAsync(Guid guid) => await UnitOfWork.Regions.GetAsync(Cache.ConnectionString, guid);
         public static async Task<RegionsBussines> GetAsync(string name) => await UnitOfWork.Regions.GetAsync(Cache.ConnectionString, name);
         public static RegionsBussines Get(Guid guid) => AsyncContext.Run(() => GetAsync(guid));
-        public static async Task<List<RegionsBussines>> GetAllAsync(string search, Guid cityGuid)
+        public static async Task<List<RegionsBussines>> GetAllAsync(string search, Guid cityGuid, CancellationToken token)
         {
             try
             {
                 if (string.IsNullOrEmpty(search)) search = "";
                 var res = new List<RegionsBussines>();
-                if (cityGuid == Guid.Empty)
-                    res = await GetAllAsync();
-                else res = await GetAllAsync(cityGuid);
+                if (token.IsCancellationRequested) return null;
+                if (cityGuid == Guid.Empty) res = await GetAllAsync(token);
+                else res = await GetAllAsync(cityGuid, token);
+                if (token.IsCancellationRequested) return null;
                 var searchItems = search.SplitString();
                 if (searchItems?.Count > 0)
                     foreach (var item in searchItems)
                     {
+                        if (token.IsCancellationRequested) return null;
                         if (!string.IsNullOrEmpty(item) && item.Trim() != "")
                         {
                             res = res.Where(x => x.Name.ToLower().Contains(item.ToLower()) ||
@@ -91,8 +94,8 @@ namespace EntityCache.Bussines
 
                 return res;
             }
-            catch (OperationCanceledException)
-            { return null; }
+            catch (TaskCanceledException) { return null; }
+            catch (OperationCanceledException) { return null; }
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
@@ -112,6 +115,9 @@ namespace EntityCache.Bussines
                     await cn.OpenAsync();
                     tr = cn.BeginTransaction();
                 }
+
+                res.AddReturnedValue(CheckValidation());
+                if (res.HasError) return res;
 
                 res.AddReturnedValue(await UnitOfWork.Regions.SaveAsync(this, tr));
                 if (res.HasError) return res;
@@ -136,6 +142,22 @@ namespace EntityCache.Bussines
                     res.AddReturnedValue(cn.CloseConnection());
                 }
             }
+            return res;
+        }
+        private ReturnedSaveFuncInfo CheckValidation()
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                if (CityGuid == Guid.Empty) res.AddError("شهرستان نمی تواند خالی باشد");
+                if (string.IsNullOrWhiteSpace(Name)) res.AddError("عنوان منطقه نمی تواند خالی باشد");
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+
             return res;
         }
         public async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(bool status, SqlTransaction tr = null)
@@ -177,7 +199,7 @@ namespace EntityCache.Bussines
             }
             return res;
         }
-        public static async Task<List<RegionsBussines>> GetAllAsync(Guid cityGuid) =>
-            await UnitOfWork.Regions.GetAllAsync(Cache.ConnectionString, cityGuid);
+        public static async Task<List<RegionsBussines>> GetAllAsync(Guid cityGuid, CancellationToken token) =>
+            await UnitOfWork.Regions.GetAllAsync(Cache.ConnectionString, cityGuid, token);
     }
 }

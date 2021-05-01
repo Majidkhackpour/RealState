@@ -5,13 +5,14 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace EntityCache.SqlServerPersistence
 {
     public class RegionsPersistenceRepository : IRegionsRepository
     {
-        public async Task<List<RegionsBussines>> GetAllAsync(string _connectionString, Guid cityGuid)
+        public async Task<List<RegionsBussines>> GetAllAsync(string _connectionString, Guid cityGuid, CancellationToken token)
         {
             var list = new List<RegionsBussines>();
             try
@@ -20,13 +21,19 @@ namespace EntityCache.SqlServerPersistence
                 {
                     var cmd = new SqlCommand("sp_Regions_SelectAllByCityGuid", cn) { CommandType = CommandType.StoredProcedure };
                     cmd.Parameters.AddWithValue("@cityGuid", cityGuid);
-
+                    if (token.IsCancellationRequested) return null;
                     await cn.OpenAsync();
                     var dr = await cmd.ExecuteReaderAsync();
-                    while (dr.Read()) list.Add(LoadData(dr));
+                    while (dr.Read())
+                    {
+                        if (token.IsCancellationRequested) return null;
+                        list.Add(LoadData(dr));
+                    }
                     cn.Close();
                 }
             }
+            catch (TaskCanceledException) { }
+            catch (OperationCanceledException) { }
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
@@ -34,7 +41,7 @@ namespace EntityCache.SqlServerPersistence
 
             return list;
         }
-        public async Task<List<RegionsBussines>> GetAllAsync(string _connectionString)
+        public async Task<List<RegionsBussines>> GetAllAsync(string _connectionString, CancellationToken token)
         {
             var list = new List<RegionsBussines>();
             try
@@ -42,13 +49,19 @@ namespace EntityCache.SqlServerPersistence
                 using (var cn = new SqlConnection(_connectionString))
                 {
                     var cmd = new SqlCommand("sp_Regions_SelectAll", cn) { CommandType = CommandType.StoredProcedure };
-
-                    await cn.OpenAsync();
-                    var dr = await cmd.ExecuteReaderAsync();
-                    while (dr.Read()) list.Add(LoadData(dr));
+                    if (token.IsCancellationRequested) return null;
+                    await cn.OpenAsync(token);
+                    var dr = await cmd.ExecuteReaderAsync(token);
+                    while (dr.Read())
+                    {
+                        if (token.IsCancellationRequested) return null;
+                        list.Add(LoadData(dr));
+                    }
                     cn.Close();
                 }
             }
+            catch (TaskCanceledException) { }
+            catch (OperationCanceledException) { }
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
@@ -172,6 +185,7 @@ namespace EntityCache.SqlServerPersistence
                 item.Name = dr["Name"].ToString();
                 item.CityGuid = (Guid)dr["CityGuid"];
                 item.CityName = dr["CityName"].ToString();
+                item.StateGuid = (Guid) dr["StateGuid"];
                 item.StateName = dr["StateName"].ToString();
                 item.ServerDeliveryDate = (DateTime)dr["ServerDeliveryDate"];
                 item.ServerStatus = (ServerStatus)dr["ServerStatus"];

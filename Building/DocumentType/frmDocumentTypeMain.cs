@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Threading;
 using System.Windows.Forms;
 using EntityCache.Bussines;
 using MetroFramework.Forms;
@@ -11,47 +12,38 @@ namespace Building.DocumentType
     public partial class frmDocumentTypeMain : MetroForm
     {
         private DocumentTypeBussines cls;
-        private void SetData()
-        {
-            try
-            {
-                txtName.Text = cls?.Name;
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
+        private CancellationTokenSource _token = new CancellationTokenSource();
+
+        private void SetData() => txtName.Text = cls?.Name;
+
         public frmDocumentTypeMain()
         {
             InitializeComponent();
             cls = new DocumentTypeBussines();
+            ucHeader.Text = "افزودن نوع سند جدید";
+            ucHeader.IsModified = cls.IsModified;
         }
         public frmDocumentTypeMain(Guid guid, bool isShowMode)
         {
             InitializeComponent();
             cls = DocumentTypeBussines.Get(guid);
+            ucHeader.Text = !isShowMode ? $"ویرایش نوع سند {cls.Name}" : $"مشاهده نوع سند {cls.Name}";
+            ucHeader.IsModified = cls.IsModified;
             grp.Enabled = !isShowMode;
             btnFinish.Enabled = !isShowMode;
         }
 
-        private void txtName_Enter(object sender, EventArgs e)
-        {
-            txtSetter.Focus(txtName);
-        }
-
-        private void txtName_Leave(object sender, EventArgs e)
-        {
-            txtSetter.Follow(txtName);
-        }
-
+        private void txtName_Enter(object sender, EventArgs e) => txtSetter.Focus(txtName);
+        private void txtName_Leave(object sender, EventArgs e) => txtSetter.Follow(txtName);
         private async void frmDocumentTypeMain_Load(object sender, EventArgs e)
         {
             try
             {
                 SetData();
                 var myCollection = new AutoCompleteStringCollection();
-                var list = await DocumentTypeBussines.GetAllAsync();
+                _token?.Cancel();
+                _token = new CancellationTokenSource();
+                var list = await DocumentTypeBussines.GetAllAsync(_token.Token);
                 foreach (var item in list.ToList())
                     myCollection.Add(item.Name);
                 txtName.AutoCompleteCustomSource = myCollection;
@@ -61,13 +53,11 @@ namespace Building.DocumentType
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-
         private void btnCancel_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Cancel;
             Close();
         }
-
         private void frmDocumentTypeMain_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -91,26 +81,11 @@ namespace Building.DocumentType
                 WebErrorLog.ErrorInstence.StartErrorLog(exception);
             }
         }
-
         private async void btnFinish_Click(object sender, EventArgs e)
         {
             var res = new ReturnedSaveFuncInfo();
             try
             {
-                if (string.IsNullOrWhiteSpace(txtName.Text))
-                {
-                    res.AddError("عنوان نمی تواند خالی باشد");
-                    txtName.Focus();
-                }
-
-                if (!await DocumentTypeBussines.CheckNameAsync(txtName.Text.Trim(), cls.Guid))
-                {
-                    res.AddError("عنوان وارد شده تکراری است");
-                    txtName.Focus();
-                }
-
-                if (res.HasError) return;
-
                 if (cls.Guid == Guid.Empty) cls.Guid = Guid.NewGuid();
                 cls.Name = txtName.Text.Trim();
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Threading;
 using System.Windows.Forms;
 using EntityCache.Bussines;
 using MetroFramework.Forms;
@@ -11,47 +12,38 @@ namespace Building.RentalAuthority
     public partial class frmRentalAuthorityMain : MetroForm
     {
         private RentalAuthorityBussines cls;
-        private void SetData()
-        {
-            try
-            {
-                txtName.Text = cls?.Name;
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
+        private CancellationTokenSource _token = new CancellationTokenSource();
+
+        private void SetData() => txtName.Text = cls?.Name;
+
         public frmRentalAuthorityMain()
         {
             InitializeComponent();
             cls = new RentalAuthorityBussines();
+            ucHeader.Text = "افزودن ارجحیت اجاره جدید";
+            ucHeader.IsModified = cls.IsModified;
         }
         public frmRentalAuthorityMain(Guid guid, bool isShowMode)
         {
             InitializeComponent();
             cls = RentalAuthorityBussines.Get(guid);
+            ucHeader.Text = !isShowMode ? $"ویرایش ارجحیت اجاره {cls.Name}" : $"مشاهده ارجحیت اجاره {cls.Name}";
+            ucHeader.IsModified = cls.IsModified;
             grp.Enabled = !isShowMode;
             btnFinish.Enabled = !isShowMode;
         }
 
-        private void txtName_Enter(object sender, EventArgs e)
-        {
-            txtSetter.Focus(txtName);
-        }
-
-        private void txtName_Leave(object sender, EventArgs e)
-        {
-            txtSetter.Follow(txtName);
-        }
-
+        private void txtName_Enter(object sender, EventArgs e) => txtSetter.Focus(txtName);
+        private void txtName_Leave(object sender, EventArgs e) => txtSetter.Follow(txtName);
         private async void frmRentalAuthorityMain_Load(object sender, EventArgs e)
         {
             try
             {
                 SetData();
                 var myCollection = new AutoCompleteStringCollection();
-                var list = await RentalAuthorityBussines.GetAllAsync();
+                _token?.Cancel();
+                _token = new CancellationTokenSource();
+                var list = await RentalAuthorityBussines.GetAllAsync(_token.Token);
                 foreach (var item in list.ToList())
                     myCollection.Add(item.Name);
                 txtName.AutoCompleteCustomSource = myCollection;
@@ -61,13 +53,11 @@ namespace Building.RentalAuthority
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-
         private void btnCancel_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Cancel;
             Close();
         }
-
         private void frmRentalAuthorityMain_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -91,25 +81,11 @@ namespace Building.RentalAuthority
                 WebErrorLog.ErrorInstence.StartErrorLog(exception);
             }
         }
-
         private async void btnFinish_Click(object sender, EventArgs e)
         {
             var res = new ReturnedSaveFuncInfo();
             try
             {
-                if (string.IsNullOrWhiteSpace(txtName.Text))
-                {
-                    res.AddError("عنوان نمی تواند خالی باشد");
-                    txtName.Focus();
-                }
-
-                if (!await RentalAuthorityBussines.CheckNameAsync(txtName.Text.Trim(), cls.Guid))
-                {
-                    res.AddError("عنوان وارد شده تکراری است");
-                    txtName.Focus();
-                }
-
-                if (res.HasError) return;
                 if (cls.Guid == Guid.Empty) cls.Guid = Guid.NewGuid();
                 cls.Name = txtName.Text.Trim();
 

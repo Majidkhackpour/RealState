@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using EntityCache.Bussines;
@@ -14,13 +15,17 @@ namespace Cities.Region
     {
         public List<Guid> Guids { get; set; }
         private List<RegionsBussines> list;
+        private CancellationTokenSource _token = new CancellationTokenSource();
+
         private async Task LoadDataAsync(string search = "")
         {
             try
             {
                 while (!IsHandleCreated) await Task.Delay(100);
                 var cityGuid = Guid.Parse(clsEconomyUnit.EconomyCity);
-                list = await RegionsBussines.GetAllAsync(search, cityGuid);
+                _token?.Cancel();
+                _token = new CancellationTokenSource();
+                list = await RegionsBussines.GetAllAsync(search, cityGuid, _token.Token);
                 Invoke(new MethodInvoker(() => RegionBindingSource.DataSource =
                     list.Where(q => q.Status).OrderBy(q => q.Name).ToSortableBindingList()));
             }
@@ -29,13 +34,14 @@ namespace Cities.Region
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
+
         public frmSelectRegion()
         {
             InitializeComponent();
+            ucHeader.Text = "انتخاب منطقه";
         }
 
         private async void frmSelectRegion_Load(object sender, EventArgs e) => await LoadDataAsync();
-
         private void btnSelect_Click(object sender, EventArgs e)
         {
             try
@@ -55,7 +61,6 @@ namespace Cities.Region
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-
         private void frmSelectRegion_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Escape)

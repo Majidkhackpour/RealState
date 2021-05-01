@@ -1,20 +1,21 @@
-﻿using System;
-using System.Drawing;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using DevComponents.DotNetBar;
+﻿using DevComponents.DotNetBar;
 using EntityCache.Bussines;
 using MetroFramework.Forms;
 using Notification;
 using Payamak.Panel;
 using Services;
 using Settings.Classes;
+using System;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Settings
 {
     public partial class frmSettings : MetroForm
     {
+        private CancellationTokenSource token = new CancellationTokenSource();
         private void SetAccess()
         {
             try
@@ -94,7 +95,9 @@ namespace Settings
                 cmbEcType.Items.Add(EnEconomyType.AnbouhSaz.GetDisplay());
                 cmbEcType.Items.Add(EnEconomyType.Sayer.GetDisplay());
 
-                var list = await StatesBussines.GetAllAsync();
+                token?.Cancel();
+                token = new CancellationTokenSource();
+                var list = await StatesBussines.GetAllAsync(token.Token);
                 StateBindingSource.DataSource = list.Where(q => q.Status).OrderBy(q => q.Name);
             }
             catch (Exception ex)
@@ -136,7 +139,9 @@ namespace Settings
             try
             {
                 if (cmbEcCity.SelectedValue == null) return;
-                var list = await RegionsBussines.GetAllAsync((Guid)cmbEcCity.SelectedValue);
+                token?.Cancel();
+                token = new CancellationTokenSource();
+                var list = await RegionsBussines.GetAllAsync((Guid) cmbEcCity.SelectedValue, token.Token);
                 RegionBindingSource.DataSource = list.OrderBy(q => q.Name).ToList();
             }
             catch (Exception ex)
@@ -149,7 +154,9 @@ namespace Settings
             try
             {
                 if (cmbEcState.SelectedValue == null) return;
-                var list = await CitiesBussines.GetAllAsync((Guid)cmbEcState.SelectedValue);
+                token?.Cancel();
+                token = new CancellationTokenSource();
+                var list = await CitiesBussines.GetAllAsync((Guid) cmbEcState.SelectedValue, token.Token);
                 CityBindingSource.DataSource = list.OrderBy(q => q.Name).ToList();
             }
             catch (Exception ex)

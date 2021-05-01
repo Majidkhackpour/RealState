@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using EntityCache.Bussines;
@@ -15,12 +16,15 @@ namespace Advertise.Forms.MatchRegions
     {
         private DivarRegion Region;
         private List<AdvertiseRelatedRegionBussines> _list = new List<AdvertiseRelatedRegionBussines>();
+        private CancellationTokenSource _token = new CancellationTokenSource();
 
         private async Task LoadRegionsAsync()
         {
             try
             {
-                var list = await RegionsBussines.GetAllAsync((Guid.Parse(Settings.Classes.clsEconomyUnit.EconomyCity)));
+                _token?.Cancel();
+                _token = new CancellationTokenSource();
+                var list = await RegionsBussines.GetAllAsync((Guid.Parse(Settings.Classes.clsEconomyUnit.EconomyCity)), _token.Token);
                 var allRelated = await AdvertiseRelatedRegionBussines.GetAllAsync();
                 var query =
                     from c in list
@@ -57,7 +61,9 @@ namespace Advertise.Forms.MatchRegions
         {
             try
             {
-                var list = await RegionsBussines.GetAllAsync();
+                _token?.Cancel();
+                _token = new CancellationTokenSource();
+                var list = await RegionsBussines.GetAllAsync(_token.Token);
                 if (list.Count <= 0) return;
                 foreach (var item in list)
                     for (var i = 0; i < DGrid.RowCount; i++)

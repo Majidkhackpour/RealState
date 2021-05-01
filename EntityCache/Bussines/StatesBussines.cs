@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Threading;
 using System.Threading.Tasks;
 using EntityCache.Assistence;
 using Nito.AsyncEx;
@@ -21,7 +22,7 @@ namespace EntityCache.Bussines
         public string Name { get; set; }
         public string HardSerial => Cache.HardSerial;
 
-        public static async Task<List<StatesBussines>> GetAllAsync() => await UnitOfWork.States.GetAllAsync(Cache.ConnectionString);
+        public static async Task<List<StatesBussines>> GetAllAsync(CancellationToken token) => await UnitOfWork.States.GetAllAsync(Cache.ConnectionString, token);
         public static async Task<ReturnedSaveFuncInfo> SaveRangeAsync(List<StatesBussines> list, SqlTransaction tr = null)
         {
             var res = new ReturnedSaveFuncInfo();

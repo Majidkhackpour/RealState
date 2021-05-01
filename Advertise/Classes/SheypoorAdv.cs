@@ -1,23 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Net;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using EntityCache.Bussines;
+﻿using EntityCache.Bussines;
 using EntityCache.ViewModels;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.Extensions;
 using Services;
 using Settings.Classes;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Advertise.Classes
 {
     public class SheypoorAdv
     {
         private IWebDriver _driver;
+        private CancellationTokenSource token = new CancellationTokenSource();
         public SheypoorAdv() { }
         public async Task StartRegisterAdv(AdvertiseLogBussines adv, long number)
         {
@@ -686,7 +685,9 @@ namespace Advertise.Classes
         public async Task<List<SheypoorCities>> GetAllCityFromSheypoor()
         {
             var cities = new List<SheypoorCities>();
-            var states = await StatesBussines.GetAllAsync();
+            token?.Cancel();
+            token = new CancellationTokenSource();
+            var states = await StatesBussines.GetAllAsync(token.Token);
             _driver = Utility.RefreshDriver(clsAdvertise.IsSilent);
             _driver.Navigate().GoToUrl("https://www.sheypoor.com");
             try

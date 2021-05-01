@@ -7,6 +7,7 @@ using System;
 using System.Data.SqlClient;
 using System.Security.Cryptography;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Persistence;
 
@@ -105,7 +106,7 @@ namespace EntityCache.Assistence
                 #endregion
 
                 #region States
-                var allStates = await StatesBussines.GetAllAsync();
+                var allStates = await StatesBussines.GetAllAsync(new CancellationToken());
                 if (allStates == null || allStates.Count <= 0)
                 {
                     var states = DefaultStates.SetDef();
@@ -115,7 +116,7 @@ namespace EntityCache.Assistence
                 #endregion
 
                 #region Cities
-                var allCities = await CitiesBussines.GetAllAsync();
+                var allCities = await CitiesBussines.GetAllAsync(new CancellationToken());
                 if (allCities == null || allCities.Count <= 0)
                 {
                     var city = DefaultCities.SetDef();
@@ -125,7 +126,7 @@ namespace EntityCache.Assistence
                 #endregion
 
                 #region Regions
-                var allRegions = await RegionsBussines.GetAllAsync();
+                var allRegions = await RegionsBussines.GetAllAsync(new CancellationToken());
                 if (allRegions == null || allRegions.Count <= 0)
                 {
                     var reg = DefaultRegions.SetDef();
@@ -145,7 +146,7 @@ namespace EntityCache.Assistence
                 #endregion
 
                 #region BuildingOption
-                var allbo = await BuildingOptionsBussines.GetAllAsync();
+                var allbo = await BuildingOptionsBussines.GetAllAsync(new CancellationToken());
                 if (allbo == null || allbo.Count <= 0)
                 {
                     var bo = DefaultBuildingOptions.SetDef();
@@ -155,7 +156,7 @@ namespace EntityCache.Assistence
                 #endregion
 
                 #region BuildingAccountType
-                var allbat = await BuildingAccountTypeBussines.GetAllAsync();
+                var allbat = await BuildingAccountTypeBussines.GetAllAsync(new CancellationToken());
                 if (allbat == null || allbat.Count <= 0)
                 {
                     var bat = DefaultBuildingAccountType.SetDef();
@@ -165,7 +166,7 @@ namespace EntityCache.Assistence
                 #endregion
 
                 #region FloorCover
-                var allfc = await FloorCoverBussines.GetAllAsync();
+                var allfc = await FloorCoverBussines.GetAllAsync(new CancellationToken());
                 if (allfc == null || allfc.Count <= 0)
                 {
                     var fc = DefaultFloorCover.SetDef();
@@ -175,7 +176,7 @@ namespace EntityCache.Assistence
                 #endregion
 
                 #region KitchenService
-                var allks = await KitchenServiceBussines.GetAllAsync();
+                var allks = await KitchenServiceBussines.GetAllAsync(new CancellationToken());
                 if (allks == null || allks.Count <= 0)
                 {
                     var ks = DefaultKitchenService.SetDef();
@@ -185,7 +186,7 @@ namespace EntityCache.Assistence
                 #endregion
 
                 #region DocumentType
-                var alldt = await DocumentTypeBussines.GetAllAsync();
+                var alldt = await DocumentTypeBussines.GetAllAsync(new CancellationToken());
                 if (alldt == null || alldt.Count <= 0)
                 {
                     var dt = DefaultDocumentType.SetDef();
@@ -195,7 +196,7 @@ namespace EntityCache.Assistence
                 #endregion
 
                 #region RentalAuthority
-                var allra = await RentalAuthorityBussines.GetAllAsync();
+                var allra = await RentalAuthorityBussines.GetAllAsync(new CancellationToken());
                 if (allra == null || allra.Count <= 0)
                 {
                     var ra = DefaultRentalAuthority.SetDef();
@@ -205,7 +206,7 @@ namespace EntityCache.Assistence
                 #endregion
 
                 #region BuildingView
-                var allbv = await BuildingViewBussines.GetAllAsync();
+                var allbv = await BuildingViewBussines.GetAllAsync(new CancellationToken());
                 if (allbv == null || allbv.Count <= 0)
                 {
                     var bv = DefaultBuildingView.SetDef();
@@ -215,7 +216,7 @@ namespace EntityCache.Assistence
                 #endregion
 
                 #region BuildingCondition
-                var allbc = await BuildingConditionBussines.GetAllAsync();
+                var allbc = await BuildingConditionBussines.GetAllAsync(new CancellationToken());
                 if (allbc == null || allbc.Count <= 0)
                 {
                     var bc = DefaultBuildingCondition.SetDef();
@@ -225,7 +226,7 @@ namespace EntityCache.Assistence
                 #endregion
 
                 #region BuildingType
-                var allbt = await BuildingTypeBussines.GetAllAsync();
+                var allbt = await BuildingTypeBussines.GetAllAsync(new CancellationToken());
                 if (allbt == null || allbt.Count <= 0)
                 {
                     var bo = DefaultBuildingType.SetDef();

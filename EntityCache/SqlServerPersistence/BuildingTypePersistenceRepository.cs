@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace EntityCache.SqlServerPersistence
@@ -77,7 +78,7 @@ namespace EntityCache.SqlServerPersistence
 
             return obj;
         }
-        public async Task<List<BuildingTypeBussines>> GetAllAsync(string _connectionString)
+        public async Task<List<BuildingTypeBussines>> GetAllAsync(string _connectionString, CancellationToken token)
         {
             var list = new List<BuildingTypeBussines>();
             try
@@ -85,13 +86,19 @@ namespace EntityCache.SqlServerPersistence
                 using (var cn = new SqlConnection(_connectionString))
                 {
                     var cmd = new SqlCommand("sp_BuildingType_GetAll", cn) { CommandType = CommandType.StoredProcedure };
-
+                    if (token.IsCancellationRequested) return null;
                     await cn.OpenAsync();
                     var dr = await cmd.ExecuteReaderAsync();
-                    while (dr.Read()) list.Add(LoadData(dr));
+                    while (dr.Read())
+                    {
+                        if (token.IsCancellationRequested) return null;
+                        list.Add(LoadData(dr));
+                    }
                     cn.Close();
                 }
             }
+            catch (TaskCanceledException) { }
+            catch (OperationCanceledException) { }
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);

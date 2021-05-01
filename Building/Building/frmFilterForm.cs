@@ -18,7 +18,7 @@ namespace Building.Building
     public partial class frmFilterForm : MetroForm
     {
         private bool loadComlete = false;
-
+        private CancellationTokenSource _token = new CancellationTokenSource();
         public List<Guid> RegionList { get; set; }
         private async Task SetDataAsync()
         {
@@ -64,7 +64,9 @@ namespace Building.Building
         {
             try
             {
-                var list = await BuildingTypeBussines.GetAllAsync();
+                _token?.Cancel();
+                _token = new CancellationTokenSource();
+                var list = await BuildingTypeBussines.GetAllAsync(_token.Token);
 
                 var a = new BuildingTypeBussines()
                 {
@@ -92,9 +94,12 @@ namespace Building.Building
             {
                 while (!IsHandleCreated)
                 {
+                    if (_token.IsCancellationRequested) return;
                     await Task.Delay(100);
                 }
-                var list = await BuildingAccountTypeBussines.GetAllAsync();
+                _token?.Cancel();
+                _token = new CancellationTokenSource();
+                var list = await BuildingAccountTypeBussines.GetAllAsync(_token.Token);
 
                 var a = new BuildingAccountTypeBussines()
                 {

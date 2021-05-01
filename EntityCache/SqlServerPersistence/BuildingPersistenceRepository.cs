@@ -315,6 +315,17 @@ namespace EntityCache.SqlServerPersistence
                 }
                 res.ServerDeliveryDate = (DateTime)dr["ServerDeliveryDate"];
                 res.ServerStatus = (ServerStatus)dr["ServerStatus"];
+                res.OwnerName = dr["OwnerName"].ToString();
+                res.BuildingTypeName = dr["BuildingTypeName"].ToString();
+                res.UserName = dr["UserName"].ToString();
+                res.RegionName = dr["RegionName"].ToString();
+                res.RentalAuthorityName = dr["RentalAuthorityName"].ToString();
+                res.DocumentTypeName = dr["DocumentTypeName"].ToString();
+                res.BuildingConditionName = dr["BuildingConditionName"].ToString();
+                res.BuildingViewName = dr["BuildingViewName"].ToString();
+                res.FloorCoverName = dr["FloorCoverName"].ToString();
+                res.KitchenServiceName = dr["KitchenServiceName"].ToString();
+                res.BuildingAccountTypeName = dr["BuildingAccountTypeName"].ToString();
                 res.IsModified = true;
             }
             catch (Exception ex)

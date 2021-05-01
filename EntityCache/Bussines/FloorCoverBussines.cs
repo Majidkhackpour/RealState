@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using EntityCache.Assistence;
 using Nito.AsyncEx;
@@ -24,7 +25,7 @@ namespace EntityCache.Bussines
         public bool IsModified { get; set; } = false;
 
 
-        public static async Task<List<FloorCoverBussines>> GetAllAsync() => await UnitOfWork.FloorCover.GetAllAsync(Cache.ConnectionString);
+        public static async Task<List<FloorCoverBussines>> GetAllAsync(CancellationToken token) => await UnitOfWork.FloorCover.GetAllAsync(Cache.ConnectionString, token);
         public static async Task<ReturnedSaveFuncInfo> SaveRangeAsync(List<FloorCoverBussines> list, SqlTransaction tr = null)
         {
             var res = new ReturnedSaveFuncInfo();
@@ -74,6 +75,9 @@ namespace EntityCache.Bussines
                     await cn.OpenAsync();
                     tr = cn.BeginTransaction();
                 }
+
+                res.AddReturnedValue(await CheckValidationAsync());
+                if (res.HasError) return res;
 
                 res.AddReturnedValue(await UnitOfWork.FloorCover.SaveAsync(this, tr));
                 if (res.HasError) return res;
@@ -139,17 +143,18 @@ namespace EntityCache.Bussines
             }
             return res;
         }
-        public static async Task<List<FloorCoverBussines>> GetAllAsync(string search)
+        public static async Task<List<FloorCoverBussines>> GetAllAsync(string search, CancellationToken token)
         {
             try
             {
-                if (string.IsNullOrEmpty(search))
-                    search = "";
-                var res = await GetAllAsync();
+                if (string.IsNullOrEmpty(search)) search = "";
+                var res = await GetAllAsync(token);
+                if (token.IsCancellationRequested) return null;
                 var searchItems = search.SplitString();
                 if (searchItems?.Count > 0)
                     foreach (var item in searchItems)
                     {
+                        if (token.IsCancellationRequested) return null;
                         if (!string.IsNullOrEmpty(item) && item.Trim() != "")
                         {
                             res = res.Where(x => x.Name.ToLower().Contains(item.ToLower()))
@@ -160,8 +165,8 @@ namespace EntityCache.Bussines
                 res = res?.OrderBy(o => o.Name).ToList();
                 return res;
             }
-            catch (OperationCanceledException)
-            { return null; }
+            catch (TaskCanceledException) { return null; }
+            catch (OperationCanceledException) { return null; }
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
@@ -171,5 +176,21 @@ namespace EntityCache.Bussines
         public static FloorCoverBussines Get(Guid guid) => AsyncContext.Run(() => GetAsync(guid));
         public static async Task<bool> CheckNameAsync(string name, Guid guid) =>
             await UnitOfWork.FloorCover.CheckNameAsync(Cache.ConnectionString, name, guid);
+        private async Task<ReturnedSaveFuncInfo> CheckValidationAsync()
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                if (string.IsNullOrWhiteSpace(Name)) res.AddError("عنوان نمی تواند خالی باشد");
+                if (!await CheckNameAsync(Name.Trim(), Guid)) res.AddError("عنوان وارد شده تکراری است");
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+
+            return res;
+        }
     }
 }
