@@ -85,28 +85,28 @@ namespace Building.Building
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void LoadData(bool status, string search = "")
+        private void LoadData(string search = "")
         {
             try
             {
                 _token?.Cancel();
                 _token = new CancellationTokenSource();
                 list = BuildingBussines
-                    .GetAll(search, _token.Token, _isArchive, ST,
-                        (Guid) cmbBuildingType.SelectedValue,
-                        (Guid) cmbUser.SelectedValue,
-                        (Guid) cmbDocType.SelectedValue,
-                        (Guid) cmbAccType.SelectedValue);
+                    .GetAll(search, _token.Token, _isArchive, _st,
+                        (Guid)cmbBuildingType.SelectedValue,
+                        (Guid)cmbUser.SelectedValue,
+                        (Guid)cmbDocType.SelectedValue,
+                        (Guid)cmbAccType.SelectedValue);
                 if (ownerGuid == Guid.Empty)
                 {
                     Task.Run(() => ucPagger.PagingAsync(new CancellationToken(),
-                        list.Where(q => q.Status == status).OrderByDescending(q => q.CreateDate), 100,
+                        list.OrderByDescending(q => q.CreateDate), 100,
                         PagingPosition.GotoStartPage));
                 }
                 else
                 {
                     Task.Run(() => ucPagger.PagingAsync(new CancellationToken(),
-                        list.Where(q => q.Status == status && q.OwnerGuid == ownerGuid)
+                        list.Where(q => q.OwnerGuid == ownerGuid)
                             .OrderByDescending(q => q.CreateDate), 100,
                         PagingPosition.GotoStartPage));
                 }
@@ -124,7 +124,6 @@ namespace Building.Building
                 mnuAdd.Enabled = access?.Building.Building_Insert ?? false;
                 mnuEdit.Enabled = access?.Building.Building_Update ?? false;
                 mnuDelete.Enabled = access?.Building.Building_Delete ?? false;
-                mnuStatus.Enabled = access?.Building.Building_Disable ?? false;
                 mnuView.Enabled = access?.Building.Building_View ?? false;
                 mnuMatchRequest.Enabled = access?.Building.Building_Show_request ?? false;
                 mnuSendSms.Enabled = access?.Building.Building_Send_Sms ?? false;
@@ -360,30 +359,12 @@ namespace Building.Building
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private bool ST
-        {
-            get => _st;
-            set
-            {
-                _st = value;
-                if (_st)
-                {
-                    mnuStatus.Text = "غیرفعال (Ctrl+S)";
-                    LoadData(ST, txtSearch.Text);
-                    mnuDelete.Text = "حذف (Del)";
-                }
-                else
-                {
-                    mnuStatus.Text = "فعال (Ctrl+S)";
-                    LoadData(ST, txtSearch.Text);
-                    mnuDelete.Text = "فعال کردن";
-                }
-            }
-        }
 
-        public frmShowBuildings(bool _isShowMode, bool? isArchive, Guid ownerGuid = default)
+        public frmShowBuildings(bool _isShowMode, bool? isArchive, bool status = true, Guid ownerGuid = default)
         {
             InitializeComponent();
+            ucHeader.Text = "نمایش لیست املاک";
+            _st = status;
             isShowMode = _isShowMode;
             this.ownerGuid = ownerGuid;
             _isArchive = isArchive;
@@ -413,23 +394,9 @@ namespace Building.Building
         private async void frmShowBuildings_Load(object sender, EventArgs e)
         {
             await FillCmbAsync();
-            LoadData(ST);
+            LoadData();
         }
-        private void DGrid_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
-        {
-
-        }
-        private void txtSearch_TextChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                LoadData(ST, txtSearch.Text);
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
+        private void txtSearch_TextChanged(object sender, EventArgs e) => LoadData(txtSearch.Text);
         private void frmShowBuildings_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -447,9 +414,6 @@ namespace Building.Building
                         break;
                     case Keys.F12:
                         mnuView.PerformClick();
-                        break;
-                    case Keys.S:
-                        if (e.Control) ST = !ST;
                         break;
                     case Keys.Escape:
                         if (!string.IsNullOrEmpty(txtSearch.Text))
@@ -477,28 +441,8 @@ namespace Building.Building
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void cmbBuildingType_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                LoadData(ST, txtSearch.Text);
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-        private void cmbUser_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                LoadData(ST, txtSearch.Text);
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
+        private void cmbBuildingType_SelectedIndexChanged(object sender, EventArgs e) => LoadData(txtSearch.Text);
+        private void cmbUser_SelectedIndexChanged(object sender, EventArgs e) => LoadData(txtSearch.Text);
         private void DGrid_DoubleClick(object sender, EventArgs e)
         {
             try
@@ -511,7 +455,6 @@ namespace Building.Building
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void mnuStatus_Click(object sender, EventArgs e) => ST = !ST;
         private async void mnuSendToSheypoor_Click(object sender, EventArgs e)
         {
             var res = new ReturnedSaveFuncInfo();
@@ -636,7 +579,7 @@ namespace Building.Building
             {
                 if (DGrid.RowCount <= 0) return;
                 if (DGrid.CurrentRow == null) return;
-                if (!ST)
+                if (!_st)
                 {
                     frmNotification.PublicInfo.ShowMessage(
                         "شما مجاز به ویرایش داده حذف شده نمی باشید \r\n برای این منظور، ابتدا فیلد موردنظر را از حالت حذف شده به فعال، تغییر وضعیت دهید");
@@ -645,7 +588,7 @@ namespace Building.Building
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
                 var frm = new frmBuildingMain(guid, false);
                 if (frm.ShowDialog(this) == DialogResult.OK)
-                    LoadData(ST, txtSearch.Text);
+                    LoadData(txtSearch.Text);
             }
             catch (Exception ex)
             {
@@ -658,7 +601,7 @@ namespace Building.Building
             {
                 var frm = new frmBuildingMain();
                 if (frm.ShowDialog(this) == DialogResult.OK)
-                    LoadData(ST, txtSearch.Text);
+                    LoadData(txtSearch.Text);
             }
             catch (Exception ex)
             {
@@ -673,7 +616,7 @@ namespace Building.Building
                 if (DGrid.RowCount <= 0) return;
                 if (DGrid.CurrentRow == null) return;
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
-                if (ST)
+                if (_st)
                 {
                     if (MessageBox.Show(this,
                             $@" آیا از حذف ملک{DGrid[dgCode.Index, DGrid.CurrentRow.Index].Value} اطمینان دارید؟",
@@ -707,7 +650,7 @@ namespace Building.Building
                     frm.ShowDialog(this);
                     frm.Dispose();
                 }
-                else LoadData(ST, txtSearch.Text);
+                else LoadData(txtSearch.Text);
             }
         }
         private void mnuCode_CheckedChanged(object sender, EventArgs e)
@@ -1400,28 +1343,8 @@ namespace Building.Building
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void cmbDocType_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                LoadData(ST, txtSearch.Text);
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-        private void cmbAccType_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                LoadData(ST, txtSearch.Text);
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
+        private void cmbDocType_SelectedIndexChanged(object sender, EventArgs e) => LoadData(txtSearch.Text);
+        private void cmbAccType_SelectedIndexChanged(object sender, EventArgs e) => LoadData(txtSearch.Text);
         private void DGrid_Scroll(object sender, ScrollEventArgs e)
         {
             try

@@ -285,6 +285,8 @@ namespace Building.BuildingRequest
         {
             InitializeComponent();
             cls = new BuildingRequestBussines();
+            ucHeader.Text = "افزودن تقاضای جدید";
+            ucHeader.IsModified = cls.IsModified;
             WindowState = FormWindowState.Maximized;
         }
         public frmRequestMain(Guid guid, bool isShowMode)
@@ -292,6 +294,8 @@ namespace Building.BuildingRequest
             InitializeComponent();
             cls = BuildingRequestBussines.Get(guid);
             asker = PeoplesBussines.Get(cls.AskerGuid);
+            ucHeader.Text = !isShowMode ? $"ویرایش تقاضای {cls.AskerName}" : $"مشاهده تقاضای {cls.AskerGuid}";
+            ucHeader.IsModified = cls.IsModified;
             superTabControlPanel1.Enabled = !isShowMode;
             superTabControlPanel2.Enabled = !isShowMode;
             superTabControlPanel3.Enabled = !isShowMode;
@@ -336,7 +340,7 @@ namespace Building.BuildingRequest
                 if (cmbState.SelectedValue == null) return;
                 _token?.Cancel();
                 _token = new CancellationTokenSource();
-                var list = await CitiesBussines.GetAllAsync((Guid) cmbState.SelectedValue, _token.Token);
+                var list = await CitiesBussines.GetAllAsync((Guid)cmbState.SelectedValue, _token.Token);
                 CityBindingSource.DataSource = list.Where(q => q.Status).OrderBy(q => q.Name).ToList();
                 if (cls.Guid != Guid.Empty) cmbCity.SelectedValue = cls.CityGuid;
             }
@@ -352,7 +356,7 @@ namespace Building.BuildingRequest
                 if (cmbCity.SelectedValue == null) return;
                 _token?.Cancel();
                 _token = new CancellationTokenSource();
-                var list = await RegionsBussines.GetAllAsync((Guid) cmbCity.SelectedValue, _token.Token);
+                var list = await RegionsBussines.GetAllAsync((Guid)cmbCity.SelectedValue, _token.Token);
                 RegionBindingSource.DataSource = list.Where(q => q.Status).OrderBy(q => q.Name).ToList();
             }
             catch (Exception ex)
@@ -404,27 +408,7 @@ namespace Building.BuildingRequest
                     isSendSms = true;
                 }
 
-                if (asker == null)
-                {
-                    res.AddError("لطفا متقاضی را انتخاب نمایید");
-                    btnSearchOwner.Focus();
-                    return;
-                }
-
-                if (txtRahn1.Text == "0" && txtRahn2.Text == "0" && txtEjare1.Text == "0" &&
-                    txtEjare2.Text == "0" && txtSellPrice1.Text == "0" && txtSellPrice2.Text == "0")
-                {
-                    res.AddError("لطفا یکی از فیلدهای مبلغ را وارد نمایید");
-                    btnSearchOwner.Focus();
-                }
-
-                if (txtMasahat1.Text == "0" && txtMasahat2.Text == "0")
-                {
-                    res.AddError("لطفا مساحت را وارد نمایید");
-                    btnSearchOwner.Focus();
-                }
-
-                cls.AskerGuid = asker.Guid;
+                cls.AskerGuid = asker?.Guid ?? Guid.Empty;
                 cls.UserGuid = (Guid)cmbUser.SelectedValue;
 
                 cls.SellPrice1 = txtSellPrice1.TextDecimal;
@@ -433,7 +417,6 @@ namespace Building.BuildingRequest
                 cls.RahnPrice2 = txtRahn2.TextDecimal;
                 cls.EjarePrice1 = txtEjare1.TextDecimal;
                 cls.EjarePrice2 = txtEjare2.TextDecimal;
-
 
                 cls.HasVam = chbHasVam.Checked;
                 cls.PeopleCount = txtPeopleCount.Text.ParseToShort();

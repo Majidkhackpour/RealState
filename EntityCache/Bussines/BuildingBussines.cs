@@ -118,6 +118,9 @@ namespace EntityCache.Bussines
                     tr = cn.BeginTransaction();
                 }
 
+                res.AddReturnedValue(await CheckValidationAsync());
+                if (res.HasError) return res;
+
                 if (OptionList.Count > 0)
                 {
                     res.AddReturnedValue(await BuildingRelatedOptionsBussines.RemoveRangeAsync(Guid, tr));
@@ -276,7 +279,7 @@ namespace EntityCache.Bussines
             {
                 IEnumerable<BuildingBussines> res = await GetAllAsync(token);
                 if (token.IsCancellationRequested) return null;
-                if (regionList.Count > 0) res = res.Where(q => regionList.Contains(q.RegionGuid));
+                if (regionList != null && regionList.Count > 0) res = res.Where(q => regionList.Contains(q.RegionGuid));
                 if (token.IsCancellationRequested) return null;
                 if (!string.IsNullOrEmpty(code)) res = res.Where(q => q.Code.Contains(code));
                 if (token.IsCancellationRequested) return null;
@@ -322,9 +325,9 @@ namespace EntityCache.Bussines
                         Region = item.RegionName,
                         RentalAuthority = item.RentalAuthorityName,
                         Parent = $"فایل های سیستم کد {item.Code}",
-                        Options = item.OptionList.Select(q => q.OptionName).ToList(),
+                        Options = item.OptionList.Select(q => q.OptionName)?.ToList(),
                         Address = item.Address,
-                        Mobile = PeoplesBussines.Get(item.OwnerGuid).FirstNumber
+                        Mobile = PeoplesBussines.Get(item.OwnerGuid)?.FirstNumber
                     };
                     if (token.IsCancellationRequested) return null;
                     if (type == EnRequestType.Rahn)
@@ -359,5 +362,28 @@ namespace EntityCache.Bussines
         public static async Task<int> DbCount(Guid userGuid, short type) =>
             await UnitOfWork.Building.DbCount(Cache.ConnectionString, userGuid, type);
         public static async Task<ReturnedSaveFuncInfo> FixImageAsync() => await UnitOfWork.Building.FixImageAsync(Cache.ConnectionString);
+        private async Task<ReturnedSaveFuncInfo> CheckValidationAsync()
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                if (string.IsNullOrWhiteSpace(Code)) res.AddError("کد ملک نمی تواند خالی باشد");
+                if (!await CheckCodeAsync(Code.Trim(), Guid)) res.AddError("کد ملک وارد شده تکراری است");
+                if (OwnerGuid == Guid.Empty) res.AddError("لطفا مالک را انتخاب نمایید");
+                if (RahnPrice1 == 0 && RahnPrice2 == 0 && EjarePrice1 == 0 && EjarePrice2 == 0 && SellPrice == 0 && PishTotalPrice == 0)
+                    res.AddError("لطفا یکی از فیلدهای مبلغ را وارد نمایید");
+
+                if (ZirBana == 0 && Masahat == 0) res.AddError("لطفا مساحت و زیربنا را وارد نمایید");
+                if (RegionGuid == Guid.Empty) res.AddError("لطفا محدوده ملک را وارد نمایید");
+                if (SaleSakht.ParseToInt() > DateParvane.ParseToInt())
+                    res.AddError("سال ساخت نمی تواند از سال اخذ پروانه بزرگتر باشد");
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+            return res;
+        }
     }
 }

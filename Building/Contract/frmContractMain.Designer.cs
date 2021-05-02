@@ -923,7 +923,7 @@
             this.txttxtOwnerCode.Location = new System.Drawing.Point(135, 16);
             this.txttxtOwnerCode.Name = "txttxtOwnerCode";
             this.txttxtOwnerCode.ReadOnly = true;
-            this.txttxtOwnerCode.Size = new System.Drawing.Size(2, 20);
+            this.txttxtOwnerCode.Size = new System.Drawing.Size(0, 20);
             this.txttxtOwnerCode.TabIndex = 10;
             // 
             // label6
@@ -931,7 +931,7 @@
             this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label6.AutoSize = true;
             this.label6.BackColor = System.Drawing.Color.Transparent;
-            this.label6.Location = new System.Drawing.Point(168, 204);
+            this.label6.Location = new System.Drawing.Point(162, 204);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(30, 13);
             this.label6.TabIndex = 9;
@@ -942,7 +942,7 @@
             this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label5.AutoSize = true;
             this.label5.BackColor = System.Drawing.Color.Transparent;
-            this.label5.Location = new System.Drawing.Point(151, 167);
+            this.label5.Location = new System.Drawing.Point(145, 167);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(53, 13);
             this.label5.TabIndex = 9;
@@ -953,7 +953,7 @@
             this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label4.AutoSize = true;
             this.label4.BackColor = System.Drawing.Color.Transparent;
-            this.label4.Location = new System.Drawing.Point(149, 130);
+            this.label4.Location = new System.Drawing.Point(143, 130);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(57, 13);
             this.label4.TabIndex = 9;
@@ -964,7 +964,7 @@
             this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.Transparent;
-            this.label3.Location = new System.Drawing.Point(164, 93);
+            this.label3.Location = new System.Drawing.Point(158, 93);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(37, 13);
             this.label3.TabIndex = 9;
@@ -977,7 +977,7 @@
             this.lblOwnerAddress.BackColor = System.Drawing.Color.Transparent;
             this.lblOwnerAddress.Location = new System.Drawing.Point(20, 204);
             this.lblOwnerAddress.Name = "lblOwnerAddress";
-            this.lblOwnerAddress.Size = new System.Drawing.Size(93, 153);
+            this.lblOwnerAddress.Size = new System.Drawing.Size(87, 153);
             this.lblOwnerAddress.TabIndex = 9;
             // 
             // lblOwnerDateBirth
@@ -987,7 +987,7 @@
             this.lblOwnerDateBirth.BackColor = System.Drawing.Color.Transparent;
             this.lblOwnerDateBirth.Location = new System.Drawing.Point(55, 167);
             this.lblOwnerDateBirth.Name = "lblOwnerDateBirth";
-            this.lblOwnerDateBirth.Size = new System.Drawing.Size(58, 20);
+            this.lblOwnerDateBirth.Size = new System.Drawing.Size(52, 20);
             this.lblOwnerDateBirth.TabIndex = 9;
             // 
             // lblOwnerNCode
@@ -997,7 +997,7 @@
             this.lblOwnerNCode.BackColor = System.Drawing.Color.Transparent;
             this.lblOwnerNCode.Location = new System.Drawing.Point(55, 130);
             this.lblOwnerNCode.Name = "lblOwnerNCode";
-            this.lblOwnerNCode.Size = new System.Drawing.Size(58, 20);
+            this.lblOwnerNCode.Size = new System.Drawing.Size(52, 20);
             this.lblOwnerNCode.TabIndex = 9;
             // 
             // lblOwnerFatherName
@@ -1007,7 +1007,7 @@
             this.lblOwnerFatherName.BackColor = System.Drawing.Color.Transparent;
             this.lblOwnerFatherName.Location = new System.Drawing.Point(55, 93);
             this.lblOwnerFatherName.Name = "lblOwnerFatherName";
-            this.lblOwnerFatherName.Size = new System.Drawing.Size(58, 20);
+            this.lblOwnerFatherName.Size = new System.Drawing.Size(52, 20);
             this.lblOwnerFatherName.TabIndex = 9;
             // 
             // lblOwnerName
@@ -1017,7 +1017,7 @@
             this.lblOwnerName.BackColor = System.Drawing.Color.Transparent;
             this.lblOwnerName.Location = new System.Drawing.Point(55, 56);
             this.lblOwnerName.Name = "lblOwnerName";
-            this.lblOwnerName.Size = new System.Drawing.Size(58, 20);
+            this.lblOwnerName.Size = new System.Drawing.Size(52, 20);
             this.lblOwnerName.TabIndex = 9;
             // 
             // label2
@@ -1025,7 +1025,7 @@
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Location = new System.Drawing.Point(112, 56);
+            this.label2.Location = new System.Drawing.Point(106, 56);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(94, 13);
             this.label2.TabIndex = 9;
@@ -1036,7 +1036,7 @@
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Location = new System.Drawing.Point(143, 19);
+            this.label1.Location = new System.Drawing.Point(137, 19);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(66, 13);
             this.label1.TabIndex = 9;
@@ -1445,11 +1445,11 @@
             this.superTabControl1.ControlBox.SubItems.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.superTabControl1.ControlBox.MenuBox,
             this.superTabControl1.ControlBox.CloseBox});
+            this.superTabControl1.Controls.Add(this.superTabControlPanel11);
             this.superTabControl1.Controls.Add(this.superTabControlPanel8);
+            this.superTabControl1.Controls.Add(this.superTabControlPanel7);
             this.superTabControl1.Controls.Add(this.superTabControlPanel3);
             this.superTabControl1.Controls.Add(this.superTabControlPanel6);
-            this.superTabControl1.Controls.Add(this.superTabControlPanel11);
-            this.superTabControl1.Controls.Add(this.superTabControlPanel7);
             this.superTabControl1.Location = new System.Drawing.Point(6, 26);
             this.superTabControl1.Name = "superTabControl1";
             this.superTabControl1.ReorderTabsEnabled = true;
@@ -1642,7 +1642,7 @@
             // btnHelp
             // 
             this.btnHelp.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnHelp.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.btnHelp.BackColor = System.Drawing.Color.LightSteelBlue;
             this.btnHelp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnHelp.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnHelp.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -1653,7 +1653,7 @@
             this.btnHelp.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
             this.btnHelp.TabIndex = 3;
             this.btnHelp.Text = "نحوه محاسبه";
-            this.btnHelp.TextColor = System.Drawing.Color.White;
+            this.btnHelp.TextColor = System.Drawing.Color.Black;
             this.btnHelp.Click += new System.EventHandler(this.btnHelp_Click);
             // 
             // btnCalculateCommition
@@ -1661,7 +1661,7 @@
             this.btnCalculateCommition.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.btnCalculateCommition.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCalculateCommition.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.btnCalculateCommition.BackColor = System.Drawing.Color.LightSteelBlue;
             this.btnCalculateCommition.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnCalculateCommition.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnCalculateCommition.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -1672,7 +1672,7 @@
             this.btnCalculateCommition.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
             this.btnCalculateCommition.TabIndex = 3;
             this.btnCalculateCommition.Text = "محاسبه حق الزحمه طرفین قرارداد";
-            this.btnCalculateCommition.TextColor = System.Drawing.Color.White;
+            this.btnCalculateCommition.TextColor = System.Drawing.Color.Black;
             this.btnCalculateCommition.Click += new System.EventHandler(this.btnCalculateCommition_Click);
             // 
             // splitContainer5
@@ -1763,7 +1763,7 @@
             this.txtfAvarez.Location = new System.Drawing.Point(15, 200);
             this.txtfAvarez.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtfAvarez.Name = "txtfAvarez";
-            this.txtfAvarez.Size = new System.Drawing.Size(261, 31);
+            this.txtfAvarez.Size = new System.Drawing.Size(255, 31);
             this.txtfAvarez.TabIndex = 61;
             this.txtfAvarez.TextDecimal = new decimal(new int[] {
             0,
@@ -1784,7 +1784,7 @@
             this.txtfAddedValue.Location = new System.Drawing.Point(15, 161);
             this.txtfAddedValue.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtfAddedValue.Name = "txtfAddedValue";
-            this.txtfAddedValue.Size = new System.Drawing.Size(261, 31);
+            this.txtfAddedValue.Size = new System.Drawing.Size(255, 31);
             this.txtfAddedValue.TabIndex = 61;
             this.txtfAddedValue.TextDecimal = new decimal(new int[] {
             0,
@@ -1805,7 +1805,7 @@
             this.txtfDiscount.Location = new System.Drawing.Point(15, 85);
             this.txtfDiscount.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtfDiscount.Name = "txtfDiscount";
-            this.txtfDiscount.Size = new System.Drawing.Size(261, 31);
+            this.txtfDiscount.Size = new System.Drawing.Size(255, 31);
             this.txtfDiscount.TabIndex = 61;
             this.txtfDiscount.TextDecimal = new decimal(new int[] {
             0,
@@ -1826,7 +1826,7 @@
             this.txtfTotalPrice.Location = new System.Drawing.Point(15, 5);
             this.txtfTotalPrice.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtfTotalPrice.Name = "txtfTotalPrice";
-            this.txtfTotalPrice.Size = new System.Drawing.Size(261, 31);
+            this.txtfTotalPrice.Size = new System.Drawing.Size(255, 31);
             this.txtfTotalPrice.TabIndex = 61;
             this.txtfTotalPrice.TextDecimal = new decimal(new int[] {
             0,
@@ -1845,7 +1845,7 @@
             this.cmbfBabat.FormattingEnabled = true;
             this.cmbfBabat.Location = new System.Drawing.Point(15, 47);
             this.cmbfBabat.Name = "cmbfBabat";
-            this.cmbfBabat.Size = new System.Drawing.Size(261, 28);
+            this.cmbfBabat.Size = new System.Drawing.Size(255, 28);
             this.cmbfBabat.TabIndex = 60;
             this.cmbfBabat.ValueMember = "Guid";
             // 
@@ -1854,7 +1854,7 @@
             this.label15.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label15.AutoSize = true;
             this.label15.BackColor = System.Drawing.Color.Transparent;
-            this.label15.Location = new System.Drawing.Point(326, 50);
+            this.label15.Location = new System.Drawing.Point(320, 50);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(31, 20);
             this.label15.TabIndex = 59;
@@ -1866,7 +1866,7 @@
             this.lblfTotal.BackColor = System.Drawing.Color.Transparent;
             this.lblfTotal.Font = new System.Drawing.Font("B Yekan", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.lblfTotal.ForeColor = System.Drawing.Color.Maroon;
-            this.lblfTotal.Location = new System.Drawing.Point(9, 236);
+            this.lblfTotal.Location = new System.Drawing.Point(3, 236);
             this.lblfTotal.Name = "lblfTotal";
             this.lblfTotal.Size = new System.Drawing.Size(271, 60);
             this.lblfTotal.TabIndex = 59;
@@ -1878,7 +1878,7 @@
             this.lblfSallary.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblfSallary.AutoSize = true;
             this.lblfSallary.BackColor = System.Drawing.Color.Transparent;
-            this.lblfSallary.Location = new System.Drawing.Point(27, 129);
+            this.lblfSallary.Location = new System.Drawing.Point(21, 129);
             this.lblfSallary.Name = "lblfSallary";
             this.lblfSallary.Size = new System.Drawing.Size(154, 20);
             this.lblfSallary.TabIndex = 59;
@@ -1889,7 +1889,7 @@
             this.label23.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label23.AutoSize = true;
             this.label23.BackColor = System.Drawing.Color.Transparent;
-            this.label23.Location = new System.Drawing.Point(315, 253);
+            this.label23.Location = new System.Drawing.Point(309, 253);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(46, 20);
             this.label23.TabIndex = 59;
@@ -1900,7 +1900,7 @@
             this.label49.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label49.AutoSize = true;
             this.label49.BackColor = System.Drawing.Color.Transparent;
-            this.label49.Location = new System.Drawing.Point(278, 204);
+            this.label49.Location = new System.Drawing.Point(272, 204);
             this.label49.Name = "label49";
             this.label49.Size = new System.Drawing.Size(92, 20);
             this.label49.TabIndex = 59;
@@ -1911,7 +1911,7 @@
             this.label17.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label17.AutoSize = true;
             this.label17.BackColor = System.Drawing.Color.Transparent;
-            this.label17.Location = new System.Drawing.Point(206, 129);
+            this.label17.Location = new System.Drawing.Point(200, 129);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(154, 20);
             this.label17.TabIndex = 59;
@@ -1922,7 +1922,7 @@
             this.label21.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label21.AutoSize = true;
             this.label21.BackColor = System.Drawing.Color.Transparent;
-            this.label21.Location = new System.Drawing.Point(319, 165);
+            this.label21.Location = new System.Drawing.Point(313, 165);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(38, 20);
             this.label21.TabIndex = 59;
@@ -1933,7 +1933,7 @@
             this.label16.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label16.AutoSize = true;
             this.label16.BackColor = System.Drawing.Color.Transparent;
-            this.label16.Location = new System.Drawing.Point(317, 92);
+            this.label16.Location = new System.Drawing.Point(311, 92);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(40, 20);
             this.label16.TabIndex = 59;
@@ -1944,7 +1944,7 @@
             this.label14.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label14.AutoSize = true;
             this.label14.BackColor = System.Drawing.Color.Transparent;
-            this.label14.Location = new System.Drawing.Point(296, 13);
+            this.label14.Location = new System.Drawing.Point(290, 13);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(61, 20);
             this.label14.TabIndex = 59;
@@ -2479,7 +2479,7 @@
             this.txtfCode.Location = new System.Drawing.Point(137, 6);
             this.txtfCode.Name = "txtfCode";
             this.txtfCode.ReadOnly = true;
-            this.txtfCode.Size = new System.Drawing.Size(114, 27);
+            this.txtfCode.Size = new System.Drawing.Size(108, 27);
             this.txtfCode.TabIndex = 10;
             // 
             // label26
@@ -2487,7 +2487,7 @@
             this.label26.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label26.AutoSize = true;
             this.label26.BackColor = System.Drawing.Color.Transparent;
-            this.label26.Location = new System.Drawing.Point(282, 194);
+            this.label26.Location = new System.Drawing.Point(276, 194);
             this.label26.Name = "label26";
             this.label26.Size = new System.Drawing.Size(39, 20);
             this.label26.TabIndex = 9;
@@ -2498,7 +2498,7 @@
             this.label28.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label28.AutoSize = true;
             this.label28.BackColor = System.Drawing.Color.Transparent;
-            this.label28.Location = new System.Drawing.Point(265, 157);
+            this.label28.Location = new System.Drawing.Point(259, 157);
             this.label28.Name = "label28";
             this.label28.Size = new System.Drawing.Size(56, 20);
             this.label28.TabIndex = 9;
@@ -2509,7 +2509,7 @@
             this.label29.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label29.AutoSize = true;
             this.label29.BackColor = System.Drawing.Color.Transparent;
-            this.label29.Location = new System.Drawing.Point(263, 120);
+            this.label29.Location = new System.Drawing.Point(257, 120);
             this.label29.Name = "label29";
             this.label29.Size = new System.Drawing.Size(58, 20);
             this.label29.TabIndex = 9;
@@ -2520,7 +2520,7 @@
             this.label30.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label30.AutoSize = true;
             this.label30.BackColor = System.Drawing.Color.Transparent;
-            this.label30.Location = new System.Drawing.Point(278, 83);
+            this.label30.Location = new System.Drawing.Point(272, 83);
             this.label30.Name = "label30";
             this.label30.Size = new System.Drawing.Size(43, 20);
             this.label30.TabIndex = 9;
@@ -2533,7 +2533,7 @@
             this.lblfAddress.BackColor = System.Drawing.Color.Transparent;
             this.lblfAddress.Location = new System.Drawing.Point(51, 194);
             this.lblfAddress.Name = "lblfAddress";
-            this.lblfAddress.Size = new System.Drawing.Size(176, 153);
+            this.lblfAddress.Size = new System.Drawing.Size(170, 153);
             this.lblfAddress.TabIndex = 9;
             // 
             // lblfDateBirth
@@ -2543,7 +2543,7 @@
             this.lblfDateBirth.BackColor = System.Drawing.Color.Transparent;
             this.lblfDateBirth.Location = new System.Drawing.Point(86, 157);
             this.lblfDateBirth.Name = "lblfDateBirth";
-            this.lblfDateBirth.Size = new System.Drawing.Size(141, 20);
+            this.lblfDateBirth.Size = new System.Drawing.Size(135, 20);
             this.lblfDateBirth.TabIndex = 9;
             // 
             // lblfNationalCode
@@ -2553,7 +2553,7 @@
             this.lblfNationalCode.BackColor = System.Drawing.Color.Transparent;
             this.lblfNationalCode.Location = new System.Drawing.Point(86, 120);
             this.lblfNationalCode.Name = "lblfNationalCode";
-            this.lblfNationalCode.Size = new System.Drawing.Size(141, 20);
+            this.lblfNationalCode.Size = new System.Drawing.Size(135, 20);
             this.lblfNationalCode.TabIndex = 9;
             // 
             // lblfFatherName
@@ -2563,7 +2563,7 @@
             this.lblfFatherName.BackColor = System.Drawing.Color.Transparent;
             this.lblfFatherName.Location = new System.Drawing.Point(86, 83);
             this.lblfFatherName.Name = "lblfFatherName";
-            this.lblfFatherName.Size = new System.Drawing.Size(141, 20);
+            this.lblfFatherName.Size = new System.Drawing.Size(135, 20);
             this.lblfFatherName.TabIndex = 9;
             // 
             // lblfName
@@ -2573,7 +2573,7 @@
             this.lblfName.BackColor = System.Drawing.Color.Transparent;
             this.lblfName.Location = new System.Drawing.Point(86, 46);
             this.lblfName.Name = "lblfName";
-            this.lblfName.Size = new System.Drawing.Size(141, 20);
+            this.lblfName.Size = new System.Drawing.Size(135, 20);
             this.lblfName.TabIndex = 9;
             // 
             // label43
@@ -2581,7 +2581,7 @@
             this.label43.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label43.AutoSize = true;
             this.label43.BackColor = System.Drawing.Color.Transparent;
-            this.label43.Location = new System.Drawing.Point(226, 46);
+            this.label43.Location = new System.Drawing.Point(220, 46);
             this.label43.Name = "label43";
             this.label43.Size = new System.Drawing.Size(95, 20);
             this.label43.TabIndex = 9;
@@ -2592,7 +2592,7 @@
             this.label44.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label44.AutoSize = true;
             this.label44.BackColor = System.Drawing.Color.Transparent;
-            this.label44.Location = new System.Drawing.Point(257, 9);
+            this.label44.Location = new System.Drawing.Point(251, 9);
             this.label44.Name = "label44";
             this.label44.Size = new System.Drawing.Size(64, 20);
             this.label44.TabIndex = 9;
@@ -2933,7 +2933,7 @@
             this.fPanel.BackColor = System.Drawing.Color.Transparent;
             this.fPanel.Location = new System.Drawing.Point(3, 280);
             this.fPanel.Name = "fPanel";
-            this.fPanel.Size = new System.Drawing.Size(218, 119);
+            this.fPanel.Size = new System.Drawing.Size(212, 98);
             this.fPanel.TabIndex = 10;
             // 
             // btnBuildingSearch
@@ -2941,18 +2941,18 @@
             this.btnBuildingSearch.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.btnBuildingSearch.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnBuildingSearch.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.btnBuildingSearch.BackColor = System.Drawing.Color.LightSteelBlue;
             this.btnBuildingSearch.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnBuildingSearch.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnBuildingSearch.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnBuildingSearch.Location = new System.Drawing.Point(29, 9);
             this.btnBuildingSearch.Name = "btnBuildingSearch";
             this.btnBuildingSearch.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
-            this.btnBuildingSearch.Size = new System.Drawing.Size(160, 27);
+            this.btnBuildingSearch.Size = new System.Drawing.Size(154, 27);
             this.btnBuildingSearch.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
             this.btnBuildingSearch.TabIndex = 2;
             this.btnBuildingSearch.Text = "شناسایی ملک";
-            this.btnBuildingSearch.TextColor = System.Drawing.Color.White;
+            this.btnBuildingSearch.TextColor = System.Drawing.Color.Black;
             this.btnBuildingSearch.Click += new System.EventHandler(this.btnBuildingSearch_Click);
             // 
             // label45
@@ -2960,7 +2960,7 @@
             this.label45.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label45.AutoSize = true;
             this.label45.BackColor = System.Drawing.Color.Transparent;
-            this.label45.Location = new System.Drawing.Point(173, 191);
+            this.label45.Location = new System.Drawing.Point(167, 191);
             this.label45.Name = "label45";
             this.label45.Size = new System.Drawing.Size(39, 20);
             this.label45.TabIndex = 9;
@@ -2971,7 +2971,7 @@
             this.label46.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label46.AutoSize = true;
             this.label46.BackColor = System.Drawing.Color.Transparent;
-            this.label46.Location = new System.Drawing.Point(176, 154);
+            this.label46.Location = new System.Drawing.Point(170, 154);
             this.label46.Name = "label46";
             this.label46.Size = new System.Drawing.Size(36, 20);
             this.label46.TabIndex = 9;
@@ -2982,7 +2982,7 @@
             this.label47.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label47.AutoSize = true;
             this.label47.BackColor = System.Drawing.Color.Transparent;
-            this.label47.Location = new System.Drawing.Point(167, 117);
+            this.label47.Location = new System.Drawing.Point(161, 117);
             this.label47.Name = "label47";
             this.label47.Size = new System.Drawing.Size(45, 20);
             this.label47.TabIndex = 9;
@@ -2993,7 +2993,7 @@
             this.label48.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label48.AutoSize = true;
             this.label48.BackColor = System.Drawing.Color.Transparent;
-            this.label48.Location = new System.Drawing.Point(147, 80);
+            this.label48.Location = new System.Drawing.Point(141, 80);
             this.label48.Name = "label48";
             this.label48.Size = new System.Drawing.Size(65, 20);
             this.label48.TabIndex = 9;
@@ -3006,7 +3006,7 @@
             this.lblBuildingAddress.BackColor = System.Drawing.Color.Transparent;
             this.lblBuildingAddress.Location = new System.Drawing.Point(53, 191);
             this.lblBuildingAddress.Name = "lblBuildingAddress";
-            this.lblBuildingAddress.Size = new System.Drawing.Size(97, 79);
+            this.lblBuildingAddress.Size = new System.Drawing.Size(91, 79);
             this.lblBuildingAddress.TabIndex = 9;
             // 
             // lblZirBana
@@ -3016,7 +3016,7 @@
             this.lblZirBana.BackColor = System.Drawing.Color.Transparent;
             this.lblZirBana.Location = new System.Drawing.Point(53, 154);
             this.lblZirBana.Name = "lblZirBana";
-            this.lblZirBana.Size = new System.Drawing.Size(93, 20);
+            this.lblZirBana.Size = new System.Drawing.Size(87, 20);
             this.lblZirBana.TabIndex = 9;
             // 
             // lblMasahat
@@ -3026,7 +3026,7 @@
             this.lblMasahat.BackColor = System.Drawing.Color.Transparent;
             this.lblMasahat.Location = new System.Drawing.Point(53, 117);
             this.lblMasahat.Name = "lblMasahat";
-            this.lblMasahat.Size = new System.Drawing.Size(93, 20);
+            this.lblMasahat.Size = new System.Drawing.Size(87, 20);
             this.lblMasahat.TabIndex = 9;
             // 
             // lblsPrice
@@ -3036,7 +3036,7 @@
             this.lblsPrice.BackColor = System.Drawing.Color.Transparent;
             this.lblsPrice.Location = new System.Drawing.Point(53, 80);
             this.lblsPrice.Name = "lblsPrice";
-            this.lblsPrice.Size = new System.Drawing.Size(93, 20);
+            this.lblsPrice.Size = new System.Drawing.Size(87, 20);
             this.lblsPrice.TabIndex = 9;
             // 
             // lblfPrice
@@ -3046,7 +3046,7 @@
             this.lblfPrice.BackColor = System.Drawing.Color.Transparent;
             this.lblfPrice.Location = new System.Drawing.Point(53, 43);
             this.lblfPrice.Name = "lblfPrice";
-            this.lblfPrice.Size = new System.Drawing.Size(93, 20);
+            this.lblfPrice.Size = new System.Drawing.Size(87, 20);
             this.lblfPrice.TabIndex = 9;
             // 
             // label41
@@ -3094,7 +3094,7 @@
             this.label63.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label63.AutoSize = true;
             this.label63.BackColor = System.Drawing.Color.Transparent;
-            this.label63.Location = new System.Drawing.Point(155, 43);
+            this.label63.Location = new System.Drawing.Point(149, 43);
             this.label63.Name = "label63";
             this.label63.Size = new System.Drawing.Size(57, 20);
             this.label63.TabIndex = 9;
@@ -3331,8 +3331,8 @@
             this.superTabControl2.ControlBox.MenuBox.Name = "";
             this.superTabControl2.ControlBox.Name = "";
             this.superTabControl2.ControlBox.SubItems.AddRange(new DevComponents.DotNetBar.BaseItem[] {
-            this.superTabControl2.ControlBox.MenuBox,
-            this.superTabControl2.ControlBox.CloseBox});
+            this.superTabControl2.ControlBox.CloseBox,
+            this.superTabControl2.ControlBox.MenuBox});
             this.superTabControl2.Controls.Add(this.superTabControlPanel9);
             this.superTabControl2.Controls.Add(this.superTabControlPanel10);
             this.superTabControl2.Location = new System.Drawing.Point(3, 8);
@@ -3367,9 +3367,9 @@
             this.superTabControlPanel9.Controls.Add(this.lblEjareFull);
             this.superTabControlPanel9.Controls.Add(this.label68);
             this.superTabControlPanel9.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.superTabControlPanel9.Location = new System.Drawing.Point(0, 25);
+            this.superTabControlPanel9.Location = new System.Drawing.Point(0, 30);
             this.superTabControlPanel9.Name = "superTabControlPanel9";
-            this.superTabControlPanel9.Size = new System.Drawing.Size(533, 268);
+            this.superTabControlPanel9.Size = new System.Drawing.Size(533, 263);
             this.superTabControlPanel9.TabIndex = 0;
             this.superTabControlPanel9.TabItem = this.superTabItem8;
             // 
@@ -3721,7 +3721,7 @@
             // 
             this.btnCancel.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnCancel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.btnCancel.BackColor = System.Drawing.Color.LightSteelBlue;
             this.btnCancel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnCancel.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnCancel.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -3741,7 +3741,7 @@
             // 
             this.btnFinish.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.btnFinish.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnFinish.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.btnFinish.BackColor = System.Drawing.Color.LightSteelBlue;
             this.btnFinish.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnFinish.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnFinish.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -3786,7 +3786,7 @@
             this.Name = "frmContractMain";
             this.Padding = new System.Windows.Forms.Padding(27, 92, 27, 31);
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.Style = MetroFramework.MetroColorStyle.Green;
+            this.Style = MetroFramework.MetroColorStyle.Teal;
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmContractMain_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmContractMain_KeyDown);

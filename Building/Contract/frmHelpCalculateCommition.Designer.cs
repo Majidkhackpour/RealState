@@ -172,7 +172,7 @@ namespace Building.Contract
             // btnAddExcel
             // 
             this.btnAddExcel.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnAddExcel.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.btnAddExcel.BackColor = System.Drawing.Color.LightSteelBlue;
             this.btnAddExcel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnAddExcel.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnAddExcel.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -184,7 +184,7 @@ namespace Building.Contract
             this.btnAddExcel.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
             this.btnAddExcel.TabIndex = 5;
             this.btnAddExcel.Text = "خروج";
-            this.btnAddExcel.TextColor = System.Drawing.Color.White;
+            this.btnAddExcel.TextColor = System.Drawing.Color.Black;
             this.btnAddExcel.Click += new System.EventHandler(this.btnAddExcel_Click);
             // 
             // groupPanel1
@@ -535,7 +535,7 @@ namespace Building.Contract
             this.Name = "frmHelpCalculateCommition";
             this.Padding = new System.Windows.Forms.Padding(27, 92, 27, 31);
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.Style = MetroFramework.MetroColorStyle.Green;
+            this.Style = MetroFramework.MetroColorStyle.Teal;
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmHelpCalculateCommition_KeyDown);
             this.grp1.ResumeLayout(false);
             this.grp1.PerformLayout();

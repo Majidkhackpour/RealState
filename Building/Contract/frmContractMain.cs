@@ -11,7 +11,6 @@ using MetroFramework.Forms;
 using Notification;
 using Peoples;
 using Services;
-using User;
 
 namespace Building.Contract
 {
@@ -22,6 +21,7 @@ namespace Building.Contract
         private PeoplesBussines sSide;
         private BuildingBussines building;
         readonly List<string> lstList = new List<string>();
+
         private async Task SetDataAsync()
         {
             try
@@ -542,7 +542,7 @@ namespace Building.Contract
         {
             try
             {
-                var frm = new frmShowBuildings(true, null, fSide?.Guid ?? Guid.Empty);
+                var frm = new frmShowBuildings(true, null, true, fSide?.Guid ?? Guid.Empty);
                 if (frm.ShowDialog(this) != DialogResult.OK) return;
                 building = BuildingBussines.Get(frm.SelectedGuid);
                 LoadBuilding();

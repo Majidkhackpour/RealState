@@ -7,11 +7,10 @@ namespace Building.BuildingMatchesItem
 {
     public partial class frmShowMatchesRequester : MetroForm
     {
-        private List<BuildingRequestBussines> reqList;
         public frmShowMatchesRequester(List<BuildingRequestBussines>list)
         {
             InitializeComponent();
-            reqList = list;
+            ucHeader.Text = "نمایش متقاضیان ملک انتخاب شده";
             reqBindingSource.DataSource = list;
         }
         private void frmShowMatchesRequester_KeyDown(object sender, KeyEventArgs e)

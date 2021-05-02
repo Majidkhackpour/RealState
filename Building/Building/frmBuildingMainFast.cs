@@ -239,55 +239,6 @@ namespace Building.Building
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private async Task<ReturnedSaveFuncInfo> CheckValidationAsync()
-        {
-            var res = new ReturnedSaveFuncInfo();
-            try
-            {
-                if (string.IsNullOrWhiteSpace(txtCode.Text))
-                {
-                    res.AddError("کد ملک نمی تواند خالی باشد");
-                    txtCode.Focus();
-                }
-
-                if (!await BuildingBussines.CheckCodeAsync(txtCode.Text.Trim(), cls.Guid))
-                {
-                    res.AddError("کد ملک وارد شده تکراری است");
-                    txtCode.Focus();
-                }
-
-                if (owner == null)
-                {
-                    res.AddError("لطفا مالک را انتخاب نمایید");
-                    btnSearchOwner.Focus();
-                }
-
-
-                if (txtRahnPrice1.Text == "0" && txtEjarePrice1.Text == "0" && txtSellPrice.Text == "0")
-                {
-                    res.AddError("لطفا یکی از فیلدهای مبلغ را وارد نمایید");
-                    btnSearchOwner.Focus();
-                }
-
-                if (txtZirBana.Text == "0" && txtMasahat.Text == "0")
-                {
-                    res.AddError("لطفا مساحت و زیربنا را وارد نمایید");
-                    btnSearchOwner.Focus();
-                }
-
-                if (cmbRegion.SelectedValue == null)
-                {
-                    res.AddError("لطفا محدوده ملک را وارد نمایید");
-                    btnSearchOwner.Focus();
-                }
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-                res.AddReturnedValue(ex);
-            }
-            return res;
-        }
         private async Task<ReturnedSaveFuncInfo> SetObjectAsync()
         {
             var res = new ReturnedSaveFuncInfo();
@@ -445,6 +396,8 @@ namespace Building.Building
             InitializeComponent();
             WindowState = FormWindowState.Maximized;
             cls = new BuildingBussines();
+            ucHeader.Text = "افزودن ملک جدید";
+            ucHeader.IsModified = cls.IsModified;
             superTabControl1.SelectedTab = superTabItem1;
             superTabControl2.SelectedTab = superTabItem8;
         }
@@ -548,9 +501,6 @@ namespace Building.Building
                     cls.Guid = Guid.NewGuid();
                     isSendSms = true;
                 }
-
-                res.AddReturnedValue(await CheckValidationAsync());
-                if (res.HasError) return;
 
                 res.AddReturnedValue(await SetObjectAsync());
                 if (res.HasError) return;

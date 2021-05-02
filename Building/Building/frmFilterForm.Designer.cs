@@ -66,6 +66,7 @@
             this.txtFPrice2 = new System.Windows.Forms.NumericUpDown();
             this.btnSeach = new DevComponents.DotNetBar.ButtonX();
             this.btnRegion = new DevComponents.DotNetBar.ButtonX();
+            this.ucHeader = new WindowsSerivces.UC_Header();
             this.grp.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtSPrice2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtRoomCount)).BeginInit();
@@ -115,7 +116,7 @@
             this.grp.Controls.Add(this.label3);
             this.grp.Controls.Add(this.txtFPrice2);
             this.grp.DisabledBackColor = System.Drawing.Color.Empty;
-            this.grp.Location = new System.Drawing.Point(6, 32);
+            this.grp.Location = new System.Drawing.Point(6, 66);
             this.grp.Name = "grp";
             this.grp.Size = new System.Drawing.Size(535, 298);
             this.grp.Style.Alignment = System.Drawing.StringAlignment.Center;
@@ -527,19 +528,19 @@
             this.btnSeach.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.btnSeach.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSeach.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.btnSeach.BackColor = System.Drawing.Color.LightSteelBlue;
             this.btnSeach.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnSeach.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnSeach.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnSeach.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.btnSeach.Location = new System.Drawing.Point(138, 335);
+            this.btnSeach.Location = new System.Drawing.Point(138, 371);
             this.btnSeach.Name = "btnSeach";
             this.btnSeach.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
             this.btnSeach.Size = new System.Drawing.Size(348, 31);
             this.btnSeach.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
             this.btnSeach.TabIndex = 1;
             this.btnSeach.Text = "جستجو";
-            this.btnSeach.TextColor = System.Drawing.Color.White;
+            this.btnSeach.TextColor = System.Drawing.Color.Black;
             this.btnSeach.Click += new System.EventHandler(this.btnSeach_Click);
             // 
             // btnRegion
@@ -547,26 +548,45 @@
             this.btnRegion.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.btnRegion.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnRegion.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.btnRegion.BackColor = System.Drawing.Color.LightSteelBlue;
             this.btnRegion.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnRegion.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnRegion.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnRegion.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.btnRegion.Location = new System.Drawing.Point(30, 335);
+            this.btnRegion.Location = new System.Drawing.Point(30, 371);
             this.btnRegion.Name = "btnRegion";
             this.btnRegion.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
             this.btnRegion.Size = new System.Drawing.Size(102, 31);
             this.btnRegion.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
             this.btnRegion.TabIndex = 1;
             this.btnRegion.Text = "فیلتر مناطق";
-            this.btnRegion.TextColor = System.Drawing.Color.White;
+            this.btnRegion.TextColor = System.Drawing.Color.Black;
             this.btnRegion.Click += new System.EventHandler(this.btnRegion_Click);
+            // 
+            // ucHeader
+            // 
+            this.ucHeader.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.ucHeader.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ucHeader.BackColor = System.Drawing.Color.White;
+            this.ucHeader.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.ucHeader.Cursor = System.Windows.Forms.Cursors.Default;
+            this.ucHeader.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.ucHeader.IsModified = false;
+            this.ucHeader.Location = new System.Drawing.Point(-2, 23);
+            this.ucHeader.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ucHeader.MinimumSize = new System.Drawing.Size(297, 34);
+            this.ucHeader.Name = "ucHeader";
+            this.ucHeader.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.ucHeader.Size = new System.Drawing.Size(560, 34);
+            this.ucHeader.TabIndex = 13;
             // 
             // frmFilterForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(549, 376);
+            this.ClientSize = new System.Drawing.Size(549, 412);
+            this.Controls.Add(this.ucHeader);
             this.Controls.Add(this.btnRegion);
             this.Controls.Add(this.btnSeach);
             this.Controls.Add(this.grp);
@@ -574,13 +594,13 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(549, 376);
+            this.MaximumSize = new System.Drawing.Size(549, 412);
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(549, 376);
+            this.MinimumSize = new System.Drawing.Size(549, 412);
             this.Name = "frmFilterForm";
             this.Padding = new System.Windows.Forms.Padding(27, 92, 27, 31);
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.Style = MetroFramework.MetroColorStyle.Green;
+            this.Style = MetroFramework.MetroColorStyle.Teal;
             this.Load += new System.EventHandler(this.frmFilterForm_Load);
             this.grp.ResumeLayout(false);
             this.grp.PerformLayout();
@@ -636,5 +656,6 @@
         private System.Windows.Forms.NumericUpDown txtMaxFile;
         private System.Windows.Forms.Label label2;
         private DevComponents.DotNetBar.ButtonX btnRegion;
+        private WindowsSerivces.UC_Header ucHeader;
     }
 }

@@ -68,6 +68,9 @@ namespace EntityCache.Bussines
                     tr = cn.BeginTransaction();
                 }
 
+                res.AddReturnedValue(CheckValidation());
+                if (res.HasError) return res;
+
                 if (RegionList.Count > 0)
                 {
                     res.AddReturnedValue(await BuildingRequestRegionBussines.RemoveRangeAsync(Guid, tr));
@@ -216,6 +219,26 @@ namespace EntityCache.Bussines
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
                 return null;
             }
+        }
+
+        private ReturnedSaveFuncInfo CheckValidation()
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                if (AskerGuid == Guid.Empty) res.AddError("لطفا متقاضی را انتخاب نمایید");
+                if (RahnPrice1 == 0 && RahnPrice2 == 0 && EjarePrice1 == 0 && EjarePrice2 == 0 && SellPrice1 == 0 && SellPrice2 == 0)
+                    res.AddError("لطفا یکی از فیلدهای مبلغ را وارد نمایید");
+
+                if (Masahat1 == 0 && Masahat2 == 0) res.AddError("لطفا مساحت را وارد نمایید");
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+
+            return res;
         }
     }
 }

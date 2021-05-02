@@ -141,7 +141,7 @@ namespace Building.Building
                 picGoogle.Visible = true;
                 webGoogle.Visible = false;
 
-                cmbPirority.SelectedIndex = (int) cls.Priority;
+                cmbPirority.SelectedIndex = (int)cls.Priority;
 
                 if (cls?.Guid == Guid.Empty)
                 {
@@ -521,7 +521,7 @@ namespace Building.Building
             {
                 _token?.Cancel();
                 _token = new CancellationTokenSource();
-                var list = await BuildingOptionsBussines.GetAllAsync(search,_token.Token);
+                var list = await BuildingOptionsBussines.GetAllAsync(search, _token.Token);
                 BuildingOptionBindingSource.DataSource = list.Where(q => q.Status).OrderBy(q => q.Name).ToList();
             }
             catch (Exception ex)
@@ -654,69 +654,13 @@ namespace Building.Building
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private async Task<ReturnedSaveFuncInfo> CheckValidationAsync()
-        {
-            var res = new ReturnedSaveFuncInfo();
-            try
-            {
-                if (string.IsNullOrWhiteSpace(txtCode.Text))
-                {
-                    res.AddError("کد ملک نمی تواند خالی باشد");
-                    txtCode.Focus();
-                }
-
-                if (!await BuildingBussines.CheckCodeAsync(txtCode.Text.Trim(), cls.Guid))
-                {
-                    res.AddError("کد ملک وارد شده تکراری است");
-                    txtCode.Focus();
-                }
-
-                if (owner == null)
-                {
-                    res.AddError("لطفا مالک را انتخاب نمایید");
-                    btnSearchOwner.Focus();
-                }
-
-
-                if (txtRahnPrice1.Text == "0" && txtRahnPrice2.Text == "0" && txtEjarePrice1.Text == "0" &&
-                    txtEjarePrice2.Text == "0" && txtSellPrice.Text == "0" && txtPishTotalPrice.Text == "0")
-                {
-                    res.AddError("لطفا یکی از فیلدهای مبلغ را وارد نمایید");
-                    btnSearchOwner.Focus();
-                }
-
-                if (txtZirBana.Text == "0" && txtMasahat.Text == "0")
-                {
-                    res.AddError("لطفا مساحت و زیربنا را وارد نمایید");
-                    btnSearchOwner.Focus();
-                }
-
-                if (cmbRegion.SelectedValue == null)
-                {
-                    res.AddError("لطفا محدوده ملک را وارد نمایید");
-                    btnSearchOwner.Focus();
-                }
-
-                if (txtSaleSakht.Text.ParseToInt() > txtSaleParvane.Text.ParseToInt())
-                {
-                    res.AddError("سال ساخت نمی تواند از سال اخذ پروانه بزرگتر باشد");
-                    btnSearchOwner.Focus();
-                }
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-                res.AddReturnedValue(ex);
-            }
-            return res;
-        }
         private ReturnedSaveFuncInfo SetData()
         {
             var res = new ReturnedSaveFuncInfo();
             try
             {
                 cls.Code = txtCode.Text;
-                cls.OwnerGuid = owner.Guid;
+                cls.OwnerGuid = owner?.Guid ?? Guid.Empty;
                 cls.UserGuid = (Guid)cmbUser.SelectedValue;
                 cls.Priority = (EnBuildingPriority)cmbPirority.SelectedIndex;
                 cls.IsArchive = false;
@@ -751,7 +695,8 @@ namespace Building.Building
                     cls.ZirBana = txtZirBana.Text.ParseToInt() * 10000;
 
                 cls.CityGuid = (Guid)cmbCity.SelectedValue;
-                cls.RegionGuid = (Guid)cmbRegion.SelectedValue;
+                if (cmbRegion.SelectedValue == null) cls.RegionGuid = Guid.Empty;
+                else cls.RegionGuid = (Guid)cmbRegion.SelectedValue;
                 cls.Address = txtAddress.Text;
                 cls.BuildingConditionGuid = (Guid)cmbBuildingCondition.SelectedValue;
                 cls.Side = (EnBuildingSide)cmbSide.SelectedIndex;
@@ -873,9 +818,6 @@ namespace Building.Building
                     isSendSms = true;
                 }
 
-                res.AddReturnedValue(await CheckValidationAsync());
-                if (res.HasError) return res;
-
                 res.AddReturnedValue(SetData());
                 if (res.HasError) return res;
                 res.AddReturnedValue(await SetOptionsAsync(cls.Guid));
@@ -964,6 +906,8 @@ namespace Building.Building
             InitializeComponent();
             WindowState = FormWindowState.Maximized;
             cls = new BuildingBussines();
+            ucHeader.Text = "افزودن ملک جدید";
+            ucHeader.IsModified = cls.IsModified;
             superTabControl1.SelectedTab = superTabItem1;
             superTabControl2.SelectedTab = superTabItem8;
         }
@@ -973,6 +917,8 @@ namespace Building.Building
             WindowState = FormWindowState.Maximized;
             cls = BuildingBussines.Get(guid);
             owner = PeoplesBussines.Get(cls.OwnerGuid);
+            ucHeader.Text = !isShowMode ? $"ویرایش ملک کد {cls.Code}" : $"مشاهده ملک کد {cls.Code}";
+            ucHeader.IsModified = cls.IsModified;
             SaveImageToTemp();
             superTabControl1.SelectedTab = superTabItem1;
             superTabControl2.SelectedTab = superTabItem8;
@@ -983,9 +929,7 @@ namespace Building.Building
             superTabControlPanel5.Enabled = !isShowMode;
             superTabControlPanel6.Enabled = !isShowMode;
             btnFinish.Enabled = !isShowMode;
-            btnPrint.Enabled = !isShowMode;
         }
-
 
 
         private async void frmBuildingMain_Load(object sender, EventArgs e) => await SetDataAsync();
@@ -1024,7 +968,7 @@ namespace Building.Building
                 if (cmbState.SelectedValue == null) return;
                 _token?.Cancel();
                 _token = new CancellationTokenSource();
-                var list = await CitiesBussines.GetAllAsync((Guid) cmbState.SelectedValue, _token.Token);
+                var list = await CitiesBussines.GetAllAsync((Guid)cmbState.SelectedValue, _token.Token);
                 CityBindingSource.DataSource = list?.Where(q => q.Status).OrderBy(q => q.Name).ToList();
                 if (cls.Guid != Guid.Empty) cmbCity.SelectedValue = cls.CityGuid;
             }
@@ -1040,7 +984,7 @@ namespace Building.Building
                 if (cmbCity.SelectedValue == null) return;
                 _token?.Cancel();
                 _token = new CancellationTokenSource();
-                var list = await RegionsBussines.GetAllAsync((Guid) cmbCity.SelectedValue, _token.Token);
+                var list = await RegionsBussines.GetAllAsync((Guid)cmbCity.SelectedValue, _token.Token);
                 RegionBindingSource.DataSource = list?.Where(q => q.Status).OrderBy(q => q.Name).ToList();
                 if (cls.Guid != Guid.Empty) cmbRegion.SelectedValue = cls.RegionGuid;
 
@@ -1107,14 +1051,11 @@ namespace Building.Building
                 switch (e.KeyCode)
                 {
                     case Keys.Enter:
-                        if (!btnFinish.Focused && !btnCancel.Focused && !btnPrint.Focused)
+                        if (!btnFinish.Focused && !btnCancel.Focused)
                             SendKeys.Send("{Tab}");
                         break;
                     case Keys.F5:
                         btnFinish.PerformClick();
-                        break;
-                    case Keys.F10:
-                        btnPrint.PerformClick();
                         break;
                     case Keys.Escape:
                         btnCancel.PerformClick();
@@ -1364,98 +1305,6 @@ namespace Building.Building
         private void txtCode_Leave(object sender, EventArgs e)
         {
             txtSetter.Follow(txtCode);
-        }
-        private async void btnPrint_Click(object sender, EventArgs e)
-        {
-            var res = new ReturnedSaveFuncInfo();
-            try
-            {
-                res.AddReturnedValue(await SaveAsync());
-                if (res.HasError) return;
-
-                var rpt = new BuildingReportViewModel()
-                {
-                    Masahat = cls.Masahat,
-                    SellPrice = cls.SellPrice,
-                    RahnPrice1 = cls.RahnPrice1,
-                    EjarePrice1 = cls.EjarePrice1,
-                    Code = cls.Code,
-                    RoomCount = cls.RoomCount,
-                    TabaqeNo = cls.TabaqeNo,
-                    SaleSakht = cls.SaleSakht,
-                    ZirBana = cls.ZirBana,
-                    Address = cls.Address,
-                    TedadTabaqe = cls.TedadTabaqe,
-                    ShortDesc = cls.ShortDesc,
-                    VahedPerTabaqe = cls.VahedPerTabaqe,
-                    PishTotalPrice = cls.PishTotalPrice,
-                    PishPrice = cls.PishPrice,
-                    VamPrice = cls.VamPrice,
-                    Hashie = cls.Hashie,
-                    BarqName = cls.BarqName,
-                    GasName = cls.GasName,
-                    WaterName = cls.WaterName,
-                    OwnerName = lblOwnerName.Text,
-                    BuildingTypeName = cmbBuildingType.Text,
-                    BuildingConditionName = cmbBuildingCondition.Text,
-                    BuildingViewName = cmbBView.Text,
-                    DocumentTypeName = cmbSellSanadType.Text,
-                    FloorCoverName = cmbBFloorCover.Text,
-                    KitchenServiceName = cmbKitchenService.Text,
-                    SideName = cmbSide.Text,
-                    UserName = cmbUser.Text,
-                    TellName = cls.TellName,
-                    Options = string.Join(", ",cls.OptionList?.Select(q=>q.OptionName)),
-                    DeliveryDateSh = Calendar.MiladiToShamsi(cls.DeliveryDate)
-                };
-                if (cls.SellPrice > 0 && cls.Masahat > 0)
-                    rpt.SellPricePerMetr = cls.SellPrice / cls.Masahat;
-                var people = PeoplesBussines.Get(cls.OwnerGuid);
-                if (people.TellList != null && people.TellList.Count > 0)
-                {
-                    if (people.TellList.Count >= 2)
-                    {
-                        rpt.OwnerTell1 = people.TellList[0].Tell;
-                        rpt.OwnerTell2 = people.TellList[1].Tell;
-                    }
-                    else
-                    {
-                        rpt.OwnerTell1 = people.TellList[0].Tell;
-                        rpt.OwnerTell2 = "";
-                    }
-                }
-                else
-                {
-                    rpt.OwnerTell1 = "";
-                    rpt.OwnerTell2 = "";
-                }
-
-                var cls_ = new ReportGenerator(StiType.Building_One, EnPrintType.Pdf_A4)
-                    {Lst = new List<object>() {rpt}};
-                cls_.PrintNew();
-
-                DialogResult = DialogResult.OK;
-                Close();
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-                res.AddReturnedValue(ex);
-            }
-            finally
-            {
-                if (res.HasError)
-                {
-                    var frm = new FrmShowErrorMessage(res, "خطا در ذخیره سازی ملک");
-                    frm.ShowDialog(this);
-                    frm.Dispose();
-                }
-                else
-                {
-                    DialogResult = DialogResult.OK;
-                    Close();
-                }
-            }
         }
         private async void chbGoogleMap_CheckedChanged(object sender, EventArgs e)
         {

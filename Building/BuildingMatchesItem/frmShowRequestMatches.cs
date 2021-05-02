@@ -18,6 +18,7 @@ namespace Building.BuildingMatchesItem
         public frmShowRequestMatches(List<BuildingRequestViewModel> list)
         {
             InitializeComponent();
+            ucHeader.Text = "نمایش املاک و درخواست های مورد تطبیق";
             matchesList = list;
         }
 

@@ -55,6 +55,7 @@ namespace Building.Contract
         public frmShowContract()
         {
             InitializeComponent();
+            ucHeader.Text = "نمایش لیست قراردادها";
             SetAccess();
         }
 
@@ -63,17 +64,7 @@ namespace Building.Contract
         {
             DGrid.Rows[e.RowIndex].Cells["dgRadif"].Value = e.RowIndex + 1;
         }
-        private async void txtSearch_TextChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                await LoadDataAsync(txtSearch.Text);
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
+        private async void txtSearch_TextChanged(object sender, EventArgs e) => await LoadDataAsync(txtSearch.Text);
         private void frmShowContract_KeyDown(object sender, KeyEventArgs e)
         {
             try

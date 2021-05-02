@@ -11,10 +11,9 @@ namespace Building.Building
         public frmBuildingAdvanceSearch(List<BuildingViewModel> list)
         {
             InitializeComponent();
+            ucHeader.Text = "نمایش لیست املاک جستجو شده";
             SetFiles(list);
         }
-
-
         private void SetFiles(List<BuildingViewModel> list)
         {
             try
@@ -30,7 +29,5 @@ namespace Building.Building
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-
-
     }
 }

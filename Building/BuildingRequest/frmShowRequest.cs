@@ -10,7 +10,6 @@ using MetroFramework.Forms;
 using Notification;
 using Print;
 using Services;
-using User;
 
 namespace Building.BuildingRequest
 {
@@ -21,7 +20,7 @@ namespace Building.BuildingRequest
         private List<string> _columnList;
         private CancellationTokenSource _token = new CancellationTokenSource();
 
-        private async Task LoadDataAsync(bool status, string search = "")
+        private async Task LoadDataAsync(string search = "")
         {
             try
             {
@@ -29,7 +28,7 @@ namespace Building.BuildingRequest
                 _token = new CancellationTokenSource();
                 _list = await BuildingRequestBussines.GetAllAsync(search, _token.Token);
                 Invoke(new MethodInvoker(() => reqBindingSource.DataSource =
-                    _list.Where(q => q.Status == status).OrderByDescending(q => q.CreateDate).ToSortableBindingList()));
+                    _list.Where(q => q.Status == _st).OrderByDescending(q => q.CreateDate).ToSortableBindingList()));
             }
             catch (Exception ex)
             {
@@ -44,7 +43,6 @@ namespace Building.BuildingRequest
                 mnuAdd.Enabled = access?.BuildingRequest.Building_Request_Insert ?? false;
                 mnuEdit.Enabled = access?.BuildingRequest.Building_Request_Update ?? false;
                 mnuDelete.Enabled = access?.BuildingRequest.Building_Request_Delete ?? false;
-                mnuStatus.Enabled = access?.BuildingRequest.Building_Request_Disable ?? false;
                 mnuView.Enabled = access?.BuildingRequest.Building_Request_View ?? false;
                 mnuPrint.Enabled = access?.BuildingRequest.Building_Request_Print ?? false;
 
@@ -53,26 +51,6 @@ namespace Building.BuildingRequest
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-        private bool ST
-        {
-            get => _st;
-            set
-            {
-                _st = value;
-                if (_st)
-                {
-                    mnuStatus.Text = "غیرفعال (Ctrl+S)";
-                    Task.Run(() => LoadDataAsync(ST, txtSearch.Text));
-                    mnuDelete.Text = "حذف (Del)";
-                }
-                else
-                {
-                    mnuStatus.Text = "فعال (Ctrl+S)";
-                    Task.Run(() => LoadDataAsync(ST, txtSearch.Text));
-                    mnuDelete.Text = "فعال کردن";
-                }
             }
         }
         private void SetColumns()
@@ -167,33 +145,22 @@ namespace Building.BuildingRequest
             }
         }
 
-        public frmShowRequest()
+        public frmShowRequest(bool status = true)
         {
             InitializeComponent();
+            ucHeader.Text = "نمایش لیست تقاضاها";
+            _st = status;
             SetAccess();
             DGrid.Focus();
             SetColumns();
         }
 
-        private async void frmShowRequest_Load(object sender, EventArgs e)
-        {
-            await LoadDataAsync(ST);
-        }
+        private async void frmShowRequest_Load(object sender, EventArgs e) => await LoadDataAsync();
         private void DGrid_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
             DGrid.Rows[e.RowIndex].Cells["dgRadif"].Value = e.RowIndex + 1;
         }
-        private async void txtSearch_TextChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                await LoadDataAsync(ST, txtSearch.Text);
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
+        private async void txtSearch_TextChanged(object sender, EventArgs e) => await LoadDataAsync();
         private void frmShowRequest_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -211,9 +178,6 @@ namespace Building.BuildingRequest
                         break;
                     case Keys.F12:
                         mnuView.PerformClick();
-                        break;
-                    case Keys.S:
-                        if (e.Control) ST = !ST;
                         break;
                     case Keys.Escape:
                         if (!string.IsNullOrEmpty(txtSearch.Text))
@@ -240,7 +204,6 @@ namespace Building.BuildingRequest
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void mnuStatus_Click(object sender, EventArgs e) => ST = !ST;
         private void mnuPrint_Click(object sender, EventArgs e)
         {
             try
@@ -323,7 +286,7 @@ namespace Building.BuildingRequest
             {
                 if (DGrid.RowCount <= 0) return;
                 if (DGrid.CurrentRow == null) return;
-                if (!ST)
+                if (!_st)
                 {
                     frmNotification.PublicInfo.ShowMessage(
                         "شما مجاز به ویرایش داده حذف شده نمی باشید \r\n برای این منظور، ابتدا فیلد موردنظر را از حالت حذف شده به فعال، تغییر وضعیت دهید");
@@ -332,7 +295,7 @@ namespace Building.BuildingRequest
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
                 var frm = new frmRequestMain(guid, false);
                 if (frm.ShowDialog(this) == DialogResult.OK)
-                    await LoadDataAsync(ST, txtSearch.Text);
+                    await LoadDataAsync(txtSearch.Text);
             }
             catch (Exception ex)
             {
@@ -345,7 +308,7 @@ namespace Building.BuildingRequest
             {
                 var frm = new frmRequestMain();
                 if (frm.ShowDialog(this) == DialogResult.OK)
-                    await LoadDataAsync(ST);
+                    await LoadDataAsync();
             }
             catch (Exception ex)
             {
@@ -360,7 +323,7 @@ namespace Building.BuildingRequest
                 if (DGrid.RowCount <= 0) return;
                 if (DGrid.CurrentRow == null) return;
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
-                if (ST)
+                if (_st)
                 {
                     if (MessageBox.Show(this,
                             $@"آیا از حذف درخواست {DGrid[dgName.Index, DGrid.CurrentRow.Index].Value} اطمینان دارید؟",
@@ -381,7 +344,7 @@ namespace Building.BuildingRequest
                     res.AddReturnedValue(await prd.ChangeStatusAsync(true));
                 }
 
-                await LoadDataAsync(ST, txtSearch.Text);
+                await LoadDataAsync(txtSearch.Text);
             }
             catch (Exception ex)
             {

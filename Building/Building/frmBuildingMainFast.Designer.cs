@@ -125,6 +125,7 @@
             this.superTabItem1 = new DevComponents.DotNetBar.SuperTabItem();
             this.btnFinish = new DevComponents.DotNetBar.ButtonX();
             this.btnCancel = new DevComponents.DotNetBar.ButtonX();
+            this.ucHeader = new WindowsSerivces.UC_Header();
             ((System.ComponentModel.ISupportInitialize)(this.BuildingOptionBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.batBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bTypeBindingSource)).BeginInit();
@@ -201,7 +202,7 @@
             this.superTabControlPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.superTabControlPanel2.Location = new System.Drawing.Point(0, 40);
             this.superTabControlPanel2.Name = "superTabControlPanel2";
-            this.superTabControlPanel2.Size = new System.Drawing.Size(789, 479);
+            this.superTabControlPanel2.Size = new System.Drawing.Size(789, 456);
             this.superTabControlPanel2.TabIndex = 0;
             this.superTabControlPanel2.TabItem = this.superTabItem2;
             // 
@@ -213,7 +214,7 @@
             this.txtShortDesc.Multiline = true;
             this.txtShortDesc.Name = "txtShortDesc";
             this.txtShortDesc.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtShortDesc.Size = new System.Drawing.Size(220, 165);
+            this.txtShortDesc.Size = new System.Drawing.Size(220, 142);
             this.txtShortDesc.TabIndex = 55732;
             // 
             // label41
@@ -291,7 +292,7 @@
             this.DGrid.RowsDefaultCellStyle = dataGridViewCellStyle5;
             this.DGrid.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             this.DGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DGrid.Size = new System.Drawing.Size(491, 460);
+            this.DGrid.Size = new System.Drawing.Size(491, 437);
             this.DGrid.TabIndex = 55730;
             // 
             // dgChecked
@@ -552,7 +553,7 @@
             this.txttxtOwnerCode.Location = new System.Drawing.Point(132, 6);
             this.txttxtOwnerCode.Name = "txttxtOwnerCode";
             this.txttxtOwnerCode.ReadOnly = true;
-            this.txttxtOwnerCode.Size = new System.Drawing.Size(30, 27);
+            this.txttxtOwnerCode.Size = new System.Drawing.Size(24, 27);
             this.txttxtOwnerCode.TabIndex = 10;
             // 
             // superTabItem8
@@ -573,7 +574,7 @@
             this.superTabControlPanel8.Dock = System.Windows.Forms.DockStyle.Fill;
             this.superTabControlPanel8.Location = new System.Drawing.Point(0, 30);
             this.superTabControlPanel8.Name = "superTabControlPanel8";
-            this.superTabControlPanel8.Size = new System.Drawing.Size(497, 449);
+            this.superTabControlPanel8.Size = new System.Drawing.Size(497, 426);
             this.superTabControlPanel8.TabIndex = 0;
             this.superTabControlPanel8.TabItem = this.superTabItem8;
             // 
@@ -619,14 +620,14 @@
             this.superTabControl1.ControlBox.SubItems.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.superTabControl1.ControlBox.MenuBox,
             this.superTabControl1.ControlBox.CloseBox});
-            this.superTabControl1.Controls.Add(this.superTabControlPanel1);
             this.superTabControl1.Controls.Add(this.superTabControlPanel2);
-            this.superTabControl1.Location = new System.Drawing.Point(6, 21);
+            this.superTabControl1.Controls.Add(this.superTabControlPanel1);
+            this.superTabControl1.Location = new System.Drawing.Point(6, 59);
             this.superTabControl1.Name = "superTabControl1";
             this.superTabControl1.ReorderTabsEnabled = true;
             this.superTabControl1.SelectedTabFont = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Bold);
             this.superTabControl1.SelectedTabIndex = 0;
-            this.superTabControl1.Size = new System.Drawing.Size(789, 519);
+            this.superTabControl1.Size = new System.Drawing.Size(789, 496);
             this.superTabControl1.TabFont = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.superTabControl1.TabIndex = 79;
             this.superTabControl1.TabLayoutType = DevComponents.DotNetBar.eSuperTabLayoutType.MultiLine;
@@ -642,7 +643,7 @@
             this.superTabControlPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.superTabControlPanel1.Location = new System.Drawing.Point(0, 40);
             this.superTabControlPanel1.Name = "superTabControlPanel1";
-            this.superTabControlPanel1.Size = new System.Drawing.Size(789, 479);
+            this.superTabControlPanel1.Size = new System.Drawing.Size(789, 456);
             this.superTabControlPanel1.TabIndex = 0;
             this.superTabControlPanel1.TabItem = this.superTabItem1;
             // 
@@ -663,7 +664,7 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.superTabControl2);
             this.splitContainer1.Panel2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.splitContainer1.Size = new System.Drawing.Size(789, 479);
+            this.splitContainer1.Size = new System.Drawing.Size(789, 456);
             this.splitContainer1.SplitterDistance = 288;
             this.splitContainer1.TabIndex = 4;
             // 
@@ -693,7 +694,7 @@
             this.groupPanel3.DisabledBackColor = System.Drawing.Color.Empty;
             this.groupPanel3.Location = new System.Drawing.Point(3, 208);
             this.groupPanel3.Name = "groupPanel3";
-            this.groupPanel3.Size = new System.Drawing.Size(283, 268);
+            this.groupPanel3.Size = new System.Drawing.Size(283, 245);
             // 
             // 
             // 
@@ -736,7 +737,7 @@
             this.cmbBAccountType.FormattingEnabled = true;
             this.cmbBAccountType.Location = new System.Drawing.Point(3, 208);
             this.cmbBAccountType.Name = "cmbBAccountType";
-            this.cmbBAccountType.Size = new System.Drawing.Size(196, 28);
+            this.cmbBAccountType.Size = new System.Drawing.Size(190, 28);
             this.cmbBAccountType.TabIndex = 55742;
             this.cmbBAccountType.ValueMember = "Guid";
             // 
@@ -745,7 +746,7 @@
             this.label42.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label42.AutoSize = true;
             this.label42.BackColor = System.Drawing.Color.Transparent;
-            this.label42.Location = new System.Drawing.Point(209, 208);
+            this.label42.Location = new System.Drawing.Point(203, 208);
             this.label42.Name = "label42";
             this.label42.Size = new System.Drawing.Size(41, 20);
             this.label42.TabIndex = 55741;
@@ -762,7 +763,7 @@
             0,
             0});
             this.txtTedadOtaq.Name = "txtTedadOtaq";
-            this.txtTedadOtaq.Size = new System.Drawing.Size(196, 27);
+            this.txtTedadOtaq.Size = new System.Drawing.Size(190, 27);
             this.txtTedadOtaq.TabIndex = 55740;
             // 
             // label52
@@ -770,7 +771,7 @@
             this.label52.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label52.AutoSize = true;
             this.label52.BackColor = System.Drawing.Color.Transparent;
-            this.label52.Location = new System.Drawing.Point(199, 177);
+            this.label52.Location = new System.Drawing.Point(193, 177);
             this.label52.Name = "label52";
             this.label52.Size = new System.Drawing.Size(57, 20);
             this.label52.TabIndex = 55739;
@@ -782,7 +783,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtSaleSakht.Location = new System.Drawing.Point(3, 142);
             this.txtSaleSakht.Name = "txtSaleSakht";
-            this.txtSaleSakht.Size = new System.Drawing.Size(196, 27);
+            this.txtSaleSakht.Size = new System.Drawing.Size(190, 27);
             this.txtSaleSakht.TabIndex = 55737;
             // 
             // label58
@@ -790,7 +791,7 @@
             this.label58.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label58.AutoSize = true;
             this.label58.BackColor = System.Drawing.Color.Transparent;
-            this.label58.Location = new System.Drawing.Point(196, 146);
+            this.label58.Location = new System.Drawing.Point(190, 146);
             this.label58.Name = "label58";
             this.label58.Size = new System.Drawing.Size(63, 20);
             this.label58.TabIndex = 55738;
@@ -807,7 +808,7 @@
             this.cmbBuildingType.FormattingEnabled = true;
             this.cmbBuildingType.Location = new System.Drawing.Point(3, 108);
             this.cmbBuildingType.Name = "cmbBuildingType";
-            this.cmbBuildingType.Size = new System.Drawing.Size(196, 28);
+            this.cmbBuildingType.Size = new System.Drawing.Size(190, 28);
             this.cmbBuildingType.TabIndex = 57;
             this.cmbBuildingType.ValueMember = "Guid";
             // 
@@ -816,7 +817,7 @@
             this.label40.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label40.AutoSize = true;
             this.label40.BackColor = System.Drawing.Color.Transparent;
-            this.label40.Location = new System.Drawing.Point(203, 111);
+            this.label40.Location = new System.Drawing.Point(197, 111);
             this.label40.Name = "label40";
             this.label40.Size = new System.Drawing.Size(49, 20);
             this.label40.TabIndex = 56;
@@ -833,7 +834,7 @@
             this.cmbBuildingCondition.FormattingEnabled = true;
             this.cmbBuildingCondition.Location = new System.Drawing.Point(3, 74);
             this.cmbBuildingCondition.Name = "cmbBuildingCondition";
-            this.cmbBuildingCondition.Size = new System.Drawing.Size(196, 28);
+            this.cmbBuildingCondition.Size = new System.Drawing.Size(190, 28);
             this.cmbBuildingCondition.TabIndex = 55;
             this.cmbBuildingCondition.ValueMember = "Guid";
             // 
@@ -842,7 +843,7 @@
             this.label38.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label38.AutoSize = true;
             this.label38.BackColor = System.Drawing.Color.Transparent;
-            this.label38.Location = new System.Drawing.Point(197, 77);
+            this.label38.Location = new System.Drawing.Point(191, 77);
             this.label38.Name = "label38";
             this.label38.Size = new System.Drawing.Size(60, 20);
             this.label38.TabIndex = 54;
@@ -877,7 +878,7 @@
             0,
             0});
             this.txtZirBana.Name = "txtZirBana";
-            this.txtZirBana.Size = new System.Drawing.Size(43, 27);
+            this.txtZirBana.Size = new System.Drawing.Size(37, 27);
             this.txtZirBana.TabIndex = 52;
             this.txtZirBana.ValueChanged += new System.EventHandler(this.txtZirBana_ValueChanged);
             // 
@@ -899,7 +900,7 @@
             this.label33.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label33.AutoSize = true;
             this.label33.BackColor = System.Drawing.Color.Transparent;
-            this.label33.Location = new System.Drawing.Point(214, 43);
+            this.label33.Location = new System.Drawing.Point(208, 43);
             this.label33.Name = "label33";
             this.label33.Size = new System.Drawing.Size(36, 20);
             this.label33.TabIndex = 48;
@@ -921,7 +922,7 @@
             0,
             0});
             this.txtMasahat.Name = "txtMasahat";
-            this.txtMasahat.Size = new System.Drawing.Size(43, 27);
+            this.txtMasahat.Size = new System.Drawing.Size(37, 27);
             this.txtMasahat.TabIndex = 50;
             this.txtMasahat.ValueChanged += new System.EventHandler(this.txtMasahat_ValueChanged);
             // 
@@ -930,7 +931,7 @@
             this.label32.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label32.AutoSize = true;
             this.label32.BackColor = System.Drawing.Color.Transparent;
-            this.label32.Location = new System.Drawing.Point(205, 9);
+            this.label32.Location = new System.Drawing.Point(199, 9);
             this.label32.Name = "label32";
             this.label32.Size = new System.Drawing.Size(45, 20);
             this.label32.TabIndex = 49;
@@ -990,7 +991,7 @@
             this.lblDateNow.BackColor = System.Drawing.Color.Transparent;
             this.lblDateNow.Location = new System.Drawing.Point(17, 85);
             this.lblDateNow.Name = "lblDateNow";
-            this.lblDateNow.Size = new System.Drawing.Size(149, 20);
+            this.lblDateNow.Size = new System.Drawing.Size(143, 20);
             this.lblDateNow.TabIndex = 13;
             // 
             // cmbUser
@@ -1004,7 +1005,7 @@
             this.cmbUser.FormattingEnabled = true;
             this.cmbUser.Location = new System.Drawing.Point(17, 46);
             this.cmbUser.Name = "cmbUser";
-            this.cmbUser.Size = new System.Drawing.Size(145, 28);
+            this.cmbUser.Size = new System.Drawing.Size(139, 28);
             this.cmbUser.TabIndex = 3;
             this.cmbUser.ValueMember = "Guid";
             // 
@@ -1018,7 +1019,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtCode.Location = new System.Drawing.Point(17, 11);
             this.txtCode.Name = "txtCode";
-            this.txtCode.Size = new System.Drawing.Size(145, 27);
+            this.txtCode.Size = new System.Drawing.Size(139, 27);
             this.txtCode.TabIndex = 2;
             // 
             // label15
@@ -1026,7 +1027,7 @@
             this.label15.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label15.AutoSize = true;
             this.label15.BackColor = System.Drawing.Color.Transparent;
-            this.label15.Location = new System.Drawing.Point(178, 85);
+            this.label15.Location = new System.Drawing.Point(172, 85);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(55, 20);
             this.label15.TabIndex = 12;
@@ -1037,7 +1038,7 @@
             this.label14.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label14.AutoSize = true;
             this.label14.BackColor = System.Drawing.Color.Transparent;
-            this.label14.Location = new System.Drawing.Point(193, 49);
+            this.label14.Location = new System.Drawing.Point(187, 49);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(39, 20);
             this.label14.TabIndex = 12;
@@ -1048,7 +1049,7 @@
             this.label12.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label12.AutoSize = true;
             this.label12.BackColor = System.Drawing.Color.Transparent;
-            this.label12.Location = new System.Drawing.Point(188, 14);
+            this.label12.Location = new System.Drawing.Point(182, 14);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(44, 20);
             this.label12.TabIndex = 12;
@@ -1105,7 +1106,7 @@
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Location = new System.Drawing.Point(169, 9);
+            this.label1.Location = new System.Drawing.Point(163, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(64, 20);
             this.label1.TabIndex = 9;
@@ -1128,15 +1129,15 @@
             this.superTabControl2.ControlBox.SubItems.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.superTabControl2.ControlBox.CloseBox,
             this.superTabControl2.ControlBox.MenuBox});
-            this.superTabControl2.Controls.Add(this.superTabControlPanel7);
             this.superTabControl2.Controls.Add(this.superTabControlPanel8);
+            this.superTabControl2.Controls.Add(this.superTabControlPanel7);
             this.superTabControl2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.superTabControl2.Location = new System.Drawing.Point(0, 0);
             this.superTabControl2.Name = "superTabControl2";
             this.superTabControl2.ReorderTabsEnabled = true;
             this.superTabControl2.SelectedTabFont = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Bold);
             this.superTabControl2.SelectedTabIndex = 0;
-            this.superTabControl2.Size = new System.Drawing.Size(497, 479);
+            this.superTabControl2.Size = new System.Drawing.Size(497, 456);
             this.superTabControl2.TabFont = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.superTabControl2.TabIndex = 7;
             this.superTabControl2.Tabs.AddRange(new DevComponents.DotNetBar.BaseItem[] {
@@ -1413,12 +1414,12 @@
             // 
             this.btnFinish.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.btnFinish.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnFinish.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.btnFinish.BackColor = System.Drawing.Color.LightSteelBlue;
             this.btnFinish.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnFinish.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnFinish.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnFinish.Image = global::Building.Properties.Resources.tab_checkbox__;
-            this.btnFinish.Location = new System.Drawing.Point(661, 548);
+            this.btnFinish.Location = new System.Drawing.Point(661, 561);
             this.btnFinish.Name = "btnFinish";
             this.btnFinish.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
             this.btnFinish.Size = new System.Drawing.Size(125, 31);
@@ -1432,13 +1433,13 @@
             // 
             this.btnCancel.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnCancel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.btnCancel.BackColor = System.Drawing.Color.LightSteelBlue;
             this.btnCancel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnCancel.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnCancel.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Image = global::Building.Properties.Resources.tab_close_;
-            this.btnCancel.Location = new System.Drawing.Point(13, 548);
+            this.btnCancel.Location = new System.Drawing.Point(13, 561);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
             this.btnCancel.Size = new System.Drawing.Size(125, 31);
@@ -1448,11 +1449,30 @@
             this.btnCancel.TextColor = System.Drawing.Color.Black;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
+            // ucHeader
+            // 
+            this.ucHeader.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.ucHeader.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ucHeader.BackColor = System.Drawing.Color.White;
+            this.ucHeader.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.ucHeader.Cursor = System.Windows.Forms.Cursors.Default;
+            this.ucHeader.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.ucHeader.IsModified = false;
+            this.ucHeader.Location = new System.Drawing.Point(-7, 22);
+            this.ucHeader.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ucHeader.MinimumSize = new System.Drawing.Size(297, 34);
+            this.ucHeader.Name = "ucHeader";
+            this.ucHeader.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.ucHeader.Size = new System.Drawing.Size(815, 34);
+            this.ucHeader.TabIndex = 55739;
+            // 
             // frmBuildingMainFast
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 600);
+            this.Controls.Add(this.ucHeader);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.superTabControl1);
             this.Controls.Add(this.btnFinish);
@@ -1464,7 +1484,7 @@
             this.Name = "frmBuildingMainFast";
             this.Padding = new System.Windows.Forms.Padding(27, 92, 27, 31);
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.Style = MetroFramework.MetroColorStyle.Green;
+            this.Style = MetroFramework.MetroColorStyle.Teal;
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmBuildingMainFast_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmBuildingMainFast_KeyDown);
@@ -1599,5 +1619,6 @@
         private System.Windows.Forms.Label lblPricePerMetr;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label2;
+        private WindowsSerivces.UC_Header ucHeader;
     }
 }

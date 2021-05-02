@@ -160,7 +160,8 @@ namespace Building.Building
 
         public frmFilterForm()
         {
-            InitializeComponent();
+            InitializeComponent(); 
+            ucHeader.Text = "فیلتر جستجوی ملک";
             Task.Run(SetDataAsync);
             SetAccess();
         }
@@ -168,6 +169,7 @@ namespace Building.Building
             int sMasahat, decimal fPrice1, decimal sPrice1, decimal fPrice2, decimal sPrice2, List<Guid> regList)
         {
             InitializeComponent();
+            ucHeader.Text = "فیلتر جستجوی ملک";
             RegionList = regList;
             Task.Run(SetDataAsync);
             Type = type;
@@ -256,20 +258,16 @@ namespace Building.Building
                 if (cmbEjare2.SelectedIndex == 2)
                     sPrice2 = txtSPrice2.Text.ParseToDecimal() * 10000000000;
 
-
-
-
-
                 if (chbSystem.Checked)
                 {
                     _token?.Cancel();
                     _token = new CancellationTokenSource();
                     list.AddRange(await BuildingBussines.GetAllAsync(txtCode.Text, _token.Token,
-                        (Guid) cmbBuildingType.SelectedValue,
-                        (Guid) cmbBuildingAccountType.SelectedValue, txtFMasahat.Text.ParseToInt(),
+                        (Guid)cmbBuildingType.SelectedValue,
+                        (Guid)cmbBuildingAccountType.SelectedValue, txtFMasahat.Text.ParseToInt(),
                         txtSMasahat.Text.ParseToInt(), txtRoomCount.Text.ParseToInt(), fPrice1, fPrice2,
                         sPrice1, sPrice2,
-                        (EnRequestType) cmbReqType.SelectedIndex, RegionList));
+                        (EnRequestType)cmbReqType.SelectedIndex, RegionList));
                 }
 
                 if (chbDivar.Checked)
@@ -463,7 +461,7 @@ namespace Building.Building
         }
 
         public EnRequestType Type { get; set; } = EnRequestType.Moavezeh;
-        public Guid BuildingTypeGuid { get; set; }=Guid.Empty;
+        public Guid BuildingTypeGuid { get; set; } = Guid.Empty;
         public Guid AccountTypeGuid { get; set; } = Guid.Empty;
         public int RoomCount { get; set; } = 0;
         public int FirstMasahat { get; set; } = 0;

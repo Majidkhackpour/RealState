@@ -43,31 +43,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmShowRequest));
             this.txtSearch = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.DGrid = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.contextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.mnuAdd = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuEdit = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuDelete = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
-            this.mnuView = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuStatus = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
-            this.mnuSendSms = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuShowBuilding = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
-            this.mnuPrint = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripSeparator();
-            this.مدیریتستونهاToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuName = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuUserName = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuSell = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuVam = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuRahn = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuEjare = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuMasahat = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuPeopleCount = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuRoomCount = new System.Windows.Forms.ToolStripMenuItem();
-            this.reqBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.mnuDesc = new System.Windows.Forms.ToolStripMenuItem();
             this.dgRadif = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgUserName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -96,6 +71,31 @@
             this.buildingTypeGuidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.buildingAccountTypeGuidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.buildingConditionGuidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.contextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.mnuAdd = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuEdit = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuDelete = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
+            this.mnuView = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
+            this.mnuSendSms = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuShowBuilding = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
+            this.mnuPrint = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripSeparator();
+            this.مدیریتستونهاToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuName = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuUserName = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuSell = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuVam = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuRahn = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuEjare = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuMasahat = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuPeopleCount = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuRoomCount = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuDesc = new System.Windows.Forms.ToolStripMenuItem();
+            this.reqBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.ucHeader = new WindowsSerivces.UC_Header();
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).BeginInit();
             this.contextMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.reqBindingSource)).BeginInit();
@@ -110,7 +110,7 @@
             // 
             this.txtSearch.Border.Class = "TextBoxBorder";
             this.txtSearch.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.txtSearch.Location = new System.Drawing.Point(46, 35);
+            this.txtSearch.Location = new System.Drawing.Point(46, 59);
             this.txtSearch.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.PreventEnterBeep = true;
@@ -186,7 +186,7 @@
             dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.DGrid.DefaultCellStyle = dataGridViewCellStyle9;
             this.DGrid.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
-            this.DGrid.Location = new System.Drawing.Point(4, 70);
+            this.DGrid.Location = new System.Drawing.Point(4, 96);
             this.DGrid.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.DGrid.Name = "DGrid";
             this.DGrid.ReadOnly = true;
@@ -209,215 +209,9 @@
             this.DGrid.RowsDefaultCellStyle = dataGridViewCellStyle11;
             this.DGrid.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             this.DGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DGrid.Size = new System.Drawing.Size(795, 518);
+            this.DGrid.Size = new System.Drawing.Size(795, 492);
             this.DGrid.TabIndex = 55760;
             this.DGrid.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DGrid_CellFormatting);
-            // 
-            // contextMenu
-            // 
-            this.contextMenu.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.contextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mnuAdd,
-            this.mnuEdit,
-            this.mnuDelete,
-            this.toolStripMenuItem1,
-            this.mnuView,
-            this.mnuStatus,
-            this.toolStripMenuItem2,
-            this.mnuSendSms,
-            this.mnuShowBuilding,
-            this.toolStripMenuItem3,
-            this.mnuPrint,
-            this.toolStripMenuItem4,
-            this.مدیریتستونهاToolStripMenuItem});
-            this.contextMenu.Name = "contextMenu";
-            this.contextMenu.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.contextMenu.Size = new System.Drawing.Size(225, 244);
-            // 
-            // mnuAdd
-            // 
-            this.mnuAdd.Image = global::Building.Properties.Resources.add_2_;
-            this.mnuAdd.Name = "mnuAdd";
-            this.mnuAdd.Size = new System.Drawing.Size(224, 24);
-            this.mnuAdd.Text = "افزودن تقاضای جدید (Ins)";
-            this.mnuAdd.Click += new System.EventHandler(this.mnuAdd_Click);
-            // 
-            // mnuEdit
-            // 
-            this.mnuEdit.Image = global::Building.Properties.Resources.edit_1_;
-            this.mnuEdit.Name = "mnuEdit";
-            this.mnuEdit.Size = new System.Drawing.Size(224, 24);
-            this.mnuEdit.Text = "ویرایش تقاضای جاری (F7)";
-            this.mnuEdit.Click += new System.EventHandler(this.mnuEdit_Click);
-            // 
-            // mnuDelete
-            // 
-            this.mnuDelete.Image = global::Building.Properties.Resources.delete_1_;
-            this.mnuDelete.Name = "mnuDelete";
-            this.mnuDelete.Size = new System.Drawing.Size(224, 24);
-            this.mnuDelete.Text = "حذف تقاضای جاری (Del)";
-            this.mnuDelete.Click += new System.EventHandler(this.mnuDelete_Click);
-            // 
-            // toolStripMenuItem1
-            // 
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(221, 6);
-            // 
-            // mnuView
-            // 
-            this.mnuView.Image = global::Building.Properties.Resources.article_1_;
-            this.mnuView.Name = "mnuView";
-            this.mnuView.Size = new System.Drawing.Size(224, 24);
-            this.mnuView.Text = "مشاهده (F12)";
-            this.mnuView.Click += new System.EventHandler(this.mnuView_Click);
-            // 
-            // mnuStatus
-            // 
-            this.mnuStatus.Image = global::Building.Properties.Resources.refresh_round_symbol;
-            this.mnuStatus.Name = "mnuStatus";
-            this.mnuStatus.Size = new System.Drawing.Size(224, 24);
-            this.mnuStatus.Text = "غیرفعال (Ctrl+S)";
-            this.mnuStatus.Click += new System.EventHandler(this.mnuStatus_Click);
-            // 
-            // toolStripMenuItem2
-            // 
-            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(221, 6);
-            // 
-            // mnuSendSms
-            // 
-            this.mnuSendSms.Image = global::Building.Properties.Resources.profile;
-            this.mnuSendSms.Name = "mnuSendSms";
-            this.mnuSendSms.Size = new System.Drawing.Size(224, 24);
-            this.mnuSendSms.Text = "ارسال پیامک به متقاضی";
-            // 
-            // mnuShowBuilding
-            // 
-            this.mnuShowBuilding.Image = global::Building.Properties.Resources.list;
-            this.mnuShowBuilding.Name = "mnuShowBuilding";
-            this.mnuShowBuilding.Size = new System.Drawing.Size(224, 24);
-            this.mnuShowBuilding.Text = "نمایش فایل های مطابق با تقاضا";
-            this.mnuShowBuilding.Click += new System.EventHandler(this.mnuShowBuilding_Click);
-            // 
-            // toolStripMenuItem3
-            // 
-            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(221, 6);
-            // 
-            // mnuPrint
-            // 
-            this.mnuPrint.Image = global::Building.Properties.Resources.printer;
-            this.mnuPrint.Name = "mnuPrint";
-            this.mnuPrint.Size = new System.Drawing.Size(224, 24);
-            this.mnuPrint.Text = "چاپ لیست تقاضاها";
-            this.mnuPrint.Click += new System.EventHandler(this.mnuPrint_Click);
-            // 
-            // toolStripMenuItem4
-            // 
-            this.toolStripMenuItem4.Name = "toolStripMenuItem4";
-            this.toolStripMenuItem4.Size = new System.Drawing.Size(221, 6);
-            // 
-            // مدیریتستونهاToolStripMenuItem
-            // 
-            this.مدیریتستونهاToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mnuName,
-            this.mnuUserName,
-            this.mnuSell,
-            this.mnuVam,
-            this.mnuRahn,
-            this.mnuEjare,
-            this.mnuMasahat,
-            this.mnuPeopleCount,
-            this.mnuRoomCount,
-            this.mnuDesc});
-            this.مدیریتستونهاToolStripMenuItem.Image = global::Building.Properties.Resources.technology_1;
-            this.مدیریتستونهاToolStripMenuItem.Name = "مدیریتستونهاToolStripMenuItem";
-            this.مدیریتستونهاToolStripMenuItem.Size = new System.Drawing.Size(224, 24);
-            this.مدیریتستونهاToolStripMenuItem.Text = "مدیریت ستون ها";
-            // 
-            // mnuName
-            // 
-            this.mnuName.CheckOnClick = true;
-            this.mnuName.Name = "mnuName";
-            this.mnuName.Size = new System.Drawing.Size(180, 24);
-            this.mnuName.Text = "نام متقاضی";
-            this.mnuName.CheckedChanged += new System.EventHandler(this.mnuName_CheckedChanged);
-            // 
-            // mnuUserName
-            // 
-            this.mnuUserName.CheckOnClick = true;
-            this.mnuUserName.Name = "mnuUserName";
-            this.mnuUserName.Size = new System.Drawing.Size(180, 24);
-            this.mnuUserName.Text = "نام مشاور";
-            this.mnuUserName.CheckedChanged += new System.EventHandler(this.mnuUserName_CheckedChanged);
-            // 
-            // mnuSell
-            // 
-            this.mnuSell.CheckOnClick = true;
-            this.mnuSell.Name = "mnuSell";
-            this.mnuSell.Size = new System.Drawing.Size(180, 24);
-            this.mnuSell.Text = "قیمت خرید از (الی)";
-            this.mnuSell.CheckedChanged += new System.EventHandler(this.mnuSell_CheckedChanged);
-            // 
-            // mnuVam
-            // 
-            this.mnuVam.CheckOnClick = true;
-            this.mnuVam.Name = "mnuVam";
-            this.mnuVam.Size = new System.Drawing.Size(180, 24);
-            this.mnuVam.Text = "وام";
-            this.mnuVam.CheckedChanged += new System.EventHandler(this.mnuVam_CheckedChanged);
-            // 
-            // mnuRahn
-            // 
-            this.mnuRahn.CheckOnClick = true;
-            this.mnuRahn.Name = "mnuRahn";
-            this.mnuRahn.Size = new System.Drawing.Size(180, 24);
-            this.mnuRahn.Text = "قیمت رهن از (الی)";
-            this.mnuRahn.CheckedChanged += new System.EventHandler(this.mnuRahn_CheckedChanged);
-            // 
-            // mnuEjare
-            // 
-            this.mnuEjare.CheckOnClick = true;
-            this.mnuEjare.Name = "mnuEjare";
-            this.mnuEjare.Size = new System.Drawing.Size(180, 24);
-            this.mnuEjare.Text = "اجاره از (الی)";
-            this.mnuEjare.CheckedChanged += new System.EventHandler(this.mnuEjare_CheckedChanged);
-            // 
-            // mnuMasahat
-            // 
-            this.mnuMasahat.CheckOnClick = true;
-            this.mnuMasahat.Name = "mnuMasahat";
-            this.mnuMasahat.Size = new System.Drawing.Size(180, 24);
-            this.mnuMasahat.Text = "مساحت از (الی)";
-            this.mnuMasahat.CheckedChanged += new System.EventHandler(this.mnuMasahat_CheckedChanged);
-            // 
-            // mnuPeopleCount
-            // 
-            this.mnuPeopleCount.CheckOnClick = true;
-            this.mnuPeopleCount.Name = "mnuPeopleCount";
-            this.mnuPeopleCount.Size = new System.Drawing.Size(180, 24);
-            this.mnuPeopleCount.Text = "تعداد افراد";
-            this.mnuPeopleCount.CheckedChanged += new System.EventHandler(this.mnuPeopleCount_CheckedChanged);
-            // 
-            // mnuRoomCount
-            // 
-            this.mnuRoomCount.CheckOnClick = true;
-            this.mnuRoomCount.Name = "mnuRoomCount";
-            this.mnuRoomCount.Size = new System.Drawing.Size(180, 24);
-            this.mnuRoomCount.Text = "تعداد اتاق";
-            this.mnuRoomCount.CheckedChanged += new System.EventHandler(this.mnuRoomCount_CheckedChanged);
-            // 
-            // reqBindingSource
-            // 
-            this.reqBindingSource.DataSource = typeof(EntityCache.Bussines.BuildingRequestBussines);
-            // 
-            // mnuDesc
-            // 
-            this.mnuDesc.CheckOnClick = true;
-            this.mnuDesc.Name = "mnuDesc";
-            this.mnuDesc.Size = new System.Drawing.Size(180, 24);
-            this.mnuDesc.Text = "توضیحات";
-            this.mnuDesc.CheckedChanged += new System.EventHandler(this.mnuDesc_CheckedChanged);
             // 
             // dgRadif
             // 
@@ -455,7 +249,6 @@
             this.dgSell1.Name = "dgSell1";
             this.dgSell1.ReadOnly = true;
             this.dgSell1.Visible = false;
-            this.dgSell1.Width = 71;
             // 
             // dgSell2
             // 
@@ -468,7 +261,6 @@
             this.dgSell2.Name = "dgSell2";
             this.dgSell2.ReadOnly = true;
             this.dgSell2.Visible = false;
-            this.dgSell2.Width = 49;
             // 
             // dgVam
             // 
@@ -491,7 +283,6 @@
             this.dgRahn1.Name = "dgRahn1";
             this.dgRahn1.ReadOnly = true;
             this.dgRahn1.Visible = false;
-            this.dgRahn1.Width = 69;
             // 
             // dgRahn2
             // 
@@ -504,7 +295,6 @@
             this.dgRahn2.Name = "dgRahn2";
             this.dgRahn2.ReadOnly = true;
             this.dgRahn2.Visible = false;
-            this.dgRahn2.Width = 49;
             // 
             // dgEjare1
             // 
@@ -517,7 +307,6 @@
             this.dgEjare1.Name = "dgEjare1";
             this.dgEjare1.ReadOnly = true;
             this.dgEjare1.Visible = false;
-            this.dgEjare1.Width = 72;
             // 
             // dgEjare2
             // 
@@ -530,7 +319,6 @@
             this.dgEjare2.Name = "dgEjare2";
             this.dgEjare2.ReadOnly = true;
             this.dgEjare2.Visible = false;
-            this.dgEjare2.Width = 49;
             // 
             // dgMasahat1
             // 
@@ -540,7 +328,6 @@
             this.dgMasahat1.Name = "dgMasahat1";
             this.dgMasahat1.ReadOnly = true;
             this.dgMasahat1.Visible = false;
-            this.dgMasahat1.Width = 83;
             // 
             // dgMasahat2
             // 
@@ -678,11 +465,227 @@
             this.buildingConditionGuidDataGridViewTextBoxColumn.ReadOnly = true;
             this.buildingConditionGuidDataGridViewTextBoxColumn.Visible = false;
             // 
+            // contextMenu
+            // 
+            this.contextMenu.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.contextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnuAdd,
+            this.mnuEdit,
+            this.mnuDelete,
+            this.toolStripMenuItem1,
+            this.mnuView,
+            this.toolStripMenuItem2,
+            this.mnuSendSms,
+            this.mnuShowBuilding,
+            this.toolStripMenuItem3,
+            this.mnuPrint,
+            this.toolStripMenuItem4,
+            this.مدیریتستونهاToolStripMenuItem});
+            this.contextMenu.Name = "contextMenu";
+            this.contextMenu.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.contextMenu.Size = new System.Drawing.Size(225, 242);
+            // 
+            // mnuAdd
+            // 
+            this.mnuAdd.Image = global::Building.Properties.Resources.add_2_;
+            this.mnuAdd.Name = "mnuAdd";
+            this.mnuAdd.Size = new System.Drawing.Size(224, 24);
+            this.mnuAdd.Text = "افزودن تقاضای جدید (Ins)";
+            this.mnuAdd.Click += new System.EventHandler(this.mnuAdd_Click);
+            // 
+            // mnuEdit
+            // 
+            this.mnuEdit.Image = global::Building.Properties.Resources.edit_1_;
+            this.mnuEdit.Name = "mnuEdit";
+            this.mnuEdit.Size = new System.Drawing.Size(224, 24);
+            this.mnuEdit.Text = "ویرایش تقاضای جاری (F7)";
+            this.mnuEdit.Click += new System.EventHandler(this.mnuEdit_Click);
+            // 
+            // mnuDelete
+            // 
+            this.mnuDelete.Image = global::Building.Properties.Resources.delete_1_;
+            this.mnuDelete.Name = "mnuDelete";
+            this.mnuDelete.Size = new System.Drawing.Size(224, 24);
+            this.mnuDelete.Text = "حذف تقاضای جاری (Del)";
+            this.mnuDelete.Click += new System.EventHandler(this.mnuDelete_Click);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(221, 6);
+            // 
+            // mnuView
+            // 
+            this.mnuView.Image = global::Building.Properties.Resources.article_1_;
+            this.mnuView.Name = "mnuView";
+            this.mnuView.Size = new System.Drawing.Size(224, 24);
+            this.mnuView.Text = "مشاهده (F12)";
+            this.mnuView.Click += new System.EventHandler(this.mnuView_Click);
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(221, 6);
+            // 
+            // mnuSendSms
+            // 
+            this.mnuSendSms.Image = global::Building.Properties.Resources.profile;
+            this.mnuSendSms.Name = "mnuSendSms";
+            this.mnuSendSms.Size = new System.Drawing.Size(224, 24);
+            this.mnuSendSms.Text = "ارسال پیامک به متقاضی";
+            // 
+            // mnuShowBuilding
+            // 
+            this.mnuShowBuilding.Image = global::Building.Properties.Resources.list;
+            this.mnuShowBuilding.Name = "mnuShowBuilding";
+            this.mnuShowBuilding.Size = new System.Drawing.Size(224, 24);
+            this.mnuShowBuilding.Text = "نمایش فایل های مطابق با تقاضا";
+            this.mnuShowBuilding.Click += new System.EventHandler(this.mnuShowBuilding_Click);
+            // 
+            // toolStripMenuItem3
+            // 
+            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(221, 6);
+            // 
+            // mnuPrint
+            // 
+            this.mnuPrint.Image = global::Building.Properties.Resources.printer;
+            this.mnuPrint.Name = "mnuPrint";
+            this.mnuPrint.Size = new System.Drawing.Size(224, 24);
+            this.mnuPrint.Text = "چاپ لیست تقاضاها";
+            this.mnuPrint.Click += new System.EventHandler(this.mnuPrint_Click);
+            // 
+            // toolStripMenuItem4
+            // 
+            this.toolStripMenuItem4.Name = "toolStripMenuItem4";
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(221, 6);
+            // 
+            // مدیریتستونهاToolStripMenuItem
+            // 
+            this.مدیریتستونهاToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnuName,
+            this.mnuUserName,
+            this.mnuSell,
+            this.mnuVam,
+            this.mnuRahn,
+            this.mnuEjare,
+            this.mnuMasahat,
+            this.mnuPeopleCount,
+            this.mnuRoomCount,
+            this.mnuDesc});
+            this.مدیریتستونهاToolStripMenuItem.Image = global::Building.Properties.Resources.technology_1;
+            this.مدیریتستونهاToolStripMenuItem.Name = "مدیریتستونهاToolStripMenuItem";
+            this.مدیریتستونهاToolStripMenuItem.Size = new System.Drawing.Size(224, 24);
+            this.مدیریتستونهاToolStripMenuItem.Text = "مدیریت ستون ها";
+            // 
+            // mnuName
+            // 
+            this.mnuName.CheckOnClick = true;
+            this.mnuName.Name = "mnuName";
+            this.mnuName.Size = new System.Drawing.Size(174, 24);
+            this.mnuName.Text = "نام متقاضی";
+            this.mnuName.CheckedChanged += new System.EventHandler(this.mnuName_CheckedChanged);
+            // 
+            // mnuUserName
+            // 
+            this.mnuUserName.CheckOnClick = true;
+            this.mnuUserName.Name = "mnuUserName";
+            this.mnuUserName.Size = new System.Drawing.Size(174, 24);
+            this.mnuUserName.Text = "نام مشاور";
+            this.mnuUserName.CheckedChanged += new System.EventHandler(this.mnuUserName_CheckedChanged);
+            // 
+            // mnuSell
+            // 
+            this.mnuSell.CheckOnClick = true;
+            this.mnuSell.Name = "mnuSell";
+            this.mnuSell.Size = new System.Drawing.Size(174, 24);
+            this.mnuSell.Text = "قیمت خرید از (الی)";
+            this.mnuSell.CheckedChanged += new System.EventHandler(this.mnuSell_CheckedChanged);
+            // 
+            // mnuVam
+            // 
+            this.mnuVam.CheckOnClick = true;
+            this.mnuVam.Name = "mnuVam";
+            this.mnuVam.Size = new System.Drawing.Size(174, 24);
+            this.mnuVam.Text = "وام";
+            this.mnuVam.CheckedChanged += new System.EventHandler(this.mnuVam_CheckedChanged);
+            // 
+            // mnuRahn
+            // 
+            this.mnuRahn.CheckOnClick = true;
+            this.mnuRahn.Name = "mnuRahn";
+            this.mnuRahn.Size = new System.Drawing.Size(174, 24);
+            this.mnuRahn.Text = "قیمت رهن از (الی)";
+            this.mnuRahn.CheckedChanged += new System.EventHandler(this.mnuRahn_CheckedChanged);
+            // 
+            // mnuEjare
+            // 
+            this.mnuEjare.CheckOnClick = true;
+            this.mnuEjare.Name = "mnuEjare";
+            this.mnuEjare.Size = new System.Drawing.Size(174, 24);
+            this.mnuEjare.Text = "اجاره از (الی)";
+            this.mnuEjare.CheckedChanged += new System.EventHandler(this.mnuEjare_CheckedChanged);
+            // 
+            // mnuMasahat
+            // 
+            this.mnuMasahat.CheckOnClick = true;
+            this.mnuMasahat.Name = "mnuMasahat";
+            this.mnuMasahat.Size = new System.Drawing.Size(174, 24);
+            this.mnuMasahat.Text = "مساحت از (الی)";
+            this.mnuMasahat.CheckedChanged += new System.EventHandler(this.mnuMasahat_CheckedChanged);
+            // 
+            // mnuPeopleCount
+            // 
+            this.mnuPeopleCount.CheckOnClick = true;
+            this.mnuPeopleCount.Name = "mnuPeopleCount";
+            this.mnuPeopleCount.Size = new System.Drawing.Size(174, 24);
+            this.mnuPeopleCount.Text = "تعداد افراد";
+            this.mnuPeopleCount.CheckedChanged += new System.EventHandler(this.mnuPeopleCount_CheckedChanged);
+            // 
+            // mnuRoomCount
+            // 
+            this.mnuRoomCount.CheckOnClick = true;
+            this.mnuRoomCount.Name = "mnuRoomCount";
+            this.mnuRoomCount.Size = new System.Drawing.Size(174, 24);
+            this.mnuRoomCount.Text = "تعداد اتاق";
+            this.mnuRoomCount.CheckedChanged += new System.EventHandler(this.mnuRoomCount_CheckedChanged);
+            // 
+            // mnuDesc
+            // 
+            this.mnuDesc.CheckOnClick = true;
+            this.mnuDesc.Name = "mnuDesc";
+            this.mnuDesc.Size = new System.Drawing.Size(174, 24);
+            this.mnuDesc.Text = "توضیحات";
+            this.mnuDesc.CheckedChanged += new System.EventHandler(this.mnuDesc_CheckedChanged);
+            // 
+            // reqBindingSource
+            // 
+            this.reqBindingSource.DataSource = typeof(EntityCache.Bussines.BuildingRequestBussines);
+            // 
+            // ucHeader
+            // 
+            this.ucHeader.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.ucHeader.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ucHeader.BackColor = System.Drawing.Color.White;
+            this.ucHeader.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.ucHeader.Cursor = System.Windows.Forms.Cursors.Default;
+            this.ucHeader.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.ucHeader.IsModified = false;
+            this.ucHeader.Location = new System.Drawing.Point(-7, 18);
+            this.ucHeader.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ucHeader.MinimumSize = new System.Drawing.Size(297, 34);
+            this.ucHeader.Name = "ucHeader";
+            this.ucHeader.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.ucHeader.Size = new System.Drawing.Size(815, 34);
+            this.ucHeader.TabIndex = 55762;
+            // 
             // frmShowRequest
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 600);
+            this.Controls.Add(this.ucHeader);
             this.Controls.Add(this.txtSearch);
             this.Controls.Add(this.DGrid);
             this.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
@@ -693,7 +696,7 @@
             this.Name = "frmShowRequest";
             this.Padding = new System.Windows.Forms.Padding(27, 92, 27, 31);
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.Style = MetroFramework.MetroColorStyle.Green;
+            this.Style = MetroFramework.MetroColorStyle.Teal;
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmShowRequest_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmShowRequest_KeyDown);
@@ -714,7 +717,6 @@
         private System.Windows.Forms.ToolStripMenuItem mnuDelete;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem mnuView;
-        private System.Windows.Forms.ToolStripMenuItem mnuStatus;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem mnuSendSms;
         private System.Windows.Forms.ToolStripMenuItem mnuShowBuilding;
@@ -760,5 +762,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn buildingTypeGuidDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn buildingAccountTypeGuidDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn buildingConditionGuidDataGridViewTextBoxColumn;
+        private WindowsSerivces.UC_Header ucHeader;
     }
 }
