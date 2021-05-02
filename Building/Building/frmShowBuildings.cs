@@ -89,12 +89,14 @@ namespace Building.Building
         {
             try
             {
+                _token?.Cancel();
+                _token = new CancellationTokenSource();
                 list = BuildingBussines
-                    .GetAll(search, _isArchive, ST,
-                        (Guid)cmbBuildingType.SelectedValue,
-                        (Guid)cmbUser.SelectedValue,
-                        (Guid)cmbDocType.SelectedValue,
-                        (Guid)cmbAccType.SelectedValue);
+                    .GetAll(search, _token.Token, _isArchive, ST,
+                        (Guid) cmbBuildingType.SelectedValue,
+                        (Guid) cmbUser.SelectedValue,
+                        (Guid) cmbDocType.SelectedValue,
+                        (Guid) cmbAccType.SelectedValue);
                 if (ownerGuid == Guid.Empty)
                 {
                     Task.Run(() => ucPagger.PagingAsync(new CancellationToken(),

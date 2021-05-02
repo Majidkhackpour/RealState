@@ -113,14 +113,28 @@ namespace RealState
                     _token = new CancellationTokenSource();
                     await WebBuildingOptions.SaveAsync(await BuildingOptionsBussines.GetAllAsync(_token.Token));
                 }
+
                 if (chbBuilding.Checked)
-                    await WebBuilding.SaveAsync(await BuildingBussines.GetAllAsync(), Application.StartupPath);
+                {
+                    _token?.Cancel();
+                    _token = new CancellationTokenSource();
+                    await WebBuilding.SaveAsync(await BuildingBussines.GetAllAsync(_token.Token), Application.StartupPath);
+                }
 
 
                 if (chbRequest.Checked)
-                    await WebBuildingRequest.SaveAsync(await BuildingRequestBussines.GetAllAsync());
+                {
+                    _token?.Cancel();
+                    _token = new CancellationTokenSource();
+                    await WebBuildingRequest.SaveAsync(await BuildingRequestBussines.GetAllAsync(_token.Token));
+                }
+
                 if (chbContract.Checked)
-                    await WebContract.SaveAsync(await ContractBussines.GetAllAsync());
+                {
+                    _token?.Cancel();
+                    _token = new CancellationTokenSource();
+                    await WebContract.SaveAsync(await ContractBussines.GetAllAsync(_token.Token));
+                }
                 if (chbReception.Checked)
                 {
                     //await WebReception.SaveAsync(await ReceptionBussines.GetAllAsync());

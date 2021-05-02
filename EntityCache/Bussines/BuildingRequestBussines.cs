@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using EntityCache.Assistence;
 using Nito.AsyncEx;
@@ -50,7 +51,7 @@ namespace EntityCache.Bussines
         public List<BuildingRequestRegionBussines> RegionList { get; set; }
         #endregion
 
-        public static async Task<List<BuildingRequestBussines>> GetAllAsync() => await UnitOfWork.BuildingRequest.GetAllAsync(Cache.ConnectionString);
+        public static async Task<List<BuildingRequestBussines>> GetAllAsync(CancellationToken token) => await UnitOfWork.BuildingRequest.GetAllAsync(Cache.ConnectionString, token);
         public static async Task<BuildingRequestBussines> GetAsync(Guid guid) => await UnitOfWork.BuildingRequest.GetAsync(Cache.ConnectionString, guid);
         public static BuildingRequestBussines Get(Guid guid) => AsyncContext.Run(() => GetAsync(guid));
         public async Task<ReturnedSaveFuncInfo> SaveAsync(SqlTransaction tr = null)
@@ -143,17 +144,18 @@ namespace EntityCache.Bussines
             }
             return res;
         }
-        public static async Task<List<BuildingRequestBussines>> GetAllAsync(string search)
+        public static async Task<List<BuildingRequestBussines>> GetAllAsync(string search, CancellationToken token)
         {
             try
             {
                 if (string.IsNullOrEmpty(search)) search = "";
-                var res = await GetAllAsync();
-
+                var res = await GetAllAsync(token);
+                if (token.IsCancellationRequested) return null;
                 var searchItems = search.SplitString();
                 if (searchItems?.Count > 0)
                     foreach (var item in searchItems)
                     {
+                        if (token.IsCancellationRequested) return null;
                         if (!string.IsNullOrEmpty(item) && item.Trim() != "")
                         {
                             res = res.Where(x => x.AskerName.ToLower().Contains(item.ToLower()) ||
@@ -165,10 +167,8 @@ namespace EntityCache.Bussines
 
                 return res;
             }
-            catch (OperationCanceledException)
-            {
-                return null;
-            }
+            catch (TaskCanceledException) { return null; }
+            catch (OperationCanceledException) { return null; }
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
@@ -176,34 +176,39 @@ namespace EntityCache.Bussines
             }
         }
         public static async Task<int> DbCount(Guid userGuid) => await UnitOfWork.BuildingRequest.DbCount(Cache.ConnectionString, userGuid);
-        public static async Task<List<BuildingRequestBussines>> GetAllAsync(EnRequestType type, decimal price1,
+        public static async Task<List<BuildingRequestBussines>> GetAllAsync(EnRequestType type, CancellationToken token, decimal price1,
             decimal price2, int masahat,
             int roomCount, Guid accountTypeGuid, Guid conditionGuid, Guid regionGuid)
         {
             try
             {
-                IEnumerable<BuildingRequestBussines> res = await GetAllAsync();
-
+                IEnumerable<BuildingRequestBussines> res = await GetAllAsync(token);
+                if (token.IsCancellationRequested) return null;
                 if (type == EnRequestType.Forush)
                     res = res.Where(q => q.SellPrice1 <= price1 && q.SellPrice2 >= price1);
                 else if (type == EnRequestType.Rahn)
                 {
+                    if (token.IsCancellationRequested) return null;
                     res = res.Where(q => q.RahnPrice1 <= price1 && q.RahnPrice2 >= price1);
                     if (price2 != 0) res = res.Where(q => q.EjarePrice1 <= price2 && q.EjarePrice2 >= price2);
                 }
-
+                if (token.IsCancellationRequested) return null;
                 if (masahat > 0) res = res.Where(q => q.Masahat1 <= masahat && q.Masahat2 >= masahat);
+                if (token.IsCancellationRequested) return null;
                 if (roomCount > 0) res = res.Where(q => q.RoomCount <= roomCount);
+                if (token.IsCancellationRequested) return null;
                 if (accountTypeGuid != Guid.Empty)
                     res = res.Where(q =>
                         q.BuildingAccountTypeGuid == Guid.Empty ||
                         q.BuildingAccountTypeGuid == accountTypeGuid);
+                if (token.IsCancellationRequested) return null;
                 if (conditionGuid != Guid.Empty)
                     res = res.Where(q => q.BuildingConditionGuid == Guid.Empty ||
                                          q.BuildingConditionGuid == conditionGuid);
+                if (token.IsCancellationRequested) return null;
                 if (regionGuid != Guid.Empty)
                     res = res.Where(q => q.RegionList.Select(p => p.RegionGuid).Contains(regionGuid));
-
+                if (token.IsCancellationRequested) return null;
                 return res?.ToList();
             }
             catch (Exception ex)

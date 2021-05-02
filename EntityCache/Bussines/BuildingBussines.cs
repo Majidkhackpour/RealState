@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using EntityCache.Assistence;
 using EntityCache.ViewModels;
@@ -100,7 +101,7 @@ namespace EntityCache.Bussines
         public List<BuildingGalleryBussines> GalleryList { get; set; }
         #endregion
 
-        public static async Task<List<BuildingBussines>> GetAllAsync() => await UnitOfWork.Building.GetAllAsync(Cache.ConnectionString);
+        public static async Task<List<BuildingBussines>> GetAllAsync(CancellationToken token) => await UnitOfWork.Building.GetAllAsync(Cache.ConnectionString, token);
         public static async Task<BuildingBussines> GetAsync(Guid guid) => await UnitOfWork.Building.GetAsync(Cache.ConnectionString, guid);
         public static BuildingBussines Get(Guid guid) => AsyncContext.Run(() => GetAsync(guid));
         public async Task<ReturnedSaveFuncInfo> SaveAsync(SqlTransaction tr = null)
@@ -205,36 +206,42 @@ namespace EntityCache.Bussines
             }
             return res;
         }
-        public static List<BuildingBussines> GetAll(string search, bool? isArchive, bool status,
+        public static List<BuildingBussines> GetAll(string search, CancellationToken token, bool? isArchive, bool status,
             Guid buildingTypeGuid, Guid userGuid, Guid docTypeGuid, Guid accTypeGuid) => AsyncContext.Run(() =>
-            GetAllAsync(search, isArchive, status, buildingTypeGuid, userGuid, docTypeGuid, accTypeGuid));
-        public static async Task<List<BuildingBussines>> GetAllAsync(string search, bool? isArchive, bool status,
+            GetAllAsync(search, token, isArchive, status, buildingTypeGuid, userGuid, docTypeGuid, accTypeGuid));
+        public static async Task<List<BuildingBussines>> GetAllAsync(string search, CancellationToken token, bool? isArchive, bool status,
             Guid buildingTypeGuid, Guid userGuid, Guid docTypeGuid, Guid accTypeGuid)
         {
             try
             {
                 IEnumerable<BuildingBussines> res;
                 if (string.IsNullOrEmpty(search)) search = "";
-                res = await GetAllAsync();
+                res = await GetAllAsync(token);
+                if (token.IsCancellationRequested) return null;
                 if (res == null || !res.Any()) return res?.ToList();
 
                 res = res.Where(q => q.Status == status);
-
+                if (token.IsCancellationRequested) return null;
                 if (isArchive != null) res = res.Where(q => q.IsArchive == isArchive);
-
+                if (token.IsCancellationRequested) return null;
                 if (buildingTypeGuid != Guid.Empty)
                     res = res.Where(q => q.BuildingTypeGuid == buildingTypeGuid);
+                if (token.IsCancellationRequested) return null;
                 if (userGuid != Guid.Empty)
                     res = res.Where(q => q.UserGuid == userGuid).ToList();
+                if (token.IsCancellationRequested) return null;
                 if (docTypeGuid != Guid.Empty)
                     res = res.Where(q => q.DocumentType != null && q.DocumentType.Value == docTypeGuid);
+                if (token.IsCancellationRequested) return null;
                 if (accTypeGuid != Guid.Empty)
                     res = res.Where(q => q.BuildingAccountTypeGuid == accTypeGuid);
+                if (token.IsCancellationRequested) return null;
 
                 var searchItems = search.SplitString();
                 if (searchItems?.Count > 0)
                     foreach (var item in searchItems)
                     {
+                        if (token.IsCancellationRequested) return null;
                         if (!string.IsNullOrEmpty(item) && item.Trim() != "")
                         {
                             res = res.Where(x => x.Code.ToLower().Contains(item.ToLower()) ||
@@ -250,10 +257,8 @@ namespace EntityCache.Bussines
 
                 return res?.ToList();
             }
-            catch (OperationCanceledException)
-            {
-                return null;
-            }
+            catch (TaskCanceledException) { return null; }
+            catch (OperationCanceledException) { return null; }
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
@@ -263,41 +268,50 @@ namespace EntityCache.Bussines
         public static async Task<string> NextCodeAsync() => await UnitOfWork.Building.NextCodeAsync(Cache.ConnectionString);
         public static async Task<bool> CheckCodeAsync(string code, Guid guid) =>
             await UnitOfWork.Building.CheckCodeAsync(Cache.ConnectionString, code, guid);
-        public static async Task<List<BuildingViewModel>> GetAllAsync(string code, Guid buildingGuid,
+        public static async Task<List<BuildingViewModel>> GetAllAsync(string code, CancellationToken token, Guid buildingGuid,
             Guid buildingAccountTypeGuid, int fMasahat, int lMasahat, int roomCount, decimal fPrice1, decimal lPrice1,
             decimal fPrice2, decimal lPrice2, EnRequestType type, List<Guid> regionList)
         {
             try
             {
-                IEnumerable<BuildingBussines> res = await GetAllAsync();
-
+                IEnumerable<BuildingBussines> res = await GetAllAsync(token);
+                if (token.IsCancellationRequested) return null;
                 if (regionList.Count > 0) res = res.Where(q => regionList.Contains(q.RegionGuid));
-
+                if (token.IsCancellationRequested) return null;
                 if (!string.IsNullOrEmpty(code)) res = res.Where(q => q.Code.Contains(code));
+                if (token.IsCancellationRequested) return null;
                 if (buildingGuid != Guid.Empty) res = res.Where(q => q.BuildingTypeGuid == buildingGuid);
+                if (token.IsCancellationRequested) return null;
                 if (buildingAccountTypeGuid != Guid.Empty)
                     res = res.Where(q => q.BuildingAccountTypeGuid == buildingAccountTypeGuid);
+                if (token.IsCancellationRequested) return null;
                 if (fMasahat != 0) res = res.Where(q => q.Masahat >= fMasahat);
+                if (token.IsCancellationRequested) return null;
                 if (lMasahat != 0) res = res.Where(q => q.Masahat <= lMasahat);
+                if (token.IsCancellationRequested) return null;
                 if (roomCount != 0) res = res.Where(q => q.RoomCount <= roomCount);
+                if (token.IsCancellationRequested) return null;
                 if (type == EnRequestType.Rahn)
                 {
+                    if (token.IsCancellationRequested) return null;
                     if (fPrice1 != 0) res = res.Where(q => q.RahnPrice1 >= fPrice1);
                     if (fPrice2 != 0) res = res.Where(q => q.RahnPrice2 <= fPrice2);
-
+                    if (token.IsCancellationRequested) return null;
                     if (lPrice1 != 0) res = res.Where(q => q.EjarePrice1 >= lPrice1);
                     if (lPrice2 != 0) res = res.Where(q => q.EjarePrice2 <= lPrice2);
                 }
                 else
                 {
+                    if (token.IsCancellationRequested) return null;
                     if (fPrice1 != 0) res = res.Where(q => q.SellPrice > 0 && q.SellPrice >= fPrice1);
                     if (fPrice2 != 0) res = res.Where(q => q.SellPrice > 0 && q.SellPrice <= fPrice2);
                 }
-
+                if (token.IsCancellationRequested) return null;
                 var val = new List<BuildingViewModel>();
 
                 foreach (var item in res)
                 {
+                    if (token.IsCancellationRequested) return null;
                     var a = new BuildingViewModel()
                     {
                         RoomCount = item.RoomCount.ToString(),
@@ -312,6 +326,7 @@ namespace EntityCache.Bussines
                         Address = item.Address,
                         Mobile = PeoplesBussines.Get(item.OwnerGuid).FirstNumber
                     };
+                    if (token.IsCancellationRequested) return null;
                     if (type == EnRequestType.Rahn)
                     {
                         a.Price1 = item.RahnPrice1;
@@ -323,6 +338,7 @@ namespace EntityCache.Bussines
                     }
                     else
                     {
+                        if (token.IsCancellationRequested) return null;
                         a.Price1 = item.SellPrice;
                         a.Price2 = 0;
                         a.Type = EnRequestType.Forush;
@@ -332,10 +348,8 @@ namespace EntityCache.Bussines
 
                 return val;
             }
-            catch (OperationCanceledException)
-            {
-                return null;
-            }
+            catch (TaskCanceledException) { return null; }
+            catch (OperationCanceledException) { return null; }
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using EntityCache.Assistence;
 using EntityCache.ViewModels;
@@ -68,18 +69,19 @@ namespace EntityCache.Bussines
 
 
 
-        public static async Task<List<ContractBussines>> GetAllAsync() => await UnitOfWork.Contract.GetAllAsync(Cache.ConnectionString);
-        public static async Task<List<ContractBussines>> GetAllAsync(string search)
+        public static async Task<List<ContractBussines>> GetAllAsync(CancellationToken token) => await UnitOfWork.Contract.GetAllAsync(Cache.ConnectionString, token);
+        public static async Task<List<ContractBussines>> GetAllAsync(string search, CancellationToken token)
         {
             try
             {
-                if (string.IsNullOrEmpty(search))
-                    search = "";
-                var res = await GetAllAsync();
+                if (string.IsNullOrEmpty(search)) search = "";
+                var res = await GetAllAsync(token);
+                if (token.IsCancellationRequested) return null;
                 var searchItems = search.SplitString();
                 if (searchItems?.Count > 0)
                     foreach (var item in searchItems)
                     {
+                        if (token.IsCancellationRequested) return null;
                         if (!string.IsNullOrEmpty(item) && item.Trim() != "")
                         {
                             res = res.Where(x => x.FirstSideName.ToLower().Contains(item.ToLower()) ||
@@ -92,8 +94,8 @@ namespace EntityCache.Bussines
 
                 return res;
             }
-            catch (OperationCanceledException)
-            { return null; }
+            catch (TaskCanceledException) { return null; }
+            catch (OperationCanceledException) { return null; }
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 using EntityCache.Bussines;
 using Services;
@@ -20,7 +21,7 @@ namespace EntityCache.ViewModels
         public List<BuildingRequestBussines> RequestList { get; set; }
 
 
-        public static async Task<List<BuildingRequestViewModel>> GetAllMatchesItemsAsync(List<BuildingBussines> allBuilding)
+        public static async Task<List<BuildingRequestViewModel>> GetAllMatchesItemsAsync(List<BuildingBussines> allBuilding, CancellationToken token)
         {
             var list = new List<BuildingRequestViewModel>();
             try
@@ -41,8 +42,7 @@ namespace EntityCache.ViewModels
                         price2 = item.EjarePrice1;
                         type = EnRequestType.Rahn;
                     }
-
-                    var reqList = await BuildingRequestBussines.GetAllAsync(type, price1, price2, item.Masahat,
+                    var reqList = await BuildingRequestBussines.GetAllAsync(type, token, price1, price2, item.Masahat,
                         item.RoomCount, item.BuildingAccountTypeGuid, item.BuildingConditionGuid, item.RegionGuid);
                     if (reqList == null || reqList.Count <= 0) continue;
                     var a = new BuildingRequestViewModel()
@@ -68,12 +68,12 @@ namespace EntityCache.ViewModels
 
             return list;
         }
-        public static async Task<List<BuildingRequestViewModel>> GetAllMatchesItemsAsync(BuildingBussines building)
+        public static async Task<List<BuildingRequestViewModel>> GetAllMatchesItemsAsync(BuildingBussines building, CancellationToken token)
         {
             try
             {
-                var list = new List<BuildingBussines> {building};
-                return await GetAllMatchesItemsAsync(list);
+                var list = new List<BuildingBussines> { building };
+                return await GetAllMatchesItemsAsync(list, token);
             }
             catch (Exception ex)
             {

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using EntityCache.Bussines;
@@ -17,11 +18,15 @@ namespace Building.Contract
     {
         private bool _st = true;
         private List<ContractBussines> list;
+        private CancellationTokenSource _token = new CancellationTokenSource();
+
         private async Task LoadDataAsync(string search = "")
         {
             try
             {
-                list = await ContractBussines.GetAllAsync(search);
+                _token?.Cancel();
+                _token = new CancellationTokenSource();
+                list = await ContractBussines.GetAllAsync(search, _token.Token);
                 Invoke(new MethodInvoker(() => conBindingSource.DataSource =
                     list.OrderByDescending(q => q.Modified).ToSortableBindingList()));
             }

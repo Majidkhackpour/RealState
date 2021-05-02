@@ -6,13 +6,14 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace EntityCache.SqlServerPersistence
 {
     public class BuildingRequestPersistenceRepository : IBuildingRequestRepository
     {
-        public async Task<List<BuildingRequestBussines>> GetAllAsync(string _connectionString)
+        public async Task<List<BuildingRequestBussines>> GetAllAsync(string _connectionString, CancellationToken token)
         {
             var list = new List<BuildingRequestBussines>();
             try
@@ -20,12 +21,19 @@ namespace EntityCache.SqlServerPersistence
                 using (var cn = new SqlConnection(_connectionString))
                 {
                     var cmd = new SqlCommand("sp_BuildingsReq_SelectAll", cn) { CommandType = CommandType.StoredProcedure };
+                    if (token.IsCancellationRequested) return null;
                     await cn.OpenAsync();
                     var dr = await cmd.ExecuteReaderAsync();
-                    if (dr.Read()) list.Add(LoadData(dr, false));
+                    if (dr.Read())
+                    {
+                        if (token.IsCancellationRequested) return null;
+                        list.Add(LoadData(dr, false));
+                    }
                     cn.Close();
                 }
             }
+            catch (TaskCanceledException) { }
+            catch (OperationCanceledException) { }
             catch (Exception exception)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(exception);

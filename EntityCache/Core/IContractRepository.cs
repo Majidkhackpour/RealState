@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Threading;
 using System.Threading.Tasks;
 using EntityCache.Bussines;
 using EntityCache.ViewModels;
@@ -10,7 +11,7 @@ namespace EntityCache.Core
 {
     public interface IContractRepository
     {
-        Task<List<ContractBussines>> GetAllAsync(string _connectionString);
+        Task<List<ContractBussines>> GetAllAsync(string _connectionString, CancellationToken token);
         Task<string> NextCodeAsync(string _connectionString);
         Task<bool> CheckCodeAsync(string _connectionString, string code, Guid guid);
         Task<ReturnedSaveFuncInfo> SaveAsync(ContractBussines item, SqlTransaction tr);

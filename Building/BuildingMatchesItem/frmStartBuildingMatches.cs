@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using EntityCache.Bussines;
@@ -10,6 +11,8 @@ namespace Building.BuildingMatchesItem
 {
     public partial class frmStartBuildingMatches : MetroForm
     {
+        private CancellationTokenSource _token = new CancellationTokenSource();
+
         private async Task SetDataAsync()
         {
             try
@@ -37,7 +40,9 @@ namespace Building.BuildingMatchesItem
             try
             {
                 btnSelect.Enabled = false;
-                var list = await BuildingRequestViewModel.GetAllMatchesItemsAsync(await BuildingBussines.GetAllAsync());
+                _token?.Cancel();
+                _token = new CancellationTokenSource();
+                var list = await BuildingRequestViewModel.GetAllMatchesItemsAsync(await BuildingBussines.GetAllAsync(_token.Token), _token.Token);
                 if (list.Count <= 0)
                 {
                     MessageBox.Show("فایل مطابقی جهت نمایش وجود ندارد");

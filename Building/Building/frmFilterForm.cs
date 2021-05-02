@@ -262,7 +262,10 @@ namespace Building.Building
 
                 if (chbSystem.Checked)
                 {
-                    list.AddRange(await BuildingBussines.GetAllAsync(txtCode.Text, (Guid) cmbBuildingType.SelectedValue,
+                    _token?.Cancel();
+                    _token = new CancellationTokenSource();
+                    list.AddRange(await BuildingBussines.GetAllAsync(txtCode.Text, _token.Token,
+                        (Guid) cmbBuildingType.SelectedValue,
                         (Guid) cmbBuildingAccountType.SelectedValue, txtFMasahat.Text.ParseToInt(),
                         txtSMasahat.Text.ParseToInt(), txtRoomCount.Text.ParseToInt(), fPrice1, fPrice2,
                         sPrice1, sPrice2,

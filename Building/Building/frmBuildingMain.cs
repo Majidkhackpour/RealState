@@ -1162,8 +1162,9 @@ namespace Building.Building
                 if (MessageBox.Show("آیا مایلید تقاضاهای مطابق با این ملک را مشاهده نمایید؟", "تطبیق املاک با تقاضا",
                         MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.No)
                     return;
-
-                var list = await BuildingRequestViewModel.GetAllMatchesItemsAsync(cls);
+                _token?.Cancel();
+                _token = new CancellationTokenSource();
+                var list = await BuildingRequestViewModel.GetAllMatchesItemsAsync(cls, _token.Token);
                 if (list.Count <= 0)
                 {
                     MessageBox.Show("فایل مطابقی جهت نمایش وجود ندارد");

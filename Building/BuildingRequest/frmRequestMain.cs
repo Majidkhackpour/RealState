@@ -408,6 +408,7 @@ namespace Building.BuildingRequest
                 {
                     res.AddError("لطفا متقاضی را انتخاب نمایید");
                     btnSearchOwner.Focus();
+                    return;
                 }
 
                 if (txtRahn1.Text == "0" && txtRahn2.Text == "0" && txtEjare1.Text == "0" &&
@@ -482,7 +483,9 @@ namespace Building.BuildingRequest
                     sPrice2 = cls.EjarePrice2;
                 }
 
-                list.AddRange(await BuildingBussines.GetAllAsync(null, Guid.Empty,
+                _token?.Cancel();
+                _token = new CancellationTokenSource();
+                list.AddRange(await BuildingBussines.GetAllAsync(null, _token.Token, Guid.Empty,
                     cls.BuildingAccountTypeGuid, cls.Masahat1,
                     cls.Masahat2, cls.RoomCount, fPrice1,
                     sPrice1, fPrice2,
