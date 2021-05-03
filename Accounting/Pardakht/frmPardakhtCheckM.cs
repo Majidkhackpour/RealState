@@ -57,6 +57,7 @@ namespace Accounting.Pardakht
         public frmPardakhtCheckM(PardakhtCheckMoshtariBussines temp)
         {
             InitializeComponent();
+            ucHeader.Text = "پرداخت چک دریافتی از مشتری";
             cls = temp ?? new PardakhtCheckMoshtariBussines();
         }
 

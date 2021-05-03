@@ -54,6 +54,7 @@ namespace Accounting.Reception
         {
             InitializeComponent();
             cls = temp ?? new ReceptionHavaleBussines();
+            ucHeader.Text = "دریافت حواله";
         }
 
         private async void frmReceptionHavale_Load(object sender, EventArgs e) => await SetDataAsync();

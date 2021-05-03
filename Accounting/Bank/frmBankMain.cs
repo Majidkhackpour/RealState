@@ -10,6 +10,7 @@ namespace Accounting.Bank
     public partial class frmBankMain : MetroForm
     {
         private BankBussines cls;
+
         private void SetData()
         {
             try
@@ -87,11 +88,15 @@ namespace Accounting.Bank
         {
             InitializeComponent();
             cls = new BankBussines();
+            ucHeader.Text = "افزودن حساب بانکی جدید";
+            ucHeader.IsModified = cls.IsModified;
         }
         public frmBankMain(Guid guid, bool isShowMode)
         {
             InitializeComponent();
             cls = BankBussines.Get(guid);
+            ucHeader.Text = !isShowMode ? $"ویرایش حساب بانکی {cls.Name}" : $"مشاهده حساب بانکی {cls.Name}";
+            ucHeader.IsModified = cls.IsModified;
             grp.Enabled = !isShowMode;
             btnFinish.Enabled = !isShowMode;
         }

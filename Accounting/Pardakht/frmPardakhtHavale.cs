@@ -53,6 +53,7 @@ namespace Accounting.Pardakht
         {
             InitializeComponent();
             cls = temp ?? new PardakhtHavaleBussines();
+            ucHeader.Text = "پرداخت حواله";
         }
 
         private async void frmPardakhtHavale_Load(object sender, EventArgs e) => await SetDataAsync();

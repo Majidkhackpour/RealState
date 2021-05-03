@@ -27,7 +27,11 @@ namespace Accounting.Check.CheckShakhsi
             }
         }
 
-        public frmShowCheckSh() => InitializeComponent();
+        public frmShowCheckSh()
+        {
+            InitializeComponent();
+            ucHeader.Text = "نمایش لیست چک های پرداختنی";
+        }
 
         private async void frmShowCheckSh_Load(object sender, EventArgs e) => await LoadDataAsync();
         private async void txtSearch_TextChanged(object sender, EventArgs e)

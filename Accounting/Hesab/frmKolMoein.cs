@@ -59,6 +59,7 @@ namespace Accounting.Hesab
         public frmKolMoein(bool _selectMode)
         {
             InitializeComponent();
+            ucHeader.Text = "نمایش لیست حساب های کل و معین";
             isSelectMode = _selectMode;
         }
 

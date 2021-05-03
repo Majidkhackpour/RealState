@@ -52,6 +52,7 @@ namespace Accounting.Reception
         {
             InitializeComponent();
             cls = temp ?? new ReceptionNaqdBussines();
+            ucHeader.Text = "دریافت نقدی";
         }
 
         private async void frmReceptionNaqd_Load(object sender, EventArgs e) => await SetDataAsync();

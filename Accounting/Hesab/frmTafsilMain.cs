@@ -14,7 +14,6 @@ namespace Accounting.Hesab
     public partial class frmTafsilMain : MetroForm
     {
         private TafsilBussines cls;
-        private EnLogAction action;
         private HesabType hType = HesabType.Tafsil;
         private CancellationTokenSource _token = new CancellationTokenSource();
 
@@ -115,13 +114,13 @@ namespace Accounting.Hesab
         {
             InitializeComponent();
             cls = new TafsilBussines();
-            action = EnLogAction.Insert;
+            ucHeader.Text = "افزودن حساب تفصیلی جدید";
         }
         public frmTafsilMain(HesabType hType)
         {
             InitializeComponent();
             cls = new TafsilBussines();
-            action = EnLogAction.Insert;
+            ucHeader.Text = $"افزودن {hType.GetDisplay()} جدید";
             cmbType.Enabled = false;
             this.hType = hType;
             if (hType == HesabType.Hazine || hType == HesabType.Bank)
@@ -131,9 +130,10 @@ namespace Accounting.Hesab
         {
             InitializeComponent();
             cls = TafsilBussines.Get(guid);
+            ucHeader.Text = !isShowMode ? $"ویرایش حساب تفصیلی {cls.Name}" : $"مشاهده حساب تفصیلی {cls.Name}";
+            ucHeader.IsModified = true;
             grp.Enabled = !isShowMode;
             btnFinish.Enabled = !isShowMode;
-            action = EnLogAction.Update;
             if (htype != null)
             {
                 cmbType.Enabled = false;

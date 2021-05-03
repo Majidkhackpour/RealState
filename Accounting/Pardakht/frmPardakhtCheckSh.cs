@@ -65,11 +65,13 @@ namespace Accounting.Pardakht
         {
             InitializeComponent();
             cls = temp ?? new PardakhtCheckShakhsiBussines();
+            ucHeader.Text = "پرداخت چک شخصی";
         }
         public frmPardakhtCheckSh(Guid guid)
         {
             InitializeComponent();
             cls = PardakhtCheckShakhsiBussines.Get(guid);
+            ucHeader.Text = "پرداخت چک شخصی";
             grp.Enabled = false;
             btnFinish.Enabled = false;
         }

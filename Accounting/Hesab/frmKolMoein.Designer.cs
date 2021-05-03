@@ -51,7 +51,6 @@ namespace Accounting.Hesab
             this.Account = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgKolGuid = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.modifiedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.statusDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.hesabGroupDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.KolBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.txtSearchKol = new DevComponents.DotNetBar.Controls.TextBoxX();
@@ -62,11 +61,11 @@ namespace Accounting.Hesab
             this.dgAccount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgMoeinGuid = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.modifiedDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.statusDataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.kolGuidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dateMDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.MoeinBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.txtSearchMoein = new DevComponents.DotNetBar.Controls.TextBoxX();
+            this.ucHeader = new WindowsSerivces.UC_Header();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -82,7 +81,7 @@ namespace Accounting.Hesab
             this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.splitContainer1.Location = new System.Drawing.Point(2, 28);
+            this.splitContainer1.Location = new System.Drawing.Point(2, 56);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
@@ -96,7 +95,7 @@ namespace Accounting.Hesab
             this.splitContainer1.Panel2.Controls.Add(this.DGridMoein);
             this.splitContainer1.Panel2.Controls.Add(this.txtSearchMoein);
             this.splitContainer1.Panel2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.splitContainer1.Size = new System.Drawing.Size(796, 565);
+            this.splitContainer1.Size = new System.Drawing.Size(796, 537);
             this.splitContainer1.SplitterDistance = 396;
             this.splitContainer1.TabIndex = 0;
             // 
@@ -133,7 +132,6 @@ namespace Accounting.Hesab
             this.Account,
             this.dgKolGuid,
             this.modifiedDataGridViewTextBoxColumn,
-            this.statusDataGridViewCheckBoxColumn,
             this.hesabGroupDataGridViewTextBoxColumn});
             this.DGridKol.DataSource = this.KolBindingSource;
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
@@ -168,7 +166,7 @@ namespace Accounting.Hesab
             this.DGridKol.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.DGridKol.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             this.DGridKol.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DGridKol.Size = new System.Drawing.Size(390, 511);
+            this.DGridKol.Size = new System.Drawing.Size(390, 483);
             this.DGridKol.TabIndex = 55747;
             this.DGridKol.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGrid_CellEnter);
             // 
@@ -225,14 +223,6 @@ namespace Accounting.Hesab
             this.modifiedDataGridViewTextBoxColumn.Name = "modifiedDataGridViewTextBoxColumn";
             this.modifiedDataGridViewTextBoxColumn.ReadOnly = true;
             this.modifiedDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // statusDataGridViewCheckBoxColumn
-            // 
-            this.statusDataGridViewCheckBoxColumn.DataPropertyName = "Status";
-            this.statusDataGridViewCheckBoxColumn.HeaderText = "Status";
-            this.statusDataGridViewCheckBoxColumn.Name = "statusDataGridViewCheckBoxColumn";
-            this.statusDataGridViewCheckBoxColumn.ReadOnly = true;
-            this.statusDataGridViewCheckBoxColumn.Visible = false;
             // 
             // hesabGroupDataGridViewTextBoxColumn
             // 
@@ -298,7 +288,6 @@ namespace Accounting.Hesab
             this.dgAccount,
             this.dgMoeinGuid,
             this.modifiedDataGridViewTextBoxColumn1,
-            this.statusDataGridViewCheckBoxColumn1,
             this.kolGuidDataGridViewTextBoxColumn,
             this.dateMDataGridViewTextBoxColumn});
             this.DGridMoein.DataSource = this.MoeinBindingSource;
@@ -334,7 +323,7 @@ namespace Accounting.Hesab
             this.DGridMoein.RowsDefaultCellStyle = dataGridViewCellStyle12;
             this.DGridMoein.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             this.DGridMoein.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DGridMoein.Size = new System.Drawing.Size(390, 511);
+            this.DGridMoein.Size = new System.Drawing.Size(390, 483);
             this.DGridMoein.TabIndex = 55748;
             this.DGridMoein.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DGridMoein_KeyDown);
             // 
@@ -392,14 +381,6 @@ namespace Accounting.Hesab
             this.modifiedDataGridViewTextBoxColumn1.ReadOnly = true;
             this.modifiedDataGridViewTextBoxColumn1.Visible = false;
             // 
-            // statusDataGridViewCheckBoxColumn1
-            // 
-            this.statusDataGridViewCheckBoxColumn1.DataPropertyName = "Status";
-            this.statusDataGridViewCheckBoxColumn1.HeaderText = "Status";
-            this.statusDataGridViewCheckBoxColumn1.Name = "statusDataGridViewCheckBoxColumn1";
-            this.statusDataGridViewCheckBoxColumn1.ReadOnly = true;
-            this.statusDataGridViewCheckBoxColumn1.Visible = false;
-            // 
             // kolGuidDataGridViewTextBoxColumn
             // 
             this.kolGuidDataGridViewTextBoxColumn.DataPropertyName = "KolGuid";
@@ -439,11 +420,30 @@ namespace Accounting.Hesab
             this.txtSearchMoein.WatermarkText = "مورد جستجو را وارد نمایید ...";
             this.txtSearchMoein.TextChanged += new System.EventHandler(this.txtSearchMoein_TextChanged);
             // 
+            // ucHeader
+            // 
+            this.ucHeader.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.ucHeader.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ucHeader.BackColor = System.Drawing.Color.White;
+            this.ucHeader.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.ucHeader.Cursor = System.Windows.Forms.Cursors.Default;
+            this.ucHeader.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.ucHeader.IsModified = false;
+            this.ucHeader.Location = new System.Drawing.Point(-5, 22);
+            this.ucHeader.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ucHeader.MinimumSize = new System.Drawing.Size(297, 34);
+            this.ucHeader.Name = "ucHeader";
+            this.ucHeader.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.ucHeader.Size = new System.Drawing.Size(815, 34);
+            this.ucHeader.TabIndex = 55755;
+            // 
             // frmKolMoein
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 600);
+            this.Controls.Add(this.ucHeader);
             this.Controls.Add(this.splitContainer1);
             this.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -453,7 +453,7 @@ namespace Accounting.Hesab
             this.Name = "frmKolMoein";
             this.Padding = new System.Windows.Forms.Padding(27, 92, 27, 31);
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.Style = MetroFramework.MetroColorStyle.Green;
+            this.Style = MetroFramework.MetroColorStyle.Teal;
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmKolMoein_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmKolMoein_KeyDown);
@@ -495,5 +495,6 @@ namespace Accounting.Hesab
         private System.Windows.Forms.DataGridViewCheckBoxColumn statusDataGridViewCheckBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn kolGuidDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn dateMDataGridViewTextBoxColumn;
+        private WindowsSerivces.UC_Header ucHeader;
     }
 }

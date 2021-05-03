@@ -20,7 +20,9 @@ namespace Accounting.Check.CheckMoshtari
     public partial class frmShowCheckM : MetroForm
     {
         private bool isSelectMode = false;
+
         public Guid SelectedGuid { get; set; }
+
         private async Task LoadDataAsync(string search = "")
         {
             try
@@ -53,22 +55,13 @@ namespace Accounting.Check.CheckMoshtari
         public frmShowCheckM(bool _isSelectMode)
         {
             InitializeComponent();
+            ucHeader.Text = "نمایش لیست چک های دریافتنی";
             isSelectMode = _isSelectMode;
             contextMenu.Enabled = !_isSelectMode;
         }
 
         private async void frmShowCheckM_Load(object sender, EventArgs e) => await LoadDataAsync();
-        private async void txtSearch_TextChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                await LoadDataAsync(txtSearch.Text);
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
+        private async void txtSearch_TextChanged(object sender, EventArgs e) => await LoadDataAsync(txtSearch.Text);
         private void frmShowCheckM_KeyDown(object sender, KeyEventArgs e)
         {
             try

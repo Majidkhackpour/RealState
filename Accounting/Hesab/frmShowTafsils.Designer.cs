@@ -56,11 +56,11 @@ namespace Accounting.Hesab
             this.mnuDelete = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.mnuView = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuStatus = new System.Windows.Forms.ToolStripMenuItem();
-            this.TafsilBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.txtSearch = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
             this.mnuGardesh = new System.Windows.Forms.ToolStripMenuItem();
+            this.TafsilBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.txtSearch = new DevComponents.DotNetBar.Controls.TextBoxX();
+            this.ucHeader = new WindowsSerivces.UC_Header();
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).BeginInit();
             this.contextMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TafsilBindingSource)).BeginInit();
@@ -116,7 +116,7 @@ namespace Accounting.Hesab
             dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.DGrid.DefaultCellStyle = dataGridViewCellStyle4;
             this.DGrid.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
-            this.DGrid.Location = new System.Drawing.Point(3, 65);
+            this.DGrid.Location = new System.Drawing.Point(3, 96);
             this.DGrid.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.DGrid.Name = "DGrid";
             this.DGrid.ReadOnly = true;
@@ -139,7 +139,7 @@ namespace Accounting.Hesab
             this.DGrid.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.DGrid.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             this.DGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DGrid.Size = new System.Drawing.Size(793, 528);
+            this.DGrid.Size = new System.Drawing.Size(793, 497);
             this.DGrid.TabIndex = 55749;
             // 
             // codeDataGridViewTextBoxColumn
@@ -253,12 +253,11 @@ namespace Accounting.Hesab
             this.mnuDelete,
             this.toolStripMenuItem1,
             this.mnuView,
-            this.mnuStatus,
             this.toolStripMenuItem2,
             this.mnuGardesh});
             this.contextMenu.Name = "contextMenu";
             this.contextMenu.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.contextMenu.Size = new System.Drawing.Size(246, 182);
+            this.contextMenu.Size = new System.Drawing.Size(246, 136);
             // 
             // mnuAdd
             // 
@@ -297,13 +296,18 @@ namespace Accounting.Hesab
             this.mnuView.Text = "مشاهده (F12)";
             this.mnuView.Click += new System.EventHandler(this.mnuView_Click);
             // 
-            // mnuStatus
+            // toolStripMenuItem2
             // 
-            this.mnuStatus.Image = global::Accounting.Properties.Resources.refresh_round_symbol;
-            this.mnuStatus.Name = "mnuStatus";
-            this.mnuStatus.Size = new System.Drawing.Size(245, 24);
-            this.mnuStatus.Text = "غیرفعال (Ctrl+S)";
-            this.mnuStatus.Click += new System.EventHandler(this.mnuStatus_Click);
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(242, 6);
+            // 
+            // mnuGardesh
+            // 
+            this.mnuGardesh.Image = global::Accounting.Properties.Resources.article_1_;
+            this.mnuGardesh.Name = "mnuGardesh";
+            this.mnuGardesh.Size = new System.Drawing.Size(245, 24);
+            this.mnuGardesh.Text = "مشاهده گردش حساب";
+            this.mnuGardesh.Click += new System.EventHandler(this.mnuGardesh_Click);
             // 
             // TafsilBindingSource
             // 
@@ -318,34 +322,40 @@ namespace Accounting.Hesab
             // 
             this.txtSearch.Border.Class = "TextBoxBorder";
             this.txtSearch.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.txtSearch.Location = new System.Drawing.Point(149, 25);
+            this.txtSearch.Location = new System.Drawing.Point(65, 61);
             this.txtSearch.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.PreventEnterBeep = true;
-            this.txtSearch.Size = new System.Drawing.Size(476, 27);
+            this.txtSearch.Size = new System.Drawing.Size(647, 27);
             this.txtSearch.TabIndex = 55748;
             this.txtSearch.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtSearch.WatermarkText = "مورد جستجو را وارد نمایید ...";
             this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
             // 
-            // toolStripMenuItem2
+            // ucHeader
             // 
-            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(242, 6);
-            // 
-            // mnuGardesh
-            // 
-            this.mnuGardesh.Image = global::Accounting.Properties.Resources.article_1_;
-            this.mnuGardesh.Name = "mnuGardesh";
-            this.mnuGardesh.Size = new System.Drawing.Size(245, 24);
-            this.mnuGardesh.Text = "مشاهده گردش حساب";
-            this.mnuGardesh.Click += new System.EventHandler(this.mnuGardesh_Click);
+            this.ucHeader.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.ucHeader.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ucHeader.BackColor = System.Drawing.Color.White;
+            this.ucHeader.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.ucHeader.Cursor = System.Windows.Forms.Cursors.Default;
+            this.ucHeader.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.ucHeader.IsModified = false;
+            this.ucHeader.Location = new System.Drawing.Point(-6, 25);
+            this.ucHeader.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ucHeader.MinimumSize = new System.Drawing.Size(297, 34);
+            this.ucHeader.Name = "ucHeader";
+            this.ucHeader.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.ucHeader.Size = new System.Drawing.Size(815, 34);
+            this.ucHeader.TabIndex = 55755;
             // 
             // frmShowTafsils
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 600);
+            this.Controls.Add(this.ucHeader);
             this.Controls.Add(this.DGrid);
             this.Controls.Add(this.txtSearch);
             this.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
@@ -358,7 +368,7 @@ namespace Accounting.Hesab
             this.Name = "frmShowTafsils";
             this.Padding = new System.Windows.Forms.Padding(27, 92, 27, 31);
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.Style = MetroFramework.MetroColorStyle.Green;
+            this.Style = MetroFramework.MetroColorStyle.Teal;
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmShowTafsils_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmShowTafsils_KeyDown);
@@ -380,7 +390,6 @@ namespace Accounting.Hesab
         private System.Windows.Forms.ToolStripMenuItem mnuDelete;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem mnuView;
-        private System.Windows.Forms.ToolStripMenuItem mnuStatus;
         private System.Windows.Forms.DataGridViewTextBoxColumn codeDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgName;
         private System.Windows.Forms.DataGridViewTextBoxColumn accountDataGridViewTextBoxColumn1;
@@ -395,5 +404,6 @@ namespace Accounting.Hesab
         private System.Windows.Forms.DataGridViewCheckBoxColumn isSystemDataGridViewCheckBoxColumn;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem mnuGardesh;
+        private WindowsSerivces.UC_Header ucHeader;
     }
 }

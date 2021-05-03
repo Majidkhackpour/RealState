@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using WindowsSerivces;
 using Accounting.Hesab;
@@ -63,11 +62,14 @@ namespace Accounting.Check.DasteCheck
         {
             InitializeComponent();
             cls = new DasteCheckBussines();
+            ucHeader.Text = "افزودن دسته چک جدید";
         }
         public frmDasteCheckMain(Guid guid, bool isShowMode)
         {
             InitializeComponent();
             cls = DasteCheckBussines.Get(guid);
+            ucHeader.Text = !isShowMode ? $"ویرایش دسته چک سریال {cls.SerialNumber}" : $"مشاهده دسته چک سریال {cls.SerialNumber}";
+            ucHeader.IsModified = true;
             _bankGuid = cls.BankGuid;
             grp.Enabled = !isShowMode;
             btnFinish.Enabled = !isShowMode;

@@ -49,7 +49,6 @@ namespace Accounting.Gardesh
             this.Rem_ = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.remDiagnosisDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.guidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.statusDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.remDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.moeinGuidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.moeinCodeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -98,7 +97,6 @@ namespace Accounting.Gardesh
             this.Rem_,
             this.remDiagnosisDataGridViewTextBoxColumn,
             this.guidDataGridViewTextBoxColumn,
-            this.statusDataGridViewCheckBoxColumn,
             this.remDataGridViewTextBoxColumn,
             this.moeinGuidDataGridViewTextBoxColumn,
             this.moeinCodeDataGridViewTextBoxColumn,
@@ -222,14 +220,6 @@ namespace Accounting.Gardesh
             this.guidDataGridViewTextBoxColumn.ReadOnly = true;
             this.guidDataGridViewTextBoxColumn.Visible = false;
             // 
-            // statusDataGridViewCheckBoxColumn
-            // 
-            this.statusDataGridViewCheckBoxColumn.DataPropertyName = "Status";
-            this.statusDataGridViewCheckBoxColumn.HeaderText = "Status";
-            this.statusDataGridViewCheckBoxColumn.Name = "statusDataGridViewCheckBoxColumn";
-            this.statusDataGridViewCheckBoxColumn.ReadOnly = true;
-            this.statusDataGridViewCheckBoxColumn.Visible = false;
-            // 
             // remDataGridViewTextBoxColumn
             // 
             this.remDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
@@ -328,7 +318,7 @@ namespace Accounting.Gardesh
             this.Name = "frmGardeshTafsil";
             this.Padding = new System.Windows.Forms.Padding(27, 92, 27, 31);
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.Style = MetroFramework.MetroColorStyle.Green;
+            this.Style = MetroFramework.MetroColorStyle.Teal;
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmGardeshTafsil_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmGardeshTafsil_KeyDown);

@@ -35,11 +35,7 @@ namespace Cities.Region
             }
         }
 
-        public frmSelectRegion()
-        {
-            InitializeComponent();
-            ucHeader.Text = "انتخاب منطقه";
-        }
+        public frmSelectRegion() => InitializeComponent();
 
         private async void frmSelectRegion_Load(object sender, EventArgs e) => await LoadDataAsync();
         private void btnSelect_Click(object sender, EventArgs e)

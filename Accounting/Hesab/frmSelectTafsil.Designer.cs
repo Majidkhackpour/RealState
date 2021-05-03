@@ -263,7 +263,7 @@ namespace Accounting.Hesab
             this.btnSelect.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.btnSelect.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSelect.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.btnSelect.BackColor = System.Drawing.Color.LightSteelBlue;
             this.btnSelect.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnSelect.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnSelect.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -275,7 +275,7 @@ namespace Accounting.Hesab
             this.btnSelect.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
             this.btnSelect.TabIndex = 55763;
             this.btnSelect.Text = "انتخاب";
-            this.btnSelect.TextColor = System.Drawing.Color.White;
+            this.btnSelect.TextColor = System.Drawing.Color.Black;
             this.btnSelect.Click += new System.EventHandler(this.btnSelect_Click);
             // 
             // frmSelectTafsil
@@ -297,7 +297,7 @@ namespace Accounting.Hesab
             this.Name = "frmSelectTafsil";
             this.Padding = new System.Windows.Forms.Padding(27, 92, 27, 31);
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.Style = MetroFramework.MetroColorStyle.Green;
+            this.Style = MetroFramework.MetroColorStyle.Teal;
             this.Load += new System.EventHandler(this.frmSelectTafsil_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmSelectTafsil_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.TafsilBindingSource)).EndInit();

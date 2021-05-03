@@ -39,22 +39,6 @@ namespace Accounting.Check.CheckMoshtari
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmShowCheckM));
             this.txtSearch = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.DGrid = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.contextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.mnuAdd = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuInsAvalDore = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuEdit = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
-            this.mnuView = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuViewSanad = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuViewPardazande = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
-            this.mnuKharj = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuVagozarSandouq = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuVagozarBank = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuBargasht = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuNaqd = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuBatel = new System.Windows.Forms.ToolStripMenuItem();
-            this.CheckBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dgRadif = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dateShDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgBankName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -73,6 +57,23 @@ namespace Accounting.Check.CheckMoshtari
             this.dgStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DgPardazandeGuid = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DgSandouqTafsilGuid = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.contextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.mnuAdd = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuInsAvalDore = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuEdit = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
+            this.mnuView = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuViewSanad = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuViewPardazande = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
+            this.mnuKharj = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuVagozarSandouq = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuVagozarBank = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuBargasht = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuNaqd = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuBatel = new System.Windows.Forms.ToolStripMenuItem();
+            this.CheckBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.ucHeader = new WindowsSerivces.UC_Header();
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).BeginInit();
             this.contextMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CheckBindingSource)).BeginInit();
@@ -87,7 +88,7 @@ namespace Accounting.Check.CheckMoshtari
             // 
             this.txtSearch.Border.Class = "TextBoxBorder";
             this.txtSearch.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.txtSearch.Location = new System.Drawing.Point(149, 25);
+            this.txtSearch.Location = new System.Drawing.Point(149, 58);
             this.txtSearch.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.PreventEnterBeep = true;
@@ -153,7 +154,7 @@ namespace Accounting.Check.CheckMoshtari
             dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.DGrid.DefaultCellStyle = dataGridViewCellStyle4;
             this.DGrid.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
-            this.DGrid.Location = new System.Drawing.Point(3, 65);
+            this.DGrid.Location = new System.Drawing.Point(3, 96);
             this.DGrid.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.DGrid.Name = "DGrid";
             this.DGrid.ReadOnly = true;
@@ -176,136 +177,10 @@ namespace Accounting.Check.CheckMoshtari
             this.DGrid.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.DGrid.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             this.DGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DGrid.Size = new System.Drawing.Size(793, 528);
+            this.DGrid.Size = new System.Drawing.Size(793, 497);
             this.DGrid.TabIndex = 55757;
             this.DGrid.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DGrid_CellFormatting);
             this.DGrid.DoubleClick += new System.EventHandler(this.DGrid_DoubleClick);
-            // 
-            // contextMenu
-            // 
-            this.contextMenu.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.contextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mnuAdd,
-            this.mnuInsAvalDore,
-            this.mnuEdit,
-            this.toolStripMenuItem1,
-            this.mnuView,
-            this.mnuViewSanad,
-            this.mnuViewPardazande,
-            this.toolStripMenuItem2,
-            this.mnuKharj,
-            this.mnuVagozarSandouq,
-            this.mnuVagozarBank,
-            this.mnuBargasht,
-            this.mnuNaqd,
-            this.mnuBatel});
-            this.contextMenu.Name = "contextMenu";
-            this.contextMenu.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.contextMenu.Size = new System.Drawing.Size(236, 304);
-            // 
-            // mnuAdd
-            // 
-            this.mnuAdd.Image = global::Accounting.Properties.Resources.add_2_;
-            this.mnuAdd.Name = "mnuAdd";
-            this.mnuAdd.Size = new System.Drawing.Size(235, 24);
-            this.mnuAdd.Text = "افزودن چک دریافتی جدید (Ins)";
-            this.mnuAdd.Click += new System.EventHandler(this.mnuAdd_Click);
-            // 
-            // mnuInsAvalDore
-            // 
-            this.mnuInsAvalDore.Image = global::Accounting.Properties.Resources.add_2_;
-            this.mnuInsAvalDore.Name = "mnuInsAvalDore";
-            this.mnuInsAvalDore.Size = new System.Drawing.Size(235, 24);
-            this.mnuInsAvalDore.Text = "افزودن چک دریافتی اول دوره";
-            this.mnuInsAvalDore.Click += new System.EventHandler(this.mnuInsAvalDore_Click);
-            // 
-            // mnuEdit
-            // 
-            this.mnuEdit.Image = global::Accounting.Properties.Resources.edit_1_;
-            this.mnuEdit.Name = "mnuEdit";
-            this.mnuEdit.Size = new System.Drawing.Size(235, 24);
-            this.mnuEdit.Text = "ویرایش چک دریافتی جاری (F7)";
-            this.mnuEdit.Click += new System.EventHandler(this.mnuEdit_Click);
-            // 
-            // toolStripMenuItem1
-            // 
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(232, 6);
-            // 
-            // mnuView
-            // 
-            this.mnuView.Image = global::Accounting.Properties.Resources.article_1_;
-            this.mnuView.Name = "mnuView";
-            this.mnuView.Size = new System.Drawing.Size(235, 24);
-            this.mnuView.Text = "مشاهده (F12)";
-            this.mnuView.Click += new System.EventHandler(this.mnuView_Click);
-            // 
-            // mnuViewSanad
-            // 
-            this.mnuViewSanad.Image = global::Accounting.Properties.Resources.article_1_;
-            this.mnuViewSanad.Name = "mnuViewSanad";
-            this.mnuViewSanad.Size = new System.Drawing.Size(235, 24);
-            this.mnuViewSanad.Text = "مشاهده سند دریافت";
-            this.mnuViewSanad.Click += new System.EventHandler(this.mnuViewSanad_Click);
-            // 
-            // mnuViewPardazande
-            // 
-            this.mnuViewPardazande.Image = global::Accounting.Properties.Resources.article_1_;
-            this.mnuViewPardazande.Name = "mnuViewPardazande";
-            this.mnuViewPardazande.Size = new System.Drawing.Size(235, 24);
-            this.mnuViewPardazande.Text = "مشاهده مشخصات پردازنده";
-            this.mnuViewPardazande.Click += new System.EventHandler(this.mnuViewPardazande_Click);
-            // 
-            // toolStripMenuItem2
-            // 
-            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(232, 6);
-            // 
-            // mnuKharj
-            // 
-            this.mnuKharj.Name = "mnuKharj";
-            this.mnuKharj.Size = new System.Drawing.Size(235, 24);
-            this.mnuKharj.Text = "خرج کردن";
-            this.mnuKharj.Click += new System.EventHandler(this.mnuKharj_Click);
-            // 
-            // mnuVagozarSandouq
-            // 
-            this.mnuVagozarSandouq.Name = "mnuVagozarSandouq";
-            this.mnuVagozarSandouq.Size = new System.Drawing.Size(235, 24);
-            this.mnuVagozarSandouq.Text = "واگذار کردن به صندوق";
-            this.mnuVagozarSandouq.Click += new System.EventHandler(this.mnuVagozarSandouq_Click);
-            // 
-            // mnuVagozarBank
-            // 
-            this.mnuVagozarBank.Name = "mnuVagozarBank";
-            this.mnuVagozarBank.Size = new System.Drawing.Size(235, 24);
-            this.mnuVagozarBank.Text = "واگذار کردن به بانک";
-            this.mnuVagozarBank.Click += new System.EventHandler(this.mnuVagozarBank_Click);
-            // 
-            // mnuBargasht
-            // 
-            this.mnuBargasht.Name = "mnuBargasht";
-            this.mnuBargasht.Size = new System.Drawing.Size(235, 24);
-            this.mnuBargasht.Text = "برگشت زدن";
-            this.mnuBargasht.Click += new System.EventHandler(this.mnuBargasht_Click);
-            // 
-            // mnuNaqd
-            // 
-            this.mnuNaqd.Name = "mnuNaqd";
-            this.mnuNaqd.Size = new System.Drawing.Size(235, 24);
-            this.mnuNaqd.Text = "نقد کردن";
-            this.mnuNaqd.Click += new System.EventHandler(this.mnuNaqd_Click);
-            // 
-            // mnuBatel
-            // 
-            this.mnuBatel.Name = "mnuBatel";
-            this.mnuBatel.Size = new System.Drawing.Size(235, 24);
-            this.mnuBatel.Text = "باطل کردن";
-            this.mnuBatel.Click += new System.EventHandler(this.mnuBatel_Click);
-            // 
-            // CheckBindingSource
-            // 
-            this.CheckBindingSource.DataSource = typeof(EntityCache.ViewModels.ReceptionCheckViewModel);
             // 
             // dgRadif
             // 
@@ -461,11 +336,156 @@ namespace Accounting.Check.CheckMoshtari
             this.DgSandouqTafsilGuid.ReadOnly = true;
             this.DgSandouqTafsilGuid.Visible = false;
             // 
+            // contextMenu
+            // 
+            this.contextMenu.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.contextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnuAdd,
+            this.mnuInsAvalDore,
+            this.mnuEdit,
+            this.toolStripMenuItem1,
+            this.mnuView,
+            this.mnuViewSanad,
+            this.mnuViewPardazande,
+            this.toolStripMenuItem2,
+            this.mnuKharj,
+            this.mnuVagozarSandouq,
+            this.mnuVagozarBank,
+            this.mnuBargasht,
+            this.mnuNaqd,
+            this.mnuBatel});
+            this.contextMenu.Name = "contextMenu";
+            this.contextMenu.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.contextMenu.Size = new System.Drawing.Size(236, 304);
+            // 
+            // mnuAdd
+            // 
+            this.mnuAdd.Image = global::Accounting.Properties.Resources.add_2_;
+            this.mnuAdd.Name = "mnuAdd";
+            this.mnuAdd.Size = new System.Drawing.Size(235, 24);
+            this.mnuAdd.Text = "افزودن چک دریافتی جدید (Ins)";
+            this.mnuAdd.Click += new System.EventHandler(this.mnuAdd_Click);
+            // 
+            // mnuInsAvalDore
+            // 
+            this.mnuInsAvalDore.Image = global::Accounting.Properties.Resources.add_2_;
+            this.mnuInsAvalDore.Name = "mnuInsAvalDore";
+            this.mnuInsAvalDore.Size = new System.Drawing.Size(235, 24);
+            this.mnuInsAvalDore.Text = "افزودن چک دریافتی اول دوره";
+            this.mnuInsAvalDore.Click += new System.EventHandler(this.mnuInsAvalDore_Click);
+            // 
+            // mnuEdit
+            // 
+            this.mnuEdit.Image = global::Accounting.Properties.Resources.edit_1_;
+            this.mnuEdit.Name = "mnuEdit";
+            this.mnuEdit.Size = new System.Drawing.Size(235, 24);
+            this.mnuEdit.Text = "ویرایش چک دریافتی جاری (F7)";
+            this.mnuEdit.Click += new System.EventHandler(this.mnuEdit_Click);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(232, 6);
+            // 
+            // mnuView
+            // 
+            this.mnuView.Image = global::Accounting.Properties.Resources.article_1_;
+            this.mnuView.Name = "mnuView";
+            this.mnuView.Size = new System.Drawing.Size(235, 24);
+            this.mnuView.Text = "مشاهده (F12)";
+            this.mnuView.Click += new System.EventHandler(this.mnuView_Click);
+            // 
+            // mnuViewSanad
+            // 
+            this.mnuViewSanad.Image = global::Accounting.Properties.Resources.article_1_;
+            this.mnuViewSanad.Name = "mnuViewSanad";
+            this.mnuViewSanad.Size = new System.Drawing.Size(235, 24);
+            this.mnuViewSanad.Text = "مشاهده سند دریافت";
+            this.mnuViewSanad.Click += new System.EventHandler(this.mnuViewSanad_Click);
+            // 
+            // mnuViewPardazande
+            // 
+            this.mnuViewPardazande.Image = global::Accounting.Properties.Resources.article_1_;
+            this.mnuViewPardazande.Name = "mnuViewPardazande";
+            this.mnuViewPardazande.Size = new System.Drawing.Size(235, 24);
+            this.mnuViewPardazande.Text = "مشاهده مشخصات پردازنده";
+            this.mnuViewPardazande.Click += new System.EventHandler(this.mnuViewPardazande_Click);
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(232, 6);
+            // 
+            // mnuKharj
+            // 
+            this.mnuKharj.Name = "mnuKharj";
+            this.mnuKharj.Size = new System.Drawing.Size(235, 24);
+            this.mnuKharj.Text = "خرج کردن";
+            this.mnuKharj.Click += new System.EventHandler(this.mnuKharj_Click);
+            // 
+            // mnuVagozarSandouq
+            // 
+            this.mnuVagozarSandouq.Name = "mnuVagozarSandouq";
+            this.mnuVagozarSandouq.Size = new System.Drawing.Size(235, 24);
+            this.mnuVagozarSandouq.Text = "واگذار کردن به صندوق";
+            this.mnuVagozarSandouq.Click += new System.EventHandler(this.mnuVagozarSandouq_Click);
+            // 
+            // mnuVagozarBank
+            // 
+            this.mnuVagozarBank.Name = "mnuVagozarBank";
+            this.mnuVagozarBank.Size = new System.Drawing.Size(235, 24);
+            this.mnuVagozarBank.Text = "واگذار کردن به بانک";
+            this.mnuVagozarBank.Click += new System.EventHandler(this.mnuVagozarBank_Click);
+            // 
+            // mnuBargasht
+            // 
+            this.mnuBargasht.Name = "mnuBargasht";
+            this.mnuBargasht.Size = new System.Drawing.Size(235, 24);
+            this.mnuBargasht.Text = "برگشت زدن";
+            this.mnuBargasht.Click += new System.EventHandler(this.mnuBargasht_Click);
+            // 
+            // mnuNaqd
+            // 
+            this.mnuNaqd.Name = "mnuNaqd";
+            this.mnuNaqd.Size = new System.Drawing.Size(235, 24);
+            this.mnuNaqd.Text = "نقد کردن";
+            this.mnuNaqd.Click += new System.EventHandler(this.mnuNaqd_Click);
+            // 
+            // mnuBatel
+            // 
+            this.mnuBatel.Name = "mnuBatel";
+            this.mnuBatel.Size = new System.Drawing.Size(235, 24);
+            this.mnuBatel.Text = "باطل کردن";
+            this.mnuBatel.Click += new System.EventHandler(this.mnuBatel_Click);
+            // 
+            // CheckBindingSource
+            // 
+            this.CheckBindingSource.DataSource = typeof(EntityCache.ViewModels.ReceptionCheckViewModel);
+            // 
+            // ucHeader
+            // 
+            this.ucHeader.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.ucHeader.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ucHeader.BackColor = System.Drawing.Color.White;
+            this.ucHeader.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.ucHeader.Cursor = System.Windows.Forms.Cursors.Default;
+            this.ucHeader.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.ucHeader.IsModified = false;
+            this.ucHeader.Location = new System.Drawing.Point(-7, 18);
+            this.ucHeader.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ucHeader.MinimumSize = new System.Drawing.Size(297, 34);
+            this.ucHeader.Name = "ucHeader";
+            this.ucHeader.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.ucHeader.Size = new System.Drawing.Size(815, 34);
+            this.ucHeader.TabIndex = 55758;
+            // 
             // frmShowCheckM
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 600);
+            this.Controls.Add(this.ucHeader);
             this.Controls.Add(this.txtSearch);
             this.Controls.Add(this.DGrid);
             this.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
@@ -476,7 +496,7 @@ namespace Accounting.Check.CheckMoshtari
             this.Name = "frmShowCheckM";
             this.Padding = new System.Windows.Forms.Padding(27, 92, 27, 31);
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.Style = MetroFramework.MetroColorStyle.Green;
+            this.Style = MetroFramework.MetroColorStyle.Teal;
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmShowCheckM_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmShowCheckM_KeyDown);
@@ -526,5 +546,6 @@ namespace Accounting.Check.CheckMoshtari
         private System.Windows.Forms.DataGridViewTextBoxColumn dgStatus;
         private System.Windows.Forms.DataGridViewTextBoxColumn DgPardazandeGuid;
         private System.Windows.Forms.DataGridViewTextBoxColumn DgSandouqTafsilGuid;
+        private WindowsSerivces.UC_Header ucHeader;
     }
 }

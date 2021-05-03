@@ -47,6 +47,9 @@ namespace Accounting.Reception
             this.mnuEdit = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuAdd = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
+            this.mnuPrintOne = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuPrintList = new System.Windows.Forms.ToolStripMenuItem();
             this.DGrid = new DevComponents.DotNetBar.Controls.DataGridViewX();
             this.dgNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dateShDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -59,7 +62,6 @@ namespace Accounting.Reception
             this.userNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgGuid = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.modifiedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.statusDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.dateMDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tafsilGuidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.moeinGuidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -69,9 +71,7 @@ namespace Accounting.Reception
             this.countHavaleDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.countCheckDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ReceptionBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
-            this.mnuPrintOne = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuPrintList = new System.Windows.Forms.ToolStripMenuItem();
+            this.ucHeader = new WindowsSerivces.UC_Header();
             this.contextMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ReceptionBindingSource)).BeginInit();
@@ -86,11 +86,11 @@ namespace Accounting.Reception
             // 
             this.txtSearch.Border.Class = "TextBoxBorder";
             this.txtSearch.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.txtSearch.Location = new System.Drawing.Point(149, 25);
+            this.txtSearch.Location = new System.Drawing.Point(84, 61);
             this.txtSearch.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.PreventEnterBeep = true;
-            this.txtSearch.Size = new System.Drawing.Size(476, 27);
+            this.txtSearch.Size = new System.Drawing.Size(621, 27);
             this.txtSearch.TabIndex = 55754;
             this.txtSearch.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtSearch.WatermarkText = "مورد جستجو را وارد نمایید ...";
@@ -147,7 +147,28 @@ namespace Accounting.Reception
             this.mnuPrintList});
             this.contextMenu.Name = "contextMenu";
             this.contextMenu.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.contextMenu.Size = new System.Drawing.Size(213, 182);
+            this.contextMenu.Size = new System.Drawing.Size(213, 160);
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(209, 6);
+            // 
+            // mnuPrintOne
+            // 
+            this.mnuPrintOne.Image = global::Accounting.Properties.Resources.printer;
+            this.mnuPrintOne.Name = "mnuPrintOne";
+            this.mnuPrintOne.Size = new System.Drawing.Size(212, 24);
+            this.mnuPrintOne.Text = "چاپ برگه دریافت";
+            this.mnuPrintOne.Click += new System.EventHandler(this.mnuPrintOne_Click);
+            // 
+            // mnuPrintList
+            // 
+            this.mnuPrintList.Image = global::Accounting.Properties.Resources.printer;
+            this.mnuPrintList.Name = "mnuPrintList";
+            this.mnuPrintList.Size = new System.Drawing.Size(212, 24);
+            this.mnuPrintList.Text = "چاپ لیست دریافت ها";
+            this.mnuPrintList.Click += new System.EventHandler(this.mnuPrintList_Click);
             // 
             // DGrid
             // 
@@ -187,7 +208,6 @@ namespace Accounting.Reception
             this.userNameDataGridViewTextBoxColumn,
             this.dgGuid,
             this.modifiedDataGridViewTextBoxColumn,
-            this.statusDataGridViewCheckBoxColumn,
             this.dateMDataGridViewTextBoxColumn,
             this.tafsilGuidDataGridViewTextBoxColumn,
             this.moeinGuidDataGridViewTextBoxColumn,
@@ -207,7 +227,7 @@ namespace Accounting.Reception
             dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.DGrid.DefaultCellStyle = dataGridViewCellStyle7;
             this.DGrid.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
-            this.DGrid.Location = new System.Drawing.Point(3, 65);
+            this.DGrid.Location = new System.Drawing.Point(3, 96);
             this.DGrid.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.DGrid.Name = "DGrid";
             this.DGrid.ReadOnly = true;
@@ -230,7 +250,7 @@ namespace Accounting.Reception
             this.DGrid.RowsDefaultCellStyle = dataGridViewCellStyle9;
             this.DGrid.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             this.DGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DGrid.Size = new System.Drawing.Size(793, 528);
+            this.DGrid.Size = new System.Drawing.Size(793, 497);
             this.DGrid.TabIndex = 55755;
             // 
             // dgNumber
@@ -340,14 +360,6 @@ namespace Accounting.Reception
             this.modifiedDataGridViewTextBoxColumn.ReadOnly = true;
             this.modifiedDataGridViewTextBoxColumn.Visible = false;
             // 
-            // statusDataGridViewCheckBoxColumn
-            // 
-            this.statusDataGridViewCheckBoxColumn.DataPropertyName = "Status";
-            this.statusDataGridViewCheckBoxColumn.HeaderText = "Status";
-            this.statusDataGridViewCheckBoxColumn.Name = "statusDataGridViewCheckBoxColumn";
-            this.statusDataGridViewCheckBoxColumn.ReadOnly = true;
-            this.statusDataGridViewCheckBoxColumn.Visible = false;
-            // 
             // dateMDataGridViewTextBoxColumn
             // 
             this.dateMDataGridViewTextBoxColumn.DataPropertyName = "DateM";
@@ -416,32 +428,30 @@ namespace Accounting.Reception
             // 
             this.ReceptionBindingSource.DataSource = typeof(EntityCache.Bussines.ReceptionBussines);
             // 
-            // toolStripMenuItem2
+            // ucHeader
             // 
-            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(209, 6);
-            // 
-            // mnuPrintOne
-            // 
-            this.mnuPrintOne.Image = global::Accounting.Properties.Resources.printer;
-            this.mnuPrintOne.Name = "mnuPrintOne";
-            this.mnuPrintOne.Size = new System.Drawing.Size(212, 24);
-            this.mnuPrintOne.Text = "چاپ برگه دریافت";
-            this.mnuPrintOne.Click += new System.EventHandler(this.mnuPrintOne_Click);
-            // 
-            // mnuPrintList
-            // 
-            this.mnuPrintList.Image = global::Accounting.Properties.Resources.printer;
-            this.mnuPrintList.Name = "mnuPrintList";
-            this.mnuPrintList.Size = new System.Drawing.Size(212, 24);
-            this.mnuPrintList.Text = "چاپ لیست دریافت ها";
-            this.mnuPrintList.Click += new System.EventHandler(this.mnuPrintList_Click);
+            this.ucHeader.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.ucHeader.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ucHeader.BackColor = System.Drawing.Color.White;
+            this.ucHeader.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.ucHeader.Cursor = System.Windows.Forms.Cursors.Default;
+            this.ucHeader.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.ucHeader.IsModified = false;
+            this.ucHeader.Location = new System.Drawing.Point(-10, 24);
+            this.ucHeader.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ucHeader.MinimumSize = new System.Drawing.Size(297, 34);
+            this.ucHeader.Name = "ucHeader";
+            this.ucHeader.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.ucHeader.Size = new System.Drawing.Size(815, 34);
+            this.ucHeader.TabIndex = 55759;
             // 
             // frmShowReception
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 600);
+            this.Controls.Add(this.ucHeader);
             this.Controls.Add(this.txtSearch);
             this.Controls.Add(this.DGrid);
             this.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
@@ -452,7 +462,7 @@ namespace Accounting.Reception
             this.Name = "frmShowReception";
             this.Padding = new System.Windows.Forms.Padding(27, 92, 27, 31);
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.Style = MetroFramework.MetroColorStyle.Green;
+            this.Style = MetroFramework.MetroColorStyle.Teal;
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmShowReception_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmShowReception_KeyDown);
@@ -497,5 +507,6 @@ namespace Accounting.Reception
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem mnuPrintOne;
         private System.Windows.Forms.ToolStripMenuItem mnuPrintList;
+        private WindowsSerivces.UC_Header ucHeader;
     }
 }

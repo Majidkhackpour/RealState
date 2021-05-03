@@ -52,6 +52,7 @@ namespace Accounting.Check.CheckMoshtari
             this.label2 = new System.Windows.Forms.Label();
             this.txtDesc = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.ucHeader = new WindowsSerivces.UC_Header();
             this.grp.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SandouqBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -60,13 +61,13 @@ namespace Accounting.Check.CheckMoshtari
             // 
             this.btnCancel.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnCancel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.btnCancel.BackColor = System.Drawing.Color.LightSteelBlue;
             this.btnCancel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnCancel.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnCancel.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Image = global::Accounting.Properties.Resources.tab_close_;
-            this.btnCancel.Location = new System.Drawing.Point(17, 425);
+            this.btnCancel.Location = new System.Drawing.Point(17, 456);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
             this.btnCancel.Size = new System.Drawing.Size(125, 31);
@@ -79,12 +80,12 @@ namespace Accounting.Check.CheckMoshtari
             // btnFinish
             // 
             this.btnFinish.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnFinish.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.btnFinish.BackColor = System.Drawing.Color.LightSteelBlue;
             this.btnFinish.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnFinish.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnFinish.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnFinish.Image = global::Accounting.Properties.Resources.tab_checkbox__;
-            this.btnFinish.Location = new System.Drawing.Point(250, 425);
+            this.btnFinish.Location = new System.Drawing.Point(251, 456);
             this.btnFinish.Name = "btnFinish";
             this.btnFinish.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
             this.btnFinish.Size = new System.Drawing.Size(125, 31);
@@ -116,7 +117,7 @@ namespace Accounting.Check.CheckMoshtari
             this.grp.Controls.Add(this.txtDesc);
             this.grp.Controls.Add(this.label3);
             this.grp.DisabledBackColor = System.Drawing.Color.Empty;
-            this.grp.Location = new System.Drawing.Point(7, 23);
+            this.grp.Location = new System.Drawing.Point(7, 54);
             this.grp.Name = "grp";
             this.grp.Size = new System.Drawing.Size(389, 396);
             this.grp.Style.Alignment = System.Drawing.StringAlignment.Center;
@@ -329,11 +330,30 @@ namespace Accounting.Check.CheckMoshtari
             this.label3.TabIndex = 4;
             this.label3.Text = "توضیحات";
             // 
+            // ucHeader
+            // 
+            this.ucHeader.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.ucHeader.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ucHeader.BackColor = System.Drawing.Color.White;
+            this.ucHeader.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.ucHeader.Cursor = System.Windows.Forms.Cursors.Default;
+            this.ucHeader.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.ucHeader.IsModified = false;
+            this.ucHeader.Location = new System.Drawing.Point(-4, 17);
+            this.ucHeader.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ucHeader.MinimumSize = new System.Drawing.Size(297, 34);
+            this.ucHeader.Name = "ucHeader";
+            this.ucHeader.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.ucHeader.Size = new System.Drawing.Size(413, 34);
+            this.ucHeader.TabIndex = 8;
+            // 
             // frmCheckM_AvalDore
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(406, 468);
+            this.ClientSize = new System.Drawing.Size(406, 499);
+            this.Controls.Add(this.ucHeader);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnFinish);
             this.Controls.Add(this.grp);
@@ -342,11 +362,13 @@ namespace Accounting.Check.CheckMoshtari
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(406, 499);
             this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(406, 499);
             this.Name = "frmCheckM_AvalDore";
             this.Padding = new System.Windows.Forms.Padding(27, 92, 27, 31);
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.Style = MetroFramework.MetroColorStyle.Green;
+            this.Style = MetroFramework.MetroColorStyle.Teal;
             this.Load += new System.EventHandler(this.frmCheckM_AvalDore_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmCheckM_AvalDore_KeyDown);
             this.grp.ResumeLayout(false);
@@ -379,5 +401,6 @@ namespace Accounting.Check.CheckMoshtari
         private System.Windows.Forms.Label label8;
         private DevComponents.DotNetBar.ButtonX btnTafsilSearch;
         private System.Windows.Forms.BindingSource SandouqBindingSource;
+        private WindowsSerivces.UC_Header ucHeader;
     }
 }

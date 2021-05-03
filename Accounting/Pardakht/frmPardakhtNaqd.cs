@@ -51,6 +51,7 @@ namespace Accounting.Pardakht
         {
             InitializeComponent();
             cls = temp ?? new PardakhtNaqdBussines();
+            ucHeader.Text = "پرداخت نقدی";
         }
 
         private async void frmPardakhtNaqd_Load(object sender, EventArgs e) => await SetDataAsync();

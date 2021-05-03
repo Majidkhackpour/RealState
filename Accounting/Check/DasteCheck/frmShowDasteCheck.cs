@@ -17,7 +17,7 @@ namespace Accounting.Check.DasteCheck
         private bool _st = true;
         private CancellationTokenSource _token = new CancellationTokenSource();
 
-        private async Task LoadDataAsync(bool status, string search = "")
+        private async Task LoadDataAsync(string search = "")
         {
             try
             {
@@ -25,52 +25,24 @@ namespace Accounting.Check.DasteCheck
                 _token = new CancellationTokenSource();
                 var list = await DasteCheckBussines.GetAllAsync(search, _token.Token);
                 Invoke(new MethodInvoker(() => DasteCheckBindingSource.DataSource =
-                    list.Where(q => q.Status == status).ToSortableBindingList()));
+                    list.Where(q => q.Status == _st).ToSortableBindingList()));
             }
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        public bool ST
-        {
-            get => _st;
-            set
-            {
-                _st = value;
-                if (_st)
-                {
-                    mnuStatus.Text = "غیرفعال (Ctrl+S)";
-                    Task.Run(() => LoadDataAsync(ST, txtSearch.Text));
-                    mnuDelete.Text = "حذف (Del)";
-                }
-                else
-                {
-                    mnuStatus.Text = "فعال (Ctrl+S)";
-                    Task.Run(() => LoadDataAsync(ST, txtSearch.Text));
-                    mnuDelete.Text = "فعال کردن";
-                }
-            }
-        }
 
-        public frmShowDasteCheck()
+        public frmShowDasteCheck(bool status = true)
         {
             InitializeComponent();
+            ucHeader.Text = "نمایش لیست دسته چک ها";
+            _st = status;
             DGrid.Focus();
         }
 
-        private async void frmShowDasteCheck_Load(object sender, EventArgs e) => await LoadDataAsync(ST);
-        private async void txtSearch_TextChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                await LoadDataAsync(ST, txtSearch.Text);
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
+        private async void frmShowDasteCheck_Load(object sender, EventArgs e) => await LoadDataAsync();
+        private async void txtSearch_TextChanged(object sender, EventArgs e) => await LoadDataAsync(txtSearch.Text);
         private void frmShowDasteCheck_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -88,9 +60,6 @@ namespace Accounting.Check.DasteCheck
                         break;
                     case Keys.F12:
                         mnuView.PerformClick();
-                        break;
-                    case Keys.S:
-                        if (e.Control) ST = !ST;
                         break;
                     case Keys.Escape:
                         if (!string.IsNullOrEmpty(txtSearch.Text))
@@ -117,7 +86,6 @@ namespace Accounting.Check.DasteCheck
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void mnuStatus_Click(object sender, EventArgs e) => ST = !ST;
         private void DGrid_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e) =>
             DGrid.Rows[e.RowIndex].Cells["dgRadif"].Value = e.RowIndex + 1;
         private async void mnuAdd_Click(object sender, EventArgs e)
@@ -126,7 +94,7 @@ namespace Accounting.Check.DasteCheck
             {
                 var frm = new frmDasteCheckMain();
                 if (frm.ShowDialog(this) == DialogResult.OK)
-                    await LoadDataAsync(ST);
+                    await LoadDataAsync();
             }
             catch (Exception ex)
             {
@@ -139,7 +107,7 @@ namespace Accounting.Check.DasteCheck
             {
                 if (DGrid.RowCount <= 0) return;
                 if (DGrid.CurrentRow == null) return;
-                if (!ST)
+                if (!_st)
                 {
                     frmNotification.PublicInfo.ShowMessage(
                         "شما مجاز به ویرایش داده حذف شده نمی باشید \r\n برای این منظور، ابتدا فیلد موردنظر را از حالت حذف شده به فعال، تغییر وضعیت دهید");
@@ -161,7 +129,7 @@ namespace Accounting.Check.DasteCheck
                 }
                 var frm = new frmDasteCheckMain(guid, false);
                 if (frm.ShowDialog(this) == DialogResult.OK)
-                    await LoadDataAsync(ST, txtSearch.Text);
+                    await LoadDataAsync(txtSearch.Text);
             }
             catch (Exception ex)
             {
@@ -192,7 +160,7 @@ namespace Accounting.Check.DasteCheck
                 if (DGrid.CurrentRow == null) return;
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
                 var dasteChek = await DasteCheckBussines.GetAsync(guid);
-                if (ST)
+                if (_st)
                 {
                     if (dasteChek == null)
                     {
@@ -229,7 +197,7 @@ namespace Accounting.Check.DasteCheck
             finally
             {
                 if (res.HasError) this.ShowError(res, "خطا در تغییر وضعیت حساب بانکی");
-                else await LoadDataAsync(ST, txtSearch.Text);
+                else await LoadDataAsync(txtSearch.Text);
             }
         }
         private async void mnuShowPages_Click(object sender, EventArgs e)

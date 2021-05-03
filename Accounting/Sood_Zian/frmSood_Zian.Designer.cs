@@ -242,7 +242,7 @@ namespace Accounting.Sood_Zian
             this.btnPrint.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.btnPrint.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnPrint.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.btnPrint.BackColor = System.Drawing.Color.LightSteelBlue;
             this.btnPrint.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnPrint.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnPrint.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -254,7 +254,7 @@ namespace Accounting.Sood_Zian
             this.btnPrint.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
             this.btnPrint.TabIndex = 55762;
             this.btnPrint.Text = "چاپ";
-            this.btnPrint.TextColor = System.Drawing.Color.White;
+            this.btnPrint.TextColor = System.Drawing.Color.Black;
             this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
             // 
             // lblBallance
@@ -322,7 +322,7 @@ namespace Accounting.Sood_Zian
             this.Name = "frmSood_Zian";
             this.Padding = new System.Windows.Forms.Padding(27, 92, 27, 31);
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.Style = MetroFramework.MetroColorStyle.Green;
+            this.Style = MetroFramework.MetroColorStyle.Teal;
             this.Load += new System.EventHandler(this.frmSood_Zian_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmSood_Zian_KeyDown);
             this.ResumeLayout(false);

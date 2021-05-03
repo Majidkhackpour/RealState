@@ -57,11 +57,13 @@ namespace Accounting.Reception
         {
             InitializeComponent();
             cls = temp ?? new ReceptionCheckBussines();
+            ucHeader.Text = "دریافت چک";
         }
         public frmReceptionCheck(Guid guid)
         {
             InitializeComponent();
             cls = ReceptionCheckBussines.Get(guid);
+            ucHeader.Text = "دریافت چک";
             grp.Enabled = false;
             btnFinish.Enabled = false;
         }

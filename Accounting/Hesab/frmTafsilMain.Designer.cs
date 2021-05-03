@@ -31,7 +31,11 @@ namespace Accounting.Hesab
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmTafsilMain));
             this.grp = new DevComponents.DotNetBar.PanelEx();
+            this.cmbAccount = new System.Windows.Forms.ComboBox();
+            this.txtAccount_ = new WindowsSerivces.CurrencyTextBox();
             this.cmbType = new System.Windows.Forms.ComboBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.txtCode = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -41,10 +45,7 @@ namespace Accounting.Hesab
             this.label7 = new System.Windows.Forms.Label();
             this.btnCancel = new DevComponents.DotNetBar.ButtonX();
             this.btnFinish = new DevComponents.DotNetBar.ButtonX();
-            this.label4 = new System.Windows.Forms.Label();
-            this.txtAccount_ = new WindowsSerivces.CurrencyTextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.cmbAccount = new System.Windows.Forms.ComboBox();
+            this.ucHeader = new WindowsSerivces.UC_Header();
             this.grp.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -65,7 +66,7 @@ namespace Accounting.Hesab
             this.grp.Controls.Add(this.txtName);
             this.grp.Controls.Add(this.label7);
             this.grp.DisabledBackColor = System.Drawing.Color.Empty;
-            this.grp.Location = new System.Drawing.Point(5, 36);
+            this.grp.Location = new System.Drawing.Point(5, 71);
             this.grp.Name = "grp";
             this.grp.Size = new System.Drawing.Size(463, 362);
             this.grp.Style.Alignment = System.Drawing.StringAlignment.Center;
@@ -79,6 +80,38 @@ namespace Accounting.Hesab
             this.grp.Style.GradientAngle = 90;
             this.grp.TabIndex = 0;
             // 
+            // cmbAccount
+            // 
+            this.cmbAccount.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cmbAccount.DisplayMember = "Name";
+            this.cmbAccount.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbAccount.FormattingEnabled = true;
+            this.cmbAccount.Location = new System.Drawing.Point(15, 155);
+            this.cmbAccount.Name = "cmbAccount";
+            this.cmbAccount.Size = new System.Drawing.Size(385, 28);
+            this.cmbAccount.TabIndex = 4;
+            this.cmbAccount.ValueMember = "Guid";
+            // 
+            // txtAccount_
+            // 
+            this.txtAccount_.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.txtAccount_.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtAccount_.BackColor = System.Drawing.Color.White;
+            this.txtAccount_.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.txtAccount_.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.txtAccount_.Font = new System.Drawing.Font("B Titr", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.txtAccount_.Location = new System.Drawing.Point(15, 118);
+            this.txtAccount_.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtAccount_.Name = "txtAccount_";
+            this.txtAccount_.Size = new System.Drawing.Size(345, 31);
+            this.txtAccount_.TabIndex = 3;
+            this.txtAccount_.TextDecimal = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            // 
             // cmbType
             // 
             this.cmbType.DisplayMember = "Name";
@@ -90,6 +123,26 @@ namespace Accounting.Hesab
             this.cmbType.TabIndex = 2;
             this.cmbType.ValueMember = "Guid";
             this.cmbType.SelectedIndexChanged += new System.EventHandler(this.cmbType_SelectedIndexChanged);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.BackColor = System.Drawing.Color.Transparent;
+            this.label5.Location = new System.Drawing.Point(407, 158);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(49, 20);
+            this.label5.TabIndex = 6;
+            this.label5.Text = "تشخیص";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.BackColor = System.Drawing.Color.Transparent;
+            this.label4.Location = new System.Drawing.Point(376, 122);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(80, 20);
+            this.label4.TabIndex = 6;
+            this.label4.Text = "مانئه اول دوره";
             // 
             // label2
             // 
@@ -167,13 +220,13 @@ namespace Accounting.Hesab
             // btnCancel
             // 
             this.btnCancel.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnCancel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.btnCancel.BackColor = System.Drawing.Color.LightSteelBlue;
             this.btnCancel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnCancel.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnCancel.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Image = global::Accounting.Properties.Resources.tab_close_;
-            this.btnCancel.Location = new System.Drawing.Point(22, 406);
+            this.btnCancel.Location = new System.Drawing.Point(22, 441);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
             this.btnCancel.Size = new System.Drawing.Size(125, 31);
@@ -186,12 +239,12 @@ namespace Accounting.Hesab
             // btnFinish
             // 
             this.btnFinish.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnFinish.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.btnFinish.BackColor = System.Drawing.Color.LightSteelBlue;
             this.btnFinish.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnFinish.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnFinish.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnFinish.Image = global::Accounting.Properties.Resources.tab_checkbox__;
-            this.btnFinish.Location = new System.Drawing.Point(322, 406);
+            this.btnFinish.Location = new System.Drawing.Point(322, 441);
             this.btnFinish.Name = "btnFinish";
             this.btnFinish.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
             this.btnFinish.Size = new System.Drawing.Size(125, 31);
@@ -201,63 +254,30 @@ namespace Accounting.Hesab
             this.btnFinish.TextColor = System.Drawing.Color.Black;
             this.btnFinish.Click += new System.EventHandler(this.btnFinish_Click);
             // 
-            // label4
+            // ucHeader
             // 
-            this.label4.AutoSize = true;
-            this.label4.BackColor = System.Drawing.Color.Transparent;
-            this.label4.Location = new System.Drawing.Point(376, 122);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(80, 20);
-            this.label4.TabIndex = 6;
-            this.label4.Text = "مانئه اول دوره";
-            // 
-            // txtAccount_
-            // 
-            this.txtAccount_.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.txtAccount_.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.ucHeader.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.ucHeader.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtAccount_.BackColor = System.Drawing.Color.White;
-            this.txtAccount_.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.txtAccount_.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.txtAccount_.Font = new System.Drawing.Font("B Titr", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.txtAccount_.Location = new System.Drawing.Point(15, 118);
-            this.txtAccount_.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.txtAccount_.Name = "txtAccount_";
-            this.txtAccount_.Size = new System.Drawing.Size(345, 31);
-            this.txtAccount_.TabIndex = 3;
-            this.txtAccount_.TextDecimal = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.BackColor = System.Drawing.Color.Transparent;
-            this.label5.Location = new System.Drawing.Point(407, 158);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(49, 20);
-            this.label5.TabIndex = 6;
-            this.label5.Text = "تشخیص";
-            // 
-            // cmbAccount
-            // 
-            this.cmbAccount.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.cmbAccount.DisplayMember = "Name";
-            this.cmbAccount.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbAccount.FormattingEnabled = true;
-            this.cmbAccount.Location = new System.Drawing.Point(15, 155);
-            this.cmbAccount.Name = "cmbAccount";
-            this.cmbAccount.Size = new System.Drawing.Size(385, 28);
-            this.cmbAccount.TabIndex = 4;
-            this.cmbAccount.ValueMember = "Guid";
+            this.ucHeader.BackColor = System.Drawing.Color.White;
+            this.ucHeader.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.ucHeader.Cursor = System.Windows.Forms.Cursors.Default;
+            this.ucHeader.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.ucHeader.IsModified = false;
+            this.ucHeader.Location = new System.Drawing.Point(2, 27);
+            this.ucHeader.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ucHeader.MinimumSize = new System.Drawing.Size(297, 34);
+            this.ucHeader.Name = "ucHeader";
+            this.ucHeader.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.ucHeader.Size = new System.Drawing.Size(482, 34);
+            this.ucHeader.TabIndex = 8;
             // 
             // frmTafsilMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(477, 449);
+            this.ClientSize = new System.Drawing.Size(477, 484);
+            this.Controls.Add(this.ucHeader);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnFinish);
             this.Controls.Add(this.grp);
@@ -266,13 +286,13 @@ namespace Accounting.Hesab
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(477, 449);
+            this.MaximumSize = new System.Drawing.Size(477, 484);
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(477, 449);
+            this.MinimumSize = new System.Drawing.Size(477, 484);
             this.Name = "frmTafsilMain";
             this.Padding = new System.Windows.Forms.Padding(27, 92, 27, 31);
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.Style = MetroFramework.MetroColorStyle.Green;
+            this.Style = MetroFramework.MetroColorStyle.Teal;
             this.Load += new System.EventHandler(this.frmTafsilMain_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmTafsilMain_KeyDown);
             this.grp.ResumeLayout(false);
@@ -298,5 +318,6 @@ namespace Accounting.Hesab
         private WindowsSerivces.CurrencyTextBox txtAccount_;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ComboBox cmbAccount;
+        private WindowsSerivces.UC_Header ucHeader;
     }
 }

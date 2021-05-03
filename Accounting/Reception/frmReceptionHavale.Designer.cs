@@ -32,6 +32,8 @@ namespace Accounting.Reception
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmReceptionHavale));
             this.grp = new DevComponents.DotNetBar.PanelEx();
+            this.txtPeygiriNo = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.txtPrice = new WindowsSerivces.CurrencyTextBox();
             this.label16 = new System.Windows.Forms.Label();
             this.cmbBank = new System.Windows.Forms.ComboBox();
@@ -41,8 +43,7 @@ namespace Accounting.Reception
             this.label3 = new System.Windows.Forms.Label();
             this.btnCancel = new DevComponents.DotNetBar.ButtonX();
             this.btnFinish = new DevComponents.DotNetBar.ButtonX();
-            this.txtPeygiriNo = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
+            this.ucHeader = new WindowsSerivces.UC_Header();
             this.grp.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BankBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -60,7 +61,7 @@ namespace Accounting.Reception
             this.grp.Controls.Add(this.txtDesc);
             this.grp.Controls.Add(this.label3);
             this.grp.DisabledBackColor = System.Drawing.Color.Empty;
-            this.grp.Location = new System.Drawing.Point(6, 18);
+            this.grp.Location = new System.Drawing.Point(6, 60);
             this.grp.Name = "grp";
             this.grp.Size = new System.Drawing.Size(389, 261);
             this.grp.Style.Alignment = System.Drawing.StringAlignment.Center;
@@ -73,6 +74,27 @@ namespace Accounting.Reception
             this.grp.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText;
             this.grp.Style.GradientAngle = 90;
             this.grp.TabIndex = 0;
+            // 
+            // txtPeygiriNo
+            // 
+            this.txtPeygiriNo.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.txtPeygiriNo.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.txtPeygiriNo.Location = new System.Drawing.Point(16, 82);
+            this.txtPeygiriNo.Name = "txtPeygiriNo";
+            this.txtPeygiriNo.Size = new System.Drawing.Size(283, 27);
+            this.txtPeygiriNo.TabIndex = 2;
+            this.txtPeygiriNo.Enter += new System.EventHandler(this.txtPeygiriNo_Enter);
+            this.txtPeygiriNo.Leave += new System.EventHandler(this.txtPeygiriNo_Leave);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.BackColor = System.Drawing.Color.Transparent;
+            this.label7.Location = new System.Drawing.Point(304, 85);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(76, 20);
+            this.label7.TabIndex = 24;
+            this.label7.Text = "شماره پیگیری";
             // 
             // txtPrice
             // 
@@ -159,7 +181,7 @@ namespace Accounting.Reception
             this.btnCancel.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Image = global::Accounting.Properties.Resources.tab_close_;
-            this.btnCancel.Location = new System.Drawing.Point(22, 288);
+            this.btnCancel.Location = new System.Drawing.Point(22, 331);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
             this.btnCancel.Size = new System.Drawing.Size(125, 31);
@@ -178,7 +200,7 @@ namespace Accounting.Reception
             this.btnFinish.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnFinish.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnFinish.Image = global::Accounting.Properties.Resources.tab_checkbox__;
-            this.btnFinish.Location = new System.Drawing.Point(256, 288);
+            this.btnFinish.Location = new System.Drawing.Point(256, 331);
             this.btnFinish.Name = "btnFinish";
             this.btnFinish.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
             this.btnFinish.Size = new System.Drawing.Size(125, 31);
@@ -188,32 +210,30 @@ namespace Accounting.Reception
             this.btnFinish.TextColor = System.Drawing.Color.Black;
             this.btnFinish.Click += new System.EventHandler(this.btnFinish_Click);
             // 
-            // txtPeygiriNo
+            // ucHeader
             // 
-            this.txtPeygiriNo.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.txtPeygiriNo.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.txtPeygiriNo.Location = new System.Drawing.Point(16, 82);
-            this.txtPeygiriNo.Name = "txtPeygiriNo";
-            this.txtPeygiriNo.Size = new System.Drawing.Size(283, 27);
-            this.txtPeygiriNo.TabIndex = 2;
-            this.txtPeygiriNo.Enter += new System.EventHandler(this.txtPeygiriNo_Enter);
-            this.txtPeygiriNo.Leave += new System.EventHandler(this.txtPeygiriNo_Leave);
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.BackColor = System.Drawing.Color.Transparent;
-            this.label7.Location = new System.Drawing.Point(304, 85);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(76, 20);
-            this.label7.TabIndex = 24;
-            this.label7.Text = "شماره پیگیری";
+            this.ucHeader.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.ucHeader.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ucHeader.BackColor = System.Drawing.Color.White;
+            this.ucHeader.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.ucHeader.Cursor = System.Windows.Forms.Cursors.Default;
+            this.ucHeader.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.ucHeader.IsModified = false;
+            this.ucHeader.Location = new System.Drawing.Point(-9, 22);
+            this.ucHeader.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ucHeader.MinimumSize = new System.Drawing.Size(297, 34);
+            this.ucHeader.Name = "ucHeader";
+            this.ucHeader.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.ucHeader.Size = new System.Drawing.Size(417, 34);
+            this.ucHeader.TabIndex = 10;
             // 
             // frmReceptionHavale
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(401, 332);
+            this.ClientSize = new System.Drawing.Size(401, 373);
+            this.Controls.Add(this.ucHeader);
             this.Controls.Add(this.grp);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnFinish);
@@ -222,13 +242,13 @@ namespace Accounting.Reception
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(401, 332);
+            this.MaximumSize = new System.Drawing.Size(401, 373);
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(401, 332);
+            this.MinimumSize = new System.Drawing.Size(401, 373);
             this.Name = "frmReceptionHavale";
             this.Padding = new System.Windows.Forms.Padding(27, 92, 27, 31);
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.Style = MetroFramework.MetroColorStyle.Green;
+            this.Style = MetroFramework.MetroColorStyle.Teal;
             this.Load += new System.EventHandler(this.frmReceptionHavale_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmReceptionHavale_KeyDown);
             this.grp.ResumeLayout(false);
@@ -252,5 +272,6 @@ namespace Accounting.Reception
         private DevComponents.DotNetBar.ButtonX btnFinish;
         private System.Windows.Forms.TextBox txtPeygiriNo;
         private System.Windows.Forms.Label label7;
+        private WindowsSerivces.UC_Header ucHeader;
     }
 }

@@ -19,7 +19,7 @@ namespace Accounting.Hesab
         private bool _st = true;
         private CancellationTokenSource _token = new CancellationTokenSource();
 
-        private async Task LoadDataAsync(bool status, string search = "")
+        private async Task LoadDataAsync(string search = "")
         {
             try
             {
@@ -27,52 +27,24 @@ namespace Accounting.Hesab
                 _token = new CancellationTokenSource();
                 var list = await TafsilBussines.GetAllAsync(search, _token.Token);
                 Invoke(new MethodInvoker(() => TafsilBindingSource.DataSource =
-                    list.OrderBy(q => q.Code).Where(q => q.Status == status).ToSortableBindingList()));
+                    list.OrderBy(q => q.Code).Where(q => q.Status == _st).ToSortableBindingList()));
             }
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        public bool ST
-        {
-            get => _st;
-            set
-            {
-                _st = value;
-                if (_st)
-                {
-                    mnuStatus.Text = "غیرفعال (Ctrl+S)";
-                    Task.Run(() => LoadDataAsync(ST, txtSearch.Text));
-                    mnuDelete.Text = "حذف (Del)";
-                }
-                else
-                {
-                    mnuStatus.Text = "فعال (Ctrl+S)";
-                    Task.Run(() => LoadDataAsync(ST, txtSearch.Text));
-                    mnuDelete.Text = "فعال کردن";
-                }
-            }
-        }
 
-        public frmShowTafsils()
+        public frmShowTafsils(bool status = true)
         {
             InitializeComponent();
+            ucHeader.Text = "نمایش لیست حساب های تفصیلی";
+            _st = status;
             DGrid.Focus();
         }
 
-        private async void frmShowTafsils_Load(object sender, EventArgs e) => await LoadDataAsync(ST);
-        private async void txtSearch_TextChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                await LoadDataAsync(ST, txtSearch.Text);
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
+        private async void frmShowTafsils_Load(object sender, EventArgs e) => await LoadDataAsync();
+        private async void txtSearch_TextChanged(object sender, EventArgs e) => await LoadDataAsync(txtSearch.Text);
         private void frmShowTafsils_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -90,9 +62,6 @@ namespace Accounting.Hesab
                         break;
                     case Keys.F12:
                         mnuView.PerformClick();
-                        break;
-                    case Keys.S:
-                        if (e.Control) ST = !ST;
                         break;
                     case Keys.Escape:
                         if (!string.IsNullOrEmpty(txtSearch.Text))
@@ -119,14 +88,13 @@ namespace Accounting.Hesab
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void mnuStatus_Click(object sender, EventArgs e) => ST = !ST;
         private async void mnuAdd_Click(object sender, EventArgs e)
         {
             try
             {
                 var frm = new frmTafsilMain();
                 if (frm.ShowDialog(this) == DialogResult.OK)
-                    await LoadDataAsync(ST);
+                    await LoadDataAsync();
             }
             catch (Exception ex)
             {
@@ -139,7 +107,7 @@ namespace Accounting.Hesab
             {
                 if (DGrid.RowCount <= 0) return;
                 if (DGrid.CurrentRow == null) return;
-                if (!ST)
+                if (!_st)
                 {
                     frmNotification.PublicInfo.ShowMessage(
                         "شما مجاز به ویرایش داده حذف شده نمی باشید \r\n برای این منظور، ابتدا فیلد موردنظر را از حالت حذف شده به فعال، تغییر وضعیت دهید");
@@ -162,20 +130,20 @@ namespace Accounting.Hesab
                 {
                     var frm = new frmPeoples(guid, false);
                     if (frm.ShowDialog(this) == DialogResult.OK)
-                        await LoadDataAsync(ST, txtSearch.Text);
+                        await LoadDataAsync(txtSearch.Text);
                     return;
                 }
                 if (tafsil.HesabType == HesabType.Bank)
                 {
                     var frm = new frmBankMain(guid, false);
                     if (frm.ShowDialog(this) == DialogResult.OK)
-                        await LoadDataAsync(ST, txtSearch.Text);
+                        await LoadDataAsync(txtSearch.Text);
                     return;
                 }
 
                 var _frm = new frmTafsilMain(guid, false);
                 if (_frm.ShowDialog(this) == DialogResult.OK)
-                    await LoadDataAsync(ST, txtSearch.Text);
+                    await LoadDataAsync(txtSearch.Text);
             }
             catch (Exception ex)
             {
@@ -197,7 +165,7 @@ namespace Accounting.Hesab
                     return;
                 }
 
-                if (ST)
+                if (_st)
                 {
                     if (tafsil.isSystem)
                     {
@@ -266,7 +234,7 @@ namespace Accounting.Hesab
             finally
             {
                 if (res.HasError) this.ShowError(res, "خطا در تغییر وضعیت حساب تفصیلی");
-                else await LoadDataAsync(ST, txtSearch.Text);
+                else await LoadDataAsync(txtSearch.Text);
             }
         }
         private void mnuView_Click(object sender, EventArgs e)

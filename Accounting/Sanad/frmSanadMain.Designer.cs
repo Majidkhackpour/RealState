@@ -49,6 +49,19 @@ namespace Accounting.Sanad
             this.label7 = new System.Windows.Forms.Label();
             this.panelEx1 = new DevComponents.DotNetBar.PanelEx();
             this.DGrid = new DevComponents.DotNetBar.Controls.DataGridViewX();
+            this.dgRadif = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgMoeinCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgMoeinName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgTafsilCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgTafsilName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgDesc = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgDebit = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgCredit = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgGuid = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.modifiedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.masterGuidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.moeinGuidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tafsilGuidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.contextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.mnuEdit = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuDelete = new System.Windows.Forms.ToolStripMenuItem();
@@ -74,20 +87,6 @@ namespace Accounting.Sanad
             this.txtRowDesc = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.dgRadif = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgMoeinCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgMoeinName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgTafsilCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgTafsilName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgDesc = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgDebit = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgCredit = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgGuid = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.modifiedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.statusDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.masterGuidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.moeinGuidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tafsilGuidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.grp.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtNumber)).BeginInit();
             this.panelEx1.SuspendLayout();
@@ -281,7 +280,6 @@ namespace Accounting.Sanad
             this.dgCredit,
             this.dgGuid,
             this.modifiedDataGridViewTextBoxColumn,
-            this.statusDataGridViewCheckBoxColumn,
             this.masterGuidDataGridViewTextBoxColumn,
             this.moeinGuidDataGridViewTextBoxColumn,
             this.tafsilGuidDataGridViewTextBoxColumn});
@@ -324,6 +322,121 @@ namespace Accounting.Sanad
             this.DGrid.TabIndex = 0;
             this.DGrid.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DGrid_CellFormatting);
             // 
+            // dgRadif
+            // 
+            this.dgRadif.HeaderText = "ردیف";
+            this.dgRadif.Name = "dgRadif";
+            this.dgRadif.ReadOnly = true;
+            this.dgRadif.Width = 40;
+            // 
+            // dgMoeinCode
+            // 
+            this.dgMoeinCode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dgMoeinCode.DataPropertyName = "MoeinCode";
+            this.dgMoeinCode.HeaderText = "کد معین";
+            this.dgMoeinCode.Name = "dgMoeinCode";
+            this.dgMoeinCode.ReadOnly = true;
+            this.dgMoeinCode.Width = 73;
+            // 
+            // dgMoeinName
+            // 
+            this.dgMoeinName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dgMoeinName.DataPropertyName = "MoeinName";
+            this.dgMoeinName.HeaderText = "عنوان حساب معین";
+            this.dgMoeinName.Name = "dgMoeinName";
+            this.dgMoeinName.ReadOnly = true;
+            this.dgMoeinName.Width = 122;
+            // 
+            // dgTafsilCode
+            // 
+            this.dgTafsilCode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dgTafsilCode.DataPropertyName = "TafsilCode";
+            this.dgTafsilCode.HeaderText = "کد تفصیلی";
+            this.dgTafsilCode.Name = "dgTafsilCode";
+            this.dgTafsilCode.ReadOnly = true;
+            this.dgTafsilCode.Width = 85;
+            // 
+            // dgTafsilName
+            // 
+            this.dgTafsilName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dgTafsilName.DataPropertyName = "TafsilName";
+            this.dgTafsilName.HeaderText = "عنوان حساب تفصیلی";
+            this.dgTafsilName.Name = "dgTafsilName";
+            this.dgTafsilName.ReadOnly = true;
+            this.dgTafsilName.Width = 134;
+            // 
+            // dgDesc
+            // 
+            this.dgDesc.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dgDesc.DataPropertyName = "Description";
+            this.dgDesc.HeaderText = "شرح سطر";
+            this.dgDesc.Name = "dgDesc";
+            this.dgDesc.ReadOnly = true;
+            // 
+            // dgDebit
+            // 
+            this.dgDebit.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dgDebit.DataPropertyName = "Debit";
+            dataGridViewCellStyle3.Format = "N0";
+            dataGridViewCellStyle3.NullValue = null;
+            this.dgDebit.DefaultCellStyle = dataGridViewCellStyle3;
+            this.dgDebit.HeaderText = "بدهکار";
+            this.dgDebit.Name = "dgDebit";
+            this.dgDebit.ReadOnly = true;
+            this.dgDebit.Width = 67;
+            // 
+            // dgCredit
+            // 
+            this.dgCredit.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dgCredit.DataPropertyName = "Credit";
+            dataGridViewCellStyle4.Format = "N0";
+            dataGridViewCellStyle4.NullValue = null;
+            this.dgCredit.DefaultCellStyle = dataGridViewCellStyle4;
+            this.dgCredit.HeaderText = "بستانکار";
+            this.dgCredit.Name = "dgCredit";
+            this.dgCredit.ReadOnly = true;
+            this.dgCredit.Width = 75;
+            // 
+            // dgGuid
+            // 
+            this.dgGuid.DataPropertyName = "Guid";
+            this.dgGuid.HeaderText = "Guid";
+            this.dgGuid.Name = "dgGuid";
+            this.dgGuid.ReadOnly = true;
+            this.dgGuid.Visible = false;
+            // 
+            // modifiedDataGridViewTextBoxColumn
+            // 
+            this.modifiedDataGridViewTextBoxColumn.DataPropertyName = "Modified";
+            this.modifiedDataGridViewTextBoxColumn.HeaderText = "Modified";
+            this.modifiedDataGridViewTextBoxColumn.Name = "modifiedDataGridViewTextBoxColumn";
+            this.modifiedDataGridViewTextBoxColumn.ReadOnly = true;
+            this.modifiedDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // masterGuidDataGridViewTextBoxColumn
+            // 
+            this.masterGuidDataGridViewTextBoxColumn.DataPropertyName = "MasterGuid";
+            this.masterGuidDataGridViewTextBoxColumn.HeaderText = "MasterGuid";
+            this.masterGuidDataGridViewTextBoxColumn.Name = "masterGuidDataGridViewTextBoxColumn";
+            this.masterGuidDataGridViewTextBoxColumn.ReadOnly = true;
+            this.masterGuidDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // moeinGuidDataGridViewTextBoxColumn
+            // 
+            this.moeinGuidDataGridViewTextBoxColumn.DataPropertyName = "MoeinGuid";
+            this.moeinGuidDataGridViewTextBoxColumn.HeaderText = "MoeinGuid";
+            this.moeinGuidDataGridViewTextBoxColumn.Name = "moeinGuidDataGridViewTextBoxColumn";
+            this.moeinGuidDataGridViewTextBoxColumn.ReadOnly = true;
+            this.moeinGuidDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // tafsilGuidDataGridViewTextBoxColumn
+            // 
+            this.tafsilGuidDataGridViewTextBoxColumn.DataPropertyName = "TafsilGuid";
+            this.tafsilGuidDataGridViewTextBoxColumn.HeaderText = "TafsilGuid";
+            this.tafsilGuidDataGridViewTextBoxColumn.Name = "tafsilGuidDataGridViewTextBoxColumn";
+            this.tafsilGuidDataGridViewTextBoxColumn.ReadOnly = true;
+            this.tafsilGuidDataGridViewTextBoxColumn.Visible = false;
+            // 
             // contextMenu
             // 
             this.contextMenu.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
@@ -332,7 +445,7 @@ namespace Accounting.Sanad
             this.mnuDelete});
             this.contextMenu.Name = "contextMenu";
             this.contextMenu.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.contextMenu.Size = new System.Drawing.Size(198, 74);
+            this.contextMenu.Size = new System.Drawing.Size(198, 52);
             // 
             // mnuEdit
             // 
@@ -431,7 +544,7 @@ namespace Accounting.Sanad
             // 
             this.btnCancel.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnCancel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.btnCancel.BackColor = System.Drawing.Color.LightSteelBlue;
             this.btnCancel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnCancel.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnCancel.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -451,7 +564,7 @@ namespace Accounting.Sanad
             // 
             this.btnFinish.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.btnFinish.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnFinish.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.btnFinish.BackColor = System.Drawing.Color.LightSteelBlue;
             this.btnFinish.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnFinish.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnFinish.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -565,7 +678,7 @@ namespace Accounting.Sanad
             this.btnSaveArticle.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.btnSaveArticle.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSaveArticle.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.btnSaveArticle.BackColor = System.Drawing.Color.LightSteelBlue;
             this.btnSaveArticle.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnSaveArticle.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnSaveArticle.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -576,7 +689,7 @@ namespace Accounting.Sanad
             this.btnSaveArticle.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
             this.btnSaveArticle.TabIndex = 5;
             this.btnSaveArticle.Text = "ثبت در سند (F1)";
-            this.btnSaveArticle.TextColor = System.Drawing.Color.White;
+            this.btnSaveArticle.TextColor = System.Drawing.Color.Black;
             this.btnSaveArticle.Click += new System.EventHandler(this.btnSaveArticle_Click);
             // 
             // btnTafsilSearch
@@ -679,129 +792,6 @@ namespace Accounting.Sanad
             this.label6.TabIndex = 12;
             this.label6.Text = "شناسایی حساب معین";
             // 
-            // dgRadif
-            // 
-            this.dgRadif.HeaderText = "ردیف";
-            this.dgRadif.Name = "dgRadif";
-            this.dgRadif.ReadOnly = true;
-            this.dgRadif.Width = 40;
-            // 
-            // dgMoeinCode
-            // 
-            this.dgMoeinCode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dgMoeinCode.DataPropertyName = "MoeinCode";
-            this.dgMoeinCode.HeaderText = "کد معین";
-            this.dgMoeinCode.Name = "dgMoeinCode";
-            this.dgMoeinCode.ReadOnly = true;
-            this.dgMoeinCode.Width = 73;
-            // 
-            // dgMoeinName
-            // 
-            this.dgMoeinName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dgMoeinName.DataPropertyName = "MoeinName";
-            this.dgMoeinName.HeaderText = "عنوان حساب معین";
-            this.dgMoeinName.Name = "dgMoeinName";
-            this.dgMoeinName.ReadOnly = true;
-            this.dgMoeinName.Width = 122;
-            // 
-            // dgTafsilCode
-            // 
-            this.dgTafsilCode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dgTafsilCode.DataPropertyName = "TafsilCode";
-            this.dgTafsilCode.HeaderText = "کد تفصیلی";
-            this.dgTafsilCode.Name = "dgTafsilCode";
-            this.dgTafsilCode.ReadOnly = true;
-            this.dgTafsilCode.Width = 85;
-            // 
-            // dgTafsilName
-            // 
-            this.dgTafsilName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dgTafsilName.DataPropertyName = "TafsilName";
-            this.dgTafsilName.HeaderText = "عنوان حساب تفصیلی";
-            this.dgTafsilName.Name = "dgTafsilName";
-            this.dgTafsilName.ReadOnly = true;
-            this.dgTafsilName.Width = 134;
-            // 
-            // dgDesc
-            // 
-            this.dgDesc.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dgDesc.DataPropertyName = "Description";
-            this.dgDesc.HeaderText = "شرح سطر";
-            this.dgDesc.Name = "dgDesc";
-            this.dgDesc.ReadOnly = true;
-            // 
-            // dgDebit
-            // 
-            this.dgDebit.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dgDebit.DataPropertyName = "Debit";
-            dataGridViewCellStyle3.Format = "N0";
-            dataGridViewCellStyle3.NullValue = null;
-            this.dgDebit.DefaultCellStyle = dataGridViewCellStyle3;
-            this.dgDebit.HeaderText = "بدهکار";
-            this.dgDebit.Name = "dgDebit";
-            this.dgDebit.ReadOnly = true;
-            this.dgDebit.Width = 67;
-            // 
-            // dgCredit
-            // 
-            this.dgCredit.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dgCredit.DataPropertyName = "Credit";
-            dataGridViewCellStyle4.Format = "N0";
-            dataGridViewCellStyle4.NullValue = null;
-            this.dgCredit.DefaultCellStyle = dataGridViewCellStyle4;
-            this.dgCredit.HeaderText = "بستانکار";
-            this.dgCredit.Name = "dgCredit";
-            this.dgCredit.ReadOnly = true;
-            this.dgCredit.Width = 75;
-            // 
-            // dgGuid
-            // 
-            this.dgGuid.DataPropertyName = "Guid";
-            this.dgGuid.HeaderText = "Guid";
-            this.dgGuid.Name = "dgGuid";
-            this.dgGuid.ReadOnly = true;
-            this.dgGuid.Visible = false;
-            // 
-            // modifiedDataGridViewTextBoxColumn
-            // 
-            this.modifiedDataGridViewTextBoxColumn.DataPropertyName = "Modified";
-            this.modifiedDataGridViewTextBoxColumn.HeaderText = "Modified";
-            this.modifiedDataGridViewTextBoxColumn.Name = "modifiedDataGridViewTextBoxColumn";
-            this.modifiedDataGridViewTextBoxColumn.ReadOnly = true;
-            this.modifiedDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // statusDataGridViewCheckBoxColumn
-            // 
-            this.statusDataGridViewCheckBoxColumn.DataPropertyName = "Status";
-            this.statusDataGridViewCheckBoxColumn.HeaderText = "Status";
-            this.statusDataGridViewCheckBoxColumn.Name = "statusDataGridViewCheckBoxColumn";
-            this.statusDataGridViewCheckBoxColumn.ReadOnly = true;
-            this.statusDataGridViewCheckBoxColumn.Visible = false;
-            // 
-            // masterGuidDataGridViewTextBoxColumn
-            // 
-            this.masterGuidDataGridViewTextBoxColumn.DataPropertyName = "MasterGuid";
-            this.masterGuidDataGridViewTextBoxColumn.HeaderText = "MasterGuid";
-            this.masterGuidDataGridViewTextBoxColumn.Name = "masterGuidDataGridViewTextBoxColumn";
-            this.masterGuidDataGridViewTextBoxColumn.ReadOnly = true;
-            this.masterGuidDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // moeinGuidDataGridViewTextBoxColumn
-            // 
-            this.moeinGuidDataGridViewTextBoxColumn.DataPropertyName = "MoeinGuid";
-            this.moeinGuidDataGridViewTextBoxColumn.HeaderText = "MoeinGuid";
-            this.moeinGuidDataGridViewTextBoxColumn.Name = "moeinGuidDataGridViewTextBoxColumn";
-            this.moeinGuidDataGridViewTextBoxColumn.ReadOnly = true;
-            this.moeinGuidDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // tafsilGuidDataGridViewTextBoxColumn
-            // 
-            this.tafsilGuidDataGridViewTextBoxColumn.DataPropertyName = "TafsilGuid";
-            this.tafsilGuidDataGridViewTextBoxColumn.HeaderText = "TafsilGuid";
-            this.tafsilGuidDataGridViewTextBoxColumn.Name = "tafsilGuidDataGridViewTextBoxColumn";
-            this.tafsilGuidDataGridViewTextBoxColumn.ReadOnly = true;
-            this.tafsilGuidDataGridViewTextBoxColumn.Visible = false;
-            // 
             // frmSanadMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -821,7 +811,7 @@ namespace Accounting.Sanad
             this.Name = "frmSanadMain";
             this.Padding = new System.Windows.Forms.Padding(27, 92, 27, 31);
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.Style = MetroFramework.MetroColorStyle.Green;
+            this.Style = MetroFramework.MetroColorStyle.Teal;
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmSanadMain_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmSanadMain_KeyDown);

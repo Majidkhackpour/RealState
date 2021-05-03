@@ -14,9 +14,10 @@ namespace Accounting.Check.CheckMoshtari
     public partial class frmCheckM_AvalDore : MetroForm
     {
         private CancellationTokenSource _token = new CancellationTokenSource();
+        private Guid _tafsilGuid = Guid.Empty;
 
         public ReceptionCheckAvalDoreBussines cls { get; set; }
-        private Guid _tafsilGuid = Guid.Empty;
+        
         private async Task SetDataAsync()
         {
             try
@@ -75,11 +76,14 @@ namespace Accounting.Check.CheckMoshtari
         {
             InitializeComponent();
             cls = new ReceptionCheckAvalDoreBussines();
+            ucHeader.Text = "افزودن چک دریافتی اول دوره جدید";
         }
         public frmCheckM_AvalDore(Guid guid, bool isShowMode)
         {
             InitializeComponent();
             cls = ReceptionCheckAvalDoreBussines.Get(guid);
+            ucHeader.Text = !isShowMode ? $"ویرایش چک دریافتی اول دوره" : $"مشاهده چک دریافتی اول دوره";
+            ucHeader.IsModified = true;
             grp.Enabled = !isShowMode;
             btnFinish.Enabled = !isShowMode;
         }

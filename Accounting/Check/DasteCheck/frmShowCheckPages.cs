@@ -13,7 +13,7 @@ namespace Accounting.Check.DasteCheck
         public frmShowCheckPages(DasteCheckBussines parent)
         {
             InitializeComponent();
-            lblBankName.Text = parent?.BankName;
+            ucHeader.Text = $"نمایش لیست برگه چک های بانک {parent?.BankName}";
             CheckPagesBindingSource.DataSource = parent?.CheckPages?.OrderBy(q => q.Number)?.ToSortableBindingList();
         }
 

@@ -44,10 +44,8 @@
             this.modifiedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.statusDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.cityGuidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cityDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.RegionBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.btnSelect = new DevComponents.DotNetBar.ButtonX();
-            this.ucHeader = new WindowsSerivces.UC_Header();
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.RegionBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -86,8 +84,7 @@
             this.dgGuid,
             this.modifiedDataGridViewTextBoxColumn,
             this.statusDataGridViewCheckBoxColumn,
-            this.cityGuidDataGridViewTextBoxColumn,
-            this.cityDataGridViewTextBoxColumn});
+            this.cityGuidDataGridViewTextBoxColumn});
             this.DGrid.DataSource = this.RegionBindingSource;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
@@ -98,7 +95,7 @@
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.DGrid.DefaultCellStyle = dataGridViewCellStyle3;
             this.DGrid.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
-            this.DGrid.Location = new System.Drawing.Point(3, 59);
+            this.DGrid.Location = new System.Drawing.Point(3, 23);
             this.DGrid.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.DGrid.Name = "DGrid";
             this.DGrid.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -120,7 +117,7 @@
             this.DGrid.RowsDefaultCellStyle = dataGridViewCellStyle5;
             this.DGrid.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             this.DGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DGrid.Size = new System.Drawing.Size(416, 497);
+            this.DGrid.Size = new System.Drawing.Size(416, 533);
             this.DGrid.TabIndex = 55723;
             // 
             // dgIsChecked
@@ -181,14 +178,6 @@
             this.cityGuidDataGridViewTextBoxColumn.Name = "cityGuidDataGridViewTextBoxColumn";
             this.cityGuidDataGridViewTextBoxColumn.Visible = false;
             // 
-            // cityDataGridViewTextBoxColumn
-            // 
-            this.cityDataGridViewTextBoxColumn.DataPropertyName = "City";
-            this.cityDataGridViewTextBoxColumn.HeaderText = "City";
-            this.cityDataGridViewTextBoxColumn.Name = "cityDataGridViewTextBoxColumn";
-            this.cityDataGridViewTextBoxColumn.ReadOnly = true;
-            this.cityDataGridViewTextBoxColumn.Visible = false;
-            // 
             // RegionBindingSource
             // 
             this.RegionBindingSource.DataSource = typeof(EntityCache.Bussines.RegionsBussines);
@@ -213,30 +202,11 @@
             this.btnSelect.TextColor = System.Drawing.Color.Black;
             this.btnSelect.Click += new System.EventHandler(this.btnSelect_Click);
             // 
-            // ucHeader
-            // 
-            this.ucHeader.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.ucHeader.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.ucHeader.BackColor = System.Drawing.Color.White;
-            this.ucHeader.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ucHeader.Cursor = System.Windows.Forms.Cursors.Default;
-            this.ucHeader.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.ucHeader.IsModified = false;
-            this.ucHeader.Location = new System.Drawing.Point(-1, 21);
-            this.ucHeader.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.ucHeader.MinimumSize = new System.Drawing.Size(297, 34);
-            this.ucHeader.Name = "ucHeader";
-            this.ucHeader.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.ucHeader.Size = new System.Drawing.Size(422, 34);
-            this.ucHeader.TabIndex = 55769;
-            // 
             // frmSelectRegion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(421, 600);
-            this.Controls.Add(this.ucHeader);
             this.Controls.Add(this.btnSelect);
             this.Controls.Add(this.DGrid);
             this.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
@@ -270,6 +240,5 @@
         private System.Windows.Forms.DataGridViewCheckBoxColumn statusDataGridViewCheckBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn cityGuidDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn cityDataGridViewTextBoxColumn;
-        private WindowsSerivces.UC_Header ucHeader;
     }
 }

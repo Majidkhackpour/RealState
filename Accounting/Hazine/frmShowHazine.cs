@@ -19,42 +19,21 @@ namespace Accounting.Hazine
         private bool _st = true;
         private CancellationTokenSource _token = new CancellationTokenSource();
 
-        private async Task LoadDataAsync(bool status, string search = "")
+        private async Task LoadDataAsync(string search = "")
         {
             try
             {
                 _token?.Cancel();
                 _token = new CancellationTokenSource();
-                var list = await TafsilBussines.GetAllAsync(search, _token.Token,HesabType.Hazine);
+                var list = await TafsilBussines.GetAllAsync(search, _token.Token, HesabType.Hazine);
                 Invoke(new MethodInvoker(() => hazineBindingSource.DataSource =
-                    list.OrderBy(q => q.Code).Where(q => q.Status == status).ToSortableBindingList()));
+                    list.OrderBy(q => q.Code).Where(q => q.Status == _st).ToSortableBindingList()));
             }
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        public bool ST
-        {
-            get => _st;
-            set
-            {
-                _st = value;
-                if (_st)
-                {
-                    mnuStatus.Text = "غیرفعال (Ctrl+S)";
-                    Task.Run(() => LoadDataAsync(ST, txtSearch.Text));
-                    mnuDelete.Text = "حذف (Del)";
-                }
-                else
-                {
-                    mnuStatus.Text = "فعال (Ctrl+S)";
-                    Task.Run(() => LoadDataAsync(ST, txtSearch.Text));
-                    mnuDelete.Text = "فعال کردن";
-                }
-            }
-        }
-
         private void SetAccess()
         {
             try
@@ -63,7 +42,6 @@ namespace Accounting.Hazine
                 mnuAdd.Enabled = access?.Hazine.Hazine_Insert ?? false;
                 mnuEdit.Enabled = access?.Hazine.Hazine_Update ?? false;
                 mnuDelete.Enabled = access?.Hazine.Hazine_Delete ?? false;
-                mnuStatus.Enabled = access?.Hazine.Hazine_Disable ?? false;
                 mnuView.Enabled = access?.Hazine.Hazine_View ?? false;
                 mnuPrint.Enabled = access?.Hazine.Hazine_Gardesh ?? false;
             }
@@ -72,25 +50,19 @@ namespace Accounting.Hazine
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        public frmShowHazine()
+
+
+        public frmShowHazine(bool status = true)
         {
             InitializeComponent();
+            ucHeader.Text = "نمایش لیست هزینه ها";
+            _st = status;
             DGrid.Focus();
             SetAccess();
         }
 
-        private async void frmShowHazine_Load(object sender, EventArgs e) => await LoadDataAsync(ST);
-        private async void txtSearch_TextChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                await LoadDataAsync(ST, txtSearch.Text);
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
+        private async void frmShowHazine_Load(object sender, EventArgs e) => await LoadDataAsync();
+        private async void txtSearch_TextChanged(object sender, EventArgs e) => await LoadDataAsync(txtSearch.Text);
         private void frmShowHazine_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -108,9 +80,6 @@ namespace Accounting.Hazine
                         break;
                     case Keys.F12:
                         mnuView.PerformClick();
-                        break;
-                    case Keys.S:
-                        if (e.Control) ST = !ST;
                         break;
                     case Keys.P:
                         if (e.Control) mnuPrint.PerformClick();
@@ -147,7 +116,7 @@ namespace Accounting.Hazine
             {
                 var frm = new frmTafsilMain(HesabType.Hazine);
                 if (frm.ShowDialog(this) == DialogResult.OK)
-                    await LoadDataAsync(ST);
+                    await LoadDataAsync();
             }
             catch (Exception ex)
             {
@@ -160,7 +129,7 @@ namespace Accounting.Hazine
             {
                 if (DGrid.RowCount <= 0) return;
                 if (DGrid.CurrentRow == null) return;
-                if (!ST)
+                if (!_st)
                 {
                     frmNotification.PublicInfo.ShowMessage(
                         "شما مجاز به ویرایش داده حذف شده نمی باشید \r\n برای این منظور، ابتدا فیلد موردنظر را از حالت حذف شده به فعال، تغییر وضعیت دهید");
@@ -176,7 +145,7 @@ namespace Accounting.Hazine
 
                 var frm = new frmTafsilMain(guid, false, HesabType.Hazine);
                 if (frm.ShowDialog(this) == DialogResult.OK)
-                    await LoadDataAsync(ST, txtSearch.Text);
+                    await LoadDataAsync(txtSearch.Text);
             }
             catch (Exception ex)
             {
@@ -191,7 +160,7 @@ namespace Accounting.Hazine
                 if (DGrid.RowCount <= 0) return;
                 if (DGrid.CurrentRow == null) return;
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
-                if (ST)
+                if (_st)
                 {
                     var hazine = await TafsilBussines.GetAsync(guid);
                     if (hazine == null) return;
@@ -227,7 +196,7 @@ namespace Accounting.Hazine
             finally
             {
                 if (res.HasError) this.ShowError(res, "خطا در تغییر وضعیت صندوق");
-                else await LoadDataAsync(ST, txtSearch.Text);
+                else await LoadDataAsync(txtSearch.Text);
             }
         }
         private void mnuView_Click(object sender, EventArgs e)
@@ -245,7 +214,6 @@ namespace Accounting.Hazine
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void mnuStatus_Click(object sender, EventArgs e) => ST = !ST;
         private void mnuPrint_Click(object sender, EventArgs e)
         {
             try

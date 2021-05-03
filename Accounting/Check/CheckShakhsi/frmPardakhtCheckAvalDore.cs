@@ -85,11 +85,14 @@ namespace Accounting.Check.CheckShakhsi
         {
             InitializeComponent();
             cls = new PardakhtCheckAvalDoreBussines();
+            ucHeader.Text = "افزودن چک پرداختی اول دوره جدید";
         }
         public frmPardakhtCheckAvalDore(Guid guid, bool isShowMode)
         {
             InitializeComponent();
             cls = PardakhtCheckAvalDoreBussines.Get(guid);
+            ucHeader.Text = !isShowMode ? $"ویرایش چک پرداختی اول دوره" : $"مشاهده چک پرداختی اول دوره";
+            ucHeader.IsModified = true;
             grp.Enabled = !isShowMode;
             btnFinish.Enabled = !isShowMode;
         }
@@ -107,7 +110,6 @@ namespace Accounting.Check.CheckShakhsi
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-
         private async void cmbCheckBook_SelectedIndexChanged(object sender, EventArgs e)
         {
             try

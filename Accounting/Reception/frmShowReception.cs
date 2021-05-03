@@ -33,7 +33,11 @@ namespace Accounting.Reception
             }
         }
 
-        public frmShowReception() => InitializeComponent();
+        public frmShowReception()
+        {
+            InitializeComponent();
+            ucHeader.Text = "نمایش لیست وجوه دریافتی";
+        }
 
         private async void mnuAdd_Click(object sender, System.EventArgs e)
         {

@@ -33,7 +33,11 @@ namespace Accounting.Sanad
             }
         }
 
-        public frmShowSanad() => InitializeComponent();
+        public frmShowSanad()
+        {
+            InitializeComponent();
+            ucHeader.Text = "نمایش لیست اسناد حسابداری";
+        }
 
         private async void frmShowSanad_Load(object sender, EventArgs e) => await LoadDataAsync();
         private async void txtSearch_TextChanged(object sender, EventArgs e)
