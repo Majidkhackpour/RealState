@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WindowsSerivces;
@@ -12,6 +13,8 @@ namespace Accounting.Check.CheckMoshtari
 {
     public partial class frmCheckM_AvalDore : MetroForm
     {
+        private CancellationTokenSource _token = new CancellationTokenSource();
+
         public ReceptionCheckAvalDoreBussines cls { get; set; }
         private Guid _tafsilGuid = Guid.Empty;
         private async Task SetDataAsync()
@@ -40,7 +43,9 @@ namespace Accounting.Check.CheckMoshtari
         {
             try
             {
-                var list = await TafsilBussines.GetAllAsync("", HesabType.Sandouq);
+                _token?.Cancel();
+                _token = new CancellationTokenSource();
+                var list = await TafsilBussines.GetAllAsync("", _token.Token,HesabType.Sandouq);
                 SandouqBindingSource.DataSource = list?.Where(q => q.Status)?.OrderBy(q => q.Name)?.ToList();
             }
             catch (Exception ex)

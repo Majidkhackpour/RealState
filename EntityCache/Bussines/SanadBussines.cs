@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using EntityCache.Assistence;
 using Nito.AsyncEx;
@@ -46,7 +47,7 @@ namespace EntityCache.Bussines
         public List<SanadDetailBussines> Details { get; set; }
 
 
-        public static async Task<List<SanadBussines>> GetAllAsync() => await UnitOfWork.Sanad.GetAllAsync(Cache.ConnectionString);
+        public static async Task<List<SanadBussines>> GetAllAsync(CancellationToken token) => await UnitOfWork.Sanad.GetAllAsync(Cache.ConnectionString,token);
         public static async Task<SanadBussines> GetAsync(Guid guid) => await UnitOfWork.Sanad.GetAsync(Cache.ConnectionString, guid);
         public static SanadBussines Get(Guid guid) => AsyncContext.Run(() => GetAsync(guid));
         public static async Task<SanadBussines> GetAsync(long number) => await UnitOfWork.Sanad.GetAsync(Cache.ConnectionString, number);
@@ -241,17 +242,18 @@ namespace EntityCache.Bussines
 
             return res;
         }
-        public static async Task<List<SanadBussines>> GetAllAsync(string search)
+        public static async Task<List<SanadBussines>> GetAllAsync(string search,CancellationToken token)
         {
             try
             {
-                if (string.IsNullOrEmpty(search))
-                    search = "";
-                var res = await GetAllAsync();
+                if (string.IsNullOrEmpty(search)) search = "";
+                var res = await GetAllAsync(token);
+                if (token.IsCancellationRequested) return null;
                 var searchItems = search.SplitString();
                 if (searchItems?.Count > 0)
                     foreach (var item in searchItems)
                     {
+                        if (token.IsCancellationRequested) return null;
                         if (!string.IsNullOrEmpty(item) && item.Trim() != "")
                         {
                             res = res.Where(x => x.Number.ToString().ToLower().Contains(item.ToLower()) ||
@@ -268,8 +270,8 @@ namespace EntityCache.Bussines
                 res = res?.OrderByDescending(o => o.Number).ToList();
                 return res;
             }
-            catch (OperationCanceledException)
-            { return null; }
+            catch (TaskCanceledException) { return null; }
+            catch (OperationCanceledException) { return null; }
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);

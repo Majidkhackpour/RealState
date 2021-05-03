@@ -5,6 +5,7 @@ using Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WindowsSerivces;
@@ -15,11 +16,15 @@ namespace Accounting.Sanad
 {
     public partial class frmShowSanad : MetroForm
     {
+        private CancellationTokenSource _token = new CancellationTokenSource();
+
         private async Task LoadDataAsync(string search = "")
         {
             try
             {
-                var list = await SanadBussines.GetAllAsync(search);
+                _token?.Cancel();
+                _token = new CancellationTokenSource();
+                var list = await SanadBussines.GetAllAsync(search, _token.Token);
                 Invoke(new MethodInvoker(() => SanadBindingSource.DataSource = list.ToSortableBindingList()));
             }
             catch (Exception ex)

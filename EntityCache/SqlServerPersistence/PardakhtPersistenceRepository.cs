@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Threading;
 using System.Threading.Tasks;
 using EntityCache.Bussines;
 using EntityCache.Core;
@@ -47,7 +48,7 @@ namespace EntityCache.SqlServerPersistence
 
             return item;
         }
-        public async Task<List<PardakhtBussines>> GetAllAsync(string _connectionString)
+        public async Task<List<PardakhtBussines>> GetAllAsync(string _connectionString,CancellationToken token)
         {
             var list = new List<PardakhtBussines>();
             try
@@ -55,10 +56,14 @@ namespace EntityCache.SqlServerPersistence
                 using (var cn = new SqlConnection(_connectionString))
                 {
                     var cmd = new SqlCommand("sp_Pardakht_GetAll", cn) { CommandType = CommandType.StoredProcedure };
-
+                    if (token.IsCancellationRequested) return null;
                     await cn.OpenAsync();
                     var dr = await cmd.ExecuteReaderAsync();
-                    while (dr.Read()) list.Add(LoadData(dr));
+                    while (dr.Read())
+                    {
+                        if (token.IsCancellationRequested) return null;
+                        list.Add(LoadData(dr));
+                    }
                     cn.Close();
                 }
             }

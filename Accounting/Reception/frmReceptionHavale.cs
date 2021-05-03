@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WindowsSerivces;
@@ -12,7 +13,10 @@ namespace Accounting.Reception
 {
     public partial class frmReceptionHavale : MetroForm
     {
+        private CancellationTokenSource _token = new CancellationTokenSource(); 
+
         public ReceptionHavaleBussines cls { get; set; }
+
         private async Task SetDataAsync()
         {
             try
@@ -35,7 +39,9 @@ namespace Accounting.Reception
         {
             try
             {
-                var list = await TafsilBussines.GetAllAsync("", HesabType.Bank);
+                _token?.Cancel();
+                _token = new CancellationTokenSource();
+                var list = await TafsilBussines.GetAllAsync("", _token.Token,HesabType.Bank);
                 BankBindingSource.DataSource = list?.Where(q => q.Status)?.OrderBy(q => q.Name)?.ToList();
             }
             catch (Exception ex)

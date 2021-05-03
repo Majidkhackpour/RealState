@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Threading;
 using System.Threading.Tasks;
 using EntityCache.Bussines;
 using EntityCache.Core;
@@ -14,7 +15,7 @@ namespace EntityCache.SqlServerPersistence
 {
     public class DasteCheckPersistenceRepository : IDasteCheckRepository
     {
-        private DasteCheckBussines LoadData(SqlDataReader dr)
+        private DasteCheckBussines LoadData(SqlDataReader dr, CancellationToken token)
         {
             var item = new DasteCheckBussines();
             try
@@ -30,7 +31,7 @@ namespace EntityCache.SqlServerPersistence
                 item.BankName = dr["BankName"].ToString();
                 item.ServerDeliveryDate = (DateTime)dr["ServerDeliveryDate"];
                 item.ServerStatus = (ServerStatus)dr["ServerStatus"];
-                item.CheckPages = AsyncContext.Run(() => CheckPageBussines.GetAllAsync(item.Guid));
+                item.CheckPages = AsyncContext.Run(() => CheckPageBussines.GetAllAsync(item.Guid, token));
             }
             catch (Exception ex)
             {
@@ -65,7 +66,7 @@ namespace EntityCache.SqlServerPersistence
 
             return res;
         }
-        public async Task<List<DasteCheckBussines>> GetAllAsync(string _connectionString)
+        public async Task<List<DasteCheckBussines>> GetAllAsync(string _connectionString, CancellationToken token)
         {
             var list = new List<DasteCheckBussines>();
             try
@@ -73,13 +74,19 @@ namespace EntityCache.SqlServerPersistence
                 using (var cn = new SqlConnection(_connectionString))
                 {
                     var cmd = new SqlCommand("sp_DasteCheck_SelectAll", cn) { CommandType = CommandType.StoredProcedure };
-
+                    if (token.IsCancellationRequested) return null;
                     await cn.OpenAsync();
                     var dr = await cmd.ExecuteReaderAsync();
-                    while (dr.Read()) list.Add(LoadData(dr));
+                    while (dr.Read())
+                    {
+                        if (token.IsCancellationRequested) return null;
+                        list.Add(LoadData(dr, token));
+                    }
                     cn.Close();
                 }
             }
+            catch (TaskCanceledException) { }
+            catch (OperationCanceledException) { }
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
@@ -99,7 +106,7 @@ namespace EntityCache.SqlServerPersistence
 
                     await cn.OpenAsync();
                     var dr = await cmd.ExecuteReaderAsync();
-                    if (dr.Read()) res = LoadData(dr);
+                    if (dr.Read()) res = LoadData(dr, new CancellationToken());
                     cn.Close();
                 }
             }

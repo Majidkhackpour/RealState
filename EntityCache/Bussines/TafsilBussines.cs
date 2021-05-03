@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Persistence;
 
@@ -30,7 +31,7 @@ namespace EntityCache.Bussines
         public string Diagnosis => Account.AccountDiagnosis();
 
 
-        public static async Task<List<TafsilBussines>> GetAllAsync() => await UnitOfWork.Tafsil.GetAllAsync(Cache.ConnectionString);
+        public static async Task<List<TafsilBussines>> GetAllAsync(CancellationToken token) => await UnitOfWork.Tafsil.GetAllAsync(Cache.ConnectionString,token);
         public static async Task<ReturnedSaveFuncInfo> SaveRangeAsync(List<TafsilBussines> list, SqlTransaction tr = null)
         {
             var res = new ReturnedSaveFuncInfo();
@@ -96,17 +97,20 @@ namespace EntityCache.Bussines
             return res;
         }
         public static async Task<TafsilBussines> GetAsync(Guid guid) => await UnitOfWork.Tafsil.GetAsync(Cache.ConnectionString, guid);
-        public static async Task<List<TafsilBussines>> GetAllAsync(string search, HesabType htype = HesabType.All)
+        public static async Task<List<TafsilBussines>> GetAllAsync(string search,CancellationToken token, HesabType htype = HesabType.All)
         {
             try
             {
                 if (string.IsNullOrEmpty(search)) search = "";
-                var res = await GetAllAsync();
+                var res = await GetAllAsync(token);
+                if (token.IsCancellationRequested) return null;
                 if (htype != HesabType.All) res = res.Where(q => q.HesabType == htype).ToList();
+                if (token.IsCancellationRequested) return null;
                 var searchItems = search.SplitString();
                 if (searchItems?.Count > 0)
                     foreach (var item in searchItems)
                     {
+                        if (token.IsCancellationRequested) return null;
                         if (!string.IsNullOrEmpty(item) && item.Trim() != "")
                         {
                             res = res.Where(x => x.Name.ToLower().Contains(item.ToLower()) ||
@@ -119,8 +123,8 @@ namespace EntityCache.Bussines
                 res = res?.OrderBy(o => o.Name).ToList();
                 return res;
             }
-            catch (OperationCanceledException)
-            { return null; }
+            catch (TaskCanceledException) { return null; }
+            catch (OperationCanceledException) { return null; }
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);

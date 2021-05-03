@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Threading;
 using System.Threading.Tasks;
 using EntityCache.Bussines;
 using Services;
@@ -11,7 +12,7 @@ namespace EntityCache.Core
     {
         Task<ReturnedSaveFuncInfo> SaveRangeAsync(IEnumerable<TafsilBussines> items, SqlTransaction tr);
         Task<ReturnedSaveFuncInfo> SaveAsync(TafsilBussines item, SqlTransaction tr);
-        Task<List<TafsilBussines>> GetAllAsync(string _connectionString);
+        Task<List<TafsilBussines>> GetAllAsync(string _connectionString, CancellationToken token);
         Task<TafsilBussines> GetAsync(string _connectionString, Guid guid);
         Task<ReturnedSaveFuncInfo> ChangeStatusAsync(TafsilBussines item, bool status, SqlTransaction tr);
         Task<string> NextCodeAsync(string _connectionString, HesabType type);

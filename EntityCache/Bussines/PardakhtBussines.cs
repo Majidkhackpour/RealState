@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using EntityCache.Assistence;
 using Nito.AsyncEx;
@@ -168,17 +169,19 @@ namespace EntityCache.Bussines
         public string HavaleDesc => $"{NumberToString.Num2Str(CountHavale.ToString())} فقره - جمع: {NumberToString.Num2Str(SumHavale.ToString())} ریال";
         public string CheckShDesc => $"{NumberToString.Num2Str(CountCheckShakhsi.ToString())} فقره - جمع: {NumberToString.Num2Str(SumCheckShakhsi.ToString())} ریال";
         public string CheckMDesc => $"{NumberToString.Num2Str(CountCheckMoshtari.ToString())} فقره - جمع: {NumberToString.Num2Str(SumCheckMoshtari.ToString())} ریال";
-        public static async Task<List<PardakhtBussines>> GetAllAsync() => await UnitOfWork.Pardakht.GetAllAsync(Cache.ConnectionString);
-        public static async Task<List<PardakhtBussines>> GetAllAsync(string search)
+        public static async Task<List<PardakhtBussines>> GetAllAsync(CancellationToken token) => await UnitOfWork.Pardakht.GetAllAsync(Cache.ConnectionString, token);
+        public static async Task<List<PardakhtBussines>> GetAllAsync(string search, CancellationToken token)
         {
             try
             {
                 if (string.IsNullOrEmpty(search)) search = "";
-                var res = await GetAllAsync();
+                var res = await GetAllAsync(token);
+                if (token.IsCancellationRequested) return null;
                 var searchItems = search.SplitString();
                 if (searchItems?.Count > 0)
                     foreach (var item in searchItems)
                     {
+                        if (token.IsCancellationRequested) return null;
                         if (!string.IsNullOrEmpty(item) && item.Trim() != "")
                         {
                             res = res.Where(x => x.Number.ToString().ToLower().Contains(item.ToLower()) ||
@@ -197,8 +200,8 @@ namespace EntityCache.Bussines
                 res = res?.OrderByDescending(o => o.Number).ToList();
                 return res;
             }
-            catch (OperationCanceledException)
-            { return null; }
+            catch (TaskCanceledException) { return null; }
+            catch (OperationCanceledException) { return null; }
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);

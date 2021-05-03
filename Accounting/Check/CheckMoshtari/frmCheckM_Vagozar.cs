@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WindowsSerivces;
@@ -17,12 +18,15 @@ namespace Accounting.Check.CheckMoshtari
         private ReceptionCheckBussines rec;
         private bool _isAvalDore = false;
         private HesabType _newHesabType;
+        private CancellationTokenSource _token = new CancellationTokenSource();
 
         private async Task LoadTafsilAsync(HesabType hType)
         {
             try
             {
-                var list = await TafsilBussines.GetAllAsync("", hType);
+                _token?.Cancel();
+                _token = new CancellationTokenSource();
+                var list = await TafsilBussines.GetAllAsync("", _token.Token,hType);
                 tafsilBundingSource.DataSource = list.Where(q => q.Status).OrderBy(q => q.Name);
             }
             catch (Exception ex)

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using EntityCache.Bussines;
@@ -11,6 +12,8 @@ namespace Accounting.Hesab
 {
     public partial class frmSelectTafsil : MetroForm
     {
+        private CancellationTokenSource _token = new CancellationTokenSource();
+
         public Guid SelectedGuid { get; set; }
         private HesabType _type = HesabType.All;
         private bool? _isFromReception = null;
@@ -19,13 +22,15 @@ namespace Accounting.Hesab
             try
             {
                 List<TafsilBussines> list = null;
+                _token?.Cancel();
+                _token = new CancellationTokenSource();
                 if (_isFromReception != null && _isFromReception.Value)
                 {
-                    list = await TafsilBussines.GetAllAsync(search);
+                    list = await TafsilBussines.GetAllAsync(search, _token.Token);
                     list = list.Where(q => q.HesabType != HesabType.Hazine).ToList();
                 }
                 else
-                    list = await TafsilBussines.GetAllAsync(search, _type);
+                    list = await TafsilBussines.GetAllAsync(search, _token.Token, _type);
 
                 Invoke(new MethodInvoker(() => TafsilBindingSource.DataSource =
                     list.OrderBy(q => q.Code).Where(q => q.Status).ToSortableBindingList()));

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Threading;
 using System.Threading.Tasks;
 using EntityCache.Assistence;
 using Persistence;
@@ -29,10 +30,10 @@ namespace EntityCache.Bussines
         public string StatusName => CheckStatus.GetDisplay();
 
 
-        public static async Task<List<CheckPageBussines>> GetAllAsync(Guid checkGuid) =>
-            await UnitOfWork.CheckPage.GetAllAsync(Cache.ConnectionString, checkGuid);
+        public static async Task<List<CheckPageBussines>> GetAllAsync(Guid checkGuid, CancellationToken token) =>
+            await UnitOfWork.CheckPage.GetAllAsync(Cache.ConnectionString, checkGuid, token);
         public static async Task<CheckPageBussines> GetAsync(Guid guid) => await UnitOfWork.CheckPage.GetAsync(Cache.ConnectionString, guid);
-        public static async Task<ReturnedSaveFuncInfo> RemoveAllAsync(Guid checkGuid, SqlTransaction tr=null)
+        public static async Task<ReturnedSaveFuncInfo> RemoveAllAsync(Guid checkGuid, SqlTransaction tr = null)
         {
             var res = new ReturnedSaveFuncInfo();
             var autoTran = tr == null;

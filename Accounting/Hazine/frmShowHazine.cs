@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WindowsSerivces;
@@ -16,11 +17,15 @@ namespace Accounting.Hazine
     public partial class frmShowHazine : MetroForm
     {
         private bool _st = true;
+        private CancellationTokenSource _token = new CancellationTokenSource();
+
         private async Task LoadDataAsync(bool status, string search = "")
         {
             try
             {
-                var list = await TafsilBussines.GetAllAsync(search, HesabType.Hazine);
+                _token?.Cancel();
+                _token = new CancellationTokenSource();
+                var list = await TafsilBussines.GetAllAsync(search, _token.Token,HesabType.Hazine);
                 Invoke(new MethodInvoker(() => hazineBindingSource.DataSource =
                     list.OrderBy(q => q.Code).Where(q => q.Status == status).ToSortableBindingList()));
             }

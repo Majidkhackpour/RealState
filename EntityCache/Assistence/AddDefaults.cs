@@ -27,7 +27,7 @@ namespace EntityCache.Assistence
                 tr = cn.BeginTransaction();
 
                 #region Kol
-                var allKol = await KolBussines.GetAllAsync();
+                var allKol = await KolBussines.GetAllAsync(new CancellationToken());
                 if (allKol == null || allKol.Count <= 0)
                 {
                     var kol = DefaultKol.SetDef();
@@ -37,7 +37,7 @@ namespace EntityCache.Assistence
                 #endregion
 
                 #region Moein
-                var allMoein = await MoeinBussines.GetAllAsync();
+                var allMoein = await MoeinBussines.GetAllAsync(new CancellationToken());
                 if (allMoein == null || allMoein.Count <= 0)
                 {
                     var moein = DefaultMoein.SetDef();
@@ -47,7 +47,7 @@ namespace EntityCache.Assistence
                 #endregion
 
                 #region Tafsil
-                var allTafsil = await TafsilBussines.GetAllAsync();
+                var allTafsil = await TafsilBussines.GetAllAsync(new CancellationToken());
                 if (allTafsil == null || allTafsil.Count <= 0)
                 {
                     var tafsil = DefaultTafsil.SetDef();
@@ -57,7 +57,7 @@ namespace EntityCache.Assistence
                 #endregion
 
                 #region Bank
-                var allBank = await BankBussines.GetAllAsync();
+                var allBank = await BankBussines.GetAllAsync(new CancellationToken());
                 if (allBank == null || allBank.Count <= 0)
                 {
                     var user = new BankBussines()

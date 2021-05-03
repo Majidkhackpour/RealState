@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WindowsSerivces;
@@ -11,7 +12,10 @@ namespace Accounting.Pardakht
 {
     public partial class frmPardakhtCheckSh : MetroForm
     {
+        private CancellationTokenSource _token = new CancellationTokenSource();
+
         public PardakhtCheckShakhsiBussines cls { get; set; }
+
         private async Task SetDataAsync()
         {
             try
@@ -46,7 +50,9 @@ namespace Accounting.Pardakht
         {
             try
             {
-                var list = await DasteCheckBussines.GetAllAsync();
+                _token?.Cancel();
+                _token = new CancellationTokenSource();
+                var list = await DasteCheckBussines.GetAllAsync(_token.Token);
                 CheckBookBindingSource.DataSource = list?.Where(q => q.Status)?.OrderBy(q => q.Name)?.ToList();
             }
             catch (Exception ex)
@@ -74,7 +80,9 @@ namespace Accounting.Pardakht
             try
             {
                 if (CheckBookBindingSource.Count <= 0 || cmbCheckBook.SelectedValue == null) return;
-                var list = await CheckPageBussines.GetAllAsync((Guid)cmbCheckBook.SelectedValue);
+                _token?.Cancel();
+                _token = new CancellationTokenSource();
+                var list = await CheckPageBussines.GetAllAsync((Guid) cmbCheckBook.SelectedValue, _token.Token);
                 CheckPageBindingSource.DataSource = list?.ToList();
                 if (cls.Guid != Guid.Empty) cmbCheckPage.SelectedValue = cls.CheckPageGuid;
             }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WindowsSerivces;
@@ -14,11 +15,15 @@ namespace Accounting.Check.DasteCheck
     public partial class frmShowDasteCheck : MetroForm
     {
         private bool _st = true;
+        private CancellationTokenSource _token = new CancellationTokenSource();
+
         private async Task LoadDataAsync(bool status, string search = "")
         {
             try
             {
-                var list = await DasteCheckBussines.GetAllAsync(search);
+                _token?.Cancel();
+                _token = new CancellationTokenSource();
+                var list = await DasteCheckBussines.GetAllAsync(search, _token.Token);
                 Invoke(new MethodInvoker(() => DasteCheckBindingSource.DataSource =
                     list.Where(q => q.Status == status).ToSortableBindingList()));
             }

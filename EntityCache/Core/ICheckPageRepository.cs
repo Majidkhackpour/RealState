@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Threading;
 using System.Threading.Tasks;
 using EntityCache.Bussines;
 using Services;
@@ -9,7 +10,7 @@ namespace EntityCache.Core
 {
     public interface ICheckPageRepository
     {
-        Task<List<CheckPageBussines>> GetAllAsync(string _connectionString, Guid checkGuid);
+        Task<List<CheckPageBussines>> GetAllAsync(string _connectionString, Guid checkGuid, CancellationToken token);
         Task<CheckPageBussines> GetAsync(string _connectionString, Guid guid);
         Task<ReturnedSaveFuncInfo> SaveAsync(CheckPageBussines item, SqlTransaction tr);
         Task<ReturnedSaveFuncInfo> RemoveAllAsync(Guid checkGuid, SqlTransaction tr);

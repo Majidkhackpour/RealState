@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Threading;
 using System.Threading.Tasks;
 using EntityCache.Bussines;
 using Services;
@@ -14,6 +15,6 @@ namespace EntityCache.Core
         Task<bool> CheckCodeAsync(string _connectionString, Guid guid, long code);
         Task<long> NextNumberAsync(string _connectionString);
         Task<PardakhtBussines> GetAsync(string _connectionString, Guid guid);
-        Task<List<PardakhtBussines>> GetAllAsync(string _connectionString);
+        Task<List<PardakhtBussines>> GetAllAsync(string _connectionString, CancellationToken token);
     }
 }

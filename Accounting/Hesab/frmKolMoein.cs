@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using EntityCache.Bussines;
@@ -12,6 +13,8 @@ namespace Accounting.Hesab
     {
         private Guid _kolGuid = Guid.Empty;
         private bool isSelectMode;
+        private CancellationTokenSource _token = new CancellationTokenSource();
+
         public Guid KolGuid
         {
             get => _kolGuid;
@@ -27,7 +30,9 @@ namespace Accounting.Hesab
         {
             try
             {
-                var list = await KolBussines.GetAllAsync(search);
+                _token?.Cancel();
+                _token = new CancellationTokenSource();
+                var list = await KolBussines.GetAllAsync(search, _token.Token);
                 KolBindingSource.DataSource = list?.OrderBy(q => q.Code).ToSortableBindingList();
             }
             catch (Exception ex)
@@ -39,7 +44,9 @@ namespace Accounting.Hesab
         {
             try
             {
-                var list = await MoeinBussines.GetAllAsync(search, KolGuid);
+                _token?.Cancel();
+                _token = new CancellationTokenSource();
+                var list = await MoeinBussines.GetAllAsync(search, KolGuid, _token.Token);
                 Invoke(new MethodInvoker(() =>
                     MoeinBindingSource.DataSource = list?.OrderBy(q => q.Code).ToSortableBindingList()));
             }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WindowsSerivces;
@@ -16,11 +17,15 @@ namespace Accounting.Hesab
     public partial class frmShowTafsils : MetroForm
     {
         private bool _st = true;
+        private CancellationTokenSource _token = new CancellationTokenSource();
+
         private async Task LoadDataAsync(bool status, string search = "")
         {
             try
             {
-                var list = await TafsilBussines.GetAllAsync(search);
+                _token?.Cancel();
+                _token = new CancellationTokenSource();
+                var list = await TafsilBussines.GetAllAsync(search, _token.Token);
                 Invoke(new MethodInvoker(() => TafsilBindingSource.DataSource =
                     list.OrderBy(q => q.Code).Where(q => q.Status == status).ToSortableBindingList()));
             }

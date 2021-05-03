@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WindowsSerivces;
@@ -15,6 +16,7 @@ namespace Accounting.Hesab
         private TafsilBussines cls;
         private EnLogAction action;
         private HesabType hType = HesabType.Tafsil;
+        private CancellationTokenSource _token = new CancellationTokenSource();
 
         private void SetData()
         {
@@ -147,7 +149,7 @@ namespace Accounting.Hesab
             {
                 SetData();
                 var myCollection = new AutoCompleteStringCollection();
-                var list = await TafsilBussines.GetAllAsync("", hType);
+                var list = await TafsilBussines.GetAllAsync("", _token.Token,hType);
                 foreach (var item in list.ToList())
                     myCollection.Add(item.Name);
                 txtName.AutoCompleteCustomSource = myCollection;

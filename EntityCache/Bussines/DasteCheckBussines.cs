@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using EntityCache.Assistence;
 using Nito.AsyncEx;
@@ -29,18 +30,19 @@ namespace EntityCache.Bussines
         public List<CheckPageBussines> CheckPages { get; set; }
 
 
-        public static async Task<List<DasteCheckBussines>> GetAllAsync() => await UnitOfWork.DasteCheck.GetAllAsync(Cache.ConnectionString);
-        public static async Task<List<DasteCheckBussines>> GetAllAsync(string search)
+        public static async Task<List<DasteCheckBussines>> GetAllAsync(CancellationToken token) => await UnitOfWork.DasteCheck.GetAllAsync(Cache.ConnectionString,token);
+        public static async Task<List<DasteCheckBussines>> GetAllAsync(string search,CancellationToken token)
         {
             try
             {
-                if (string.IsNullOrEmpty(search))
-                    search = "";
-                var res = await GetAllAsync();
+                if (string.IsNullOrEmpty(search)) search = "";
+                var res = await GetAllAsync(token);
+                if (token.IsCancellationRequested) return null;
                 var searchItems = search.SplitString();
                 if (searchItems?.Count > 0)
                     foreach (var item in searchItems)
                     {
+                        if (token.IsCancellationRequested) return null;
                         if (!string.IsNullOrEmpty(item) && item.Trim() != "")
                         {
                             res = res.Where(x => x.SerialNumber.ToLower().Contains(item.ToLower()) ||
@@ -56,8 +58,8 @@ namespace EntityCache.Bussines
                 res = res?.OrderBy(o => o.BankName).ToList();
                 return res;
             }
-            catch (OperationCanceledException)
-            { return null; }
+            catch (TaskCanceledException) { return null; }
+            catch (OperationCanceledException) { return null; }
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);

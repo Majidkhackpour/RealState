@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WindowsSerivces;
@@ -14,11 +15,15 @@ namespace Accounting.Reception
 {
     public partial class frmShowReception : MetroForm
     {
+        private CancellationTokenSource _token = new CancellationTokenSource();
+
         private async Task LoadDataAsync(string search = "")
         {
             try
             {
-                var list = await ReceptionBussines.GetAllAsync(search);
+                _token?.Cancel();
+                _token = new CancellationTokenSource();
+                var list = await ReceptionBussines.GetAllAsync(search, _token.Token);
                 Invoke(new MethodInvoker(() => ReceptionBindingSource.DataSource =
                     list.OrderByDescending(q => q.Number).ToSortableBindingList()));
             }
@@ -171,8 +176,9 @@ namespace Accounting.Reception
 
                 var frm = new frmSetPrintSize(false);
                 if (frm.ShowDialog(this) != DialogResult.OK) return;
-
-                var reception = await ReceptionBussines.GetAllAsync();
+                _token?.Cancel();
+                _token = new CancellationTokenSource();
+                var reception = await ReceptionBussines.GetAllAsync(_token.Token);
                 var list = new List<OperationListPrintViewModel>();
                 foreach (var item in reception)
                 {
