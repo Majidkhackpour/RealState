@@ -32,6 +32,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmNoteMain));
             this.grp = new DevComponents.DotNetBar.PanelEx();
             this.cmbUsers = new System.Windows.Forms.ComboBox();
+            this.userBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.lblUsers = new System.Windows.Forms.Label();
             this.txtSarresid = new BPersianCalender.BPersianCalenderTextBox();
             this.cmbPriority = new System.Windows.Forms.ComboBox();
@@ -44,7 +45,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.btnFinish = new DevComponents.DotNetBar.ButtonX();
             this.btnCancel = new DevComponents.DotNetBar.ButtonX();
-            this.userBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.grp.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -91,6 +91,10 @@
             this.cmbUsers.Size = new System.Drawing.Size(205, 28);
             this.cmbUsers.TabIndex = 3;
             this.cmbUsers.ValueMember = "Guid";
+            // 
+            // userBindingSource
+            // 
+            this.userBindingSource.DataSource = typeof(EntityCache.Bussines.UserBussines);
             // 
             // lblUsers
             // 
@@ -199,7 +203,7 @@
             // btnFinish
             // 
             this.btnFinish.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnFinish.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.btnFinish.BackColor = System.Drawing.Color.LightSteelBlue;
             this.btnFinish.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnFinish.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnFinish.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -217,7 +221,7 @@
             // btnCancel
             // 
             this.btnCancel.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnCancel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.btnCancel.BackColor = System.Drawing.Color.LightSteelBlue;
             this.btnCancel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnCancel.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnCancel.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -232,10 +236,6 @@
             this.btnCancel.Text = "انصراف (Esc)";
             this.btnCancel.TextColor = System.Drawing.Color.Black;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
-            // 
-            // userBindingSource
-            // 
-            this.userBindingSource.DataSource = typeof(EntityCache.Bussines.UserBussines);
             // 
             // frmNoteMain
             // 
@@ -257,7 +257,7 @@
             this.Name = "frmNoteMain";
             this.Padding = new System.Windows.Forms.Padding(27, 92, 27, 31);
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.Style = MetroFramework.MetroColorStyle.Green;
+            this.Style = MetroFramework.MetroColorStyle.Teal;
             this.Load += new System.EventHandler(this.frmNoteMain_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmNoteMain_KeyDown);
             this.grp.ResumeLayout(false);

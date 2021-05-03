@@ -38,19 +38,18 @@
             this.cmbGroup = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.txtSearch = new DevComponents.DotNetBar.Controls.TextBoxX();
-            this.line1 = new DevComponents.DotNetBar.Controls.Line();
             this.DGrid = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.btnSelect = new DevComponents.DotNetBar.ButtonX();
             this.dgIsChecked = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.GroupName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.GroupName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgGuid = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.modifiedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.statusDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.parentGuidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.phoneBookBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.btnSelect = new DevComponents.DotNetBar.ButtonX();
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.phoneBookBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -97,17 +96,6 @@
             this.txtSearch.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtSearch.WatermarkText = "مورد جستجو را وارد نمایید ...";
             this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
-            // 
-            // line1
-            // 
-            this.line1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.line1.Location = new System.Drawing.Point(0, 538);
-            this.line1.Name = "line1";
-            this.line1.Size = new System.Drawing.Size(799, 23);
-            this.line1.TabIndex = 55753;
-            this.line1.Text = "line1";
-            this.line1.Thickness = 2;
             // 
             // DGrid
             // 
@@ -178,30 +166,10 @@
             this.DGrid.RowsDefaultCellStyle = dataGridViewCellStyle5;
             this.DGrid.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             this.DGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DGrid.Size = new System.Drawing.Size(795, 468);
+            this.DGrid.Size = new System.Drawing.Size(795, 484);
             this.DGrid.TabIndex = 55754;
             this.DGrid.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGrid_CellClick);
             this.DGrid.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DGrid_CellFormatting);
-            // 
-            // btnSelect
-            // 
-            this.btnSelect.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnSelect.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSelect.BackColor = System.Drawing.Color.DarkSlateGray;
-            this.btnSelect.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnSelect.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
-            this.btnSelect.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnSelect.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.btnSelect.Location = new System.Drawing.Point(184, 561);
-            this.btnSelect.Name = "btnSelect";
-            this.btnSelect.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
-            this.btnSelect.Size = new System.Drawing.Size(414, 31);
-            this.btnSelect.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
-            this.btnSelect.TabIndex = 55763;
-            this.btnSelect.Text = "انتخاب";
-            this.btnSelect.TextColor = System.Drawing.Color.White;
-            this.btnSelect.Click += new System.EventHandler(this.btnSelect_Click);
             // 
             // dgIsChecked
             // 
@@ -210,14 +178,6 @@
             this.dgIsChecked.Name = "dgIsChecked";
             this.dgIsChecked.ReadOnly = true;
             this.dgIsChecked.Width = 30;
-            // 
-            // GroupName
-            // 
-            this.GroupName.DataPropertyName = "GroupName";
-            this.GroupName.HeaderText = "گروه";
-            this.GroupName.Name = "GroupName";
-            this.GroupName.ReadOnly = true;
-            this.GroupName.Width = 200;
             // 
             // dgName
             // 
@@ -234,6 +194,14 @@
             this.dgNumber.Name = "dgNumber";
             this.dgNumber.ReadOnly = true;
             this.dgNumber.Width = 200;
+            // 
+            // GroupName
+            // 
+            this.GroupName.DataPropertyName = "GroupName";
+            this.GroupName.HeaderText = "گروه";
+            this.GroupName.Name = "GroupName";
+            this.GroupName.ReadOnly = true;
+            this.GroupName.Width = 200;
             // 
             // groupDataGridViewTextBoxColumn
             // 
@@ -280,6 +248,26 @@
             // 
             this.phoneBookBindingSource.DataSource = typeof(EntityCache.Bussines.PhoneBookBussines);
             // 
+            // btnSelect
+            // 
+            this.btnSelect.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnSelect.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSelect.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.btnSelect.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnSelect.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.btnSelect.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSelect.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.btnSelect.Location = new System.Drawing.Point(184, 561);
+            this.btnSelect.Name = "btnSelect";
+            this.btnSelect.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
+            this.btnSelect.Size = new System.Drawing.Size(414, 31);
+            this.btnSelect.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
+            this.btnSelect.TabIndex = 55763;
+            this.btnSelect.Text = "انتخاب";
+            this.btnSelect.TextColor = System.Drawing.Color.Black;
+            this.btnSelect.Click += new System.EventHandler(this.btnSelect_Click);
+            // 
             // frmPhoneBookSearch
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -289,7 +277,6 @@
             this.Controls.Add(this.cmbGroup);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.txtSearch);
-            this.Controls.Add(this.line1);
             this.Controls.Add(this.DGrid);
             this.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -299,7 +286,7 @@
             this.Name = "frmPhoneBookSearch";
             this.Padding = new System.Windows.Forms.Padding(27, 92, 27, 31);
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.Style = MetroFramework.MetroColorStyle.Green;
+            this.Style = MetroFramework.MetroColorStyle.Teal;
             this.Load += new System.EventHandler(this.frmPhoneBookSearch_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmPhoneBookSearch_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).EndInit();
@@ -315,7 +302,6 @@
         private System.Windows.Forms.BindingSource phoneBookBindingSource;
         private System.Windows.Forms.Label label5;
         private DevComponents.DotNetBar.Controls.TextBoxX txtSearch;
-        private DevComponents.DotNetBar.Controls.Line line1;
         private DevComponents.DotNetBar.Controls.DataGridViewX DGrid;
         private DevComponents.DotNetBar.ButtonX btnSelect;
         private System.Windows.Forms.DataGridViewCheckBoxColumn dgIsChecked;

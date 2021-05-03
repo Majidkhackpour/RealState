@@ -34,11 +34,11 @@
             this.lblMatchRegion = new System.Windows.Forms.Label();
             this.lblSetting = new System.Windows.Forms.Label();
             this.grp = new DevComponents.DotNetBar.PanelEx();
-            this.fPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.picSimcard = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.picBaseInfo = new System.Windows.Forms.PictureBox();
             this.picMatchRegion = new System.Windows.Forms.PictureBox();
+            this.fPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.grp.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picSimcard)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -139,17 +139,6 @@
             this.grp.Style.GradientAngle = 90;
             this.grp.TabIndex = 10;
             // 
-            // fPanel
-            // 
-            this.fPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.fPanel.FlowDirection = System.Windows.Forms.FlowDirection.BottomUp;
-            this.fPanel.Location = new System.Drawing.Point(5, 34);
-            this.fPanel.Name = "fPanel";
-            this.fPanel.Size = new System.Drawing.Size(814, 552);
-            this.fPanel.TabIndex = 14;
-            // 
             // picSimcard
             // 
             this.picSimcard.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -202,6 +191,17 @@
             this.picMatchRegion.TabStop = false;
             this.picMatchRegion.Click += new System.EventHandler(this.picMatchRegion_Click);
             // 
+            // fPanel
+            // 
+            this.fPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.fPanel.FlowDirection = System.Windows.Forms.FlowDirection.BottomUp;
+            this.fPanel.Location = new System.Drawing.Point(5, 34);
+            this.fPanel.Name = "fPanel";
+            this.fPanel.Size = new System.Drawing.Size(814, 552);
+            this.fPanel.TabIndex = 14;
+            // 
             // frmRobotPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -221,7 +221,7 @@
             this.MinimumSize = new System.Drawing.Size(991, 600);
             this.Name = "frmRobotPanel";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.Style = MetroFramework.MetroColorStyle.Green;
+            this.Style = MetroFramework.MetroColorStyle.Teal;
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmRobotPanel_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmRobotPanel_KeyDown);

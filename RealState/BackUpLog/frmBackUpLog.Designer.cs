@@ -41,6 +41,7 @@
             this.mnuBackUp = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuRestoreFromSelectedFile = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuRestoreFromFile = new System.Windows.Forms.ToolStripMenuItem();
+            this.ucHeader = new WindowsSerivces.UC_Header();
             this.Radif = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dateShDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgPath = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -49,8 +50,6 @@
             this.statusDescDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.sizeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.guidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.modifiedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.statusDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.backUpStatusDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.insertedDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.typeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -98,8 +97,6 @@
             this.statusDescDataGridViewTextBoxColumn,
             this.sizeDataGridViewTextBoxColumn,
             this.guidDataGridViewTextBoxColumn,
-            this.modifiedDataGridViewTextBoxColumn,
-            this.statusDataGridViewCheckBoxColumn,
             this.backUpStatusDataGridViewTextBoxColumn,
             this.insertedDateDataGridViewTextBoxColumn,
             this.typeDataGridViewTextBoxColumn});
@@ -114,7 +111,7 @@
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.DGrid.DefaultCellStyle = dataGridViewCellStyle3;
             this.DGrid.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
-            this.DGrid.Location = new System.Drawing.Point(3, 29);
+            this.DGrid.Location = new System.Drawing.Point(3, 64);
             this.DGrid.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.DGrid.Name = "DGrid";
             this.DGrid.ReadOnly = true;
@@ -137,7 +134,7 @@
             this.DGrid.RowsDefaultCellStyle = dataGridViewCellStyle5;
             this.DGrid.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             this.DGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DGrid.Size = new System.Drawing.Size(795, 558);
+            this.DGrid.Size = new System.Drawing.Size(795, 523);
             this.DGrid.TabIndex = 55719;
             this.DGrid.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DGrid_CellFormatting);
             // 
@@ -176,6 +173,24 @@
             this.mnuRestoreFromFile.Text = "بازیابی پشتیبان از فایل دستی";
             this.mnuRestoreFromFile.Click += new System.EventHandler(this.mnuRestoreFromFile_Click);
             // 
+            // ucHeader
+            // 
+            this.ucHeader.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.ucHeader.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ucHeader.BackColor = System.Drawing.Color.White;
+            this.ucHeader.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.ucHeader.Cursor = System.Windows.Forms.Cursors.Default;
+            this.ucHeader.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.ucHeader.IsModified = false;
+            this.ucHeader.Location = new System.Drawing.Point(-9, 25);
+            this.ucHeader.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ucHeader.MinimumSize = new System.Drawing.Size(297, 34);
+            this.ucHeader.Name = "ucHeader";
+            this.ucHeader.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.ucHeader.Size = new System.Drawing.Size(815, 34);
+            this.ucHeader.TabIndex = 55755;
+            // 
             // Radif
             // 
             this.Radif.HeaderText = "ردیف";
@@ -185,34 +200,38 @@
             // 
             // dateShDataGridViewTextBoxColumn
             // 
+            this.dateShDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.dateShDataGridViewTextBoxColumn.DataPropertyName = "DateSh";
             this.dateShDataGridViewTextBoxColumn.HeaderText = "تاریخ ثبت";
             this.dateShDataGridViewTextBoxColumn.Name = "dateShDataGridViewTextBoxColumn";
             this.dateShDataGridViewTextBoxColumn.ReadOnly = true;
+            this.dateShDataGridViewTextBoxColumn.Width = 80;
             // 
             // dgPath
             // 
+            this.dgPath.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.dgPath.DataPropertyName = "Path";
             this.dgPath.HeaderText = "آدرس";
             this.dgPath.Name = "dgPath";
             this.dgPath.ReadOnly = true;
-            this.dgPath.Width = 500;
             // 
             // typeNameDataGridViewTextBoxColumn
             // 
+            this.typeNameDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.typeNameDataGridViewTextBoxColumn.DataPropertyName = "TypeName";
             this.typeNameDataGridViewTextBoxColumn.HeaderText = "نوع";
             this.typeNameDataGridViewTextBoxColumn.Name = "typeNameDataGridViewTextBoxColumn";
             this.typeNameDataGridViewTextBoxColumn.ReadOnly = true;
-            this.typeNameDataGridViewTextBoxColumn.Width = 60;
+            this.typeNameDataGridViewTextBoxColumn.Width = 51;
             // 
             // statusNameDataGridViewTextBoxColumn
             // 
+            this.statusNameDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.statusNameDataGridViewTextBoxColumn.DataPropertyName = "StatusName";
             this.statusNameDataGridViewTextBoxColumn.HeaderText = "وضعیت";
             this.statusNameDataGridViewTextBoxColumn.Name = "statusNameDataGridViewTextBoxColumn";
             this.statusNameDataGridViewTextBoxColumn.ReadOnly = true;
-            this.statusNameDataGridViewTextBoxColumn.Width = 60;
+            this.statusNameDataGridViewTextBoxColumn.Width = 71;
             // 
             // statusDescDataGridViewTextBoxColumn
             // 
@@ -224,11 +243,12 @@
             // 
             // sizeDataGridViewTextBoxColumn
             // 
+            this.sizeDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.sizeDataGridViewTextBoxColumn.DataPropertyName = "Size";
             this.sizeDataGridViewTextBoxColumn.HeaderText = "حجم (مگابایت)";
             this.sizeDataGridViewTextBoxColumn.Name = "sizeDataGridViewTextBoxColumn";
             this.sizeDataGridViewTextBoxColumn.ReadOnly = true;
-            this.sizeDataGridViewTextBoxColumn.Width = 80;
+            this.sizeDataGridViewTextBoxColumn.Width = 106;
             // 
             // guidDataGridViewTextBoxColumn
             // 
@@ -237,22 +257,6 @@
             this.guidDataGridViewTextBoxColumn.Name = "guidDataGridViewTextBoxColumn";
             this.guidDataGridViewTextBoxColumn.ReadOnly = true;
             this.guidDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // modifiedDataGridViewTextBoxColumn
-            // 
-            this.modifiedDataGridViewTextBoxColumn.DataPropertyName = "Modified";
-            this.modifiedDataGridViewTextBoxColumn.HeaderText = "Modified";
-            this.modifiedDataGridViewTextBoxColumn.Name = "modifiedDataGridViewTextBoxColumn";
-            this.modifiedDataGridViewTextBoxColumn.ReadOnly = true;
-            this.modifiedDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // statusDataGridViewCheckBoxColumn
-            // 
-            this.statusDataGridViewCheckBoxColumn.DataPropertyName = "Status";
-            this.statusDataGridViewCheckBoxColumn.HeaderText = "Status";
-            this.statusDataGridViewCheckBoxColumn.Name = "statusDataGridViewCheckBoxColumn";
-            this.statusDataGridViewCheckBoxColumn.ReadOnly = true;
-            this.statusDataGridViewCheckBoxColumn.Visible = false;
             // 
             // backUpStatusDataGridViewTextBoxColumn
             // 
@@ -283,6 +287,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 600);
+            this.Controls.Add(this.ucHeader);
             this.Controls.Add(this.DGrid);
             this.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -291,7 +296,7 @@
             this.MinimumSize = new System.Drawing.Size(800, 600);
             this.Name = "frmBackUpLog";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.Style = MetroFramework.MetroColorStyle.Green;
+            this.Style = MetroFramework.MetroColorStyle.Teal;
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmBackUpLog_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmBackUpLog_KeyDown);
@@ -310,6 +315,9 @@
         private System.Windows.Forms.ToolStripMenuItem mnuRestoreFromSelectedFile;
         private System.Windows.Forms.ToolStripMenuItem mnuRestoreFromFile;
         private System.Windows.Forms.ToolStripMenuItem mnuBackUp;
+        private System.Windows.Forms.DataGridViewTextBoxColumn modifiedDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn statusDataGridViewCheckBoxColumn;
+        private WindowsSerivces.UC_Header ucHeader;
         private System.Windows.Forms.DataGridViewTextBoxColumn Radif;
         private System.Windows.Forms.DataGridViewTextBoxColumn dateShDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgPath;
@@ -318,8 +326,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn statusDescDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn sizeDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn guidDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn modifiedDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn statusDataGridViewCheckBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn backUpStatusDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn insertedDateDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn typeDataGridViewTextBoxColumn;

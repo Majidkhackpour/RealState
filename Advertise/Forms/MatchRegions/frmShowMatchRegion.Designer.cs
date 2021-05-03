@@ -178,7 +178,7 @@
             this.btnInsert.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.btnInsert.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnInsert.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.btnInsert.BackColor = System.Drawing.Color.LightSteelBlue;
             this.btnInsert.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnInsert.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnInsert.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -189,7 +189,7 @@
             this.btnInsert.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
             this.btnInsert.TabIndex = 55752;
             this.btnInsert.Text = "افزودن ارتباط (Ins)";
-            this.btnInsert.TextColor = System.Drawing.Color.White;
+            this.btnInsert.TextColor = System.Drawing.Color.Black;
             this.btnInsert.Click += new System.EventHandler(this.btnInsert_Click);
             // 
             // label5

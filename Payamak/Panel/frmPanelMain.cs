@@ -10,6 +10,7 @@ namespace Payamak.Panel
     public partial class frmPanelMain : MetroForm
     {
         private SmsPanelsBussines cls;
+
         private void SetData()
         {
             try
@@ -23,63 +24,35 @@ namespace Payamak.Panel
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
+
         public frmPanelMain()
         {
             InitializeComponent();
             cls = new SmsPanelsBussines();
+            ucHeader.Text = "افزودن پنل پیامکی جدید";
         }
         public frmPanelMain(Guid guid, bool isShowMode)
         {
             InitializeComponent();
             cls = SmsPanelsBussines.Get(guid);
+            ucHeader.Text = !isShowMode ? $"ویرایش پنل پیامکی {cls.Name}" : $"مشاهده پنل پیامکی {cls.Name}";
+            ucHeader.IsModified = true;
             grp.Enabled = !isShowMode;
             btnFinish.Enabled = !isShowMode;
         }
 
-        private void frmPanelMain_Load(object sender, EventArgs e)
-        {
-            SetData();
-        }
-
-        #region TxtSetter
-        private void txtName_Enter(object sender, EventArgs e)
-        {
-            txtSetter.Focus(txtName);
-        }
-
-        private void txtSender_Enter(object sender, EventArgs e)
-        {
-            txtSetter.Focus(txtSender);
-        }
-
-        private void txtApi_Enter(object sender, EventArgs e)
-        {
-            txtSetter.Focus(txtApi);
-        }
-
-        private void txtApi_Leave(object sender, EventArgs e)
-        {
-            txtSetter.Follow(txtApi);
-        }
-
-        private void txtSender_Leave(object sender, EventArgs e)
-        {
-            txtSetter.Follow(txtSender);
-        }
-
-        private void txtName_Leave(object sender, EventArgs e)
-        {
-            txtSetter.Follow(txtName);
-        }
-
-        #endregion
-
+        private void frmPanelMain_Load(object sender, EventArgs e) => SetData();
+        private void txtName_Enter(object sender, EventArgs e) => txtSetter.Focus(txtName);
+        private void txtSender_Enter(object sender, EventArgs e) => txtSetter.Focus(txtSender);
+        private void txtApi_Enter(object sender, EventArgs e) => txtSetter.Focus(txtApi);
+        private void txtApi_Leave(object sender, EventArgs e) => txtSetter.Follow(txtApi);
+        private void txtSender_Leave(object sender, EventArgs e) => txtSetter.Follow(txtSender);
+        private void txtName_Leave(object sender, EventArgs e) => txtSetter.Follow(txtName);
         private void btnCancel_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Cancel;
             Close();
         }
-
         private void frmPanelMain_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -103,35 +76,13 @@ namespace Payamak.Panel
                 WebErrorLog.ErrorInstence.StartErrorLog(exception);
             }
         }
-
         private async void btnFinish_Click(object sender, EventArgs e)
         {
             var res = new ReturnedSaveFuncInfo();
             try
             {
-                if (cls.Guid == Guid.Empty)
-                    cls.Guid = Guid.NewGuid();
+                if (cls.Guid == Guid.Empty) cls.Guid = Guid.NewGuid();
 
-                if (string.IsNullOrWhiteSpace(txtName.Text))
-                {
-                    res.AddError("عنوان نمی تواند خالی باشد");
-                    txtName.Focus();
-                }
-
-
-                if (string.IsNullOrWhiteSpace(txtSender.Text))
-                {
-                    res.AddError("شماره خط فرستنده عبور نمی تواند خالی باشد");
-                    txtSender.Focus();
-                }
-
-                if (string.IsNullOrWhiteSpace(txtApi.Text))
-                {
-                    res.AddError("وب سرویس عبور نمی تواند خالی باشد");
-                    txtApi.Focus();
-                }
-
-                if (res.HasError) return;
                 cls.Name = txtName.Text.Trim();
                 cls.Sender = txtSender.Text.Trim();
                 cls.API = txtApi.Text.Trim();

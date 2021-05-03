@@ -48,9 +48,7 @@
             this.dateSarresidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dateSabtDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.descriptionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.statusDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.lblUsers = new System.Windows.Forms.Label();
-            this.modifiedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgUserName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dateSarresidShDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.statusNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -60,7 +58,6 @@
             this.Radif = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DGrid = new DevComponents.DotNetBar.Controls.DataGridViewX();
             this.dgGuid = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.txtSearch = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.contextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.mnuAdd = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuEdit = new System.Windows.Forms.ToolStripMenuItem();
@@ -70,6 +67,8 @@
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
             this.mnuRemain = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuLog = new System.Windows.Forms.ToolStripMenuItem();
+            this.txtSearch = new DevComponents.DotNetBar.Controls.TextBoxX();
+            this.ucHeader = new WindowsSerivces.UC_Header();
             ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.noteBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).BeginInit();
@@ -83,7 +82,7 @@
             this.cmbUsers.DisplayMember = "Name";
             this.cmbUsers.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbUsers.FormattingEnabled = true;
-            this.cmbUsers.Location = new System.Drawing.Point(3, 22);
+            this.cmbUsers.Location = new System.Drawing.Point(3, 53);
             this.cmbUsers.Name = "cmbUsers";
             this.cmbUsers.Size = new System.Drawing.Size(133, 28);
             this.cmbUsers.TabIndex = 55725;
@@ -96,7 +95,7 @@
             this.cmbStatus.Cursor = System.Windows.Forms.Cursors.Hand;
             this.cmbStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbStatus.FormattingEnabled = true;
-            this.cmbStatus.Location = new System.Drawing.Point(430, 22);
+            this.cmbStatus.Location = new System.Drawing.Point(430, 53);
             this.cmbStatus.Name = "cmbStatus";
             this.cmbStatus.Size = new System.Drawing.Size(133, 28);
             this.cmbStatus.TabIndex = 55722;
@@ -107,7 +106,7 @@
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Location = new System.Drawing.Point(565, 25);
+            this.label1.Location = new System.Drawing.Point(565, 56);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(46, 20);
             this.label1.TabIndex = 55720;
@@ -119,7 +118,7 @@
             this.cmbPriority.Cursor = System.Windows.Forms.Cursors.Hand;
             this.cmbPriority.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbPriority.FormattingEnabled = true;
-            this.cmbPriority.Location = new System.Drawing.Point(615, 22);
+            this.cmbPriority.Location = new System.Drawing.Point(615, 53);
             this.cmbPriority.Name = "cmbPriority";
             this.cmbPriority.Size = new System.Drawing.Size(133, 28);
             this.cmbPriority.TabIndex = 55723;
@@ -130,7 +129,7 @@
             this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label5.AutoSize = true;
             this.label5.BackColor = System.Drawing.Color.Transparent;
-            this.label5.Location = new System.Drawing.Point(750, 25);
+            this.label5.Location = new System.Drawing.Point(750, 56);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(43, 20);
             this.label5.TabIndex = 55721;
@@ -188,31 +187,15 @@
             this.descriptionDataGridViewTextBoxColumn.ReadOnly = true;
             this.descriptionDataGridViewTextBoxColumn.Visible = false;
             // 
-            // statusDataGridViewCheckBoxColumn
-            // 
-            this.statusDataGridViewCheckBoxColumn.DataPropertyName = "Status";
-            this.statusDataGridViewCheckBoxColumn.HeaderText = "Status";
-            this.statusDataGridViewCheckBoxColumn.Name = "statusDataGridViewCheckBoxColumn";
-            this.statusDataGridViewCheckBoxColumn.ReadOnly = true;
-            this.statusDataGridViewCheckBoxColumn.Visible = false;
-            // 
             // lblUsers
             // 
             this.lblUsers.AutoSize = true;
             this.lblUsers.BackColor = System.Drawing.Color.Transparent;
-            this.lblUsers.Location = new System.Drawing.Point(138, 25);
+            this.lblUsers.Location = new System.Drawing.Point(138, 56);
             this.lblUsers.Name = "lblUsers";
             this.lblUsers.Size = new System.Drawing.Size(33, 20);
             this.lblUsers.TabIndex = 55724;
             this.lblUsers.Text = "کاربر";
-            // 
-            // modifiedDataGridViewTextBoxColumn
-            // 
-            this.modifiedDataGridViewTextBoxColumn.DataPropertyName = "Modified";
-            this.modifiedDataGridViewTextBoxColumn.HeaderText = "Modified";
-            this.modifiedDataGridViewTextBoxColumn.Name = "modifiedDataGridViewTextBoxColumn";
-            this.modifiedDataGridViewTextBoxColumn.ReadOnly = true;
-            this.modifiedDataGridViewTextBoxColumn.Visible = false;
             // 
             // dgUserName
             // 
@@ -299,8 +282,6 @@
             this.dateSarresidShDataGridViewTextBoxColumn,
             this.dgUserName,
             this.dgGuid,
-            this.modifiedDataGridViewTextBoxColumn,
-            this.statusDataGridViewCheckBoxColumn,
             this.descriptionDataGridViewTextBoxColumn,
             this.dateSabtDataGridViewTextBoxColumn,
             this.dateSarresidDataGridViewTextBoxColumn,
@@ -318,7 +299,7 @@
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.DGrid.DefaultCellStyle = dataGridViewCellStyle3;
             this.DGrid.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
-            this.DGrid.Location = new System.Drawing.Point(3, 54);
+            this.DGrid.Location = new System.Drawing.Point(3, 87);
             this.DGrid.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.DGrid.Name = "DGrid";
             this.DGrid.ReadOnly = true;
@@ -341,7 +322,7 @@
             this.DGrid.RowsDefaultCellStyle = dataGridViewCellStyle5;
             this.DGrid.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             this.DGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DGrid.Size = new System.Drawing.Size(795, 530);
+            this.DGrid.Size = new System.Drawing.Size(795, 508);
             this.DGrid.TabIndex = 55718;
             this.DGrid.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DGrid_CellFormatting);
             // 
@@ -352,25 +333,6 @@
             this.dgGuid.Name = "dgGuid";
             this.dgGuid.ReadOnly = true;
             this.dgGuid.Visible = false;
-            // 
-            // txtSearch
-            // 
-            this.txtSearch.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            // 
-            // 
-            // 
-            this.txtSearch.Border.Class = "TextBoxBorder";
-            this.txtSearch.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.txtSearch.Location = new System.Drawing.Point(177, 23);
-            this.txtSearch.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.txtSearch.Name = "txtSearch";
-            this.txtSearch.PreventEnterBeep = true;
-            this.txtSearch.Size = new System.Drawing.Size(245, 27);
-            this.txtSearch.TabIndex = 55719;
-            this.txtSearch.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtSearch.WatermarkText = "مورد جستجو را وارد نمایید ...";
-            this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
             // 
             // contextMenu
             // 
@@ -386,7 +348,7 @@
             this.mnuLog});
             this.contextMenu.Name = "contextMenu";
             this.contextMenu.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.contextMenu.Size = new System.Drawing.Size(220, 182);
+            this.contextMenu.Size = new System.Drawing.Size(220, 160);
             // 
             // mnuAdd
             // 
@@ -446,11 +408,49 @@
             this.mnuLog.Text = "تبدیل به خوانده نشده";
             this.mnuLog.Click += new System.EventHandler(this.mnuLog_Click);
             // 
+            // txtSearch
+            // 
+            this.txtSearch.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            // 
+            // 
+            // 
+            this.txtSearch.Border.Class = "TextBoxBorder";
+            this.txtSearch.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.txtSearch.Location = new System.Drawing.Point(177, 54);
+            this.txtSearch.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtSearch.Name = "txtSearch";
+            this.txtSearch.PreventEnterBeep = true;
+            this.txtSearch.Size = new System.Drawing.Size(245, 27);
+            this.txtSearch.TabIndex = 55719;
+            this.txtSearch.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtSearch.WatermarkText = "مورد جستجو را وارد نمایید ...";
+            this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
+            // 
+            // ucHeader
+            // 
+            this.ucHeader.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.ucHeader.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ucHeader.BackColor = System.Drawing.Color.White;
+            this.ucHeader.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.ucHeader.Cursor = System.Windows.Forms.Cursors.Default;
+            this.ucHeader.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.ucHeader.IsModified = false;
+            this.ucHeader.Location = new System.Drawing.Point(-12, 17);
+            this.ucHeader.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ucHeader.MinimumSize = new System.Drawing.Size(297, 34);
+            this.ucHeader.Name = "ucHeader";
+            this.ucHeader.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.ucHeader.Size = new System.Drawing.Size(815, 34);
+            this.ucHeader.TabIndex = 55755;
+            // 
             // frmShowNotes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 600);
+            this.Controls.Add(this.ucHeader);
             this.Controls.Add(this.cmbUsers);
             this.Controls.Add(this.cmbStatus);
             this.Controls.Add(this.label1);
@@ -467,7 +467,7 @@
             this.Name = "frmShowNotes";
             this.Padding = new System.Windows.Forms.Padding(27, 92, 27, 31);
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.Style = MetroFramework.MetroColorStyle.Green;
+            this.Style = MetroFramework.MetroColorStyle.Teal;
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmShowNotes_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmShowNotes_KeyDown);
@@ -517,5 +517,6 @@
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem mnuRemain;
         private System.Windows.Forms.ToolStripMenuItem mnuLog;
+        private WindowsSerivces.UC_Header ucHeader;
     }
 }

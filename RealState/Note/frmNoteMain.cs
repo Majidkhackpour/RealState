@@ -26,8 +26,6 @@ namespace RealState.Note
                 userBindingSource.DataSource = list.OrderBy(q => q.Name);
                 cmbUsers.SelectedValue = UserBussines.CurrentUser.Guid;
 
-
-
                 cmbPriority.Items.Add(EnNotePriority.Mamoli.GetDisplay());
                 cmbPriority.Items.Add(EnNotePriority.Mohem.GetDisplay());
                 cmbPriority.Items.Add(EnNotePriority.Zarori.GetDisplay());
@@ -57,12 +55,12 @@ namespace RealState.Note
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
+
         public frmNoteMain()
         {
             InitializeComponent();
             cls = new NoteBussines();
         }
-
         public frmNoteMain(Guid guid, bool isShowMode)
         {
             InitializeComponent();
@@ -71,33 +69,19 @@ namespace RealState.Note
             btnFinish.Enabled = !isShowMode;
         }
 
-        private async void frmNoteMain_Load(object sender, EventArgs e)
-        {
-            await SetDataAsync();
-        }
-
-        private void txtTitle_Enter(object sender, EventArgs e)
-        {
-            txtSetter.Focus(txtTitle);
-        }
-
-        private void txtTitle_Leave(object sender, EventArgs e)
-        {
-            txtSetter.Follow(txtTitle);
-        }
-
+        private async void frmNoteMain_Load(object sender, EventArgs e)=>await SetDataAsync();
+        private void txtTitle_Enter(object sender, EventArgs e)=>txtSetter.Focus(txtTitle);
+        private void txtTitle_Leave(object sender, EventArgs e)=>txtSetter.Follow(txtTitle);
         private void btnCancel_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Cancel;
             Close();
         }
-
         private async void btnFinish_Click(object sender, EventArgs e)
         {
             try
             {
-                if (cls.Guid == Guid.Empty)
-                    cls.Guid = Guid.NewGuid();
+                if (cls.Guid == Guid.Empty) cls.Guid = Guid.NewGuid();
 
                 if (string.IsNullOrWhiteSpace(txtTitle.Text))
                 {
@@ -128,7 +112,6 @@ namespace RealState.Note
                 WebErrorLog.ErrorInstence.StartErrorLog(exception);
             }
         }
-
         private void chbSarresid_CheckedChanged(object sender, EventArgs e)
         {
             try
@@ -149,7 +132,6 @@ namespace RealState.Note
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-
         private void frmNoteMain_KeyDown(object sender, KeyEventArgs e)
         {
             try

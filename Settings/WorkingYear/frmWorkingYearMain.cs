@@ -12,27 +12,21 @@ namespace Settings.WorkingYear
     {
         private WorkingYear cls;
         private string ConnectionString;
-        private void SetData()
-        {
-            try
-            {
-                txtDbName.Text = cls?.DbName;
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
+
+        private void SetData() => txtDbName.Text = cls?.DbName;
 
         public frmWorkingYearMain()
         {
             InitializeComponent();
             cls = new WorkingYear();
+            ucHeader.Text = "افزودن واحد اقتصادی جدید";
         }
         public frmWorkingYearMain(Guid guid)
         {
             InitializeComponent();
             cls = WorkingYear.Get(guid);
+            ucHeader.Text = $"ویرایش واحد اقتصادی {cls.DbName}";
+            ucHeader.IsModified = true;
         }
 
         private void btnFinish_Click(object sender, System.EventArgs e)
@@ -68,7 +62,7 @@ namespace Settings.WorkingYear
                         }
                     }
                 }
-                
+
                 if (cls.Guid == Guid.Empty) cls.Guid = Guid.NewGuid();
                 cls.ConnectionString = cn;
                 cls.DbName = txtDbName.Text;
@@ -114,7 +108,6 @@ namespace Settings.WorkingYear
                 WebErrorLog.ErrorInstence.StartErrorLog(exception);
             }
         }
-
         private void btnConString_Click(object sender, EventArgs e)
         {
             try

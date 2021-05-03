@@ -36,14 +36,8 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMatchRegionMain));
             this.DGrid = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.btnFinish = new DevComponents.DotNetBar.ButtonX();
-            this.btnCancel = new DevComponents.DotNetBar.ButtonX();
-            this.label8 = new System.Windows.Forms.Label();
-            this.lblName = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.dgRadif = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnDelete = new DevComponents.DotNetBar.ButtonX();
             this.dgIsChecked = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.dgRadif = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgGuid = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.modifiedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -51,8 +45,13 @@
             this.cityGuidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.stateNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cityNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cityDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.regBingingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.btnFinish = new DevComponents.DotNetBar.ButtonX();
+            this.btnCancel = new DevComponents.DotNetBar.ButtonX();
+            this.label8 = new System.Windows.Forms.Label();
+            this.lblName = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.btnDelete = new DevComponents.DotNetBar.ButtonX();
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.regBingingSource)).BeginInit();
             this.SuspendLayout();
@@ -92,8 +91,7 @@
             this.statusDataGridViewCheckBoxColumn,
             this.cityGuidDataGridViewTextBoxColumn,
             this.stateNameDataGridViewTextBoxColumn,
-            this.cityNameDataGridViewTextBoxColumn,
-            this.cityDataGridViewTextBoxColumn});
+            this.cityNameDataGridViewTextBoxColumn});
             this.DGrid.DataSource = this.regBingingSource;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
@@ -130,74 +128,12 @@
             this.DGrid.TabIndex = 55746;
             this.DGrid.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DGrid_CellFormatting);
             // 
-            // btnFinish
+            // dgIsChecked
             // 
-            this.btnFinish.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnFinish.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnFinish.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.btnFinish.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnFinish.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
-            this.btnFinish.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnFinish.Image = global::Advertise.Properties.Resources.tab_checkbox__;
-            this.btnFinish.Location = new System.Drawing.Point(622, 562);
-            this.btnFinish.Name = "btnFinish";
-            this.btnFinish.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
-            this.btnFinish.Size = new System.Drawing.Size(125, 31);
-            this.btnFinish.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
-            this.btnFinish.TabIndex = 55747;
-            this.btnFinish.Text = "تایید (F5)";
-            this.btnFinish.TextColor = System.Drawing.Color.Black;
-            this.btnFinish.Click += new System.EventHandler(this.btnFinish_Click);
-            // 
-            // btnCancel
-            // 
-            this.btnCancel.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnCancel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.btnCancel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnCancel.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
-            this.btnCancel.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Image = global::Advertise.Properties.Resources.tab_close_;
-            this.btnCancel.Location = new System.Drawing.Point(30, 562);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
-            this.btnCancel.Size = new System.Drawing.Size(125, 31);
-            this.btnCancel.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
-            this.btnCancel.TabIndex = 55748;
-            this.btnCancel.Text = "انصراف (Esc)";
-            this.btnCancel.TextColor = System.Drawing.Color.Black;
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
-            // 
-            // label8
-            // 
-            this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label8.AutoSize = true;
-            this.label8.BackColor = System.Drawing.Color.Transparent;
-            this.label8.Location = new System.Drawing.Point(677, 34);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(107, 20);
-            this.label8.TabIndex = 55749;
-            this.label8.Text = "لیست مناطق مرتبط با";
-            // 
-            // lblName
-            // 
-            this.lblName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblName.BackColor = System.Drawing.Color.Transparent;
-            this.lblName.Font = new System.Drawing.Font("B Yekan", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.lblName.Location = new System.Drawing.Point(538, 63);
-            this.lblName.Name = "lblName";
-            this.lblName.Size = new System.Drawing.Size(246, 20);
-            this.lblName.TabIndex = 55749;
-            // 
-            // label2
-            // 
-            this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Location = new System.Drawing.Point(3, 15);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(442, 74);
-            this.label2.TabIndex = 55749;
-            this.label2.Text = resources.GetString("label2.Text");
+            this.dgIsChecked.DataPropertyName = "IsChecked";
+            this.dgIsChecked.HeaderText = "";
+            this.dgIsChecked.Name = "dgIsChecked";
+            this.dgIsChecked.Width = 35;
             // 
             // dgRadif
             // 
@@ -205,32 +141,6 @@
             this.dgRadif.Name = "dgRadif";
             this.dgRadif.ReadOnly = true;
             this.dgRadif.Width = 50;
-            // 
-            // btnDelete
-            // 
-            this.btnDelete.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnDelete.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.btnDelete.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnDelete.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
-            this.btnDelete.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnDelete.Image = global::Advertise.Properties.Resources.delete_1_;
-            this.btnDelete.Location = new System.Drawing.Point(444, 562);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
-            this.btnDelete.Size = new System.Drawing.Size(172, 31);
-            this.btnDelete.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
-            this.btnDelete.TabIndex = 55774;
-            this.btnDelete.Text = "حذف ارتباطات این منطقه";
-            this.btnDelete.TextColor = System.Drawing.Color.Black;
-            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
-            // 
-            // dgIsChecked
-            // 
-            this.dgIsChecked.DataPropertyName = "IsChecked";
-            this.dgIsChecked.HeaderText = "";
-            this.dgIsChecked.Name = "dgIsChecked";
-            this.dgIsChecked.Width = 35;
             // 
             // nameDataGridViewTextBoxColumn
             // 
@@ -282,17 +192,97 @@
             this.cityNameDataGridViewTextBoxColumn.Name = "cityNameDataGridViewTextBoxColumn";
             this.cityNameDataGridViewTextBoxColumn.Visible = false;
             // 
-            // cityDataGridViewTextBoxColumn
-            // 
-            this.cityDataGridViewTextBoxColumn.DataPropertyName = "City";
-            this.cityDataGridViewTextBoxColumn.HeaderText = "City";
-            this.cityDataGridViewTextBoxColumn.Name = "cityDataGridViewTextBoxColumn";
-            this.cityDataGridViewTextBoxColumn.ReadOnly = true;
-            this.cityDataGridViewTextBoxColumn.Visible = false;
-            // 
             // regBingingSource
             // 
             this.regBingingSource.DataSource = typeof(EntityCache.Bussines.RegionsBussines);
+            // 
+            // btnFinish
+            // 
+            this.btnFinish.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnFinish.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnFinish.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.btnFinish.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnFinish.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.btnFinish.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnFinish.Image = global::Advertise.Properties.Resources.tab_checkbox__;
+            this.btnFinish.Location = new System.Drawing.Point(622, 562);
+            this.btnFinish.Name = "btnFinish";
+            this.btnFinish.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
+            this.btnFinish.Size = new System.Drawing.Size(125, 31);
+            this.btnFinish.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
+            this.btnFinish.TabIndex = 55747;
+            this.btnFinish.Text = "تایید (F5)";
+            this.btnFinish.TextColor = System.Drawing.Color.Black;
+            this.btnFinish.Click += new System.EventHandler(this.btnFinish_Click);
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnCancel.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.btnCancel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnCancel.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.btnCancel.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnCancel.Image = global::Advertise.Properties.Resources.tab_close_;
+            this.btnCancel.Location = new System.Drawing.Point(30, 562);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
+            this.btnCancel.Size = new System.Drawing.Size(125, 31);
+            this.btnCancel.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
+            this.btnCancel.TabIndex = 55748;
+            this.btnCancel.Text = "انصراف (Esc)";
+            this.btnCancel.TextColor = System.Drawing.Color.Black;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
+            // label8
+            // 
+            this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label8.AutoSize = true;
+            this.label8.BackColor = System.Drawing.Color.Transparent;
+            this.label8.Location = new System.Drawing.Point(677, 34);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(107, 20);
+            this.label8.TabIndex = 55749;
+            this.label8.Text = "لیست مناطق مرتبط با";
+            // 
+            // lblName
+            // 
+            this.lblName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblName.BackColor = System.Drawing.Color.Transparent;
+            this.lblName.Font = new System.Drawing.Font("B Yekan", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.lblName.Location = new System.Drawing.Point(538, 63);
+            this.lblName.Name = "lblName";
+            this.lblName.Size = new System.Drawing.Size(246, 20);
+            this.lblName.TabIndex = 55749;
+            // 
+            // label2
+            // 
+            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.Location = new System.Drawing.Point(3, 15);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(442, 74);
+            this.label2.TabIndex = 55749;
+            this.label2.Text = resources.GetString("label2.Text");
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnDelete.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.btnDelete.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnDelete.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.btnDelete.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnDelete.Image = global::Advertise.Properties.Resources.delete_1_;
+            this.btnDelete.Location = new System.Drawing.Point(444, 562);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
+            this.btnDelete.Size = new System.Drawing.Size(172, 31);
+            this.btnDelete.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
+            this.btnDelete.TabIndex = 55774;
+            this.btnDelete.Text = "حذف ارتباطات این منطقه";
+            this.btnDelete.TextColor = System.Drawing.Color.Black;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // frmMatchRegionMain
             // 
@@ -314,7 +304,7 @@
             this.Name = "frmMatchRegionMain";
             this.Padding = new System.Windows.Forms.Padding(27, 92, 27, 31);
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.Style = MetroFramework.MetroColorStyle.Green;
+            this.Style = MetroFramework.MetroColorStyle.Teal;
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmMatchRegionMain_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmMatchRegionMain_KeyDown);

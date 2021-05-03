@@ -147,6 +147,8 @@ namespace EntityCache.Bussines
                     tr = cn.BeginTransaction();
                 }
 
+                res.AddReturnedValue(CheckValidation());
+                if (res.HasError) return res;
                 res.AddReturnedValue(await UnitOfWork.PhoneBook.SaveAsync(this, tr));
             }
             catch (Exception ex)
@@ -255,6 +257,22 @@ namespace EntityCache.Bussines
                     res.AddReturnedValue(cn.CloseConnection());
                 }
             }
+            return res;
+        }
+        private ReturnedSaveFuncInfo CheckValidation()
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                if (string.IsNullOrWhiteSpace(Name)) res.AddError("نام و نام خانوادگی نمی تواند خالی باشد");
+                if (string.IsNullOrWhiteSpace(Tell)) res.AddError("شماره نمی تواند خالی باشد");
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+
             return res;
         }
     }

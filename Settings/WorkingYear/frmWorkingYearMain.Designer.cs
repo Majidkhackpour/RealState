@@ -34,11 +34,12 @@
             this.btnConString = new DevComponents.DotNetBar.ButtonX();
             this.btnFinish = new DevComponents.DotNetBar.ButtonX();
             this.btnCancel = new DevComponents.DotNetBar.ButtonX();
+            this.ucHeader = new WindowsSerivces.UC_Header();
             this.SuspendLayout();
             // 
             // txtDbName
             // 
-            this.txtDbName.Location = new System.Drawing.Point(30, 17);
+            this.txtDbName.Location = new System.Drawing.Point(30, 60);
             this.txtDbName.Name = "txtDbName";
             this.txtDbName.Size = new System.Drawing.Size(280, 27);
             this.txtDbName.TabIndex = 0;
@@ -47,7 +48,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Location = new System.Drawing.Point(316, 20);
+            this.label1.Location = new System.Drawing.Point(316, 63);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(109, 20);
             this.label1.TabIndex = 10;
@@ -58,30 +59,30 @@
             this.btnConString.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.btnConString.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnConString.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.btnConString.BackColor = System.Drawing.Color.LightSteelBlue;
             this.btnConString.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnConString.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnConString.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnConString.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.btnConString.Location = new System.Drawing.Point(30, 50);
+            this.btnConString.Location = new System.Drawing.Point(30, 93);
             this.btnConString.Name = "btnConString";
             this.btnConString.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
             this.btnConString.Size = new System.Drawing.Size(280, 31);
             this.btnConString.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
             this.btnConString.TabIndex = 1;
             this.btnConString.Text = "تنظیم پارامترهای اتصال";
-            this.btnConString.TextColor = System.Drawing.Color.White;
+            this.btnConString.TextColor = System.Drawing.Color.Black;
             this.btnConString.Click += new System.EventHandler(this.btnConString_Click);
             // 
             // btnFinish
             // 
             this.btnFinish.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnFinish.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.btnFinish.BackColor = System.Drawing.Color.LightSteelBlue;
             this.btnFinish.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnFinish.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnFinish.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnFinish.Image = global::Settings.Properties.Resources.tab_checkbox__;
-            this.btnFinish.Location = new System.Drawing.Point(185, 87);
+            this.btnFinish.Location = new System.Drawing.Point(185, 130);
             this.btnFinish.Name = "btnFinish";
             this.btnFinish.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
             this.btnFinish.Size = new System.Drawing.Size(125, 31);
@@ -94,13 +95,13 @@
             // btnCancel
             // 
             this.btnCancel.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnCancel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.btnCancel.BackColor = System.Drawing.Color.LightSteelBlue;
             this.btnCancel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnCancel.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnCancel.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Image = global::Settings.Properties.Resources.tab_close_;
-            this.btnCancel.Location = new System.Drawing.Point(30, 87);
+            this.btnCancel.Location = new System.Drawing.Point(30, 130);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
             this.btnCancel.Size = new System.Drawing.Size(125, 31);
@@ -109,12 +110,31 @@
             this.btnCancel.Text = "انصراف (Esc)";
             this.btnCancel.TextColor = System.Drawing.Color.Black;
             // 
+            // ucHeader
+            // 
+            this.ucHeader.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.ucHeader.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ucHeader.BackColor = System.Drawing.Color.White;
+            this.ucHeader.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.ucHeader.Cursor = System.Windows.Forms.Cursors.Default;
+            this.ucHeader.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.ucHeader.IsModified = false;
+            this.ucHeader.Location = new System.Drawing.Point(-2, 18);
+            this.ucHeader.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ucHeader.MinimumSize = new System.Drawing.Size(297, 34);
+            this.ucHeader.Name = "ucHeader";
+            this.ucHeader.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.ucHeader.Size = new System.Drawing.Size(445, 34);
+            this.ucHeader.TabIndex = 11;
+            // 
             // frmWorkingYearMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(435, 127);
+            this.ClientSize = new System.Drawing.Size(435, 174);
             this.ControlBox = false;
+            this.Controls.Add(this.ucHeader);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnFinish);
             this.Controls.Add(this.btnConString);
@@ -125,13 +145,13 @@
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(435, 127);
+            this.MaximumSize = new System.Drawing.Size(435, 174);
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(435, 127);
+            this.MinimumSize = new System.Drawing.Size(435, 174);
             this.Name = "frmWorkingYearMain";
             this.Padding = new System.Windows.Forms.Padding(27, 92, 27, 31);
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.Style = MetroFramework.MetroColorStyle.Green;
+            this.Style = MetroFramework.MetroColorStyle.Teal;
             this.Load += new System.EventHandler(this.frmWorkingYearMain_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmWorkingYearMain_KeyDown);
             this.ResumeLayout(false);
@@ -146,5 +166,6 @@
         private DevComponents.DotNetBar.ButtonX btnConString;
         private DevComponents.DotNetBar.ButtonX btnFinish;
         private DevComponents.DotNetBar.ButtonX btnCancel;
+        private WindowsSerivces.UC_Header ucHeader;
     }
 }

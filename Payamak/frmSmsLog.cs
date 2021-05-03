@@ -55,6 +55,7 @@ namespace Payamak
         public frmSmsLog(SmsPanelsBussines pnl)
         {
             InitializeComponent();
+            ucHeader.Text = "گزارش پیامک های ارسال شده";
             cls = pnl;
         }
 

@@ -50,6 +50,7 @@ namespace RealState.BackUpLog
         public frmBackUpLog()
         {
             InitializeComponent();
+            ucHeader.Text = "گزارش پشتیبان های تهیه شده از پایگاه داده";
         }
 
         private async void frmBackUpLog_Load(object sender, EventArgs e) => await LoadDataAsync();

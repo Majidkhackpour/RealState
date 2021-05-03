@@ -68,6 +68,7 @@ namespace RealState.Note
         public frmShowNotes()
         {
             InitializeComponent();
+            ucHeader.Text = "نمایش لیست یادداشت های ثبت شده";
         }
 
         private async void frmShowNotes_Load(object sender, EventArgs e)

@@ -14,6 +14,7 @@ namespace Payamak.PhoneBook
     {
         public Guid ParentGuid { get; set; }
         private bool _st = true;
+
         private void SetAccess()
         {
             try
@@ -22,7 +23,6 @@ namespace Payamak.PhoneBook
                 mnuAdd.Enabled = access?.PhoneBook.PhoneBook_Insert ?? false;
                 mnuEdit.Enabled = access?.PhoneBook.PhoneBook_Update ?? false;
                 mnuDelete.Enabled = access?.PhoneBook.PhoneBook_Delete ?? false;
-                mnuStatus.Enabled = access?.PhoneBook.PhoneBook_Disable ?? false;
                 mnuView.Enabled = access?.PhoneBook.PhoneBook_View ?? false;
             }
             catch (Exception ex)
@@ -30,15 +30,15 @@ namespace Payamak.PhoneBook
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private async Task LoadDataAsync(bool status, string search = "")
+        private async Task LoadDataAsync(string search = "")
         {
             try
             {
-                Invoke(new MethodInvoker(async() =>
+                Invoke(new MethodInvoker(async () =>
                 {
                     var list = await PhoneBookBussines.GetAllAsync(ParentGuid, search, (EnPhoneBookGroup)cmbGroup.SelectedIndex);
                     phoneBookBindingSource.DataSource =
-                        list.Where(q => q.Status == status).OrderBy(q => q.Name).ToSortableBindingList();
+                        list.Where(q => q.Status == _st).OrderBy(q => q.Name).ToSortableBindingList();
                 }));
             }
             catch (Exception ex)
@@ -61,38 +61,22 @@ namespace Payamak.PhoneBook
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        public bool ST
-        {
-            get => _st;
-            set
-            {
-                _st = value;
-                if (_st)
-                {
-                    mnuStatus.Text = "غیرفعال (Ctrl+S)";
-                    Task.Run(() => LoadDataAsync(ST, txtSearch.Text));
-                    mnuDelete.Text = "حذف (Del)";
-                }
-                else
-                {
-                    mnuStatus.Text = "فعال (Ctrl+S)";
-                    Task.Run(() => LoadDataAsync(ST, txtSearch.Text));
-                    mnuDelete.Text = "فعال کردن";
-                }
-            }
-        }
 
-        public frmShowPhoneBook(Guid guid)
+        public frmShowPhoneBook(Guid guid, bool status = true)
         {
             InitializeComponent();
+            ucHeader.Text = "نمایش شماره های دفترچه تلفن";
+            _st = status;
             ParentGuid = guid;
             contextMenu.Enabled = false;
             cmbGroup.Enabled = false;
             SetAccess();
         }
-        public frmShowPhoneBook()
+        public frmShowPhoneBook(bool status = true)
         {
             InitializeComponent();
+            ucHeader.Text = "نمایش شماره های دفترچه تلفن";
+            _st = status;
             ParentGuid = Guid.Empty;
             SetAccess();
         }
@@ -100,23 +84,13 @@ namespace Payamak.PhoneBook
         private async void frmShowPhoneBook_Load(object sender, EventArgs e)
         {
             LoadGroups();
-            await LoadDataAsync(ST);
+            await LoadDataAsync();
         }
         private void DGrid_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
             DGrid.Rows[e.RowIndex].Cells["dgRadif"].Value = e.RowIndex + 1;
         }
-        private async void txtSearch_TextChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                await LoadDataAsync(ST, txtSearch.Text);
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
+        private async void txtSearch_TextChanged(object sender, EventArgs e) => await LoadDataAsync(txtSearch.Text);
         private void frmShowPhoneBook_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -134,9 +108,6 @@ namespace Payamak.PhoneBook
                         break;
                     case Keys.F12:
                         mnuView.PerformClick();
-                        break;
-                    case Keys.S:
-                        if (e.Control) ST = !ST;
                         break;
                     case Keys.Escape:
                         if (!string.IsNullOrEmpty(txtSearch.Text))
@@ -163,18 +134,7 @@ namespace Payamak.PhoneBook
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private async void cmbGroup_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                await LoadDataAsync(ST, txtSearch.Text);
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-        private void mnuStatus_Click(object sender, EventArgs e) => ST = !ST;
+        private async void cmbGroup_SelectedIndexChanged(object sender, EventArgs e) => await LoadDataAsync(txtSearch.Text);
         private void mnuView_Click(object sender, EventArgs e)
         {
             try
@@ -196,7 +156,7 @@ namespace Payamak.PhoneBook
             {
                 if (DGrid.RowCount <= 0) return;
                 if (DGrid.CurrentRow == null) return;
-                if (!ST)
+                if (!_st)
                 {
                     frmNotification.PublicInfo.ShowMessage(
                         "شما مجاز به ویرایش داده حذف شده نمی باشید \r\n برای این منظور، ابتدا فیلد موردنظر را از حالت حذف شده به فعال، تغییر وضعیت دهید");
@@ -205,7 +165,7 @@ namespace Payamak.PhoneBook
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
                 var frm = new frmPhoneBookMain(guid, false);
                 if (frm.ShowDialog(this) == DialogResult.OK)
-                    await LoadDataAsync(ST, txtSearch.Text);
+                    await LoadDataAsync(txtSearch.Text);
             }
             catch (Exception ex)
             {
@@ -218,7 +178,7 @@ namespace Payamak.PhoneBook
             {
                 var frm = new frmPhoneBookMain();
                 if (frm.ShowDialog(this) == DialogResult.OK)
-                    await LoadDataAsync(ST);
+                    await LoadDataAsync();
             }
             catch (Exception ex)
             {
@@ -232,8 +192,8 @@ namespace Payamak.PhoneBook
             {
                 if (DGrid.RowCount <= 0) return;
                 if (DGrid.CurrentRow == null) return;
-                var guid = (Guid) DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
-                if (ST)
+                var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
+                if (_st)
                 {
                     if (MessageBox.Show(this,
                             $@"آیا از حذف {DGrid[dgName.Index, DGrid.CurrentRow.Index].Value} اطمینان دارید؟", "حذف",
@@ -266,7 +226,7 @@ namespace Payamak.PhoneBook
                     frm.ShowDialog(this);
                     frm.Dispose();
                 }
-                else await LoadDataAsync(ST, txtSearch.Text);
+                else await LoadDataAsync(txtSearch.Text);
             }
         }
     }

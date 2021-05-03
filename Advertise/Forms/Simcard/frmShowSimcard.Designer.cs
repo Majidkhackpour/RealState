@@ -44,7 +44,6 @@
             this.HasDivarToken = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.HasSheypoorToken = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.dgGuid = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.modifiedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.statusDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.contextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.mnuAdd = new System.Windows.Forms.ToolStripMenuItem();
@@ -119,7 +118,6 @@
             this.HasDivarToken,
             this.HasSheypoorToken,
             this.dgGuid,
-            this.modifiedDataGridViewTextBoxColumn,
             this.statusDataGridViewCheckBoxColumn});
             this.DGrid.ContextMenuStrip = this.contextMenu;
             this.DGrid.DataSource = this.simBindingSource;
@@ -218,14 +216,6 @@
             this.dgGuid.Name = "dgGuid";
             this.dgGuid.ReadOnly = true;
             this.dgGuid.Visible = false;
-            // 
-            // modifiedDataGridViewTextBoxColumn
-            // 
-            this.modifiedDataGridViewTextBoxColumn.DataPropertyName = "Modified";
-            this.modifiedDataGridViewTextBoxColumn.HeaderText = "Modified";
-            this.modifiedDataGridViewTextBoxColumn.Name = "modifiedDataGridViewTextBoxColumn";
-            this.modifiedDataGridViewTextBoxColumn.ReadOnly = true;
-            this.modifiedDataGridViewTextBoxColumn.Visible = false;
             // 
             // statusDataGridViewCheckBoxColumn
             // 
@@ -347,7 +337,7 @@
             this.btnSelect.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.btnSelect.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSelect.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.btnSelect.BackColor = System.Drawing.Color.LightSteelBlue;
             this.btnSelect.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnSelect.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnSelect.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -359,7 +349,7 @@
             this.btnSelect.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
             this.btnSelect.TabIndex = 55764;
             this.btnSelect.Text = "انتخاب";
-            this.btnSelect.TextColor = System.Drawing.Color.White;
+            this.btnSelect.TextColor = System.Drawing.Color.Black;
             this.btnSelect.Click += new System.EventHandler(this.btnSelect_Click);
             // 
             // frmShowSimcard

@@ -52,10 +52,10 @@
             this.mnuDelete = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.mnuView = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuStatus = new System.Windows.Forms.ToolStripMenuItem();
             this.phoneBookBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label5 = new System.Windows.Forms.Label();
             this.cmbGroup = new System.Windows.Forms.ComboBox();
+            this.ucHeader = new WindowsSerivces.UC_Header();
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).BeginInit();
             this.contextMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.phoneBookBindingSource)).BeginInit();
@@ -70,7 +70,7 @@
             // 
             this.txtSearch.Border.Class = "TextBoxBorder";
             this.txtSearch.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.txtSearch.Location = new System.Drawing.Point(46, 35);
+            this.txtSearch.Location = new System.Drawing.Point(46, 62);
             this.txtSearch.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.PreventEnterBeep = true;
@@ -127,7 +127,7 @@
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.DGrid.DefaultCellStyle = dataGridViewCellStyle3;
             this.DGrid.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
-            this.DGrid.Location = new System.Drawing.Point(4, 70);
+            this.DGrid.Location = new System.Drawing.Point(4, 96);
             this.DGrid.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.DGrid.Name = "DGrid";
             this.DGrid.ReadOnly = true;
@@ -150,7 +150,7 @@
             this.DGrid.RowsDefaultCellStyle = dataGridViewCellStyle5;
             this.DGrid.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             this.DGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DGrid.Size = new System.Drawing.Size(795, 515);
+            this.DGrid.Size = new System.Drawing.Size(795, 489);
             this.DGrid.TabIndex = 55744;
             this.DGrid.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DGrid_CellFormatting);
             // 
@@ -234,11 +234,10 @@
             this.mnuEdit,
             this.mnuDelete,
             this.toolStripMenuItem1,
-            this.mnuView,
-            this.mnuStatus});
+            this.mnuView});
             this.contextMenu.Name = "contextMenu";
             this.contextMenu.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.contextMenu.Size = new System.Drawing.Size(209, 152);
+            this.contextMenu.Size = new System.Drawing.Size(209, 106);
             // 
             // mnuAdd
             // 
@@ -277,14 +276,6 @@
             this.mnuView.Text = "مشاهده (F12)";
             this.mnuView.Click += new System.EventHandler(this.mnuView_Click);
             // 
-            // mnuStatus
-            // 
-            this.mnuStatus.Image = global::Payamak.Properties.Resources.refresh_round_symbol;
-            this.mnuStatus.Name = "mnuStatus";
-            this.mnuStatus.Size = new System.Drawing.Size(208, 24);
-            this.mnuStatus.Text = "غیرفعال (Ctrl+S)";
-            this.mnuStatus.Click += new System.EventHandler(this.mnuStatus_Click);
-            // 
             // phoneBookBindingSource
             // 
             this.phoneBookBindingSource.DataSource = typeof(EntityCache.Bussines.PhoneBookBussines);
@@ -294,7 +285,7 @@
             this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label5.AutoSize = true;
             this.label5.BackColor = System.Drawing.Color.Transparent;
-            this.label5.Location = new System.Drawing.Point(753, 37);
+            this.label5.Location = new System.Drawing.Point(753, 64);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(31, 20);
             this.label5.TabIndex = 55752;
@@ -306,18 +297,37 @@
             this.cmbGroup.DisplayMember = "Name";
             this.cmbGroup.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbGroup.FormattingEnabled = true;
-            this.cmbGroup.Location = new System.Drawing.Point(582, 34);
+            this.cmbGroup.Location = new System.Drawing.Point(582, 61);
             this.cmbGroup.Name = "cmbGroup";
             this.cmbGroup.Size = new System.Drawing.Size(165, 28);
             this.cmbGroup.TabIndex = 55751;
             this.cmbGroup.ValueMember = "Guid";
             this.cmbGroup.SelectedIndexChanged += new System.EventHandler(this.cmbGroup_SelectedIndexChanged);
             // 
+            // ucHeader
+            // 
+            this.ucHeader.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.ucHeader.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ucHeader.BackColor = System.Drawing.Color.White;
+            this.ucHeader.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.ucHeader.Cursor = System.Windows.Forms.Cursors.Default;
+            this.ucHeader.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.ucHeader.IsModified = false;
+            this.ucHeader.Location = new System.Drawing.Point(-1, 27);
+            this.ucHeader.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ucHeader.MinimumSize = new System.Drawing.Size(297, 34);
+            this.ucHeader.Name = "ucHeader";
+            this.ucHeader.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.ucHeader.Size = new System.Drawing.Size(815, 34);
+            this.ucHeader.TabIndex = 55755;
+            // 
             // frmShowPhoneBook
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 600);
+            this.Controls.Add(this.ucHeader);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.cmbGroup);
             this.Controls.Add(this.txtSearch);
@@ -330,7 +340,7 @@
             this.Name = "frmShowPhoneBook";
             this.Padding = new System.Windows.Forms.Padding(27, 92, 27, 31);
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.Style = MetroFramework.MetroColorStyle.Green;
+            this.Style = MetroFramework.MetroColorStyle.Teal;
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmShowPhoneBook_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmShowPhoneBook_KeyDown);
@@ -363,6 +373,6 @@
         private System.Windows.Forms.ToolStripMenuItem mnuDelete;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem mnuView;
-        private System.Windows.Forms.ToolStripMenuItem mnuStatus;
+        private WindowsSerivces.UC_Header ucHeader;
     }
 }

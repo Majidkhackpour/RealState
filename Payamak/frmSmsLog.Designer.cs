@@ -49,8 +49,6 @@
             this.statusTextDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.userNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgGuid = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.modifiedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.statusDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.dateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dateShDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.userGuidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -59,11 +57,12 @@
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.mnuUpSingle = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuUpAll = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
+            this.mnuPrint = new System.Windows.Forms.ToolStripMenuItem();
             this.logBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.cmbUsers = new System.Windows.Forms.ComboBox();
             this.lblUsers = new System.Windows.Forms.Label();
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
-            this.mnuPrint = new System.Windows.Forms.ToolStripMenuItem();
+            this.ucHeader = new WindowsSerivces.UC_Header();
             ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
@@ -92,7 +91,7 @@
             // 
             this.txtSearch.Border.Class = "TextBoxBorder";
             this.txtSearch.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.txtSearch.Location = new System.Drawing.Point(30, 36);
+            this.txtSearch.Location = new System.Drawing.Point(30, 70);
             this.txtSearch.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.PreventEnterBeep = true;
@@ -152,8 +151,6 @@
             this.statusTextDataGridViewTextBoxColumn,
             this.userNameDataGridViewTextBoxColumn,
             this.dgGuid,
-            this.modifiedDataGridViewTextBoxColumn,
-            this.statusDataGridViewCheckBoxColumn,
             this.dateDataGridViewTextBoxColumn,
             this.dateShDataGridViewTextBoxColumn,
             this.userGuidDataGridViewTextBoxColumn,
@@ -170,7 +167,7 @@
             dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.DGrid.DefaultCellStyle = dataGridViewCellStyle4;
             this.DGrid.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
-            this.DGrid.Location = new System.Drawing.Point(2, 71);
+            this.DGrid.Location = new System.Drawing.Point(2, 106);
             this.DGrid.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.DGrid.Name = "DGrid";
             this.DGrid.ReadOnly = true;
@@ -193,7 +190,7 @@
             this.DGrid.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.DGrid.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             this.DGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DGrid.Size = new System.Drawing.Size(795, 441);
+            this.DGrid.Size = new System.Drawing.Size(795, 406);
             this.DGrid.TabIndex = 55731;
             this.DGrid.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGrid_CellClick);
             this.DGrid.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DGrid_CellFormatting);
@@ -263,22 +260,6 @@
             this.dgGuid.ReadOnly = true;
             this.dgGuid.Visible = false;
             // 
-            // modifiedDataGridViewTextBoxColumn
-            // 
-            this.modifiedDataGridViewTextBoxColumn.DataPropertyName = "Modified";
-            this.modifiedDataGridViewTextBoxColumn.HeaderText = "Modified";
-            this.modifiedDataGridViewTextBoxColumn.Name = "modifiedDataGridViewTextBoxColumn";
-            this.modifiedDataGridViewTextBoxColumn.ReadOnly = true;
-            this.modifiedDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // statusDataGridViewCheckBoxColumn
-            // 
-            this.statusDataGridViewCheckBoxColumn.DataPropertyName = "Status";
-            this.statusDataGridViewCheckBoxColumn.HeaderText = "Status";
-            this.statusDataGridViewCheckBoxColumn.Name = "statusDataGridViewCheckBoxColumn";
-            this.statusDataGridViewCheckBoxColumn.ReadOnly = true;
-            this.statusDataGridViewCheckBoxColumn.Visible = false;
-            // 
             // dateDataGridViewTextBoxColumn
             // 
             this.dateDataGridViewTextBoxColumn.DataPropertyName = "Date";
@@ -329,7 +310,7 @@
             this.mnuPrint});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.contextMenuStrip1.Size = new System.Drawing.Size(238, 104);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(238, 82);
             // 
             // mnuUpSingle
             // 
@@ -345,36 +326,6 @@
             this.mnuUpAll.Text = "بروزرسانی وضعیت همه پیامک ها";
             this.mnuUpAll.Click += new System.EventHandler(this.mnuUpAll_Click);
             // 
-            // logBindingSource
-            // 
-            this.logBindingSource.DataSource = typeof(EntityCache.Bussines.SmsLogBussines);
-            // 
-            // cmbUsers
-            // 
-            this.cmbUsers.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.cmbUsers.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.cmbUsers.DataSource = this.userBindingSource;
-            this.cmbUsers.DisplayMember = "Name";
-            this.cmbUsers.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbUsers.FormattingEnabled = true;
-            this.cmbUsers.Location = new System.Drawing.Point(623, 35);
-            this.cmbUsers.Name = "cmbUsers";
-            this.cmbUsers.Size = new System.Drawing.Size(133, 28);
-            this.cmbUsers.TabIndex = 55738;
-            this.cmbUsers.ValueMember = "Guid";
-            this.cmbUsers.SelectedIndexChanged += new System.EventHandler(this.cmbUsers_SelectedIndexChanged);
-            // 
-            // lblUsers
-            // 
-            this.lblUsers.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblUsers.AutoSize = true;
-            this.lblUsers.BackColor = System.Drawing.Color.Transparent;
-            this.lblUsers.Location = new System.Drawing.Point(758, 38);
-            this.lblUsers.Name = "lblUsers";
-            this.lblUsers.Size = new System.Drawing.Size(33, 20);
-            this.lblUsers.TabIndex = 55737;
-            this.lblUsers.Text = "کاربر";
-            // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
@@ -387,11 +338,60 @@
             this.mnuPrint.Text = "چاپ";
             this.mnuPrint.Click += new System.EventHandler(this.mnuPrint_Click);
             // 
+            // logBindingSource
+            // 
+            this.logBindingSource.DataSource = typeof(EntityCache.Bussines.SmsLogBussines);
+            // 
+            // cmbUsers
+            // 
+            this.cmbUsers.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmbUsers.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cmbUsers.DataSource = this.userBindingSource;
+            this.cmbUsers.DisplayMember = "Name";
+            this.cmbUsers.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbUsers.FormattingEnabled = true;
+            this.cmbUsers.Location = new System.Drawing.Point(623, 69);
+            this.cmbUsers.Name = "cmbUsers";
+            this.cmbUsers.Size = new System.Drawing.Size(133, 28);
+            this.cmbUsers.TabIndex = 55738;
+            this.cmbUsers.ValueMember = "Guid";
+            this.cmbUsers.SelectedIndexChanged += new System.EventHandler(this.cmbUsers_SelectedIndexChanged);
+            // 
+            // lblUsers
+            // 
+            this.lblUsers.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblUsers.AutoSize = true;
+            this.lblUsers.BackColor = System.Drawing.Color.Transparent;
+            this.lblUsers.Location = new System.Drawing.Point(758, 72);
+            this.lblUsers.Name = "lblUsers";
+            this.lblUsers.Size = new System.Drawing.Size(33, 20);
+            this.lblUsers.TabIndex = 55737;
+            this.lblUsers.Text = "کاربر";
+            // 
+            // ucHeader
+            // 
+            this.ucHeader.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.ucHeader.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ucHeader.BackColor = System.Drawing.Color.White;
+            this.ucHeader.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.ucHeader.Cursor = System.Windows.Forms.Cursors.Default;
+            this.ucHeader.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.ucHeader.IsModified = false;
+            this.ucHeader.Location = new System.Drawing.Point(-7, 31);
+            this.ucHeader.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ucHeader.MinimumSize = new System.Drawing.Size(297, 34);
+            this.ucHeader.Name = "ucHeader";
+            this.ucHeader.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.ucHeader.Size = new System.Drawing.Size(815, 34);
+            this.ucHeader.TabIndex = 55756;
+            // 
             // frmSmsLog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 600);
+            this.Controls.Add(this.ucHeader);
             this.Controls.Add(this.cmbUsers);
             this.Controls.Add(this.lblUsers);
             this.Controls.Add(this.txtMessage);
@@ -406,7 +406,7 @@
             this.Name = "frmSmsLog";
             this.Padding = new System.Windows.Forms.Padding(27, 92, 27, 31);
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.Style = MetroFramework.MetroColorStyle.Green;
+            this.Style = MetroFramework.MetroColorStyle.Teal;
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmSmsLog_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmSmsLog_KeyDown);
@@ -449,5 +449,6 @@
         private System.Windows.Forms.Label lblUsers;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem mnuPrint;
+        private WindowsSerivces.UC_Header ucHeader;
     }
 }

@@ -169,7 +169,7 @@
             // 
             this.btnSendSms.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.btnSendSms.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.btnSendSms.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.btnSendSms.BackColor = System.Drawing.Color.LightSteelBlue;
             this.btnSendSms.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnSendSms.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnSendSms.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -181,7 +181,7 @@
             this.btnSendSms.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
             this.btnSendSms.TabIndex = 55721;
             this.btnSendSms.Text = "ارسال پیامک تبریک ...!!!";
-            this.btnSendSms.TextColor = System.Drawing.Color.White;
+            this.btnSendSms.TextColor = System.Drawing.Color.Black;
             this.btnSendSms.Click += new System.EventHandler(this.btnSendSms_Click);
             // 
             // frmShowBirthDay
@@ -203,7 +203,7 @@
             this.Name = "frmShowBirthDay";
             this.Padding = new System.Windows.Forms.Padding(27, 92, 27, 31);
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.Style = MetroFramework.MetroColorStyle.Green;
+            this.Style = MetroFramework.MetroColorStyle.Teal;
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmShowBirthDay_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.noteBindingSource)).EndInit();

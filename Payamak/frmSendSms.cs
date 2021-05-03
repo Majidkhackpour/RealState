@@ -72,16 +72,19 @@ namespace Payamak
         public frmSendSms()
         {
             InitializeComponent();
+            ucHeader.Text = "ارسال پیامک";
         }
         public frmSendSms(List<string> lstNumbers, Guid guid)
         {
             InitializeComponent();
+            ucHeader.Text = "ارسال پیامک";
             peGuid = guid;
             AddItems(lstNumbers);
         }
         public frmSendSms(List<Guid> lstGuid, string text)
         {
             InitializeComponent();
+            ucHeader.Text = "ارسال پیامک";
             txtMessage.Text = text;
             var lstNumbers = new List<string>();
             foreach (var guid in lstGuid)

@@ -61,7 +61,7 @@
             this.btnSelect.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.btnSelect.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSelect.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.btnSelect.BackColor = System.Drawing.Color.LightSteelBlue;
             this.btnSelect.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnSelect.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnSelect.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -73,7 +73,7 @@
             this.btnSelect.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
             this.btnSelect.TabIndex = 0;
             this.btnSelect.Text = "انتخاب";
-            this.btnSelect.TextColor = System.Drawing.Color.White;
+            this.btnSelect.TextColor = System.Drawing.Color.Black;
             this.btnSelect.Click += new System.EventHandler(this.btnSelect_Click);
             // 
             // btnCreate
@@ -81,7 +81,7 @@
             this.btnCreate.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.btnCreate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCreate.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.btnCreate.BackColor = System.Drawing.Color.LightSteelBlue;
             this.btnCreate.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnCreate.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnCreate.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -93,7 +93,7 @@
             this.btnCreate.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
             this.btnCreate.TabIndex = 1;
             this.btnCreate.Text = "ایجاد واحد اقتصادی جدید";
-            this.btnCreate.TextColor = System.Drawing.Color.White;
+            this.btnCreate.TextColor = System.Drawing.Color.Black;
             this.btnCreate.Click += new System.EventHandler(this.btnCreate_Click);
             // 
             // btnEdit
@@ -101,7 +101,7 @@
             this.btnEdit.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.btnEdit.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnEdit.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.btnEdit.BackColor = System.Drawing.Color.LightSteelBlue;
             this.btnEdit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnEdit.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnEdit.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -113,7 +113,7 @@
             this.btnEdit.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
             this.btnEdit.TabIndex = 2;
             this.btnEdit.Text = "ویرایش واحد اقتصادی جاری";
-            this.btnEdit.TextColor = System.Drawing.Color.White;
+            this.btnEdit.TextColor = System.Drawing.Color.Black;
             this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
             // 
             // btnDelete
@@ -121,7 +121,7 @@
             this.btnDelete.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnDelete.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.btnDelete.BackColor = System.Drawing.Color.LightSteelBlue;
             this.btnDelete.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnDelete.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnDelete.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -133,7 +133,7 @@
             this.btnDelete.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
             this.btnDelete.TabIndex = 3;
             this.btnDelete.Text = "حذف واحد اقتصادی جاری";
-            this.btnDelete.TextColor = System.Drawing.Color.White;
+            this.btnDelete.TextColor = System.Drawing.Color.Black;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // btnRestore
@@ -141,7 +141,7 @@
             this.btnRestore.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.btnRestore.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnRestore.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.btnRestore.BackColor = System.Drawing.Color.LightSteelBlue;
             this.btnRestore.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnRestore.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnRestore.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -153,7 +153,7 @@
             this.btnRestore.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
             this.btnRestore.TabIndex = 3;
             this.btnRestore.Text = "بازگردانی اطلاعات";
-            this.btnRestore.TextColor = System.Drawing.Color.White;
+            this.btnRestore.TextColor = System.Drawing.Color.Black;
             this.btnRestore.Click += new System.EventHandler(this.btnRestore_Click);
             // 
             // txtConnectionString
@@ -205,7 +205,7 @@
             this.Name = "frmShowWorkingYears";
             this.Padding = new System.Windows.Forms.Padding(27, 92, 27, 31);
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.Style = MetroFramework.MetroColorStyle.Green;
+            this.Style = MetroFramework.MetroColorStyle.Teal;
             this.TopMost = true;
             this.Load += new System.EventHandler(this.frmShowWorkingYears_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmShowWorkingYears_KeyDown);

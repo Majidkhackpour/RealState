@@ -54,6 +54,8 @@ namespace EntityCache.Bussines
                     tr = cn.BeginTransaction();
                 }
 
+                res.AddReturnedValue(await CheckValidationAsync());
+                if (res.HasError) return res;
                 res.AddReturnedValue(await UnitOfWork.Simcard.SaveAsync(this, tr));
             }
             catch (Exception ex)
@@ -138,5 +140,23 @@ namespace EntityCache.Bussines
         }
         public static async Task<bool> CheckNumberAsync(long number, Guid guid) =>
             await UnitOfWork.Simcard.CheckNumberAsync(Cache.ConnectionString, number, guid);
+        private async Task<ReturnedSaveFuncInfo> CheckValidationAsync()
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                if (string.IsNullOrWhiteSpace(Owner)) res.AddError("مالک نمی تواند خالی باشد");
+                if (Number <= 0) res.AddError("شماره نمی تواند خالی باشد");
+                if (!await CheckNumberAsync(Number, Guid)) res.AddError("شماره وارد شده تکراری می باشد");
+                if (!CheckPerssonValidation.CheckMobile(Number.ToString().Trim())) res.AddError("شماره موبایل وارد شده صحیح نمی باشد");
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+
+            return res;
+        }
     }
 }

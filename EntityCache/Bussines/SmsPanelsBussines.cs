@@ -47,6 +47,8 @@ namespace EntityCache.Bussines
                     tr = cn.BeginTransaction();
                 }
 
+                res.AddReturnedValue(CheckValidation());
+                if (res.HasError) return res;
                 res.AddReturnedValue(await UnitOfWork.SmsPanels.SaveAsync(this, tr));
             }
             catch (Exception ex)
@@ -126,5 +128,22 @@ namespace EntityCache.Bussines
             }
         }
         public static SmsPanelsBussines Get(Guid guid) => AsyncContext.Run(() => GetAsync(guid));
+        private ReturnedSaveFuncInfo CheckValidation()
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                if (string.IsNullOrWhiteSpace(Name)) res.AddError("عنوان نمی تواند خالی باشد");
+                if (string.IsNullOrWhiteSpace(Sender)) res.AddError("شماره خط فرستنده عبور نمی تواند خالی باشد");
+                if (string.IsNullOrWhiteSpace(API)) res.AddError("وب سرویس عبور نمی تواند خالی باشد");
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+
+            return res;
+        }
     }
 }

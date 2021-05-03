@@ -50,6 +50,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.btnCancel = new DevComponents.DotNetBar.ButtonX();
             this.btnFinish = new DevComponents.DotNetBar.ButtonX();
+            this.ucHeader = new WindowsSerivces.UC_Header();
             this.grp.SuspendLayout();
             this.groupPanel1.SuspendLayout();
             this.grp1.SuspendLayout();
@@ -68,7 +69,7 @@
             this.grp.Controls.Add(this.cmbPanel);
             this.grp.Controls.Add(this.label5);
             this.grp.DisabledBackColor = System.Drawing.Color.Empty;
-            this.grp.Location = new System.Drawing.Point(7, 30);
+            this.grp.Location = new System.Drawing.Point(7, 71);
             this.grp.Name = "grp";
             this.grp.Size = new System.Drawing.Size(787, 437);
             this.grp.Style.Alignment = System.Drawing.StringAlignment.Center;
@@ -213,7 +214,7 @@
             // btnAddExcel
             // 
             this.btnAddExcel.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnAddExcel.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.btnAddExcel.BackColor = System.Drawing.Color.LightSteelBlue;
             this.btnAddExcel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnAddExcel.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnAddExcel.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -225,7 +226,7 @@
             this.btnAddExcel.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
             this.btnAddExcel.TabIndex = 5;
             this.btnAddExcel.Text = "افزودن شماره از فایل اکسل";
-            this.btnAddExcel.TextColor = System.Drawing.Color.White;
+            this.btnAddExcel.TextColor = System.Drawing.Color.Black;
             this.btnAddExcel.Click += new System.EventHandler(this.btnAddExcel_Click);
             // 
             // btnSearch
@@ -249,7 +250,7 @@
             // btnDelete
             // 
             this.btnDelete.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnDelete.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.btnDelete.BackColor = System.Drawing.Color.LightSteelBlue;
             this.btnDelete.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnDelete.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnDelete.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -261,13 +262,13 @@
             this.btnDelete.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
             this.btnDelete.TabIndex = 4;
             this.btnDelete.Text = "حذف";
-            this.btnDelete.TextColor = System.Drawing.Color.White;
+            this.btnDelete.TextColor = System.Drawing.Color.Black;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // btnAdd
             // 
             this.btnAdd.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnAdd.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.btnAdd.BackColor = System.Drawing.Color.LightSteelBlue;
             this.btnAdd.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnAdd.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnAdd.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -279,7 +280,7 @@
             this.btnAdd.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
             this.btnAdd.TabIndex = 3;
             this.btnAdd.Text = "درج";
-            this.btnAdd.TextColor = System.Drawing.Color.White;
+            this.btnAdd.TextColor = System.Drawing.Color.Black;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // txtNumber
@@ -360,13 +361,13 @@
             // btnCancel
             // 
             this.btnCancel.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnCancel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.btnCancel.BackColor = System.Drawing.Color.LightSteelBlue;
             this.btnCancel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnCancel.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnCancel.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Image = global::Payamak.Properties.Resources.tab_close_;
-            this.btnCancel.Location = new System.Drawing.Point(34, 473);
+            this.btnCancel.Location = new System.Drawing.Point(34, 514);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
             this.btnCancel.Size = new System.Drawing.Size(125, 31);
@@ -378,12 +379,12 @@
             // btnFinish
             // 
             this.btnFinish.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnFinish.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.btnFinish.BackColor = System.Drawing.Color.LightSteelBlue;
             this.btnFinish.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnFinish.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnFinish.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnFinish.Image = global::Payamak.Properties.Resources.tab_checkbox__;
-            this.btnFinish.Location = new System.Drawing.Point(644, 473);
+            this.btnFinish.Location = new System.Drawing.Point(644, 514);
             this.btnFinish.Name = "btnFinish";
             this.btnFinish.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
             this.btnFinish.Size = new System.Drawing.Size(125, 31);
@@ -393,12 +394,31 @@
             this.btnFinish.TextColor = System.Drawing.Color.Black;
             this.btnFinish.Click += new System.EventHandler(this.btnFinish_Click);
             // 
+            // ucHeader
+            // 
+            this.ucHeader.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.ucHeader.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ucHeader.BackColor = System.Drawing.Color.White;
+            this.ucHeader.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.ucHeader.Cursor = System.Windows.Forms.Cursors.Default;
+            this.ucHeader.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.ucHeader.IsModified = false;
+            this.ucHeader.Location = new System.Drawing.Point(-9, 29);
+            this.ucHeader.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ucHeader.MinimumSize = new System.Drawing.Size(297, 34);
+            this.ucHeader.Name = "ucHeader";
+            this.ucHeader.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.ucHeader.Size = new System.Drawing.Size(815, 34);
+            this.ucHeader.TabIndex = 55755;
+            // 
             // frmSendSms
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 516);
+            this.ClientSize = new System.Drawing.Size(800, 555);
             this.ControlBox = false;
+            this.Controls.Add(this.ucHeader);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnFinish);
             this.Controls.Add(this.grp);
@@ -406,12 +426,12 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.MaximumSize = new System.Drawing.Size(800, 516);
-            this.MinimumSize = new System.Drawing.Size(800, 516);
+            this.MaximumSize = new System.Drawing.Size(800, 555);
+            this.MinimumSize = new System.Drawing.Size(800, 555);
             this.Name = "frmSendSms";
             this.Padding = new System.Windows.Forms.Padding(27, 92, 27, 31);
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.Style = MetroFramework.MetroColorStyle.Green;
+            this.Style = MetroFramework.MetroColorStyle.Teal;
             this.Load += new System.EventHandler(this.frmSendSms_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmSendSms_KeyDown);
             this.grp.ResumeLayout(false);
@@ -447,5 +467,6 @@
         private System.Windows.Forms.BindingSource panelBindingSource;
         private System.Windows.Forms.Label label3;
         private DevComponents.DotNetBar.ButtonX btnSearch;
+        private WindowsSerivces.UC_Header ucHeader;
     }
 }

@@ -27,7 +27,6 @@ namespace Payamak.PhoneBook
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-
         private void FillCmb()
         {
             try
@@ -40,39 +39,27 @@ namespace Payamak.PhoneBook
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
+
         public frmPhoneBookMain()
         {
             InitializeComponent();
             cls = new PhoneBookBussines();
+            ucHeader.Text = "افزودن مخاطب جدید";
         }
         public frmPhoneBookMain(Guid guid, bool isShowMode)
         {
             InitializeComponent();
             cls = PhoneBookBussines.Get(guid);
+            ucHeader.Text = !isShowMode ? $"ویرایش {cls.Name}" : $"مشاهده {cls.Name}";
+            ucHeader.IsModified = true;
             grp.Enabled = !isShowMode;
             btnFinish.Enabled = !isShowMode;
         }
 
-        private void txtName_Enter(object sender, EventArgs e)
-        {
-            txtSetter.Focus(txtName);
-        }
-
-        private void txtName_Leave(object sender, EventArgs e)
-        {
-            txtSetter.Follow(txtName);
-        }
-
-        private void txtTell_Enter(object sender, EventArgs e)
-        {
-            txtSetter.Focus(txtTell);
-        }
-
-        private void txtTell_Leave(object sender, EventArgs e)
-        {
-            txtSetter.Follow(txtTell);
-        }
-
+        private void txtName_Enter(object sender, EventArgs e)=>txtSetter.Focus(txtName);
+        private void txtName_Leave(object sender, EventArgs e)=>txtSetter.Follow(txtName);
+        private void txtTell_Enter(object sender, EventArgs e)=>txtSetter.Focus(txtTell);
+        private void txtTell_Leave(object sender, EventArgs e)=>txtSetter.Follow(txtTell);
         private async void frmPhoneBookMain_Load(object sender, EventArgs e)
         {
             try
@@ -89,13 +76,11 @@ namespace Payamak.PhoneBook
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-
         private void btnCancel_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Cancel;
             Close();
         }
-
         private void frmPhoneBookMain_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -119,28 +104,13 @@ namespace Payamak.PhoneBook
                 WebErrorLog.ErrorInstence.StartErrorLog(exception);
             }
         }
-
         private async void btnFinish_Click(object sender, EventArgs e)
         {
             var res = new ReturnedSaveFuncInfo();
             try
             {
-                if (cls.Guid == Guid.Empty)
-                    cls.Guid = Guid.NewGuid();
+                if (cls.Guid == Guid.Empty) cls.Guid = Guid.NewGuid();
 
-                if (string.IsNullOrWhiteSpace(txtName.Text))
-                {
-                    res.AddError("نام و نام خانوادگی نمی تواند خالی باشد");
-                    txtName.Focus();
-                }
-
-                if (string.IsNullOrWhiteSpace(txtTell.Text))
-                {
-                    res.AddError("شماره نمی تواند خالی باشد");
-                    txtTell.Focus();
-                }
-
-                if (res.HasError) return;
                 cls.Name = txtName.Text.Trim();
                 cls.Tell = txtTell.Text.Trim();
                 cls.Group = (EnPhoneBookGroup) cmbGroup.SelectedIndex + 1;

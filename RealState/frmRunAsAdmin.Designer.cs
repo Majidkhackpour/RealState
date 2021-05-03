@@ -69,7 +69,7 @@
             this.MinimumSize = new System.Drawing.Size(355, 559);
             this.Name = "frmRunAsAdmin";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.Style = MetroFramework.MetroColorStyle.Green;
+            this.Style = MetroFramework.MetroColorStyle.Teal;
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
