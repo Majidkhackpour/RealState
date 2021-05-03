@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Threading;
 using System.Threading.Tasks;
 using EntityCache.Bussines;
 using EntityCache.Core;
@@ -13,7 +14,7 @@ namespace EntityCache.SqlServerPersistence
 {
     public class AdvisorPersistenceRepository : IAdvisorRepository
     {
-        public async Task<List<AdvisorBussines>> GetAllAsync(string connectionString)
+        public async Task<List<AdvisorBussines>> GetAllAsync(string connectionString, CancellationToken token)
         {
             var list = new List<AdvisorBussines>();
             try
@@ -21,14 +22,20 @@ namespace EntityCache.SqlServerPersistence
                 using (var cn = new SqlConnection(connectionString))
                 {
                     var cmd = new SqlCommand("sp_Advisor_GetAll", cn) { CommandType = CommandType.StoredProcedure };
-
+                    if (token.IsCancellationRequested) return null;
                     await cn.OpenAsync();
                     var dr = await cmd.ExecuteReaderAsync();
-                    while (dr.Read()) list.Add(LoadData(dr));
+                    while (dr.Read())
+                    {
+                        if (token.IsCancellationRequested) return null;
+                        list.Add(LoadData(dr));
+                    }
                     dr.Close();
                     cn.Close();
                 }
             }
+            catch (TaskCanceledException) { }
+            catch (OperationCanceledException) { }
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
@@ -114,8 +121,8 @@ namespace EntityCache.SqlServerPersistence
                 item.Account = (decimal)dr["Account"];
                 item.AccountFirst = (decimal)dr["AccountFirst"];
                 item.Address = dr["Address"].ToString();
-                item.ServerDeliveryDate = (DateTime) dr["ServerDeliveryDate"];
-                item.ServerStatus = (ServerStatus) dr["ServerStatus"];
+                item.ServerDeliveryDate = (DateTime)dr["ServerDeliveryDate"];
+                item.ServerStatus = (ServerStatus)dr["ServerStatus"];
                 var tellList = PhoneBookBussines.GetAll(item.Guid, true);
                 if (tellList?.Count == 1) item.Mobile1 = tellList[0]?.Tell;
                 if (tellList?.Count > 1)

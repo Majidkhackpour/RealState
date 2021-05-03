@@ -28,12 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmChangeGroup));
             this.btnCancel = new DevComponents.DotNetBar.ButtonX();
             this.btnFinish = new DevComponents.DotNetBar.ButtonX();
             this.grp = new DevComponents.DotNetBar.PanelEx();
             this.cmbGroup = new System.Windows.Forms.ComboBox();
-            this.groupBundingSource = new System.Windows.Forms.BindingSource();
+            this.groupBundingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label7 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -44,7 +45,7 @@
             // btnCancel
             // 
             this.btnCancel.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnCancel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.btnCancel.BackColor = System.Drawing.Color.LightSteelBlue;
             this.btnCancel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnCancel.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnCancel.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -63,7 +64,7 @@
             // btnFinish
             // 
             this.btnFinish.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnFinish.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.btnFinish.BackColor = System.Drawing.Color.LightSteelBlue;
             this.btnFinish.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnFinish.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnFinish.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -170,7 +171,7 @@
             this.Name = "frmChangeGroup";
             this.Padding = new System.Windows.Forms.Padding(27, 92, 27, 31);
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.Style = MetroFramework.MetroColorStyle.Green;
+            this.Style = MetroFramework.MetroColorStyle.Teal;
             this.Load += new System.EventHandler(this.frmChangeGroup_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmChangeGroup_KeyDown);
             this.grp.ResumeLayout(false);

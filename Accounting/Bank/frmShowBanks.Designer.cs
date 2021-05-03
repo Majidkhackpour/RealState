@@ -29,7 +29,6 @@ namespace Accounting.Bank
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -39,7 +38,7 @@ namespace Accounting.Bank
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmShowBanks));
             this.txtSearch = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
-            this.contextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.contextMenu = new System.Windows.Forms.ContextMenuStrip();
             this.mnuAdd = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuEdit = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuDelete = new System.Windows.Forms.ToolStripMenuItem();
@@ -60,7 +59,7 @@ namespace Accounting.Bank
             this.descriptionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dateMDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.accountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BankBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.BankBindingSource = new System.Windows.Forms.BindingSource();
             this.ucHeader = new WindowsSerivces.UC_Header();
             this.contextMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).BeginInit();
@@ -76,11 +75,11 @@ namespace Accounting.Bank
             // 
             this.txtSearch.Border.Class = "TextBoxBorder";
             this.txtSearch.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.txtSearch.Location = new System.Drawing.Point(149, 59);
+            this.txtSearch.Location = new System.Drawing.Point(90, 59);
             this.txtSearch.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.PreventEnterBeep = true;
-            this.txtSearch.Size = new System.Drawing.Size(476, 27);
+            this.txtSearch.Size = new System.Drawing.Size(621, 27);
             this.txtSearch.TabIndex = 55752;
             this.txtSearch.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtSearch.WatermarkText = "مورد جستجو را وارد نمایید ...";
@@ -104,7 +103,7 @@ namespace Accounting.Bank
             this.mnuTop});
             this.contextMenu.Name = "contextMenu";
             this.contextMenu.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.contextMenu.Size = new System.Drawing.Size(235, 158);
+            this.contextMenu.Size = new System.Drawing.Size(235, 136);
             // 
             // mnuAdd
             // 

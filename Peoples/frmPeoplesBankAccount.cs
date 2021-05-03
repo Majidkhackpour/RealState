@@ -9,7 +9,6 @@ namespace Peoples
 {
     public partial class frmPeoplesBankAccount : MetroForm
     {
-
         private async Task LoadDataAsync(Guid parentGuid, string search = "")
         {
             try
@@ -27,6 +26,7 @@ namespace Peoples
         {
             InitializeComponent();
             ParentGuid = guid;
+            ucHeader.Text = $"نمایش لیست حساب های بانکی {TafsilBussines.Get(ParentGuid)?.Name ?? ""}";
         }
 
         private async void frmPeoplesBankAccount_Load(object sender, EventArgs e)

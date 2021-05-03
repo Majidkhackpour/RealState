@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Threading;
 using System.Threading.Tasks;
 using EntityCache.Assistence;
 using Nito.AsyncEx;
@@ -109,7 +110,7 @@ namespace EntityCache.Bussines
                     tr = cn.BeginTransaction();
                 }
 
-                var list = await PeoplesBussines.GetAllAsync(Guid, false);
+                var list = await PeoplesBussines.GetAllAsync(Guid, false,new CancellationToken());
                 foreach (var item in list)
                 {
                     item.GroupGuid = Guid.Empty;

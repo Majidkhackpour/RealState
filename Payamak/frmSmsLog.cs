@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using EntityCache.Bussines;
@@ -14,6 +15,8 @@ namespace Payamak
     public partial class frmSmsLog : MetroForm
     {
         private List<SmsLogBussines> list;
+        private CancellationTokenSource _token = new CancellationTokenSource();
+
         private async Task LoadDataAsync(string search = "")
         {
             try
@@ -32,8 +35,9 @@ namespace Payamak
         {
             try
             {
-
-                var list = await UserBussines.GetAllAsync();
+                _token?.Cancel();
+                _token = new CancellationTokenSource();
+                var list = await UserBussines.GetAllAsync(_token.Token);
                 list.Add(new UserBussines()
                 {
                     Guid = Guid.Empty,

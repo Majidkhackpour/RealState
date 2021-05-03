@@ -44,11 +44,19 @@ namespace RealState
 
 
                 if (chbUsers.Checked)
-                    await WebUser.SaveAsync(await UserBussines.GetAllAsync());
+                {
+                    _token?.Cancel();
+                    _token = new CancellationTokenSource();
+                    await WebUser.SaveAsync(await UserBussines.GetAllAsync(_token.Token));
+                }
                 if (chbPeopleGroup.Checked)
                     await WebPeopleGroup.SaveAsync(await PeopleGroupBussines.GetAllAsync());
                 if (chbPeople.Checked)
-                    await WebPeople.SaveAsync(await PeoplesBussines.GetAllAsync());
+                {
+                    _token?.Cancel();
+                    _token = new CancellationTokenSource();
+                    await WebPeople.SaveAsync(await PeoplesBussines.GetAllAsync(_token.Token));
+                }
 
 
                 if (chbAccountType.Checked)

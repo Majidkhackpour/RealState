@@ -27,7 +27,7 @@ namespace Building.BuildingRequest
             {
                 _token?.Cancel();
                 _token = new CancellationTokenSource();
-                await LoadUsersAsync();
+                await LoadUsersAsync(_token.Token);
                 LoadAsker();
                 await FillRentalAuthorityAsync(_token.Token);
                 FillCmbMetr();
@@ -84,11 +84,11 @@ namespace Building.BuildingRequest
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private async Task LoadUsersAsync()
+        private async Task LoadUsersAsync(CancellationToken token)
         {
             try
             {
-                var list = await UserBussines.GetAllAsync();
+                var list = await UserBussines.GetAllAsync(token);
                 userBindingSource.DataSource = list.Where(q => q.Status).OrderBy(q => q.Name).ToList();
             }
             catch (Exception ex)

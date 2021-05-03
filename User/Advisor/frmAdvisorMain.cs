@@ -71,11 +71,14 @@ namespace User.Advisor
         {
             InitializeComponent();
             cls = new AdvisorBussines();
+            ucHeader.Text = "افزودن مشاور جدید";
         }
         public frmAdvisorMain(Guid guid, bool isShowMode)
         {
             InitializeComponent();
             cls = AdvisorBussines.Get(guid);
+            ucHeader.Text = !isShowMode ? $"ویرایش مشاور {cls.Name}" : $"مشاهده مشاور {cls.Name}";
+            ucHeader.IsModified = true;
             grp.Enabled = !isShowMode;
             btnFinish.Enabled = !isShowMode;
         }

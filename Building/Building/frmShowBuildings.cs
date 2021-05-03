@@ -46,8 +46,9 @@ namespace Building.Building
                 });
                 btBindingSource.DataSource = list.OrderBy(q => q.Name).ToList();
 
-
-                var list2 = await UserBussines.GetAllAsync();
+                _token?.Cancel();
+                _token = new CancellationTokenSource();
+                var list2 = await UserBussines.GetAllAsync(_token.Token);
                 list2.Add(new UserBussines()
                 {
                     Guid = Guid.Empty,

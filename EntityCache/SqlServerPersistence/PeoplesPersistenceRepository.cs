@@ -6,13 +6,14 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace EntityCache.SqlServerPersistence
 {
     public class PeoplesPersistenceRepository : IPeoplesRepository
     {
-        public async Task<List<PeoplesBussines>> GetAllAsync(string _connectionString, Guid parentGuid, bool status)
+        public async Task<List<PeoplesBussines>> GetAllAsync(string _connectionString, Guid parentGuid, bool status,CancellationToken token)
         {
             var list = new List<PeoplesBussines>();
             try
@@ -23,13 +24,19 @@ namespace EntityCache.SqlServerPersistence
                     { CommandType = CommandType.StoredProcedure };
                     cmd.Parameters.AddWithValue("@GroupGuid", parentGuid);
                     cmd.Parameters.AddWithValue("@st", status);
-
+                    if (token.IsCancellationRequested) return null;
                     await cn.OpenAsync();
                     var dr = await cmd.ExecuteReaderAsync();
-                    while (dr.Read()) list.Add(LoadData(dr));
+                    while (dr.Read())
+                    {
+                        if (token.IsCancellationRequested) return null;
+                        list.Add(LoadData(dr));
+                    }
                     cn.Close();
                 }
             }
+            catch (TaskCanceledException) { }
+            catch (OperationCanceledException) { }
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
@@ -37,7 +44,7 @@ namespace EntityCache.SqlServerPersistence
 
             return list;
         }
-        public async Task<List<PeoplesBussines>> GetAllAsync(string _connectionString)
+        public async Task<List<PeoplesBussines>> GetAllAsync(string _connectionString,CancellationToken token)
         {
             var list = new List<PeoplesBussines>();
             try
@@ -45,13 +52,19 @@ namespace EntityCache.SqlServerPersistence
                 using (var cn = new SqlConnection(_connectionString))
                 {
                     var cmd = new SqlCommand("sp_Peoples_GetAll", cn) { CommandType = CommandType.StoredProcedure };
-
+                    if (token.IsCancellationRequested) return null;
                     await cn.OpenAsync();
                     var dr = await cmd.ExecuteReaderAsync();
-                    while (dr.Read()) list.Add(LoadData(dr));
+                    while (dr.Read())
+                    {
+                        if (token.IsCancellationRequested) return null;
+                        list.Add(LoadData(dr));
+                    }
                     cn.Close();
                 }
             }
+            catch (TaskCanceledException) { }
+            catch (OperationCanceledException) { }
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);

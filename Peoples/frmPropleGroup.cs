@@ -12,6 +12,7 @@ namespace Peoples
     public partial class frmPropleGroup : MetroForm
     {
         private PeopleGroupBussines cls;
+
         private async Task SetDataAsync()
         {
             try
@@ -35,15 +36,19 @@ namespace Peoples
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
+
         public frmPropleGroup()
         {
             InitializeComponent();
             cls = new PeopleGroupBussines();
+            ucHeader.Text = "افزودن گروه اشخاص جدید";
         }
         public frmPropleGroup(Guid guid)
         {
             InitializeComponent();
             cls = PeopleGroupBussines.Get(guid);
+            ucHeader.Text = $"ویرایش گروه {cls.Name}";
+            ucHeader.IsModified = true;
         }
 
         private async void frmPropleGroup_Load(object sender, EventArgs e)
@@ -62,23 +67,13 @@ namespace Peoples
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-
-        private void txtCity_Enter(object sender, EventArgs e)
-        {
-            txtSetter.Focus(txtName);
-        }
-
-        private void txtCity_Leave(object sender, EventArgs e)
-        {
-            txtSetter.Follow(txtName);
-        }
-
+        private void txtCity_Enter(object sender, EventArgs e)=>txtSetter.Focus(txtName);
+        private void txtCity_Leave(object sender, EventArgs e)=>txtSetter.Follow(txtName);
         private void btnCancel_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Cancel;
             Close();
         }
-
         private void frmPropleGroup_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -102,7 +97,6 @@ namespace Peoples
                 WebErrorLog.ErrorInstence.StartErrorLog(exception);
             }
         }
-
         private async void btnFinish_Click(object sender, EventArgs e)
         {
             var res = new ReturnedSaveFuncInfo();
@@ -124,7 +118,7 @@ namespace Peoples
                     }
                     else
                     {
-                        pg.ParentGuid = (Guid) cmbGroup.SelectedValue;
+                        pg.ParentGuid = (Guid)cmbGroup.SelectedValue;
                         pg.Status = true;
                         var res2 = await cls.SaveAsync();
                         if (!res2.HasError) return;
@@ -137,7 +131,7 @@ namespace Peoples
 
                 if (cls.Guid == Guid.Empty) cls.Guid = Guid.NewGuid();
                 cls.Name = txtName.Text;
-                cls.ParentGuid = (Guid) cmbGroup.SelectedValue;
+                cls.ParentGuid = (Guid)cmbGroup.SelectedValue;
 
                 res.AddReturnedValue(await cls.SaveAsync());
             }

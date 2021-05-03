@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
+using System.Threading;
 using EntityCache.Bussines;
 using MetroFramework.Forms;
 using System.Windows.Forms;
@@ -54,11 +55,14 @@ namespace User
         {
             InitializeComponent();
             cls = new UserBussines();
+            ucHeader.Text = "افزودن کاربر جدید";
         }
         public frmUserMain(Guid guid, bool isShowMode)
         {
             InitializeComponent();
             cls = UserBussines.Get(guid);
+            ucHeader.Text = !isShowMode ? $"ویرایش کاربر {cls.Name}" : $"مشاهده کاربر {cls.Name}";
+            ucHeader.IsModified = true;
             grp.Enabled = !isShowMode;
             btnFinish.Enabled = !isShowMode;
         }
@@ -83,7 +87,7 @@ namespace User
             {
                 SetData();
                 var myCollection = new AutoCompleteStringCollection();
-                var list = await UserBussines.GetAllAsync();
+                var list = await UserBussines.GetAllAsync(new CancellationToken());
                 foreach (var item in list.ToList())
                     myCollection.Add(item.Email);
                 txtName.AutoCompleteCustomSource = myCollection;

@@ -82,7 +82,7 @@ namespace EntityCache.Assistence
                 #endregion
 
                 #region Users
-                var allusers = await UserBussines.GetAllAsync();
+                var allusers = await UserBussines.GetAllAsync(new CancellationToken());
                 var access = new AccessLevel();
                 if (allusers == null || allusers.Count <= 0)
                 {

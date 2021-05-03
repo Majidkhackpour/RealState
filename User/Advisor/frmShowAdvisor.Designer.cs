@@ -39,7 +39,6 @@ namespace User.Advisor
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmShowAdvisor));
             this.BankBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.txtSearch = new DevComponents.DotNetBar.Controls.TextBoxX();
-            this.mnuStatus = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuView = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.mnuDelete = new System.Windows.Forms.ToolStripMenuItem();
@@ -59,6 +58,7 @@ namespace User.Advisor
             this.statusDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.accountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.accountFirstDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ucHeader = new WindowsSerivces.UC_Header();
             ((System.ComponentModel.ISupportInitialize)(this.BankBindingSource)).BeginInit();
             this.contextMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).BeginInit();
@@ -77,23 +77,15 @@ namespace User.Advisor
             // 
             this.txtSearch.Border.Class = "TextBoxBorder";
             this.txtSearch.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.txtSearch.Location = new System.Drawing.Point(149, 25);
+            this.txtSearch.Location = new System.Drawing.Point(100, 61);
             this.txtSearch.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.PreventEnterBeep = true;
-            this.txtSearch.Size = new System.Drawing.Size(476, 27);
+            this.txtSearch.Size = new System.Drawing.Size(605, 27);
             this.txtSearch.TabIndex = 55754;
             this.txtSearch.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtSearch.WatermarkText = "مورد جستجو را وارد نمایید ...";
             this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
-            // 
-            // mnuStatus
-            // 
-            this.mnuStatus.Image = global::User.Properties.Resources.refresh_round_symbol;
-            this.mnuStatus.Name = "mnuStatus";
-            this.mnuStatus.Size = new System.Drawing.Size(205, 24);
-            this.mnuStatus.Text = "غیرفعال (Ctrl+S)";
-            this.mnuStatus.Click += new System.EventHandler(this.mnuStatus_Click);
             // 
             // mnuView
             // 
@@ -140,11 +132,10 @@ namespace User.Advisor
             this.mnuEdit,
             this.mnuDelete,
             this.toolStripMenuItem1,
-            this.mnuView,
-            this.mnuStatus});
+            this.mnuView});
             this.contextMenu.Name = "contextMenu";
             this.contextMenu.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.contextMenu.Size = new System.Drawing.Size(206, 130);
+            this.contextMenu.Size = new System.Drawing.Size(206, 106);
             // 
             // DGrid
             // 
@@ -196,7 +187,7 @@ namespace User.Advisor
             dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.DGrid.DefaultCellStyle = dataGridViewCellStyle4;
             this.DGrid.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
-            this.DGrid.Location = new System.Drawing.Point(3, 65);
+            this.DGrid.Location = new System.Drawing.Point(3, 96);
             this.DGrid.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.DGrid.Name = "DGrid";
             this.DGrid.ReadOnly = true;
@@ -219,7 +210,7 @@ namespace User.Advisor
             this.DGrid.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.DGrid.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             this.DGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DGrid.Size = new System.Drawing.Size(793, 528);
+            this.DGrid.Size = new System.Drawing.Size(793, 497);
             this.DGrid.TabIndex = 55755;
             this.DGrid.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DGrid_CellFormatting);
             // 
@@ -327,11 +318,30 @@ namespace User.Advisor
             this.accountFirstDataGridViewTextBoxColumn.ReadOnly = true;
             this.accountFirstDataGridViewTextBoxColumn.Visible = false;
             // 
+            // ucHeader
+            // 
+            this.ucHeader.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.ucHeader.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ucHeader.BackColor = System.Drawing.Color.White;
+            this.ucHeader.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.ucHeader.Cursor = System.Windows.Forms.Cursors.Default;
+            this.ucHeader.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.ucHeader.IsModified = false;
+            this.ucHeader.Location = new System.Drawing.Point(-7, 25);
+            this.ucHeader.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ucHeader.MinimumSize = new System.Drawing.Size(297, 34);
+            this.ucHeader.Name = "ucHeader";
+            this.ucHeader.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.ucHeader.Size = new System.Drawing.Size(815, 34);
+            this.ucHeader.TabIndex = 55756;
+            // 
             // frmShowAdvisor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 600);
+            this.Controls.Add(this.ucHeader);
             this.Controls.Add(this.txtSearch);
             this.Controls.Add(this.DGrid);
             this.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
@@ -342,7 +352,7 @@ namespace User.Advisor
             this.Name = "frmShowAdvisor";
             this.Padding = new System.Windows.Forms.Padding(27, 92, 27, 31);
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.Style = MetroFramework.MetroColorStyle.Green;
+            this.Style = MetroFramework.MetroColorStyle.Teal;
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmShowAdvisor_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmShowAdvisor_KeyDown);
@@ -357,7 +367,6 @@ namespace User.Advisor
 
         private System.Windows.Forms.BindingSource BankBindingSource;
         private DevComponents.DotNetBar.Controls.TextBoxX txtSearch;
-        private System.Windows.Forms.ToolStripMenuItem mnuStatus;
         private System.Windows.Forms.ToolStripMenuItem mnuView;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem mnuDelete;
@@ -377,5 +386,6 @@ namespace User.Advisor
         private System.Windows.Forms.DataGridViewCheckBoxColumn statusDataGridViewCheckBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn accountDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn accountFirstDataGridViewTextBoxColumn;
+        private WindowsSerivces.UC_Header ucHeader;
     }
 }

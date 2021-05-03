@@ -27,7 +27,7 @@ namespace EntityCache.SqlServerPersistence
                     while (dr.Read())
                     {
                         if (token.IsCancellationRequested) return null;
-                        list.Add(LoadData(dr, false));
+                        list.Add(LoadData(dr));
                     }
                     dr.Close();
                     cn.Close();
@@ -238,7 +238,7 @@ namespace EntityCache.SqlServerPersistence
                     cmd.Parameters.AddWithValue("@guid", guid);
                     await cn.OpenAsync();
                     var dr = await cmd.ExecuteReaderAsync();
-                    if (dr.Read()) list = LoadData(dr, true);
+                    if (dr.Read()) list = LoadData(dr);
                     dr.Close();
                     cn.Close();
                 }
@@ -250,7 +250,7 @@ namespace EntityCache.SqlServerPersistence
 
             return list;
         }
-        private BuildingBussines LoadData(SqlDataReader dr, bool isloadDet)
+        private BuildingBussines LoadData(SqlDataReader dr)
         {
             var res = new BuildingBussines();
             try
@@ -315,11 +315,8 @@ namespace EntityCache.SqlServerPersistence
                 res.Image = dr["Image"].ToString();
                 res.Priority = (EnBuildingPriority)dr["Priority"];
                 res.IsArchive = (bool)dr["IsArchive"];
-                if (isloadDet)
-                {
-                    res.GalleryList = AsyncContext.Run(() => BuildingGalleryBussines.GetAllAsync(res.Guid));
-                    res.OptionList = BuildingRelatedOptionsBussines.GetAll(res.Guid);
-                }
+                res.GalleryList = AsyncContext.Run(() => BuildingGalleryBussines.GetAllAsync(res.Guid));
+                res.OptionList = BuildingRelatedOptionsBussines.GetAll(res.Guid);
                 res.ServerDeliveryDate = (DateTime)dr["ServerDeliveryDate"];
                 res.ServerStatus = (ServerStatus)dr["ServerStatus"];
                 res.OwnerName = dr["OwnerName"].ToString();

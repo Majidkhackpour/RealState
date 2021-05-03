@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -54,13 +55,12 @@
             this.issuedFromDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.postalCodeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupGuidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.contextMenu = new System.Windows.Forms.ContextMenuStrip();
+            this.contextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.mnuAdd = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuEdit = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuDelete = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.mnuView = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuStatus = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
             this.mnuGardesh = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuSendSMS = new System.Windows.Forms.ToolStripMenuItem();
@@ -77,14 +77,15 @@
             this.mnuFatherName = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuAccount = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuAddress = new System.Windows.Forms.ToolStripMenuItem();
-            this.peopleBindingSource = new System.Windows.Forms.BindingSource();
+            this.peopleBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.trvGroup = new System.Windows.Forms.TreeView();
-            this.contextMenuGroup = new System.Windows.Forms.ContextMenuStrip();
+            this.contextMenuGroup = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.mnuInsGroup = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuUpGroup = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuDelGroup = new System.Windows.Forms.ToolStripMenuItem();
-            this.groupBindingSource = new System.Windows.Forms.BindingSource();
+            this.groupBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.ucPagger = new WindowsSerivces.Pagging.UC_FooterPaging();
+            this.ucHeader = new WindowsSerivces.UC_Header();
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).BeginInit();
             this.contextMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.peopleBindingSource)).BeginInit();
@@ -101,7 +102,7 @@
             // 
             this.txtSearch.Border.Class = "TextBoxBorder";
             this.txtSearch.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.txtSearch.Location = new System.Drawing.Point(46, 35);
+            this.txtSearch.Location = new System.Drawing.Point(44, 61);
             this.txtSearch.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.PreventEnterBeep = true;
@@ -166,7 +167,7 @@
             dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.DGrid.DefaultCellStyle = dataGridViewCellStyle4;
             this.DGrid.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
-            this.DGrid.Location = new System.Drawing.Point(4, 70);
+            this.DGrid.Location = new System.Drawing.Point(4, 95);
             this.DGrid.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.DGrid.Name = "DGrid";
             this.DGrid.ReadOnly = true;
@@ -189,7 +190,7 @@
             this.DGrid.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.DGrid.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             this.DGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DGrid.Size = new System.Drawing.Size(654, 525);
+            this.DGrid.Size = new System.Drawing.Size(654, 500);
             this.DGrid.TabIndex = 55752;
             this.DGrid.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DGrid_CellFormatting);
             this.DGrid.Scroll += new System.Windows.Forms.ScrollEventHandler(this.DGrid_Scroll);
@@ -349,7 +350,6 @@
             this.mnuDelete,
             this.toolStripMenuItem1,
             this.mnuView,
-            this.mnuStatus,
             this.toolStripMenuItem2,
             this.mnuGardesh,
             this.mnuSendSMS,
@@ -362,7 +362,7 @@
             this.مدیریتستونهاToolStripMenuItem});
             this.contextMenu.Name = "contextMenu";
             this.contextMenu.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.contextMenu.Size = new System.Drawing.Size(237, 338);
+            this.contextMenu.Size = new System.Drawing.Size(237, 292);
             // 
             // mnuAdd
             // 
@@ -400,14 +400,6 @@
             this.mnuView.Size = new System.Drawing.Size(236, 24);
             this.mnuView.Text = "مشاهده (F12)";
             this.mnuView.Click += new System.EventHandler(this.mnuView_Click);
-            // 
-            // mnuStatus
-            // 
-            this.mnuStatus.Image = global::Peoples.Properties.Resources.refresh_round_symbol;
-            this.mnuStatus.Name = "mnuStatus";
-            this.mnuStatus.Size = new System.Drawing.Size(236, 24);
-            this.mnuStatus.Text = "غیرفعال (Ctrl+S)";
-            this.mnuStatus.Click += new System.EventHandler(this.mnuStatus_Click);
             // 
             // toolStripMenuItem2
             // 
@@ -544,10 +536,10 @@
             this.trvGroup.BackColor = System.Drawing.Color.White;
             this.trvGroup.ContextMenuStrip = this.contextMenuGroup;
             this.trvGroup.ForeColor = System.Drawing.Color.Black;
-            this.trvGroup.Location = new System.Drawing.Point(660, 70);
+            this.trvGroup.Location = new System.Drawing.Point(660, 95);
             this.trvGroup.Name = "trvGroup";
             this.trvGroup.RightToLeftLayout = true;
-            this.trvGroup.Size = new System.Drawing.Size(135, 525);
+            this.trvGroup.Size = new System.Drawing.Size(135, 500);
             this.trvGroup.TabIndex = 55759;
             this.trvGroup.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.trvGroup_AfterSelect);
             // 
@@ -604,11 +596,30 @@
             this.ucPagger.Size = new System.Drawing.Size(765, 32);
             this.ucPagger.TabIndex = 55760;
             // 
+            // ucHeader
+            // 
+            this.ucHeader.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.ucHeader.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ucHeader.BackColor = System.Drawing.Color.White;
+            this.ucHeader.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.ucHeader.Cursor = System.Windows.Forms.Cursors.Default;
+            this.ucHeader.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.ucHeader.IsModified = false;
+            this.ucHeader.Location = new System.Drawing.Point(-5, 25);
+            this.ucHeader.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ucHeader.MinimumSize = new System.Drawing.Size(297, 34);
+            this.ucHeader.Name = "ucHeader";
+            this.ucHeader.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.ucHeader.Size = new System.Drawing.Size(815, 34);
+            this.ucHeader.TabIndex = 55761;
+            // 
             // frmShowPeoples
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 600);
+            this.Controls.Add(this.ucHeader);
             this.Controls.Add(this.trvGroup);
             this.Controls.Add(this.txtSearch);
             this.Controls.Add(this.DGrid);
@@ -621,7 +632,7 @@
             this.Name = "frmShowPeoples";
             this.Padding = new System.Windows.Forms.Padding(27, 92, 27, 31);
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.Style = MetroFramework.MetroColorStyle.Green;
+            this.Style = MetroFramework.MetroColorStyle.Teal;
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmShowPeoples_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmShowPeoples_KeyDown);
@@ -651,7 +662,6 @@
         private System.Windows.Forms.ToolStripMenuItem mnuDelete;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem mnuView;
-        private System.Windows.Forms.ToolStripMenuItem mnuStatus;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem mnuTell;
         private System.Windows.Forms.ToolStripMenuItem mnuBank;
@@ -686,5 +696,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn issuedFromDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn postalCodeDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn groupGuidDataGridViewTextBoxColumn;
+        private WindowsSerivces.UC_Header ucHeader;
     }
 }

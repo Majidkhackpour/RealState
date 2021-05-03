@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Building.Building;
@@ -21,13 +22,16 @@ namespace Building.Contract
         private PeoplesBussines sSide;
         private BuildingBussines building;
         readonly List<string> lstList = new List<string>();
+        private CancellationTokenSource _token = new CancellationTokenSource();
 
         private async Task SetDataAsync()
         {
             try
             {
-                await LoadUsersAsync();
-                await LoadBazaryabAsync();
+                _token?.Cancel();
+                _token = new CancellationTokenSource();
+                await LoadUsersAsync(_token.Token);
+                await LoadBazaryabAsync(_token.Token);
                 LoadfSide();
                 LoadsSide();
                 SetTxtPrice();
@@ -108,11 +112,11 @@ namespace Building.Contract
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private async Task LoadUsersAsync()
+        private async Task LoadUsersAsync(CancellationToken token)
         {
             try
             {
-                var list = await UserBussines.GetAllAsync();
+                var list = await UserBussines.GetAllAsync(token);
                 userBindingSource.DataSource = list.Where(q => q.Status).OrderBy(q => q.Name).ToList();
             }
             catch (Exception ex)
@@ -120,11 +124,11 @@ namespace Building.Contract
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private async Task LoadBazaryabAsync()
+        private async Task LoadBazaryabAsync(CancellationToken token)
         {
             try
             {
-                var list = await AdvisorBussines.GetAllAsync();
+                var list = await AdvisorBussines.GetAllAsync(token);
                 list.Add(new AdvisorBussines()
                 {
                     Guid = Guid.Empty,

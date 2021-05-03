@@ -3,6 +3,7 @@ using System.Drawing;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
+using System.Threading;
 using System.Windows.Forms;
 using EntityCache.Bussines;
 using Notification;
@@ -66,7 +67,7 @@ namespace User
             try
             {
                 var myCollection = new AutoCompleteStringCollection();
-                var list = await UserBussines.GetAllAsync();
+                var list = await UserBussines.GetAllAsync(new CancellationToken());
                 foreach (var item in list?.ToList())
                     myCollection.Add(item.UserName);
                 txtUserName.AutoCompleteCustomSource = myCollection;

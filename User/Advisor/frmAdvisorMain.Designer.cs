@@ -33,31 +33,32 @@ namespace User.Advisor
             this.btnCancel = new DevComponents.DotNetBar.ButtonX();
             this.btnFinish = new DevComponents.DotNetBar.ButtonX();
             this.grp = new DevComponents.DotNetBar.PanelEx();
-            this.txtMobile1 = new System.Windows.Forms.TextBox();
-            this.txtName = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.txtMobile2 = new System.Windows.Forms.TextBox();
+            this.txtAddress = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.cmbAccount = new System.Windows.Forms.ComboBox();
             this.txtAccount_ = new WindowsSerivces.CurrencyTextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.txtAddress = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
+            this.txtMobile2 = new System.Windows.Forms.TextBox();
+            this.txtMobile1 = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtName = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.ucHeader = new WindowsSerivces.UC_Header();
             this.grp.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnCancel
             // 
             this.btnCancel.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnCancel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.btnCancel.BackColor = System.Drawing.Color.LightSteelBlue;
             this.btnCancel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnCancel.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnCancel.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Image = global::User.Properties.Resources.tab_close_;
-            this.btnCancel.Location = new System.Drawing.Point(28, 379);
+            this.btnCancel.Location = new System.Drawing.Point(28, 421);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
             this.btnCancel.Size = new System.Drawing.Size(125, 31);
@@ -70,12 +71,12 @@ namespace User.Advisor
             // btnFinish
             // 
             this.btnFinish.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnFinish.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.btnFinish.BackColor = System.Drawing.Color.LightSteelBlue;
             this.btnFinish.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnFinish.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnFinish.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnFinish.Image = global::User.Properties.Resources.tab_checkbox__;
-            this.btnFinish.Location = new System.Drawing.Point(328, 379);
+            this.btnFinish.Location = new System.Drawing.Point(328, 421);
             this.btnFinish.Name = "btnFinish";
             this.btnFinish.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
             this.btnFinish.Size = new System.Drawing.Size(125, 31);
@@ -102,7 +103,7 @@ namespace User.Advisor
             this.grp.Controls.Add(this.label8);
             this.grp.Controls.Add(this.label1);
             this.grp.DisabledBackColor = System.Drawing.Color.Empty;
-            this.grp.Location = new System.Drawing.Point(6, 31);
+            this.grp.Location = new System.Drawing.Point(6, 73);
             this.grp.Name = "grp";
             this.grp.Size = new System.Drawing.Size(463, 326);
             this.grp.Style.Alignment = System.Drawing.StringAlignment.Center;
@@ -116,62 +117,26 @@ namespace User.Advisor
             this.grp.Style.GradientAngle = 90;
             this.grp.TabIndex = 0;
             // 
-            // txtMobile1
+            // txtAddress
             // 
-            this.txtMobile1.Location = new System.Drawing.Point(22, 50);
-            this.txtMobile1.Name = "txtMobile1";
-            this.txtMobile1.Size = new System.Drawing.Size(330, 27);
-            this.txtMobile1.TabIndex = 1;
-            this.txtMobile1.Enter += new System.EventHandler(this.txtMobile1_Enter);
-            this.txtMobile1.Leave += new System.EventHandler(this.txtMobile1_Leave);
+            this.txtAddress.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.txtAddress.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.txtAddress.Location = new System.Drawing.Point(22, 184);
+            this.txtAddress.Multiline = true;
+            this.txtAddress.Name = "txtAddress";
+            this.txtAddress.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtAddress.Size = new System.Drawing.Size(330, 126);
+            this.txtAddress.TabIndex = 5;
             // 
-            // txtName
+            // label4
             // 
-            this.txtName.Location = new System.Drawing.Point(22, 17);
-            this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(330, 27);
-            this.txtName.TabIndex = 0;
-            this.txtName.Enter += new System.EventHandler(this.txtName_Enter);
-            this.txtName.Leave += new System.EventHandler(this.txtName_Leave);
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.BackColor = System.Drawing.Color.Transparent;
-            this.label8.Location = new System.Drawing.Point(371, 53);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(80, 20);
-            this.label8.TabIndex = 1;
-            this.label8.Text = "شماره همراه 1";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Location = new System.Drawing.Point(356, 20);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(95, 20);
-            this.label1.TabIndex = 8;
-            this.label1.Text = "نام و نام خانوادگی";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Location = new System.Drawing.Point(371, 86);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(80, 20);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "شماره همراه 2";
-            // 
-            // txtMobile2
-            // 
-            this.txtMobile2.Location = new System.Drawing.Point(22, 83);
-            this.txtMobile2.Name = "txtMobile2";
-            this.txtMobile2.Size = new System.Drawing.Size(330, 27);
-            this.txtMobile2.TabIndex = 2;
-            this.txtMobile2.Enter += new System.EventHandler(this.txtMobile2_Enter);
-            this.txtMobile2.Leave += new System.EventHandler(this.txtMobile2_Leave);
+            this.label4.AutoSize = true;
+            this.label4.BackColor = System.Drawing.Color.Transparent;
+            this.label4.Location = new System.Drawing.Point(412, 187);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(39, 20);
+            this.label4.TabIndex = 15;
+            this.label4.Text = "آدرس";
             // 
             // cmbAccount
             // 
@@ -225,32 +190,87 @@ namespace User.Advisor
             this.label3.TabIndex = 14;
             this.label3.Text = "مانئه اول دوره";
             // 
-            // txtAddress
+            // txtMobile2
             // 
-            this.txtAddress.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.txtAddress.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.txtAddress.Location = new System.Drawing.Point(22, 184);
-            this.txtAddress.Multiline = true;
-            this.txtAddress.Name = "txtAddress";
-            this.txtAddress.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtAddress.Size = new System.Drawing.Size(330, 126);
-            this.txtAddress.TabIndex = 5;
+            this.txtMobile2.Location = new System.Drawing.Point(22, 83);
+            this.txtMobile2.Name = "txtMobile2";
+            this.txtMobile2.Size = new System.Drawing.Size(330, 27);
+            this.txtMobile2.TabIndex = 2;
+            this.txtMobile2.Enter += new System.EventHandler(this.txtMobile2_Enter);
+            this.txtMobile2.Leave += new System.EventHandler(this.txtMobile2_Leave);
             // 
-            // label4
+            // txtMobile1
             // 
-            this.label4.AutoSize = true;
-            this.label4.BackColor = System.Drawing.Color.Transparent;
-            this.label4.Location = new System.Drawing.Point(412, 187);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(39, 20);
-            this.label4.TabIndex = 15;
-            this.label4.Text = "آدرس";
+            this.txtMobile1.Location = new System.Drawing.Point(22, 50);
+            this.txtMobile1.Name = "txtMobile1";
+            this.txtMobile1.Size = new System.Drawing.Size(330, 27);
+            this.txtMobile1.TabIndex = 1;
+            this.txtMobile1.Enter += new System.EventHandler(this.txtMobile1_Enter);
+            this.txtMobile1.Leave += new System.EventHandler(this.txtMobile1_Leave);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.Location = new System.Drawing.Point(371, 86);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(80, 20);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "شماره همراه 2";
+            // 
+            // txtName
+            // 
+            this.txtName.Location = new System.Drawing.Point(22, 17);
+            this.txtName.Name = "txtName";
+            this.txtName.Size = new System.Drawing.Size(330, 27);
+            this.txtName.TabIndex = 0;
+            this.txtName.Enter += new System.EventHandler(this.txtName_Enter);
+            this.txtName.Leave += new System.EventHandler(this.txtName_Leave);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.BackColor = System.Drawing.Color.Transparent;
+            this.label8.Location = new System.Drawing.Point(371, 53);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(80, 20);
+            this.label8.TabIndex = 1;
+            this.label8.Text = "شماره همراه 1";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Location = new System.Drawing.Point(356, 20);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(95, 20);
+            this.label1.TabIndex = 8;
+            this.label1.Text = "نام و نام خانوادگی";
+            // 
+            // ucHeader
+            // 
+            this.ucHeader.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.ucHeader.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ucHeader.BackColor = System.Drawing.Color.White;
+            this.ucHeader.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.ucHeader.Cursor = System.Windows.Forms.Cursors.Default;
+            this.ucHeader.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.ucHeader.IsModified = false;
+            this.ucHeader.Location = new System.Drawing.Point(3, 25);
+            this.ucHeader.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ucHeader.MinimumSize = new System.Drawing.Size(297, 34);
+            this.ucHeader.Name = "ucHeader";
+            this.ucHeader.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.ucHeader.Size = new System.Drawing.Size(482, 34);
+            this.ucHeader.TabIndex = 8;
             // 
             // frmAdvisorMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(479, 420);
+            this.ClientSize = new System.Drawing.Size(479, 470);
+            this.Controls.Add(this.ucHeader);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnFinish);
             this.Controls.Add(this.grp);
@@ -259,13 +279,13 @@ namespace User.Advisor
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(479, 420);
+            this.MaximumSize = new System.Drawing.Size(479, 470);
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(479, 420);
+            this.MinimumSize = new System.Drawing.Size(479, 470);
             this.Name = "frmAdvisorMain";
             this.Padding = new System.Windows.Forms.Padding(27, 92, 27, 31);
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.Style = MetroFramework.MetroColorStyle.Green;
+            this.Style = MetroFramework.MetroColorStyle.Teal;
             this.Load += new System.EventHandler(this.frmAdvisorMain_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmAdvisorMain_KeyDown);
             this.grp.ResumeLayout(false);
@@ -291,5 +311,6 @@ namespace User.Advisor
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtAddress;
         private System.Windows.Forms.Label label4;
+        private WindowsSerivces.UC_Header ucHeader;
     }
 }

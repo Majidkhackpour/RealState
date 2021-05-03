@@ -38,12 +38,12 @@ namespace Building.Building
         {
             try
             {
-                await LoadUsersAsync();
+                _token?.Cancel();
+                _token = new CancellationTokenSource();
+                await LoadUsersAsync(_token.Token);
                 LoadOwner();
                 FillCmbTarakom();
                 FillCmbMetr();
-                _token?.Cancel();
-                _token = new CancellationTokenSource();
                 await FillRentalAuthorityAsync(_token.Token);
                 SetTxtPrice();
                 SetTxtMetr();
@@ -470,11 +470,11 @@ namespace Building.Building
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private async Task LoadUsersAsync()
+        private async Task LoadUsersAsync(CancellationToken token)
         {
             try
             {
-                var list = await UserBussines.GetAllAsync();
+                var list = await UserBussines.GetAllAsync(token);
                 userBindingSource.DataSource = list.Where(q => q.Status).OrderBy(q => q.Name).ToList();
             }
             catch (Exception ex)

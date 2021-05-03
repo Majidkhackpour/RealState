@@ -9,10 +9,7 @@ namespace User.AccessLevel
     {
         private object _cls;
         private PropertyInfoClass _info = null;
-        public AccessLevelClass(object cls)
-        {
-            _cls = cls;
-        }
+        public AccessLevelClass(object cls) => _cls = cls;
         public AccessLevelClass(string name, string persianname, object cls)
         {
             Name = name;

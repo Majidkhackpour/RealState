@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using EntityCache.Assistence;
 using Nito.AsyncEx;
@@ -42,10 +43,10 @@ namespace EntityCache.Bussines
         public List<PeoplesBankAccountBussines> BankList { get; set; }
         public bool IsModified { get; set; } = false;
 
-        public static async Task<List<PeoplesBussines>> GetAllAsync() => await UnitOfWork.Peoples.GetAllAsync(Cache.ConnectionString);
+        public static async Task<List<PeoplesBussines>> GetAllAsync(CancellationToken token) => await UnitOfWork.Peoples.GetAllAsync(Cache.ConnectionString, token);
         public static async Task<PeoplesBussines> GetAsync(Guid guid) => await UnitOfWork.Peoples.GetAsync(Cache.ConnectionString, guid);
-        public static async Task<List<PeoplesBussines>> GetAllAsync(Guid parentGuid, bool status) =>
-            await UnitOfWork.Peoples.GetAllAsync(Cache.ConnectionString, parentGuid, status);
+        public static async Task<List<PeoplesBussines>> GetAllAsync(Guid parentGuid, bool status, CancellationToken token) =>
+            await UnitOfWork.Peoples.GetAllAsync(Cache.ConnectionString, parentGuid, status, token);
         public async Task<ReturnedSaveFuncInfo> SaveAsync(SqlTransaction tr = null)
         {
             var res = new ReturnedSaveFuncInfo();
@@ -152,19 +153,20 @@ namespace EntityCache.Bussines
             return res;
         }
         public static PeoplesBussines Get(Guid guid) => AsyncContext.Run(() => GetAsync(guid));
-        public static async Task<List<PeoplesBussines>> GetAllAsync(string search, Guid groupGuid)
+        public static async Task<List<PeoplesBussines>> GetAllAsync(string search, Guid groupGuid,CancellationToken token)
         {
             try
             {
                 if (string.IsNullOrEmpty(search)) search = "";
                 IEnumerable<PeoplesBussines> res;
-                if (groupGuid == Guid.Empty)
-                    res = await GetAllAsync();
-                else res = await GetAllAsync(groupGuid, true);
+                if (groupGuid == Guid.Empty) res = await GetAllAsync(token);
+                else res = await GetAllAsync(groupGuid, true,token);
+                if (token.IsCancellationRequested) return null;
                 var searchItems = search.SplitString();
                 if (searchItems?.Count > 0)
                     foreach (var item in searchItems)
                     {
+                        if (token.IsCancellationRequested) return null;
                         if (!string.IsNullOrEmpty(item) && item.Trim() != "")
                         {
                             res = res.Where(x => x.Name.ToLower().Contains(item.ToLower()) ||
@@ -175,8 +177,8 @@ namespace EntityCache.Bussines
                 res = res.OrderBy(q => q.Code);
                 return res?.ToList();
             }
-            catch (OperationCanceledException)
-            { return null; }
+            catch (TaskCanceledException) { return null; }
+            catch (OperationCanceledException) { return null; }
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);

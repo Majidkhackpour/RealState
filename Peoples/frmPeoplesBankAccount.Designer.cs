@@ -43,9 +43,8 @@
             this.shobeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.accountNumberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.guidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.parentGuidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ucHeader = new WindowsSerivces.UC_Header();
             ((System.ComponentModel.ISupportInitialize)(this.peoplesAccountBindingSourcr)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).BeginInit();
             this.SuspendLayout();
@@ -59,7 +58,7 @@
             // 
             this.txtSearch.Border.Class = "TextBoxBorder";
             this.txtSearch.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.txtSearch.Location = new System.Drawing.Point(45, 40);
+            this.txtSearch.Location = new System.Drawing.Point(44, 61);
             this.txtSearch.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.PreventEnterBeep = true;
@@ -105,8 +104,6 @@
             this.shobeDataGridViewTextBoxColumn,
             this.accountNumberDataGridViewTextBoxColumn,
             this.guidDataGridViewTextBoxColumn,
-            this.dataGridViewTextBoxColumn1,
-            this.dataGridViewCheckBoxColumn1,
             this.parentGuidDataGridViewTextBoxColumn});
             this.DGrid.DataSource = this.peoplesAccountBindingSourcr;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
@@ -118,7 +115,7 @@
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.DGrid.DefaultCellStyle = dataGridViewCellStyle3;
             this.DGrid.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
-            this.DGrid.Location = new System.Drawing.Point(3, 79);
+            this.DGrid.Location = new System.Drawing.Point(3, 96);
             this.DGrid.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.DGrid.Name = "DGrid";
             this.DGrid.ReadOnly = true;
@@ -141,7 +138,7 @@
             this.DGrid.RowsDefaultCellStyle = dataGridViewCellStyle5;
             this.DGrid.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             this.DGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DGrid.Size = new System.Drawing.Size(795, 515);
+            this.DGrid.Size = new System.Drawing.Size(795, 498);
             this.DGrid.TabIndex = 55745;
             this.DGrid.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DGrid_CellFormatting);
             // 
@@ -184,22 +181,6 @@
             this.guidDataGridViewTextBoxColumn.ReadOnly = true;
             this.guidDataGridViewTextBoxColumn.Visible = false;
             // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "Modified";
-            this.dataGridViewTextBoxColumn1.HeaderText = "Modified";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            this.dataGridViewTextBoxColumn1.Visible = false;
-            // 
-            // dataGridViewCheckBoxColumn1
-            // 
-            this.dataGridViewCheckBoxColumn1.DataPropertyName = "Status";
-            this.dataGridViewCheckBoxColumn1.HeaderText = "Status";
-            this.dataGridViewCheckBoxColumn1.Name = "dataGridViewCheckBoxColumn1";
-            this.dataGridViewCheckBoxColumn1.ReadOnly = true;
-            this.dataGridViewCheckBoxColumn1.Visible = false;
-            // 
             // parentGuidDataGridViewTextBoxColumn
             // 
             this.parentGuidDataGridViewTextBoxColumn.DataPropertyName = "ParentGuid";
@@ -208,11 +189,30 @@
             this.parentGuidDataGridViewTextBoxColumn.ReadOnly = true;
             this.parentGuidDataGridViewTextBoxColumn.Visible = false;
             // 
+            // ucHeader
+            // 
+            this.ucHeader.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.ucHeader.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ucHeader.BackColor = System.Drawing.Color.White;
+            this.ucHeader.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.ucHeader.Cursor = System.Windows.Forms.Cursors.Default;
+            this.ucHeader.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.ucHeader.IsModified = false;
+            this.ucHeader.Location = new System.Drawing.Point(-1, 25);
+            this.ucHeader.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ucHeader.MinimumSize = new System.Drawing.Size(297, 34);
+            this.ucHeader.Name = "ucHeader";
+            this.ucHeader.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.ucHeader.Size = new System.Drawing.Size(815, 34);
+            this.ucHeader.TabIndex = 55755;
+            // 
             // frmPeoplesBankAccount
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 600);
+            this.Controls.Add(this.ucHeader);
             this.Controls.Add(this.DGrid);
             this.Controls.Add(this.txtSearch);
             this.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
@@ -223,7 +223,7 @@
             this.Name = "frmPeoplesBankAccount";
             this.Padding = new System.Windows.Forms.Padding(27, 92, 27, 31);
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.Style = MetroFramework.MetroColorStyle.Green;
+            this.Style = MetroFramework.MetroColorStyle.Teal;
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmPeoplesBankAccount_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmPeoplesBankAccount_KeyDown);
@@ -258,5 +258,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn parentGuidDataGridViewTextBoxColumn;
+        private WindowsSerivces.UC_Header ucHeader;
     }
 }

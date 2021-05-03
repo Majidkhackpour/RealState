@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WindowsSerivces;
@@ -15,6 +16,7 @@ namespace Peoples
     {
         private PeoplesBussines cls;
         public Guid SelectedGuid { get; set; }
+
         private async Task SetDataAsync()
         {
             try
@@ -139,14 +141,18 @@ namespace Peoples
         public frmPeoples()
         {
             InitializeComponent();
+            cls = new PeoplesBussines();
+            ucHeader.Text = "افزودن شخص جدید";
+            ucHeader.IsModified = cls.IsModified;
             superTabControl1.SelectedTab = superTabItem1;
             WindowState = FormWindowState.Maximized;
-            cls = new PeoplesBussines();
         }
         public frmPeoples(Guid guid, bool isShowMode)
         {
             InitializeComponent();
             cls = PeoplesBussines.Get(guid);
+            ucHeader.Text = !isShowMode ? $"ویرایش {cls.Name}" : $"مشاهده {cls.Name}";
+            ucHeader.IsModified = cls.IsModified;
             superTabControlPanel1.Enabled = !isShowMode;
             superTabControlPanel2.Enabled = !isShowMode;
             superTabControlPanel3.Enabled = !isShowMode;
@@ -168,7 +174,7 @@ namespace Peoples
                 var nCodeCollection = new AutoCompleteStringCollection();
                 var placeCollection = new AutoCompleteStringCollection();
                 var issuedCollection = new AutoCompleteStringCollection();
-                var list = await PeoplesBussines.GetAllAsync();
+                var list = await PeoplesBussines.GetAllAsync(new CancellationToken());
                 foreach (var item in list.ToList())
                 {
                     nameCollection.Add(item.Name);

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using EntityCache.Bussines;
@@ -13,13 +14,15 @@ namespace RealState.Note
     public partial class frmNoteMain : MetroForm
     {
         private NoteBussines cls;
+        private CancellationTokenSource _token = new CancellationTokenSource();
 
         private async Task SetDataAsync()
         {
             try
             {
-
-                var list = await UserBussines.GetAllAsync();
+                _token?.Cancel();
+                _token = new CancellationTokenSource();
+                var list = await UserBussines.GetAllAsync(_token.Token);
                 userBindingSource.DataSource = list.OrderBy(q => q.Name);
                 cmbUsers.SelectedValue = UserBussines.CurrentUser.Guid;
 

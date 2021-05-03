@@ -14,7 +14,8 @@ namespace User
         public frmForgetPassword()
         {
             InitializeComponent();
-            Size = new Size(364, 118);
+            ucHeader.Text = "بازیابی کلمه عبور کاربر";
+            Size = new Size(458, 349);
             FillCmb();
             cmbQuestion.SelectedIndex = 0;
         }
@@ -28,21 +29,21 @@ namespace User
                     grpQuestion.Visible = true;
                     grpEmail.Visible = false;
                     grpMobile.Visible = false;
-                    Size = new Size(458, 288);
+                    Size = new Size(458, 349);
                 }
                 if (rbtnMobile.Checked)
                 {
                     grpQuestion.Visible = false;
                     grpEmail.Visible = false;
                     grpMobile.Visible = true;
-                    Size = new Size(458, 250);
+                    Size = new Size(458, 298);
                 }
                 if (rbtnEmail.Checked)
                 {
                     grpQuestion.Visible = false;
                     grpEmail.Visible = true;
                     grpMobile.Visible = false;
-                    Size = new Size(458, 250);
+                    Size = new Size(458, 298);
                 }
             }
             catch (Exception ex)
@@ -66,33 +67,17 @@ namespace User
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
+
         private void frmForgetPassword_Load(object sender, System.EventArgs e)
         {
             rbtnEmail.Checked = false;
             rbtnQuestion.Checked = false;
             rbtnMobile.Checked = false;
         }
-
-        private void rbtnQuestion_CheckedChanged(object sender, System.EventArgs e)
-        {
-            SetPanels();
-        }
-
-        private void rbtnMobile_CheckedChanged(object sender, EventArgs e)
-        {
-            SetPanels();
-        }
-
-        private void rbtnEmail_CheckedChanged(object sender, EventArgs e)
-        {
-            SetPanels();
-        }
-
-        private void btnCancel_Click(object sender, EventArgs e)
-        {
-            Close();
-        }
-
+        private void rbtnQuestion_CheckedChanged(object sender, System.EventArgs e) => SetPanels();
+        private void rbtnMobile_CheckedChanged(object sender, EventArgs e) => SetPanels();
+        private void rbtnEmail_CheckedChanged(object sender, EventArgs e) => SetPanels();
+        private void btnCancel_Click(object sender, EventArgs e) => Close();
         private async void btnFinish_Click(object sender, EventArgs e)
         {
             try
@@ -163,7 +148,6 @@ namespace User
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-
         private void frmForgetPassword_KeyDown(object sender, KeyEventArgs e)
         {
             try

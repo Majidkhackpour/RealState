@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using EntityCache.Bussines;
@@ -12,25 +13,29 @@ namespace User
 {
     public partial class frmAccessLevel : MetroForm
     {
-        Services.Access.AccessLevel CurrentAccessLevel;
-        short selectedValue;
-        private static bool _firstindexChange;
+        private Services.Access.AccessLevel _currentAccessLevel;
+        private short _selectedValue;
+        private bool _firstindexChange;
+        private CancellationTokenSource _token = new CancellationTokenSource();
+
         public frmAccessLevel()
         {
             try
             {
                 InitializeComponent();
+                ucHeader.Text = "تعیین سطوح دسترسی کاربران";
             }
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
+
         private void LoadGrid()
         {
             try
             {
-                var lst = AccessLevelClass.ListInfo(CurrentAccessLevel);
+                var lst = AccessLevelClass.ListInfo(_currentAccessLevel);
                 ClassInfoBindingSource.DataSource = lst.ToSortableBindingList();
             }
             catch (Exception ex)
@@ -39,12 +44,13 @@ namespace User
             }
 
         }
-
         private async Task LoadUserDataAsync()
         {
             try
             {
-                var users = await UserBussines.GetAllAsync();
+                _token?.Cancel();
+                _token = new CancellationTokenSource();
+                var users = await UserBussines.GetAllAsync(_token.Token);
                 UserBindingSource.DataSource = users.Where(p => p.Guid != UserBussines.CurrentUser.Guid).ToSortableBindingList();
             }
             catch (Exception ex)
@@ -62,14 +68,14 @@ namespace User
                 if (!_firstindexChange && MessageBox.Show(this, "مایل به ذخیره تنظیمات هستید ؟", "پیغام سیستم", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2, MessageBoxOptions.RightAlign) == DialogResult.Yes)
                 {
                     var user = await UserBussines.GetAsync((Guid)cmbUser.SelectedValue);
-                    CurrentAccessLevel = user.UserAccess;
+                    _currentAccessLevel = user.UserAccess;
                     await SaveAsync((Guid)cmbUser.SelectedValue);
                     LoadGrid();
                 }
                 else
                 {
                     var user = await UserBussines.GetAsync((Guid)cmbUser.SelectedValue);
-                    CurrentAccessLevel = user.UserAccess;
+                    _currentAccessLevel = user.UserAccess;
                     LoadGrid();
                 }
             }
@@ -85,7 +91,7 @@ namespace User
             {
                 var user = await UserBussines.GetAsync(userGuid);
                 if (user == null) return res;
-                user.UserAccess = CurrentAccessLevel;
+                user.UserAccess = _currentAccessLevel;
                 res.AddReturnedValue(await user.SaveAsync());
             }
             catch (Exception exception)
@@ -194,7 +200,7 @@ namespace User
             {
                 await LoadUserDataAsync();
                 cmbUser.SelectedIndex = 0;
-                CurrentAccessLevel = UserBussines.Get((Guid)cmbUser.SelectedValue).UserAccess;
+                _currentAccessLevel = UserBussines.Get((Guid)cmbUser.SelectedValue).UserAccess;
                 LoadGrid();
             }
             catch (Exception ex)

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using EntityCache.Bussines;
@@ -11,6 +12,8 @@ namespace User
 {
     public partial class frmUserLogFilter : MetroForm
     {
+        private CancellationTokenSource _token = new CancellationTokenSource();
+
         private async Task SetDataAsync()
         {
             try
@@ -28,7 +31,9 @@ namespace User
         {
             try
             {
-                var list = await UserBussines.GetAllAsync();
+                _token?.Cancel();
+                _token = new CancellationTokenSource();
+                var list = await UserBussines.GetAllAsync(_token.Token);
                 userBindingSource.DataSource = list.Where(q => q.Status).OrderBy(q => q.Name).ToList();
             }
             catch (Exception ex)

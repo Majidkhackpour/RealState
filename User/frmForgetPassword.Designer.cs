@@ -46,6 +46,7 @@
             this.grpEmail = new DevComponents.DotNetBar.PanelEx();
             this.txtEmail = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.ucHeader = new WindowsSerivces.UC_Header();
             this.grpQuestion.SuspendLayout();
             this.grpMobile.SuspendLayout();
             this.grpEmail.SuspendLayout();
@@ -55,7 +56,7 @@
             // 
             this.rbtnQuestion.AutoSize = true;
             this.rbtnQuestion.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.rbtnQuestion.Location = new System.Drawing.Point(275, 19);
+            this.rbtnQuestion.Location = new System.Drawing.Point(275, 71);
             this.rbtnQuestion.Name = "rbtnQuestion";
             this.rbtnQuestion.Size = new System.Drawing.Size(165, 24);
             this.rbtnQuestion.TabIndex = 0;
@@ -68,7 +69,7 @@
             // 
             this.rbtnMobile.AutoSize = true;
             this.rbtnMobile.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.rbtnMobile.Location = new System.Drawing.Point(274, 53);
+            this.rbtnMobile.Location = new System.Drawing.Point(274, 105);
             this.rbtnMobile.Name = "rbtnMobile";
             this.rbtnMobile.Size = new System.Drawing.Size(166, 24);
             this.rbtnMobile.TabIndex = 1;
@@ -81,7 +82,7 @@
             // 
             this.rbtnEmail.AutoSize = true;
             this.rbtnEmail.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.rbtnEmail.Location = new System.Drawing.Point(309, 86);
+            this.rbtnEmail.Location = new System.Drawing.Point(309, 138);
             this.rbtnEmail.Name = "rbtnEmail";
             this.rbtnEmail.Size = new System.Drawing.Size(131, 24);
             this.rbtnEmail.TabIndex = 2;
@@ -94,7 +95,7 @@
             // 
             this.line1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.line1.Location = new System.Drawing.Point(23, 119);
+            this.line1.Location = new System.Drawing.Point(23, 171);
             this.line1.Name = "line1";
             this.line1.Size = new System.Drawing.Size(407, 23);
             this.line1.TabIndex = 1;
@@ -110,7 +111,7 @@
             this.grpQuestion.Controls.Add(this.label5);
             this.grpQuestion.Controls.Add(this.label7);
             this.grpQuestion.DisabledBackColor = System.Drawing.Color.Empty;
-            this.grpQuestion.Location = new System.Drawing.Point(23, 148);
+            this.grpQuestion.Location = new System.Drawing.Point(23, 200);
             this.grpQuestion.Name = "grpQuestion";
             this.grpQuestion.Size = new System.Drawing.Size(424, 95);
             this.grpQuestion.Style.Alignment = System.Drawing.StringAlignment.Center;
@@ -164,12 +165,12 @@
             // 
             this.btnFinish.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.btnFinish.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnFinish.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.btnFinish.BackColor = System.Drawing.Color.LightSteelBlue;
             this.btnFinish.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnFinish.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnFinish.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnFinish.Image = global::User.Properties.Resources.tab_checkbox__;
-            this.btnFinish.Location = new System.Drawing.Point(316, 248);
+            this.btnFinish.Location = new System.Drawing.Point(316, 310);
             this.btnFinish.Name = "btnFinish";
             this.btnFinish.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
             this.btnFinish.Size = new System.Drawing.Size(125, 31);
@@ -183,13 +184,13 @@
             // 
             this.btnCancel.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnCancel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.btnCancel.BackColor = System.Drawing.Color.LightSteelBlue;
             this.btnCancel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnCancel.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnCancel.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Image = global::User.Properties.Resources.tab_close_;
-            this.btnCancel.Location = new System.Drawing.Point(23, 248);
+            this.btnCancel.Location = new System.Drawing.Point(23, 310);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
             this.btnCancel.Size = new System.Drawing.Size(125, 31);
@@ -206,7 +207,7 @@
             this.grpMobile.Controls.Add(this.txtMobile);
             this.grpMobile.Controls.Add(this.label2);
             this.grpMobile.DisabledBackColor = System.Drawing.Color.Empty;
-            this.grpMobile.Location = new System.Drawing.Point(23, 148);
+            this.grpMobile.Location = new System.Drawing.Point(23, 200);
             this.grpMobile.Name = "grpMobile";
             this.grpMobile.Size = new System.Drawing.Size(424, 53);
             this.grpMobile.Style.Alignment = System.Drawing.StringAlignment.Center;
@@ -244,7 +245,7 @@
             this.grpEmail.Controls.Add(this.txtEmail);
             this.grpEmail.Controls.Add(this.label1);
             this.grpEmail.DisabledBackColor = System.Drawing.Color.Empty;
-            this.grpEmail.Location = new System.Drawing.Point(23, 148);
+            this.grpEmail.Location = new System.Drawing.Point(23, 200);
             this.grpEmail.Name = "grpEmail";
             this.grpEmail.Size = new System.Drawing.Size(424, 53);
             this.grpEmail.Style.Alignment = System.Drawing.StringAlignment.Center;
@@ -275,11 +276,30 @@
             this.label1.TabIndex = 6;
             this.label1.Text = "ایمیل";
             // 
+            // ucHeader
+            // 
+            this.ucHeader.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.ucHeader.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ucHeader.BackColor = System.Drawing.Color.White;
+            this.ucHeader.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.ucHeader.Cursor = System.Windows.Forms.Cursors.Default;
+            this.ucHeader.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.ucHeader.IsModified = false;
+            this.ucHeader.Location = new System.Drawing.Point(-11, 32);
+            this.ucHeader.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ucHeader.MinimumSize = new System.Drawing.Size(297, 34);
+            this.ucHeader.Name = "ucHeader";
+            this.ucHeader.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.ucHeader.Size = new System.Drawing.Size(482, 34);
+            this.ucHeader.TabIndex = 20;
+            // 
             // frmForgetPassword
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(458, 287);
+            this.ClientSize = new System.Drawing.Size(458, 349);
+            this.Controls.Add(this.ucHeader);
             this.Controls.Add(this.grpMobile);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnFinish);
@@ -298,7 +318,7 @@
             this.Name = "frmForgetPassword";
             this.Padding = new System.Windows.Forms.Padding(27, 92, 27, 31);
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.Style = MetroFramework.MetroColorStyle.Green;
+            this.Style = MetroFramework.MetroColorStyle.Teal;
             this.Load += new System.EventHandler(this.frmForgetPassword_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmForgetPassword_KeyDown);
             this.grpQuestion.ResumeLayout(false);
@@ -331,5 +351,6 @@
         private DevComponents.DotNetBar.PanelEx grpEmail;
         private System.Windows.Forms.TextBox txtEmail;
         private System.Windows.Forms.Label label1;
+        private WindowsSerivces.UC_Header ucHeader;
     }
 }

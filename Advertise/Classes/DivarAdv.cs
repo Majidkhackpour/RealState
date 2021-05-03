@@ -2345,7 +2345,7 @@ namespace Advertise.Classes
 
 
 
-                                var allOwner = await PeoplesBussines.GetAllAsync();
+                                var allOwner = await PeoplesBussines.GetAllAsync(new CancellationToken());
                                 if (allOwner.Count > 0)
                                 {
                                     var rand = new Random().Next(0, allOwner.Count);
@@ -2412,7 +2412,7 @@ namespace Advertise.Classes
                                 viewModel.BonBast = false;
                                 viewModel.MamarJoda = true;
 
-                                var allUser = await UserBussines.GetAllAsync();
+                                var allUser = await UserBussines.GetAllAsync(new CancellationToken());
                                 var userRand = new Random().Next(0, allUser.Count);
                                 viewModel.UserGuid = allUser[userRand].Guid;
 

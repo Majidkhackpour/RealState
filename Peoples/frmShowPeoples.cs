@@ -28,26 +28,8 @@ namespace Peoples
         private IEnumerable<PeoplesBussines> list;
         private bool _st = true;
         private List<string> ColumnList;
-        public bool ST
-        {
-            get => _st;
-            set
-            {
-                _st = value;
-                if (_st)
-                {
-                    mnuStatus.Text = "غیرفعال (Ctrl+S)";
-                    Task.Run(() => LoadPeoplesAsync(ST, txtSearch.Text));
-                    mnuDelete.Text = "حذف (Del)";
-                }
-                else
-                {
-                    mnuStatus.Text = "فعال (Ctrl+S)";
-                    Task.Run(() => LoadPeoplesAsync(ST, txtSearch.Text));
-                    mnuDelete.Text = "فعال کردن";
-                }
-            }
-        }
+        private CancellationTokenSource _token = new CancellationTokenSource();
+
         private async Task LoadGroupsAsync()
         {
             try
@@ -80,13 +62,15 @@ namespace Peoples
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private async Task LoadPeoplesAsync(bool status, string search = "")
+        private async Task LoadPeoplesAsync(string search = "")
         {
             try
             {
-                list = await PeoplesBussines.GetAllAsync(search, GroupGuid);
+                _token?.Cancel();
+                _token = new CancellationTokenSource();
+                list = await PeoplesBussines.GetAllAsync(search, GroupGuid, _token.Token);
                 _ = Task.Run(() => ucPagger.PagingAsync(new CancellationToken(),
-                    list.Where(q => q.Status == status), 100, PagingPosition.GotoStartPage));
+                    list.Where(q => q.Status == _st), 100, PagingPosition.GotoStartPage));
             }
             catch (Exception ex)
             {
@@ -101,7 +85,6 @@ namespace Peoples
                 mnuAdd.Enabled = access?.Peoples.People_Insert ?? false;
                 mnuEdit.Enabled = access?.Peoples.People_Update ?? false;
                 mnuDelete.Enabled = access?.Peoples.People_Delete ?? false;
-                mnuStatus.Enabled = access?.Peoples.People_Disable ?? false;
                 mnuView.Enabled = access?.Peoples.People_View ?? false;
                 mnuBank.Enabled = access?.Peoples.People_Show_BankHesab ?? false;
                 mnuDelGroup.Enabled = access?.Peoples.People_Group_Delete ?? false;
@@ -123,7 +106,7 @@ namespace Peoples
             try
             {
                 await LoadGroupsAsync();
-                await LoadPeoplesAsync(ST, txtSearch.Text);
+                await LoadPeoplesAsync(txtSearch.Text);
             }
             catch (Exception ex)
             {
@@ -216,10 +199,12 @@ namespace Peoples
             }
         }
 
-        public frmShowPeoples(bool _isShowMode)
+        public frmShowPeoples(bool _isShowMode, bool status = true)
         {
             InitializeComponent();
             isShowMode = _isShowMode;
+            _st = status;
+            ucHeader.Text = "نمایش لیست اشخاص";
             if (isShowMode)
             {
                 contextMenu.Enabled = false;
@@ -249,10 +234,7 @@ namespace Peoples
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void frmShowPeoples_Load(object sender, EventArgs e)
-        {
-            LoadData();
-        }
+        private void frmShowPeoples_Load(object sender, EventArgs e) => LoadData();
         private void DGrid_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
             DGrid.Rows[e.RowIndex].Cells["dgRadif"].Value = e.RowIndex + 1;
@@ -274,9 +256,6 @@ namespace Peoples
                         break;
                     case Keys.F12:
                         mnuView.PerformClick();
-                        break;
-                    case Keys.S:
-                        if (e.Control) ST = !ST;
                         break;
                     case Keys.Escape:
                         if (!string.IsNullOrEmpty(txtSearch.Text))
@@ -319,24 +298,14 @@ namespace Peoples
                     if (group != null)
                         GroupGuid = group.Guid;
                 }
-                await LoadPeoplesAsync(ST);
+                await LoadPeoplesAsync();
             }
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private async void txtSearch_TextChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                await LoadPeoplesAsync(ST, txtSearch.Text);
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
+        private async void txtSearch_TextChanged(object sender, EventArgs e) => await LoadPeoplesAsync(txtSearch.Text);
         private void DGrid_DoubleClick(object sender, EventArgs e)
         {
             try
@@ -355,7 +324,7 @@ namespace Peoples
             {
                 var frm = new frmPeoples();
                 if (frm.ShowDialog(this) == DialogResult.OK)
-                    await LoadPeoplesAsync(ST, txtSearch.Text);
+                    await LoadPeoplesAsync(txtSearch.Text);
             }
             catch (Exception ex)
             {
@@ -457,8 +426,9 @@ namespace Peoples
                     res.AddError(
                         $"گروه {trvGroup.SelectedNode.Text} بدلیل داشتن {counter} زیرگروه فعال، قادر به حذف نیست");
                 }
-
-                var childes = await PeoplesBussines.GetAllAsync(GroupGuid, true);
+                _token?.Cancel();
+                _token = new CancellationTokenSource();
+                var childes = await PeoplesBussines.GetAllAsync(GroupGuid, true, _token.Token);
                 if (childes != null && childes.Count > 0)
                 {
                     res.AddError(
@@ -524,7 +494,7 @@ namespace Peoples
                 if (DGrid.RowCount <= 0) return;
                 if (DGrid.CurrentRow == null) return;
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
-                if (ST)
+                if (_st)
                 {
                     var p = await PeoplesBussines.GetAsync(guid);
                     if (p == null) return;
@@ -567,10 +537,9 @@ namespace Peoples
             finally
             {
                 if (res.HasError) this.ShowError(res, "خطا در تغییر وضعیت شخص");
-                else await LoadPeoplesAsync(ST, txtSearch.Text);
+                else await LoadPeoplesAsync(txtSearch.Text);
             }
         }
-        private void mnuStatus_Click(object sender, EventArgs e) => ST = !ST;
         private void mnuView_Click(object sender, EventArgs e)
         {
             try
@@ -592,7 +561,7 @@ namespace Peoples
             {
                 if (DGrid.RowCount <= 0) return;
                 if (DGrid.CurrentRow == null) return;
-                if (!ST)
+                if (!_st)
                 {
                     frmNotification.PublicInfo.ShowMessage(
                         "شما مجاز به ویرایش داده حذف شده نمی باشید \r\n برای این منظور، ابتدا فیلد موردنظر را از حالت حذف شده به فعال، تغییر وضعیت دهید");
@@ -601,7 +570,7 @@ namespace Peoples
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
                 var frm = new frmPeoples(guid, false);
                 if (frm.ShowDialog(this) == DialogResult.OK)
-                    await LoadPeoplesAsync(ST, txtSearch.Text);
+                    await LoadPeoplesAsync(txtSearch.Text);
             }
             catch (Exception ex)
             {
