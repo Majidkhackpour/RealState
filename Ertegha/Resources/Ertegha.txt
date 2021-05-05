@@ -2785,7 +2785,7 @@ GO
 IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Reception_Save]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
 	exec('Create Procedure [dbo].[sp_Reception_Save]	As Begin print 11 end')  
 GO
-Alter PROCEDURE sp_Reception_Save
+ALTER PROCEDURE [dbo].[sp_Reception_Save]
 	@guid uniqueidentifier,
 	@modif datetime,
 	@number bigint,
@@ -2796,7 +2796,11 @@ Alter PROCEDURE sp_Reception_Save
 	@userGuid uniqueidentifier,
 	@sanadNumber bigint,
 	@serverSt smallint,
-	@serverDate datetime
+	@serverDate datetime,
+	@sumCheck decimal,
+	@sumHavale decimal,
+	@sumNaqd decimal,
+	@sum decimal
 AS
 BEGIN
 	UPDATE [dbo].[Receptions]
@@ -2809,6 +2813,10 @@ BEGIN
 		  ,[SanadNumber] = @sanadNumber
 		  ,[ServerStatus] = @serverSt
 		  ,[ServerDeliveryDate] = @serverDate
+		  ,[SumCheck] = @sumCheck
+		  ,[SumHavale] = @sumHavale
+		  ,[SumNaqd] = @sumNaqd
+		  ,[Sum] = @sum
 	 WHERE Guid=@guid
 	 if @@ROWCOUNT=0
 	 begin
@@ -2823,7 +2831,11 @@ BEGIN
            ,[UserGuid]
            ,[SanadNumber]
 		   ,[ServerStatus]
-		   ,[ServerDeliveryDate])
+		   ,[ServerDeliveryDate]
+		   ,[SumCheck]
+		   ,[SumHavale]
+		   ,[SumNaqd]
+		   ,[Sum])
 		VALUES
            (@guid
            ,@modif
@@ -2835,7 +2847,11 @@ BEGIN
            ,@userGuid
            ,@sanadNumber
 		   ,@serverSt
-		   ,@serverDate)
+		   ,@serverDate
+		   ,@sumCheck
+		   ,@sumHavale
+		   ,@sumNaqd
+		   ,@sum)
 	 end
 END
 GO
@@ -3212,7 +3228,7 @@ GO
 IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Pardakht_Save]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
 	exec('Create Procedure [dbo].[sp_Pardakht_Save]	As Begin print 11 end')  
 GO
-Alter PROCEDURE sp_Pardakht_Save
+ALTER PROCEDURE [dbo].[sp_Pardakht_Save]
 	@guid uniqueidentifier,
 	@modif datetime,
 	@tafsilGuid uniqueidentifier,
@@ -3223,7 +3239,12 @@ Alter PROCEDURE sp_Pardakht_Save
 	@number bigint,
 	@sanadNumber bigint,
 	@serverSt smallint,
-	@serverDate datetime
+	@serverDate datetime,
+	@sumCheckM decimal,
+	@sumCheckSh decimal,
+	@sumHavale decimal,
+	@sumNaqd decimal,
+	@sum decimal
 AS
 BEGIN
 	UPDATE [dbo].[Pardakhts]
@@ -3237,6 +3258,11 @@ BEGIN
 		  ,[SanadNumber] = @sanadNumber
 		  ,[ServerStatus] = @serverSt
 		  ,[ServerDeliveryDate] = @serverDate
+		  ,[SumCheckMoshtari] = @sumCheckM
+		  ,[SumCheckShakhsi] = @sumCheckSh
+		  ,[SumHavale] = @sumHavale
+		  ,[SumNaqd] = @sumNaqd
+		  ,[Sum] = @sum
 	 WHERE [Guid] = @guid
 	 if @@ROWCOUNT=0
 	 begin
@@ -3251,7 +3277,12 @@ BEGIN
            ,[Number]
            ,[SanadNumber]
 		   ,[ServerStatus]
-		   ,[ServerDeliveryDate])
+		   ,[ServerDeliveryDate]
+		   ,[SumCheckMoshtari]
+		   ,[SumCheckShakhsi]
+		   ,[SumHavale]
+		   ,[SumNaqd]
+		   ,[Sum])
 		VALUES
            (@guid
            ,@modif
@@ -3263,7 +3294,12 @@ BEGIN
            ,@number
            ,@sanadNumber
 		   ,@serverSt
-		   ,@serverDate)
+		   ,@serverDate
+		   ,@sumCheckM
+		   ,@sumCheckSh
+		   ,@sumHavale
+		   ,@sumNaqd
+		   ,@sum)
 	 end
 END
 GO

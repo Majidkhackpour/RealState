@@ -160,6 +160,10 @@ namespace EntityCache.SqlServerPersistence
                 cmd.Parameters.AddWithValue("@sanadNumber", item.SanadNumber);
                 cmd.Parameters.AddWithValue("@serverSt", (short)item.ServerStatus);
                 cmd.Parameters.AddWithValue("@serverDate", item.ServerDeliveryDate);
+                cmd.Parameters.AddWithValue("@sumCheck", item.SumCheck);
+                cmd.Parameters.AddWithValue("@sumHavale", item.SumHavale);
+                cmd.Parameters.AddWithValue("@sumNaqd", item.SumNaqd);
+                cmd.Parameters.AddWithValue("@sum", item.Sum);
 
                 await cmd.ExecuteNonQueryAsync();
             }

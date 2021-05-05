@@ -24,6 +24,11 @@ namespace Persistence.Entities
         public Guid UserGuid { get; set; }
         public long Number { get; set; }
         public long SanadNumber { get; set; }
+        public decimal SumCheckMoshtari { get; set; }
+        public decimal SumCheckShakhsi { get; set; }
+        public decimal SumHavale { get; set; }
+        public decimal SumNaqd { get; set; }
+        public decimal Sum { get; set; }
         public virtual Users User { get; set; }
         public virtual Tafsil Tafsil { get; set; }
         public virtual Moein Moein { get; set; }

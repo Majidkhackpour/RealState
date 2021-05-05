@@ -48,7 +48,7 @@ namespace EntityCache.SqlServerPersistence
 
             return item;
         }
-        public async Task<List<PardakhtBussines>> GetAllAsync(string _connectionString,CancellationToken token)
+        public async Task<List<PardakhtBussines>> GetAllAsync(string _connectionString, CancellationToken token)
         {
             var list = new List<PardakhtBussines>();
             try
@@ -158,6 +158,11 @@ namespace EntityCache.SqlServerPersistence
                 cmd.Parameters.AddWithValue("@sanadNumber", item.SanadNumber);
                 cmd.Parameters.AddWithValue("@serverSt", (short)item.ServerStatus);
                 cmd.Parameters.AddWithValue("@serverDate", item.ServerDeliveryDate);
+                cmd.Parameters.AddWithValue("@sumCheckM", item.SumCheckMoshtari);
+                cmd.Parameters.AddWithValue("@sumCheckSh", item.SumCheckShakhsi);
+                cmd.Parameters.AddWithValue("@sumHavale", item.SumHavale);
+                cmd.Parameters.AddWithValue("@sumNaqd", item.SumNaqd);
+                cmd.Parameters.AddWithValue("@sum", item.Sum);
 
                 await cmd.ExecuteNonQueryAsync();
             }

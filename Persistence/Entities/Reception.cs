@@ -24,6 +24,10 @@ namespace Persistence.Entities
         [ForeignKey("User")]
         public Guid UserGuid { get; set; }
         public long SanadNumber { get; set; }
+        public decimal SumCheck { get; set; }
+        public decimal SumHavale { get; set; }
+        public decimal SumNaqd { get; set; }
+        public decimal Sum { get; set; }
         public virtual Users User { get; set; }
         public virtual Tafsil Tafsil { get; set; }
         public virtual Moein Moein { get; set; }

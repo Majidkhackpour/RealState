@@ -15,6 +15,8 @@ namespace EntityCache.Bussines
 {
     public class PardakhtBussines : IPardakht
     {
+        private decimal _sumCheckM = 0, _sumCheckSh = 0, _sumHavale = 0, _sumNaqd = 0, _sum = 0;
+
         public Guid Guid { get; set; }
         public DateTime Modified { get; set; }
         public ServerStatus ServerStatus { get; set; } = ServerStatus.None;
@@ -38,35 +40,48 @@ namespace EntityCache.Bussines
         {
             get
             {
-                if (CheckMoshtariList == null || CheckMoshtariList.Count <= 0) return 0;
-                return CheckMoshtariList.Sum(q => q.Price);
+                _sumCheckM = CheckMoshtariList?.Sum(q => q.Price) ?? 0;
+                return _sumCheckM;
             }
+            set => _sumCheckM = value;
         }
         public decimal SumCheckShakhsi
         {
             get
             {
-                if (CheckShakhsiList == null || CheckShakhsiList.Count <= 0) return 0;
-                return CheckShakhsiList.Sum(q => q.Price);
+                _sumCheckSh = CheckShakhsiList?.Sum(q => q.Price) ?? 0;
+                return _sumCheckSh;
             }
+            set => _sumCheckSh = value;
         }
         public decimal SumHavale
         {
             get
             {
-                if (HavaleList == null || HavaleList.Count <= 0) return 0;
-                return HavaleList.Sum(q => q.Price);
+                _sumHavale = HavaleList?.Sum(q => q.Price) ?? 0;
+                return _sumHavale;
             }
+            set => _sumHavale = value;
         }
         public decimal SumNaqd
         {
             get
             {
-                if (NaqdList == null || NaqdList.Count <= 0) return 0;
-                return NaqdList.Sum(q => q.Price);
+                _sumNaqd = NaqdList?.Sum(q => q.Price) ?? 0;
+                return _sumNaqd;
             }
+            set => _sumNaqd = value;
         }
-        public decimal Sum => SumCheckMoshtari + SumNaqd + SumHavale + SumCheckShakhsi;
+        public decimal Sum
+        {
+            get
+            {
+                _sum = SumCheckMoshtari + SumNaqd + SumHavale + SumCheckShakhsi;
+                return _sum;
+            }
+            set => _sum = value;
+        }
+
         public int CountNaqd => NaqdList?.Count ?? 0;
         public int CountHavale => HavaleList?.Count ?? 0;
         public int CountCheckMoshtari => CheckMoshtariList?.Count() ?? 0;

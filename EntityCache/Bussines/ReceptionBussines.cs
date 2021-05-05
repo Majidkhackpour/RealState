@@ -15,6 +15,8 @@ namespace EntityCache.Bussines
 {
     public class ReceptionBussines : IReception
     {
+        private decimal _sumCheck = 0, _sumHavale = 0, _sumNaqd = 0, _sum = 0;
+
         public Guid Guid { get; set; }
         public DateTime Modified { get; set; }
         public ServerStatus ServerStatus { get; set; } = ServerStatus.None;
@@ -33,27 +35,38 @@ namespace EntityCache.Bussines
         {
             get
             {
-                if (CheckList == null || CheckList.Count <= 0) return 0;
-                return CheckList.Sum(q => q.Price);
+                _sumCheck = CheckList?.Sum(q => q.Price) ?? 0;
+                return _sumCheck;
             }
+            set => _sumCheck = value;
         }
         public decimal SumHavale
         {
             get
             {
-                if (HavaleList == null || HavaleList.Count <= 0) return 0;
-                return HavaleList.Sum(q => q.Price);
+                _sumHavale = HavaleList?.Sum(q => q.Price) ?? 0;
+                return _sumHavale;
             }
+            set => _sumHavale = value;
         }
         public decimal SumNaqd
         {
             get
             {
-                if (NaqdList == null || NaqdList.Count <= 0) return 0;
-                return NaqdList.Sum(q => q.Price);
+                _sumNaqd = NaqdList?.Sum(q => q.Price) ?? 0;
+                return _sumNaqd;
             }
+            set => _sumNaqd = value;
         }
-        public decimal Sum => SumCheck + SumNaqd + SumHavale;
+        public decimal Sum
+        {
+            get
+            {
+                _sum = SumCheck + SumNaqd + SumHavale;
+                return _sum;
+            }
+            set => _sum = value;
+        }
         public int CountNaqd => NaqdList?.Count ?? 0;
         public int CountHavale => HavaleList?.Count ?? 0;
         public int CountCheck => CheckList?.Count() ?? 0;
@@ -145,8 +158,8 @@ namespace EntityCache.Bussines
         public string NaqdDesc => $"{NumberToString.Num2Str(CountNaqd.ToString())} فقره - جمع: {NumberToString.Num2Str(SumNaqd.ToString())} ریال";
         public string HavaleDesc => $"{NumberToString.Num2Str(CountHavale.ToString())} فقره - جمع: {NumberToString.Num2Str(SumHavale.ToString())} ریال";
         public string CheckDesc => $"{NumberToString.Num2Str(CountCheck.ToString())} فقره - جمع: {NumberToString.Num2Str(SumCheck.ToString())} ریال";
-        public static async Task<List<ReceptionBussines>> GetAllAsync(CancellationToken token) => await UnitOfWork.Reception.GetAllAsync(Cache.ConnectionString,token);
-        public static async Task<List<ReceptionBussines>> GetAllAsync(string search,CancellationToken token)
+        public static async Task<List<ReceptionBussines>> GetAllAsync(CancellationToken token) => await UnitOfWork.Reception.GetAllAsync(Cache.ConnectionString, token);
+        public static async Task<List<ReceptionBussines>> GetAllAsync(string search, CancellationToken token)
         {
             try
             {
