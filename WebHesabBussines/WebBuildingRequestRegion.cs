@@ -37,6 +37,7 @@ namespace WebHesabBussines
             var res = new ReturnedSaveFuncInfo();
             try
             {
+                if (item == null) return res;
                 foreach (var cls in item)
                 {
                     var obj = new WebBuildingRequestRegion()

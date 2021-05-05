@@ -29,6 +29,7 @@ namespace RealState
                 new frmRunAsAdmin().ShowDialog();
                 return;
             }
+            Utilities.NEVER_EAT_POISON_Disable_CertificateValidation();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 

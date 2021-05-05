@@ -52,7 +52,9 @@ namespace WebHesabBussines
                     Name = cls.Name,
                     Modified = cls.Modified,
                     Status = cls.Status,
-                    HardSerial = cls.HardSerial
+                    HardSerial = cls.HardSerial,
+                    ServerStatus = cls.ServerStatus,
+                    ServerDeliveryDate = cls.ServerDeliveryDate
                 };
                 await obj.SaveAsync();
             }
