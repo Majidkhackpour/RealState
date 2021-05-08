@@ -8,7 +8,7 @@ using MetroFramework.Forms;
 using Services;
 using WebHesabBussines;
 
-namespace RealState
+namespace RealState.Advance
 {
     public partial class frmAdvance : MetroForm
     {

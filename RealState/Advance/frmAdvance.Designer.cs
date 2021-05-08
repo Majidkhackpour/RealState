@@ -1,4 +1,4 @@
-﻿namespace RealState
+﻿namespace RealState.Advance
 {
     partial class frmAdvance
     {
