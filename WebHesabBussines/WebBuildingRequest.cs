@@ -61,7 +61,7 @@ namespace WebHesabBussines
                 if (bu == null) return;
                 await TempBussines.UpdateEntityAsync(EnTemp.Requests, bu.Guid, ServerStatus.Delivered, DateTime.Now);
 
-                //await WebBuildingRequestRegion.SaveAsync(RegionList);
+                await WebBuildingRequestRegion.SaveAsync(RegionList);
             }
             catch (Exception ex)
             {

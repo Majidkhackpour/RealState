@@ -53,7 +53,7 @@ namespace WebHesabBussines
                 if (bu == null) return;
                 await TempBussines.UpdateEntityAsync(EnTemp.Peoples, bu.Guid, ServerStatus.Delivered, DateTime.Now);
 
-                //await WebPhoneBook.SaveAsync(TellList);
+                await WebPhoneBook.SaveAsync(TellList);
             }
             catch (Exception ex)
             {

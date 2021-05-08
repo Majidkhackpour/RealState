@@ -269,6 +269,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccGlobalSettings.cs" />
+    <Compile Include="Advance\frmResentToHost.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Advance\frmResentToHost.Designer.cs">
+      <DependentUpon>frmResentToHost.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Advance\frmRunScript.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Advance\frmRunScript.Designer.cs">
+      <DependentUpon>frmRunScript.cs</DependentUpon>
+    </Compile>
     <Compile Include="BackUpLog\frmBackUpLog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -320,6 +332,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Advance\frmResentToHost.resx">
+      <DependentUpon>frmResentToHost.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Advance\frmRunScript.resx">
+      <DependentUpon>frmRunScript.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="BackUpLog\frmBackUpLog.resx">
       <DependentUpon>frmBackUpLog.cs</DependentUpon>
     </EmbeddedResource>

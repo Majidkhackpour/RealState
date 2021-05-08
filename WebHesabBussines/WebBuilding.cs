@@ -102,7 +102,7 @@ namespace WebHesabBussines
 
                 await TempBussines.UpdateEntityAsync(EnTemp.Building, bu.Guid, ServerStatus.Delivered, DateTime.Now);
 
-                //await WebBuildingRelatedOptions.SaveAsync(OptionList);
+                await WebBuildingRelatedOptions.SaveAsync(OptionList);
                 if (string.IsNullOrEmpty(Image)) return;
 
                 var file = await FileInfoBussines.GetAsync(Image);
