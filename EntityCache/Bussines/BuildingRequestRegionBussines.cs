@@ -24,6 +24,8 @@ namespace EntityCache.Bussines
 
         public static async Task<List<BuildingRequestRegionBussines>> GetAllAsync(Guid parentGuid) =>
             await UnitOfWork.BuildingRequestRegion.GetAllAsync(Cache.ConnectionString, parentGuid);
+        public static async Task<BuildingRequestRegionBussines> GetAsync(Guid guid) =>
+            await UnitOfWork.BuildingRequestRegion.GetAsync(Cache.ConnectionString, guid);
         public static async Task<ReturnedSaveFuncInfo> SaveRangeAsync(List<BuildingRequestRegionBussines> list, SqlTransaction tr = null)
         {
             var res = new ReturnedSaveFuncInfo();

@@ -6684,3 +6684,47 @@ BEGIN
 		where Guid = @entityGuid
 	end
 END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_BuildingRelatedOption_Get]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_BuildingRelatedOption_Get]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_BuildingRelatedOption_Get
+	@guid uniqueidentifier
+AS
+BEGIN
+	select * from BuildingRelatedOptions
+	where Guid=@guid
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_BuildingRequestRegion_Get]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_BuildingRequestRegion_Get]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_BuildingRequestRegion_Get
+	@guid uniqueidentifier
+AS
+BEGIN
+	select * from BuildingRequestRegions
+	where Guid=@guid
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_SanadDetail_Get]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_SanadDetail_Get]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_SanadDetail_Get
+	@guid uniqueidentifier
+AS
+BEGIN
+	Select    SanadDetails.*
+			, Moeins.Code As MoeinCode
+			, Moeins.Name As MoeinName
+			, Tafsils.Code As TafsilCode
+			, Tafsils.Name As TafsilName
+	from SanadDetails inner join Moeins on
+		 SanadDetails.MoeinGuid = Moeins.Guid
+		 inner join Tafsils on
+		 SanadDetails.TafsilGuid = Tafsils.Guid
+	where SanadDetails.Guid=@guid
+END

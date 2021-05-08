@@ -27,6 +27,8 @@ namespace EntityCache.Bussines
             await UnitOfWork.BuildingRelatedOptions.GetAllAsync(Cache.ConnectionString,parentGuid);
         public static List<BuildingRelatedOptionsBussines> GetAll(Guid parentGuid) =>
             AsyncContext.Run(() => GetAllAsync(parentGuid));
+        public static async Task<BuildingRelatedOptionsBussines> GetAsync(Guid guid) =>
+            await UnitOfWork.BuildingRelatedOptions.GetAsync(Cache.ConnectionString, guid);
         public static async Task<ReturnedSaveFuncInfo> SaveRangeAsync(List<BuildingRelatedOptionsBussines> list, SqlTransaction tr = null)
         {
             var res = new ReturnedSaveFuncInfo();

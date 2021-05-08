@@ -65,6 +65,8 @@ namespace EntityCache.Bussines
             }
             return res;
         }
+        public static async Task<SanadDetailBussines> GetAsync(Guid guid) =>
+            await UnitOfWork.SanadDetail.GetAsync(Cache.ConnectionString, guid);
         public static async Task<ReturnedSaveFuncInfo> SaveRangeAsync(List<SanadDetailBussines> list, SqlTransaction tr = null)
         {
             var res = new ReturnedSaveFuncInfo();

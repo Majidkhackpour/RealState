@@ -95,6 +95,28 @@ namespace EntityCache.SqlServerPersistence
             }
             return res;
         }
+        public async Task<BuildingRequestRegionBussines> GetAsync(string _connectionString, Guid guid)
+        {
+            var list = new BuildingRequestRegionBussines();
+            try
+            {
+                using (var cn = new SqlConnection(_connectionString))
+                {
+                    var cmd = new SqlCommand("sp_BuildingRequestRegion_Get", cn) { CommandType = CommandType.StoredProcedure };
+                    cmd.Parameters.AddWithValue("@guid", guid);
+                    await cn.OpenAsync();
+                    var dr = await cmd.ExecuteReaderAsync();
+                    if (dr.Read()) list = LoadData(dr);
+                    cn.Close();
+                }
+            }
+            catch (Exception exception)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(exception);
+            }
+
+            return list;
+        }
         private BuildingRequestRegionBussines LoadData(SqlDataReader dr)
         {
             var res = new BuildingRequestRegionBussines();

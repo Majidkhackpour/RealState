@@ -13,6 +13,7 @@ namespace EntityCache.Core
         Task<List<SanadDetailBussines>> GetAllAsync(string _connectionString, Guid masterGuid);
         Task<ReturnedSaveFuncInfo> RemoveRangeAsync(Guid masterGuid, SqlTransaction tr);
         Task<List<GardeshBussines>> GetAllGardeshAsync(string _connectionString, Guid tafsilGuid);
+        Task<SanadDetailBussines> GetAsync(string _connectionString, Guid guid);
         Task<ReturnedSaveFuncInfo> SaveRangeAsync(IEnumerable<SanadDetailBussines> items, SqlTransaction tr);
     }
 }

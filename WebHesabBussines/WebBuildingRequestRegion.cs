@@ -25,7 +25,7 @@ namespace WebHesabBussines
         {
             try
             {
-                var res= await Extentions.PostToApi<BuildingRequestRegionBussines, WebBuildingRequestRegion>(this, Url);
+                var res = await Extentions.PostToApi<BuildingRequestRegionBussines, WebBuildingRequestRegion>(this, Url);
                 if (res.ResponseStatus != ResponseStatus.Success)
                 {
                     var temp = new TempBussines()
@@ -45,6 +45,31 @@ namespace WebHesabBussines
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
+        public static async Task<ReturnedSaveFuncInfo> SaveAsync(BuildingRequestRegionBussines cls)
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                var obj = new WebBuildingRequestRegion()
+                {
+                    Guid = cls.Guid,
+                    Modified = cls.Modified,
+                    HardSerial = cls.HardSerial,
+                    RegionGuid = cls.RegionGuid,
+                    RequestGuid = cls.RequestGuid,
+                    ServerStatus = cls.ServerStatus,
+                    ServerDeliveryDate = cls.ServerDeliveryDate
+                };
+                await obj.SaveAsync();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+
+            return res;
+        }
         public static async Task<ReturnedSaveFuncInfo> SaveAsync(List<BuildingRequestRegionBussines> item)
         {
             var res = new ReturnedSaveFuncInfo();
@@ -52,19 +77,7 @@ namespace WebHesabBussines
             {
                 if (item == null) return res;
                 foreach (var cls in item)
-                {
-                    var obj = new WebBuildingRequestRegion()
-                    {
-                        Guid = cls.Guid,
-                        Modified = cls.Modified,
-                        HardSerial = cls.HardSerial,
-                        RegionGuid = cls.RegionGuid,
-                        RequestGuid = cls.RequestGuid,
-                        ServerStatus = cls.ServerStatus,
-                        ServerDeliveryDate = cls.ServerDeliveryDate
-                    };
-                    await obj.SaveAsync();
-                }
+                    res.AddReturnedValue(await SaveAsync(cls));
             }
             catch (Exception ex)
             {

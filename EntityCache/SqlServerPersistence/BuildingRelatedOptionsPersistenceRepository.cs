@@ -94,6 +94,28 @@ namespace EntityCache.SqlServerPersistence
             }
             return res;
         }
+        public async Task<BuildingRelatedOptionsBussines> GetAsync(string _connectionString, Guid guid)
+        {
+            var list = new BuildingRelatedOptionsBussines();
+            try
+            {
+                using (var cn = new SqlConnection(_connectionString))
+                {
+                    var cmd = new SqlCommand("sp_BuildingRelatedOption_Get", cn) { CommandType = CommandType.StoredProcedure };
+                    cmd.Parameters.AddWithValue("@guid", guid);
+                    await cn.OpenAsync();
+                    var dr = await cmd.ExecuteReaderAsync();
+                    if (dr.Read()) list = LoadData(dr);
+                    cn.Close();
+                }
+            }
+            catch (Exception exception)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(exception);
+            }
+
+            return list;
+        }
         private BuildingRelatedOptionsBussines LoadData(SqlDataReader dr)
         {
             var res = new BuildingRelatedOptionsBussines();

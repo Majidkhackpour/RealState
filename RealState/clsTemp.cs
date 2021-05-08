@@ -138,14 +138,14 @@ namespace RealState
                                     await WebPardakht.SaveAsync(pa);
                                 break;
                             case EnTemp.BuildingRelatedOptions:
-                                //var re = await BuildingRelatedOptionsBussines.GetAsync(item.ObjectGuid);
-                                //if (re != null)
-                                //    await WebBuildingRelatedOptions.SaveAsync(re);
+                                var re = await BuildingRelatedOptionsBussines.GetAsync(item.ObjectGuid);
+                                if (re != null)
+                                    await WebBuildingRelatedOptions.SaveAsync(re);
                                 break;
                             case EnTemp.RequestRegions:
-                                //var rr = await BuildingRequestRegionBussines.GetAsync(item.ObjectGuid);
-                                //if (rr != null)
-                                //    await WebBuildingRequestRegion.SaveAsync(rr);
+                                var rr = await BuildingRequestRegionBussines.GetAsync(item.ObjectGuid);
+                                if (rr != null)
+                                    await WebBuildingRequestRegion.SaveAsync(rr);
                                 break;
                             case EnTemp.PhoneBook:
                                 var ph = await PhoneBookBussines.GetAsync(item.ObjectGuid);
@@ -183,9 +183,9 @@ namespace RealState
                                     await WebSanad.SaveAsync(sa);
                                 break;
                             case EnTemp.SanadDetail:
-                                //var saD = await SanadDetailBussines.GetAsync(item.ObjectGuid);
-                                //if (saD != null)
-                                //    await WebSanadDetail.SaveAsync(saD);
+                                var saD = await SanadDetailBussines.GetAsync(item.ObjectGuid);
+                                if (saD != null)
+                                    await WebSanadDetail.SaveAsync(saD);
                                 break;
                         }
 

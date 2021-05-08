@@ -46,25 +46,38 @@ namespace WebHesabBussines
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
+        public static async Task<ReturnedSaveFuncInfo> SaveAsync(BuildingRelatedOptionsBussines cls)
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                var obj = new WebBuildingRelatedOptions()
+                {
+                    Guid = cls.Guid,
+                    HardSerial = cls.HardSerial,
+                    BuildingOptionGuid = cls.BuildingOptionGuid,
+                    BuildinGuid = cls.BuildinGuid,
+                    Modified = cls.Modified,
+                    ServerStatus = cls.ServerStatus,
+                    ServerDeliveryDate = cls.ServerDeliveryDate
+                };
+                await obj.SaveAsync();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+
+            return res;
+        }
         public static async Task<ReturnedSaveFuncInfo> SaveAsync(List<BuildingRelatedOptionsBussines> item)
         {
             var res = new ReturnedSaveFuncInfo();
             try
             {
                 foreach (var cls in item)
-                {
-                    var obj = new WebBuildingRelatedOptions()
-                    {
-                        Guid = cls.Guid,
-                        HardSerial = cls.HardSerial,
-                        BuildingOptionGuid = cls.BuildingOptionGuid,
-                        BuildinGuid = cls.BuildinGuid,
-                        Modified = cls.Modified,
-                        ServerStatus = cls.ServerStatus,
-                        ServerDeliveryDate = cls.ServerDeliveryDate
-                    };
-                    await obj.SaveAsync();
-                }
+                    res.AddReturnedValue(await SaveAsync(cls));
             }
             catch (Exception ex)
             {
