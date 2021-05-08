@@ -9,7 +9,7 @@ namespace WebHesabBussines
 {
     public class WebMoein : IMoein
     {
-        private static string Url = Utilities.WebApi + "/api//SaveAsync";
+        private static string Url = Utilities.WebApi + "/api/Moein/SaveAsync";
 
 
         public Guid Guid { get; set; }

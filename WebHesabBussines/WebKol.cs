@@ -9,7 +9,7 @@ namespace WebHesabBussines
 {
     public class WebKol : IKol
     {
-        private static string Url = Utilities.WebApi + "/api//SaveAsync";
+        private static string Url = Utilities.WebApi + "/api/Kol/SaveAsync";
 
 
         public Guid Guid { get; set; }

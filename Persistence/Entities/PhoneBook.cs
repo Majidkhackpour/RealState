@@ -19,8 +19,8 @@ namespace Persistence.Entities
         [MaxLength(50)]
         public string Tell { get; set; }
         public EnPhoneBookGroup Group { get; set; }
-        [ForeignKey("People")]
+        [ForeignKey("Tafsil")]
         public Guid ParentGuid { get; set; }
-        public virtual Peoples People { get; set; }
+        public virtual Tafsil Tafsil { get; set; }
     }
 }

@@ -9,7 +9,7 @@ namespace WebHesabBussines
 {
     public class WebBank : IBank
     {
-        private static string Url = Utilities.WebApi + "/api//SaveAsync";
+        private static string Url = Utilities.WebApi + "/api/Bank/SaveAsync";
 
 
         public Guid Guid { get; set; }

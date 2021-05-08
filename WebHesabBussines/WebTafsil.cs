@@ -9,7 +9,7 @@ namespace WebHesabBussines
 {
     public class WebTafsil : ITafsil
     {
-        private static string Url = Utilities.WebApi + "/api//SaveAsync";
+        private static string Url = Utilities.WebApi + "/api/Tafsil/SaveAsync";
 
 
         public Guid Guid { get; set; }

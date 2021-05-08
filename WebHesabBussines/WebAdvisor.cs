@@ -9,7 +9,7 @@ namespace WebHesabBussines
 {
     public class WebAdvisor : IAdvisor
     {
-        private static string Url = Utilities.WebApi + "/api//SaveAsync";
+        private static string Url = Utilities.WebApi + "/api/Asvisor/SaveAsync";
 
 
         public Guid Guid { get; set; }
@@ -54,7 +54,7 @@ namespace WebHesabBussines
             var res = new ReturnedSaveFuncInfo();
             try
             {
-                var obj = new WebBuildingAccountType()
+                var obj = new WebAdvisor()
                 {
                     Guid = cls.Guid,
                     Name = cls.Name,
@@ -62,7 +62,8 @@ namespace WebHesabBussines
                     Status = cls.Status,
                     HardSerial = cls.HardSerial,
                     ServerStatus = cls.ServerStatus,
-                    ServerDeliveryDate = cls.ServerDeliveryDate
+                    ServerDeliveryDate = cls.ServerDeliveryDate,
+                    Address = cls.Address
                 };
                 await obj.SaveAsync();
             }

@@ -9,7 +9,7 @@ namespace WebHesabBussines
 {
     public class WebSanad : ISanad
     {
-        private static string Url = Utilities.WebApi + "/api//SaveAsync";
+        private static string Url = Utilities.WebApi + "/api/Sanad/SaveAsync";
 
 
         public Guid Guid { get; set; }

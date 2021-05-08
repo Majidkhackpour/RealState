@@ -38,6 +38,5 @@ namespace Persistence.Entities
         public Guid GroupGuid { get; set; }
         public virtual PeopleGroup Group { get; set; }
         public virtual ICollection<Building> Building { get; set; }
-        public virtual ICollection<PhoneBook> PhoneBook { get; set; }
     }
 }
