@@ -118,9 +118,9 @@ namespace RealState
                                     await WebBuilding.SaveAsync(bu, Application.StartupPath);
                                 break;
                             case EnTemp.Contract:
-                                //var con = await ContractBussines.GetAsync(item.ObjectGuid);
-                                //if (con != null)
-                                //    await WebContract.SaveAsync(con);
+                                var con = await ContractBussines.GetAsync(item.ObjectGuid);
+                                if (con != null)
+                                    await WebContract.SaveAsync(con);
                                 break;
                             case EnTemp.Requests:
                                 var req = await BuildingRequestBussines.GetAsync(item.ObjectGuid);
@@ -128,14 +128,64 @@ namespace RealState
                                     await WebBuildingRequest.SaveAsync(req);
                                 break;
                             case EnTemp.Reception:
-                                //var rec = await ReceptionBussines.GetAsync(item.ObjectGuid);
-                                //if (rec != null)
-                                //    await WebReception.SaveAsync(rec);
+                                var rec = await ReceptionBussines.GetAsync(item.ObjectGuid);
+                                if (rec != null)
+                                    await WebReception.SaveAsync(rec);
                                 break;
                             case EnTemp.Pardakht:
-                                //var pa = await PardakhtBussines.GetAsync(item.ObjectGuid);
-                                //if (pa != null)
-                                //    await WebPardakht.SaveAsync(pa);
+                                var pa = await PardakhtBussines.GetAsync(item.ObjectGuid);
+                                if (pa != null)
+                                    await WebPardakht.SaveAsync(pa);
+                                break;
+                            case EnTemp.BuildingRelatedOptions:
+                                //var re = await BuildingRelatedOptionsBussines.GetAsync(item.ObjectGuid);
+                                //if (re != null)
+                                //    await WebBuildingRelatedOptions.SaveAsync(re);
+                                break;
+                            case EnTemp.RequestRegions:
+                                //var rr = await BuildingRequestRegionBussines.GetAsync(item.ObjectGuid);
+                                //if (rr != null)
+                                //    await WebBuildingRequestRegion.SaveAsync(rr);
+                                break;
+                            case EnTemp.PhoneBook:
+                                var ph = await PhoneBookBussines.GetAsync(item.ObjectGuid);
+                                if (ph != null)
+                                    await WebPhoneBook.SaveAsync(ph);
+                                break;
+                            case EnTemp.Advisor:
+                                var ad = await AdvisorBussines.GetAsync(item.ObjectGuid);
+                                if (ad != null)
+                                    await WebAdvisor.SaveAsync(ad);
+                                break;
+                            case EnTemp.Bank:
+                                var ba = await BankBussines.GetAsync(item.ObjectGuid);
+                                if (ba != null)
+                                    await WebBank.SaveAsync(ba);
+                                break;
+                            case EnTemp.Kol:
+                                var kol = await KolBussines.GetAsync(item.ObjectGuid);
+                                if (kol != null)
+                                    await WebKol.SaveAsync(kol);
+                                break;
+                            case EnTemp.Moein:
+                                var moein = await MoeinBussines.GetAsync(item.ObjectGuid);
+                                if (moein != null)
+                                    await WebMoein.SaveAsync(moein);
+                                break;
+                            case EnTemp.Tafsil:
+                                var tafsil = await TafsilBussines.GetAsync(item.ObjectGuid);
+                                if (tafsil != null)
+                                    await WebTafsil.SaveAsync(tafsil);
+                                break;
+                            case EnTemp.Sanad:
+                                var sa = await SanadBussines.GetAsync(item.ObjectGuid);
+                                if (sa != null)
+                                    await WebSanad.SaveAsync(sa);
+                                break;
+                            case EnTemp.SanadDetail:
+                                //var saD = await SanadDetailBussines.GetAsync(item.ObjectGuid);
+                                //if (saD != null)
+                                //    await WebSanadDetail.SaveAsync(saD);
                                 break;
                         }
 

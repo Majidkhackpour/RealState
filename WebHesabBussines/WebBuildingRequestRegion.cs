@@ -25,7 +25,20 @@ namespace WebHesabBussines
         {
             try
             {
-                await Extentions.PostToApi<BuildingRequestRegionBussines, WebBuildingRequestRegion>(this, Url);
+                var res= await Extentions.PostToApi<BuildingRequestRegionBussines, WebBuildingRequestRegion>(this, Url);
+                if (res.ResponseStatus != ResponseStatus.Success)
+                {
+                    var temp = new TempBussines()
+                    {
+                        ObjectGuid = Guid,
+                        Type = EnTemp.RequestRegions
+                    };
+                    await temp.SaveAsync();
+                    return;
+                }
+                var bu = res.Data;
+                if (bu == null) return;
+                await TempBussines.UpdateEntityAsync(EnTemp.RequestRegions, bu.Guid, ServerStatus.Delivered, DateTime.Now);
             }
             catch (Exception ex)
             {
@@ -46,7 +59,9 @@ namespace WebHesabBussines
                         Modified = cls.Modified,
                         HardSerial = cls.HardSerial,
                         RegionGuid = cls.RegionGuid,
-                        RequestGuid = cls.RequestGuid
+                        RequestGuid = cls.RequestGuid,
+                        ServerStatus = cls.ServerStatus,
+                        ServerDeliveryDate = cls.ServerDeliveryDate
                     };
                     await obj.SaveAsync();
                 }

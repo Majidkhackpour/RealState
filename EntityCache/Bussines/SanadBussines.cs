@@ -9,6 +9,7 @@ using Nito.AsyncEx;
 using Persistence;
 using Services;
 using Services.Interfaces.Building;
+using WebHesabBussines;
 
 namespace EntityCache.Bussines
 {
@@ -44,6 +45,7 @@ namespace EntityCache.Bussines
         }
         public EnSanadType SanadType { get; set; }
         public string SanadTypeName => SanadType.GetDisplay();
+        public string HardSerial => Cache.HardSerial;
         public List<SanadDetailBussines> Details { get; set; }
 
 
@@ -85,8 +87,8 @@ namespace EntityCache.Bussines
                 res.AddReturnedValue(await UpdateAccounts(Details, false, tr));
                 if (res.HasError) return res;
 
-                //if (Cache.IsSendToServer)
-                //    _ = Task.Run(() => WebRental.SaveAsync(list));
+                if (Cache.IsSendToServer)
+                    _ = Task.Run(() => WebSanad.SaveAsync(this));
             }
             catch (Exception ex)
             {

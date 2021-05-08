@@ -10,6 +10,7 @@ using Persistence;
 using Services;
 using Services.DefaultCoding;
 using Services.Interfaces.Building;
+using WebHesabBussines;
 
 namespace EntityCache.Bussines
 {
@@ -31,6 +32,7 @@ namespace EntityCache.Bussines
         public Guid UserGuid { get; set; }
         public string UserName { get; set; }
         public long SanadNumber { get; set; }
+        public string HardSerial => Cache.HardSerial;
         public decimal SumCheck
         {
             get
@@ -241,8 +243,8 @@ namespace EntityCache.Bussines
                 res.AddReturnedValue(await UserLogBussines.SaveAsync(action, EnLogPart.Reception, tr));
                 if (res.HasError) return res;
 
-                //if (Cache.IsSendToServer)
-                //    _ = Task.Run(() => WebRental.SaveAsync(list));
+                if (Cache.IsSendToServer)
+                    _ = Task.Run(() => WebReception.SaveAsync(this));
             }
             catch (Exception ex)
             {

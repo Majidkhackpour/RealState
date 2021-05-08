@@ -33,6 +33,28 @@ namespace EntityCache.SqlServerPersistence
 
             return res;
         }
+        public async Task UpdateEntityAsync(EnTemp type, Guid entityGuid, ServerStatus st, DateTime deliveryDate, string connectionString)
+        {
+            try
+            {
+                using (var cn = new SqlConnection(connectionString))
+                {
+                    var cmd = new SqlCommand("sp_Temp_UpdateEntities", cn) { CommandType = CommandType.StoredProcedure };
+                    cmd.Parameters.AddWithValue("@type", (short)type);
+                    cmd.Parameters.AddWithValue("@entityGuid", entityGuid);
+                    cmd.Parameters.AddWithValue("@st", (short)st);
+                    cmd.Parameters.AddWithValue("@deliveryDate", deliveryDate);
+
+                    await cn.OpenAsync();
+                    await cmd.ExecuteNonQueryAsync();
+                    cn.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
         public async Task<List<TempBussines>> GetAllAsync(string connectionString)
         {
             var list = new List<TempBussines>();

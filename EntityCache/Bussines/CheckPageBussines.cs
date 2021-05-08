@@ -48,10 +48,6 @@ namespace EntityCache.Bussines
                 }
 
                 res.AddReturnedValue(await UnitOfWork.CheckPage.RemoveAllAsync(checkGuid, tr));
-                if (res.HasError) return res;
-
-                //if (Cache.IsSendToServer)
-                //    _ = Task.Run(() => WebUser.SaveAsync(this));
             }
             catch (Exception ex)
             {
@@ -83,10 +79,6 @@ namespace EntityCache.Bussines
                 }
 
                 res.AddReturnedValue(await UnitOfWork.CheckPage.SaveRangeAsync(lst, tr));
-                if (res.HasError) return res;
-
-                //if (Cache.IsSendToServer)
-                //    _ = Task.Run(() => WebUser.SaveAsync(this));
             }
             catch (Exception ex)
             {
@@ -118,10 +110,6 @@ namespace EntityCache.Bussines
                 }
 
                 res.AddReturnedValue(await UnitOfWork.CheckPage.SaveAsync(this, tr));
-                if (res.HasError) return res;
-
-                //if (Cache.IsSendToServer)
-                //    _ = Task.Run(() => WebUser.SaveAsync(this));
             }
             catch (Exception ex)
             {

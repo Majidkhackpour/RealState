@@ -9,6 +9,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Persistence;
+using WebHesabBussines;
 
 namespace EntityCache.Bussines
 {
@@ -29,6 +30,7 @@ namespace EntityCache.Bussines
         public bool isSystem { get; set; }
         public decimal Account_ => Math.Abs(Account);
         public string Diagnosis => Account.AccountDiagnosis();
+        public string HardSerial => Cache.HardSerial;
 
 
         public static async Task<List<TafsilBussines>> GetAllAsync(CancellationToken token) => await UnitOfWork.Tafsil.GetAllAsync(Cache.ConnectionString,token);
@@ -47,6 +49,10 @@ namespace EntityCache.Bussines
                 }
 
                 res.AddReturnedValue(await UnitOfWork.Tafsil.SaveRangeAsync(list, tr));
+                if (res.HasError) return res;
+
+                if (Cache.IsSendToServer)
+                    _ = Task.Run(() => WebTafsil.SaveAsync(list));
             }
             catch (Exception ex)
             {
@@ -80,6 +86,10 @@ namespace EntityCache.Bussines
                 res.AddReturnedValue(await CheckValidationAsync());
                 if (res.HasError) return res;
                 res.AddReturnedValue(await UnitOfWork.Tafsil.SaveAsync(this, tr));
+                if (res.HasError) return res;
+
+                if (Cache.IsSendToServer)
+                    _ = Task.Run(() => WebTafsil.SaveAsync(this));
             }
             catch (Exception ex)
             {
@@ -201,6 +211,10 @@ namespace EntityCache.Bussines
                 }
 
                 res.AddReturnedValue(await UnitOfWork.Tafsil.ChangeStatusAsync(this, status, tr));
+                if (res.HasError) return res;
+
+                if (Cache.IsSendToServer)
+                    _ = Task.Run(() => WebTafsil.SaveAsync(this));
             }
             catch (Exception ex)
             {

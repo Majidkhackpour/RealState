@@ -41,7 +41,11 @@ namespace WebHesabBussines
                         Type = EnTemp.Users
                     };
                     await temp.SaveAsync();
+                    return;
                 }
+                var bu = res.Data;
+                if (bu == null) return;
+                await TempBussines.UpdateEntityAsync(EnTemp.Users, bu.Guid, ServerStatus.Delivered, DateTime.Now);
             }
             catch (Exception ex)
             {
@@ -66,7 +70,9 @@ namespace WebHesabBussines
                     AnswerQuestion = cls.AnswerQuestion,
                     SecurityQuestion = cls.SecurityQuestion,
                     Password = cls.Password,
-                    HardSerial = cls.HardSerial
+                    HardSerial = cls.HardSerial,
+                    ServerStatus = cls.ServerStatus,
+                    ServerDeliveryDate = cls.ServerDeliveryDate
                 };
                 await obj.SaveAsync();
             }
@@ -84,24 +90,7 @@ namespace WebHesabBussines
             try
             {
                 foreach (var item in cls)
-                {
-                    var obj = new WebUser()
-                    {
-                        Guid = item.Guid,
-                        Name = item.Name,
-                        Modified = item.Modified,
-                        Status = item.Status,
-                        Access = item.Access,
-                        Email = item.Email,
-                        Mobile = item.Mobile,
-                        UserName = item.UserName,
-                        AnswerQuestion = item.AnswerQuestion,
-                        SecurityQuestion = item.SecurityQuestion,
-                        Password = item.Password,
-                        HardSerial = item.HardSerial
-                    };
-                    await obj.SaveAsync();
-                }
+                    res.AddReturnedValue(await SaveAsync(item));
             }
             catch (Exception ex)
             {

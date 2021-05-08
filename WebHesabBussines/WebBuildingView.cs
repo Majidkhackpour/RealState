@@ -34,7 +34,11 @@ namespace WebHesabBussines
                         Type = EnTemp.BuildingView
                     };
                     await temp.SaveAsync();
+                    return;
                 }
+                var bu = res.Data;
+                if (bu == null) return;
+                await TempBussines.UpdateEntityAsync(EnTemp.BuildingView, bu.Guid, ServerStatus.Delivered, DateTime.Now);
             }
             catch (Exception ex)
             {
@@ -72,17 +76,7 @@ namespace WebHesabBussines
             try
             {
                 foreach (var item in cls)
-                {
-                    var obj = new WebBuildingView()
-                    {
-                        Guid = item.Guid,
-                        Name = item.Name,
-                        Modified = item.Modified,
-                        Status = item.Status,
-                        HardSerial = item.HardSerial
-                    };
-                    await obj.SaveAsync();
-                }
+                    res.AddReturnedValue(await SaveAsync(item));
             }
             catch (Exception ex)
             {

@@ -7,6 +7,7 @@ using Nito.AsyncEx;
 using Persistence;
 using Services;
 using Servicess.Interfaces.Building;
+using WebHesabBussines;
 
 namespace EntityCache.Bussines
 {
@@ -38,6 +39,11 @@ namespace EntityCache.Bussines
                 }
 
                 res.AddReturnedValue(await UnitOfWork.BuildingRequestRegion.SaveRangeAsync(list, tr));
+
+                if (res.HasError) return res;
+
+                if (Cache.IsSendToServer)
+                    _ = Task.Run(() => WebBuildingRequestRegion.SaveAsync(list));
             }
             catch (Exception ex)
             {

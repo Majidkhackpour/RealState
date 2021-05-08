@@ -9,6 +9,7 @@ using Nito.AsyncEx;
 using Persistence;
 using Services;
 using Services.Interfaces.Building;
+using WebHesabBussines;
 
 namespace EntityCache.Bussines
 {
@@ -27,6 +28,7 @@ namespace EntityCache.Bussines
         public string Mobile2 { get; set; }
         public decimal Account_ => Math.Abs(Account);
         public string Diagnosis => Account.AccountDiagnosis();
+        public string HardSerial => Cache.HardSerial;
 
 
         public static async Task<List<AdvisorBussines>> GetAllAsync(CancellationToken token) => await UnitOfWork.Advisor.GetAllAsync(Cache.ConnectionString,token);
@@ -51,6 +53,10 @@ namespace EntityCache.Bussines
                 res.AddReturnedValue(await SaveMobileAsync(tr));
                 if (res.HasError) return res;
                 res.AddReturnedValue(await UnitOfWork.Advisor.SaveAsync(this, tr));
+                if (res.HasError) return res;
+
+                if (Cache.IsSendToServer)
+                    _ = Task.Run(() => WebAdvisor.SaveAsync(this));
             }
             catch (Exception ex)
             {
@@ -172,6 +178,10 @@ namespace EntityCache.Bussines
                 res.AddReturnedValue(await PhoneBookBussines.ChangeStatusAsync(Guid, status, tr));
                 if (res.HasError) return res;
                 res.AddReturnedValue(await UnitOfWork.Advisor.ChangeStatusAsync(this, status, tr));
+                if (res.HasError) return res;
+
+                if (Cache.IsSendToServer)
+                    _ = Task.Run(() => WebAdvisor.SaveAsync(this));
             }
             catch (Exception ex)
             {

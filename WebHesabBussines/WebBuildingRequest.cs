@@ -57,8 +57,11 @@ namespace WebHesabBussines
                     await temp.SaveAsync();
                     return;
                 }
+                var bu = res.Data;
+                if (bu == null) return;
+                await TempBussines.UpdateEntityAsync(EnTemp.Requests, bu.Guid, ServerStatus.Delivered, DateTime.Now);
 
-                await WebBuildingRequestRegion.SaveAsync(RegionList);
+                //await WebBuildingRequestRegion.SaveAsync(RegionList);
             }
             catch (Exception ex)
             {
@@ -98,7 +101,9 @@ namespace WebHesabBussines
                     HasVam = cls.HasVam,
                     HasOwner = cls.HasOwner,
                     HardSerial = cls.HardSerial,
-                    RegionList = cls.RegionList
+                    RegionList = cls.RegionList,
+                    ServerStatus = cls.ServerStatus,
+                    ServerDeliveryDate = cls.ServerDeliveryDate
                 };
                 await obj.SaveAsync();
             }
@@ -116,39 +121,7 @@ namespace WebHesabBussines
             try
             {
                 foreach (var cls in item)
-                {
-                    var obj = new WebBuildingRequest()
-                    {
-                        Guid = cls.Guid,
-                        Modified = cls.Modified,
-                        Status = cls.Status,
-                        EjarePrice1 = cls.EjarePrice1,
-                        RahnPrice1 = cls.RahnPrice1,
-                        RoomCount = cls.RoomCount,
-                        BuildingAccountTypeGuid = cls.BuildingAccountTypeGuid,
-                        UserGuid = cls.UserGuid,
-                        BuildingTypeGuid = cls.BuildingTypeGuid,
-                        EjarePrice2 = cls.EjarePrice2,
-                        RentalAutorityGuid = cls.RentalAutorityGuid,
-                        ShortDesc = cls.ShortDesc,
-                        CityGuid = cls.CityGuid,
-                        CreateDate = cls.CreateDate,
-                        RahnPrice2 = cls.RahnPrice2,
-                        SellPrice2 = cls.SellPrice2,
-                        BuildingConditionGuid = cls.BuildingConditionGuid,
-                        AskerGuid = cls.AskerGuid,
-                        SellPrice1 = cls.SellPrice1,
-                        Masahat1 = cls.Masahat1,
-                        Masahat2 = cls.Masahat2,
-                        PeopleCount = cls.PeopleCount,
-                        ShortDate = cls.ShortDate,
-                        HasVam = cls.HasVam,
-                        HasOwner = cls.HasOwner,
-                        HardSerial = cls.HardSerial,
-                        RegionList = cls.RegionList
-                    };
-                    await obj.SaveAsync();
-                }
+                    res.AddReturnedValue(await SaveAsync(cls));
             }
             catch (Exception ex)
             {

@@ -6461,3 +6461,226 @@ BEGIN
            ,@size)
 	 end
 END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Temp_UpdateEntities]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Temp_UpdateEntities]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_Temp_UpdateEntities
+	@type smallint,
+	@entityGuid uniqueidentifier,
+	@st smallint,
+	@deliveryDate datetime
+AS
+BEGIN
+	if @type = 1
+	begin
+		update States
+		set   ServerDeliveryDate = @deliveryDate
+			, ServerStatus = @st
+		where Guid = @entityGuid
+	end
+	else if @type = 2
+	begin
+		update Cities
+		set   ServerDeliveryDate = @deliveryDate
+			, ServerStatus = @st
+		where Guid = @entityGuid
+	end
+	else if @type = 3
+	begin
+		update Regions
+		set   ServerDeliveryDate = @deliveryDate
+			, ServerStatus = @st
+		where Guid = @entityGuid
+	end
+	else if @type = 4
+	begin
+		update Users
+		set   ServerDeliveryDate = @deliveryDate
+			, ServerStatus = @st
+		where Guid = @entityGuid
+	end
+	else if @type = 5
+	begin
+		update PeopleGroups
+		set   ServerDeliveryDate = @deliveryDate
+			, ServerStatus = @st
+		where Guid = @entityGuid
+	end
+	else if @type = 6
+	begin
+		update Peoples
+		set   ServerDeliveryDate = @deliveryDate
+			, ServerStatus = @st
+		where Guid = @entityGuid
+	end
+	else if @type = 8
+	begin
+		update BuildingAccountTypes
+		set   ServerDeliveryDate = @deliveryDate
+			, ServerStatus = @st
+		where Guid = @entityGuid
+	end
+	else if @type = 9
+	begin
+		update BuildingConditions
+		set   ServerDeliveryDate = @deliveryDate
+			, ServerStatus = @st
+		where Guid = @entityGuid
+	end
+	else if @type = 10
+	begin
+		update BuildingTypes
+		set   ServerDeliveryDate = @deliveryDate
+			, ServerStatus = @st
+		where Guid = @entityGuid
+	end
+	else if @type = 11
+	begin
+		update BuildingViews
+		set   ServerDeliveryDate = @deliveryDate
+			, ServerStatus = @st
+		where Guid = @entityGuid
+	end
+	else if @type = 12
+	begin
+		update DocumentTypes
+		set   ServerDeliveryDate = @deliveryDate
+			, ServerStatus = @st
+		where Guid = @entityGuid
+	end
+	else if @type = 13
+	begin
+		update FloorCovers
+		set   ServerDeliveryDate = @deliveryDate
+			, ServerStatus = @st
+		where Guid = @entityGuid
+	end
+	else if @type = 14
+	begin
+		update KitchenServices
+		set   ServerDeliveryDate = @deliveryDate
+			, ServerStatus = @st
+		where Guid = @entityGuid
+	end
+	else if @type = 15
+	begin
+		update RentalAuthorities
+		set   ServerDeliveryDate = @deliveryDate
+			, ServerStatus = @st
+		where Guid = @entityGuid
+	end
+	else if @type = 16
+	begin
+		update Buildings
+		set   ServerDeliveryDate = @deliveryDate
+			, ServerStatus = @st
+		where Guid = @entityGuid
+	end
+	else if @type = 17
+	begin
+		update BuildingRequests
+		set   ServerDeliveryDate = @deliveryDate
+			, ServerStatus = @st
+		where Guid = @entityGuid
+	end
+	else if @type = 18
+	begin
+		update Contracts
+		set   ServerDeliveryDate = @deliveryDate
+			, ServerStatus = @st
+		where Guid = @entityGuid
+	end
+	else if @type = 19
+	begin
+		update Receptions
+		set   ServerDeliveryDate = @deliveryDate
+			, ServerStatus = @st
+		where Guid = @entityGuid
+	end
+	else if @type = 20
+	begin
+		update Pardakhts
+		set   ServerDeliveryDate = @deliveryDate
+			, ServerStatus = @st
+		where Guid = @entityGuid
+	end
+	else if @type = 22
+	begin
+		update BuildingOptions
+		set   ServerDeliveryDate = @deliveryDate
+			, ServerStatus = @st
+		where Guid = @entityGuid
+	end
+	else if @type = 23
+	begin
+		update BuildingRelatedOptions
+		set   ServerDeliveryDate = @deliveryDate
+			, ServerStatus = @st
+		where Guid = @entityGuid
+	end
+	else if @type = 24
+	begin
+		update BuildingRequestRegions
+		set   ServerDeliveryDate = @deliveryDate
+			, ServerStatus = @st
+		where Guid = @entityGuid
+	end
+	else if @type = 25
+	begin
+		update PhoneBooks
+		set   ServerDeliveryDate = @deliveryDate
+			, ServerStatus = @st
+		where Guid = @entityGuid
+	end
+	else if @type = 26
+	begin
+		update Advisors
+		set   ServerDeliveryDate = @deliveryDate
+			, ServerStatus = @st
+		where Guid = @entityGuid
+	end
+	else if @type = 27
+	begin
+		update Banks
+		set   ServerDeliveryDate = @deliveryDate
+			, ServerStatus = @st
+		where Guid = @entityGuid
+	end
+	else if @type = 28
+	begin
+		update Kols
+		set   ServerDeliveryDate = @deliveryDate
+			, ServerStatus = @st
+		where Guid = @entityGuid
+	end
+	else if @type = 29
+	begin
+		update Moeins
+		set   ServerDeliveryDate = @deliveryDate
+			, ServerStatus = @st
+		where Guid = @entityGuid
+	end
+	else if @type = 30
+	begin
+		update Tafsils
+		set   ServerDeliveryDate = @deliveryDate
+			, ServerStatus = @st
+		where Guid = @entityGuid
+	end
+	else if @type = 31
+	begin
+		update Sanads
+		set   ServerDeliveryDate = @deliveryDate
+			, ServerStatus = @st
+		where Guid = @entityGuid
+	end
+	else if @type = 32
+	begin
+		update SanadDetails
+		set   ServerDeliveryDate = @deliveryDate
+			, ServerStatus = @st
+		where Guid = @entityGuid
+	end
+END

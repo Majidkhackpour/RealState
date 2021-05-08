@@ -26,7 +26,7 @@ namespace WebHesabBussines
         {
             try
             {
-                var res = await Extentions.PostToApi<StatesBussines, WebCity>(this, Url);
+                var res = await Extentions.PostToApi<CitiesBussines, WebCity>(this, Url);
                 if (res.ResponseStatus != ResponseStatus.Success)
                 {
                     var temp = new TempBussines()
@@ -35,7 +35,11 @@ namespace WebHesabBussines
                         Type = EnTemp.Cities
                     };
                     await temp.SaveAsync();
+                    return;
                 }
+                var bu = res.Data;
+                if (bu == null) return;
+                await TempBussines.UpdateEntityAsync(EnTemp.Cities, bu.Guid, ServerStatus.Delivered, DateTime.Now);
             }
             catch (Exception ex)
             {
@@ -54,7 +58,9 @@ namespace WebHesabBussines
                     Modified = cls.Modified,
                     Status = cls.Status,
                     StateGuid = cls.StateGuid,
-                    HardSerial = cls.HardSerial
+                    HardSerial = cls.HardSerial,
+                    ServerStatus = cls.ServerStatus,
+                    ServerDeliveryDate = cls.ServerDeliveryDate
                 };
                 await obj.SaveAsync();
             }
@@ -72,18 +78,7 @@ namespace WebHesabBussines
             try
             {
                 foreach (var item in cls)
-                {
-                    var obj = new WebCity()
-                    {
-                        Guid = item.Guid,
-                        Name = item.Name,
-                        Modified = item.Modified,
-                        Status = item.Status,
-                        StateGuid = item.StateGuid,
-                        HardSerial = item.HardSerial
-                    };
-                    await obj.SaveAsync();
-                }
+                    res.AddReturnedValue(await SaveAsync(item));
             }
             catch (Exception ex)
             {

@@ -8,6 +8,7 @@ using Nito.AsyncEx;
 using Persistence;
 using Services;
 using Servicess.Interfaces.Building;
+using WebHesabBussines;
 
 namespace EntityCache.Bussines
 {
@@ -150,6 +151,10 @@ namespace EntityCache.Bussines
                 res.AddReturnedValue(CheckValidation());
                 if (res.HasError) return res;
                 res.AddReturnedValue(await UnitOfWork.PhoneBook.SaveAsync(this, tr));
+                if (res.HasError) return res;
+
+                if (Cache.IsSendToServer)
+                    _ = Task.Run(() => WebPhoneBook.SaveAsync(this));
             }
             catch (Exception ex)
             {
@@ -181,6 +186,10 @@ namespace EntityCache.Bussines
                 }
 
                 res.AddReturnedValue(await UnitOfWork.PhoneBook.SaveRangeAsync(list, tr));
+                if (res.HasError) return res;
+
+                if (Cache.IsSendToServer)
+                    _ = Task.Run(() => WebPhoneBook.SaveAsync(list));
             }
             catch (Exception ex)
             {

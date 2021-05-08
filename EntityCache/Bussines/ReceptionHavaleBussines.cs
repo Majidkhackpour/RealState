@@ -41,10 +41,6 @@ namespace EntityCache.Bussines
                 }
 
                 res.AddReturnedValue(await UnitOfWork.ReceptionHavale.SaveRangeAsync(list, tr));
-                if (res.HasError) return res;
-
-                //if (Cache.IsSendToServer)
-                //    _ = Task.Run(() => WebRental.SaveAsync(list));
             }
             catch (Exception ex)
             {

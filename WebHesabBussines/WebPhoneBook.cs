@@ -29,7 +29,20 @@ namespace WebHesabBussines
         {
             try
             {
-                await Extentions.PostToApi<PhoneBookBussines, WebPhoneBook>(this, Url);
+                var res = await Extentions.PostToApi<PhoneBookBussines, WebPhoneBook>(this, Url);
+                if (res.ResponseStatus != ResponseStatus.Success)
+                {
+                    var temp = new TempBussines()
+                    {
+                        ObjectGuid = Guid,
+                        Type = EnTemp.PhoneBook
+                    };
+                    await temp.SaveAsync();
+                    return;
+                }
+                var bu = res.Data;
+                if (bu == null) return;
+                await TempBussines.UpdateEntityAsync(EnTemp.PhoneBook, bu.Guid, ServerStatus.Delivered, DateTime.Now);
             }
             catch (Exception ex)
             {
@@ -50,7 +63,9 @@ namespace WebHesabBussines
                     HardSerial = cls.HardSerial,
                     ParentGuid = cls.ParentGuid,
                     Tell = cls.Tell,
-                    Group = cls.Group
+                    Group = cls.Group,
+                    ServerStatus = cls.ServerStatus,
+                    ServerDeliveryDate = cls.ServerDeliveryDate
                 };
                 await obj.SaveAsync();
             }
@@ -68,20 +83,7 @@ namespace WebHesabBussines
             try
             {
                 foreach (var item in cls)
-                {
-                    var obj = new WebPhoneBook()
-                    {
-                        Guid = item.Guid,
-                        Name = item.Name,
-                        Modified = item.Modified,
-                        Status = item.Status,
-                        HardSerial = item.HardSerial,
-                        ParentGuid = item.ParentGuid,
-                        Tell = item.Tell,
-                        Group = item.Group
-                    };
-                    await obj.SaveAsync();
-                }
+                    res.AddReturnedValue(await SaveAsync(item));
             }
             catch (Exception ex)
             {

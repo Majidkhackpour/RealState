@@ -6,6 +6,7 @@ using EntityCache.Assistence;
 using Persistence;
 using Services;
 using Services.Interfaces.Building;
+using WebHesabBussines;
 
 namespace EntityCache.Bussines
 {
@@ -25,6 +26,7 @@ namespace EntityCache.Bussines
         public decimal Debit { get; set; }
         public decimal Credit { get; set; }
         public string Description { get; set; }
+        public string HardSerial => Cache.HardSerial;
 
 
         public static async Task<List<SanadDetailBussines>> GetAllAsync(Guid masterGuid) => await UnitOfWork.SanadDetail.GetAllAsync(Cache.ConnectionString, masterGuid);
@@ -45,8 +47,8 @@ namespace EntityCache.Bussines
                 res.AddReturnedValue(await UnitOfWork.SanadDetail.SaveAsync(this, tr));
                 if (res.HasError) return res;
 
-                //if (Cache.IsSendToServer)
-                //    _ = Task.Run(() => WebRental.SaveAsync(list));
+                if (Cache.IsSendToServer)
+                    _ = Task.Run(() => WebSanadDetail.SaveAsync(this));
             }
             catch (Exception ex)
             {
@@ -80,8 +82,8 @@ namespace EntityCache.Bussines
                 res.AddReturnedValue(await UnitOfWork.SanadDetail.SaveRangeAsync(list, tr));
                 if (res.HasError) return res;
 
-                //if (Cache.IsSendToServer)
-                //    _ = Task.Run(() => WebRental.SaveAsync(list));
+                if (Cache.IsSendToServer)
+                    _ = Task.Run(() => WebSanadDetail.SaveAsync(list));
             }
             catch (Exception ex)
             {

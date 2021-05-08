@@ -79,5 +79,7 @@ namespace EntityCache.Bussines
             }
             return res;
         }
+        public static async Task UpdateEntityAsync(EnTemp type, Guid entityGuid, ServerStatus st, DateTime deliveryDate) =>
+            await UnitOfWork.Temp.UpdateEntityAsync(type, entityGuid, st, deliveryDate, Cache.ConnectionString);
     }
 }

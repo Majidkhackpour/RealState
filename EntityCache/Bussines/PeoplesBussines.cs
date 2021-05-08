@@ -84,8 +84,8 @@ namespace EntityCache.Bussines
                 res.AddReturnedValue(await UserLogBussines.SaveAsync(action, EnLogPart.Peoples, tr));
                 if (res.HasError) return res;
 
-                //if (Cache.IsSendToServer)
-                //    _ = Task.Run(() => WebPeople.SaveAsync(this));
+                if (Cache.IsSendToServer)
+                    _ = Task.Run(() => WebPeople.SaveAsync(this));
             }
             catch (Exception ex)
             {

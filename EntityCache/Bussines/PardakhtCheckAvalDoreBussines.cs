@@ -96,9 +96,6 @@ namespace EntityCache.Bussines
                     res.AddReturnedValue(await UpdateAccountsAsync(this, false, tr));
                     if (res.HasError) return res;
                 }
-
-                //if (Cache.IsSendToServer)
-                //    _ = Task.Run(() => WebRental.SaveAsync(list));
             }
             catch (Exception ex)
             {
@@ -144,10 +141,6 @@ namespace EntityCache.Bussines
                 if (res.HasError) return res;
 
                 res.AddReturnedValue(await UnitOfWork.PardakhtCheckAvalDore.RemoveAsync(Guid, tr));
-                if (res.HasError) return res;
-
-                //if (Cache.IsSendToServer)
-                //    _ = Task.Run(() => WebRental.SaveAsync(list));
             }
             catch (Exception ex)
             {

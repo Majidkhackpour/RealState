@@ -9,6 +9,7 @@ using Nito.AsyncEx;
 using Persistence;
 using Services;
 using Services.Interfaces.Building;
+using WebHesabBussines;
 
 namespace EntityCache.Bussines
 {
@@ -25,6 +26,7 @@ namespace EntityCache.Bussines
         public decimal Account { get; set; }
         public decimal Account_ => Math.Abs(Account);
         public string Diagnosis => Account.AccountDiagnosis();
+        public string HardSerial => Cache.HardSerial;
 
 
         public static async Task<List<MoeinBussines>> GetAllAsync(CancellationToken token) => await UnitOfWork.Moein.GetAllAsync(Cache.ConnectionString,token);
@@ -45,8 +47,8 @@ namespace EntityCache.Bussines
                 res.AddReturnedValue(await UnitOfWork.Moein.SaveRangeAsync(list, tr));
                 if (res.HasError) return res;
 
-                //if (Cache.IsSendToServer)
-                //    _ = Task.Run(() => WebRental.SaveAsync(list));
+                if (Cache.IsSendToServer)
+                    _ = Task.Run(() => WebMoein.SaveAsync(list));
             }
             catch (Exception ex)
             {

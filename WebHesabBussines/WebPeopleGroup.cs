@@ -36,7 +36,11 @@ namespace WebHesabBussines
                         Type = EnTemp.PeopleGroups
                     };
                     await temp.SaveAsync();
+                    return;
                 }
+                var bu = res.Data;
+                if (bu == null) return;
+                await TempBussines.UpdateEntityAsync(EnTemp.PeopleGroups, bu.Guid, ServerStatus.Delivered, DateTime.Now);
             }
             catch (Exception ex)
             {
@@ -55,7 +59,9 @@ namespace WebHesabBussines
                     Modified = cls.Modified,
                     Status = cls.Status,
                     ParentGuid = cls.ParentGuid,
-                    HardSerial = cls.HardSerial
+                    HardSerial = cls.HardSerial,
+                    ServerStatus = cls.ServerStatus,
+                    ServerDeliveryDate = cls.ServerDeliveryDate
                 };
                 await obj.SaveAsync();
             }
@@ -73,18 +79,7 @@ namespace WebHesabBussines
             try
             {
                 foreach (var item in cls)
-                {
-                    var obj = new WebPeopleGroup()
-                    {
-                        Guid = item.Guid,
-                        Name = item.Name,
-                        Modified = item.Modified,
-                        Status = item.Status,
-                        ParentGuid = item.ParentGuid,
-                        HardSerial = item.HardSerial
-                    };
-                    await obj.SaveAsync();
-                }
+                    res.AddReturnedValue(await SaveAsync(item));
             }
             catch (Exception ex)
             {

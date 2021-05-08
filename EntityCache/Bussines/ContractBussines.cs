@@ -132,8 +132,8 @@ namespace EntityCache.Bussines
                 res.AddReturnedValue(await UserLogBussines.SaveAsync(action, EnLogPart.Contracts, tr));
                 if (res.HasError) return res;
 
-                //if (Cache.IsSendToServer)
-                //    _ = Task.Run(() => WebContract.SaveAsync(this));
+                if (Cache.IsSendToServer)
+                    _ = Task.Run(() => WebContract.SaveAsync(this));
             }
             catch (Exception ex)
             {

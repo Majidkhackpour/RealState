@@ -48,6 +48,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WebAdvisor.cs" />
+    <Compile Include="WebBank.cs" />
     <Compile Include="WebBuilding.cs" />
     <Compile Include="WebBuildingAccountType.cs" />
     <Compile Include="WebBuildingCondition.cs" />
@@ -63,6 +65,8 @@
     <Compile Include="WebDocumentType.cs" />
     <Compile Include="WebFloorCover.cs" />
     <Compile Include="WebKitchenService.cs" />
+    <Compile Include="WebKol.cs" />
+    <Compile Include="WebMoein.cs" />
     <Compile Include="WebPardakht.cs" />
     <Compile Include="WebPeople.cs" />
     <Compile Include="WebPeopleGroup.cs" />
@@ -70,7 +74,10 @@
     <Compile Include="WebReception.cs" />
     <Compile Include="WebRegion.cs" />
     <Compile Include="WebRental.cs" />
+    <Compile Include="WebSanad.cs" />
+    <Compile Include="WebSanadDetail.cs" />
     <Compile Include="WebStates.cs" />
+    <Compile Include="WebTafsil.cs" />
     <Compile Include="WebTelegramBuilding.cs" />
     <Compile Include="WebUser.cs" />
   </ItemGroup>

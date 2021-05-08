@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using Nito.AsyncEx;
 using Persistence;
 using Services.DefaultCoding;
+using WebHesabBussines;
 
 namespace EntityCache.Bussines
 {
@@ -32,6 +33,7 @@ namespace EntityCache.Bussines
         public decimal Account_ => Math.Abs(Account);
         public string Diagnosis => Account.AccountDiagnosis();
         public bool IsModified { get; set; } = false;
+        public string HardSerial => Cache.HardSerial;
 
 
         public static async Task<List<BankBussines>> GetAllAsync(CancellationToken token) => await UnitOfWork.Bank.GetAllAsync(Cache.ConnectionString,token);
@@ -54,6 +56,10 @@ namespace EntityCache.Bussines
                 res.AddReturnedValue(await SaveTafsilAsync(tr));
                 if (res.HasError) return res;
                 res.AddReturnedValue(await UnitOfWork.Bank.SaveAsync(this, tr));
+                if (res.HasError) return res;
+
+                if (Cache.IsSendToServer)
+                    _ = Task.Run(() => WebBank.SaveAsync(this));
             }
             catch (Exception ex)
             {
@@ -179,6 +185,10 @@ namespace EntityCache.Bussines
                 res.AddReturnedValue(await tafsil.ChangeStatusAsync(status, tr));
                 if (res.HasError) return res;
                 res.AddReturnedValue(await UnitOfWork.Bank.ChangeStatusAsync(this, status, tr));
+                if (res.HasError) return res;
+
+                if (Cache.IsSendToServer)
+                    _ = Task.Run(() => WebBank.SaveAsync(this));
             }
             catch (Exception ex)
             {

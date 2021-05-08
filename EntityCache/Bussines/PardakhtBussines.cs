@@ -10,6 +10,7 @@ using Persistence;
 using Services;
 using Services.DefaultCoding;
 using Services.Interfaces.Building;
+using WebHesabBussines;
 
 namespace EntityCache.Bussines
 {
@@ -32,6 +33,7 @@ namespace EntityCache.Bussines
         public string UserName { get; set; }
         public long Number { get; set; }
         public long SanadNumber { get; set; }
+        public string HardSerial => Cache.HardSerial;
         public List<PardakhtNaqdBussines> NaqdList { get; set; }
         public List<PardakhtHavaleBussines> HavaleList { get; set; }
         public List<PardakhtCheckShakhsiBussines> CheckShakhsiList { get; set; }
@@ -340,8 +342,8 @@ namespace EntityCache.Bussines
                 res.AddReturnedValue(await UserLogBussines.SaveAsync(action, EnLogPart.Pardakht, tr));
                 if (res.HasError) return res;
 
-                //if (Cache.IsSendToServer)
-                //    _ = Task.Run(() => WebRental.SaveAsync(list));
+                if (Cache.IsSendToServer)
+                    _ = Task.Run(() => WebPardakht.SaveAsync(this));
             }
             catch (Exception ex)
             {

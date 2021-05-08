@@ -89,10 +89,6 @@ namespace EntityCache.Bussines
                 res.AddReturnedValue(await UnitOfWork.DasteCheck.SaveAsync(this, tr));
                 if (res.HasError) return res;
                 res.AddReturnedValue(await CheckPageBussines.SaveRangeAsync(CheckPages, tr));
-                if (res.HasError) return res;
-
-                //if (Cache.IsSendToServer)
-                //    _ = Task.Run(() => WebUser.SaveAsync(this));
             }
             catch (Exception ex)
             {
@@ -124,10 +120,6 @@ namespace EntityCache.Bussines
                 }
 
                 res.AddReturnedValue(await UnitOfWork.DasteCheck.ChangeStatusAsync(this, status, tr));
-                if (res.HasError) return res;
-
-                //if (Cache.IsSendToServer)
-                //    _ = Task.Run(() => WebHazine.SaveAsync(this));
             }
             catch (Exception ex)
             {

@@ -26,7 +26,20 @@ namespace WebHesabBussines
         {
             try
             {
-                await Extentions.PostToApi<BuildingRelatedOptionsBussines, WebBuildingRelatedOptions>(this, Url);
+                var res = await Extentions.PostToApi<BuildingRelatedOptionsBussines, WebBuildingRelatedOptions>(this, Url);
+                if (res.ResponseStatus != ResponseStatus.Success)
+                {
+                    var temp = new TempBussines()
+                    {
+                        ObjectGuid = Guid,
+                        Type = EnTemp.BuildingRelatedOptions
+                    };
+                    await temp.SaveAsync();
+                    return;
+                }
+                var bu = res.Data;
+                if (bu == null) return;
+                await TempBussines.UpdateEntityAsync(EnTemp.BuildingRelatedOptions, bu.Guid, ServerStatus.Delivered, DateTime.Now);
             }
             catch (Exception ex)
             {
@@ -46,7 +59,9 @@ namespace WebHesabBussines
                         HardSerial = cls.HardSerial,
                         BuildingOptionGuid = cls.BuildingOptionGuid,
                         BuildinGuid = cls.BuildinGuid,
-                        Modified = cls.Modified
+                        Modified = cls.Modified,
+                        ServerStatus = cls.ServerStatus,
+                        ServerDeliveryDate = cls.ServerDeliveryDate
                     };
                     await obj.SaveAsync();
                 }

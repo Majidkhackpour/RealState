@@ -3,21 +3,25 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using EntityCache.Bussines;
 using Services;
-using Servicess.Interfaces.Building;
+using Services.Interfaces.Building;
 
 namespace WebHesabBussines
 {
-    public class WebBuildingType : IBuildingType
+    public class WebSanadDetail : ISanadDetails
     {
-        private static string Url = Utilities.WebApi + "/api/BuildingType/SaveAsync";
+        private static string Url = Utilities.WebApi + "/api//SaveAsync";
 
 
         public Guid Guid { get; set; }
         public DateTime Modified { get; set; }
-        public bool Status { get; set; }
         public ServerStatus ServerStatus { get; set; }
         public DateTime ServerDeliveryDate { get; set; }
-        public string Name { get; set; }
+        public Guid MasterGuid { get; set; }
+        public Guid MoeinGuid { get; set; }
+        public Guid TafsilGuid { get; set; }
+        public decimal Debit { get; set; }
+        public decimal Credit { get; set; }
+        public string Description { get; set; }
         public string HardSerial { get; set; }
 
 
@@ -25,40 +29,44 @@ namespace WebHesabBussines
         {
             try
             {
-                var res = await Extentions.PostToApi<BuildingTypeBussines, WebBuildingType>(this, Url);
+                var res = await Extentions.PostToApi<SanadDetailBussines, WebSanadDetail>(this, Url);
                 if (res.ResponseStatus != ResponseStatus.Success)
                 {
                     var temp = new TempBussines()
                     {
                         ObjectGuid = Guid,
-                        Type = EnTemp.BuildingType
+                        Type = EnTemp.SanadDetail
                     };
                     await temp.SaveAsync();
                     return;
                 }
                 var bu = res.Data;
                 if (bu == null) return;
-                await TempBussines.UpdateEntityAsync(EnTemp.BuildingType, bu.Guid, ServerStatus.Delivered, DateTime.Now);
+                await TempBussines.UpdateEntityAsync(EnTemp.SanadDetail, bu.Guid, ServerStatus.Delivered, DateTime.Now);
             }
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        public static async Task<ReturnedSaveFuncInfo> SaveAsync(BuildingTypeBussines cls)
+        public static async Task<ReturnedSaveFuncInfo> SaveAsync(SanadDetailBussines cls)
         {
             var res = new ReturnedSaveFuncInfo();
             try
             {
-                var obj = new WebBuildingType()
+                var obj = new WebSanadDetail()
                 {
                     Guid = cls.Guid,
-                    Name = cls.Name,
                     Modified = cls.Modified,
-                    Status = cls.Status,
                     HardSerial = cls.HardSerial,
                     ServerStatus = cls.ServerStatus,
-                    ServerDeliveryDate = cls.ServerDeliveryDate
+                    ServerDeliveryDate = cls.ServerDeliveryDate,
+                    Description = cls.Description,
+                    Debit = cls.Debit,
+                    Credit = cls.Credit,
+                    TafsilGuid = cls.TafsilGuid,
+                    MoeinGuid = cls.MoeinGuid,
+                    MasterGuid = cls.MasterGuid
                 };
                 await obj.SaveAsync();
             }
@@ -70,13 +78,14 @@ namespace WebHesabBussines
 
             return res;
         }
-        public static async Task<ReturnedSaveFuncInfo> SaveAsync(List<BuildingTypeBussines> cls)
+        public static async Task<ReturnedSaveFuncInfo> SaveAsync(List<SanadDetailBussines> item)
         {
             var res = new ReturnedSaveFuncInfo();
             try
             {
-                foreach (var item in cls)
-                    res.AddReturnedValue(await SaveAsync(item));
+                if (item == null) return res;
+                foreach (var cls in item)
+                    res.AddReturnedValue(await SaveAsync(cls));
             }
             catch (Exception ex)
             {

@@ -49,8 +49,11 @@ namespace WebHesabBussines
                     await temp.SaveAsync();
                     return;
                 }
+                var bu = res.Data;
+                if (bu == null) return;
+                await TempBussines.UpdateEntityAsync(EnTemp.Peoples, bu.Guid, ServerStatus.Delivered, DateTime.Now);
 
-                await WebPhoneBook.SaveAsync(TellList);
+                //await WebPhoneBook.SaveAsync(TellList);
             }
             catch (Exception ex)
             {
@@ -81,7 +84,9 @@ namespace WebHesabBussines
                     IssuedFrom = cls.IssuedFrom,
                     PostalCode = cls.PostalCode,
                     HardSerial = cls.HardSerial,
-                    TellList = cls.TellList
+                    TellList = cls.TellList,
+                    ServerStatus = cls.ServerStatus,
+                    ServerDeliveryDate = cls.ServerDeliveryDate
                 };
                 await obj.SaveAsync();
             }
@@ -99,30 +104,7 @@ namespace WebHesabBussines
             try
             {
                 foreach (var cls in item)
-                {
-                    var obj = new WebPeople()
-                    {
-                        Guid = cls.Guid,
-                        Name = cls.Name,
-                        Modified = cls.Modified,
-                        Status = cls.Status,
-                        Account = cls.Account,
-                        Code = cls.Code,
-                        AccountFirst = cls.AccountFirst,
-                        Address = cls.Address,
-                        FatherName = cls.FatherName,
-                        DateBirth = cls.DateBirth,
-                        IdCode = cls.IdCode,
-                        NationalCode = cls.NationalCode,
-                        GroupGuid = cls.GroupGuid,
-                        PlaceBirth = cls.PlaceBirth,
-                        IssuedFrom = cls.IssuedFrom,
-                        PostalCode = cls.PostalCode,
-                        HardSerial = cls.HardSerial,
-                        TellList = cls.TellList
-                    };
-                    await obj.SaveAsync();
-                }
+                    res.AddReturnedValue(await SaveAsync(cls));
             }
             catch (Exception ex)
             {
