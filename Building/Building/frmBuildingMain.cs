@@ -724,6 +724,7 @@ namespace Building.Building
                 cls.MamarJoda = chbIsMamarJoda.Checked;
                 cls.RoomCount = txtTedadOtaq.Text.ParseToInt();
                 cls.Image = image ?? "";
+                cls.Modified = DateTime.Now;
             }
             catch (Exception ex)
             {

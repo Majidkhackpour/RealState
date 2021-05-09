@@ -120,6 +120,7 @@ namespace Peoples
                     {
                         pg.ParentGuid = (Guid)cmbGroup.SelectedValue;
                         pg.Status = true;
+                        cls.Modified = DateTime.Now;
                         var res2 = await cls.SaveAsync();
                         if (!res2.HasError) return;
                         frmNotification.PublicInfo.ShowMessage(res2.ErrorMessage);
@@ -131,6 +132,7 @@ namespace Peoples
 
                 if (cls.Guid == Guid.Empty) cls.Guid = Guid.NewGuid();
                 cls.Name = txtName.Text;
+                cls.Modified = DateTime.Now;
                 cls.ParentGuid = (Guid)cmbGroup.SelectedValue;
 
                 res.AddReturnedValue(await cls.SaveAsync());

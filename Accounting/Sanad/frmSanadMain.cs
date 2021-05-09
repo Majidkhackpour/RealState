@@ -272,6 +272,7 @@ namespace Accounting.Sanad
                 cls.Number = (long)txtNumber.Value;
                 cls.SanadStatus = EnSanadStatus.Temporary;
                 cls.SanadType = (EnSanadType)cmbType.SelectedIndex;
+                cls.Modified = DateTime.Now;
 
                 res.AddReturnedValue(await cls.SaveAsync());
             }

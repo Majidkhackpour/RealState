@@ -115,6 +115,7 @@ namespace Payamak.PhoneBook
                 cls.Tell = txtTell.Text.Trim();
                 cls.Group = (EnPhoneBookGroup) cmbGroup.SelectedIndex + 1;
                 cls.ParentGuid = Guid.Empty;
+                cls.Modified = DateTime.Now;
 
                 res.AddReturnedValue(await cls.SaveAsync());
             }

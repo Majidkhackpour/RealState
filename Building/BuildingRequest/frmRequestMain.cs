@@ -410,6 +410,7 @@ namespace Building.BuildingRequest
 
                 cls.AskerGuid = asker?.Guid ?? Guid.Empty;
                 cls.UserGuid = (Guid)cmbUser.SelectedValue;
+                cls.Modified = DateTime.Now;
 
                 cls.SellPrice1 = txtSellPrice1.TextDecimal;
                 cls.SellPrice2 = txtSellPrice2.TextDecimal;

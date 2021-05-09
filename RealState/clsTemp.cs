@@ -15,6 +15,7 @@ namespace RealState
             try
             {
                 _ = Task.Run(StartSendToServerAsync);
+                _ = Task.Run(StartFillTempAsync);
             }
             catch (Exception ex)
             {
@@ -194,6 +195,26 @@ namespace RealState
 
                     await Task.Delay(2000);
                     list = await TempBussines.GetAllAsync();
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private static async Task StartFillTempAsync()
+        {
+            try
+            {
+                var date = DateTime.Now.AddHours(-1);
+                while (true)
+                {
+                    var res = await TempBussines.SaveOnModifiedAsync(date);
+                    if (!res.HasError)
+                    {
+                        date = DateTime.Now;
+                        await Task.Delay(20000);
+                    }
                 }
             }
             catch (Exception ex)

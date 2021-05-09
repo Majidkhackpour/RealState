@@ -12,6 +12,7 @@ namespace EntityCache.Core
         Task<ReturnedSaveFuncInfo> RemoveAsync(Guid guid, SqlTransaction tr);
         Task<List<TempBussines>> GetAllAsync(string connectionString);
         Task<ReturnedSaveFuncInfo> SaveAsync(TempBussines item, SqlTransaction tr);
+        Task<ReturnedSaveFuncInfo> SaveOnModifiedAsync(DateTime date, string connectionString);
         Task UpdateEntityAsync(EnTemp type, Guid entityGuid, ServerStatus st, DateTime deliveryDate, string connectionString);
     }
 }

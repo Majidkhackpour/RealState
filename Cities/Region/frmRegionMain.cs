@@ -125,6 +125,7 @@ namespace Cities.Region
                 if (cls.Guid == Guid.Empty) cls.Guid = Guid.NewGuid();
                 cls.Name = txtRegion.Text;
                 cls.CityGuid = (Guid)cmbCity.SelectedValue;
+                cls.Modified = DateTime.Now;
 
                 res.AddReturnedValue(await cls.SaveAsync());
             }

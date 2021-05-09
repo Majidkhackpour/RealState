@@ -6728,3 +6728,103 @@ BEGIN
 		 SanadDetails.TafsilGuid = Tafsils.Guid
 	where SanadDetails.Guid=@guid
 END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Temp_SaveOnModified]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Temp_SaveOnModified]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_Temp_SaveOnModified
+	@date datetime
+AS
+BEGIN
+	insert into Temps(Guid,ObjectGuid,Type)
+	(select NEWID() As Guid,Guid As ObjectGuid,1 As Type
+		from States where Modified>@date)
+	union all
+	(select NEWID() As Guid,Guid As ObjectGuid,2 As Type
+		from Cities where Modified>@date)
+		union all
+	(select NEWID() As Guid,Guid As ObjectGuid,3 As Type
+		from Regions where Modified>@date)
+	union all
+	(select NEWID() As Guid,Guid As ObjectGuid,4 As Type
+		from Users where Modified>@date)
+		union all
+	(select NEWID() As Guid,Guid As ObjectGuid,5 As Type
+		from PeopleGroups where Modified>@date)
+	union all
+	(select NEWID() As Guid,Guid As ObjectGuid,6 As Type
+		from Peoples where Modified>@date)
+		union all
+	(select NEWID() As Guid,Guid As ObjectGuid,8 As Type
+		from BuildingAccountTypes where Modified>@date)
+	union all
+	(select NEWID() As Guid,Guid As ObjectGuid,9 As Type
+		from BuildingConditions where Modified>@date)
+	union all
+	(select NEWID() As Guid,Guid As ObjectGuid,10 As Type
+		from BuildingTypes where Modified>@date)
+	union all
+	(select NEWID() As Guid,Guid As ObjectGuid,11 As Type
+		from BuildingViews where Modified>@date)
+	union all
+	(select NEWID() As Guid,Guid As ObjectGuid,12 As Type
+		from DocumentTypes where Modified>@date)
+	union all
+	(select NEWID() As Guid,Guid As ObjectGuid,13 As Type
+		from FloorCovers where Modified>@date)
+	union all
+	(select NEWID() As Guid,Guid As ObjectGuid,14 As Type
+		from KitchenServices where Modified>@date)
+	union all
+	(select NEWID() As Guid,Guid As ObjectGuid,15 As Type
+		from RentalAuthorities where Modified>@date)
+	union all
+	(select NEWID() As Guid,Guid As ObjectGuid,16 As Type
+		from Buildings where Modified>@date)
+	union all
+	(select NEWID() As Guid,Guid As ObjectGuid,17 As Type
+		from BuildingRequests where Modified>@date)
+	union all
+	(select NEWID() As Guid,Guid As ObjectGuid,18 As Type
+		from Contracts where Modified>@date)
+	union all
+	(select NEWID() As Guid,Guid As ObjectGuid,19 As Type
+		from Receptions where Modified>@date)
+	union all
+	(select NEWID() As Guid,Guid As ObjectGuid,20 As Type
+		from Pardakhts where Modified>@date)
+	union all
+	(select NEWID() As Guid,Guid As ObjectGuid,22 As Type
+		from BuildingOptions where Modified>@date)
+	union all
+	(select NEWID() As Guid,Guid As ObjectGuid,23 As Type
+		from BuildingRelatedOptions where Modified>@date)
+	union all
+	(select NEWID() As Guid,Guid As ObjectGuid,24 As Type
+		from BuildingRequestRegions where Modified>@date)
+	union all
+	(select NEWID() As Guid,Guid As ObjectGuid,25 As Type
+		from PhoneBooks where Modified>@date)
+	union all
+	(select NEWID() As Guid,Guid As ObjectGuid,26 As Type
+		from Advisors where Modified>@date)
+	union all
+	(select NEWID() As Guid,Guid As ObjectGuid,27 As Type
+		from Banks where Modified>@date)
+	union all
+	(select NEWID() As Guid,Guid As ObjectGuid,28 As Type
+		from Kols where Modified>@date)
+	union all
+	(select NEWID() As Guid,Guid As ObjectGuid,29 As Type
+		from Moeins where Modified>@date)
+	union all
+	(select NEWID() As Guid,Guid As ObjectGuid,30 As Type
+		from Tafsils where Modified>@date)
+	union all
+	(select NEWID() As Guid,Guid As ObjectGuid,31 As Type
+		from Sanads where Modified>@date)
+	union all
+	(select NEWID() As Guid,Guid As ObjectGuid,32 As Type
+		from SanadDetails where Modified>@date)
+END

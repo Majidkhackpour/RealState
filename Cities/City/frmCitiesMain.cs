@@ -107,6 +107,7 @@ namespace Cities.City
                 if (cls.Guid == Guid.Empty) cls.Guid = Guid.NewGuid();
                 cls.Name = txtCity.Text;
                 cls.StateGuid = (Guid)cmbState.SelectedValue;
+                cls.Modified = DateTime.Now;
 
                 res.AddReturnedValue(await cls.SaveAsync());
             }

@@ -86,6 +86,7 @@ namespace Building.BuildingAccountType
 
                 if (cls.Guid == Guid.Empty) cls.Guid = Guid.NewGuid();
                 cls.Name = txtName.Text.Trim();
+                cls.Modified = DateTime.Now;
 
                 res.AddReturnedValue(await cls.SaveAsync());
             }

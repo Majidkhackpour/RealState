@@ -360,6 +360,7 @@ namespace Peoples
                     cls.Guid = Guid.NewGuid();
 
                 cls.Name = txtName.Text.Trim();
+                cls.Modified = DateTime.Now;
                 cls.Code = txtCode.Text.Trim();
                 cls.NationalCode = txtNationalCode.Text.Trim();
                 cls.IdCode = txtIdCode.Text.Trim();

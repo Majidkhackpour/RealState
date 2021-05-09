@@ -146,6 +146,7 @@ namespace User
 
                 cls.Name = txtName.Text.Trim();
                 cls.UserName = txtUserName.Text.Trim();
+                cls.Modified = DateTime.Now;
                 var ue = new UTF8Encoding();
                 var bytes = ue.GetBytes(txtPass1.Text.Trim());
                 var md5 = new MD5CryptoServiceProvider();

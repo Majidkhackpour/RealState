@@ -296,6 +296,7 @@ namespace Building.Contract
                 cls.SecondSideGuid = sSide.Guid;
                 cls.SecondSideName = sSide.Name;
                 cls.BuildingGuid = building.Guid;
+                cls.Modified = DateTime.Now;
 
                 cls.Term = txtTerm.Text.ParseToInt();
                 cls.FromDate = Calendar.ShamsiToMiladi(txtfDate.Text);

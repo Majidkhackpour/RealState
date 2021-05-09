@@ -245,6 +245,7 @@ namespace Building.Building
             try
             {
                 cls.Code = txtCode.Text;
+                cls.Modified = DateTime.Now;
                 cls.OwnerGuid = owner.Guid;
                 cls.UserGuid = (Guid)cmbUser.SelectedValue;
                 cls.Priority = EnBuildingPriority.Medium;
