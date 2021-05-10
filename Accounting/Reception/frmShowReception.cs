@@ -32,11 +32,29 @@ namespace Accounting.Reception
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
+        private void SetAccess()
+        {
+            try
+            {
+                var access = UserBussines.CurrentUser.UserAccess;
+                mnuAdd.Enabled = access?.Reception.Reception_Insert ?? false;
+                mnuEdit.Enabled = access?.Reception.Reception_Update ?? false;
+                mnuDelete.Enabled = access?.Reception.Reception_Delete ?? false;
+                mnuView.Enabled = access?.Reception.Reception_View ?? false;
+                mnuPrintList.Enabled = access?.Pardakht.Pardakht_PrintList ?? false;
+                mnuPrintOne.Enabled = access?.Pardakht.Pardakht_PrintOne ?? false;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
 
         public frmShowReception()
         {
             InitializeComponent();
             ucHeader.Text = "نمایش لیست وجوه دریافتی";
+            SetAccess();
         }
 
         private async void mnuAdd_Click(object sender, System.EventArgs e)

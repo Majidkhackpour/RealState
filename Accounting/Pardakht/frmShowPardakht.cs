@@ -32,11 +32,29 @@ namespace Accounting.Pardakht
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
+        private void SetAccess()
+        {
+            try
+            {
+                var access = UserBussines.CurrentUser.UserAccess;
+                mnuAdd.Enabled = access?.Pardakht.Pardakht_Insert ?? false;
+                mnuEdit.Enabled = access?.Pardakht.Pardakht_Update ?? false;
+                mnuDelete.Enabled = access?.Pardakht.Pardakht_Delete ?? false;
+                mnuView.Enabled = access?.Pardakht.Pardakht_View ?? false;
+                mnuPrintList.Enabled = access?.Pardakht.Pardakht_PrintList ?? false;
+                mnuPrintOne.Enabled = access?.Pardakht.Pardakht_PrintOne ?? false;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
 
         public frmShowPardakht()
         {
             InitializeComponent();
             ucHeader.Text = "نمایش لیست وجوه پرداختی";
+            SetAccess();
         }
 
         private async void frmShowPardakht_Load(object sender, EventArgs e) => await LoadDataAsync();

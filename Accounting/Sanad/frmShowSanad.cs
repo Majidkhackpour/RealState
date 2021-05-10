@@ -32,11 +32,28 @@ namespace Accounting.Sanad
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
+        private void SetAccess()
+        {
+            try
+            {
+                var access = UserBussines.CurrentUser.UserAccess;
+                mnuAdd.Enabled = access?.Sanad.Sanad_Insert ?? false;
+                mnuEdit.Enabled = access?.Sanad.Sanad_Edit ?? false;
+                mnuDelete.Enabled = access?.Sanad.Sanad_Delete ?? false;
+                mnuView.Enabled = access?.Sanad.Sanad_View ?? false;
+                mnuPrint.Enabled = access?.Sanad.Sanad_Print ?? false;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
 
         public frmShowSanad()
         {
             InitializeComponent();
             ucHeader.Text = "نمایش لیست اسناد حسابداری";
+            SetAccess();
         }
 
         private async void frmShowSanad_Load(object sender, EventArgs e) => await LoadDataAsync();

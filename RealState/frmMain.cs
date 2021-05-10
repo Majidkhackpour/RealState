@@ -122,6 +122,16 @@ namespace RealState
                 btnUsers.Enabled = access?.User.User_ShowForm ?? false;
                 btnAccessLevel.Enabled = access?.UserAccLevel.User_Acc_ShowForm ?? false;
                 btnTarazName.Enabled = access?.Sanad.Sanad_Taraz ?? false;
+                btnBuildingFast.Enabled = access?.Building.Building_Insert ?? false;
+                btnBuildingArchive.Enabled = access?.Building.Building_ShowForm ?? false;
+                btnMatchesBuilding.Enabled = access?.Building.Building_Show_request ?? false;
+                btnBanks.Enabled = access?.Bank.Bank_ShowForm ?? false;
+                btnReceptionCheck.Enabled = access?.CheckM.CheckM_ShowForm ?? false;
+                btnPardakhtCheck.Enabled = access?.CheckSh.CheckSh_ShowForm ?? false;
+                btnDasteCheck.Enabled = access?.DasteCheck.DasteCheck_ShowForm ?? false;
+                btnTafsil.Enabled = access?.Tafsil.Tafsil_ShowForm ?? false;
+                btnSandouq.Enabled = access?.Sandouq.Sandouq_ShowForm ?? false;
+                btnAdvisors.Enabled = access?.Advisor.Advisor_ShowForm ?? false;
 
                 btnAccountingInfo.Visible = VersionAccess.Accounting;
                 btnSmsPanel.Visible = VersionAccess.Sms;

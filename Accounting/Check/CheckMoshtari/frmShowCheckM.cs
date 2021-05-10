@@ -51,6 +51,29 @@ namespace Accounting.Check.CheckMoshtari
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
+        private void SetAccess()
+        {
+            try
+            {
+                var access = UserBussines.CurrentUser.UserAccess;
+                mnuAdd.Enabled = access?.CheckM.CheckM_Insert ?? false;
+                mnuInsAvalDore.Enabled = access?.CheckM.CheckM_InsertAvalDore ?? false;
+                mnuEdit.Enabled = access?.CheckM.CheckM_Update ?? false;
+                mnuBatel.Enabled = access?.CheckM.CheckM_Ebtal ?? false;
+                mnuView.Enabled = access?.CheckM.CheckM_View ?? false;
+                mnuKharj.Enabled = access?.CheckM.CheckM_Kharh ?? false;
+                mnuVagozarBank.Enabled = access?.CheckM.CheckM_BankVagozar ?? false;
+                mnuVagozarSandouq.Enabled = access?.CheckM.CheckM_SandouqVagozar ?? false;
+                mnuBargasht.Enabled = access?.CheckM.CheckM_Bargasht ?? false;
+                mnuNaqd.Enabled = access?.CheckM.CheckM_Naqd ?? false;
+                mnuViewSanad.Enabled = access?.Sanad.Sanad_View ?? false;
+                mnuViewPardazande.Enabled = access?.Peoples.People_View ?? false;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
 
         public frmShowCheckM(bool _isSelectMode)
         {
@@ -58,6 +81,7 @@ namespace Accounting.Check.CheckMoshtari
             ucHeader.Text = "نمایش لیست چک های دریافتنی";
             isSelectMode = _isSelectMode;
             contextMenu.Enabled = !_isSelectMode;
+            SetAccess();
         }
 
         private async void frmShowCheckM_Load(object sender, EventArgs e) => await LoadDataAsync();

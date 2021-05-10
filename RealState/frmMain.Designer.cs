@@ -419,11 +419,11 @@
             // 
             // 
             this.ribbonControl1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.ribbonControl1.Controls.Add(this.ribbonPanel3);
-            this.ribbonControl1.Controls.Add(this.ribbonPanel4);
-            this.ribbonControl1.Controls.Add(this.ribbonPanel1);
             this.ribbonControl1.Controls.Add(this.ribbonPanel6);
+            this.ribbonControl1.Controls.Add(this.ribbonPanel4);
+            this.ribbonControl1.Controls.Add(this.ribbonPanel3);
             this.ribbonControl1.Controls.Add(this.ribbonPanel2);
+            this.ribbonControl1.Controls.Add(this.ribbonPanel1);
             this.ribbonControl1.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.ribbonTabItem1,
             this.ribbonTabItem2,
@@ -480,6 +480,7 @@
             // 
             this.ribbonPanel3.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.ribbonPanel3.TabIndex = 3;
+            this.ribbonPanel3.Visible = false;
             // 
             // ribbonBar40
             // 
@@ -626,10 +627,10 @@
             this.ribbonPanel4.Controls.Add(this.ribbonBar22);
             this.ribbonPanel4.Controls.Add(this.ribbonBar20);
             this.ribbonPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ribbonPanel4.Location = new System.Drawing.Point(0, 0);
+            this.ribbonPanel4.Location = new System.Drawing.Point(0, 30);
             this.ribbonPanel4.Name = "ribbonPanel4";
             this.ribbonPanel4.Padding = new System.Windows.Forms.Padding(3, 0, 3, 3);
-            this.ribbonPanel4.Size = new System.Drawing.Size(800, 151);
+            this.ribbonPanel4.Size = new System.Drawing.Size(800, 121);
             // 
             // 
             // 
@@ -664,7 +665,7 @@
             this.ribbonBar39.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
             this.ribbonBar39.Location = new System.Drawing.Point(744, 0);
             this.ribbonBar39.Name = "ribbonBar39";
-            this.ribbonBar39.Size = new System.Drawing.Size(71, 148);
+            this.ribbonBar39.Size = new System.Drawing.Size(71, 118);
             this.ribbonBar39.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ribbonBar39.TabIndex = 20;
             // 
@@ -707,7 +708,7 @@
             this.ribbonBar19.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
             this.ribbonBar19.Location = new System.Drawing.Point(673, 0);
             this.ribbonBar19.Name = "ribbonBar19";
-            this.ribbonBar19.Size = new System.Drawing.Size(71, 148);
+            this.ribbonBar19.Size = new System.Drawing.Size(71, 118);
             this.ribbonBar19.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ribbonBar19.TabIndex = 19;
             // 
@@ -750,7 +751,7 @@
             this.ribbonBar37.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
             this.ribbonBar37.Location = new System.Drawing.Point(601, 0);
             this.ribbonBar37.Name = "ribbonBar37";
-            this.ribbonBar37.Size = new System.Drawing.Size(72, 148);
+            this.ribbonBar37.Size = new System.Drawing.Size(72, 118);
             this.ribbonBar37.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ribbonBar37.TabIndex = 18;
             // 
@@ -793,7 +794,7 @@
             this.ribbonBar25.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
             this.ribbonBar25.Location = new System.Drawing.Point(529, 0);
             this.ribbonBar25.Name = "ribbonBar25";
-            this.ribbonBar25.Size = new System.Drawing.Size(72, 148);
+            this.ribbonBar25.Size = new System.Drawing.Size(72, 118);
             this.ribbonBar25.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ribbonBar25.TabIndex = 17;
             // 
@@ -836,7 +837,7 @@
             this.ribbonBar16.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
             this.ribbonBar16.Location = new System.Drawing.Point(457, 0);
             this.ribbonBar16.Name = "ribbonBar16";
-            this.ribbonBar16.Size = new System.Drawing.Size(72, 148);
+            this.ribbonBar16.Size = new System.Drawing.Size(72, 118);
             this.ribbonBar16.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ribbonBar16.TabIndex = 16;
             // 
@@ -879,7 +880,7 @@
             this.ribbonBar14.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
             this.ribbonBar14.Location = new System.Drawing.Point(385, 0);
             this.ribbonBar14.Name = "ribbonBar14";
-            this.ribbonBar14.Size = new System.Drawing.Size(72, 148);
+            this.ribbonBar14.Size = new System.Drawing.Size(72, 118);
             this.ribbonBar14.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ribbonBar14.TabIndex = 15;
             // 
@@ -922,7 +923,7 @@
             this.ribbonBar13.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
             this.ribbonBar13.Location = new System.Drawing.Point(313, 0);
             this.ribbonBar13.Name = "ribbonBar13";
-            this.ribbonBar13.Size = new System.Drawing.Size(72, 148);
+            this.ribbonBar13.Size = new System.Drawing.Size(72, 118);
             this.ribbonBar13.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ribbonBar13.TabIndex = 14;
             // 
@@ -965,7 +966,7 @@
             this.ribbonBar23.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
             this.ribbonBar23.Location = new System.Drawing.Point(251, 0);
             this.ribbonBar23.Name = "ribbonBar23";
-            this.ribbonBar23.Size = new System.Drawing.Size(62, 148);
+            this.ribbonBar23.Size = new System.Drawing.Size(62, 118);
             this.ribbonBar23.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ribbonBar23.TabIndex = 13;
             // 
@@ -1008,7 +1009,7 @@
             this.ribbonBar24.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
             this.ribbonBar24.Location = new System.Drawing.Point(189, 0);
             this.ribbonBar24.Name = "ribbonBar24";
-            this.ribbonBar24.Size = new System.Drawing.Size(62, 148);
+            this.ribbonBar24.Size = new System.Drawing.Size(62, 118);
             this.ribbonBar24.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ribbonBar24.TabIndex = 12;
             // 
@@ -1051,7 +1052,7 @@
             this.ribbonBar21.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
             this.ribbonBar21.Location = new System.Drawing.Point(127, 0);
             this.ribbonBar21.Name = "ribbonBar21";
-            this.ribbonBar21.Size = new System.Drawing.Size(62, 148);
+            this.ribbonBar21.Size = new System.Drawing.Size(62, 118);
             this.ribbonBar21.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ribbonBar21.TabIndex = 11;
             // 
@@ -1094,7 +1095,7 @@
             this.ribbonBar22.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
             this.ribbonBar22.Location = new System.Drawing.Point(65, 0);
             this.ribbonBar22.Name = "ribbonBar22";
-            this.ribbonBar22.Size = new System.Drawing.Size(62, 148);
+            this.ribbonBar22.Size = new System.Drawing.Size(62, 118);
             this.ribbonBar22.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ribbonBar22.TabIndex = 10;
             // 
@@ -1137,7 +1138,7 @@
             this.ribbonBar20.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
             this.ribbonBar20.Location = new System.Drawing.Point(3, 0);
             this.ribbonBar20.Name = "ribbonBar20";
-            this.ribbonBar20.Size = new System.Drawing.Size(62, 148);
+            this.ribbonBar20.Size = new System.Drawing.Size(62, 118);
             this.ribbonBar20.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ribbonBar20.TabIndex = 8;
             // 
@@ -1177,10 +1178,10 @@
             this.ribbonPanel1.Controls.Add(this.ribbonBar2);
             this.ribbonPanel1.Controls.Add(this.ribbonBar1);
             this.ribbonPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ribbonPanel1.Location = new System.Drawing.Point(0, 0);
+            this.ribbonPanel1.Location = new System.Drawing.Point(0, 30);
             this.ribbonPanel1.Name = "ribbonPanel1";
             this.ribbonPanel1.Padding = new System.Windows.Forms.Padding(3, 0, 3, 3);
-            this.ribbonPanel1.Size = new System.Drawing.Size(800, 151);
+            this.ribbonPanel1.Size = new System.Drawing.Size(800, 121);
             // 
             // 
             // 
@@ -1215,7 +1216,7 @@
             this.ribbonBar12.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
             this.ribbonBar12.Location = new System.Drawing.Point(685, 0);
             this.ribbonBar12.Name = "ribbonBar12";
-            this.ribbonBar12.Size = new System.Drawing.Size(62, 148);
+            this.ribbonBar12.Size = new System.Drawing.Size(62, 118);
             this.ribbonBar12.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ribbonBar12.TabIndex = 11;
             // 
@@ -1258,7 +1259,7 @@
             this.ribbonBar11.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
             this.ribbonBar11.Location = new System.Drawing.Point(623, 0);
             this.ribbonBar11.Name = "ribbonBar11";
-            this.ribbonBar11.Size = new System.Drawing.Size(62, 148);
+            this.ribbonBar11.Size = new System.Drawing.Size(62, 118);
             this.ribbonBar11.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ribbonBar11.TabIndex = 10;
             // 
@@ -1301,7 +1302,7 @@
             this.ribbonBar10.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
             this.ribbonBar10.Location = new System.Drawing.Point(561, 0);
             this.ribbonBar10.Name = "ribbonBar10";
-            this.ribbonBar10.Size = new System.Drawing.Size(62, 148);
+            this.ribbonBar10.Size = new System.Drawing.Size(62, 118);
             this.ribbonBar10.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ribbonBar10.TabIndex = 9;
             // 
@@ -1344,7 +1345,7 @@
             this.ribbonBar9.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
             this.ribbonBar9.Location = new System.Drawing.Point(499, 0);
             this.ribbonBar9.Name = "ribbonBar9";
-            this.ribbonBar9.Size = new System.Drawing.Size(62, 148);
+            this.ribbonBar9.Size = new System.Drawing.Size(62, 118);
             this.ribbonBar9.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ribbonBar9.TabIndex = 8;
             // 
@@ -1387,7 +1388,7 @@
             this.ribbonBar8.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
             this.ribbonBar8.Location = new System.Drawing.Point(437, 0);
             this.ribbonBar8.Name = "ribbonBar8";
-            this.ribbonBar8.Size = new System.Drawing.Size(62, 148);
+            this.ribbonBar8.Size = new System.Drawing.Size(62, 118);
             this.ribbonBar8.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ribbonBar8.TabIndex = 7;
             // 
@@ -1430,7 +1431,7 @@
             this.ribbonBar7.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
             this.ribbonBar7.Location = new System.Drawing.Point(375, 0);
             this.ribbonBar7.Name = "ribbonBar7";
-            this.ribbonBar7.Size = new System.Drawing.Size(62, 148);
+            this.ribbonBar7.Size = new System.Drawing.Size(62, 118);
             this.ribbonBar7.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ribbonBar7.TabIndex = 6;
             // 
@@ -1473,7 +1474,7 @@
             this.ribbonBar6.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
             this.ribbonBar6.Location = new System.Drawing.Point(313, 0);
             this.ribbonBar6.Name = "ribbonBar6";
-            this.ribbonBar6.Size = new System.Drawing.Size(62, 148);
+            this.ribbonBar6.Size = new System.Drawing.Size(62, 118);
             this.ribbonBar6.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ribbonBar6.TabIndex = 5;
             // 
@@ -1516,7 +1517,7 @@
             this.ribbonBar5.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
             this.ribbonBar5.Location = new System.Drawing.Point(251, 0);
             this.ribbonBar5.Name = "ribbonBar5";
-            this.ribbonBar5.Size = new System.Drawing.Size(62, 148);
+            this.ribbonBar5.Size = new System.Drawing.Size(62, 118);
             this.ribbonBar5.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ribbonBar5.TabIndex = 4;
             // 
@@ -1559,7 +1560,7 @@
             this.ribbonBar4.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
             this.ribbonBar4.Location = new System.Drawing.Point(189, 0);
             this.ribbonBar4.Name = "ribbonBar4";
-            this.ribbonBar4.Size = new System.Drawing.Size(62, 148);
+            this.ribbonBar4.Size = new System.Drawing.Size(62, 118);
             this.ribbonBar4.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ribbonBar4.TabIndex = 3;
             // 
@@ -1602,7 +1603,7 @@
             this.ribbonBar3.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
             this.ribbonBar3.Location = new System.Drawing.Point(127, 0);
             this.ribbonBar3.Name = "ribbonBar3";
-            this.ribbonBar3.Size = new System.Drawing.Size(62, 148);
+            this.ribbonBar3.Size = new System.Drawing.Size(62, 118);
             this.ribbonBar3.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ribbonBar3.TabIndex = 2;
             // 
@@ -1645,7 +1646,7 @@
             this.ribbonBar2.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
             this.ribbonBar2.Location = new System.Drawing.Point(65, 0);
             this.ribbonBar2.Name = "ribbonBar2";
-            this.ribbonBar2.Size = new System.Drawing.Size(62, 148);
+            this.ribbonBar2.Size = new System.Drawing.Size(62, 118);
             this.ribbonBar2.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ribbonBar2.TabIndex = 1;
             // 
@@ -1688,7 +1689,7 @@
             this.ribbonBar1.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
             this.ribbonBar1.Location = new System.Drawing.Point(3, 0);
             this.ribbonBar1.Name = "ribbonBar1";
-            this.ribbonBar1.Size = new System.Drawing.Size(62, 148);
+            this.ribbonBar1.Size = new System.Drawing.Size(62, 118);
             this.ribbonBar1.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ribbonBar1.TabIndex = 0;
             // 
@@ -1727,10 +1728,10 @@
             this.ribbonPanel6.Controls.Add(this.ribbonBar34);
             this.ribbonPanel6.Controls.Add(this.ribbonBar35);
             this.ribbonPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ribbonPanel6.Location = new System.Drawing.Point(0, 0);
+            this.ribbonPanel6.Location = new System.Drawing.Point(0, 30);
             this.ribbonPanel6.Name = "ribbonPanel6";
             this.ribbonPanel6.Padding = new System.Windows.Forms.Padding(3, 0, 3, 3);
-            this.ribbonPanel6.Size = new System.Drawing.Size(800, 151);
+            this.ribbonPanel6.Size = new System.Drawing.Size(800, 121);
             // 
             // 
             // 
@@ -1744,7 +1745,6 @@
             // 
             this.ribbonPanel6.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.ribbonPanel6.TabIndex = 6;
-            this.ribbonPanel6.Visible = false;
             // 
             // ribbonBar36
             // 
@@ -1765,7 +1765,7 @@
             this.ribbonBar36.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
             this.ribbonBar36.Location = new System.Drawing.Point(623, 0);
             this.ribbonBar36.Name = "ribbonBar36";
-            this.ribbonBar36.Size = new System.Drawing.Size(62, 148);
+            this.ribbonBar36.Size = new System.Drawing.Size(62, 118);
             this.ribbonBar36.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ribbonBar36.TabIndex = 22;
             // 
@@ -1808,7 +1808,7 @@
             this.ribbonBar26.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
             this.ribbonBar26.Location = new System.Drawing.Point(561, 0);
             this.ribbonBar26.Name = "ribbonBar26";
-            this.ribbonBar26.Size = new System.Drawing.Size(62, 148);
+            this.ribbonBar26.Size = new System.Drawing.Size(62, 118);
             this.ribbonBar26.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ribbonBar26.TabIndex = 21;
             // 
@@ -1851,7 +1851,7 @@
             this.ribbonBar27.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
             this.ribbonBar27.Location = new System.Drawing.Point(499, 0);
             this.ribbonBar27.Name = "ribbonBar27";
-            this.ribbonBar27.Size = new System.Drawing.Size(62, 148);
+            this.ribbonBar27.Size = new System.Drawing.Size(62, 118);
             this.ribbonBar27.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ribbonBar27.TabIndex = 20;
             // 
@@ -1894,7 +1894,7 @@
             this.ribbonBar28.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
             this.ribbonBar28.Location = new System.Drawing.Point(437, 0);
             this.ribbonBar28.Name = "ribbonBar28";
-            this.ribbonBar28.Size = new System.Drawing.Size(62, 148);
+            this.ribbonBar28.Size = new System.Drawing.Size(62, 118);
             this.ribbonBar28.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ribbonBar28.TabIndex = 19;
             // 
@@ -1937,7 +1937,7 @@
             this.ribbonBar29.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
             this.ribbonBar29.Location = new System.Drawing.Point(375, 0);
             this.ribbonBar29.Name = "ribbonBar29";
-            this.ribbonBar29.Size = new System.Drawing.Size(62, 148);
+            this.ribbonBar29.Size = new System.Drawing.Size(62, 118);
             this.ribbonBar29.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ribbonBar29.TabIndex = 18;
             // 
@@ -1980,7 +1980,7 @@
             this.ribbonBar30.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
             this.ribbonBar30.Location = new System.Drawing.Point(313, 0);
             this.ribbonBar30.Name = "ribbonBar30";
-            this.ribbonBar30.Size = new System.Drawing.Size(62, 148);
+            this.ribbonBar30.Size = new System.Drawing.Size(62, 118);
             this.ribbonBar30.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ribbonBar30.TabIndex = 17;
             // 
@@ -2023,7 +2023,7 @@
             this.ribbonBar31.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
             this.ribbonBar31.Location = new System.Drawing.Point(251, 0);
             this.ribbonBar31.Name = "ribbonBar31";
-            this.ribbonBar31.Size = new System.Drawing.Size(62, 148);
+            this.ribbonBar31.Size = new System.Drawing.Size(62, 118);
             this.ribbonBar31.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ribbonBar31.TabIndex = 16;
             // 
@@ -2066,7 +2066,7 @@
             this.ribbonBar32.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
             this.ribbonBar32.Location = new System.Drawing.Point(189, 0);
             this.ribbonBar32.Name = "ribbonBar32";
-            this.ribbonBar32.Size = new System.Drawing.Size(62, 148);
+            this.ribbonBar32.Size = new System.Drawing.Size(62, 118);
             this.ribbonBar32.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ribbonBar32.TabIndex = 15;
             // 
@@ -2109,7 +2109,7 @@
             this.ribbonBar33.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
             this.ribbonBar33.Location = new System.Drawing.Point(127, 0);
             this.ribbonBar33.Name = "ribbonBar33";
-            this.ribbonBar33.Size = new System.Drawing.Size(62, 148);
+            this.ribbonBar33.Size = new System.Drawing.Size(62, 118);
             this.ribbonBar33.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ribbonBar33.TabIndex = 14;
             // 
@@ -2152,7 +2152,7 @@
             this.ribbonBar34.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
             this.ribbonBar34.Location = new System.Drawing.Point(65, 0);
             this.ribbonBar34.Name = "ribbonBar34";
-            this.ribbonBar34.Size = new System.Drawing.Size(62, 148);
+            this.ribbonBar34.Size = new System.Drawing.Size(62, 118);
             this.ribbonBar34.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ribbonBar34.TabIndex = 13;
             // 
@@ -2195,7 +2195,7 @@
             this.ribbonBar35.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
             this.ribbonBar35.Location = new System.Drawing.Point(3, 0);
             this.ribbonBar35.Name = "ribbonBar35";
-            this.ribbonBar35.Size = new System.Drawing.Size(62, 148);
+            this.ribbonBar35.Size = new System.Drawing.Size(62, 118);
             this.ribbonBar35.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ribbonBar35.TabIndex = 12;
             // 
@@ -2225,10 +2225,10 @@
             this.ribbonPanel2.Controls.Add(this.ribbonBar15);
             this.ribbonPanel2.Controls.Add(this.ribbonBar38);
             this.ribbonPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ribbonPanel2.Location = new System.Drawing.Point(0, 0);
+            this.ribbonPanel2.Location = new System.Drawing.Point(0, 30);
             this.ribbonPanel2.Name = "ribbonPanel2";
             this.ribbonPanel2.Padding = new System.Windows.Forms.Padding(3, 0, 3, 3);
-            this.ribbonPanel2.Size = new System.Drawing.Size(800, 151);
+            this.ribbonPanel2.Size = new System.Drawing.Size(800, 121);
             // 
             // 
             // 
@@ -2264,7 +2264,7 @@
             this.ribbonBar15.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
             this.ribbonBar15.Location = new System.Drawing.Point(348, 0);
             this.ribbonBar15.Name = "ribbonBar15";
-            this.ribbonBar15.Size = new System.Drawing.Size(122, 148);
+            this.ribbonBar15.Size = new System.Drawing.Size(122, 118);
             this.ribbonBar15.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ribbonBar15.TabIndex = 13;
             // 
@@ -2323,7 +2323,7 @@
             this.ribbonBar38.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
             this.ribbonBar38.Location = new System.Drawing.Point(3, 0);
             this.ribbonBar38.Name = "ribbonBar38";
-            this.ribbonBar38.Size = new System.Drawing.Size(345, 148);
+            this.ribbonBar38.Size = new System.Drawing.Size(345, 118);
             this.ribbonBar38.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ribbonBar38.TabIndex = 12;
             // 
@@ -2409,7 +2409,6 @@
             // 
             // ribbonTabItem3
             // 
-            this.ribbonTabItem3.Checked = true;
             this.ribbonTabItem3.Name = "ribbonTabItem3";
             this.ribbonTabItem3.Panel = this.ribbonPanel3;
             this.ribbonTabItem3.Text = "کاربران";
@@ -2422,6 +2421,7 @@
             // 
             // ribbonTabItem6
             // 
+            this.ribbonTabItem6.Checked = true;
             this.ribbonTabItem6.Name = "ribbonTabItem6";
             this.ribbonTabItem6.Panel = this.ribbonPanel6;
             this.ribbonTabItem6.Text = "امکانات";
@@ -2562,7 +2562,7 @@
             this.panelEx1.Controls.Add(this.pictureBox16);
             this.panelEx1.Controls.Add(this.pictureBox17);
             this.panelEx1.DisabledBackColor = System.Drawing.Color.Empty;
-            this.panelEx1.Location = new System.Drawing.Point(-12, 28);
+            this.panelEx1.Location = new System.Drawing.Point(-29, 28);
             this.panelEx1.Name = "panelEx1";
             this.panelEx1.Size = new System.Drawing.Size(414, 188);
             this.panelEx1.Style.Alignment = System.Drawing.StringAlignment.Center;
@@ -2843,7 +2843,7 @@
             this.grp.Controls.Add(this.pictureBox3);
             this.grp.Controls.Add(this.pictureBox2);
             this.grp.DisabledBackColor = System.Drawing.Color.Empty;
-            this.grp.Location = new System.Drawing.Point(408, 28);
+            this.grp.Location = new System.Drawing.Point(391, 28);
             this.grp.Name = "grp";
             this.grp.Size = new System.Drawing.Size(309, 260);
             this.grp.Style.Alignment = System.Drawing.StringAlignment.Center;

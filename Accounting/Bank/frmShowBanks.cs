@@ -34,6 +34,22 @@ namespace Accounting.Bank
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
+        private void SetAccess()
+        {
+            try
+            {
+                var access = UserBussines.CurrentUser.UserAccess;
+                mnuAdd.Enabled = access?.Bank.Bank_Insert ?? false;
+                mnuEdit.Enabled = access?.Bank.Bank_Update ?? false;
+                mnuDelete.Enabled = access?.Bank.Bank_Delete ?? false;
+                mnuView.Enabled = access?.Bank.Bank_View ?? false;
+                mnuTop.Enabled = access?.Bank.Bank_ShowGardesh ?? false;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
 
         public frmShowBanks(bool status = true)
         {
@@ -41,6 +57,7 @@ namespace Accounting.Bank
             ucHeader.Text = "نمایش لیست حساب های بانکی";
             _st = status;
             DGrid.Focus();
+            SetAccess();
         }
 
         private async void frmShowBanks_Load(object sender, EventArgs e) => await LoadDataAsync();

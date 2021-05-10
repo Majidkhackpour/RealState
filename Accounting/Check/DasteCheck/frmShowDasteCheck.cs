@@ -32,6 +32,22 @@ namespace Accounting.Check.DasteCheck
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
+        private void SetAccess()
+        {
+            try
+            {
+                var access = UserBussines.CurrentUser.UserAccess;
+                mnuAdd.Enabled = access?.DasteCheck.DasteCheck_Insert ?? false;
+                mnuEdit.Enabled = access?.DasteCheck.DasteCheck_Update ?? false;
+                mnuView.Enabled = access?.DasteCheck.DasteCheck_View ?? false;
+                mnuDelete.Enabled = access?.DasteCheck.DasteCheck_Delete ?? false;
+                mnuShowPages.Enabled = access?.DasteCheck.DasteCheck_ShowPages ?? false;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
 
         public frmShowDasteCheck(bool status = true)
         {
@@ -39,6 +55,7 @@ namespace Accounting.Check.DasteCheck
             ucHeader.Text = "نمایش لیست دسته چک ها";
             _st = status;
             DGrid.Focus();
+            SetAccess();
         }
 
         private async void frmShowDasteCheck_Load(object sender, EventArgs e) => await LoadDataAsync();

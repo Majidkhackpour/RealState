@@ -34,6 +34,22 @@ namespace Accounting.Sandouq
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
+        private void SetAccess()
+        {
+            try
+            {
+                var access = UserBussines.CurrentUser.UserAccess;
+                mnuAdd.Enabled = access?.Sandouq.Sandouq_Insert ?? false;
+                mnuEdit.Enabled = access?.Sandouq.Sandouq_Update ?? false;
+                mnuDelete.Enabled = access?.Sandouq.Sandouq_Delete ?? false;
+                mnuView.Enabled = access?.Sandouq.Sandouq_View ?? false;
+                mnuGardesh.Enabled = access?.Sandouq.Sandouq_ShowGardesh ?? false;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
 
         public frmShowSandouq(bool status = true)
         {
@@ -41,6 +57,7 @@ namespace Accounting.Sandouq
             ucHeader.Text = "نمایش لیست صندوق ها";
             _st = status;
             DGrid.Focus();
+            SetAccess();
         }
 
         private async void frmShowSandouq_Load(object sender, EventArgs e) => await LoadDataAsync();

@@ -111,13 +111,13 @@ namespace Accounting.Pardakht
                     DGrid[DgGuid.Index, DGrid.RowCount - 1].Value = ((PardakhtHavaleBussines)temp).Guid;
                 }
                 else if ((temp) is PardakhtCheckMoshtariBussines)
-                { 
+                {
                     DGrid.Rows.Add(1);
                     DGrid[DGType.Index, DGrid.RowCount - 1].Value = "چک دریافتی";
                     DGrid[DGPrice.Index, DGrid.RowCount - 1].Value = ((PardakhtCheckMoshtariBussines)temp).Price;
                     DGrid[DG_TempDescription.Index, DGrid.RowCount - 1].Value = ((PardakhtCheckMoshtariBussines)temp).Description;
                     DGrid[DGDescription.Index, DGrid.RowCount - 1].Value =
-                        $"خرج چک دریافتی از مشتری * شرح: {((PardakhtCheckMoshtariBussines) temp).Description}";
+                        $"خرج چک دریافتی از مشتری * شرح: {((PardakhtCheckMoshtariBussines)temp).Description}";
                     DGrid[DgGuid.Index, DGrid.RowCount - 1].Value = ((PardakhtCheckMoshtariBussines)temp).Guid;
                     DGrid[dgCheckGuid.Index, DGrid.RowCount - 1].Value = ((PardakhtCheckMoshtariBussines)temp).CheckGuid;
                 }
@@ -235,7 +235,7 @@ namespace Accounting.Pardakht
                         Price = (DGrid[DGPrice.Index, index].Value.ToString().ParseToDecimal()),
                         Description = DGrid[DG_TempDescription.Index, index].Value.ToString(),
                         CheckPageGuid = (Guid)(DGrid[dgCheckGuid.Index, index].Value),
-                        Number = DGrid[DGNumber.Index,index].Value.ToString(),
+                        Number = DGrid[DGNumber.Index, index].Value.ToString(),
                         DateSarResid = (DateTime)DGrid[DGDateSarresid.Index, index].Value
                     };
                     o = temp;
@@ -248,16 +248,33 @@ namespace Accounting.Pardakht
                 return null;
             }
         }
+        private void SetAccess()
+        {
+            try
+            {
+                var access = UserBussines.CurrentUser.UserAccess;
+                mnuAddCheckM.Enabled = access?.Pardakht.Pardakht_InsertCheckM ?? false;
+                mnuAddCheckSh.Enabled = access?.Pardakht.Pardakht_InsertCheckSh ?? false;
+                mnuAddHavale.Enabled = access?.Pardakht.Pardakht_InsertHavale ?? false;
+                mnuAddNaqd.Enabled = access?.Pardakht.Pardakht_InsertNaqd ?? false;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
 
         public frmPardakhtMain()
         {
             InitializeComponent();
             cls = new PardakhtBussines();
+            SetAccess();
         }
         public frmPardakhtMain(PardakhtBussines temp)
         {
             InitializeComponent();
             cls = temp;
+            SetAccess();
         }
         public frmPardakhtMain(EnOperation op)
         {
@@ -279,6 +296,7 @@ namespace Accounting.Pardakht
                     mnuAddNaqd.PerformClick();
                     break;
             }
+            SetAccess();
         }
         public frmPardakhtMain(Guid guid, bool isShowMode)
         {
@@ -287,6 +305,7 @@ namespace Accounting.Pardakht
             grp.Enabled = !isShowMode;
             btnFinish.Enabled = !isShowMode;
             contextMenu.Enabled = !isShowMode;
+            SetAccess();
         }
 
         private async void frmPardakhtMain_Load(object sender, EventArgs e) => await SetDataAsync();

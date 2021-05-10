@@ -26,11 +26,31 @@ namespace Accounting.Check.CheckShakhsi
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
+        private void SetAccess()
+        {
+            try
+            {
+                var access = UserBussines.CurrentUser.UserAccess;
+                mnuAdd.Enabled = access?.CheckSh.CheckSh_Insert ?? false;
+                mnuInsAvalDore.Enabled = access?.CheckSh.CheckSh_InsertAvalDore ?? false;
+                mnuEdit.Enabled = access?.CheckSh.CheckSh_Update ?? false;
+                mnuBatel.Enabled = access?.CheckSh.CheckSh_Ebtal ?? false;
+                mnuView.Enabled = access?.CheckSh.CheckSh_View ?? false;
+                mnuKharj.Enabled = access?.CheckSh.CheckSh_Kharh ?? false;
+                mnuBargasht.Enabled = access?.CheckSh.CheckSh_Bargasht ?? false;
+                mnuViewSanad.Enabled = access?.Sanad.Sanad_View ?? false;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
 
         public frmShowCheckSh()
         {
             InitializeComponent();
             ucHeader.Text = "نمایش لیست چک های پرداختنی";
+            SetAccess();
         }
 
         private async void frmShowCheckSh_Load(object sender, EventArgs e) => await LoadDataAsync();

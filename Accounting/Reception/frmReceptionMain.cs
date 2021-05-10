@@ -238,11 +238,26 @@ namespace Accounting.Reception
                 return null;
             }
         }
+        private void SetAccess()
+        {
+            try
+            {
+                var access = UserBussines.CurrentUser.UserAccess;
+                mnuAddCheck.Enabled = access?.Reception.Reception_InsertCheck ?? false;
+                mnuAddHavale.Enabled = access?.Reception.Reception_InsertHavale ?? false;
+                mnuAddNaqd.Enabled = access?.Reception.Reception_InsertNaqd ?? false;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
 
         public frmReceptionMain()
         {
             InitializeComponent();
             cls = new ReceptionBussines();
+            SetAccess();
         }
         public frmReceptionMain(EnOperation op)
         {
@@ -261,6 +276,7 @@ namespace Accounting.Reception
                     mnuAddNaqd.PerformClick();
                     break;
             }
+            SetAccess();
         }
         public frmReceptionMain(Guid guid, bool isShowMode)
         {
@@ -269,6 +285,7 @@ namespace Accounting.Reception
             grp.Enabled = !isShowMode;
             btnFinish.Enabled = !isShowMode;
             contextMenu.Enabled = !isShowMode;
+            SetAccess();
         }
 
         private void mnuAddNaqd_Click(object sender, System.EventArgs e)

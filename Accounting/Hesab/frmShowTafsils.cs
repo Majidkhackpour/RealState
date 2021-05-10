@@ -34,6 +34,22 @@ namespace Accounting.Hesab
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
+        private void SetAccess()
+        {
+            try
+            {
+                var access = UserBussines.CurrentUser.UserAccess;
+                mnuAdd.Enabled = access?.Tafsil.Tafsil_Insert ?? false;
+                mnuEdit.Enabled = access?.Tafsil.Tafsil_Update ?? false;
+                mnuDelete.Enabled = access?.Tafsil.Tafsil_Delete ?? false;
+                mnuView.Enabled = access?.Tafsil.Tafsil_View ?? false;
+                mnuGardesh.Enabled = access?.Tafsil.Tafsil_Gardesh ?? false;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
 
         public frmShowTafsils(bool status = true)
         {
@@ -41,6 +57,7 @@ namespace Accounting.Hesab
             ucHeader.Text = "نمایش لیست حساب های تفصیلی";
             _st = status;
             DGrid.Focus();
+            SetAccess();
         }
 
         private async void frmShowTafsils_Load(object sender, EventArgs e) => await LoadDataAsync();
