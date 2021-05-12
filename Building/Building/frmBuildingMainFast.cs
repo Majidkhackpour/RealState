@@ -533,7 +533,7 @@ namespace Building.Building
                     return;
                 }
 
-                new frmShowRequestMatches(list).ShowDialog();
+                new frmShowRequestMatches(list).ShowDialog(this);
             }
             catch (Exception ex)
             {

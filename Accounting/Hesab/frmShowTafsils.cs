@@ -270,18 +270,18 @@ namespace Accounting.Hesab
                 if (tafsil.HesabType == HesabType.Customer)
                 {
                     var frm = new frmPeoples(guid, true);
-                    frm.ShowDialog();
+                    frm.ShowDialog(this);
                     return;
                 }
                 if (tafsil.HesabType == HesabType.Bank)
                 {
                     var frm = new frmBankMain(guid, true);
-                    frm.ShowDialog();
+                    frm.ShowDialog(this);
                     return;
                 }
 
                 var _frm = new frmTafsilMain(guid, true);
-                _frm.ShowDialog();
+                _frm.ShowDialog(this);
             }
             catch (Exception ex)
             {
@@ -296,7 +296,7 @@ namespace Accounting.Hesab
                 if (DGrid.CurrentRow == null) return;
                 var tafsilGuid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
                 var frm = new frmGardeshTafsil(tafsilGuid);
-                frm.ShowDialog();
+                frm.ShowDialog(this);
             }
             catch (Exception ex)
             {

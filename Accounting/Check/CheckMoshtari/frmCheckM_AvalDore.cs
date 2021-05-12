@@ -145,7 +145,7 @@ namespace Accounting.Check.CheckMoshtari
             try
             {
                 var frm = new frmSelectTafsil(true);
-                if (frm.ShowDialog() == DialogResult.OK)
+                if (frm.ShowDialog(this) == DialogResult.OK)
                     await SetTafilAsync(frm.SelectedGuid);
             }
             catch (Exception ex)

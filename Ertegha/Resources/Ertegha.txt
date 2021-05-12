@@ -6828,3 +6828,60 @@ BEGIN
 	(select NEWID() As Guid,Guid As ObjectGuid,32 As Type
 		from SanadDetails where Modified>@date)
 END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Desc_GetAll]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Desc_GetAll]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_Desc_GetAll
+AS
+BEGIN
+	select * from AdjectiveDescriptions
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Desc_Get]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Desc_Get]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_Desc_Get
+	@guid uniqueidentifier
+AS
+BEGIN
+	select * from AdjectiveDescriptions
+	where Guid=@guid
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Desc_Remove]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Desc_Remove]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_Desc_Remove
+	@guid uniqueidentifier
+AS
+BEGIN
+	delete from AdjectiveDescriptions
+	where Guid=@guid
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Desc_Save]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Desc_Save]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_Desc_Save
+	@guid uniqueidentifier,
+	@desc nvarchar(max)
+AS
+BEGIN
+	  UPDATE [dbo].[AdjectiveDescriptions]
+	  SET [Description] = @desc
+	  WHERE Guid = @guid
+	  if @@ROWCOUNT = 0
+	  begin
+		INSERT INTO [dbo].[AdjectiveDescriptions]
+           ([Guid]
+           ,[Description])
+		VALUES
+           (@guid
+           ,@desc)
+	  end
+END

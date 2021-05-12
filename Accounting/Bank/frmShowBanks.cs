@@ -1,16 +1,14 @@
-﻿using System;
+﻿using Accounting.Gardesh;
+using EntityCache.Bussines;
+using MetroFramework.Forms;
+using Notification;
+using Services;
+using System;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WindowsSerivces;
-using Accounting.Gardesh;
-using Accounting.Hesab;
-using EntityCache.Bussines;
-using MetroFramework.Forms;
-using Notification;
-using Services;
-using User;
 
 namespace Accounting.Bank
 {
@@ -217,7 +215,7 @@ namespace Accounting.Bank
                 if (DGrid.CurrentRow == null) return;
                 var tafsilGuid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
                 var frm = new frmGardeshTafsil(tafsilGuid);
-                frm.ShowDialog();
+                frm.ShowDialog(this);
             }
             catch (Exception ex)
             {

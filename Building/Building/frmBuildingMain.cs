@@ -875,7 +875,7 @@ namespace Building.Building
                 if (!Directory.Exists(fd.InitialDirectory))
                     Directory.CreateDirectory(fd.InitialDirectory);
                 fd.Filter = "*.JPG;*.GIF;*.PNG|*.JPG;*.GIF;*.PNG";
-                if (fd.ShowDialog() != DialogResult.OK) return null;
+                if (fd.ShowDialog(this) != DialogResult.OK) return null;
                 var aa = new FileInfo(fd.FileName);
                 var attache = 1;
                 if (Application.StartupPath + "\\Images\\" + aa.Name != aa.FullName)
@@ -1113,7 +1113,7 @@ namespace Building.Building
                     return;
                 }
 
-                new frmShowRequestMatches(list).ShowDialog();
+                new frmShowRequestMatches(list).ShowDialog(this);
             }
             catch (Exception ex)
             {

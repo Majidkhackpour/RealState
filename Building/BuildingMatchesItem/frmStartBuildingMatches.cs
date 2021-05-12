@@ -49,7 +49,7 @@ namespace Building.BuildingMatchesItem
                     return;
                 }
 
-                new frmShowRequestMatches(list).ShowDialog();
+                new frmShowRequestMatches(list).ShowDialog(this);
             }
             catch (Exception ex)
             {

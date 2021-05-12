@@ -126,7 +126,7 @@ namespace Accounting.Check.CheckMoshtari
             try
             {
                 var frm = new frmReceptionMain(EnOperation.CheckM);
-                if (frm.ShowDialog() == DialogResult.OK)
+                if (frm.ShowDialog(this) == DialogResult.OK)
                     await LoadDataAsync();
             }
             catch (Exception ex)
@@ -139,7 +139,7 @@ namespace Accounting.Check.CheckMoshtari
             try
             {
                 var frm = new frmCheckM_AvalDore();
-                if (frm.ShowDialog() == DialogResult.OK)
+                if (frm.ShowDialog(this) == DialogResult.OK)
                     await LoadDataAsync();
             }
             catch (Exception ex)
@@ -180,12 +180,12 @@ namespace Accounting.Check.CheckMoshtari
                 if (!avalDore)
                 {
                     var frm_ = new frmReceptionCheck(guid);
-                    frm_.ShowDialog();
+                    frm_.ShowDialog(this);
                     return;
                 }
 
                 var frm = new frmCheckM_AvalDore(guid, true);
-                frm.ShowDialog();
+                frm.ShowDialog(this);
             }
             catch (Exception ex)
             {
@@ -205,12 +205,12 @@ namespace Accounting.Check.CheckMoshtari
                     var rec = await ReceptionBussines.GetAsync(str.MasterGuid.Value);
                     var sanad = await SanadBussines.GetAsync(rec.SanadNumber);
                     var frm_ = new frmSanadMain(sanad.Guid, true);
-                    frm_.ShowDialog();
+                    frm_.ShowDialog(this);
                     return;
                 }
 
                 var frm = new frmCheckM_AvalDore(guid, true);
-                frm.ShowDialog();
+                frm.ShowDialog(this);
             }
             catch (Exception ex)
             {
@@ -230,19 +230,19 @@ namespace Accounting.Check.CheckMoshtari
                 if (tafsil.HesabType == HesabType.Bank)
                 {
                     var frm = new frmBankMain(guid, true);
-                    frm.ShowDialog();
+                    frm.ShowDialog(this);
                     return;
                 }
 
                 if (tafsil.HesabType == HesabType.Customer)
                 {
                     var frm = new frmPeoples(guid, true);
-                    frm.ShowDialog();
+                    frm.ShowDialog(this);
                     return;
                 }
 
                 var _frm = new frmTafsilMain(guid, true);
-                _frm.ShowDialog();
+                _frm.ShowDialog(this);
             }
             catch (Exception ex)
             {
@@ -278,7 +278,7 @@ namespace Accounting.Check.CheckMoshtari
                 };
                 cls.AddToDetList(pardakhtcheck);
                 var frm = new frmPardakhtMain(cls);
-                if (frm.ShowDialog() == DialogResult.OK)
+                if (frm.ShowDialog(this) == DialogResult.OK)
                     await LoadDataAsync();
             }
             catch (Exception ex)
@@ -390,13 +390,13 @@ namespace Accounting.Check.CheckMoshtari
                 {
                     var str = await ReceptionCheckBussines.GetAsync(guid);
                     var frm = new frmCheckM_Vagozar(str, HesabType.Sandouq);
-                    if (frm.ShowDialog() == DialogResult.OK) await LoadDataAsync(txtSearch.Text);
+                    if (frm.ShowDialog(this) == DialogResult.OK) await LoadDataAsync(txtSearch.Text);
                     return;
                 }
 
                 var cls = await ReceptionCheckAvalDoreBussines.GetAsync(guid);
                 var frm_ = new frmCheckM_Vagozar(cls, HesabType.Sandouq);
-                if (frm_.ShowDialog() == DialogResult.OK) await LoadDataAsync(txtSearch.Text);
+                if (frm_.ShowDialog(this) == DialogResult.OK) await LoadDataAsync(txtSearch.Text);
             }
             catch (Exception ex)
             {
@@ -425,13 +425,13 @@ namespace Accounting.Check.CheckMoshtari
                 {
                     var str = await ReceptionCheckBussines.GetAsync(guid);
                     var frm = new frmCheckM_Vagozar(str, HesabType.Bank);
-                    if (frm.ShowDialog() == DialogResult.OK) await LoadDataAsync(txtSearch.Text);
+                    if (frm.ShowDialog(this) == DialogResult.OK) await LoadDataAsync(txtSearch.Text);
                     return;
                 }
 
                 var cls = await ReceptionCheckAvalDoreBussines.GetAsync(guid);
                 var frm_ = new frmCheckM_Vagozar(cls, HesabType.Bank);
-                if (frm_.ShowDialog() == DialogResult.OK) await LoadDataAsync(txtSearch.Text);
+                if (frm_.ShowDialog(this) == DialogResult.OK) await LoadDataAsync(txtSearch.Text);
             }
             catch (Exception ex)
             {

@@ -103,7 +103,7 @@ namespace Accounting.Check.CheckShakhsi
             try
             {
                 var frm = new frmPardakhtMain(EnOperation.CheckSh);
-                if (frm.ShowDialog() == DialogResult.OK)
+                if (frm.ShowDialog(this) == DialogResult.OK)
                     await LoadDataAsync();
             }
             catch (Exception ex)
@@ -116,7 +116,7 @@ namespace Accounting.Check.CheckShakhsi
             try
             {
                 var frm = new frmPardakhtCheckAvalDore();
-                if (frm.ShowDialog() == DialogResult.OK)
+                if (frm.ShowDialog(this) == DialogResult.OK)
                     await LoadDataAsync();
             }
             catch (Exception ex)
@@ -157,12 +157,12 @@ namespace Accounting.Check.CheckShakhsi
                 if (!avalDore)
                 {
                     var frm_ = new frmPardakhtCheckSh(guid);
-                    frm_.ShowDialog();
+                    frm_.ShowDialog(this);
                     return;
                 }
 
                 var frm = new frmPardakhtCheckAvalDore(guid, true);
-                frm.ShowDialog();
+                frm.ShowDialog(this);
             }
             catch (Exception ex)
             {
@@ -182,12 +182,12 @@ namespace Accounting.Check.CheckShakhsi
                     var rec = await PardakhtBussines.GetAsync(str.MasterGuid);
                     var sanad = await SanadBussines.GetAsync(rec.SanadNumber);
                     var frm_ = new frmSanadMain(sanad.Guid, true);
-                    frm_.ShowDialog();
+                    frm_.ShowDialog(this);
                     return;
                 }
 
                 var frm = new frmPardakhtCheckAvalDore(guid, true);
-                frm.ShowDialog();
+                frm.ShowDialog(this);
             }
             catch (Exception ex)
             {

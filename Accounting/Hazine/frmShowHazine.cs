@@ -222,7 +222,7 @@ namespace Accounting.Hazine
                 if (DGrid.CurrentRow == null) return;
                 var tafsilGuid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
                 var frm = new frmGardeshTafsil(tafsilGuid);
-                frm.ShowDialog();
+                frm.ShowDialog(this);
             }
             catch (Exception ex)
             {

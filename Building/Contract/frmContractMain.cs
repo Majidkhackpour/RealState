@@ -748,7 +748,7 @@ namespace Building.Contract
         {
             try
             {
-                new frmHelpCalculateCommition().ShowDialog();
+                new frmHelpCalculateCommition().ShowDialog(this);
             }
             catch (Exception ex)
             {

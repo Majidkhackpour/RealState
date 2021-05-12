@@ -105,6 +105,7 @@
     <Compile Include="Assistence\Defualts\DefaultStates.cs" />
     <Compile Include="Assistence\Defualts\DefaultTafsil.cs" />
     <Compile Include="Assistence\UnitOfWork.cs" />
+    <Compile Include="Bussines\AdjectiveDescriptionBussines.cs" />
     <Compile Include="Bussines\AdvertiseLogBussines.cs" />
     <Compile Include="Bussines\AdvertiseRelatedRegionBussines.cs" />
     <Compile Include="Bussines\AdvisorBussines.cs" />
@@ -164,6 +165,7 @@
     <Compile Include="Bussines\TempBussines.cs" />
     <Compile Include="Bussines\UserBussines.cs" />
     <Compile Include="Bussines\UserLogBussines.cs" />
+    <Compile Include="Core\IAdjectiveDescriptionRepository.cs" />
     <Compile Include="Core\IAdvertiseLogRepository.cs" />
     <Compile Include="Core\IAdvertiseRelatedRegionRepository.cs" />
     <Compile Include="Core\IAdvisorRepository.cs" />
@@ -222,6 +224,7 @@
     <Compile Include="Core\ITempRepository.cs" />
     <Compile Include="Core\IUserLogRepository.cs" />
     <Compile Include="Core\IUsersRepository.cs" />
+    <Compile Include="SqlServerPersistence\AdjectiveDescriptionPersistenceRepository.cs" />
     <Compile Include="SqlServerPersistence\AdvertiseLogPersistenceRepository.cs" />
     <Compile Include="SqlServerPersistence\AdvertiseRelatedRegionPersistenceRepository.cs" />
     <Compile Include="SqlServerPersistence\AdvisorPersistenceRepository.cs" />

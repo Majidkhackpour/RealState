@@ -231,7 +231,7 @@ namespace Accounting.Check.DasteCheck
                     return;
                 }
                 var frm = new frmShowCheckPages(dasteChek);
-                frm.ShowDialog();
+                frm.ShowDialog(this);
             }
             catch (Exception ex)
             {

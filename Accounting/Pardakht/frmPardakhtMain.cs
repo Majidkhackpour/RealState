@@ -1,12 +1,12 @@
-﻿using System;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using WindowsSerivces;
-using Accounting.Check;
-using Accounting.Hesab;
+﻿using Accounting.Hesab;
 using EntityCache.Bussines;
 using MetroFramework.Forms;
 using Services;
+using System;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using WindowsSerivces;
+using Notification.AdjectiveDescription;
 
 namespace Accounting.Pardakht
 {
@@ -314,7 +314,7 @@ namespace Accounting.Pardakht
             try
             {
                 var frm = new frmSelectTafsil(false);
-                if (frm.ShowDialog() == DialogResult.OK)
+                if (frm.ShowDialog(this) == DialogResult.OK)
                     await SetTafilAsync(frm.SelectedGuid);
             }
             catch (Exception ex)
@@ -345,6 +345,11 @@ namespace Accounting.Pardakht
                         break;
                     case Keys.F5:
                         btnFinish.PerformClick();
+                        break;
+                    case Keys.F9:
+                        var frm = new frmShowDesc();
+                        if (frm.ShowDialog() == DialogResult.OK)
+                            txtDesc.Text = frm.Description;
                         break;
                     case Keys.Delete:
                         mnuDelete.PerformClick();

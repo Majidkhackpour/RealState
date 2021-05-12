@@ -633,7 +633,7 @@ namespace RealState
             try
             {
                 var frm = new frmShowPhoneBook();
-                frm.ShowDialog();
+                frm.ShowDialog(this);
             }
             catch (Exception ex)
             {
@@ -693,7 +693,7 @@ namespace RealState
             try
             {
                 var frm = new frmBackUpLog();
-                frm.ShowDialog();
+                frm.ShowDialog(this);
             }
             catch (Exception ex)
             {
@@ -705,7 +705,7 @@ namespace RealState
             try
             {
                 var frm = new frmBackUpLog();
-                frm.ShowDialog();
+                frm.ShowDialog(this);
             }
             catch (Exception ex)
             {
@@ -780,7 +780,7 @@ namespace RealState
             try
             {
                 var frm = new frmReminder(allNote);
-                frm.ShowDialog();
+                frm.ShowDialog(this);
             }
             catch (Exception ex)
             {
@@ -792,7 +792,7 @@ namespace RealState
             try
             {
                 //var frm = new frmReceptopnCheckToday();
-                //frm.ShowDialog();
+                //frm.ShowDialog(this);
             }
             catch (Exception ex)
             {
@@ -804,7 +804,7 @@ namespace RealState
             try
             {
                 //var frm = new frmPardakhtCheckToday();
-                //frm.ShowDialog();
+                //frm.ShowDialog(this);
             }
             catch (Exception ex)
             {
@@ -816,7 +816,7 @@ namespace RealState
             try
             {
                 var frm = new frmDischargeList();
-                frm.ShowDialog();
+                frm.ShowDialog(this);
             }
             catch (Exception ex)
             {

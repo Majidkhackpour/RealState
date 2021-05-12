@@ -67,7 +67,7 @@ namespace Accounting.Pardakht
             try
             {
                 var frm = new frmShowCheckM(true);
-                if (frm.ShowDialog() == DialogResult.OK)
+                if (frm.ShowDialog(this) == DialogResult.OK)
                     await SetCheckDataAsync(frm.SelectedGuid);
             }
             catch (Exception ex)

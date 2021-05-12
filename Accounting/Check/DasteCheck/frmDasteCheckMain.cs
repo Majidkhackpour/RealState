@@ -144,7 +144,7 @@ namespace Accounting.Check.DasteCheck
             try
             {
                 var frm = new frmSelectTafsil(HesabType.Bank);
-                if (frm.ShowDialog() != DialogResult.OK) return;
+                if (frm.ShowDialog(this) != DialogResult.OK) return;
                 _bankGuid = frm.SelectedGuid;
                 txtBankName.Text = TafsilBussines.Get(_bankGuid)?.Name;
             }

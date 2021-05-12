@@ -118,7 +118,7 @@ namespace Accounting.Pardakht
             try
             {
                 var frm = new frmPardakhtMain();
-                if (frm.ShowDialog() == DialogResult.OK)
+                if (frm.ShowDialog(this) == DialogResult.OK)
                     await LoadDataAsync();
             }
             catch (Exception ex)

@@ -5,6 +5,7 @@ using WindowsSerivces;
 using Accounting.Hesab;
 using EntityCache.Bussines;
 using MetroFramework.Forms;
+using Notification.AdjectiveDescription;
 using Services;
 
 namespace Accounting.Reception
@@ -309,7 +310,7 @@ namespace Accounting.Reception
             try
             {
                 var frm = new frmSelectTafsil(true);
-                if (frm.ShowDialog() == DialogResult.OK)
+                if (frm.ShowDialog(this) == DialogResult.OK)
                     await SetTafilAsync(frm.SelectedGuid);
             }
             catch (Exception ex)
@@ -367,6 +368,11 @@ namespace Accounting.Reception
                         break;
                     case Keys.F5:
                         btnFinish.PerformClick();
+                        break;
+                    case Keys.F9:
+                        var frm = new frmShowDesc();
+                        if (frm.ShowDialog() == DialogResult.OK)
+                            txtDesc.Text = frm.Description;
                         break;
                     case Keys.Delete:
                         mnuDelete.PerformClick();

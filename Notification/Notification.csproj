@@ -35,6 +35,15 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\References\DevComponents.DotNetBar2.dll</HintPath>
     </Reference>
+    <Reference Include="MetroFramework, Version=1.4.0.0, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
+      <HintPath>..\packages\MetroModernUI.1.4.0.0\lib\net\MetroFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="MetroFramework.Design, Version=1.4.0.0, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
+      <HintPath>..\packages\MetroModernUI.1.4.0.0\lib\net\MetroFramework.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="MetroFramework.Fonts, Version=1.4.0.0, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
+      <HintPath>..\packages\MetroModernUI.1.4.0.0\lib\net\MetroFramework.Fonts.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -47,6 +56,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdjectiveDescription\frmDescMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdjectiveDescription\frmDescMain.Designer.cs">
+      <DependentUpon>frmDescMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AdjectiveDescription\frmShowDesc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdjectiveDescription\frmShowDesc.Designer.cs">
+      <DependentUpon>frmShowDesc.cs</DependentUpon>
+    </Compile>
     <Compile Include="clsNotification.cs" />
     <Compile Include="clsShowError.cs" />
     <Compile Include="ErrorManager.cs" />
@@ -94,6 +115,12 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="AdjectiveDescription\frmDescMain.resx">
+      <DependentUpon>frmDescMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdjectiveDescription\frmShowDesc.resx">
+      <DependentUpon>frmShowDesc.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmNaqz.resx">
       <DependentUpon>frmNaqz.cs</DependentUpon>
     </EmbeddedResource>
@@ -122,9 +149,15 @@
       <Project>{dcb5bde2-6238-422d-ad4e-f53afce9bf30}</Project>
       <Name>Services</Name>
     </ProjectReference>
+    <ProjectReference Include="..\EntityCache\EntityCache.csproj">
+      <Project>{cc417799-f38c-4997-8491-510eb1c15f74}</Project>
+      <Name>EntityCache</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="packages.config" />
+    <None Include="Properties\DataSources\EntityCache.Bussines.AdjectiveDescriptionBussines.datasource" />
     <None Include="Resources\alarm.wav" />
   </ItemGroup>
   <ItemGroup>
@@ -153,6 +186,24 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\icons8-info-50.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add%281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\article%281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\delete%281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\edit%281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tab-checkbox__.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tab-close_.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

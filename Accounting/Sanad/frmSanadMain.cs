@@ -5,8 +5,8 @@ using Services;
 using System;
 using System.Linq;
 using System.Windows.Forms;
-using User;
 using WindowsSerivces;
+using Notification.AdjectiveDescription;
 
 namespace Accounting.Sanad
 {
@@ -15,6 +15,7 @@ namespace Accounting.Sanad
         private Guid _tafsilGuid = Guid.Empty;
         private Guid _moeinGuid = Guid.Empty;
         private SanadBussines cls;
+
         private void SetData()
         {
             try
@@ -95,7 +96,7 @@ namespace Accounting.Sanad
             try
             {
                 var frm = new frmSelectTafsil();
-                if (frm.ShowDialog() == DialogResult.OK)
+                if (frm.ShowDialog(this) == DialogResult.OK)
                 {
                     var tafsil = TafsilBussines.Get(frm.SelectedGuid);
                     if (tafsil != null)
@@ -115,7 +116,7 @@ namespace Accounting.Sanad
             try
             {
                 var frm = new frmKolMoein(true);
-                if (frm.ShowDialog() == DialogResult.OK)
+                if (frm.ShowDialog(this) == DialogResult.OK)
                 {
                     var moein = MoeinBussines.Get(frm.SelectedMoeinGuid);
                     if (moein != null)
@@ -211,6 +212,11 @@ namespace Accounting.Sanad
                         break;
                     case Keys.F7:
                         mnuEdit.PerformClick();
+                        break;
+                    case Keys.F9:
+                        var frm = new frmShowDesc();
+                        if (frm.ShowDialog() == DialogResult.OK)
+                            txtDesc.Text = frm.Description;
                         break;
                     case Keys.Delete:
                         mnuDelete.PerformClick();

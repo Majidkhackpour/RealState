@@ -8,7 +8,6 @@ namespace EntityCache.Assistence
     public static class UnitOfWork
     {
         private static readonly ModelContext db = new ModelContext(Cache.ConnectionString);
-        private static string _connectionString = Cache.ConnectionString;
 
         private static IUsersRepository _usersRepository;
         private static IStatesRepository _statesRepository;
@@ -68,6 +67,7 @@ namespace EntityCache.Assistence
         private static IReceptionCheckAvalDoreRepository _receptionCheckAvalDoreRepository;
         private static IPardakhtCheckAvalDoreRepository _pardakhtCheckAvalDoreRepository;
         private static IAdvisorRepository _advisorRepository;
+        private static IAdjectiveDescriptionRepository _adjectiveDescriptionRepository;
 
         public static void Dispose() => db?.Dispose();
         public static void Set_Save() => db.SaveChanges();
@@ -131,5 +131,6 @@ namespace EntityCache.Assistence
         public static IReceptionCheckAvalDoreRepository ReceptionCheckAvalDore => _receptionCheckAvalDoreRepository ?? (_receptionCheckAvalDoreRepository = new ReceptionCheckAvalDorePersistenceRepository());
         public static IPardakhtCheckAvalDoreRepository PardakhtCheckAvalDore => _pardakhtCheckAvalDoreRepository ?? (_pardakhtCheckAvalDoreRepository = new PardakhtCheckAvalDorePersistenceRepository());
         public static IAdvisorRepository Advisor => _advisorRepository ?? (_advisorRepository = new AdvisorPersistenceRepository());
+        public static IAdjectiveDescriptionRepository AdjectiveDescription => _adjectiveDescriptionRepository ?? (_adjectiveDescriptionRepository = new AdjectiveDescriptionPersistenceRepository());
     }
 }

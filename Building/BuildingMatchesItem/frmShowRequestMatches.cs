@@ -45,7 +45,7 @@ namespace Building.BuildingMatchesItem
                     var guid = (Guid)DGrid[dgBuildingGuid.Index, DGrid.CurrentRow.Index].Value;
                     _dic.TryGetValue(guid, out var reqList);
                     if (reqList == null || reqList.Count <= 0) return;
-                    new frmShowMatchesRequester(reqList).ShowDialog();
+                    new frmShowMatchesRequester(reqList).ShowDialog(this);
                 }
             }
             catch (Exception ex)
