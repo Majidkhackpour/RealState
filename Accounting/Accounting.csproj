@@ -306,6 +306,30 @@
     <Compile Include="Reception\frmShowReception.Designer.cs">
       <DependentUpon>frmShowReception.cs</DependentUpon>
     </Compile>
+    <Compile Include="Report\frmFilterRoozname.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Report\frmFilterRoozname.Designer.cs">
+      <DependentUpon>frmFilterRoozname.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Report\frmRoozname.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Report\frmRoozname.Designer.cs">
+      <DependentUpon>frmRoozname.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Report\frmSelectReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Report\frmSelectReport.Designer.cs">
+      <DependentUpon>frmSelectReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Report\frmTarazAzmayeshi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Report\frmTarazAzmayeshi.Designer.cs">
+      <DependentUpon>frmTarazAzmayeshi.cs</DependentUpon>
+    </Compile>
     <Compile Include="Sanad\frmSanadMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -439,6 +463,18 @@
     <EmbeddedResource Include="Reception\frmShowReception.resx">
       <DependentUpon>frmShowReception.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Report\frmFilterRoozname.resx">
+      <DependentUpon>frmFilterRoozname.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\frmRoozname.resx">
+      <DependentUpon>frmRoozname.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\frmSelectReport.resx">
+      <DependentUpon>frmSelectReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\frmTarazAzmayeshi.resx">
+      <DependentUpon>frmTarazAzmayeshi.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Sanad\frmSanadMain.resx">
       <DependentUpon>frmSanadMain.cs</DependentUpon>
     </EmbeddedResource>
@@ -492,6 +528,7 @@
     <None Include="Properties\DataSources\EntityCache.ViewModels.CheckViewModel.datasource" />
     <None Include="Properties\DataSources\EntityCache.ViewModels.PardakhtCheckViewModel.datasource" />
     <None Include="Properties\DataSources\EntityCache.ViewModels.ReceptionCheckViewModel.datasource" />
+    <None Include="Properties\DataSources\EntityCache.ViewModels.TarazAzmayeshiViewModel.datasource" />
     <None Include="Resources\add.png" />
   </ItemGroup>
   <ItemGroup>
@@ -542,7 +579,21 @@
   <ItemGroup>
     <None Include="Resources\P-1-99.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\008.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\011.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\013.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\027.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\118.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

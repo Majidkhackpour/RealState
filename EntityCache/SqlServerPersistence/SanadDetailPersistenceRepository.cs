@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Threading;
 using System.Threading.Tasks;
 using EntityCache.Bussines;
 using EntityCache.Core;
+using EntityCache.ViewModels;
 using Persistence.Entities;
 using Persistence.Model;
 using Services;
@@ -40,7 +42,7 @@ namespace EntityCache.SqlServerPersistence
 
             return item;
         }
-        private GardeshBussines LoadDataGardesh(SqlDataReader dr)
+        private GardeshBussines LoadDataGardesh(SqlDataReader dr, bool isLoadNumber)
         {
             var item = new GardeshBussines();
             try
@@ -56,6 +58,26 @@ namespace EntityCache.SqlServerPersistence
                 item.Debit = (decimal)dr["Debit"];
                 item.Credit = (decimal)dr["Credit"];
                 item.DateM = (DateTime)dr["DateM"];
+                if (isLoadNumber)
+                    item.SanadNumber = (long)dr["SanadNumber"];
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+
+            return item;
+        }
+        private TarazAzmayeshiViewModel LoadDataTarazAzmayeshi(SqlDataReader dr)
+        {
+            var item = new TarazAzmayeshiViewModel();
+            try
+            {
+                item.Guid = (Guid)dr["Guid"];
+                item.Debit = (decimal)dr["Rem_Debit"];
+                item.Credit = (decimal)dr["Rem_Credit"];
+                item.Code = dr["Code"].ToString().ParseToLong();
+                item.Name = dr["Name"].ToString();
             }
             catch (Exception ex)
             {
@@ -120,7 +142,7 @@ namespace EntityCache.SqlServerPersistence
 
                     await cn.OpenAsync();
                     var dr = await cmd.ExecuteReaderAsync();
-                    while (dr.Read()) list.Add(LoadDataGardesh(dr));
+                    while (dr.Read()) list.Add(LoadDataGardesh(dr, false));
                     cn.Close();
                 }
             }
@@ -192,6 +214,65 @@ namespace EntityCache.SqlServerPersistence
             catch (Exception exception)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(exception);
+            }
+
+            return list;
+        }
+        public async Task<List<GardeshBussines>> GetAllRooznameAsync(string _connectionString, DateTime d1, DateTime d2,CancellationToken token)
+        {
+            var list = new List<GardeshBussines>();
+            try
+            {
+                using (var cn = new SqlConnection(_connectionString))
+                {
+                    var cmd = new SqlCommand("sp_Roozname", cn)
+                    { CommandType = CommandType.StoredProcedure };
+                    cmd.Parameters.AddWithValue("@d1", d1);
+                    cmd.Parameters.AddWithValue("@d2", d2);
+                    if (token.IsCancellationRequested) return null;
+                    await cn.OpenAsync();
+                    var dr = await cmd.ExecuteReaderAsync();
+                    while (dr.Read())
+                    {
+                        if (token.IsCancellationRequested) return null;
+                        list.Add(LoadDataGardesh(dr, true));
+                    }
+                    cn.Close();
+                }
+            }
+            catch (TaskCanceledException) { }
+            catch (OperationCanceledException) { }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+
+            return list;
+        }
+        public async Task<List<TarazAzmayeshiViewModel>> GetAllTarazAzmayeshiAsync(string _connectionString, CancellationToken token)
+        {
+            var list = new List<TarazAzmayeshiViewModel>();
+            try
+            {
+                using (var cn = new SqlConnection(_connectionString))
+                {
+                    var cmd = new SqlCommand("sp_TarazAzmayeshi", cn) { CommandType = CommandType.StoredProcedure };
+                    if (token.IsCancellationRequested) return null;
+                    await cn.OpenAsync();
+                    var dr = await cmd.ExecuteReaderAsync();
+                    while (dr.Read())
+                    {
+                        if (token.IsCancellationRequested) return null;
+                        list.Add(LoadDataTarazAzmayeshi(dr));
+                    }
+                    cn.Close();
+                }
+            }
+            catch (TaskCanceledException) { }
+            catch (OperationCanceledException) { }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
 
             return list;

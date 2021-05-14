@@ -293,6 +293,26 @@ namespace Print.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
+        internal static byte[] Roozname_A4 {
+            get {
+                object obj = ResourceManager.GetObject("Roozname_A4", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] Roozname_A5 {
+            get {
+                object obj = ResourceManager.GetObject("Roozname_A5", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
         internal static byte[] Sanad_One_A4 {
             get {
                 object obj = ResourceManager.GetObject("Sanad_One_A4", resourceCulture);
@@ -356,6 +376,26 @@ namespace Print.Properties {
         internal static byte[] Taraz_One_A4 {
             get {
                 object obj = ResourceManager.GetObject("Taraz_One_A4", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] TarazAzmayeshi_A4 {
+            get {
+                object obj = ResourceManager.GetObject("TarazAzmayeshi_A4", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] TarazAzmayeshi_A5 {
+            get {
+                object obj = ResourceManager.GetObject("TarazAzmayeshi_A5", resourceCulture);
                 return ((byte[])(obj));
             }
         }

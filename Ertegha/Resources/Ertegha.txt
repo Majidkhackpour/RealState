@@ -6885,3 +6885,49 @@ BEGIN
            ,@desc)
 	  end
 END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Roozname]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Roozname]	As Begin print 11 end')  
+GO
+ALTER PROCEDURE [dbo].[sp_Roozname]
+	@d1 datetime,
+	@d2 datetime
+AS
+BEGIN
+	Select    SanadDetails.*
+			, Moeins.Code As MoeinCode
+			, Moeins.Name As MoeinName
+			, Tafsils.Code As TafsilCode
+			, Tafsils.Name As TafsilName
+			, Sanads.DateM As DateM
+			, Sanads.Number As SanadNumber
+	from SanadDetails inner join Moeins on
+		 SanadDetails.MoeinGuid = Moeins.Guid inner join Tafsils on
+		 SanadDetails.TafsilGuid = Tafsils.Guid inner join Sanads on
+		 SanadDetails.MasterGuid = Sanads.Guid
+	where Sanads.DateM between @d1 and @d2
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_TarazAzmayeshi]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_TarazAzmayeshi]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_TarazAzmayeshi
+AS
+BEGIN
+	select   Kols.Guid
+			,Kols.Code
+			,Kols.Name
+			,(SumCredit-SumDebit) as Rem
+			,case when (SumDebit-SumCredit)>0 then SumDebit-SumCredit else 0 end as Rem_Debit
+			,case when (SumCredit-SumDebit)>0 then SumCredit-SumDebit else 0 end as Rem_Credit from (
+				SELECT [KolGuid]
+						,sum([Debit]) as SumDebit
+						,sum([Credit]) as SumCredit
+				FROM SanadDetails inner join Moeins on SanadDetails.MoeinGuid=Moeins.Guid
+								  inner join Kols on Moeins.KolGuid=Kols.Guid
+				group by KolGuid ) 
+			as T inner join Kols on t.KolGuid=Kols.Guid
+	order by Kols.Code
+END

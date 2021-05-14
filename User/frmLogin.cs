@@ -41,27 +41,22 @@ namespace User
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-
         private void pnlOk_MouseEnter(object sender, EventArgs e)
         {
             pnlOk.BackColor = Color.Silver;
         }
-
         private void pnlOk_MouseLeave(object sender, EventArgs e)
         {
             pnlOk.BackColor = Color.Empty;
         }
-
         private void pnlExit_MouseEnter(object sender, EventArgs e)
         {
             pnlExit.BackColor = Color.Silver;
         }
-
         private void pnlExit_MouseLeave(object sender, EventArgs e)
         {
             pnlExit.BackColor = Color.Empty;
         }
-
         private async void frmLogin_Load(object sender, EventArgs e)
         {
             try

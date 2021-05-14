@@ -43,6 +43,7 @@ using Accounting.Check.DasteCheck;
 using Accounting.Hesab;
 using Accounting.Pardakht;
 using Accounting.Reception;
+using Accounting.Report;
 using Accounting.Sanad;
 using Accounting.Sandouq;
 using Accounting.Sood_Zian;
@@ -841,7 +842,7 @@ namespace RealState
         {
             try
             {
-                var frm = new frmFilterSood_Zian();
+                var frm = new frmSelectReport();
                 frm.ShowDialog(this);
             }
             catch (Exception ex)

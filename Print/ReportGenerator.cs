@@ -104,6 +104,12 @@ namespace Print
                     case StiType.Sanad:
                         Sti = clsSanad.One.GetSti(Sti, peper);
                         break;
+                    case StiType.Roozname:
+                        Sti = clsRoozname.List.GetSti(Sti, peper);
+                        break;
+                    case StiType.TarazAzmayeshi:
+                        Sti = clsTarazAzmayeshi.List.GetSti(Sti, peper);
+                        break;
                 }
             }
             catch (Exception ex)

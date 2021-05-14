@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Threading;
 using System.Threading.Tasks;
 using EntityCache.Assistence;
+using EntityCache.ViewModels;
 using Persistence;
 using Services;
 using Services.Interfaces.Building;
@@ -135,6 +137,8 @@ namespace EntityCache.Bussines
             }
             return res;
         }
+        public static async Task<List<TarazAzmayeshiViewModel>> GetAllTarazAzmayeshiAsync(CancellationToken token) =>
+            await UnitOfWork.SanadDetail.GetAllTarazAzmayeshiAsync(Cache.ConnectionString, token);
         public ReturnedSaveFuncInfo CheckValidation()
         {
             var res = new ReturnedSaveFuncInfo();
