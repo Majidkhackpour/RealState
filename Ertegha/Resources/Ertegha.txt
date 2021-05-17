@@ -7164,3 +7164,86 @@ BEGIN
 		 
 	order by tbl.Code
 END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Calendar_GetAll]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Calendar_GetAll]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_Calendar_GetAll
+AS
+BEGIN
+	select * from Calendars
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Calendar_Get]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Calendar_Get]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_Calendar_Get
+	@guid uniqueidentifier
+AS
+BEGIN
+	select * from Calendars
+	where Guid=@guid
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Calendar_Save]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Calendar_Save]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_Calendar_Save
+	@guid uniqueidentifier,
+	@modif datetime,
+	@dateM datetime,
+	@monasebat nvarchar(500),
+	@desc nvarchar(max),
+	@isTatil bit
+AS
+BEGIN
+	UPDATE [dbo].[Calendars]
+	   SET [Modified] = @modif
+		  ,[DateM] = @dateM
+		  ,[Monasebat] = @monasebat
+		  ,[Description] = @desc
+		  ,[isTatil] = @isTatil
+	 WHERE [Guid] = @guid
+	 if @@ROWCOUNT = 0
+	 begin
+		INSERT INTO [dbo].[Calendars]
+           ([Guid]
+           ,[Modified]
+           ,[DateM]
+           ,[Monasebat]
+           ,[Description]
+           ,[isTatil])
+		VALUES
+           (@guid
+           ,@modif
+           ,@dateM
+           ,@monasebat
+           ,@desc
+           ,@isTatil)
+	 end
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Calendar_Remove]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Calendar_Remove]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_Calendar_Remove
+	@guid uniqueidentifier
+AS
+BEGIN
+	delete from [dbo].[Calendars]
+	WHERE [Guid] = @guid
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Calendar_RemoveAll]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Calendar_RemoveAll]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_Calendar_RemoveAll
+AS
+BEGIN
+	delete from [dbo].[Calendars]
+END

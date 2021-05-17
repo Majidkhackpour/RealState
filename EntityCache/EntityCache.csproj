@@ -123,6 +123,7 @@
     <Compile Include="Bussines\BuildingRequestRegionBussines.cs" />
     <Compile Include="Bussines\BuildingTypeBussines.cs" />
     <Compile Include="Bussines\BuildingViewBussines.cs" />
+    <Compile Include="Bussines\CalendarBussines.cs" />
     <Compile Include="Bussines\CheckPageBussines.cs" />
     <Compile Include="Bussines\CitiesBussines.cs" />
     <Compile Include="Bussines\ContractBussines.cs" />
@@ -183,6 +184,7 @@
     <Compile Include="Core\IBuildingRequestRepository.cs" />
     <Compile Include="Core\IBuildingTypeRepository.cs" />
     <Compile Include="Core\IBuildingViewRepository.cs" />
+    <Compile Include="Core\ICalendarRepository.cs" />
     <Compile Include="Core\ICheckPageRepository.cs" />
     <Compile Include="Core\ICitiesRepository.cs" />
     <Compile Include="Core\IContractRepository.cs" />
@@ -242,6 +244,7 @@
     <Compile Include="SqlServerPersistence\BuildingRequestRegionPersistenceRepository.cs" />
     <Compile Include="SqlServerPersistence\BuildingTypePersistenceRepository.cs" />
     <Compile Include="SqlServerPersistence\BuildingViewPersistenceRepository.cs" />
+    <Compile Include="SqlServerPersistence\CalendarPersistenceRepository.cs" />
     <Compile Include="SqlServerPersistence\CheckPagePersistenceRepository.cs" />
     <Compile Include="SqlServerPersistence\CitiesPersistenceRepository.cs" />
     <Compile Include="SqlServerPersistence\ContractPersistenceRepository.cs" />

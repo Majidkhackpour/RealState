@@ -59,6 +59,7 @@
     <Compile Include="WebBuildingRequestRegion.cs" />
     <Compile Include="WebBuildingType.cs" />
     <Compile Include="WebBuildingView.cs" />
+    <Compile Include="WebCalendar.cs" />
     <Compile Include="WebCheckLuck.cs" />
     <Compile Include="WebCity.cs" />
     <Compile Include="WebContract.cs" />

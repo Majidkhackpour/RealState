@@ -68,6 +68,7 @@ namespace EntityCache.Assistence
         private static IPardakhtCheckAvalDoreRepository _pardakhtCheckAvalDoreRepository;
         private static IAdvisorRepository _advisorRepository;
         private static IAdjectiveDescriptionRepository _adjectiveDescriptionRepository;
+        private static ICalendarRepository _calendarRepository;
 
         public static void Dispose() => db?.Dispose();
         public static void Set_Save() => db.SaveChanges();
@@ -132,5 +133,6 @@ namespace EntityCache.Assistence
         public static IPardakhtCheckAvalDoreRepository PardakhtCheckAvalDore => _pardakhtCheckAvalDoreRepository ?? (_pardakhtCheckAvalDoreRepository = new PardakhtCheckAvalDorePersistenceRepository());
         public static IAdvisorRepository Advisor => _advisorRepository ?? (_advisorRepository = new AdvisorPersistenceRepository());
         public static IAdjectiveDescriptionRepository AdjectiveDescription => _adjectiveDescriptionRepository ?? (_adjectiveDescriptionRepository = new AdjectiveDescriptionPersistenceRepository());
+        public static ICalendarRepository Calendar => _calendarRepository ?? (_calendarRepository = new CalendarPersistenceRepository());
     }
 }
