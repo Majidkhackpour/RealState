@@ -139,6 +139,8 @@ namespace EntityCache.Bussines
         }
         public static async Task<List<TarazAzmayeshiViewModel>> GetAllTarazAzmayeshiAsync(CancellationToken token) =>
             await UnitOfWork.SanadDetail.GetAllTarazAzmayeshiAsync(Cache.ConnectionString, token);
+        public static async Task<List<TarazHesabViewModel>> GetAllTarazHesabAsync(CancellationToken token, DateTime d1, DateTime d2, long code1 = 0, long code2 = 0) =>
+            await UnitOfWork.SanadDetail.GetAllTarazHesabAsync(Cache.ConnectionString, d1, d2, code1, code2, token);
         public ReturnedSaveFuncInfo CheckValidation()
         {
             var res = new ReturnedSaveFuncInfo();

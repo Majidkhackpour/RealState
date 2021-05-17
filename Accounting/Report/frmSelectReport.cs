@@ -31,6 +31,18 @@ namespace Accounting.Report
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
+        private void TarazHesab()
+        {
+            try
+            {
+                var frm = new frmFilterTarazHesab();
+                frm.ShowDialog(this);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
 
         public frmSelectReport() => InitializeComponent();
 
@@ -67,5 +79,7 @@ namespace Accounting.Report
         private void lblRoozname_Click(object sender, EventArgs e) => Roozname();
         private void picAzmayeshi_Click(object sender, EventArgs e) => TarazAzmayeshi();
         private void lblAzmayeshi_Click(object sender, EventArgs e) => TarazAzmayeshi();
+        private void pivTarazHesab_Click(object sender, EventArgs e) => TarazHesab();
+        private void lblTarazHesab_Click(object sender, EventArgs e) => TarazHesab();
     }
 }

@@ -89,6 +89,7 @@ namespace Accounting.Report
             this.lblTarazHesab.Size = new System.Drawing.Size(106, 29);
             this.lblTarazHesab.TabIndex = 23;
             this.lblTarazHesab.Text = "تراز حساب ها";
+            this.lblTarazHesab.Click += new System.EventHandler(this.lblTarazHesab_Click);
             this.lblTarazHesab.MouseEnter += new System.EventHandler(this.lblTarazHesab_MouseEnter);
             this.lblTarazHesab.MouseLeave += new System.EventHandler(this.lblTarazHesab_MouseLeave);
             // 
@@ -150,6 +151,7 @@ namespace Accounting.Report
             this.pivTarazHesab.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pivTarazHesab.TabIndex = 0;
             this.pivTarazHesab.TabStop = false;
+            this.pivTarazHesab.Click += new System.EventHandler(this.pivTarazHesab_Click);
             // 
             // picTarazName
             // 

@@ -312,6 +312,12 @@
     <Compile Include="Report\frmFilterRoozname.Designer.cs">
       <DependentUpon>frmFilterRoozname.cs</DependentUpon>
     </Compile>
+    <Compile Include="Report\frmFilterTarazHesab.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Report\frmFilterTarazHesab.Designer.cs">
+      <DependentUpon>frmFilterTarazHesab.cs</DependentUpon>
+    </Compile>
     <Compile Include="Report\frmRoozname.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -329,6 +335,12 @@
     </Compile>
     <Compile Include="Report\frmTarazAzmayeshi.Designer.cs">
       <DependentUpon>frmTarazAzmayeshi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Report\frmTarazHesab.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Report\frmTarazHesab.Designer.cs">
+      <DependentUpon>frmTarazHesab.cs</DependentUpon>
     </Compile>
     <Compile Include="Sanad\frmSanadMain.cs">
       <SubType>Form</SubType>
@@ -466,6 +478,9 @@
     <EmbeddedResource Include="Report\frmFilterRoozname.resx">
       <DependentUpon>frmFilterRoozname.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Report\frmFilterTarazHesab.resx">
+      <DependentUpon>frmFilterTarazHesab.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Report\frmRoozname.resx">
       <DependentUpon>frmRoozname.cs</DependentUpon>
     </EmbeddedResource>
@@ -474,6 +489,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Report\frmTarazAzmayeshi.resx">
       <DependentUpon>frmTarazAzmayeshi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\frmTarazHesab.resx">
+      <DependentUpon>frmTarazHesab.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Sanad\frmSanadMain.resx">
       <DependentUpon>frmSanadMain.cs</DependentUpon>
@@ -529,6 +547,7 @@
     <None Include="Properties\DataSources\EntityCache.ViewModels.PardakhtCheckViewModel.datasource" />
     <None Include="Properties\DataSources\EntityCache.ViewModels.ReceptionCheckViewModel.datasource" />
     <None Include="Properties\DataSources\EntityCache.ViewModels.TarazAzmayeshiViewModel.datasource" />
+    <None Include="Properties\DataSources\EntityCache.ViewModels.TarazHesabViewModel.datasource" />
     <None Include="Resources\add.png" />
   </ItemGroup>
   <ItemGroup>

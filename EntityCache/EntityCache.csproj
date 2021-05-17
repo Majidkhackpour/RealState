@@ -301,6 +301,7 @@
     <Compile Include="ViewModels\SheypoorCities.cs" />
     <Compile Include="ViewModels\SheypoorRegion.cs" />
     <Compile Include="ViewModels\TarazAzmayeshiViewModel.cs" />
+    <Compile Include="ViewModels\TarazHesabViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Services\Services\Services\Services.csproj">

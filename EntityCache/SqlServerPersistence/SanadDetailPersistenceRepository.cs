@@ -86,6 +86,38 @@ namespace EntityCache.SqlServerPersistence
 
             return item;
         }
+        private TarazHesabViewModel LoadDataTarazHesab(SqlDataReader dr)
+        {
+            var item = new TarazHesabViewModel();
+            try
+            {
+                item.Debit = (decimal)dr["Debit"];
+                item.Credit = (decimal)dr["Credit"];
+                item.Code = dr["Code"].ToString().ParseToLong();
+                item.KolGuid = (Guid)dr["KolGuid"];
+                item.MoeinGuid = (Guid)dr["MoeinGuid"];
+                item.TafsilGuid = (Guid)dr["TafsilGuid"];
+                item.Account = (decimal)dr["Account"];
+                item.SD_Debit = (decimal)dr["SD_Debit"];
+                item.SD_Credit = (decimal)dr["SD_Credit"];
+                item.DD_Debit = (decimal)dr["DD_Debit"];
+                item.DD_Credit = (decimal)dr["DD_Credit"];
+                item.ED_Debit = (decimal)dr["ED_Debit"];
+                item.ED_Credit = (decimal)dr["ED_Credit"];
+                item.RemPayan2ReCredit = (decimal)dr["RemPayan2reCredit"];
+                item.RemPayan2ReDebit = (decimal)dr["RemPayan2reDebit"];
+                item.TafsilName = dr["TafsilName"].ToString();
+                item.MoeinName = dr["MoeinName"].ToString();
+                item.TafsilCode = dr["TafsilCode"].ToString().ParseToLong();
+                item.MoeinCode = dr["MoeinCode"].ToString().ParseToLong();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+
+            return item;
+        }
         public async Task<List<SanadDetailBussines>> GetAllAsync(string _connectionString, Guid masterGuid)
         {
             var list = new List<SanadDetailBussines>();
@@ -218,7 +250,7 @@ namespace EntityCache.SqlServerPersistence
 
             return list;
         }
-        public async Task<List<GardeshBussines>> GetAllRooznameAsync(string _connectionString, DateTime d1, DateTime d2,CancellationToken token)
+        public async Task<List<GardeshBussines>> GetAllRooznameAsync(string _connectionString, DateTime d1, DateTime d2, CancellationToken token)
         {
             var list = new List<GardeshBussines>();
             try
@@ -264,6 +296,38 @@ namespace EntityCache.SqlServerPersistence
                     {
                         if (token.IsCancellationRequested) return null;
                         list.Add(LoadDataTarazAzmayeshi(dr));
+                    }
+                    cn.Close();
+                }
+            }
+            catch (TaskCanceledException) { }
+            catch (OperationCanceledException) { }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+
+            return list;
+        }
+        public async Task<List<TarazHesabViewModel>> GetAllTarazHesabAsync(string _connectionString, DateTime d1, DateTime d2, long code1, long code2, CancellationToken token)
+        {
+            var list = new List<TarazHesabViewModel>();
+            try
+            {
+                using (var cn = new SqlConnection(_connectionString))
+                {
+                    var cmd = new SqlCommand("sp_TarazHesab", cn) { CommandType = CommandType.StoredProcedure };
+                    cmd.Parameters.AddWithValue("@Date1", d1);
+                    cmd.Parameters.AddWithValue("@Date2", d2);
+                    cmd.Parameters.AddWithValue("@Code1", code1);
+                    cmd.Parameters.AddWithValue("@Code2", code2);
+                    if (token.IsCancellationRequested) return null;
+                    await cn.OpenAsync();
+                    var dr = await cmd.ExecuteReaderAsync();
+                    while (dr.Read())
+                    {
+                        if (token.IsCancellationRequested) return null;
+                        list.Add(LoadDataTarazHesab(dr));
                     }
                     cn.Close();
                 }

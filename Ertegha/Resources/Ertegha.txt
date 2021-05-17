@@ -6931,3 +6931,236 @@ BEGIN
 			as T inner join Kols on t.KolGuid=Kols.Guid
 	order by Kols.Code
 END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_TarazHesab]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_TarazHesab]	As Begin print 11 end')  
+GO
+ALTER PROCEDURE [dbo].[sp_TarazHesab] 
+	@Date1 datetime,
+	@Date2 datetime,
+	
+	@Code1 bigint=0,
+	@Code2 bigint=999999999999999
+AS
+BEGIN
+	set @Code1=isnull(@code1,0)
+	set @Code2=isnull(@code2,0)
+
+	declare @Report_TarazHesab table
+	(
+		Guid uniqueidentifier,
+		Code bigint,
+		KolGuid uniqueidentifier,
+		MoeinGuid uniqueidentifier,
+		TafsilGuid uniqueidentifier,
+		SD_Debit decimal,
+		SD_Credit decimal,
+		DD_Debit decimal,
+		DD_Credit decimal,
+		ED_Debit decimal,
+		ED_Credit decimal,
+		Total_Debit decimal,
+		Total_Credit decimal,
+		RemPayan2re decimal
+	)
+
+	insert into @Report_TarazHesab
+			(KolGuid,MoeinGuid,TafsilGuid,Total_Debit,Total_Credit)	
+	SELECT	KolGuid,
+			MoeinGuid,
+			TafsilGuid,
+			SUM([Debit]) AS Debit,
+			sum([Credit]) as Credit
+	FROM [dbo].[SanadDetails] inner join Moeins on SanadDetails.MoeinGuid=Moeins.Guid
+	group by KolGuid,MoeinGuid,TafsilGuid
+
+	update @Report_TarazHesab
+	set SD_Debit=x.Debit,
+		SD_Credit=x.credit
+	from @Report_TarazHesab as temp inner join
+		(SELECT	KolGuid,
+				MoeinGuid,
+				TafsilGuid,
+				SUM([Debit]) AS Debit,
+				sum([Credit]) as Credit
+		FROM [dbo].SanadDetails inner join Moeins on SanadDetails.MoeinGuid=Moeins.Guid
+				inner join Sanads on SanadDetails.MasterGuid=Sanads.Guid
+		where Sanads.DateM<@Date1
+		group by KolGuid,MoeinGuid,TafsilGuid
+		) as x on x.KolGuid=temp.KolGuid and x.MoeinGuid=temp.MoeinGuid and x.TafsilGuid=temp.TafsilGuid
+
+	update @Report_TarazHesab
+	set ED_Debit=x.Debit,
+		ED_Credit=x.credit
+	from @Report_TarazHesab as temp inner join
+		(SELECT	KolGuid,
+				MoeinGuid,
+				TafsilGuid,
+				SUM([Debit]) AS Debit,
+				sum([Credit]) as Credit
+		FROM [dbo].SanadDetails inner join Moeins on SanadDetails.MoeinGuid=Moeins.Guid
+					inner join Sanads on SanadDetails.MasterGuid=Sanads.Guid
+		where Sanads.DateM>@Date2
+		group by KolGuid,MoeinGuid,TafsilGuid
+		) as x on x.KolGuid=temp.KolGuid and x.MoeinGuid=temp.MoeinGuid and x.TafsilGuid=temp.TafsilGuid
+
+	update @Report_TarazHesab
+	set DD_Debit=x.Debit,
+		DD_Credit=x.credit
+	from @Report_TarazHesab as temp inner join
+		(SELECT	KolGuid,
+				MoeinGuid,
+				TafsilGuid,
+				SUM([Debit]) AS Debit,
+				sum([Credit]) as Credit
+		FROM [dbo].SanadDetails inner join Moeins on SanadDetails.MoeinGuid=Moeins.Guid
+					inner join Sanads on SanadDetails.MasterGuid=Sanads.Guid
+		where Sanads.DateM>=@Date1 and Sanads.DateM<=@Date2
+		group by KolGuid,MoeinGuid,TafsilGuid
+		) as x on x.KolGuid=temp.KolGuid and x.MoeinGuid=temp.MoeinGuid and x.TafsilGuid=temp.TafsilGuid
+
+	update @Report_TarazHesab
+		set SD_Debit=isnull(SD_Debit,0),
+		SD_Credit=isnull(SD_Credit,0),
+		DD_Debit=isnull(DD_Debit,0),
+		DD_Credit=isnull(DD_Credit,0),
+		ED_Debit=isnull(ED_Debit,0),
+		ED_Credit=isnull(ED_Credit,0),
+		Total_Debit=isnull(Total_Debit,0),
+		Total_Credit=isnull(Total_Credit,0),
+		RemPayan2re=isnull(RemPayan2re,0)
+
+	declare @Moein table
+	(
+		MoeinGuid uniqueidentifier
+	)
+
+	declare @MoeinTafsil table
+	(
+		MoeinGuid uniqueidentifier
+	)
+
+	insert into @Moein 
+	select MoeinGuid
+	from @Report_TarazHesab
+	where ISNULL(TafsilGuid,'00000000-0000-0000-0000-000000000000')='00000000-0000-0000-0000-000000000000'
+
+	insert into @MoeinTafsil
+	select MoeinGuid
+	from @Report_TarazHesab
+	where ISNULL(TafsilGuid,'00000000-0000-0000-0000-000000000000')<>'00000000-0000-0000-0000-000000000000'
+
+	--حسابهای معینی که فقط در سطح تفصیل سند خورده اند
+	insert into @Report_TarazHesab
+		(KolGuid,MoeinGuid,TafsilGuid,Total_Debit,Total_Credit,SD_Debit,SD_Credit,DD_Debit,DD_Credit,ED_Debit,ED_Credit)	
+	SELECT	
+		KolGuid,
+		temp.MoeinGuid,
+		'00000000-0000-0000-0000-000000000000' as [TafsilID],
+		sum(Total_Debit),
+		sum(Total_Credit),
+		sum(SD_Debit),
+		sum(SD_Credit),
+		sum(DD_Debit),
+		sum(DD_Credit),
+		sum(ED_Debit),
+		sum(ED_Credit)	
+	FROM @Report_TarazHesab as temp left outer join @Moein as Moein on Temp.MoeinGuid=Moein.MoeinGuid
+	where ISNULL(TafsilGuid,'00000000-0000-0000-0000-000000000000')<>'00000000-0000-0000-0000-000000000000' and ISNULL(Moein.MoeinGuid,'00000000-0000-0000-0000-000000000000')='00000000-0000-0000-0000-000000000000'
+	group by KolGuid,temp.MoeinGuid
+	
+	--حسابهای معینی که هم در سطح معین و هم در سطح تفصیلی سند خورده اند
+	-- برای این حسابها باید گردش با تفصیلی به جمه گردش بدون تفصیلی اضافه شود
+	update @Report_TarazHesab 
+	set Total_Debit=x.Total_Debit,
+		Total_Credit=x.Total_Credit,
+		SD_Debit=x.SD_Debit,
+		SD_Credit=x.SD_Credit,
+		DD_Debit=x.DD_Debit,
+		DD_Credit=x.DD_Credit,
+		ED_Debit=x.ED_Debit,
+		ED_Credit=x.ED_Credit	
+	from (select o.MoeinGuid,
+			sum(Total_Debit) as Total_Debit,
+			sum(Total_Credit) as Total_Credit,
+			sum(SD_Debit) as SD_Debit,
+			sum(Sd_Credit) as SD_Credit,
+			sum(DD_Debit) as DD_Debit,
+			sum(Dd_Credit) as DD_Credit,
+			sum(ED_Debit) as ED_Debit,
+			sum(Ed_Credit) as ED_Credit
+		from @Report_TarazHesab as o inner join 	(select MoeinGuid	from @Moein
+											INTERSECT
+									     select MoeinGuid	from @MoeinTafsil) AS d1
+		on d1.MoeinGuid=o.MoeinGuid
+		group by o.MoeinGuid) as x inner join @Report_TarazHesab as p
+											on x.MoeinGuid=p.MoeinGuid and ISNULL(p.MoeinGuid,'00000000-0000-0000-0000-000000000000')<>'00000000-0000-0000-0000-000000000000' and 
+											   ISNULL(p.TafsilGuid,'00000000-0000-0000-0000-000000000000')='00000000-0000-0000-0000-000000000000'
+
+
+	insert into @Report_TarazHesab
+		(KolGuid,MoeinGuid,TafsilGuid,Total_Debit,Total_Credit,SD_Debit,SD_Credit,DD_Debit,DD_Credit,ED_Debit,ED_Credit)	
+	SELECT	
+		KolGuid,
+		'00000000-0000-0000-0000-000000000000' as MoeinGuid,
+		'00000000-0000-0000-0000-000000000000' as TafsilGuid,
+		sum(Total_Debit),
+		sum(Total_Credit),
+		sum(SD_Debit),
+		sum(SD_Credit),
+		sum(DD_Debit),
+		sum(DD_Credit),
+		sum(ED_Debit),
+		sum(ED_Credit)	
+	FROM @Report_TarazHesab as temp
+	where ISNULL(temp.TafsilGuid,'00000000-0000-0000-0000-000000000000')='00000000-0000-0000-0000-000000000000'
+	group by KolGuid
+
+	update @Report_TarazHesab
+	set Guid=Kols.Guid,
+		Code=Kols.Code
+	from @Report_TarazHesab as temp inner join Kols on KolGuid=temp.KolGuid 
+
+	update @Report_TarazHesab
+	set Guid=Moeins.Guid,
+		Code=Moeins.Code
+	from @Report_TarazHesab as temp inner join Moeins on Moeins.Guid=temp.MoeinGuid 
+
+	update @Report_TarazHesab
+	set Guid=Tafsils.Guid,
+		Code=Tafsils.Code
+	from @Report_TarazHesab as temp inner join Tafsils on Tafsils.Guid=temp.TafsilGuid
+	
+	
+	update @Report_TarazHesab
+	set RemPayan2re=SD_Credit-SD_Debit-DD_Debit+DD_Credit
+
+	select	tbl.KolGuid,
+			tbl.MoeinGuid,
+			tbl.TafsilGuid,
+			tbl.Code,
+			tbl.RemPayan2re as Account,
+			case sign(Tafsils.Account) when -1 then abs(Tafsils.Account) else 0 end as Debit,
+			case sign(Tafsils.Account) when 1 then Tafsils.Account else 0 end as Credit,
+			tbl.SD_Debit,
+			tbl.SD_Credit,
+			tbl.DD_Debit,
+			tbl.DD_Credit,
+			tbl.ED_Debit,
+			tbl.ED_Credit,
+			case sign(tbl.RemPayan2re) when -1 then abs(tbl.RemPayan2re) else 0 end as RemPayan2reDebit,
+			case sign(tbl.RemPayan2re) when 1 then tbl.RemPayan2re else 0 end as RemPayan2reCredit,
+			Tafsils.Name As TafsilName,
+			Moeins.Name As MoeinName,
+			Moeins.Code As MoeinCode,
+			Tafsils.Code As TafsilCode
+	from @Report_TarazHesab as tbl inner join Tafsils on Tafsils.Guid=tbl.TafsilGuid
+			inner join Moeins on tbl.MoeinGuid=Moeins.Guid
+	Where (tbl.DD_Debit<>0 or tbl.DD_Credit<>0) and
+		tbl.KolGuid<>'00000000-0000-0000-0000-000000000000' and
+		tbl.MoeinGuid<>'00000000-0000-0000-0000-000000000000' and
+	  (isnull(@Code1,0)=0 and isnull(@Code2,0)=0 or Tafsils.Code between @Code1 and @Code2)
+		 
+	order by tbl.Code
+END
