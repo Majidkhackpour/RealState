@@ -8,6 +8,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using EntityCache.Bussines;
+using Print;
 using Services;
 
 namespace Accounting.Report
@@ -317,6 +318,25 @@ namespace Accounting.Report
         private void rbtn8_CheckedChanged(object sender, EventArgs e) => RefreshGrid();
         private void frmTarazHesab_MinimumSizeChanged(object sender, EventArgs e) => RefrehTopLablesPosition();
         private void frmTarazHesab_ResizeEnd(object sender, EventArgs e) => RefrehTopLablesPosition();
+        private void picPrint_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var type = EnPrintType.None;
+
+                if (rbtn2.Checked) type = EnPrintType.Taraz2;
+                else if (rbtn4.Checked) type = EnPrintType.Taraz4;
+                else if (rbtn6.Checked) type = EnPrintType.Taraz6;
+                else if (rbtn8.Checked) type = EnPrintType.Taraz8;
+
+                var cls = new ReportGenerator(StiType.TarazHesab, type) { Lst = new List<object>(_list) };
+                cls.PrintNew();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
         private async void frmTarazHesab_Load(object sender, EventArgs e)
         {
             await LoadDataAsync();

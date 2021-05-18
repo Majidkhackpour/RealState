@@ -101,6 +101,7 @@ namespace Accounting.Report
             this.picPrint.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picPrint.TabIndex = 55767;
             this.picPrint.TabStop = false;
+            this.picPrint.Click += new System.EventHandler(this.picPrint_Click);
             // 
             // txtSearch
             // 

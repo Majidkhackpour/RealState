@@ -228,6 +228,7 @@
     <Compile Include="Classes\clsSms.cs" />
     <Compile Include="Classes\clsSood_Zian.cs" />
     <Compile Include="Classes\clsTarazAzmayeshi.cs" />
+    <Compile Include="Classes\clsTarazHesab.cs" />
     <Compile Include="Classes\clsUserPerformence.cs" />
     <Compile Include="frmSetPrintSize.cs">
       <SubType>Form</SubType>
@@ -305,6 +306,10 @@
     <None Include="Resources\SmsLog_A5.mrt" />
     <None Include="Resources\TarazAzmayeshi_A4.mrt" />
     <None Include="Resources\TarazAzmayeshi_A5.mrt" />
+    <None Include="Resources\TarazHesab_2_A4.mrt" />
+    <None Include="Resources\TarazHesab_4_A4.mrt" />
+    <None Include="Resources\TarazHesab_6_A4.mrt" />
+    <None Include="Resources\TarazHesab_8_A4.mrt" />
     <None Include="Resources\Taraz_One_A4.mrt" />
     <None Include="Resources\User_Prf_List_A4.mrt" />
     <None Include="Resources\User_Prf_List_A5.mrt" />

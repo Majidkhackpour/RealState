@@ -217,6 +217,18 @@
   <data name="TarazAzmayeshi_A5" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\TarazAzmayeshi_A5.mrt;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="TarazHesab_2_A4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\TarazHesab_2_A4.mrt;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="TarazHesab_4_A4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\TarazHesab_4_A4.mrt;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="TarazHesab_6_A4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\TarazHesab_6_A4.mrt;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="TarazHesab_8_A4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\TarazHesab_8_A4.mrt;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="Taraz_One_A4" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Taraz_One_A4.mrt;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>

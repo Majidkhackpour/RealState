@@ -403,6 +403,46 @@ namespace Print.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
+        internal static byte[] TarazHesab_2_A4 {
+            get {
+                object obj = ResourceManager.GetObject("TarazHesab_2_A4", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] TarazHesab_4_A4 {
+            get {
+                object obj = ResourceManager.GetObject("TarazHesab_4_A4", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] TarazHesab_6_A4 {
+            get {
+                object obj = ResourceManager.GetObject("TarazHesab_6_A4", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] TarazHesab_8_A4 {
+            get {
+                object obj = ResourceManager.GetObject("TarazHesab_8_A4", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
         internal static byte[] User_Prf_List_A4 {
             get {
                 object obj = ResourceManager.GetObject("User_Prf_List_A4", resourceCulture);

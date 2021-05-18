@@ -110,6 +110,9 @@ namespace Print
                     case StiType.TarazAzmayeshi:
                         Sti = clsTarazAzmayeshi.List.GetSti(Sti, peper);
                         break;
+                    case StiType.TarazHesab:
+                        Sti = clsTarazHesab.List.GetSti(Sti, peper);
+                        break;
                 }
             }
             catch (Exception ex)
