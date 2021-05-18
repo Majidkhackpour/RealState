@@ -9,6 +9,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using WebHesabBussines;
 
 namespace EntityCache.Bussines
 {
@@ -18,6 +19,7 @@ namespace EntityCache.Bussines
         public DateTime Modified { get; set; }
         public DateTime DateM { get; set; }
         public string DateSh => Calendar.MiladiToShamsi(DateM);
+        public string DayName => Calendar.GetDayNameOfWeek(DateM);
         public string Monasebat { get; set; }
         public string Description { get; set; }
         public bool isTatil { get; set; }
@@ -87,12 +89,17 @@ namespace EntityCache.Bussines
             }
             return res;
         }
-        public static async Task<List<CalendarBussines>> GetAllAsync(string search, CancellationToken token)
+        public static async Task<List<CalendarBussines>> GetAllAsync(string search, int year, CancellationToken token)
         {
             try
             {
+                var startDate = Calendar.ShamsiToMiladi($"{year}/01/01");
+                var d1 = new DateTime(startDate.Year, startDate.Month, startDate.Day, 0, 0, 0);
+                var endDate = Calendar.ShamsiToMiladi($"{year}/12/29");
+                var d2 = new DateTime(endDate.Year, endDate.Month, endDate.Day, 23, 59, 59);
                 if (string.IsNullOrEmpty(search)) search = "";
                 var res = await GetAllAsync(token);
+                res = res?.Where(q => q.DateM >= d1 && q.DateM <= d2)?.ToList();
                 if (token.IsCancellationRequested) return null;
                 var searchItems = search.SplitString();
                 if (searchItems?.Count > 0)
@@ -179,6 +186,54 @@ namespace EntityCache.Bussines
                     res.AddReturnedValue(tr.TransactionDestiny(res.HasError));
                     res.AddReturnedValue(cn.CloseConnection());
                 }
+            }
+            return res;
+        }
+        public static async Task<ReturnedSaveFuncInfo> SaveFromServerAsync()
+        {
+            var res = new ReturnedSaveFuncInfo();
+            SqlConnection cn = null;
+            SqlTransaction tr = null;
+            try
+            {
+                cn = new SqlConnection(Cache.ConnectionString);
+
+                var list = await WebCalendar.GetAllAsync();
+                res.AddReturnedValue(list);
+                if (res.HasError) return res;
+                if (list.value == null || list.value.Count <= 0) return res;
+
+                await cn.OpenAsync();
+                tr = cn.BeginTransaction();
+
+                var listBus = new List<CalendarBussines>();
+
+                foreach (var item in list.value)
+                {
+                    listBus.Add(new CalendarBussines()
+                    {
+                        Guid = Guid.NewGuid(),
+                        Modified = DateTime.Now,
+                        Description = item.Description,
+                        DateM = item.DateM,
+                        Monasebat = item.Monasebat,
+                        isTatil = item.STRasmi
+                    });
+                }
+
+                res.AddReturnedValue(await RemoveAllAsync(tr));
+                if (res.HasError) return res;
+                res.AddReturnedValue(await SaveRangeAsync(listBus, tr));
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+            finally
+            {
+                res.AddReturnedValue(tr.TransactionDestiny(res.HasError));
+                res.AddReturnedValue(cn.CloseConnection());
             }
             return res;
         }

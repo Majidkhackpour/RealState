@@ -50,6 +50,7 @@ using Accounting.Sood_Zian;
 using Building;
 using Building.BuildingMatchesItem;
 using RealState.Advance;
+using RealState.CalendarForms;
 using TMS.Class;
 using User;
 using User.Advisor;
@@ -951,6 +952,18 @@ namespace RealState
             try
             {
                 var frm = new frmShowAdvisor();
+                frm.ShowDialog(this);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private void mnuCalendar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var frm = new frmCalendar();
                 frm.ShowDialog(this);
             }
             catch (Exception ex)
