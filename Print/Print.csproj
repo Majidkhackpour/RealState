@@ -220,6 +220,7 @@
     <Compile Include="Classes\clsBuilding.cs" />
     <Compile Include="Classes\clsBuildingRequest.cs" />
     <Compile Include="Classes\clsContract.cs" />
+    <Compile Include="Classes\clsDepartmentOrder.cs" />
     <Compile Include="Classes\clsPardakht.cs" />
     <Compile Include="Classes\clsPeoples.cs" />
     <Compile Include="Classes\clsReception.cs" />
@@ -287,6 +288,7 @@
     <None Include="Resources\Contract_List_A5.mrt" />
     <None Include="Resources\Contract_One_A4.mrt" />
     <None Include="Resources\Contract_One_A5.mrt" />
+    <None Include="Resources\Order_List_A4.mrt" />
     <None Include="Resources\Pardakht_List_A4.mrt" />
     <None Include="Resources\Pardakht_List_A5.mrt" />
     <None Include="Resources\Pardakht_One_A4.mrt" />

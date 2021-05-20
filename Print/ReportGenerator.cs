@@ -113,6 +113,9 @@ namespace Print
                     case StiType.TarazHesab:
                         Sti = clsTarazHesab.List.GetSti(Sti, peper);
                         break;
+                    case StiType.DepartmentOrder:
+                        Sti = clsDepartmentOrder.List.GetSti(Sti, peper);
+                        break;
                 }
             }
             catch (Exception ex)
