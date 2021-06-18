@@ -43,6 +43,7 @@ namespace WebHesabBussines
                 if (bu == null) return;
 
                 await TempBussines.UpdateEntityAsync(EnTemp.Advisor, bu.Guid, ServerStatus.Delivered, DateTime.Now);
+                await WebPhoneBook.SaveAsync(await PhoneBookBussines.GetAllAsync(Guid, true));
             }
             catch (Exception ex)
             {

@@ -6,7 +6,7 @@
         <Alias>لیست داده ها</Alias>
         <BusinessObjects isList="true" count="0" />
         <Category>Order</Category>
-        <Columns isList="true" count="19">
+        <Columns isList="true" count="20">
           <value>CompanyName,System.String</value>
           <value>CompanyTell,System.String</value>
           <value>DateSh,System.String</value>
@@ -26,6 +26,7 @@
           <value>OrderTotalName,System.String</value>
           <value>OrderUserName,System.String</value>
           <value>CustomerAddress,System.String</value>
+          <value>OrderDescription,System.String</value>
         </Columns>
         <Dictionary isRef="1" />
         <Guid>ea8bedef2b1842b19458298040725dd0</Guid>
@@ -46,7 +47,7 @@
     <Page1 Ref="3" type="Page" isKey="true">
       <Border>None;Black;2;Solid;False;4;Black</Border>
       <Brush>Transparent</Brush>
-      <Components isList="true" count="7">
+      <Components isList="true" count="6">
         <DataBand6 Ref="4" type="DataBand" isKey="true">
           <Brush>Transparent</Brush>
           <BusinessObjectGuid isNull="true" />
@@ -233,7 +234,7 @@
             <Text53 Ref="16" type="Text" isKey="true">
               <Border>None;Black;1;Double;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>0.2,2.4,1.4,0.6</ClientRectangle>
+              <ClientRectangle>0,2.4,1.6,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>B Yekan,11,Bold</Font>
               <Guid>9d9a4d069d044bb5ba414596a1ca9049</Guid>
@@ -635,8 +636,8 @@
         </DataBand1>
         <DataBand4 Ref="45" type="DataBand" isKey="true">
           <Brush>Transparent</Brush>
-          <ClientRectangle>0,9.2,20,1.8</ClientRectangle>
-          <Components isList="true" count="3">
+          <ClientRectangle>0,9.2,20,4</ClientRectangle>
+          <Components isList="true" count="5">
             <Container5 Ref="46" type="Container" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>0,0,5.6,1.8</ClientRectangle>
@@ -777,7 +778,7 @@
             <Text28 Ref="56" type="Text" isKey="true">
               <Border>None;Black;1;None;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>7,0.2,13,0.6</ClientRectangle>
+              <ClientRectangle>5.8,0.2,14.2,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>B Nazanin,11,Bold</Font>
               <Guid>e9814d5c2708454bb75598e99f8fe115</Guid>
@@ -791,7 +792,40 @@
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text28>
-            <StartPointPrimitive3 Ref="57" type="Stimulsoft.Report.Components.StiStartPointPrimitive" isKey="true">
+            <Text3 Ref="57" type="Text" isKey="true">
+              <Border>None;Black;1;None;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>18.2,1,1.8,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,11,Bold</Font>
+              <Guid>93395939b9c04a959822fcc14a137515</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text3</Name>
+              <Page isRef="3" />
+              <Parent isRef="45" />
+              <Text>توضیحات:</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,RightToLeft=True,,,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text3>
+            <Text4 Ref="58" type="Text" isKey="true">
+              <Border>None;Black;1;None;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>5.8,1,12.2,2.8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,9.75,Bold,Point,False,178</Font>
+              <Guid>092a729148b74eedb94ae89acd95a50f</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text4</Name>
+              <Page isRef="3" />
+              <Parent isRef="45" />
+              <Text>{لیست_داده_ها.OrderDescription}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,RightToLeft=True,,,A=0</TextOptions>
+              <Type>Expression</Type>
+            </Text4>
+            <StartPointPrimitive3 Ref="59" type="Stimulsoft.Report.Components.StiStartPointPrimitive" isKey="true">
               <ClientRectangle>0,-0.2,0,0</ClientRectangle>
               <Name>StartPointPrimitive3</Name>
               <Page isRef="3" />
@@ -808,16 +842,16 @@
           <Parent isRef="3" />
           <Sort isList="true" count="0" />
         </DataBand4>
-        <FooterBand1 Ref="58" type="FooterBand" isKey="true">
+        <FooterBand1 Ref="60" type="FooterBand" isKey="true">
           <Brush>Transparent</Brush>
-          <ClientRectangle>0,11.8,20,1.2</ClientRectangle>
+          <ClientRectangle>0,14,20,1.2</ClientRectangle>
           <Components isList="true" count="2">
-            <Container2 Ref="59" type="Container" isKey="true">
+            <Container2 Ref="61" type="Container" isKey="true">
               <Border>Bottom;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>0,0,20,1.2</ClientRectangle>
-              <Components isList="true" count="2">
-                <Text92 Ref="60" type="Text" isKey="true">
+              <Components isList="true" count="3">
+                <Text92 Ref="62" type="Text" isKey="true">
                   <Border>None;Black;1;None;False;4;Black</Border>
                   <Brush>Transparent</Brush>
                   <ClientRectangle>7.9,0.4,2.6,0.8</ClientRectangle>
@@ -828,12 +862,12 @@
                   <Margins>0,0,0,0</Margins>
                   <Name>Text92</Name>
                   <Page isRef="3" />
-                  <Parent isRef="59" />
+                  <Parent isRef="61" />
                   <Text>امضاء خریدار</Text>
                   <TextBrush>Black</TextBrush>
                   <VertAlignment>Center</VertAlignment>
                 </Text92>
-                <Text14 Ref="61" type="Text" isKey="true">
+                <Text14 Ref="63" type="Text" isKey="true">
                   <Brush>Transparent</Brush>
                   <ClientRectangle>0.2,0,5,0.8</ClientRectangle>
                   <Conditions isList="true" count="0" />
@@ -842,24 +876,31 @@
                   <Margins>0,0,0,0</Margins>
                   <Name>Text14</Name>
                   <Page isRef="3" />
-                  <Parent isRef="59" />
+                  <Parent isRef="61" />
                   <Text>{لیست_داده_ها.OrderUserName}</Text>
                   <TextBrush>Black</TextBrush>
                   <Type>Expression</Type>
                   <VertAlignment>Center</VertAlignment>
                 </Text14>
+                <StartPointPrimitive4 Ref="64" type="Stimulsoft.Report.Components.StiStartPointPrimitive" isKey="true">
+                  <ClientRectangle>12.2,0.8,0,0</ClientRectangle>
+                  <Name>StartPointPrimitive4</Name>
+                  <Page isRef="3" />
+                  <Parent isRef="61" />
+                  <ReferenceToGuid>2461a89c4e194ba2b7a5491a217346cd</ReferenceToGuid>
+                </StartPointPrimitive4>
               </Components>
               <Conditions isList="true" count="0" />
               <Guid>26485ba49892420b9bef3711403ce309</Guid>
               <Name>Container2</Name>
               <Page isRef="3" />
-              <Parent isRef="58" />
+              <Parent isRef="60" />
             </Container2>
-            <EndPointPrimitive3 Ref="62" type="Stimulsoft.Report.Components.StiEndPointPrimitive" isKey="true">
+            <EndPointPrimitive3 Ref="65" type="Stimulsoft.Report.Components.StiEndPointPrimitive" isKey="true">
               <ClientRectangle>0,-0.2,0,0</ClientRectangle>
               <Name>EndPointPrimitive3</Name>
               <Page isRef="3" />
-              <Parent isRef="58" />
+              <Parent isRef="60" />
               <ReferenceToGuid>595b5d914d1543e2bd00f11d653535e4</ReferenceToGuid>
             </EndPointPrimitive3>
           </Components>
@@ -870,14 +911,7 @@
           <Parent isRef="3" />
           <PrintIfEmpty>True</PrintIfEmpty>
         </FooterBand1>
-        <StartPointPrimitive4 Ref="63" type="Stimulsoft.Report.Components.StiStartPointPrimitive" isKey="true">
-          <ClientRectangle>12.2,14.4,0,0</ClientRectangle>
-          <Name>StartPointPrimitive4</Name>
-          <Page isRef="3" />
-          <Parent isRef="3" />
-          <ReferenceToGuid>2461a89c4e194ba2b7a5491a217346cd</ReferenceToGuid>
-        </StartPointPrimitive4>
-        <EndPointPrimitive4 Ref="64" type="Stimulsoft.Report.Components.StiEndPointPrimitive" isKey="true">
+        <EndPointPrimitive4 Ref="66" type="Stimulsoft.Report.Components.StiEndPointPrimitive" isKey="true">
           <ClientRectangle>5.8,17.4,0,0</ClientRectangle>
           <Name>EndPointPrimitive4</Name>
           <Page isRef="3" />
@@ -892,13 +926,13 @@
       <PageHeight>29.7</PageHeight>
       <PageWidth>21</PageWidth>
       <Report isRef="0" />
-      <Watermark Ref="65" type="Stimulsoft.Report.Components.StiWatermark" isKey="true">
+      <Watermark Ref="67" type="Stimulsoft.Report.Components.StiWatermark" isKey="true">
         <Font>Arial,100</Font>
         <TextBrush>[50:0:0:0]</TextBrush>
       </Watermark>
     </Page1>
   </Pages>
-  <PrinterSettings Ref="66" type="Stimulsoft.Report.Print.StiPrinterSettings" isKey="true" />
+  <PrinterSettings Ref="68" type="Stimulsoft.Report.Print.StiPrinterSettings" isKey="true" />
   <ReferencedAssemblies isList="true" count="8">
     <value>System.Dll</value>
     <value>System.Drawing.Dll</value>
@@ -910,10 +944,10 @@
     <value>Stimulsoft.Report.Dll</value>
   </ReferencedAssemblies>
   <ReportAlias>Report</ReportAlias>
-  <ReportChanged>5/20/2021 9:20:03 PM</ReportChanged>
+  <ReportChanged>6/18/2021 2:47:06 PM</ReportChanged>
   <ReportCreated>5/20/2021 8:20:45 PM</ReportCreated>
   <ReportFile>D:\Projects\RealState\RealState\Print\Resources\Order_List_A4.mrt</ReportFile>
-  <ReportGuid>2903311c9b1545c48194da28564e8265</ReportGuid>
+  <ReportGuid>bd17a1e6d58b4fbeac5f2374ac745bca</ReportGuid>
   <ReportName>Report</ReportName>
   <ReportUnit>Centimeters</ReportUnit>
   <ReportVersion>2018.1.6.0</ReportVersion>
