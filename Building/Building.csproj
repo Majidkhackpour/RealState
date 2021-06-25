@@ -529,6 +529,12 @@
     <Compile Include="Building\frmShowBuildings.Designer.cs">
       <DependentUpon>frmShowBuildings.cs</DependentUpon>
     </Compile>
+    <Compile Include="Building\frmSlideShow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Building\frmSlideShow.Designer.cs">
+      <DependentUpon>frmSlideShow.cs</DependentUpon>
+    </Compile>
     <Compile Include="Contract\CalculateCommition.cs" />
     <Compile Include="Contract\frmContractMain.cs">
       <SubType>Form</SubType>
@@ -738,6 +744,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Building\frmShowBuildings.resx">
       <DependentUpon>frmShowBuildings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Building\frmSlideShow.resx">
+      <DependentUpon>frmSlideShow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Contract\frmContractMain.resx">
       <DependentUpon>frmContractMain.cs</DependentUpon>

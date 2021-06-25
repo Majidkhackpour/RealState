@@ -154,6 +154,8 @@
             this.docTypeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.ucPagger = new WindowsSerivces.Pagging.UC_FooterPaging();
             this.ucHeader = new WindowsSerivces.UC_Header();
+            this.mnuSlideShow = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).BeginInit();
             this.contextMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BuildingBindingSource)).BeginInit();
@@ -598,6 +600,8 @@
             this.toolStripMenuItem1,
             this.mnuView,
             this.toolStripMenuItem2,
+            this.mnuSlideShow,
+            this.toolStripMenuItem3,
             this.mnuSendSms,
             this.mnuSendToDivar,
             this.mnuSendToSheypoor,
@@ -611,13 +615,13 @@
             this.مدیریتستونهاToolStripMenuItem});
             this.contextMenu.Name = "contextMenu";
             this.contextMenu.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.contextMenu.Size = new System.Drawing.Size(203, 322);
+            this.contextMenu.Size = new System.Drawing.Size(246, 374);
             // 
             // mnuAdd
             // 
             this.mnuAdd.Image = global::Building.Properties.Resources.add_2_;
             this.mnuAdd.Name = "mnuAdd";
-            this.mnuAdd.Size = new System.Drawing.Size(202, 24);
+            this.mnuAdd.Size = new System.Drawing.Size(245, 24);
             this.mnuAdd.Text = "افزودن ملک جدید (Ins)";
             this.mnuAdd.Click += new System.EventHandler(this.mnuAdd_Click);
             // 
@@ -625,7 +629,7 @@
             // 
             this.mnuEdit.Image = global::Building.Properties.Resources.edit_1_;
             this.mnuEdit.Name = "mnuEdit";
-            this.mnuEdit.Size = new System.Drawing.Size(202, 24);
+            this.mnuEdit.Size = new System.Drawing.Size(245, 24);
             this.mnuEdit.Text = "ویرایش ملک جاری (F7)";
             this.mnuEdit.Click += new System.EventHandler(this.mnuEdit_Click);
             // 
@@ -633,46 +637,46 @@
             // 
             this.mnuDelete.Image = global::Building.Properties.Resources.delete_1_;
             this.mnuDelete.Name = "mnuDelete";
-            this.mnuDelete.Size = new System.Drawing.Size(202, 24);
+            this.mnuDelete.Size = new System.Drawing.Size(245, 24);
             this.mnuDelete.Text = "حذف ملک جاری (Del)";
             this.mnuDelete.Click += new System.EventHandler(this.mnuDelete_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(199, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(242, 6);
             // 
             // mnuView
             // 
             this.mnuView.Image = global::Building.Properties.Resources.article_1_;
             this.mnuView.Name = "mnuView";
-            this.mnuView.Size = new System.Drawing.Size(202, 24);
+            this.mnuView.Size = new System.Drawing.Size(245, 24);
             this.mnuView.Text = "مشاهده (F12)";
             this.mnuView.Click += new System.EventHandler(this.mnuView_Click);
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(199, 6);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(242, 6);
             // 
             // mnuSendSms
             // 
             this.mnuSendSms.Image = global::Building.Properties.Resources.icons8_sms_24;
             this.mnuSendSms.Name = "mnuSendSms";
-            this.mnuSendSms.Size = new System.Drawing.Size(202, 24);
+            this.mnuSendSms.Size = new System.Drawing.Size(245, 24);
             this.mnuSendSms.Text = "ارسال پیامک به مالک";
             // 
             // mnuSendToDivar
             // 
             this.mnuSendToDivar.Name = "mnuSendToDivar";
-            this.mnuSendToDivar.Size = new System.Drawing.Size(202, 24);
+            this.mnuSendToDivar.Size = new System.Drawing.Size(245, 24);
             this.mnuSendToDivar.Text = "ارسال ملک در دیوار";
             this.mnuSendToDivar.Click += new System.EventHandler(this.mnuSendToDivar_Click);
             // 
             // mnuSendToSheypoor
             // 
             this.mnuSendToSheypoor.Name = "mnuSendToSheypoor";
-            this.mnuSendToSheypoor.Size = new System.Drawing.Size(202, 24);
+            this.mnuSendToSheypoor.Size = new System.Drawing.Size(245, 24);
             this.mnuSendToSheypoor.Text = "ارسال ملک در شیپور";
             this.mnuSendToSheypoor.Click += new System.EventHandler(this.mnuSendToSheypoor_Click);
             // 
@@ -680,7 +684,7 @@
             // 
             this.mnuSendToTelegram.Image = global::Building.Properties.Resources.icons8_telegram_app_24;
             this.mnuSendToTelegram.Name = "mnuSendToTelegram";
-            this.mnuSendToTelegram.Size = new System.Drawing.Size(202, 24);
+            this.mnuSendToTelegram.Size = new System.Drawing.Size(245, 24);
             this.mnuSendToTelegram.Text = "ارسال ملک در تلگرام";
             this.mnuSendToTelegram.Click += new System.EventHandler(this.mnuSendToTelegram_Click);
             // 
@@ -688,38 +692,38 @@
             // 
             this.ارسالملکدرواتساپToolStripMenuItem.Image = global::Building.Properties.Resources.icons8_whatsapp_24;
             this.ارسالملکدرواتساپToolStripMenuItem.Name = "ارسالملکدرواتساپToolStripMenuItem";
-            this.ارسالملکدرواتساپToolStripMenuItem.Size = new System.Drawing.Size(202, 24);
+            this.ارسالملکدرواتساپToolStripMenuItem.Size = new System.Drawing.Size(245, 24);
             this.ارسالملکدرواتساپToolStripMenuItem.Text = "ارسال ملک در واتساپ";
             // 
             // toolStripMenuItem5
             // 
             this.toolStripMenuItem5.Name = "toolStripMenuItem5";
-            this.toolStripMenuItem5.Size = new System.Drawing.Size(199, 6);
+            this.toolStripMenuItem5.Size = new System.Drawing.Size(242, 6);
             // 
             // mnuMatchRequest
             // 
             this.mnuMatchRequest.Image = global::Building.Properties.Resources.article_1_;
             this.mnuMatchRequest.Name = "mnuMatchRequest";
-            this.mnuMatchRequest.Size = new System.Drawing.Size(202, 24);
+            this.mnuMatchRequest.Size = new System.Drawing.Size(245, 24);
             this.mnuMatchRequest.Text = "تطابق ملک با درخواست ها";
             // 
             // toolStripMenuItem6
             // 
             this.toolStripMenuItem6.Name = "toolStripMenuItem6";
-            this.toolStripMenuItem6.Size = new System.Drawing.Size(199, 6);
+            this.toolStripMenuItem6.Size = new System.Drawing.Size(242, 6);
             // 
             // mnuPrint
             // 
             this.mnuPrint.Image = global::Building.Properties.Resources.printer;
             this.mnuPrint.Name = "mnuPrint";
-            this.mnuPrint.Size = new System.Drawing.Size(202, 24);
+            this.mnuPrint.Size = new System.Drawing.Size(245, 24);
             this.mnuPrint.Text = "چاپ لیست املاک";
             this.mnuPrint.Click += new System.EventHandler(this.mnuPrint_Click);
             // 
             // toolStripMenuItem4
             // 
             this.toolStripMenuItem4.Name = "toolStripMenuItem4";
-            this.toolStripMenuItem4.Size = new System.Drawing.Size(199, 6);
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(242, 6);
             // 
             // مدیریتستونهاToolStripMenuItem
             // 
@@ -756,7 +760,7 @@
             this.mnuTell});
             this.مدیریتستونهاToolStripMenuItem.Image = global::Building.Properties.Resources.technology_1;
             this.مدیریتستونهاToolStripMenuItem.Name = "مدیریتستونهاToolStripMenuItem";
-            this.مدیریتستونهاToolStripMenuItem.Size = new System.Drawing.Size(202, 24);
+            this.مدیریتستونهاToolStripMenuItem.Size = new System.Drawing.Size(245, 24);
             this.مدیریتستونهاToolStripMenuItem.Text = "مدیریت ستون ها";
             // 
             // mnuCode
@@ -1351,6 +1355,18 @@
             this.ucHeader.Size = new System.Drawing.Size(1027, 34);
             this.ucHeader.TabIndex = 55772;
             // 
+            // mnuSlideShow
+            // 
+            this.mnuSlideShow.Name = "mnuSlideShow";
+            this.mnuSlideShow.Size = new System.Drawing.Size(245, 24);
+            this.mnuSlideShow.Text = "نمایش اسلایدشو تصاویر ملک جاری";
+            this.mnuSlideShow.Click += new System.EventHandler(this.mnuSlideShow_Click);
+            // 
+            // toolStripMenuItem3
+            // 
+            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(242, 6);
+            // 
             // frmShowBuildings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -1506,5 +1522,7 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
         private WindowsSerivces.UC_Header ucHeader;
+        private System.Windows.Forms.ToolStripMenuItem mnuSlideShow;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem3;
     }
 }

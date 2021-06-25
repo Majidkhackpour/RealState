@@ -1,4 +1,12 @@
-﻿using System;
+﻿using Building.BuildingMatchesItem;
+using EntityCache.Bussines;
+using EntityCache.ViewModels;
+using MetroFramework.Forms;
+using Notification;
+using Peoples;
+using Services;
+using Settings.Classes;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
@@ -7,16 +15,6 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Building.BuildingMatchesItem;
-using EntityCache.Bussines;
-using EntityCache.ViewModels;
-using MetroFramework.Forms;
-using Notification;
-using Peoples;
-using Print;
-using Services;
-using Settings.Classes;
-using User;
 
 namespace Building.Building
 {
@@ -1016,17 +1014,27 @@ namespace Building.Building
         {
             try
             {
-                var t = new Thread(() =>
+                if (InvokeRequired)
+                {
+                    var t = new Thread(() =>
+                    {
+                        var ofd = new OpenFileDialog { Multiselect = true, RestoreDirectory = true };
+                        if (ofd.ShowDialog(this) != DialogResult.OK) return;
+                        foreach (var name in ofd.FileNames)
+                            lstList.Add(name);
+                    });
+
+                    t.SetApartmentState(ApartmentState.STA);
+                    t.Start();
+                    t.Join();
+                }
+                else
                 {
                     var ofd = new OpenFileDialog { Multiselect = true, RestoreDirectory = true };
                     if (ofd.ShowDialog(this) != DialogResult.OK) return;
                     foreach (var name in ofd.FileNames)
                         lstList.Add(name);
-                });
-
-                t.SetApartmentState(ApartmentState.STA);
-                t.Start();
-                t.Join();
+                }
                 Make_Picture_Boxes(lstList);
             }
             catch (Exception ex)

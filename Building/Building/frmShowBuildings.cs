@@ -1392,8 +1392,8 @@ namespace Building.Building
         {
             try
             {
-                if (string.IsNullOrEmpty(Settings.Classes.clsTelegram.Token) ||
-                    string.IsNullOrEmpty(Settings.Classes.clsTelegram.Channel))
+                if (string.IsNullOrEmpty(clsTelegram.Token) ||
+                    string.IsNullOrEmpty(clsTelegram.Channel))
                 {
                     frmNotification.PublicInfo.ShowMessage(
                         "لطفا ابتدا به تنظیمات برنامه، سربرگ تلگرام رفته و موارد خواسته شده را وارد نمایید");
@@ -1499,6 +1499,23 @@ namespace Building.Building
             }
 
             return res;
+        }
+        private async void mnuSlideShow_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (DGrid.RowCount <= 0 || DGrid.CurrentRow == null) return;
+                var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
+                var bu = await BuildingBussines.GetAsync(guid);
+                if (bu?.GalleryList == null) return;
+
+                var frm = new frmSlideShow(bu.GalleryList);
+                frm.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
         }
     }
 }
