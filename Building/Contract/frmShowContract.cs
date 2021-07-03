@@ -352,10 +352,9 @@ namespace Building.Contract
         {
             try
             {
-                if (DGrid.RowCount <= 0) return;
-                if (DGrid.CurrentRow == null) return;
+                if (DGrid.RowCount <= 0 || DGrid.CurrentRow == null) return;
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
-                var con = ContractBussines.Get(guid);
+                var con = await ContractBussines.GetAsync(guid);
                 if (con == null) return;
                 if (!con.IsTemp)
                 {
@@ -366,6 +365,99 @@ namespace Building.Contract
                 var frm = new frmContractMain(guid, false);
                 if (frm.ShowDialog(this) == DialogResult.OK)
                     await LoadDataAsync(txtSearch.Text);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private async void mnuPrintFirstSide_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (DGrid.RowCount <= 0 || DGrid.CurrentRow == null) return;
+                var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
+                var con = await ContractBussines.GetAsync(guid);
+                if (con == null) return;
+                var customer = await PeoplesBussines.GetAsync(con.FirstSideGuid);
+
+                var view = new ContractOrderViewModel()
+                {
+                    Description = con.Description,
+                    Code = con.Code,
+                    Price = con.FirstTotalPrice,
+                    DateSh = con.DateSh,
+                    TotalSum = con.FirstSum - con.FirstDiscount,
+                    Avarez = con.FirstAvarez,
+                    CustomerAddress = customer.Address,
+                    CustomerEconomyCode = customer.IdCode,
+                    CustomerName = customer.Name,
+                    CustomerNationalCode = customer.NationalCode,
+                    CustomerTell = customer.TellList?.FirstOrDefault()?.Tell,
+                    CustomerZip = customer.PostalCode,
+                    Discount = con.FirstDiscount,
+                    Tax = con.FirstTax,
+                    SumAfterDiscount = con.FirstTotalPrice - con.FirstDiscount,
+                    ServiceName = $"کمیسیون عقد قرارداد {con.Type.GetDisplay()}",
+                    SellerAddress = Settings.Classes.clsEconomyUnit.ManagerAddress,
+                    SellerName = Settings.Classes.clsEconomyUnit.ManagerName,
+                    SellerNationalCode = Settings.Classes.clsSandouq.NationalCode,
+                    SellerTell = Settings.Classes.clsEconomyUnit.ManagerTell
+                };
+                if (!string.IsNullOrEmpty(Settings.Classes.clsSandouq.EconomyCode))
+                    view.SellerNationalCode += $" / {Settings.Classes.clsSandouq.EconomyCode}";
+                if (!string.IsNullOrEmpty(Settings.Classes.clsEconomyUnit.ManagerFax))
+                    view.SellerTell += $" / {Settings.Classes.clsEconomyUnit.ManagerFax}";
+
+                var lst = new List<object>() { view };
+                var cls = new ReportGenerator(StiType.Contract_Rasmi_One, EnPrintType.Pdf_A4) { Lst = lst };
+                cls.PrintNew();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private async void mnuPrintSecondSide_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (DGrid.RowCount <= 0 || DGrid.CurrentRow == null) return;
+                var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
+                var con = await ContractBussines.GetAsync(guid);
+                if (con == null) return;
+                var customer = await PeoplesBussines.GetAsync(con.SecondSideGuid);
+
+                var view = new ContractOrderViewModel()
+                {
+                    Description = con.Description,
+                    Code = con.Code,
+                    Price = con.SecondTotalPrice,
+                    DateSh = con.DateSh,
+                    TotalSum = con.SecondSum - con.SecondDiscount,
+                    Avarez = con.SecondAvarez,
+                    CustomerAddress = customer.Address,
+                    CustomerEconomyCode = customer.IdCode,
+                    CustomerName = customer.Name,
+                    CustomerNationalCode = customer.NationalCode,
+                    CustomerTell = customer.TellList?.FirstOrDefault()?.Tell,
+                    CustomerZip = customer.PostalCode,
+                    Discount = con.SecondDiscount,
+                    Tax = con.SecondTax,
+                    SumAfterDiscount = con.SecondTotalPrice - con.SecondDiscount,
+                    ServiceName = $"کمیسیون عقد قرارداد {con.Type.GetDisplay()}",
+                    SellerAddress = Settings.Classes.clsEconomyUnit.ManagerAddress,
+                    SellerName = Settings.Classes.clsEconomyUnit.ManagerName,
+                    SellerNationalCode = Settings.Classes.clsSandouq.NationalCode,
+                    SellerTell = Settings.Classes.clsEconomyUnit.ManagerTell
+                };
+                if (!string.IsNullOrEmpty(Settings.Classes.clsSandouq.EconomyCode))
+                    view.SellerNationalCode += $" / {Settings.Classes.clsSandouq.EconomyCode}";
+                if (!string.IsNullOrEmpty(Settings.Classes.clsEconomyUnit.ManagerFax))
+                    view.SellerTell += $" / {Settings.Classes.clsEconomyUnit.ManagerFax}";
+                var lst = new List<object>() { view };
+                var cls = new ReportGenerator(StiType.Contract_Rasmi_One, EnPrintType.Pdf_A4) { Lst = lst };
+                cls.PrintNew();
             }
             catch (Exception ex)
             {

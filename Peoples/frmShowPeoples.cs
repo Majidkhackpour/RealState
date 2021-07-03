@@ -70,7 +70,7 @@ namespace Peoples
                 _token = new CancellationTokenSource();
                 list = await PeoplesBussines.GetAllAsync(search, GroupGuid, _token.Token);
                 _ = Task.Run(() => ucPagger.PagingAsync(new CancellationToken(),
-                    list.Where(q => q.Status == _st), 100, PagingPosition.GotoStartPage));
+                    list?.Where(q => q.Status == _st), 100, PagingPosition.GotoStartPage));
             }
             catch (Exception ex)
             {

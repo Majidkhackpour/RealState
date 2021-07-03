@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using Advertise.Classes;
 using Advertise.Forms.Simcard;
 using EntityCache.Bussines;
+using EntityCache.ViewModels;
 using MetroFramework.Forms;
 using Notification;
 using Payamak;
@@ -1511,6 +1512,80 @@ namespace Building.Building
 
                 var frm = new frmSlideShow(bu.GalleryList);
                 frm.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private async void mnuPrintOne_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (DGrid.RowCount <= 0 || DGrid.CurrentRow == null) return;
+                var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
+                var cls = await BuildingBussines.GetAsync(guid);
+                if (cls == null) return;
+                var rpt = new BuildingReportViewModel()
+                {
+                    Masahat = cls.Masahat,
+                    SellPrice = cls.SellPrice,
+                    RahnPrice1 = cls.RahnPrice1,
+                    EjarePrice1 = cls.EjarePrice1,
+                    Code = cls.Code,
+                    RoomCount = cls.RoomCount,
+                    TabaqeNo = cls.TabaqeNo,
+                    SaleSakht = cls.SaleSakht,
+                    ZirBana = cls.ZirBana,
+                    Address = cls.Address,
+                    TedadTabaqe = cls.TedadTabaqe,
+                    ShortDesc = cls.ShortDesc,
+                    VahedPerTabaqe = cls.VahedPerTabaqe,
+                    PishTotalPrice = cls.PishTotalPrice,
+                    PishPrice = cls.PishPrice,
+                    VamPrice = cls.VamPrice,
+                    Hashie = cls.Hashie,
+                    BarqName = cls.BarqName,
+                    GasName = cls.GasName,
+                    WaterName = cls.WaterName,
+                    OwnerName = cls.OwnerName,
+                    BuildingTypeName = cls.BuildingTypeName,
+                    BuildingConditionName = cls.BuildingConditionName,
+                    BuildingViewName = cls.BuildingViewName,
+                    DocumentTypeName = cls.DocumentTypeName,
+                    FloorCoverName = cls.FloorCoverName,
+                    KitchenServiceName = cls.KitchenServiceName,
+                    SideName = cls.SideName,
+                    UserName = cmbUser.Text,
+                    TellName = cls.TellName,
+                    Options = string.Join(", ", cls.OptionList?.Select(q => q.OptionName)),
+                    DeliveryDateSh = Calendar.MiladiToShamsi(cls.DeliveryDate)
+                };
+                if (cls.SellPrice > 0 && cls.Masahat > 0)
+                    rpt.SellPricePerMetr = cls.SellPrice / cls.Masahat;
+                var people = PeoplesBussines.Get(cls.OwnerGuid);
+                if (people.TellList != null && people.TellList.Count > 0)
+                {
+                    if (people.TellList.Count >= 2)
+                    {
+                        rpt.OwnerTell1 = people.TellList[0].Tell;
+                        rpt.OwnerTell2 = people.TellList[1].Tell;
+                    }
+                    else
+                    {
+                        rpt.OwnerTell1 = people.TellList[0].Tell;
+                        rpt.OwnerTell2 = "";
+                    }
+                }
+                else
+                {
+                    rpt.OwnerTell1 = "";
+                    rpt.OwnerTell2 = "";
+                }
+
+                var cls_ = new ReportGenerator(StiType.Building_One, EnPrintType.Pdf_A4)
+                { Lst = new List<object>() { rpt } };
+                cls_.PrintNew();
             }
             catch (Exception ex)
             {

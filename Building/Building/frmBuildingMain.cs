@@ -1103,11 +1103,13 @@ namespace Building.Building
                 res.AddReturnedValue(await SaveAsync());
                 if (res.HasError) return;
 
-                if (!Settings.Classes.Payamak.IsSendToOwner.ParseToBoolean() || !isSendSms) return;
-                var tr = await Payamak.FixSms.OwnerSend.SendAsync(cls);
-                frmNotification.PublicInfo.ShowMessage(tr.HasError
-                    ? tr.ErrorMessage
-                    : "ارسال پیامک به مالک با موفقیت انجام شد");
+                if (Settings.Classes.Payamak.IsSendToOwner.ParseToBoolean() || isSendSms)
+                {
+                    var tr = await Payamak.FixSms.OwnerSend.SendAsync(cls);
+                    frmNotification.PublicInfo.ShowMessage(tr.HasError
+                        ? tr.ErrorMessage
+                        : "ارسال پیامک به مالک با موفقیت انجام شد");
+                }
 
                 if (MessageBox.Show("آیا مایلید تقاضاهای مطابق با این ملک را مشاهده نمایید؟", "تطبیق املاک با تقاضا",
                         MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.No)

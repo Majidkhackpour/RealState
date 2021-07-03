@@ -76,6 +76,8 @@
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
             this.mnuShowStandard = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuPrint = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuPrintFirstSide = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuPrintSecondSide = new System.Windows.Forms.ToolStripMenuItem();
             this.conBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.ucHeader = new WindowsSerivces.UC_Header();
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).BeginInit();
@@ -436,10 +438,12 @@
             this.mnuChangeTemp,
             this.toolStripMenuItem3,
             this.mnuShowStandard,
-            this.mnuPrint});
+            this.mnuPrint,
+            this.mnuPrintFirstSide,
+            this.mnuPrintSecondSide});
             this.contextMenu.Name = "contextMenu";
             this.contextMenu.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.contextMenu.Size = new System.Drawing.Size(327, 190);
+            this.contextMenu.Size = new System.Drawing.Size(327, 260);
             // 
             // mnuAdd
             // 
@@ -511,6 +515,22 @@
             this.mnuPrint.Size = new System.Drawing.Size(326, 24);
             this.mnuPrint.Text = "چاپ لیست قولنامه ها";
             this.mnuPrint.Click += new System.EventHandler(this.mnuPrint_Click);
+            // 
+            // mnuPrintFirstSide
+            // 
+            this.mnuPrintFirstSide.Image = global::Building.Properties.Resources.list;
+            this.mnuPrintFirstSide.Name = "mnuPrintFirstSide";
+            this.mnuPrintFirstSide.Size = new System.Drawing.Size(326, 24);
+            this.mnuPrintFirstSide.Text = "چاپ فاکتور رسمی طرف اول قولنامه";
+            this.mnuPrintFirstSide.Click += new System.EventHandler(this.mnuPrintFirstSide_Click);
+            // 
+            // mnuPrintSecondSide
+            // 
+            this.mnuPrintSecondSide.Image = global::Building.Properties.Resources.list;
+            this.mnuPrintSecondSide.Name = "mnuPrintSecondSide";
+            this.mnuPrintSecondSide.Size = new System.Drawing.Size(326, 24);
+            this.mnuPrintSecondSide.Text = "چاپ فاکتور رسمی طرف دوم قولنامه";
+            this.mnuPrintSecondSide.Click += new System.EventHandler(this.mnuPrintSecondSide_Click);
             // 
             // conBindingSource
             // 
@@ -605,5 +625,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn delayDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn descriptionDataGridViewTextBoxColumn;
         private WindowsSerivces.UC_Header ucHeader;
+        private System.Windows.Forms.ToolStripMenuItem mnuPrintFirstSide;
+        private System.Windows.Forms.ToolStripMenuItem mnuPrintSecondSide;
     }
 }

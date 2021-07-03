@@ -513,11 +513,13 @@ namespace Building.Building
                 if (res.HasError) return;
 
 
-                if (!Settings.Classes.Payamak.IsSendToOwner.ParseToBoolean() || !isSendSms) return;
-                var tr = await Payamak.FixSms.OwnerSend.SendAsync(cls);
-                frmNotification.PublicInfo.ShowMessage(tr.HasError
-                    ? tr.ErrorMessage
-                    : "ارسال پیامک به مالک با موفقیت انجام شد");
+                if (Settings.Classes.Payamak.IsSendToOwner.ParseToBoolean() || isSendSms)
+                {
+                    var tr = await Payamak.FixSms.OwnerSend.SendAsync(cls);
+                    frmNotification.PublicInfo.ShowMessage(tr.HasError
+                        ? tr.ErrorMessage
+                        : "ارسال پیامک به مالک با موفقیت انجام شد");
+                }
 
                 if (res.HasError) return;
 

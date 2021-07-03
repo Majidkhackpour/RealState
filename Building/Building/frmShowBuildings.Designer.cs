@@ -81,6 +81,8 @@
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.mnuView = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
+            this.mnuSlideShow = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
             this.mnuSendSms = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuSendToDivar = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuSendToSheypoor = new System.Windows.Forms.ToolStripMenuItem();
@@ -154,8 +156,7 @@
             this.docTypeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.ucPagger = new WindowsSerivces.Pagging.UC_FooterPaging();
             this.ucHeader = new WindowsSerivces.UC_Header();
-            this.mnuSlideShow = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
+            this.mnuPrintOne = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).BeginInit();
             this.contextMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BuildingBindingSource)).BeginInit();
@@ -610,12 +611,13 @@
             this.toolStripMenuItem5,
             this.mnuMatchRequest,
             this.toolStripMenuItem6,
+            this.mnuPrintOne,
             this.mnuPrint,
             this.toolStripMenuItem4,
             this.مدیریتستونهاToolStripMenuItem});
             this.contextMenu.Name = "contextMenu";
             this.contextMenu.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.contextMenu.Size = new System.Drawing.Size(246, 374);
+            this.contextMenu.Size = new System.Drawing.Size(246, 398);
             // 
             // mnuAdd
             // 
@@ -658,6 +660,18 @@
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
             this.toolStripMenuItem2.Size = new System.Drawing.Size(242, 6);
+            // 
+            // mnuSlideShow
+            // 
+            this.mnuSlideShow.Name = "mnuSlideShow";
+            this.mnuSlideShow.Size = new System.Drawing.Size(245, 24);
+            this.mnuSlideShow.Text = "نمایش اسلایدشو تصاویر ملک جاری";
+            this.mnuSlideShow.Click += new System.EventHandler(this.mnuSlideShow_Click);
+            // 
+            // toolStripMenuItem3
+            // 
+            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(242, 6);
             // 
             // mnuSendSms
             // 
@@ -1355,17 +1369,13 @@
             this.ucHeader.Size = new System.Drawing.Size(1027, 34);
             this.ucHeader.TabIndex = 55772;
             // 
-            // mnuSlideShow
+            // mnuPrintOne
             // 
-            this.mnuSlideShow.Name = "mnuSlideShow";
-            this.mnuSlideShow.Size = new System.Drawing.Size(245, 24);
-            this.mnuSlideShow.Text = "نمایش اسلایدشو تصاویر ملک جاری";
-            this.mnuSlideShow.Click += new System.EventHandler(this.mnuSlideShow_Click);
-            // 
-            // toolStripMenuItem3
-            // 
-            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(242, 6);
+            this.mnuPrintOne.Image = global::Building.Properties.Resources.printer;
+            this.mnuPrintOne.Name = "mnuPrintOne";
+            this.mnuPrintOne.Size = new System.Drawing.Size(245, 24);
+            this.mnuPrintOne.Text = "چاپ اطلاعات ملک";
+            this.mnuPrintOne.Click += new System.EventHandler(this.mnuPrintOne_Click);
             // 
             // frmShowBuildings
             // 
@@ -1524,5 +1534,6 @@
         private WindowsSerivces.UC_Header ucHeader;
         private System.Windows.Forms.ToolStripMenuItem mnuSlideShow;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem3;
+        private System.Windows.Forms.ToolStripMenuItem mnuPrintOne;
     }
 }

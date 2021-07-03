@@ -64,6 +64,40 @@ namespace Print.Classes
                 return sti;
             }
         }
+        public class One_Rasmi
+        {
+            public static Stimulsoft.Report.StiReport GetSti(Stimulsoft.Report.StiReport sti, EnPrintType peper)
+            {
+                try
+                {
+                    ReportPath.CreatePath(ReportPath.ReportPath_);
+                    ReportPath.CreatePath(ReportPath.ReportPath_ + @"\" + FolderName);
+                    return Contract_One_Rasmi_A4(sti);
+                }
+                catch (Exception ex)
+                {
+                    WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                }
+
+                return sti;
+            }
+            public static Stimulsoft.Report.StiReport Contract_One_Rasmi_A4(Stimulsoft.Report.StiReport sti)
+            {
+                try
+                {
+                    var fullAdd = ReportPath.ReportPath_ + @"\" + FolderName + @"\Contract_Rasmi_One_A4.mrt";
+
+                    if (!File.Exists(fullAdd))
+                        File.WriteAllBytes(fullAdd, Properties.Resources.Contract_Rasmi_One_A4);
+                    sti.Load(fullAdd);
+                }
+                catch (Exception ex)
+                {
+                    WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                }
+                return sti;
+            }
+        }
         public class List
         {
             public static Stimulsoft.Report.StiReport GetSti(Stimulsoft.Report.StiReport sti, EnPrintType peper)

@@ -151,6 +151,9 @@
   <data name="Contract_One_A5" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Contract_One_A5.mrt;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="Contract_Rasmi_One_A4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Contract_Rasmi_One_A4.mrt;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="File___excel_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\File - excel 2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>

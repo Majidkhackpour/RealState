@@ -74,6 +74,9 @@ namespace Print
                     case StiType.Contract_List:
                         Sti = clsContract.List.GetSti(Sti, peper);
                         break;
+                    case StiType.Contract_Rasmi_One:
+                        Sti = clsContract.One_Rasmi.GetSti(Sti, peper);
+                        break;
                     case StiType.User_Performence_List:
                         Sti = clsUserPerformence.List.GetSti(Sti, peper);
                         break;

@@ -386,9 +386,9 @@
             // 
             this.label9.BackColor = System.Drawing.Color.Transparent;
             this.label9.Font = new System.Drawing.Font("B Yekan", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.label9.Location = new System.Drawing.Point(110, 34);
+            this.label9.Location = new System.Drawing.Point(110, 32);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(225, 32);
+            this.label9.Size = new System.Drawing.Size(225, 34);
             this.label9.TabIndex = 8;
             this.label9.Text = "ثبت واحد اقتصادی";
             // 
