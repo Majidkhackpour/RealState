@@ -150,7 +150,7 @@ namespace RealState
             try
             {
                 lblEconomyName.Text = clsEconomyUnit.EconomyName;
-                var cn = new SqlConnection(Settings.AppSettings.DefaultConnectionString);
+                var cn = new SqlConnection(AppSettings.DefaultConnectionString);
                 lblDbName.Text = cn?.Database ?? "";
                 lblVersion.Text = Assembly.GetExecutingAssembly().GetName().Version.ToString();
                 lblSerial.Text = clsRegistery.GetRegistery("U1001ML");
@@ -718,7 +718,7 @@ namespace RealState
         {
             try
             {
-                var res = await clsErtegha.StartErteghaAsync(AppSettings.DefaultConnectionString, this);
+                var res = await clsErtegha.StartErteghaAsync(AppSettings.DefaultConnectionString, this,true);
                 if (!res.HasError)
                 {
                     MessageBox.Show(this, "بازسازی اطلاعات با موفقیت انجام شد", "پیغام سیستم", MessageBoxButtons.OK,

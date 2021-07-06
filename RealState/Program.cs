@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Reflection;
-using System.Security.Principal;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using EntityCache.Assistence;
+﻿using EntityCache.Assistence;
 using Ertegha;
 using Nito.AsyncEx;
 using Notification;
@@ -15,8 +7,16 @@ using Services;
 using Settings;
 using Settings.Classes;
 using Settings.WorkingYear;
+using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Linq;
+using System.Reflection;
+using System.Security.Principal;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using RealState.LoginPanel;
 using User;
-using WebHesabBussines;
 
 namespace RealState
 {
@@ -30,12 +30,17 @@ namespace RealState
                 new frmRunAsAdmin().ShowDialog();
                 return;
             }
+
             Utilities.NEVER_EAT_POISON_Disable_CertificateValidation();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
+
+            var res = frmLoginMain.Instance.Load_();
+
+
             InitConfigs();
-            
+
             var frmYear = new frmShowWorkingYears();
             if (frmYear.ShowDialog() != DialogResult.OK) return;
 
@@ -46,7 +51,7 @@ namespace RealState
 
             if (!CheckHardSerial()) return;
 
-            
+
 
             //_ = Task.Run(CheckHardSerialWithServerAsync);
 
@@ -256,7 +261,7 @@ namespace RealState
         {
             try
             {
-                AsyncContext.Run(() => clsErtegha.StartErteghaAsync(AppSettings.DefaultConnectionString, null));
+                AsyncContext.Run(() => clsErtegha.StartErteghaAsync(AppSettings.DefaultConnectionString, null, true));
                 ClsCache.InserDefults();
             }
             catch (Exception ex)

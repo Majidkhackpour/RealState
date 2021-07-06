@@ -318,6 +318,18 @@
     <Compile Include="frmShowBirthDay.Designer.cs">
       <DependentUpon>frmShowBirthDay.cs</DependentUpon>
     </Compile>
+    <Compile Include="LoginPanel\FormsInPanel\frmWorkingYear_Login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LoginPanel\FormsInPanel\frmWorkingYear_Login.Designer.cs">
+      <DependentUpon>frmWorkingYear_Login.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LoginPanel\frmLoginMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LoginPanel\frmLoginMain.Designer.cs">
+      <DependentUpon>frmLoginMain.cs</DependentUpon>
+    </Compile>
     <Compile Include="Note\frmNoteMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -361,6 +373,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmShowBirthDay.resx">
       <DependentUpon>frmShowBirthDay.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LoginPanel\FormsInPanel\frmWorkingYear_Login.resx">
+      <DependentUpon>frmWorkingYear_Login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LoginPanel\frmLoginMain.resx">
+      <DependentUpon>frmLoginMain.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Note\frmNoteMain.resx">
       <DependentUpon>frmNoteMain.cs</DependentUpon>
@@ -876,6 +894,103 @@
   <ItemGroup>
     <None Include="Resources\43.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Win11_31.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Win11_1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Win11_2.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Win11_3.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Win11_4.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Win11_5.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Win11_6.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Win11_7.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Win11_8.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Win11_9.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Win11_10.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Win11_11.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Win11_12.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Win11_13.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Win11_14.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Win11_15.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Win11_16.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Win11_17.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Win11_18.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Win11_19.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Win11_20.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Win11_21.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Win11_22.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Win11_23.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Win11_24.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Win11_25.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Win11_26.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Win11_27.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Win11_28.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Win11_29.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Win11_30.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rectangle 2.png" />
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

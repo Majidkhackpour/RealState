@@ -26,7 +26,7 @@ namespace RealState.Advance
                     return;
                 }
 
-                res.AddReturnedValue(await DataBaseUtilities.RunScript.RunAsync(this, txtQuery.Text,
+                res.AddReturnedValue(await DataBaseUtilities.RunScript.RunAsync(true,this, txtQuery.Text,
                     new SqlConnection(Settings.AppSettings.DefaultConnectionString)));
 
                 if (!res.HasError) res.AddInformation("اجرای کوئری با موفقیت انجام شد");
