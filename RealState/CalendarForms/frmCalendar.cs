@@ -23,7 +23,7 @@ namespace RealState.CalendarForms
                 _token = new CancellationTokenSource();
                 var list = await CalendarBussines.GetAllAsync(search, (int)txtYear.Value, _token.Token);
                 Invoke(new MethodInvoker(() => CalendarBindingSource.DataSource =
-                    list.OrderBy(q => q.DateM).ToSortableBindingList()));
+                    list?.OrderBy(q => q.DateM).ToSortableBindingList()));
                 SetGridColor();
             }
             catch (Exception ex)
