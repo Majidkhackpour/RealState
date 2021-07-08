@@ -113,6 +113,8 @@ namespace Settings.WorkingYear
 
                 var inPath = Path.Combine(path, "in.txt");
                 File.WriteAllText(inPath, InitialCatalog);
+
+                Microsoft.Win32.Registry.SetValue("HKEY_CURRENT_USER\\Software\\Arad", "BuildingCn", ConnectionString);
             }
             catch (Exception ex)
             {

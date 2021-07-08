@@ -318,6 +318,12 @@
     <Compile Include="frmShowBirthDay.Designer.cs">
       <DependentUpon>frmShowBirthDay.cs</DependentUpon>
     </Compile>
+    <Compile Include="LoginPanel\FormsInPanel\frmCreateWorkingYear.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LoginPanel\FormsInPanel\frmCreateWorkingYear.Designer.cs">
+      <DependentUpon>frmCreateWorkingYear.cs</DependentUpon>
+    </Compile>
     <Compile Include="LoginPanel\FormsInPanel\frmWorkingYear_Login.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -373,6 +379,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmShowBirthDay.resx">
       <DependentUpon>frmShowBirthDay.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LoginPanel\FormsInPanel\frmCreateWorkingYear.resx">
+      <DependentUpon>frmCreateWorkingYear.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LoginPanel\FormsInPanel\frmWorkingYear_Login.resx">
       <DependentUpon>frmWorkingYear_Login.cs</DependentUpon>

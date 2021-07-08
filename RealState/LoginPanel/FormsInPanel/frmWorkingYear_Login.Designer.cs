@@ -221,6 +221,7 @@ namespace RealState.LoginPanel.FormsInPanel
             this.lblCreate.Size = new System.Drawing.Size(105, 20);
             this.lblCreate.TabIndex = 55715;
             this.lblCreate.Text = "ایجاد واحد اقتصادی";
+            this.lblCreate.Click += new System.EventHandler(this.lblCreate_Click);
             this.lblCreate.MouseEnter += new System.EventHandler(this.lblCreate_MouseEnter);
             this.lblCreate.MouseLeave += new System.EventHandler(this.lblCreate_MouseLeave);
             // 
@@ -237,6 +238,7 @@ namespace RealState.LoginPanel.FormsInPanel
             this.lblEdit.Size = new System.Drawing.Size(48, 20);
             this.lblEdit.TabIndex = 55715;
             this.lblEdit.Text = "ویرایش";
+            this.lblEdit.Click += new System.EventHandler(this.lblEdit_Click);
             this.lblEdit.MouseEnter += new System.EventHandler(this.lblEdit_MouseEnter);
             this.lblEdit.MouseLeave += new System.EventHandler(this.lblEdit_MouseLeave);
             // 

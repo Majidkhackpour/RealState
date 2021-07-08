@@ -61,8 +61,8 @@ namespace EntityCache.Bussines
 
 
         public static async Task<UserBussines> GetAsync(Guid guid) => await UnitOfWork.Users.GetAsync(Cache.ConnectionString, guid);
-        public static async Task<List<UserBussines>> GetAllAsync(CancellationToken token) => await UnitOfWork.Users.GetAllAsync(Cache.ConnectionString,token);
-        public async Task<ReturnedSaveFuncInfo> SaveAsync(SqlTransaction tr = null)
+        public static async Task<List<UserBussines>> GetAllAsync(CancellationToken token) => await UnitOfWork.Users.GetAllAsync(Cache.ConnectionString, token);
+        public async Task<ReturnedSaveFuncInfo> SaveAsync(bool isLog=true,SqlTransaction tr = null)
         {
             var res = new ReturnedSaveFuncInfo();
             var autoTran = tr == null;
@@ -84,9 +84,12 @@ namespace EntityCache.Bussines
                 res.AddReturnedValue(await UnitOfWork.Users.SaveAsync(this, tr));
                 if (res.HasError) return res;
 
-                var action = IsModified ? EnLogAction.Update : EnLogAction.Insert;
-                res.AddReturnedValue(await UserLogBussines.SaveAsync(action, EnLogPart.Users, tr));
-                if (res.HasError) return res;
+                if (isLog)
+                {
+                    var action = IsModified ? EnLogAction.Update : EnLogAction.Insert;
+                    res.AddReturnedValue(await UserLogBussines.SaveAsync(action, EnLogPart.Users, tr));
+                    if (res.HasError) return res;
+                }
 
                 if (Cache.IsSendToServer)
                     _ = Task.Run(() => WebUser.SaveAsync(this));
@@ -145,7 +148,7 @@ namespace EntityCache.Bussines
             }
             return res;
         }
-        public static async Task<List<UserBussines>> GetAllAsync(string search,CancellationToken token)
+        public static async Task<List<UserBussines>> GetAllAsync(string search, CancellationToken token)
         {
             try
             {

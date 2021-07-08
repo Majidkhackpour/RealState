@@ -36,7 +36,7 @@ namespace EntityCache.Bussines
         public string HardSerial => Cache.HardSerial;
 
 
-        public static async Task<List<BankBussines>> GetAllAsync(CancellationToken token) => await UnitOfWork.Bank.GetAllAsync(Cache.ConnectionString,token);
+        public static async Task<List<BankBussines>> GetAllAsync(CancellationToken token) => await UnitOfWork.Bank.GetAllAsync(Cache.ConnectionString, token);
         public async Task<ReturnedSaveFuncInfo> SaveAsync(SqlTransaction tr = null)
         {
             var res = new ReturnedSaveFuncInfo();
@@ -76,7 +76,7 @@ namespace EntityCache.Bussines
             }
             return res;
         }
-        public static async Task<List<BankBussines>> GetAllAsync(string search,CancellationToken token)
+        public static async Task<List<BankBussines>> GetAllAsync(string search, CancellationToken token)
         {
             try
             {

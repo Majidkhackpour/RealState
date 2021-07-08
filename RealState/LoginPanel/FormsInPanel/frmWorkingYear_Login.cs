@@ -12,6 +12,7 @@ using EntityCache.Assistence;
 using EntityCache.Bussines;
 using Ertegha;
 using Notification;
+using Persistence;
 using Services;
 using Settings;
 using Settings.Classes;
@@ -42,8 +43,8 @@ namespace RealState.LoginPanel.FormsInPanel
             {
                 var list = WorkingYear.GetAll().OrderBy(q => q.DbName);
                 workingYearBindingSource.DataSource = list;
-                if (workingYearBindingSource.Count > 0)
-                    cmbWorkingYear.SelectedIndex = 0;
+                if (workingYearBindingSource.Count <= 0) return;
+                cmbWorkingYear.SelectedIndex = 0;
             }
             catch (Exception ex)
             {
@@ -68,7 +69,7 @@ namespace RealState.LoginPanel.FormsInPanel
             {
                 ErrorHandler.AddHandler(Assembly.GetExecutingAssembly().GetName().Version.ToString(), ENSource.Building,
                     Application.StartupPath, clsRegistery.GetRegistery("U1001ML"));
-                ClsCache.Init(AppSettings.DefaultConnectionString, clsGlobalSetting.HardDriveSerial);
+                ClsCache.Init(AppSettings.DefaultConnectionString, lblCpuSerial.Text);
                 Logger.init(Application.StartupPath, "BuidlingEventLog.txt", true);
                 ErrorManager.Init(ENSource.Building, null);
             }
@@ -85,8 +86,10 @@ namespace RealState.LoginPanel.FormsInPanel
                 var currentVersion = AccGlobalSettings.AppVersion.ParseToInt();
                 var dbVersion = clsGlobalSetting.ApplicationVersion.ParseToInt();
                 if (dbVersion <= 0 || currentVersion > dbVersion)
+                {
                     res.AddReturnedValue(await clsErtegha.StartErteghaAsync(AppSettings.DefaultConnectionString, this, false));
-                ClsCache.InserDefults();
+                    ClsCache.InserDefults();
+                }
             }
             catch (Exception ex)
             {
@@ -220,7 +223,7 @@ namespace RealState.LoginPanel.FormsInPanel
 
                 if (string.IsNullOrEmpty(clsEconomyUnit.EconomyName))
                 {
-                    var frm = new frmEconomyUnit();
+                    var frm = new frmEconomyUnit { TopMost = true };
                     if (frm.ShowDialog() == DialogResult.Cancel) Application.Exit();
                 }
             }
@@ -248,6 +251,14 @@ namespace RealState.LoginPanel.FormsInPanel
             try
             {
                 SetDesign();
+
+                var conString = clsRegistery.GetConnectionRegistery("BuildingCn");
+                if (!conString.HasError && !string.IsNullOrEmpty(conString.value))
+                {
+                    AppSettings.DefaultConnectionString = conString.value;
+                    Cache.ConnectionString = conString.value;
+                }
+
                 InitConfigs();
                 LoadWorkingYearData();
                 Invoke(new MethodInvoker(() => prgBar.Value = 1));
@@ -298,6 +309,10 @@ namespace RealState.LoginPanel.FormsInPanel
                 if (cn == null) return;
 
                 Microsoft.Win32.Registry.SetValue("HKEY_CURRENT_USER\\Software\\Arad", "BuildingCn", cn.ConnectionString);
+                AppSettings.DefaultConnectionString = cn.ConnectionString;
+                Cache.ConnectionString = cn.ConnectionString;
+
+                await SetDefultsAsync();
 
                 if (result.HasError) this.ShowError(result, "خطای سیستم");
 
@@ -380,6 +395,32 @@ namespace RealState.LoginPanel.FormsInPanel
             {
                 if (e.KeyCode == Keys.Enter && txtPassword.Focused)
                     lblOk_Click(null, null);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private void lblCreate_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                frmLoginMain.Instance.CurrentForm = new frmCreateWorkingYear();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private void lblEdit_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (workingYearBindingSource.Count <= 0) return;
+                if (cmbWorkingYear.SelectedValue == null) return;
+
+                var guid = (Guid)cmbWorkingYear.SelectedValue;
+                frmLoginMain.Instance.CurrentForm = new frmCreateWorkingYear(guid);
             }
             catch (Exception ex)
             {

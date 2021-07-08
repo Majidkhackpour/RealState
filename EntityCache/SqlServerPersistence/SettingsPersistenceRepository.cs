@@ -22,7 +22,8 @@ namespace EntityCache.SqlServerPersistence
                     cmd.Parameters.AddWithValue("@name", memberName);
                     await cn.OpenAsync();
                     var dr = await cmd.ExecuteReaderAsync();
-                    while (dr.Read()) list = LoadData(dr);
+                    if (dr.Read()) 
+                        list = LoadData(dr);
                     cn.Close();
                 }
             }
