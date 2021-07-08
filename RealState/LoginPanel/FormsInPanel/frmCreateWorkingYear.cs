@@ -67,7 +67,7 @@ namespace RealState.LoginPanel.FormsInPanel
                 var res = cls.Save();
                 if (!res.HasError)
                 {
-                    frmLoginMain.Instance.CurrentForm=new frmWorkingYear_Login();
+                    frmLoginMain.Instance.CurrentForm = new frmWorkingYear_Login();
                     return;
                 }
                 frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);
@@ -81,6 +81,19 @@ namespace RealState.LoginPanel.FormsInPanel
         private void lblExit_Click(object sender, EventArgs e)
         {
 
+        }
+        private void lblConString_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var frm = new FRMInitialSettings();
+                if (frm.ShowDialog() == DialogResult.OK)
+                    ConnectionString = frm.ConnectionString;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
         }
     }
 }

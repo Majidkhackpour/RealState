@@ -54,6 +54,7 @@ namespace RealState.LoginPanel.FormsInPanel
             this.label4 = new System.Windows.Forms.Label();
             this.lblSoftwareSerial = new System.Windows.Forms.Label();
             this.prgBar = new System.Windows.Forms.ProgressBar();
+            this.lblRecoveryPassword = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.workingYearBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).BeginInit();
             this.pnlOk.SuspendLayout();
@@ -255,6 +256,7 @@ namespace RealState.LoginPanel.FormsInPanel
             this.lblDelete.Size = new System.Drawing.Size(33, 20);
             this.lblDelete.TabIndex = 55715;
             this.lblDelete.Text = "حذف";
+            this.lblDelete.Click += new System.EventHandler(this.lblDelete_Click);
             this.lblDelete.MouseEnter += new System.EventHandler(this.lblDelete_MouseEnter);
             this.lblDelete.MouseLeave += new System.EventHandler(this.lblDelete_MouseLeave);
             // 
@@ -271,6 +273,7 @@ namespace RealState.LoginPanel.FormsInPanel
             this.lblRestore.Size = new System.Drawing.Size(96, 20);
             this.lblRestore.TabIndex = 55715;
             this.lblRestore.Text = "بازگردانی اطلاعاتی";
+            this.lblRestore.Click += new System.EventHandler(this.lblRestore_Click);
             this.lblRestore.MouseEnter += new System.EventHandler(this.lblRestore_MouseEnter);
             this.lblRestore.MouseLeave += new System.EventHandler(this.lblRestore_MouseLeave);
             // 
@@ -371,6 +374,24 @@ namespace RealState.LoginPanel.FormsInPanel
             this.prgBar.Step = 1;
             this.prgBar.TabIndex = 55719;
             // 
+            // lblRecoveryPassword
+            // 
+            this.lblRecoveryPassword.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblRecoveryPassword.AutoSize = true;
+            this.lblRecoveryPassword.BackColor = System.Drawing.Color.Transparent;
+            this.lblRecoveryPassword.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lblRecoveryPassword.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.lblRecoveryPassword.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(81)))), ((int)(((byte)(219)))));
+            this.lblRecoveryPassword.Location = new System.Drawing.Point(100, 139);
+            this.lblRecoveryPassword.Name = "lblRecoveryPassword";
+            this.lblRecoveryPassword.Size = new System.Drawing.Size(184, 20);
+            this.lblRecoveryPassword.TabIndex = 55720;
+            this.lblRecoveryPassword.Text = "رمز عبور خود را فراموش کرده ام...!";
+            this.lblRecoveryPassword.Click += new System.EventHandler(this.lblRecoveryPassword_Click);
+            this.lblRecoveryPassword.MouseEnter += new System.EventHandler(this.lblRecoveryPassword_MouseEnter);
+            this.lblRecoveryPassword.MouseLeave += new System.EventHandler(this.lblRecoveryPassword_MouseLeave);
+            // 
             // frmWorkingYear_Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -378,6 +399,7 @@ namespace RealState.LoginPanel.FormsInPanel
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(383, 360);
             this.ControlBox = false;
+            this.Controls.Add(this.lblRecoveryPassword);
             this.Controls.Add(this.line2);
             this.Controls.Add(this.line1);
             this.Controls.Add(this.button1);
@@ -439,5 +461,6 @@ namespace RealState.LoginPanel.FormsInPanel
         private System.Windows.Forms.BindingSource workingYearBindingSource;
         private System.Windows.Forms.ProgressBar prgBar;
         private System.Windows.Forms.BindingSource userBindingSource;
+        private System.Windows.Forms.Label lblRecoveryPassword;
     }
 }

@@ -193,6 +193,7 @@ namespace RealState.LoginPanel.FormsInPanel
             this.lblConString.TabIndex = 0;
             this.lblConString.Text = "پارامتـــــرهای اتـصـــــال";
             this.lblConString.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblConString.Click += new System.EventHandler(this.lblConString_Click);
             // 
             // label1
             // 

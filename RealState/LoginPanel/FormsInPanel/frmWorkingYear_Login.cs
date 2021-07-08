@@ -17,6 +17,7 @@ using Services;
 using Settings;
 using Settings.Classes;
 using Settings.WorkingYear;
+using User;
 
 namespace RealState.LoginPanel.FormsInPanel
 {
@@ -421,6 +422,71 @@ namespace RealState.LoginPanel.FormsInPanel
 
                 var guid = (Guid)cmbWorkingYear.SelectedValue;
                 frmLoginMain.Instance.CurrentForm = new frmCreateWorkingYear(guid);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private void lblDelete_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (workingYearBindingSource.Count <= 0) return;
+                if (cmbWorkingYear.SelectedValue == null) return;
+
+                if (MessageBox.Show(this,
+                        $@"آیا از حذف {cmbWorkingYear.Text} اطمینان دارید؟", "حذف",
+                        MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Question) == DialogResult.No) return;
+
+                var guid = (Guid)cmbWorkingYear.SelectedValue;
+
+                var res = WorkingYear.Delete(guid);
+                if (res.HasError)
+                {
+                    frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);
+                    return;
+                }
+
+                LoadWorkingYearData();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private async void lblRestore_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (MessageBox.Show(this,
+                        "توجه داشته باشید درصورت بازگردانی اطلاعات، اطلاعات قبلی به کلی از بین خواهد رفت. آیا ادامه میدهید؟",
+                        "هشدار", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                    return;
+                var guid = (Guid)cmbWorkingYear.SelectedValue;
+
+                var cn = WorkingYear.Get(guid)?.ConnectionString;
+                var res = await DataBaseUtilities.DataBase.ReStoreStartAsync(this, cn, ENSource.Building);
+                if (res.HasError)
+                {
+                    frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);
+                    return;
+                }
+                frmNotification.PublicInfo.ShowMessage("بازیابی فایل پشتیبان با موفقیت انجام شد");
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private void lblRecoveryPassword_MouseEnter(object sender, EventArgs e) => lblRecoveryPassword.ForeColor = Color.Red;
+        private void lblRecoveryPassword_MouseLeave(object sender, EventArgs e) => lblRecoveryPassword.ForeColor = Color;
+        private void lblRecoveryPassword_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                new frmForgetPassword().ShowDialog(this);
             }
             catch (Exception ex)
             {
