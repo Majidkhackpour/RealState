@@ -221,7 +221,7 @@ namespace RealState
             // 
             // pnlOk
             // 
-            this.pnlOk.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.pnlOk.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlOk.CanvasColor = System.Drawing.Color.Transparent;
             this.pnlOk.Controls.Add(this.groupPanel8);
@@ -253,7 +253,7 @@ namespace RealState
             // 
             // groupPanel8
             // 
-            this.groupPanel8.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.groupPanel8.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupPanel8.CanvasColor = System.Drawing.Color.Transparent;
             this.groupPanel8.Controls.Add(this.txtSearch);
@@ -339,7 +339,7 @@ namespace RealState
             // 
             // groupPanel1
             // 
-            this.groupPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            this.groupPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupPanel1.CanvasColor = System.Drawing.Color.Transparent;
             this.groupPanel1.Controls.Add(this.flowLayoutPanel1);
@@ -392,7 +392,7 @@ namespace RealState
             // 
             // grpBaseInfo
             // 
-            this.grpBaseInfo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            this.grpBaseInfo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.grpBaseInfo.CanvasColor = System.Drawing.Color.Transparent;
             this.grpBaseInfo.Controls.Add(this.groupPanel3);
@@ -431,7 +431,7 @@ namespace RealState
             // 
             // groupPanel3
             // 
-            this.groupPanel3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.groupPanel3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupPanel3.CanvasColor = System.Drawing.Color.Transparent;
             this.groupPanel3.Controls.Add(this.lblBaseInfo);
@@ -475,7 +475,7 @@ namespace RealState
             // 
             // groupPanel9
             // 
-            this.groupPanel9.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.groupPanel9.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupPanel9.CanvasColor = System.Drawing.Color.Transparent;
             this.groupPanel9.Controls.Add(this.lblPeoples);
@@ -519,7 +519,7 @@ namespace RealState
             // 
             // groupPanel20
             // 
-            this.groupPanel20.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.groupPanel20.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupPanel20.CanvasColor = System.Drawing.Color.Transparent;
             this.groupPanel20.Controls.Add(this.lblBuildingType);
@@ -563,7 +563,7 @@ namespace RealState
             // 
             // groupPanel10
             // 
-            this.groupPanel10.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.groupPanel10.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupPanel10.CanvasColor = System.Drawing.Color.Transparent;
             this.groupPanel10.Controls.Add(this.lblCities);
@@ -607,7 +607,7 @@ namespace RealState
             // 
             // groupPanel19
             // 
-            this.groupPanel19.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.groupPanel19.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupPanel19.CanvasColor = System.Drawing.Color.Transparent;
             this.groupPanel19.Controls.Add(this.lblBuildingCondition);
@@ -651,7 +651,7 @@ namespace RealState
             // 
             // groupPanel11
             // 
-            this.groupPanel11.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.groupPanel11.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupPanel11.CanvasColor = System.Drawing.Color.Transparent;
             this.groupPanel11.Controls.Add(this.lblRegions);
@@ -695,7 +695,7 @@ namespace RealState
             // 
             // groupPanel18
             // 
-            this.groupPanel18.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.groupPanel18.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupPanel18.CanvasColor = System.Drawing.Color.Transparent;
             this.groupPanel18.Controls.Add(this.lblBuildingView);
@@ -739,7 +739,7 @@ namespace RealState
             // 
             // groupPanel12
             // 
-            this.groupPanel12.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.groupPanel12.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupPanel12.CanvasColor = System.Drawing.Color.Transparent;
             this.groupPanel12.Controls.Add(this.lblBuildingOptions);
@@ -783,7 +783,7 @@ namespace RealState
             // 
             // groupPanel17
             // 
-            this.groupPanel17.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.groupPanel17.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupPanel17.CanvasColor = System.Drawing.Color.Transparent;
             this.groupPanel17.Controls.Add(this.lblRental);
@@ -827,7 +827,7 @@ namespace RealState
             // 
             // groupPanel13
             // 
-            this.groupPanel13.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.groupPanel13.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupPanel13.CanvasColor = System.Drawing.Color.Transparent;
             this.groupPanel13.Controls.Add(this.lblBuildingAccountType);
@@ -871,7 +871,7 @@ namespace RealState
             // 
             // groupPanel16
             // 
-            this.groupPanel16.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.groupPanel16.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupPanel16.CanvasColor = System.Drawing.Color.Transparent;
             this.groupPanel16.Controls.Add(this.lblDocumentType);
@@ -915,7 +915,7 @@ namespace RealState
             // 
             // groupPanel14
             // 
-            this.groupPanel14.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.groupPanel14.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupPanel14.CanvasColor = System.Drawing.Color.Transparent;
             this.groupPanel14.Controls.Add(this.lblFloorCover);
@@ -959,7 +959,7 @@ namespace RealState
             // 
             // groupPanel15
             // 
-            this.groupPanel15.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.groupPanel15.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupPanel15.CanvasColor = System.Drawing.Color.Transparent;
             this.groupPanel15.Controls.Add(this.lblKitchenService);
@@ -1003,7 +1003,7 @@ namespace RealState
             // 
             // grpBuilding
             // 
-            this.grpBuilding.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            this.grpBuilding.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.grpBuilding.CanvasColor = System.Drawing.Color.Transparent;
             this.grpBuilding.Controls.Add(this.groupPanel22);
@@ -1037,7 +1037,7 @@ namespace RealState
             // 
             // groupPanel22
             // 
-            this.groupPanel22.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.groupPanel22.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupPanel22.CanvasColor = System.Drawing.Color.Transparent;
             this.groupPanel22.Controls.Add(this.lblBuildingMenu);
@@ -1081,7 +1081,7 @@ namespace RealState
             // 
             // groupPanel23
             // 
-            this.groupPanel23.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.groupPanel23.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupPanel23.CanvasColor = System.Drawing.Color.Transparent;
             this.groupPanel23.Controls.Add(this.lblBuilding);
@@ -1125,7 +1125,7 @@ namespace RealState
             // 
             // groupPanel25
             // 
-            this.groupPanel25.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.groupPanel25.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupPanel25.CanvasColor = System.Drawing.Color.Transparent;
             this.groupPanel25.Controls.Add(this.lblBuildingFast);
@@ -1169,7 +1169,7 @@ namespace RealState
             // 
             // groupPanel27
             // 
-            this.groupPanel27.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.groupPanel27.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupPanel27.CanvasColor = System.Drawing.Color.Transparent;
             this.groupPanel27.Controls.Add(this.lblBuildingSearch);
@@ -1213,7 +1213,7 @@ namespace RealState
             // 
             // groupPanel29
             // 
-            this.groupPanel29.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.groupPanel29.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupPanel29.CanvasColor = System.Drawing.Color.Transparent;
             this.groupPanel29.Controls.Add(this.lblBuildingArchive);
@@ -1257,7 +1257,7 @@ namespace RealState
             // 
             // groupPanel31
             // 
-            this.groupPanel31.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.groupPanel31.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupPanel31.CanvasColor = System.Drawing.Color.Transparent;
             this.groupPanel31.Controls.Add(this.lblBuildingMatches);
@@ -1301,7 +1301,7 @@ namespace RealState
             // 
             // groupPanel33
             // 
-            this.groupPanel33.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.groupPanel33.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupPanel33.CanvasColor = System.Drawing.Color.Transparent;
             this.groupPanel33.Controls.Add(this.lblContract);
@@ -1345,7 +1345,7 @@ namespace RealState
             // 
             // groupPanel34
             // 
-            this.groupPanel34.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.groupPanel34.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupPanel34.CanvasColor = System.Drawing.Color.Transparent;
             this.groupPanel34.Controls.Add(this.lblRequest);
@@ -1389,7 +1389,7 @@ namespace RealState
             // 
             // grpUsers
             // 
-            this.grpUsers.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            this.grpUsers.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.grpUsers.CanvasColor = System.Drawing.Color.Transparent;
             this.grpUsers.Controls.Add(this.groupPanel21);
@@ -1425,7 +1425,7 @@ namespace RealState
             // 
             // groupPanel21
             // 
-            this.groupPanel21.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.groupPanel21.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupPanel21.CanvasColor = System.Drawing.Color.Transparent;
             this.groupPanel21.Controls.Add(this.lblUsers);
@@ -1473,7 +1473,7 @@ namespace RealState
             // 
             // groupPanel24
             // 
-            this.groupPanel24.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.groupPanel24.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupPanel24.CanvasColor = System.Drawing.Color.Transparent;
             this.groupPanel24.Controls.Add(this.lblUserManage);
@@ -1517,7 +1517,7 @@ namespace RealState
             // 
             // groupPanel26
             // 
-            this.groupPanel26.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.groupPanel26.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupPanel26.CanvasColor = System.Drawing.Color.Transparent;
             this.groupPanel26.Controls.Add(this.lblAdvisor);
@@ -1561,7 +1561,7 @@ namespace RealState
             // 
             // groupPanel28
             // 
-            this.groupPanel28.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.groupPanel28.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupPanel28.CanvasColor = System.Drawing.Color.Transparent;
             this.groupPanel28.Controls.Add(this.lblUserAccess);
@@ -1605,7 +1605,7 @@ namespace RealState
             // 
             // grpAccounting
             // 
-            this.grpAccounting.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            this.grpAccounting.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.grpAccounting.CanvasColor = System.Drawing.Color.Transparent;
             this.grpAccounting.Controls.Add(this.groupPanel7);
@@ -1642,7 +1642,7 @@ namespace RealState
             // 
             // groupPanel7
             // 
-            this.groupPanel7.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.groupPanel7.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupPanel7.CanvasColor = System.Drawing.Color.Transparent;
             this.groupPanel7.Controls.Add(this.lblAccounting);
@@ -1686,7 +1686,7 @@ namespace RealState
             // 
             // groupPanel30
             // 
-            this.groupPanel30.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.groupPanel30.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupPanel30.CanvasColor = System.Drawing.Color.Transparent;
             this.groupPanel30.Controls.Add(this.lblHazine);
@@ -1730,7 +1730,7 @@ namespace RealState
             // 
             // groupPanel32
             // 
-            this.groupPanel32.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.groupPanel32.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupPanel32.CanvasColor = System.Drawing.Color.Transparent;
             this.groupPanel32.Controls.Add(this.lblPardakhtCheck);
@@ -1774,7 +1774,7 @@ namespace RealState
             // 
             // groupPanel35
             // 
-            this.groupPanel35.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.groupPanel35.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupPanel35.CanvasColor = System.Drawing.Color.Transparent;
             this.groupPanel35.Controls.Add(this.lblReception);
@@ -1818,7 +1818,7 @@ namespace RealState
             // 
             // groupPanel36
             // 
-            this.groupPanel36.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.groupPanel36.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupPanel36.CanvasColor = System.Drawing.Color.Transparent;
             this.groupPanel36.Controls.Add(this.lblReceptionCheck);
@@ -1862,7 +1862,7 @@ namespace RealState
             // 
             // groupPanel37
             // 
-            this.groupPanel37.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.groupPanel37.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupPanel37.CanvasColor = System.Drawing.Color.Transparent;
             this.groupPanel37.Controls.Add(this.lblPardakht);
@@ -1906,7 +1906,7 @@ namespace RealState
             // 
             // groupPanel38
             // 
-            this.groupPanel38.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.groupPanel38.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupPanel38.CanvasColor = System.Drawing.Color.Transparent;
             this.groupPanel38.Controls.Add(this.lblCheckBook);
@@ -1950,7 +1950,7 @@ namespace RealState
             // 
             // groupPanel39
             // 
-            this.groupPanel39.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.groupPanel39.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupPanel39.CanvasColor = System.Drawing.Color.Transparent;
             this.groupPanel39.Controls.Add(this.lblSanad);
@@ -1994,7 +1994,7 @@ namespace RealState
             // 
             // groupPanel40
             // 
-            this.groupPanel40.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.groupPanel40.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupPanel40.CanvasColor = System.Drawing.Color.Transparent;
             this.groupPanel40.Controls.Add(this.lblBank);
@@ -2038,7 +2038,7 @@ namespace RealState
             // 
             // groupPanel41
             // 
-            this.groupPanel41.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.groupPanel41.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupPanel41.CanvasColor = System.Drawing.Color.Transparent;
             this.groupPanel41.Controls.Add(this.lblAccountingReport);
@@ -2082,7 +2082,7 @@ namespace RealState
             // 
             // groupPanel42
             // 
-            this.groupPanel42.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.groupPanel42.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupPanel42.CanvasColor = System.Drawing.Color.Transparent;
             this.groupPanel42.Controls.Add(this.lblSandouq);
@@ -2126,7 +2126,7 @@ namespace RealState
             // 
             // groupPanel43
             // 
-            this.groupPanel43.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.groupPanel43.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupPanel43.CanvasColor = System.Drawing.Color.Transparent;
             this.groupPanel43.Controls.Add(this.lblKolMoein);
@@ -2170,7 +2170,7 @@ namespace RealState
             // 
             // groupPanel44
             // 
-            this.groupPanel44.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.groupPanel44.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupPanel44.CanvasColor = System.Drawing.Color.Transparent;
             this.groupPanel44.Controls.Add(this.lblTafsil);
@@ -2214,7 +2214,7 @@ namespace RealState
             // 
             // grpOptions
             // 
-            this.grpOptions.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            this.grpOptions.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.grpOptions.CanvasColor = System.Drawing.Color.Transparent;
             this.grpOptions.Controls.Add(this.groupPanel6);
@@ -2253,7 +2253,7 @@ namespace RealState
             // 
             // groupPanel6
             // 
-            this.groupPanel6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.groupPanel6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupPanel6.CanvasColor = System.Drawing.Color.Transparent;
             this.groupPanel6.Controls.Add(this.lblOptions);
@@ -2297,7 +2297,7 @@ namespace RealState
             // 
             // groupPanel45
             // 
-            this.groupPanel45.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.groupPanel45.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupPanel45.CanvasColor = System.Drawing.Color.Transparent;
             this.groupPanel45.Controls.Add(this.lblSetting);
@@ -2341,7 +2341,7 @@ namespace RealState
             // 
             // groupPanel46
             // 
-            this.groupPanel46.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.groupPanel46.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupPanel46.CanvasColor = System.Drawing.Color.Transparent;
             this.groupPanel46.Controls.Add(this.lblTaqvim);
@@ -2385,7 +2385,7 @@ namespace RealState
             // 
             // groupPanel47
             // 
-            this.groupPanel47.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.groupPanel47.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupPanel47.CanvasColor = System.Drawing.Color.Transparent;
             this.groupPanel47.Controls.Add(this.lblPhoneBook);
@@ -2429,7 +2429,7 @@ namespace RealState
             // 
             // groupPanel48
             // 
-            this.groupPanel48.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.groupPanel48.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupPanel48.CanvasColor = System.Drawing.Color.Transparent;
             this.groupPanel48.Controls.Add(this.lblAdvance);
@@ -2473,7 +2473,7 @@ namespace RealState
             // 
             // groupPanel49
             // 
-            this.groupPanel49.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.groupPanel49.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupPanel49.CanvasColor = System.Drawing.Color.Transparent;
             this.groupPanel49.Controls.Add(this.lblNote);
@@ -2517,7 +2517,7 @@ namespace RealState
             // 
             // groupPanel50
             // 
-            this.groupPanel50.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.groupPanel50.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupPanel50.CanvasColor = System.Drawing.Color.Transparent;
             this.groupPanel50.Controls.Add(this.lblErtegha);
@@ -2560,7 +2560,7 @@ namespace RealState
             // 
             // groupPanel51
             // 
-            this.groupPanel51.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.groupPanel51.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupPanel51.CanvasColor = System.Drawing.Color.Transparent;
             this.groupPanel51.Controls.Add(this.lblSmsPanel);
@@ -2604,7 +2604,7 @@ namespace RealState
             // 
             // groupPanel52
             // 
-            this.groupPanel52.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.groupPanel52.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupPanel52.CanvasColor = System.Drawing.Color.Transparent;
             this.groupPanel52.Controls.Add(this.lblBazsazi);
@@ -2648,7 +2648,7 @@ namespace RealState
             // 
             // groupPanel53
             // 
-            this.groupPanel53.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.groupPanel53.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupPanel53.CanvasColor = System.Drawing.Color.Transparent;
             this.groupPanel53.Controls.Add(this.lblSendSms);
@@ -2692,7 +2692,7 @@ namespace RealState
             // 
             // groupPanel54
             // 
-            this.groupPanel54.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.groupPanel54.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupPanel54.CanvasColor = System.Drawing.Color.Transparent;
             this.groupPanel54.Controls.Add(this.lblRestore);
@@ -2736,7 +2736,7 @@ namespace RealState
             // 
             // groupPanel55
             // 
-            this.groupPanel55.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.groupPanel55.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupPanel55.CanvasColor = System.Drawing.Color.Transparent;
             this.groupPanel55.Controls.Add(this.lblAdvertise);
@@ -2780,7 +2780,7 @@ namespace RealState
             // 
             // groupPanel56
             // 
-            this.groupPanel56.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.groupPanel56.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupPanel56.CanvasColor = System.Drawing.Color.Transparent;
             this.groupPanel56.Controls.Add(this.lblBackUp);
@@ -2824,7 +2824,7 @@ namespace RealState
             // 
             // lblSecond
             // 
-            this.lblSecond.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.lblSecond.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblSecond.AutoSize = true;
             this.lblSecond.BackColor = System.Drawing.Color.Transparent;
@@ -2837,7 +2837,7 @@ namespace RealState
             // 
             // lblMinute
             // 
-            this.lblMinute.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.lblMinute.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblMinute.AutoSize = true;
             this.lblMinute.BackColor = System.Drawing.Color.Transparent;
@@ -2850,7 +2850,7 @@ namespace RealState
             // 
             // label5
             // 
-            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label5.BackColor = System.Drawing.Color.Transparent;
             this.label5.Font = new System.Drawing.Font("B Yekan", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
@@ -2863,7 +2863,7 @@ namespace RealState
             // 
             // lblHour
             // 
-            this.lblHour.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.lblHour.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblHour.AutoSize = true;
             this.lblHour.BackColor = System.Drawing.Color.Transparent;
@@ -2876,7 +2876,7 @@ namespace RealState
             // 
             // groupPanel2
             // 
-            this.groupPanel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
+            this.groupPanel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupPanel2.CanvasColor = System.Drawing.Color.Transparent;
             this.groupPanel2.Controls.Add(this.label9);

@@ -773,6 +773,26 @@ namespace RealState.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap keyring_dll_16_13 {
+            get {
+                object obj = ResourceManager.GetObject("keyring_dll_16_13", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap networkmap_dll_03_13 {
+            get {
+                object obj = ResourceManager.GetObject("networkmap_dll_03_13", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Rectangle_2 {
             get {
                 object obj = ResourceManager.GetObject("Rectangle_2", resourceCulture);
@@ -796,6 +816,16 @@ namespace RealState.Properties {
         internal static System.Drawing.Bitmap run_this_program_as_an_administrator {
             get {
                 object obj = ResourceManager.GetObject("run-this-program-as-an-administrator", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Search {
+            get {
+                object obj = ResourceManager.GetObject("Search", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
