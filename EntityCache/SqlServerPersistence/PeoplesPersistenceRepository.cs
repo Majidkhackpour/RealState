@@ -155,7 +155,7 @@ namespace EntityCache.SqlServerPersistence
                 using (var cn = new SqlConnection(_connectionString))
                 {
                     var cmd = new SqlCommand("sp_Peoples_GetAllBirthDay", cn) { CommandType = CommandType.StoredProcedure };
-                    cmd.Parameters.AddWithValue("@dateSh", dateSh);
+                    cmd.Parameters.AddWithValue("@dateSh", $"%{dateSh}");
 
                     await cn.OpenAsync();
                     var dr = await cmd.ExecuteReaderAsync();

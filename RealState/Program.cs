@@ -35,8 +35,6 @@ namespace RealState
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            new frmNewMain().ShowDialog();
-
             var res = frmLoginMain.Instance.Load_();
             if (res != DialogResult.OK)
             {
@@ -58,7 +56,7 @@ namespace RealState
 
             clsTemp.Init();
 
-            var frmMain = new frmMain();
+            var frmMain = new frmNewMain();
             frmMain.ShowDialog();
         }
         private static void SetVersionAccess()

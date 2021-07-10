@@ -571,7 +571,7 @@ BEGIN
 	Select Peoples.* , Tafsils.Account,Tafsils.AccountFirst
 	From Peoples inner join Tafsils on
 	Tafsils.Guid=Peoples.Guid
-	where Peoples.DateBirth=@dateSh
+	where Peoples.DateBirth Like @dateSh
 END
 GO
 -- ==========================================================================================
@@ -1188,18 +1188,6 @@ BEGIN
 		   ,@serverSt
 		   ,@serverDate)
 	 end
-END
-GO
--- ==========================================================================================
-IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Peoples_GetAllBirthDay]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
-	exec('Create Procedure [dbo].[sp_Peoples_GetAllBirthDay]	As Begin print 11 end')
-GO
-Alter PROCEDURE sp_Peoples_GetAllBirthDay 
-	@dateSh nvarchar(20)
-AS
-BEGIN
-	Select * from Peoples
-	where DateBirth=@dateSh
 END
 GO
 -- ==========================================================================================

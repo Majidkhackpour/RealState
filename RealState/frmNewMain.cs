@@ -3,6 +3,7 @@ using System.Collections.Concurrent;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Reflection;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using Accounting.Bank;
 using Accounting.Check.CheckMoshtari;
@@ -41,6 +42,7 @@ using RealState.Advance;
 using RealState.BackUpLog;
 using RealState.CalendarForms;
 using RealState.Note;
+using RealState.UserControls;
 using Services;
 using Settings;
 using Settings.Classes;
@@ -141,6 +143,58 @@ namespace RealState
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
+        private void ClearFlowPanels()
+        {
+            try
+            {
+                fPanelCustomerBirthDay.Controls.Clear();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private void LoadDashboard()
+        {
+            try
+            {
+                _ = Task.Run(LoadCustomerBirthdayAsync);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private async Task LoadCustomerBirthdayAsync()
+        {
+            try
+            {
+                var dateSh = Calendar.MiladiToShamsi(DateTime.Now);
+                var day = Calendar.GetDayOfDateSh(dateSh);
+                var dayStr = day.ToString();
+                if (day < 10) dayStr = $"0{day}";
+                var mounth = Calendar.GetMonthOfDateSh(dateSh);
+                var mounthStr = mounth.ToString();
+                if (mounth < 10) mounthStr = $"0{mounth}";
+                var newDate = $"/{mounthStr}/{dayStr}";
+                var birthdayList = await PeoplesBussines.GetAllBirthDayAsync(newDate);
+                if (birthdayList != null && birthdayList.Count > 0)
+                {
+                    foreach (var item in birthdayList)
+                    {
+                        Invoke(new MethodInvoker(() =>
+                        {
+                            var c = new ucCustomerBirthday { People = item, Width = fPanelCustomerBirthDay.Width - 30 };
+                            fPanelCustomerBirthDay.Controls.Add(c);
+                        }));
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
 
         public frmNewMain()
         {
@@ -164,6 +218,9 @@ namespace RealState
                 foreach (var item in list.ToList())
                     myCollection.Add(item);
                 txtSearch.AutoCompleteCustomSource = myCollection;
+
+                ClearFlowPanels();
+                LoadDashboard();
 
                 SetButtomLables();
             }

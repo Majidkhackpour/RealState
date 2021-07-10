@@ -156,6 +156,51 @@ namespace RealState
             this.lblVersion = new System.Windows.Forms.Label();
             this.lblEconomyName = new System.Windows.Forms.Label();
             this.lblDbName = new System.Windows.Forms.Label();
+            this.groupPanel4 = new DevComponents.DotNetBar.Controls.GroupPanel();
+            this.groupPanel67 = new DevComponents.DotNetBar.Controls.GroupPanel();
+            this.groupPanel73 = new DevComponents.DotNetBar.Controls.GroupPanel();
+            this.lblMyRequest = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.groupPanel66 = new DevComponents.DotNetBar.Controls.GroupPanel();
+            this.groupPanel72 = new DevComponents.DotNetBar.Controls.GroupPanel();
+            this.lblAllRequest = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.groupPanel65 = new DevComponents.DotNetBar.Controls.GroupPanel();
+            this.groupPanel71 = new DevComponents.DotNetBar.Controls.GroupPanel();
+            this.lblAllEjare = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.groupPanel64 = new DevComponents.DotNetBar.Controls.GroupPanel();
+            this.groupPanel69 = new DevComponents.DotNetBar.Controls.GroupPanel();
+            this.lblAllRahn = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.groupPanel63 = new DevComponents.DotNetBar.Controls.GroupPanel();
+            this.groupPanel70 = new DevComponents.DotNetBar.Controls.GroupPanel();
+            this.lblMyBuilding = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.groupPanel62 = new DevComponents.DotNetBar.Controls.GroupPanel();
+            this.groupPanel68 = new DevComponents.DotNetBar.Controls.GroupPanel();
+            this.lblAllBuilding = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.groupPanel61 = new DevComponents.DotNetBar.Controls.GroupPanel();
+            this.fPanelPirority = new System.Windows.Forms.FlowLayoutPanel();
+            this.label12 = new System.Windows.Forms.Label();
+            this.groupPanel60 = new DevComponents.DotNetBar.Controls.GroupPanel();
+            this.fPanelRequestRegion = new System.Windows.Forms.FlowLayoutPanel();
+            this.label11 = new System.Windows.Forms.Label();
+            this.groupPanel59 = new DevComponents.DotNetBar.Controls.GroupPanel();
+            this.fPanelBuildingRegion = new System.Windows.Forms.FlowLayoutPanel();
+            this.label7 = new System.Windows.Forms.Label();
+            this.groupPanel58 = new DevComponents.DotNetBar.Controls.GroupPanel();
+            this.fPanelMath = new System.Windows.Forms.FlowLayoutPanel();
+            this.label4 = new System.Windows.Forms.Label();
+            this.groupPanel57 = new DevComponents.DotNetBar.Controls.GroupPanel();
+            this.fPanelCustomerBirthDay = new System.Windows.Forms.FlowLayoutPanel();
+            this.label3 = new System.Windows.Forms.Label();
+            this.groupPanel5 = new DevComponents.DotNetBar.Controls.GroupPanel();
+            this.fPanelSarresidEjare = new System.Windows.Forms.FlowLayoutPanel();
+            this.label2 = new System.Windows.Forms.Label();
             this.pnlOk.SuspendLayout();
             this.groupPanel8.SuspendLayout();
             this.groupPanel1.SuspendLayout();
@@ -217,6 +262,26 @@ namespace RealState
             this.groupPanel55.SuspendLayout();
             this.groupPanel56.SuspendLayout();
             this.groupPanel2.SuspendLayout();
+            this.groupPanel4.SuspendLayout();
+            this.groupPanel67.SuspendLayout();
+            this.groupPanel73.SuspendLayout();
+            this.groupPanel66.SuspendLayout();
+            this.groupPanel72.SuspendLayout();
+            this.groupPanel65.SuspendLayout();
+            this.groupPanel71.SuspendLayout();
+            this.groupPanel64.SuspendLayout();
+            this.groupPanel69.SuspendLayout();
+            this.groupPanel63.SuspendLayout();
+            this.groupPanel70.SuspendLayout();
+            this.groupPanel62.SuspendLayout();
+            this.groupPanel68.SuspendLayout();
+            this.panel1.SuspendLayout();
+            this.groupPanel61.SuspendLayout();
+            this.groupPanel60.SuspendLayout();
+            this.groupPanel59.SuspendLayout();
+            this.groupPanel58.SuspendLayout();
+            this.groupPanel57.SuspendLayout();
+            this.groupPanel5.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlOk
@@ -232,7 +297,7 @@ namespace RealState
             this.pnlOk.DisabledBackColor = System.Drawing.Color.Empty;
             this.pnlOk.Location = new System.Drawing.Point(0, 0);
             this.pnlOk.Name = "pnlOk";
-            this.pnlOk.Size = new System.Drawing.Size(801, 39);
+            this.pnlOk.Size = new System.Drawing.Size(910, 39);
             // 
             // 
             // 
@@ -261,7 +326,7 @@ namespace RealState
             this.groupPanel8.DisabledBackColor = System.Drawing.Color.Empty;
             this.groupPanel8.Location = new System.Drawing.Point(255, 6);
             this.groupPanel8.Name = "groupPanel8";
-            this.groupPanel8.Size = new System.Drawing.Size(286, 26);
+            this.groupPanel8.Size = new System.Drawing.Size(395, 26);
             // 
             // 
             // 
@@ -295,7 +360,7 @@ namespace RealState
             this.txtSearch.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.PreventEnterBeep = true;
-            this.txtSearch.Size = new System.Drawing.Size(286, 27);
+            this.txtSearch.Size = new System.Drawing.Size(395, 27);
             this.txtSearch.TabIndex = 55719;
             this.txtSearch.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSearch_KeyDown);
             // 
@@ -330,7 +395,7 @@ namespace RealState
             this.lblTitle.BackColor = System.Drawing.Color.Transparent;
             this.lblTitle.Font = new System.Drawing.Font("B Titr", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.lblTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(237)))), ((int)(((byte)(255)))));
-            this.lblTitle.Location = new System.Drawing.Point(548, -1);
+            this.lblTitle.Location = new System.Drawing.Point(657, -1);
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(253, 40);
             this.lblTitle.TabIndex = 55728;
@@ -349,7 +414,7 @@ namespace RealState
             this.groupPanel1.Controls.Add(this.lblHour);
             this.groupPanel1.Cursor = System.Windows.Forms.Cursors.Default;
             this.groupPanel1.DisabledBackColor = System.Drawing.Color.Empty;
-            this.groupPanel1.Location = new System.Drawing.Point(519, 39);
+            this.groupPanel1.Location = new System.Drawing.Point(628, 39);
             this.groupPanel1.Name = "groupPanel1";
             this.groupPanel1.Size = new System.Drawing.Size(282, 561);
             // 
@@ -2889,7 +2954,7 @@ namespace RealState
             this.groupPanel2.DisabledBackColor = System.Drawing.Color.Empty;
             this.groupPanel2.Location = new System.Drawing.Point(0, 575);
             this.groupPanel2.Name = "groupPanel2";
-            this.groupPanel2.Size = new System.Drawing.Size(523, 25);
+            this.groupPanel2.Size = new System.Drawing.Size(632, 25);
             // 
             // 
             // 
@@ -2915,7 +2980,7 @@ namespace RealState
             this.label9.Cursor = System.Windows.Forms.Cursors.Default;
             this.label9.Font = new System.Drawing.Font("B Titr", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(237)))), ((int)(((byte)(255)))));
-            this.label9.Location = new System.Drawing.Point(137, 4);
+            this.label9.Location = new System.Drawing.Point(246, 4);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(53, 17);
             this.label9.TabIndex = 55783;
@@ -2929,7 +2994,7 @@ namespace RealState
             this.label8.Cursor = System.Windows.Forms.Cursors.Default;
             this.label8.Font = new System.Drawing.Font("B Titr", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(237)))), ((int)(((byte)(255)))));
-            this.label8.Location = new System.Drawing.Point(434, 4);
+            this.label8.Location = new System.Drawing.Point(543, 4);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(90, 17);
             this.label8.TabIndex = 55781;
@@ -2943,7 +3008,7 @@ namespace RealState
             this.label10.Cursor = System.Windows.Forms.Cursors.Default;
             this.label10.Font = new System.Drawing.Font("B Titr", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.label10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(237)))), ((int)(((byte)(255)))));
-            this.label10.Location = new System.Drawing.Point(274, 4);
+            this.label10.Location = new System.Drawing.Point(383, 4);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(70, 17);
             this.label10.TabIndex = 55784;
@@ -2958,7 +3023,7 @@ namespace RealState
             this.lblVersion.Cursor = System.Windows.Forms.Cursors.Default;
             this.lblVersion.Font = new System.Drawing.Font("B Titr", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.lblVersion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(237)))), ((int)(((byte)(255)))));
-            this.lblVersion.Location = new System.Drawing.Point(102, 4);
+            this.lblVersion.Location = new System.Drawing.Point(211, 4);
             this.lblVersion.Name = "lblVersion";
             this.lblVersion.Size = new System.Drawing.Size(29, 20);
             this.lblVersion.TabIndex = 55786;
@@ -2972,7 +3037,7 @@ namespace RealState
             this.lblEconomyName.Cursor = System.Windows.Forms.Cursors.Default;
             this.lblEconomyName.Font = new System.Drawing.Font("B Titr", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.lblEconomyName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(237)))), ((int)(((byte)(255)))));
-            this.lblEconomyName.Location = new System.Drawing.Point(345, 4);
+            this.lblEconomyName.Location = new System.Drawing.Point(454, 4);
             this.lblEconomyName.Name = "lblEconomyName";
             this.lblEconomyName.Size = new System.Drawing.Size(90, 17);
             this.lblEconomyName.TabIndex = 55782;
@@ -2986,19 +3051,1016 @@ namespace RealState
             this.lblDbName.Cursor = System.Windows.Forms.Cursors.Default;
             this.lblDbName.Font = new System.Drawing.Font("B Titr", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.lblDbName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(237)))), ((int)(((byte)(255)))));
-            this.lblDbName.Location = new System.Drawing.Point(189, 4);
+            this.lblDbName.Location = new System.Drawing.Point(298, 4);
             this.lblDbName.Name = "lblDbName";
             this.lblDbName.Size = new System.Drawing.Size(88, 17);
             this.lblDbName.TabIndex = 55785;
             this.lblDbName.Text = "نام واحد اقتصادی:";
             this.lblDbName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // groupPanel4
+            // 
+            this.groupPanel4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupPanel4.CanvasColor = System.Drawing.Color.Transparent;
+            this.groupPanel4.Controls.Add(this.groupPanel67);
+            this.groupPanel4.Controls.Add(this.groupPanel66);
+            this.groupPanel4.Controls.Add(this.groupPanel65);
+            this.groupPanel4.Controls.Add(this.groupPanel64);
+            this.groupPanel4.Controls.Add(this.groupPanel63);
+            this.groupPanel4.Controls.Add(this.groupPanel62);
+            this.groupPanel4.Controls.Add(this.label1);
+            this.groupPanel4.Cursor = System.Windows.Forms.Cursors.Default;
+            this.groupPanel4.DisabledBackColor = System.Drawing.Color.Empty;
+            this.groupPanel4.Location = new System.Drawing.Point(398, 7);
+            this.groupPanel4.Name = "groupPanel4";
+            this.groupPanel4.Size = new System.Drawing.Size(223, 223);
+            // 
+            // 
+            // 
+            this.groupPanel4.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(221)))), ((int)(((byte)(251)))));
+            this.groupPanel4.Style.BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(221)))), ((int)(((byte)(251)))));
+            this.groupPanel4.Style.BorderBottom = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.groupPanel4.Style.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(221)))), ((int)(((byte)(251)))));
+            this.groupPanel4.Style.BorderColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(221)))), ((int)(((byte)(251)))));
+            this.groupPanel4.Style.BorderLeft = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.groupPanel4.Style.BorderRight = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.groupPanel4.Style.BorderTop = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.groupPanel4.Style.CornerDiameter = 15;
+            this.groupPanel4.Style.CornerType = DevComponents.DotNetBar.eCornerType.Rounded;
+            // 
+            // 
+            // 
+            this.groupPanel4.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.groupPanel4.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.groupPanel4.TabIndex = 55719;
+            // 
+            // groupPanel67
+            // 
+            this.groupPanel67.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupPanel67.CanvasColor = System.Drawing.Color.Transparent;
+            this.groupPanel67.Controls.Add(this.groupPanel73);
+            this.groupPanel67.Controls.Add(this.label18);
+            this.groupPanel67.Cursor = System.Windows.Forms.Cursors.Default;
+            this.groupPanel67.DisabledBackColor = System.Drawing.Color.Empty;
+            this.groupPanel67.Location = new System.Drawing.Point(10, 184);
+            this.groupPanel67.Name = "groupPanel67";
+            this.groupPanel67.Size = new System.Drawing.Size(200, 30);
+            // 
+            // 
+            // 
+            this.groupPanel67.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(115)))), ((int)(((byte)(231)))));
+            this.groupPanel67.Style.BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(115)))), ((int)(((byte)(231)))));
+            this.groupPanel67.Style.BorderBottom = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.groupPanel67.Style.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(115)))), ((int)(((byte)(231)))));
+            this.groupPanel67.Style.BorderColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(115)))), ((int)(((byte)(231)))));
+            this.groupPanel67.Style.BorderLeft = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.groupPanel67.Style.BorderRight = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.groupPanel67.Style.BorderTop = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.groupPanel67.Style.CornerDiameter = 10;
+            this.groupPanel67.Style.CornerType = DevComponents.DotNetBar.eCornerType.Rounded;
+            // 
+            // 
+            // 
+            this.groupPanel67.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.groupPanel67.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.groupPanel67.TabIndex = 55725;
+            // 
+            // groupPanel73
+            // 
+            this.groupPanel73.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupPanel73.CanvasColor = System.Drawing.Color.Transparent;
+            this.groupPanel73.Controls.Add(this.lblMyRequest);
+            this.groupPanel73.Cursor = System.Windows.Forms.Cursors.Default;
+            this.groupPanel73.DisabledBackColor = System.Drawing.Color.Empty;
+            this.groupPanel73.Location = new System.Drawing.Point(4, 3);
+            this.groupPanel73.Name = "groupPanel73";
+            this.groupPanel73.Size = new System.Drawing.Size(47, 24);
+            // 
+            // 
+            // 
+            this.groupPanel73.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(245)))), ((int)(((byte)(253)))));
+            this.groupPanel73.Style.BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(245)))), ((int)(((byte)(253)))));
+            this.groupPanel73.Style.BorderBottom = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.groupPanel73.Style.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(245)))), ((int)(((byte)(253)))));
+            this.groupPanel73.Style.BorderColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(245)))), ((int)(((byte)(253)))));
+            this.groupPanel73.Style.BorderLeft = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.groupPanel73.Style.BorderRight = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.groupPanel73.Style.BorderTop = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.groupPanel73.Style.CornerType = DevComponents.DotNetBar.eCornerType.Rounded;
+            // 
+            // 
+            // 
+            this.groupPanel73.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.groupPanel73.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.groupPanel73.TabIndex = 55720;
+            // 
+            // lblMyRequest
+            // 
+            this.lblMyRequest.BackColor = System.Drawing.Color.Transparent;
+            this.lblMyRequest.Cursor = System.Windows.Forms.Cursors.Default;
+            this.lblMyRequest.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblMyRequest.Font = new System.Drawing.Font("B Yekan", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.lblMyRequest.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(81)))), ((int)(((byte)(219)))));
+            this.lblMyRequest.Location = new System.Drawing.Point(0, 0);
+            this.lblMyRequest.Name = "lblMyRequest";
+            this.lblMyRequest.Size = new System.Drawing.Size(47, 24);
+            this.lblMyRequest.TabIndex = 3;
+            this.lblMyRequest.Text = "0";
+            this.lblMyRequest.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label18
+            // 
+            this.label18.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label18.AutoSize = true;
+            this.label18.BackColor = System.Drawing.Color.Transparent;
+            this.label18.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.label18.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.label18.Location = new System.Drawing.Point(117, 5);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(70, 20);
+            this.label18.TabIndex = 0;
+            this.label18.Text = "متقاضیان من";
+            this.label18.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // groupPanel66
+            // 
+            this.groupPanel66.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupPanel66.CanvasColor = System.Drawing.Color.Transparent;
+            this.groupPanel66.Controls.Add(this.groupPanel72);
+            this.groupPanel66.Controls.Add(this.label17);
+            this.groupPanel66.Cursor = System.Windows.Forms.Cursors.Default;
+            this.groupPanel66.DisabledBackColor = System.Drawing.Color.Empty;
+            this.groupPanel66.Location = new System.Drawing.Point(10, 151);
+            this.groupPanel66.Name = "groupPanel66";
+            this.groupPanel66.Size = new System.Drawing.Size(200, 30);
+            // 
+            // 
+            // 
+            this.groupPanel66.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(115)))), ((int)(((byte)(231)))));
+            this.groupPanel66.Style.BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(115)))), ((int)(((byte)(231)))));
+            this.groupPanel66.Style.BorderBottom = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.groupPanel66.Style.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(115)))), ((int)(((byte)(231)))));
+            this.groupPanel66.Style.BorderColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(115)))), ((int)(((byte)(231)))));
+            this.groupPanel66.Style.BorderLeft = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.groupPanel66.Style.BorderRight = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.groupPanel66.Style.BorderTop = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.groupPanel66.Style.CornerDiameter = 10;
+            this.groupPanel66.Style.CornerType = DevComponents.DotNetBar.eCornerType.Rounded;
+            // 
+            // 
+            // 
+            this.groupPanel66.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.groupPanel66.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.groupPanel66.TabIndex = 55724;
+            // 
+            // groupPanel72
+            // 
+            this.groupPanel72.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupPanel72.CanvasColor = System.Drawing.Color.Transparent;
+            this.groupPanel72.Controls.Add(this.lblAllRequest);
+            this.groupPanel72.Cursor = System.Windows.Forms.Cursors.Default;
+            this.groupPanel72.DisabledBackColor = System.Drawing.Color.Empty;
+            this.groupPanel72.Location = new System.Drawing.Point(4, 3);
+            this.groupPanel72.Name = "groupPanel72";
+            this.groupPanel72.Size = new System.Drawing.Size(47, 24);
+            // 
+            // 
+            // 
+            this.groupPanel72.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(245)))), ((int)(((byte)(253)))));
+            this.groupPanel72.Style.BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(245)))), ((int)(((byte)(253)))));
+            this.groupPanel72.Style.BorderBottom = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.groupPanel72.Style.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(245)))), ((int)(((byte)(253)))));
+            this.groupPanel72.Style.BorderColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(245)))), ((int)(((byte)(253)))));
+            this.groupPanel72.Style.BorderLeft = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.groupPanel72.Style.BorderRight = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.groupPanel72.Style.BorderTop = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.groupPanel72.Style.CornerType = DevComponents.DotNetBar.eCornerType.Rounded;
+            // 
+            // 
+            // 
+            this.groupPanel72.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.groupPanel72.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.groupPanel72.TabIndex = 55720;
+            // 
+            // lblAllRequest
+            // 
+            this.lblAllRequest.BackColor = System.Drawing.Color.Transparent;
+            this.lblAllRequest.Cursor = System.Windows.Forms.Cursors.Default;
+            this.lblAllRequest.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblAllRequest.Font = new System.Drawing.Font("B Yekan", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.lblAllRequest.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(81)))), ((int)(((byte)(219)))));
+            this.lblAllRequest.Location = new System.Drawing.Point(0, 0);
+            this.lblAllRequest.Name = "lblAllRequest";
+            this.lblAllRequest.Size = new System.Drawing.Size(47, 24);
+            this.lblAllRequest.TabIndex = 3;
+            this.lblAllRequest.Text = "0";
+            this.lblAllRequest.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label17
+            // 
+            this.label17.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label17.AutoSize = true;
+            this.label17.BackColor = System.Drawing.Color.Transparent;
+            this.label17.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.label17.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.label17.Location = new System.Drawing.Point(117, 5);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(70, 20);
+            this.label17.TabIndex = 0;
+            this.label17.Text = "کل متقاضیان";
+            this.label17.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // groupPanel65
+            // 
+            this.groupPanel65.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupPanel65.CanvasColor = System.Drawing.Color.Transparent;
+            this.groupPanel65.Controls.Add(this.groupPanel71);
+            this.groupPanel65.Controls.Add(this.label16);
+            this.groupPanel65.Cursor = System.Windows.Forms.Cursors.Default;
+            this.groupPanel65.DisabledBackColor = System.Drawing.Color.Empty;
+            this.groupPanel65.Location = new System.Drawing.Point(10, 118);
+            this.groupPanel65.Name = "groupPanel65";
+            this.groupPanel65.Size = new System.Drawing.Size(200, 30);
+            // 
+            // 
+            // 
+            this.groupPanel65.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(115)))), ((int)(((byte)(231)))));
+            this.groupPanel65.Style.BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(115)))), ((int)(((byte)(231)))));
+            this.groupPanel65.Style.BorderBottom = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.groupPanel65.Style.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(115)))), ((int)(((byte)(231)))));
+            this.groupPanel65.Style.BorderColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(115)))), ((int)(((byte)(231)))));
+            this.groupPanel65.Style.BorderLeft = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.groupPanel65.Style.BorderRight = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.groupPanel65.Style.BorderTop = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.groupPanel65.Style.CornerDiameter = 10;
+            this.groupPanel65.Style.CornerType = DevComponents.DotNetBar.eCornerType.Rounded;
+            // 
+            // 
+            // 
+            this.groupPanel65.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.groupPanel65.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.groupPanel65.TabIndex = 55723;
+            // 
+            // groupPanel71
+            // 
+            this.groupPanel71.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupPanel71.CanvasColor = System.Drawing.Color.Transparent;
+            this.groupPanel71.Controls.Add(this.lblAllEjare);
+            this.groupPanel71.Cursor = System.Windows.Forms.Cursors.Default;
+            this.groupPanel71.DisabledBackColor = System.Drawing.Color.Empty;
+            this.groupPanel71.Location = new System.Drawing.Point(4, 3);
+            this.groupPanel71.Name = "groupPanel71";
+            this.groupPanel71.Size = new System.Drawing.Size(47, 24);
+            // 
+            // 
+            // 
+            this.groupPanel71.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(245)))), ((int)(((byte)(253)))));
+            this.groupPanel71.Style.BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(245)))), ((int)(((byte)(253)))));
+            this.groupPanel71.Style.BorderBottom = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.groupPanel71.Style.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(245)))), ((int)(((byte)(253)))));
+            this.groupPanel71.Style.BorderColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(245)))), ((int)(((byte)(253)))));
+            this.groupPanel71.Style.BorderLeft = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.groupPanel71.Style.BorderRight = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.groupPanel71.Style.BorderTop = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.groupPanel71.Style.CornerType = DevComponents.DotNetBar.eCornerType.Rounded;
+            // 
+            // 
+            // 
+            this.groupPanel71.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.groupPanel71.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.groupPanel71.TabIndex = 55719;
+            // 
+            // lblAllEjare
+            // 
+            this.lblAllEjare.BackColor = System.Drawing.Color.Transparent;
+            this.lblAllEjare.Cursor = System.Windows.Forms.Cursors.Default;
+            this.lblAllEjare.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblAllEjare.Font = new System.Drawing.Font("B Yekan", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.lblAllEjare.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(81)))), ((int)(((byte)(219)))));
+            this.lblAllEjare.Location = new System.Drawing.Point(0, 0);
+            this.lblAllEjare.Name = "lblAllEjare";
+            this.lblAllEjare.Size = new System.Drawing.Size(47, 24);
+            this.lblAllEjare.TabIndex = 3;
+            this.lblAllEjare.Text = "0";
+            this.lblAllEjare.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label16
+            // 
+            this.label16.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label16.AutoSize = true;
+            this.label16.BackColor = System.Drawing.Color.Transparent;
+            this.label16.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.label16.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.label16.Location = new System.Drawing.Point(102, 6);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(85, 20);
+            this.label16.TabIndex = 0;
+            this.label16.Text = "ملک های فروش";
+            this.label16.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // groupPanel64
+            // 
+            this.groupPanel64.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupPanel64.CanvasColor = System.Drawing.Color.Transparent;
+            this.groupPanel64.Controls.Add(this.groupPanel69);
+            this.groupPanel64.Controls.Add(this.label15);
+            this.groupPanel64.Cursor = System.Windows.Forms.Cursors.Default;
+            this.groupPanel64.DisabledBackColor = System.Drawing.Color.Empty;
+            this.groupPanel64.Location = new System.Drawing.Point(10, 85);
+            this.groupPanel64.Name = "groupPanel64";
+            this.groupPanel64.Size = new System.Drawing.Size(200, 30);
+            // 
+            // 
+            // 
+            this.groupPanel64.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(115)))), ((int)(((byte)(231)))));
+            this.groupPanel64.Style.BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(115)))), ((int)(((byte)(231)))));
+            this.groupPanel64.Style.BorderBottom = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.groupPanel64.Style.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(115)))), ((int)(((byte)(231)))));
+            this.groupPanel64.Style.BorderColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(115)))), ((int)(((byte)(231)))));
+            this.groupPanel64.Style.BorderLeft = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.groupPanel64.Style.BorderRight = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.groupPanel64.Style.BorderTop = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.groupPanel64.Style.CornerDiameter = 10;
+            this.groupPanel64.Style.CornerType = DevComponents.DotNetBar.eCornerType.Rounded;
+            // 
+            // 
+            // 
+            this.groupPanel64.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.groupPanel64.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.groupPanel64.TabIndex = 55722;
+            // 
+            // groupPanel69
+            // 
+            this.groupPanel69.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupPanel69.CanvasColor = System.Drawing.Color.Transparent;
+            this.groupPanel69.Controls.Add(this.lblAllRahn);
+            this.groupPanel69.Cursor = System.Windows.Forms.Cursors.Default;
+            this.groupPanel69.DisabledBackColor = System.Drawing.Color.Empty;
+            this.groupPanel69.Location = new System.Drawing.Point(4, 3);
+            this.groupPanel69.Name = "groupPanel69";
+            this.groupPanel69.Size = new System.Drawing.Size(47, 24);
+            // 
+            // 
+            // 
+            this.groupPanel69.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(245)))), ((int)(((byte)(253)))));
+            this.groupPanel69.Style.BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(245)))), ((int)(((byte)(253)))));
+            this.groupPanel69.Style.BorderBottom = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.groupPanel69.Style.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(245)))), ((int)(((byte)(253)))));
+            this.groupPanel69.Style.BorderColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(245)))), ((int)(((byte)(253)))));
+            this.groupPanel69.Style.BorderLeft = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.groupPanel69.Style.BorderRight = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.groupPanel69.Style.BorderTop = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.groupPanel69.Style.CornerType = DevComponents.DotNetBar.eCornerType.Rounded;
+            // 
+            // 
+            // 
+            this.groupPanel69.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.groupPanel69.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.groupPanel69.TabIndex = 55720;
+            // 
+            // lblAllRahn
+            // 
+            this.lblAllRahn.BackColor = System.Drawing.Color.Transparent;
+            this.lblAllRahn.Cursor = System.Windows.Forms.Cursors.Default;
+            this.lblAllRahn.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblAllRahn.Font = new System.Drawing.Font("B Yekan", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.lblAllRahn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(81)))), ((int)(((byte)(219)))));
+            this.lblAllRahn.Location = new System.Drawing.Point(0, 0);
+            this.lblAllRahn.Name = "lblAllRahn";
+            this.lblAllRahn.Size = new System.Drawing.Size(47, 24);
+            this.lblAllRahn.TabIndex = 3;
+            this.lblAllRahn.Text = "0";
+            this.lblAllRahn.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label15
+            // 
+            this.label15.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label15.AutoSize = true;
+            this.label15.BackColor = System.Drawing.Color.Transparent;
+            this.label15.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.label15.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.label15.Location = new System.Drawing.Point(75, 5);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(112, 20);
+            this.label15.TabIndex = 0;
+            this.label15.Text = "ملک های رهن و اجاره";
+            this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // groupPanel63
+            // 
+            this.groupPanel63.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupPanel63.CanvasColor = System.Drawing.Color.Transparent;
+            this.groupPanel63.Controls.Add(this.groupPanel70);
+            this.groupPanel63.Controls.Add(this.label14);
+            this.groupPanel63.Cursor = System.Windows.Forms.Cursors.Default;
+            this.groupPanel63.DisabledBackColor = System.Drawing.Color.Empty;
+            this.groupPanel63.Location = new System.Drawing.Point(10, 52);
+            this.groupPanel63.Name = "groupPanel63";
+            this.groupPanel63.Size = new System.Drawing.Size(200, 30);
+            // 
+            // 
+            // 
+            this.groupPanel63.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(115)))), ((int)(((byte)(231)))));
+            this.groupPanel63.Style.BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(115)))), ((int)(((byte)(231)))));
+            this.groupPanel63.Style.BorderBottom = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.groupPanel63.Style.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(115)))), ((int)(((byte)(231)))));
+            this.groupPanel63.Style.BorderColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(115)))), ((int)(((byte)(231)))));
+            this.groupPanel63.Style.BorderLeft = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.groupPanel63.Style.BorderRight = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.groupPanel63.Style.BorderTop = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.groupPanel63.Style.CornerDiameter = 10;
+            this.groupPanel63.Style.CornerType = DevComponents.DotNetBar.eCornerType.Rounded;
+            // 
+            // 
+            // 
+            this.groupPanel63.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.groupPanel63.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.groupPanel63.TabIndex = 55721;
+            // 
+            // groupPanel70
+            // 
+            this.groupPanel70.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupPanel70.CanvasColor = System.Drawing.Color.Transparent;
+            this.groupPanel70.Controls.Add(this.lblMyBuilding);
+            this.groupPanel70.Cursor = System.Windows.Forms.Cursors.Default;
+            this.groupPanel70.DisabledBackColor = System.Drawing.Color.Empty;
+            this.groupPanel70.Location = new System.Drawing.Point(4, 3);
+            this.groupPanel70.Name = "groupPanel70";
+            this.groupPanel70.Size = new System.Drawing.Size(47, 24);
+            // 
+            // 
+            // 
+            this.groupPanel70.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(245)))), ((int)(((byte)(253)))));
+            this.groupPanel70.Style.BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(245)))), ((int)(((byte)(253)))));
+            this.groupPanel70.Style.BorderBottom = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.groupPanel70.Style.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(245)))), ((int)(((byte)(253)))));
+            this.groupPanel70.Style.BorderColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(245)))), ((int)(((byte)(253)))));
+            this.groupPanel70.Style.BorderLeft = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.groupPanel70.Style.BorderRight = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.groupPanel70.Style.BorderTop = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.groupPanel70.Style.CornerType = DevComponents.DotNetBar.eCornerType.Rounded;
+            // 
+            // 
+            // 
+            this.groupPanel70.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.groupPanel70.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.groupPanel70.TabIndex = 55719;
+            // 
+            // lblMyBuilding
+            // 
+            this.lblMyBuilding.BackColor = System.Drawing.Color.Transparent;
+            this.lblMyBuilding.Cursor = System.Windows.Forms.Cursors.Default;
+            this.lblMyBuilding.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblMyBuilding.Font = new System.Drawing.Font("B Yekan", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.lblMyBuilding.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(81)))), ((int)(((byte)(219)))));
+            this.lblMyBuilding.Location = new System.Drawing.Point(0, 0);
+            this.lblMyBuilding.Name = "lblMyBuilding";
+            this.lblMyBuilding.Size = new System.Drawing.Size(47, 24);
+            this.lblMyBuilding.TabIndex = 3;
+            this.lblMyBuilding.Text = "0";
+            this.lblMyBuilding.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label14
+            // 
+            this.label14.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label14.AutoSize = true;
+            this.label14.BackColor = System.Drawing.Color.Transparent;
+            this.label14.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.label14.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.label14.Location = new System.Drawing.Point(135, 6);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(52, 20);
+            this.label14.TabIndex = 0;
+            this.label14.Text = "املاک من";
+            this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // groupPanel62
+            // 
+            this.groupPanel62.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupPanel62.CanvasColor = System.Drawing.Color.Transparent;
+            this.groupPanel62.Controls.Add(this.groupPanel68);
+            this.groupPanel62.Controls.Add(this.label13);
+            this.groupPanel62.Cursor = System.Windows.Forms.Cursors.Default;
+            this.groupPanel62.DisabledBackColor = System.Drawing.Color.Empty;
+            this.groupPanel62.Location = new System.Drawing.Point(10, 19);
+            this.groupPanel62.Name = "groupPanel62";
+            this.groupPanel62.Size = new System.Drawing.Size(200, 30);
+            // 
+            // 
+            // 
+            this.groupPanel62.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(115)))), ((int)(((byte)(231)))));
+            this.groupPanel62.Style.BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(115)))), ((int)(((byte)(231)))));
+            this.groupPanel62.Style.BorderBottom = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.groupPanel62.Style.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(115)))), ((int)(((byte)(231)))));
+            this.groupPanel62.Style.BorderColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(115)))), ((int)(((byte)(231)))));
+            this.groupPanel62.Style.BorderLeft = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.groupPanel62.Style.BorderRight = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.groupPanel62.Style.BorderTop = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.groupPanel62.Style.CornerDiameter = 10;
+            this.groupPanel62.Style.CornerType = DevComponents.DotNetBar.eCornerType.Rounded;
+            // 
+            // 
+            // 
+            this.groupPanel62.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.groupPanel62.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.groupPanel62.TabIndex = 55720;
+            // 
+            // groupPanel68
+            // 
+            this.groupPanel68.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupPanel68.CanvasColor = System.Drawing.Color.Transparent;
+            this.groupPanel68.Controls.Add(this.lblAllBuilding);
+            this.groupPanel68.Cursor = System.Windows.Forms.Cursors.Default;
+            this.groupPanel68.DisabledBackColor = System.Drawing.Color.Empty;
+            this.groupPanel68.Location = new System.Drawing.Point(4, 3);
+            this.groupPanel68.Name = "groupPanel68";
+            this.groupPanel68.Size = new System.Drawing.Size(47, 24);
+            // 
+            // 
+            // 
+            this.groupPanel68.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(245)))), ((int)(((byte)(253)))));
+            this.groupPanel68.Style.BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(245)))), ((int)(((byte)(253)))));
+            this.groupPanel68.Style.BorderBottom = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.groupPanel68.Style.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(245)))), ((int)(((byte)(253)))));
+            this.groupPanel68.Style.BorderColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(245)))), ((int)(((byte)(253)))));
+            this.groupPanel68.Style.BorderLeft = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.groupPanel68.Style.BorderRight = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.groupPanel68.Style.BorderTop = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.groupPanel68.Style.CornerType = DevComponents.DotNetBar.eCornerType.Rounded;
+            // 
+            // 
+            // 
+            this.groupPanel68.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.groupPanel68.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.groupPanel68.TabIndex = 55719;
+            // 
+            // lblAllBuilding
+            // 
+            this.lblAllBuilding.BackColor = System.Drawing.Color.Transparent;
+            this.lblAllBuilding.Cursor = System.Windows.Forms.Cursors.Default;
+            this.lblAllBuilding.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblAllBuilding.Font = new System.Drawing.Font("B Yekan", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.lblAllBuilding.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(81)))), ((int)(((byte)(219)))));
+            this.lblAllBuilding.Location = new System.Drawing.Point(0, 0);
+            this.lblAllBuilding.Name = "lblAllBuilding";
+            this.lblAllBuilding.Size = new System.Drawing.Size(47, 24);
+            this.lblAllBuilding.TabIndex = 2;
+            this.lblAllBuilding.Text = "0";
+            this.lblAllBuilding.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label13
+            // 
+            this.label13.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label13.AutoSize = true;
+            this.label13.BackColor = System.Drawing.Color.Transparent;
+            this.label13.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.label13.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.label13.Location = new System.Drawing.Point(135, 5);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(52, 20);
+            this.label13.TabIndex = 0;
+            this.label13.Text = "کل املاک";
+            this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Cursor = System.Windows.Forms.Cursors.Default;
+            this.label1.Font = new System.Drawing.Font("B Yekan", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(81)))), ((int)(((byte)(219)))));
+            this.label1.Location = new System.Drawing.Point(161, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(49, 17);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "شمای کلی";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // panel1
+            // 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.AutoScroll = true;
+            this.panel1.BackColor = System.Drawing.Color.Transparent;
+            this.panel1.Controls.Add(this.groupPanel61);
+            this.panel1.Controls.Add(this.groupPanel60);
+            this.panel1.Controls.Add(this.groupPanel59);
+            this.panel1.Controls.Add(this.groupPanel58);
+            this.panel1.Controls.Add(this.groupPanel57);
+            this.panel1.Controls.Add(this.groupPanel5);
+            this.panel1.Controls.Add(this.groupPanel4);
+            this.panel1.Location = new System.Drawing.Point(1, 40);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(628, 531);
+            this.panel1.TabIndex = 55720;
+            // 
+            // groupPanel61
+            // 
+            this.groupPanel61.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupPanel61.CanvasColor = System.Drawing.Color.Transparent;
+            this.groupPanel61.Controls.Add(this.fPanelPirority);
+            this.groupPanel61.Controls.Add(this.label12);
+            this.groupPanel61.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.groupPanel61.DisabledBackColor = System.Drawing.Color.Empty;
+            this.groupPanel61.Location = new System.Drawing.Point(3, 431);
+            this.groupPanel61.Name = "groupPanel61";
+            this.groupPanel61.Size = new System.Drawing.Size(618, 95);
+            // 
+            // 
+            // 
+            this.groupPanel61.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(221)))), ((int)(((byte)(251)))));
+            this.groupPanel61.Style.BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(221)))), ((int)(((byte)(251)))));
+            this.groupPanel61.Style.BorderBottom = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.groupPanel61.Style.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(221)))), ((int)(((byte)(251)))));
+            this.groupPanel61.Style.BorderColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(221)))), ((int)(((byte)(251)))));
+            this.groupPanel61.Style.BorderLeft = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.groupPanel61.Style.BorderRight = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.groupPanel61.Style.BorderTop = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.groupPanel61.Style.CornerDiameter = 15;
+            this.groupPanel61.Style.CornerType = DevComponents.DotNetBar.eCornerType.Rounded;
+            // 
+            // 
+            // 
+            this.groupPanel61.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.groupPanel61.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.groupPanel61.TabIndex = 55722;
+            // 
+            // fPanelPirority
+            // 
+            this.fPanelPirority.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.fPanelPirority.AutoScroll = true;
+            this.fPanelPirority.Location = new System.Drawing.Point(3, 26);
+            this.fPanelPirority.Name = "fPanelPirority";
+            this.fPanelPirority.Size = new System.Drawing.Size(612, 66);
+            this.fPanelPirority.TabIndex = 6;
+            // 
+            // label12
+            // 
+            this.label12.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label12.AutoSize = true;
+            this.label12.BackColor = System.Drawing.Color.Transparent;
+            this.label12.Font = new System.Drawing.Font("B Yekan", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.label12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(81)))), ((int)(((byte)(219)))));
+            this.label12.Location = new System.Drawing.Point(475, 6);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(132, 17);
+            this.label12.TabIndex = 1;
+            this.label12.Text = "املاک با اولویت فوق العاده بالا";
+            this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // groupPanel60
+            // 
+            this.groupPanel60.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupPanel60.CanvasColor = System.Drawing.Color.Transparent;
+            this.groupPanel60.Controls.Add(this.fPanelRequestRegion);
+            this.groupPanel60.Controls.Add(this.label11);
+            this.groupPanel60.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.groupPanel60.DisabledBackColor = System.Drawing.Color.Empty;
+            this.groupPanel60.Location = new System.Drawing.Point(398, 237);
+            this.groupPanel60.Name = "groupPanel60";
+            this.groupPanel60.Size = new System.Drawing.Size(223, 186);
+            // 
+            // 
+            // 
+            this.groupPanel60.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(221)))), ((int)(((byte)(251)))));
+            this.groupPanel60.Style.BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(221)))), ((int)(((byte)(251)))));
+            this.groupPanel60.Style.BorderBottom = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.groupPanel60.Style.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(221)))), ((int)(((byte)(251)))));
+            this.groupPanel60.Style.BorderColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(221)))), ((int)(((byte)(251)))));
+            this.groupPanel60.Style.BorderLeft = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.groupPanel60.Style.BorderRight = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.groupPanel60.Style.BorderTop = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.groupPanel60.Style.CornerDiameter = 15;
+            this.groupPanel60.Style.CornerType = DevComponents.DotNetBar.eCornerType.Rounded;
+            // 
+            // 
+            // 
+            this.groupPanel60.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.groupPanel60.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.groupPanel60.TabIndex = 55721;
+            // 
+            // fPanelRequestRegion
+            // 
+            this.fPanelRequestRegion.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.fPanelRequestRegion.AutoScroll = true;
+            this.fPanelRequestRegion.Location = new System.Drawing.Point(3, 20);
+            this.fPanelRequestRegion.Name = "fPanelRequestRegion";
+            this.fPanelRequestRegion.Size = new System.Drawing.Size(217, 156);
+            this.fPanelRequestRegion.TabIndex = 5;
+            // 
+            // label11
+            // 
+            this.label11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label11.AutoSize = true;
+            this.label11.BackColor = System.Drawing.Color.Transparent;
+            this.label11.Font = new System.Drawing.Font("B Yekan", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.label11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(81)))), ((int)(((byte)(219)))));
+            this.label11.Location = new System.Drawing.Point(145, 0);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(67, 17);
+            this.label11.TabIndex = 1;
+            this.label11.Text = "مناطق پرتقاضا";
+            this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // groupPanel59
+            // 
+            this.groupPanel59.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupPanel59.CanvasColor = System.Drawing.Color.Transparent;
+            this.groupPanel59.Controls.Add(this.fPanelBuildingRegion);
+            this.groupPanel59.Controls.Add(this.label7);
+            this.groupPanel59.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.groupPanel59.DisabledBackColor = System.Drawing.Color.Empty;
+            this.groupPanel59.Location = new System.Drawing.Point(169, 237);
+            this.groupPanel59.Name = "groupPanel59";
+            this.groupPanel59.Size = new System.Drawing.Size(223, 186);
+            // 
+            // 
+            // 
+            this.groupPanel59.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(221)))), ((int)(((byte)(251)))));
+            this.groupPanel59.Style.BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(221)))), ((int)(((byte)(251)))));
+            this.groupPanel59.Style.BorderBottom = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.groupPanel59.Style.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(221)))), ((int)(((byte)(251)))));
+            this.groupPanel59.Style.BorderColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(221)))), ((int)(((byte)(251)))));
+            this.groupPanel59.Style.BorderLeft = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.groupPanel59.Style.BorderRight = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.groupPanel59.Style.BorderTop = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.groupPanel59.Style.CornerDiameter = 15;
+            this.groupPanel59.Style.CornerType = DevComponents.DotNetBar.eCornerType.Rounded;
+            // 
+            // 
+            // 
+            this.groupPanel59.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.groupPanel59.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.groupPanel59.TabIndex = 55721;
+            // 
+            // fPanelBuildingRegion
+            // 
+            this.fPanelBuildingRegion.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.fPanelBuildingRegion.AutoScroll = true;
+            this.fPanelBuildingRegion.Location = new System.Drawing.Point(3, 20);
+            this.fPanelBuildingRegion.Name = "fPanelBuildingRegion";
+            this.fPanelBuildingRegion.Size = new System.Drawing.Size(217, 156);
+            this.fPanelBuildingRegion.TabIndex = 4;
+            // 
+            // label7
+            // 
+            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label7.AutoSize = true;
+            this.label7.BackColor = System.Drawing.Color.Transparent;
+            this.label7.Font = new System.Drawing.Font("B Yekan", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(81)))), ((int)(((byte)(219)))));
+            this.label7.Location = new System.Drawing.Point(137, 0);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(80, 17);
+            this.label7.TabIndex = 1;
+            this.label7.Text = "مناطق پر سفارش";
+            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // groupPanel58
+            // 
+            this.groupPanel58.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupPanel58.CanvasColor = System.Drawing.Color.Transparent;
+            this.groupPanel58.Controls.Add(this.fPanelMath);
+            this.groupPanel58.Controls.Add(this.label4);
+            this.groupPanel58.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.groupPanel58.DisabledBackColor = System.Drawing.Color.Empty;
+            this.groupPanel58.Location = new System.Drawing.Point(3, 237);
+            this.groupPanel58.Name = "groupPanel58";
+            this.groupPanel58.Size = new System.Drawing.Size(160, 186);
+            // 
+            // 
+            // 
+            this.groupPanel58.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(221)))), ((int)(((byte)(251)))));
+            this.groupPanel58.Style.BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(221)))), ((int)(((byte)(251)))));
+            this.groupPanel58.Style.BorderBottom = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.groupPanel58.Style.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(221)))), ((int)(((byte)(251)))));
+            this.groupPanel58.Style.BorderColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(221)))), ((int)(((byte)(251)))));
+            this.groupPanel58.Style.BorderLeft = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.groupPanel58.Style.BorderRight = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.groupPanel58.Style.BorderTop = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.groupPanel58.Style.CornerDiameter = 15;
+            this.groupPanel58.Style.CornerType = DevComponents.DotNetBar.eCornerType.Rounded;
+            // 
+            // 
+            // 
+            this.groupPanel58.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.groupPanel58.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.groupPanel58.TabIndex = 55720;
+            // 
+            // fPanelMath
+            // 
+            this.fPanelMath.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.fPanelMath.AutoScroll = true;
+            this.fPanelMath.Location = new System.Drawing.Point(3, 22);
+            this.fPanelMath.Name = "fPanelMath";
+            this.fPanelMath.Size = new System.Drawing.Size(154, 153);
+            this.fPanelMath.TabIndex = 5;
+            // 
+            // label4
+            // 
+            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label4.AutoSize = true;
+            this.label4.BackColor = System.Drawing.Color.Transparent;
+            this.label4.Font = new System.Drawing.Font("B Yekan", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(81)))), ((int)(((byte)(219)))));
+            this.label4.Location = new System.Drawing.Point(-18, -1);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(169, 17);
+            this.label4.TabIndex = 1;
+            this.label4.Text = "تطبیق املاک با درخواست های ماه جاری";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // groupPanel57
+            // 
+            this.groupPanel57.CanvasColor = System.Drawing.Color.Transparent;
+            this.groupPanel57.Controls.Add(this.fPanelCustomerBirthDay);
+            this.groupPanel57.Controls.Add(this.label3);
+            this.groupPanel57.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.groupPanel57.DisabledBackColor = System.Drawing.Color.Empty;
+            this.groupPanel57.Location = new System.Drawing.Point(3, 7);
+            this.groupPanel57.Name = "groupPanel57";
+            this.groupPanel57.Size = new System.Drawing.Size(202, 223);
+            // 
+            // 
+            // 
+            this.groupPanel57.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(221)))), ((int)(((byte)(251)))));
+            this.groupPanel57.Style.BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(221)))), ((int)(((byte)(251)))));
+            this.groupPanel57.Style.BorderBottom = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.groupPanel57.Style.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(221)))), ((int)(((byte)(251)))));
+            this.groupPanel57.Style.BorderColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(221)))), ((int)(((byte)(251)))));
+            this.groupPanel57.Style.BorderLeft = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.groupPanel57.Style.BorderRight = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.groupPanel57.Style.BorderTop = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.groupPanel57.Style.CornerDiameter = 15;
+            this.groupPanel57.Style.CornerType = DevComponents.DotNetBar.eCornerType.Rounded;
+            // 
+            // 
+            // 
+            this.groupPanel57.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.groupPanel57.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.groupPanel57.TabIndex = 55719;
+            // 
+            // fPanelCustomerBirthDay
+            // 
+            this.fPanelCustomerBirthDay.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.fPanelCustomerBirthDay.AutoScroll = true;
+            this.fPanelCustomerBirthDay.Cursor = System.Windows.Forms.Cursors.Default;
+            this.fPanelCustomerBirthDay.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.fPanelCustomerBirthDay.Location = new System.Drawing.Point(3, 17);
+            this.fPanelCustomerBirthDay.Name = "fPanelCustomerBirthDay";
+            this.fPanelCustomerBirthDay.Size = new System.Drawing.Size(196, 189);
+            this.fPanelCustomerBirthDay.TabIndex = 3;
+            this.fPanelCustomerBirthDay.WrapContents = false;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.Transparent;
+            this.label3.Font = new System.Drawing.Font("B Yekan", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(81)))), ((int)(((byte)(219)))));
+            this.label3.Location = new System.Drawing.Point(97, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(96, 17);
+            this.label3.TabIndex = 1;
+            this.label3.Text = "مشتریان متولد امروز";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // groupPanel5
+            // 
+            this.groupPanel5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupPanel5.CanvasColor = System.Drawing.Color.Transparent;
+            this.groupPanel5.Controls.Add(this.fPanelSarresidEjare);
+            this.groupPanel5.Controls.Add(this.label2);
+            this.groupPanel5.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.groupPanel5.DisabledBackColor = System.Drawing.Color.Empty;
+            this.groupPanel5.Location = new System.Drawing.Point(211, 7);
+            this.groupPanel5.Name = "groupPanel5";
+            this.groupPanel5.Size = new System.Drawing.Size(181, 223);
+            // 
+            // 
+            // 
+            this.groupPanel5.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(221)))), ((int)(((byte)(251)))));
+            this.groupPanel5.Style.BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(221)))), ((int)(((byte)(251)))));
+            this.groupPanel5.Style.BorderBottom = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.groupPanel5.Style.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(221)))), ((int)(((byte)(251)))));
+            this.groupPanel5.Style.BorderColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(221)))), ((int)(((byte)(251)))));
+            this.groupPanel5.Style.BorderLeft = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.groupPanel5.Style.BorderRight = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.groupPanel5.Style.BorderTop = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.groupPanel5.Style.CornerDiameter = 15;
+            this.groupPanel5.Style.CornerType = DevComponents.DotNetBar.eCornerType.Rounded;
+            // 
+            // 
+            // 
+            this.groupPanel5.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.groupPanel5.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.groupPanel5.TabIndex = 55719;
+            // 
+            // fPanelSarresidEjare
+            // 
+            this.fPanelSarresidEjare.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.fPanelSarresidEjare.AutoScroll = true;
+            this.fPanelSarresidEjare.Location = new System.Drawing.Point(3, 20);
+            this.fPanelSarresidEjare.Name = "fPanelSarresidEjare";
+            this.fPanelSarresidEjare.Size = new System.Drawing.Size(175, 189);
+            this.fPanelSarresidEjare.TabIndex = 2;
+            // 
+            // label2
+            // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.Font = new System.Drawing.Font("B Yekan", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(81)))), ((int)(((byte)(219)))));
+            this.label2.Location = new System.Drawing.Point(25, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(150, 17);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "سررسیدهای اجاره تا یک ماه آینده";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // frmNewMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 600);
+            this.ClientSize = new System.Drawing.Size(909, 600);
             this.ControlBox = false;
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.groupPanel2);
             this.Controls.Add(this.groupPanel1);
             this.Controls.Add(this.pnlOk);
@@ -3077,6 +4139,39 @@ namespace RealState
             this.groupPanel56.ResumeLayout(false);
             this.groupPanel2.ResumeLayout(false);
             this.groupPanel2.PerformLayout();
+            this.groupPanel4.ResumeLayout(false);
+            this.groupPanel4.PerformLayout();
+            this.groupPanel67.ResumeLayout(false);
+            this.groupPanel67.PerformLayout();
+            this.groupPanel73.ResumeLayout(false);
+            this.groupPanel66.ResumeLayout(false);
+            this.groupPanel66.PerformLayout();
+            this.groupPanel72.ResumeLayout(false);
+            this.groupPanel65.ResumeLayout(false);
+            this.groupPanel65.PerformLayout();
+            this.groupPanel71.ResumeLayout(false);
+            this.groupPanel64.ResumeLayout(false);
+            this.groupPanel64.PerformLayout();
+            this.groupPanel69.ResumeLayout(false);
+            this.groupPanel63.ResumeLayout(false);
+            this.groupPanel63.PerformLayout();
+            this.groupPanel70.ResumeLayout(false);
+            this.groupPanel62.ResumeLayout(false);
+            this.groupPanel62.PerformLayout();
+            this.groupPanel68.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            this.groupPanel61.ResumeLayout(false);
+            this.groupPanel61.PerformLayout();
+            this.groupPanel60.ResumeLayout(false);
+            this.groupPanel60.PerformLayout();
+            this.groupPanel59.ResumeLayout(false);
+            this.groupPanel59.PerformLayout();
+            this.groupPanel58.ResumeLayout(false);
+            this.groupPanel58.PerformLayout();
+            this.groupPanel57.ResumeLayout(false);
+            this.groupPanel57.PerformLayout();
+            this.groupPanel5.ResumeLayout(false);
+            this.groupPanel5.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -3209,5 +4304,50 @@ namespace RealState
         private System.Windows.Forms.Label lblAdvertise;
         private DevComponents.DotNetBar.Controls.GroupPanel groupPanel56;
         private System.Windows.Forms.Label lblBackUp;
+        private DevComponents.DotNetBar.Controls.GroupPanel groupPanel4;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label label1;
+        private DevComponents.DotNetBar.Controls.GroupPanel groupPanel57;
+        private System.Windows.Forms.Label label3;
+        private DevComponents.DotNetBar.Controls.GroupPanel groupPanel5;
+        private System.Windows.Forms.Label label2;
+        private DevComponents.DotNetBar.Controls.GroupPanel groupPanel60;
+        private System.Windows.Forms.Label label11;
+        private DevComponents.DotNetBar.Controls.GroupPanel groupPanel59;
+        private System.Windows.Forms.Label label7;
+        private DevComponents.DotNetBar.Controls.GroupPanel groupPanel58;
+        private System.Windows.Forms.Label label4;
+        private DevComponents.DotNetBar.Controls.GroupPanel groupPanel61;
+        private System.Windows.Forms.Label label12;
+        private DevComponents.DotNetBar.Controls.GroupPanel groupPanel67;
+        private System.Windows.Forms.Label label18;
+        private DevComponents.DotNetBar.Controls.GroupPanel groupPanel66;
+        private System.Windows.Forms.Label label17;
+        private DevComponents.DotNetBar.Controls.GroupPanel groupPanel65;
+        private System.Windows.Forms.Label label16;
+        private DevComponents.DotNetBar.Controls.GroupPanel groupPanel64;
+        private System.Windows.Forms.Label label15;
+        private DevComponents.DotNetBar.Controls.GroupPanel groupPanel63;
+        private System.Windows.Forms.Label label14;
+        private DevComponents.DotNetBar.Controls.GroupPanel groupPanel62;
+        private System.Windows.Forms.Label label13;
+        private DevComponents.DotNetBar.Controls.GroupPanel groupPanel73;
+        private DevComponents.DotNetBar.Controls.GroupPanel groupPanel72;
+        private DevComponents.DotNetBar.Controls.GroupPanel groupPanel71;
+        private DevComponents.DotNetBar.Controls.GroupPanel groupPanel69;
+        private DevComponents.DotNetBar.Controls.GroupPanel groupPanel70;
+        private DevComponents.DotNetBar.Controls.GroupPanel groupPanel68;
+        private System.Windows.Forms.Label lblMyRequest;
+        private System.Windows.Forms.Label lblAllEjare;
+        private System.Windows.Forms.Label lblAllRahn;
+        private System.Windows.Forms.Label lblMyBuilding;
+        private System.Windows.Forms.Label lblAllBuilding;
+        private System.Windows.Forms.Label lblAllRequest;
+        private System.Windows.Forms.FlowLayoutPanel fPanelPirority;
+        private System.Windows.Forms.FlowLayoutPanel fPanelRequestRegion;
+        private System.Windows.Forms.FlowLayoutPanel fPanelBuildingRegion;
+        private System.Windows.Forms.FlowLayoutPanel fPanelMath;
+        private System.Windows.Forms.FlowLayoutPanel fPanelCustomerBirthDay;
+        private System.Windows.Forms.FlowLayoutPanel fPanelSarresidEjare;
     }
 }
