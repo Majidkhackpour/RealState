@@ -167,7 +167,7 @@ namespace RealState
             this.label17 = new System.Windows.Forms.Label();
             this.groupPanel65 = new DevComponents.DotNetBar.Controls.GroupPanel();
             this.groupPanel71 = new DevComponents.DotNetBar.Controls.GroupPanel();
-            this.lblAllEjare = new System.Windows.Forms.Label();
+            this.lblAllForoosh = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.groupPanel64 = new DevComponents.DotNetBar.Controls.GroupPanel();
             this.groupPanel69 = new DevComponents.DotNetBar.Controls.GroupPanel();
@@ -197,10 +197,12 @@ namespace RealState
             this.label4 = new System.Windows.Forms.Label();
             this.groupPanel57 = new DevComponents.DotNetBar.Controls.GroupPanel();
             this.fPanelCustomerBirthDay = new System.Windows.Forms.FlowLayoutPanel();
+            this.lblBirthDayNone = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.groupPanel5 = new DevComponents.DotNetBar.Controls.GroupPanel();
             this.fPanelSarresidEjare = new System.Windows.Forms.FlowLayoutPanel();
             this.label2 = new System.Windows.Forms.Label();
+            this.lblSarresidNone = new System.Windows.Forms.Label();
             this.pnlOk.SuspendLayout();
             this.groupPanel8.SuspendLayout();
             this.groupPanel1.SuspendLayout();
@@ -3323,7 +3325,7 @@ namespace RealState
             // 
             this.groupPanel71.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.groupPanel71.CanvasColor = System.Drawing.Color.Transparent;
-            this.groupPanel71.Controls.Add(this.lblAllEjare);
+            this.groupPanel71.Controls.Add(this.lblAllForoosh);
             this.groupPanel71.Cursor = System.Windows.Forms.Cursors.Default;
             this.groupPanel71.DisabledBackColor = System.Drawing.Color.Empty;
             this.groupPanel71.Location = new System.Drawing.Point(4, 3);
@@ -3351,19 +3353,19 @@ namespace RealState
             this.groupPanel71.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.groupPanel71.TabIndex = 55719;
             // 
-            // lblAllEjare
+            // lblAllForoosh
             // 
-            this.lblAllEjare.BackColor = System.Drawing.Color.Transparent;
-            this.lblAllEjare.Cursor = System.Windows.Forms.Cursors.Default;
-            this.lblAllEjare.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblAllEjare.Font = new System.Drawing.Font("B Yekan", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.lblAllEjare.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(81)))), ((int)(((byte)(219)))));
-            this.lblAllEjare.Location = new System.Drawing.Point(0, 0);
-            this.lblAllEjare.Name = "lblAllEjare";
-            this.lblAllEjare.Size = new System.Drawing.Size(47, 24);
-            this.lblAllEjare.TabIndex = 3;
-            this.lblAllEjare.Text = "0";
-            this.lblAllEjare.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblAllForoosh.BackColor = System.Drawing.Color.Transparent;
+            this.lblAllForoosh.Cursor = System.Windows.Forms.Cursors.Default;
+            this.lblAllForoosh.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblAllForoosh.Font = new System.Drawing.Font("B Yekan", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.lblAllForoosh.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(81)))), ((int)(((byte)(219)))));
+            this.lblAllForoosh.Location = new System.Drawing.Point(0, 0);
+            this.lblAllForoosh.Name = "lblAllForoosh";
+            this.lblAllForoosh.Size = new System.Drawing.Size(47, 24);
+            this.lblAllForoosh.TabIndex = 3;
+            this.lblAllForoosh.Text = "0";
+            this.lblAllForoosh.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label16
             // 
@@ -3703,7 +3705,7 @@ namespace RealState
             this.groupPanel61.CanvasColor = System.Drawing.Color.Transparent;
             this.groupPanel61.Controls.Add(this.fPanelPirority);
             this.groupPanel61.Controls.Add(this.label12);
-            this.groupPanel61.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.groupPanel61.Cursor = System.Windows.Forms.Cursors.Default;
             this.groupPanel61.DisabledBackColor = System.Drawing.Color.Empty;
             this.groupPanel61.Location = new System.Drawing.Point(3, 431);
             this.groupPanel61.Name = "groupPanel61";
@@ -3762,7 +3764,7 @@ namespace RealState
             this.groupPanel60.CanvasColor = System.Drawing.Color.Transparent;
             this.groupPanel60.Controls.Add(this.fPanelRequestRegion);
             this.groupPanel60.Controls.Add(this.label11);
-            this.groupPanel60.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.groupPanel60.Cursor = System.Windows.Forms.Cursors.Default;
             this.groupPanel60.DisabledBackColor = System.Drawing.Color.Empty;
             this.groupPanel60.Location = new System.Drawing.Point(398, 237);
             this.groupPanel60.Name = "groupPanel60";
@@ -3821,7 +3823,7 @@ namespace RealState
             this.groupPanel59.CanvasColor = System.Drawing.Color.Transparent;
             this.groupPanel59.Controls.Add(this.fPanelBuildingRegion);
             this.groupPanel59.Controls.Add(this.label7);
-            this.groupPanel59.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.groupPanel59.Cursor = System.Windows.Forms.Cursors.Default;
             this.groupPanel59.DisabledBackColor = System.Drawing.Color.Empty;
             this.groupPanel59.Location = new System.Drawing.Point(169, 237);
             this.groupPanel59.Name = "groupPanel59";
@@ -3881,7 +3883,7 @@ namespace RealState
             this.groupPanel58.CanvasColor = System.Drawing.Color.Transparent;
             this.groupPanel58.Controls.Add(this.fPanelMath);
             this.groupPanel58.Controls.Add(this.label4);
-            this.groupPanel58.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.groupPanel58.Cursor = System.Windows.Forms.Cursors.Default;
             this.groupPanel58.DisabledBackColor = System.Drawing.Color.Empty;
             this.groupPanel58.Location = new System.Drawing.Point(3, 237);
             this.groupPanel58.Name = "groupPanel58";
@@ -3938,8 +3940,9 @@ namespace RealState
             // 
             this.groupPanel57.CanvasColor = System.Drawing.Color.Transparent;
             this.groupPanel57.Controls.Add(this.fPanelCustomerBirthDay);
+            this.groupPanel57.Controls.Add(this.lblBirthDayNone);
             this.groupPanel57.Controls.Add(this.label3);
-            this.groupPanel57.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.groupPanel57.Cursor = System.Windows.Forms.Cursors.Default;
             this.groupPanel57.DisabledBackColor = System.Drawing.Color.Empty;
             this.groupPanel57.Location = new System.Drawing.Point(3, 7);
             this.groupPanel57.Name = "groupPanel57";
@@ -3975,11 +3978,24 @@ namespace RealState
             this.fPanelCustomerBirthDay.AutoScroll = true;
             this.fPanelCustomerBirthDay.Cursor = System.Windows.Forms.Cursors.Default;
             this.fPanelCustomerBirthDay.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.fPanelCustomerBirthDay.Location = new System.Drawing.Point(3, 17);
+            this.fPanelCustomerBirthDay.Location = new System.Drawing.Point(2, 28);
             this.fPanelCustomerBirthDay.Name = "fPanelCustomerBirthDay";
             this.fPanelCustomerBirthDay.Size = new System.Drawing.Size(196, 189);
             this.fPanelCustomerBirthDay.TabIndex = 3;
             this.fPanelCustomerBirthDay.WrapContents = false;
+            // 
+            // lblBirthDayNone
+            // 
+            this.lblBirthDayNone.AutoSize = true;
+            this.lblBirthDayNone.BackColor = System.Drawing.Color.Transparent;
+            this.lblBirthDayNone.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.lblBirthDayNone.ForeColor = System.Drawing.Color.Gray;
+            this.lblBirthDayNone.Location = new System.Drawing.Point(15, 99);
+            this.lblBirthDayNone.Name = "lblBirthDayNone";
+            this.lblBirthDayNone.Size = new System.Drawing.Size(163, 20);
+            this.lblBirthDayNone.TabIndex = 2;
+            this.lblBirthDayNone.Text = "داده ای برای نمایش وجود ندارد";
+            this.lblBirthDayNone.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label3
             // 
@@ -4001,7 +4017,8 @@ namespace RealState
             this.groupPanel5.CanvasColor = System.Drawing.Color.Transparent;
             this.groupPanel5.Controls.Add(this.fPanelSarresidEjare);
             this.groupPanel5.Controls.Add(this.label2);
-            this.groupPanel5.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.groupPanel5.Controls.Add(this.lblSarresidNone);
+            this.groupPanel5.Cursor = System.Windows.Forms.Cursors.Default;
             this.groupPanel5.DisabledBackColor = System.Drawing.Color.Empty;
             this.groupPanel5.Location = new System.Drawing.Point(211, 7);
             this.groupPanel5.Name = "groupPanel5";
@@ -4035,7 +4052,7 @@ namespace RealState
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.fPanelSarresidEjare.AutoScroll = true;
-            this.fPanelSarresidEjare.Location = new System.Drawing.Point(3, 20);
+            this.fPanelSarresidEjare.Location = new System.Drawing.Point(4, 28);
             this.fPanelSarresidEjare.Name = "fPanelSarresidEjare";
             this.fPanelSarresidEjare.Size = new System.Drawing.Size(175, 189);
             this.fPanelSarresidEjare.TabIndex = 2;
@@ -4053,6 +4070,20 @@ namespace RealState
             this.label2.TabIndex = 1;
             this.label2.Text = "سررسیدهای اجاره تا یک ماه آینده";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblSarresidNone
+            // 
+            this.lblSarresidNone.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.lblSarresidNone.AutoSize = true;
+            this.lblSarresidNone.BackColor = System.Drawing.Color.Transparent;
+            this.lblSarresidNone.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.lblSarresidNone.ForeColor = System.Drawing.Color.Gray;
+            this.lblSarresidNone.Location = new System.Drawing.Point(13, 99);
+            this.lblSarresidNone.Name = "lblSarresidNone";
+            this.lblSarresidNone.Size = new System.Drawing.Size(163, 20);
+            this.lblSarresidNone.TabIndex = 2;
+            this.lblSarresidNone.Text = "داده ای برای نمایش وجود ندارد";
+            this.lblSarresidNone.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // frmNewMain
             // 
@@ -4338,7 +4369,7 @@ namespace RealState
         private DevComponents.DotNetBar.Controls.GroupPanel groupPanel70;
         private DevComponents.DotNetBar.Controls.GroupPanel groupPanel68;
         private System.Windows.Forms.Label lblMyRequest;
-        private System.Windows.Forms.Label lblAllEjare;
+        private System.Windows.Forms.Label lblAllForoosh;
         private System.Windows.Forms.Label lblAllRahn;
         private System.Windows.Forms.Label lblMyBuilding;
         private System.Windows.Forms.Label lblAllBuilding;
@@ -4349,5 +4380,7 @@ namespace RealState
         private System.Windows.Forms.FlowLayoutPanel fPanelMath;
         private System.Windows.Forms.FlowLayoutPanel fPanelCustomerBirthDay;
         private System.Windows.Forms.FlowLayoutPanel fPanelSarresidEjare;
+        private System.Windows.Forms.Label lblBirthDayNone;
+        private System.Windows.Forms.Label lblSarresidNone;
     }
 }

@@ -148,6 +148,7 @@ namespace RealState
             try
             {
                 fPanelCustomerBirthDay.Controls.Clear();
+                fPanelSarresidEjare.Controls.Clear();
             }
             catch (Exception ex)
             {
@@ -159,6 +160,8 @@ namespace RealState
             try
             {
                 _ = Task.Run(LoadCustomerBirthdayAsync);
+                _ = Task.Run(LoadSarresidAsync);
+                _ = Task.Run(LoadSchemaAsync);
             }
             catch (Exception ex)
             {
@@ -189,6 +192,69 @@ namespace RealState
                         }));
                     }
                 }
+                else
+                {
+                    Invoke(new MethodInvoker(() =>
+                    {
+                        fPanelCustomerBirthDay.Visible = false;
+                        lblBirthDayNone.Visible = true;
+                    }));
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private async Task LoadSarresidAsync()
+        {
+            try
+            {
+                var list = await ContractBussines.DischargeListAsync();
+                if (list != null && list.Count > 0)
+                {
+                    foreach (var item in list)
+                    {
+                        Invoke(new MethodInvoker(() =>
+                        {
+                            var c = new ucDischargeList() { Model = item, Width = fPanelSarresidEjare.Width - 30 };
+                            fPanelSarresidEjare.Controls.Add(c);
+                        }));
+                    }
+                }
+                else
+                {
+                    Invoke(new MethodInvoker(() =>
+                    {
+                        fPanelSarresidEjare.Visible = false;
+                        lblSarresidNone.Visible = true;
+                    }));
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private async Task LoadSchemaAsync()
+        {
+            try
+            {
+                var allBuilding = await BuildingBussines.DbCount(Guid.Empty, 0);
+                var myBuilding = await BuildingBussines.DbCount(UserBussines.CurrentUser.Guid, 0);
+                var rahn = await BuildingBussines.DbCount(Guid.Empty, 1);
+                var foroush = await BuildingBussines.DbCount(Guid.Empty, 2);
+                var allReq = await BuildingRequestBussines.DbCount(Guid.Empty);
+                var myReq = await BuildingRequestBussines.DbCount(UserBussines.CurrentUser.Guid);
+                Invoke(new MethodInvoker(() =>
+                {
+                    lblAllBuilding.Text = allBuilding.ToString();
+                    lblMyBuilding.Text = myBuilding.ToString();
+                    lblAllRahn.Text = rahn.ToString();
+                    lblAllForoosh.Text = foroush.ToString();
+                    lblAllRequest.Text = allReq.ToString();
+                    lblMyRequest.Text = myReq.ToString();
+                }));
             }
             catch (Exception ex)
             {
