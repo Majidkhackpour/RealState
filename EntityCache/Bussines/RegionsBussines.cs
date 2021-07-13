@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using EntityCache.Assistence;
+using EntityCache.ViewModels;
 using Nito.AsyncEx;
 using Persistence;
 using Services;
@@ -201,5 +202,7 @@ namespace EntityCache.Bussines
         }
         public static async Task<List<RegionsBussines>> GetAllAsync(Guid cityGuid, CancellationToken token) =>
             await UnitOfWork.Regions.GetAllAsync(Cache.ConnectionString, cityGuid, token);
+        public static async Task<List<RegionReportViewModel>> GetAllBuildingReportAsync(CancellationToken token) => await UnitOfWork.Regions.GetAllBuildingReportAsync(Cache.ConnectionString, token);
+        public static async Task<List<RegionReportViewModel>> GetAllRequestReportAsync(CancellationToken token) => await UnitOfWork.Regions.GetAllRequestReportAsync(Cache.ConnectionString, token);
     }
 }

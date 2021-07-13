@@ -3,6 +3,7 @@ using System.Collections.Concurrent;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Reflection;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Accounting.Bank;
@@ -149,6 +150,8 @@ namespace RealState
             {
                 fPanelCustomerBirthDay.Controls.Clear();
                 fPanelSarresidEjare.Controls.Clear();
+                fPanelBuildingRegion.Controls.Clear();
+                fPanelRequestRegion.Controls.Clear();
             }
             catch (Exception ex)
             {
@@ -162,6 +165,8 @@ namespace RealState
                 _ = Task.Run(LoadCustomerBirthdayAsync);
                 _ = Task.Run(LoadSarresidAsync);
                 _ = Task.Run(LoadSchemaAsync);
+                _ = Task.Run(LoadBuildingRegionAsync);
+                _ = Task.Run(LoadRequestRegionAsync);
             }
             catch (Exception ex)
             {
@@ -255,6 +260,66 @@ namespace RealState
                     lblAllRequest.Text = allReq.ToString();
                     lblMyRequest.Text = myReq.ToString();
                 }));
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private async Task LoadBuildingRegionAsync()
+        {
+            try
+            {
+                var list = await RegionsBussines.GetAllBuildingReportAsync(new CancellationToken());
+                if (list != null && list.Count > 0)
+                {
+                    foreach (var item in list)
+                    {
+                        Invoke(new MethodInvoker(() =>
+                        {
+                            var c = new ucRegionReport() { Report = item, Width = fPanelBuildingRegion.Width - 30 };
+                            fPanelBuildingRegion.Controls.Add(c);
+                        }));
+                    }
+                }
+                else
+                {
+                    Invoke(new MethodInvoker(() =>
+                    {
+                        fPanelBuildingRegion.Visible = false;
+                        lblRegionBuildingNone.Visible = true;
+                    }));
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private async Task LoadRequestRegionAsync()
+        {
+            try
+            {
+                var list = await RegionsBussines.GetAllRequestReportAsync(new CancellationToken());
+                if (list != null && list.Count > 0)
+                {
+                    foreach (var item in list)
+                    {
+                        Invoke(new MethodInvoker(() =>
+                        {
+                            var c = new ucRegionReport() { Report = item, Width = fPanelRequestRegion.Width - 30 };
+                            fPanelRequestRegion.Controls.Add(c);
+                        }));
+                    }
+                }
+                else
+                {
+                    Invoke(new MethodInvoker(() =>
+                    {
+                        fPanelRequestRegion.Visible = false;
+                        lblRegionRequestNone.Visible = true;
+                    }));
+                }
             }
             catch (Exception ex)
             {

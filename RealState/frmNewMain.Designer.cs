@@ -203,6 +203,8 @@ namespace RealState
             this.fPanelSarresidEjare = new System.Windows.Forms.FlowLayoutPanel();
             this.label2 = new System.Windows.Forms.Label();
             this.lblSarresidNone = new System.Windows.Forms.Label();
+            this.lblRegionRequestNone = new System.Windows.Forms.Label();
+            this.lblRegionBuildingNone = new System.Windows.Forms.Label();
             this.pnlOk.SuspendLayout();
             this.groupPanel8.SuspendLayout();
             this.groupPanel1.SuspendLayout();
@@ -3764,6 +3766,7 @@ namespace RealState
             this.groupPanel60.CanvasColor = System.Drawing.Color.Transparent;
             this.groupPanel60.Controls.Add(this.fPanelRequestRegion);
             this.groupPanel60.Controls.Add(this.label11);
+            this.groupPanel60.Controls.Add(this.lblRegionRequestNone);
             this.groupPanel60.Cursor = System.Windows.Forms.Cursors.Default;
             this.groupPanel60.DisabledBackColor = System.Drawing.Color.Empty;
             this.groupPanel60.Location = new System.Drawing.Point(398, 237);
@@ -3798,7 +3801,7 @@ namespace RealState
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.fPanelRequestRegion.AutoScroll = true;
-            this.fPanelRequestRegion.Location = new System.Drawing.Point(3, 20);
+            this.fPanelRequestRegion.Location = new System.Drawing.Point(5, 20);
             this.fPanelRequestRegion.Name = "fPanelRequestRegion";
             this.fPanelRequestRegion.Size = new System.Drawing.Size(217, 156);
             this.fPanelRequestRegion.TabIndex = 5;
@@ -3823,6 +3826,7 @@ namespace RealState
             this.groupPanel59.CanvasColor = System.Drawing.Color.Transparent;
             this.groupPanel59.Controls.Add(this.fPanelBuildingRegion);
             this.groupPanel59.Controls.Add(this.label7);
+            this.groupPanel59.Controls.Add(this.lblRegionBuildingNone);
             this.groupPanel59.Cursor = System.Windows.Forms.Cursors.Default;
             this.groupPanel59.DisabledBackColor = System.Drawing.Color.Empty;
             this.groupPanel59.Location = new System.Drawing.Point(169, 237);
@@ -3857,7 +3861,7 @@ namespace RealState
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.fPanelBuildingRegion.AutoScroll = true;
-            this.fPanelBuildingRegion.Location = new System.Drawing.Point(3, 20);
+            this.fPanelBuildingRegion.Location = new System.Drawing.Point(2, 20);
             this.fPanelBuildingRegion.Name = "fPanelBuildingRegion";
             this.fPanelBuildingRegion.Size = new System.Drawing.Size(217, 156);
             this.fPanelBuildingRegion.TabIndex = 4;
@@ -4052,7 +4056,7 @@ namespace RealState
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.fPanelSarresidEjare.AutoScroll = true;
-            this.fPanelSarresidEjare.Location = new System.Drawing.Point(4, 28);
+            this.fPanelSarresidEjare.Location = new System.Drawing.Point(2, 28);
             this.fPanelSarresidEjare.Name = "fPanelSarresidEjare";
             this.fPanelSarresidEjare.Size = new System.Drawing.Size(175, 189);
             this.fPanelSarresidEjare.TabIndex = 2;
@@ -4084,6 +4088,34 @@ namespace RealState
             this.lblSarresidNone.TabIndex = 2;
             this.lblSarresidNone.Text = "داده ای برای نمایش وجود ندارد";
             this.lblSarresidNone.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lblRegionRequestNone
+            // 
+            this.lblRegionRequestNone.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblRegionRequestNone.AutoSize = true;
+            this.lblRegionRequestNone.BackColor = System.Drawing.Color.Transparent;
+            this.lblRegionRequestNone.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.lblRegionRequestNone.ForeColor = System.Drawing.Color.Gray;
+            this.lblRegionRequestNone.Location = new System.Drawing.Point(30, 83);
+            this.lblRegionRequestNone.Name = "lblRegionRequestNone";
+            this.lblRegionRequestNone.Size = new System.Drawing.Size(163, 20);
+            this.lblRegionRequestNone.TabIndex = 6;
+            this.lblRegionRequestNone.Text = "داده ای برای نمایش وجود ندارد";
+            this.lblRegionRequestNone.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lblRegionBuildingNone
+            // 
+            this.lblRegionBuildingNone.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblRegionBuildingNone.AutoSize = true;
+            this.lblRegionBuildingNone.BackColor = System.Drawing.Color.Transparent;
+            this.lblRegionBuildingNone.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.lblRegionBuildingNone.ForeColor = System.Drawing.Color.Gray;
+            this.lblRegionBuildingNone.Location = new System.Drawing.Point(32, 83);
+            this.lblRegionBuildingNone.Name = "lblRegionBuildingNone";
+            this.lblRegionBuildingNone.Size = new System.Drawing.Size(163, 20);
+            this.lblRegionBuildingNone.TabIndex = 7;
+            this.lblRegionBuildingNone.Text = "داده ای برای نمایش وجود ندارد";
+            this.lblRegionBuildingNone.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // frmNewMain
             // 
@@ -4382,5 +4414,7 @@ namespace RealState
         private System.Windows.Forms.FlowLayoutPanel fPanelSarresidEjare;
         private System.Windows.Forms.Label lblBirthDayNone;
         private System.Windows.Forms.Label lblSarresidNone;
+        private System.Windows.Forms.Label lblRegionRequestNone;
+        private System.Windows.Forms.Label lblRegionBuildingNone;
     }
 }

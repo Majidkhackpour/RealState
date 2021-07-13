@@ -7235,3 +7235,51 @@ AS
 BEGIN
 	delete from [dbo].[Calendars]
 END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Regions_GetAllBuildingReport]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Regions_GetAllBuildingReport]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_Regions_GetAllBuildingReport
+AS
+BEGIN
+	WITH cte AS (
+    SELECT 
+        RegionGuid, 
+        ROW_NUMBER() OVER (
+            PARTITION BY 
+                RegionGuid
+            ORDER BY 
+                RegionGuid
+        ) row_num
+     FROM Buildings
+)
+select RegionGuid,Regions.Name,MAX(row_num) as sum_ from cte
+	inner join Regions on cte.RegionGuid=Regions.Guid
+group by RegionGuid,Regions.Name
+order by sum_ desc
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Regions_GetAllRequestReport]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Regions_GetAllRequestReport]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_Regions_GetAllRequestReport
+AS
+BEGIN
+	WITH cte AS (
+    SELECT 
+        RegionGuid, 
+        ROW_NUMBER() OVER (
+            PARTITION BY 
+                RegionGuid
+            ORDER BY 
+                RegionGuid
+        ) row_num
+     FROM BuildingRequestRegions
+)
+select RegionGuid,Regions.Name,MAX(row_num) as sum_ from cte
+	inner join Regions on cte.RegionGuid=Regions.Guid
+group by RegionGuid,Regions.Name
+order by sum_ desc
+END

@@ -374,6 +374,12 @@
     <Compile Include="UserControls\ucDischargeList.Designer.cs">
       <DependentUpon>ucDischargeList.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\ucRegionReport.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\ucRegionReport.Designer.cs">
+      <DependentUpon>ucRegionReport.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Advance\frmResentToHost.resx">
       <DependentUpon>frmResentToHost.cs</DependentUpon>
     </EmbeddedResource>
@@ -434,6 +440,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\ucDischargeList.resx">
       <DependentUpon>ucDischargeList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\ucRegionReport.resx">
+      <DependentUpon>ucRegionReport.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\DataSources\EntityCache.Bussines.BackUpLogBussines.datasource" />

@@ -7,6 +7,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Threading;
 using System.Threading.Tasks;
+using EntityCache.ViewModels;
 
 namespace EntityCache.SqlServerPersistence
 {
@@ -174,6 +175,62 @@ namespace EntityCache.SqlServerPersistence
 
             return res;
         }
+        public async Task<List<RegionReportViewModel>> GetAllBuildingReportAsync(string connectionString, CancellationToken token)
+        {
+            var list = new List<RegionReportViewModel>();
+            try
+            {
+                using (var cn = new SqlConnection(connectionString))
+                {
+                    var cmd = new SqlCommand("sp_Regions_GetAllBuildingReport", cn) { CommandType = CommandType.StoredProcedure };
+                    if (token.IsCancellationRequested) return null;
+                    await cn.OpenAsync(token);
+                    var dr = await cmd.ExecuteReaderAsync(token);
+                    while (dr.Read())
+                    {
+                        if (token.IsCancellationRequested) return null;
+                        list.Add(LoadDataViewModel(dr));
+                    }
+                    cn.Close();
+                }
+            }
+            catch (TaskCanceledException) { }
+            catch (OperationCanceledException) { }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+
+            return list;
+        }
+        public async Task<List<RegionReportViewModel>> GetAllRequestReportAsync(string connectionString, CancellationToken token)
+        {
+            var list = new List<RegionReportViewModel>();
+            try
+            {
+                using (var cn = new SqlConnection(connectionString))
+                {
+                    var cmd = new SqlCommand("sp_Regions_GetAllRequestReport", cn) { CommandType = CommandType.StoredProcedure };
+                    if (token.IsCancellationRequested) return null;
+                    await cn.OpenAsync(token);
+                    var dr = await cmd.ExecuteReaderAsync(token);
+                    while (dr.Read())
+                    {
+                        if (token.IsCancellationRequested) return null;
+                        list.Add(LoadDataViewModel(dr));
+                    }
+                    cn.Close();
+                }
+            }
+            catch (TaskCanceledException) { }
+            catch (OperationCanceledException) { }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+
+            return list;
+        }
         private RegionsBussines LoadData(SqlDataReader dr)
         {
             var item = new RegionsBussines();
@@ -190,6 +247,22 @@ namespace EntityCache.SqlServerPersistence
                 item.ServerDeliveryDate = (DateTime)dr["ServerDeliveryDate"];
                 item.ServerStatus = (ServerStatus)dr["ServerStatus"];
                 item.IsModified = true;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+
+            return item;
+        }
+        private RegionReportViewModel LoadDataViewModel(SqlDataReader dr)
+        {
+            var item = new RegionReportViewModel();
+            try
+            {
+                item.RegionGuid = (Guid)dr["RegionGuid"];
+                item.Name = dr["Name"].ToString();
+                item.Count = dr["sum_"].ToString().ParseToInt();
             }
             catch (Exception ex)
             {

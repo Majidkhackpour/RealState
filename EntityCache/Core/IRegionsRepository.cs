@@ -4,6 +4,7 @@ using System.Data.SqlClient;
 using System.Threading;
 using System.Threading.Tasks;
 using EntityCache.Bussines;
+using EntityCache.ViewModels;
 using Services;
 
 namespace EntityCache.Core
@@ -17,5 +18,7 @@ namespace EntityCache.Core
         Task<ReturnedSaveFuncInfo> SaveAsync(RegionsBussines item, SqlTransaction tr);
         Task<ReturnedSaveFuncInfo> SaveRangeAsync(IEnumerable<RegionsBussines> items, SqlTransaction tr);
         Task<ReturnedSaveFuncInfo> ChangeStatusAsync(RegionsBussines item, bool status, SqlTransaction tr);
+        Task<List<RegionReportViewModel>> GetAllBuildingReportAsync(string connectionString, CancellationToken token);
+        Task<List<RegionReportViewModel>> GetAllRequestReportAsync(string connectionString, CancellationToken token);
     }
 }
