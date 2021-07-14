@@ -210,9 +210,8 @@ namespace EntityCache.Bussines
                                          q.BuildingConditionGuid == conditionGuid);
                 if (token.IsCancellationRequested) return null;
                 if (regionGuid != Guid.Empty)
-                    res = res.Where(q => q.RegionList.Select(p => p.RegionGuid).Contains(regionGuid));
-                if (token.IsCancellationRequested) return null;
-                return res?.ToList();
+                    res = res.Where(q => q.RegionList != null && q.RegionList.Select(p => p.RegionGuid).Contains(regionGuid));
+                return token.IsCancellationRequested ? null : res?.ToList();
             }
             catch (Exception ex)
             {

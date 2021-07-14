@@ -189,12 +189,15 @@ namespace RealState
             this.groupPanel60 = new DevComponents.DotNetBar.Controls.GroupPanel();
             this.fPanelRequestRegion = new System.Windows.Forms.FlowLayoutPanel();
             this.label11 = new System.Windows.Forms.Label();
+            this.lblRegionRequestNone = new System.Windows.Forms.Label();
             this.groupPanel59 = new DevComponents.DotNetBar.Controls.GroupPanel();
             this.fPanelBuildingRegion = new System.Windows.Forms.FlowLayoutPanel();
             this.label7 = new System.Windows.Forms.Label();
+            this.lblRegionBuildingNone = new System.Windows.Forms.Label();
             this.groupPanel58 = new DevComponents.DotNetBar.Controls.GroupPanel();
             this.fPanelMath = new System.Windows.Forms.FlowLayoutPanel();
             this.label4 = new System.Windows.Forms.Label();
+            this.lblMatchNone = new System.Windows.Forms.Label();
             this.groupPanel57 = new DevComponents.DotNetBar.Controls.GroupPanel();
             this.fPanelCustomerBirthDay = new System.Windows.Forms.FlowLayoutPanel();
             this.lblBirthDayNone = new System.Windows.Forms.Label();
@@ -203,8 +206,7 @@ namespace RealState
             this.fPanelSarresidEjare = new System.Windows.Forms.FlowLayoutPanel();
             this.label2 = new System.Windows.Forms.Label();
             this.lblSarresidNone = new System.Windows.Forms.Label();
-            this.lblRegionRequestNone = new System.Windows.Forms.Label();
-            this.lblRegionBuildingNone = new System.Windows.Forms.Label();
+            this.lblBuildingNone = new System.Windows.Forms.Label();
             this.pnlOk.SuspendLayout();
             this.groupPanel8.SuspendLayout();
             this.groupPanel1.SuspendLayout();
@@ -3707,6 +3709,7 @@ namespace RealState
             this.groupPanel61.CanvasColor = System.Drawing.Color.Transparent;
             this.groupPanel61.Controls.Add(this.fPanelPirority);
             this.groupPanel61.Controls.Add(this.label12);
+            this.groupPanel61.Controls.Add(this.lblBuildingNone);
             this.groupPanel61.Cursor = System.Windows.Forms.Cursors.Default;
             this.groupPanel61.DisabledBackColor = System.Drawing.Color.Empty;
             this.groupPanel61.Location = new System.Drawing.Point(3, 431);
@@ -3741,7 +3744,7 @@ namespace RealState
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.fPanelPirority.AutoScroll = true;
-            this.fPanelPirority.Location = new System.Drawing.Point(3, 26);
+            this.fPanelPirority.Location = new System.Drawing.Point(6, 23);
             this.fPanelPirority.Name = "fPanelPirority";
             this.fPanelPirority.Size = new System.Drawing.Size(612, 66);
             this.fPanelPirority.TabIndex = 6;
@@ -3801,7 +3804,7 @@ namespace RealState
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.fPanelRequestRegion.AutoScroll = true;
-            this.fPanelRequestRegion.Location = new System.Drawing.Point(5, 20);
+            this.fPanelRequestRegion.Location = new System.Drawing.Point(4, 22);
             this.fPanelRequestRegion.Name = "fPanelRequestRegion";
             this.fPanelRequestRegion.Size = new System.Drawing.Size(217, 156);
             this.fPanelRequestRegion.TabIndex = 5;
@@ -3819,6 +3822,20 @@ namespace RealState
             this.label11.TabIndex = 1;
             this.label11.Text = "مناطق پرتقاضا";
             this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblRegionRequestNone
+            // 
+            this.lblRegionRequestNone.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblRegionRequestNone.AutoSize = true;
+            this.lblRegionRequestNone.BackColor = System.Drawing.Color.Transparent;
+            this.lblRegionRequestNone.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.lblRegionRequestNone.ForeColor = System.Drawing.Color.Gray;
+            this.lblRegionRequestNone.Location = new System.Drawing.Point(30, 83);
+            this.lblRegionRequestNone.Name = "lblRegionRequestNone";
+            this.lblRegionRequestNone.Size = new System.Drawing.Size(163, 20);
+            this.lblRegionRequestNone.TabIndex = 6;
+            this.lblRegionRequestNone.Text = "داده ای برای نمایش وجود ندارد";
+            this.lblRegionRequestNone.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // groupPanel59
             // 
@@ -3861,7 +3878,7 @@ namespace RealState
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.fPanelBuildingRegion.AutoScroll = true;
-            this.fPanelBuildingRegion.Location = new System.Drawing.Point(2, 20);
+            this.fPanelBuildingRegion.Location = new System.Drawing.Point(2, 22);
             this.fPanelBuildingRegion.Name = "fPanelBuildingRegion";
             this.fPanelBuildingRegion.Size = new System.Drawing.Size(217, 156);
             this.fPanelBuildingRegion.TabIndex = 4;
@@ -3880,6 +3897,20 @@ namespace RealState
             this.label7.Text = "مناطق پر سفارش";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // lblRegionBuildingNone
+            // 
+            this.lblRegionBuildingNone.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblRegionBuildingNone.AutoSize = true;
+            this.lblRegionBuildingNone.BackColor = System.Drawing.Color.Transparent;
+            this.lblRegionBuildingNone.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.lblRegionBuildingNone.ForeColor = System.Drawing.Color.Gray;
+            this.lblRegionBuildingNone.Location = new System.Drawing.Point(32, 83);
+            this.lblRegionBuildingNone.Name = "lblRegionBuildingNone";
+            this.lblRegionBuildingNone.Size = new System.Drawing.Size(163, 20);
+            this.lblRegionBuildingNone.TabIndex = 7;
+            this.lblRegionBuildingNone.Text = "داده ای برای نمایش وجود ندارد";
+            this.lblRegionBuildingNone.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // groupPanel58
             // 
             this.groupPanel58.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -3887,6 +3918,7 @@ namespace RealState
             this.groupPanel58.CanvasColor = System.Drawing.Color.Transparent;
             this.groupPanel58.Controls.Add(this.fPanelMath);
             this.groupPanel58.Controls.Add(this.label4);
+            this.groupPanel58.Controls.Add(this.lblMatchNone);
             this.groupPanel58.Cursor = System.Windows.Forms.Cursors.Default;
             this.groupPanel58.DisabledBackColor = System.Drawing.Color.Empty;
             this.groupPanel58.Location = new System.Drawing.Point(3, 237);
@@ -3921,9 +3953,9 @@ namespace RealState
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.fPanelMath.AutoScroll = true;
-            this.fPanelMath.Location = new System.Drawing.Point(3, 22);
+            this.fPanelMath.Location = new System.Drawing.Point(1, 20);
             this.fPanelMath.Name = "fPanelMath";
-            this.fPanelMath.Size = new System.Drawing.Size(154, 153);
+            this.fPanelMath.Size = new System.Drawing.Size(154, 158);
             this.fPanelMath.TabIndex = 5;
             // 
             // label4
@@ -3933,12 +3965,26 @@ namespace RealState
             this.label4.BackColor = System.Drawing.Color.Transparent;
             this.label4.Font = new System.Drawing.Font("B Yekan", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(81)))), ((int)(((byte)(219)))));
-            this.label4.Location = new System.Drawing.Point(-18, -1);
+            this.label4.Location = new System.Drawing.Point(29, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(169, 17);
+            this.label4.Size = new System.Drawing.Size(123, 17);
             this.label4.TabIndex = 1;
-            this.label4.Text = "تطبیق املاک با درخواست های ماه جاری";
+            this.label4.Text = "تطبیق املاک با درخواست ها";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblMatchNone
+            // 
+            this.lblMatchNone.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.lblMatchNone.AutoSize = true;
+            this.lblMatchNone.BackColor = System.Drawing.Color.Transparent;
+            this.lblMatchNone.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.lblMatchNone.ForeColor = System.Drawing.Color.Gray;
+            this.lblMatchNone.Location = new System.Drawing.Point(-3, 83);
+            this.lblMatchNone.Name = "lblMatchNone";
+            this.lblMatchNone.Size = new System.Drawing.Size(163, 20);
+            this.lblMatchNone.TabIndex = 8;
+            this.lblMatchNone.Text = "داده ای برای نمایش وجود ندارد";
+            this.lblMatchNone.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // groupPanel57
             // 
@@ -4089,33 +4135,19 @@ namespace RealState
             this.lblSarresidNone.Text = "داده ای برای نمایش وجود ندارد";
             this.lblSarresidNone.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // lblRegionRequestNone
+            // lblBuildingNone
             // 
-            this.lblRegionRequestNone.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblRegionRequestNone.AutoSize = true;
-            this.lblRegionRequestNone.BackColor = System.Drawing.Color.Transparent;
-            this.lblRegionRequestNone.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.lblRegionRequestNone.ForeColor = System.Drawing.Color.Gray;
-            this.lblRegionRequestNone.Location = new System.Drawing.Point(30, 83);
-            this.lblRegionRequestNone.Name = "lblRegionRequestNone";
-            this.lblRegionRequestNone.Size = new System.Drawing.Size(163, 20);
-            this.lblRegionRequestNone.TabIndex = 6;
-            this.lblRegionRequestNone.Text = "داده ای برای نمایش وجود ندارد";
-            this.lblRegionRequestNone.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // lblRegionBuildingNone
-            // 
-            this.lblRegionBuildingNone.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblRegionBuildingNone.AutoSize = true;
-            this.lblRegionBuildingNone.BackColor = System.Drawing.Color.Transparent;
-            this.lblRegionBuildingNone.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.lblRegionBuildingNone.ForeColor = System.Drawing.Color.Gray;
-            this.lblRegionBuildingNone.Location = new System.Drawing.Point(32, 83);
-            this.lblRegionBuildingNone.Name = "lblRegionBuildingNone";
-            this.lblRegionBuildingNone.Size = new System.Drawing.Size(163, 20);
-            this.lblRegionBuildingNone.TabIndex = 7;
-            this.lblRegionBuildingNone.Text = "داده ای برای نمایش وجود ندارد";
-            this.lblRegionBuildingNone.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblBuildingNone.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.lblBuildingNone.AutoSize = true;
+            this.lblBuildingNone.BackColor = System.Drawing.Color.Transparent;
+            this.lblBuildingNone.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.lblBuildingNone.ForeColor = System.Drawing.Color.Gray;
+            this.lblBuildingNone.Location = new System.Drawing.Point(233, 47);
+            this.lblBuildingNone.Name = "lblBuildingNone";
+            this.lblBuildingNone.Size = new System.Drawing.Size(163, 20);
+            this.lblBuildingNone.TabIndex = 7;
+            this.lblBuildingNone.Text = "داده ای برای نمایش وجود ندارد";
+            this.lblBuildingNone.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // frmNewMain
             // 
@@ -4416,5 +4448,7 @@ namespace RealState
         private System.Windows.Forms.Label lblSarresidNone;
         private System.Windows.Forms.Label lblRegionRequestNone;
         private System.Windows.Forms.Label lblRegionBuildingNone;
+        private System.Windows.Forms.Label lblMatchNone;
+        private System.Windows.Forms.Label lblBuildingNone;
     }
 }

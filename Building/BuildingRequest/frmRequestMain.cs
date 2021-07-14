@@ -341,7 +341,7 @@ namespace Building.BuildingRequest
                 _token?.Cancel();
                 _token = new CancellationTokenSource();
                 var list = await CitiesBussines.GetAllAsync((Guid)cmbState.SelectedValue, _token.Token);
-                CityBindingSource.DataSource = list.Where(q => q.Status).OrderBy(q => q.Name).ToList();
+                CityBindingSource.DataSource = list?.Where(q => q.Status).OrderBy(q => q.Name).ToList();
                 if (cls.Guid != Guid.Empty) cmbCity.SelectedValue = cls.CityGuid;
             }
             catch (Exception ex)

@@ -34,6 +34,7 @@ using Building.RentalAuthority;
 using Cities.City;
 using Cities.Region;
 using EntityCache.Bussines;
+using EntityCache.ViewModels;
 using MetroFramework.Forms;
 using Payamak;
 using Payamak.Panel;
@@ -152,6 +153,8 @@ namespace RealState
                 fPanelSarresidEjare.Controls.Clear();
                 fPanelBuildingRegion.Controls.Clear();
                 fPanelRequestRegion.Controls.Clear();
+                fPanelMath.Controls.Clear();
+                fPanelPirority.Controls.Clear();
             }
             catch (Exception ex)
             {
@@ -167,6 +170,8 @@ namespace RealState
                 _ = Task.Run(LoadSchemaAsync);
                 _ = Task.Run(LoadBuildingRegionAsync);
                 _ = Task.Run(LoadRequestRegionAsync);
+                _ = Task.Run(LoadMatchAsync);
+                _ = Task.Run(LoadBuildingHighPriorityAsync);
             }
             catch (Exception ex)
             {
@@ -273,6 +278,7 @@ namespace RealState
                 var list = await RegionsBussines.GetAllBuildingReportAsync(new CancellationToken());
                 if (list != null && list.Count > 0)
                 {
+                    list = list?.OrderByDescending(q => q.Count)?.Take(10)?.ToList();
                     foreach (var item in list)
                     {
                         Invoke(new MethodInvoker(() =>
@@ -303,6 +309,7 @@ namespace RealState
                 var list = await RegionsBussines.GetAllRequestReportAsync(new CancellationToken());
                 if (list != null && list.Count > 0)
                 {
+                    list = list?.OrderByDescending(q => q.Count)?.Take(10)?.ToList();
                     foreach (var item in list)
                     {
                         Invoke(new MethodInvoker(() =>
@@ -318,6 +325,67 @@ namespace RealState
                     {
                         fPanelRequestRegion.Visible = false;
                         lblRegionRequestNone.Visible = true;
+                    }));
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private async Task LoadMatchAsync()
+        {
+            try
+            {
+                var list = await BuildingRequestViewModel.GetAllMatchesItemsAsync(new CancellationToken());
+                if (list != null && list.Count > 0)
+                {
+                    foreach (var item in list)
+                    {
+                        Invoke(new MethodInvoker(() =>
+                        {
+                            var c = new ucBuildingMatch() { Model = item, Width = fPanelMath.Width - 30 };
+                            fPanelMath.Controls.Add(c);
+                        }));
+                    }
+                }
+                else
+                {
+                    Invoke(new MethodInvoker(() =>
+                    {
+                        fPanelMath.Visible = false;
+                        lblMatchNone.Visible = true;
+                    }));
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private async Task LoadBuildingHighPriorityAsync()
+        {
+            try
+            {
+                var list = await BuildingBussines.GetAllAsync(new CancellationToken());
+                list = list?.Where(q => q.Priority == EnBuildingPriority.High)?.ToList();
+                if (list != null && list.Count > 0)
+                {
+                    foreach (var item in list)
+                    {
+                        Invoke(new MethodInvoker(() =>
+                        {
+                            var c = new ucBuildingHighPriority() { Building = item, Width = fPanelPirority.Width - 30 };
+                            fPanelPirority.Controls.Add(c);
+                        }));
+                    }
+                }
+                else
+                {
+                    Invoke(new MethodInvoker(() =>
+                    {
+                        fPanelPirority.Visible = false;
+                        lblBuildingNone.Visible = true;
                     }));
                 }
             }

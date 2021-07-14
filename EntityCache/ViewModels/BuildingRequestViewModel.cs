@@ -21,6 +21,11 @@ namespace EntityCache.ViewModels
         public List<BuildingRequestBussines> RequestList { get; set; }
 
 
+        public static async Task<List<BuildingRequestViewModel>> GetAllMatchesItemsAsync(CancellationToken token)
+        {
+            var list = await BuildingBussines.GetAllAsync(token);
+            return await GetAllMatchesItemsAsync(list, token);
+        }
         public static async Task<List<BuildingRequestViewModel>> GetAllMatchesItemsAsync(List<BuildingBussines> allBuilding, CancellationToken token)
         {
             var list = new List<BuildingRequestViewModel>();

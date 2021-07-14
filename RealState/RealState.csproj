@@ -362,6 +362,18 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserControls\ucBuildingHighPriority.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\ucBuildingHighPriority.Designer.cs">
+      <DependentUpon>ucBuildingHighPriority.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\ucBuildingMatch.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\ucBuildingMatch.Designer.cs">
+      <DependentUpon>ucBuildingMatch.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\ucCustomerBirthday.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -435,6 +447,12 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="UserControls\ucBuildingHighPriority.resx">
+      <DependentUpon>ucBuildingHighPriority.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\ucBuildingMatch.resx">
+      <DependentUpon>ucBuildingMatch.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserControls\ucCustomerBirthday.resx">
       <DependentUpon>ucCustomerBirthday.cs</DependentUpon>
     </EmbeddedResource>
