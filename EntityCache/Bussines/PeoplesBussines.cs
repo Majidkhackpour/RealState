@@ -15,6 +15,7 @@ namespace EntityCache.Bussines
 {
     public class PeoplesBussines : IPeoples
     {
+        public static event Func<Task> OnSaved;
         public Guid Guid { get; set; }
         public DateTime Modified { get; set; } = DateTime.Now;
         public bool Status { get; set; } = true;
@@ -83,7 +84,7 @@ namespace EntityCache.Bussines
                 var action = IsModified ? EnLogAction.Update : EnLogAction.Insert;
                 res.AddReturnedValue(await UserLogBussines.SaveAsync(action, EnLogPart.Peoples, tr));
                 if (res.HasError) return res;
-
+                RaiseEvent();
                 if (Cache.IsSendToServer)
                     _ = Task.Run(() => WebPeople.SaveAsync(this));
             }
@@ -153,14 +154,14 @@ namespace EntityCache.Bussines
             return res;
         }
         public static PeoplesBussines Get(Guid guid) => AsyncContext.Run(() => GetAsync(guid));
-        public static async Task<List<PeoplesBussines>> GetAllAsync(string search, Guid groupGuid,CancellationToken token)
+        public static async Task<List<PeoplesBussines>> GetAllAsync(string search, Guid groupGuid, CancellationToken token)
         {
             try
             {
                 if (string.IsNullOrEmpty(search)) search = "";
                 IEnumerable<PeoplesBussines> res;
                 if (groupGuid == Guid.Empty) res = await GetAllAsync(token);
-                else res = await GetAllAsync(groupGuid, true,token);
+                else res = await GetAllAsync(groupGuid, true, token);
                 if (token.IsCancellationRequested) return null;
                 var searchItems = search.SplitString();
                 if (searchItems?.Count > 0)
@@ -282,6 +283,18 @@ namespace EntityCache.Bussines
             }
 
             return res;
+        }
+        private void RaiseEvent()
+        {
+            try
+            {
+                var handler = OnSaved;
+                if (handler != null) OnSaved?.Invoke();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
         }
     }
 }

@@ -13,7 +13,7 @@ namespace EntityCache.SqlServerPersistence
 {
     public class PeoplesPersistenceRepository : IPeoplesRepository
     {
-        public async Task<List<PeoplesBussines>> GetAllAsync(string _connectionString, Guid parentGuid, bool status,CancellationToken token)
+        public async Task<List<PeoplesBussines>> GetAllAsync(string _connectionString, Guid parentGuid, bool status, CancellationToken token)
         {
             var list = new List<PeoplesBussines>();
             try
@@ -30,7 +30,7 @@ namespace EntityCache.SqlServerPersistence
                     while (dr.Read())
                     {
                         if (token.IsCancellationRequested) return null;
-                        list.Add(LoadData(dr));
+                        list.Add(LoadData(dr, false));
                     }
                     cn.Close();
                 }
@@ -44,7 +44,7 @@ namespace EntityCache.SqlServerPersistence
 
             return list;
         }
-        public async Task<List<PeoplesBussines>> GetAllAsync(string _connectionString,CancellationToken token)
+        public async Task<List<PeoplesBussines>> GetAllAsync(string _connectionString, CancellationToken token)
         {
             var list = new List<PeoplesBussines>();
             try
@@ -58,7 +58,7 @@ namespace EntityCache.SqlServerPersistence
                     while (dr.Read())
                     {
                         if (token.IsCancellationRequested) return null;
-                        list.Add(LoadData(dr));
+                        list.Add(LoadData(dr, false));
                     }
                     cn.Close();
                 }
@@ -84,7 +84,7 @@ namespace EntityCache.SqlServerPersistence
 
                     await cn.OpenAsync();
                     var dr = await cmd.ExecuteReaderAsync();
-                    if (dr.Read()) res = LoadData(dr);
+                    if (dr.Read()) res = LoadData(dr, true);
                     cn.Close();
                 }
             }
@@ -159,7 +159,7 @@ namespace EntityCache.SqlServerPersistence
 
                     await cn.OpenAsync();
                     var dr = await cmd.ExecuteReaderAsync();
-                    while (dr.Read()) list.Add(LoadData(dr));
+                    while (dr.Read()) list.Add(LoadData(dr, false));
                     cn.Close();
                 }
             }
@@ -170,7 +170,7 @@ namespace EntityCache.SqlServerPersistence
 
             return list;
         }
-        private PeoplesBussines LoadData(SqlDataReader dr)
+        private PeoplesBussines LoadData(SqlDataReader dr, bool isLoadDet)
         {
             var item = new PeoplesBussines();
             try
@@ -194,8 +194,11 @@ namespace EntityCache.SqlServerPersistence
                 item.ServerDeliveryDate = (DateTime)dr["ServerDeliveryDate"];
                 item.ServerStatus = (ServerStatus)dr["ServerStatus"];
                 item.IsModified = true;
-                item.BankList = AsyncContext.Run(() => PeoplesBankAccountBussines.GetAllAsync(item.Guid));
-                item.TellList = PhoneBookBussines.GetAll(item.Guid, true);
+                if (isLoadDet)
+                {
+                    item.BankList = AsyncContext.Run(() => PeoplesBankAccountBussines.GetAllAsync(item.Guid));
+                    item.TellList = PhoneBookBussines.GetAll(item.Guid, true);
+                }
             }
             catch (Exception ex)
             {

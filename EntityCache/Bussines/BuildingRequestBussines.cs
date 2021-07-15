@@ -15,6 +15,8 @@ namespace EntityCache.Bussines
 {
     public class BuildingRequestBussines : IBuildingRequest
     {
+        public static event Func<Task> OnSaved;
+
         #region Properties
         public Guid Guid { get; set; }
         public DateTime Modified { get; set; } = DateTime.Now;
@@ -88,7 +90,7 @@ namespace EntityCache.Bussines
                 var action = IsModified ? EnLogAction.Update : EnLogAction.Insert;
                 res.AddReturnedValue(await UserLogBussines.SaveAsync(action, EnLogPart.BuildingRequest, tr));
                 if (res.HasError) return res;
-
+                RaiseEvent();
                 if (Cache.IsSendToServer)
                     _ = Task.Run(() => WebBuildingRequest.SaveAsync(this));
             }
@@ -219,7 +221,18 @@ namespace EntityCache.Bussines
                 return null;
             }
         }
-
+        private void RaiseEvent()
+        {
+            try
+            {
+                var handler = OnSaved;
+                if (handler != null) OnSaved?.Invoke();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
         private ReturnedSaveFuncInfo CheckValidation()
         {
             var res = new ReturnedSaveFuncInfo();

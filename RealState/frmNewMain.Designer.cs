@@ -29,6 +29,7 @@ namespace RealState
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmNewMain));
             this.pnlOk = new DevComponents.DotNetBar.Controls.GroupPanel();
             this.groupPanel8 = new DevComponents.DotNetBar.Controls.GroupPanel();
@@ -147,7 +148,7 @@ namespace RealState
             this.lblBackUp = new System.Windows.Forms.Label();
             this.lblSecond = new System.Windows.Forms.Label();
             this.lblMinute = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
+            this.lblDate = new System.Windows.Forms.Label();
             this.lblHour = new System.Windows.Forms.Label();
             this.groupPanel2 = new DevComponents.DotNetBar.Controls.GroupPanel();
             this.label9 = new System.Windows.Forms.Label();
@@ -186,6 +187,7 @@ namespace RealState
             this.groupPanel61 = new DevComponents.DotNetBar.Controls.GroupPanel();
             this.fPanelPirority = new System.Windows.Forms.FlowLayoutPanel();
             this.label12 = new System.Windows.Forms.Label();
+            this.lblBuildingNone = new System.Windows.Forms.Label();
             this.groupPanel60 = new DevComponents.DotNetBar.Controls.GroupPanel();
             this.fPanelRequestRegion = new System.Windows.Forms.FlowLayoutPanel();
             this.label11 = new System.Windows.Forms.Label();
@@ -206,7 +208,7 @@ namespace RealState
             this.fPanelSarresidEjare = new System.Windows.Forms.FlowLayoutPanel();
             this.label2 = new System.Windows.Forms.Label();
             this.lblSarresidNone = new System.Windows.Forms.Label();
-            this.lblBuildingNone = new System.Windows.Forms.Label();
+            this.timerSecond = new System.Windows.Forms.Timer(this.components);
             this.pnlOk.SuspendLayout();
             this.groupPanel8.SuspendLayout();
             this.groupPanel1.SuspendLayout();
@@ -416,7 +418,7 @@ namespace RealState
             this.groupPanel1.Controls.Add(this.flowLayoutPanel1);
             this.groupPanel1.Controls.Add(this.lblSecond);
             this.groupPanel1.Controls.Add(this.lblMinute);
-            this.groupPanel1.Controls.Add(this.label5);
+            this.groupPanel1.Controls.Add(this.lblDate);
             this.groupPanel1.Controls.Add(this.lblHour);
             this.groupPanel1.Cursor = System.Windows.Forms.Cursors.Default;
             this.groupPanel1.DisabledBackColor = System.Drawing.Color.Empty;
@@ -2900,7 +2902,7 @@ namespace RealState
             this.lblSecond.AutoSize = true;
             this.lblSecond.BackColor = System.Drawing.Color.Transparent;
             this.lblSecond.Font = new System.Drawing.Font("B Yekan", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.lblSecond.Location = new System.Drawing.Point(113, 68);
+            this.lblSecond.Location = new System.Drawing.Point(131, 67);
             this.lblSecond.Name = "lblSecond";
             this.lblSecond.Size = new System.Drawing.Size(18, 29);
             this.lblSecond.TabIndex = 55722;
@@ -2913,24 +2915,24 @@ namespace RealState
             this.lblMinute.AutoSize = true;
             this.lblMinute.BackColor = System.Drawing.Color.Transparent;
             this.lblMinute.Font = new System.Drawing.Font("B Yekan", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.lblMinute.Location = new System.Drawing.Point(127, 68);
+            this.lblMinute.Location = new System.Drawing.Point(145, 67);
             this.lblMinute.Name = "lblMinute";
             this.lblMinute.Size = new System.Drawing.Size(35, 29);
             this.lblMinute.TabIndex = 55723;
             this.lblMinute.Text = "59";
             // 
-            // label5
+            // lblDate
             // 
-            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.lblDate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.label5.BackColor = System.Drawing.Color.Transparent;
-            this.label5.Font = new System.Drawing.Font("B Yekan", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.label5.Location = new System.Drawing.Point(3, 38);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(278, 29);
-            this.label5.TabIndex = 55726;
-            this.label5.Text = "چهارشنبه 25 اردیبهشت 1400";
-            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblDate.BackColor = System.Drawing.Color.Transparent;
+            this.lblDate.Font = new System.Drawing.Font("B Yekan", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.lblDate.Location = new System.Drawing.Point(3, 38);
+            this.lblDate.Name = "lblDate";
+            this.lblDate.Size = new System.Drawing.Size(278, 29);
+            this.lblDate.TabIndex = 55726;
+            this.lblDate.Text = "چهارشنبه 25 اردیبهشت 1400";
+            this.lblDate.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblHour
             // 
@@ -2939,7 +2941,7 @@ namespace RealState
             this.lblHour.AutoSize = true;
             this.lblHour.BackColor = System.Drawing.Color.Transparent;
             this.lblHour.Font = new System.Drawing.Font("B Yekan", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.lblHour.Location = new System.Drawing.Point(86, 68);
+            this.lblHour.Location = new System.Drawing.Point(104, 67);
             this.lblHour.Name = "lblHour";
             this.lblHour.Size = new System.Drawing.Size(35, 29);
             this.lblHour.TabIndex = 55727;
@@ -3763,6 +3765,20 @@ namespace RealState
             this.label12.Text = "املاک با اولویت فوق العاده بالا";
             this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // lblBuildingNone
+            // 
+            this.lblBuildingNone.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.lblBuildingNone.AutoSize = true;
+            this.lblBuildingNone.BackColor = System.Drawing.Color.Transparent;
+            this.lblBuildingNone.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.lblBuildingNone.ForeColor = System.Drawing.Color.Gray;
+            this.lblBuildingNone.Location = new System.Drawing.Point(233, 47);
+            this.lblBuildingNone.Name = "lblBuildingNone";
+            this.lblBuildingNone.Size = new System.Drawing.Size(163, 20);
+            this.lblBuildingNone.TabIndex = 7;
+            this.lblBuildingNone.Text = "داده ای برای نمایش وجود ندارد";
+            this.lblBuildingNone.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // groupPanel60
             // 
             this.groupPanel60.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -4135,19 +4151,11 @@ namespace RealState
             this.lblSarresidNone.Text = "داده ای برای نمایش وجود ندارد";
             this.lblSarresidNone.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // lblBuildingNone
+            // timerSecond
             // 
-            this.lblBuildingNone.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.lblBuildingNone.AutoSize = true;
-            this.lblBuildingNone.BackColor = System.Drawing.Color.Transparent;
-            this.lblBuildingNone.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.lblBuildingNone.ForeColor = System.Drawing.Color.Gray;
-            this.lblBuildingNone.Location = new System.Drawing.Point(233, 47);
-            this.lblBuildingNone.Name = "lblBuildingNone";
-            this.lblBuildingNone.Size = new System.Drawing.Size(163, 20);
-            this.lblBuildingNone.TabIndex = 7;
-            this.lblBuildingNone.Text = "داده ای برای نمایش وجود ندارد";
-            this.lblBuildingNone.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.timerSecond.Enabled = true;
+            this.timerSecond.Interval = 1000;
+            this.timerSecond.Tick += new System.EventHandler(this.timerSecond_Tick);
             // 
             // frmNewMain
             // 
@@ -4170,6 +4178,7 @@ namespace RealState
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmNewMain_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmNewMain_KeyDown);
             this.pnlOk.ResumeLayout(false);
             this.pnlOk.PerformLayout();
             this.groupPanel8.ResumeLayout(false);
@@ -4278,7 +4287,7 @@ namespace RealState
         private DevComponents.DotNetBar.Controls.GroupPanel groupPanel2;
         private System.Windows.Forms.Label lblSecond;
         private System.Windows.Forms.Label lblMinute;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label lblDate;
         private System.Windows.Forms.Label lblHour;
         private System.Windows.Forms.Label lblTitle;
         private DevComponents.DotNetBar.Controls.GroupPanel groupPanel8;
@@ -4450,5 +4459,6 @@ namespace RealState
         private System.Windows.Forms.Label lblRegionBuildingNone;
         private System.Windows.Forms.Label lblMatchNone;
         private System.Windows.Forms.Label lblBuildingNone;
+        private System.Windows.Forms.Timer timerSecond;
     }
 }

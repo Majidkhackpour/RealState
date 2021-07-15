@@ -292,6 +292,7 @@ namespace Accounting.Report
                 _date2 = d2;
 
                 rbtn2.Checked = true;
+                ucHeader.Text = "تراز حساب ها";
             }
             catch (Exception ex)
             {

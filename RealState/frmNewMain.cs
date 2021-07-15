@@ -48,6 +48,7 @@ using RealState.UserControls;
 using Services;
 using Settings;
 using Settings.Classes;
+using TMS.Class;
 using User;
 using User.Advisor;
 
@@ -77,7 +78,7 @@ namespace RealState
             {
                 switch (_form)
                 {
-                    case EnForms.Peoples: frm = new frmShowPeoples(true); break;
+                    case EnForms.Peoples: frm = new frmShowPeoples(false); break;
                     case EnForms.Cities: frm = new frmShowCities(); break;
                     case EnForms.Regions: frm = new frmShowRegions(); break;
                     case EnForms.BuildingOptions: frm = new frmShowBuildingOption(); break;
@@ -89,14 +90,14 @@ namespace RealState
                     case EnForms.BuildingView: frm = new frmShowBuildingView(); break;
                     case EnForms.BuildingCondition: frm = new frmShowBuildingCondition(); break;
                     case EnForms.BuildingType: frm = new frmShowBuildingType(); break;
-                    case EnForms.Building: frm = new frmShowBuildings(true, false); break;
+                    case EnForms.Building: frm = new frmShowBuildings(false, false); break;
                     case EnForms.BuildingFast: frm = new frmBuildingMainFast(); break;
                     case EnForms.AdvancedSearch: frm = new frmFilterForm(); break;
                     case EnForms.BuildingArchive: frm = new frmShowBuildings(true, true); break;
                     case EnForms.BuildingMatch: frm = new frmStartBuildingMatches(); break;
                     case EnForms.Contract: frm = new frmShowContract(); break;
                     case EnForms.Request: frm = new frmShowRequest(); break;
-                    case EnForms.Users: frm = new frmShowUsers(true); break;
+                    case EnForms.Users: frm = new frmShowUsers(false); break;
                     case EnForms.UserAccess: frm = new frmAccessLevel(); break;
                     case EnForms.Advisor: frm = new frmShowAdvisor(); break;
                     case EnForms.Hazine: frm = new frmShowHazine(); break;
@@ -149,12 +150,15 @@ namespace RealState
         {
             try
             {
-                fPanelCustomerBirthDay.Controls.Clear();
-                fPanelSarresidEjare.Controls.Clear();
-                fPanelBuildingRegion.Controls.Clear();
-                fPanelRequestRegion.Controls.Clear();
-                fPanelMath.Controls.Clear();
-                fPanelPirority.Controls.Clear();
+                Invoke(new MethodInvoker(() =>
+                {
+                    fPanelCustomerBirthDay.Controls?.Clear();
+                    fPanelSarresidEjare.Controls?.Clear();
+                    fPanelBuildingRegion.Controls?.Clear();
+                    fPanelRequestRegion.Controls?.Clear();
+                    fPanelMath.Controls?.Clear();
+                    fPanelPirority.Controls?.Clear();
+                }));
             }
             catch (Exception ex)
             {
@@ -165,6 +169,7 @@ namespace RealState
         {
             try
             {
+                ClearFlowPanels();
                 _ = Task.Run(LoadCustomerBirthdayAsync);
                 _ = Task.Run(LoadSarresidAsync);
                 _ = Task.Run(LoadSchemaAsync);
@@ -368,7 +373,7 @@ namespace RealState
             try
             {
                 var list = await BuildingBussines.GetAllAsync(new CancellationToken());
-                list = list?.Where(q => q.Priority == EnBuildingPriority.High)?.ToList();
+                list = list?.Where(q => q.Priority == EnBuildingPriority.SoHigh)?.ToList();
                 if (list != null && list.Count > 0)
                 {
                     foreach (var item in list)
@@ -394,15 +399,42 @@ namespace RealState
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-
+        private void SetClock()
+        {
+            try
+            {
+                lblHour.Text = DateTime.Now.Hour.ToString();
+                if (lblHour.Text.Length == 1) lblHour.Text = "0" + DateTime.Now.Hour;
+                lblMinute.Text = DateTime.Now.Minute.ToString();
+                if (lblMinute.Text.Length == 1) lblMinute.Text = "0" + DateTime.Now.Minute;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        
         public frmNewMain()
         {
-            InitializeComponent();
-            grpBuilding.Height = grpAccounting.Height = grpBaseInfo.Height = 48;
-            grpUsers.Height = grpOptions.Height = 48;
-            FillDictionary();
+            try
+            {
+                InitializeComponent();
+                grpBuilding.Height = grpAccounting.Height = grpBaseInfo.Height = 48;
+                grpUsers.Height = grpOptions.Height = 48;
+                FillDictionary();
+                PeoplesBussines.OnSaved += PeoplesBussines_OnSaved;
+                BuildingBussines.OnSaved += BuildingBussines_OnSaved;
+                BuildingRequestBussines.OnSaved += BuildingRequestBussines_OnSaved;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
         }
 
+        private Task BuildingRequestBussines_OnSaved() => _ = Task.Run(LoadDashboard);
+        private Task BuildingBussines_OnSaved() => _ = Task.Run(LoadDashboard);
+        private Task PeoplesBussines_OnSaved() => _ = Task.Run(LoadDashboard);
         private void lblBaseInfo_Click(object sender, System.EventArgs e) => grpBaseInfo.Height = grpBaseInfo.Height == 48 ? 481 : 48;
         private void lblBuildingMenu_Click(object sender, EventArgs e) => grpBuilding.Height = grpBuilding.Height == 48 ? 304 : 48;
         private void lblUsers_Click(object sender, EventArgs e) => grpUsers.Height = grpUsers.Height == 48 ? 156 : 48;
@@ -417,10 +449,9 @@ namespace RealState
                 foreach (var item in list.ToList())
                     myCollection.Add(item);
                 txtSearch.AutoCompleteCustomSource = myCollection;
-
-                ClearFlowPanels();
+                lblDate.Text = Calendar.GetFullCalendar();
+                SetClock();
                 LoadDashboard();
-
                 SetButtomLables();
             }
             catch (Exception ex)
@@ -487,5 +518,32 @@ namespace RealState
         private void lblUserManage_Click(object sender, EventArgs e) => SelectForm(EnForms.Users)?.ShowDialog();
         private void lblAdvisor_Click(object sender, EventArgs e) => SelectForm(EnForms.Advisor)?.ShowDialog();
         private void lblUserAccess_Click(object sender, EventArgs e) => SelectForm(EnForms.UserAccess)?.ShowDialog();
+        private void frmNewMain_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Escape && !string.IsNullOrEmpty(txtSearch.Text))
+                    txtSearch.Text = "";
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private void timerSecond_Tick(object sender, EventArgs e)
+        {
+            try
+            {
+                SetClock();
+                if (lblSecond.Visible)
+                    lblSecond.Visible = false;
+                else if (!lblSecond.Visible)
+                    lblSecond.Visible = true;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
     }
 }

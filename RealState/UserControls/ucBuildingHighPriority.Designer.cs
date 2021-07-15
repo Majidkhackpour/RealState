@@ -32,10 +32,10 @@ namespace RealState.UserControls
             this.groupPanel67 = new DevComponents.DotNetBar.Controls.GroupPanel();
             this.lblOwner = new System.Windows.Forms.Label();
             this.lblRegion = new System.Windows.Forms.Label();
+            this.lblType = new System.Windows.Forms.Label();
+            this.lblMasahat = new System.Windows.Forms.Label();
             this.lblCreateDate = new System.Windows.Forms.Label();
             this.lblCode = new System.Windows.Forms.Label();
-            this.lblMasahat = new System.Windows.Forms.Label();
-            this.lblType = new System.Windows.Forms.Label();
             this.groupPanel67.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -95,19 +95,43 @@ namespace RealState.UserControls
             this.lblRegion.BackColor = System.Drawing.Color.Transparent;
             this.lblRegion.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.lblRegion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.lblRegion.Location = new System.Drawing.Point(0, 0);
+            this.lblRegion.Location = new System.Drawing.Point(3, 0);
             this.lblRegion.Name = "lblRegion";
-            this.lblRegion.Size = new System.Drawing.Size(156, 35);
+            this.lblRegion.Size = new System.Drawing.Size(192, 35);
             this.lblRegion.TabIndex = 0;
             this.lblRegion.Text = "محدوده: قاسم آباد";
             this.lblRegion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lblType
+            // 
+            this.lblType.BackColor = System.Drawing.Color.Transparent;
+            this.lblType.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.lblType.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.lblType.Location = new System.Drawing.Point(338, 0);
+            this.lblType.Name = "lblType";
+            this.lblType.Size = new System.Drawing.Size(125, 35);
+            this.lblType.TabIndex = 0;
+            this.lblType.Text = "نوع: خانه و ویلا";
+            this.lblType.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lblMasahat
+            // 
+            this.lblMasahat.BackColor = System.Drawing.Color.Transparent;
+            this.lblMasahat.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.lblMasahat.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.lblMasahat.Location = new System.Drawing.Point(469, 0);
+            this.lblMasahat.Name = "lblMasahat";
+            this.lblMasahat.Size = new System.Drawing.Size(96, 35);
+            this.lblMasahat.TabIndex = 0;
+            this.lblMasahat.Text = "مساحت: 25000";
+            this.lblMasahat.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblCreateDate
             // 
             this.lblCreateDate.BackColor = System.Drawing.Color.Transparent;
             this.lblCreateDate.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.lblCreateDate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.lblCreateDate.Location = new System.Drawing.Point(147, 0);
+            this.lblCreateDate.Location = new System.Drawing.Point(186, 0);
             this.lblCreateDate.Name = "lblCreateDate";
             this.lblCreateDate.Size = new System.Drawing.Size(156, 35);
             this.lblCreateDate.TabIndex = 0;
@@ -128,30 +152,6 @@ namespace RealState.UserControls
             this.lblCode.Text = "کد: 12500";
             this.lblCode.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.lblCode.Click += new System.EventHandler(this.lblCode_Click);
-            // 
-            // lblMasahat
-            // 
-            this.lblMasahat.BackColor = System.Drawing.Color.Transparent;
-            this.lblMasahat.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.lblMasahat.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.lblMasahat.Location = new System.Drawing.Point(469, 0);
-            this.lblMasahat.Name = "lblMasahat";
-            this.lblMasahat.Size = new System.Drawing.Size(96, 35);
-            this.lblMasahat.TabIndex = 0;
-            this.lblMasahat.Text = "مساحت: 25000";
-            this.lblMasahat.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // lblType
-            // 
-            this.lblType.BackColor = System.Drawing.Color.Transparent;
-            this.lblType.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.lblType.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.lblType.Location = new System.Drawing.Point(309, 0);
-            this.lblType.Name = "lblType";
-            this.lblType.Size = new System.Drawing.Size(154, 35);
-            this.lblType.TabIndex = 0;
-            this.lblType.Text = "نوع: خانه و ویلا";
-            this.lblType.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // ucBuildingHighPriority
             // 
