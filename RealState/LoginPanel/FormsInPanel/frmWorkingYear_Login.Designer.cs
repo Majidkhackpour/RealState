@@ -73,7 +73,7 @@ namespace RealState.LoginPanel.FormsInPanel
             this.cmbWorkingYear.Location = new System.Drawing.Point(39, 12);
             this.cmbWorkingYear.Name = "cmbWorkingYear";
             this.cmbWorkingYear.Size = new System.Drawing.Size(306, 28);
-            this.cmbWorkingYear.TabIndex = 3;
+            this.cmbWorkingYear.TabIndex = 0;
             this.cmbWorkingYear.ValueMember = "Guid";
             this.cmbWorkingYear.SelectedIndexChanged += new System.EventHandler(this.cmbWorkingYear_SelectedIndexChanged);
             // 
@@ -94,7 +94,7 @@ namespace RealState.LoginPanel.FormsInPanel
             this.cmbUserName.Location = new System.Drawing.Point(39, 61);
             this.cmbUserName.Name = "cmbUserName";
             this.cmbUserName.Size = new System.Drawing.Size(306, 28);
-            this.cmbUserName.TabIndex = 3;
+            this.cmbUserName.TabIndex = 1;
             this.cmbUserName.ValueMember = "Guid";
             // 
             // userBindingSource
@@ -116,7 +116,7 @@ namespace RealState.LoginPanel.FormsInPanel
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PreventEnterBeep = true;
             this.txtPassword.Size = new System.Drawing.Size(306, 27);
-            this.txtPassword.TabIndex = 55709;
+            this.txtPassword.TabIndex = 2;
             this.txtPassword.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtPassword.UseSystemPasswordChar = true;
             this.txtPassword.WatermarkText = "لطفا رمزعبور خود را وارد نمایید";

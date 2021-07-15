@@ -1059,7 +1059,12 @@
   <ItemGroup>
     <None Include="Resources\keyring_dll_16_13.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\help-button.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\settings__.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

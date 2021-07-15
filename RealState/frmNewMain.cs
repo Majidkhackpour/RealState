@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using System.Data.SqlClient;
+using System.Drawing;
 using System.Linq;
 using System.Reflection;
 using System.Threading;
@@ -35,6 +36,7 @@ using Cities.City;
 using Cities.Region;
 using EntityCache.Bussines;
 using EntityCache.ViewModels;
+using Ertegha;
 using MetroFramework.Forms;
 using Payamak;
 using Payamak.Panel;
@@ -57,6 +59,7 @@ namespace RealState
     public partial class frmNewMain : MetroForm
     {
         private ConcurrentDictionary<string, EnForms> _dic = new ConcurrentDictionary<string, EnForms>();
+        private Color foreColor = Color.FromArgb(228, 237, 255);
 
         private void FillDictionary()
         {
@@ -413,12 +416,13 @@ namespace RealState
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        
+
         public frmNewMain()
         {
             try
             {
                 InitializeComponent();
+                pnlInfo.Visible = false;
                 grpBuilding.Height = grpAccounting.Height = grpBaseInfo.Height = 48;
                 grpUsers.Height = grpOptions.Height = 48;
                 FillDictionary();
@@ -450,6 +454,7 @@ namespace RealState
                     myCollection.Add(item);
                 txtSearch.AutoCompleteCustomSource = myCollection;
                 lblDate.Text = Calendar.GetFullCalendar();
+                lblSerial.Text = $@"شناسه فنی: {clsGlobalSetting.HardDriveSerial}";
                 SetClock();
                 LoadDashboard();
                 SetButtomLables();
@@ -512,7 +517,26 @@ namespace RealState
         private void lblAdvertise_Click(object sender, EventArgs e) => SelectForm(EnForms.Advertise)?.ShowDialog();
         private void lblBackUp_Click(object sender, EventArgs e) => SelectForm(EnForms.BackUp)?.ShowDialog();
         private void lblRestore_Click(object sender, EventArgs e) => SelectForm(EnForms.Restore)?.ShowDialog();
-        private void lblBazsazi_Click(object sender, EventArgs e) { }
+        private async void lblBazsazi_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var res = await clsErtegha.StartErteghaAsync(AppSettings.DefaultConnectionString, this, true);
+                if (!res.HasError)
+                {
+                    MessageBox.Show(this, "بازسازی اطلاعات با موفقیت انجام شد", "پیغام سیستم", MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+                    return;
+                }
+
+                MessageBox.Show(this, "خطا در بازسازی اطلاعات", "پیغام سیستم", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
         private void lblAdvance_Click(object sender, EventArgs e) => SelectForm(EnForms.Advance)?.ShowDialog();
         private void lblTaqvim_Click(object sender, EventArgs e) => SelectForm(EnForms.Taqvim)?.ShowDialog();
         private void lblUserManage_Click(object sender, EventArgs e) => SelectForm(EnForms.Users)?.ShowDialog();
@@ -524,6 +548,7 @@ namespace RealState
             {
                 if (e.KeyCode == Keys.Escape && !string.IsNullOrEmpty(txtSearch.Text))
                     txtSearch.Text = "";
+                if (pnlInfo.Visible) pnlInfo.Visible = false;
             }
             catch (Exception ex)
             {
@@ -545,5 +570,24 @@ namespace RealState
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
+        private void picSetting_Click(object sender, EventArgs e) => SelectForm(EnForms.Setting)?.ShowDialog();
+        private void picInfo_Click(object sender, EventArgs e) => pnlInfo.Visible = !pnlInfo.Visible;
+        private void lblTodayNote_MouseEnter(object sender, EventArgs e) => lblTodayNote.ForeColor = Color.Red;
+        private void lblTodayNote_MouseLeave(object sender, EventArgs e) => lblTodayNote.ForeColor = foreColor;
+        private void lblExit_MouseEnter(object sender, EventArgs e) => lblExit.ForeColor = Color.Red;
+        private void lblExit_MouseLeave(object sender, EventArgs e) => lblExit.ForeColor = foreColor;
+        private async void lblExit_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                await UserLogBussines.SaveAsync(EnLogAction.Logout, EnLogPart.Logout, null);
+                Application.Exit();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private void lblTodayNote_Click(object sender, EventArgs e) => SelectForm(EnForms.Note)?.ShowDialog();
     }
 }

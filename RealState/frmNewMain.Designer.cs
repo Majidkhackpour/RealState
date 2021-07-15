@@ -32,6 +32,8 @@ namespace RealState
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmNewMain));
             this.pnlOk = new DevComponents.DotNetBar.Controls.GroupPanel();
+            this.picInfo = new System.Windows.Forms.PictureBox();
+            this.picSetting = new System.Windows.Forms.PictureBox();
             this.groupPanel8 = new DevComponents.DotNetBar.Controls.GroupPanel();
             this.txtSearch = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.lblUserName = new System.Windows.Forms.Label();
@@ -184,6 +186,10 @@ namespace RealState
             this.label13 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.pnlInfo = new DevComponents.DotNetBar.Controls.GroupPanel();
+            this.lblExit = new System.Windows.Forms.Label();
+            this.lblSerial = new System.Windows.Forms.Label();
+            this.lblTodayNote = new System.Windows.Forms.Label();
             this.groupPanel61 = new DevComponents.DotNetBar.Controls.GroupPanel();
             this.fPanelPirority = new System.Windows.Forms.FlowLayoutPanel();
             this.label12 = new System.Windows.Forms.Label();
@@ -210,6 +216,8 @@ namespace RealState
             this.lblSarresidNone = new System.Windows.Forms.Label();
             this.timerSecond = new System.Windows.Forms.Timer(this.components);
             this.pnlOk.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picInfo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picSetting)).BeginInit();
             this.groupPanel8.SuspendLayout();
             this.groupPanel1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
@@ -284,6 +292,7 @@ namespace RealState
             this.groupPanel62.SuspendLayout();
             this.groupPanel68.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.pnlInfo.SuspendLayout();
             this.groupPanel61.SuspendLayout();
             this.groupPanel60.SuspendLayout();
             this.groupPanel59.SuspendLayout();
@@ -297,6 +306,8 @@ namespace RealState
             this.pnlOk.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlOk.CanvasColor = System.Drawing.Color.Transparent;
+            this.pnlOk.Controls.Add(this.picInfo);
+            this.pnlOk.Controls.Add(this.picSetting);
             this.pnlOk.Controls.Add(this.groupPanel8);
             this.pnlOk.Controls.Add(this.lblUserName);
             this.pnlOk.Controls.Add(this.label6);
@@ -323,6 +334,32 @@ namespace RealState
             // 
             this.pnlOk.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.pnlOk.TabIndex = 55714;
+            // 
+            // picInfo
+            // 
+            this.picInfo.BackColor = System.Drawing.Color.Transparent;
+            this.picInfo.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.picInfo.Image = global::RealState.Properties.Resources.help_button;
+            this.picInfo.Location = new System.Drawing.Point(25, 7);
+            this.picInfo.Name = "picInfo";
+            this.picInfo.Size = new System.Drawing.Size(22, 23);
+            this.picInfo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picInfo.TabIndex = 55730;
+            this.picInfo.TabStop = false;
+            this.picInfo.Click += new System.EventHandler(this.picInfo_Click);
+            // 
+            // picSetting
+            // 
+            this.picSetting.BackColor = System.Drawing.Color.Transparent;
+            this.picSetting.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.picSetting.Image = global::RealState.Properties.Resources.settings__;
+            this.picSetting.Location = new System.Drawing.Point(0, 7);
+            this.picSetting.Name = "picSetting";
+            this.picSetting.Size = new System.Drawing.Size(22, 23);
+            this.picSetting.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picSetting.TabIndex = 55729;
+            this.picSetting.TabStop = false;
+            this.picSetting.Click += new System.EventHandler(this.picSetting_Click);
             // 
             // groupPanel8
             // 
@@ -3691,6 +3728,7 @@ namespace RealState
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.AutoScroll = true;
             this.panel1.BackColor = System.Drawing.Color.Transparent;
+            this.panel1.Controls.Add(this.pnlInfo);
             this.panel1.Controls.Add(this.groupPanel61);
             this.panel1.Controls.Add(this.groupPanel60);
             this.panel1.Controls.Add(this.groupPanel59);
@@ -3702,6 +3740,86 @@ namespace RealState
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(628, 531);
             this.panel1.TabIndex = 55720;
+            // 
+            // pnlInfo
+            // 
+            this.pnlInfo.CanvasColor = System.Drawing.Color.Transparent;
+            this.pnlInfo.Controls.Add(this.lblExit);
+            this.pnlInfo.Controls.Add(this.lblSerial);
+            this.pnlInfo.Controls.Add(this.lblTodayNote);
+            this.pnlInfo.Cursor = System.Windows.Forms.Cursors.Default;
+            this.pnlInfo.DisabledBackColor = System.Drawing.Color.Empty;
+            this.pnlInfo.Location = new System.Drawing.Point(1, 1);
+            this.pnlInfo.Name = "pnlInfo";
+            this.pnlInfo.Size = new System.Drawing.Size(278, 94);
+            // 
+            // 
+            // 
+            this.pnlInfo.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(81)))), ((int)(((byte)(219)))));
+            this.pnlInfo.Style.BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(81)))), ((int)(((byte)(219)))));
+            this.pnlInfo.Style.BorderBottom = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.pnlInfo.Style.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(81)))), ((int)(((byte)(219)))));
+            this.pnlInfo.Style.BorderColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(81)))), ((int)(((byte)(219)))));
+            this.pnlInfo.Style.BorderLeft = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.pnlInfo.Style.BorderRight = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.pnlInfo.Style.BorderTop = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.pnlInfo.Style.CornerDiameter = 15;
+            this.pnlInfo.Style.CornerType = DevComponents.DotNetBar.eCornerType.Rounded;
+            // 
+            // 
+            // 
+            this.pnlInfo.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.pnlInfo.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.pnlInfo.TabIndex = 55720;
+            // 
+            // lblExit
+            // 
+            this.lblExit.AutoSize = true;
+            this.lblExit.BackColor = System.Drawing.Color.Transparent;
+            this.lblExit.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lblExit.Font = new System.Drawing.Font("B Yekan", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.lblExit.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(237)))), ((int)(((byte)(255)))));
+            this.lblExit.Location = new System.Drawing.Point(111, 57);
+            this.lblExit.Name = "lblExit";
+            this.lblExit.Size = new System.Drawing.Size(49, 29);
+            this.lblExit.TabIndex = 55729;
+            this.lblExit.Text = "خروج";
+            this.lblExit.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblExit.Click += new System.EventHandler(this.lblExit_Click);
+            this.lblExit.MouseEnter += new System.EventHandler(this.lblExit_MouseEnter);
+            this.lblExit.MouseLeave += new System.EventHandler(this.lblExit_MouseLeave);
+            // 
+            // lblSerial
+            // 
+            this.lblSerial.BackColor = System.Drawing.Color.Transparent;
+            this.lblSerial.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.lblSerial.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(237)))), ((int)(((byte)(255)))));
+            this.lblSerial.Location = new System.Drawing.Point(-4, 30);
+            this.lblSerial.Name = "lblSerial";
+            this.lblSerial.Size = new System.Drawing.Size(269, 20);
+            this.lblSerial.TabIndex = 55729;
+            this.lblSerial.Text = "سذیال نرم افزار: 2222222222222222222222";
+            this.lblSerial.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lblTodayNote
+            // 
+            this.lblTodayNote.AutoSize = true;
+            this.lblTodayNote.BackColor = System.Drawing.Color.Transparent;
+            this.lblTodayNote.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lblTodayNote.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.lblTodayNote.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(237)))), ((int)(((byte)(255)))));
+            this.lblTodayNote.Location = new System.Drawing.Point(166, 7);
+            this.lblTodayNote.Name = "lblTodayNote";
+            this.lblTodayNote.Size = new System.Drawing.Size(103, 20);
+            this.lblTodayNote.TabIndex = 55729;
+            this.lblTodayNote.Text = "یادداشت های امروز";
+            this.lblTodayNote.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblTodayNote.Click += new System.EventHandler(this.lblTodayNote_Click);
+            this.lblTodayNote.MouseEnter += new System.EventHandler(this.lblTodayNote_MouseEnter);
+            this.lblTodayNote.MouseLeave += new System.EventHandler(this.lblTodayNote_MouseLeave);
             // 
             // groupPanel61
             // 
@@ -4181,6 +4299,8 @@ namespace RealState
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmNewMain_KeyDown);
             this.pnlOk.ResumeLayout(false);
             this.pnlOk.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picInfo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picSetting)).EndInit();
             this.groupPanel8.ResumeLayout(false);
             this.groupPanel1.ResumeLayout(false);
             this.groupPanel1.PerformLayout();
@@ -4264,6 +4384,8 @@ namespace RealState
             this.groupPanel62.PerformLayout();
             this.groupPanel68.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
+            this.pnlInfo.ResumeLayout(false);
+            this.pnlInfo.PerformLayout();
             this.groupPanel61.ResumeLayout(false);
             this.groupPanel61.PerformLayout();
             this.groupPanel60.ResumeLayout(false);
@@ -4460,5 +4582,11 @@ namespace RealState
         private System.Windows.Forms.Label lblMatchNone;
         private System.Windows.Forms.Label lblBuildingNone;
         private System.Windows.Forms.Timer timerSecond;
+        private System.Windows.Forms.PictureBox picSetting;
+        private System.Windows.Forms.PictureBox picInfo;
+        private DevComponents.DotNetBar.Controls.GroupPanel pnlInfo;
+        private System.Windows.Forms.Label lblExit;
+        private System.Windows.Forms.Label lblSerial;
+        private System.Windows.Forms.Label lblTodayNote;
     }
 }
