@@ -154,6 +154,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\DivarAdv.cs" />
+    <Compile Include="Classes\DivarAPI.cs" />
     <Compile Include="Classes\ImageManager.cs" />
     <Compile Include="Classes\SheypoorAdv.cs" />
     <Compile Include="Classes\TelegramSender.cs" />
@@ -342,7 +343,9 @@
   <ItemGroup>
     <None Include="Resources\122.jpg" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\Text.txt" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

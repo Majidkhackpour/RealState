@@ -241,6 +241,15 @@ namespace Advertise.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &quot;{\&quot;browse\&quot;:{\&quot;items\&quot;:[{\&quot;type\&quot;:\&quot;POST\&quot;,\&quot;data\&quot;:{\&quot;title\&quot;:\&quot;ساعت مچی زنانه\&quot;,\&quot;token\&quot;:\&quot;AYfb_Wvi\&quot;,\&quot;image_top_left_tag\&quot;:null,\&quot;index\&quot;:0,\&quot;postapi-version\&quot;:1,\&quot;city\&quot;:\&quot;مشهد\&quot;,\&quot;district\&quot;:\&quot;قاسم‌آباد (شهرک غرب)\&quot;,\&quot;category\&quot;:\&quot;ساعت\&quot;,\&quot;topDescription\&quot;:\&quot;۲۵,۰۰۰ تومان\&quot;,\&quot;bottomDescription\&quot;:\&quot;لحظاتی پیش در قاسم‌آباد (شهرک غرب)\&quot;,\&quot;redText\&quot;:\&quot;\&quot;,\&quot;hasChat\&quot;:true,\&quot;images\&quot;:[],\&quot;url\&quot;:\&quot;\u002Fv\u002F%D8%B3%D8%A7%D8%B9%D8%AA-%D9%85%DA%86%DB%8C-%D8%B2%D9%86%D8%A7%D9%86%D9%87_%D8%B3%D8%A7%D8%B9%D8%A [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string Text {
+            get {
+                return ResourceManager.GetString("Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap toolbarButton_print {

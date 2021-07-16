@@ -72,35 +72,40 @@ namespace Advertise.Forms
                         "هشدار", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No) return;
 
 
-                var divar = DivarAdv.GetInstance();
-                var cityList = divar.GetAllCityFromDivar();
-
+                var cityList = DivarAPI.GetAllDivarCities();
                 var serializedData = new SerializedDataBussines()
                 {
                     Guid = Guid.NewGuid(),
                     Name = "DivarCities",
                     Data = Json.ToStringJson(cityList)
                 };
-
                 await SerializedDataBussines.SaveAsync("DivarCities", serializedData.Data);
 
 
-                var cities = await SerializedDataBussines.GetDivarCityAsync();
+                //var cities = await SerializedDataBussines.GetDivarCityAsync();
 
-                var dc = cities.Where(q =>
-                    q.Name.Contains("مشهد") || q.Name.Contains("اصفهان") || q.Name.Contains("تهران") ||
-                    q.Name.Contains("کرج") || q.Name.Contains("اهواز") || q.Name.Contains("شیراز") ||
-                    q.Name.Contains("قم")).ToList();
-                var regList = await divar.GetAllRegionFromDivar(dc);
-                Utility.CloseAllChromeWindows();
-                var serializedData_ = new SerializedDataBussines()
-                {
-                    Guid = Guid.NewGuid(),
-                    Name = "DivarRegions",
-                    Data = Json.ToStringJson(regList)
-                };
+                //var dc = cities.Where(q =>
+                //    q.Name.Contains("مشهد") || q.Name.Contains("اصفهان") || q.Name.Contains("تهران") ||
+                //    q.Name.Contains("کرج") || q.Name.Contains("اهواز") || q.Name.Contains("شیراز") ||
+                //    q.Name.Contains("قم")).ToList();
+                //var regList = await divar.GetAllRegionFromDivar(dc);
+                //Utility.CloseAllChromeWindows();
+                //var serializedData_ = new SerializedDataBussines()
+                //{
+                //    Guid = Guid.NewGuid(),
+                //    Name = "DivarRegions",
+                //    Data = Json.ToStringJson(regList)
+                //};
 
-                await SerializedDataBussines.SaveAsync("DivarRegions", serializedData_.Data);
+                //await SerializedDataBussines.SaveAsync("DivarRegions", serializedData_.Data);
+
+
+
+
+
+
+
+
 
 
                 //var sheypoor = SheypoorAdv.GetInstance();

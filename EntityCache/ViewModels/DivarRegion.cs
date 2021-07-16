@@ -10,5 +10,6 @@ namespace EntityCache.ViewModels
         public bool Status { get; set; } = true;
         public string Name { get; set; }
         public Guid CityGuid { get; set; }
+        public int DivarId { get; set; }
     }
 }
