@@ -2,6 +2,7 @@
 using System.Data.SqlClient;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using EntityCache.Bussines;
 using Services;
 
 namespace Ertegha
@@ -18,6 +19,8 @@ namespace Ertegha
                 res.AddReturnedValue(await DataBaseUtilities.RunScript.RunAsync(isShowUi, owner, Properties.Resources.Ertegha, cn));
                 if (res.HasError) return res;
                 res.AddReturnedValue(await clsFixBuilding.FixBuildingImage());
+                if (res.HasError) return res;
+                res.AddReturnedValue(await BuildingBussines.SetArchiveAsync());
             }
             catch (Exception ex)
             {

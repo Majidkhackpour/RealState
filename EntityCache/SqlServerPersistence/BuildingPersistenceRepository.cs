@@ -250,6 +250,28 @@ namespace EntityCache.SqlServerPersistence
 
             return list;
         }
+        public async Task<ReturnedSaveFuncInfo> SetArchiveAsync(string _connectionString, DateTime date)
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                using (var cn = new SqlConnection(_connectionString))
+                {
+                    var cmd = new SqlCommand("sp_Building_SetArchive", cn) { CommandType = CommandType.StoredProcedure };
+                    cmd.Parameters.AddWithValue("@date", date);
+                    await cn.OpenAsync();
+                    await cmd.ExecuteNonQueryAsync();
+                    cn.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+
+            return res;
+        }
         private BuildingBussines LoadData(SqlDataReader dr)
         {
             var res = new BuildingBussines();

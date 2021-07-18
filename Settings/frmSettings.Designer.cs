@@ -159,6 +159,9 @@
             this.label17 = new System.Windows.Forms.Label();
             this.superTabItem6 = new DevComponents.DotNetBar.SuperTabItem();
             this.btnFinish = new DevComponents.DotNetBar.ButtonX();
+            this.label30 = new System.Windows.Forms.Label();
+            this.txtSetArchive = new System.Windows.Forms.NumericUpDown();
+            this.label31 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.superTabControl1)).BeginInit();
             this.superTabControl1.SuspendLayout();
             this.superTabControlPanel2.SuspendLayout();
@@ -180,6 +183,7 @@
             this.pnlSandouq.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtSTabdil)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSArzesh)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtSetArchive)).BeginInit();
             this.SuspendLayout();
             // 
             // btnCancel
@@ -218,12 +222,12 @@
             this.superTabControl1.ControlBox.MenuBox,
             this.superTabControl1.ControlBox.CloseBox});
             this.superTabControl1.Controls.Add(this.superTabControlPanel2);
-            this.superTabControl1.Controls.Add(this.superTabControlPanel6);
+            this.superTabControl1.Controls.Add(this.superTabControlPanel7);
             this.superTabControl1.Controls.Add(this.superTabControlPanel3);
+            this.superTabControl1.Controls.Add(this.superTabControlPanel6);
             this.superTabControl1.Controls.Add(this.superTabControlPanel1);
             this.superTabControl1.Controls.Add(this.superTabControlPanel11);
             this.superTabControl1.Controls.Add(this.superTabControlPanel8);
-            this.superTabControl1.Controls.Add(this.superTabControlPanel7);
             this.superTabControl1.Location = new System.Drawing.Point(6, 14);
             this.superTabControl1.Name = "superTabControl1";
             this.superTabControl1.ReorderTabsEnabled = true;
@@ -257,14 +261,17 @@
             // 
             this.panelEx1.CanvasColor = System.Drawing.SystemColors.Control;
             this.panelEx1.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.panelEx1.Controls.Add(this.txtSetArchive);
             this.panelEx1.Controls.Add(this.txtBirthDayText);
+            this.panelEx1.Controls.Add(this.label31);
+            this.panelEx1.Controls.Add(this.label30);
             this.panelEx1.Controls.Add(this.label29);
             this.panelEx1.Controls.Add(this.chbPrintPreView);
             this.panelEx1.Controls.Add(this.chbPrintDesign);
             this.panelEx1.DisabledBackColor = System.Drawing.Color.Empty;
             this.panelEx1.Location = new System.Drawing.Point(4, 4);
             this.panelEx1.Name = "panelEx1";
-            this.panelEx1.Size = new System.Drawing.Size(600, 272);
+            this.panelEx1.Size = new System.Drawing.Size(600, 310);
             this.panelEx1.Style.Alignment = System.Drawing.StringAlignment.Center;
             this.panelEx1.Style.BackColor1.Color = System.Drawing.Color.White;
             this.panelEx1.Style.BackColor2.Color = System.Drawing.Color.White;
@@ -1934,6 +1941,40 @@
             this.btnFinish.TextColor = System.Drawing.Color.Black;
             this.btnFinish.Click += new System.EventHandler(this.btnFinish_Click);
             // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.BackColor = System.Drawing.Color.Transparent;
+            this.label30.Location = new System.Drawing.Point(461, 272);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(128, 20);
+            this.label30.TabIndex = 11;
+            this.label30.Text = "ارسال فایل ها به بایگانی";
+            // 
+            // txtSetArchive
+            // 
+            this.txtSetArchive.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtSetArchive.Location = new System.Drawing.Point(371, 270);
+            this.txtSetArchive.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.txtSetArchive.Name = "txtSetArchive";
+            this.txtSetArchive.Size = new System.Drawing.Size(84, 27);
+            this.txtSetArchive.TabIndex = 13;
+            // 
+            // label31
+            // 
+            this.label31.AutoSize = true;
+            this.label31.BackColor = System.Drawing.Color.Transparent;
+            this.label31.Location = new System.Drawing.Point(284, 272);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(81, 20);
+            this.label31.TabIndex = 11;
+            this.label31.Text = "روز بعد از ثبت";
+            // 
             // frmSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -1982,6 +2023,7 @@
             this.pnlSandouq.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtSTabdil)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSArzesh)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtSetArchive)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -2116,5 +2158,8 @@
         private System.Windows.Forms.Label label29;
         private DevComponents.DotNetBar.Controls.CheckBoxX chbPrintDesign;
         private DevComponents.DotNetBar.Controls.CheckBoxX chbPrintPreView;
+        private System.Windows.Forms.NumericUpDown txtSetArchive;
+        private System.Windows.Forms.Label label31;
+        private System.Windows.Forms.Label label30;
     }
 }

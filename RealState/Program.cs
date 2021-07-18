@@ -15,6 +15,7 @@ using System.Reflection;
 using System.Security.Principal;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using EntityCache.Bussines;
 using RealState.LoginPanel;
 using User;
 
@@ -59,7 +60,7 @@ namespace RealState
             clsTemp.Init();
 
             new frmNewPlash().ShowDialog();
-
+            _ = Task.Run(BuildingBussines.SetArchiveAsync);
             var frmMain = new frmNewMain();
             frmMain.ShowDialog();
         }

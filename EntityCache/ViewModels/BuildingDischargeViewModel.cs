@@ -16,5 +16,6 @@ namespace EntityCache.ViewModels
         public DateTime ToDate { get; set; }
         public string ToDateSh => Calendar.MiladiToShamsi(ToDate);
         public string BuildingCode { get; set; }
+        public Guid BuildingGuid { get; set; }
     }
 }

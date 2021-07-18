@@ -248,6 +248,7 @@ namespace EntityCache.Assistence
                 {
                     res.AddReturnedValue(SettingsBussines.Save("ArzeshAfzoude", "9"));
                     res.AddReturnedValue(SettingsBussines.Save("Tabdil", "2"));
+                    res.AddReturnedValue(SettingsBussines.Save("DayCountForArchive", "60"));
                     if (res.HasError) return;
                 }
                 #endregion

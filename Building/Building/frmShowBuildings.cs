@@ -102,13 +102,13 @@ namespace Building.Building
                 if (ownerGuid == Guid.Empty)
                 {
                     Task.Run(() => ucPagger.PagingAsync(new CancellationToken(),
-                        list.OrderByDescending(q => q.CreateDate), 100,
+                        list?.OrderByDescending(q => q.CreateDate), 100,
                         PagingPosition.GotoStartPage));
                 }
                 else
                 {
                     Task.Run(() => ucPagger.PagingAsync(new CancellationToken(),
-                        list.Where(q => q.OwnerGuid == ownerGuid)
+                        list?.Where(q => q.OwnerGuid == ownerGuid)
                             .OrderByDescending(q => q.CreateDate), 100,
                         PagingPosition.GotoStartPage));
                 }
@@ -338,6 +338,11 @@ namespace Building.Building
             {
                 for (var i = 0; i < DGrid.RowCount; i++)
                 {
+                    if ((bool) DGrid[dgIsArchive.Index, i].Value)
+                    {
+                        DGrid.Rows[i].DefaultCellStyle.BackColor = Color.Silver;
+                        continue;
+                    }
                     var priority = (EnBuildingPriority)DGrid[dgPriority.Index, i].Value;
                     switch (priority)
                     {

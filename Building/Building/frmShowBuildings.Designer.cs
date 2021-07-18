@@ -42,38 +42,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmShowBuildings));
             this.txtSearch = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.DGrid = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.dgCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgDateSh = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgOwnerName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgType = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgRoomCount = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgMasahat = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgZirBana = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgRahn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgEjare = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgRentalAuthorityName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgSellPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgVam = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgQest = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgTejari = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgRegionName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgBuildingStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgAddress = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgSaleSakht = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgUserName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgSide = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgDocType = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgAccountType = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgCondition = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgView = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgFloorCover = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgKitchenService = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgWater = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgBarq = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgGas = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgTell = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgGuid = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgPriority = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.contextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.mnuAdd = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuEdit = new System.Windows.Forms.ToolStripMenuItem();
@@ -91,6 +59,7 @@
             this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripSeparator();
             this.mnuMatchRequest = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem6 = new System.Windows.Forms.ToolStripSeparator();
+            this.mnuPrintOne = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuPrint = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripSeparator();
             this.مدیریتستونهاToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -156,7 +125,41 @@
             this.docTypeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.ucPagger = new WindowsSerivces.Pagging.UC_FooterPaging();
             this.ucHeader = new WindowsSerivces.UC_Header();
-            this.mnuPrintOne = new System.Windows.Forms.ToolStripMenuItem();
+            this.label10 = new System.Windows.Forms.Label();
+            this.pictureBox5 = new System.Windows.Forms.PictureBox();
+            this.dgCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgDateSh = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgOwnerName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgRoomCount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgMasahat = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgZirBana = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgRahn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgEjare = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgRentalAuthorityName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgSellPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgVam = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgQest = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgTejari = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgRegionName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgBuildingStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgAddress = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgSaleSakht = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgUserName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgSide = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgDocType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgAccountType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgCondition = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgView = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgFloorCover = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgKitchenService = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgWater = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgBarq = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgGas = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgTell = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgGuid = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgPriority = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgIsArchive = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).BeginInit();
             this.contextMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BuildingBindingSource)).BeginInit();
@@ -170,6 +173,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.PicBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.AccTypeBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.docTypeBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             this.SuspendLayout();
             // 
             // txtSearch
@@ -249,7 +253,8 @@
             this.dgGas,
             this.dgTell,
             this.dgGuid,
-            this.dgPriority});
+            this.dgPriority,
+            this.dgIsArchive});
             this.DGrid.ContextMenuStrip = this.contextMenu;
             this.DGrid.DataSource = this.BuildingBindingSource;
             dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
@@ -290,307 +295,6 @@
             this.DGrid.Scroll += new System.Windows.Forms.ScrollEventHandler(this.DGrid_Scroll);
             this.DGrid.DoubleClick += new System.EventHandler(this.DGrid_DoubleClick);
             // 
-            // dgCode
-            // 
-            this.dgCode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dgCode.DataPropertyName = "Code";
-            this.dgCode.HeaderText = "کد ملک";
-            this.dgCode.Name = "dgCode";
-            this.dgCode.ReadOnly = true;
-            this.dgCode.Width = 69;
-            // 
-            // dgDateSh
-            // 
-            this.dgDateSh.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dgDateSh.DataPropertyName = "DateSh";
-            this.dgDateSh.HeaderText = "تاریخ ثبت";
-            this.dgDateSh.Name = "dgDateSh";
-            this.dgDateSh.ReadOnly = true;
-            this.dgDateSh.Width = 80;
-            // 
-            // dgOwnerName
-            // 
-            this.dgOwnerName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dgOwnerName.DataPropertyName = "OwnerName";
-            this.dgOwnerName.HeaderText = "مالک";
-            this.dgOwnerName.Name = "dgOwnerName";
-            this.dgOwnerName.ReadOnly = true;
-            this.dgOwnerName.Width = 56;
-            // 
-            // dgType
-            // 
-            this.dgType.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dgType.DataPropertyName = "BuildingTypeName";
-            this.dgType.HeaderText = "نوع ملک";
-            this.dgType.Name = "dgType";
-            this.dgType.ReadOnly = true;
-            this.dgType.Visible = false;
-            // 
-            // dgRoomCount
-            // 
-            this.dgRoomCount.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dgRoomCount.DataPropertyName = "RoomCount";
-            this.dgRoomCount.HeaderText = "ت اتاق";
-            this.dgRoomCount.Name = "dgRoomCount";
-            this.dgRoomCount.ReadOnly = true;
-            this.dgRoomCount.Width = 66;
-            // 
-            // dgMasahat
-            // 
-            this.dgMasahat.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dgMasahat.DataPropertyName = "Masahat";
-            this.dgMasahat.HeaderText = "مساحت";
-            this.dgMasahat.Name = "dgMasahat";
-            this.dgMasahat.ReadOnly = true;
-            this.dgMasahat.Visible = false;
-            // 
-            // dgZirBana
-            // 
-            this.dgZirBana.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dgZirBana.DataPropertyName = "ZirBana";
-            this.dgZirBana.HeaderText = "زیربنا";
-            this.dgZirBana.Name = "dgZirBana";
-            this.dgZirBana.ReadOnly = true;
-            this.dgZirBana.Visible = false;
-            // 
-            // dgRahn
-            // 
-            this.dgRahn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dgRahn.DataPropertyName = "RahnPrice1";
-            dataGridViewCellStyle3.Format = "N0";
-            dataGridViewCellStyle3.NullValue = null;
-            this.dgRahn.DefaultCellStyle = dataGridViewCellStyle3;
-            this.dgRahn.HeaderText = "رهن";
-            this.dgRahn.Name = "dgRahn";
-            this.dgRahn.ReadOnly = true;
-            this.dgRahn.Visible = false;
-            // 
-            // dgEjare
-            // 
-            this.dgEjare.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dgEjare.DataPropertyName = "EjarePrice1";
-            dataGridViewCellStyle4.Format = "N0";
-            dataGridViewCellStyle4.NullValue = null;
-            this.dgEjare.DefaultCellStyle = dataGridViewCellStyle4;
-            this.dgEjare.HeaderText = "اجاره";
-            this.dgEjare.Name = "dgEjare";
-            this.dgEjare.ReadOnly = true;
-            this.dgEjare.Visible = false;
-            // 
-            // dgRentalAuthorityName
-            // 
-            this.dgRentalAuthorityName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dgRentalAuthorityName.DataPropertyName = "RentalAuthorityName";
-            this.dgRentalAuthorityName.HeaderText = "ارجحیت اجاره";
-            this.dgRentalAuthorityName.Name = "dgRentalAuthorityName";
-            this.dgRentalAuthorityName.ReadOnly = true;
-            this.dgRentalAuthorityName.Visible = false;
-            // 
-            // dgSellPrice
-            // 
-            this.dgSellPrice.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dgSellPrice.DataPropertyName = "SellPrice";
-            dataGridViewCellStyle5.Format = "N0";
-            dataGridViewCellStyle5.NullValue = null;
-            this.dgSellPrice.DefaultCellStyle = dataGridViewCellStyle5;
-            this.dgSellPrice.HeaderText = "فروش";
-            this.dgSellPrice.Name = "dgSellPrice";
-            this.dgSellPrice.ReadOnly = true;
-            this.dgSellPrice.Visible = false;
-            // 
-            // dgVam
-            // 
-            this.dgVam.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dgVam.DataPropertyName = "VamPrice";
-            dataGridViewCellStyle6.Format = "N0";
-            dataGridViewCellStyle6.NullValue = null;
-            this.dgVam.DefaultCellStyle = dataGridViewCellStyle6;
-            this.dgVam.HeaderText = "مبلغ وام";
-            this.dgVam.Name = "dgVam";
-            this.dgVam.ReadOnly = true;
-            this.dgVam.Visible = false;
-            // 
-            // dgQest
-            // 
-            this.dgQest.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dgQest.DataPropertyName = "QestPrice";
-            dataGridViewCellStyle7.Format = "N0";
-            dataGridViewCellStyle7.NullValue = null;
-            this.dgQest.DefaultCellStyle = dataGridViewCellStyle7;
-            this.dgQest.HeaderText = "قسط";
-            this.dgQest.Name = "dgQest";
-            this.dgQest.ReadOnly = true;
-            this.dgQest.Visible = false;
-            // 
-            // dgTejari
-            // 
-            this.dgTejari.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dgTejari.DataPropertyName = "MetrazhTejari";
-            this.dgTejari.HeaderText = "تجاری";
-            this.dgTejari.Name = "dgTejari";
-            this.dgTejari.ReadOnly = true;
-            this.dgTejari.Visible = false;
-            // 
-            // dgRegionName
-            // 
-            this.dgRegionName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dgRegionName.DataPropertyName = "RegionName";
-            this.dgRegionName.HeaderText = "محدوده";
-            this.dgRegionName.Name = "dgRegionName";
-            this.dgRegionName.ReadOnly = true;
-            this.dgRegionName.Width = 70;
-            // 
-            // dgBuildingStatus
-            // 
-            this.dgBuildingStatus.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dgBuildingStatus.DataPropertyName = "BuildingStatusName";
-            this.dgBuildingStatus.HeaderText = "وضعیت";
-            this.dgBuildingStatus.Name = "dgBuildingStatus";
-            this.dgBuildingStatus.ReadOnly = true;
-            this.dgBuildingStatus.Visible = false;
-            // 
-            // dgAddress
-            // 
-            this.dgAddress.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dgAddress.DataPropertyName = "Address";
-            this.dgAddress.HeaderText = "آدرس";
-            this.dgAddress.MinimumWidth = 100;
-            this.dgAddress.Name = "dgAddress";
-            this.dgAddress.ReadOnly = true;
-            // 
-            // dgSaleSakht
-            // 
-            this.dgSaleSakht.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dgSaleSakht.DataPropertyName = "SaleSakht";
-            this.dgSaleSakht.HeaderText = "سال ساخت";
-            this.dgSaleSakht.Name = "dgSaleSakht";
-            this.dgSaleSakht.ReadOnly = true;
-            this.dgSaleSakht.Visible = false;
-            // 
-            // dgUserName
-            // 
-            this.dgUserName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dgUserName.DataPropertyName = "UserName";
-            this.dgUserName.HeaderText = "مشاور";
-            this.dgUserName.Name = "dgUserName";
-            this.dgUserName.ReadOnly = true;
-            this.dgUserName.Visible = false;
-            // 
-            // dgSide
-            // 
-            this.dgSide.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dgSide.DataPropertyName = "SideName";
-            this.dgSide.HeaderText = "جهت";
-            this.dgSide.Name = "dgSide";
-            this.dgSide.ReadOnly = true;
-            this.dgSide.Visible = false;
-            // 
-            // dgDocType
-            // 
-            this.dgDocType.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dgDocType.DataPropertyName = "DocumentTypeName";
-            this.dgDocType.HeaderText = "سند";
-            this.dgDocType.Name = "dgDocType";
-            this.dgDocType.ReadOnly = true;
-            this.dgDocType.Visible = false;
-            // 
-            // dgAccountType
-            // 
-            this.dgAccountType.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dgAccountType.DataPropertyName = "BuildingAccountTypeName";
-            this.dgAccountType.HeaderText = "کاربری";
-            this.dgAccountType.Name = "dgAccountType";
-            this.dgAccountType.ReadOnly = true;
-            this.dgAccountType.Visible = false;
-            // 
-            // dgCondition
-            // 
-            this.dgCondition.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dgCondition.DataPropertyName = "BuildingConditionName";
-            this.dgCondition.HeaderText = "وضعیت ملک";
-            this.dgCondition.Name = "dgCondition";
-            this.dgCondition.ReadOnly = true;
-            this.dgCondition.Visible = false;
-            // 
-            // dgView
-            // 
-            this.dgView.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dgView.DataPropertyName = "BuildingViewName";
-            this.dgView.HeaderText = "نما";
-            this.dgView.Name = "dgView";
-            this.dgView.ReadOnly = true;
-            this.dgView.Visible = false;
-            // 
-            // dgFloorCover
-            // 
-            this.dgFloorCover.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dgFloorCover.DataPropertyName = "FloorCoverName";
-            this.dgFloorCover.HeaderText = "کفپوش";
-            this.dgFloorCover.Name = "dgFloorCover";
-            this.dgFloorCover.ReadOnly = true;
-            this.dgFloorCover.Visible = false;
-            // 
-            // dgKitchenService
-            // 
-            this.dgKitchenService.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dgKitchenService.DataPropertyName = "KitchenServiceName";
-            this.dgKitchenService.HeaderText = "آشپزخانه";
-            this.dgKitchenService.Name = "dgKitchenService";
-            this.dgKitchenService.ReadOnly = true;
-            this.dgKitchenService.Visible = false;
-            // 
-            // dgWater
-            // 
-            this.dgWater.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dgWater.DataPropertyName = "WaterName";
-            this.dgWater.HeaderText = "آب";
-            this.dgWater.Name = "dgWater";
-            this.dgWater.ReadOnly = true;
-            this.dgWater.Visible = false;
-            // 
-            // dgBarq
-            // 
-            this.dgBarq.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dgBarq.DataPropertyName = "BarqName";
-            this.dgBarq.HeaderText = "برق";
-            this.dgBarq.Name = "dgBarq";
-            this.dgBarq.ReadOnly = true;
-            this.dgBarq.Visible = false;
-            // 
-            // dgGas
-            // 
-            this.dgGas.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dgGas.DataPropertyName = "GasName";
-            this.dgGas.HeaderText = "گاز";
-            this.dgGas.Name = "dgGas";
-            this.dgGas.ReadOnly = true;
-            this.dgGas.Visible = false;
-            // 
-            // dgTell
-            // 
-            this.dgTell.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dgTell.DataPropertyName = "TellName";
-            this.dgTell.HeaderText = "تلفن";
-            this.dgTell.Name = "dgTell";
-            this.dgTell.ReadOnly = true;
-            this.dgTell.Visible = false;
-            // 
-            // dgGuid
-            // 
-            this.dgGuid.DataPropertyName = "Guid";
-            this.dgGuid.HeaderText = "Guid";
-            this.dgGuid.Name = "dgGuid";
-            this.dgGuid.ReadOnly = true;
-            this.dgGuid.Visible = false;
-            // 
-            // dgPriority
-            // 
-            this.dgPriority.DataPropertyName = "Priority";
-            this.dgPriority.HeaderText = "Priority";
-            this.dgPriority.Name = "dgPriority";
-            this.dgPriority.ReadOnly = true;
-            this.dgPriority.Visible = false;
-            // 
             // contextMenu
             // 
             this.contextMenu.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
@@ -617,7 +321,7 @@
             this.مدیریتستونهاToolStripMenuItem});
             this.contextMenu.Name = "contextMenu";
             this.contextMenu.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.contextMenu.Size = new System.Drawing.Size(246, 398);
+            this.contextMenu.Size = new System.Drawing.Size(246, 376);
             // 
             // mnuAdd
             // 
@@ -725,6 +429,14 @@
             // 
             this.toolStripMenuItem6.Name = "toolStripMenuItem6";
             this.toolStripMenuItem6.Size = new System.Drawing.Size(242, 6);
+            // 
+            // mnuPrintOne
+            // 
+            this.mnuPrintOne.Image = global::Building.Properties.Resources.printer;
+            this.mnuPrintOne.Name = "mnuPrintOne";
+            this.mnuPrintOne.Size = new System.Drawing.Size(245, 24);
+            this.mnuPrintOne.Text = "چاپ اطلاعات ملک";
+            this.mnuPrintOne.Click += new System.EventHandler(this.mnuPrintOne_Click);
             // 
             // mnuPrint
             // 
@@ -1135,10 +847,12 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.grp.CanvasColor = System.Drawing.SystemColors.Control;
             this.grp.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.grp.Controls.Add(this.pictureBox5);
             this.grp.Controls.Add(this.pictureBox4);
             this.grp.Controls.Add(this.pictureBox3);
             this.grp.Controls.Add(this.pictureBox2);
             this.grp.Controls.Add(this.pictureBox1);
+            this.grp.Controls.Add(this.label10);
             this.grp.Controls.Add(this.PicBox);
             this.grp.Controls.Add(this.label9);
             this.grp.Controls.Add(this.label8);
@@ -1172,7 +886,7 @@
             // 
             this.pictureBox4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox4.BackColor = System.Drawing.Color.PaleTurquoise;
-            this.pictureBox4.Location = new System.Drawing.Point(118, 468);
+            this.pictureBox4.Location = new System.Drawing.Point(118, 451);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(19, 18);
             this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -1183,7 +897,7 @@
             // 
             this.pictureBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox3.BackColor = System.Drawing.Color.Khaki;
-            this.pictureBox3.Location = new System.Drawing.Point(118, 444);
+            this.pictureBox3.Location = new System.Drawing.Point(118, 427);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(19, 18);
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -1194,7 +908,7 @@
             // 
             this.pictureBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox2.BackColor = System.Drawing.Color.Orange;
-            this.pictureBox2.Location = new System.Drawing.Point(118, 420);
+            this.pictureBox2.Location = new System.Drawing.Point(118, 403);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(19, 18);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -1205,7 +919,7 @@
             // 
             this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox1.BackColor = System.Drawing.Color.OrangeRed;
-            this.pictureBox1.Location = new System.Drawing.Point(118, 396);
+            this.pictureBox1.Location = new System.Drawing.Point(118, 379);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(19, 18);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -1227,7 +941,7 @@
             this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label9.AutoSize = true;
             this.label9.BackColor = System.Drawing.Color.Transparent;
-            this.label9.Location = new System.Drawing.Point(78, 465);
+            this.label9.Location = new System.Drawing.Point(78, 448);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(34, 20);
             this.label9.TabIndex = 55760;
@@ -1238,7 +952,7 @@
             this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label8.AutoSize = true;
             this.label8.BackColor = System.Drawing.Color.Transparent;
-            this.label8.Location = new System.Drawing.Point(71, 441);
+            this.label8.Location = new System.Drawing.Point(71, 424);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(42, 20);
             this.label8.TabIndex = 55760;
@@ -1249,7 +963,7 @@
             this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label7.AutoSize = true;
             this.label7.BackColor = System.Drawing.Color.Transparent;
-            this.label7.Location = new System.Drawing.Point(92, 418);
+            this.label7.Location = new System.Drawing.Point(92, 401);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(23, 20);
             this.label7.TabIndex = 55760;
@@ -1260,7 +974,7 @@
             this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label6.AutoSize = true;
             this.label6.BackColor = System.Drawing.Color.Transparent;
-            this.label6.Location = new System.Drawing.Point(40, 395);
+            this.label6.Location = new System.Drawing.Point(40, 378);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(75, 20);
             this.label6.TabIndex = 55760;
@@ -1271,7 +985,7 @@
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Location = new System.Drawing.Point(85, 373);
+            this.label1.Location = new System.Drawing.Point(85, 356);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(56, 20);
             this.label1.TabIndex = 55760;
@@ -1369,13 +1083,360 @@
             this.ucHeader.Size = new System.Drawing.Size(1027, 34);
             this.ucHeader.TabIndex = 55772;
             // 
-            // mnuPrintOne
+            // label10
             // 
-            this.mnuPrintOne.Image = global::Building.Properties.Resources.printer;
-            this.mnuPrintOne.Name = "mnuPrintOne";
-            this.mnuPrintOne.Size = new System.Drawing.Size(245, 24);
-            this.mnuPrintOne.Text = "چاپ اطلاعات ملک";
-            this.mnuPrintOne.Click += new System.EventHandler(this.mnuPrintOne_Click);
+            this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label10.AutoSize = true;
+            this.label10.BackColor = System.Drawing.Color.Transparent;
+            this.label10.Location = new System.Drawing.Point(0, 473);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(113, 20);
+            this.label10.TabIndex = 55760;
+            this.label10.Text = "بایگانی شده یا سوخته";
+            // 
+            // pictureBox5
+            // 
+            this.pictureBox5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBox5.BackColor = System.Drawing.Color.Silver;
+            this.pictureBox5.Location = new System.Drawing.Point(118, 475);
+            this.pictureBox5.Name = "pictureBox5";
+            this.pictureBox5.Size = new System.Drawing.Size(19, 18);
+            this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox5.TabIndex = 55761;
+            this.pictureBox5.TabStop = false;
+            // 
+            // dgCode
+            // 
+            this.dgCode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dgCode.DataPropertyName = "Code";
+            this.dgCode.HeaderText = "کد ملک";
+            this.dgCode.Name = "dgCode";
+            this.dgCode.ReadOnly = true;
+            this.dgCode.Width = 69;
+            // 
+            // dgDateSh
+            // 
+            this.dgDateSh.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dgDateSh.DataPropertyName = "DateSh";
+            this.dgDateSh.HeaderText = "تاریخ ثبت";
+            this.dgDateSh.Name = "dgDateSh";
+            this.dgDateSh.ReadOnly = true;
+            this.dgDateSh.Width = 80;
+            // 
+            // dgOwnerName
+            // 
+            this.dgOwnerName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dgOwnerName.DataPropertyName = "OwnerName";
+            this.dgOwnerName.HeaderText = "مالک";
+            this.dgOwnerName.Name = "dgOwnerName";
+            this.dgOwnerName.ReadOnly = true;
+            this.dgOwnerName.Width = 56;
+            // 
+            // dgType
+            // 
+            this.dgType.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dgType.DataPropertyName = "BuildingTypeName";
+            this.dgType.HeaderText = "نوع ملک";
+            this.dgType.Name = "dgType";
+            this.dgType.ReadOnly = true;
+            this.dgType.Visible = false;
+            this.dgType.Width = 74;
+            // 
+            // dgRoomCount
+            // 
+            this.dgRoomCount.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dgRoomCount.DataPropertyName = "RoomCount";
+            this.dgRoomCount.HeaderText = "ت اتاق";
+            this.dgRoomCount.Name = "dgRoomCount";
+            this.dgRoomCount.ReadOnly = true;
+            this.dgRoomCount.Width = 66;
+            // 
+            // dgMasahat
+            // 
+            this.dgMasahat.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dgMasahat.DataPropertyName = "Masahat";
+            this.dgMasahat.HeaderText = "مساحت";
+            this.dgMasahat.Name = "dgMasahat";
+            this.dgMasahat.ReadOnly = true;
+            this.dgMasahat.Visible = false;
+            this.dgMasahat.Width = 70;
+            // 
+            // dgZirBana
+            // 
+            this.dgZirBana.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dgZirBana.DataPropertyName = "ZirBana";
+            this.dgZirBana.HeaderText = "زیربنا";
+            this.dgZirBana.Name = "dgZirBana";
+            this.dgZirBana.ReadOnly = true;
+            this.dgZirBana.Visible = false;
+            this.dgZirBana.Width = 61;
+            // 
+            // dgRahn
+            // 
+            this.dgRahn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dgRahn.DataPropertyName = "RahnPrice1";
+            dataGridViewCellStyle3.Format = "N0";
+            dataGridViewCellStyle3.NullValue = null;
+            this.dgRahn.DefaultCellStyle = dataGridViewCellStyle3;
+            this.dgRahn.HeaderText = "رهن";
+            this.dgRahn.Name = "dgRahn";
+            this.dgRahn.ReadOnly = true;
+            this.dgRahn.Visible = false;
+            this.dgRahn.Width = 56;
+            // 
+            // dgEjare
+            // 
+            this.dgEjare.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dgEjare.DataPropertyName = "EjarePrice1";
+            dataGridViewCellStyle4.Format = "N0";
+            dataGridViewCellStyle4.NullValue = null;
+            this.dgEjare.DefaultCellStyle = dataGridViewCellStyle4;
+            this.dgEjare.HeaderText = "اجاره";
+            this.dgEjare.Name = "dgEjare";
+            this.dgEjare.ReadOnly = true;
+            this.dgEjare.Visible = false;
+            this.dgEjare.Width = 59;
+            // 
+            // dgRentalAuthorityName
+            // 
+            this.dgRentalAuthorityName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dgRentalAuthorityName.DataPropertyName = "RentalAuthorityName";
+            this.dgRentalAuthorityName.HeaderText = "ارجحیت اجاره";
+            this.dgRentalAuthorityName.Name = "dgRentalAuthorityName";
+            this.dgRentalAuthorityName.ReadOnly = true;
+            this.dgRentalAuthorityName.Visible = false;
+            this.dgRentalAuthorityName.Width = 102;
+            // 
+            // dgSellPrice
+            // 
+            this.dgSellPrice.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dgSellPrice.DataPropertyName = "SellPrice";
+            dataGridViewCellStyle5.Format = "N0";
+            dataGridViewCellStyle5.NullValue = null;
+            this.dgSellPrice.DefaultCellStyle = dataGridViewCellStyle5;
+            this.dgSellPrice.HeaderText = "فروش";
+            this.dgSellPrice.Name = "dgSellPrice";
+            this.dgSellPrice.ReadOnly = true;
+            this.dgSellPrice.Visible = false;
+            this.dgSellPrice.Width = 66;
+            // 
+            // dgVam
+            // 
+            this.dgVam.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dgVam.DataPropertyName = "VamPrice";
+            dataGridViewCellStyle6.Format = "N0";
+            dataGridViewCellStyle6.NullValue = null;
+            this.dgVam.DefaultCellStyle = dataGridViewCellStyle6;
+            this.dgVam.HeaderText = "مبلغ وام";
+            this.dgVam.Name = "dgVam";
+            this.dgVam.ReadOnly = true;
+            this.dgVam.Visible = false;
+            this.dgVam.Width = 74;
+            // 
+            // dgQest
+            // 
+            this.dgQest.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dgQest.DataPropertyName = "QestPrice";
+            dataGridViewCellStyle7.Format = "N0";
+            dataGridViewCellStyle7.NullValue = null;
+            this.dgQest.DefaultCellStyle = dataGridViewCellStyle7;
+            this.dgQest.HeaderText = "قسط";
+            this.dgQest.Name = "dgQest";
+            this.dgQest.ReadOnly = true;
+            this.dgQest.Visible = false;
+            this.dgQest.Width = 57;
+            // 
+            // dgTejari
+            // 
+            this.dgTejari.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dgTejari.DataPropertyName = "MetrazhTejari";
+            this.dgTejari.HeaderText = "تجاری";
+            this.dgTejari.Name = "dgTejari";
+            this.dgTejari.ReadOnly = true;
+            this.dgTejari.Visible = false;
+            this.dgTejari.Width = 62;
+            // 
+            // dgRegionName
+            // 
+            this.dgRegionName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dgRegionName.DataPropertyName = "RegionName";
+            this.dgRegionName.HeaderText = "محدوده";
+            this.dgRegionName.Name = "dgRegionName";
+            this.dgRegionName.ReadOnly = true;
+            this.dgRegionName.Width = 70;
+            // 
+            // dgBuildingStatus
+            // 
+            this.dgBuildingStatus.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dgBuildingStatus.DataPropertyName = "BuildingStatusName";
+            this.dgBuildingStatus.HeaderText = "وضعیت";
+            this.dgBuildingStatus.Name = "dgBuildingStatus";
+            this.dgBuildingStatus.ReadOnly = true;
+            this.dgBuildingStatus.Visible = false;
+            this.dgBuildingStatus.Width = 71;
+            // 
+            // dgAddress
+            // 
+            this.dgAddress.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dgAddress.DataPropertyName = "Address";
+            this.dgAddress.HeaderText = "آدرس";
+            this.dgAddress.MinimumWidth = 100;
+            this.dgAddress.Name = "dgAddress";
+            this.dgAddress.ReadOnly = true;
+            // 
+            // dgSaleSakht
+            // 
+            this.dgSaleSakht.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dgSaleSakht.DataPropertyName = "SaleSakht";
+            this.dgSaleSakht.HeaderText = "سال ساخت";
+            this.dgSaleSakht.Name = "dgSaleSakht";
+            this.dgSaleSakht.ReadOnly = true;
+            this.dgSaleSakht.Visible = false;
+            this.dgSaleSakht.Width = 88;
+            // 
+            // dgUserName
+            // 
+            this.dgUserName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dgUserName.DataPropertyName = "UserName";
+            this.dgUserName.HeaderText = "مشاور";
+            this.dgUserName.Name = "dgUserName";
+            this.dgUserName.ReadOnly = true;
+            this.dgUserName.Visible = false;
+            this.dgUserName.Width = 64;
+            // 
+            // dgSide
+            // 
+            this.dgSide.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dgSide.DataPropertyName = "SideName";
+            this.dgSide.HeaderText = "جهت";
+            this.dgSide.Name = "dgSide";
+            this.dgSide.ReadOnly = true;
+            this.dgSide.Visible = false;
+            this.dgSide.Width = 57;
+            // 
+            // dgDocType
+            // 
+            this.dgDocType.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dgDocType.DataPropertyName = "DocumentTypeName";
+            this.dgDocType.HeaderText = "سند";
+            this.dgDocType.Name = "dgDocType";
+            this.dgDocType.ReadOnly = true;
+            this.dgDocType.Visible = false;
+            this.dgDocType.Width = 54;
+            // 
+            // dgAccountType
+            // 
+            this.dgAccountType.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dgAccountType.DataPropertyName = "BuildingAccountTypeName";
+            this.dgAccountType.HeaderText = "کاربری";
+            this.dgAccountType.Name = "dgAccountType";
+            this.dgAccountType.ReadOnly = true;
+            this.dgAccountType.Visible = false;
+            this.dgAccountType.Width = 66;
+            // 
+            // dgCondition
+            // 
+            this.dgCondition.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dgCondition.DataPropertyName = "BuildingConditionName";
+            this.dgCondition.HeaderText = "وضعیت ملک";
+            this.dgCondition.Name = "dgCondition";
+            this.dgCondition.ReadOnly = true;
+            this.dgCondition.Visible = false;
+            this.dgCondition.Width = 94;
+            // 
+            // dgView
+            // 
+            this.dgView.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dgView.DataPropertyName = "BuildingViewName";
+            this.dgView.HeaderText = "نما";
+            this.dgView.Name = "dgView";
+            this.dgView.ReadOnly = true;
+            this.dgView.Visible = false;
+            this.dgView.Width = 47;
+            // 
+            // dgFloorCover
+            // 
+            this.dgFloorCover.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dgFloorCover.DataPropertyName = "FloorCoverName";
+            this.dgFloorCover.HeaderText = "کفپوش";
+            this.dgFloorCover.Name = "dgFloorCover";
+            this.dgFloorCover.ReadOnly = true;
+            this.dgFloorCover.Visible = false;
+            this.dgFloorCover.Width = 69;
+            // 
+            // dgKitchenService
+            // 
+            this.dgKitchenService.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dgKitchenService.DataPropertyName = "KitchenServiceName";
+            this.dgKitchenService.HeaderText = "آشپزخانه";
+            this.dgKitchenService.Name = "dgKitchenService";
+            this.dgKitchenService.ReadOnly = true;
+            this.dgKitchenService.Visible = false;
+            this.dgKitchenService.Width = 79;
+            // 
+            // dgWater
+            // 
+            this.dgWater.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dgWater.DataPropertyName = "WaterName";
+            this.dgWater.HeaderText = "آب";
+            this.dgWater.Name = "dgWater";
+            this.dgWater.ReadOnly = true;
+            this.dgWater.Visible = false;
+            this.dgWater.Width = 48;
+            // 
+            // dgBarq
+            // 
+            this.dgBarq.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dgBarq.DataPropertyName = "BarqName";
+            this.dgBarq.HeaderText = "برق";
+            this.dgBarq.Name = "dgBarq";
+            this.dgBarq.ReadOnly = true;
+            this.dgBarq.Visible = false;
+            this.dgBarq.Width = 52;
+            // 
+            // dgGas
+            // 
+            this.dgGas.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dgGas.DataPropertyName = "GasName";
+            this.dgGas.HeaderText = "گاز";
+            this.dgGas.Name = "dgGas";
+            this.dgGas.ReadOnly = true;
+            this.dgGas.Visible = false;
+            this.dgGas.Width = 48;
+            // 
+            // dgTell
+            // 
+            this.dgTell.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dgTell.DataPropertyName = "TellName";
+            this.dgTell.HeaderText = "تلفن";
+            this.dgTell.Name = "dgTell";
+            this.dgTell.ReadOnly = true;
+            this.dgTell.Visible = false;
+            this.dgTell.Width = 56;
+            // 
+            // dgGuid
+            // 
+            this.dgGuid.DataPropertyName = "Guid";
+            this.dgGuid.HeaderText = "Guid";
+            this.dgGuid.Name = "dgGuid";
+            this.dgGuid.ReadOnly = true;
+            this.dgGuid.Visible = false;
+            // 
+            // dgPriority
+            // 
+            this.dgPriority.DataPropertyName = "Priority";
+            this.dgPriority.HeaderText = "Priority";
+            this.dgPriority.Name = "dgPriority";
+            this.dgPriority.ReadOnly = true;
+            this.dgPriority.Visible = false;
+            // 
+            // dgIsArchive
+            // 
+            this.dgIsArchive.DataPropertyName = "IsArchive";
+            this.dgIsArchive.HeaderText = "IsArchive";
+            this.dgIsArchive.Name = "dgIsArchive";
+            this.dgIsArchive.ReadOnly = true;
+            this.dgIsArchive.Visible = false;
             // 
             // frmShowBuildings
             // 
@@ -1413,6 +1474,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.PicBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.AccTypeBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.docTypeBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1490,6 +1552,21 @@
         private System.Windows.Forms.BindingSource docTypeBindingSource;
         private WindowsSerivces.Pagging.UC_FooterPaging ucPagger;
         private System.Windows.Forms.PictureBox PicBox;
+        private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.PictureBox pictureBox4;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label6;
+        private WindowsSerivces.UC_Header ucHeader;
+        private System.Windows.Forms.ToolStripMenuItem mnuSlideShow;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem3;
+        private System.Windows.Forms.ToolStripMenuItem mnuPrintOne;
+        private System.Windows.Forms.PictureBox pictureBox5;
+        private System.Windows.Forms.Label label10;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgCode;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgDateSh;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgOwnerName;
@@ -1522,18 +1599,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dgTell;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgGuid;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgPriority;
-        private System.Windows.Forms.PictureBox pictureBox3;
-        private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.PictureBox pictureBox4;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label6;
-        private WindowsSerivces.UC_Header ucHeader;
-        private System.Windows.Forms.ToolStripMenuItem mnuSlideShow;
-        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem3;
-        private System.Windows.Forms.ToolStripMenuItem mnuPrintOne;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn dgIsArchive;
     }
 }

@@ -394,6 +394,7 @@ namespace EntityCache.SqlServerPersistence
                 res.SSideName = dr["SecondSideName"].ToString();
                 res.ToDate = (DateTime)dr["ToDate"];
                 res.BuildingCode = dr["BuildingCode"].ToString();
+                res.BuildingGuid = (Guid) dr["BuildingGuid"];
             }
             catch (Exception ex)
             {

@@ -1344,7 +1344,8 @@ BEGIN
 			Contracts.Term As Term,
 			Contracts.FromDate As FromDate,
 			DATEADD(month, Contracts.Term, Contracts.FromDate) As ToDate,
-			Buildings.Code As BuildingCode
+			Buildings.Code As BuildingCode,
+			BuildingGuid
 			from [dbo].[Contracts] left Outer join [dbo].[Tafsils] on 
 				 [dbo].[Contracts].FirstSideGuid=[dbo].[Tafsils].Guid inner join Buildings on
 				 [dbo].[Contracts].BuildingGuid=Buildings.Guid inner join Tafsils As P on
@@ -7282,4 +7283,17 @@ select RegionGuid,Regions.Name,MAX(row_num) as sum_ from cte
 	inner join Regions on cte.RegionGuid=Regions.Guid
 group by RegionGuid,Regions.Name
 order by sum_ desc
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Building_SetArchive]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Building_SetArchive]	As Begin print 11 end')  
+GO
+ALTER PROCEDURE [dbo].[sp_Building_SetArchive]
+	@date datetime
+AS
+BEGIN
+	update Buildings
+	set IsArchive='true'
+	where CreateDate<=@date and Guid not in(select BuildingGuid from Contracts)
 END

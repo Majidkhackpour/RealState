@@ -282,7 +282,7 @@ namespace Settings
         {
             try
             {
-                Classes.Payamak.DefaultPanelGuid = cmbPanel.SelectedValue.ToString();
+                Classes.Payamak.DefaultPanelGuid = cmbPanel.SelectedValue?.ToString();
                 Classes.Payamak.IsSendToOwner = chbSendOwner.Checked.ToString();
                 Classes.Payamak.OwnerText = txtOwnerText.Text;
                 Classes.Payamak.IsSendToSayer = chbSendSayer.Checked.ToString();
@@ -465,6 +465,7 @@ namespace Settings
             try
             {
                 txtBirthDayText.Text = clsGlobal.BirthDayText;
+                txtSetArchive.Value = clsGlobal.SetArchive;
                 chbPrintDesign.Checked = clsPrint.ShowDesign;
                 chbPrintPreView.Checked = clsPrint.ShowPreview;
             }
@@ -478,6 +479,7 @@ namespace Settings
             try
             {
                 clsGlobal.BirthDayText = txtBirthDayText.Text;
+                clsGlobal.SetArchive = (int)txtSetArchive.Value;
                 clsPrint.ShowDesign = chbPrintDesign.Checked;
                 clsPrint.ShowPreview = chbPrintPreView.Checked;
             }

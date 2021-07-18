@@ -18,5 +18,6 @@ namespace EntityCache.Core
         Task<int> DbCount(string _connectionString, Guid userGuid, short type);
         Task<ReturnedSaveFuncInfo> FixImageAsync(string _connectionString);
         Task<BuildingBussines> GetAsync(string _connectionString, Guid guid);
+        Task<ReturnedSaveFuncInfo> SetArchiveAsync(string _connectionString, DateTime date);
     }
 }

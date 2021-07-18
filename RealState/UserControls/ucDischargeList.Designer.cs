@@ -30,10 +30,10 @@ namespace RealState.UserControls
         private void InitializeComponent()
         {
             this.groupPanel67 = new DevComponents.DotNetBar.Controls.GroupPanel();
-            this.lblCode = new System.Windows.Forms.Label();
+            this.lblMostajer = new System.Windows.Forms.Label();
             this.lblOwner = new System.Windows.Forms.Label();
             this.lblDate = new System.Windows.Forms.Label();
-            this.lblMostajer = new System.Windows.Forms.Label();
+            this.lblCode = new System.Windows.Forms.Label();
             this.groupPanel67.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -73,24 +73,24 @@ namespace RealState.UserControls
             this.groupPanel67.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.groupPanel67.TabIndex = 55727;
             // 
-            // lblCode
+            // lblMostajer
             // 
-            this.lblCode.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblCode.BackColor = System.Drawing.Color.Transparent;
-            this.lblCode.Font = new System.Drawing.Font("B Yekan", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.lblCode.ForeColor = System.Drawing.Color.Black;
-            this.lblCode.Location = new System.Drawing.Point(321, 0);
-            this.lblCode.Name = "lblCode";
-            this.lblCode.Size = new System.Drawing.Size(141, 18);
-            this.lblCode.TabIndex = 0;
-            this.lblCode.Text = "کد قرارداد: 521569";
-            this.lblCode.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblMostajer.BackColor = System.Drawing.Color.Transparent;
+            this.lblMostajer.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.lblMostajer.ForeColor = System.Drawing.Color.Black;
+            this.lblMostajer.Location = new System.Drawing.Point(0, 0);
+            this.lblMostajer.Name = "lblMostajer";
+            this.lblMostajer.Size = new System.Drawing.Size(154, 35);
+            this.lblMostajer.TabIndex = 1;
+            this.lblMostajer.Text = "مستاجر: مجید خاکپور";
+            this.lblMostajer.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblOwner
             // 
             this.lblOwner.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblOwner.BackColor = System.Drawing.Color.Transparent;
+            this.lblOwner.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lblOwner.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.lblOwner.ForeColor = System.Drawing.Color.Black;
             this.lblOwner.Location = new System.Drawing.Point(160, 0);
@@ -99,6 +99,7 @@ namespace RealState.UserControls
             this.lblOwner.TabIndex = 0;
             this.lblOwner.Text = "مالک محمدحسین خاکپور نورمحمد";
             this.lblOwner.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblOwner.Click += new System.EventHandler(this.lblOwner_Click);
             // 
             // lblDate
             // 
@@ -113,17 +114,18 @@ namespace RealState.UserControls
             this.lblDate.Text = "تاریخ تخلیه: 1400/12/25";
             this.lblDate.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // lblMostajer
+            // lblCode
             // 
-            this.lblMostajer.BackColor = System.Drawing.Color.Transparent;
-            this.lblMostajer.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.lblMostajer.ForeColor = System.Drawing.Color.Black;
-            this.lblMostajer.Location = new System.Drawing.Point(0, 0);
-            this.lblMostajer.Name = "lblMostajer";
-            this.lblMostajer.Size = new System.Drawing.Size(154, 35);
-            this.lblMostajer.TabIndex = 1;
-            this.lblMostajer.Text = "مستاجر: مجید خاکپور";
-            this.lblMostajer.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblCode.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblCode.BackColor = System.Drawing.Color.Transparent;
+            this.lblCode.Font = new System.Drawing.Font("B Yekan", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.lblCode.ForeColor = System.Drawing.Color.Black;
+            this.lblCode.Location = new System.Drawing.Point(321, 0);
+            this.lblCode.Name = "lblCode";
+            this.lblCode.Size = new System.Drawing.Size(141, 18);
+            this.lblCode.TabIndex = 0;
+            this.lblCode.Text = "کد قرارداد: 521569";
+            this.lblCode.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // ucDischargeList
             // 

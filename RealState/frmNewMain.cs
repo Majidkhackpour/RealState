@@ -7,6 +7,7 @@ using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WindowsSerivces;
 using Accounting.Bank;
 using Accounting.Check.CheckMoshtari;
 using Accounting.Check.CheckShakhsi;
@@ -93,7 +94,7 @@ namespace RealState
                     case EnForms.BuildingView: frm = new frmShowBuildingView(); break;
                     case EnForms.BuildingCondition: frm = new frmShowBuildingCondition(); break;
                     case EnForms.BuildingType: frm = new frmShowBuildingType(); break;
-                    case EnForms.Building: frm = new frmShowBuildings(false, false); break;
+                    case EnForms.Building: frm = new frmShowBuildings(false, null); break;
                     case EnForms.BuildingFast: frm = new frmBuildingMainFast(); break;
                     case EnForms.AdvancedSearch: frm = new frmFilterForm(); break;
                     case EnForms.BuildingArchive: frm = new frmShowBuildings(true, true); break;
@@ -376,7 +377,7 @@ namespace RealState
             try
             {
                 var list = await BuildingBussines.GetAllAsync(new CancellationToken());
-                list = list?.Where(q => q.Priority == EnBuildingPriority.SoHigh)?.ToList();
+                list = list?.Where(q => q.Priority == EnBuildingPriority.SoHigh && !q.IsArchive)?.ToList();
                 if (list != null && list.Count > 0)
                 {
                     foreach (var item in list)
@@ -524,13 +525,11 @@ namespace RealState
                 var res = await clsErtegha.StartErteghaAsync(AppSettings.DefaultConnectionString, this, true);
                 if (!res.HasError)
                 {
-                    MessageBox.Show(this, "بازسازی اطلاعات با موفقیت انجام شد", "پیغام سیستم", MessageBoxButtons.OK,
-                        MessageBoxIcon.Information);
+                    this.ShowMessage("بازسازی اطلاعات با موفقیت انجام شد");
                     return;
                 }
 
-                MessageBox.Show(this, "خطا در بازسازی اطلاعات", "پیغام سیستم", MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
+                this.ShowWarning("خطا در بازسازی اطلاعات");
             }
             catch (Exception ex)
             {
