@@ -377,7 +377,7 @@ namespace RealState
             try
             {
                 var list = await BuildingBussines.GetAllAsync(new CancellationToken());
-                list = list?.Where(q => q.Priority == EnBuildingPriority.SoHigh && !q.IsArchive)?.ToList();
+                list = list?.Where(q => q.Priority == EnBuildingPriority.SoHigh && !q.IsArchive)?.Take(20)?.ToList();
                 if (list != null && list.Count > 0)
                 {
                     foreach (var item in list)
