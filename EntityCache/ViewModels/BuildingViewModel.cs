@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Services;
 
 namespace EntityCache.ViewModels
@@ -20,5 +21,6 @@ namespace EntityCache.ViewModels
         public EnRequestType Type { get; set; }
         public string Address { get; set; }
         public string Mobile { get; set; }
+        public DateTime CreateDate { get; set; }
     }
 }

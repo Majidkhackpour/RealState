@@ -293,7 +293,7 @@ namespace Building.Building
                         txtSMasahat.Text.ParseToInt(), (int)txtMaxFile.Value, list_));
                 }
 
-
+                list = list?.OrderByDescending(q => q.CreateDate)?.Take(100)?.ToList();
                 var frm = new frmBuildingAdvanceSearch(list);
                 frm.ShowDialog(this);
             }
@@ -475,6 +475,11 @@ namespace Building.Building
         {
             await SetFormControlAsync(Type, BuildingTypeGuid, AccountTypeGuid, RoomCount, FirstMasahat, SecondMasahat, FirstPrice1,
                 SecondPrice1, FirstPrice2, SecondPrice2);
+        }
+        private void frmFilterForm_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape) Close();
+            if (e.KeyCode == Keys.F5) btnSeach.PerformClick();
         }
     }
 }

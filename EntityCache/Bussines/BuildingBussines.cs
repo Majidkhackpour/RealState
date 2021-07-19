@@ -328,7 +328,8 @@ namespace EntityCache.Bussines
                         Parent = $"فایل های سیستم کد {item.Code}",
                         Options = item.OptionList.Select(q => q.OptionName)?.ToList(),
                         Address = item.Address,
-                        Mobile = PeoplesBussines.Get(item.OwnerGuid)?.FirstNumber
+                        Mobile = PeoplesBussines.Get(item.OwnerGuid)?.FirstNumber,
+                        CreateDate = item.CreateDate
                     };
                     if (token.IsCancellationRequested) return null;
                     if (type == EnRequestType.Rahn)

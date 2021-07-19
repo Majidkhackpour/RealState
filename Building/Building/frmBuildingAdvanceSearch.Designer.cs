@@ -77,6 +77,7 @@
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.Style = MetroFramework.MetroColorStyle.Teal;
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmBuildingAdvanceSearch_KeyDown);
             this.ResumeLayout(false);
 
         }

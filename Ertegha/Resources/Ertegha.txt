@@ -7294,6 +7294,10 @@ ALTER PROCEDURE [dbo].[sp_Building_SetArchive]
 AS
 BEGIN
 	update Buildings
-	set IsArchive='true'
+	set IsArchive='true',Modified=GETDATE()
 	where CreateDate<=@date and Guid not in(select BuildingGuid from Contracts)
+
+	update Buildings
+	set IsArchive='false',Modified=GETDATE()
+	where CreateDate>@date and Guid not in(select BuildingGuid from Contracts)
 END

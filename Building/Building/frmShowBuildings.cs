@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WindowsSerivces;
 using Advertise.Classes;
 using Advertise.Forms.Simcard;
 using EntityCache.Bussines;
@@ -102,14 +103,14 @@ namespace Building.Building
                 if (ownerGuid == Guid.Empty)
                 {
                     Task.Run(() => ucPagger.PagingAsync(new CancellationToken(),
-                        list?.OrderByDescending(q => q.CreateDate), 100,
+                        list?.OrderBy(q => q.IsArchive)?.ThenByDescending(q => q.CreateDate), 100,
                         PagingPosition.GotoStartPage));
                 }
                 else
                 {
                     Task.Run(() => ucPagger.PagingAsync(new CancellationToken(),
                         list?.Where(q => q.OwnerGuid == ownerGuid)
-                            .OrderByDescending(q => q.CreateDate), 100,
+                            ?.OrderBy(q => q.IsArchive)?.ThenByDescending(q => q.CreateDate), 100,
                         PagingPosition.GotoStartPage));
                 }
             }
@@ -338,7 +339,7 @@ namespace Building.Building
             {
                 for (var i = 0; i < DGrid.RowCount; i++)
                 {
-                    if ((bool) DGrid[dgIsArchive.Index, i].Value)
+                    if ((bool)DGrid[dgIsArchive.Index, i].Value)
                     {
                         DGrid.Rows[i].DefaultCellStyle.BackColor = Color.Silver;
                         continue;
@@ -1591,6 +1592,52 @@ namespace Building.Building
                 var cls_ = new ReportGenerator(StiType.Building_One, EnPrintType.Pdf_A4)
                 { Lst = new List<object>() { rpt } };
                 cls_.PrintNew();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private async void mnuAddToArchive_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (DGrid.RowCount <= 0 || DGrid.CurrentRow == null) return;
+                var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
+                var cls = await BuildingBussines.GetAsync(guid);
+                if (cls == null) return;
+                if (cls.IsArchive)
+                {
+                    this.ShowMessage("ملک موردنظر درحال حاظر بایگانی شده است");
+                    return;
+                }
+
+                cls.IsArchive = true;
+                await cls.SaveAsync();
+                LoadData(txtSearch.Text);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private async void mnuRemoveFromArchive_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (DGrid.RowCount <= 0 || DGrid.CurrentRow == null) return;
+                var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
+                var cls = await BuildingBussines.GetAsync(guid);
+                if (cls == null) return;
+                if (!cls.IsArchive)
+                {
+                    this.ShowMessage("ملک موردنظر درحال حاظر خارج از بایگانی می باشد");
+                    return;
+                }
+
+                cls.IsArchive = false;
+                await cls.SaveAsync();
+                LoadData(txtSearch.Text);
             }
             catch (Exception ex)
             {

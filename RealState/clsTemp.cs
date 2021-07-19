@@ -210,11 +210,9 @@ namespace RealState
                 while (true)
                 {
                     var res = await TempBussines.SaveOnModifiedAsync(date);
-                    if (!res.HasError)
-                    {
-                        date = DateTime.Now;
-                        await Task.Delay(20000);
-                    }
+                    if (res.HasError) continue;
+                    date = DateTime.Now;
+                    await Task.Delay(20000);
                 }
             }
             catch (Exception ex)

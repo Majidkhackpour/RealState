@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 using EntityCache.ViewModels;
 using MetroFramework.Forms;
 using Services;
@@ -12,22 +14,35 @@ namespace Building.Building
         {
             InitializeComponent();
             ucHeader.Text = "نمایش لیست املاک جستجو شده";
-            SetFiles(list);
+            _ = Task.Run(() => SetFilesAsync(list));
         }
-        private void SetFiles(List<BuildingViewModel> list)
+        private async Task SetFilesAsync(List<BuildingViewModel> list)
         {
             try
             {
+                while (!IsHandleCreated)
+                    await Task.Delay(100);
+
+                if (InvokeRequired)
+                {
+                    Invoke(new MethodInvoker(() => SetFilesAsync(list)));
+                    return;
+                }
                 foreach (var item in list)
                 {
-                    var a = new UcBuildingSearch.ucBuildingSearch(item);
-                    fPnel.Controls.Add(a);
+                    var control = new UcBuildingSearch.ucBuildingSearch(item);
+                    fPnel.Controls.Add(control);
+                    await Task.Delay(100);
                 }
             }
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
+        }
+        private void frmBuildingAdvanceSearch_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape) Close();
         }
     }
 }
