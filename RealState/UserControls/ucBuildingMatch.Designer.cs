@@ -30,12 +30,12 @@ namespace RealState.UserControls
         private void InitializeComponent()
         {
             this.groupPanel67 = new DevComponents.DotNetBar.Controls.GroupPanel();
-            this.lblSell = new System.Windows.Forms.Label();
-            this.lblCode = new System.Windows.Forms.Label();
-            this.lblRahn = new System.Windows.Forms.Label();
-            this.lblEjare = new System.Windows.Forms.Label();
             this.groupPanel68 = new DevComponents.DotNetBar.Controls.GroupPanel();
             this.lblCount = new System.Windows.Forms.Label();
+            this.lblEjare = new System.Windows.Forms.Label();
+            this.lblRahn = new System.Windows.Forms.Label();
+            this.lblSell = new System.Windows.Forms.Label();
+            this.lblCode = new System.Windows.Forms.Label();
             this.groupPanel67.SuspendLayout();
             this.groupPanel68.SuspendLayout();
             this.SuspendLayout();
@@ -78,58 +78,6 @@ namespace RealState.UserControls
             this.groupPanel67.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.groupPanel67.TabIndex = 55728;
             // 
-            // lblSell
-            // 
-            this.lblSell.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblSell.BackColor = System.Drawing.Color.Transparent;
-            this.lblSell.Font = new System.Drawing.Font("B Yekan", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.lblSell.ForeColor = System.Drawing.Color.White;
-            this.lblSell.Location = new System.Drawing.Point(263, 9);
-            this.lblSell.Name = "lblSell";
-            this.lblSell.Size = new System.Drawing.Size(137, 17);
-            this.lblSell.TabIndex = 0;
-            this.lblSell.Text = "فروش: 1.000.000.000.000";
-            this.lblSell.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // lblCode
-            // 
-            this.lblCode.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblCode.BackColor = System.Drawing.Color.Transparent;
-            this.lblCode.Font = new System.Drawing.Font("B Yekan", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.lblCode.ForeColor = System.Drawing.Color.White;
-            this.lblCode.Location = new System.Drawing.Point(401, 8);
-            this.lblCode.Name = "lblCode";
-            this.lblCode.Size = new System.Drawing.Size(80, 18);
-            this.lblCode.TabIndex = 0;
-            this.lblCode.Text = "کد :1200";
-            this.lblCode.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // lblRahn
-            // 
-            this.lblRahn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblRahn.BackColor = System.Drawing.Color.Transparent;
-            this.lblRahn.Font = new System.Drawing.Font("B Yekan", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.lblRahn.ForeColor = System.Drawing.Color.White;
-            this.lblRahn.Location = new System.Drawing.Point(149, 9);
-            this.lblRahn.Name = "lblRahn";
-            this.lblRahn.Size = new System.Drawing.Size(112, 17);
-            this.lblRahn.TabIndex = 0;
-            this.lblRahn.Text = "رهن: 1.000.000.000";
-            this.lblRahn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // lblEjare
-            // 
-            this.lblEjare.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblEjare.BackColor = System.Drawing.Color.Transparent;
-            this.lblEjare.Font = new System.Drawing.Font("B Yekan", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.lblEjare.ForeColor = System.Drawing.Color.White;
-            this.lblEjare.Location = new System.Drawing.Point(50, 9);
-            this.lblEjare.Name = "lblEjare";
-            this.lblEjare.Size = new System.Drawing.Size(102, 17);
-            this.lblEjare.TabIndex = 0;
-            this.lblEjare.Text = "اجاره:1.000.000.000";
-            this.lblEjare.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
             // groupPanel68
             // 
             this.groupPanel68.CanvasColor = System.Drawing.Color.Transparent;
@@ -164,7 +112,7 @@ namespace RealState.UserControls
             // lblCount
             // 
             this.lblCount.BackColor = System.Drawing.Color.Transparent;
-            this.lblCount.Cursor = System.Windows.Forms.Cursors.Default;
+            this.lblCount.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lblCount.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblCount.Font = new System.Drawing.Font("B Yekan", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.lblCount.ForeColor = System.Drawing.Color.Black;
@@ -175,6 +123,58 @@ namespace RealState.UserControls
             this.lblCount.Text = "0";
             this.lblCount.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lblCount.Click += new System.EventHandler(this.lblCount_Click);
+            // 
+            // lblEjare
+            // 
+            this.lblEjare.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblEjare.BackColor = System.Drawing.Color.Transparent;
+            this.lblEjare.Font = new System.Drawing.Font("B Yekan", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.lblEjare.ForeColor = System.Drawing.Color.White;
+            this.lblEjare.Location = new System.Drawing.Point(50, 9);
+            this.lblEjare.Name = "lblEjare";
+            this.lblEjare.Size = new System.Drawing.Size(102, 17);
+            this.lblEjare.TabIndex = 0;
+            this.lblEjare.Text = "اجاره:1.000.000.000";
+            this.lblEjare.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lblRahn
+            // 
+            this.lblRahn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblRahn.BackColor = System.Drawing.Color.Transparent;
+            this.lblRahn.Font = new System.Drawing.Font("B Yekan", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.lblRahn.ForeColor = System.Drawing.Color.White;
+            this.lblRahn.Location = new System.Drawing.Point(149, 9);
+            this.lblRahn.Name = "lblRahn";
+            this.lblRahn.Size = new System.Drawing.Size(112, 17);
+            this.lblRahn.TabIndex = 0;
+            this.lblRahn.Text = "رهن: 1.000.000.000";
+            this.lblRahn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lblSell
+            // 
+            this.lblSell.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblSell.BackColor = System.Drawing.Color.Transparent;
+            this.lblSell.Font = new System.Drawing.Font("B Yekan", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.lblSell.ForeColor = System.Drawing.Color.White;
+            this.lblSell.Location = new System.Drawing.Point(263, 9);
+            this.lblSell.Name = "lblSell";
+            this.lblSell.Size = new System.Drawing.Size(137, 17);
+            this.lblSell.TabIndex = 0;
+            this.lblSell.Text = "فروش: 1.000.000.000.000";
+            this.lblSell.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lblCode
+            // 
+            this.lblCode.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblCode.BackColor = System.Drawing.Color.Transparent;
+            this.lblCode.Font = new System.Drawing.Font("B Yekan", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.lblCode.ForeColor = System.Drawing.Color.White;
+            this.lblCode.Location = new System.Drawing.Point(401, 8);
+            this.lblCode.Name = "lblCode";
+            this.lblCode.Size = new System.Drawing.Size(80, 18);
+            this.lblCode.TabIndex = 0;
+            this.lblCode.Text = "کد :1200";
+            this.lblCode.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // ucBuildingMatch
             // 

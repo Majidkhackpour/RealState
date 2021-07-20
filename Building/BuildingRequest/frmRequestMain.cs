@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WindowsSerivces;
 using Building.Building;
 using EntityCache.Bussines;
 using EntityCache.ViewModels;
@@ -477,7 +478,7 @@ namespace Building.BuildingRequest
 
                 if (list.Count <= 0)
                 {
-                    MessageBox.Show("متاسفانه در حال حاضر، ملکی مطابق با این تقاضا وجود ندارد");
+                    this.ShowMessage("متاسفانه در حال حاضر، ملکی مطابق با این تقاضا وجود ندارد");
                     return;
                 }
 

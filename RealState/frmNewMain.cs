@@ -232,6 +232,7 @@ namespace RealState
                 var list = await ContractBussines.DischargeListAsync();
                 if (list != null && list.Count > 0)
                 {
+                    list = list?.OrderBy(q => q.ToDate)?.Take(10)?.ToList();
                     foreach (var item in list)
                     {
                         Invoke(new MethodInvoker(() =>
@@ -349,6 +350,7 @@ namespace RealState
                 var list = await BuildingRequestViewModel.GetAllMatchesItemsAsync(new CancellationToken());
                 if (list != null && list.Count > 0)
                 {
+                    list = list.OrderByDescending(q => q.RequestCount)?.Take(10)?.ToList();
                     foreach (var item in list)
                     {
                         Invoke(new MethodInvoker(() =>
@@ -377,7 +379,7 @@ namespace RealState
             try
             {
                 var list = await BuildingBussines.GetAllAsync(new CancellationToken());
-                list = list?.Where(q => q.Priority == EnBuildingPriority.SoHigh && !q.IsArchive)?.Take(20)?.ToList();
+                list = list?.Where(q => q.Priority == EnBuildingPriority.SoHigh && !q.IsArchive)?.Take(10)?.ToList();
                 if (list != null && list.Count > 0)
                 {
                     foreach (var item in list)

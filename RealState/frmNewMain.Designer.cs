@@ -3885,7 +3885,7 @@ namespace RealState
             // 
             // lblBuildingNone
             // 
-            this.lblBuildingNone.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.lblBuildingNone.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.lblBuildingNone.AutoSize = true;
             this.lblBuildingNone.BackColor = System.Drawing.Color.Transparent;
             this.lblBuildingNone.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));

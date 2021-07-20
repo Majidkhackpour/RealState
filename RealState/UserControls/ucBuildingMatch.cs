@@ -15,10 +15,12 @@ namespace RealState.UserControls
             set
             {
                 _model = value;
+                if (_model == null) return;
                 lblCode.Text = $@"کد: {_model.BuildingCode}";
                 lblSell.Text = $@"فروش: {_model.SellPrice:N0}";
                 lblRahn.Text = $@"رهن: {_model.RahnPrice:N0}";
                 lblEjare.Text = $@"اجاره: {_model.EjarePrice:N0}";
+                lblCount.Text = _model.RequestCount.ToString();
             }
         }
         public ucBuildingMatch() => InitializeComponent();

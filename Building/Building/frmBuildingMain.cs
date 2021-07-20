@@ -15,6 +15,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WindowsSerivces;
 
 namespace Building.Building
 {
@@ -1119,7 +1120,7 @@ namespace Building.Building
                 var list = await BuildingRequestViewModel.GetAllMatchesItemsAsync(cls, _token.Token);
                 if (list.Count <= 0)
                 {
-                    MessageBox.Show("فایل مطابقی جهت نمایش وجود ندارد");
+                    this.ShowMessage("فایل مطابقی جهت نمایش وجود ندارد");
                     return;
                 }
 

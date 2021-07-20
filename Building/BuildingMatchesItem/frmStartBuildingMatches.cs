@@ -42,7 +42,7 @@ namespace Building.BuildingMatchesItem
                 btnSelect.Enabled = false;
                 _token?.Cancel();
                 _token = new CancellationTokenSource();
-                var list = await BuildingRequestViewModel.GetAllMatchesItemsAsync(await BuildingBussines.GetAllAsync(_token.Token), _token.Token);
+                var list = await BuildingRequestViewModel.GetAllMatchesItemsAsync(_token.Token);
                 if (list.Count <= 0)
                 {
                     MessageBox.Show("فایل مطابقی جهت نمایش وجود ندارد");

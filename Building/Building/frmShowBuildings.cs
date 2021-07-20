@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using WindowsSerivces;
 using Advertise.Classes;
 using Advertise.Forms.Simcard;
+using Building.BuildingMatchesItem;
 using EntityCache.Bussines;
 using EntityCache.ViewModels;
 using MetroFramework.Forms;
@@ -382,10 +383,15 @@ namespace Building.Building
             if (_isShowMode || (_isArchive != null && _isArchive.Value)) contextMenu.Enabled = false;
         }
 
-        private void UcPagger_OnBindDataReady(object sender, WindowsSerivces.Pagging.FooterBindingDataReadyEventArg e)
+        private async void UcPagger_OnBindDataReady(object sender, WindowsSerivces.Pagging.FooterBindingDataReadyEventArg e)
         {
             try
             {
+                while (!IsHandleCreated)
+                {
+                    await Task.Delay(100);
+                    if (e.Token.IsCancellationRequested) return;
+                }
                 var count = e?.ListData?.Count ?? 0;
                 if (count <= 0) count = 50;
                 Invoke(new MethodInvoker(() =>
@@ -1638,6 +1644,30 @@ namespace Building.Building
                 cls.IsArchive = false;
                 await cls.SaveAsync();
                 LoadData(txtSearch.Text);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private async void mnuMatchRequest_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (DGrid.RowCount <= 0 || DGrid.CurrentRow == null) return;
+                var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
+                var cls = await BuildingBussines.GetAsync(guid);
+                if (cls == null) return;
+                _token?.Cancel();
+                _token = new CancellationTokenSource();
+                var list = await BuildingRequestViewModel.GetAllMatchesItemsAsync(cls, _token.Token);
+                if (list.Count <= 0)
+                {
+                    this.ShowMessage("فایل مطابقی جهت نمایش وجود ندارد");
+                    return;
+                }
+
+                new frmShowRequestMatches(list).ShowDialog(this);
             }
             catch (Exception ex)
             {

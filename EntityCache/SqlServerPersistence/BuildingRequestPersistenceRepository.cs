@@ -156,6 +156,7 @@ namespace EntityCache.SqlServerPersistence
                 res.Modified = (DateTime)dr["Modified"];
                 res.Status = (bool)dr["Status"];
                 res.AskerGuid = (Guid)dr["AskerGuid"];
+                res.AskerName = dr["AskerName"].ToString();
                 res.CreateDate = (DateTime)dr["CreateDate"];
                 res.UserGuid = (Guid)dr["UserGuid"];
                 res.SellPrice1 = (decimal)dr["SellPrice1"];

@@ -82,6 +82,9 @@
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.mnuView = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
+            this.بایگانیToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuAddToArchive = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuRemoveFromArchive = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuSlideShow = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
             this.mnuSendSms = new System.Windows.Forms.ToolStripMenuItem();
@@ -160,9 +163,6 @@
             this.docTypeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.ucPagger = new WindowsSerivces.Pagging.UC_FooterPaging();
             this.ucHeader = new WindowsSerivces.UC_Header();
-            this.بایگانیToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuAddToArchive = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuRemoveFromArchive = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).BeginInit();
             this.contextMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BuildingBindingSource)).BeginInit();
@@ -678,6 +678,29 @@
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
             this.toolStripMenuItem2.Size = new System.Drawing.Size(242, 6);
             // 
+            // بایگانیToolStripMenuItem
+            // 
+            this.بایگانیToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnuAddToArchive,
+            this.mnuRemoveFromArchive});
+            this.بایگانیToolStripMenuItem.Name = "بایگانیToolStripMenuItem";
+            this.بایگانیToolStripMenuItem.Size = new System.Drawing.Size(245, 24);
+            this.بایگانیToolStripMenuItem.Text = "بــــایـــگـــانــی";
+            // 
+            // mnuAddToArchive
+            // 
+            this.mnuAddToArchive.Name = "mnuAddToArchive";
+            this.mnuAddToArchive.Size = new System.Drawing.Size(164, 24);
+            this.mnuAddToArchive.Text = "افزودن به بایگانی";
+            this.mnuAddToArchive.Click += new System.EventHandler(this.mnuAddToArchive_Click);
+            // 
+            // mnuRemoveFromArchive
+            // 
+            this.mnuRemoveFromArchive.Name = "mnuRemoveFromArchive";
+            this.mnuRemoveFromArchive.Size = new System.Drawing.Size(164, 24);
+            this.mnuRemoveFromArchive.Text = "حذف از بایگانی";
+            this.mnuRemoveFromArchive.Click += new System.EventHandler(this.mnuRemoveFromArchive_Click);
+            // 
             // mnuSlideShow
             // 
             this.mnuSlideShow.Name = "mnuSlideShow";
@@ -737,6 +760,7 @@
             this.mnuMatchRequest.Name = "mnuMatchRequest";
             this.mnuMatchRequest.Size = new System.Drawing.Size(245, 24);
             this.mnuMatchRequest.Text = "تطابق ملک با درخواست ها";
+            this.mnuMatchRequest.Click += new System.EventHandler(this.mnuMatchRequest_Click);
             // 
             // toolStripMenuItem6
             // 
@@ -1417,29 +1441,6 @@
             this.ucHeader.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.ucHeader.Size = new System.Drawing.Size(1027, 34);
             this.ucHeader.TabIndex = 55772;
-            // 
-            // بایگانیToolStripMenuItem
-            // 
-            this.بایگانیToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mnuAddToArchive,
-            this.mnuRemoveFromArchive});
-            this.بایگانیToolStripMenuItem.Name = "بایگانیToolStripMenuItem";
-            this.بایگانیToolStripMenuItem.Size = new System.Drawing.Size(245, 24);
-            this.بایگانیToolStripMenuItem.Text = "بــــایـــگـــانــی";
-            // 
-            // mnuAddToArchive
-            // 
-            this.mnuAddToArchive.Name = "mnuAddToArchive";
-            this.mnuAddToArchive.Size = new System.Drawing.Size(180, 24);
-            this.mnuAddToArchive.Text = "افزودن به بایگانی";
-            this.mnuAddToArchive.Click += new System.EventHandler(this.mnuAddToArchive_Click);
-            // 
-            // mnuRemoveFromArchive
-            // 
-            this.mnuRemoveFromArchive.Name = "mnuRemoveFromArchive";
-            this.mnuRemoveFromArchive.Size = new System.Drawing.Size(180, 24);
-            this.mnuRemoveFromArchive.Text = "حذف از بایگانی";
-            this.mnuRemoveFromArchive.Click += new System.EventHandler(this.mnuRemoveFromArchive_Click);
             // 
             // frmShowBuildings
             // 
