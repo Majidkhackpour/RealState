@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using EntityCache.Bussines;
 using Services;
+using Settings;
 using WebHesabBussines;
 
 namespace RealState
@@ -14,6 +15,7 @@ namespace RealState
         {
             try
             {
+                if (!VersionAccess.WebService) return;
                 _ = Task.Run(StartSendToServerAsync);
                 _ = Task.Run(StartFillTempAsync);
             }

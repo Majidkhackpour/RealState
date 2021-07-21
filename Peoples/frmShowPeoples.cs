@@ -15,6 +15,7 @@ using Payamak;
 using Payamak.PhoneBook;
 using Print;
 using Services;
+using Settings;
 using User;
 
 namespace Peoples
@@ -94,7 +95,8 @@ namespace Peoples
                 mnuUpGroup.Enabled = access?.Peoples.People_Group_Update ?? false;
                 mnuTell.Enabled = access?.Peoples.People_Show_Tell ?? false;
                 mnuPrint.Enabled = access?.Peoples.People_Print ?? false;
-                mnuIpmortFromExcel.Visible = Settings.VersionAccess.Excel;
+                mnuIpmortFromExcel.Visible = VersionAccess.Excel;
+                mnuAccount.Visible = VersionAccess.Accounting;
             }
             catch (Exception ex)
             {
@@ -673,6 +675,12 @@ namespace Peoples
         {
             try
             {
+                if (!VersionAccess.Accounting)
+                {
+                    DGrid.Columns[dgAccount.Index].Visible = false;
+                    DGrid.Columns[dgAccountType.Index].Visible = false;
+                    return;
+                }
                 if (mnuAccount.Checked)
                 {
                     ColumnList.Add("حساب");

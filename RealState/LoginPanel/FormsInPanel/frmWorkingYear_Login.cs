@@ -43,6 +43,11 @@ namespace RealState.LoginPanel.FormsInPanel
             try
             {
                 var list = WorkingYear.GetAll().OrderBy(q => q.DbName);
+                if ((!list?.Any() ?? false))
+                {
+                    userBindingSource.DataSource = null;
+                    return;
+                }
                 workingYearBindingSource.DataSource = list;
                 if (workingYearBindingSource.Count <= 0) return;
                 cmbWorkingYear.SelectedIndex = 0;

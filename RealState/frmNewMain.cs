@@ -144,11 +144,28 @@ namespace RealState
                 lblDbName.Text = cn?.Database ?? "";
                 lblVersion.Text = Assembly.GetExecutingAssembly().GetName().Version.ToString();
                 lblUserName.Text = UserBussines.CurrentUser?.Name ?? "";
+                _ = Task.Run(CheckInternetAsync);
             }
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
+        }
+        private async Task CheckInternetAsync()
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                res.AddReturnedValue(await Utilities.PingHostAsync());
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+            Invoke(res.HasError
+                ? new MethodInvoker(() => lblInternet.Text = "وضعیت اتصال سیستم به اینترنت: عدم اتصال")
+                : new MethodInvoker(() => lblInternet.Text = "وضعیت اتصال سیستم به اینترنت: متصل"));
         }
         private void ClearFlowPanels()
         {
@@ -573,8 +590,6 @@ namespace RealState
         }
         private void picSetting_Click(object sender, EventArgs e) => SelectForm(EnForms.Setting)?.ShowDialog();
         private void picInfo_Click(object sender, EventArgs e) => pnlInfo.Visible = !pnlInfo.Visible;
-        private void lblTodayNote_MouseEnter(object sender, EventArgs e) => lblTodayNote.ForeColor = Color.Red;
-        private void lblTodayNote_MouseLeave(object sender, EventArgs e) => lblTodayNote.ForeColor = foreColor;
         private void lblExit_MouseEnter(object sender, EventArgs e) => lblExit.ForeColor = Color.Red;
         private void lblExit_MouseLeave(object sender, EventArgs e) => lblExit.ForeColor = foreColor;
         private async void lblExit_Click(object sender, EventArgs e)
@@ -589,6 +604,27 @@ namespace RealState
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void lblTodayNote_Click(object sender, EventArgs e) => SelectForm(EnForms.Note)?.ShowDialog();
+        private void lblErtegha_Click(object sender, EventArgs e)
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                var frm = new SoftwareLock.frmClient("", false);
+                if (frm.ShowDialog(this) != DialogResult.OK)
+                    res.AddError("خطا در تایید شناسه فنی ");
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+            if (res.HasError) this.ShowError(res);
+            else
+            {
+                this.ShowMessage("ارتقای نسخه نرم افزار با موفقیت انجام شد. جهت اعمال دسترسی، برنامه مجددا اجرا خواهد شد");
+                Application.Restart();
+            }
+        }
+        private void timerCheckInternet_Tick(object sender, EventArgs e) => _ = Task.Run(CheckInternetAsync);
     }
 }

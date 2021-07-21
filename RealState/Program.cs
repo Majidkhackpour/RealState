@@ -36,6 +36,8 @@ namespace RealState
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
+            txtSetter.Switch_Language_To_Persian();
+
             new frmSplashCircle().ShowDialog();
 
             var res = frmLoginMain.Instance.Load_();
@@ -52,8 +54,9 @@ namespace RealState
 
             if (!VersionAccess.Building)
             {
-                MessageBox.Show(
-                    "سریال نرم افزار شما، مجوز استفاده از نرم افزار را ندارد. لطفا جهت ارتقای نسخه نرم افزار خود اقدام نمایید");
+                var ret=new ReturnedSaveFuncInfo();
+                ret.AddInformation("سریال نرم افزار شما، مجوز استفاده از نرم افزار را ندارد. لطفا جهت ارتقای نسخه نرم افزار خود اقدام نمایید");
+                new FrmShowErrorMessage(ret,"پیغام سیستم")?.ShowDialog();
                 return;
             }
 
@@ -96,38 +99,18 @@ namespace RealState
                 {
                     switch ((EnAppSerial)item.ParseToInt())
                     {
-                        case EnAppSerial.Building:
-                            VersionAccess.Building = true;
-                            break;
-                        case EnAppSerial.Sms:
-                            VersionAccess.Sms = true;
-                            break;
-                        case EnAppSerial.Advertise:
-                            VersionAccess.Advertise = true;
-                            break;
-                        case EnAppSerial.Telegram:
-                            VersionAccess.Telegram = true;
-                            Cache.IsSendToServer = true;
-                            break;
-                        case EnAppSerial.WhatsApp:
-                            VersionAccess.WhatsApp = true;
-                            break;
-                        case EnAppSerial.Excel:
-                            VersionAccess.Excel = true;
-                            break;
-                        case EnAppSerial.AutoBackUp:
-                            VersionAccess.AutoBackUp = true;
-                            break;
-                        case EnAppSerial.Accounting:
-                            VersionAccess.Accounting = true;
-                            break;
-                        case EnAppSerial.WebSite:
-                            Cache.IsSendToServer = true;
-                            break;
-                        case EnAppSerial.MobileApp:
-                            Cache.IsSendToServer = true;
-                            break;
+                        case EnAppSerial.Building: VersionAccess.Building = true; break;
+                        case EnAppSerial.Sms: VersionAccess.Sms = true; break;
+                        case EnAppSerial.Advertise: VersionAccess.Advertise = true; break;
+                        case EnAppSerial.Telegram: VersionAccess.Telegram = true; Cache.IsSendToServer = true; break;
+                        case EnAppSerial.WhatsApp: VersionAccess.WhatsApp = true; break;
+                        case EnAppSerial.Excel: VersionAccess.Excel = true; break;
+                        case EnAppSerial.AutoBackUp: VersionAccess.AutoBackUp = true; break;
+                        case EnAppSerial.Accounting: VersionAccess.Accounting = true; break;
+                        case EnAppSerial.WebSite: Cache.IsSendToServer = true; break;
+                        case EnAppSerial.MobileApp: Cache.IsSendToServer = true; break;
                         case EnAppSerial.WebService:
+                            VersionAccess.WebService = true;
                             Cache.IsSendToServer = true;
                             break;
                     }

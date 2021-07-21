@@ -87,8 +87,11 @@ namespace RealState.LoginPanel.FormsInPanel
             try
             {
                 var frm = new FRMInitialSettings();
-                if (frm.ShowDialog() == DialogResult.OK)
-                    ConnectionString = frm.ConnectionString;
+                if (frm.ShowDialog() != DialogResult.OK) return;
+                ConnectionString = frm.ConnectionString;
+                cls.ConnectionString = ConnectionString;
+                var connection = new SqlConnection(ConnectionString);
+                cls.InitialCatalog = connection.Database;
             }
             catch (Exception ex)
             {

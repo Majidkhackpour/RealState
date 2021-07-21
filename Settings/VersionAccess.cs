@@ -10,5 +10,6 @@
         public static bool AutoBackUp { get; set; } = false;
         public static bool Excel { get; set; } = false;
         public static bool Accounting { get; set; } = false;
+        public static bool WebService { get; set; } = false;
     }
 }

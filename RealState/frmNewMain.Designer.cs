@@ -188,8 +188,8 @@ namespace RealState
             this.panel1 = new System.Windows.Forms.Panel();
             this.pnlInfo = new DevComponents.DotNetBar.Controls.GroupPanel();
             this.lblExit = new System.Windows.Forms.Label();
+            this.lblInternet = new System.Windows.Forms.Label();
             this.lblSerial = new System.Windows.Forms.Label();
-            this.lblTodayNote = new System.Windows.Forms.Label();
             this.groupPanel61 = new DevComponents.DotNetBar.Controls.GroupPanel();
             this.fPanelPirority = new System.Windows.Forms.FlowLayoutPanel();
             this.label12 = new System.Windows.Forms.Label();
@@ -215,6 +215,7 @@ namespace RealState
             this.label2 = new System.Windows.Forms.Label();
             this.lblSarresidNone = new System.Windows.Forms.Label();
             this.timerSecond = new System.Windows.Forms.Timer(this.components);
+            this.timerCheckInternet = new System.Windows.Forms.Timer(this.components);
             this.pnlOk.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picInfo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picSetting)).BeginInit();
@@ -2667,6 +2668,7 @@ namespace RealState
             this.lblErtegha.TabIndex = 0;
             this.lblErtegha.Text = "ارتقای نسخه";
             this.lblErtegha.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblErtegha.Click += new System.EventHandler(this.lblErtegha_Click);
             // 
             // groupPanel51
             // 
@@ -3745,8 +3747,8 @@ namespace RealState
             // 
             this.pnlInfo.CanvasColor = System.Drawing.Color.Transparent;
             this.pnlInfo.Controls.Add(this.lblExit);
+            this.pnlInfo.Controls.Add(this.lblInternet);
             this.pnlInfo.Controls.Add(this.lblSerial);
-            this.pnlInfo.Controls.Add(this.lblTodayNote);
             this.pnlInfo.Cursor = System.Windows.Forms.Cursors.Default;
             this.pnlInfo.DisabledBackColor = System.Drawing.Color.Empty;
             this.pnlInfo.Location = new System.Drawing.Point(1, 1);
@@ -3792,6 +3794,18 @@ namespace RealState
             this.lblExit.MouseEnter += new System.EventHandler(this.lblExit_MouseEnter);
             this.lblExit.MouseLeave += new System.EventHandler(this.lblExit_MouseLeave);
             // 
+            // lblInternet
+            // 
+            this.lblInternet.BackColor = System.Drawing.Color.Transparent;
+            this.lblInternet.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.lblInternet.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(237)))), ((int)(((byte)(255)))));
+            this.lblInternet.Location = new System.Drawing.Point(-4, 9);
+            this.lblInternet.Name = "lblInternet";
+            this.lblInternet.Size = new System.Drawing.Size(269, 20);
+            this.lblInternet.TabIndex = 55729;
+            this.lblInternet.Text = "وضعیت اتصال سیستم به اینترنت: عدم اتصال";
+            this.lblInternet.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // lblSerial
             // 
             this.lblSerial.BackColor = System.Drawing.Color.Transparent;
@@ -3803,23 +3817,6 @@ namespace RealState
             this.lblSerial.TabIndex = 55729;
             this.lblSerial.Text = "سذیال نرم افزار: 2222222222222222222222";
             this.lblSerial.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // lblTodayNote
-            // 
-            this.lblTodayNote.AutoSize = true;
-            this.lblTodayNote.BackColor = System.Drawing.Color.Transparent;
-            this.lblTodayNote.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.lblTodayNote.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.lblTodayNote.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(237)))), ((int)(((byte)(255)))));
-            this.lblTodayNote.Location = new System.Drawing.Point(166, 7);
-            this.lblTodayNote.Name = "lblTodayNote";
-            this.lblTodayNote.Size = new System.Drawing.Size(103, 20);
-            this.lblTodayNote.TabIndex = 55729;
-            this.lblTodayNote.Text = "یادداشت های امروز";
-            this.lblTodayNote.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.lblTodayNote.Click += new System.EventHandler(this.lblTodayNote_Click);
-            this.lblTodayNote.MouseEnter += new System.EventHandler(this.lblTodayNote_MouseEnter);
-            this.lblTodayNote.MouseLeave += new System.EventHandler(this.lblTodayNote_MouseLeave);
             // 
             // groupPanel61
             // 
@@ -4275,6 +4272,12 @@ namespace RealState
             this.timerSecond.Interval = 1000;
             this.timerSecond.Tick += new System.EventHandler(this.timerSecond_Tick);
             // 
+            // timerCheckInternet
+            // 
+            this.timerCheckInternet.Enabled = true;
+            this.timerCheckInternet.Interval = 60000;
+            this.timerCheckInternet.Tick += new System.EventHandler(this.timerCheckInternet_Tick);
+            // 
             // frmNewMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -4587,6 +4590,7 @@ namespace RealState
         private DevComponents.DotNetBar.Controls.GroupPanel pnlInfo;
         private System.Windows.Forms.Label lblExit;
         private System.Windows.Forms.Label lblSerial;
-        private System.Windows.Forms.Label lblTodayNote;
+        private System.Windows.Forms.Label lblInternet;
+        private System.Windows.Forms.Timer timerCheckInternet;
     }
 }
