@@ -49,7 +49,7 @@ namespace EntityCache.Bussines
         public List<SanadDetailBussines> Details { get; set; }
 
 
-        public static async Task<List<SanadBussines>> GetAllAsync(CancellationToken token) => await UnitOfWork.Sanad.GetAllAsync(Cache.ConnectionString,token);
+        public static async Task<List<SanadBussines>> GetAllAsync(CancellationToken token) => await UnitOfWork.Sanad.GetAllAsync(Cache.ConnectionString, token);
         public static async Task<SanadBussines> GetAsync(Guid guid) => await UnitOfWork.Sanad.GetAsync(Cache.ConnectionString, guid);
         public static SanadBussines Get(Guid guid) => AsyncContext.Run(() => GetAsync(guid));
         public static async Task<SanadBussines> GetAsync(long number) => await UnitOfWork.Sanad.GetAsync(Cache.ConnectionString, number);
@@ -151,8 +151,8 @@ namespace EntityCache.Bussines
             {
                 foreach (var item in dets)
                 {
-                    var tafsil = await TafsilBussines.GetAsync(item.TafsilGuid);
-                    var moein = await MoeinBussines.GetAsync(item.MoeinGuid);
+                    var tafsil = await TafsilBussines.GetAsync(item.TafsilGuid, tr);
+                    var moein = await MoeinBussines.GetAsync(item.MoeinGuid, tr);
                     decimal price = 0;
                     var tag = 1;
                     if (isRemove) tag *= -1;
@@ -244,7 +244,7 @@ namespace EntityCache.Bussines
 
             return res;
         }
-        public static async Task<List<SanadBussines>> GetAllAsync(string search,CancellationToken token)
+        public static async Task<List<SanadBussines>> GetAllAsync(string search, CancellationToken token)
         {
             try
             {

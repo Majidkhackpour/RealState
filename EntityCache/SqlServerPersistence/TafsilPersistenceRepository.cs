@@ -95,21 +95,30 @@ namespace EntityCache.SqlServerPersistence
 
             return list;
         }
-        public async Task<TafsilBussines> GetAsync(string _connectionString, Guid guid)
+        public async Task<TafsilBussines> GetAsync(string _connectionString, Guid guid,SqlTransaction tr)
         {
             TafsilBussines res = null;
             try
             {
-                using (var cn = new SqlConnection(_connectionString))
+                SqlConnection cn = null;
+                var cmd = new SqlCommand("sp_Tafsil_SelectRow") { CommandType = CommandType.StoredProcedure };
+                if (tr != null)
                 {
-                    var cmd = new SqlCommand("sp_Tafsil_SelectRow", cn) { CommandType = CommandType.StoredProcedure };
-                    cmd.Parameters.AddWithValue("@guid", guid);
-
-                    await cn.OpenAsync();
-                    var dr = await cmd.ExecuteReaderAsync();
-                    if (dr.Read()) res = LoadData(dr);
-                    cn.Close();
+                    cmd.Connection = tr.Connection;
+                    cmd.Transaction = tr;
                 }
+                else
+                {
+                    cn = new SqlConnection(_connectionString);
+                    await cn.OpenAsync();
+                    cmd.Connection = cn;
+                }
+
+                cmd.Parameters.AddWithValue("@guid", guid);
+                var dr = await cmd.ExecuteReaderAsync();
+                if (dr.Read()) res = LoadData(dr);
+                dr.Close();
+                if (tr == null) cn?.Close();
             }
             catch (Exception ex)
             {

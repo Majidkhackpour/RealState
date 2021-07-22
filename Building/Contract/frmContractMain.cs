@@ -1,4 +1,9 @@
-﻿using System;
+﻿using Building.Building;
+using EntityCache.Bussines;
+using MetroFramework.Forms;
+using Peoples;
+using Services;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
@@ -7,12 +12,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WindowsSerivces;
-using Building.Building;
-using EntityCache.Bussines;
-using MetroFramework.Forms;
-using Notification;
-using Peoples;
-using Services;
 
 namespace Building.Contract
 {
@@ -40,7 +39,8 @@ namespace Building.Contract
                 FillCmbBabat();
 
                 txtCode.Text = cls?.Code.ToString();
-                lblDateNow.Text = cls?.DateSh;
+                txtDate.Text = cls?.DateSh;
+                txtCodeInArchive.Text = cls?.CodeInArchive;
                 cmbUser.SelectedValue = cls?.UserGuid;
 
                 txtTerm.Value = (decimal)(cls?.Term ?? 0);
@@ -298,6 +298,8 @@ namespace Building.Contract
                 cls.SecondSideName = sSide.Name;
                 cls.BuildingGuid = building.Guid;
                 cls.Modified = DateTime.Now;
+                cls.CodeInArchive = txtCodeInArchive.Text;
+                cls.DateM = Calendar.ShamsiToMiladi(txtDate.Text);
 
                 cls.Term = txtTerm.Text.ParseToInt();
                 cls.FromDate = Calendar.ShamsiToMiladi(txtfDate.Text);
@@ -569,7 +571,10 @@ namespace Building.Contract
                             SendKeys.Send("{Tab}");
                         break;
                     case Keys.F5:
-                        btnFinish.PerformClick();
+                        btnSaveTemp_Click(null, null);
+                        break;
+                    case Keys.F10:
+                        btnSaveNoTemp_Click(null, null);
                         break;
                     case Keys.Escape:
                         btnCancel.PerformClick();
@@ -750,5 +755,7 @@ namespace Building.Contract
         }
         private void txtfAvarez_OnTextChanged() => SetFirstSallary();
         private void txtsAvarez_OnTextChanged() => SetSecondSallary();
+        private void txtCodeInArchive_Enter(object sender, EventArgs e) => txtSetter.Focus(txtCodeInArchive);
+        private void txtCodeInArchive_Leave(object sender, EventArgs e) => txtSetter.Follow(txtCodeInArchive);
     }
 }

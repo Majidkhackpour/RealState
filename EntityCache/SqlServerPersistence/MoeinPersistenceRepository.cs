@@ -125,21 +125,30 @@ namespace EntityCache.SqlServerPersistence
 
             return list;
         }
-        public async Task<MoeinBussines> GetAsync(string _connectionString, Guid guid)
+        public async Task<MoeinBussines> GetAsync(string _connectionString, Guid guid, SqlTransaction tr)
         {
             MoeinBussines res = null;
             try
             {
-                using (var cn = new SqlConnection(_connectionString))
+                SqlConnection cn = null;
+                var cmd = new SqlCommand("sp_Moein_SelectRow") { CommandType = CommandType.StoredProcedure };
+                if (tr != null)
                 {
-                    var cmd = new SqlCommand("sp_Moein_SelectRow", cn) { CommandType = CommandType.StoredProcedure };
-                    cmd.Parameters.AddWithValue("@guid", guid);
-
-                    await cn.OpenAsync();
-                    var dr = await cmd.ExecuteReaderAsync();
-                    if (dr.Read()) res = LoadData(dr);
-                    cn.Close();
+                    cmd.Connection = tr.Connection;
+                    cmd.Transaction = tr;
                 }
+                else
+                {
+                    cn = new SqlConnection(_connectionString);
+                    await cn.OpenAsync();
+                    cmd.Connection = cn;
+                }
+                
+                cmd.Parameters.AddWithValue("@guid", guid);
+                var dr = await cmd.ExecuteReaderAsync();
+                if (dr.Read()) res = LoadData(dr);
+                dr.Close();
+                if (tr == null) cn?.Close();
             }
             catch (Exception ex)
             {

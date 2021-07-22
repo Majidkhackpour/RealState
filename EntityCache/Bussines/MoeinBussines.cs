@@ -29,7 +29,7 @@ namespace EntityCache.Bussines
         public string HardSerial => Cache.HardSerial;
 
 
-        public static async Task<List<MoeinBussines>> GetAllAsync(CancellationToken token) => await UnitOfWork.Moein.GetAllAsync(Cache.ConnectionString,token);
+        public static async Task<List<MoeinBussines>> GetAllAsync(CancellationToken token) => await UnitOfWork.Moein.GetAllAsync(Cache.ConnectionString, token);
         public static async Task<ReturnedSaveFuncInfo> SaveRangeAsync(List<MoeinBussines> list, SqlTransaction tr = null)
         {
             var res = new ReturnedSaveFuncInfo();
@@ -66,8 +66,8 @@ namespace EntityCache.Bussines
 
             return res;
         }
-        public static async Task<MoeinBussines> GetAsync(Guid guid) => await UnitOfWork.Moein.GetAsync(Cache.ConnectionString, guid);
-        public static async Task<List<MoeinBussines>> GetAllAsync(string search, Guid kolGuid,CancellationToken token)
+        public static async Task<MoeinBussines> GetAsync(Guid guid, SqlTransaction tr = null) => await UnitOfWork.Moein.GetAsync(Cache.ConnectionString, guid, tr);
+        public static async Task<List<MoeinBussines>> GetAllAsync(string search, Guid kolGuid, CancellationToken token)
         {
             try
             {

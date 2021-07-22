@@ -33,7 +33,7 @@ namespace EntityCache.Bussines
         public string HardSerial => Cache.HardSerial;
 
 
-        public static async Task<List<TafsilBussines>> GetAllAsync(CancellationToken token) => await UnitOfWork.Tafsil.GetAllAsync(Cache.ConnectionString,token);
+        public static async Task<List<TafsilBussines>> GetAllAsync(CancellationToken token) => await UnitOfWork.Tafsil.GetAllAsync(Cache.ConnectionString, token);
         public static async Task<ReturnedSaveFuncInfo> SaveRangeAsync(List<TafsilBussines> list, SqlTransaction tr = null)
         {
             var res = new ReturnedSaveFuncInfo();
@@ -106,8 +106,8 @@ namespace EntityCache.Bussines
             }
             return res;
         }
-        public static async Task<TafsilBussines> GetAsync(Guid guid) => await UnitOfWork.Tafsil.GetAsync(Cache.ConnectionString, guid);
-        public static async Task<List<TafsilBussines>> GetAllAsync(string search,CancellationToken token, HesabType htype = HesabType.All)
+        public static async Task<TafsilBussines> GetAsync(Guid guid, SqlTransaction tr = null) => await UnitOfWork.Tafsil.GetAsync(Cache.ConnectionString, guid, tr);
+        public static async Task<List<TafsilBussines>> GetAllAsync(string search, CancellationToken token, HesabType htype = HesabType.All)
         {
             try
             {

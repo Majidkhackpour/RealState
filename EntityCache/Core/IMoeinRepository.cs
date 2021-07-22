@@ -15,6 +15,6 @@ namespace EntityCache.Core
         Task<MoeinBussines> GetAsync(string _connectionString, string code);
         Task<ReturnedSaveFuncInfo> SaveAsync(MoeinBussines item, SqlTransaction tr);
         Task<List<MoeinBussines>> GetAllAsync(string _connectionString, CancellationToken token);
-        Task<MoeinBussines> GetAsync(string _connectionString, Guid guid);
+        Task<MoeinBussines> GetAsync(string _connectionString, Guid guid, SqlTransaction tr);
     }
 }
