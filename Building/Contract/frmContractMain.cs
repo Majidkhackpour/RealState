@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WindowsSerivces;
 using Building.Building;
 using EntityCache.Bussines;
 using MetroFramework.Forms;
@@ -603,11 +604,7 @@ namespace Building.Contract
             finally
             {
                 if (res.HasError)
-                {
-                    var frm = new FrmShowErrorMessage(res, "خطا در ثبت قولنامه به صورت موقت");
-                    frm.ShowDialog(this);
-                    frm.Dispose();
-                }
+                    this.ShowError(res, "خطا در ثبت قولنامه به صورت موقت");
                 else
                 {
                     DialogResult = DialogResult.OK;
@@ -633,11 +630,7 @@ namespace Building.Contract
             finally
             {
                 if (res.HasError)
-                {
-                    var frm = new FrmShowErrorMessage(res, "خطا در ثبت قولنامه به صورت داپم");
-                    frm.ShowDialog(this);
-                    frm.Dispose();
-                }
+                    this.ShowError(res, "خطا در ثبت قولنامه به صورت داپم");
                 else
                 {
                     DialogResult = DialogResult.OK;

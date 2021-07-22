@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WindowsSerivces;
 using EntityCache.Bussines;
 using MetroFramework.Forms;
 using Notification;
@@ -36,6 +38,33 @@ namespace Cities.Region
 
                 Invoke(new MethodInvoker(() => RegionBindingSource.DataSource =
                     list?.Where(q => q.Status == _st).OrderBy(q => q.Name).ToSortableBindingList()));
+
+                await LoadWorkingRangeAsync();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private async Task LoadWorkingRangeAsync()
+        {
+            try
+            {
+                if (InvokeRequired)
+                {
+                    Invoke(new MethodInvoker(() => LoadWorkingRangeAsync()));
+                    return;
+                }
+                var list = await WorkingRangeBussines.GetAllAsync();
+                if (list == null || list.Count < 0) return;
+
+                for (var i = 0; i < DGrid.RowCount; i++)
+                    foreach (var item in list)
+                        if (item.RegionGuid == (Guid) DGrid[dgGuid.Index, i].Value)
+                        {
+                            DGrid[dgWorkingRange.Index, i].Value = true;
+                            DGrid.Rows[i].DefaultCellStyle.BackColor = Color.Khaki;
+                        }
             }
             catch (Exception ex)
             {
@@ -168,11 +197,7 @@ namespace Cities.Region
             finally
             {
                 if (res.HasError)
-                {
-                    var frm = new FrmShowErrorMessage(res, "خطا در تغییر وضعیت منطقه");
-                    frm.ShowDialog(this);
-                    frm.Dispose();
-                }
+                    this.ShowError(res, "خطا در تغییر وضعیت منطقه");
                 else await LoadDataAsync(txtSearch.Text);
             }
         }
@@ -209,6 +234,42 @@ namespace Cities.Region
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private async void mnuWorkingRange_Click(object sender, EventArgs e)
+        {
+            var res = new ReturnedSaveFuncInfo();
+            var list = new List<WorkingRangeBussines>();
+            try
+            {
+                for (var i = 0; i < DGrid.RowCount; i++)
+                {
+                    if (DGrid[dgWorkingRange.Index, i].Value == null ||
+                        !(bool)DGrid[dgWorkingRange.Index, i].Value)
+                        continue;
+                    list.Add(new WorkingRangeBussines()
+                    {
+                        Guid = Guid.NewGuid(),
+                        RegionGuid = (Guid)DGrid[dgGuid.Index, i].Value
+                    });
+                }
+
+                if (list.Count <= 0) return;
+                res.AddReturnedValue(await WorkingRangeBussines.SaveRangeAsync(list));
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+            finally
+            {
+                if (res.HasError) this.ShowError(res);
+                else
+                {
+                    this.ShowMessage($"{list.Count} منطقه به عنوان محدوده کاری انتخاب شد");
+                    await LoadWorkingRangeAsync();
+                }
             }
         }
     }

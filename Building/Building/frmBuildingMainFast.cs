@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WindowsSerivces;
 using Building.BuildingMatchesItem;
 using EntityCache.Bussines;
 using EntityCache.ViewModels;
@@ -413,6 +414,8 @@ namespace Building.Building
                 _token = new CancellationTokenSource();
                 var list = await CitiesBussines.GetAllAsync((Guid)cmbState.SelectedValue, _token.Token);
                 CityBindingSource.DataSource = list?.Where(q => q.Status).OrderBy(q => q.Name).ToList();
+                if (!string.IsNullOrEmpty(clsEconomyUnit.EconomyCity))
+                    cmbCity.SelectedValue = Guid.Parse(clsEconomyUnit.EconomyCity);
             }
             catch (Exception ex)
             {
@@ -428,6 +431,8 @@ namespace Building.Building
                 _token = new CancellationTokenSource();
                 var list = await RegionsBussines.GetAllAsync((Guid)cmbCity.SelectedValue, _token.Token);
                 RegionBindingSource.DataSource = list.Where(q => q.Status).OrderBy(q => q.Name).ToList();
+                if (!string.IsNullOrEmpty(clsEconomyUnit.ManagerRegion))
+                    cmbRegion.SelectedValue = Guid.Parse(clsEconomyUnit.ManagerRegion);
             }
             catch (Exception ex)
             {
@@ -545,11 +550,7 @@ namespace Building.Building
             finally
             {
                 if (res.HasError)
-                {
-                    var frm = new FrmShowErrorMessage(res, "خطا در ذخیره سازی ملک");
-                    frm.ShowDialog(this);
-                    frm.Dispose();
-                }
+                    this.ShowError(res, "خطا در ذخیره سازی ملک");
                 else
                 {
                     DialogResult = DialogResult.OK;

@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WindowsSerivces;
 using EntityCache.Bussines;
 using MetroFramework.Forms;
 using Notification;
@@ -253,11 +254,7 @@ namespace Payamak.Panel
             finally
             {
                 if (res.HasError)
-                {
-                    var frm = new FrmShowErrorMessage(res, "خطا در تغییر وضعیت پنل ارسال پیامک");
-                    frm.ShowDialog(this);
-                    frm.Dispose();
-                }
+                    this.ShowError(res, "خطا در تغییر وضعیت پنل ارسال پیامک");
                 else await LoadDataAsync(txtSearch.Text);
             }
         }

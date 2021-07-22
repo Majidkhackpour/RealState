@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data.SqlClient;
 using System.Windows.Forms;
+using WindowsSerivces;
 using MetroFramework.Forms;
 using Notification;
 using Services;
@@ -26,7 +27,7 @@ namespace RealState.Advance
                     return;
                 }
 
-                res.AddReturnedValue(await DataBaseUtilities.RunScript.RunAsync(true,this, txtQuery.Text,
+                res.AddReturnedValue(await DataBaseUtilities.RunScript.RunAsync(true, this, txtQuery.Text,
                     new SqlConnection(Settings.AppSettings.DefaultConnectionString)));
 
                 if (!res.HasError) res.AddInformation("اجرای کوئری با موفقیت انجام شد");
@@ -37,9 +38,8 @@ namespace RealState.Advance
             }
             finally
             {
-                var frm = new FrmShowErrorMessage(res, "خطا در درج شهرستان");
-                frm.ShowDialog(this);
-                frm.Dispose();
+                if (res.HasError)
+                    this.ShowError(res, "خطا در اجرای کوئری");
             }
         }
         private void frmRunScript_KeyDown(object sender, KeyEventArgs e)

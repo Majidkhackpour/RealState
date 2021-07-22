@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WindowsSerivces;
 using EntityCache.Bussines;
 using MetroFramework.Forms;
 using Nito.AsyncEx;
@@ -119,11 +120,7 @@ namespace Cities.City
             finally
             {
                 if (res.HasError)
-                {
-                    var frm = new FrmShowErrorMessage(res, "خطا در درج شهرستان");
-                    frm.ShowDialog(this);
-                    frm.Dispose();
-                }
+                    this.ShowError(res, "خطا در درج شهرستان");
                 else
                 {
                     DialogResult = DialogResult.OK;

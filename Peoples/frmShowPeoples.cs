@@ -452,11 +452,7 @@ namespace Peoples
             finally
             {
                 if (res.HasError)
-                {
-                    var frm = new FrmShowErrorMessage(res, "خطا در حذف گروه اشخاص");
-                    frm.ShowDialog(this);
-                    frm.Dispose();
-                }
+                    this.ShowError(res, "خطا در حذف گروه اشخاص");
                 else await LoadGroupsAsync();
             }
         }

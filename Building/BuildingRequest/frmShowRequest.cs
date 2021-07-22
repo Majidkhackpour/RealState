@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WindowsSerivces;
 using Building.Building;
 using EntityCache.Bussines;
 using MetroFramework.Forms;
@@ -28,7 +29,7 @@ namespace Building.BuildingRequest
                 _token = new CancellationTokenSource();
                 _list = await BuildingRequestBussines.GetAllAsync(search, _token.Token);
                 Invoke(new MethodInvoker(() => reqBindingSource.DataSource =
-                    _list.Where(q => q.Status == _st).OrderByDescending(q => q.CreateDate).ToSortableBindingList()));
+                    _list?.Where(q => q.Status == _st).OrderByDescending(q => q.CreateDate).ToSortableBindingList()));
             }
             catch (Exception ex)
             {
@@ -354,12 +355,7 @@ namespace Building.BuildingRequest
             finally
             {
                 if (res.HasError)
-                {
-                    var frm = new FrmShowErrorMessage(res, "خطا در تغییر وضعیت تقاضا");
-                    frm.ShowDialog(this);
-                    frm.Dispose();
-                }
-
+                    this.ShowError(res, "خطا در تغییر وضعیت تقاضا");
             }
         }
         private void mnuVam_CheckedChanged(object sender, EventArgs e)

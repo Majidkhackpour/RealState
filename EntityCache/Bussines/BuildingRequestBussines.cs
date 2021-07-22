@@ -73,6 +73,9 @@ namespace EntityCache.Bussines
                 res.AddReturnedValue(CheckValidation());
                 if (res.HasError) return res;
 
+                res.AddReturnedValue(await UnitOfWork.BuildingRequest.SaveAsync(this, tr));
+                if (res.HasError) return res;
+
                 if (RegionList.Count > 0)
                 {
                     res.AddReturnedValue(await BuildingRequestRegionBussines.RemoveRangeAsync(Guid, tr));
@@ -83,9 +86,6 @@ namespace EntityCache.Bussines
                     res.AddReturnedValue(await BuildingRequestRegionBussines.SaveRangeAsync(RegionList, tr));
                     if (res.HasError) return res;
                 }
-
-                res.AddReturnedValue(await UnitOfWork.BuildingRequest.SaveAsync(this, tr));
-                if (res.HasError) return res;
 
                 var action = IsModified ? EnLogAction.Update : EnLogAction.Insert;
                 res.AddReturnedValue(await UserLogBussines.SaveAsync(action, EnLogPart.BuildingRequest, tr));

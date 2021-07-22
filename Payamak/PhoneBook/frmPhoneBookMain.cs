@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Windows.Forms;
+using WindowsSerivces;
 using EntityCache.Bussines;
 using MetroFramework.Forms;
 using Notification;
@@ -127,11 +128,7 @@ namespace Payamak.PhoneBook
             finally
             {
                 if (res.HasError)
-                {
-                    var frm = new FrmShowErrorMessage(res, "خطا در ثبت مخاطب");
-                    frm.ShowDialog(this);
-                    frm.Dispose();
-                }
+                    this.ShowError(res, "خطا در ثبت مخاطب");
                 else
                 {
                     DialogResult = DialogResult.OK;

@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WindowsSerivces;
 using Advertise.Classes;
 using EntityCache.Bussines;
 using MetroFramework.Forms;
@@ -229,12 +230,7 @@ namespace Advertise.Forms.Simcard
             }
             finally
             {
-                if (res.HasError)
-                {
-                    var frm = new FrmShowErrorMessage(res, "خطا در تغییر وضعیت سیمکارت");
-                    frm.ShowDialog(this);
-                    frm.Dispose();
-                }
+                if (res.HasError) this.ShowError(res, "خطا در تغییر وضعیت سیمکارت");
                 else await LoadDataAsync(ST, txtSearch.Text);
             }
         }
@@ -267,12 +263,7 @@ namespace Advertise.Forms.Simcard
             }
             finally
             {
-                if (res.HasError)
-                {
-                    var frm = new FrmShowErrorMessage(res, "خطا در حذف توکن شیپور");
-                    frm.ShowDialog(this);
-                    frm.Dispose();
-                }
+                if (res.HasError) this.ShowError(res, "خطا در حذف توکن شیپور");
                 else await LoadDataAsync(ST, txtSearch.Text);
             }
         }
@@ -306,11 +297,7 @@ namespace Advertise.Forms.Simcard
             finally
             {
                 if (res.HasError)
-                {
-                    var frm = new FrmShowErrorMessage(res, "خطا در حذف توکن دیوار");
-                    frm.ShowDialog(this);
-                    frm.Dispose();
-                }
+                    this.ShowError(res, "خطا در حذف توکن دیوار");
                 else await LoadDataAsync(ST, txtSearch.Text);
             }
         }
@@ -343,11 +330,7 @@ namespace Advertise.Forms.Simcard
             finally
             {
                 if (res.HasError)
-                {
-                    var frm = new FrmShowErrorMessage(res, "خطا در لاگین شیپور");
-                    frm.ShowDialog(this);
-                    frm.Dispose();
-                }
+                    this.ShowError(res, "خطا در لاگین شیپور");
             }
         }
         private async void mnuLoginDivar_Click(object sender, EventArgs e)
@@ -375,11 +358,7 @@ namespace Advertise.Forms.Simcard
             finally
             {
                 if (res.HasError)
-                {
-                    var frm = new FrmShowErrorMessage(res, "خطا در لاگین دیوار");
-                    frm.ShowDialog(this);
-                    frm.Dispose();
-                }
+                    this.ShowError(res, "خطا در لاگین دیوار");
             }
         }
         private void mnuView_Click(object sender, EventArgs e)

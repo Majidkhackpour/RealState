@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Text;
 using System.Windows.Forms;
+using WindowsSerivces;
 using EntityCache.Bussines;
 using MetroFramework.Forms;
 using Notification;
@@ -150,11 +151,7 @@ namespace User
             finally
             {
                 if (res.HasError)
-                {
-                    var frm = new FrmShowErrorMessage(res, "خطا در ثبت رمز عبور کاربر");
-                    frm.ShowDialog(this);
-                    frm.Dispose();
-                }
+                    this.ShowError(res, "خطا در ثبت رمز عبور کاربر");
                 else
                 {
                     DialogResult = DialogResult.OK;

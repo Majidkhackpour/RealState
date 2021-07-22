@@ -971,6 +971,8 @@ namespace Building.Building
                 var list = await CitiesBussines.GetAllAsync((Guid)cmbState.SelectedValue, _token.Token);
                 CityBindingSource.DataSource = list?.Where(q => q.Status).OrderBy(q => q.Name).ToList();
                 if (cls.Guid != Guid.Empty) cmbCity.SelectedValue = cls.CityGuid;
+                else if (!string.IsNullOrEmpty(clsEconomyUnit.EconomyCity))
+                    cmbCity.SelectedValue = Guid.Parse(clsEconomyUnit.EconomyCity);
             }
             catch (Exception ex)
             {
@@ -987,13 +989,13 @@ namespace Building.Building
                 var list = await RegionsBussines.GetAllAsync((Guid)cmbCity.SelectedValue, _token.Token);
                 RegionBindingSource.DataSource = list?.Where(q => q.Status).OrderBy(q => q.Name).ToList();
                 if (cls.Guid != Guid.Empty) cmbRegion.SelectedValue = cls.RegionGuid;
+                else if (!string.IsNullOrEmpty(clsEconomyUnit.ManagerRegion))
+                    cmbRegion.SelectedValue = Guid.Parse(clsEconomyUnit.ManagerRegion);
 
-                if (chbGoogleMap.Checked)
-                {
-                    var res = await ShowMap(cmbCity.Text, cmbRegion.Text);
-                    if (res.HasError)
-                        frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);
-                }
+                if (!chbGoogleMap.Checked) return;
+                var res = await ShowMap(cmbCity.Text, cmbRegion.Text);
+                if (res.HasError)
+                    frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);
             }
             catch (Exception ex)
             {
@@ -1133,12 +1135,7 @@ namespace Building.Building
             }
             finally
             {
-                if (res.HasError)
-                {
-                    var frm = new FrmShowErrorMessage(res, "خطا در ذخیره سازی ملک");
-                    frm.ShowDialog(this);
-                    frm.Dispose();
-                }
+                if (res.HasError)  this.ShowError(res, "خطا در ذخیره سازی ملک");
                 else
                 {
                     DialogResult = DialogResult.OK;

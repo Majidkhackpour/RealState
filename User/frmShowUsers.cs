@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WindowsSerivces;
 using Accounting;
 using EntityCache.Bussines;
 using MetroFramework.Forms;
@@ -196,11 +197,7 @@ namespace User
             finally
             {
                 if (res.HasError)
-                {
-                    var frm = new FrmShowErrorMessage(res, "خطا در تغییر وضعیت کاربر");
-                    frm.ShowDialog(this);
-                    frm.Dispose();
-                }
+                    this.ShowError(res, "خطا در تغییر وضعیت کاربر");
                 else await LoadDataAsync(txtSearch.Text);
             }
         }

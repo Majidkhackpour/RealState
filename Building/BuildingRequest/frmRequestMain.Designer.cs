@@ -80,7 +80,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.superTabItem1 = new DevComponents.DotNetBar.SuperTabItem();
-            this.superTabControlPanel3 = new DevComponents.DotNetBar.SuperTabControlPanel();
             this.superTabControlPanel2 = new DevComponents.DotNetBar.SuperTabControlPanel();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.txtRoomCount = new System.Windows.Forms.NumericUpDown();
@@ -120,6 +119,7 @@
             this.cmbState = new System.Windows.Forms.ComboBox();
             this.StateBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.superTabItem2 = new DevComponents.DotNetBar.SuperTabItem();
+            this.superTabControlPanel3 = new DevComponents.DotNetBar.SuperTabControlPanel();
             this.btnCancel = new DevComponents.DotNetBar.ButtonX();
             this.btnFinish = new DevComponents.DotNetBar.ButtonX();
             this.ucHeader = new WindowsSerivces.UC_Header();
@@ -169,8 +169,8 @@
             this.superTabControl1.ControlBox.SubItems.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.superTabControl1.ControlBox.MenuBox,
             this.superTabControl1.ControlBox.CloseBox});
-            this.superTabControl1.Controls.Add(this.superTabControlPanel1);
             this.superTabControl1.Controls.Add(this.superTabControlPanel2);
+            this.superTabControl1.Controls.Add(this.superTabControlPanel1);
             this.superTabControl1.Controls.Add(this.superTabControlPanel3);
             this.superTabControl1.Location = new System.Drawing.Point(6, 59);
             this.superTabControl1.Name = "superTabControl1";
@@ -872,21 +872,13 @@
             this.superTabItem1.Name = "superTabItem1";
             this.superTabItem1.Text = "اطلاعات پایه";
             // 
-            // superTabControlPanel3
-            // 
-            this.superTabControlPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.superTabControlPanel3.Location = new System.Drawing.Point(0, 0);
-            this.superTabControlPanel3.Name = "superTabControlPanel3";
-            this.superTabControlPanel3.Size = new System.Drawing.Size(789, 497);
-            this.superTabControlPanel3.TabIndex = 0;
-            // 
             // superTabControlPanel2
             // 
             this.superTabControlPanel2.Controls.Add(this.splitContainer2);
             this.superTabControlPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.superTabControlPanel2.Location = new System.Drawing.Point(0, 40);
             this.superTabControlPanel2.Name = "superTabControlPanel2";
-            this.superTabControlPanel2.Size = new System.Drawing.Size(789, 442);
+            this.superTabControlPanel2.Size = new System.Drawing.Size(789, 457);
             this.superTabControlPanel2.TabIndex = 0;
             this.superTabControlPanel2.TabItem = this.superTabItem2;
             // 
@@ -924,7 +916,7 @@
             this.splitContainer2.Panel2.Controls.Add(this.label35);
             this.splitContainer2.Panel2.Controls.Add(this.cmbState);
             this.splitContainer2.Panel2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.splitContainer2.Size = new System.Drawing.Size(789, 442);
+            this.splitContainer2.Size = new System.Drawing.Size(789, 457);
             this.splitContainer2.SplitterDistance = 282;
             this.splitContainer2.TabIndex = 1;
             // 
@@ -962,7 +954,7 @@
             this.txtDesc.Multiline = true;
             this.txtDesc.Name = "txtDesc";
             this.txtDesc.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtDesc.Size = new System.Drawing.Size(220, 215);
+            this.txtDesc.Size = new System.Drawing.Size(220, 230);
             this.txtDesc.TabIndex = 31;
             // 
             // cmbBuildingType
@@ -1208,7 +1200,7 @@
             this.DGrid.RowsDefaultCellStyle = dataGridViewCellStyle5;
             this.DGrid.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             this.DGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DGrid.Size = new System.Drawing.Size(497, 388);
+            this.DGrid.Size = new System.Drawing.Size(497, 403);
             this.DGrid.TabIndex = 55709;
             this.DGrid.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DGrid_CellFormatting);
             // 
@@ -1346,6 +1338,14 @@
             this.superTabItem2.GlobalItem = false;
             this.superTabItem2.Name = "superTabItem2";
             this.superTabItem2.Text = "اطلاعات تکمیلی";
+            // 
+            // superTabControlPanel3
+            // 
+            this.superTabControlPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.superTabControlPanel3.Location = new System.Drawing.Point(0, 0);
+            this.superTabControlPanel3.Name = "superTabControlPanel3";
+            this.superTabControlPanel3.Size = new System.Drawing.Size(789, 497);
+            this.superTabControlPanel3.TabIndex = 0;
             // 
             // btnCancel
             // 

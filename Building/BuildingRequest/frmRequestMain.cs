@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -12,6 +13,7 @@ using MetroFramework.Forms;
 using Notification;
 using Peoples;
 using Services;
+using Settings.Classes;
 using User;
 
 namespace Building.BuildingRequest
@@ -77,7 +79,10 @@ namespace Building.BuildingRequest
                     cmbBuildingType.SelectedIndex = 0;
                     cmbBuildingCondition.SelectedIndex = 0;
                     cmbBuildingAccountType.SelectedIndex = 0;
-                    cmbState.SelectedIndex = 0;
+                    if (string.IsNullOrEmpty(clsEconomyUnit.EconomyState))
+                        cmbState.SelectedIndex = 0;
+                    else
+                        cmbState.SelectedValue = Guid.Parse(clsEconomyUnit.EconomyState);
                 }
             }
             catch (Exception ex)
@@ -91,6 +96,28 @@ namespace Building.BuildingRequest
             {
                 var list = await UserBussines.GetAllAsync(token);
                 userBindingSource.DataSource = list.Where(q => q.Status).OrderBy(q => q.Name).ToList();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private async Task LoadWorkingRangeAsync()
+        {
+            try
+            {
+                if (InvokeRequired)
+                {
+                    Invoke(new MethodInvoker(() => LoadWorkingRangeAsync()));
+                    return;
+                }
+                var list = await WorkingRangeBussines.GetAllAsync();
+                if (list == null || list.Count < 0) return;
+
+                for (var i = 0; i < DGrid.RowCount; i++)
+                    foreach (var item in list)
+                        if (item.RegionGuid == (Guid)DGrid[dgGuid.Index, i].Value)
+                            DGrid[dgChecked.Index, i].Value = true;
             }
             catch (Exception ex)
             {
@@ -344,6 +371,10 @@ namespace Building.BuildingRequest
                 var list = await CitiesBussines.GetAllAsync((Guid)cmbState.SelectedValue, _token.Token);
                 CityBindingSource.DataSource = list?.Where(q => q.Status).OrderBy(q => q.Name).ToList();
                 if (cls.Guid != Guid.Empty) cmbCity.SelectedValue = cls.CityGuid;
+                else if (!string.IsNullOrEmpty(clsEconomyUnit.EconomyCity))
+                    cmbCity.SelectedValue = Guid.Parse(clsEconomyUnit.EconomyCity);
+
+                await SetRelatedRegionsAsync(cls?.Guid ?? Guid.Empty);
             }
             catch (Exception ex)
             {
@@ -359,6 +390,7 @@ namespace Building.BuildingRequest
                 _token = new CancellationTokenSource();
                 var list = await RegionsBussines.GetAllAsync((Guid)cmbCity.SelectedValue, _token.Token);
                 RegionBindingSource.DataSource = list.Where(q => q.Status).OrderBy(q => q.Name).ToList();
+                if (cls.Guid == Guid.Empty) await LoadWorkingRangeAsync();
             }
             catch (Exception ex)
             {
@@ -492,12 +524,7 @@ namespace Building.BuildingRequest
             }
             finally
             {
-                if (res.HasError)
-                {
-                    var frm = new FrmShowErrorMessage(res, "خطا در ثبت تقاضا");
-                    frm.ShowDialog(this);
-                    frm.Dispose();
-                }
+                if (res.HasError) this.ShowError(res, "خطا در ثبت تقاضا");
                 else
                 {
                     DialogResult = DialogResult.OK;

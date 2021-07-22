@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WindowsSerivces;
 using EntityCache.Bussines;
 using MetroFramework.Forms;
 using Notification;
@@ -132,15 +133,9 @@ namespace User
             finally
             {
                 if (res.HasError)
-                {
-                    var frm = new FrmShowErrorMessage(res, "خطا در ثبت سطوح دسترسی کاربر");
-                    frm.ShowDialog(this);
-                    frm.Dispose();
-                }
+                    this.ShowError(res, "خطا در ثبت سطوح دسترسی کاربر");
                 else
-                    MessageBox.Show(this, "سطوح دسترسی کاربر با موفقیت ذخیره شد", "پیغام سیستم", MessageBoxButtons.OK,
-                        MessageBoxIcon.Information, MessageBoxDefaultButton.Button1,
-                        MessageBoxOptions.RightAlign);
+                   this.ShowMessage("سطوح دسترسی کاربر با موفقیت ذخیره شد");
             }
         }
 

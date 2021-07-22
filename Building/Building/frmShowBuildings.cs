@@ -498,11 +498,7 @@ namespace Building.Building
             finally
             {
                 if (res.HasError)
-                {
-                    var frm = new FrmShowErrorMessage(res, "خطا در ارسال ملک به شیپور");
-                    frm.ShowDialog(this);
-                    frm.Dispose();
-                }
+                    this.ShowError(res, "خطا در ارسال ملک به شیپور");
                 else
                 {
                     frmNotification.PublicInfo.ShowMessage(
@@ -539,11 +535,7 @@ namespace Building.Building
             finally
             {
                 if (res.HasError)
-                {
-                    var frm = new FrmShowErrorMessage(res, "خطا در ارسال ملک به دیوار");
-                    frm.ShowDialog(this);
-                    frm.Dispose();
-                }
+                    this.ShowError(res, "خطا در ارسال ملک به دیوار");
                 else
                 {
                     frmNotification.PublicInfo.ShowMessage(
@@ -659,11 +651,7 @@ namespace Building.Building
             finally
             {
                 if (res.HasError)
-                {
-                    var frm = new FrmShowErrorMessage(res, "خطا در تغییر وضعیت ملک");
-                    frm.ShowDialog(this);
-                    frm.Dispose();
-                }
+                    this.ShowError(res, "خطا در تغییر وضعیت ملک");
                 else LoadData(txtSearch.Text);
             }
         }

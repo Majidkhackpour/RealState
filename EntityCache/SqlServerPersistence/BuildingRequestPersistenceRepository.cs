@@ -24,7 +24,7 @@ namespace EntityCache.SqlServerPersistence
                     if (token.IsCancellationRequested) return null;
                     await cn.OpenAsync();
                     var dr = await cmd.ExecuteReaderAsync();
-                    if (dr.Read())
+                    while (dr.Read())
                     {
                         if (token.IsCancellationRequested) return null;
                         list.Add(LoadData(dr, false));

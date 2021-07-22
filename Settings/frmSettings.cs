@@ -141,8 +141,10 @@ namespace Settings
                 if (cmbEcCity.SelectedValue == null) return;
                 token?.Cancel();
                 token = new CancellationTokenSource();
-                var list = await RegionsBussines.GetAllAsync((Guid) cmbEcCity.SelectedValue, token.Token);
+                var list = await RegionsBussines.GetAllAsync((Guid)cmbEcCity.SelectedValue, token.Token);
                 RegionBindingSource.DataSource = list.OrderBy(q => q.Name).ToList();
+                if (!string.IsNullOrEmpty(clsEconomyUnit.ManagerRegion))
+                    cmbEcRegion.SelectedValue = Guid.Parse(clsEconomyUnit.ManagerRegion);
             }
             catch (Exception ex)
             {
@@ -156,8 +158,10 @@ namespace Settings
                 if (cmbEcState.SelectedValue == null) return;
                 token?.Cancel();
                 token = new CancellationTokenSource();
-                var list = await CitiesBussines.GetAllAsync((Guid) cmbEcState.SelectedValue, token.Token);
+                var list = await CitiesBussines.GetAllAsync((Guid)cmbEcState.SelectedValue, token.Token);
                 CityBindingSource.DataSource = list.OrderBy(q => q.Name).ToList();
+                if (!string.IsNullOrEmpty(clsEconomyUnit.EconomyCity))
+                    cmbEcCity.SelectedValue = Guid.Parse(clsEconomyUnit.EconomyCity);
             }
             catch (Exception ex)
             {

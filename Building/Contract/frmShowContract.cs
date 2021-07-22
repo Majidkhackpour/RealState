@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WindowsSerivces;
 using EntityCache.Bussines;
 using EntityCache.ViewModels;
 using MetroFramework.Forms;
@@ -287,11 +288,7 @@ namespace Building.Contract
             finally
             {
                 if (res.HasError)
-                {
-                    var frm = new FrmShowErrorMessage(res, "خطا در بستن قولنامه");
-                    frm.ShowDialog(this);
-                    frm.Dispose();
-                }
+                    this.ShowError(res, "خطا در بستن قولنامه");
                 else await LoadDataAsync(txtSearch.Text);
             }
         }
@@ -325,11 +322,7 @@ namespace Building.Contract
             finally
             {
                 if (res.HasError)
-                {
-                    var frm = new FrmShowErrorMessage(res, "خطا در حذف قولنامه");
-                    frm.ShowDialog(this);
-                    frm.Dispose();
-                }
+                    this.ShowError(res, "خطا در حذف قولنامه");
                 else await LoadDataAsync(txtSearch.Text);
             }
         }
