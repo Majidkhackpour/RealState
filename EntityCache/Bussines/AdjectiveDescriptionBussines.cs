@@ -7,9 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
-using System.Threading;
 using System.Threading.Tasks;
-using WebHesabBussines;
 
 namespace EntityCache.Bussines
 {
@@ -36,7 +34,7 @@ namespace EntityCache.Bussines
 
                 res.AddReturnedValue(CheckValidation());
                 if (res.HasError) return res;
-               
+
                 res.AddReturnedValue(await UnitOfWork.AdjectiveDescription.SaveAsync(this, tr));
             }
             catch (Exception ex)
@@ -61,14 +59,14 @@ namespace EntityCache.Bussines
             {
                 if (string.IsNullOrEmpty(search)) search = "";
                 var res = await GetAllAsync();
-                
+
                 var searchItems = search.SplitString();
                 if (searchItems?.Count > 0)
                     foreach (var item in searchItems)
                     {
                         if (!string.IsNullOrEmpty(item) && item.Trim() != "")
                         {
-                            res = res.Where(x => x.Description.ToLower().Contains(item.ToLower()) )
+                            res = res.Where(x => x.Description.ToLower().Contains(item.ToLower()))
                                 ?.ToList();
                         }
                     }

@@ -7301,3 +7301,52 @@ BEGIN
 	set IsArchive='false',Modified=GETDATE()
 	where CreateDate>@date and Guid not in(select BuildingGuid from Contracts)
 END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_WorkingRange_GetAll]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_WorkingRange_GetAll]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_WorkingRange_GetAll
+AS
+BEGIN
+	Select * from WorkingRanges
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_WorkingRange_Get]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_WorkingRange_Get]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_WorkingRange_Get
+	@Guid uniqueidentifier
+AS
+BEGIN
+	Select * from WorkingRanges
+	where Guid=@Guid
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_WorkingRange_Save]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_WorkingRange_Save]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_WorkingRange_Save
+	@Guid uniqueidentifier,
+	@regionGuid uniqueidentifier
+AS
+BEGIN
+	INSERT INTO [dbo].[WorkingRanges]
+           ([Guid]
+           ,[RegionGuid])
+     VALUES
+           (@Guid
+           ,@regionGuid)
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_WorkingRange_DeleteAll]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_WorkingRange_DeleteAll]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_WorkingRange_DeleteAll
+AS
+BEGIN
+	Delete from WorkingRanges
+END

@@ -21,6 +21,7 @@ namespace Persistence.Entities
         public Guid CityGuid { get; set; }
         public virtual Cities City { get; set; }
         public virtual ICollection<Building> Building { get; set; }
+        public virtual ICollection<WorkingRange> WorkingRange { get; set; }
         public virtual ICollection<BuildingRequestRegion> BuildingRequestRegion { get; set; }
     }
 }

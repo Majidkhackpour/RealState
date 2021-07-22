@@ -166,6 +166,7 @@
     <Compile Include="Bussines\TempBussines.cs" />
     <Compile Include="Bussines\UserBussines.cs" />
     <Compile Include="Bussines\UserLogBussines.cs" />
+    <Compile Include="Bussines\WorkingRangeBussines.cs" />
     <Compile Include="Core\IAdjectiveDescriptionRepository.cs" />
     <Compile Include="Core\IAdvertiseLogRepository.cs" />
     <Compile Include="Core\IAdvertiseRelatedRegionRepository.cs" />
@@ -226,6 +227,7 @@
     <Compile Include="Core\ITempRepository.cs" />
     <Compile Include="Core\IUserLogRepository.cs" />
     <Compile Include="Core\IUsersRepository.cs" />
+    <Compile Include="Core\IWorkingRangeRepository.cs" />
     <Compile Include="SqlServerPersistence\AdjectiveDescriptionPersistenceRepository.cs" />
     <Compile Include="SqlServerPersistence\AdvertiseLogPersistenceRepository.cs" />
     <Compile Include="SqlServerPersistence\AdvertiseRelatedRegionPersistenceRepository.cs" />
@@ -287,6 +289,7 @@
     <Compile Include="SqlServerPersistence\TempPersistenceRepository.cs" />
     <Compile Include="SqlServerPersistence\UserLogPersistenceRepository.cs" />
     <Compile Include="SqlServerPersistence\UsersPersistenceRepository.cs" />
+    <Compile Include="SqlServerPersistence\WorkingRangePersistenceRepository.cs" />
     <Compile Include="ViewModels\BuildingDischargeViewModel.cs" />
     <Compile Include="ViewModels\BuildingReportViewModel.cs" />
     <Compile Include="ViewModels\BuildingRequestViewModel.cs" />

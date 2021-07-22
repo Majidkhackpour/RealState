@@ -118,6 +118,7 @@
     <Compile Include="Entities\Temp.cs" />
     <Compile Include="Entities\UserLog.cs" />
     <Compile Include="Entities\Users.cs" />
+    <Compile Include="Entities\WorkingRange.cs" />
     <Compile Include="Migrations\202007131420071__1.cs" />
     <Compile Include="Migrations\202007131420071__1.designer.cs">
       <DependentUpon>202007131420071__1.cs</DependentUpon>
@@ -494,6 +495,10 @@
     <Compile Include="Migrations\202105171639445__94.designer.cs">
       <DependentUpon>202105171639445__94.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202107221735202__95.cs" />
+    <Compile Include="Migrations\202107221735202__95.designer.cs">
+      <DependentUpon>202107221735202__95.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\ModelContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -790,6 +795,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202105171639445__94.resx">
       <DependentUpon>202105171639445__94.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202107221735202__95.resx">
+      <DependentUpon>202107221735202__95.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
