@@ -46,19 +46,19 @@ namespace User.Advisor
             this.mnuAdd = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.DGrid = new DevComponents.DotNetBar.Controls.DataGridViewX();
+            this.ucHeader = new WindowsSerivces.UC_Header();
             this.Radif = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Mobile1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Mobile2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.addressDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.accountDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.diagnosisDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgAccount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgAccount_ = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgGuid = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.modifiedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.statusDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.accountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.accountFirstDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ucHeader = new WindowsSerivces.UC_Header();
             ((System.ComponentModel.ISupportInitialize)(this.BankBindingSource)).BeginInit();
             this.contextMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).BeginInit();
@@ -169,8 +169,8 @@ namespace User.Advisor
             this.Mobile1,
             this.Mobile2,
             this.addressDataGridViewTextBoxColumn,
-            this.accountDataGridViewTextBoxColumn1,
-            this.diagnosisDataGridViewTextBoxColumn,
+            this.dgAccount,
+            this.dgAccount_,
             this.dgGuid,
             this.modifiedDataGridViewTextBoxColumn,
             this.statusDataGridViewCheckBoxColumn,
@@ -213,6 +213,24 @@ namespace User.Advisor
             this.DGrid.Size = new System.Drawing.Size(793, 497);
             this.DGrid.TabIndex = 55755;
             this.DGrid.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DGrid_CellFormatting);
+            // 
+            // ucHeader
+            // 
+            this.ucHeader.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.ucHeader.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ucHeader.BackColor = System.Drawing.Color.White;
+            this.ucHeader.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.ucHeader.Cursor = System.Windows.Forms.Cursors.Default;
+            this.ucHeader.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.ucHeader.IsModified = false;
+            this.ucHeader.Location = new System.Drawing.Point(-7, 25);
+            this.ucHeader.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ucHeader.MinimumSize = new System.Drawing.Size(297, 34);
+            this.ucHeader.Name = "ucHeader";
+            this.ucHeader.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.ucHeader.Size = new System.Drawing.Size(815, 34);
+            this.ucHeader.TabIndex = 55756;
             // 
             // Radif
             // 
@@ -257,26 +275,26 @@ namespace User.Advisor
             this.addressDataGridViewTextBoxColumn.Name = "addressDataGridViewTextBoxColumn";
             this.addressDataGridViewTextBoxColumn.ReadOnly = true;
             // 
-            // accountDataGridViewTextBoxColumn1
+            // dgAccount
             // 
-            this.accountDataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.accountDataGridViewTextBoxColumn1.DataPropertyName = "Account_";
+            this.dgAccount.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dgAccount.DataPropertyName = "Account_";
             dataGridViewCellStyle3.Format = "N0";
             dataGridViewCellStyle3.NullValue = null;
-            this.accountDataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle3;
-            this.accountDataGridViewTextBoxColumn1.HeaderText = "مانده";
-            this.accountDataGridViewTextBoxColumn1.Name = "accountDataGridViewTextBoxColumn1";
-            this.accountDataGridViewTextBoxColumn1.ReadOnly = true;
-            this.accountDataGridViewTextBoxColumn1.Width = 58;
+            this.dgAccount.DefaultCellStyle = dataGridViewCellStyle3;
+            this.dgAccount.HeaderText = "مانده";
+            this.dgAccount.Name = "dgAccount";
+            this.dgAccount.ReadOnly = true;
+            this.dgAccount.Width = 58;
             // 
-            // diagnosisDataGridViewTextBoxColumn
+            // dgAccount_
             // 
-            this.diagnosisDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.diagnosisDataGridViewTextBoxColumn.DataPropertyName = "Diagnosis";
-            this.diagnosisDataGridViewTextBoxColumn.HeaderText = "تشخیص";
-            this.diagnosisDataGridViewTextBoxColumn.Name = "diagnosisDataGridViewTextBoxColumn";
-            this.diagnosisDataGridViewTextBoxColumn.ReadOnly = true;
-            this.diagnosisDataGridViewTextBoxColumn.Width = 74;
+            this.dgAccount_.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dgAccount_.DataPropertyName = "Diagnosis";
+            this.dgAccount_.HeaderText = "تشخیص";
+            this.dgAccount_.Name = "dgAccount_";
+            this.dgAccount_.ReadOnly = true;
+            this.dgAccount_.Width = 74;
             // 
             // dgGuid
             // 
@@ -318,24 +336,6 @@ namespace User.Advisor
             this.accountFirstDataGridViewTextBoxColumn.ReadOnly = true;
             this.accountFirstDataGridViewTextBoxColumn.Visible = false;
             // 
-            // ucHeader
-            // 
-            this.ucHeader.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.ucHeader.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.ucHeader.BackColor = System.Drawing.Color.White;
-            this.ucHeader.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ucHeader.Cursor = System.Windows.Forms.Cursors.Default;
-            this.ucHeader.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.ucHeader.IsModified = false;
-            this.ucHeader.Location = new System.Drawing.Point(-7, 25);
-            this.ucHeader.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.ucHeader.MinimumSize = new System.Drawing.Size(297, 34);
-            this.ucHeader.Name = "ucHeader";
-            this.ucHeader.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.ucHeader.Size = new System.Drawing.Size(815, 34);
-            this.ucHeader.TabIndex = 55756;
-            // 
             // frmShowAdvisor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -374,18 +374,18 @@ namespace User.Advisor
         private System.Windows.Forms.ToolStripMenuItem mnuAdd;
         private System.Windows.Forms.ContextMenuStrip contextMenu;
         private DevComponents.DotNetBar.Controls.DataGridViewX DGrid;
+        private WindowsSerivces.UC_Header ucHeader;
         private System.Windows.Forms.DataGridViewTextBoxColumn Radif;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgName;
         private System.Windows.Forms.DataGridViewTextBoxColumn Mobile1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Mobile2;
         private System.Windows.Forms.DataGridViewTextBoxColumn addressDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn accountDataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn diagnosisDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgAccount;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgAccount_;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgGuid;
         private System.Windows.Forms.DataGridViewTextBoxColumn modifiedDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewCheckBoxColumn statusDataGridViewCheckBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn accountDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn accountFirstDataGridViewTextBoxColumn;
-        private WindowsSerivces.UC_Header ucHeader;
     }
 }

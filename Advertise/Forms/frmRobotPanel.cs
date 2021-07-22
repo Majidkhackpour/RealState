@@ -81,15 +81,7 @@ namespace Advertise.Forms
                 };
                 await SerializedDataBussines.SaveAsync("DivarCities", serializedData.Data);
 
-
-                //var cities = await SerializedDataBussines.GetDivarCityAsync();
-
-                //var dc = cities.Where(q =>
-                //    q.Name.Contains("مشهد") || q.Name.Contains("اصفهان") || q.Name.Contains("تهران") ||
-                //    q.Name.Contains("کرج") || q.Name.Contains("اهواز") || q.Name.Contains("شیراز") ||
-                //    q.Name.Contains("قم")).ToList();
-                //var regList = await divar.GetAllRegionFromDivar(dc);
-                //Utility.CloseAllChromeWindows();
+                //var regList = await DivarAPI.GetAllRegionsAsync();
                 //var serializedData_ = new SerializedDataBussines()
                 //{
                 //    Guid = Guid.NewGuid(),
@@ -99,13 +91,7 @@ namespace Advertise.Forms
 
                 //await SerializedDataBussines.SaveAsync("DivarRegions", serializedData_.Data);
 
-
-
-
-
-
-
-
+                
 
 
                 //var sheypoor = SheypoorAdv.GetInstance();

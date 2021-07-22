@@ -346,6 +346,27 @@
   <ItemGroup>
     <None Include="Resources\Text.txt" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MashhadRegions.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\QomRegions.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\IsfahanRegions.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TehranRegions.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\KarajRegions.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AhvazRegions.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ShirazRegions.txt" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

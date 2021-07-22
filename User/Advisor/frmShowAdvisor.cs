@@ -9,6 +9,7 @@ using EntityCache.Bussines;
 using MetroFramework.Forms;
 using Notification;
 using Services;
+using Settings;
 
 namespace User.Advisor
 {
@@ -35,10 +36,20 @@ namespace User.Advisor
 
         public frmShowAdvisor(bool status = true)
         {
-            InitializeComponent();
-            ucHeader.Text = "نمایش لیست مشاوران";
-            _st = status;
-            DGrid.Focus();
+            try
+            {
+                InitializeComponent();
+                ucHeader.Text = "نمایش لیست مشاوران";
+                _st = status;
+                DGrid.Focus();
+                if (VersionAccess.Accounting) return;
+                DGrid.Columns[dgAccount.Index].Visible = false;
+                DGrid.Columns[dgAccount_.Index].Visible = false;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
         }
 
 
