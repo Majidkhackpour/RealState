@@ -19,6 +19,7 @@ namespace WebHesabBussines
         public DateTime ServerDeliveryDate { get; set; }
         public DateTime DateM { get; set; }
         public long Code { get; set; }
+        public string CodeInArchive { get; set; }
         public bool IsTemp { get; set; }
         public Guid FirstSideGuid { get; set; }
         public Guid SecondSideGuid { get; set; }
@@ -126,7 +127,8 @@ namespace WebHesabBussines
                     SecondAvarez = cls.SecondAvarez,
                     SecondTotalPrice = cls.SecondTotalPrice,
                     fBabat = cls.fBabat,
-                    sBabat = cls.sBabat
+                    sBabat = cls.sBabat,
+                    CodeInArchive = cls.CodeInArchive
                 };
                 await obj.SaveAsync();
             }

@@ -1057,7 +1057,8 @@ ALTER PROCEDURE [dbo].[sp_Contract_Save]
 	@fTotalPrice decimal,
 	@sTotalPrice decimal,
 	@serverSt smallint,
-	@serverDate datetime
+	@serverDate datetime,
+	@codeInArchive nvarchar(100)
 AS
 BEGIN	
 	 update Buildings
@@ -1102,6 +1103,7 @@ BEGIN
 		  ,[SecondTotalPrice] = @sTotalPrice
 		  ,[ServerStatus] = @serverSt
 		  ,[ServerDeliveryDate] = @serverDate
+		  ,[CodeInArchive] = @codeInArchive
 	 WHERE [Guid] = @Guid
 	 if @@ROWCOUNT = 0
 	 begin
@@ -1145,7 +1147,8 @@ BEGIN
            ,[FirstTotalPrice]
            ,[SecondTotalPrice]
 		   ,[ServerStatus]
-		   ,[ServerDeliveryDate])
+		   ,[ServerDeliveryDate]
+		   ,[CodeInArchive])
 		VALUES
            (@Guid
            ,@modif
@@ -1186,7 +1189,8 @@ BEGIN
            ,@fTotalPrice
            ,@sTotalPrice
 		   ,@serverSt
-		   ,@serverDate)
+		   ,@serverDate
+		   ,@codeInArchive)
 	 end
 END
 GO

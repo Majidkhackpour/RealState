@@ -16,6 +16,7 @@ namespace Persistence.Entities
         public DateTime ServerDeliveryDate { get; set; }
         public DateTime DateM { get; set; }
         public long Code { get; set; }
+        [MaxLength(100)] public string CodeInArchive { get; set; }
         public bool IsTemp { get; set; }
         [ForeignKey("fTafsil"), Column(Order = 1)]
         public Guid FirstSideGuid { get; set; }

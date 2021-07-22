@@ -133,6 +133,7 @@ namespace EntityCache.SqlServerPersistence
                 cmd.Parameters.AddWithValue("@sTotalPrice", item.SecondTotalPrice);
                 cmd.Parameters.AddWithValue("@serverSt", (short)item.ServerStatus);
                 cmd.Parameters.AddWithValue("@serverDate", item.ServerDeliveryDate);
+                cmd.Parameters.AddWithValue("@codeInArchive", item.CodeInArchive);
 
                 await cmd.ExecuteNonQueryAsync();
             }
@@ -372,6 +373,7 @@ namespace EntityCache.SqlServerPersistence
                 res.ServerDeliveryDate = (DateTime)dr["ServerDeliveryDate"];
                 res.ServerStatus = (ServerStatus)dr["ServerStatus"];
                 res.IsModified = true;
+                res.CodeInArchive = dr["CodeInArchive"].ToString();
             }
             catch (Exception ex)
             {

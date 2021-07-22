@@ -25,6 +25,7 @@ namespace EntityCache.Bussines
         public bool Status { get; set; } = true;
         public DateTime DateM { get; set; } = DateTime.Now;
         public long Code { get; set; }
+        public string CodeInArchive { get; set; }
         public bool IsTemp { get; set; }
         public Guid FirstSideGuid { get; set; }
         public string FirstSideName { get; set; }

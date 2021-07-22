@@ -558,7 +558,6 @@
             this.txtName.Size = new System.Drawing.Size(260, 27);
             this.txtName.TabIndex = 0;
             this.txtName.Enter += new System.EventHandler(this.txtName_Enter);
-            this.txtName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtName_KeyPress);
             this.txtName.Leave += new System.EventHandler(this.txtName_Leave);
             // 
             // label16
