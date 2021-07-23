@@ -81,17 +81,17 @@ namespace Advertise.Forms
                 };
                 await SerializedDataBussines.SaveAsync("DivarCities", serializedData.Data);
 
-                //var regList = await DivarAPI.GetAllRegionsAsync();
-                //var serializedData_ = new SerializedDataBussines()
-                //{
-                //    Guid = Guid.NewGuid(),
-                //    Name = "DivarRegions",
-                //    Data = Json.ToStringJson(regList)
-                //};
+                var regList = await DivarAPI.GetAllRegionsAsync();
+                var serializedData_ = new SerializedDataBussines()
+                {
+                    Guid = Guid.NewGuid(),
+                    Name = "DivarRegions",
+                    Data = Json.ToStringJson(regList)
+                };
 
-                //await SerializedDataBussines.SaveAsync("DivarRegions", serializedData_.Data);
+                await SerializedDataBussines.SaveAsync("DivarRegions", serializedData_.Data);
 
-                
+
 
 
                 //var sheypoor = SheypoorAdv.GetInstance();
