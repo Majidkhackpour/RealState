@@ -47,7 +47,7 @@ namespace Building.BuildingRequest
                 mnuView.Enabled = access?.BuildingRequest.Building_Request_View ?? false;
                 mnuPrint.Enabled = access?.BuildingRequest.Building_Request_Print ?? false;
 
-                mnuSendSms.Visible = Settings.VersionAccess.Sms;
+                mnuSendSms.Visible = VersionAccess.Sms;
             }
             catch (Exception ex)
             {

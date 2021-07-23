@@ -174,7 +174,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="VersionAccess.cs" />
     <Compile Include="WorkingYear\WorkingYear.cs" />
   </ItemGroup>
   <ItemGroup>

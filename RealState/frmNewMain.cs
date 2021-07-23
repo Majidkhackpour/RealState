@@ -69,6 +69,31 @@ namespace RealState
                 var values = Enum.GetValues(typeof(EnForms)).Cast<EnForms>();
                 foreach (var item in values)
                     _dic.TryAdd(item.GetDisplay(), item);
+
+                EnForms x;
+                if (!VersionAccess.Accounting)
+                {
+                    _dic.TryRemove(EnForms.Hazine.GetDisplay(), out x);
+                    _dic.TryRemove(EnForms.Daryaft.GetDisplay(), out x);
+                    _dic.TryRemove(EnForms.Pardakht.GetDisplay(), out x);
+                    _dic.TryRemove(EnForms.Sanad.GetDisplay(), out x);
+                    _dic.TryRemove(EnForms.AccountingReport.GetDisplay(), out x);
+                    _dic.TryRemove(EnForms.KolMoein.GetDisplay(), out x);
+                    _dic.TryRemove(EnForms.Tafsil.GetDisplay(), out x);
+                    _dic.TryRemove(EnForms.Sandouq.GetDisplay(), out x);
+                    _dic.TryRemove(EnForms.Bank.GetDisplay(), out x);
+                    _dic.TryRemove(EnForms.CheckBook.GetDisplay(), out x);
+                    _dic.TryRemove(EnForms.PardakhtCheck.GetDisplay(), out x);
+                    _dic.TryRemove(EnForms.ReceptionCheck.GetDisplay(), out x);
+                }
+
+                if (!VersionAccess.Sms)
+                {
+                    _dic.TryRemove(EnForms.SmsPanel.GetDisplay(), out x);
+                    _dic.TryRemove(EnForms.SendSms.GetDisplay(), out x);
+                }
+                if (!VersionAccess.Advertise)
+                    _dic.TryRemove(EnForms.Advertise.GetDisplay(), out x);
             }
             catch (Exception ex)
             {

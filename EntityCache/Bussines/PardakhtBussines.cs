@@ -338,9 +338,12 @@ namespace EntityCache.Bussines
                 res.AddReturnedValue(await sanad.SaveAsync(tr));
                 if (res.HasError) return res;
 
-                var action = IsModified ? EnLogAction.Update : EnLogAction.Insert;
-                res.AddReturnedValue(await UserLogBussines.SaveAsync(action, EnLogPart.Pardakht, tr));
-                if (res.HasError) return res;
+                if (VersionAccess.Accounting)
+                {
+                    var action = IsModified ? EnLogAction.Update : EnLogAction.Insert;
+                    res.AddReturnedValue(await UserLogBussines.SaveAsync(action, EnLogPart.Pardakht, tr));
+                    if (res.HasError) return res;
+                }
 
                 if (Cache.IsSendToServer)
                     _ = Task.Run(() => WebPardakht.SaveAsync(this));
@@ -434,8 +437,11 @@ namespace EntityCache.Bussines
                     if (res.HasError) return res;
                 }
 
-                res.AddReturnedValue(await UserLogBussines.SaveAsync(EnLogAction.Delete, EnLogPart.Pardakht, tr));
-                if (res.HasError) return res;
+                if (VersionAccess.Accounting)
+                {
+                    res.AddReturnedValue(await UserLogBussines.SaveAsync(EnLogAction.Delete, EnLogPart.Pardakht, tr));
+                    if (res.HasError) return res;
+                }
 
                 //if (Cache.IsSendToServer)
                 //    _ = Task.Run(() => WebRental.SaveAsync(list));

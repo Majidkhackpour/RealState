@@ -136,10 +136,10 @@ namespace Building.Building
                 mnuSendToTelegram.Enabled = access?.Building.Building_Send_Telegram ?? false;
                 mnuPrint.Enabled = access?.Building.Building_Print ?? false;
 
-                mnuSendSms.Visible = Settings.VersionAccess.Sms;
-                mnuSendToDivar.Visible = Settings.VersionAccess.Advertise;
-                mnuSendToSheypoor.Visible = Settings.VersionAccess.Advertise;
-                mnuSendToTelegram.Visible = Settings.VersionAccess.Telegram;
+                mnuSendSms.Visible = VersionAccess.Sms;
+                mnuSendToDivar.Visible = VersionAccess.Advertise;
+                mnuSendToSheypoor.Visible = VersionAccess.Advertise;
+                mnuSendToTelegram.Visible = VersionAccess.Telegram;
             }
             catch (Exception ex)
             {

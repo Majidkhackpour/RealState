@@ -45,8 +45,8 @@ namespace Print
         {
             try
             {
-                pictureBox2.Visible = Settings.VersionAccess.Excel;
-                radioButton1.Visible = Settings.VersionAccess.Excel;
+                pictureBox2.Visible = VersionAccess.Excel;
+                radioButton1.Visible = VersionAccess.Excel;
             }
             catch (Exception ex)
             {
