@@ -43,19 +43,26 @@ namespace Advertise.Classes
 
             return list;
         }
-        public static async Task<List<DivarRegion>> GetAllRegionsAsync()
+        public static async Task<List<DivarRegion>> GetAllRegionsAsync(string cityGuid)
         {
             var list = new List<DivarRegion>();
             try
             {
                 var cities = await SerializedDataBussines.GetDivarCityAsync();
-                list.AddRange(GetAllFromApi(cities.FirstOrDefault(q => q.Name == "مشهد")?.Guid ?? Guid.Empty, Resources.MashhadRegions));
-                list.AddRange(GetAllFromApi(cities.FirstOrDefault(q => q.Name == "تهران")?.Guid ?? Guid.Empty, Resources.TehranRegions));
-                list.AddRange(GetAllFromApi(cities.FirstOrDefault(q => q.Name == "کرج")?.Guid ?? Guid.Empty, Resources.KarajRegions));
-                list.AddRange(GetAllFromApi(cities.FirstOrDefault(q => q.Name == "اهواز")?.Guid ?? Guid.Empty, Resources.AhvazRegions));
-                list.AddRange(GetAllFromApi(cities.FirstOrDefault(q => q.Name == "اصفهان")?.Guid ?? Guid.Empty, Resources.IsfahanRegions));
-                list.AddRange(GetAllFromApi(cities.FirstOrDefault(q => q.Name == "شیراز")?.Guid ?? Guid.Empty, Resources.ShirazRegions));
-                list.AddRange(GetAllFromApi(cities.FirstOrDefault(q => q.Name == "قم")?.Guid ?? Guid.Empty, Resources.QomRegions));
+                var cityLocal = await CitiesBussines.GetAsync(Guid.Parse(cityGuid));
+                var cityName = cities.FirstOrDefault(q => q.Name == cityLocal.Name)?.Guid ?? Guid.Empty;
+                var text = "";
+                switch (cityLocal.Name)
+                {
+                    case "مشهد": text = Resources.MashhadRegions; break;
+                    case "تهران": text = Resources.TehranRegions; break;
+                    case "کرج": text = Resources.KarajRegions; break;
+                    case "اهواز": text = Resources.AhvazRegions; break;
+                    case "اصفهان": text = Resources.IsfahanRegions; break;
+                    case "شیراز": text = Resources.ShirazRegions; break;
+                    case "قم": text = Resources.QomRegions; break;
+                }
+                list.AddRange(GetAllFromApi(cityName, text));
             }
             catch (Exception ex)
             {
