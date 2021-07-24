@@ -12,5 +12,6 @@ namespace EntityCache.Core
         Task<ReturnedSaveFuncInfo> SaveAsync(NoteBussines item, SqlTransaction tr);
         Task<NoteBussines> GetAsync(string _connectionString, Guid guid);
         Task<List<NoteBussines>> GetAllAsync(string _connectionString);
+        Task<List<NoteBussines>> GetAllTodayNotesAsync(string connectionString, DateTime d1, DateTime d2, Guid userGuid);
     }
 }

@@ -36,6 +36,31 @@ namespace EntityCache.SqlServerPersistence
 
             return list;
         }
+        public async Task<List<NoteBussines>> GetAllTodayNotesAsync(string connectionString, DateTime d1, DateTime d2, Guid userGuid)
+        {
+            var list = new List<NoteBussines>();
+            try
+            {
+                using (var cn = new SqlConnection(connectionString))
+                {
+                    var cmd = new SqlCommand("sp_Note_SelectTodayNotes", cn) { CommandType = CommandType.StoredProcedure };
+                    cmd.Parameters.AddWithValue("@d1", d1);
+                    cmd.Parameters.AddWithValue("@d2", d2);
+                    cmd.Parameters.AddWithValue("@userGuid", userGuid);
+
+                    await cn.OpenAsync();
+                    var dr = await cmd.ExecuteReaderAsync();
+                    while (dr.Read()) list.Add(LoadData(dr));
+                    cn.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+
+            return list;
+        }
         public async Task<NoteBussines> GetAsync(string _connectionString, Guid guid)
         {
             var obj = new NoteBussines();

@@ -98,5 +98,19 @@ namespace EntityCache.Bussines
             }
         }
         public static NoteBussines Get(Guid guid) => AsyncContext.Run(() => GetAsync(guid));
+        public static async Task<List<NoteBussines>> GetAllTodayNotesAsync(Guid userGuid)
+        {
+            try
+            {
+                var d1 = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, 0, 0);
+                var d2 = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 23, 59, 59);
+                return await UnitOfWork.Note.GetAllTodayNotesAsync(Cache.ConnectionString, d1, d2, userGuid);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                return null;
+            }
+        }
     }
 }

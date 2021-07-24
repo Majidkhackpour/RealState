@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
+using System.Threading.Tasks;
 using System.Windows.Forms;
+using EntityCache.Bussines;
 using Services;
 
 namespace Notification
@@ -9,21 +12,39 @@ namespace Notification
     {
         private int _startPosX;
         private int _startPosY;
-        public frmNaqz(string text)
+        private List<NoteBussines> lstNotes;
+
+        private async Task SetNotes()
+        {
+            try
+            {
+                if (lstNotes == null || lstNotes.Count <= 0) return;
+                foreach (var item in lstNotes)
+                {
+                    Invoke(new MethodInvoker(() =>
+                    {
+                        var c = new UcNote() { Note = item, Width = fPanel.Width - 30 };
+                        fPanel.Controls.Add(c);
+                    }));
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        public frmNaqz(List<NoteBussines> notes)
         {
             InitializeComponent();
-            lblNaqz.Text = text;
+            lstNotes = notes;
             var workingArea = Screen.GetWorkingArea(this);
             Location = new Point(workingArea.Right - Size.Width, workingArea.Bottom - Size.Height);
             TopMost = true;
             _startPosY = Screen.PrimaryScreen.WorkingArea.Height;
         }
 
-        private void ClosingTimer_Tick(object sender, System.EventArgs e)
-        {
-            Close();
-        }
-
+        private void ClosingTimer_Tick(object sender, System.EventArgs e) => Close();
         private void frmNaqz_Load(object sender, System.EventArgs e)
         {
             try
@@ -33,13 +54,13 @@ namespace Notification
                 _startPosX = Screen.PrimaryScreen.WorkingArea.Width - Width;
                 _startPosY = Screen.PrimaryScreen.WorkingArea.Height;
                 Invoke(new MethodInvoker(() => SetDesktopLocation(_startPosX, _startPosY)));
+                _ = Task.Run(SetNotes);
             }
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-
         private void Styler_Tick(object sender, EventArgs e)
         {
             try
@@ -56,12 +77,6 @@ namespace Notification
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-
-        private void lblNaqz_Click(object sender, EventArgs e)
-        {
-            Close();
-        }
-
         private void frmNaqz_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Escape) Close();

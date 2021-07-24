@@ -329,9 +329,9 @@ namespace RealState
                 SetClock();
                 SetCalendar();
                 SetButtomLables();
-                var naqz = await NaqzBussines.SetNaqzAsync();
-                var frm = new frmNaqz(naqz);
-                frm.ShowDialog(this);
+                //var naqz = await NaqzBussines.SetNaqzAsync();
+                //var frm = new frmNaqz(naqz);
+                //frm.ShowDialog(this);
                 SetAccess();
                 _ = Task.Run(() => BackUpAsync(@"C:\", false, EnBackUpType.Auto));
                 _ = Task.Run(AutoBackUpAsync);
@@ -779,15 +779,15 @@ namespace RealState
         }
         private void btnReminderNotes_Click(object sender, EventArgs e)
         {
-            try
-            {
-                var frm = new frmReminder(allNote);
-                frm.ShowDialog(this);
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
+            //try
+            //{
+            //    var frm = new frmReminder(allNote);
+            //    frm.ShowDialog(this);
+            //}
+            //catch (Exception ex)
+            //{
+            //    WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            //}
         }
         private void btnReceptionCheck_Click(object sender, EventArgs e)
         {

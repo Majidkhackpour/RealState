@@ -39,6 +39,7 @@ using EntityCache.Bussines;
 using EntityCache.ViewModels;
 using Ertegha;
 using MetroFramework.Forms;
+using Notification;
 using Payamak;
 using Payamak.Panel;
 using Payamak.PhoneBook;
@@ -447,6 +448,25 @@ namespace RealState
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
+        private async Task ShowTodayNotesAsync()
+        {
+            try
+            {
+                var list = await NoteBussines.GetAllTodayNotesAsync(UserBussines.CurrentUser.Guid);
+                if (list != null && list.Count > 0)
+                {
+                    Invoke(new MethodInvoker(() =>
+                    {
+                        var frm = new frmNaqz(list);
+                        frm.ShowDialog();
+                    }));
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
         private void SetClock()
         {
             try
@@ -503,6 +523,7 @@ namespace RealState
                 SetClock();
                 LoadDashboard();
                 SetButtomLables();
+                _ = Task.Run(ShowTodayNotesAsync);
             }
             catch (Exception ex)
             {
