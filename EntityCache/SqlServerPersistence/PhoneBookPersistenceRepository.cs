@@ -155,6 +155,7 @@ namespace EntityCache.SqlServerPersistence
                 cmd.Parameters.AddWithValue("@parentGuid", item.ParentGuid);
                 cmd.Parameters.AddWithValue("@serverSt", (short)item.ServerStatus);
                 cmd.Parameters.AddWithValue("@serverDate", item.ServerDeliveryDate);
+                cmd.Parameters.AddWithValue("@title", item.Title);
 
                 await cmd.ExecuteNonQueryAsync();
             }
@@ -213,6 +214,7 @@ namespace EntityCache.SqlServerPersistence
                 res.Status = (bool)dr["Status"];
                 res.Name = dr["Name"].ToString();
                 res.Tell = dr["Tell"].ToString();
+                res.Title = dr["Title"].ToString();
                 res.Group = (EnPhoneBookGroup)dr["Group"];
                 res.ParentGuid = (Guid)dr["ParentGuid"];
             }

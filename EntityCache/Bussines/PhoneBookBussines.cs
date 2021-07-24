@@ -21,6 +21,7 @@ namespace EntityCache.Bussines
         public DateTime ServerDeliveryDate { get; set; } = DateTime.Now;
         public string Name { get; set; }
         public string Tell { get; set; }
+        public string Title { get; set; }
         public EnPhoneBookGroup Group { get; set; }
         public string GroupName => Group.GetDisplay();
         public Guid ParentGuid { get; set; }

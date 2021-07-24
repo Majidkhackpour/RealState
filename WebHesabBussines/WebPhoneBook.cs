@@ -19,6 +19,7 @@ namespace WebHesabBussines
         public bool Status { get; set; }
         public string Name { get; set; }
         public string Tell { get; set; }
+        public string Title { get; set; }
         public EnPhoneBookGroup Group { get; set; }
         public Guid ParentGuid { get; set; }
         public string HardSerial { get; set; }
@@ -65,7 +66,8 @@ namespace WebHesabBussines
                     Tell = cls.Tell,
                     Group = cls.Group,
                     ServerStatus = cls.ServerStatus,
-                    ServerDeliveryDate = cls.ServerDeliveryDate
+                    ServerDeliveryDate = cls.ServerDeliveryDate,
+                    Title = cls.Title
                 };
                 await obj.SaveAsync();
             }

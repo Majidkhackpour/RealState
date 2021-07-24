@@ -18,6 +18,7 @@ namespace Persistence.Entities
         public string Name { get; set; }
         [MaxLength(50)]
         public string Tell { get; set; }
+        [MaxLength(200)] public string Title { get; set; }
         public EnPhoneBookGroup Group { get; set; }
         [ForeignKey("Tafsil")]
         public Guid ParentGuid { get; set; }

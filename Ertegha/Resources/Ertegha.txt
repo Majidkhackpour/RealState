@@ -1503,7 +1503,7 @@ GO
 IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_PhoneBook_Save]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
 	exec('Create Procedure [dbo].[sp_PhoneBook_Save]	As Begin print 11 end')
 GO
-Alter PROCEDURE sp_PhoneBook_Save
+ALTER PROCEDURE [dbo].[sp_PhoneBook_Save]
 	@Guid uniqueidentifier,
 	@modif datetime,
 	@st bit,
@@ -1512,7 +1512,8 @@ Alter PROCEDURE sp_PhoneBook_Save
 	@group smallint,
 	@parentGuid uniqueidentifier,
 	@serverSt smallint,
-	@serverDate datetime
+	@serverDate datetime,
+	@title nvarchar(200)
 AS
 BEGIN
 	UPDATE [dbo].[PhoneBooks]
@@ -1524,6 +1525,7 @@ BEGIN
 		  ,[ParentGuid] = @parentGuid
 		  ,[ServerStatus] = @serverSt
 		  ,[ServerDeliveryDate] = @serverDate
+		  ,[Title] = @title
 	 WHERE [Guid] = @Guid
 	 if @@ROWCOUNT=0
 	 begin
@@ -1536,7 +1538,8 @@ BEGIN
            ,[Group]
            ,[ParentGuid]
 		   ,[ServerStatus]
-		   ,[ServerDeliveryDate])
+		   ,[ServerDeliveryDate]
+		   ,[Title])
 		 VALUES
            (@Guid
            ,@modif
@@ -1546,7 +1549,8 @@ BEGIN
            ,@group
            ,@parentGuid
 		   ,@serverSt
-		   ,@serverDate)
+		   ,@serverDate
+		   ,@title)
 	 end
 END
 GO
