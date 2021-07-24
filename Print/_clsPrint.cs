@@ -90,6 +90,9 @@ namespace Print
                 st.Dictionary.Variables.Add("SanadID", sanadId);
                 st.Dictionary.Variables.Add("SanadType", sanadType);
                 st.Dictionary.Variables.Add("LST_String", lst_string);
+                st.Dictionary.Variables.Add("CompanyTitle", clsEconomyUnit.EconomyName);
+                st.Dictionary.Variables.Add("CompanyAddress", clsEconomyUnit.ManagerAddress);
+                st.Dictionary.Variables.Add("CompanyTell", clsEconomyUnit.ManagerTell);
 
                 if (lst != null & lst.Count > 0)
                     st.RegBusinessObject("لیست داده ها", lst);

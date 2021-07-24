@@ -37,5 +37,6 @@
         public string OwnerName { get; set; }
         public string OwnerTell1 { get; set; }
         public string OwnerTell2 { get; set; }
+        public string RegionName { get; set; }
     }
 }

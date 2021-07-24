@@ -163,6 +163,8 @@
             this.docTypeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.ucPagger = new WindowsSerivces.Pagging.UC_FooterPaging();
             this.ucHeader = new WindowsSerivces.UC_Header();
+            this.mnuPrintFull = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuPrintInherit = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).BeginInit();
             this.contextMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BuildingBindingSource)).BeginInit();
@@ -769,11 +771,13 @@
             // 
             // mnuPrintOne
             // 
+            this.mnuPrintOne.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnuPrintFull,
+            this.mnuPrintInherit});
             this.mnuPrintOne.Image = global::Building.Properties.Resources.printer;
             this.mnuPrintOne.Name = "mnuPrintOne";
             this.mnuPrintOne.Size = new System.Drawing.Size(245, 24);
             this.mnuPrintOne.Text = "چاپ اطلاعات ملک";
-            this.mnuPrintOne.Click += new System.EventHandler(this.mnuPrintOne_Click);
             // 
             // mnuPrint
             // 
@@ -1442,6 +1446,20 @@
             this.ucHeader.Size = new System.Drawing.Size(1027, 34);
             this.ucHeader.TabIndex = 55772;
             // 
+            // mnuPrintFull
+            // 
+            this.mnuPrintFull.Name = "mnuPrintFull";
+            this.mnuPrintFull.Size = new System.Drawing.Size(292, 24);
+            this.mnuPrintFull.Text = "چاپ اطلاعات کامل ملک در سایز A4";
+            this.mnuPrintFull.Click += new System.EventHandler(this.mnuPrintFull_Click);
+            // 
+            // mnuPrintInherit
+            // 
+            this.mnuPrintInherit.Name = "mnuPrintInherit";
+            this.mnuPrintInherit.Size = new System.Drawing.Size(292, 24);
+            this.mnuPrintInherit.Text = "چاپ اطلاعات بدون آدرس و مالک در سایز A5";
+            this.mnuPrintInherit.Click += new System.EventHandler(this.mnuPrintInherit_Click);
+            // 
             // frmShowBuildings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -1607,5 +1625,7 @@
         private System.Windows.Forms.ToolStripMenuItem بایگانیToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mnuAddToArchive;
         private System.Windows.Forms.ToolStripMenuItem mnuRemoveFromArchive;
+        private System.Windows.Forms.ToolStripMenuItem mnuPrintFull;
+        private System.Windows.Forms.ToolStripMenuItem mnuPrintInherit;
     }
 }

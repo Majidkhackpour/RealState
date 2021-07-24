@@ -133,6 +133,9 @@
   <data name="Building_One_A4" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Building_One_A4.mrt;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="Building_One_A5" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Building_One_A5.mrt;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="Building_Request_List_A4" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Building_Request_List_A4.mrt;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
