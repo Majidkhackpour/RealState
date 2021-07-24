@@ -272,8 +272,6 @@ namespace RealState.LoginPanel.FormsInPanel
                 Invoke(new MethodInvoker(() => prgBar.Value = 35));
                 if (result.HasError) return;
 
-                var color = Color.FromArgb(255, 192, 128);
-                clsNotification.Init(color);
                 Invoke(new MethodInvoker(() => prgBar.Value = 45));
 
                 result.AddReturnedValue(CheckHardSerial());

@@ -14,7 +14,6 @@ namespace Notification
         {
             InitializeComponent();
             TopMost = true;
-            BackColor = clsNotification.Color;
         }
         private class NestedPublicInfo
         {
@@ -30,12 +29,7 @@ namespace Notification
             var a = new frmNotification { lblText = { Text = message } };
             a.Show(this);
         }
-
-        private void ClosingTimer_Tick(object sender, System.EventArgs e)
-        {
-            Close();
-        }
-
+        private void ClosingTimer_Tick(object sender, System.EventArgs e) => Close();
         private void frmNotification_Load(object sender, System.EventArgs e)
         {
             try
@@ -50,7 +44,6 @@ namespace Notification
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-
         private void Styler_Tick(object sender, System.EventArgs e)
         {
             try
@@ -67,15 +60,10 @@ namespace Notification
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-
-        private void lblText_Click(object sender, EventArgs e)
-        {
-            Close();
-        }
-
         private void frmNotification_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Escape) Close();
         }
+        private void lblText_Click_1(object sender, EventArgs e) => Close();
     }
 }

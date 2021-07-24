@@ -68,7 +68,6 @@
     <Compile Include="AdjectiveDescription\frmShowDesc.Designer.cs">
       <DependentUpon>frmShowDesc.cs</DependentUpon>
     </Compile>
-    <Compile Include="clsNotification.cs" />
     <Compile Include="clsShowError.cs" />
     <Compile Include="ErrorManager.cs" />
     <Compile Include="frmNaqz.cs">
