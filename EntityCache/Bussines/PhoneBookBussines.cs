@@ -117,7 +117,8 @@ namespace EntityCache.Bussines
                             res = res.Where(x => x.Name.ToLower().Contains(item.ToLower()) ||
                                                  (!string.IsNullOrEmpty(x.Tell) &&
                                                   x.Tell.ToLower().Contains(item.ToLower())) ||
-                                                 x.GroupName.ToLower().Contains(item.ToLower()))
+                                                 x.GroupName.ToLower().Contains(item.ToLower())||
+                                                 x.Title.ToLower().Contains(item.ToLower()))
                                 ?.ToList();
                         }
                     }

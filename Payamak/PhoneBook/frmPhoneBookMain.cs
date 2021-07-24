@@ -20,8 +20,9 @@ namespace Payamak.PhoneBook
                 FillCmb();
                 txtName.Text = cls?.Name;
                 txtTell.Text = cls?.Tell;
+                txtTitle.Text = cls?.Title;
                 if (cls?.Guid == Guid.Empty) cmbGroup.SelectedIndex = 0;
-                else cmbGroup.SelectedIndex = (int) cls?.Group - 1;
+                else cmbGroup.SelectedIndex = (int)cls?.Group - 1;
             }
             catch (Exception ex)
             {
@@ -57,10 +58,10 @@ namespace Payamak.PhoneBook
             btnFinish.Enabled = !isShowMode;
         }
 
-        private void txtName_Enter(object sender, EventArgs e)=>txtSetter.Focus(txtName);
-        private void txtName_Leave(object sender, EventArgs e)=>txtSetter.Follow(txtName);
-        private void txtTell_Enter(object sender, EventArgs e)=>txtSetter.Focus(txtTell);
-        private void txtTell_Leave(object sender, EventArgs e)=>txtSetter.Follow(txtTell);
+        private void txtName_Enter(object sender, EventArgs e) => txtSetter.Focus(txtName);
+        private void txtName_Leave(object sender, EventArgs e) => txtSetter.Follow(txtName);
+        private void txtTell_Enter(object sender, EventArgs e) => txtSetter.Focus(txtTell);
+        private void txtTell_Leave(object sender, EventArgs e) => txtSetter.Follow(txtTell);
         private async void frmPhoneBookMain_Load(object sender, EventArgs e)
         {
             try
@@ -114,9 +115,10 @@ namespace Payamak.PhoneBook
 
                 cls.Name = txtName.Text.Trim();
                 cls.Tell = txtTell.Text.Trim();
-                cls.Group = (EnPhoneBookGroup) cmbGroup.SelectedIndex + 1;
+                cls.Group = (EnPhoneBookGroup)cmbGroup.SelectedIndex + 1;
                 cls.ParentGuid = Guid.Empty;
                 cls.Modified = DateTime.Now;
+                cls.Title = txtTitle.Text;
 
                 res.AddReturnedValue(await cls.SaveAsync());
             }
@@ -136,5 +138,7 @@ namespace Payamak.PhoneBook
                 }
             }
         }
+        private void txtTitle_Enter(object sender, EventArgs e) => txtSetter.Focus(txtTitle);
+        private void txtTitle_Leave(object sender, EventArgs e) => txtSetter.Follow(txtTitle);
     }
 }

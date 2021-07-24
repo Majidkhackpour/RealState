@@ -155,7 +155,7 @@ namespace EntityCache.SqlServerPersistence
                 cmd.Parameters.AddWithValue("@parentGuid", item.ParentGuid);
                 cmd.Parameters.AddWithValue("@serverSt", (short)item.ServerStatus);
                 cmd.Parameters.AddWithValue("@serverDate", item.ServerDeliveryDate);
-                cmd.Parameters.AddWithValue("@title", item.Title);
+                cmd.Parameters.AddWithValue("@title", item.Title ?? "");
 
                 await cmd.ExecuteNonQueryAsync();
             }

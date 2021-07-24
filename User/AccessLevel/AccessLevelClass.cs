@@ -32,6 +32,7 @@ namespace User.AccessLevel
         {
             try
             {
+                if (access == null) return null;
                 var ret = new List<AccessLevelClass>();
                 foreach (var prop in access.GetType().GetProperties())
                 {

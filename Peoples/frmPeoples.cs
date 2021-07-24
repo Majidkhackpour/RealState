@@ -280,7 +280,8 @@ namespace Peoples
                     Modified = DateTime.Now,
                     Tell = txtTell.Text,
                     Group = EnPhoneBookGroup.Peoples,
-                    Name = txtName.Text
+                    Name = txtName.Text,
+                    Title = txtPhoneBookTitle.Text
                 });
                 LoadTells();
             }
@@ -413,5 +414,7 @@ namespace Peoples
             if (!char.IsLetter(e.KeyChar) && e.KeyChar != (char)Keys.Back && e.KeyChar != (char)Keys.Space)
                 e.Handled = true;
         }
+        private void txtPhoneBookTitle_Leave(object sender, EventArgs e) => txtSetter.Focus(txtPhoneBookTitle);
+        private void txtPhoneBookTitle_Enter(object sender, EventArgs e) => txtSetter.Follow(txtPhoneBookTitle);
     }
 }

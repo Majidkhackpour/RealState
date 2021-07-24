@@ -40,6 +40,7 @@
             this.dgRadif = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tellDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Title = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.GroupName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgGuid = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -110,6 +111,7 @@
             this.dgRadif,
             this.dgName,
             this.tellDataGridViewTextBoxColumn,
+            this.Title,
             this.GroupName,
             this.groupDataGridViewTextBoxColumn,
             this.dgGuid,
@@ -165,7 +167,7 @@
             // 
             this.dgName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.dgName.DataPropertyName = "Name";
-            this.dgName.HeaderText = "عنوان";
+            this.dgName.HeaderText = "نام و نام خانوادگی";
             this.dgName.Name = "dgName";
             this.dgName.ReadOnly = true;
             // 
@@ -176,6 +178,14 @@
             this.tellDataGridViewTextBoxColumn.Name = "tellDataGridViewTextBoxColumn";
             this.tellDataGridViewTextBoxColumn.ReadOnly = true;
             this.tellDataGridViewTextBoxColumn.Width = 200;
+            // 
+            // Title
+            // 
+            this.Title.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Title.DataPropertyName = "Title";
+            this.Title.HeaderText = "عنوان";
+            this.Title.Name = "Title";
+            this.Title.ReadOnly = true;
             // 
             // GroupName
             // 
@@ -294,6 +304,7 @@
             // cmbGroup
             // 
             this.cmbGroup.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmbGroup.Cursor = System.Windows.Forms.Cursors.Hand;
             this.cmbGroup.DisplayMember = "Name";
             this.cmbGroup.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbGroup.FormattingEnabled = true;
@@ -358,15 +369,6 @@
         private DevComponents.DotNetBar.Controls.DataGridViewX DGrid;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ComboBox cmbGroup;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgRadif;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn tellDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn GroupName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn groupDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgGuid;
-        private System.Windows.Forms.DataGridViewTextBoxColumn modifiedDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn statusDataGridViewCheckBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn parentGuidDataGridViewTextBoxColumn;
         private System.Windows.Forms.ContextMenuStrip contextMenu;
         private System.Windows.Forms.ToolStripMenuItem mnuAdd;
         private System.Windows.Forms.ToolStripMenuItem mnuEdit;
@@ -374,5 +376,15 @@
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem mnuView;
         private WindowsSerivces.UC_Header ucHeader;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgRadif;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn tellDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Title;
+        private System.Windows.Forms.DataGridViewTextBoxColumn GroupName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn groupDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgGuid;
+        private System.Windows.Forms.DataGridViewTextBoxColumn modifiedDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn statusDataGridViewCheckBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn parentGuidDataGridViewTextBoxColumn;
     }
 }

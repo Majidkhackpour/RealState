@@ -123,7 +123,7 @@ namespace User
             var res = new ReturnedSaveFuncInfo();
             try
             {
-                res.AddReturnedValue(await SaveAsync((Guid) cmbUser.SelectedValue));
+                res.AddReturnedValue(await SaveAsync((Guid)cmbUser.SelectedValue));
             }
             catch (Exception ex)
             {
@@ -135,7 +135,7 @@ namespace User
                 if (res.HasError)
                     this.ShowError(res, "خطا در ثبت سطوح دسترسی کاربر");
                 else
-                   this.ShowMessage("سطوح دسترسی کاربر با موفقیت ذخیره شد");
+                    this.ShowMessage("سطوح دسترسی کاربر با موفقیت ذخیره شد");
             }
         }
 
@@ -194,8 +194,11 @@ namespace User
             try
             {
                 await LoadUserDataAsync();
-                cmbUser.SelectedIndex = 0;
-                _currentAccessLevel = UserBussines.Get((Guid)cmbUser.SelectedValue).UserAccess;
+                if (UserBindingSource.Count > 0)
+                {
+                    cmbUser.SelectedIndex = 0;
+                    _currentAccessLevel = UserBussines.Get((Guid)cmbUser.SelectedValue).UserAccess;
+                }
                 LoadGrid();
             }
             catch (Exception ex)

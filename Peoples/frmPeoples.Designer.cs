@@ -29,18 +29,36 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPeoples));
             this.superTabControl1 = new DevComponents.DotNetBar.SuperTabControl();
+            this.superTabControlPanel2 = new DevComponents.DotNetBar.SuperTabControlPanel();
+            this.btnDelTell = new DevComponents.DotNetBar.ButtonX();
+            this.btnInsTell = new DevComponents.DotNetBar.ButtonX();
+            this.txtPhoneBookTitle = new System.Windows.Forms.TextBox();
+            this.label17 = new System.Windows.Forms.Label();
+            this.txtTell = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.DGridTell = new DevComponents.DotNetBar.Controls.DataGridViewX();
+            this.tRadif = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tellDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Title = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgTellGuid = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.modifiedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.statusDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.groupDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.phoneBookBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.superTabItem2 = new DevComponents.DotNetBar.SuperTabItem();
             this.superTabControlPanel1 = new DevComponents.DotNetBar.SuperTabControlPanel();
             this.txtAddress = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
@@ -90,26 +108,14 @@
             this.dgBankGuid = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bankAccountBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.superTabItem3 = new DevComponents.DotNetBar.SuperTabItem();
-            this.superTabControlPanel2 = new DevComponents.DotNetBar.SuperTabControlPanel();
-            this.btnDelTell = new DevComponents.DotNetBar.ButtonX();
-            this.btnInsTell = new DevComponents.DotNetBar.ButtonX();
-            this.txtTell = new System.Windows.Forms.TextBox();
-            this.label12 = new System.Windows.Forms.Label();
-            this.DGridTell = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.tRadif = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tellDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgTellGuid = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.modifiedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.statusDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.groupDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.phoneBookBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.superTabItem2 = new DevComponents.DotNetBar.SuperTabItem();
             this.btnCancel = new DevComponents.DotNetBar.ButtonX();
             this.btnFinish = new DevComponents.DotNetBar.ButtonX();
             this.ucHeader = new WindowsSerivces.UC_Header();
             ((System.ComponentModel.ISupportInitialize)(this.superTabControl1)).BeginInit();
             this.superTabControl1.SuspendLayout();
+            this.superTabControlPanel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DGridTell)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.phoneBookBindingSource)).BeginInit();
             this.superTabControlPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -131,9 +137,6 @@
             this.superTabControlPanel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgBankAccount)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bankAccountBindingSource)).BeginInit();
-            this.superTabControlPanel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.DGridTell)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.phoneBookBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // superTabControl1
@@ -156,8 +159,8 @@
             this.superTabControl1.ControlBox.SubItems.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.superTabControl1.ControlBox.MenuBox,
             this.superTabControl1.ControlBox.CloseBox});
-            this.superTabControl1.Controls.Add(this.superTabControlPanel1);
             this.superTabControl1.Controls.Add(this.superTabControlPanel2);
+            this.superTabControl1.Controls.Add(this.superTabControlPanel1);
             this.superTabControl1.Controls.Add(this.superTabControlPanel3);
             this.superTabControl1.Location = new System.Drawing.Point(7, 64);
             this.superTabControl1.Name = "superTabControl1";
@@ -174,6 +177,237 @@
             this.superTabItem3});
             this.superTabControl1.TabStyle = DevComponents.DotNetBar.eSuperTabStyle.OfficeMobile2014;
             this.superTabControl1.Text = "superTabControl1";
+            // 
+            // superTabControlPanel2
+            // 
+            this.superTabControlPanel2.Controls.Add(this.btnDelTell);
+            this.superTabControlPanel2.Controls.Add(this.btnInsTell);
+            this.superTabControlPanel2.Controls.Add(this.txtPhoneBookTitle);
+            this.superTabControlPanel2.Controls.Add(this.label17);
+            this.superTabControlPanel2.Controls.Add(this.txtTell);
+            this.superTabControlPanel2.Controls.Add(this.label12);
+            this.superTabControlPanel2.Controls.Add(this.DGridTell);
+            this.superTabControlPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.superTabControlPanel2.Location = new System.Drawing.Point(0, 40);
+            this.superTabControlPanel2.Name = "superTabControlPanel2";
+            this.superTabControlPanel2.Size = new System.Drawing.Size(789, 451);
+            this.superTabControlPanel2.TabIndex = 0;
+            this.superTabControlPanel2.TabItem = this.superTabItem2;
+            // 
+            // btnDelTell
+            // 
+            this.btnDelTell.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnDelTell.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.btnDelTell.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnDelTell.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.btnDelTell.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnDelTell.Image = global::Peoples.Properties.Resources.tab_close_;
+            this.btnDelTell.Location = new System.Drawing.Point(3, 10);
+            this.btnDelTell.Name = "btnDelTell";
+            this.btnDelTell.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
+            this.btnDelTell.Size = new System.Drawing.Size(125, 27);
+            this.btnDelTell.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
+            this.btnDelTell.TabIndex = 55712;
+            this.btnDelTell.Text = "حذف از لیست";
+            this.btnDelTell.TextColor = System.Drawing.Color.Black;
+            this.btnDelTell.Click += new System.EventHandler(this.btnDelTell_Click);
+            // 
+            // btnInsTell
+            // 
+            this.btnInsTell.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnInsTell.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.btnInsTell.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnInsTell.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.btnInsTell.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnInsTell.Image = global::Peoples.Properties.Resources.tab_checkbox__;
+            this.btnInsTell.Location = new System.Drawing.Point(134, 10);
+            this.btnInsTell.Name = "btnInsTell";
+            this.btnInsTell.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
+            this.btnInsTell.Size = new System.Drawing.Size(125, 27);
+            this.btnInsTell.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
+            this.btnInsTell.TabIndex = 55710;
+            this.btnInsTell.Text = "افزودن شماره تماس";
+            this.btnInsTell.TextColor = System.Drawing.Color.Black;
+            this.btnInsTell.Click += new System.EventHandler(this.btnInsTell_Click);
+            // 
+            // txtPhoneBookTitle
+            // 
+            this.txtPhoneBookTitle.Location = new System.Drawing.Point(276, 10);
+            this.txtPhoneBookTitle.Name = "txtPhoneBookTitle";
+            this.txtPhoneBookTitle.Size = new System.Drawing.Size(166, 27);
+            this.txtPhoneBookTitle.TabIndex = 55709;
+            this.txtPhoneBookTitle.Enter += new System.EventHandler(this.txtPhoneBookTitle_Enter);
+            this.txtPhoneBookTitle.Leave += new System.EventHandler(this.txtPhoneBookTitle_Leave);
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.BackColor = System.Drawing.Color.Transparent;
+            this.label17.Location = new System.Drawing.Point(448, 13);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(37, 20);
+            this.label17.TabIndex = 55710;
+            this.label17.Text = "عنوان";
+            // 
+            // txtTell
+            // 
+            this.txtTell.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtTell.Location = new System.Drawing.Point(491, 10);
+            this.txtTell.Name = "txtTell";
+            this.txtTell.Size = new System.Drawing.Size(212, 27);
+            this.txtTell.TabIndex = 55709;
+            this.txtTell.Enter += new System.EventHandler(this.txtTell_Enter);
+            this.txtTell.Leave += new System.EventHandler(this.txtTell_Leave);
+            // 
+            // label12
+            // 
+            this.label12.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label12.AutoSize = true;
+            this.label12.BackColor = System.Drawing.Color.Transparent;
+            this.label12.Location = new System.Drawing.Point(709, 13);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(68, 20);
+            this.label12.TabIndex = 55710;
+            this.label12.Text = "شماره تماس";
+            // 
+            // DGridTell
+            // 
+            this.DGridTell.AllowUserToAddRows = false;
+            this.DGridTell.AllowUserToDeleteRows = false;
+            this.DGridTell.AllowUserToResizeColumns = false;
+            this.DGridTell.AllowUserToResizeRows = false;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Gainsboro;
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Gainsboro;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
+            this.DGridTell.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.DGridTell.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.DGridTell.AutoGenerateColumns = false;
+            this.DGridTell.BackgroundColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Silver;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DGridTell.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.DGridTell.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DGridTell.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.tRadif,
+            this.tellDataGridViewTextBoxColumn,
+            this.Title,
+            this.dgTellGuid,
+            this.modifiedDataGridViewTextBoxColumn,
+            this.statusDataGridViewCheckBoxColumn,
+            this.nameDataGridViewTextBoxColumn,
+            this.groupDataGridViewTextBoxColumn});
+            this.DGridTell.DataSource = this.phoneBookBindingSource;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.Silver;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DGridTell.DefaultCellStyle = dataGridViewCellStyle3;
+            this.DGridTell.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
+            this.DGridTell.Location = new System.Drawing.Point(3, 45);
+            this.DGridTell.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.DGridTell.Name = "DGridTell";
+            this.DGridTell.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.DGridTell.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DGridTell.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            this.DGridTell.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.Silver;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.Black;
+            this.DGridTell.RowsDefaultCellStyle = dataGridViewCellStyle5;
+            this.DGridTell.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            this.DGridTell.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.DGridTell.Size = new System.Drawing.Size(783, 400);
+            this.DGridTell.TabIndex = 55708;
+            this.DGridTell.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DGridTell_CellFormatting);
+            // 
+            // tRadif
+            // 
+            this.tRadif.HeaderText = "ردیف";
+            this.tRadif.Name = "tRadif";
+            this.tRadif.ReadOnly = true;
+            this.tRadif.Width = 50;
+            // 
+            // tellDataGridViewTextBoxColumn
+            // 
+            this.tellDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.tellDataGridViewTextBoxColumn.DataPropertyName = "Tell";
+            this.tellDataGridViewTextBoxColumn.HeaderText = "شماره تماس";
+            this.tellDataGridViewTextBoxColumn.Name = "tellDataGridViewTextBoxColumn";
+            // 
+            // Title
+            // 
+            this.Title.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Title.DataPropertyName = "Title";
+            this.Title.HeaderText = "عنوان";
+            this.Title.Name = "Title";
+            // 
+            // dgTellGuid
+            // 
+            this.dgTellGuid.DataPropertyName = "Guid";
+            this.dgTellGuid.HeaderText = "Guid";
+            this.dgTellGuid.Name = "dgTellGuid";
+            this.dgTellGuid.Visible = false;
+            // 
+            // modifiedDataGridViewTextBoxColumn
+            // 
+            this.modifiedDataGridViewTextBoxColumn.DataPropertyName = "Modified";
+            this.modifiedDataGridViewTextBoxColumn.HeaderText = "Modified";
+            this.modifiedDataGridViewTextBoxColumn.Name = "modifiedDataGridViewTextBoxColumn";
+            this.modifiedDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // statusDataGridViewCheckBoxColumn
+            // 
+            this.statusDataGridViewCheckBoxColumn.DataPropertyName = "Status";
+            this.statusDataGridViewCheckBoxColumn.HeaderText = "Status";
+            this.statusDataGridViewCheckBoxColumn.Name = "statusDataGridViewCheckBoxColumn";
+            this.statusDataGridViewCheckBoxColumn.Visible = false;
+            // 
+            // nameDataGridViewTextBoxColumn
+            // 
+            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
+            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
+            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            this.nameDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // groupDataGridViewTextBoxColumn
+            // 
+            this.groupDataGridViewTextBoxColumn.DataPropertyName = "Group";
+            this.groupDataGridViewTextBoxColumn.HeaderText = "Group";
+            this.groupDataGridViewTextBoxColumn.Name = "groupDataGridViewTextBoxColumn";
+            this.groupDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // phoneBookBindingSource
+            // 
+            this.phoneBookBindingSource.DataSource = typeof(EntityCache.Bussines.PhoneBookBussines);
+            // 
+            // superTabItem2
+            // 
+            this.superTabItem2.AttachedControl = this.superTabControlPanel2;
+            this.superTabItem2.GlobalItem = false;
+            this.superTabItem2.Name = "superTabItem2";
+            this.superTabItem2.Text = "اطلاعات تماس";
             // 
             // superTabControlPanel1
             // 
@@ -837,208 +1071,6 @@
             this.superTabItem3.Name = "superTabItem3";
             this.superTabItem3.Text = "اطلاعات حساب های بانکی";
             // 
-            // superTabControlPanel2
-            // 
-            this.superTabControlPanel2.Controls.Add(this.btnDelTell);
-            this.superTabControlPanel2.Controls.Add(this.btnInsTell);
-            this.superTabControlPanel2.Controls.Add(this.txtTell);
-            this.superTabControlPanel2.Controls.Add(this.label12);
-            this.superTabControlPanel2.Controls.Add(this.DGridTell);
-            this.superTabControlPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.superTabControlPanel2.Location = new System.Drawing.Point(0, 40);
-            this.superTabControlPanel2.Name = "superTabControlPanel2";
-            this.superTabControlPanel2.Size = new System.Drawing.Size(789, 451);
-            this.superTabControlPanel2.TabIndex = 0;
-            this.superTabControlPanel2.TabItem = this.superTabItem2;
-            // 
-            // btnDelTell
-            // 
-            this.btnDelTell.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnDelTell.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.btnDelTell.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnDelTell.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
-            this.btnDelTell.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnDelTell.Image = global::Peoples.Properties.Resources.tab_close_;
-            this.btnDelTell.Location = new System.Drawing.Point(3, 10);
-            this.btnDelTell.Name = "btnDelTell";
-            this.btnDelTell.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
-            this.btnDelTell.Size = new System.Drawing.Size(125, 27);
-            this.btnDelTell.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
-            this.btnDelTell.TabIndex = 55712;
-            this.btnDelTell.Text = "حذف از لیست";
-            this.btnDelTell.TextColor = System.Drawing.Color.Black;
-            this.btnDelTell.Click += new System.EventHandler(this.btnDelTell_Click);
-            // 
-            // btnInsTell
-            // 
-            this.btnInsTell.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnInsTell.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.btnInsTell.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnInsTell.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
-            this.btnInsTell.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnInsTell.Image = global::Peoples.Properties.Resources.tab_checkbox__;
-            this.btnInsTell.Location = new System.Drawing.Point(134, 10);
-            this.btnInsTell.Name = "btnInsTell";
-            this.btnInsTell.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
-            this.btnInsTell.Size = new System.Drawing.Size(125, 27);
-            this.btnInsTell.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
-            this.btnInsTell.TabIndex = 55710;
-            this.btnInsTell.Text = "افزودن شماره تماس";
-            this.btnInsTell.TextColor = System.Drawing.Color.Black;
-            this.btnInsTell.Click += new System.EventHandler(this.btnInsTell_Click);
-            // 
-            // txtTell
-            // 
-            this.txtTell.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtTell.Location = new System.Drawing.Point(276, 10);
-            this.txtTell.Name = "txtTell";
-            this.txtTell.Size = new System.Drawing.Size(427, 27);
-            this.txtTell.TabIndex = 55709;
-            this.txtTell.Enter += new System.EventHandler(this.txtTell_Enter);
-            this.txtTell.Leave += new System.EventHandler(this.txtTell_Leave);
-            // 
-            // label12
-            // 
-            this.label12.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label12.AutoSize = true;
-            this.label12.BackColor = System.Drawing.Color.Transparent;
-            this.label12.Location = new System.Drawing.Point(709, 13);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(68, 20);
-            this.label12.TabIndex = 55710;
-            this.label12.Text = "شماره تماس";
-            // 
-            // DGridTell
-            // 
-            this.DGridTell.AllowUserToAddRows = false;
-            this.DGridTell.AllowUserToDeleteRows = false;
-            this.DGridTell.AllowUserToResizeColumns = false;
-            this.DGridTell.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Gainsboro;
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Gainsboro;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
-            this.DGridTell.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.DGridTell.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.DGridTell.AutoGenerateColumns = false;
-            this.DGridTell.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Silver;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DGridTell.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            this.DGridTell.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DGridTell.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.tRadif,
-            this.tellDataGridViewTextBoxColumn,
-            this.dgTellGuid,
-            this.modifiedDataGridViewTextBoxColumn,
-            this.statusDataGridViewCheckBoxColumn,
-            this.nameDataGridViewTextBoxColumn,
-            this.groupDataGridViewTextBoxColumn});
-            this.DGridTell.DataSource = this.phoneBookBindingSource;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.Silver;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DGridTell.DefaultCellStyle = dataGridViewCellStyle3;
-            this.DGridTell.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
-            this.DGridTell.Location = new System.Drawing.Point(3, 45);
-            this.DGridTell.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.DGridTell.Name = "DGridTell";
-            this.DGridTell.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.DGridTell.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DGridTell.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
-            this.DGridTell.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.Silver;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.Black;
-            this.DGridTell.RowsDefaultCellStyle = dataGridViewCellStyle5;
-            this.DGridTell.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            this.DGridTell.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DGridTell.Size = new System.Drawing.Size(783, 400);
-            this.DGridTell.TabIndex = 55708;
-            this.DGridTell.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DGridTell_CellFormatting);
-            // 
-            // tRadif
-            // 
-            this.tRadif.HeaderText = "ردیف";
-            this.tRadif.Name = "tRadif";
-            this.tRadif.ReadOnly = true;
-            this.tRadif.Width = 50;
-            // 
-            // tellDataGridViewTextBoxColumn
-            // 
-            this.tellDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.tellDataGridViewTextBoxColumn.DataPropertyName = "Tell";
-            this.tellDataGridViewTextBoxColumn.HeaderText = "شماره تماس";
-            this.tellDataGridViewTextBoxColumn.Name = "tellDataGridViewTextBoxColumn";
-            // 
-            // dgTellGuid
-            // 
-            this.dgTellGuid.DataPropertyName = "Guid";
-            this.dgTellGuid.HeaderText = "Guid";
-            this.dgTellGuid.Name = "dgTellGuid";
-            this.dgTellGuid.Visible = false;
-            // 
-            // modifiedDataGridViewTextBoxColumn
-            // 
-            this.modifiedDataGridViewTextBoxColumn.DataPropertyName = "Modified";
-            this.modifiedDataGridViewTextBoxColumn.HeaderText = "Modified";
-            this.modifiedDataGridViewTextBoxColumn.Name = "modifiedDataGridViewTextBoxColumn";
-            this.modifiedDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // statusDataGridViewCheckBoxColumn
-            // 
-            this.statusDataGridViewCheckBoxColumn.DataPropertyName = "Status";
-            this.statusDataGridViewCheckBoxColumn.HeaderText = "Status";
-            this.statusDataGridViewCheckBoxColumn.Name = "statusDataGridViewCheckBoxColumn";
-            this.statusDataGridViewCheckBoxColumn.Visible = false;
-            // 
-            // nameDataGridViewTextBoxColumn
-            // 
-            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
-            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
-            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
-            this.nameDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // groupDataGridViewTextBoxColumn
-            // 
-            this.groupDataGridViewTextBoxColumn.DataPropertyName = "Group";
-            this.groupDataGridViewTextBoxColumn.HeaderText = "Group";
-            this.groupDataGridViewTextBoxColumn.Name = "groupDataGridViewTextBoxColumn";
-            this.groupDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // phoneBookBindingSource
-            // 
-            this.phoneBookBindingSource.DataSource = typeof(EntityCache.Bussines.PhoneBookBussines);
-            // 
-            // superTabItem2
-            // 
-            this.superTabItem2.AttachedControl = this.superTabControlPanel2;
-            this.superTabItem2.GlobalItem = false;
-            this.superTabItem2.Name = "superTabItem2";
-            this.superTabItem2.Text = "اطلاعات تماس";
-            // 
             // btnCancel
             // 
             this.btnCancel.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
@@ -1119,6 +1151,10 @@
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmPeoples_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.superTabControl1)).EndInit();
             this.superTabControl1.ResumeLayout(false);
+            this.superTabControlPanel2.ResumeLayout(false);
+            this.superTabControlPanel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DGridTell)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.phoneBookBindingSource)).EndInit();
             this.superTabControlPanel1.ResumeLayout(false);
             this.superTabControlPanel1.PerformLayout();
             this.splitContainer1.Panel1.ResumeLayout(false);
@@ -1150,10 +1186,6 @@
             this.superTabControlPanel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgBankAccount)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bankAccountBindingSource)).EndInit();
-            this.superTabControlPanel2.ResumeLayout(false);
-            this.superTabControlPanel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.DGridTell)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.phoneBookBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1212,13 +1244,6 @@
         private System.Windows.Forms.TextBox txtBank;
         private System.Windows.Forms.Label label13;
         private BPersianCalender.BPersianCalenderTextBox txtDateBirth;
-        private System.Windows.Forms.DataGridViewTextBoxColumn tRadif;
-        private System.Windows.Forms.DataGridViewTextBoxColumn tellDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgTellGuid;
-        private System.Windows.Forms.DataGridViewTextBoxColumn modifiedDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn statusDataGridViewCheckBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn groupDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn bRadif;
         private System.Windows.Forms.DataGridViewTextBoxColumn bankNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn accountNumberDataGridViewTextBoxColumn;
@@ -1230,5 +1255,15 @@
         private System.Windows.Forms.ComboBox cmbAccount;
         private WindowsSerivces.CurrencyTextBox txtAccount_;
         private WindowsSerivces.UC_Header ucHeader;
+        private System.Windows.Forms.TextBox txtPhoneBookTitle;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.DataGridViewTextBoxColumn tRadif;
+        private System.Windows.Forms.DataGridViewTextBoxColumn tellDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Title;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgTellGuid;
+        private System.Windows.Forms.DataGridViewTextBoxColumn modifiedDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn statusDataGridViewCheckBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn groupDataGridViewTextBoxColumn;
     }
 }

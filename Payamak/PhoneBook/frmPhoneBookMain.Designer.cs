@@ -39,6 +39,8 @@
             this.btnCancel = new DevComponents.DotNetBar.ButtonX();
             this.grp = new DevComponents.DotNetBar.PanelEx();
             this.ucHeader = new WindowsSerivces.UC_Header();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtTitle = new System.Windows.Forms.TextBox();
             this.grp.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -50,7 +52,7 @@
             this.btnFinish.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnFinish.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnFinish.Image = global::Payamak.Properties.Resources.tab_checkbox__;
-            this.btnFinish.Location = new System.Drawing.Point(330, 235);
+            this.btnFinish.Location = new System.Drawing.Point(330, 252);
             this.btnFinish.Name = "btnFinish";
             this.btnFinish.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
             this.btnFinish.Size = new System.Drawing.Size(125, 31);
@@ -128,7 +130,7 @@
             this.btnCancel.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Image = global::Payamak.Properties.Resources.tab_close_;
-            this.btnCancel.Location = new System.Drawing.Point(30, 235);
+            this.btnCancel.Location = new System.Drawing.Point(30, 252);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
             this.btnCancel.Size = new System.Drawing.Size(125, 31);
@@ -143,15 +145,17 @@
             this.grp.CanvasColor = System.Drawing.SystemColors.Control;
             this.grp.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.grp.Controls.Add(this.cmbGroup);
+            this.grp.Controls.Add(this.txtTitle);
             this.grp.Controls.Add(this.txtTell);
             this.grp.Controls.Add(this.txtName);
+            this.grp.Controls.Add(this.label2);
             this.grp.Controls.Add(this.label5);
             this.grp.Controls.Add(this.label7);
             this.grp.Controls.Add(this.label1);
             this.grp.DisabledBackColor = System.Drawing.Color.Empty;
             this.grp.Location = new System.Drawing.Point(8, 68);
             this.grp.Name = "grp";
-            this.grp.Size = new System.Drawing.Size(463, 150);
+            this.grp.Size = new System.Drawing.Size(463, 174);
             this.grp.Style.Alignment = System.Drawing.StringAlignment.Center;
             this.grp.Style.BackColor1.Color = System.Drawing.Color.White;
             this.grp.Style.BackColor2.Color = System.Drawing.Color.White;
@@ -181,12 +185,31 @@
             this.ucHeader.Size = new System.Drawing.Size(482, 34);
             this.ucHeader.TabIndex = 8;
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.Location = new System.Drawing.Point(413, 138);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(37, 20);
+            this.label2.TabIndex = 4;
+            this.label2.Text = "عنوان";
+            // 
+            // txtTitle
+            // 
+            this.txtTitle.Location = new System.Drawing.Point(22, 135);
+            this.txtTitle.Name = "txtTitle";
+            this.txtTitle.Size = new System.Drawing.Size(330, 27);
+            this.txtTitle.TabIndex = 2;
+            this.txtTitle.Enter += new System.EventHandler(this.txtTitle_Enter);
+            this.txtTitle.Leave += new System.EventHandler(this.txtTitle_Leave);
+            // 
             // frmPhoneBookMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(479, 277);
+            this.ClientSize = new System.Drawing.Size(479, 291);
             this.Controls.Add(this.ucHeader);
             this.Controls.Add(this.btnFinish);
             this.Controls.Add(this.btnCancel);
@@ -196,9 +219,9 @@
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(479, 277);
+            this.MaximumSize = new System.Drawing.Size(479, 291);
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(479, 277);
+            this.MinimumSize = new System.Drawing.Size(479, 291);
             this.Name = "frmPhoneBookMain";
             this.Padding = new System.Windows.Forms.Padding(27, 92, 27, 31);
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -223,5 +246,7 @@
         private DevComponents.DotNetBar.ButtonX btnCancel;
         private DevComponents.DotNetBar.PanelEx grp;
         private WindowsSerivces.UC_Header ucHeader;
+        private System.Windows.Forms.TextBox txtTitle;
+        private System.Windows.Forms.Label label2;
     }
 }

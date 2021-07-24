@@ -78,6 +78,8 @@ namespace EntityCache.Bussines
 
                 res.AddReturnedValue(await CheckValidationAsync());
                 if (res.HasError) return res;
+                res.AddReturnedValue(await SaveTafsilAsync(tr));
+                if (res.HasError) return res;
                 res.AddReturnedValue(await SaveMobileAsync(tr));
                 if (res.HasError) return res;
 
@@ -234,6 +236,37 @@ namespace EntityCache.Bussines
                     Status = true
                 };
                 res.AddReturnedValue(await tel.SaveAsync(tr));
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+
+            return res;
+        }
+        private async Task<ReturnedSaveFuncInfo> SaveTafsilAsync(SqlTransaction tr)
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                var tf = await TafsilBussines.GetAsync(Guid) ?? new TafsilBussines
+                {
+                    Guid = Guid,
+                    DateM = DateTime.Now,
+                    Account = 0,
+                    HesabType = HesabType.Tafsil,
+                    Modified = Modified,
+                    Status = true,
+                    isSystem = false
+                };
+
+                tf.Code = TafsilBussines.NextCode(HesabType.Tafsil);
+                tf.Name = Name;
+                tf.Description = "";
+                tf.AccountFirst = 0;
+
+                res.AddReturnedValue(await tf.SaveAsync(tr));
             }
             catch (Exception ex)
             {
