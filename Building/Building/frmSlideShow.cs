@@ -27,8 +27,10 @@ namespace Building.Building
             try
             {
                 var rand = new Random().Next(0, _imageList.Count - 1);
-                var a = Path.Combine(Application.StartupPath, "Temp");
-                var b = Path.Combine(a, _imageList[rand].ImageName + ".jpg");
+                var a = Path.Combine(Application.StartupPath, "Images");
+                var fileName = _imageList[rand].ImageName;
+                if (!fileName.EndsWith(".jpg"))  fileName += ".jpg";
+                var b = Path.Combine(a, fileName);
                 picBox.Load(b);
             }
             catch (Exception ex)

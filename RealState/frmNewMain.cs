@@ -502,7 +502,18 @@ namespace RealState
         }
 
         private Task BuildingRequestBussines_OnSaved() => _ = Task.Run(LoadDashboard);
-        private Task BuildingBussines_OnSaved() => _ = Task.Run(LoadDashboard);
+        private async Task BuildingBussines_OnSaved()
+        {
+            try
+            {
+                _ = Task.Run(LoadDashboard);
+                _ = Task.Run(FileFormatter.SyncFilesAsync);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
         private Task PeoplesBussines_OnSaved() => _ = Task.Run(LoadDashboard);
         private void lblBaseInfo_Click(object sender, System.EventArgs e) => grpBaseInfo.Height = grpBaseInfo.Height == 48 ? 481 : 48;
         private void lblBuildingMenu_Click(object sender, EventArgs e) => grpBuilding.Height = grpBuilding.Height == 48 ? 304 : 48;
@@ -513,6 +524,7 @@ namespace RealState
         {
             try
             {
+                _ = Task.Run(FileFormatter.SyncFilesAsync);
                 var myCollection = new AutoCompleteStringCollection();
                 var list = _dic.Keys;
                 foreach (var item in list.ToList())
