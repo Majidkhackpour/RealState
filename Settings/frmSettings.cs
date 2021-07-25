@@ -472,6 +472,7 @@ namespace Settings
                 txtSetArchive.Value = clsGlobal.SetArchive;
                 chbPrintDesign.Checked = clsPrint.ShowDesign;
                 chbPrintPreView.Checked = clsPrint.ShowPreview;
+                txtImagePath.Text = clsGlobal.ImagePath;
             }
             catch (Exception ex)
             {
@@ -486,6 +487,7 @@ namespace Settings
                 clsGlobal.SetArchive = (int)txtSetArchive.Value;
                 clsPrint.ShowDesign = chbPrintDesign.Checked;
                 clsPrint.ShowPreview = chbPrintPreView.Checked;
+                clsGlobal.ImagePath = txtImagePath.Text;
             }
             catch (Exception ex)
             {
@@ -510,6 +512,19 @@ namespace Settings
                 frmNotification.PublicInfo.ShowMessage("تنظیمات با موفقیت ثبت شد");
 
                 await SetDataAsync();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private void btnSearchImagePath_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var ff = new FolderBrowserDialog();
+                if (ff.ShowDialog(this) == DialogResult.OK)
+                    txtImagePath.Text = ff.SelectedPath;
             }
             catch (Exception ex)
             {

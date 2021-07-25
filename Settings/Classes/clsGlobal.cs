@@ -36,5 +36,21 @@ namespace Settings.Classes
                 SettingsBussines.Save("DayCountForArchive", _setArchive.ToString());
             }
         }
+
+        private static string _imgPath = "";
+        public static string ImagePath
+        {
+            get
+            {
+                if (!string.IsNullOrEmpty(_imgPath)) return _imgPath;
+                var mem = SettingsBussines.Get("ImagePath");
+                return mem == null ? "" : mem.Value;
+            }
+            set
+            {
+                _imgPath = value;
+                SettingsBussines.Save("ImagePath", _imgPath);
+            }
+        }
     }
 }

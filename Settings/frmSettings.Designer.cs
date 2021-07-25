@@ -34,40 +34,18 @@
             this.superTabControl1 = new DevComponents.DotNetBar.SuperTabControl();
             this.superTabControlPanel2 = new DevComponents.DotNetBar.SuperTabControlPanel();
             this.panelEx1 = new DevComponents.DotNetBar.PanelEx();
+            this.btnSearchImagePath = new DevComponents.DotNetBar.ButtonX();
+            this.txtImagePath = new System.Windows.Forms.TextBox();
+            this.label32 = new System.Windows.Forms.Label();
+            this.txtSetArchive = new System.Windows.Forms.NumericUpDown();
             this.txtBirthDayText = new System.Windows.Forms.TextBox();
+            this.label31 = new System.Windows.Forms.Label();
+            this.label30 = new System.Windows.Forms.Label();
             this.label29 = new System.Windows.Forms.Label();
             this.chbPrintPreView = new DevComponents.DotNetBar.Controls.CheckBoxX();
             this.chbPrintDesign = new DevComponents.DotNetBar.Controls.CheckBoxX();
             this.superTabItem2 = new DevComponents.DotNetBar.SuperTabItem();
             this.superTabControlPanel6 = new DevComponents.DotNetBar.SuperTabControlPanel();
-            this.superTabControlPanel3 = new DevComponents.DotNetBar.SuperTabControlPanel();
-            this.pnlUnit = new DevComponents.DotNetBar.PanelEx();
-            this.cmbEcRegion = new System.Windows.Forms.ComboBox();
-            this.RegionBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.cmbEcCity = new System.Windows.Forms.ComboBox();
-            this.CityBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.label13 = new System.Windows.Forms.Label();
-            this.cmbEcState = new System.Windows.Forms.ComboBox();
-            this.StateBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.label12 = new System.Windows.Forms.Label();
-            this.txtEcEmail = new System.Windows.Forms.TextBox();
-            this.txtEcMobile = new System.Windows.Forms.TextBox();
-            this.cmbEcType = new System.Windows.Forms.ComboBox();
-            this.txtEcAddress = new System.Windows.Forms.TextBox();
-            this.txtEcManagerName = new System.Windows.Forms.TextBox();
-            this.txtEcFax = new System.Windows.Forms.TextBox();
-            this.txtEcTell = new System.Windows.Forms.TextBox();
-            this.txtEcName = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.superTabItem5 = new DevComponents.DotNetBar.SuperTabItem();
             this.superTabControlPanel1 = new DevComponents.DotNetBar.SuperTabControlPanel();
             this.panelEx4 = new DevComponents.DotNetBar.PanelEx();
             this.btnPath = new DevComponents.DotNetBar.ButtonX();
@@ -158,19 +136,40 @@
             this.label16 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.superTabItem6 = new DevComponents.DotNetBar.SuperTabItem();
+            this.superTabControlPanel3 = new DevComponents.DotNetBar.SuperTabControlPanel();
+            this.pnlUnit = new DevComponents.DotNetBar.PanelEx();
+            this.cmbEcRegion = new System.Windows.Forms.ComboBox();
+            this.RegionBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.cmbEcCity = new System.Windows.Forms.ComboBox();
+            this.CityBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.label13 = new System.Windows.Forms.Label();
+            this.cmbEcState = new System.Windows.Forms.ComboBox();
+            this.StateBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.label12 = new System.Windows.Forms.Label();
+            this.txtEcEmail = new System.Windows.Forms.TextBox();
+            this.txtEcMobile = new System.Windows.Forms.TextBox();
+            this.cmbEcType = new System.Windows.Forms.ComboBox();
+            this.txtEcAddress = new System.Windows.Forms.TextBox();
+            this.txtEcManagerName = new System.Windows.Forms.TextBox();
+            this.txtEcFax = new System.Windows.Forms.TextBox();
+            this.txtEcTell = new System.Windows.Forms.TextBox();
+            this.txtEcName = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.superTabItem5 = new DevComponents.DotNetBar.SuperTabItem();
             this.btnFinish = new DevComponents.DotNetBar.ButtonX();
-            this.label30 = new System.Windows.Forms.Label();
-            this.txtSetArchive = new System.Windows.Forms.NumericUpDown();
-            this.label31 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.superTabControl1)).BeginInit();
             this.superTabControl1.SuspendLayout();
             this.superTabControlPanel2.SuspendLayout();
             this.panelEx1.SuspendLayout();
-            this.superTabControlPanel3.SuspendLayout();
-            this.pnlUnit.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.RegionBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.CityBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.StateBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtSetArchive)).BeginInit();
             this.superTabControlPanel1.SuspendLayout();
             this.panelEx4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtTime)).BeginInit();
@@ -183,7 +182,11 @@
             this.pnlSandouq.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtSTabdil)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSArzesh)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtSetArchive)).BeginInit();
+            this.superTabControlPanel3.SuspendLayout();
+            this.pnlUnit.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.RegionBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CityBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.StateBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // btnCancel
@@ -222,12 +225,12 @@
             this.superTabControl1.ControlBox.MenuBox,
             this.superTabControl1.ControlBox.CloseBox});
             this.superTabControl1.Controls.Add(this.superTabControlPanel2);
-            this.superTabControl1.Controls.Add(this.superTabControlPanel7);
-            this.superTabControl1.Controls.Add(this.superTabControlPanel3);
             this.superTabControl1.Controls.Add(this.superTabControlPanel6);
             this.superTabControl1.Controls.Add(this.superTabControlPanel1);
             this.superTabControl1.Controls.Add(this.superTabControlPanel11);
             this.superTabControl1.Controls.Add(this.superTabControlPanel8);
+            this.superTabControl1.Controls.Add(this.superTabControlPanel7);
+            this.superTabControl1.Controls.Add(this.superTabControlPanel3);
             this.superTabControl1.Location = new System.Drawing.Point(6, 14);
             this.superTabControl1.Name = "superTabControl1";
             this.superTabControl1.ReorderTabsEnabled = true;
@@ -261,6 +264,9 @@
             // 
             this.panelEx1.CanvasColor = System.Drawing.SystemColors.Control;
             this.panelEx1.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.panelEx1.Controls.Add(this.btnSearchImagePath);
+            this.panelEx1.Controls.Add(this.txtImagePath);
+            this.panelEx1.Controls.Add(this.label32);
             this.panelEx1.Controls.Add(this.txtSetArchive);
             this.panelEx1.Controls.Add(this.txtBirthDayText);
             this.panelEx1.Controls.Add(this.label31);
@@ -271,7 +277,7 @@
             this.panelEx1.DisabledBackColor = System.Drawing.Color.Empty;
             this.panelEx1.Location = new System.Drawing.Point(4, 4);
             this.panelEx1.Name = "panelEx1";
-            this.panelEx1.Size = new System.Drawing.Size(600, 310);
+            this.panelEx1.Size = new System.Drawing.Size(600, 348);
             this.panelEx1.Style.Alignment = System.Drawing.StringAlignment.Center;
             this.panelEx1.Style.BackColor1.Color = System.Drawing.Color.White;
             this.panelEx1.Style.BackColor2.Color = System.Drawing.Color.White;
@@ -283,6 +289,56 @@
             this.panelEx1.Style.GradientAngle = 90;
             this.panelEx1.TabIndex = 14;
             // 
+            // btnSearchImagePath
+            // 
+            this.btnSearchImagePath.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnSearchImagePath.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.btnSearchImagePath.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnSearchImagePath.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.btnSearchImagePath.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSearchImagePath.Location = new System.Drawing.Point(20, 308);
+            this.btnSearchImagePath.Name = "btnSearchImagePath";
+            this.btnSearchImagePath.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
+            this.btnSearchImagePath.Size = new System.Drawing.Size(35, 27);
+            this.btnSearchImagePath.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
+            this.btnSearchImagePath.TabIndex = 16;
+            this.btnSearchImagePath.Text = "...";
+            this.btnSearchImagePath.TextColor = System.Drawing.Color.White;
+            this.btnSearchImagePath.Click += new System.EventHandler(this.btnSearchImagePath_Click);
+            // 
+            // txtImagePath
+            // 
+            this.txtImagePath.Enabled = false;
+            this.txtImagePath.Location = new System.Drawing.Point(64, 308);
+            this.txtImagePath.Name = "txtImagePath";
+            this.txtImagePath.ReadOnly = true;
+            this.txtImagePath.Size = new System.Drawing.Size(390, 27);
+            this.txtImagePath.TabIndex = 14;
+            // 
+            // label32
+            // 
+            this.label32.AutoSize = true;
+            this.label32.BackColor = System.Drawing.Color.Transparent;
+            this.label32.Location = new System.Drawing.Point(460, 311);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(129, 20);
+            this.label32.TabIndex = 15;
+            this.label32.Text = "محل ذخیره سازی فایل ها";
+            // 
+            // txtSetArchive
+            // 
+            this.txtSetArchive.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtSetArchive.Location = new System.Drawing.Point(371, 270);
+            this.txtSetArchive.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.txtSetArchive.Name = "txtSetArchive";
+            this.txtSetArchive.Size = new System.Drawing.Size(84, 27);
+            this.txtSetArchive.TabIndex = 13;
+            // 
             // txtBirthDayText
             // 
             this.txtBirthDayText.Location = new System.Drawing.Point(20, 11);
@@ -291,6 +347,26 @@
             this.txtBirthDayText.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.txtBirthDayText.Size = new System.Drawing.Size(473, 212);
             this.txtBirthDayText.TabIndex = 12;
+            // 
+            // label31
+            // 
+            this.label31.AutoSize = true;
+            this.label31.BackColor = System.Drawing.Color.Transparent;
+            this.label31.Location = new System.Drawing.Point(284, 272);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(81, 20);
+            this.label31.TabIndex = 11;
+            this.label31.Text = "روز بعد از ثبت";
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.BackColor = System.Drawing.Color.Transparent;
+            this.label30.Location = new System.Drawing.Point(461, 272);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(128, 20);
+            this.label30.TabIndex = 11;
+            this.label30.Text = "ارسال فایل ها به بایگانی";
             // 
             // label29
             // 
@@ -348,288 +424,6 @@
             this.superTabControlPanel6.Name = "superTabControlPanel6";
             this.superTabControlPanel6.Size = new System.Drawing.Size(608, 588);
             this.superTabControlPanel6.TabIndex = 0;
-            // 
-            // superTabControlPanel3
-            // 
-            this.superTabControlPanel3.Controls.Add(this.pnlUnit);
-            this.superTabControlPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.superTabControlPanel3.Location = new System.Drawing.Point(0, 40);
-            this.superTabControlPanel3.Name = "superTabControlPanel3";
-            this.superTabControlPanel3.Size = new System.Drawing.Size(608, 548);
-            this.superTabControlPanel3.TabIndex = 0;
-            this.superTabControlPanel3.TabItem = this.superTabItem5;
-            // 
-            // pnlUnit
-            // 
-            this.pnlUnit.CanvasColor = System.Drawing.SystemColors.Control;
-            this.pnlUnit.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.pnlUnit.Controls.Add(this.cmbEcRegion);
-            this.pnlUnit.Controls.Add(this.cmbEcCity);
-            this.pnlUnit.Controls.Add(this.label13);
-            this.pnlUnit.Controls.Add(this.cmbEcState);
-            this.pnlUnit.Controls.Add(this.label12);
-            this.pnlUnit.Controls.Add(this.txtEcEmail);
-            this.pnlUnit.Controls.Add(this.txtEcMobile);
-            this.pnlUnit.Controls.Add(this.cmbEcType);
-            this.pnlUnit.Controls.Add(this.txtEcAddress);
-            this.pnlUnit.Controls.Add(this.txtEcManagerName);
-            this.pnlUnit.Controls.Add(this.txtEcFax);
-            this.pnlUnit.Controls.Add(this.txtEcTell);
-            this.pnlUnit.Controls.Add(this.txtEcName);
-            this.pnlUnit.Controls.Add(this.label8);
-            this.pnlUnit.Controls.Add(this.label5);
-            this.pnlUnit.Controls.Add(this.label11);
-            this.pnlUnit.Controls.Add(this.label4);
-            this.pnlUnit.Controls.Add(this.label7);
-            this.pnlUnit.Controls.Add(this.label2);
-            this.pnlUnit.Controls.Add(this.label6);
-            this.pnlUnit.Controls.Add(this.label3);
-            this.pnlUnit.Controls.Add(this.label1);
-            this.pnlUnit.DisabledBackColor = System.Drawing.Color.Empty;
-            this.pnlUnit.Location = new System.Drawing.Point(4, 3);
-            this.pnlUnit.Name = "pnlUnit";
-            this.pnlUnit.Size = new System.Drawing.Size(601, 542);
-            this.pnlUnit.Style.Alignment = System.Drawing.StringAlignment.Center;
-            this.pnlUnit.Style.BackColor1.Color = System.Drawing.Color.White;
-            this.pnlUnit.Style.BackColor2.Color = System.Drawing.Color.White;
-            this.pnlUnit.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
-            this.pnlUnit.Style.BorderColor.Color = System.Drawing.Color.Silver;
-            this.pnlUnit.Style.BorderWidth = 2;
-            this.pnlUnit.Style.CornerType = DevComponents.DotNetBar.eCornerType.Rounded;
-            this.pnlUnit.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText;
-            this.pnlUnit.Style.GradientAngle = 90;
-            this.pnlUnit.TabIndex = 11;
-            // 
-            // cmbEcRegion
-            // 
-            this.cmbEcRegion.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.cmbEcRegion.DataSource = this.RegionBindingSource;
-            this.cmbEcRegion.DisplayMember = "Name";
-            this.cmbEcRegion.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbEcRegion.FormattingEnabled = true;
-            this.cmbEcRegion.Location = new System.Drawing.Point(20, 344);
-            this.cmbEcRegion.Name = "cmbEcRegion";
-            this.cmbEcRegion.Size = new System.Drawing.Size(473, 28);
-            this.cmbEcRegion.TabIndex = 9;
-            this.cmbEcRegion.ValueMember = "Guid";
-            // 
-            // RegionBindingSource
-            // 
-            this.RegionBindingSource.DataSource = typeof(EntityCache.Bussines.RegionsBussines);
-            // 
-            // cmbEcCity
-            // 
-            this.cmbEcCity.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.cmbEcCity.DataSource = this.CityBindingSource;
-            this.cmbEcCity.DisplayMember = "Name";
-            this.cmbEcCity.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbEcCity.FormattingEnabled = true;
-            this.cmbEcCity.Location = new System.Drawing.Point(20, 308);
-            this.cmbEcCity.Name = "cmbEcCity";
-            this.cmbEcCity.Size = new System.Drawing.Size(473, 28);
-            this.cmbEcCity.TabIndex = 8;
-            this.cmbEcCity.ValueMember = "Guid";
-            this.cmbEcCity.SelectedIndexChanged += new System.EventHandler(this.cmbCity_SelectedIndexChanged);
-            // 
-            // CityBindingSource
-            // 
-            this.CityBindingSource.DataSource = typeof(EntityCache.Bussines.CitiesBussines);
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.BackColor = System.Drawing.Color.Transparent;
-            this.label13.Location = new System.Drawing.Point(536, 311);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(54, 20);
-            this.label13.TabIndex = 10;
-            this.label13.Text = "شهرستان";
-            // 
-            // cmbEcState
-            // 
-            this.cmbEcState.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.cmbEcState.DataSource = this.StateBindingSource;
-            this.cmbEcState.DisplayMember = "Name";
-            this.cmbEcState.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbEcState.FormattingEnabled = true;
-            this.cmbEcState.Location = new System.Drawing.Point(20, 271);
-            this.cmbEcState.Name = "cmbEcState";
-            this.cmbEcState.Size = new System.Drawing.Size(473, 28);
-            this.cmbEcState.TabIndex = 7;
-            this.cmbEcState.ValueMember = "Guid";
-            this.cmbEcState.SelectedIndexChanged += new System.EventHandler(this.cmbState_SelectedIndexChanged);
-            // 
-            // StateBindingSource
-            // 
-            this.StateBindingSource.DataSource = typeof(EntityCache.Bussines.StatesBussines);
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.BackColor = System.Drawing.Color.Transparent;
-            this.label12.Location = new System.Drawing.Point(552, 274);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(38, 20);
-            this.label12.TabIndex = 10;
-            this.label12.Text = "استان";
-            // 
-            // txtEcEmail
-            // 
-            this.txtEcEmail.Location = new System.Drawing.Point(20, 234);
-            this.txtEcEmail.Name = "txtEcEmail";
-            this.txtEcEmail.Size = new System.Drawing.Size(473, 27);
-            this.txtEcEmail.TabIndex = 6;
-            // 
-            // txtEcMobile
-            // 
-            this.txtEcMobile.Location = new System.Drawing.Point(20, 90);
-            this.txtEcMobile.Name = "txtEcMobile";
-            this.txtEcMobile.Size = new System.Drawing.Size(473, 27);
-            this.txtEcMobile.TabIndex = 2;
-            // 
-            // cmbEcType
-            // 
-            this.cmbEcType.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.cmbEcType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbEcType.FormattingEnabled = true;
-            this.cmbEcType.Location = new System.Drawing.Point(20, 54);
-            this.cmbEcType.Name = "cmbEcType";
-            this.cmbEcType.Size = new System.Drawing.Size(473, 28);
-            this.cmbEcType.TabIndex = 1;
-            // 
-            // txtEcAddress
-            // 
-            this.txtEcAddress.Location = new System.Drawing.Point(20, 381);
-            this.txtEcAddress.Multiline = true;
-            this.txtEcAddress.Name = "txtEcAddress";
-            this.txtEcAddress.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtEcAddress.Size = new System.Drawing.Size(473, 145);
-            this.txtEcAddress.TabIndex = 10;
-            // 
-            // txtEcManagerName
-            // 
-            this.txtEcManagerName.Location = new System.Drawing.Point(20, 126);
-            this.txtEcManagerName.Name = "txtEcManagerName";
-            this.txtEcManagerName.Size = new System.Drawing.Size(473, 27);
-            this.txtEcManagerName.TabIndex = 3;
-            // 
-            // txtEcFax
-            // 
-            this.txtEcFax.Location = new System.Drawing.Point(20, 198);
-            this.txtEcFax.Name = "txtEcFax";
-            this.txtEcFax.Size = new System.Drawing.Size(473, 27);
-            this.txtEcFax.TabIndex = 5;
-            // 
-            // txtEcTell
-            // 
-            this.txtEcTell.Location = new System.Drawing.Point(20, 162);
-            this.txtEcTell.Name = "txtEcTell";
-            this.txtEcTell.Size = new System.Drawing.Size(473, 27);
-            this.txtEcTell.TabIndex = 4;
-            // 
-            // txtEcName
-            // 
-            this.txtEcName.Location = new System.Drawing.Point(20, 18);
-            this.txtEcName.Name = "txtEcName";
-            this.txtEcName.Size = new System.Drawing.Size(473, 27);
-            this.txtEcName.TabIndex = 0;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.BackColor = System.Drawing.Color.Transparent;
-            this.label8.Location = new System.Drawing.Point(554, 201);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(36, 20);
-            this.label8.TabIndex = 1;
-            this.label8.Text = "فکس";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.BackColor = System.Drawing.Color.Transparent;
-            this.label5.Location = new System.Drawing.Point(553, 237);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(37, 20);
-            this.label5.TabIndex = 2;
-            this.label5.Text = "ایمیل";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.BackColor = System.Drawing.Color.Transparent;
-            this.label11.Location = new System.Drawing.Point(551, 384);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(39, 20);
-            this.label11.TabIndex = 4;
-            this.label11.Text = "آدرس";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.BackColor = System.Drawing.Color.Transparent;
-            this.label4.Location = new System.Drawing.Point(542, 129);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(48, 20);
-            this.label4.TabIndex = 3;
-            this.label4.Text = "نام مدیر";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.BackColor = System.Drawing.Color.Transparent;
-            this.label7.Location = new System.Drawing.Point(545, 347);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(45, 20);
-            this.label7.TabIndex = 4;
-            this.label7.Text = "محدوده";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Location = new System.Drawing.Point(528, 57);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(62, 20);
-            this.label2.TabIndex = 5;
-            this.label2.Text = "نوع فعالیت";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.BackColor = System.Drawing.Color.Transparent;
-            this.label6.Location = new System.Drawing.Point(534, 165);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(56, 20);
-            this.label6.TabIndex = 6;
-            this.label6.Text = "تلفن ثابت";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.BackColor = System.Drawing.Color.Transparent;
-            this.label3.Location = new System.Drawing.Point(553, 93);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(37, 20);
-            this.label3.TabIndex = 7;
-            this.label3.Text = "همراه";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Location = new System.Drawing.Point(495, 21);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(95, 20);
-            this.label1.TabIndex = 8;
-            this.label1.Text = "نام واحد اقتصادی";
-            // 
-            // superTabItem5
-            // 
-            this.superTabItem5.AttachedControl = this.superTabControlPanel3;
-            this.superTabItem5.GlobalItem = false;
-            this.superTabItem5.Name = "superTabItem5";
-            this.superTabItem5.Text = "واحد اقتصادی";
             // 
             // superTabControlPanel1
             // 
@@ -1923,6 +1717,288 @@
             this.superTabItem6.Name = "superTabItem6";
             this.superTabItem6.Text = "صندوق مکانیزه";
             // 
+            // superTabControlPanel3
+            // 
+            this.superTabControlPanel3.Controls.Add(this.pnlUnit);
+            this.superTabControlPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.superTabControlPanel3.Location = new System.Drawing.Point(0, 40);
+            this.superTabControlPanel3.Name = "superTabControlPanel3";
+            this.superTabControlPanel3.Size = new System.Drawing.Size(608, 548);
+            this.superTabControlPanel3.TabIndex = 0;
+            this.superTabControlPanel3.TabItem = this.superTabItem5;
+            // 
+            // pnlUnit
+            // 
+            this.pnlUnit.CanvasColor = System.Drawing.SystemColors.Control;
+            this.pnlUnit.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.pnlUnit.Controls.Add(this.cmbEcRegion);
+            this.pnlUnit.Controls.Add(this.cmbEcCity);
+            this.pnlUnit.Controls.Add(this.label13);
+            this.pnlUnit.Controls.Add(this.cmbEcState);
+            this.pnlUnit.Controls.Add(this.label12);
+            this.pnlUnit.Controls.Add(this.txtEcEmail);
+            this.pnlUnit.Controls.Add(this.txtEcMobile);
+            this.pnlUnit.Controls.Add(this.cmbEcType);
+            this.pnlUnit.Controls.Add(this.txtEcAddress);
+            this.pnlUnit.Controls.Add(this.txtEcManagerName);
+            this.pnlUnit.Controls.Add(this.txtEcFax);
+            this.pnlUnit.Controls.Add(this.txtEcTell);
+            this.pnlUnit.Controls.Add(this.txtEcName);
+            this.pnlUnit.Controls.Add(this.label8);
+            this.pnlUnit.Controls.Add(this.label5);
+            this.pnlUnit.Controls.Add(this.label11);
+            this.pnlUnit.Controls.Add(this.label4);
+            this.pnlUnit.Controls.Add(this.label7);
+            this.pnlUnit.Controls.Add(this.label2);
+            this.pnlUnit.Controls.Add(this.label6);
+            this.pnlUnit.Controls.Add(this.label3);
+            this.pnlUnit.Controls.Add(this.label1);
+            this.pnlUnit.DisabledBackColor = System.Drawing.Color.Empty;
+            this.pnlUnit.Location = new System.Drawing.Point(4, 3);
+            this.pnlUnit.Name = "pnlUnit";
+            this.pnlUnit.Size = new System.Drawing.Size(601, 542);
+            this.pnlUnit.Style.Alignment = System.Drawing.StringAlignment.Center;
+            this.pnlUnit.Style.BackColor1.Color = System.Drawing.Color.White;
+            this.pnlUnit.Style.BackColor2.Color = System.Drawing.Color.White;
+            this.pnlUnit.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
+            this.pnlUnit.Style.BorderColor.Color = System.Drawing.Color.Silver;
+            this.pnlUnit.Style.BorderWidth = 2;
+            this.pnlUnit.Style.CornerType = DevComponents.DotNetBar.eCornerType.Rounded;
+            this.pnlUnit.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText;
+            this.pnlUnit.Style.GradientAngle = 90;
+            this.pnlUnit.TabIndex = 11;
+            // 
+            // cmbEcRegion
+            // 
+            this.cmbEcRegion.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cmbEcRegion.DataSource = this.RegionBindingSource;
+            this.cmbEcRegion.DisplayMember = "Name";
+            this.cmbEcRegion.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbEcRegion.FormattingEnabled = true;
+            this.cmbEcRegion.Location = new System.Drawing.Point(20, 344);
+            this.cmbEcRegion.Name = "cmbEcRegion";
+            this.cmbEcRegion.Size = new System.Drawing.Size(473, 28);
+            this.cmbEcRegion.TabIndex = 9;
+            this.cmbEcRegion.ValueMember = "Guid";
+            // 
+            // RegionBindingSource
+            // 
+            this.RegionBindingSource.DataSource = typeof(EntityCache.Bussines.RegionsBussines);
+            // 
+            // cmbEcCity
+            // 
+            this.cmbEcCity.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cmbEcCity.DataSource = this.CityBindingSource;
+            this.cmbEcCity.DisplayMember = "Name";
+            this.cmbEcCity.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbEcCity.FormattingEnabled = true;
+            this.cmbEcCity.Location = new System.Drawing.Point(20, 308);
+            this.cmbEcCity.Name = "cmbEcCity";
+            this.cmbEcCity.Size = new System.Drawing.Size(473, 28);
+            this.cmbEcCity.TabIndex = 8;
+            this.cmbEcCity.ValueMember = "Guid";
+            this.cmbEcCity.SelectedIndexChanged += new System.EventHandler(this.cmbCity_SelectedIndexChanged);
+            // 
+            // CityBindingSource
+            // 
+            this.CityBindingSource.DataSource = typeof(EntityCache.Bussines.CitiesBussines);
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.BackColor = System.Drawing.Color.Transparent;
+            this.label13.Location = new System.Drawing.Point(536, 311);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(54, 20);
+            this.label13.TabIndex = 10;
+            this.label13.Text = "شهرستان";
+            // 
+            // cmbEcState
+            // 
+            this.cmbEcState.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cmbEcState.DataSource = this.StateBindingSource;
+            this.cmbEcState.DisplayMember = "Name";
+            this.cmbEcState.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbEcState.FormattingEnabled = true;
+            this.cmbEcState.Location = new System.Drawing.Point(20, 271);
+            this.cmbEcState.Name = "cmbEcState";
+            this.cmbEcState.Size = new System.Drawing.Size(473, 28);
+            this.cmbEcState.TabIndex = 7;
+            this.cmbEcState.ValueMember = "Guid";
+            this.cmbEcState.SelectedIndexChanged += new System.EventHandler(this.cmbState_SelectedIndexChanged);
+            // 
+            // StateBindingSource
+            // 
+            this.StateBindingSource.DataSource = typeof(EntityCache.Bussines.StatesBussines);
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.BackColor = System.Drawing.Color.Transparent;
+            this.label12.Location = new System.Drawing.Point(552, 274);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(38, 20);
+            this.label12.TabIndex = 10;
+            this.label12.Text = "استان";
+            // 
+            // txtEcEmail
+            // 
+            this.txtEcEmail.Location = new System.Drawing.Point(20, 234);
+            this.txtEcEmail.Name = "txtEcEmail";
+            this.txtEcEmail.Size = new System.Drawing.Size(473, 27);
+            this.txtEcEmail.TabIndex = 6;
+            // 
+            // txtEcMobile
+            // 
+            this.txtEcMobile.Location = new System.Drawing.Point(20, 90);
+            this.txtEcMobile.Name = "txtEcMobile";
+            this.txtEcMobile.Size = new System.Drawing.Size(473, 27);
+            this.txtEcMobile.TabIndex = 2;
+            // 
+            // cmbEcType
+            // 
+            this.cmbEcType.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cmbEcType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbEcType.FormattingEnabled = true;
+            this.cmbEcType.Location = new System.Drawing.Point(20, 54);
+            this.cmbEcType.Name = "cmbEcType";
+            this.cmbEcType.Size = new System.Drawing.Size(473, 28);
+            this.cmbEcType.TabIndex = 1;
+            // 
+            // txtEcAddress
+            // 
+            this.txtEcAddress.Location = new System.Drawing.Point(20, 381);
+            this.txtEcAddress.Multiline = true;
+            this.txtEcAddress.Name = "txtEcAddress";
+            this.txtEcAddress.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtEcAddress.Size = new System.Drawing.Size(473, 145);
+            this.txtEcAddress.TabIndex = 10;
+            // 
+            // txtEcManagerName
+            // 
+            this.txtEcManagerName.Location = new System.Drawing.Point(20, 126);
+            this.txtEcManagerName.Name = "txtEcManagerName";
+            this.txtEcManagerName.Size = new System.Drawing.Size(473, 27);
+            this.txtEcManagerName.TabIndex = 3;
+            // 
+            // txtEcFax
+            // 
+            this.txtEcFax.Location = new System.Drawing.Point(20, 198);
+            this.txtEcFax.Name = "txtEcFax";
+            this.txtEcFax.Size = new System.Drawing.Size(473, 27);
+            this.txtEcFax.TabIndex = 5;
+            // 
+            // txtEcTell
+            // 
+            this.txtEcTell.Location = new System.Drawing.Point(20, 162);
+            this.txtEcTell.Name = "txtEcTell";
+            this.txtEcTell.Size = new System.Drawing.Size(473, 27);
+            this.txtEcTell.TabIndex = 4;
+            // 
+            // txtEcName
+            // 
+            this.txtEcName.Location = new System.Drawing.Point(20, 18);
+            this.txtEcName.Name = "txtEcName";
+            this.txtEcName.Size = new System.Drawing.Size(473, 27);
+            this.txtEcName.TabIndex = 0;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.BackColor = System.Drawing.Color.Transparent;
+            this.label8.Location = new System.Drawing.Point(554, 201);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(36, 20);
+            this.label8.TabIndex = 1;
+            this.label8.Text = "فکس";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.BackColor = System.Drawing.Color.Transparent;
+            this.label5.Location = new System.Drawing.Point(553, 237);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(37, 20);
+            this.label5.TabIndex = 2;
+            this.label5.Text = "ایمیل";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.BackColor = System.Drawing.Color.Transparent;
+            this.label11.Location = new System.Drawing.Point(551, 384);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(39, 20);
+            this.label11.TabIndex = 4;
+            this.label11.Text = "آدرس";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.BackColor = System.Drawing.Color.Transparent;
+            this.label4.Location = new System.Drawing.Point(542, 129);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(48, 20);
+            this.label4.TabIndex = 3;
+            this.label4.Text = "نام مدیر";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.BackColor = System.Drawing.Color.Transparent;
+            this.label7.Location = new System.Drawing.Point(545, 347);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(45, 20);
+            this.label7.TabIndex = 4;
+            this.label7.Text = "محدوده";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.Location = new System.Drawing.Point(528, 57);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(62, 20);
+            this.label2.TabIndex = 5;
+            this.label2.Text = "نوع فعالیت";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.BackColor = System.Drawing.Color.Transparent;
+            this.label6.Location = new System.Drawing.Point(534, 165);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(56, 20);
+            this.label6.TabIndex = 6;
+            this.label6.Text = "تلفن ثابت";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.Transparent;
+            this.label3.Location = new System.Drawing.Point(553, 93);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(37, 20);
+            this.label3.TabIndex = 7;
+            this.label3.Text = "همراه";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Location = new System.Drawing.Point(495, 21);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(95, 20);
+            this.label1.TabIndex = 8;
+            this.label1.Text = "نام واحد اقتصادی";
+            // 
+            // superTabItem5
+            // 
+            this.superTabItem5.AttachedControl = this.superTabControlPanel3;
+            this.superTabItem5.GlobalItem = false;
+            this.superTabItem5.Name = "superTabItem5";
+            this.superTabItem5.Text = "واحد اقتصادی";
+            // 
             // btnFinish
             // 
             this.btnFinish.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
@@ -1940,40 +2016,6 @@
             this.btnFinish.Text = "تایید (F5)";
             this.btnFinish.TextColor = System.Drawing.Color.Black;
             this.btnFinish.Click += new System.EventHandler(this.btnFinish_Click);
-            // 
-            // label30
-            // 
-            this.label30.AutoSize = true;
-            this.label30.BackColor = System.Drawing.Color.Transparent;
-            this.label30.Location = new System.Drawing.Point(461, 272);
-            this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(128, 20);
-            this.label30.TabIndex = 11;
-            this.label30.Text = "ارسال فایل ها به بایگانی";
-            // 
-            // txtSetArchive
-            // 
-            this.txtSetArchive.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtSetArchive.Location = new System.Drawing.Point(371, 270);
-            this.txtSetArchive.Maximum = new decimal(new int[] {
-            10000,
-            0,
-            0,
-            0});
-            this.txtSetArchive.Name = "txtSetArchive";
-            this.txtSetArchive.Size = new System.Drawing.Size(84, 27);
-            this.txtSetArchive.TabIndex = 13;
-            // 
-            // label31
-            // 
-            this.label31.AutoSize = true;
-            this.label31.BackColor = System.Drawing.Color.Transparent;
-            this.label31.Location = new System.Drawing.Point(284, 272);
-            this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(81, 20);
-            this.label31.TabIndex = 11;
-            this.label31.Text = "روز بعد از ثبت";
             // 
             // frmSettings
             // 
@@ -2001,12 +2043,7 @@
             this.superTabControlPanel2.ResumeLayout(false);
             this.panelEx1.ResumeLayout(false);
             this.panelEx1.PerformLayout();
-            this.superTabControlPanel3.ResumeLayout(false);
-            this.pnlUnit.ResumeLayout(false);
-            this.pnlUnit.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.RegionBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.CityBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.StateBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtSetArchive)).EndInit();
             this.superTabControlPanel1.ResumeLayout(false);
             this.panelEx4.ResumeLayout(false);
             this.panelEx4.PerformLayout();
@@ -2023,7 +2060,12 @@
             this.pnlSandouq.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtSTabdil)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSArzesh)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtSetArchive)).EndInit();
+            this.superTabControlPanel3.ResumeLayout(false);
+            this.pnlUnit.ResumeLayout(false);
+            this.pnlUnit.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.RegionBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CityBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.StateBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -2161,5 +2203,8 @@
         private System.Windows.Forms.NumericUpDown txtSetArchive;
         private System.Windows.Forms.Label label31;
         private System.Windows.Forms.Label label30;
+        private System.Windows.Forms.TextBox txtImagePath;
+        private System.Windows.Forms.Label label32;
+        private DevComponents.DotNetBar.ButtonX btnSearchImagePath;
     }
 }
