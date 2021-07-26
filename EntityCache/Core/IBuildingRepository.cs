@@ -10,7 +10,7 @@ namespace EntityCache.Core
 {
     public interface IBuildingRepository
     {
-        Task<List<BuildingBussines>> GetAllAsync(string _connectionString, CancellationToken token);
+        Task<List<BuildingBussines>> GetAllAsync(string _connectionString, CancellationToken token, bool isLoadDets);
         Task<ReturnedSaveFuncInfo> SaveAsync(BuildingBussines item, SqlTransaction tr);
         Task<ReturnedSaveFuncInfo> ChangeStatusAsync(BuildingBussines item, bool status, SqlTransaction tr);
         Task<string> NextCodeAsync(string _connectionString);

@@ -103,7 +103,7 @@ namespace EntityCache.Bussines
         public List<BuildingMediaBussines> MediaList { get; set; }
         #endregion
 
-        public static async Task<List<BuildingBussines>> GetAllAsync(CancellationToken token) => await UnitOfWork.Building.GetAllAsync(Cache.ConnectionString, token);
+        public static async Task<List<BuildingBussines>> GetAllAsync(CancellationToken token, bool isLoadDet) => await UnitOfWork.Building.GetAllAsync(Cache.ConnectionString, token, isLoadDet);
         public static async Task<BuildingBussines> GetAsync(Guid guid) => await UnitOfWork.Building.GetAsync(Cache.ConnectionString, guid);
         public static BuildingBussines Get(Guid guid) => AsyncContext.Run(() => GetAsync(guid));
         public async Task<ReturnedSaveFuncInfo> SaveAsync(SqlTransaction tr = null)
@@ -222,17 +222,17 @@ namespace EntityCache.Bussines
             }
             return res;
         }
-        public static List<BuildingBussines> GetAll(string search, CancellationToken token, bool? isArchive, bool status,
+        public static List<BuildingBussines> GetAll(string search, bool isLoadDets, CancellationToken token, bool? isArchive, bool status,
             Guid buildingTypeGuid, Guid userGuid, Guid docTypeGuid, Guid accTypeGuid) => AsyncContext.Run(() =>
-            GetAllAsync(search, token, isArchive, status, buildingTypeGuid, userGuid, docTypeGuid, accTypeGuid));
-        public static async Task<List<BuildingBussines>> GetAllAsync(string search, CancellationToken token, bool? isArchive, bool status,
+            GetAllAsync(search, isLoadDets, token, isArchive, status, buildingTypeGuid, userGuid, docTypeGuid, accTypeGuid));
+        public static async Task<List<BuildingBussines>> GetAllAsync(string search, bool isLoadDets, CancellationToken token, bool? isArchive, bool status,
             Guid buildingTypeGuid, Guid userGuid, Guid docTypeGuid, Guid accTypeGuid)
         {
             try
             {
                 IEnumerable<BuildingBussines> res;
                 if (string.IsNullOrEmpty(search)) search = "";
-                res = await GetAllAsync(token);
+                res = await GetAllAsync(token, isLoadDets);
                 if (token.IsCancellationRequested) return null;
                 if (res == null || !res.Any()) return res?.ToList();
 
@@ -290,7 +290,7 @@ namespace EntityCache.Bussines
         {
             try
             {
-                IEnumerable<BuildingBussines> res = await GetAllAsync(token);
+                IEnumerable<BuildingBussines> res = await GetAllAsync(token,true);
                 if (token.IsCancellationRequested) return null;
                 if (regionList != null && regionList.Count > 0) res = res.Where(q => regionList.Contains(q.RegionGuid));
                 if (token.IsCancellationRequested) return null;

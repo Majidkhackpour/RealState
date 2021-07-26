@@ -13,7 +13,7 @@ namespace EntityCache.SqlServerPersistence
 {
     public class BuildingPersistenceRepository : IBuildingRepository
     {
-        public async Task<List<BuildingBussines>> GetAllAsync(string _connectionString, CancellationToken token)
+        public async Task<List<BuildingBussines>> GetAllAsync(string _connectionString, CancellationToken token, bool isLoadDets)
         {
             var list = new List<BuildingBussines>();
             try
@@ -27,7 +27,7 @@ namespace EntityCache.SqlServerPersistence
                     while (dr.Read())
                     {
                         if (token.IsCancellationRequested) return null;
-                        list.Add(LoadData(dr));
+                        list.Add(LoadData(dr, isLoadDets));
                     }
                     dr.Close();
                     cn.Close();
@@ -238,7 +238,7 @@ namespace EntityCache.SqlServerPersistence
                     cmd.Parameters.AddWithValue("@guid", guid);
                     await cn.OpenAsync();
                     var dr = await cmd.ExecuteReaderAsync();
-                    if (dr.Read()) list = LoadData(dr);
+                    if (dr.Read()) list = LoadData(dr, true);
                     dr.Close();
                     cn.Close();
                 }
@@ -286,7 +286,7 @@ namespace EntityCache.SqlServerPersistence
                     while (dr.Read())
                     {
                         if (token.IsCancellationRequested) return null;
-                        list.Add(LoadData(dr));
+                        list.Add(LoadData(dr, false));
                     }
                     dr.Close();
                     cn.Close();
@@ -301,7 +301,7 @@ namespace EntityCache.SqlServerPersistence
 
             return list;
         }
-        private BuildingBussines LoadData(SqlDataReader dr)
+        private BuildingBussines LoadData(SqlDataReader dr, bool isLoadDets)
         {
             var res = new BuildingBussines();
             try
@@ -366,9 +366,13 @@ namespace EntityCache.SqlServerPersistence
                 res.Image = dr["Image"].ToString();
                 res.Priority = (EnBuildingPriority)dr["Priority"];
                 res.IsArchive = (bool)dr["IsArchive"];
-                res.GalleryList = AsyncContext.Run(() => BuildingGalleryBussines.GetAllAsync(res.Guid));
-                res.MediaList = AsyncContext.Run(() => BuildingMediaBussines.GetAllAsync(res.Guid));
-                res.OptionList = BuildingRelatedOptionsBussines.GetAll(res.Guid);
+                if (isLoadDets)
+                {
+                    res.GalleryList = AsyncContext.Run(() => BuildingGalleryBussines.GetAllAsync(res.Guid));
+                    res.MediaList = AsyncContext.Run(() => BuildingMediaBussines.GetAllAsync(res.Guid));
+                    res.OptionList = BuildingRelatedOptionsBussines.GetAll(res.Guid);
+                }
+
                 res.ServerDeliveryDate = (DateTime)dr["ServerDeliveryDate"];
                 res.ServerStatus = (ServerStatus)dr["ServerStatus"];
                 res.OwnerName = dr["OwnerName"].ToString();

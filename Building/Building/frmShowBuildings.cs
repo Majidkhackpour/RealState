@@ -96,7 +96,7 @@ namespace Building.Building
                 _token?.Cancel();
                 _token = new CancellationTokenSource();
                 list = BuildingBussines
-                    .GetAll(search, _token.Token, _isArchive, _st,
+                    .GetAll(search,false, _token.Token, _isArchive, _st,
                         (Guid)cmbBuildingType.SelectedValue,
                         (Guid)cmbUser.SelectedValue,
                         (Guid)cmbDocType.SelectedValue,

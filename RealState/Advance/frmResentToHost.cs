@@ -124,7 +124,7 @@ namespace RealState.Advance
                 {
                     _token?.Cancel();
                     _token = new CancellationTokenSource();
-                    await WebBuilding.SaveAsync(await BuildingBussines.GetAllAsync(_token.Token), Application.StartupPath);
+                    await WebBuilding.SaveAsync(await BuildingBussines.GetAllAsync(_token.Token,true), Application.StartupPath);
                 }
 
 
