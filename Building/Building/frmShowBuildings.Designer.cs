@@ -96,6 +96,8 @@
             this.mnuMatchRequest = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem6 = new System.Windows.Forms.ToolStripSeparator();
             this.mnuPrintOne = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuPrintFull = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuPrintInherit = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuPrint = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripSeparator();
             this.مدیریتستونهاToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -163,8 +165,7 @@
             this.docTypeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.ucPagger = new WindowsSerivces.Pagging.UC_FooterPaging();
             this.ucHeader = new WindowsSerivces.UC_Header();
-            this.mnuPrintFull = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuPrintInherit = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuMedia = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).BeginInit();
             this.contextMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BuildingBindingSource)).BeginInit();
@@ -621,6 +622,7 @@
             this.toolStripMenuItem2,
             this.بایگانیToolStripMenuItem,
             this.mnuSlideShow,
+            this.mnuMedia,
             this.toolStripMenuItem3,
             this.mnuSendSms,
             this.mnuSendToDivar,
@@ -636,7 +638,7 @@
             this.مدیریتستونهاToolStripMenuItem});
             this.contextMenu.Name = "contextMenu";
             this.contextMenu.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.contextMenu.Size = new System.Drawing.Size(246, 422);
+            this.contextMenu.Size = new System.Drawing.Size(246, 446);
             // 
             // mnuAdd
             // 
@@ -778,6 +780,20 @@
             this.mnuPrintOne.Name = "mnuPrintOne";
             this.mnuPrintOne.Size = new System.Drawing.Size(245, 24);
             this.mnuPrintOne.Text = "چاپ اطلاعات ملک";
+            // 
+            // mnuPrintFull
+            // 
+            this.mnuPrintFull.Name = "mnuPrintFull";
+            this.mnuPrintFull.Size = new System.Drawing.Size(292, 24);
+            this.mnuPrintFull.Text = "چاپ اطلاعات کامل ملک در سایز A4";
+            this.mnuPrintFull.Click += new System.EventHandler(this.mnuPrintFull_Click);
+            // 
+            // mnuPrintInherit
+            // 
+            this.mnuPrintInherit.Name = "mnuPrintInherit";
+            this.mnuPrintInherit.Size = new System.Drawing.Size(292, 24);
+            this.mnuPrintInherit.Text = "چاپ اطلاعات بدون آدرس و مالک در سایز A5";
+            this.mnuPrintInherit.Click += new System.EventHandler(this.mnuPrintInherit_Click);
             // 
             // mnuPrint
             // 
@@ -1446,19 +1462,12 @@
             this.ucHeader.Size = new System.Drawing.Size(1027, 34);
             this.ucHeader.TabIndex = 55772;
             // 
-            // mnuPrintFull
+            // mnuMedia
             // 
-            this.mnuPrintFull.Name = "mnuPrintFull";
-            this.mnuPrintFull.Size = new System.Drawing.Size(292, 24);
-            this.mnuPrintFull.Text = "چاپ اطلاعات کامل ملک در سایز A4";
-            this.mnuPrintFull.Click += new System.EventHandler(this.mnuPrintFull_Click);
-            // 
-            // mnuPrintInherit
-            // 
-            this.mnuPrintInherit.Name = "mnuPrintInherit";
-            this.mnuPrintInherit.Size = new System.Drawing.Size(292, 24);
-            this.mnuPrintInherit.Text = "چاپ اطلاعات بدون آدرس و مالک در سایز A5";
-            this.mnuPrintInherit.Click += new System.EventHandler(this.mnuPrintInherit_Click);
+            this.mnuMedia.Name = "mnuMedia";
+            this.mnuMedia.Size = new System.Drawing.Size(245, 24);
+            this.mnuMedia.Text = "نمایش مدیاهای ملک جاری";
+            this.mnuMedia.Click += new System.EventHandler(this.mnuMedia_Click);
             // 
             // frmShowBuildings
             // 
@@ -1627,5 +1636,6 @@
         private System.Windows.Forms.ToolStripMenuItem mnuRemoveFromArchive;
         private System.Windows.Forms.ToolStripMenuItem mnuPrintFull;
         private System.Windows.Forms.ToolStripMenuItem mnuPrintInherit;
+        private System.Windows.Forms.ToolStripMenuItem mnuMedia;
     }
 }

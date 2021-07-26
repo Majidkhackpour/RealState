@@ -96,7 +96,7 @@ namespace Building.Building
                 _token?.Cancel();
                 _token = new CancellationTokenSource();
                 list = BuildingBussines
-                    .GetAll(search,false, _token.Token, _isArchive, _st,
+                    .GetAll(search, false, _token.Token, _isArchive, _st,
                         (Guid)cmbBuildingType.SelectedValue,
                         (Guid)cmbUser.SelectedValue,
                         (Guid)cmbDocType.SelectedValue,
@@ -1508,7 +1508,11 @@ namespace Building.Building
                 if (DGrid.RowCount <= 0 || DGrid.CurrentRow == null) return;
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
                 var bu = await BuildingBussines.GetAsync(guid);
-                if (bu?.GalleryList == null) return;
+                if (bu?.GalleryList == null || bu?.GalleryList?.Count <= 0)
+                {
+                    frmNotification.PublicInfo.ShowMessage("داده ای جهت نمایش وجود ندارد");
+                    return;
+                }
 
                 var frm = new frmSlideShow(bu.GalleryList);
                 frm.ShowDialog();
@@ -1528,7 +1532,7 @@ namespace Building.Building
                 if (cls == null) return;
                 if (cls.IsArchive)
                 {
-                    this.ShowMessage("ملک موردنظر درحال حاظر بایگانی شده است");
+                    frmNotification.PublicInfo.ShowMessage("ملک موردنظر درحال حاظر بایگانی شده است");
                     return;
                 }
 
@@ -1551,7 +1555,7 @@ namespace Building.Building
                 if (cls == null) return;
                 if (!cls.IsArchive)
                 {
-                    this.ShowMessage("ملک موردنظر درحال حاظر خارج از بایگانی می باشد");
+                    frmNotification.PublicInfo.ShowMessage("ملک موردنظر درحال حاظر خارج از بایگانی می باشد");
                     return;
                 }
 
@@ -1577,7 +1581,7 @@ namespace Building.Building
                 var list = await BuildingRequestViewModel.GetAllMatchesItemsAsync(cls, _token.Token);
                 if (list.Count <= 0)
                 {
-                    this.ShowMessage("فایل مطابقی جهت نمایش وجود ندارد");
+                    frmNotification.PublicInfo.ShowMessage("فایل مطابقی جهت نمایش وجود ندارد");
                     return;
                 }
 
@@ -1713,6 +1717,27 @@ namespace Building.Building
                 var cls_ = new ReportGenerator(StiType.Building_One, EnPrintType.Pdf_A5)
                 { Lst = new List<object>() { rpt } };
                 cls_.PrintNew();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private async void mnuMedia_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (DGrid.RowCount <= 0 || DGrid.CurrentRow == null) return;
+                var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
+                var bu = await BuildingBussines.GetAsync(guid);
+                if (bu?.MediaList == null || bu?.MediaList?.Count <= 0)
+                {
+                    frmNotification.PublicInfo.ShowMessage("داده ای جهت نمایش وجود ندارد");
+                    return;
+                }
+
+                var frm = new frmShowMedia(bu);
+                frm.ShowDialog();
             }
             catch (Exception ex)
             {

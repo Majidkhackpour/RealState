@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Advertise.Properties;
 using EntityCache.Bussines;
 using EntityCache.ViewModels;
+using HtmlAgilityPack;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Services;
@@ -210,28 +211,28 @@ namespace Advertise.Classes
             var list = new List<Divar>();
             try
             {
-                //var web = new HtmlWeb();
-                //var doc = web.Load(url);
-                //var o = doc.DocumentNode.SelectNodes("//script[@type='application/ld+json']")?.LastOrDefault();
-                //var text = o?.InnerText;
-                //var items = JsonConvert.DeserializeObject<List<Divar>>(text);
-                //foreach (var divar in items)
-                //{
-                //    var newDoc = web.Load(divar.Url);
-                //    var o_ = newDoc.DocumentNode.SelectNodes("/html[1]/body[1]/script[1]")?.FirstOrDefault();
-                //    if (o_ == null) continue;
-                //    var text_ = o_.InnerText.Replace(@"\", "").Replace("window.production = true;", "")
-                //        .Replace("window.__PRELOADED_STATE__ = \"{", "{")
-                //        .Replace(",\"PERFORMANCE_MONITOR_RULE\":\"[0۰]$\"}\";", "}");
-                //    var index = text_.IndexOf("  window.env");
-                //    text_ = text_.Remove(index - 3);
-                //    index = text_.IndexOf(",\"exitLinkWarn");
-                //    var index2 = text_.IndexOf("u003Cu002Fau003Eu003Cu002Fpu003E\"");
-                //    text_ = text_.Remove(index, index2 - index).Replace("u003Cu002Fau003Eu003Cu002Fpu003E\"", "");
-                //    var root = JObject.Parse(text_);
-                //    var guestValues = root["currentPost"]["post"]["widgets"]["listData"];
-                //    divar.listData = JsonConvert.DeserializeObject<List<ListData>>(guestValues.ToString());
-                //}
+                var web = new HtmlWeb();
+                var doc = web.Load(url);
+                var o = doc.DocumentNode.SelectNodes("//script[@type='application/ld+json']")?.LastOrDefault();
+                var text = o?.InnerText;
+                var items = JsonConvert.DeserializeObject<List<Divar>>(text);
+                foreach (var divar in items)
+                {
+                    var newDoc = web.Load(divar.Url);
+                    var o_ = newDoc.DocumentNode.SelectNodes("/html[1]/body[1]/script[1]")?.FirstOrDefault();
+                    if (o_ == null) continue;
+                    var text_ = o_.InnerText.Replace(@"\", "").Replace("window.production = true;", "")
+                        .Replace("window.__PRELOADED_STATE__ = \"{", "{")
+                        .Replace(",\"PERFORMANCE_MONITOR_RULE\":\"[0۰]$\"}\";", "}");
+                    var index = text_.IndexOf("  window.env");
+                    text_ = text_.Remove(index - 3);
+                    index = text_.IndexOf(",\"exitLinkWarn");
+                    var index2 = text_.IndexOf("u003Cu002Fau003Eu003Cu002Fpu003E\"");
+                    text_ = text_.Remove(index, index2 - index).Replace("u003Cu002Fau003Eu003Cu002Fpu003E\"", "");
+                    var root = JObject.Parse(text_);
+                    var guestValues = root["currentPost"]["post"]["widgets"]["listData"];
+                    divar.listData = JsonConvert.DeserializeObject<List<ListData>>(guestValues.ToString());
+                }
             }
             catch (Exception ex)
             {
