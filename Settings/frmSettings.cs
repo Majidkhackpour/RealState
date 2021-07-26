@@ -473,6 +473,7 @@ namespace Settings
                 chbPrintDesign.Checked = clsPrint.ShowDesign;
                 chbPrintPreView.Checked = clsPrint.ShowPreview;
                 txtImagePath.Text = clsGlobal.ImagePath;
+                txtMediaPath.Text = clsGlobal.MediaPath;
             }
             catch (Exception ex)
             {
@@ -488,6 +489,7 @@ namespace Settings
                 clsPrint.ShowDesign = chbPrintDesign.Checked;
                 clsPrint.ShowPreview = chbPrintPreView.Checked;
                 clsGlobal.ImagePath = txtImagePath.Text;
+                clsGlobal.MediaPath = txtMediaPath.Text;
             }
             catch (Exception ex)
             {
@@ -525,6 +527,19 @@ namespace Settings
                 var ff = new FolderBrowserDialog();
                 if (ff.ShowDialog(this) == DialogResult.OK)
                     txtImagePath.Text = ff.SelectedPath;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private void btnSearchMedia_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var ff = new FolderBrowserDialog();
+                if (ff.ShowDialog(this) == DialogResult.OK)
+                    txtMediaPath.Text = ff.SelectedPath;
             }
             catch (Exception ex)
             {

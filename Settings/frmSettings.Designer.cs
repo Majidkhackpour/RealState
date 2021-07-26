@@ -165,6 +165,9 @@
             this.label1 = new System.Windows.Forms.Label();
             this.superTabItem5 = new DevComponents.DotNetBar.SuperTabItem();
             this.btnFinish = new DevComponents.DotNetBar.ButtonX();
+            this.label33 = new System.Windows.Forms.Label();
+            this.txtMediaPath = new System.Windows.Forms.TextBox();
+            this.btnSearchMedia = new DevComponents.DotNetBar.ButtonX();
             ((System.ComponentModel.ISupportInitialize)(this.superTabControl1)).BeginInit();
             this.superTabControl1.SuspendLayout();
             this.superTabControlPanel2.SuspendLayout();
@@ -264,7 +267,10 @@
             // 
             this.panelEx1.CanvasColor = System.Drawing.SystemColors.Control;
             this.panelEx1.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.panelEx1.Controls.Add(this.btnSearchMedia);
             this.panelEx1.Controls.Add(this.btnSearchImagePath);
+            this.panelEx1.Controls.Add(this.txtMediaPath);
+            this.panelEx1.Controls.Add(this.label33);
             this.panelEx1.Controls.Add(this.txtImagePath);
             this.panelEx1.Controls.Add(this.label32);
             this.panelEx1.Controls.Add(this.txtSetArchive);
@@ -277,7 +283,7 @@
             this.panelEx1.DisabledBackColor = System.Drawing.Color.Empty;
             this.panelEx1.Location = new System.Drawing.Point(4, 4);
             this.panelEx1.Name = "panelEx1";
-            this.panelEx1.Size = new System.Drawing.Size(600, 348);
+            this.panelEx1.Size = new System.Drawing.Size(600, 376);
             this.panelEx1.Style.Alignment = System.Drawing.StringAlignment.Center;
             this.panelEx1.Style.BackColor1.Color = System.Drawing.Color.White;
             this.panelEx1.Style.BackColor2.Color = System.Drawing.Color.White;
@@ -321,9 +327,9 @@
             this.label32.BackColor = System.Drawing.Color.Transparent;
             this.label32.Location = new System.Drawing.Point(460, 311);
             this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(129, 20);
+            this.label32.Size = new System.Drawing.Size(127, 20);
             this.label32.TabIndex = 15;
-            this.label32.Text = "محل ذخیره سازی فایل ها";
+            this.label32.Text = "محل ذخیره سازی تصاویر";
             // 
             // txtSetArchive
             // 
@@ -2017,6 +2023,42 @@
             this.btnFinish.TextColor = System.Drawing.Color.Black;
             this.btnFinish.Click += new System.EventHandler(this.btnFinish_Click);
             // 
+            // label33
+            // 
+            this.label33.AutoSize = true;
+            this.label33.BackColor = System.Drawing.Color.Transparent;
+            this.label33.Location = new System.Drawing.Point(474, 344);
+            this.label33.Name = "label33";
+            this.label33.Size = new System.Drawing.Size(113, 20);
+            this.label33.TabIndex = 15;
+            this.label33.Text = "محل ذخیره سازی مدیا";
+            // 
+            // txtMediaPath
+            // 
+            this.txtMediaPath.Enabled = false;
+            this.txtMediaPath.Location = new System.Drawing.Point(64, 341);
+            this.txtMediaPath.Name = "txtMediaPath";
+            this.txtMediaPath.ReadOnly = true;
+            this.txtMediaPath.Size = new System.Drawing.Size(390, 27);
+            this.txtMediaPath.TabIndex = 14;
+            // 
+            // btnSearchMedia
+            // 
+            this.btnSearchMedia.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnSearchMedia.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.btnSearchMedia.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnSearchMedia.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.btnSearchMedia.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSearchMedia.Location = new System.Drawing.Point(20, 341);
+            this.btnSearchMedia.Name = "btnSearchMedia";
+            this.btnSearchMedia.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
+            this.btnSearchMedia.Size = new System.Drawing.Size(35, 27);
+            this.btnSearchMedia.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
+            this.btnSearchMedia.TabIndex = 16;
+            this.btnSearchMedia.Text = "...";
+            this.btnSearchMedia.TextColor = System.Drawing.Color.White;
+            this.btnSearchMedia.Click += new System.EventHandler(this.btnSearchMedia_Click);
+            // 
             // frmSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -2206,5 +2248,8 @@
         private System.Windows.Forms.TextBox txtImagePath;
         private System.Windows.Forms.Label label32;
         private DevComponents.DotNetBar.ButtonX btnSearchImagePath;
+        private DevComponents.DotNetBar.ButtonX btnSearchMedia;
+        private System.Windows.Forms.TextBox txtMediaPath;
+        private System.Windows.Forms.Label label33;
     }
 }

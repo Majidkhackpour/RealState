@@ -52,5 +52,21 @@ namespace Settings.Classes
                 SettingsBussines.Save("ImagePath", _imgPath);
             }
         }
+
+        private static string _mediaPath = "";
+        public static string MediaPath
+        {
+            get
+            {
+                if (!string.IsNullOrEmpty(_mediaPath)) return _mediaPath;
+                var mem = SettingsBussines.Get("MediaPath");
+                return mem == null ? "" : mem.Value;
+            }
+            set
+            {
+                _mediaPath = value;
+                SettingsBussines.Save("MediaPath", _mediaPath);
+            }
+        }
     }
 }

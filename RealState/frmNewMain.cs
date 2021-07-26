@@ -507,7 +507,7 @@ namespace RealState
             try
             {
                 _ = Task.Run(LoadDashboard);
-                _ = Task.Run(FileFormatter.SyncFilesAsync);
+                FileFormatter.Init();
             }
             catch (Exception ex)
             {
@@ -524,7 +524,7 @@ namespace RealState
         {
             try
             {
-                _ = Task.Run(FileFormatter.SyncFilesAsync);
+                FileFormatter.Init();
                 var myCollection = new AutoCompleteStringCollection();
                 var list = _dic.Keys;
                 foreach (var item in list.ToList())
