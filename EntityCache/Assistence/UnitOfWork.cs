@@ -34,6 +34,7 @@ namespace EntityCache.Assistence
         private static IBuildingRepository _buildingRepository;
         private static IBuildingRelatedOptionsRepository _buildingRelatedOptionsRepository;
         private static IBuildingGalleryRepository _buildingGalleryRepository;
+        private static IBuildingMediaRepository _buildingMediaRepository;
         private static IBuildingRequestRepository _buildingRequestRepository;
         private static IBuildingRequestRegionRepository _buildingRequestRegionRepository;
         private static IContractRepository _contractRepository;
@@ -100,6 +101,7 @@ namespace EntityCache.Assistence
         public static IBuildingRepository Building => _buildingRepository ?? (_buildingRepository = new BuildingPersistenceRepository());
         public static IBuildingRelatedOptionsRepository BuildingRelatedOptions => _buildingRelatedOptionsRepository ?? (_buildingRelatedOptionsRepository = new BuildingRelatedOptionsPersistenceRepository());
         public static IBuildingGalleryRepository BuildingGallery => _buildingGalleryRepository ?? (_buildingGalleryRepository = new BuildingGalleryPersistenceRepository());
+        public static IBuildingMediaRepository BuildingMedia => _buildingMediaRepository ?? (_buildingMediaRepository = new BuildingMediaPersistenceRepository());
         public static IBuildingRequestRepository BuildingRequest => _buildingRequestRepository ?? (_buildingRequestRepository = new BuildingRequestPersistenceRepository());
         public static IBuildingRequestRegionRepository BuildingRequestRegion => _buildingRequestRegionRepository ?? (_buildingRequestRegionRepository = new BuildingRequestRegionPersistenceRepository());
         public static IContractRepository Contract => _contractRepository ?? (_contractRepository = new ContractPersistenceRepository());
