@@ -100,6 +100,7 @@ namespace Persistence.Entities
         public virtual KitchenService KitchenService { get; set; }
         public virtual ICollection<Contract> Contract { get; set; }
         public virtual ICollection<BuildingGallery> BuildingGallery { get; set; }
+        public virtual ICollection<BuildingMedia> BuildingMedia { get; set; }
         public virtual ICollection<BuildingRelatedOptions> BuildingRelatedOptions { get; set; }
     }
 }
