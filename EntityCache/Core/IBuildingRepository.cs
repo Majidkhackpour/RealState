@@ -19,5 +19,6 @@ namespace EntityCache.Core
         Task<ReturnedSaveFuncInfo> FixImageAsync(string _connectionString);
         Task<BuildingBussines> GetAsync(string _connectionString, Guid guid);
         Task<ReturnedSaveFuncInfo> SetArchiveAsync(string _connectionString, DateTime date);
+        Task<List<BuildingBussines>> GetAllHighPriorityAsync(string _connectionString, CancellationToken token);
     }
 }

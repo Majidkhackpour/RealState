@@ -272,6 +272,35 @@ namespace EntityCache.SqlServerPersistence
 
             return res;
         }
+        public async Task<List<BuildingBussines>> GetAllHighPriorityAsync(string _connectionString, CancellationToken token)
+        {
+            var list = new List<BuildingBussines>();
+            try
+            {
+                using (var cn = new SqlConnection(_connectionString))
+                {
+                    var cmd = new SqlCommand("sp_Building_GetAllHighPriority", cn) { CommandType = CommandType.StoredProcedure };
+                    if (token.IsCancellationRequested) return null;
+                    await cn.OpenAsync();
+                    var dr = await cmd.ExecuteReaderAsync();
+                    while (dr.Read())
+                    {
+                        if (token.IsCancellationRequested) return null;
+                        list.Add(LoadData(dr));
+                    }
+                    dr.Close();
+                    cn.Close();
+                }
+            }
+            catch (TaskCanceledException) { }
+            catch (OperationCanceledException) { }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+
+            return list;
+        }
         private BuildingBussines LoadData(SqlDataReader dr)
         {
             var res = new BuildingBussines();
@@ -338,6 +367,7 @@ namespace EntityCache.SqlServerPersistence
                 res.Priority = (EnBuildingPriority)dr["Priority"];
                 res.IsArchive = (bool)dr["IsArchive"];
                 res.GalleryList = AsyncContext.Run(() => BuildingGalleryBussines.GetAllAsync(res.Guid));
+                res.MediaList = AsyncContext.Run(() => BuildingMediaBussines.GetAllAsync(res.Guid));
                 res.OptionList = BuildingRelatedOptionsBussines.GetAll(res.Guid);
                 res.ServerDeliveryDate = (DateTime)dr["ServerDeliveryDate"];
                 res.ServerStatus = (ServerStatus)dr["ServerStatus"];

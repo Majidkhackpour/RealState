@@ -100,6 +100,7 @@ namespace EntityCache.Bussines
         public bool IsModified { get; set; } = false;
         public List<BuildingRelatedOptionsBussines> OptionList { get; set; }
         public List<BuildingGalleryBussines> GalleryList { get; set; }
+        public List<BuildingMediaBussines> MediaList { get; set; }
         #endregion
 
         public static async Task<List<BuildingBussines>> GetAllAsync(CancellationToken token) => await UnitOfWork.Building.GetAllAsync(Cache.ConnectionString, token);
@@ -141,6 +142,17 @@ namespace EntityCache.Bussines
                         item.BuildingGuid = Guid;
 
                     res.AddReturnedValue(await BuildingGalleryBussines.SaveRangeAsync(GalleryList, tr));
+                    if (res.HasError) return res;
+                }
+                if (MediaList.Count > 0)
+                {
+                    res.AddReturnedValue(await BuildingMediaBussines.RemoveRangeAsync(Guid, tr));
+                    if (res.HasError) return res;
+
+                    foreach (var item in MediaList)
+                        item.BuildingGuid = Guid;
+
+                    res.AddReturnedValue(await BuildingMediaBussines.SaveRangeAsync(MediaList, tr));
                     if (res.HasError) return res;
                 }
 
@@ -418,5 +430,6 @@ namespace EntityCache.Bussines
 
             return res;
         }
+        public static async Task<List<BuildingBussines>> GetAllHighPriorityAsync(CancellationToken token) => await UnitOfWork.Building.GetAllHighPriorityAsync(Cache.ConnectionString, token);
     }
 }

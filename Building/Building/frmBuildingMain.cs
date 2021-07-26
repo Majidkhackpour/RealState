@@ -28,6 +28,7 @@ namespace Building.Building
         private PictureBox _fakepicBox;
         private string _picNameJari = "";
         readonly List<string> lstList = new List<string>();
+        private List<BuildingMediaBussines> lstMedia = new List<BuildingMediaBussines>();
         private string image;
         private bool isSendSms = false;
         private CancellationTokenSource _token = new CancellationTokenSource();
@@ -123,7 +124,19 @@ namespace Building.Building
                 txtSaleParvane.Text = cls?.DateParvane;
                 txtSerialParvane.Text = cls?.ParvaneSerial;
                 txtSaleSakht.Text = cls?.SaleSakht;
-
+                if (cls.MediaList != null && cls.MediaList.Count != 0)
+                    foreach (var item in cls.MediaList)
+                    {
+                        var a = Path.Combine(Application.StartupPath, "Media");
+                        var b = Path.Combine(a, item.MediaName);
+                        lstMedia.Add(new BuildingMediaBussines()
+                        {
+                            Guid = item.Guid,
+                            BuildingGuid = cls.Guid,
+                            MediaName = b
+                        });
+                    }
+                MediaBindingSource.DataSource = lstMedia?.ToList();
                 fPanel.Controls.Clear();
                 lstList.Clear();
                 if (cls.GalleryList != null && cls.GalleryList.Count != 0)
@@ -807,6 +820,46 @@ namespace Building.Building
             }
             return res;
         }
+        private ReturnedSaveFuncInfo SetMedia()
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                var img = Path.Combine(Application.StartupPath, "Media");
+                if (!Directory.Exists(img)) Directory.CreateDirectory(img);
+
+                cls.MediaList = new List<BuildingMediaBussines>();
+                foreach (var item in lstMedia)
+                {
+                    var extention = Path.GetExtension(item.MediaName);
+                    var newName = Guid.NewGuid() + $"{extention}";
+                    var fileName = Path.Combine(img, newName);
+                    try
+                    {
+                        if (!File.Exists(fileName))
+                            File.Copy(item.MediaName, fileName);
+                    }
+                    catch
+                    {
+                    }
+
+
+                    var a = new BuildingMediaBussines()
+                    {
+                        Guid = Guid.NewGuid(),
+                        MediaName = newName,
+                        BuildingGuid = cls.Guid
+                    };
+                    cls.MediaList.Add(a);
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+            return res;
+        }
         private async Task<ReturnedSaveFuncInfo> SaveAsync()
         {
             var res = new ReturnedSaveFuncInfo();
@@ -826,6 +879,8 @@ namespace Building.Building
                     fPanel.Controls[i].Dispose();
 
                 res.AddReturnedValue(SetImages());
+                if (res.HasError) return res;
+                res.AddReturnedValue(SetMedia());
                 if (res.HasError) return res;
                 res.AddReturnedValue(await cls.SaveAsync());
                 if (res.HasError) return res;
@@ -969,6 +1024,12 @@ namespace Building.Building
                 _token?.Cancel();
                 _token = new CancellationTokenSource();
                 var list = await CitiesBussines.GetAllAsync((Guid)cmbState.SelectedValue, _token.Token);
+                while (list == null || list.Count <= 0)
+                {
+                    _token?.Cancel();
+                    _token = new CancellationTokenSource();
+                    list = await CitiesBussines.GetAllAsync((Guid)cmbState.SelectedValue, _token.Token);
+                }
                 CityBindingSource.DataSource = list?.Where(q => q.Status).OrderBy(q => q.Name).ToList();
                 if (cls.Guid != Guid.Empty) cmbCity.SelectedValue = cls.CityGuid;
                 else if (!string.IsNullOrEmpty(clsEconomyUnit.EconomyCity))
@@ -987,6 +1048,12 @@ namespace Building.Building
                 _token?.Cancel();
                 _token = new CancellationTokenSource();
                 var list = await RegionsBussines.GetAllAsync((Guid)cmbCity.SelectedValue, _token.Token);
+                while (list == null || list.Count <= 0)
+                {
+                    _token?.Cancel();
+                    _token = new CancellationTokenSource();
+                    list = await RegionsBussines.GetAllAsync((Guid)cmbCity.SelectedValue, _token.Token);
+                }
                 RegionBindingSource.DataSource = list?.Where(q => q.Status).OrderBy(q => q.Name).ToList();
                 if (cls.Guid != Guid.Empty) cmbRegion.SelectedValue = cls.RegionGuid;
                 else if (!string.IsNullOrEmpty(clsEconomyUnit.ManagerRegion))
@@ -1135,7 +1202,7 @@ namespace Building.Building
             }
             finally
             {
-                if (res.HasError)  this.ShowError(res, "خطا در ذخیره سازی ملک");
+                if (res.HasError) this.ShowError(res, "خطا در ذخیره سازی ملک");
                 else
                 {
                     DialogResult = DialogResult.OK;
@@ -1362,6 +1429,64 @@ namespace Building.Building
                 var picPath = Path.Combine(Application.StartupPath + "\\Images", pic);
                 picImage.ImageLocation = picPath;
                 image = pic;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private void btnAddMedia_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (InvokeRequired)
+                {
+                    var t = new Thread(() =>
+                    {
+                        var ofd = new OpenFileDialog { Multiselect = true, RestoreDirectory = true };
+                        if (ofd.ShowDialog(this) != DialogResult.OK) return;
+                        foreach (var name in ofd.FileNames)
+                            lstMedia.Add(new BuildingMediaBussines()
+                            {
+                                Guid = Guid.NewGuid(),
+                                MediaName = name
+                            });
+                    });
+
+                    t.SetApartmentState(ApartmentState.STA);
+                    t.Start();
+                    t.Join();
+                }
+                else
+                {
+                    var ofd = new OpenFileDialog { Multiselect = true, RestoreDirectory = true };
+                    if (ofd.ShowDialog(this) != DialogResult.OK) return;
+                    foreach (var name in ofd.FileNames)
+                        lstMedia.Add(new BuildingMediaBussines()
+                        {
+                            Guid = Guid.NewGuid(),
+                            MediaName = name
+                        });
+                }
+
+                MediaBindingSource.DataSource = lstMedia?.ToList();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private void btnRemoveMedia_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (DgridMedia.RowCount <= 0 || DgridMedia.CurrentRow == null) return;
+                var name = DgridMedia[mediaNameDataGridViewTextBoxColumn.Index, DgridMedia.CurrentRow.Index]?.Value?.ToString();
+                if (string.IsNullOrEmpty(name)) return;
+                var index = lstMedia.FirstOrDefault(q => q.MediaName == name);
+                if (index == null) return;
+                lstMedia.Remove(index);
+                MediaBindingSource.DataSource = lstMedia?.ToList();
             }
             catch (Exception ex)
             {

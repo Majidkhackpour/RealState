@@ -794,6 +794,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Properties\DataSources\EntityCache.Bussines.BuildingMediaBussines.datasource" />
     <None Include="Properties\DataSources\EntityCache.Bussines.BuildingOptionsBussines.datasource" />
     <None Include="Properties\DataSources\EntityCache.Bussines.BuildingRelatedOptionsBussines.datasource" />
     <None Include="Properties\DataSources\EntityCache.Bussines.BuildingRequestBussines.datasource" />

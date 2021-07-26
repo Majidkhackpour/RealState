@@ -7429,3 +7429,37 @@ BEGIN
 	Select * From [dbo].[BuildingMedias]
 	where BuildingGuid=@buGuid
 END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Building_GetAllHighPriority]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Building_GetAllHighPriority]	As Begin print 11 end')  
+GO
+ALTER PROCEDURE [dbo].[sp_Building_GetAllHighPriority]
+AS
+BEGIN
+	select [dbo].[Buildings].*,[dbo].[Peoples].Name As OwnerName,
+       [dbo].[BuildingTypes].Name As BuildingTypeName,
+	   [dbo].[Users].Name As UserName,
+	   [dbo].[Regions].Name As RegionName,
+	   [dbo].[RentalAuthorities].Name As RentalAuthorityName,
+	   [dbo].[DocumentTypes].Name As DocumentTypeName,
+	   [dbo].[BuildingConditions].Name As BuildingConditionName,
+	   [dbo].[BuildingViews].Name As BuildingViewName,
+	   [dbo].[FloorCovers].Name As FloorCoverName,
+	   [dbo].[KitchenServices].Name As KitchenServiceName,
+	   [dbo].[BuildingAccountTypes].Name As BuildingAccountTypeName
+From [dbo].[Buildings] 
+     inner join [dbo].[Peoples] on [dbo].[Buildings].OwnerGuid=[dbo].[Peoples].Guid
+	 inner join [dbo].[BuildingTypes] on [dbo].[Buildings].BuildingTypeGuid=[dbo].[BuildingTypes].Guid
+	 inner join [dbo].[Users] on [dbo].[Buildings].UserGuid=[dbo].[Users].Guid
+	 inner join [dbo].[Regions] on [dbo].[Buildings].RegionGuid=[dbo].[Regions].Guid
+	 inner join [dbo].[RentalAuthorities] on [dbo].[Buildings].RentalAutorityGuid=[dbo].[RentalAuthorities].Guid
+	 inner join [dbo].[DocumentTypes] on [dbo].[Buildings].DocumentType=[dbo].[DocumentTypes].Guid
+	 inner join [dbo].[BuildingConditions] on [dbo].[Buildings].BuildingConditionGuid=[dbo].[BuildingConditions].Guid
+	 inner join [dbo].[BuildingViews] on [dbo].[Buildings].BuildingViewGuid=[dbo].[BuildingViews].Guid
+	 inner join [dbo].[FloorCovers] on [dbo].[Buildings].FloorCoverGuid=[dbo].[FloorCovers].Guid
+	 inner join [dbo].[KitchenServices] on [dbo].[Buildings].KitchenServiceGuid=[dbo].[KitchenServices].Guid
+	 inner join [dbo].[BuildingAccountTypes] on [dbo].[Buildings].BuildingAccountTypeGuid=[dbo].[BuildingAccountTypes].Guid
+	where Priority=0
+	and IsArchive='false'
+END
