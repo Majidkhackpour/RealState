@@ -101,6 +101,344 @@ namespace Advertise.Classes
 
             return list;
         }
+        public static async Task<List<BuildingBussines>> GetAllFromDivarAsync(EnRequestType reqType, BuildingAccountTypeBussines accType,
+            BuildingTypeBussines type,
+            decimal fPrice1, decimal fPrice2, decimal sPrice1, decimal sPrice2, int masahat1, int masahat2,
+            int roomCount)
+        {
+            var list = new List<BuildingBussines>();
+            try
+            {
+                var url = await UrlMakerAsync(reqType, accType, type, fPrice1, fPrice2, sPrice1, sPrice2, masahat1,
+                    masahat2, roomCount);
+                var divarList = GetDataFromUrl(url);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+
+            return list;
+        }
+        private static async Task<string> UrlMakerAsync(EnRequestType reqType, BuildingAccountTypeBussines accType,
+            BuildingTypeBussines type,
+            decimal fPrice1, decimal fPrice2, decimal sPrice1, decimal sPrice2, int masahat1, int masahat2,
+            int roomCount)
+        {
+            var url = "";
+            try
+            {
+                url = "https://divar.ir/s/";
+                var cityGuid = Guid.Parse(Settings.Classes.clsEconomyUnit.EconomyCity);
+                var cities = await SerializedDataBussines.GetDivarCityAsync();
+                var cityLocal = await CitiesBussines.GetAsync(cityGuid);
+                var divarCity = cities.FirstOrDefault(q => q.Name == cityLocal.Name);
+                if (divarCity == null) return null;
+                url += $"{divarCity.Name}/";
+                if (reqType == EnRequestType.Moavezeh) return null;
+                if (reqType == EnRequestType.Mosharekat) url += "contribution-construction?user_type=personal";
+                else if (reqType == EnRequestType.PishForush) url += "pre-sell-home?user_type=personal";
+                else if (reqType == EnRequestType.Rahn)
+                {
+                    if (accType.Name.Contains("مسکونی") && !accType.Name.Contains("زمین"))
+                    {
+                        if (type == null) return null;
+                        if (type.Name.Contains("پارتمان"))
+                            url +=
+                                $"rent-apartment?credit={fPrice1}-{fPrice2}&rent={sPrice1}-{sPrice2}&size={masahat1}-{masahat2}&rooms={roomCount}&user_type=personal";
+                        else if (type.Name.Contains("خانه") || accType.Name.Contains("ویلا"))
+                            url +=
+                                $"rent-villa?credit={fPrice1}-{fPrice2}&rent={sPrice1}-{sPrice2}&size={masahat1}-{masahat2}&rooms={roomCount}&user_type=personal";
+                    }
+                    else if (accType.Name.Contains("دفتر") || accType.Name.Contains("اداری") ||
+                             accType.Name.Contains("مطب"))
+                        url +=
+                            $"rent-office?credit={fPrice1}-{fPrice2}&rent={sPrice1}-{sPrice2}&size={masahat1}-{masahat2}&rooms={roomCount}&user_type=personal";
+                    else if (accType.Name.Contains("صنعتی") || accType.Name.Contains("کشاورزی") ||
+                             accType.Name.Contains("دامداری") || accType.Name.Contains("مرغداری") ||
+                             accType.Name.Contains("زراعی"))
+                        url +=
+                            $"rent-industrial-agricultural-property?credit={fPrice1}-{fPrice2}&rent={sPrice1}-{sPrice2}&size={masahat1}-{masahat2}&rooms={roomCount}&user_type=personal";
+
+                    else if (accType.Name.Contains("مغازه") || accType.Name.Contains("غرفه") ||
+                             accType.Name.Contains("تجاری"))
+                        url +=
+                            $"rent-store?credit={fPrice1}-{fPrice2}&rent={sPrice1}-{sPrice2}&size={masahat1}-{masahat2}&rooms={roomCount}&user_type=personal";
+                }
+                else if (reqType == EnRequestType.Forush)
+                {
+                    if (accType.Name.Contains("مسکونی"))
+                    {
+                        if (type.Name.Contains("پارتمان"))
+                            url +=
+                                $"buy-apartment?price={fPrice1}-{fPrice2}&size={masahat1}-{masahat2}&rooms={roomCount}&user_type=personal&non-negotiable=true";
+                        else if (type.Name.Contains("خانه") || accType.Name.Contains("ویلا"))
+                            url +=
+                                $"buy-villa?price={fPrice1}-{fPrice2}&size={masahat1}-{masahat2}&rooms={roomCount}&user_type=personal&non-negotiable=true";
+                        else if (type.Name.Contains("زمین") || type.Name.Contains("کلنگی"))
+                            url +=
+                                $"buy-old-house?price={fPrice1}-{fPrice2}&size={masahat1}-{masahat2}&user_type=personal&non-negotiable=true";
+                    }
+                    else if (accType.Name.Contains("زمین") || accType.Name.Contains("کلنگی"))
+                        url +=
+                            $"buy-old-house?price={fPrice1}-{fPrice2}&size={masahat1}-{masahat2}&user_type=personal&non-negotiable=true";
+                    else if (accType.Name.Contains("دفتر") || accType.Name.Contains("اداری") ||
+                             accType.Name.Contains("مطب"))
+                        url +=
+                            $"buy-office?price={fPrice1}-{fPrice2}&size={masahat1}-{masahat2}&rooms={roomCount}&user_type=personal&non-negotiable=true&bizzDeed=true";
+                    else if (accType.Name.Contains("صنعتی") || accType.Name.Contains("کشاورزی") ||
+                             accType.Name.Contains("دامداری") || accType.Name.Contains("مرغداری") ||
+                             accType.Name.Contains("زراعی"))
+                        url +=
+                            $"buy-industrial-agricultural-property?price={fPrice1}-{fPrice2}&size={masahat1}-{masahat2}&rooms={roomCount}&user_type=personal&non-negotiable=true&bizzDeed=true";
+                    else if (accType.Name.Contains("مغازه") || accType.Name.Contains("غرفه") ||
+                             accType.Name.Contains("تجاری"))
+                        url +=
+                            $"buy-store?price={fPrice1}-{fPrice2}&size={masahat1}-{masahat2}&rooms={roomCount}&user_type=personal&bizzDeed=true";
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+
+            return url;
+        }
+
+        private static List<Divar> GetDataFromUrl(string url)
+        {
+            var list = new List<Divar>();
+            try
+            {
+                //var web = new HtmlWeb();
+                //var doc = web.Load(url);
+                //var o = doc.DocumentNode.SelectNodes("//script[@type='application/ld+json']")?.LastOrDefault();
+                //var text = o?.InnerText;
+                //var items = JsonConvert.DeserializeObject<List<Divar>>(text);
+                //foreach (var divar in items)
+                //{
+                //    var newDoc = web.Load(divar.Url);
+                //    var o_ = newDoc.DocumentNode.SelectNodes("/html[1]/body[1]/script[1]")?.FirstOrDefault();
+                //    if (o_ == null) continue;
+                //    var text_ = o_.InnerText.Replace(@"\", "").Replace("window.production = true;", "")
+                //        .Replace("window.__PRELOADED_STATE__ = \"{", "{")
+                //        .Replace(",\"PERFORMANCE_MONITOR_RULE\":\"[0۰]$\"}\";", "}");
+                //    var index = text_.IndexOf("  window.env");
+                //    text_ = text_.Remove(index - 3);
+                //    index = text_.IndexOf(",\"exitLinkWarn");
+                //    var index2 = text_.IndexOf("u003Cu002Fau003Eu003Cu002Fpu003E\"");
+                //    text_ = text_.Remove(index, index2 - index).Replace("u003Cu002Fau003Eu003Cu002Fpu003E\"", "");
+                //    var root = JObject.Parse(text_);
+                //    var guestValues = root["currentPost"]["post"]["widgets"]["listData"];
+                //    divar.listData = JsonConvert.DeserializeObject<List<ListData>>(guestValues.ToString());
+                //}
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+
+            return list;
+        }
+
+        public static List<BuildingBussines> GetApartmentRent()
+        {
+            var list = new List<BuildingBussines>();
+            try
+            {
+                var url = "";
+                var listDivar = GetDataFromUrl(url);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+
+            return list;
+        }
+        public static List<BuildingBussines> GetVillaRent()
+        {
+            var list = new List<BuildingBussines>();
+            try
+            {
+                var url = "";
+                var listDivar = GetDataFromUrl(url);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+
+            return list;
+        }
+        public static List<BuildingBussines> GetOfficeRent()
+        {
+            var list = new List<BuildingBussines>();
+            try
+            {
+                var url = "";
+                var listDivar = GetDataFromUrl(url);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+
+            return list;
+        }
+        public static List<BuildingBussines> GetStoreRent()
+        {
+            var list = new List<BuildingBussines>();
+            try
+            {
+                var url = "";
+                var listDivar = GetDataFromUrl(url);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+
+            return list;
+        }
+        public static List<BuildingBussines> GetIndustrialRent()
+        {
+            var list = new List<BuildingBussines>();
+            try
+            {
+                var url = "";
+                var listDivar = GetDataFromUrl(url);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+
+            return list;
+        }
+
+
+        public static List<BuildingBussines> GetApartmentBuy()
+        {
+            var list = new List<BuildingBussines>();
+            try
+            {
+                var url = "";
+                var listDivar = GetDataFromUrl(url);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+
+            return list;
+        }
+        public static List<BuildingBussines> GetVillaBuy()
+        {
+            var list = new List<BuildingBussines>();
+            try
+            {
+                var url = "";
+                var listDivar = GetDataFromUrl(url);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+
+            return list;
+        }
+        public static List<BuildingBussines> GetOldHouseBuy()
+        {
+            var list = new List<BuildingBussines>();
+            try
+            {
+                var url = "";
+                var listDivar = GetDataFromUrl(url);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+
+            return list;
+        }
+        public static List<BuildingBussines> GetOfficeBuy()
+        {
+            var list = new List<BuildingBussines>();
+            try
+            {
+                var url = "";
+                var listDivar = GetDataFromUrl(url);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+
+            return list;
+        }
+        public static List<BuildingBussines> GetStoreBuy()
+        {
+            var list = new List<BuildingBussines>();
+            try
+            {
+                var url = "";
+                var listDivar = GetDataFromUrl(url);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+
+            return list;
+        }
+        public static List<BuildingBussines> GetIndustrialBuy()
+        {
+            var list = new List<BuildingBussines>();
+            try
+            {
+                var url = "";
+                var listDivar = GetDataFromUrl(url);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+
+            return list;
+        }
+
+        public static List<BuildingBussines> GetContributionConstruction()
+        {
+            var list = new List<BuildingBussines>();
+            try
+            {
+                var url = "";
+                var listDivar = GetDataFromUrl(url);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+
+            return list;
+        }
+        public static List<BuildingBussines> GetPreeSellHome()
+        {
+            var list = new List<BuildingBussines>();
+            try
+            {
+                var url = "";
+                var listDivar = GetDataFromUrl(url);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+
+            return list;
+        }
     }
     public class Regions
     {
@@ -111,5 +449,30 @@ namespace Advertise.Classes
         public long Enum { get; set; }
         public string EnumName { get; set; }
         public List<string> Tags { get; set; }
+    }
+    public class Divar
+    {
+        public string Url { get; set; }
+        public string Image { get; set; }
+        public string Description { get; set; }
+        public string Name { get; set; }
+        public IList<ListData> listData { get; set; }
+    }
+    public class Item
+    {
+        public int id { get; set; }
+        public bool disabled { get; set; }
+        public string title { get; set; }
+        public string value { get; set; }
+        public string iconName { get; set; }
+        public string iconColor { get; set; }
+    }
+    public class ListData
+    {
+        public string format { get; set; }
+        public IList<Item> items { get; set; }
+        public bool hasDivider { get; set; }
+        public string title { get; set; }
+        public string value { get; set; }
     }
 }
