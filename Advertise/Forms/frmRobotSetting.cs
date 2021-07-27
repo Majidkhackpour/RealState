@@ -1,5 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using System.Windows.Forms;
+using EntityCache.Bussines;
+using EntityCache.ViewModels;
 using MetroFramework.Forms;
 using Services;
 using Settings.Classes;
@@ -12,6 +16,8 @@ namespace Advertise.Forms
         {
             try
             {
+                SetCategory();
+
                 chbSilent.Checked = clsAdvertise.IsSilent;
                 chbChat.Checked = clsAdvertise.IsGiveChat;
 
@@ -37,6 +43,97 @@ namespace Advertise.Forms
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
+        private void SetCategory()
+        {
+            try
+            {
+                var list = SerializedDataBussines.GetDivarCategory();
+                if (list == null || list.Count <= 0) return;
+                foreach (var item in list)
+                {
+                    switch (item.Category)
+                    {
+                        case EnDivarCategory.RentAppartment:
+                            chbRentAppartment.Checked = item.Value;
+                            break;
+                        case EnDivarCategory.RentVilla:
+                            chbRentVilla.Checked = item.Value;
+                            break;
+                        case EnDivarCategory.BuyAppartment:
+                            chbBuyAppartment.Checked = item.Value;
+                            break;
+                        case EnDivarCategory.BuyVilla:
+                            chbBuyVilla.Checked = item.Value;
+                            break;
+                        case EnDivarCategory.BuyOldHouse:
+                            chbBuyOldHouse.Checked = item.Value;
+                            break;
+                        case EnDivarCategory.BuyOffice:
+                            chbBuyOffice.Checked = item.Value;
+                            break;
+                        case EnDivarCategory.BuyStore:
+                            chbBuyStore.Checked = item.Value;
+                            break;
+                        case EnDivarCategory.BuyGuard:
+                            chbBuyGuard.Checked = item.Value;
+                            break;
+                        case EnDivarCategory.RentOffice:
+                            chbRentOffice.Checked = item.Value;
+                            break;
+                        case EnDivarCategory.RentStore:
+                            chbRentStore.Checked = item.Value;
+                            break;
+                        case EnDivarCategory.RentGuard:
+                            chbRentGuard.Checked = item.Value;
+                            break;
+                        case EnDivarCategory.ContributionConstruction:
+                            chbContributionConstruction.Checked = item.Value;
+                            break;
+                        case EnDivarCategory.PreBuy:
+                            chbPreBuy.Checked = item.Value;
+                            break;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private async Task SaveCategoryAsync()
+        {
+            try
+            {
+                var list = new List<DivarCategory>
+                {
+                    new DivarCategory() {Category = EnDivarCategory.RentAppartment, Value = chbRentAppartment.Checked},
+                    new DivarCategory() {Category = EnDivarCategory.RentVilla, Value = chbRentVilla.Checked},
+                    new DivarCategory() {Category = EnDivarCategory.BuyAppartment, Value = chbBuyAppartment.Checked},
+                    new DivarCategory() {Category = EnDivarCategory.BuyVilla, Value = chbBuyVilla.Checked},
+                    new DivarCategory() {Category = EnDivarCategory.BuyOldHouse, Value = chbBuyOldHouse.Checked},
+                    new DivarCategory() {Category = EnDivarCategory.BuyOffice, Value = chbBuyOffice.Checked},
+                    new DivarCategory() {Category = EnDivarCategory.BuyStore, Value = chbBuyStore.Checked},
+                    new DivarCategory() {Category = EnDivarCategory.BuyGuard, Value = chbBuyGuard.Checked},
+                    new DivarCategory() {Category = EnDivarCategory.RentOffice, Value = chbRentOffice.Checked},
+                    new DivarCategory() {Category = EnDivarCategory.RentStore, Value = chbRentStore.Checked},
+                    new DivarCategory() {Category = EnDivarCategory.RentGuard, Value = chbRentGuard.Checked},
+                    new DivarCategory() {Category = EnDivarCategory.ContributionConstruction, Value = chbContributionConstruction.Checked},
+                    new DivarCategory() {Category = EnDivarCategory.PreBuy, Value = chbPreBuy.Checked}
+                };
+
+                var serializedData = new SerializedDataBussines()
+                {
+                    Guid = Guid.NewGuid(),
+                    Name = "DivarCategory",
+                    Data = Json.ToStringJson(list)
+                };
+                await SerializedDataBussines.SaveAsync("DivarCategory", serializedData.Data);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
         public frmRobotSetting()
         {
             InitializeComponent();
@@ -51,7 +148,7 @@ namespace Advertise.Forms
         {
             SettData();
         }
-        private void btnFinish_Click(object sender, EventArgs e)
+        private async void btnFinish_Click(object sender, EventArgs e)
         {
             try
             {
@@ -69,6 +166,8 @@ namespace Advertise.Forms
                 clsAdvertise.Sheypoor_DayCountForUpdateState = (int)txtSh_Update.Value;
 
                 clsAdvertise.Sender = rbtnRealState.Checked ? "املاک" : "شخصی";
+
+                await SaveCategoryAsync();
 
                 DialogResult = DialogResult.OK;
                 Close();

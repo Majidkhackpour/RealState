@@ -242,7 +242,7 @@ namespace Advertise.Classes
             return list;
         }
 
-        public static List<BuildingBussines> GetApartmentRent()
+        public static List<BuildingBussines> GetApartmentRent(string regionList)
         {
             var list = new List<BuildingBussines>();
             try
@@ -257,7 +257,7 @@ namespace Advertise.Classes
 
             return list;
         }
-        public static List<BuildingBussines> GetVillaRent()
+        public static List<BuildingBussines> GetVillaRent(string regionList)
         {
             var list = new List<BuildingBussines>();
             try
@@ -272,7 +272,7 @@ namespace Advertise.Classes
 
             return list;
         }
-        public static List<BuildingBussines> GetOfficeRent()
+        public static List<BuildingBussines> GetOfficeRent(string regionList)
         {
             var list = new List<BuildingBussines>();
             try
@@ -287,7 +287,7 @@ namespace Advertise.Classes
 
             return list;
         }
-        public static List<BuildingBussines> GetStoreRent()
+        public static List<BuildingBussines> GetStoreRent(string regionList)
         {
             var list = new List<BuildingBussines>();
             try
@@ -302,99 +302,7 @@ namespace Advertise.Classes
 
             return list;
         }
-        public static List<BuildingBussines> GetIndustrialRent()
-        {
-            var list = new List<BuildingBussines>();
-            try
-            {
-                var url = "";
-                var listDivar = GetDataFromUrl(url);
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-
-            return list;
-        }
-
-
-        public static List<BuildingBussines> GetApartmentBuy()
-        {
-            var list = new List<BuildingBussines>();
-            try
-            {
-                var url = "";
-                var listDivar = GetDataFromUrl(url);
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-
-            return list;
-        }
-        public static List<BuildingBussines> GetVillaBuy()
-        {
-            var list = new List<BuildingBussines>();
-            try
-            {
-                var url = "";
-                var listDivar = GetDataFromUrl(url);
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-
-            return list;
-        }
-        public static List<BuildingBussines> GetOldHouseBuy()
-        {
-            var list = new List<BuildingBussines>();
-            try
-            {
-                var url = "";
-                var listDivar = GetDataFromUrl(url);
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-
-            return list;
-        }
-        public static List<BuildingBussines> GetOfficeBuy()
-        {
-            var list = new List<BuildingBussines>();
-            try
-            {
-                var url = "";
-                var listDivar = GetDataFromUrl(url);
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-
-            return list;
-        }
-        public static List<BuildingBussines> GetStoreBuy()
-        {
-            var list = new List<BuildingBussines>();
-            try
-            {
-                var url = "";
-                var listDivar = GetDataFromUrl(url);
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-
-            return list;
-        }
-        public static List<BuildingBussines> GetIndustrialBuy()
+        public static List<BuildingBussines> GetIndustrialRent(string regionList)
         {
             var list = new List<BuildingBussines>();
             try
@@ -410,7 +318,8 @@ namespace Advertise.Classes
             return list;
         }
 
-        public static List<BuildingBussines> GetContributionConstruction()
+
+        public static List<BuildingBussines> GetApartmentBuy(string regionList)
         {
             var list = new List<BuildingBussines>();
             try
@@ -425,7 +334,98 @@ namespace Advertise.Classes
 
             return list;
         }
-        public static List<BuildingBussines> GetPreeSellHome()
+        public static List<BuildingBussines> GetVillaBuy(string regionList)
+        {
+            var list = new List<BuildingBussines>();
+            try
+            {
+                var url = "";
+                var listDivar = GetDataFromUrl(url);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+
+            return list;
+        }
+        public static List<BuildingBussines> GetOldHouseBuy(string regionList)
+        {
+            var list = new List<BuildingBussines>();
+            try
+            {
+                var url = "";
+                var listDivar = GetDataFromUrl(url);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+
+            return list;
+        }
+        public static List<BuildingBussines> GetOfficeBuy(string regionList)
+        {
+            var list = new List<BuildingBussines>();
+            try
+            {
+                var url = "";
+                var listDivar = GetDataFromUrl(url);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+
+            return list;
+        }
+        public static List<BuildingBussines> GetStoreBuy(string regionList)
+        {
+            var list = new List<BuildingBussines>();
+            try
+            {
+                var url = "";
+                var listDivar = GetDataFromUrl(url);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+
+            return list;
+        }
+        public static List<BuildingBussines> GetIndustrialBuy(string regionList)
+        {
+            var list = new List<BuildingBussines>();
+            try
+            {
+                var url = "";
+                var listDivar = GetDataFromUrl(url);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+
+            return list;
+        }
+
+        public static List<BuildingBussines> GetContributionConstruction(string regionList)
+        {
+            var list = new List<BuildingBussines>();
+            try
+            {
+                var url = "";
+                var listDivar = GetDataFromUrl(url);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+
+            return list;
+        }
+        public static List<BuildingBussines> GetPreeSellHome(string regionList)
         {
             var list = new List<BuildingBussines>();
             try

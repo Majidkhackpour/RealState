@@ -4,6 +4,7 @@ using System.Data.SqlClient;
 using System.Threading.Tasks;
 using EntityCache.Assistence;
 using EntityCache.ViewModels;
+using Nito.AsyncEx;
 using Persistence;
 using Services;
 using Servicess.Interfaces.Building;
@@ -22,6 +23,12 @@ namespace EntityCache.Bussines
             var list = await UnitOfWork.SerializedData.GetAsync(Cache.ConnectionString, "DivarCities");
             return list?.Data.FromJson<List<DivarCities>>();
         }
+        public static async Task<List<DivarCategory>> GetDivarCategoryAsync()
+        {
+            var list = await UnitOfWork.SerializedData.GetAsync(Cache.ConnectionString, "DivarCategory");
+            return list?.Data.FromJson<List<DivarCategory>>();
+        }
+        public static List<DivarCategory> GetDivarCategory() => AsyncContext.Run(GetDivarCategoryAsync);
         public static async Task<List<DivarRegion>> GetDivarRegionAsync()
         {
             var list = await UnitOfWork.SerializedData.GetAsync(Cache.ConnectionString, "DivarRegions");

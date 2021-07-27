@@ -303,6 +303,7 @@
     <Compile Include="Advance\frmAdvance.Designer.cs">
       <DependentUpon>frmAdvance.cs</DependentUpon>
     </Compile>
+    <Compile Include="DivarFiles.cs" />
     <Compile Include="FileFormatter.cs" />
     <Compile Include="frmMain.cs">
       <SubType>Form</SubType>

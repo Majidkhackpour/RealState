@@ -525,6 +525,7 @@ namespace RealState
             try
             {
                 FileFormatter.Init();
+                DivarFiles.Init();
                 var myCollection = new AutoCompleteStringCollection();
                 var list = _dic.Keys;
                 foreach (var item in list.ToList())

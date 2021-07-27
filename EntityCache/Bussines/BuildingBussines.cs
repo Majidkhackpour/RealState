@@ -182,6 +182,25 @@ namespace EntityCache.Bussines
             }
             return res;
         }
+        public static async Task<ReturnedSaveFuncInfo> SaveRangeAsync(List<BuildingBussines> lst)
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                foreach (var item in lst)
+                {
+                    if (item == null) continue;
+                    res.AddReturnedValue(await item.SaveAsync());
+                    if (res.HasError) return res;
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+            return res;
+        }
         public async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(bool status, SqlTransaction tr = null)
         {
             var res = new ReturnedSaveFuncInfo();
@@ -290,7 +309,7 @@ namespace EntityCache.Bussines
         {
             try
             {
-                IEnumerable<BuildingBussines> res = await GetAllAsync(token,true);
+                IEnumerable<BuildingBussines> res = await GetAllAsync(token, true);
                 if (token.IsCancellationRequested) return null;
                 if (regionList != null && regionList.Count > 0) res = res.Where(q => regionList.Contains(q.RegionGuid));
                 if (token.IsCancellationRequested) return null;

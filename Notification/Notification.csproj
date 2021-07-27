@@ -70,6 +70,12 @@
     </Compile>
     <Compile Include="clsShowError.cs" />
     <Compile Include="ErrorManager.cs" />
+    <Compile Include="frmDivarNotification.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDivarNotification.Designer.cs">
+      <DependentUpon>frmDivarNotification.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmNaqz.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -125,6 +131,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AdjectiveDescription\frmShowDesc.resx">
       <DependentUpon>frmShowDesc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDivarNotification.resx">
+      <DependentUpon>frmDivarNotification.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmNaqz.resx">
       <DependentUpon>frmNaqz.cs</DependentUpon>
