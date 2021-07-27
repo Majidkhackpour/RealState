@@ -242,12 +242,16 @@ namespace Advertise.Classes
             return list;
         }
 
-        public static List<BuildingBussines> GetApartmentRent(string regionList)
+        public static List<BuildingBussines> GetApartmentRent(string cityName, string regionList)
         {
             var list = new List<BuildingBussines>();
             try
             {
-                var url = "";
+                if (string.IsNullOrEmpty(cityName)) return list;
+                var url = $"https://divar.ir/s/{cityName}/rent-apartment";
+                if (!string.IsNullOrEmpty(regionList))
+                    url += $"?districts={regionList}";
+                url += "&user_type=personal";
                 var listDivar = GetDataFromUrl(url);
             }
             catch (Exception ex)
@@ -257,12 +261,16 @@ namespace Advertise.Classes
 
             return list;
         }
-        public static List<BuildingBussines> GetVillaRent(string regionList)
+        public static List<BuildingBussines> GetVillaRent(string cityName, string regionList)
         {
             var list = new List<BuildingBussines>();
             try
             {
-                var url = "";
+                if (string.IsNullOrEmpty(cityName)) return list;
+                var url = $"https://divar.ir/s/{cityName}/rent-villa";
+                if (!string.IsNullOrEmpty(regionList))
+                    url += $"?districts={regionList}";
+                url += "&user_type=personal";
                 var listDivar = GetDataFromUrl(url);
             }
             catch (Exception ex)
@@ -272,12 +280,16 @@ namespace Advertise.Classes
 
             return list;
         }
-        public static List<BuildingBussines> GetOfficeRent(string regionList)
+        public static List<BuildingBussines> GetOfficeRent(string cityName, string regionList)
         {
             var list = new List<BuildingBussines>();
             try
             {
-                var url = "";
+                if (string.IsNullOrEmpty(cityName)) return list;
+                var url = $"https://divar.ir/s/{cityName}/rent-office";
+                if (!string.IsNullOrEmpty(regionList))
+                    url += $"?districts={regionList}";
+                url += "&user_type=personal";
                 var listDivar = GetDataFromUrl(url);
             }
             catch (Exception ex)
@@ -287,12 +299,16 @@ namespace Advertise.Classes
 
             return list;
         }
-        public static List<BuildingBussines> GetStoreRent(string regionList)
+        public static List<BuildingBussines> GetStoreRent(string cityName, string regionList)
         {
             var list = new List<BuildingBussines>();
             try
             {
-                var url = "";
+                if (string.IsNullOrEmpty(cityName)) return list;
+                var url = $"https://divar.ir/s/{cityName}/rent-store";
+                if (!string.IsNullOrEmpty(regionList))
+                    url += $"?districts={regionList}";
+                url += "&user_type=personal";
                 var listDivar = GetDataFromUrl(url);
             }
             catch (Exception ex)
@@ -302,104 +318,16 @@ namespace Advertise.Classes
 
             return list;
         }
-        public static List<BuildingBussines> GetIndustrialRent(string regionList)
+        public static List<BuildingBussines> GetIndustrialRent(string cityName, string regionList)
         {
             var list = new List<BuildingBussines>();
             try
             {
-                var url = "";
-                var listDivar = GetDataFromUrl(url);
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-
-            return list;
-        }
-
-
-        public static List<BuildingBussines> GetApartmentBuy(string regionList)
-        {
-            var list = new List<BuildingBussines>();
-            try
-            {
-                var url = "";
-                var listDivar = GetDataFromUrl(url);
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-
-            return list;
-        }
-        public static List<BuildingBussines> GetVillaBuy(string regionList)
-        {
-            var list = new List<BuildingBussines>();
-            try
-            {
-                var url = "";
-                var listDivar = GetDataFromUrl(url);
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-
-            return list;
-        }
-        public static List<BuildingBussines> GetOldHouseBuy(string regionList)
-        {
-            var list = new List<BuildingBussines>();
-            try
-            {
-                var url = "";
-                var listDivar = GetDataFromUrl(url);
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-
-            return list;
-        }
-        public static List<BuildingBussines> GetOfficeBuy(string regionList)
-        {
-            var list = new List<BuildingBussines>();
-            try
-            {
-                var url = "";
-                var listDivar = GetDataFromUrl(url);
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-
-            return list;
-        }
-        public static List<BuildingBussines> GetStoreBuy(string regionList)
-        {
-            var list = new List<BuildingBussines>();
-            try
-            {
-                var url = "";
-                var listDivar = GetDataFromUrl(url);
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-
-            return list;
-        }
-        public static List<BuildingBussines> GetIndustrialBuy(string regionList)
-        {
-            var list = new List<BuildingBussines>();
-            try
-            {
-                var url = "";
+                if (string.IsNullOrEmpty(cityName)) return list;
+                var url = $"https://divar.ir/s/{cityName}/rent-industrial-agricultural-property";
+                if (!string.IsNullOrEmpty(regionList))
+                    url += $"?districts={regionList}";
+                url += "&user_type=personal";
                 var listDivar = GetDataFromUrl(url);
             }
             catch (Exception ex)
@@ -410,12 +338,17 @@ namespace Advertise.Classes
             return list;
         }
 
-        public static List<BuildingBussines> GetContributionConstruction(string regionList)
+
+        public static List<BuildingBussines> GetApartmentBuy(string cityName, string regionList)
         {
             var list = new List<BuildingBussines>();
             try
             {
-                var url = "";
+                if (string.IsNullOrEmpty(cityName)) return list;
+                var url = $"https://divar.ir/s/{cityName}/buy-apartment";
+                if (!string.IsNullOrEmpty(regionList))
+                    url += $"?districts={regionList}";
+                url += "&user_type=personal&non-negotiable=true";
                 var listDivar = GetDataFromUrl(url);
             }
             catch (Exception ex)
@@ -425,12 +358,131 @@ namespace Advertise.Classes
 
             return list;
         }
-        public static List<BuildingBussines> GetPreeSellHome(string regionList)
+        public static List<BuildingBussines> GetVillaBuy(string cityName, string regionList)
         {
             var list = new List<BuildingBussines>();
             try
             {
-                var url = "";
+                if (string.IsNullOrEmpty(cityName)) return list;
+                var url = $"https://divar.ir/s/{cityName}/buy-villa";
+                if (!string.IsNullOrEmpty(regionList))
+                    url += $"?districts={regionList}";
+                url += "&user_type=personal&non-negotiable=true";
+                var listDivar = GetDataFromUrl(url);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+
+            return list;
+        }
+        public static List<BuildingBussines> GetOldHouseBuy(string cityName, string regionList)
+        {
+            var list = new List<BuildingBussines>();
+            try
+            {
+                if (string.IsNullOrEmpty(cityName)) return list;
+                var url = $"https://divar.ir/s/{cityName}/buy-old-house";
+                if (!string.IsNullOrEmpty(regionList))
+                    url += $"?districts={regionList}";
+                url += "&user_type=personal&non-negotiable=true";
+                var listDivar = GetDataFromUrl(url);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+
+            return list;
+        }
+        public static List<BuildingBussines> GetOfficeBuy(string cityName, string regionList)
+        {
+            var list = new List<BuildingBussines>();
+            try
+            {
+                if (string.IsNullOrEmpty(cityName)) return list;
+                var url = $"https://divar.ir/s/{cityName}/buy-office";
+                if (!string.IsNullOrEmpty(regionList))
+                    url += $"?districts={regionList}";
+                url += "&user_type=personal&non-negotiable=true";
+                var listDivar = GetDataFromUrl(url);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+
+            return list;
+        }
+        public static List<BuildingBussines> GetStoreBuy(string cityName, string regionList)
+        {
+            var list = new List<BuildingBussines>();
+            try
+            {
+                if (string.IsNullOrEmpty(cityName)) return list;
+                var url = $"https://divar.ir/s/{cityName}/buy-store";
+                if (!string.IsNullOrEmpty(regionList))
+                    url += $"?districts={regionList}";
+                url += "&user_type=personal&non-negotiable=true";
+                var listDivar = GetDataFromUrl(url);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+
+            return list;
+        }
+        public static List<BuildingBussines> GetIndustrialBuy(string cityName, string regionList)
+        {
+            var list = new List<BuildingBussines>();
+            try
+            {
+                if (string.IsNullOrEmpty(cityName)) return list;
+                var url = $"https://divar.ir/s/{cityName}/buy-industrial-agricultural-property";
+                if (!string.IsNullOrEmpty(regionList))
+                    url += $"?districts={regionList}";
+                url += "&user_type=personal&non-negotiable=true";
+                var listDivar = GetDataFromUrl(url);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+
+            return list;
+        }
+
+        public static List<BuildingBussines> GetContributionConstruction(string cityName, string regionList)
+        {
+            var list = new List<BuildingBussines>();
+            try
+            {
+                if (string.IsNullOrEmpty(cityName)) return list;
+                var url = $"https://divar.ir/s/{cityName}/contribution-construction";
+                if (!string.IsNullOrEmpty(regionList))
+                    url += $"?districts={regionList}";
+                url += "&user_type=personal";
+                var listDivar = GetDataFromUrl(url);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+
+            return list;
+        }
+        public static List<BuildingBussines> GetPreeSellHome(string cityName, string regionList)
+        {
+            var list = new List<BuildingBussines>();
+            try
+            {
+                if (string.IsNullOrEmpty(cityName)) return list;
+                var url = $"https://divar.ir/s/{cityName}/pre-sell-home";
+                if (!string.IsNullOrEmpty(regionList))
+                    url += $"?districts={regionList}";
+                url += "&user_type=personal";
                 var listDivar = GetDataFromUrl(url);
             }
             catch (Exception ex)

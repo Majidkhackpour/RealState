@@ -18,8 +18,15 @@ namespace RealState
             try
             {
                 var reg = "";
+
+
                 var divarCat = await SerializedDataBussines.GetDivarCategoryAsync();
                 if (divarCat == null || divarCat.Count <= 0) return;
+
+                if (string.IsNullOrEmpty(Settings.Classes.clsEconomyUnit.EconomyCity)) return;
+                var cities = await SerializedDataBussines.GetDivarCityAsync();
+                var cityLocal = await CitiesBussines.GetAsync(Guid.Parse(Settings.Classes.clsEconomyUnit.EconomyCity));
+                var cityName = cities.FirstOrDefault(q => q.Name == cityLocal.Name)?.LatinName;
 
                 var buildingList = new List<BuildingBussines>();
                 var preList = new List<BuildingBussines>();
@@ -34,10 +41,10 @@ namespace RealState
                     for (var i = 0; i < list.Count; i++)
                     {
                         var regName = RegionsBussines.Get(list[i].RegionGuid)?.Name;
-                        var divarReg = divarRegions?.FirstOrDefault(q => q.Name == regName);
+                        var divarReg = divarRegions?.FirstOrDefault(q => q.Name.Trim() == regName?.Trim());
                         if (divarReg == null) continue;
-                        if (i == 0) reg += $"?districts={divarReg.DivarId}%";
-                        else reg += $"2C{divarReg.DivarId}%";
+                        if (string.IsNullOrEmpty(reg)) reg += $"?districts={divarReg.DivarId}";
+                        else reg += $"%2C{divarReg.DivarId}";
                     }
                 }
 
@@ -46,7 +53,7 @@ namespace RealState
                     switch (item.Category)
                     {
                         case EnDivarCategory.RentAppartment:
-                            preList = DivarAPI.GetApartmentRent(reg);
+                            preList = DivarAPI.GetApartmentRent(cityName, reg);
                             if (preList != null && preList.Count > 0)
                             {
                                 buildingList.AddRange(preList);
@@ -54,7 +61,7 @@ namespace RealState
                             }
                             break;
                         case EnDivarCategory.RentVilla:
-                            preList = DivarAPI.GetVillaRent(reg);
+                            preList = DivarAPI.GetVillaRent(cityName, reg);
                             if (preList != null && preList.Count > 0)
                             {
                                 buildingList.AddRange(preList);
@@ -62,7 +69,7 @@ namespace RealState
                             }
                             break;
                         case EnDivarCategory.BuyAppartment:
-                            preList = DivarAPI.GetApartmentBuy(reg);
+                            preList = DivarAPI.GetApartmentBuy(cityName, reg);
                             if (preList != null && preList.Count > 0)
                             {
                                 buildingList.AddRange(preList);
@@ -70,7 +77,7 @@ namespace RealState
                             }
                             break;
                         case EnDivarCategory.BuyVilla:
-                            preList = DivarAPI.GetVillaBuy(reg);
+                            preList = DivarAPI.GetVillaBuy(cityName, reg);
                             if (preList != null && preList.Count > 0)
                             {
                                 buildingList.AddRange(preList);
@@ -78,7 +85,7 @@ namespace RealState
                             }
                             break;
                         case EnDivarCategory.BuyOldHouse:
-                            preList = DivarAPI.GetOldHouseBuy(reg);
+                            preList = DivarAPI.GetOldHouseBuy(cityName, reg);
                             if (preList != null && preList.Count > 0)
                             {
                                 buildingList.AddRange(preList);
@@ -86,7 +93,7 @@ namespace RealState
                             }
                             break;
                         case EnDivarCategory.BuyOffice:
-                            preList = DivarAPI.GetOfficeBuy(reg);
+                            preList = DivarAPI.GetOfficeBuy(cityName, reg);
                             if (preList != null && preList.Count > 0)
                             {
                                 buildingList.AddRange(preList);
@@ -94,7 +101,7 @@ namespace RealState
                             }
                             break;
                         case EnDivarCategory.BuyStore:
-                            preList = DivarAPI.GetStoreBuy(reg);
+                            preList = DivarAPI.GetStoreBuy(cityName, reg);
                             if (preList != null && preList.Count > 0)
                             {
                                 buildingList.AddRange(preList);
@@ -102,7 +109,7 @@ namespace RealState
                             }
                             break;
                         case EnDivarCategory.BuyGuard:
-                            preList = DivarAPI.GetIndustrialBuy(reg);
+                            preList = DivarAPI.GetIndustrialBuy(cityName, reg);
                             if (preList != null && preList.Count > 0)
                             {
                                 buildingList.AddRange(preList);
@@ -110,7 +117,7 @@ namespace RealState
                             }
                             break;
                         case EnDivarCategory.RentOffice:
-                            preList = DivarAPI.GetOfficeRent(reg);
+                            preList = DivarAPI.GetOfficeRent(cityName, reg);
                             if (preList != null && preList.Count > 0)
                             {
                                 buildingList.AddRange(preList);
@@ -118,7 +125,7 @@ namespace RealState
                             }
                             break;
                         case EnDivarCategory.RentStore:
-                            preList = DivarAPI.GetStoreRent(reg);
+                            preList = DivarAPI.GetStoreRent(cityName, reg);
                             if (preList != null && preList.Count > 0)
                             {
                                 buildingList.AddRange(preList);
@@ -126,7 +133,7 @@ namespace RealState
                             }
                             break;
                         case EnDivarCategory.RentGuard:
-                            preList = DivarAPI.GetIndustrialRent(reg);
+                            preList = DivarAPI.GetIndustrialRent(cityName, reg);
                             if (preList != null && preList.Count > 0)
                             {
                                 buildingList.AddRange(preList);
@@ -134,7 +141,7 @@ namespace RealState
                             }
                             break;
                         case EnDivarCategory.ContributionConstruction:
-                            preList = DivarAPI.GetContributionConstruction(reg);
+                            preList = DivarAPI.GetContributionConstruction(cityName, reg);
                             if (preList != null && preList.Count > 0)
                             {
                                 buildingList.AddRange(preList);
@@ -142,7 +149,7 @@ namespace RealState
                             }
                             break;
                         case EnDivarCategory.PreBuy:
-                            preList = DivarAPI.GetPreeSellHome(reg);
+                            preList = DivarAPI.GetPreeSellHome(cityName, reg);
                             if (preList != null && preList.Count > 0)
                             {
                                 buildingList.AddRange(preList);

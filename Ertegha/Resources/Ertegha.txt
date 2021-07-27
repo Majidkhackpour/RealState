@@ -7463,3 +7463,25 @@ From [dbo].[Buildings]
 	where Priority=0
 	and IsArchive='false'
 END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Buildings_CheckDuplicate]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Buildings_CheckDuplicate]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_Buildings_CheckDuplicate
+	@masahat int=0,
+	@roomCount int=0,
+	@rahn decimal=0,
+	@ejare decimal=0,
+	@sellPrice decimal=0,
+	@tabaqeNo int=0
+AS
+BEGIN
+	Select COUNT(*) from Buildings
+	where (@masahat=0 or Masahat=@masahat) and
+		  (@roomCount=0 or RoomCount=@roomCount) and
+		  (@rahn=0 or RahnPrice1=@rahn) and
+		  (@ejare=0 or EjarePrice1=@ejare) and
+		  (@sellPrice=0 or SellPrice=@sellPrice) and
+		  (@tabaqeNo=0 or TabaqeNo=@tabaqeNo)
+END

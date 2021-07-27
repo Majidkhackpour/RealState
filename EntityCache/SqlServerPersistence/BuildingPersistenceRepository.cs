@@ -301,6 +301,34 @@ namespace EntityCache.SqlServerPersistence
 
             return list;
         }
+        public async Task<bool> CheckDuplicateAsync(string connectionString, int masahat, int roomCount, decimal rahn, decimal ejare, decimal sellPrice, int tabaqeNo)
+        {
+            try
+            {
+                using (var cn = new SqlConnection(connectionString))
+                {
+                    var cmd = new SqlCommand("sp_Buildings_CheckDuplicate", cn) { CommandType = CommandType.StoredProcedure };
+                    cmd.Parameters.AddWithValue("@masahat", masahat);
+                    cmd.Parameters.AddWithValue("@roomCount", roomCount);
+                    cmd.Parameters.AddWithValue("@rahn", rahn);
+                    cmd.Parameters.AddWithValue("@ejare", ejare);
+                    cmd.Parameters.AddWithValue("@sellPrice", sellPrice);
+                    cmd.Parameters.AddWithValue("@tabaqeNo", tabaqeNo);
+
+                    await cn.OpenAsync();
+                    var count = await cmd.ExecuteScalarAsync();
+                    if (count == null) return false;
+                    var x = count.ToString().ParseToInt();
+                    return x > 0;
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                return false;
+            }
+        }
         private BuildingBussines LoadData(SqlDataReader dr, bool isLoadDets)
         {
             var res = new BuildingBussines();

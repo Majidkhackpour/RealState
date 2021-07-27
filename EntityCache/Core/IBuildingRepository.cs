@@ -20,5 +20,6 @@ namespace EntityCache.Core
         Task<BuildingBussines> GetAsync(string _connectionString, Guid guid);
         Task<ReturnedSaveFuncInfo> SetArchiveAsync(string _connectionString, DateTime date);
         Task<List<BuildingBussines>> GetAllHighPriorityAsync(string _connectionString, CancellationToken token);
+        Task<bool> CheckDuplicateAsync(string connectionString, int masahat, int roomCount, decimal rahn, decimal ejare, decimal sellPrice, int tabaqeNo);
     }
 }
