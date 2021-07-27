@@ -176,6 +176,7 @@ namespace EntityCache.Bussines
             }
         }
         public static BuildingTypeBussines Get(Guid guid) => AsyncContext.Run(() => GetAsync(guid));
+        public static BuildingTypeBussines Get(string name) => AsyncContext.Run(() => GetAsync(name));
         public static async Task<bool> CheckNameAsync(string name, Guid guid) =>
             await UnitOfWork.BuildingType.CheckNameAsync(Cache.ConnectionString, name, guid);
         private async Task<ReturnedSaveFuncInfo> CheckValidationAsync()

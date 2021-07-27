@@ -172,6 +172,7 @@ namespace EntityCache.Bussines
                 return new List<BuildingConditionBussines>();
             }
         }
+        public static List<BuildingConditionBussines> GetAll(string search) => AsyncContext.Run(() => GetAllAsync(search, new CancellationToken()));
         public static BuildingConditionBussines Get(Guid guid) => AsyncContext.Run(() => GetAsync(guid));
         public static async Task<bool> CheckNameAsync(string name, Guid guid) =>
             await UnitOfWork.BuildingCondition.CheckNameAsync(Cache.ConnectionString, name, guid);

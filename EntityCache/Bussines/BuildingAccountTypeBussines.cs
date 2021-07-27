@@ -172,6 +172,7 @@ namespace EntityCache.Bussines
                 return new List<BuildingAccountTypeBussines>();
             }
         }
+        public static List<BuildingAccountTypeBussines> GetAll(string search) => AsyncContext.Run(() => GetAllAsync(search, new CancellationToken()));
         public static BuildingAccountTypeBussines Get(Guid guid) => AsyncContext.Run(() => GetAsync(guid));
         public static async Task<bool> CheckNameAsync(string name, Guid guid) =>
             await UnitOfWork.BuildingAccountType.CheckNameAsync(Cache.ConnectionString, name, guid);

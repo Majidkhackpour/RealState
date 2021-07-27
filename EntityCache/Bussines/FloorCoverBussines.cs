@@ -173,6 +173,7 @@ namespace EntityCache.Bussines
                 return new List<FloorCoverBussines>();
             }
         }
+        public static List<FloorCoverBussines> GetAll(string search) => AsyncContext.Run(() => GetAllAsync(search, new CancellationToken()));
         public static FloorCoverBussines Get(Guid guid) => AsyncContext.Run(() => GetAsync(guid));
         public static async Task<bool> CheckNameAsync(string name, Guid guid) =>
             await UnitOfWork.FloorCover.CheckNameAsync(Cache.ConnectionString, name, guid);

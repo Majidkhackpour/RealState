@@ -173,6 +173,7 @@ namespace EntityCache.Bussines
                 return new List<KitchenServiceBussines>();
             }
         }
+        public static List<KitchenServiceBussines> GetAll(string search) => AsyncContext.Run(() => GetAllAsync(search, new CancellationToken()));
         public static KitchenServiceBussines Get(Guid guid) => AsyncContext.Run(() => GetAsync(guid));
         public static async Task<bool> CheckNameAsync(string name, Guid guid) =>
             await UnitOfWork.KitchenService.CheckNameAsync(Cache.ConnectionString, name, guid);

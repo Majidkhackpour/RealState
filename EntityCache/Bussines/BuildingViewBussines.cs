@@ -173,6 +173,7 @@ namespace EntityCache.Bussines
                 return new List<BuildingViewBussines>();
             }
         }
+        public static List<BuildingViewBussines> GetAll(string search) => AsyncContext.Run(() => GetAllAsync(search, new CancellationToken()));
         public static BuildingViewBussines Get(Guid guid) => AsyncContext.Run(() => GetAsync(guid));
         public static async Task<bool> CheckNameAsync(string name, Guid guid) =>
             await UnitOfWork.BuildingView.CheckNameAsync(Cache.ConnectionString, name, guid);

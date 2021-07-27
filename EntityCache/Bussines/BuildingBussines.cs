@@ -106,7 +106,7 @@ namespace EntityCache.Bussines
         public static async Task<List<BuildingBussines>> GetAllAsync(CancellationToken token, bool isLoadDet) => await UnitOfWork.Building.GetAllAsync(Cache.ConnectionString, token, isLoadDet);
         public static async Task<BuildingBussines> GetAsync(Guid guid) => await UnitOfWork.Building.GetAsync(Cache.ConnectionString, guid);
         public static BuildingBussines Get(Guid guid) => AsyncContext.Run(() => GetAsync(guid));
-        public async Task<ReturnedSaveFuncInfo> SaveAsync(SqlTransaction tr = null)
+        public async Task<ReturnedSaveFuncInfo> SaveAsync(SqlTransaction tr = null, bool isRaiseEvent = true)
         {
             var res = new ReturnedSaveFuncInfo();
             var autoTran = tr == null;
@@ -163,7 +163,7 @@ namespace EntityCache.Bussines
                 var action = IsModified ? EnLogAction.Update : EnLogAction.Insert;
                 res.AddReturnedValue(await UserLogBussines.SaveAsync(action, EnLogPart.Building, tr));
                 if (res.HasError) return res;
-                RaiseEvent();
+                if (isRaiseEvent) RaiseEvent();
                 if (Cache.IsSendToServer)
                     _ = Task.Run(() => WebBuilding.SaveAsync(this, Cache.Path));
             }
@@ -190,9 +190,10 @@ namespace EntityCache.Bussines
                 foreach (var item in lst)
                 {
                     if (item == null) continue;
-                    res.AddReturnedValue(await item.SaveAsync());
+                    res.AddReturnedValue(await item.SaveAsync(isRaiseEvent: false));
                     if (res.HasError) return res;
                 }
+                RaiseStaticEvent();
             }
             catch (Exception ex)
             {
@@ -419,6 +420,18 @@ namespace EntityCache.Bussines
             return res;
         }
         private void RaiseEvent()
+        {
+            try
+            {
+                var handler = OnSaved;
+                if (handler != null) OnSaved?.Invoke();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private static void RaiseStaticEvent()
         {
             try
             {

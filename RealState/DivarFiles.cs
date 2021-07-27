@@ -19,7 +19,6 @@ namespace RealState
             {
                 var reg = "";
 
-
                 var divarCat = await SerializedDataBussines.GetDivarCategoryAsync();
                 if (divarCat == null || divarCat.Count <= 0) return;
 
@@ -53,7 +52,7 @@ namespace RealState
                     switch (item.Category)
                     {
                         case EnDivarCategory.RentAppartment:
-                            preList = DivarAPI.GetApartmentRent(cityName, reg);
+                            preList = await DivarAPI.GetApartmentRent(cityName, cityLocal.Guid, reg);
                             if (preList != null && preList.Count > 0)
                             {
                                 buildingList.AddRange(preList);
