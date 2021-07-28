@@ -31,7 +31,7 @@ namespace RealState.LoginPanel.FormsInPanel
             try
             {
                 lblSoftwareSerial.Text = clsRegistery.GetRegistery("U1001ML");
-                lblCpuSerial.Text = SoftwareLock.GenerateActivationCodeClient.ActivationCode();
+                lblCpuSerial.Text = clsRegistery.GetRegistery("X1001MA");
             }
             catch (Exception ex)
             {
@@ -75,7 +75,7 @@ namespace RealState.LoginPanel.FormsInPanel
             {
                 ErrorHandler.AddHandler(Assembly.GetExecutingAssembly().GetName().Version.ToString(), ENSource.Building,
                     Application.StartupPath, clsRegistery.GetRegistery("U1001ML"));
-                ClsCache.Init(AppSettings.DefaultConnectionString, lblCpuSerial.Text);
+                ClsCache.Init(AppSettings.DefaultConnectionString, clsRegistery.GetRegistery("X1001MA"));
                 Logger.init(Application.StartupPath, "BuidlingEventLog.txt", true);
                 ErrorManager.Init(ENSource.Building, null);
             }
@@ -116,11 +116,19 @@ namespace RealState.LoginPanel.FormsInPanel
                     //Register
                     var serialNumber = clsRegistery.GetRegistery("U1001ML");
                     var codeHdd = lblCpuSerial.Text;
-                    var codeDb = clsGlobalSetting.HardDriveSerial;
-                    if (string.IsNullOrEmpty(codeDb))
+                    var client = clsRegistery.GetRegistery("X1001MR");
+                    if (!string.IsNullOrEmpty(client) && client.ParseToBoolean())
                     {
-                        clsGlobalSetting.HardDriveSerial = codeHdd;
-                        codeDb = clsGlobalSetting.HardDriveSerial;
+                        clsGlobalSetting.HardDriveSerial = clsRegistery.GetRegistery("X1001MA");
+                        lblCpuSerial.Text = clsGlobalSetting.HardDriveSerial;
+                        return res;
+                    }
+                    var codeDb = SoftwareLock.GenerateActivationCodeClient.ActivationCode();
+                    if (string.IsNullOrEmpty(clsGlobalSetting.HardDriveSerial))
+                    {
+                        clsGlobalSetting.HardDriveSerial = codeDb;
+                        lblCpuSerial.Text = clsGlobalSetting.HardDriveSerial;
+                        codeHdd = clsGlobalSetting.HardDriveSerial;
                     }
                     if (codeDb != codeHdd)
                     {
