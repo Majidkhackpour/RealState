@@ -7,6 +7,7 @@ using Advertise.Classes;
 using EntityCache.Bussines;
 using Notification;
 using Services;
+using Settings.Classes;
 
 namespace RealState
 {
@@ -17,6 +18,13 @@ namespace RealState
         {
             try
             {
+                if (!VersionAccess.Advertise) return;
+                if (!clsAdvertise.IsGiveFile) return;
+
+                var getDate = clsAdvertise.GetFileDate;
+                var newDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, 0, 0);
+                if (getDate != null && getDate > newDate) return;
+
                 var reg = "";
 
                 var divarCat = await SerializedDataBussines.GetDivarCategoryAsync();
@@ -25,6 +33,7 @@ namespace RealState
                 if (string.IsNullOrEmpty(Settings.Classes.clsEconomyUnit.EconomyCity)) return;
                 var cities = await SerializedDataBussines.GetDivarCityAsync();
                 var cityLocal = await CitiesBussines.GetAsync(Guid.Parse(Settings.Classes.clsEconomyUnit.EconomyCity));
+                var divarCity = cities.FirstOrDefault(q => q.Name == cityLocal.Name);
                 var cityName = cities.FirstOrDefault(q => q.Name == cityLocal.Name)?.LatinName;
 
                 var buildingList = new List<BuildingBussines>();
@@ -52,7 +61,7 @@ namespace RealState
                     switch (item.Category)
                     {
                         case EnDivarCategory.RentAppartment:
-                            preList = await DivarAPI.GetApartmentRent(cityName, cityLocal.Guid, reg);
+                            preList = await DivarAPI.GetApartmentRent(divarCity, cityLocal.Guid, reg);
                             if (preList != null && preList.Count > 0)
                             {
                                 buildingList.AddRange(preList);
@@ -60,7 +69,7 @@ namespace RealState
                             }
                             break;
                         case EnDivarCategory.RentVilla:
-                            preList = DivarAPI.GetVillaRent(cityName, reg);
+                            preList = await DivarAPI.GetVillaRent(divarCity, cityLocal.Guid, reg);
                             if (preList != null && preList.Count > 0)
                             {
                                 buildingList.AddRange(preList);
@@ -68,7 +77,7 @@ namespace RealState
                             }
                             break;
                         case EnDivarCategory.BuyAppartment:
-                            preList = DivarAPI.GetApartmentBuy(cityName, reg);
+                            preList = await DivarAPI.GetApartmentBuy(divarCity, cityLocal.Guid, reg);
                             if (preList != null && preList.Count > 0)
                             {
                                 buildingList.AddRange(preList);
@@ -76,7 +85,7 @@ namespace RealState
                             }
                             break;
                         case EnDivarCategory.BuyVilla:
-                            preList = DivarAPI.GetVillaBuy(cityName, reg);
+                            preList = await DivarAPI.GetVillaBuy(divarCity, cityLocal.Guid, reg);
                             if (preList != null && preList.Count > 0)
                             {
                                 buildingList.AddRange(preList);
@@ -84,7 +93,7 @@ namespace RealState
                             }
                             break;
                         case EnDivarCategory.BuyOldHouse:
-                            preList = DivarAPI.GetOldHouseBuy(cityName, reg);
+                            preList = await DivarAPI.GetOldHouseBuy(divarCity, cityLocal.Guid, reg);
                             if (preList != null && preList.Count > 0)
                             {
                                 buildingList.AddRange(preList);
@@ -92,7 +101,7 @@ namespace RealState
                             }
                             break;
                         case EnDivarCategory.BuyOffice:
-                            preList = DivarAPI.GetOfficeBuy(cityName, reg);
+                            preList = await DivarAPI.GetOfficeBuy(divarCity, cityLocal.Guid, reg);
                             if (preList != null && preList.Count > 0)
                             {
                                 buildingList.AddRange(preList);
@@ -100,7 +109,7 @@ namespace RealState
                             }
                             break;
                         case EnDivarCategory.BuyStore:
-                            preList = DivarAPI.GetStoreBuy(cityName, reg);
+                            preList = await DivarAPI.GetStoreBuy(divarCity, cityLocal.Guid, reg);
                             if (preList != null && preList.Count > 0)
                             {
                                 buildingList.AddRange(preList);
@@ -108,7 +117,7 @@ namespace RealState
                             }
                             break;
                         case EnDivarCategory.BuyGuard:
-                            preList = DivarAPI.GetIndustrialBuy(cityName, reg);
+                            preList = await DivarAPI.GetIndustrialBuy(divarCity, cityLocal.Guid, reg);
                             if (preList != null && preList.Count > 0)
                             {
                                 buildingList.AddRange(preList);
@@ -116,7 +125,7 @@ namespace RealState
                             }
                             break;
                         case EnDivarCategory.RentOffice:
-                            preList = DivarAPI.GetOfficeRent(cityName, reg);
+                            preList = await DivarAPI.GetOfficeRent(divarCity, cityLocal.Guid, reg);
                             if (preList != null && preList.Count > 0)
                             {
                                 buildingList.AddRange(preList);
@@ -124,7 +133,7 @@ namespace RealState
                             }
                             break;
                         case EnDivarCategory.RentStore:
-                            preList = DivarAPI.GetStoreRent(cityName, reg);
+                            preList = await DivarAPI.GetStoreRent(divarCity, cityLocal.Guid, reg);
                             if (preList != null && preList.Count > 0)
                             {
                                 buildingList.AddRange(preList);
@@ -132,7 +141,7 @@ namespace RealState
                             }
                             break;
                         case EnDivarCategory.RentGuard:
-                            preList = DivarAPI.GetIndustrialRent(cityName, reg);
+                            preList = await DivarAPI.GetIndustrialRent(divarCity, cityLocal.Guid, reg);
                             if (preList != null && preList.Count > 0)
                             {
                                 buildingList.AddRange(preList);
@@ -140,7 +149,7 @@ namespace RealState
                             }
                             break;
                         case EnDivarCategory.ContributionConstruction:
-                            preList = DivarAPI.GetContributionConstruction(cityName, reg);
+                            preList = await DivarAPI.GetContributionConstruction(divarCity, cityLocal.Guid, reg);
                             if (preList != null && preList.Count > 0)
                             {
                                 buildingList.AddRange(preList);
@@ -148,7 +157,7 @@ namespace RealState
                             }
                             break;
                         case EnDivarCategory.PreBuy:
-                            preList = DivarAPI.GetPreeSellHome(cityName, reg);
+                            preList = await DivarAPI.GetPreeSellHome(divarCity, cityLocal.Guid, reg);
                             if (preList != null && preList.Count > 0)
                             {
                                 buildingList.AddRange(preList);
@@ -167,6 +176,8 @@ namespace RealState
                         buyStoreCount, buyGraund, mosharekatCount, preBuyCount);
                     frm.ShowDialog();
                 }
+
+                clsAdvertise.GetFileDate = DateTime.Now;
             }
             catch (Exception ex)
             {

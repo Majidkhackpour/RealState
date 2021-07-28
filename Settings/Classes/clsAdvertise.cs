@@ -1,4 +1,5 @@
-﻿using EntityCache.Bussines;
+﻿using System;
+using EntityCache.Bussines;
 using Services;
 
 namespace Settings.Classes
@@ -170,7 +171,7 @@ namespace Settings.Classes
         {
             get
             {
-                if (_isSilent != null) return (bool) _isSilent;
+                if (_isSilent != null) return (bool)_isSilent;
                 var mem = SettingsBussines.Get("IsSilent");
                 return mem?.Value.ParseToBoolean() ?? false;
             }
@@ -194,6 +195,38 @@ namespace Settings.Classes
             {
                 _maxFileCount = value;
                 SettingsBussines.Save("MaxFileCount", _maxFileCount.ToString());
+            }
+        }
+
+        private static bool? _isGiveFile;
+        public static bool IsGiveFile
+        {
+            get
+            {
+                if (_isGiveFile != null) return (bool)_isGiveFile;
+                var mem = SettingsBussines.Get("IsGiveFile");
+                return mem?.Value.ParseToBoolean() ?? false;
+            }
+            set
+            {
+                _isGiveFile = value;
+                SettingsBussines.Save("IsGiveFile", _isGiveFile.ToString());
+            }
+        }
+
+        private static DateTime? _getFileDate;
+        public static DateTime? GetFileDate
+        {
+            get
+            {
+                if (_getFileDate != null) return (DateTime)_getFileDate;
+                var mem = SettingsBussines.Get("GetFileDate");
+                return mem?.Value.ParseToDate();
+            }
+            set
+            {
+                _getFileDate = value;
+                SettingsBussines.Save("GetFileDate", _getFileDate.ToString());
             }
         }
     }

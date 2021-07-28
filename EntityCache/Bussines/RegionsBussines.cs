@@ -69,6 +69,7 @@ namespace EntityCache.Bussines
         public static async Task<RegionsBussines> GetAsync(Guid guid) => await UnitOfWork.Regions.GetAsync(Cache.ConnectionString, guid);
         public static async Task<RegionsBussines> GetAsync(string name) => await UnitOfWork.Regions.GetAsync(Cache.ConnectionString, name);
         public static RegionsBussines Get(Guid guid) => AsyncContext.Run(() => GetAsync(guid));
+        public static RegionsBussines Get(string name) => AsyncContext.Run(() => GetAsync(name));
         public static async Task<List<RegionsBussines>> GetAllAsync(string search, Guid cityGuid, CancellationToken token)
         {
             try

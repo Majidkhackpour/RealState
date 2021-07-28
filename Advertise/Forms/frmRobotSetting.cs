@@ -20,6 +20,7 @@ namespace Advertise.Forms
 
                 chbSilent.Checked = clsAdvertise.IsSilent;
                 chbChat.Checked = clsAdvertise.IsGiveChat;
+                chbGetFile.Checked = clsAdvertise.IsGiveFile;
 
                 txtD_DayCount.Value = clsAdvertise.Divar_AdvCountInDay;
                 txtD_MountCount.Value = clsAdvertise.Divar_AdvCountInMounth;
@@ -154,6 +155,7 @@ namespace Advertise.Forms
             {
                 clsAdvertise.IsSilent = chbSilent.Checked;
                 clsAdvertise.IsGiveChat = chbChat.Checked;
+                clsAdvertise.IsGiveFile = chbGetFile.Checked;
 
                 clsAdvertise.Divar_AdvCountInDay = (int)txtD_DayCount.Value;
                 clsAdvertise.Divar_AdvCountInMounth = (int)txtD_MountCount.Value;

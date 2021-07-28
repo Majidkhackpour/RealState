@@ -55,19 +55,20 @@
             this.rbtnShakhsi = new System.Windows.Forms.RadioButton();
             this.chbChat = new System.Windows.Forms.CheckBox();
             this.groupPanel3 = new DevComponents.DotNetBar.Controls.GroupPanel();
-            this.chbRentAppartment = new DevComponents.DotNetBar.Controls.CheckBoxX();
-            this.chbRentVilla = new DevComponents.DotNetBar.Controls.CheckBoxX();
-            this.chbRentStore = new DevComponents.DotNetBar.Controls.CheckBoxX();
-            this.chbRentOffice = new DevComponents.DotNetBar.Controls.CheckBoxX();
-            this.chbRentGuard = new DevComponents.DotNetBar.Controls.CheckBoxX();
-            this.chbBuyAppartment = new DevComponents.DotNetBar.Controls.CheckBoxX();
-            this.chbBuyVilla = new DevComponents.DotNetBar.Controls.CheckBoxX();
-            this.chbBuyOldHouse = new DevComponents.DotNetBar.Controls.CheckBoxX();
-            this.chbBuyOffice = new DevComponents.DotNetBar.Controls.CheckBoxX();
             this.chbBuyStore = new DevComponents.DotNetBar.Controls.CheckBoxX();
+            this.chbRentGuard = new DevComponents.DotNetBar.Controls.CheckBoxX();
             this.chbBuyGuard = new DevComponents.DotNetBar.Controls.CheckBoxX();
-            this.chbContributionConstruction = new DevComponents.DotNetBar.Controls.CheckBoxX();
+            this.chbBuyOffice = new DevComponents.DotNetBar.Controls.CheckBoxX();
+            this.chbRentOffice = new DevComponents.DotNetBar.Controls.CheckBoxX();
+            this.chbBuyOldHouse = new DevComponents.DotNetBar.Controls.CheckBoxX();
+            this.chbRentStore = new DevComponents.DotNetBar.Controls.CheckBoxX();
             this.chbPreBuy = new DevComponents.DotNetBar.Controls.CheckBoxX();
+            this.chbBuyVilla = new DevComponents.DotNetBar.Controls.CheckBoxX();
+            this.chbContributionConstruction = new DevComponents.DotNetBar.Controls.CheckBoxX();
+            this.chbRentVilla = new DevComponents.DotNetBar.Controls.CheckBoxX();
+            this.chbBuyAppartment = new DevComponents.DotNetBar.Controls.CheckBoxX();
+            this.chbRentAppartment = new DevComponents.DotNetBar.Controls.CheckBoxX();
+            this.chbGetFile = new System.Windows.Forms.CheckBox();
             this.groupPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtD_Update)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtD_PicCount)).BeginInit();
@@ -391,7 +392,7 @@
             this.btnFinish.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnFinish.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnFinish.Image = global::Advertise.Properties.Resources.tab_checkbox__;
-            this.btnFinish.Location = new System.Drawing.Point(405, 539);
+            this.btnFinish.Location = new System.Drawing.Point(405, 559);
             this.btnFinish.Name = "btnFinish";
             this.btnFinish.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
             this.btnFinish.Size = new System.Drawing.Size(125, 31);
@@ -410,7 +411,7 @@
             this.btnCancel.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Image = global::Advertise.Properties.Resources.tab_close_;
-            this.btnCancel.Location = new System.Drawing.Point(49, 539);
+            this.btnCancel.Location = new System.Drawing.Point(49, 559);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
             this.btnCancel.Size = new System.Drawing.Size(125, 31);
@@ -482,9 +483,9 @@
             this.groupPanel3.Controls.Add(this.chbBuyAppartment);
             this.groupPanel3.Controls.Add(this.chbRentAppartment);
             this.groupPanel3.DisabledBackColor = System.Drawing.Color.Empty;
-            this.groupPanel3.Location = new System.Drawing.Point(10, 309);
+            this.groupPanel3.Location = new System.Drawing.Point(10, 343);
             this.groupPanel3.Name = "groupPanel3";
-            this.groupPanel3.Size = new System.Drawing.Size(594, 221);
+            this.groupPanel3.Size = new System.Drawing.Size(594, 208);
             // 
             // 
             // 
@@ -516,69 +517,21 @@
             this.groupPanel3.TabIndex = 11;
             this.groupPanel3.Text = "دریافت فایل از دیوار";
             // 
-            // chbRentAppartment
+            // chbBuyStore
             // 
-            this.chbRentAppartment.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.chbRentAppartment.BackColor = System.Drawing.Color.Transparent;
-            // 
-            // 
-            // 
-            this.chbRentAppartment.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.chbRentAppartment.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.chbRentAppartment.Location = new System.Drawing.Point(419, 3);
-            this.chbRentAppartment.Name = "chbRentAppartment";
-            this.chbRentAppartment.Size = new System.Drawing.Size(166, 23);
-            this.chbRentAppartment.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.chbRentAppartment.TabIndex = 0;
-            this.chbRentAppartment.Text = "اجاره آپارتمان";
-            // 
-            // chbRentVilla
-            // 
-            this.chbRentVilla.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.chbRentVilla.BackColor = System.Drawing.Color.Transparent;
+            this.chbBuyStore.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.chbBuyStore.BackColor = System.Drawing.Color.Transparent;
             // 
             // 
             // 
-            this.chbRentVilla.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.chbRentVilla.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.chbRentVilla.Location = new System.Drawing.Point(458, 32);
-            this.chbRentVilla.Name = "chbRentVilla";
-            this.chbRentVilla.Size = new System.Drawing.Size(127, 23);
-            this.chbRentVilla.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.chbRentVilla.TabIndex = 0;
-            this.chbRentVilla.Text = "اجاره خانه و ویلا";
-            // 
-            // chbRentStore
-            // 
-            this.chbRentStore.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.chbRentStore.BackColor = System.Drawing.Color.Transparent;
-            // 
-            // 
-            // 
-            this.chbRentStore.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.chbRentStore.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.chbRentStore.Location = new System.Drawing.Point(436, 90);
-            this.chbRentStore.Name = "chbRentStore";
-            this.chbRentStore.Size = new System.Drawing.Size(149, 23);
-            this.chbRentStore.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.chbRentStore.TabIndex = 0;
-            this.chbRentStore.Text = "اجاره مغازه و غرفه";
-            // 
-            // chbRentOffice
-            // 
-            this.chbRentOffice.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.chbRentOffice.BackColor = System.Drawing.Color.Transparent;
-            // 
-            // 
-            // 
-            this.chbRentOffice.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.chbRentOffice.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.chbRentOffice.Location = new System.Drawing.Point(406, 61);
-            this.chbRentOffice.Name = "chbRentOffice";
-            this.chbRentOffice.Size = new System.Drawing.Size(179, 23);
-            this.chbRentOffice.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.chbRentOffice.TabIndex = 0;
-            this.chbRentOffice.Text = "اجاره دفترکار، اتاق اداری و مطب";
+            this.chbBuyStore.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.chbBuyStore.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.chbBuyStore.Location = new System.Drawing.Point(182, 119);
+            this.chbBuyStore.Name = "chbBuyStore";
+            this.chbBuyStore.Size = new System.Drawing.Size(206, 23);
+            this.chbBuyStore.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.chbBuyStore.TabIndex = 0;
+            this.chbBuyStore.Text = "فروش مغازه و غرفه";
             // 
             // chbRentGuard
             // 
@@ -596,53 +549,21 @@
             this.chbRentGuard.TabIndex = 0;
             this.chbRentGuard.Text = "اجاره صنعتی، کشاورزی و تجاری";
             // 
-            // chbBuyAppartment
+            // chbBuyGuard
             // 
-            this.chbBuyAppartment.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.chbBuyAppartment.BackColor = System.Drawing.Color.Transparent;
-            // 
-            // 
-            // 
-            this.chbBuyAppartment.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.chbBuyAppartment.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.chbBuyAppartment.Location = new System.Drawing.Point(251, 3);
-            this.chbBuyAppartment.Name = "chbBuyAppartment";
-            this.chbBuyAppartment.Size = new System.Drawing.Size(137, 23);
-            this.chbBuyAppartment.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.chbBuyAppartment.TabIndex = 0;
-            this.chbBuyAppartment.Text = "فروش آپارتمان";
-            // 
-            // chbBuyVilla
-            // 
-            this.chbBuyVilla.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.chbBuyVilla.BackColor = System.Drawing.Color.Transparent;
+            this.chbBuyGuard.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.chbBuyGuard.BackColor = System.Drawing.Color.Transparent;
             // 
             // 
             // 
-            this.chbBuyVilla.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.chbBuyVilla.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.chbBuyVilla.Location = new System.Drawing.Point(251, 32);
-            this.chbBuyVilla.Name = "chbBuyVilla";
-            this.chbBuyVilla.Size = new System.Drawing.Size(137, 23);
-            this.chbBuyVilla.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.chbBuyVilla.TabIndex = 0;
-            this.chbBuyVilla.Text = "فروش خانه و ویلا";
-            // 
-            // chbBuyOldHouse
-            // 
-            this.chbBuyOldHouse.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.chbBuyOldHouse.BackColor = System.Drawing.Color.Transparent;
-            // 
-            // 
-            // 
-            this.chbBuyOldHouse.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.chbBuyOldHouse.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.chbBuyOldHouse.Location = new System.Drawing.Point(181, 61);
-            this.chbBuyOldHouse.Name = "chbBuyOldHouse";
-            this.chbBuyOldHouse.Size = new System.Drawing.Size(206, 23);
-            this.chbBuyOldHouse.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.chbBuyOldHouse.TabIndex = 0;
-            this.chbBuyOldHouse.Text = "فروش زمین و کلنگی";
+            this.chbBuyGuard.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.chbBuyGuard.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.chbBuyGuard.Location = new System.Drawing.Point(182, 148);
+            this.chbBuyGuard.Name = "chbBuyGuard";
+            this.chbBuyGuard.Size = new System.Drawing.Size(206, 23);
+            this.chbBuyGuard.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.chbBuyGuard.TabIndex = 0;
+            this.chbBuyGuard.Text = "فروش صنعتی، کشاورزی و تجاری";
             // 
             // chbBuyOffice
             // 
@@ -660,53 +581,53 @@
             this.chbBuyOffice.TabIndex = 0;
             this.chbBuyOffice.Text = "فروش دفرکار، اتاق اداری و مطب";
             // 
-            // chbBuyStore
+            // chbRentOffice
             // 
-            this.chbBuyStore.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.chbBuyStore.BackColor = System.Drawing.Color.Transparent;
-            // 
-            // 
-            // 
-            this.chbBuyStore.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.chbBuyStore.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.chbBuyStore.Location = new System.Drawing.Point(182, 119);
-            this.chbBuyStore.Name = "chbBuyStore";
-            this.chbBuyStore.Size = new System.Drawing.Size(206, 23);
-            this.chbBuyStore.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.chbBuyStore.TabIndex = 0;
-            this.chbBuyStore.Text = "فروش مغازه و غرفه";
-            // 
-            // chbBuyGuard
-            // 
-            this.chbBuyGuard.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.chbBuyGuard.BackColor = System.Drawing.Color.Transparent;
+            this.chbRentOffice.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.chbRentOffice.BackColor = System.Drawing.Color.Transparent;
             // 
             // 
             // 
-            this.chbBuyGuard.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.chbBuyGuard.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.chbBuyGuard.Location = new System.Drawing.Point(182, 148);
-            this.chbBuyGuard.Name = "chbBuyGuard";
-            this.chbBuyGuard.Size = new System.Drawing.Size(206, 23);
-            this.chbBuyGuard.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.chbBuyGuard.TabIndex = 0;
-            this.chbBuyGuard.Text = "فروش صنعتی، کشاورزی و تجاری";
+            this.chbRentOffice.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.chbRentOffice.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.chbRentOffice.Location = new System.Drawing.Point(406, 61);
+            this.chbRentOffice.Name = "chbRentOffice";
+            this.chbRentOffice.Size = new System.Drawing.Size(179, 23);
+            this.chbRentOffice.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.chbRentOffice.TabIndex = 0;
+            this.chbRentOffice.Text = "اجاره دفترکار، اتاق اداری و مطب";
             // 
-            // chbContributionConstruction
+            // chbBuyOldHouse
             // 
-            this.chbContributionConstruction.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.chbContributionConstruction.BackColor = System.Drawing.Color.Transparent;
+            this.chbBuyOldHouse.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.chbBuyOldHouse.BackColor = System.Drawing.Color.Transparent;
             // 
             // 
             // 
-            this.chbContributionConstruction.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.chbContributionConstruction.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.chbContributionConstruction.Location = new System.Drawing.Point(108, 3);
-            this.chbContributionConstruction.Name = "chbContributionConstruction";
-            this.chbContributionConstruction.Size = new System.Drawing.Size(137, 23);
-            this.chbContributionConstruction.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.chbContributionConstruction.TabIndex = 0;
-            this.chbContributionConstruction.Text = "مشارکت در ساخت";
+            this.chbBuyOldHouse.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.chbBuyOldHouse.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.chbBuyOldHouse.Location = new System.Drawing.Point(181, 61);
+            this.chbBuyOldHouse.Name = "chbBuyOldHouse";
+            this.chbBuyOldHouse.Size = new System.Drawing.Size(206, 23);
+            this.chbBuyOldHouse.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.chbBuyOldHouse.TabIndex = 0;
+            this.chbBuyOldHouse.Text = "فروش زمین و کلنگی";
+            // 
+            // chbRentStore
+            // 
+            this.chbRentStore.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.chbRentStore.BackColor = System.Drawing.Color.Transparent;
+            // 
+            // 
+            // 
+            this.chbRentStore.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.chbRentStore.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.chbRentStore.Location = new System.Drawing.Point(436, 90);
+            this.chbRentStore.Name = "chbRentStore";
+            this.chbRentStore.Size = new System.Drawing.Size(149, 23);
+            this.chbRentStore.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.chbRentStore.TabIndex = 0;
+            this.chbRentStore.Text = "اجاره مغازه و غرفه";
             // 
             // chbPreBuy
             // 
@@ -724,13 +645,104 @@
             this.chbPreBuy.TabIndex = 0;
             this.chbPreBuy.Text = "پیش فروش";
             // 
+            // chbBuyVilla
+            // 
+            this.chbBuyVilla.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.chbBuyVilla.BackColor = System.Drawing.Color.Transparent;
+            // 
+            // 
+            // 
+            this.chbBuyVilla.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.chbBuyVilla.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.chbBuyVilla.Location = new System.Drawing.Point(251, 32);
+            this.chbBuyVilla.Name = "chbBuyVilla";
+            this.chbBuyVilla.Size = new System.Drawing.Size(137, 23);
+            this.chbBuyVilla.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.chbBuyVilla.TabIndex = 0;
+            this.chbBuyVilla.Text = "فروش خانه و ویلا";
+            // 
+            // chbContributionConstruction
+            // 
+            this.chbContributionConstruction.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.chbContributionConstruction.BackColor = System.Drawing.Color.Transparent;
+            // 
+            // 
+            // 
+            this.chbContributionConstruction.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.chbContributionConstruction.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.chbContributionConstruction.Location = new System.Drawing.Point(108, 3);
+            this.chbContributionConstruction.Name = "chbContributionConstruction";
+            this.chbContributionConstruction.Size = new System.Drawing.Size(137, 23);
+            this.chbContributionConstruction.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.chbContributionConstruction.TabIndex = 0;
+            this.chbContributionConstruction.Text = "مشارکت در ساخت";
+            // 
+            // chbRentVilla
+            // 
+            this.chbRentVilla.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.chbRentVilla.BackColor = System.Drawing.Color.Transparent;
+            // 
+            // 
+            // 
+            this.chbRentVilla.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.chbRentVilla.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.chbRentVilla.Location = new System.Drawing.Point(458, 32);
+            this.chbRentVilla.Name = "chbRentVilla";
+            this.chbRentVilla.Size = new System.Drawing.Size(127, 23);
+            this.chbRentVilla.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.chbRentVilla.TabIndex = 0;
+            this.chbRentVilla.Text = "اجاره خانه و ویلا";
+            // 
+            // chbBuyAppartment
+            // 
+            this.chbBuyAppartment.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.chbBuyAppartment.BackColor = System.Drawing.Color.Transparent;
+            // 
+            // 
+            // 
+            this.chbBuyAppartment.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.chbBuyAppartment.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.chbBuyAppartment.Location = new System.Drawing.Point(251, 3);
+            this.chbBuyAppartment.Name = "chbBuyAppartment";
+            this.chbBuyAppartment.Size = new System.Drawing.Size(137, 23);
+            this.chbBuyAppartment.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.chbBuyAppartment.TabIndex = 0;
+            this.chbBuyAppartment.Text = "فروش آپارتمان";
+            // 
+            // chbRentAppartment
+            // 
+            this.chbRentAppartment.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.chbRentAppartment.BackColor = System.Drawing.Color.Transparent;
+            // 
+            // 
+            // 
+            this.chbRentAppartment.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.chbRentAppartment.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.chbRentAppartment.Location = new System.Drawing.Point(419, 3);
+            this.chbRentAppartment.Name = "chbRentAppartment";
+            this.chbRentAppartment.Size = new System.Drawing.Size(166, 23);
+            this.chbRentAppartment.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.chbRentAppartment.TabIndex = 0;
+            this.chbRentAppartment.Text = "اجاره آپارتمان";
+            // 
+            // chbGetFile
+            // 
+            this.chbGetFile.AutoSize = true;
+            this.chbGetFile.Location = new System.Drawing.Point(149, 309);
+            this.chbGetFile.Name = "chbGetFile";
+            this.chbGetFile.Size = new System.Drawing.Size(141, 24);
+            this.chbGetFile.TabIndex = 10;
+            this.chbGetFile.Text = "دریافت فایل فعال باشد";
+            this.chbGetFile.UseVisualStyleBackColor = true;
+            // 
             // frmRobotSetting
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(609, 578);
+            this.ClientSize = new System.Drawing.Size(609, 596);
             this.ControlBox = false;
             this.Controls.Add(this.groupPanel3);
+            this.Controls.Add(this.chbGetFile);
             this.Controls.Add(this.chbChat);
             this.Controls.Add(this.rbtnShakhsi);
             this.Controls.Add(this.rbtnRealState);
@@ -812,5 +824,6 @@
         private DevComponents.DotNetBar.Controls.CheckBoxX chbRentVilla;
         private DevComponents.DotNetBar.Controls.CheckBoxX chbBuyAppartment;
         private DevComponents.DotNetBar.Controls.CheckBoxX chbRentAppartment;
+        private System.Windows.Forms.CheckBox chbGetFile;
     }
 }
