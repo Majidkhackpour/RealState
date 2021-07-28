@@ -327,6 +327,7 @@ namespace Advertise.Classes
                 webClient.DownloadFile(src, filePath);
                 return name;
             }
+            catch (WebException) { return ""; }
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
@@ -524,7 +525,7 @@ namespace Advertise.Classes
                 if (model == null) return list;
                 var url = $"https://divar.ir/s/{model.LatinName}/rent-villa";
                 if (!string.IsNullOrEmpty(regionList))
-                    url += $"?districts={regionList}";
+                    url += $"{regionList}";
                 url += "&user_type=personal";
                 var listDivar = GetDataFromUrl(url, model.Name, cityGuid, "خانه و ویلا");
                 if (listDivar == null || listDivar.Count <= 0) return list;
@@ -690,7 +691,7 @@ namespace Advertise.Classes
                 if (model == null) return list;
                 var url = $"https://divar.ir/s/{model.LatinName}/rent-office";
                 if (!string.IsNullOrEmpty(regionList))
-                    url += $"?districts={regionList}";
+                    url += $"{regionList}";
                 url += "&user_type=personal";
                 var listDivar = GetDataFromUrl(url, model.Name, cityGuid, "دفتر کار، اتاق اداری و مطب");
                 if (listDivar == null || listDivar.Count <= 0) return list;
@@ -873,7 +874,7 @@ namespace Advertise.Classes
                 if (model == null) return list;
                 var url = $"https://divar.ir/s/{model.LatinName}/rent-store";
                 if (!string.IsNullOrEmpty(regionList))
-                    url += $"?districts={regionList}";
+                    url += $"{regionList}";
                 url += "&user_type=personal";
                 var listDivar = GetDataFromUrl(url, model.Name, cityGuid, "مغازه و غرفه");
                 if (listDivar == null || listDivar.Count <= 0) return list;
@@ -967,7 +968,7 @@ namespace Advertise.Classes
                 if (model == null) return list;
                 var url = $"https://divar.ir/s/{model.LatinName}/rent-industrial-agricultural-property";
                 if (!string.IsNullOrEmpty(regionList))
-                    url += $"?districts={regionList}";
+                    url += $"{regionList}";
                 url += "&user_type=personal";
                 var listDivar = GetDataFromUrl(url, model.Name, cityGuid, "صنعتی، کشاورزی و تجاری");
                 if (listDivar == null || listDivar.Count <= 0) return list;
@@ -1063,7 +1064,7 @@ namespace Advertise.Classes
                 if (model == null) return list;
                 var url = $"https://divar.ir/s/{model.LatinName}/buy-apartment";
                 if (!string.IsNullOrEmpty(regionList))
-                    url += $"?districts={regionList}";
+                    url += $"{regionList}";
                 url += "&user_type=personal&non-negotiable=true";
                 var listDivar = GetDataFromUrl(url, model.Name, cityGuid, "آپارتمان");
                 if (listDivar == null || listDivar.Count <= 0) return list;
@@ -1242,7 +1243,7 @@ namespace Advertise.Classes
                 if (model == null) return list;
                 var url = $"https://divar.ir/s/{model.LatinName}/buy-villa";
                 if (!string.IsNullOrEmpty(regionList))
-                    url += $"?districts={regionList}";
+                    url += $"{regionList}";
                 url += "&user_type=personal&non-negotiable=true";
                 var listDivar = GetDataFromUrl(url, model.Name, cityGuid, "خانه و ویلا");
                 if (listDivar == null || listDivar.Count <= 0) return list;
@@ -1400,7 +1401,7 @@ namespace Advertise.Classes
                 if (model == null) return list;
                 var url = $"https://divar.ir/s/{model.LatinName}/buy-old-house";
                 if (!string.IsNullOrEmpty(regionList))
-                    url += $"?districts={regionList}";
+                    url += $"{regionList}";
                 url += "&user_type=personal&non-negotiable=true";
                 var listDivar = GetDataFromUrl(url, model.Name, cityGuid, "زمین و کلنگی");
                 if (listDivar == null || listDivar.Count <= 0) return list;
@@ -1489,7 +1490,7 @@ namespace Advertise.Classes
                 if (model == null) return list;
                 var url = $"https://divar.ir/s/{model.LatinName}/buy-office";
                 if (!string.IsNullOrEmpty(regionList))
-                    url += $"?districts={regionList}";
+                    url += $"{regionList}";
                 url += "&user_type=personal&non-negotiable=true";
                 var listDivar = GetDataFromUrl(url, model.Name, cityGuid, "دفتر کار، اتاق اداری و مطب");
                 if (listDivar == null || listDivar.Count <= 0) return list;
@@ -1668,7 +1669,7 @@ namespace Advertise.Classes
                 if (model == null) return list;
                 var url = $"https://divar.ir/s/{model.LatinName}/buy-store";
                 if (!string.IsNullOrEmpty(regionList))
-                    url += $"?districts={regionList}";
+                    url += $"{regionList}";
                 url += "&user_type=personal&non-negotiable=true";
                 var listDivar = GetDataFromUrl(url, model.Name, cityGuid, "مغازه و غرفه");
                 if (listDivar == null || listDivar.Count <= 0) return list;
@@ -1757,7 +1758,7 @@ namespace Advertise.Classes
                 if (model == null) return list;
                 var url = $"https://divar.ir/s/{model.LatinName}/buy-industrial-agricultural-property";
                 if (!string.IsNullOrEmpty(regionList))
-                    url += $"?districts={regionList}";
+                    url += $"{regionList}";
                 url += "&user_type=personal&non-negotiable=true";
                 var listDivar = GetDataFromUrl(url, model.Name, cityGuid, "صنعتی، کشاورزی و تجاری");
                 if (listDivar == null || listDivar.Count <= 0) return list;
@@ -1847,7 +1848,7 @@ namespace Advertise.Classes
                 if (model == null) return list;
                 var url = $"https://divar.ir/s/{model.LatinName}/contribution-construction";
                 if (!string.IsNullOrEmpty(regionList))
-                    url += $"?districts={regionList}";
+                    url += $"{regionList}";
                 url += "&user_type=personal";
                 var listDivar = GetDataFromUrl(url, model.Name, cityGuid, "مشارکت در ساخت");
                 if (listDivar == null || listDivar.Count <= 0) return list;
@@ -1936,7 +1937,7 @@ namespace Advertise.Classes
                 if (model==null) return list;
                 var url = $"https://divar.ir/s/{model.LatinName}/pre-sell-home";
                 if (!string.IsNullOrEmpty(regionList))
-                    url += $"?districts={regionList}";
+                    url += $"{regionList}";
                 url += "&user_type=personal";
                 var listDivar = GetDataFromUrl(url, model.Name, cityGuid, "پیش‌فروش");
                 if (listDivar == null || listDivar.Count <= 0) return list;

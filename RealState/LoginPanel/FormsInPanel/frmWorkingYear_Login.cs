@@ -74,7 +74,7 @@ namespace RealState.LoginPanel.FormsInPanel
             try
             {
                 ErrorHandler.AddHandler(Assembly.GetExecutingAssembly().GetName().Version.ToString(), ENSource.Building,
-                    Application.StartupPath, clsRegistery.GetRegistery("U1001ML"));
+                    Application.StartupPath, clsRegistery.GetRegistery("X1001MA"));
                 ClsCache.Init(AppSettings.DefaultConnectionString, clsRegistery.GetRegistery("X1001MA"));
                 Logger.init(Application.StartupPath, "BuidlingEventLog.txt", true);
                 ErrorManager.Init(ENSource.Building, null);
