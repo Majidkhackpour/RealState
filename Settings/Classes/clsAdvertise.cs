@@ -221,7 +221,8 @@ namespace Settings.Classes
             {
                 if (_getFileDate != null) return (DateTime)_getFileDate;
                 var mem = SettingsBussines.Get("GetFileDate");
-                return mem?.Value.ParseToDate();
+                if (mem == null || string.IsNullOrEmpty(mem.Value)) return null;
+                return mem.Value.ParseToDate();
             }
             set
             {

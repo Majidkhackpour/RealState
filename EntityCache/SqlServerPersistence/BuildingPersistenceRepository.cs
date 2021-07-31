@@ -321,7 +321,6 @@ namespace EntityCache.SqlServerPersistence
                     var x = count.ToString().ParseToInt();
                     return x > 0;
                 }
-                return true;
             }
             catch (Exception ex)
             {
@@ -343,7 +342,7 @@ namespace EntityCache.SqlServerPersistence
                 res.VamPrice = (decimal)dr["VamPrice"];
                 res.QestPrice = (decimal)dr["QestPrice"];
                 res.Dang = (int)dr["Dang"];
-                res.DocumentType = (Guid)dr["DocumentType"];
+                if(dr["DocumentType"]!=DBNull.Value) res.DocumentType = (Guid)dr["DocumentType"];
                 var tr = dr["Tarakom"].ToString().ParseToShort();
                 res.Tarakom = (EnTarakom?)tr;
                 res.RahnPrice1 = (decimal)dr["RahnPrice1"];
@@ -352,7 +351,7 @@ namespace EntityCache.SqlServerPersistence
                 res.EjarePrice2 = (decimal)dr["EjarePrice2"];
                 if (dr["RentalAutorityGuid"] != DBNull.Value) res.RentalAutorityGuid = (Guid?)dr["RentalAutorityGuid"];
                 res.IsShortTime = (bool)dr["IsShortTime"];
-                res.IsOwnerHere = (bool)dr["IsOwnerHere"];
+                if(dr["IsOwnerHere"]!=DBNull.Value) res.IsOwnerHere = (bool)dr["IsOwnerHere"];
                 res.PishTotalPrice = (decimal)dr["PishTotalPrice"];
                 res.PishPrice = (decimal)dr["PishPrice"];
                 if (dr["DeliveryDate"] != DBNull.Value) res.DeliveryDate = (DateTime?)dr["DeliveryDate"];

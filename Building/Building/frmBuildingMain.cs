@@ -645,6 +645,7 @@ namespace Building.Building
             {
                 var imagePath = Path.Combine(Application.StartupPath, "Temp");
                 if (!Directory.Exists(imagePath)) Directory.CreateDirectory(imagePath);
+                if (cls.GalleryList == null) return;
                 foreach (var item in cls.GalleryList)
                 {
                     var fileName = Path.Combine(imagePath, item.ImageName + ".jpg");

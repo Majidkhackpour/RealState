@@ -83,6 +83,7 @@ namespace EntityCache.SqlServerPersistence
             {
                 foreach (var item in items)
                 {
+                    if (item.BuildingOptionGuid == Guid.Empty) continue;
                     res.AddReturnedValue(await SaveAsync(item, tr));
                     if (res.HasError) return res;
                 }

@@ -123,7 +123,10 @@ namespace EntityCache.Bussines
                 res.AddReturnedValue(await CheckValidationAsync());
                 if (res.HasError) return res;
 
-                if (OptionList.Count > 0)
+                res.AddReturnedValue(await UnitOfWork.Building.SaveAsync(this, tr));
+                if (res.HasError) return res;
+
+                if (OptionList?.Count > 0)
                 {
                     res.AddReturnedValue(await BuildingRelatedOptionsBussines.RemoveRangeAsync(Guid, tr));
                     if (res.HasError) return res;
@@ -133,7 +136,7 @@ namespace EntityCache.Bussines
                     res.AddReturnedValue(await BuildingRelatedOptionsBussines.SaveRangeAsync(OptionList, tr));
                     if (res.HasError) return res;
                 }
-                if (GalleryList.Count > 0)
+                if (GalleryList?.Count > 0)
                 {
                     res.AddReturnedValue(await BuildingGalleryBussines.RemoveRangeAsync(Guid, tr));
                     if (res.HasError) return res;
@@ -144,7 +147,7 @@ namespace EntityCache.Bussines
                     res.AddReturnedValue(await BuildingGalleryBussines.SaveRangeAsync(GalleryList, tr));
                     if (res.HasError) return res;
                 }
-                if (MediaList.Count > 0)
+                if (MediaList?.Count > 0)
                 {
                     res.AddReturnedValue(await BuildingMediaBussines.RemoveRangeAsync(Guid, tr));
                     if (res.HasError) return res;
@@ -155,10 +158,6 @@ namespace EntityCache.Bussines
                     res.AddReturnedValue(await BuildingMediaBussines.SaveRangeAsync(MediaList, tr));
                     if (res.HasError) return res;
                 }
-
-
-                res.AddReturnedValue(await UnitOfWork.Building.SaveAsync(this, tr));
-                if (res.HasError) return res;
 
                 var action = IsModified ? EnLogAction.Update : EnLogAction.Insert;
                 res.AddReturnedValue(await UserLogBussines.SaveAsync(action, EnLogPart.Building, tr));
@@ -187,11 +186,13 @@ namespace EntityCache.Bussines
             var res = new ReturnedSaveFuncInfo();
             try
             {
+                var code = lst.FirstOrDefault()?.Code.ParseToInt();
                 foreach (var item in lst)
                 {
+                    if (code > 0) item.Code = code.ToString();
                     if (item == null) continue;
                     res.AddReturnedValue(await item.SaveAsync(isRaiseEvent: false));
-                    if (res.HasError) return res;
+                    code++;
                 }
                 RaiseStaticEvent();
             }
@@ -302,6 +303,7 @@ namespace EntityCache.Bussines
             }
         }
         public static async Task<string> NextCodeAsync() => await UnitOfWork.Building.NextCodeAsync(Cache.ConnectionString);
+        public static string NextCode() => AsyncContext.Run(NextCodeAsync);
         public static async Task<bool> CheckCodeAsync(string code, Guid guid) =>
             await UnitOfWork.Building.CheckCodeAsync(Cache.ConnectionString, code, guid);
         public static async Task<List<BuildingViewModel>> GetAllAsync(string code, CancellationToken token, Guid buildingGuid,
@@ -463,7 +465,7 @@ namespace EntityCache.Bussines
             return res;
         }
         public static async Task<List<BuildingBussines>> GetAllHighPriorityAsync(CancellationToken token) => await UnitOfWork.Building.GetAllHighPriorityAsync(Cache.ConnectionString, token);
-        public static async Task<bool> CheckDuplicateAsync(string connectionString, int masahat = 0, int roomCount = 0,
+        public static async Task<bool> CheckDuplicateAsync(int masahat = 0, int roomCount = 0,
             decimal rahn = 0, decimal ejare = 0, decimal sellPrice = 0, int tabaqeNo = 0)
             => await UnitOfWork.Building.CheckDuplicateAsync(Cache.ConnectionString, masahat, roomCount, rahn, ejare,
                 sellPrice, tabaqeNo);

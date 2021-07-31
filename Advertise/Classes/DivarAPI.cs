@@ -262,6 +262,7 @@ namespace Advertise.Classes
                 {
                     var newDoc = web.Load(divar.Url);
                     divar.RegionGuid = GetRegionGuid(newDoc, divar.Name, cityPersianName, cityGuid, type);
+                    if (divar.RegionGuid == Guid.Empty) continue;
                     var o_ = newDoc.DocumentNode.SelectNodes("/html[1]/body[1]/script[1]")?.FirstOrDefault();
                     if (o_ == null) continue;
                     var text_ = o_.InnerText.Replace(@"\", "").Replace("window.production = true;", "")
@@ -291,10 +292,10 @@ namespace Advertise.Classes
                 var o_ = doc.DocumentNode.SelectNodes("/html[1]/head[1]/title[1]")?.FirstOrDefault();
                 var x = o_.InnerText.Replace($"{advertiseName}", "");
                 x = x.Replace("دیوار", "").Replace($"{cityPersianName}", "").Replace("|", "")
-                    .Replace(type, "").Replace("،", "").FixString().Trim();
-
+                    .Replace(type, "").Replace("،", "").Replace("مطب_دفترکار تجاری", "").FixString().Trim();
+                if (x.Length > 20) return Guid.Empty;
                 var region = RegionsBussines.Get(x);
-                if (region == null)
+                if (region == null || region.Guid == Guid.Empty)
                 {
                     region = new RegionsBussines()
                     {
@@ -348,6 +349,7 @@ namespace Advertise.Classes
                 if (listDivar == null || listDivar.Count <= 0) return list;
                 foreach (var item in listDivar)
                 {
+                    if (item.listData == null) continue;
                     var bu = new BuildingBussines()
                     {
                         Guid = Guid.NewGuid(),
@@ -356,7 +358,7 @@ namespace Advertise.Classes
                         Masahat = item.listData[0].items[0].value.FixString().ParseToInt(),
                         SellPrice = 0,
                         ServerStatus = ServerStatus.None,
-                        Code = await BuildingBussines.NextCodeAsync(),
+                        Code = BuildingBussines.NextCode(),
                         RahnPrice1 = item.listData[1].value.FixString().Replace("٫", "").Replace("تومان", "").ParseToDecimal() * 10,
                         ServerDeliveryDate = DateTime.Now,
                         EjarePrice1 = 0,
@@ -397,7 +399,7 @@ namespace Advertise.Classes
                         VahedPerTabaqe = 1,
                         Tarakom = null,
                         Side = EnBuildingSide.One,
-                        ShortDesc = "",
+                        ShortDesc = item.Description,
                         RentalAutorityGuid = null,
                         RahnPrice2 = 0,
                         QestPrice = 0,
@@ -437,6 +439,10 @@ namespace Advertise.Classes
                         bu.TabaqeNo = item.listData[6].value.FixString().ParseToInt();
                         bu.TedadTabaqe = bu.TabaqeNo;
                     }
+
+
+                    var ex = await BuildingBussines.CheckDuplicateAsync(bu.Masahat, bu.RoomCount, bu.RahnPrice1, bu.EjarePrice1, bu.SellPrice, bu.TabaqeNo);
+                    if (ex) continue;
 
                     bu.OptionList = new List<BuildingRelatedOptionsBussines>();
 
@@ -531,6 +537,7 @@ namespace Advertise.Classes
                 if (listDivar == null || listDivar.Count <= 0) return list;
                 foreach (var item in listDivar)
                 {
+                    if (item.listData == null) continue;
                     var bu = new BuildingBussines()
                     {
                         Guid = Guid.NewGuid(),
@@ -539,7 +546,7 @@ namespace Advertise.Classes
                         Masahat = item.listData[0].items[0].value.FixString().ParseToInt(),
                         SellPrice = 0,
                         ServerStatus = ServerStatus.None,
-                        Code = await BuildingBussines.NextCodeAsync(),
+                        Code = BuildingBussines.NextCode(),
                         RahnPrice1 = item.listData[1].value.FixString().Replace("٫", "").Replace("تومان", "").ParseToDecimal() * 10,
                         ServerDeliveryDate = DateTime.Now,
                         EjarePrice1 = 0,
@@ -580,7 +587,7 @@ namespace Advertise.Classes
                         VahedPerTabaqe = 1,
                         Tarakom = null,
                         Side = EnBuildingSide.One,
-                        ShortDesc = "",
+                        ShortDesc = item.Description,
                         RentalAutorityGuid = null,
                         RahnPrice2 = 0,
                         QestPrice = 0,
@@ -603,6 +610,9 @@ namespace Advertise.Classes
 
                     bu.TabaqeNo = 1;
                     bu.TedadTabaqe = 1;
+
+                    var ex = await BuildingBussines.CheckDuplicateAsync(bu.Masahat, bu.RoomCount, bu.RahnPrice1, bu.EjarePrice1, bu.SellPrice, bu.TabaqeNo);
+                    if (ex) continue;
 
                     bu.OptionList = new List<BuildingRelatedOptionsBussines>();
 
@@ -697,6 +707,7 @@ namespace Advertise.Classes
                 if (listDivar == null || listDivar.Count <= 0) return list;
                 foreach (var item in listDivar)
                 {
+                    if (item.listData == null) continue;
                     var bu = new BuildingBussines()
                     {
                         Guid = Guid.NewGuid(),
@@ -705,7 +716,7 @@ namespace Advertise.Classes
                         Masahat = item.listData[0].items[0].value.FixString().ParseToInt(),
                         SellPrice = 0,
                         ServerStatus = ServerStatus.None,
-                        Code = await BuildingBussines.NextCodeAsync(),
+                        Code = BuildingBussines.NextCode(),
                         RahnPrice1 = item.listData[1].value.FixString().Replace("٫", "").Replace("تومان", "").ParseToDecimal() * 10,
                         ServerDeliveryDate = DateTime.Now,
                         EjarePrice1 = 0,
@@ -746,7 +757,7 @@ namespace Advertise.Classes
                         VahedPerTabaqe = 1,
                         Tarakom = null,
                         Side = EnBuildingSide.One,
-                        ShortDesc = "",
+                        ShortDesc = item.Description,
                         RentalAutorityGuid = null,
                         RahnPrice2 = 0,
                         QestPrice = 0,
@@ -786,6 +797,9 @@ namespace Advertise.Classes
                         bu.TabaqeNo = item.listData[5].value.FixString().ParseToInt();
                         bu.TedadTabaqe = bu.TabaqeNo;
                     }
+
+                    var ex = await BuildingBussines.CheckDuplicateAsync(bu.Masahat, bu.RoomCount, bu.RahnPrice1, bu.EjarePrice1, bu.SellPrice, bu.TabaqeNo);
+                    if (ex) continue;
 
                     bu.OptionList = new List<BuildingRelatedOptionsBussines>();
 
@@ -880,6 +894,7 @@ namespace Advertise.Classes
                 if (listDivar == null || listDivar.Count <= 0) return list;
                 foreach (var item in listDivar)
                 {
+                    if (item.listData == null) continue;
                     var bu = new BuildingBussines()
                     {
                         Guid = Guid.NewGuid(),
@@ -888,7 +903,7 @@ namespace Advertise.Classes
                         Masahat = item.listData[0].items[0].value.FixString().ParseToInt(),
                         SellPrice = 0,
                         ServerStatus = ServerStatus.None,
-                        Code = await BuildingBussines.NextCodeAsync(),
+                        Code = BuildingBussines.NextCode(),
                         RahnPrice1 = item.listData[1].value.FixString().Replace("٫", "").Replace("تومان", "").ParseToDecimal() * 10,
                         ServerDeliveryDate = DateTime.Now,
                         EjarePrice1 = 0,
@@ -929,7 +944,7 @@ namespace Advertise.Classes
                         VahedPerTabaqe = 1,
                         Tarakom = null,
                         Side = EnBuildingSide.One,
-                        ShortDesc = "",
+                        ShortDesc = item.Description,
                         RentalAutorityGuid = null,
                         RahnPrice2 = 0,
                         QestPrice = 0,
@@ -949,7 +964,8 @@ namespace Advertise.Classes
                     else
                         bu.EjarePrice1 = item.listData[2].value.FixString().Replace("٫", "").Replace("تومان", "").ParseToDecimal() *
                                          10;
-
+                    var ex = await BuildingBussines.CheckDuplicateAsync(bu.Masahat, bu.RoomCount, bu.RahnPrice1, bu.EjarePrice1, bu.SellPrice, bu.TabaqeNo);
+                    if (ex) continue;
                     list.Add(bu);
                 }
             }
@@ -974,6 +990,7 @@ namespace Advertise.Classes
                 if (listDivar == null || listDivar.Count <= 0) return list;
                 foreach (var item in listDivar)
                 {
+                    if (item.listData == null || (item.listData[0].items?.Count??0) < 3) continue;
                     var bu = new BuildingBussines()
                     {
                         Guid = Guid.NewGuid(),
@@ -982,7 +999,7 @@ namespace Advertise.Classes
                         Masahat = item.listData[0].items[0].value.FixString().ParseToInt(),
                         SellPrice = 0,
                         ServerStatus = ServerStatus.None,
-                        Code = await BuildingBussines.NextCodeAsync(),
+                        Code = BuildingBussines.NextCode(),
                         RahnPrice1 = item.listData[1].value.FixString().Replace("٫", "").Replace("تومان", "").ParseToDecimal() * 10,
                         ServerDeliveryDate = DateTime.Now,
                         EjarePrice1 = 0,
@@ -1023,7 +1040,7 @@ namespace Advertise.Classes
                         VahedPerTabaqe = 1,
                         Tarakom = null,
                         Side = EnBuildingSide.One,
-                        ShortDesc = "",
+                        ShortDesc = item.Description,
                         RentalAutorityGuid = null,
                         RahnPrice2 = 0,
                         QestPrice = 0,
@@ -1043,7 +1060,8 @@ namespace Advertise.Classes
                     else
                         bu.EjarePrice1 = item.listData[2].value.FixString().Replace("٫", "").Replace("تومان", "").ParseToDecimal() *
                                          10;
-
+                    var ex = await BuildingBussines.CheckDuplicateAsync(bu.Masahat, bu.RoomCount, bu.RahnPrice1, bu.EjarePrice1, bu.SellPrice, bu.TabaqeNo);
+                    if (ex) continue;
                     list.Add(bu);
                 }
             }
@@ -1070,6 +1088,7 @@ namespace Advertise.Classes
                 if (listDivar == null || listDivar.Count <= 0) return list;
                 foreach (var item in listDivar)
                 {
+                    if (item.listData == null) continue;
                     var bu = new BuildingBussines()
                     {
                         Guid = Guid.NewGuid(),
@@ -1078,7 +1097,7 @@ namespace Advertise.Classes
                         Masahat = item.listData[0].items[0].value.FixString().ParseToInt(),
                         SellPrice = item.listData[1].value.FixString().Replace("٫", "").Replace("تومان", "").ParseToDecimal() * 10,
                         ServerStatus = ServerStatus.None,
-                        Code = await BuildingBussines.NextCodeAsync(),
+                        Code = BuildingBussines.NextCode(),
                         RahnPrice1 = 0,
                         ServerDeliveryDate = DateTime.Now,
                         EjarePrice1 = 0,
@@ -1119,7 +1138,7 @@ namespace Advertise.Classes
                         VahedPerTabaqe = 1,
                         Tarakom = null,
                         Side = EnBuildingSide.One,
-                        ShortDesc = "",
+                        ShortDesc = item.Description,
                         RentalAutorityGuid = null,
                         RahnPrice2 = 0,
                         QestPrice = 0,
@@ -1155,7 +1174,8 @@ namespace Advertise.Classes
                         bu.TabaqeNo = item.listData[4].value.FixString().ParseToInt();
                         bu.TedadTabaqe = bu.TabaqeNo;
                     }
-
+                    var ex = await BuildingBussines.CheckDuplicateAsync(bu.Masahat, bu.RoomCount, bu.RahnPrice1, bu.EjarePrice1, bu.SellPrice, bu.TabaqeNo);
+                    if (ex) continue;
                     bu.OptionList = new List<BuildingRelatedOptionsBussines>();
 
                     var evelator = await BuildingOptionsBussines.GetAsync(item.listData[5].items[0].value.FixString());
@@ -1249,6 +1269,7 @@ namespace Advertise.Classes
                 if (listDivar == null || listDivar.Count <= 0) return list;
                 foreach (var item in listDivar)
                 {
+                    if (item.listData == null) continue;
                     var bu = new BuildingBussines()
                     {
                         Guid = Guid.NewGuid(),
@@ -1257,7 +1278,7 @@ namespace Advertise.Classes
                         Masahat = item.listData[0].items[0].value.FixString().ParseToInt(),
                         SellPrice = item.listData[1].value.FixString().Replace("٫", "").Replace("تومان", "").ParseToDecimal() * 10,
                         ServerStatus = ServerStatus.None,
-                        Code = await BuildingBussines.NextCodeAsync(),
+                        Code = BuildingBussines.NextCode(),
                         RahnPrice1 = 0,
                         ServerDeliveryDate = DateTime.Now,
                         EjarePrice1 = 0,
@@ -1298,7 +1319,7 @@ namespace Advertise.Classes
                         VahedPerTabaqe = 1,
                         Tarakom = null,
                         Side = EnBuildingSide.One,
-                        ShortDesc = "",
+                        ShortDesc = item.Description,
                         RentalAutorityGuid = null,
                         RahnPrice2 = 0,
                         QestPrice = 0,
@@ -1313,7 +1334,8 @@ namespace Advertise.Classes
                         PishTotalPrice = 0,
                         Priority = EnBuildingPriority.Low
                     };
-
+                    var ex = await BuildingBussines.CheckDuplicateAsync(bu.Masahat, bu.RoomCount, bu.RahnPrice1, bu.EjarePrice1, bu.SellPrice, bu.TabaqeNo);
+                    if (ex) continue;
                     bu.OptionList = new List<BuildingRelatedOptionsBussines>();
 
                     var evelator = await BuildingOptionsBussines.GetAsync(item.listData[4].items[0].value.FixString());
@@ -1407,6 +1429,7 @@ namespace Advertise.Classes
                 if (listDivar == null || listDivar.Count <= 0) return list;
                 foreach (var item in listDivar)
                 {
+                    if (item.listData == null) continue;
                     var bu = new BuildingBussines()
                     {
                         Guid = Guid.NewGuid(),
@@ -1415,7 +1438,7 @@ namespace Advertise.Classes
                         Masahat = item.listData[0].value.FixString().ParseToInt(),
                         SellPrice = item.listData[1].value.FixString().Replace("٫", "").Replace("تومان", "").ParseToDecimal() * 10,
                         ServerStatus = ServerStatus.None,
-                        Code = await BuildingBussines.NextCodeAsync(),
+                        Code = BuildingBussines.NextCode(),
                         RahnPrice1 = 0,
                         ServerDeliveryDate = DateTime.Now,
                         EjarePrice1 = 0,
@@ -1456,7 +1479,7 @@ namespace Advertise.Classes
                         VahedPerTabaqe = 1,
                         Tarakom = null,
                         Side = EnBuildingSide.One,
-                        ShortDesc = "",
+                        ShortDesc = item.Description,
                         RentalAutorityGuid = null,
                         RahnPrice2 = 0,
                         QestPrice = 0,
@@ -1471,7 +1494,8 @@ namespace Advertise.Classes
                         PishTotalPrice = 0,
                         Priority = EnBuildingPriority.Low
                     };
-
+                    var ex = await BuildingBussines.CheckDuplicateAsync(bu.Masahat, bu.RoomCount, bu.RahnPrice1, bu.EjarePrice1, bu.SellPrice, bu.TabaqeNo);
+                    if (ex) continue;
                     list.Add(bu);
                 }
             }
@@ -1496,6 +1520,7 @@ namespace Advertise.Classes
                 if (listDivar == null || listDivar.Count <= 0) return list;
                 foreach (var item in listDivar)
                 {
+                    if (item.listData == null || item.listData.Count == 6) continue;
                     var bu = new BuildingBussines()
                     {
                         Guid = Guid.NewGuid(),
@@ -1504,7 +1529,7 @@ namespace Advertise.Classes
                         Masahat = item.listData[0].items[0].value.FixString().ParseToInt(),
                         SellPrice = item.listData[1].value.FixString().Replace("٫", "").Replace("تومان", "").ParseToDecimal() * 10,
                         ServerStatus = ServerStatus.None,
-                        Code = await BuildingBussines.NextCodeAsync(),
+                        Code = BuildingBussines.NextCode(),
                         RahnPrice1 = 0,
                         ServerDeliveryDate = DateTime.Now,
                         EjarePrice1 = 0,
@@ -1545,7 +1570,7 @@ namespace Advertise.Classes
                         VahedPerTabaqe = 1,
                         Tarakom = null,
                         Side = EnBuildingSide.One,
-                        ShortDesc = "",
+                        ShortDesc = item.Description,
                         RentalAutorityGuid = null,
                         RahnPrice2 = 0,
                         QestPrice = 0,
@@ -1561,7 +1586,7 @@ namespace Advertise.Classes
                         Priority = EnBuildingPriority.Low
                     };
 
-                    if (item.listData[5].value.Contains("از"))
+                    if (item.listData[5]?.value?.Contains("از") ?? false)
                     {
                         if (item.listData[5].value.Contains("همکف"))
                         {
@@ -1578,13 +1603,14 @@ namespace Advertise.Classes
                     }
                     else
                     {
-                        bu.TabaqeNo = item.listData[5].value.FixString().ParseToInt();
+                        bu.TabaqeNo = item.listData[5]?.value?.FixString().ParseToInt() ?? 0;
                         bu.TedadTabaqe = bu.TabaqeNo;
                     }
-
+                    var ex = await BuildingBussines.CheckDuplicateAsync(bu.Masahat, bu.RoomCount, bu.RahnPrice1, bu.EjarePrice1, bu.SellPrice, bu.TabaqeNo);
+                    if (ex) continue;
                     bu.OptionList = new List<BuildingRelatedOptionsBussines>();
 
-                    var evelator = await BuildingOptionsBussines.GetAsync(item.listData[6].items[0].value.FixString());
+                    var evelator = await BuildingOptionsBussines.GetAsync(item.listData[6]?.items[0]?.value.FixString());
                     if (evelator == null)
                     {
                         evelator = new BuildingOptionsBussines()
@@ -1675,6 +1701,7 @@ namespace Advertise.Classes
                 if (listDivar == null || listDivar.Count <= 0) return list;
                 foreach (var item in listDivar)
                 {
+                    if (item.listData == null) continue;
                     var bu = new BuildingBussines()
                     {
                         Guid = Guid.NewGuid(),
@@ -1683,7 +1710,7 @@ namespace Advertise.Classes
                         Masahat = item.listData[0].items[0].value.FixString().ParseToInt(),
                         SellPrice = item.listData[1].value.FixString().Replace("٫", "").Replace("تومان", "").ParseToDecimal() * 10,
                         ServerStatus = ServerStatus.None,
-                        Code = await BuildingBussines.NextCodeAsync(),
+                        Code = BuildingBussines.NextCode(),
                         RahnPrice1 = 0,
                         ServerDeliveryDate = DateTime.Now,
                         EjarePrice1 = 0,
@@ -1724,7 +1751,7 @@ namespace Advertise.Classes
                         VahedPerTabaqe = 1,
                         Tarakom = null,
                         Side = EnBuildingSide.One,
-                        ShortDesc = "",
+                        ShortDesc = item.Description,
                         RentalAutorityGuid = null,
                         RahnPrice2 = 0,
                         QestPrice = 0,
@@ -1739,7 +1766,8 @@ namespace Advertise.Classes
                         PishTotalPrice = 0,
                         Priority = EnBuildingPriority.Low
                     };
-
+                    var ex = await BuildingBussines.CheckDuplicateAsync(bu.Masahat, bu.RoomCount, bu.RahnPrice1, bu.EjarePrice1, bu.SellPrice, bu.TabaqeNo);
+                    if (ex) continue;
                     list.Add(bu);
                 }
             }
@@ -1764,6 +1792,7 @@ namespace Advertise.Classes
                 if (listDivar == null || listDivar.Count <= 0) return list;
                 foreach (var item in listDivar)
                 {
+                    if (item.listData == null || item.listData.Count == 4 || (item.listData[0].items?.Count??0) < 3) continue;
                     var bu = new BuildingBussines()
                     {
                         Guid = Guid.NewGuid(),
@@ -1772,7 +1801,7 @@ namespace Advertise.Classes
                         Masahat = item.listData[0].items[0].value.FixString().ParseToInt(),
                         SellPrice = item.listData[1].value.FixString().Replace("٫", "").Replace("تومان", "").ParseToDecimal() * 10,
                         ServerStatus = ServerStatus.None,
-                        Code = await BuildingBussines.NextCodeAsync(),
+                        Code = BuildingBussines.NextCode(),
                         RahnPrice1 = 0,
                         ServerDeliveryDate = DateTime.Now,
                         EjarePrice1 = 0,
@@ -1813,7 +1842,7 @@ namespace Advertise.Classes
                         VahedPerTabaqe = 1,
                         Tarakom = null,
                         Side = EnBuildingSide.One,
-                        ShortDesc = "",
+                        ShortDesc = item.Description,
                         RentalAutorityGuid = null,
                         RahnPrice2 = 0,
                         QestPrice = 0,
@@ -1828,9 +1857,10 @@ namespace Advertise.Classes
                         PishTotalPrice = 0,
                         Priority = EnBuildingPriority.Low
                     };
-
-                    list.Add(bu);
-                }
+                var ex = await BuildingBussines.CheckDuplicateAsync(bu.Masahat, bu.RoomCount, bu.RahnPrice1, bu.EjarePrice1, bu.SellPrice, bu.TabaqeNo);
+                if (ex) continue;
+                list.Add(bu);
+            }
             }
             catch (Exception ex)
             {
@@ -1840,219 +1870,223 @@ namespace Advertise.Classes
             return list;
         }
 
-        public static async Task<List<BuildingBussines>> GetContributionConstruction(DivarCities model, Guid cityGuid, string regionList)
+public static async Task<List<BuildingBussines>> GetContributionConstruction(DivarCities model, Guid cityGuid, string regionList)
+{
+    var list = new List<BuildingBussines>();
+    try
+    {
+        if (model == null) return list;
+        var url = $"https://divar.ir/s/{model.LatinName}/contribution-construction";
+        if (!string.IsNullOrEmpty(regionList))
+            url += $"{regionList}";
+        url += "&user_type=personal";
+        var listDivar = GetDataFromUrl(url, model.Name, cityGuid, "مشارکت در ساخت");
+        if (listDivar == null || listDivar.Count <= 0) return list;
+        foreach (var item in listDivar)
         {
-            var list = new List<BuildingBussines>();
-            try
+            if (item.listData == null) continue;
+            var bu = new BuildingBussines()
             {
-                if (model == null) return list;
-                var url = $"https://divar.ir/s/{model.LatinName}/contribution-construction";
-                if (!string.IsNullOrEmpty(regionList))
-                    url += $"{regionList}";
-                url += "&user_type=personal";
-                var listDivar = GetDataFromUrl(url, model.Name, cityGuid, "مشارکت در ساخت");
-                if (listDivar == null || listDivar.Count <= 0) return list;
-                foreach (var item in listDivar)
-                {
-                    var bu = new BuildingBussines()
-                    {
-                        Guid = Guid.NewGuid(),
-                        Modified = DateTime.Now,
-                        Status = true,
-                        Masahat = 0,
-                        SellPrice = 0,
-                        ServerStatus = ServerStatus.None,
-                        Code = await BuildingBussines.NextCodeAsync(),
-                        RahnPrice1 = 0,
-                        ServerDeliveryDate = DateTime.Now,
-                        EjarePrice1 = 0,
-                        RegionGuid = item.RegionGuid,
-                        Tell = EnKhadamati.Mostaqel,
-                        RoomCount = 0,
-                        UserGuid = UserBussines.CurrentUser.Guid,
-                        Address = "",
-                        GalleryList = null,
-                        Image = DownloadImage(item.Image),
-                        BuildingAccountTypeGuid = BuildingAccountTypeBussines.GetAll("مسکونی")?.FirstOrDefault()?.Guid ?? Guid.Empty,
-                        CreateDate = DateTime.Now,
-                        SaleSakht = "",
-                        MediaList = null,
-                        IsArchive = false,
-                        ZirBana = 0,
-                        DocumentType = null,
-                        BuildingTypeGuid = BuildingTypeBussines.Get("زمین مسکونی")?.Guid ?? Guid.Empty,
-                        OwnerGuid = ParentDefaults.TafsilCoding.CLSTafsil1030401,
-                        Barq = EnKhadamati.Mostaqel,
-                        BonBast = false,
-                        BuildingConditionGuid = BuildingConditionBussines.GetAll("تخلیه")?.FirstOrDefault()?.Guid ?? Guid.Empty,
-                        BuildingViewGuid = BuildingViewBussines.GetAll("سنگ")?.FirstOrDefault()?.Guid ?? Guid.Empty,
-                        CityGuid = cityGuid,
-                        Dang = 6,
-                        DateParvane = "",
-                        DeliveryDate = null,
-                        EjarePrice2 = 0,
-                        ErtefaSaqf = 0,
-                        FloorCoverGuid = FloorCoverBussines.GetAll("سرامیک")?.FirstOrDefault()?.Guid ?? Guid.Empty,
-                        Gas = EnKhadamati.Mostaqel,
-                        Hashie = 0,
-                        IsOwnerHere = null,
-                        IsShortTime = false,
-                        KitchenServiceGuid = KitchenServiceBussines.GetAll("MDF")?.FirstOrDefault()?.Guid ?? Guid.Empty,
-                        Water = EnKhadamati.Mostaqel,
-                        VamPrice = 0,
-                        VahedPerTabaqe = 1,
-                        Tarakom = null,
-                        Side = EnBuildingSide.One,
-                        ShortDesc = "",
-                        RentalAutorityGuid = null,
-                        RahnPrice2 = 0,
-                        QestPrice = 0,
-                        MamarJoda = true,
-                        MetrazhKouche = 0,
-                        MetrazhTejari = 0,
-                        MoavezeDesc = "",
-                        MosharekatDesc = "",
-                        ParvaneSerial = "",
-                        PishDesc = "",
-                        PishPrice = 0,
-                        PishTotalPrice = 0,
-                        Priority = EnBuildingPriority.Low
-                    };
-
-                    list.Add(bu);
-                }
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-
-            return list;
+                Guid = Guid.NewGuid(),
+                Modified = DateTime.Now,
+                Status = true,
+                Masahat = 0,
+                SellPrice = 0,
+                ServerStatus = ServerStatus.None,
+                Code = BuildingBussines.NextCode(),
+                RahnPrice1 = 0,
+                ServerDeliveryDate = DateTime.Now,
+                EjarePrice1 = 0,
+                RegionGuid = item.RegionGuid,
+                Tell = EnKhadamati.Mostaqel,
+                RoomCount = 0,
+                UserGuid = UserBussines.CurrentUser.Guid,
+                Address = "",
+                GalleryList = null,
+                Image = DownloadImage(item.Image),
+                BuildingAccountTypeGuid = BuildingAccountTypeBussines.GetAll("مسکونی")?.FirstOrDefault()?.Guid ?? Guid.Empty,
+                CreateDate = DateTime.Now,
+                SaleSakht = "",
+                MediaList = null,
+                IsArchive = false,
+                ZirBana = 0,
+                DocumentType = null,
+                BuildingTypeGuid = BuildingTypeBussines.Get("زمین مسکونی")?.Guid ?? Guid.Empty,
+                OwnerGuid = ParentDefaults.TafsilCoding.CLSTafsil1030401,
+                Barq = EnKhadamati.Mostaqel,
+                BonBast = false,
+                BuildingConditionGuid = BuildingConditionBussines.GetAll("تخلیه")?.FirstOrDefault()?.Guid ?? Guid.Empty,
+                BuildingViewGuid = BuildingViewBussines.GetAll("سنگ")?.FirstOrDefault()?.Guid ?? Guid.Empty,
+                CityGuid = cityGuid,
+                Dang = 6,
+                DateParvane = "",
+                DeliveryDate = null,
+                EjarePrice2 = 0,
+                ErtefaSaqf = 0,
+                FloorCoverGuid = FloorCoverBussines.GetAll("سرامیک")?.FirstOrDefault()?.Guid ?? Guid.Empty,
+                Gas = EnKhadamati.Mostaqel,
+                Hashie = 0,
+                IsOwnerHere = null,
+                IsShortTime = false,
+                KitchenServiceGuid = KitchenServiceBussines.GetAll("MDF")?.FirstOrDefault()?.Guid ?? Guid.Empty,
+                Water = EnKhadamati.Mostaqel,
+                VamPrice = 0,
+                VahedPerTabaqe = 1,
+                Tarakom = null,
+                Side = EnBuildingSide.One,
+                ShortDesc = item.Description,
+                RentalAutorityGuid = null,
+                RahnPrice2 = 0,
+                QestPrice = 0,
+                MamarJoda = true,
+                MetrazhKouche = 0,
+                MetrazhTejari = 0,
+                MoavezeDesc = "",
+                MosharekatDesc = "",
+                ParvaneSerial = "",
+                PishDesc = "",
+                PishPrice = 0,
+                PishTotalPrice = 0,
+                Priority = EnBuildingPriority.Low
+            };
+            var ex = await BuildingBussines.CheckDuplicateAsync(bu.Masahat, bu.RoomCount, bu.RahnPrice1, bu.EjarePrice1, bu.SellPrice, bu.TabaqeNo);
+            if (ex) continue;
+            list.Add(bu);
         }
-        public static async Task<List<BuildingBussines>> GetPreeSellHome(DivarCities model, Guid cityGuid, string regionList)
+    }
+    catch (Exception ex)
+    {
+        WebErrorLog.ErrorInstence.StartErrorLog(ex);
+    }
+
+    return list;
+}
+public static async Task<List<BuildingBussines>> GetPreeSellHome(DivarCities model, Guid cityGuid, string regionList)
+{
+    var list = new List<BuildingBussines>();
+    try
+    {
+        if (model == null) return list;
+        var url = $"https://divar.ir/s/{model.LatinName}/pre-sell-home";
+        if (!string.IsNullOrEmpty(regionList))
+            url += $"{regionList}";
+        url += "&user_type=personal";
+        var listDivar = GetDataFromUrl(url, model.Name, cityGuid, "پیش‌فروش");
+        if (listDivar == null || listDivar.Count <= 0) return list;
+        foreach (var item in listDivar)
         {
-            var list = new List<BuildingBussines>();
-            try
+            if (item.listData == null) continue;
+            var bu = new BuildingBussines()
             {
-                if (model==null) return list;
-                var url = $"https://divar.ir/s/{model.LatinName}/pre-sell-home";
-                if (!string.IsNullOrEmpty(regionList))
-                    url += $"{regionList}";
-                url += "&user_type=personal";
-                var listDivar = GetDataFromUrl(url, model.Name, cityGuid, "پیش‌فروش");
-                if (listDivar == null || listDivar.Count <= 0) return list;
-                foreach (var item in listDivar)
-                {
-                    var bu = new BuildingBussines()
-                    {
-                        Guid = Guid.NewGuid(),
-                        Modified = DateTime.Now,
-                        Status = true,
-                        Masahat = 0,
-                        SellPrice = 0,
-                        ServerStatus = ServerStatus.None,
-                        Code = await BuildingBussines.NextCodeAsync(),
-                        RahnPrice1 = 0,
-                        ServerDeliveryDate = DateTime.Now,
-                        EjarePrice1 = 0,
-                        RegionGuid = item.RegionGuid,
-                        Tell = EnKhadamati.Mostaqel,
-                        RoomCount = 0,
-                        UserGuid = UserBussines.CurrentUser.Guid,
-                        Address = "",
-                        GalleryList = null,
-                        Image = DownloadImage(item.Image),
-                        BuildingAccountTypeGuid = BuildingAccountTypeBussines.GetAll("مسکونی")?.FirstOrDefault()?.Guid ?? Guid.Empty,
-                        CreateDate = DateTime.Now,
-                        SaleSakht = "",
-                        MediaList = null,
-                        IsArchive = false,
-                        ZirBana = 0,
-                        DocumentType = null,
-                        BuildingTypeGuid = BuildingTypeBussines.Get("منزل مسکونی")?.Guid ?? Guid.Empty,
-                        OwnerGuid = ParentDefaults.TafsilCoding.CLSTafsil1030401,
-                        Barq = EnKhadamati.Mostaqel,
-                        BonBast = false,
-                        BuildingConditionGuid = BuildingConditionBussines.GetAll("تخلیه")?.FirstOrDefault()?.Guid ?? Guid.Empty,
-                        BuildingViewGuid = BuildingViewBussines.GetAll("سنگ")?.FirstOrDefault()?.Guid ?? Guid.Empty,
-                        CityGuid = cityGuid,
-                        Dang = 6,
-                        DateParvane = "",
-                        DeliveryDate = null,
-                        EjarePrice2 = 0,
-                        ErtefaSaqf = 0,
-                        FloorCoverGuid = FloorCoverBussines.GetAll("سرامیک")?.FirstOrDefault()?.Guid ?? Guid.Empty,
-                        Gas = EnKhadamati.Mostaqel,
-                        Hashie = 0,
-                        IsOwnerHere = null,
-                        IsShortTime = false,
-                        KitchenServiceGuid = KitchenServiceBussines.GetAll("MDF")?.FirstOrDefault()?.Guid ?? Guid.Empty,
-                        Water = EnKhadamati.Mostaqel,
-                        VamPrice = 0,
-                        VahedPerTabaqe = 1,
-                        Tarakom = null,
-                        Side = EnBuildingSide.One,
-                        ShortDesc = "",
-                        RentalAutorityGuid = null,
-                        RahnPrice2 = 0,
-                        QestPrice = 0,
-                        MamarJoda = true,
-                        MetrazhKouche = 0,
-                        MetrazhTejari = 0,
-                        MoavezeDesc = "",
-                        MosharekatDesc = "",
-                        ParvaneSerial = "",
-                        PishDesc = "",
-                        PishPrice = 0,
-                        PishTotalPrice = 0,
-                        Priority = EnBuildingPriority.Low
-                    };
-
-                    list.Add(bu);
-                }
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-
-            return list;
+                Guid = Guid.NewGuid(),
+                Modified = DateTime.Now,
+                Status = true,
+                Masahat = 0,
+                SellPrice = 0,
+                ServerStatus = ServerStatus.None,
+                Code = BuildingBussines.NextCode(),
+                RahnPrice1 = 0,
+                ServerDeliveryDate = DateTime.Now,
+                EjarePrice1 = 0,
+                RegionGuid = item.RegionGuid,
+                Tell = EnKhadamati.Mostaqel,
+                RoomCount = 0,
+                UserGuid = UserBussines.CurrentUser.Guid,
+                Address = "",
+                GalleryList = null,
+                Image = DownloadImage(item.Image),
+                BuildingAccountTypeGuid = BuildingAccountTypeBussines.GetAll("مسکونی")?.FirstOrDefault()?.Guid ?? Guid.Empty,
+                CreateDate = DateTime.Now,
+                SaleSakht = "",
+                MediaList = null,
+                IsArchive = false,
+                ZirBana = 0,
+                DocumentType = null,
+                BuildingTypeGuid = BuildingTypeBussines.Get("منزل مسکونی")?.Guid ?? Guid.Empty,
+                OwnerGuid = ParentDefaults.TafsilCoding.CLSTafsil1030401,
+                Barq = EnKhadamati.Mostaqel,
+                BonBast = false,
+                BuildingConditionGuid = BuildingConditionBussines.GetAll("تخلیه")?.FirstOrDefault()?.Guid ?? Guid.Empty,
+                BuildingViewGuid = BuildingViewBussines.GetAll("سنگ")?.FirstOrDefault()?.Guid ?? Guid.Empty,
+                CityGuid = cityGuid,
+                Dang = 6,
+                DateParvane = "",
+                DeliveryDate = null,
+                EjarePrice2 = 0,
+                ErtefaSaqf = 0,
+                FloorCoverGuid = FloorCoverBussines.GetAll("سرامیک")?.FirstOrDefault()?.Guid ?? Guid.Empty,
+                Gas = EnKhadamati.Mostaqel,
+                Hashie = 0,
+                IsOwnerHere = null,
+                IsShortTime = false,
+                KitchenServiceGuid = KitchenServiceBussines.GetAll("MDF")?.FirstOrDefault()?.Guid ?? Guid.Empty,
+                Water = EnKhadamati.Mostaqel,
+                VamPrice = 0,
+                VahedPerTabaqe = 1,
+                Tarakom = null,
+                Side = EnBuildingSide.One,
+                ShortDesc = item.Description,
+                RentalAutorityGuid = null,
+                RahnPrice2 = 0,
+                QestPrice = 0,
+                MamarJoda = true,
+                MetrazhKouche = 0,
+                MetrazhTejari = 0,
+                MoavezeDesc = "",
+                MosharekatDesc = "",
+                ParvaneSerial = "",
+                PishDesc = "",
+                PishPrice = 0,
+                PishTotalPrice = 0,
+                Priority = EnBuildingPriority.Low
+            };
+            var ex = await BuildingBussines.CheckDuplicateAsync(bu.Masahat, bu.RoomCount, bu.RahnPrice1, bu.EjarePrice1, bu.SellPrice, bu.TabaqeNo);
+            if (ex) continue;
+            list.Add(bu);
         }
+    }
+    catch (Exception ex)
+    {
+        WebErrorLog.ErrorInstence.StartErrorLog(ex);
+    }
+
+    return list;
+}
     }
     public class Regions
-    {
-        public List<RegionData> Children { get; set; }
-    }
-    public class RegionData
-    {
-        public long Enum { get; set; }
-        public string EnumName { get; set; }
-        public List<string> Tags { get; set; }
-    }
-    public class Divar
-    {
-        public string Url { get; set; }
-        public string Image { get; set; }
-        public string Description { get; set; }
-        public string Name { get; set; }
-        public Guid RegionGuid { get; set; }
-        public IList<ListData> listData { get; set; }
-    }
-    public class Item
-    {
-        public int id { get; set; }
-        public bool disabled { get; set; }
-        public string title { get; set; }
-        public string value { get; set; }
-        public string iconName { get; set; }
-        public string iconColor { get; set; }
-    }
-    public class ListData
-    {
-        public string format { get; set; }
-        public IList<Item> items { get; set; }
-        public bool hasDivider { get; set; }
-        public string title { get; set; }
-        public string value { get; set; }
-    }
+{
+    public List<RegionData> Children { get; set; }
+}
+public class RegionData
+{
+    public long Enum { get; set; }
+    public string EnumName { get; set; }
+    public List<string> Tags { get; set; }
+}
+public class Divar
+{
+    public string Url { get; set; }
+    public string Image { get; set; }
+    public string Description { get; set; }
+    public string Name { get; set; }
+    public Guid RegionGuid { get; set; }
+    public IList<ListData> listData { get; set; }
+}
+public class Item
+{
+    public int id { get; set; }
+    public bool disabled { get; set; }
+    public string title { get; set; }
+    public string value { get; set; }
+    public string iconName { get; set; }
+    public string iconColor { get; set; }
+}
+public class ListData
+{
+    public string format { get; set; }
+    public IList<Item> items { get; set; }
+    public bool hasDivider { get; set; }
+    public string title { get; set; }
+    public string value { get; set; }
+}
 }
