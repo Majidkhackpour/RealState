@@ -2,6 +2,7 @@
 using System.Collections.Concurrent;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Threading;
@@ -35,6 +36,7 @@ using Building.KitchenService;
 using Building.RentalAuthority;
 using Cities.City;
 using Cities.Region;
+using DataBaseUtilities;
 using EntityCache.Bussines;
 using EntityCache.ViewModels;
 using Ertegha;
@@ -44,6 +46,7 @@ using Payamak;
 using Payamak.Panel;
 using Payamak.PhoneBook;
 using Peoples;
+using Persistence;
 using RealState.Advance;
 using RealState.BackUpLog;
 using RealState.CalendarForms;
@@ -55,6 +58,7 @@ using Settings.Classes;
 using TMS.Class;
 using User;
 using User.Advisor;
+using WebHesabBussines;
 
 namespace RealState
 {
@@ -526,6 +530,7 @@ namespace RealState
             {
                 FileFormatter.Init();
                 DivarFiles.Init();
+                AutoBackUp.Init(this);
                 var myCollection = new AutoCompleteStringCollection();
                 var list = _dic.Keys;
                 foreach (var item in list.ToList())
@@ -534,6 +539,7 @@ namespace RealState
                 lblDate.Text = Calendar.GetFullCalendar();
                 lblSerial.Text = $@"شناسه فنی: {clsGlobalSetting.HardDriveSerial}";
                 SetClock();
+                _ = Task.Run(() => AutoBackUp.BackUpAsync(@"C:\", false, EnBackUpType.Auto));
                 LoadDashboard();
                 SetButtomLables();
                 _ = Task.Run(ShowTodayNotesAsync);

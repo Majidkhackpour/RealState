@@ -284,6 +284,7 @@
     <Compile Include="Advance\frmRunScript.Designer.cs">
       <DependentUpon>frmRunScript.cs</DependentUpon>
     </Compile>
+    <Compile Include="AutoBackUp.cs" />
     <Compile Include="BackUpLog\frmBackUpLog.cs">
       <SubType>Form</SubType>
     </Compile>

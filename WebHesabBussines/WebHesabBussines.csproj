@@ -49,6 +49,7 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WebAdvisor.cs" />
+    <Compile Include="WebBackUp.cs" />
     <Compile Include="WebBank.cs" />
     <Compile Include="WebBuilding.cs" />
     <Compile Include="WebBuildingAccountType.cs" />
