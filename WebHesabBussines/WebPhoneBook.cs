@@ -84,6 +84,7 @@ namespace WebHesabBussines
             var res = new ReturnedSaveFuncInfo();
             try
             {
+                if (cls == null || cls.Count <= 0) return res;
                 foreach (var item in cls)
                     res.AddReturnedValue(await SaveAsync(item));
             }

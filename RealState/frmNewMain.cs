@@ -1,15 +1,4 @@
-﻿using System;
-using System.Collections.Concurrent;
-using System.Data.SqlClient;
-using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Reflection;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using WindowsSerivces;
-using Accounting.Bank;
+﻿using Accounting.Bank;
 using Accounting.Check.CheckMoshtari;
 using Accounting.Check.CheckShakhsi;
 using Accounting.Check.DasteCheck;
@@ -36,7 +25,6 @@ using Building.KitchenService;
 using Building.RentalAuthority;
 using Cities.City;
 using Cities.Region;
-using DataBaseUtilities;
 using EntityCache.Bussines;
 using EntityCache.ViewModels;
 using Ertegha;
@@ -46,7 +34,6 @@ using Payamak;
 using Payamak.Panel;
 using Payamak.PhoneBook;
 using Peoples;
-using Persistence;
 using RealState.Advance;
 using RealState.BackUpLog;
 using RealState.CalendarForms;
@@ -55,10 +42,18 @@ using RealState.UserControls;
 using Services;
 using Settings;
 using Settings.Classes;
-using TMS.Class;
+using System;
+using System.Collections.Concurrent;
+using System.Data.SqlClient;
+using System.Drawing;
+using System.Linq;
+using System.Reflection;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 using User;
 using User.Advisor;
-using WebHesabBussines;
+using WindowsSerivces;
 
 namespace RealState
 {
@@ -154,7 +149,13 @@ namespace RealState
                     case EnForms.Advertise: frm = new frmRobotPanel(); break;
                     case EnForms.BackUp: frm = new frmBackUpLog(); break;
                     case EnForms.Restore: frm = new frmBackUpLog(); break;
-                    case EnForms.Advance: frm = new frmAdvance(); break;
+                    case EnForms.Advance:
+                        {
+                            frm = new frmManagementPass();
+                            if (frm.ShowDialog(this) == DialogResult.OK)
+                                new frmAdvance().ShowDialog(this);
+                            break;
+                        }
                     case EnForms.Taqvim: frm = new frmCalendar(); break;
                 }
             }
