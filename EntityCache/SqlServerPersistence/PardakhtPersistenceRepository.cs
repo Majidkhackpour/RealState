@@ -104,7 +104,7 @@ namespace EntityCache.SqlServerPersistence
             {
                 using (var cn = new SqlConnection(_connectionString))
                 {
-                    var cmd = new SqlCommand("sp_Pardakht_NextCode", cn) { CommandType = CommandType.StoredProcedure };
+                    var cmd = new SqlCommand("sp_Tafsil_NextCode", cn) { CommandType = CommandType.StoredProcedure };
 
                     await cn.OpenAsync();
                     var obj = await cmd.ExecuteScalarAsync();

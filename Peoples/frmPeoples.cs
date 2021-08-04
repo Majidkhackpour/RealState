@@ -78,6 +78,7 @@ namespace Peoples
             try
             {
                 txtTell.Text = "";
+                txtPhoneBookTitle.Text = "";
                 phoneBookBindingSource.DataSource = cls?.TellList?.ToList();
             }
             catch (Exception ex)
@@ -414,7 +415,7 @@ namespace Peoples
             if (!char.IsLetter(e.KeyChar) && e.KeyChar != (char)Keys.Back && e.KeyChar != (char)Keys.Space)
                 e.Handled = true;
         }
-        private void txtPhoneBookTitle_Leave(object sender, EventArgs e) => txtSetter.Focus(txtPhoneBookTitle);
-        private void txtPhoneBookTitle_Enter(object sender, EventArgs e) => txtSetter.Follow(txtPhoneBookTitle);
+        private void txtPhoneBookTitle_Leave(object sender, EventArgs e) => txtSetter.Follow(txtPhoneBookTitle);
+        private void txtPhoneBookTitle_Enter(object sender, EventArgs e) => txtSetter.Focus(txtPhoneBookTitle);
     }
 }
