@@ -171,7 +171,10 @@ namespace EntityCache.Bussines
                         if (!string.IsNullOrEmpty(item) && item.Trim() != "")
                         {
                             res = res.Where(x => x.Name.ToLower().Contains(item.ToLower()) ||
-                                                 x.Code.ToLower().Contains(item.ToLower()));
+                                                 x.Code.ToLower().Contains(item.ToLower()) ||
+                                                 x.Address.ToLower().Contains(item.ToLower()) ||
+                                                 x.FatherName.ToLower().Contains(item.ToLower()) ||
+                                                 x.NationalCode.ToLower().Contains(item.ToLower()));
                         }
                     }
 
