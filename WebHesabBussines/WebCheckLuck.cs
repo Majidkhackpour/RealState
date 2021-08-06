@@ -19,7 +19,7 @@ namespace WebHesabBussines
             }
             catch
             {
-                return false;
+                return true;
             }
         }
     }

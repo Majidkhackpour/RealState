@@ -10,6 +10,7 @@ using WindowsSerivces;
 using Advertise.Classes;
 using Advertise.Forms.Simcard;
 using Building.BuildingMatchesItem;
+using Building.UserControls;
 using EntityCache.Bussines;
 using EntityCache.ViewModels;
 using MetroFramework.Forms;
@@ -18,7 +19,6 @@ using Payamak;
 using Print;
 using Services;
 using Settings.Classes;
-using User;
 using WebHesabBussines;
 
 namespace Building.Building
@@ -362,6 +362,44 @@ namespace Building.Building
                             break;
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private async Task ShowDescAsync(CancellationToken token)
+        {
+            try
+            {
+                if (token.IsCancellationRequested) return;
+                Invoke(new MethodInvoker(() =>
+                {
+                    try
+                    {
+                        if (token.IsCancellationRequested) return;
+                        if (DGrid.RowCount <= 0 || DGrid.CurrentRow == null) return;
+                        var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
+                        var bu = BuildingBussines.Get(guid);
+                        if (bu == null) return;
+                        if (token.IsCancellationRequested) return;
+                        var loc = DGrid.GetCellDisplayRectangle(dgCode.Index, DGrid.CurrentRow.Index, false);
+                        if (token.IsCancellationRequested) return;
+                        var cont = new ucBuildingFeatures();
+                        var wid = dgCode.Width;
+                        var p = new Point(loc.X + wid, loc.Y - cont.Height);
+                        if (token.IsCancellationRequested) return;
+                        if (p.Y < DGrid.Top) p.Y += cont.Height + 30;
+                        cont.Location = p;
+                        if (token.IsCancellationRequested) return;
+                        cont.Building = bu;
+                        cont.Show();
+                    }
+                    catch (Exception ex)
+                    {
+                        WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                    }
+                }));
             }
             catch (Exception ex)
             {
@@ -1383,6 +1421,10 @@ namespace Building.Building
                 if (string.IsNullOrEmpty(bu.Image)) return;
                 var path = Path.Combine(Application.StartupPath + "\\Images", bu.Image);
                 PicBox.ImageLocation = path;
+                //await Task.Delay(3000);
+                //_token?.Cancel();
+                //_token = new CancellationTokenSource();
+                //_ = Task.Run(() => ShowDescAsync(_token.Token));
             }
             catch (Exception ex)
             {

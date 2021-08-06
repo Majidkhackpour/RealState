@@ -621,6 +621,12 @@
     <Compile Include="RentalAuthority\frmShowRentalAuthority.Designer.cs">
       <DependentUpon>frmShowRentalAuthority.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\ucBuildingFeatures.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\ucBuildingFeatures.Designer.cs">
+      <DependentUpon>ucBuildingFeatures.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\UcBuildingSearch.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -797,6 +803,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="RentalAuthority\frmShowRentalAuthority.resx">
       <DependentUpon>frmShowRentalAuthority.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\ucBuildingFeatures.resx">
+      <DependentUpon>ucBuildingFeatures.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UcBuildingSearch.resx">
       <DependentUpon>UcBuildingSearch.cs</DependentUpon>

@@ -286,7 +286,7 @@ namespace RealState.LoginPanel.FormsInPanel
                 Invoke(new MethodInvoker(() => prgBar.Value = 65));
                 if (result.HasError) return;
 
-                //_ = Task.Run(CheckHardSerialWithServerAsync);
+                _ = Task.Run(CheckHardSerialWithServerAsync);
 
                 result.AddReturnedValue(CheckVersion());
                 Invoke(new MethodInvoker(() => prgBar.Value = 90));

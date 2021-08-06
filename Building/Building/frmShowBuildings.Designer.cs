@@ -1,4 +1,6 @@
-﻿namespace Building.Building
+﻿using Building.UserControls;
+
+namespace Building.Building
 {
     partial class frmShowBuildings
     {
@@ -42,6 +44,39 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmShowBuildings));
             this.txtSearch = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.DGrid = new DevComponents.DotNetBar.Controls.DataGridViewX();
+            this.dgCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgDateSh = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgOwnerName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgRoomCount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgMasahat = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgZirBana = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgRahn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgEjare = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgRentalAuthorityName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgSellPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgVam = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgQest = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgTejari = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgRegionName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgBuildingStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgAddress = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgSaleSakht = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgUserName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgSide = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgDocType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgAccountType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgCondition = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgView = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgFloorCover = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgKitchenService = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgWater = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgBarq = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgGas = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgTell = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgGuid = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgPriority = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgIsArchive = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.contextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.mnuAdd = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuEdit = new System.Windows.Forms.ToolStripMenuItem();
@@ -133,39 +168,6 @@
             this.docTypeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.ucPagger = new WindowsSerivces.Pagging.UC_FooterPaging();
             this.ucHeader = new WindowsSerivces.UC_Header();
-            this.dgCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgDateSh = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgOwnerName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgType = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgRoomCount = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgMasahat = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgZirBana = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgRahn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgEjare = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgRentalAuthorityName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgSellPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgVam = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgQest = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgTejari = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgRegionName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgBuildingStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgAddress = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgSaleSakht = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgUserName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgSide = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgDocType = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgAccountType = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgCondition = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgView = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgFloorCover = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgKitchenService = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgWater = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgBarq = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgGas = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgTell = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgGuid = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgPriority = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgIsArchive = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).BeginInit();
             this.contextMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BuildingBindingSource)).BeginInit();
@@ -300,6 +302,300 @@
             this.DGrid.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGrid_CellEnter);
             this.DGrid.Scroll += new System.Windows.Forms.ScrollEventHandler(this.DGrid_Scroll);
             this.DGrid.DoubleClick += new System.EventHandler(this.DGrid_DoubleClick);
+            // 
+            // dgCode
+            // 
+            this.dgCode.DataPropertyName = "Code";
+            this.dgCode.HeaderText = "کد ملک";
+            this.dgCode.Name = "dgCode";
+            this.dgCode.ReadOnly = true;
+            this.dgCode.Width = 80;
+            // 
+            // dgDateSh
+            // 
+            this.dgDateSh.DataPropertyName = "DateSh";
+            this.dgDateSh.HeaderText = "تاریخ ثبت";
+            this.dgDateSh.Name = "dgDateSh";
+            this.dgDateSh.ReadOnly = true;
+            // 
+            // dgOwnerName
+            // 
+            this.dgOwnerName.DataPropertyName = "OwnerName";
+            this.dgOwnerName.HeaderText = "مالک";
+            this.dgOwnerName.Name = "dgOwnerName";
+            this.dgOwnerName.ReadOnly = true;
+            this.dgOwnerName.Width = 250;
+            // 
+            // dgType
+            // 
+            this.dgType.DataPropertyName = "BuildingTypeName";
+            this.dgType.HeaderText = "نوع ملک";
+            this.dgType.Name = "dgType";
+            this.dgType.ReadOnly = true;
+            this.dgType.Visible = false;
+            // 
+            // dgRoomCount
+            // 
+            this.dgRoomCount.DataPropertyName = "RoomCount";
+            this.dgRoomCount.HeaderText = "ت اتاق";
+            this.dgRoomCount.Name = "dgRoomCount";
+            this.dgRoomCount.ReadOnly = true;
+            this.dgRoomCount.Width = 66;
+            // 
+            // dgMasahat
+            // 
+            this.dgMasahat.DataPropertyName = "Masahat";
+            this.dgMasahat.HeaderText = "مساحت";
+            this.dgMasahat.Name = "dgMasahat";
+            this.dgMasahat.ReadOnly = true;
+            this.dgMasahat.Visible = false;
+            this.dgMasahat.Width = 80;
+            // 
+            // dgZirBana
+            // 
+            this.dgZirBana.DataPropertyName = "ZirBana";
+            this.dgZirBana.HeaderText = "زیربنا";
+            this.dgZirBana.Name = "dgZirBana";
+            this.dgZirBana.ReadOnly = true;
+            this.dgZirBana.Visible = false;
+            this.dgZirBana.Width = 80;
+            // 
+            // dgRahn
+            // 
+            this.dgRahn.DataPropertyName = "RahnPrice1";
+            dataGridViewCellStyle3.Format = "N0";
+            dataGridViewCellStyle3.NullValue = null;
+            this.dgRahn.DefaultCellStyle = dataGridViewCellStyle3;
+            this.dgRahn.HeaderText = "رهن";
+            this.dgRahn.Name = "dgRahn";
+            this.dgRahn.ReadOnly = true;
+            this.dgRahn.Visible = false;
+            // 
+            // dgEjare
+            // 
+            this.dgEjare.DataPropertyName = "EjarePrice1";
+            dataGridViewCellStyle4.Format = "N0";
+            dataGridViewCellStyle4.NullValue = null;
+            this.dgEjare.DefaultCellStyle = dataGridViewCellStyle4;
+            this.dgEjare.HeaderText = "اجاره";
+            this.dgEjare.Name = "dgEjare";
+            this.dgEjare.ReadOnly = true;
+            this.dgEjare.Visible = false;
+            // 
+            // dgRentalAuthorityName
+            // 
+            this.dgRentalAuthorityName.DataPropertyName = "RentalAuthorityName";
+            this.dgRentalAuthorityName.HeaderText = "ارجحیت اجاره";
+            this.dgRentalAuthorityName.Name = "dgRentalAuthorityName";
+            this.dgRentalAuthorityName.ReadOnly = true;
+            this.dgRentalAuthorityName.Visible = false;
+            this.dgRentalAuthorityName.Width = 102;
+            // 
+            // dgSellPrice
+            // 
+            this.dgSellPrice.DataPropertyName = "SellPrice";
+            dataGridViewCellStyle5.Format = "N0";
+            dataGridViewCellStyle5.NullValue = null;
+            this.dgSellPrice.DefaultCellStyle = dataGridViewCellStyle5;
+            this.dgSellPrice.HeaderText = "فروش";
+            this.dgSellPrice.Name = "dgSellPrice";
+            this.dgSellPrice.ReadOnly = true;
+            this.dgSellPrice.Visible = false;
+            // 
+            // dgVam
+            // 
+            this.dgVam.DataPropertyName = "VamPrice";
+            dataGridViewCellStyle6.Format = "N0";
+            dataGridViewCellStyle6.NullValue = null;
+            this.dgVam.DefaultCellStyle = dataGridViewCellStyle6;
+            this.dgVam.HeaderText = "مبلغ وام";
+            this.dgVam.Name = "dgVam";
+            this.dgVam.ReadOnly = true;
+            this.dgVam.Visible = false;
+            // 
+            // dgQest
+            // 
+            this.dgQest.DataPropertyName = "QestPrice";
+            dataGridViewCellStyle7.Format = "N0";
+            dataGridViewCellStyle7.NullValue = null;
+            this.dgQest.DefaultCellStyle = dataGridViewCellStyle7;
+            this.dgQest.HeaderText = "قسط";
+            this.dgQest.Name = "dgQest";
+            this.dgQest.ReadOnly = true;
+            this.dgQest.Visible = false;
+            // 
+            // dgTejari
+            // 
+            this.dgTejari.DataPropertyName = "MetrazhTejari";
+            this.dgTejari.HeaderText = "تجاری";
+            this.dgTejari.Name = "dgTejari";
+            this.dgTejari.ReadOnly = true;
+            this.dgTejari.Visible = false;
+            this.dgTejari.Width = 62;
+            // 
+            // dgRegionName
+            // 
+            this.dgRegionName.DataPropertyName = "RegionName";
+            this.dgRegionName.HeaderText = "محدوده";
+            this.dgRegionName.Name = "dgRegionName";
+            this.dgRegionName.ReadOnly = true;
+            // 
+            // dgBuildingStatus
+            // 
+            this.dgBuildingStatus.DataPropertyName = "BuildingStatusName";
+            this.dgBuildingStatus.HeaderText = "وضعیت";
+            this.dgBuildingStatus.Name = "dgBuildingStatus";
+            this.dgBuildingStatus.ReadOnly = true;
+            this.dgBuildingStatus.Visible = false;
+            // 
+            // dgAddress
+            // 
+            this.dgAddress.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dgAddress.DataPropertyName = "Address";
+            this.dgAddress.HeaderText = "آدرس";
+            this.dgAddress.MinimumWidth = 100;
+            this.dgAddress.Name = "dgAddress";
+            this.dgAddress.ReadOnly = true;
+            // 
+            // dgSaleSakht
+            // 
+            this.dgSaleSakht.DataPropertyName = "SaleSakht";
+            this.dgSaleSakht.HeaderText = "سال ساخت";
+            this.dgSaleSakht.Name = "dgSaleSakht";
+            this.dgSaleSakht.ReadOnly = true;
+            this.dgSaleSakht.Visible = false;
+            this.dgSaleSakht.Width = 88;
+            // 
+            // dgUserName
+            // 
+            this.dgUserName.DataPropertyName = "UserName";
+            this.dgUserName.HeaderText = "مشاور";
+            this.dgUserName.Name = "dgUserName";
+            this.dgUserName.ReadOnly = true;
+            this.dgUserName.Visible = false;
+            // 
+            // dgSide
+            // 
+            this.dgSide.DataPropertyName = "SideName";
+            this.dgSide.HeaderText = "جهت";
+            this.dgSide.Name = "dgSide";
+            this.dgSide.ReadOnly = true;
+            this.dgSide.Visible = false;
+            this.dgSide.Width = 70;
+            // 
+            // dgDocType
+            // 
+            this.dgDocType.DataPropertyName = "DocumentTypeName";
+            this.dgDocType.HeaderText = "سند";
+            this.dgDocType.Name = "dgDocType";
+            this.dgDocType.ReadOnly = true;
+            this.dgDocType.Visible = false;
+            this.dgDocType.Width = 80;
+            // 
+            // dgAccountType
+            // 
+            this.dgAccountType.DataPropertyName = "BuildingAccountTypeName";
+            this.dgAccountType.HeaderText = "کاربری";
+            this.dgAccountType.Name = "dgAccountType";
+            this.dgAccountType.ReadOnly = true;
+            this.dgAccountType.Visible = false;
+            this.dgAccountType.Width = 80;
+            // 
+            // dgCondition
+            // 
+            this.dgCondition.DataPropertyName = "BuildingConditionName";
+            this.dgCondition.HeaderText = "وضعیت ملک";
+            this.dgCondition.Name = "dgCondition";
+            this.dgCondition.ReadOnly = true;
+            this.dgCondition.Visible = false;
+            this.dgCondition.Width = 94;
+            // 
+            // dgView
+            // 
+            this.dgView.DataPropertyName = "BuildingViewName";
+            this.dgView.HeaderText = "نما";
+            this.dgView.Name = "dgView";
+            this.dgView.ReadOnly = true;
+            this.dgView.Visible = false;
+            this.dgView.Width = 80;
+            // 
+            // dgFloorCover
+            // 
+            this.dgFloorCover.DataPropertyName = "FloorCoverName";
+            this.dgFloorCover.HeaderText = "کفپوش";
+            this.dgFloorCover.Name = "dgFloorCover";
+            this.dgFloorCover.ReadOnly = true;
+            this.dgFloorCover.Visible = false;
+            this.dgFloorCover.Width = 80;
+            // 
+            // dgKitchenService
+            // 
+            this.dgKitchenService.DataPropertyName = "KitchenServiceName";
+            this.dgKitchenService.HeaderText = "آشپزخانه";
+            this.dgKitchenService.Name = "dgKitchenService";
+            this.dgKitchenService.ReadOnly = true;
+            this.dgKitchenService.Visible = false;
+            this.dgKitchenService.Width = 80;
+            // 
+            // dgWater
+            // 
+            this.dgWater.DataPropertyName = "WaterName";
+            this.dgWater.HeaderText = "آب";
+            this.dgWater.Name = "dgWater";
+            this.dgWater.ReadOnly = true;
+            this.dgWater.Visible = false;
+            this.dgWater.Width = 70;
+            // 
+            // dgBarq
+            // 
+            this.dgBarq.DataPropertyName = "BarqName";
+            this.dgBarq.HeaderText = "برق";
+            this.dgBarq.Name = "dgBarq";
+            this.dgBarq.ReadOnly = true;
+            this.dgBarq.Visible = false;
+            this.dgBarq.Width = 70;
+            // 
+            // dgGas
+            // 
+            this.dgGas.DataPropertyName = "GasName";
+            this.dgGas.HeaderText = "گاز";
+            this.dgGas.Name = "dgGas";
+            this.dgGas.ReadOnly = true;
+            this.dgGas.Visible = false;
+            this.dgGas.Width = 70;
+            // 
+            // dgTell
+            // 
+            this.dgTell.DataPropertyName = "TellName";
+            this.dgTell.HeaderText = "تلفن";
+            this.dgTell.Name = "dgTell";
+            this.dgTell.ReadOnly = true;
+            this.dgTell.Visible = false;
+            this.dgTell.Width = 70;
+            // 
+            // dgGuid
+            // 
+            this.dgGuid.DataPropertyName = "Guid";
+            this.dgGuid.HeaderText = "Guid";
+            this.dgGuid.Name = "dgGuid";
+            this.dgGuid.ReadOnly = true;
+            this.dgGuid.Visible = false;
+            // 
+            // dgPriority
+            // 
+            this.dgPriority.DataPropertyName = "Priority";
+            this.dgPriority.HeaderText = "Priority";
+            this.dgPriority.Name = "dgPriority";
+            this.dgPriority.ReadOnly = true;
+            this.dgPriority.Visible = false;
+            // 
+            // dgIsArchive
+            // 
+            this.dgIsArchive.DataPropertyName = "IsArchive";
+            this.dgIsArchive.HeaderText = "IsArchive";
+            this.dgIsArchive.Name = "dgIsArchive";
+            this.dgIsArchive.ReadOnly = true;
+            this.dgIsArchive.Visible = false;
             // 
             // contextMenu
             // 
@@ -1159,300 +1455,6 @@
             this.ucHeader.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.ucHeader.Size = new System.Drawing.Size(1027, 34);
             this.ucHeader.TabIndex = 55772;
-            // 
-            // dgCode
-            // 
-            this.dgCode.DataPropertyName = "Code";
-            this.dgCode.HeaderText = "کد ملک";
-            this.dgCode.Name = "dgCode";
-            this.dgCode.ReadOnly = true;
-            this.dgCode.Width = 80;
-            // 
-            // dgDateSh
-            // 
-            this.dgDateSh.DataPropertyName = "DateSh";
-            this.dgDateSh.HeaderText = "تاریخ ثبت";
-            this.dgDateSh.Name = "dgDateSh";
-            this.dgDateSh.ReadOnly = true;
-            // 
-            // dgOwnerName
-            // 
-            this.dgOwnerName.DataPropertyName = "OwnerName";
-            this.dgOwnerName.HeaderText = "مالک";
-            this.dgOwnerName.Name = "dgOwnerName";
-            this.dgOwnerName.ReadOnly = true;
-            this.dgOwnerName.Width = 250;
-            // 
-            // dgType
-            // 
-            this.dgType.DataPropertyName = "BuildingTypeName";
-            this.dgType.HeaderText = "نوع ملک";
-            this.dgType.Name = "dgType";
-            this.dgType.ReadOnly = true;
-            this.dgType.Visible = false;
-            // 
-            // dgRoomCount
-            // 
-            this.dgRoomCount.DataPropertyName = "RoomCount";
-            this.dgRoomCount.HeaderText = "ت اتاق";
-            this.dgRoomCount.Name = "dgRoomCount";
-            this.dgRoomCount.ReadOnly = true;
-            this.dgRoomCount.Width = 66;
-            // 
-            // dgMasahat
-            // 
-            this.dgMasahat.DataPropertyName = "Masahat";
-            this.dgMasahat.HeaderText = "مساحت";
-            this.dgMasahat.Name = "dgMasahat";
-            this.dgMasahat.ReadOnly = true;
-            this.dgMasahat.Visible = false;
-            this.dgMasahat.Width = 80;
-            // 
-            // dgZirBana
-            // 
-            this.dgZirBana.DataPropertyName = "ZirBana";
-            this.dgZirBana.HeaderText = "زیربنا";
-            this.dgZirBana.Name = "dgZirBana";
-            this.dgZirBana.ReadOnly = true;
-            this.dgZirBana.Visible = false;
-            this.dgZirBana.Width = 80;
-            // 
-            // dgRahn
-            // 
-            this.dgRahn.DataPropertyName = "RahnPrice1";
-            dataGridViewCellStyle3.Format = "N0";
-            dataGridViewCellStyle3.NullValue = null;
-            this.dgRahn.DefaultCellStyle = dataGridViewCellStyle3;
-            this.dgRahn.HeaderText = "رهن";
-            this.dgRahn.Name = "dgRahn";
-            this.dgRahn.ReadOnly = true;
-            this.dgRahn.Visible = false;
-            // 
-            // dgEjare
-            // 
-            this.dgEjare.DataPropertyName = "EjarePrice1";
-            dataGridViewCellStyle4.Format = "N0";
-            dataGridViewCellStyle4.NullValue = null;
-            this.dgEjare.DefaultCellStyle = dataGridViewCellStyle4;
-            this.dgEjare.HeaderText = "اجاره";
-            this.dgEjare.Name = "dgEjare";
-            this.dgEjare.ReadOnly = true;
-            this.dgEjare.Visible = false;
-            // 
-            // dgRentalAuthorityName
-            // 
-            this.dgRentalAuthorityName.DataPropertyName = "RentalAuthorityName";
-            this.dgRentalAuthorityName.HeaderText = "ارجحیت اجاره";
-            this.dgRentalAuthorityName.Name = "dgRentalAuthorityName";
-            this.dgRentalAuthorityName.ReadOnly = true;
-            this.dgRentalAuthorityName.Visible = false;
-            this.dgRentalAuthorityName.Width = 102;
-            // 
-            // dgSellPrice
-            // 
-            this.dgSellPrice.DataPropertyName = "SellPrice";
-            dataGridViewCellStyle5.Format = "N0";
-            dataGridViewCellStyle5.NullValue = null;
-            this.dgSellPrice.DefaultCellStyle = dataGridViewCellStyle5;
-            this.dgSellPrice.HeaderText = "فروش";
-            this.dgSellPrice.Name = "dgSellPrice";
-            this.dgSellPrice.ReadOnly = true;
-            this.dgSellPrice.Visible = false;
-            // 
-            // dgVam
-            // 
-            this.dgVam.DataPropertyName = "VamPrice";
-            dataGridViewCellStyle6.Format = "N0";
-            dataGridViewCellStyle6.NullValue = null;
-            this.dgVam.DefaultCellStyle = dataGridViewCellStyle6;
-            this.dgVam.HeaderText = "مبلغ وام";
-            this.dgVam.Name = "dgVam";
-            this.dgVam.ReadOnly = true;
-            this.dgVam.Visible = false;
-            // 
-            // dgQest
-            // 
-            this.dgQest.DataPropertyName = "QestPrice";
-            dataGridViewCellStyle7.Format = "N0";
-            dataGridViewCellStyle7.NullValue = null;
-            this.dgQest.DefaultCellStyle = dataGridViewCellStyle7;
-            this.dgQest.HeaderText = "قسط";
-            this.dgQest.Name = "dgQest";
-            this.dgQest.ReadOnly = true;
-            this.dgQest.Visible = false;
-            // 
-            // dgTejari
-            // 
-            this.dgTejari.DataPropertyName = "MetrazhTejari";
-            this.dgTejari.HeaderText = "تجاری";
-            this.dgTejari.Name = "dgTejari";
-            this.dgTejari.ReadOnly = true;
-            this.dgTejari.Visible = false;
-            this.dgTejari.Width = 62;
-            // 
-            // dgRegionName
-            // 
-            this.dgRegionName.DataPropertyName = "RegionName";
-            this.dgRegionName.HeaderText = "محدوده";
-            this.dgRegionName.Name = "dgRegionName";
-            this.dgRegionName.ReadOnly = true;
-            // 
-            // dgBuildingStatus
-            // 
-            this.dgBuildingStatus.DataPropertyName = "BuildingStatusName";
-            this.dgBuildingStatus.HeaderText = "وضعیت";
-            this.dgBuildingStatus.Name = "dgBuildingStatus";
-            this.dgBuildingStatus.ReadOnly = true;
-            this.dgBuildingStatus.Visible = false;
-            // 
-            // dgAddress
-            // 
-            this.dgAddress.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dgAddress.DataPropertyName = "Address";
-            this.dgAddress.HeaderText = "آدرس";
-            this.dgAddress.MinimumWidth = 100;
-            this.dgAddress.Name = "dgAddress";
-            this.dgAddress.ReadOnly = true;
-            // 
-            // dgSaleSakht
-            // 
-            this.dgSaleSakht.DataPropertyName = "SaleSakht";
-            this.dgSaleSakht.HeaderText = "سال ساخت";
-            this.dgSaleSakht.Name = "dgSaleSakht";
-            this.dgSaleSakht.ReadOnly = true;
-            this.dgSaleSakht.Visible = false;
-            this.dgSaleSakht.Width = 88;
-            // 
-            // dgUserName
-            // 
-            this.dgUserName.DataPropertyName = "UserName";
-            this.dgUserName.HeaderText = "مشاور";
-            this.dgUserName.Name = "dgUserName";
-            this.dgUserName.ReadOnly = true;
-            this.dgUserName.Visible = false;
-            // 
-            // dgSide
-            // 
-            this.dgSide.DataPropertyName = "SideName";
-            this.dgSide.HeaderText = "جهت";
-            this.dgSide.Name = "dgSide";
-            this.dgSide.ReadOnly = true;
-            this.dgSide.Visible = false;
-            this.dgSide.Width = 70;
-            // 
-            // dgDocType
-            // 
-            this.dgDocType.DataPropertyName = "DocumentTypeName";
-            this.dgDocType.HeaderText = "سند";
-            this.dgDocType.Name = "dgDocType";
-            this.dgDocType.ReadOnly = true;
-            this.dgDocType.Visible = false;
-            this.dgDocType.Width = 80;
-            // 
-            // dgAccountType
-            // 
-            this.dgAccountType.DataPropertyName = "BuildingAccountTypeName";
-            this.dgAccountType.HeaderText = "کاربری";
-            this.dgAccountType.Name = "dgAccountType";
-            this.dgAccountType.ReadOnly = true;
-            this.dgAccountType.Visible = false;
-            this.dgAccountType.Width = 80;
-            // 
-            // dgCondition
-            // 
-            this.dgCondition.DataPropertyName = "BuildingConditionName";
-            this.dgCondition.HeaderText = "وضعیت ملک";
-            this.dgCondition.Name = "dgCondition";
-            this.dgCondition.ReadOnly = true;
-            this.dgCondition.Visible = false;
-            this.dgCondition.Width = 94;
-            // 
-            // dgView
-            // 
-            this.dgView.DataPropertyName = "BuildingViewName";
-            this.dgView.HeaderText = "نما";
-            this.dgView.Name = "dgView";
-            this.dgView.ReadOnly = true;
-            this.dgView.Visible = false;
-            this.dgView.Width = 80;
-            // 
-            // dgFloorCover
-            // 
-            this.dgFloorCover.DataPropertyName = "FloorCoverName";
-            this.dgFloorCover.HeaderText = "کفپوش";
-            this.dgFloorCover.Name = "dgFloorCover";
-            this.dgFloorCover.ReadOnly = true;
-            this.dgFloorCover.Visible = false;
-            this.dgFloorCover.Width = 80;
-            // 
-            // dgKitchenService
-            // 
-            this.dgKitchenService.DataPropertyName = "KitchenServiceName";
-            this.dgKitchenService.HeaderText = "آشپزخانه";
-            this.dgKitchenService.Name = "dgKitchenService";
-            this.dgKitchenService.ReadOnly = true;
-            this.dgKitchenService.Visible = false;
-            this.dgKitchenService.Width = 80;
-            // 
-            // dgWater
-            // 
-            this.dgWater.DataPropertyName = "WaterName";
-            this.dgWater.HeaderText = "آب";
-            this.dgWater.Name = "dgWater";
-            this.dgWater.ReadOnly = true;
-            this.dgWater.Visible = false;
-            this.dgWater.Width = 70;
-            // 
-            // dgBarq
-            // 
-            this.dgBarq.DataPropertyName = "BarqName";
-            this.dgBarq.HeaderText = "برق";
-            this.dgBarq.Name = "dgBarq";
-            this.dgBarq.ReadOnly = true;
-            this.dgBarq.Visible = false;
-            this.dgBarq.Width = 70;
-            // 
-            // dgGas
-            // 
-            this.dgGas.DataPropertyName = "GasName";
-            this.dgGas.HeaderText = "گاز";
-            this.dgGas.Name = "dgGas";
-            this.dgGas.ReadOnly = true;
-            this.dgGas.Visible = false;
-            this.dgGas.Width = 70;
-            // 
-            // dgTell
-            // 
-            this.dgTell.DataPropertyName = "TellName";
-            this.dgTell.HeaderText = "تلفن";
-            this.dgTell.Name = "dgTell";
-            this.dgTell.ReadOnly = true;
-            this.dgTell.Visible = false;
-            this.dgTell.Width = 70;
-            // 
-            // dgGuid
-            // 
-            this.dgGuid.DataPropertyName = "Guid";
-            this.dgGuid.HeaderText = "Guid";
-            this.dgGuid.Name = "dgGuid";
-            this.dgGuid.ReadOnly = true;
-            this.dgGuid.Visible = false;
-            // 
-            // dgPriority
-            // 
-            this.dgPriority.DataPropertyName = "Priority";
-            this.dgPriority.HeaderText = "Priority";
-            this.dgPriority.Name = "dgPriority";
-            this.dgPriority.ReadOnly = true;
-            this.dgPriority.Visible = false;
-            // 
-            // dgIsArchive
-            // 
-            this.dgIsArchive.DataPropertyName = "IsArchive";
-            this.dgIsArchive.HeaderText = "IsArchive";
-            this.dgIsArchive.Name = "dgIsArchive";
-            this.dgIsArchive.ReadOnly = true;
-            this.dgIsArchive.Visible = false;
             // 
             // frmShowBuildings
             // 
