@@ -10,6 +10,7 @@ namespace WebHesabBussines
     public class WebBuildingRequest : IBuildingRequest
     {
         private static string Url = Utilities.WebApi + "/api/BuildingRequest/SaveAsync";
+        public static event Func<Guid, ServerStatus, DateTime, Task> OnSaveResult;
 
 
         public Guid Guid { get; set; }
@@ -42,6 +43,13 @@ namespace WebHesabBussines
         public string HardSerial { get; set; }
         public List<BuildingRequestRegionBussines> RegionList { get; set; }
 
+
+        private static void RaiseEvent(Guid objGuid, ServerStatus st, DateTime dateM)
+        {
+            var handler = OnSaveResult;
+            if (handler != null)
+                OnSaveResult(objGuid, st, dateM);
+        }
         public async Task SaveAsync()
         {
             try

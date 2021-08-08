@@ -343,6 +343,7 @@
     <Compile Include="ViewModels\SheypoorRegion.cs" />
     <Compile Include="ViewModels\TarazAzmayeshiViewModel.cs" />
     <Compile Include="ViewModels\TarazHesabViewModel.cs" />
+    <Compile Include="WebService\WebServiceRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Services\Services\Services\Services.csproj">

@@ -31,8 +31,8 @@ namespace EntityCache.Bussines
         public string Diagnosis => Account.AccountDiagnosis();
         public string HardSerial => Cache.HardSerial;
 
-
-        public static async Task<List<AdvisorBussines>> GetAllAsync(CancellationToken token) => await UnitOfWork.Advisor.GetAllAsync(Cache.ConnectionString,token);
+        
+        public static async Task<List<AdvisorBussines>> GetAllAsync(CancellationToken token) => await UnitOfWork.Advisor.GetAllAsync(Cache.ConnectionString, token);
         public async Task<ReturnedSaveFuncInfo> SaveAsync(SqlTransaction tr = null)
         {
             var res = new ReturnedSaveFuncInfo();
@@ -75,7 +75,7 @@ namespace EntityCache.Bussines
 
             return res;
         }
-        public static async Task<List<AdvisorBussines>> GetAllAsync(string search,CancellationToken token)
+        public static async Task<List<AdvisorBussines>> GetAllAsync(string search, CancellationToken token)
         {
             try
             {

@@ -13,7 +13,7 @@ namespace WebHesabBussines
     public class WebBuilding : IBuilding
     {
         private static string Url = Utilities.WebApi + "/api/Building/SaveAsync";
-
+        public static event Func<Guid, ServerStatus, DateTime, Task> OnSaveResult;
 
         public Guid Guid { get; set; }
         public DateTime Modified { get; set; }
@@ -81,6 +81,12 @@ namespace WebHesabBussines
         public List<BuildingGalleryBussines> GalleryList { get; set; }
 
 
+        private static void RaiseEvent(Guid objGuid, ServerStatus st, DateTime dateM)
+        {
+            var handler = OnSaveResult;
+            if (handler != null)
+                OnSaveResult(objGuid, st, dateM);
+        }
         public async Task SaveAsync(string p)
         {
             try

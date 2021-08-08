@@ -10,7 +10,7 @@ namespace WebHesabBussines
     public class WebAdvisor : IAdvisor
     {
         private static string Url = Utilities.WebApi + "/api/Asvisor/SaveAsync";
-
+        public static event Func<Guid, ServerStatus, DateTime, Task> OnSaveResult;
 
         public Guid Guid { get; set; }
         public bool Status { get; set; }
@@ -23,7 +23,12 @@ namespace WebHesabBussines
 
 
 
-
+        private static void RaiseEvent(Guid objGuid, ServerStatus st, DateTime dateM)
+        {
+            var handler = OnSaveResult;
+            if (handler != null)
+                OnSaveResult(objGuid, st, dateM);
+        }
         public async Task SaveAsync()
         {
             try
@@ -43,6 +48,7 @@ namespace WebHesabBussines
                 if (bu == null) return;
 
                 await TempBussines.UpdateEntityAsync(EnTemp.Advisor, bu.Guid, ServerStatus.Delivered, DateTime.Now);
+                //RaiseEvent(bu.Guid, ServerStatus.Delivered, DateTime.Now);
                 await WebPhoneBook.SaveAsync(await PhoneBookBussines.GetAllAsync(Guid, true));
             }
             catch (Exception ex)

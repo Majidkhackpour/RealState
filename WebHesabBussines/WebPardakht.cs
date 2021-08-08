@@ -11,7 +11,7 @@ namespace WebHesabBussines
     public class WebPardakht :IPardakht
     {
         private static string Url = Utilities.WebApi + "/api/BuildingPardakht/SaveAsync";
-
+        public static event Func<Guid, ServerStatus, DateTime, Task> OnSaveResult;
 
         public Guid Guid { get; set; }
         public DateTime Modified { get; set; }
@@ -32,6 +32,12 @@ namespace WebHesabBussines
         public string HardSerial { get; set; }
 
 
+        private static void RaiseEvent(Guid objGuid, ServerStatus st, DateTime dateM)
+        {
+            var handler = OnSaveResult;
+            if (handler != null)
+                OnSaveResult(objGuid, st, dateM);
+        }
         public async Task SaveAsync()
         {
             try

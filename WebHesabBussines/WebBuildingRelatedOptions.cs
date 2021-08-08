@@ -10,7 +10,7 @@ namespace WebHesabBussines
     public class WebBuildingRelatedOptions : IBuildingRelatedOptions
     {
         private static string Url = Utilities.WebApi + "/api/BuildingRelatedOptions/SaveAsync";
-
+        public static event Func<Guid, ServerStatus, DateTime, Task> OnSaveResult;
 
         public Guid Guid { get; set; }
         public Guid BuildinGuid { get; set; }
@@ -22,6 +22,12 @@ namespace WebHesabBussines
 
 
 
+        private static void RaiseEvent(Guid objGuid, ServerStatus st, DateTime dateM)
+        {
+            var handler = OnSaveResult;
+            if (handler != null)
+                OnSaveResult(objGuid, st, dateM);
+        }
         public async Task SaveAsync()
         {
             try
