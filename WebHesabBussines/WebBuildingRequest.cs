@@ -40,7 +40,7 @@ namespace WebHesabBussines
         public Guid BuildingConditionGuid { get; set; }
         public string ShortDesc { get; set; }
         public string HardSerial { get; set; }
-        private List<BuildingRequestRegionBussines> RegionList { get; set; }
+        public List<BuildingRequestRegionBussines> RegionList { get; set; }
 
         public async Task SaveAsync()
         {

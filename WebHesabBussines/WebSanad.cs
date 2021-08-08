@@ -23,7 +23,7 @@ namespace WebHesabBussines
         public Guid UserGuid { get; set; }
         public EnSanadType SanadType { get; set; }
         public string HardSerial { get; set; }
-        private List<SanadDetailBussines> DetList { get; set; }
+        public List<SanadDetailBussines> DetList { get; set; }
 
 
 

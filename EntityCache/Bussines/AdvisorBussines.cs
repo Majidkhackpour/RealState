@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using EntityCache.Assistence;
+using EntityCache.Mppings;
 using Nito.AsyncEx;
 using Persistence;
 using Services;
@@ -205,7 +206,6 @@ namespace EntityCache.Bussines
             {
                 res.AddReturnedValue(await PhoneBookBussines.RemoveAsync(Guid, tr));
                 if (res.HasError) return res;
-
                 var tellList = new List<PhoneBookBussines>();
                 if (!string.IsNullOrEmpty(Mobile1))
                 {

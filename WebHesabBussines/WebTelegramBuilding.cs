@@ -19,7 +19,6 @@ namespace WebHesabBussines
         public string Content { get; set; }
 
 
-        public WebTelegramBuilding() { }
         public async Task SaveAsync()
         {
             try
