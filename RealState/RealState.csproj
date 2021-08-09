@@ -297,7 +297,6 @@
     <Compile Include="CalendarForms\frmCalendar.Designer.cs">
       <DependentUpon>frmCalendar.cs</DependentUpon>
     </Compile>
-    <Compile Include="clsTemp.cs" />
     <Compile Include="Advance\frmAdvance.cs">
       <SubType>Form</SubType>
     </Compile>

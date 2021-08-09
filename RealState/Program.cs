@@ -60,8 +60,6 @@ namespace RealState
                 return;
             }
 
-            clsTemp.Init();
-
             new frmNewPlash().ShowDialog();
             _ = Task.Run(BuildingBussines.SetArchiveAsync);
             var frmMain = new frmNewMain();

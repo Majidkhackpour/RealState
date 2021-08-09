@@ -2,6 +2,7 @@
 using System.Data.Entity.Migrations;
 using System.Data.SqlClient;
 using AutoMapper;
+using EntityCache.WebService;
 using Nito.AsyncEx;
 using Persistence;
 using Services;
@@ -10,13 +11,22 @@ namespace EntityCache.Assistence
 {
     public static class ClsCache
     {
-        public static void Init(string connectionString, string hardSerial)
+        public static void Init(string connectionString, string hardSerial, string appStart)
         {
-            Cache.ConnectionString = connectionString;
-            Cache.HardSerial = hardSerial;
-            if (!CheckConnectionString(Cache.ConnectionString))
-                throw new ArgumentNullException("ConnectionString Not Correct ", nameof(Cache.ConnectionString));
-            UpdateMigration();
+            try
+            {
+                Cache.ConnectionString = connectionString;
+                Cache.HardSerial = hardSerial;
+                if (!CheckConnectionString(Cache.ConnectionString))
+                    throw new ArgumentNullException("ConnectionString Not Correct ", nameof(Cache.ConnectionString));
+                UpdateMigration();
+                var webService = new WebServiceHandlers();
+                webService.Init(appStart);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
         }
         private static void UpdateMigration()
         {

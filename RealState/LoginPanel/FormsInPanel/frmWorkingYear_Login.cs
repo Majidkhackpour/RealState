@@ -69,13 +69,13 @@ namespace RealState.LoginPanel.FormsInPanel
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void InitConfigs()
+        private void InitConfigs(string appStart)
         {
             try
             {
                 ErrorHandler.AddHandler(Assembly.GetExecutingAssembly().GetName().Version.ToString(), ENSource.Building,
                     Application.StartupPath, clsRegistery.GetRegistery("X1001MA"));
-                ClsCache.Init(AppSettings.DefaultConnectionString, clsRegistery.GetRegistery("X1001MA"));
+                ClsCache.Init(AppSettings.DefaultConnectionString, clsRegistery.GetRegistery("X1001MA"), appStart);
                 Logger.init(Application.StartupPath, "BuidlingEventLog.txt", true);
                 ErrorManager.Init(ENSource.Building, null);
             }
@@ -273,7 +273,7 @@ namespace RealState.LoginPanel.FormsInPanel
                     Cache.ConnectionString = conString.value;
                 }
 
-                InitConfigs();
+                InitConfigs(Application.StartupPath);
                 LoadWorkingYearData();
                 Invoke(new MethodInvoker(() => prgBar.Value = 1));
                 result.AddReturnedValue(await SetDefultsAsync());
