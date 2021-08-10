@@ -1,9 +1,8 @@
-﻿using System;
+﻿using Services;
+using Servicess.Interfaces.Building;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using EntityCache.Bussines;
-using Services;
-using Servicess.Interfaces.Building;
 
 namespace WebHesabBussines
 {
@@ -32,42 +31,25 @@ namespace WebHesabBussines
         {
             try
             {
-                var res = await Extentions.PostToApi<BuildingViewBussines, WebBuildingView>(this, Url);
+                var res = await Extentions.PostToApi<WebBuildingView, WebBuildingView>(this, Url);
                 if (res.ResponseStatus != ResponseStatus.Success)
                 {
-                    var temp = new TempBussines()
-                    {
-                        ObjectGuid = Guid,
-                        Type = EnTemp.BuildingView
-                    };
-                    await temp.SaveAsync();
+                    RaiseEvent(Guid, ServerStatus.DeliveryError, DateTime.Now);
                     return;
                 }
-                var bu = res.Data;
-                if (bu == null) return;
-                await TempBussines.UpdateEntityAsync(EnTemp.BuildingView, bu.Guid, ServerStatus.Delivered, DateTime.Now);
+                RaiseEvent(Guid, ServerStatus.Delivered, DateTime.Now);
             }
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        public static async Task<ReturnedSaveFuncInfo> SaveAsync(BuildingViewBussines cls)
+        public static async Task<ReturnedSaveFuncInfo> SaveAsync(WebBuildingView cls)
         {
             var res = new ReturnedSaveFuncInfo();
             try
             {
-                var obj = new WebBuildingView()
-                {
-                    Guid = cls.Guid,
-                    Name = cls.Name,
-                    Modified = cls.Modified,
-                    Status = cls.Status,
-                    HardSerial = cls.HardSerial,
-                    ServerStatus = cls.ServerStatus,
-                    ServerDeliveryDate = cls.ServerDeliveryDate
-                };
-                await obj.SaveAsync();
+                await cls.SaveAsync();
             }
             catch (Exception ex)
             {
@@ -77,7 +59,7 @@ namespace WebHesabBussines
 
             return res;
         }
-        public static async Task<ReturnedSaveFuncInfo> SaveAsync(List<BuildingViewBussines> cls)
+        public static async Task<ReturnedSaveFuncInfo> SaveAsync(List<WebBuildingView> cls)
         {
             var res = new ReturnedSaveFuncInfo();
             try

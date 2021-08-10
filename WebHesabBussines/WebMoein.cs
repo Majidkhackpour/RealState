@@ -1,9 +1,8 @@
-﻿using System;
+﻿using Services;
+using Services.Interfaces.Building;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using EntityCache.Bussines;
-using Services;
-using Services.Interfaces.Building;
 
 namespace WebHesabBussines
 {
@@ -36,45 +35,25 @@ namespace WebHesabBussines
         {
             try
             {
-                var res = await Extentions.PostToApi<MoeinBussines, WebMoein>(this, Url);
+                var res = await Extentions.PostToApi<WebMoein, WebMoein>(this, Url);
                 if (res.ResponseStatus != ResponseStatus.Success)
                 {
-                    var temp = new TempBussines()
-                    {
-                        ObjectGuid = Guid,
-                        Type = EnTemp.Moein
-                    };
-                    await temp.SaveAsync();
+                    RaiseEvent(Guid, ServerStatus.DeliveryError, DateTime.Now);
                     return;
                 }
-                var bu = res.Data;
-                if (bu == null) return;
-                await TempBussines.UpdateEntityAsync(EnTemp.Moein, bu.Guid, ServerStatus.Delivered, DateTime.Now);
+                RaiseEvent(Guid, ServerStatus.Delivered, DateTime.Now);
             }
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        public static async Task<ReturnedSaveFuncInfo> SaveAsync(MoeinBussines cls)
+        public static async Task<ReturnedSaveFuncInfo> SaveAsync(WebMoein cls)
         {
             var res = new ReturnedSaveFuncInfo();
             try
             {
-                var obj = new WebMoein()
-                {
-                    Guid = cls.Guid,
-                    Name = cls.Name,
-                    Modified = cls.Modified,
-                    HardSerial = cls.HardSerial,
-                    ServerStatus = cls.ServerStatus,
-                    ServerDeliveryDate = cls.ServerDeliveryDate,
-                    Code = cls.Code,
-                    Account = cls.Account,
-                    DateM = cls.DateM,
-                    KolGuid = cls.KolGuid
-                };
-                await obj.SaveAsync();
+                await cls.SaveAsync();
             }
             catch (Exception ex)
             {
@@ -84,7 +63,7 @@ namespace WebHesabBussines
 
             return res;
         }
-        public static async Task<ReturnedSaveFuncInfo> SaveAsync(List<MoeinBussines> cls)
+        public static async Task<ReturnedSaveFuncInfo> SaveAsync(List<WebMoein> cls)
         {
             var res = new ReturnedSaveFuncInfo();
             try

@@ -1,10 +1,9 @@
-﻿using System;
+﻿using Services;
+using Services.Interfaces;
+using System;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-using EntityCache.Bussines;
-using Services;
-using Services.Interfaces;
 
 namespace WebHesabBussines
 {

@@ -1,9 +1,8 @@
-﻿using System;
+﻿using Services;
+using Servicess.Interfaces.Building;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using EntityCache.Bussines;
-using Services;
-using Servicess.Interfaces.Building;
 
 namespace WebHesabBussines
 {
@@ -31,7 +30,7 @@ namespace WebHesabBussines
         public decimal Account { get; set; }
         public decimal AccountFirst { get; set; }
         public string HardSerial { get; set; }
-        public List<PhoneBookBussines> TellList { get; set; }
+        public List<WebPhoneBook> TellList { get; set; }
 
 
         private static void RaiseEvent(Guid objGuid, ServerStatus st, DateTime dateM)
@@ -44,21 +43,13 @@ namespace WebHesabBussines
         {
             try
             {
-                var res = await Extentions.PostToApi<PeoplesBussines, WebPeople>(this, Url);
+                var res = await Extentions.PostToApi<WebPeople, WebPeople>(this, Url);
                 if (res.ResponseStatus != ResponseStatus.Success)
                 {
-                    var temp = new TempBussines()
-                    {
-                        ObjectGuid = Guid,
-                        Type = EnTemp.Peoples
-                    };
-                    await temp.SaveAsync();
+                    RaiseEvent(Guid, ServerStatus.DeliveryError, DateTime.Now);
                     return;
                 }
-                var bu = res.Data;
-                if (bu == null) return;
-                await TempBussines.UpdateEntityAsync(EnTemp.Peoples, bu.Guid, ServerStatus.Delivered, DateTime.Now);
-
+                RaiseEvent(Guid, ServerStatus.Delivered, DateTime.Now);
                 await WebPhoneBook.SaveAsync(TellList);
             }
             catch (Exception ex)
@@ -66,35 +57,12 @@ namespace WebHesabBussines
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        public static async Task<ReturnedSaveFuncInfo> SaveAsync(PeoplesBussines cls)
+        public static async Task<ReturnedSaveFuncInfo> SaveAsync(WebPeople cls)
         {
             var res = new ReturnedSaveFuncInfo();
             try
             {
-                var obj = new WebPeople()
-                {
-                    Guid = cls.Guid,
-                    Name = cls.Name,
-                    Modified = cls.Modified,
-                    Status = cls.Status,
-                    Account = cls.Account,
-                    Code = cls.Code,
-                    AccountFirst = cls.AccountFirst,
-                    Address = cls.Address,
-                    FatherName = cls.FatherName,
-                    DateBirth = cls.DateBirth,
-                    IdCode = cls.IdCode,
-                    NationalCode = cls.NationalCode,
-                    GroupGuid = cls.GroupGuid,
-                    PlaceBirth = cls.PlaceBirth,
-                    IssuedFrom = cls.IssuedFrom,
-                    PostalCode = cls.PostalCode,
-                    HardSerial = cls.HardSerial,
-                    TellList = cls.TellList,
-                    ServerStatus = cls.ServerStatus,
-                    ServerDeliveryDate = cls.ServerDeliveryDate
-                };
-                await obj.SaveAsync();
+                await cls.SaveAsync();
             }
             catch (Exception ex)
             {
@@ -104,7 +72,7 @@ namespace WebHesabBussines
 
             return res;
         }
-        public static async Task<ReturnedSaveFuncInfo> SaveAsync(List<PeoplesBussines> item)
+        public static async Task<ReturnedSaveFuncInfo> SaveAsync(List<WebPeople> item)
         {
             var res = new ReturnedSaveFuncInfo();
             try

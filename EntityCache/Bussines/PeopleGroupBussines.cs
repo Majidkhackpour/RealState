@@ -4,6 +4,7 @@ using System.Data.SqlClient;
 using System.Threading;
 using System.Threading.Tasks;
 using EntityCache.Assistence;
+using EntityCache.Mppings;
 using Nito.AsyncEx;
 using Persistence;
 using Services;
@@ -43,7 +44,7 @@ namespace EntityCache.Bussines
                 if (res.HasError) return res;
 
                 if (Cache.IsSendToServer)
-                    _ = Task.Run(() => WebPeopleGroup.SaveAsync(list));
+                    _ = Task.Run(() => WebPeopleGroup.SaveAsync(PeopleGroupMapper.Instance.MapList(list)));
             }
             catch (Exception ex)
             {
@@ -79,7 +80,7 @@ namespace EntityCache.Bussines
                 if (res.HasError) return res;
 
                 if (Cache.IsSendToServer)
-                    _ = Task.Run(() => WebPeopleGroup.SaveAsync(this));
+                    _ = Task.Run(() => WebPeopleGroup.SaveAsync(PeopleGroupMapper.Instance.Map(this)));
             }
             catch (Exception ex)
             {
@@ -122,7 +123,7 @@ namespace EntityCache.Bussines
                 if (res.HasError) return res;
 
                 if (Cache.IsSendToServer)
-                    _ = Task.Run(() => WebPeopleGroup.SaveAsync(this));
+                    _ = Task.Run(() => WebPeopleGroup.SaveAsync(PeopleGroupMapper.Instance.Map(this)));
             }
             catch (Exception ex)
             {

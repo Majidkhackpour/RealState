@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using EntityCache.Assistence;
+using EntityCache.Mppings;
 using EntityCache.ViewModels;
 using Nito.AsyncEx;
 using Persistence;
@@ -134,7 +135,7 @@ namespace EntityCache.Bussines
                 if (res.HasError) return res;
 
                 if (Cache.IsSendToServer)
-                    _ = Task.Run(() => WebContract.SaveAsync(this));
+                    _ = Task.Run(() => WebContract.SaveAsync(ContractMapper.Instance.Map(this)));
             }
             catch (Exception ex)
             {

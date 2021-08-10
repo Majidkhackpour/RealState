@@ -1,4 +1,7 @@
-﻿using EntityCache.Bussines;
+﻿using System;
+using System.Collections.Generic;
+using EntityCache.Bussines;
+using Services;
 using WebHesabBussines;
 
 namespace EntityCache.Mppings
@@ -21,6 +24,21 @@ namespace EntityCache.Mppings
                 DateM = cls.DateM,
                 KolGuid = cls.KolGuid
             };
+        }
+        public List<WebMoein> MapList(List<MoeinBussines> cls)
+        {
+            var list = new List<WebMoein>();
+            try
+            {
+                foreach (var item in cls)
+                    list.Add(Map(item));
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+
+            return list;
         }
     }
 }

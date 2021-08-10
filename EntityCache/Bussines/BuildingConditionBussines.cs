@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using EntityCache.Assistence;
+using EntityCache.Mppings;
 using Nito.AsyncEx;
 using Persistence;
 using Services;
@@ -43,7 +44,7 @@ namespace EntityCache.Bussines
                 res.AddReturnedValue(await UnitOfWork.BuildingCondition.SaveRangeAsync(list, tr));
 
                 if (Cache.IsSendToServer)
-                    _ = Task.Run(() => WebBuildingCondition.SaveAsync(list));
+                    _ = Task.Run(() => WebBuildingCondition.SaveAsync(BuildingConditionMapper.Instance.MapList(list)));
             }
             catch (Exception ex)
             {
@@ -86,7 +87,7 @@ namespace EntityCache.Bussines
                 if (res.HasError) return res;
 
                 if (Cache.IsSendToServer)
-                    _ = Task.Run(() => WebBuildingCondition.SaveAsync(this));
+                    _ = Task.Run(() => WebBuildingCondition.SaveAsync(BuildingConditionMapper.Instance.Map(this)));
             }
             catch (Exception ex)
             {
@@ -125,7 +126,7 @@ namespace EntityCache.Bussines
                 if (res.HasError) return res;
 
                 if (Cache.IsSendToServer)
-                    _ = Task.Run(() => WebBuildingCondition.SaveAsync(this));
+                    _ = Task.Run(() => WebBuildingCondition.SaveAsync(BuildingConditionMapper.Instance.Map(this)));
             }
             catch (Exception ex)
             {

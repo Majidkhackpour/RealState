@@ -1,9 +1,8 @@
-﻿using System;
+﻿using Services;
+using Servicess.Interfaces.Building;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using EntityCache.Bussines;
-using Services;
-using Servicess.Interfaces.Building;
 
 namespace WebHesabBussines
 {
@@ -32,27 +31,21 @@ namespace WebHesabBussines
         {
             try
             {
-                var res = await Extentions.PostToApi<BuildingRelatedOptionsBussines, WebBuildingRelatedOptions>(this, Url);
+                var res = await Extentions.PostToApi<WebBuildingRelatedOptions, WebBuildingRelatedOptions>(this, Url);
                 if (res.ResponseStatus != ResponseStatus.Success)
                 {
-                    var temp = new TempBussines()
-                    {
-                        ObjectGuid = Guid,
-                        Type = EnTemp.BuildingRelatedOptions
-                    };
-                    await temp.SaveAsync();
+
+                    RaiseEvent(Guid, ServerStatus.DeliveryError, DateTime.Now);
                     return;
                 }
-                var bu = res.Data;
-                if (bu == null) return;
-                await TempBussines.UpdateEntityAsync(EnTemp.BuildingRelatedOptions, bu.Guid, ServerStatus.Delivered, DateTime.Now);
+                RaiseEvent(Guid, ServerStatus.Delivered, DateTime.Now);
             }
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        public static async Task<ReturnedSaveFuncInfo> SaveAsync(BuildingRelatedOptionsBussines cls)
+        public static async Task<ReturnedSaveFuncInfo> SaveAsync(WebBuildingRelatedOptions cls)
         {
             var res = new ReturnedSaveFuncInfo();
             try
@@ -77,7 +70,7 @@ namespace WebHesabBussines
 
             return res;
         }
-        public static async Task<ReturnedSaveFuncInfo> SaveAsync(List<BuildingRelatedOptionsBussines> item)
+        public static async Task<ReturnedSaveFuncInfo> SaveAsync(List<WebBuildingRelatedOptions> item)
         {
             var res = new ReturnedSaveFuncInfo();
             try

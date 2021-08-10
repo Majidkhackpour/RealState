@@ -57,7 +57,7 @@ namespace EntityCache.Bussines
                 if (res.HasError) return res;
 
                 if (Cache.IsSendToServer)
-                    _ = Task.Run(() => WebAdvisor.SaveAsync(this));
+                    _ = Task.Run(() => WebAdvisor.SaveAsync(AdvisorMapper.Instance.Map(this)));
             }
             catch (Exception ex)
             {
@@ -182,7 +182,7 @@ namespace EntityCache.Bussines
                 if (res.HasError) return res;
 
                 if (Cache.IsSendToServer)
-                    _ = Task.Run(() => WebAdvisor.SaveAsync(this));
+                    _ = Task.Run(() => WebAdvisor.SaveAsync(AdvisorMapper.Instance.Map(this)));
             }
             catch (Exception ex)
             {

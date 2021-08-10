@@ -4,6 +4,7 @@ using System.Data.SqlClient;
 using System.Threading;
 using System.Threading.Tasks;
 using EntityCache.Assistence;
+using EntityCache.Mppings;
 using EntityCache.ViewModels;
 using Persistence;
 using Services;
@@ -50,7 +51,7 @@ namespace EntityCache.Bussines
                 if (res.HasError) return res;
 
                 if (Cache.IsSendToServer)
-                    _ = Task.Run(() => WebSanadDetail.SaveAsync(this));
+                    _ = Task.Run(() => WebSanadDetail.SaveAsync(SanadDetailMapper.Instance.Map(this)));
             }
             catch (Exception ex)
             {
@@ -87,7 +88,7 @@ namespace EntityCache.Bussines
                 if (res.HasError) return res;
 
                 if (Cache.IsSendToServer)
-                    _ = Task.Run(() => WebSanadDetail.SaveAsync(list));
+                    _ = Task.Run(() => WebSanadDetail.SaveAsync(SanadDetailMapper.Instance.MapList(list)));
             }
             catch (Exception ex)
             {

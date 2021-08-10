@@ -6,29 +6,32 @@ using WebHesabBussines;
 
 namespace EntityCache.Mppings
 {
-    public class SanadDetailMapper
+    public class TafsilMapper
     {
-        public static SanadDetailMapper Instance { get; private set; } = new SanadDetailMapper();
-        public WebSanadDetail Map(SanadDetailBussines cls)
+        public static TafsilMapper Instance { get; private set; } = new TafsilMapper();
+        public WebTafsil Map(TafsilBussines cls)
         {
-            return new WebSanadDetail()
+            return new WebTafsil()
             {
                 Guid = cls.Guid,
                 Modified = cls.Modified,
                 HardSerial = cls.HardSerial,
-                ServerStatus = cls.ServerStatus,
-                ServerDeliveryDate = cls.ServerDeliveryDate,
+                Name = cls.Name,
                 Description = cls.Description,
-                Debit = cls.Debit,
-                Credit = cls.Credit,
-                TafsilGuid = cls.TafsilGuid,
-                MoeinGuid = cls.MoeinGuid,
-                MasterGuid = cls.MasterGuid
+                Status = cls.Status,
+                HesabType = cls.HesabType,
+                ServerStatus = cls.ServerStatus,
+                DateM = cls.DateM,
+                Code = cls.Code,
+                AccountFirst = cls.AccountFirst,
+                ServerDeliveryDate = cls.ServerDeliveryDate,
+                Account = cls.Account,
+                isSystem = cls.isSystem
             };
         }
-        public List<WebSanadDetail> MapList(List<SanadDetailBussines> cls)
+        public List<WebTafsil> MapList(List<TafsilBussines> cls)
         {
-            var list = new List<WebSanadDetail>();
+            var list = new List<WebTafsil>();
             try
             {
                 foreach (var item in cls)

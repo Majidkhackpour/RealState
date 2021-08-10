@@ -1,4 +1,7 @@
-﻿using EntityCache.Bussines;
+﻿using System;
+using System.Collections.Generic;
+using EntityCache.Bussines;
+using Services;
 using WebHesabBussines;
 
 namespace EntityCache.Mppings
@@ -22,10 +25,9 @@ namespace EntityCache.Mppings
                 RoomCount = cls.RoomCount,
                 Priority = cls.Priority,
                 IsArchive = cls.IsArchive,
-                GalleryList = cls.GalleryList,
                 ZirBana = cls.ZirBana,
                 BuildingAccountTypeGuid = cls.BuildingAccountTypeGuid,
-                OptionList = cls.OptionList,
+                OptionList = BuildingRelatedOptionMapper.Instance.MapList(cls.OptionList),
                 UserGuid = cls.UserGuid,
                 Address = cls.Address,
                 BuildingTypeGuid = cls.BuildingTypeGuid,
@@ -75,6 +77,21 @@ namespace EntityCache.Mppings
                 ServerStatus = cls.ServerStatus,
                 ServerDeliveryDate = cls.ServerDeliveryDate
             };
+        }
+        public List<WebBuilding> MapList(List<BuildingBussines> cls)
+        {
+            var list = new List<WebBuilding>();
+            try
+            {
+                foreach (var item in cls)
+                    list.Add(Map(item));
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+
+            return list;
         }
     }
 }

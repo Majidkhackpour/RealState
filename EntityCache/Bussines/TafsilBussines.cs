@@ -8,6 +8,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using EntityCache.Mppings;
 using Persistence;
 using WebHesabBussines;
 
@@ -52,7 +53,7 @@ namespace EntityCache.Bussines
                 if (res.HasError) return res;
 
                 if (Cache.IsSendToServer)
-                    _ = Task.Run(() => WebTafsil.SaveAsync(list));
+                    _ = Task.Run(() => WebTafsil.SaveAsync(TafsilMapper.Instance.MapList(list)));
             }
             catch (Exception ex)
             {
@@ -89,7 +90,7 @@ namespace EntityCache.Bussines
                 if (res.HasError) return res;
 
                 if (Cache.IsSendToServer)
-                    _ = Task.Run(() => WebTafsil.SaveAsync(this));
+                    _ = Task.Run(() => WebTafsil.SaveAsync(TafsilMapper.Instance.Map(this)));
             }
             catch (Exception ex)
             {
@@ -214,7 +215,7 @@ namespace EntityCache.Bussines
                 if (res.HasError) return res;
 
                 if (Cache.IsSendToServer)
-                    _ = Task.Run(() => WebTafsil.SaveAsync(this));
+                    _ = Task.Run(() => WebTafsil.SaveAsync(TafsilMapper.Instance.Map(this)));
             }
             catch (Exception ex)
             {

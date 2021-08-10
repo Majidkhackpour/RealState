@@ -258,6 +258,7 @@
     <Compile Include="Mppings\SanadDetailMapper.cs" />
     <Compile Include="Mppings\SanadMapper.cs" />
     <Compile Include="Mppings\StateMapper.cs" />
+    <Compile Include="Mppings\TafsilMapper.cs" />
     <Compile Include="Mppings\UserMapper.cs" />
     <Compile Include="SqlServerPersistence\AdjectiveDescriptionPersistenceRepository.cs" />
     <Compile Include="SqlServerPersistence\AdvertiseLogPersistenceRepository.cs" />

@@ -4,6 +4,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 using EntityCache.Assistence;
+using EntityCache.Mppings;
 using Nito.AsyncEx;
 using Persistence;
 using Services;
@@ -156,7 +157,7 @@ namespace EntityCache.Bussines
                 if (res.HasError) return res;
 
                 if (Cache.IsSendToServer)
-                    _ = Task.Run(() => WebPhoneBook.SaveAsync(this));
+                    _ = Task.Run(() => WebPhoneBook.SaveAsync(PhoneBookMapper.Instance.Map(this)));
             }
             catch (Exception ex)
             {
@@ -191,7 +192,7 @@ namespace EntityCache.Bussines
                 if (res.HasError) return res;
 
                 if (Cache.IsSendToServer)
-                    _ = Task.Run(() => WebPhoneBook.SaveAsync(list));
+                    _ = Task.Run(() => WebPhoneBook.SaveAsync(PhoneBookMapper.Instance.MapList(list)));
             }
             catch (Exception ex)
             {

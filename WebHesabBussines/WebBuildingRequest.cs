@@ -1,9 +1,8 @@
-﻿using System;
+﻿using Services;
+using Servicess.Interfaces.Building;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using EntityCache.Bussines;
-using Services;
-using Servicess.Interfaces.Building;
 
 namespace WebHesabBussines
 {
@@ -41,7 +40,7 @@ namespace WebHesabBussines
         public Guid BuildingConditionGuid { get; set; }
         public string ShortDesc { get; set; }
         public string HardSerial { get; set; }
-        public List<BuildingRequestRegionBussines> RegionList { get; set; }
+        public List<WebBuildingRequestRegion> RegionList { get; set; }
 
 
         private static void RaiseEvent(Guid objGuid, ServerStatus st, DateTime dateM)
@@ -54,21 +53,13 @@ namespace WebHesabBussines
         {
             try
             {
-                var res = await Extentions.PostToApi<BuildingRequestBussines, WebBuildingRequest>(this, Url);
+                var res = await Extentions.PostToApi<WebBuildingRequest, WebBuildingRequest>(this, Url);
                 if (res.ResponseStatus != ResponseStatus.Success)
                 {
-                    var temp = new TempBussines()
-                    {
-                        ObjectGuid = Guid,
-                        Type = EnTemp.Requests
-                    };
-                    await temp.SaveAsync();
+                    RaiseEvent(Guid, ServerStatus.DeliveryError, DateTime.Now);
                     return;
                 }
-                var bu = res.Data;
-                if (bu == null) return;
-                await TempBussines.UpdateEntityAsync(EnTemp.Requests, bu.Guid, ServerStatus.Delivered, DateTime.Now);
-
+                RaiseEvent(Guid, ServerStatus.Delivered, DateTime.Now);
                 await WebBuildingRequestRegion.SaveAsync(RegionList);
             }
             catch (Exception ex)
@@ -76,44 +67,12 @@ namespace WebHesabBussines
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        public static async Task<ReturnedSaveFuncInfo> SaveAsync(BuildingRequestBussines cls)
+        public static async Task<ReturnedSaveFuncInfo> SaveAsync(WebBuildingRequest cls)
         {
             var res = new ReturnedSaveFuncInfo();
             try
             {
-                var obj = new WebBuildingRequest()
-                {
-                    Guid = cls.Guid,
-                    Modified = cls.Modified,
-                    Status = cls.Status,
-                    EjarePrice1 = cls.EjarePrice1,
-                    RahnPrice1 = cls.RahnPrice1,
-                    RoomCount = cls.RoomCount,
-                    BuildingAccountTypeGuid = cls.BuildingAccountTypeGuid,
-                    UserGuid = cls.UserGuid,
-                    BuildingTypeGuid = cls.BuildingTypeGuid,
-                    EjarePrice2 = cls.EjarePrice2,
-                    RentalAutorityGuid = cls.RentalAutorityGuid,
-                    ShortDesc = cls.ShortDesc,
-                    CityGuid = cls.CityGuid,
-                    CreateDate = cls.CreateDate,
-                    RahnPrice2 = cls.RahnPrice2,
-                    SellPrice2 = cls.SellPrice2,
-                    BuildingConditionGuid = cls.BuildingConditionGuid,
-                    AskerGuid = cls.AskerGuid,
-                    SellPrice1 = cls.SellPrice1,
-                    Masahat1 = cls.Masahat1,
-                    Masahat2 = cls.Masahat2,
-                    PeopleCount = cls.PeopleCount,
-                    ShortDate = cls.ShortDate,
-                    HasVam = cls.HasVam,
-                    HasOwner = cls.HasOwner,
-                    HardSerial = cls.HardSerial,
-                    RegionList = cls.RegionList,
-                    ServerStatus = cls.ServerStatus,
-                    ServerDeliveryDate = cls.ServerDeliveryDate
-                };
-                await obj.SaveAsync();
+                await cls.SaveAsync();
             }
             catch (Exception ex)
             {
@@ -123,7 +82,7 @@ namespace WebHesabBussines
 
             return res;
         }
-        public static async Task<ReturnedSaveFuncInfo> SaveAsync(List<BuildingRequestBussines> item)
+        public static async Task<ReturnedSaveFuncInfo> SaveAsync(List<WebBuildingRequest> item)
         {
             var res = new ReturnedSaveFuncInfo();
             try

@@ -1,9 +1,8 @@
-﻿using System;
+﻿using Services;
+using Servicess.Interfaces.Building;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using EntityCache.Bussines;
-using Services;
-using Servicess.Interfaces.Building;
 
 namespace WebHesabBussines
 {
@@ -31,42 +30,25 @@ namespace WebHesabBussines
         {
             try
             {
-                var res = await Extentions.PostToApi<KitchenServiceBussines, WebKitchenService>(this, Url);
+                var res = await Extentions.PostToApi<WebKitchenService, WebKitchenService>(this, Url);
                 if (res.ResponseStatus != ResponseStatus.Success)
                 {
-                    var temp = new TempBussines()
-                    {
-                        ObjectGuid = Guid,
-                        Type = EnTemp.KitchenService
-                    };
-                    await temp.SaveAsync();
+                    RaiseEvent(Guid, ServerStatus.DeliveryError, DateTime.Now);
                     return;
                 }
-                var bu = res.Data;
-                if (bu == null) return;
-                await TempBussines.UpdateEntityAsync(EnTemp.KitchenService, bu.Guid, ServerStatus.Delivered, DateTime.Now);
+                RaiseEvent(Guid, ServerStatus.Delivered, DateTime.Now);
             }
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        public static async Task<ReturnedSaveFuncInfo> SaveAsync(KitchenServiceBussines cls)
+        public static async Task<ReturnedSaveFuncInfo> SaveAsync(WebKitchenService cls)
         {
             var res = new ReturnedSaveFuncInfo();
             try
             {
-                var obj = new WebKitchenService()
-                {
-                    Guid = cls.Guid,
-                    Name = cls.Name,
-                    Modified = cls.Modified,
-                    Status = cls.Status,
-                    HardSerial = cls.HardSerial,
-                    ServerStatus = cls.ServerStatus,
-                    ServerDeliveryDate = cls.ServerDeliveryDate
-                };
-                await obj.SaveAsync();
+                await cls.SaveAsync();
             }
             catch (Exception ex)
             {
@@ -76,7 +58,7 @@ namespace WebHesabBussines
 
             return res;
         }
-        public static async Task<ReturnedSaveFuncInfo> SaveAsync(List<KitchenServiceBussines> cls)
+        public static async Task<ReturnedSaveFuncInfo> SaveAsync(List<WebKitchenService> cls)
         {
             var res = new ReturnedSaveFuncInfo();
             try

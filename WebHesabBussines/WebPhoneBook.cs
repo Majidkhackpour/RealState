@@ -1,9 +1,8 @@
-﻿using System;
+﻿using Services;
+using Servicess.Interfaces.Building;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using EntityCache.Bussines;
-using Services;
-using Servicess.Interfaces.Building;
 
 namespace WebHesabBussines
 {
@@ -36,46 +35,25 @@ namespace WebHesabBussines
         {
             try
             {
-                var res = await Extentions.PostToApi<PhoneBookBussines, WebPhoneBook>(this, Url);
+                var res = await Extentions.PostToApi<WebPhoneBook, WebPhoneBook>(this, Url);
                 if (res.ResponseStatus != ResponseStatus.Success)
                 {
-                    var temp = new TempBussines()
-                    {
-                        ObjectGuid = Guid,
-                        Type = EnTemp.PhoneBook
-                    };
-                    await temp.SaveAsync();
+                    RaiseEvent(Guid, ServerStatus.DeliveryError, DateTime.Now);
                     return;
                 }
-                var bu = res.Data;
-                if (bu == null) return;
-                await TempBussines.UpdateEntityAsync(EnTemp.PhoneBook, bu.Guid, ServerStatus.Delivered, DateTime.Now);
+                RaiseEvent(Guid, ServerStatus.Delivered, DateTime.Now);
             }
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        public static async Task<ReturnedSaveFuncInfo> SaveAsync(PhoneBookBussines cls)
+        public static async Task<ReturnedSaveFuncInfo> SaveAsync(WebPhoneBook cls)
         {
             var res = new ReturnedSaveFuncInfo();
             try
             {
-                var obj = new WebPhoneBook()
-                {
-                    Guid = cls.Guid,
-                    Name = cls.Name,
-                    Modified = cls.Modified,
-                    Status = cls.Status,
-                    HardSerial = cls.HardSerial,
-                    ParentGuid = cls.ParentGuid,
-                    Tell = cls.Tell,
-                    Group = cls.Group,
-                    ServerStatus = cls.ServerStatus,
-                    ServerDeliveryDate = cls.ServerDeliveryDate,
-                    Title = cls.Title
-                };
-                await obj.SaveAsync();
+                await cls.SaveAsync();
             }
             catch (Exception ex)
             {
@@ -85,7 +63,7 @@ namespace WebHesabBussines
 
             return res;
         }
-        public static async Task<ReturnedSaveFuncInfo> SaveAsync(List<PhoneBookBussines> cls)
+        public static async Task<ReturnedSaveFuncInfo> SaveAsync(List<WebPhoneBook> cls)
         {
             var res = new ReturnedSaveFuncInfo();
             try

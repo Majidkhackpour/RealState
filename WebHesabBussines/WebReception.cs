@@ -1,14 +1,12 @@
-﻿using System;
+﻿using Services;
+using Services.Interfaces.Building;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using EntityCache.Bussines;
-using Services;
-using Services.Interfaces.Building;
-using Servicess.Interfaces.Building;
 
 namespace WebHesabBussines
 {
-    public class WebReception:IReception
+    public class WebReception : IReception
     {
         private static string Url = Utilities.WebApi + "/api/BuildingReception/SaveAsync";
         public static event Func<Guid, ServerStatus, DateTime, Task> OnSaveResult;
@@ -43,51 +41,25 @@ namespace WebHesabBussines
         {
             try
             {
-                var res = await Extentions.PostToApi<ReceptionBussines, WebReception>(this, Url);
+                var res = await Extentions.PostToApi<WebReception, WebReception>(this, Url);
                 if (res.ResponseStatus != ResponseStatus.Success)
                 {
-                    var temp = new TempBussines()
-                    {
-                        ObjectGuid = Guid,
-                        Type = EnTemp.Reception
-                    };
-                    await temp.SaveAsync();
+                    RaiseEvent(Guid, ServerStatus.DeliveryError, DateTime.Now);
                     return;
                 }
-                var bu = res.Data;
-                if (bu == null) return;
-                await TempBussines.UpdateEntityAsync(EnTemp.Reception, bu.Guid, ServerStatus.Delivered, DateTime.Now);
+                RaiseEvent(Guid, ServerStatus.Delivered, DateTime.Now);
             }
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        public static async Task<ReturnedSaveFuncInfo> SaveAsync(ReceptionBussines cls)
+        public static async Task<ReturnedSaveFuncInfo> SaveAsync(WebReception cls)
         {
             var res = new ReturnedSaveFuncInfo();
             try
             {
-                var obj = new WebReception()
-                {
-                    Guid = cls.Guid,
-                    Modified = cls.Modified,
-                    Description = cls.Description,
-                    HardSerial = cls.HardSerial,
-                    ServerStatus = cls.ServerStatus,
-                    ServerDeliveryDate = cls.ServerDeliveryDate,
-                    DateM = cls.DateM,
-                    Number = cls.Number,
-                    UserGuid = cls.UserGuid,
-                    TafsilGuid = cls.TafsilGuid,
-                    SanadNumber = cls.SanadNumber,
-                    MoeinGuid = cls.MoeinGuid,
-                    SumHavale = cls.SumHavale,
-                    SumNaqd = cls.SumNaqd,
-                    Sum = cls.Sum,
-                    SumCheck = cls.SumCheck
-                };
-                await obj.SaveAsync();
+                await cls.SaveAsync();
             }
             catch (Exception ex)
             {
@@ -97,7 +69,7 @@ namespace WebHesabBussines
 
             return res;
         }
-        public static async Task<ReturnedSaveFuncInfo> SaveAsync(List<ReceptionBussines> item)
+        public static async Task<ReturnedSaveFuncInfo> SaveAsync(List<WebReception> item)
         {
             var res = new ReturnedSaveFuncInfo();
             try

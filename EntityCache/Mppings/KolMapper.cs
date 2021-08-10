@@ -1,4 +1,7 @@
-﻿using EntityCache.Bussines;
+﻿using System;
+using System.Collections.Generic;
+using EntityCache.Bussines;
+using Services;
 using WebHesabBussines;
 
 namespace EntityCache.Mppings
@@ -20,6 +23,21 @@ namespace EntityCache.Mppings
                 Account = cls.Account,
                 HesabGroup = cls.HesabGroup
             };
+        }
+        public List<WebKol> MapList(List<KolBussines> cls)
+        {
+            var list = new List<WebKol>();
+            try
+            {
+                foreach (var item in cls)
+                    list.Add(Map(item));
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+
+            return list;
         }
     }
 }

@@ -1,4 +1,7 @@
-﻿using EntityCache.Bussines;
+﻿using System;
+using System.Collections.Generic;
+using EntityCache.Bussines;
+using Services;
 using WebHesabBussines;
 
 namespace EntityCache.Mppings
@@ -36,10 +39,25 @@ namespace EntityCache.Mppings
                 HasVam = cls.HasVam,
                 HasOwner = cls.HasOwner,
                 HardSerial = cls.HardSerial,
-                RegionList = cls.RegionList,
+                RegionList = BuildingRequestRegionMapper.Instance.MapList(cls.RegionList),
                 ServerStatus = cls.ServerStatus,
                 ServerDeliveryDate = cls.ServerDeliveryDate
             };
+        }
+        public List<WebBuildingRequest> MapList(List<BuildingRequestBussines> cls)
+        {
+            var list = new List<WebBuildingRequest>();
+            try
+            {
+                foreach (var item in cls)
+                    list.Add(Map(item));
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+
+            return list;
         }
     }
 }

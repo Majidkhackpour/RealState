@@ -1,9 +1,8 @@
-﻿using System;
+﻿using Services;
+using Servicess.Interfaces.Building;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using EntityCache.Bussines;
-using Services;
-using Servicess.Interfaces.Building;
 
 namespace WebHesabBussines
 {
@@ -66,77 +65,25 @@ namespace WebHesabBussines
         {
             try
             {
-                var res = await Extentions.PostToApi<ContractBussines, WebContract>(this, Url);
+                var res = await Extentions.PostToApi<WebContract, WebContract>(this, Url);
                 if (res.ResponseStatus != ResponseStatus.Success)
                 {
-                    var temp = new TempBussines()
-                    {
-                        ObjectGuid = Guid,
-                        Type = EnTemp.Contract
-                    };
-                    await temp.SaveAsync();
+                    RaiseEvent(Guid, ServerStatus.DeliveryError, DateTime.Now);
                     return;
                 }
-                var bu = res.Data;
-                if (bu == null) return;
-                await TempBussines.UpdateEntityAsync(EnTemp.Contract, bu.Guid, ServerStatus.Delivered, DateTime.Now);
+                RaiseEvent(Guid, ServerStatus.Delivered, DateTime.Now);
             }
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        public static async Task<ReturnedSaveFuncInfo> SaveAsync(ContractBussines cls)
+        public static async Task<ReturnedSaveFuncInfo> SaveAsync(WebContract cls)
         {
             var res = new ReturnedSaveFuncInfo();
             try
             {
-                var obj = new WebContract()
-                {
-                    Guid = cls.Guid,
-                    Modified = cls.Modified,
-                    Status = cls.Status,
-                    Code = cls.Code,
-                    MinorPrice = cls.MinorPrice,
-                    UserGuid = cls.UserGuid,
-                    TotalPrice = cls.TotalPrice,
-                    Description = cls.Description,
-                    Type = cls.Type,
-                    Term = cls.Term,
-                    SecondSideGuid = cls.SecondSideGuid,
-                    Delay = cls.Delay,
-                    SarQofli = cls.SarQofli,
-                    BankName = cls.BankName,
-                    IsTemp = cls.IsTemp,
-                    FirstSideGuid = cls.FirstSideGuid,
-                    Shobe = cls.Shobe,
-                    CheckNo = cls.CheckNo,
-                    FromDate = cls.FromDate,
-                    DischargeDate = cls.DischargeDate,
-                    SarResid = cls.SarResid,
-                    BuildingGuid = cls.BuildingGuid,
-                    SetDocDate = cls.SetDocDate,
-                    SetDocPlace = cls.SetDocPlace,
-                    DateM = cls.DateM,
-                    HardSerial = cls.HardSerial,
-                    BazaryabGuid = cls.BazaryabGuid,
-                    BazaryabPrice = cls.BazaryabPrice,
-                    ServerStatus = cls.ServerStatus,
-                    ServerDeliveryDate = cls.ServerDeliveryDate,
-                    FirstDiscount = cls.FirstDiscount,
-                    FirstTotalPrice = cls.FirstTotalPrice,
-                    FirstTax = cls.FirstTax,
-                    SecondTax = cls.SecondTax,
-                    SecondDiscount = cls.SecondDiscount,
-                    SanadNumber = cls.SanadNumber,
-                    FirstAvarez = cls.FirstAvarez,
-                    SecondAvarez = cls.SecondAvarez,
-                    SecondTotalPrice = cls.SecondTotalPrice,
-                    fBabat = cls.fBabat,
-                    sBabat = cls.sBabat,
-                    CodeInArchive = cls.CodeInArchive
-                };
-                await obj.SaveAsync();
+                await cls.SaveAsync();
             }
             catch (Exception ex)
             {
@@ -146,7 +93,7 @@ namespace WebHesabBussines
 
             return res;
         }
-        public static async Task<ReturnedSaveFuncInfo> SaveAsync(List<ContractBussines> item)
+        public static async Task<ReturnedSaveFuncInfo> SaveAsync(List<WebContract> item)
         {
             var res = new ReturnedSaveFuncInfo();
             try

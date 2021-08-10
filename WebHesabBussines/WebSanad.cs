@@ -1,9 +1,8 @@
-﻿using System;
+﻿using Services;
+using Services.Interfaces.Building;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using EntityCache.Bussines;
-using Services;
-using Services.Interfaces.Building;
 
 namespace WebHesabBussines
 {
@@ -23,7 +22,7 @@ namespace WebHesabBussines
         public Guid UserGuid { get; set; }
         public EnSanadType SanadType { get; set; }
         public string HardSerial { get; set; }
-        public List<SanadDetailBussines> DetList { get; set; }
+        public List<WebSanadDetail> DetList { get; set; }
 
 
         private static void RaiseEvent(Guid objGuid, ServerStatus st, DateTime dateM)
@@ -36,21 +35,13 @@ namespace WebHesabBussines
         {
             try
             {
-                var res = await Extentions.PostToApi<SanadBussines, WebSanad>(this, Url);
+                var res = await Extentions.PostToApi<WebSanad, WebSanad>(this, Url);
                 if (res.ResponseStatus != ResponseStatus.Success)
                 {
-                    var temp = new TempBussines()
-                    {
-                        ObjectGuid = Guid,
-                        Type = EnTemp.Sanad
-                    };
-                    await temp.SaveAsync();
+                    RaiseEvent(Guid, ServerStatus.DeliveryError, DateTime.Now);
                     return;
                 }
-                var bu = res.Data;
-                if (bu == null) return;
-                await TempBussines.UpdateEntityAsync(EnTemp.Sanad, bu.Guid, ServerStatus.Delivered, DateTime.Now);
-
+                RaiseEvent(Guid, ServerStatus.Delivered, DateTime.Now);
                 await WebSanadDetail.SaveAsync(DetList);
             }
             catch (Exception ex)
@@ -58,27 +49,12 @@ namespace WebHesabBussines
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        public static async Task<ReturnedSaveFuncInfo> SaveAsync(SanadBussines cls)
+        public static async Task<ReturnedSaveFuncInfo> SaveAsync(WebSanad cls)
         {
             var res = new ReturnedSaveFuncInfo();
             try
             {
-                var obj = new WebSanad()
-                {
-                    Guid = cls.Guid,
-                    Modified = cls.Modified,
-                    UserGuid = cls.UserGuid,
-                    HardSerial = cls.HardSerial,
-                    ServerStatus = cls.ServerStatus,
-                    ServerDeliveryDate = cls.ServerDeliveryDate,
-                    Description = cls.Description,
-                    DateM = cls.DateM,
-                    Number = cls.Number,
-                    SanadType = cls.SanadType,
-                    SanadStatus = cls.SanadStatus,
-                    DetList = cls.Details
-                };
-                await obj.SaveAsync();
+                await cls.SaveAsync();
             }
             catch (Exception ex)
             {
@@ -88,7 +64,7 @@ namespace WebHesabBussines
 
             return res;
         }
-        public static async Task<ReturnedSaveFuncInfo> SaveAsync(List<SanadBussines> item)
+        public static async Task<ReturnedSaveFuncInfo> SaveAsync(List<WebSanad> item)
         {
             var res = new ReturnedSaveFuncInfo();
             try

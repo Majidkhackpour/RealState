@@ -1,13 +1,12 @@
-﻿using System;
+﻿using Services;
+using Servicess.Interfaces.Building;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using EntityCache.Bussines;
-using Services;
-using Servicess.Interfaces.Building;
 
 namespace WebHesabBussines
 {
-    public class WebRegion:IRegions
+    public class WebRegion : IRegions
     {
         private static string Url = Utilities.WebApi + "/api/Region/SaveAsync";
         public static event Func<Guid, ServerStatus, DateTime, Task> OnSaveResult;
@@ -33,43 +32,25 @@ namespace WebHesabBussines
         {
             try
             {
-                var res = await Extentions.PostToApi<RegionsBussines, WebRegion>(this, Url);
+                var res = await Extentions.PostToApi<WebRegion, WebRegion>(this, Url);
                 if (res.ResponseStatus != ResponseStatus.Success)
                 {
-                    var temp = new TempBussines()
-                    {
-                        ObjectGuid = Guid,
-                        Type = EnTemp.Region
-                    };
-                    await temp.SaveAsync();
+                    RaiseEvent(Guid, ServerStatus.DeliveryError, DateTime.Now);
                     return;
                 }
-                var bu = res.Data;
-                if (bu == null) return;
-                await TempBussines.UpdateEntityAsync(EnTemp.Region, bu.Guid, ServerStatus.Delivered, DateTime.Now);
+                RaiseEvent(Guid, ServerStatus.Delivered, DateTime.Now);
             }
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        public static async Task<ReturnedSaveFuncInfo> SaveAsync(RegionsBussines cls)
+        public static async Task<ReturnedSaveFuncInfo> SaveAsync(WebRegion cls)
         {
             var res = new ReturnedSaveFuncInfo();
             try
             {
-                var obj = new WebRegion()
-                {
-                    Guid = cls.Guid,
-                    Name = cls.Name,
-                    Modified = cls.Modified,
-                    Status = cls.Status,
-                    CityGuid = cls.CityGuid,
-                    HardSerial = cls.HardSerial,
-                    ServerStatus = cls.ServerStatus,
-                    ServerDeliveryDate = cls.ServerDeliveryDate
-                };
-                await obj.SaveAsync();
+                await cls.SaveAsync();
             }
             catch (Exception ex)
             {
@@ -79,7 +60,7 @@ namespace WebHesabBussines
 
             return res;
         }
-        public static async Task<ReturnedSaveFuncInfo> SaveAsync(List<RegionsBussines> cls)
+        public static async Task<ReturnedSaveFuncInfo> SaveAsync(List<WebRegion> cls)
         {
             var res = new ReturnedSaveFuncInfo();
             try

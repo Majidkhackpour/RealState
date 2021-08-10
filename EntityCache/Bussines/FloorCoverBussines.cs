@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using EntityCache.Assistence;
+using EntityCache.Mppings;
 using Nito.AsyncEx;
 using Persistence;
 using Services;
@@ -44,7 +45,7 @@ namespace EntityCache.Bussines
                 if (res.HasError) return res;
 
                 if (Cache.IsSendToServer)
-                    _ = Task.Run(() => WebFloorCover.SaveAsync(list));
+                    _ = Task.Run(() => WebFloorCover.SaveAsync(FloorCoverMapper.Instance.MapList(list)));
             }
             catch (Exception ex)
             {
@@ -87,7 +88,7 @@ namespace EntityCache.Bussines
                 if (res.HasError) return res;
 
                 if (Cache.IsSendToServer)
-                    _ = Task.Run(() => WebFloorCover.SaveAsync(this));
+                    _ = Task.Run(() => WebFloorCover.SaveAsync(FloorCoverMapper.Instance.Map(this)));
             }
             catch (Exception ex)
             {
@@ -126,7 +127,7 @@ namespace EntityCache.Bussines
                 if (res.HasError) return res;
 
                 if (Cache.IsSendToServer)
-                    _ = Task.Run(() => WebFloorCover.SaveAsync(this));
+                    _ = Task.Run(() => WebFloorCover.SaveAsync(FloorCoverMapper.Instance.Map(this)));
             }
             catch (Exception ex)
             {

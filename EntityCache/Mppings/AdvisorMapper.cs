@@ -1,4 +1,7 @@
-﻿using EntityCache.Bussines;
+﻿using System;
+using System.Collections.Generic;
+using EntityCache.Bussines;
+using Services;
 using WebHesabBussines;
 
 namespace EntityCache.Mppings
@@ -19,6 +22,21 @@ namespace EntityCache.Mppings
                 ServerDeliveryDate = cls.ServerDeliveryDate,
                 Address = cls.Address
             };
+        }
+        public List<WebAdvisor> MapList(List<AdvisorBussines> cls)
+        {
+            var list = new List<WebAdvisor>();
+            try
+            {
+                foreach (var item in cls)
+                    list.Add(Map(item));
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+
+            return list;
         }
     }
 }

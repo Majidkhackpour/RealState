@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using EntityCache.Assistence;
+using EntityCache.Mppings;
 using Nito.AsyncEx;
 using Persistence;
 using Services;
@@ -47,7 +48,7 @@ namespace EntityCache.Bussines
                 if (res.HasError) return res;
 
                 if (Cache.IsSendToServer)
-                    _ = Task.Run(() => WebKol.SaveAsync(list));
+                    _ = Task.Run(() => WebKol.SaveAsync(KolMapper.Instance.MapList(list)));
             }
             catch (Exception ex)
             {

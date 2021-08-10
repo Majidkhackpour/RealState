@@ -79,8 +79,29 @@ namespace EntityCache.Bussines
             }
             return res;
         }
-        public static async Task UpdateEntityAsync(EnTemp type, Guid entityGuid, ServerStatus st, DateTime deliveryDate) =>
-            await UnitOfWork.Temp.UpdateEntityAsync(type, entityGuid, st, deliveryDate, Cache.ConnectionString);
+        public static async Task UpdateEntityAsync(EnTemp type, Guid entityGuid, ServerStatus st, DateTime deliveryDate)
+        {
+            try
+            {
+                if (st == ServerStatus.DeliveryError)
+                {
+                    var tmp = new TempBussines()
+                    {
+                        Guid = Guid.NewGuid(),
+                        Type = type,
+                        ObjectGuid = entityGuid
+                    };
+                    await tmp.SaveAsync();
+                    return;
+                }
+                await UnitOfWork.Temp.UpdateEntityAsync(type, entityGuid, st, deliveryDate, Cache.ConnectionString);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
         public static async Task<ReturnedSaveFuncInfo> SaveOnModifiedAsync(DateTime date) =>
             await UnitOfWork.Temp.SaveOnModifiedAsync(date, Cache.ConnectionString);
     }

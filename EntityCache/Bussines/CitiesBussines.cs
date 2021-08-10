@@ -6,6 +6,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using EntityCache.Mppings;
 using Persistence;
 using Services;
 using Servicess.Interfaces.Building;
@@ -46,7 +47,7 @@ namespace EntityCache.Bussines
                 if (res.HasError) return res;
 
                 if (Cache.IsSendToServer)
-                    _ = Task.Run(() => WebCity.SaveAsync(list));
+                    _ = Task.Run(() => WebCity.SaveAsync(CityMapper.Instance.MapList(list)));
             }
             catch (Exception ex)
             {
@@ -125,7 +126,7 @@ namespace EntityCache.Bussines
                 if (res.HasError) return res;
 
                 if (Cache.IsSendToServer)
-                    _ = Task.Run(() => WebCity.SaveAsync(this));
+                    _ = Task.Run(() => WebCity.SaveAsync(CityMapper.Instance.Map(this)));
             }
             catch (Exception ex)
             {
@@ -164,7 +165,7 @@ namespace EntityCache.Bussines
                 if (res.HasError) return res;
 
                 if (Cache.IsSendToServer)
-                    _ = Task.Run(() => WebCity.SaveAsync(this));
+                    _ = Task.Run(() => WebCity.SaveAsync(CityMapper.Instance.Map(this)));
             }
             catch (Exception ex)
             {

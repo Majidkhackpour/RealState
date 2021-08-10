@@ -1,4 +1,7 @@
-﻿using EntityCache.Bussines;
+﻿using System;
+using System.Collections.Generic;
+using EntityCache.Bussines;
+using Services;
 using WebHesabBussines;
 
 namespace EntityCache.Mppings
@@ -27,6 +30,21 @@ namespace EntityCache.Mppings
                 Sum = cls.Sum,
                 SumCheck = cls.SumCheck
             };
+        }
+        public List<WebReception> MapList(List<ReceptionBussines> cls)
+        {
+            var list = new List<WebReception>();
+            try
+            {
+                foreach (var item in cls)
+                    list.Add(Map(item));
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+
+            return list;
         }
     }
 }

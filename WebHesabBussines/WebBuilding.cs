@@ -4,7 +4,6 @@ using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
-using EntityCache.Bussines;
 using Services;
 using Servicess.Interfaces.Building;
 
@@ -77,8 +76,7 @@ namespace WebHesabBussines
         public bool IsArchive { get; set; }
         public string Image { get; set; }
         public string HardSerial { get; set; }
-        public List<BuildingRelatedOptionsBussines> OptionList { get; set; }
-        public List<BuildingGalleryBussines> GalleryList { get; set; }
+        public List<WebBuildingRelatedOptions> OptionList { get; set; }
 
 
         private static void RaiseEvent(Guid objGuid, ServerStatus st, DateTime dateM)
@@ -87,119 +85,35 @@ namespace WebHesabBussines
             if (handler != null)
                 OnSaveResult(objGuid, st, dateM);
         }
-        public async Task SaveAsync(string p)
+        public async Task SaveAsync()
         {
             try
             {
-                var res = await Extentions.PostToApi<BuildingBussines, WebBuilding>(this, Url);
+                var res = await Extentions.PostToApi<WebBuilding, WebBuilding>(this, Url);
                 if (res.ResponseStatus != ResponseStatus.Success)
                 {
-                    var temp = new TempBussines()
-                    {
-                        ObjectGuid = Guid,
-                        Type = EnTemp.Building
-                    };
-                    await temp.SaveAsync();
+                    RaiseEvent(Guid, ServerStatus.DeliveryError, DateTime.Now);
                     return;
                 }
 
                 var bu = res.Data;
                 if (bu == null) return;
 
-                await TempBussines.UpdateEntityAsync(EnTemp.Building, bu.Guid, ServerStatus.Delivered, DateTime.Now);
+                RaiseEvent(Guid, ServerStatus.Delivered, DateTime.Now);
 
                 await WebBuildingRelatedOptions.SaveAsync(OptionList);
-                if (string.IsNullOrEmpty(Image)) return;
-
-                var file = await FileInfoBussines.GetAsync(Image);
-                if (file != null)
-                    if (file.FileName == Image) return;
-
-                var img = Path.Combine(p, "Images");
-                if (!Directory.Exists(img)) return;
-                if (!Image.EndsWith(".jpg") && !Image.EndsWith(".png")) return;
-                var path = Path.Combine(img, Image);
-                var imageByte = File.ReadAllBytes(path);
-                await UploadBitmapAsync(imageByte, Image);
             }
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        public static async Task<ReturnedSaveFuncInfo> SaveAsync(BuildingBussines cls, string path)
+        public static async Task<ReturnedSaveFuncInfo> SaveAsync(WebBuilding cls)
         {
             var res = new ReturnedSaveFuncInfo();
             try
             {
-                var obj = new WebBuilding()
-                {
-                    Guid = cls.Guid,
-                    Modified = cls.Modified,
-                    Status = cls.Status,
-                    Masahat = cls.Masahat,
-                    RegionGuid = cls.RegionGuid,
-                    Code = cls.Code,
-                    EjarePrice1 = cls.EjarePrice1,
-                    RahnPrice1 = cls.RahnPrice1,
-                    SellPrice = cls.SellPrice,
-                    RoomCount = cls.RoomCount,
-                    Priority = cls.Priority,
-                    IsArchive = cls.IsArchive,
-                    GalleryList = cls.GalleryList,
-                    ZirBana = cls.ZirBana,
-                    BuildingAccountTypeGuid = cls.BuildingAccountTypeGuid,
-                    OptionList = cls.OptionList,
-                    UserGuid = cls.UserGuid,
-                    Address = cls.Address,
-                    BuildingTypeGuid = cls.BuildingTypeGuid,
-                    SaleSakht = cls.SaleSakht,
-                    OwnerGuid = cls.OwnerGuid,
-                    EjarePrice2 = cls.EjarePrice2,
-                    RentalAutorityGuid = cls.RentalAutorityGuid,
-                    Tell = cls.Tell,
-                    TedadTabaqe = cls.TedadTabaqe,
-                    CityGuid = cls.CityGuid,
-                    TabaqeNo = cls.TabaqeNo,
-                    ShortDesc = cls.ShortDesc,
-                    CreateDate = cls.CreateDate,
-                    RahnPrice2 = cls.RahnPrice2,
-                    VahedPerTabaqe = cls.VahedPerTabaqe,
-                    DocumentType = cls.DocumentType,
-                    Dang = cls.Dang,
-                    FloorCoverGuid = cls.FloorCoverGuid,
-                    KitchenServiceGuid = cls.KitchenServiceGuid,
-                    PishTotalPrice = cls.PishTotalPrice,
-                    PishPrice = cls.PishPrice,
-                    Water = cls.Water,
-                    MosharekatDesc = cls.MosharekatDesc,
-                    ParvaneSerial = cls.ParvaneSerial,
-                    MoavezeDesc = cls.MoavezeDesc,
-                    MamarJoda = cls.MamarJoda,
-                    QestPrice = cls.QestPrice,
-                    PishDesc = cls.PishDesc,
-                    IsOwnerHere = cls.IsOwnerHere,
-                    DeliveryDate = cls.DeliveryDate,
-                    BuildingConditionGuid = cls.BuildingConditionGuid,
-                    Side = cls.Side,
-                    Hashie = cls.Hashie,
-                    VamPrice = cls.VamPrice,
-                    ErtefaSaqf = cls.ErtefaSaqf,
-                    MetrazhKouche = cls.MetrazhKouche,
-                    BonBast = cls.BonBast,
-                    MetrazhTejari = cls.MetrazhTejari,
-                    IsShortTime = cls.IsShortTime,
-                    Tarakom = cls.Tarakom,
-                    BuildingViewGuid = cls.BuildingViewGuid,
-                    Barq = cls.Barq,
-                    Gas = cls.Gas,
-                    DateParvane = cls.DateParvane,
-                    HardSerial = cls.HardSerial,
-                    Image = cls.Image,
-                    ServerStatus = cls.ServerStatus,
-                    ServerDeliveryDate = cls.ServerDeliveryDate
-                };
-                await obj.SaveAsync(path);
+                await cls.SaveAsync();
             }
             catch (Exception ex)
             {
@@ -209,13 +123,13 @@ namespace WebHesabBussines
 
             return res;
         }
-        public static async Task<ReturnedSaveFuncInfo> SaveAsync(List<BuildingBussines> item, string path)
+        public static async Task<ReturnedSaveFuncInfo> SaveAsync(List<WebBuilding> item)
         {
             var res = new ReturnedSaveFuncInfo();
             try
             {
                 foreach (var cls in item)
-                    res.AddReturnedValue(await SaveAsync(cls, path));
+                    res.AddReturnedValue(await SaveAsync(cls));
             }
             catch (Exception ex)
             {
@@ -224,28 +138,6 @@ namespace WebHesabBussines
             }
 
             return res;
-        }
-        public async Task UploadBitmapAsync(byte[] img, string imageName)
-        {
-            try
-            {
-                using (var httpClient = new HttpClient())
-                {
-                    var form = new MultipartFormDataContent
-                    {
-                        {new ByteArrayContent(img, 0, img.Count()), "picture", imageName}
-                    };
-                    var response = await httpClient.PostAsync(Utilities.WebApi + "/PostImage", form);
-                    response.EnsureSuccessStatusCode();
-                    var responseBody = response.Content.ReadAsStringAsync();
-                    var file = new FileInfoBussines() { FileName = imageName };
-                    await file.SaveAsync();
-                }
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
         }
     }
 }
