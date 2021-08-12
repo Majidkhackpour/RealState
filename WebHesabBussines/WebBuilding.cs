@@ -1,11 +1,11 @@
-﻿using System;
+﻿using Services;
+using Servicess.Interfaces.Building;
+using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
-using Services;
-using Servicess.Interfaces.Building;
+using Nito.AsyncEx;
+using Services.AndroidViewModels;
 
 namespace WebHesabBussines
 {
@@ -139,5 +139,23 @@ namespace WebHesabBussines
 
             return res;
         }
+        public static async Task<List<BuildingListViewModel>> GetListAsync(string hSerial)
+        {
+            try
+            {
+                using (var client = new HttpClient())
+                {
+                    var res = await client.GetStringAsync(Services.Utilities.WebApi + "/Buildings_GetLastList/" + hSerial);
+                    var user = res.FromJson<List<BuildingListViewModel>>();
+                    return user;
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                return null;
+            }
+        }
+        public static List<BuildingListViewModel> GetList(string hSerial) => AsyncContext.Run(() => GetListAsync(hSerial));
     }
 }
