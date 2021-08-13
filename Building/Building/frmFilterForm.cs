@@ -28,7 +28,6 @@ namespace Building.Building
                 await FillBuildingAccountTypeAsync();
                 await FillBuildingTypeAsync();
                 FillCmbPrice();
-                var maxCount = clsAdvertise.MaxFileCount;
 
                 Invoke(new MethodInvoker(() =>
                 {
@@ -37,7 +36,6 @@ namespace Building.Building
                     cmbRahn2.SelectedIndex = 0;
                     cmbEjare1.SelectedIndex = 0;
                     cmbEjare2.SelectedIndex = 0;
-                    txtMaxFile.Value = maxCount <= 0 ? 1 : maxCount;
                 }));
                 loadComlete = true;
             }
@@ -52,7 +50,10 @@ namespace Building.Building
             {
                 var values = Enum.GetValues(typeof(EnRequestType)).Cast<EnRequestType>();
                 foreach (var item in values)
+                {
+                    if (item == EnRequestType.None) continue;
                     cmbReqType.Items.Add(item.GetDisplay());
+                }
                 cmbReqType.SelectedIndex = 0;
             }
             catch (Exception ex)
@@ -147,9 +148,11 @@ namespace Building.Building
             try
             {
                 var access = UserBussines.CurrentUser.UserAccess;
+
+                chbDivar.Visible = VersionAccess.Advertise;
+
                 chbDivar.Enabled = access?.BuildingSearch.Building_Search_Divar ?? false;
                 chbSystem.Enabled = access?.BuildingSearch.Building_Search_System ?? false;
-                chbSarasari.Enabled = access?.BuildingSearch.Building_Search_Site ?? false;
                 //chbSheypoor.Enabled = access?.BuildingSearch.Building_Search_Sheypoor ?? false;
             }
             catch (Exception ex)
@@ -160,7 +163,7 @@ namespace Building.Building
 
         public frmFilterForm()
         {
-            InitializeComponent(); 
+            InitializeComponent();
             ucHeader.Text = "فیلتر جستجوی ملک";
             Task.Run(SetDataAsync);
             SetAccess();
@@ -293,7 +296,7 @@ namespace Building.Building
                         txtSMasahat.Text.ParseToInt(), (int)txtMaxFile.Value, list_));
                 }
 
-                list = list?.OrderByDescending(q => q.CreateDate)?.Take(100)?.ToList();
+                list = list?.OrderByDescending(q => q.CreateDate)?.Take((int)txtMaxFile.Value)?.ToList();
                 var frm = new frmBuildingAdvanceSearch(list);
                 frm.ShowDialog(this);
             }
@@ -473,6 +476,7 @@ namespace Building.Building
 
         private async void frmFilterForm_Load(object sender, EventArgs e)
         {
+            txtMaxFile.Value = 100;
             await SetFormControlAsync(Type, BuildingTypeGuid, AccountTypeGuid, RoomCount, FirstMasahat, SecondMasahat, FirstPrice1,
                 SecondPrice1, FirstPrice2, SecondPrice2);
         }

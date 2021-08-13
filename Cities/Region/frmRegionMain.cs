@@ -1,14 +1,14 @@
-﻿using System;
+﻿using EntityCache.Bussines;
+using MetroFramework.Forms;
+using Nito.AsyncEx;
+using Services;
+using System;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WindowsSerivces;
-using EntityCache.Bussines;
-using MetroFramework.Forms;
-using Nito.AsyncEx;
-using Notification;
-using Services;
+using Settings.Classes;
 
 namespace Cities.Region
 {
@@ -27,7 +27,13 @@ namespace Cities.Region
                 StateBindingSource.DataSource = list.OrderBy(q => q.Name).ToList();
 
                 txtRegion.Text = cls?.Name;
-                if (cls?.Guid == Guid.Empty) cmbState.SelectedIndex = 0;
+                if (cls?.Guid == Guid.Empty)
+                {
+                    if (string.IsNullOrEmpty(clsEconomyUnit.EconomyState))
+                        cmbState.SelectedIndex = 0;
+                    else
+                        cmbState.SelectedValue = Guid.Parse(clsEconomyUnit.EconomyState);
+                }
                 else
                 {
                     cmbState.SelectedValue = (Guid)cls?.StateGuid;
@@ -111,7 +117,8 @@ namespace Cities.Region
                 _token = new CancellationTokenSource();
                 var list = await CitiesBussines.GetAllAsync((Guid)cmbState.SelectedValue, _token.Token);
                 CitiesBindingSource.DataSource = list?.OrderBy(q => q.Name).ToList();
-                if (cls.Guid != Guid.Empty) cmbCity.SelectedValue = cls.CityGuid;
+                if (!string.IsNullOrEmpty(clsEconomyUnit.EconomyCity) && cls.Guid == Guid.Empty)
+                    cmbCity.SelectedValue = Guid.Parse(clsEconomyUnit.EconomyCity);
             }
             catch (Exception ex)
             {

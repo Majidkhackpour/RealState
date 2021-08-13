@@ -111,6 +111,7 @@
             // 
             // cmbCity
             // 
+            this.cmbCity.Cursor = System.Windows.Forms.Cursors.Hand;
             this.cmbCity.DataSource = this.CitiesBindingSource;
             this.cmbCity.DisplayMember = "Name";
             this.cmbCity.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -127,6 +128,7 @@
             // 
             // cmbState
             // 
+            this.cmbState.Cursor = System.Windows.Forms.Cursors.Hand;
             this.cmbState.DataSource = this.StateBindingSource;
             this.cmbState.DisplayMember = "Name";
             this.cmbState.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;

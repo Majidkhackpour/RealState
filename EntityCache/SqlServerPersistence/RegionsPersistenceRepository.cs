@@ -51,8 +51,8 @@ namespace EntityCache.SqlServerPersistence
                 {
                     var cmd = new SqlCommand("sp_Regions_SelectAll", cn) { CommandType = CommandType.StoredProcedure };
                     if (token.IsCancellationRequested) return null;
-                    await cn.OpenAsync(token);
-                    var dr = await cmd.ExecuteReaderAsync(token);
+                    await cn.OpenAsync();
+                    var dr = await cmd.ExecuteReaderAsync();
                     while (dr.Read())
                     {
                         if (token.IsCancellationRequested) return null;

@@ -518,7 +518,7 @@ namespace Building.Building
                 if (res.HasError) return;
 
 
-                if (Settings.Classes.Payamak.IsSendToOwner.ParseToBoolean() || isSendSms)
+                if (Settings.Classes.Payamak.IsSendToOwner.ParseToBoolean() && isSendSms)
                 {
                     var tr = await Payamak.FixSms.OwnerSend.SendAsync(cls);
                     frmNotification.PublicInfo.ShowMessage(tr.HasError

@@ -126,9 +126,12 @@ namespace EntityCache.Bussines
                 res.AddReturnedValue(await UnitOfWork.Contract.SaveAsync(this, tr));
                 if (res.HasError) return res;
 
-                var sanad = await GenerateSanadAsync();
-                res.AddReturnedValue(await sanad.SaveAsync(tr));
-                if (res.HasError) return res;
+                if (FirstTotalPrice > 0 && SecondTotalPrice > 0)
+                {
+                    var sanad = await GenerateSanadAsync();
+                    res.AddReturnedValue(await sanad.SaveAsync(tr));
+                    if (res.HasError) return res;
+                }
 
                 var action = IsModified ? EnLogAction.Update : EnLogAction.Insert;
                 res.AddReturnedValue(await UserLogBussines.SaveAsync(action, EnLogPart.Contracts, tr));
@@ -413,7 +416,7 @@ namespace EntityCache.Bussines
                 if (BuildingGuid == Guid.Empty) res.AddError("لطفا ملک موضوع قرارداد را انتخاب نمایید");
                 if (MinorPrice == 0 && TotalPrice == 0) res.AddError("لطفا یکی از فیلدهای مبلغ را وارد نمایید");
                 if ((BazaryabGuid == null || BazaryabGuid == Guid.Empty) && BazaryabPrice > 0) res.AddError("لطفا بازاریاب را انتخاب نمایید");
-                if (BazaryabGuid != Guid.Empty && BazaryabPrice <= 0) res.AddError("لطفا مبلغ پورسانت بازاریاب را مشخص نمایید");
+                if ((BazaryabGuid != null && BazaryabGuid != Guid.Empty) && BazaryabPrice <= 0) res.AddError("لطفا مبلغ پورسانت بازاریاب را مشخص نمایید");
             }
             catch (Exception ex)
             {

@@ -42,8 +42,10 @@ namespace WebHesabBussines
         {
             try
             {
+                await Task.Delay(2000);
                 using (var client = new HttpClient())
                 {
+                    client.Timeout = new TimeSpan(0, 0, 10);
                     var res = await client.GetStringAsync(Utilities.WebApi + "/Customer_GetByImie/" + imei);
                     var user = res.FromJson<WebCustomer>();
                     return user;

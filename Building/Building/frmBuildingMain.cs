@@ -753,7 +753,7 @@ namespace Building.Building
             try
             {
                 var img = Path.Combine(Application.StartupPath, "Images");
-                foreach (var item in cls.GalleryList)
+                foreach (var item in cls.GalleryList??new List<BuildingGalleryBussines>())
                 {
                     var path = Path.Combine(img, item.ImageName + ".jpg");
                     try
@@ -1174,7 +1174,7 @@ namespace Building.Building
                 res.AddReturnedValue(await SaveAsync());
                 if (res.HasError) return;
 
-                if (Settings.Classes.Payamak.IsSendToOwner.ParseToBoolean() || isSendSms)
+                if (Settings.Classes.Payamak.IsSendToOwner.ParseToBoolean() && isSendSms)
                 {
                     var tr = await Payamak.FixSms.OwnerSend.SendAsync(cls);
                     frmNotification.PublicInfo.ShowMessage(tr.HasError

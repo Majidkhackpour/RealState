@@ -412,8 +412,6 @@ namespace EntityCache.Bussines
 
                 if (ZirBana == 0 && Masahat == 0) res.AddError("لطفا مساحت و زیربنا را وارد نمایید");
                 if (RegionGuid == Guid.Empty) res.AddError("لطفا محدوده ملک را وارد نمایید");
-                if (SaleSakht.ParseToInt() > DateParvane.ParseToInt())
-                    res.AddError("سال ساخت نمی تواند از سال اخذ پروانه بزرگتر باشد");
             }
             catch (Exception ex)
             {

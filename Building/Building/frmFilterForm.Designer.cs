@@ -31,7 +31,6 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmFilterForm));
             this.grp = new DevComponents.DotNetBar.PanelEx();
-            this.chbSarasari = new DevComponents.DotNetBar.Controls.CheckBoxX();
             this.chbDivar = new DevComponents.DotNetBar.Controls.CheckBoxX();
             this.txtSPrice2 = new System.Windows.Forms.NumericUpDown();
             this.chbSystem = new DevComponents.DotNetBar.Controls.CheckBoxX();
@@ -84,7 +83,6 @@
             // 
             this.grp.CanvasColor = System.Drawing.SystemColors.Control;
             this.grp.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.grp.Controls.Add(this.chbSarasari);
             this.grp.Controls.Add(this.chbDivar);
             this.grp.Controls.Add(this.txtSPrice2);
             this.grp.Controls.Add(this.chbSystem);
@@ -118,7 +116,7 @@
             this.grp.DisabledBackColor = System.Drawing.Color.Empty;
             this.grp.Location = new System.Drawing.Point(6, 66);
             this.grp.Name = "grp";
-            this.grp.Size = new System.Drawing.Size(535, 298);
+            this.grp.Size = new System.Drawing.Size(535, 267);
             this.grp.Style.Alignment = System.Drawing.StringAlignment.Center;
             this.grp.Style.BackColor1.Color = System.Drawing.Color.White;
             this.grp.Style.BackColor2.Color = System.Drawing.Color.White;
@@ -130,22 +128,6 @@
             this.grp.Style.GradientAngle = 90;
             this.grp.TabIndex = 0;
             // 
-            // chbSarasari
-            // 
-            this.chbSarasari.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.chbSarasari.BackColor = System.Drawing.Color.Transparent;
-            // 
-            // 
-            // 
-            this.chbSarasari.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.chbSarasari.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.chbSarasari.Location = new System.Drawing.Point(263, 257);
-            this.chbSarasari.Name = "chbSarasari";
-            this.chbSarasari.Size = new System.Drawing.Size(192, 23);
-            this.chbSarasari.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.chbSarasari.TabIndex = 18;
-            this.chbSarasari.Text = "جستجو در فایل های مسکن سراسری";
-            // 
             // chbDivar
             // 
             this.chbDivar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -155,7 +137,7 @@
             // 
             this.chbDivar.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.chbDivar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.chbDivar.Location = new System.Drawing.Point(272, 228);
+            this.chbDivar.Location = new System.Drawing.Point(272, 233);
             this.chbDivar.Name = "chbDivar";
             this.chbDivar.Size = new System.Drawing.Size(183, 23);
             this.chbDivar.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -183,7 +165,7 @@
             // 
             this.chbSystem.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.chbSystem.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.chbSystem.Location = new System.Drawing.Point(272, 199);
+            this.chbSystem.Location = new System.Drawing.Point(272, 204);
             this.chbSystem.Name = "chbSystem";
             this.chbSystem.Size = new System.Drawing.Size(183, 23);
             this.chbSystem.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -217,7 +199,7 @@
             // 
             this.txtMaxFile.Location = new System.Drawing.Point(24, 228);
             this.txtMaxFile.Maximum = new decimal(new int[] {
-            24,
+            250,
             0,
             0,
             0});
@@ -649,7 +631,6 @@
         private System.Windows.Forms.Label lblSPrice1;
         private System.Windows.Forms.ComboBox cmbEjare2;
         private System.Windows.Forms.ComboBox cmbEjare1;
-        private DevComponents.DotNetBar.Controls.CheckBoxX chbSarasari;
         private DevComponents.DotNetBar.Controls.CheckBoxX chbDivar;
         private DevComponents.DotNetBar.Controls.CheckBoxX chbSystem;
         private DevComponents.DotNetBar.ButtonX btnSeach;

@@ -31,6 +31,7 @@ namespace EntityCache.Mppings
             var list = new List<WebPhoneBook>();
             try
             {
+                if (cls == null || cls.Count <= 0) return list;
                 foreach (var item in cls)
                     list.Add(Map(item));
             }
