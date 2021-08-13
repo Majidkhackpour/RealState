@@ -139,13 +139,14 @@ namespace WebHesabBussines
 
             return res;
         }
-        public static async Task<List<BuildingListViewModel>> GetListAsync(string hSerial)
+        public static async Task<List<BuildingListViewModel>> GetListAsync(EnRequestType _type)
         {
             try
             {
                 using (var client = new HttpClient())
                 {
-                    var res = await client.GetStringAsync(Services.Utilities.WebApi + "/Buildings_GetLastList/" + hSerial);
+                    client.DefaultRequestHeaders.Add("cusGuid", WebCustomer.Customer.Guid.ToString());
+                    var res = await client.GetStringAsync(Utilities.WebApi + "/Buildings_GetLastList/" + _type);
                     var user = res.FromJson<List<BuildingListViewModel>>();
                     return user;
                 }
@@ -156,6 +157,6 @@ namespace WebHesabBussines
                 return null;
             }
         }
-        public static List<BuildingListViewModel> GetList(string hSerial) => AsyncContext.Run(() => GetListAsync(hSerial));
+        public static List<BuildingListViewModel> GetList(EnRequestType _type) => AsyncContext.Run(() => GetListAsync(_type));
     }
 }

@@ -23,7 +23,7 @@ namespace RealState
                 var getDate = clsAdvertise.GetFileDate;
                 var newDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, 0, 0);
                 if (getDate != null && getDate > newDate) return;
-
+                clsAdvertise.GetFileDate = DateTime.Now;
                 var reg = "";
 
                 var divarCat = await SerializedDataBussines.GetDivarCategoryAsync();
@@ -181,6 +181,7 @@ namespace RealState
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                clsAdvertise.GetFileDate = DateTime.Now.AddDays(-1);
             }
         }
     }
