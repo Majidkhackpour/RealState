@@ -64,6 +64,7 @@ namespace EntityCache.Bussines
             SqlConnection cn = null;
             try
             {
+                if (UserBussines.CurrentUser == null) return res;
                 if (autoTran)
                 {
                     cn = new SqlConnection(Cache.ConnectionString);

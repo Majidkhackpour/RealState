@@ -37,7 +37,6 @@ namespace EntityCache.Assistence.Defualts
             try
             {
                 list.Add(SetDef("حساب بانکی مرکزی", "1010101", ParentDefaults.TafsilCoding.CLSTafsil1010101, HesabType.Bank));
-                list.Add(SetDef("مشتری عمومی", "1030401", ParentDefaults.TafsilCoding.CLSTafsil1030401, HesabType.Customer));
                 list.Add(SetDef("صندوق مرکزی", "1010202", ParentDefaults.TafsilCoding.CLSTafsil1010202, HesabType.Sandouq));
                 list.Add(SetDef("وجوه در راه حواله شده از شعب", "1010501", ParentDefaults.TafsilCoding.CLSTafsil1010501, HesabType.Tafsil));
                 list.Add(SetDef("وجوه در راه حواله شده از اشخاص", "1010502", ParentDefaults.TafsilCoding.CLSTafsil1010502, HesabType.Tafsil));

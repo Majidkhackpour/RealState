@@ -22,14 +22,16 @@ namespace EntityCache.SqlServerPersistence
                     cmd.Parameters.AddWithValue("@name", memberName);
                     await cn.OpenAsync();
                     var dr = await cmd.ExecuteReaderAsync();
-                    if (dr.Read()) 
+                    if (dr.Read())
                         list = LoadData(dr);
                     cn.Close();
                 }
             }
             catch (Exception exception)
             {
-                WebErrorLog.ErrorInstence.StartErrorLog(exception);
+                list = await GetByFlatQueryAsync(_connectionString, memberName);
+                if (list == null)
+                    WebErrorLog.ErrorInstence.StartErrorLog(exception);
             }
 
             return list;
@@ -91,6 +93,28 @@ namespace EntityCache.SqlServerPersistence
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+
+            return list;
+        }
+        private async Task<SettingsBussines> GetByFlatQueryAsync(string _connectionString, string memberName)
+        {
+            var list = new SettingsBussines();
+            try
+            {
+                using (var cn = new SqlConnection(_connectionString))
+                {
+                    var cmd = new SqlCommand("Select * From [dbo].[Settings] where Name='" + memberName + "'", cn) { CommandType = CommandType.Text };
+                    await cn.OpenAsync();
+                    var dr = await cmd.ExecuteReaderAsync();
+                    if (dr.Read())
+                        list = LoadData(dr);
+                    cn.Close();
+                }
+            }
+            catch (Exception exception)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(exception);
             }
 
             return list;

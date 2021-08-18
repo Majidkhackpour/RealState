@@ -17,8 +17,7 @@ namespace EntityCache.Assistence
             {
                 Cache.ConnectionString = connectionString;
                 Cache.HardSerial = hardSerial;
-                if (!CheckConnectionString(Cache.ConnectionString))
-                    throw new ArgumentNullException("ConnectionString Not Correct ", nameof(Cache.ConnectionString));
+                if (!CheckConnectionString(Cache.ConnectionString)) return;
                 UpdateMigration();
                 var webService = new WebServiceHandlers();
                 webService.Init(appStart);

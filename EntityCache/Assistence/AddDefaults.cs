@@ -5,6 +5,7 @@ using Services.Access;
 using Services.DefaultCoding;
 using System;
 using System.Data.SqlClient;
+using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading;
@@ -238,6 +239,38 @@ namespace EntityCache.Assistence
                 {
                     var reg = DefaultPeopleGroup.SetDef();
                     res.AddReturnedValue(await PeopleGroupBussines.SaveRangeAsync(reg));
+                    if (res.HasError) return;
+                }
+                #endregion
+
+                #region People
+                var allPeoples = await PeoplesBussines.GetAllAsync(new CancellationToken());
+                if (allPeoples == null || allPeoples.Count <= 0)
+                {
+                    var pe = new PeoplesBussines()
+                    {
+                        Guid = Guid.Parse("e49a6e74-beec-489f-a720-28bf246b8e2a"),
+                        Modified = DateTime.Now,
+                        Name = "مشتری عمومی",
+                        Status = true,
+                        ServerStatus = ServerStatus.None,
+                        Code = "1030401",
+                        AccountFirst = 0,
+                        ServerDeliveryDate = DateTime.Now,
+                        Account = 0,
+                        TellList = null,
+                        DateBirth = "",
+                        NationalCode = "",
+                        Address = "",
+                        BankList = null,
+                        IdCode = "",
+                        FatherName = "",
+                        PostalCode = "",
+                        PlaceBirth = "",
+                        IssuedFrom = "",
+                        GroupGuid = (await PeopleGroupBussines.GetAllAsync())?.FirstOrDefault()?.Guid ?? Guid.Empty
+                    };
+                    res.AddReturnedValue(await pe.SaveAsync());
                     if (res.HasError) return;
                 }
                 #endregion

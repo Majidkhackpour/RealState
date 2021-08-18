@@ -203,7 +203,10 @@ namespace RealState.LoginPanel.FormsInPanel
         {
             try
             {
-                return WebHesabBussines.WebCheckLuck.CheckHardSerial(hSerial);
+                var customer = WebHesabBussines.WebCustomer.GetByHardSerial(hSerial);
+                if (customer == null || customer.isBlock) return false;
+                WebHesabBussines.WebCustomer.Customer = customer;
+                return true;
             }
             catch (Exception ex)
             {
@@ -274,8 +277,15 @@ namespace RealState.LoginPanel.FormsInPanel
                 }
 
                 InitConfigs(Application.StartupPath);
+
                 LoadWorkingYearData();
                 Invoke(new MethodInvoker(() => prgBar.Value = 1));
+                if (workingYearBindingSource.Count <= 0)
+                {
+                    prgBar.Value = 0;
+                    this.ShowWarning("متاسفانه هیچ واحد اقتصادی فعال یافت نشد. لطفا ابتدا واحد اقتصادی خود را ایجاد نمایید");                    return;
+                }
+
                 result.AddReturnedValue(await SetDefultsAsync());
                 Invoke(new MethodInvoker(() => prgBar.Value = 35));
                 if (result.HasError) return;

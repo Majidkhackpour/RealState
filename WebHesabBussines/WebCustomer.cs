@@ -38,6 +38,24 @@ namespace WebHesabBussines
 
 
 
+        public static async Task<WebCustomer> GetByHardSerialAsync(string hSerial)
+        {
+            try
+            {
+                using (var client = new HttpClient())
+                {
+                    client.Timeout = new TimeSpan(0, 0, 10);
+                    var res = await client.GetStringAsync(Utilities.WebApi + "/Customer_GetByHardSerial/" + hSerial);
+                    var user = res.FromJson<WebCustomer>();
+                    return user;
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                return null;
+            }
+        }
         public static async Task<WebCustomer> GetByImeiAsync(string imei)
         {
             try
@@ -58,5 +76,6 @@ namespace WebHesabBussines
             }
         }
         public static WebCustomer GetByImei(string imei) => AsyncContext.Run(() => GetByImeiAsync(imei));
+        public static WebCustomer GetByHardSerial(string hSerial) => AsyncContext.Run(() => GetByHardSerialAsync(hSerial));
     }
 }

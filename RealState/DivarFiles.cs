@@ -17,6 +17,7 @@ namespace RealState
         {
             try
             {
+                return;
                 if (!VersionAccess.Advertise) return;
                 if (!clsAdvertise.IsGiveFile) return;
 
@@ -29,9 +30,9 @@ namespace RealState
                 var divarCat = await SerializedDataBussines.GetDivarCategoryAsync();
                 if (divarCat == null || divarCat.Count <= 0) return;
 
-                if (string.IsNullOrEmpty(Settings.Classes.clsEconomyUnit.EconomyCity)) return;
+                if (string.IsNullOrEmpty(clsEconomyUnit.EconomyCity)) return;
                 var cities = await SerializedDataBussines.GetDivarCityAsync();
-                var cityLocal = await CitiesBussines.GetAsync(Guid.Parse(Settings.Classes.clsEconomyUnit.EconomyCity));
+                var cityLocal = await CitiesBussines.GetAsync(Guid.Parse(clsEconomyUnit.EconomyCity));
                 var divarCity = cities.FirstOrDefault(q => q.Name == cityLocal.Name);
                 var cityName = cities.FirstOrDefault(q => q.Name == cityLocal.Name)?.LatinName;
 

@@ -28,9 +28,6 @@ namespace Settings.Classes
             get
             {
                 if (!string.IsNullOrEmpty(_applicationVersion)) return _applicationVersion;
-                var list = AsyncContext.Run(() =>
-                    DataBaseUtilities.SqlServerTableInformation.GetAllAsync(AppSettings.DefaultConnectionString, "Settings"));
-                if (list == null) return "";
                 var mem = SettingsBussines.Get("AppVersion");
                 return mem == null ? "" : mem.Value;
             }
