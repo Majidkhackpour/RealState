@@ -14,7 +14,7 @@ namespace Settings
             {
                 var res = clsRegistery.GetConnectionRegistery("BuildingCn");
                 _defCn = string.IsNullOrEmpty(res.value)
-                    ? "data source=.;initial catalog=AradRealStatedb;integrated security=True;MultipleActiveResultSets=True;MultipleActiveResultSets = True;"
+                    ? "data source=.;initial catalog=Arad1;integrated security=True;MultipleActiveResultSets=True;MultipleActiveResultSets = True;"
                     : res.value;
                 return _defCn;
             }
