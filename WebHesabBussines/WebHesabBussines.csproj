@@ -104,6 +104,7 @@
     <Compile Include="WebRental.cs" />
     <Compile Include="WebSanad.cs" />
     <Compile Include="WebSanadDetail.cs" />
+    <Compile Include="WebScrapper.cs" />
     <Compile Include="WebStates.cs" />
     <Compile Include="WebTafsil.cs" />
     <Compile Include="WebTelegramBuilding.cs" />

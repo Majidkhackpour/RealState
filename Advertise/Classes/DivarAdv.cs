@@ -12,6 +12,7 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Support.Extensions;
 using Services;
 using Settings.Classes;
+using WebHesabBussines;
 
 namespace Advertise.Classes
 {
@@ -2459,5 +2460,19 @@ namespace Advertise.Classes
         }
         #endregion
 
+        public async Task<List<WebScrapper>> GetAllRahnAsync(long number)
+        {
+            var list = new List<WebScrapper>();
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+
+            return list;
+        }
     }
 }
