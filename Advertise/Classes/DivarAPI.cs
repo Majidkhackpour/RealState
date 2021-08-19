@@ -990,7 +990,7 @@ namespace Advertise.Classes
                 if (listDivar == null || listDivar.Count <= 0) return list;
                 foreach (var item in listDivar)
                 {
-                    if (item.listData == null || (item.listData[0].items?.Count??0) < 3) continue;
+                    if (item.listData == null || (item.listData[0].items?.Count ?? 0) < 3) continue;
                     var bu = new BuildingBussines()
                     {
                         Guid = Guid.NewGuid(),
@@ -1792,7 +1792,7 @@ namespace Advertise.Classes
                 if (listDivar == null || listDivar.Count <= 0) return list;
                 foreach (var item in listDivar)
                 {
-                    if (item.listData == null || item.listData.Count == 4 || (item.listData[0].items?.Count??0) < 3) continue;
+                    if (item.listData == null || item.listData.Count == 4 || (item.listData[0].items?.Count ?? 0) < 3) continue;
                     var bu = new BuildingBussines()
                     {
                         Guid = Guid.NewGuid(),
@@ -1857,10 +1857,10 @@ namespace Advertise.Classes
                         PishTotalPrice = 0,
                         Priority = EnBuildingPriority.Low
                     };
-                var ex = await BuildingBussines.CheckDuplicateAsync(bu.Masahat, bu.RoomCount, bu.RahnPrice1, bu.EjarePrice1, bu.SellPrice, bu.TabaqeNo);
-                if (ex) continue;
-                list.Add(bu);
-            }
+                    var ex = await BuildingBussines.CheckDuplicateAsync(bu.Masahat, bu.RoomCount, bu.RahnPrice1, bu.EjarePrice1, bu.SellPrice, bu.TabaqeNo);
+                    if (ex) continue;
+                    list.Add(bu);
+                }
             }
             catch (Exception ex)
             {
@@ -1870,223 +1870,223 @@ namespace Advertise.Classes
             return list;
         }
 
-public static async Task<List<BuildingBussines>> GetContributionConstruction(DivarCities model, Guid cityGuid, string regionList)
-{
-    var list = new List<BuildingBussines>();
-    try
-    {
-        if (model == null) return list;
-        var url = $"https://divar.ir/s/{model.LatinName}/contribution-construction";
-        if (!string.IsNullOrEmpty(regionList))
-            url += $"{regionList}";
-        url += "&user_type=personal";
-        var listDivar = GetDataFromUrl(url, model.Name, cityGuid, "مشارکت در ساخت");
-        if (listDivar == null || listDivar.Count <= 0) return list;
-        foreach (var item in listDivar)
+        public static async Task<List<BuildingBussines>> GetContributionConstruction(DivarCities model, Guid cityGuid, string regionList)
         {
-            if (item.listData == null) continue;
-            var bu = new BuildingBussines()
+            var list = new List<BuildingBussines>();
+            try
             {
-                Guid = Guid.NewGuid(),
-                Modified = DateTime.Now,
-                Status = true,
-                Masahat = 0,
-                SellPrice = 0,
-                ServerStatus = ServerStatus.None,
-                Code = BuildingBussines.NextCode(),
-                RahnPrice1 = 0,
-                ServerDeliveryDate = DateTime.Now,
-                EjarePrice1 = 0,
-                RegionGuid = item.RegionGuid,
-                Tell = EnKhadamati.Mostaqel,
-                RoomCount = 0,
-                UserGuid = UserBussines.CurrentUser.Guid,
-                Address = "",
-                GalleryList = null,
-                Image = DownloadImage(item.Image),
-                BuildingAccountTypeGuid = BuildingAccountTypeBussines.GetAll("مسکونی")?.FirstOrDefault()?.Guid ?? Guid.Empty,
-                CreateDate = DateTime.Now,
-                SaleSakht = "",
-                MediaList = null,
-                IsArchive = false,
-                ZirBana = 0,
-                DocumentType = null,
-                BuildingTypeGuid = BuildingTypeBussines.Get("زمین مسکونی")?.Guid ?? Guid.Empty,
-                OwnerGuid = ParentDefaults.TafsilCoding.CLSTafsil1030401,
-                Barq = EnKhadamati.Mostaqel,
-                BonBast = false,
-                BuildingConditionGuid = BuildingConditionBussines.GetAll("تخلیه")?.FirstOrDefault()?.Guid ?? Guid.Empty,
-                BuildingViewGuid = BuildingViewBussines.GetAll("سنگ")?.FirstOrDefault()?.Guid ?? Guid.Empty,
-                CityGuid = cityGuid,
-                Dang = 6,
-                DateParvane = "",
-                DeliveryDate = null,
-                EjarePrice2 = 0,
-                ErtefaSaqf = 0,
-                FloorCoverGuid = FloorCoverBussines.GetAll("سرامیک")?.FirstOrDefault()?.Guid ?? Guid.Empty,
-                Gas = EnKhadamati.Mostaqel,
-                Hashie = 0,
-                IsOwnerHere = null,
-                IsShortTime = false,
-                KitchenServiceGuid = KitchenServiceBussines.GetAll("MDF")?.FirstOrDefault()?.Guid ?? Guid.Empty,
-                Water = EnKhadamati.Mostaqel,
-                VamPrice = 0,
-                VahedPerTabaqe = 1,
-                Tarakom = null,
-                Side = EnBuildingSide.One,
-                ShortDesc = item.Description,
-                RentalAutorityGuid = null,
-                RahnPrice2 = 0,
-                QestPrice = 0,
-                MamarJoda = true,
-                MetrazhKouche = 0,
-                MetrazhTejari = 0,
-                MoavezeDesc = "",
-                MosharekatDesc = "",
-                ParvaneSerial = "",
-                PishDesc = "",
-                PishPrice = 0,
-                PishTotalPrice = 0,
-                Priority = EnBuildingPriority.Low
-            };
-            var ex = await BuildingBussines.CheckDuplicateAsync(bu.Masahat, bu.RoomCount, bu.RahnPrice1, bu.EjarePrice1, bu.SellPrice, bu.TabaqeNo);
-            if (ex) continue;
-            list.Add(bu);
-        }
-    }
-    catch (Exception ex)
-    {
-        WebErrorLog.ErrorInstence.StartErrorLog(ex);
-    }
+                if (model == null) return list;
+                var url = $"https://divar.ir/s/{model.LatinName}/contribution-construction";
+                if (!string.IsNullOrEmpty(regionList))
+                    url += $"{regionList}";
+                url += "&user_type=personal";
+                var listDivar = GetDataFromUrl(url, model.Name, cityGuid, "مشارکت در ساخت");
+                if (listDivar == null || listDivar.Count <= 0) return list;
+                foreach (var item in listDivar)
+                {
+                    if (item.listData == null) continue;
+                    var bu = new BuildingBussines()
+                    {
+                        Guid = Guid.NewGuid(),
+                        Modified = DateTime.Now,
+                        Status = true,
+                        Masahat = 0,
+                        SellPrice = 0,
+                        ServerStatus = ServerStatus.None,
+                        Code = BuildingBussines.NextCode(),
+                        RahnPrice1 = 0,
+                        ServerDeliveryDate = DateTime.Now,
+                        EjarePrice1 = 0,
+                        RegionGuid = item.RegionGuid,
+                        Tell = EnKhadamati.Mostaqel,
+                        RoomCount = 0,
+                        UserGuid = UserBussines.CurrentUser.Guid,
+                        Address = "",
+                        GalleryList = null,
+                        Image = DownloadImage(item.Image),
+                        BuildingAccountTypeGuid = BuildingAccountTypeBussines.GetAll("مسکونی")?.FirstOrDefault()?.Guid ?? Guid.Empty,
+                        CreateDate = DateTime.Now,
+                        SaleSakht = "",
+                        MediaList = null,
+                        IsArchive = false,
+                        ZirBana = 0,
+                        DocumentType = null,
+                        BuildingTypeGuid = BuildingTypeBussines.Get("زمین مسکونی")?.Guid ?? Guid.Empty,
+                        OwnerGuid = ParentDefaults.TafsilCoding.CLSTafsil1030401,
+                        Barq = EnKhadamati.Mostaqel,
+                        BonBast = false,
+                        BuildingConditionGuid = BuildingConditionBussines.GetAll("تخلیه")?.FirstOrDefault()?.Guid ?? Guid.Empty,
+                        BuildingViewGuid = BuildingViewBussines.GetAll("سنگ")?.FirstOrDefault()?.Guid ?? Guid.Empty,
+                        CityGuid = cityGuid,
+                        Dang = 6,
+                        DateParvane = "",
+                        DeliveryDate = null,
+                        EjarePrice2 = 0,
+                        ErtefaSaqf = 0,
+                        FloorCoverGuid = FloorCoverBussines.GetAll("سرامیک")?.FirstOrDefault()?.Guid ?? Guid.Empty,
+                        Gas = EnKhadamati.Mostaqel,
+                        Hashie = 0,
+                        IsOwnerHere = null,
+                        IsShortTime = false,
+                        KitchenServiceGuid = KitchenServiceBussines.GetAll("MDF")?.FirstOrDefault()?.Guid ?? Guid.Empty,
+                        Water = EnKhadamati.Mostaqel,
+                        VamPrice = 0,
+                        VahedPerTabaqe = 1,
+                        Tarakom = null,
+                        Side = EnBuildingSide.One,
+                        ShortDesc = item.Description,
+                        RentalAutorityGuid = null,
+                        RahnPrice2 = 0,
+                        QestPrice = 0,
+                        MamarJoda = true,
+                        MetrazhKouche = 0,
+                        MetrazhTejari = 0,
+                        MoavezeDesc = "",
+                        MosharekatDesc = "",
+                        ParvaneSerial = "",
+                        PishDesc = "",
+                        PishPrice = 0,
+                        PishTotalPrice = 0,
+                        Priority = EnBuildingPriority.Low
+                    };
+                    var ex = await BuildingBussines.CheckDuplicateAsync(bu.Masahat, bu.RoomCount, bu.RahnPrice1, bu.EjarePrice1, bu.SellPrice, bu.TabaqeNo);
+                    if (ex) continue;
+                    list.Add(bu);
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
 
-    return list;
-}
-public static async Task<List<BuildingBussines>> GetPreeSellHome(DivarCities model, Guid cityGuid, string regionList)
-{
-    var list = new List<BuildingBussines>();
-    try
-    {
-        if (model == null) return list;
-        var url = $"https://divar.ir/s/{model.LatinName}/pre-sell-home";
-        if (!string.IsNullOrEmpty(regionList))
-            url += $"{regionList}";
-        url += "&user_type=personal";
-        var listDivar = GetDataFromUrl(url, model.Name, cityGuid, "پیش‌فروش");
-        if (listDivar == null || listDivar.Count <= 0) return list;
-        foreach (var item in listDivar)
+            return list;
+        }
+        public static async Task<List<BuildingBussines>> GetPreeSellHome(DivarCities model, Guid cityGuid, string regionList)
         {
-            if (item.listData == null) continue;
-            var bu = new BuildingBussines()
+            var list = new List<BuildingBussines>();
+            try
             {
-                Guid = Guid.NewGuid(),
-                Modified = DateTime.Now,
-                Status = true,
-                Masahat = 0,
-                SellPrice = 0,
-                ServerStatus = ServerStatus.None,
-                Code = BuildingBussines.NextCode(),
-                RahnPrice1 = 0,
-                ServerDeliveryDate = DateTime.Now,
-                EjarePrice1 = 0,
-                RegionGuid = item.RegionGuid,
-                Tell = EnKhadamati.Mostaqel,
-                RoomCount = 0,
-                UserGuid = UserBussines.CurrentUser.Guid,
-                Address = "",
-                GalleryList = null,
-                Image = DownloadImage(item.Image),
-                BuildingAccountTypeGuid = BuildingAccountTypeBussines.GetAll("مسکونی")?.FirstOrDefault()?.Guid ?? Guid.Empty,
-                CreateDate = DateTime.Now,
-                SaleSakht = "",
-                MediaList = null,
-                IsArchive = false,
-                ZirBana = 0,
-                DocumentType = null,
-                BuildingTypeGuid = BuildingTypeBussines.Get("منزل مسکونی")?.Guid ?? Guid.Empty,
-                OwnerGuid = ParentDefaults.TafsilCoding.CLSTafsil1030401,
-                Barq = EnKhadamati.Mostaqel,
-                BonBast = false,
-                BuildingConditionGuid = BuildingConditionBussines.GetAll("تخلیه")?.FirstOrDefault()?.Guid ?? Guid.Empty,
-                BuildingViewGuid = BuildingViewBussines.GetAll("سنگ")?.FirstOrDefault()?.Guid ?? Guid.Empty,
-                CityGuid = cityGuid,
-                Dang = 6,
-                DateParvane = "",
-                DeliveryDate = null,
-                EjarePrice2 = 0,
-                ErtefaSaqf = 0,
-                FloorCoverGuid = FloorCoverBussines.GetAll("سرامیک")?.FirstOrDefault()?.Guid ?? Guid.Empty,
-                Gas = EnKhadamati.Mostaqel,
-                Hashie = 0,
-                IsOwnerHere = null,
-                IsShortTime = false,
-                KitchenServiceGuid = KitchenServiceBussines.GetAll("MDF")?.FirstOrDefault()?.Guid ?? Guid.Empty,
-                Water = EnKhadamati.Mostaqel,
-                VamPrice = 0,
-                VahedPerTabaqe = 1,
-                Tarakom = null,
-                Side = EnBuildingSide.One,
-                ShortDesc = item.Description,
-                RentalAutorityGuid = null,
-                RahnPrice2 = 0,
-                QestPrice = 0,
-                MamarJoda = true,
-                MetrazhKouche = 0,
-                MetrazhTejari = 0,
-                MoavezeDesc = "",
-                MosharekatDesc = "",
-                ParvaneSerial = "",
-                PishDesc = "",
-                PishPrice = 0,
-                PishTotalPrice = 0,
-                Priority = EnBuildingPriority.Low
-            };
-            var ex = await BuildingBussines.CheckDuplicateAsync(bu.Masahat, bu.RoomCount, bu.RahnPrice1, bu.EjarePrice1, bu.SellPrice, bu.TabaqeNo);
-            if (ex) continue;
-            list.Add(bu);
-        }
-    }
-    catch (Exception ex)
-    {
-        WebErrorLog.ErrorInstence.StartErrorLog(ex);
-    }
+                if (model == null) return list;
+                var url = $"https://divar.ir/s/{model.LatinName}/pre-sell-home";
+                if (!string.IsNullOrEmpty(regionList))
+                    url += $"{regionList}";
+                url += "&user_type=personal";
+                var listDivar = GetDataFromUrl(url, model.Name, cityGuid, "پیش‌فروش");
+                if (listDivar == null || listDivar.Count <= 0) return list;
+                foreach (var item in listDivar)
+                {
+                    if (item.listData == null) continue;
+                    var bu = new BuildingBussines()
+                    {
+                        Guid = Guid.NewGuid(),
+                        Modified = DateTime.Now,
+                        Status = true,
+                        Masahat = 0,
+                        SellPrice = 0,
+                        ServerStatus = ServerStatus.None,
+                        Code = BuildingBussines.NextCode(),
+                        RahnPrice1 = 0,
+                        ServerDeliveryDate = DateTime.Now,
+                        EjarePrice1 = 0,
+                        RegionGuid = item.RegionGuid,
+                        Tell = EnKhadamati.Mostaqel,
+                        RoomCount = 0,
+                        UserGuid = UserBussines.CurrentUser.Guid,
+                        Address = "",
+                        GalleryList = null,
+                        Image = DownloadImage(item.Image),
+                        BuildingAccountTypeGuid = BuildingAccountTypeBussines.GetAll("مسکونی")?.FirstOrDefault()?.Guid ?? Guid.Empty,
+                        CreateDate = DateTime.Now,
+                        SaleSakht = "",
+                        MediaList = null,
+                        IsArchive = false,
+                        ZirBana = 0,
+                        DocumentType = null,
+                        BuildingTypeGuid = BuildingTypeBussines.Get("منزل مسکونی")?.Guid ?? Guid.Empty,
+                        OwnerGuid = ParentDefaults.TafsilCoding.CLSTafsil1030401,
+                        Barq = EnKhadamati.Mostaqel,
+                        BonBast = false,
+                        BuildingConditionGuid = BuildingConditionBussines.GetAll("تخلیه")?.FirstOrDefault()?.Guid ?? Guid.Empty,
+                        BuildingViewGuid = BuildingViewBussines.GetAll("سنگ")?.FirstOrDefault()?.Guid ?? Guid.Empty,
+                        CityGuid = cityGuid,
+                        Dang = 6,
+                        DateParvane = "",
+                        DeliveryDate = null,
+                        EjarePrice2 = 0,
+                        ErtefaSaqf = 0,
+                        FloorCoverGuid = FloorCoverBussines.GetAll("سرامیک")?.FirstOrDefault()?.Guid ?? Guid.Empty,
+                        Gas = EnKhadamati.Mostaqel,
+                        Hashie = 0,
+                        IsOwnerHere = null,
+                        IsShortTime = false,
+                        KitchenServiceGuid = KitchenServiceBussines.GetAll("MDF")?.FirstOrDefault()?.Guid ?? Guid.Empty,
+                        Water = EnKhadamati.Mostaqel,
+                        VamPrice = 0,
+                        VahedPerTabaqe = 1,
+                        Tarakom = null,
+                        Side = EnBuildingSide.One,
+                        ShortDesc = item.Description,
+                        RentalAutorityGuid = null,
+                        RahnPrice2 = 0,
+                        QestPrice = 0,
+                        MamarJoda = true,
+                        MetrazhKouche = 0,
+                        MetrazhTejari = 0,
+                        MoavezeDesc = "",
+                        MosharekatDesc = "",
+                        ParvaneSerial = "",
+                        PishDesc = "",
+                        PishPrice = 0,
+                        PishTotalPrice = 0,
+                        Priority = EnBuildingPriority.Low
+                    };
+                    var ex = await BuildingBussines.CheckDuplicateAsync(bu.Masahat, bu.RoomCount, bu.RahnPrice1, bu.EjarePrice1, bu.SellPrice, bu.TabaqeNo);
+                    if (ex) continue;
+                    list.Add(bu);
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
 
-    return list;
-}
+            return list;
+        }
     }
     public class Regions
-{
-    public List<RegionData> Children { get; set; }
-}
-public class RegionData
-{
-    public long Enum { get; set; }
-    public string EnumName { get; set; }
-    public List<string> Tags { get; set; }
-}
-public class Divar
-{
-    public string Url { get; set; }
-    public string Image { get; set; }
-    public string Description { get; set; }
-    public string Name { get; set; }
-    public Guid RegionGuid { get; set; }
-    public IList<ListData> listData { get; set; }
-}
-public class Item
-{
-    public int id { get; set; }
-    public bool disabled { get; set; }
-    public string title { get; set; }
-    public string value { get; set; }
-    public string iconName { get; set; }
-    public string iconColor { get; set; }
-}
-public class ListData
-{
-    public string format { get; set; }
-    public IList<Item> items { get; set; }
-    public bool hasDivider { get; set; }
-    public string title { get; set; }
-    public string value { get; set; }
-}
+    {
+        public List<RegionData> Children { get; set; }
+    }
+    public class RegionData
+    {
+        public long Enum { get; set; }
+        public string EnumName { get; set; }
+        public List<string> Tags { get; set; }
+    }
+    public class Divar
+    {
+        public string Url { get; set; }
+        public string Image { get; set; }
+        public string Description { get; set; }
+        public string Name { get; set; }
+        public Guid RegionGuid { get; set; }
+        public IList<ListData> listData { get; set; }
+    }
+    public class Item
+    {
+        public int id { get; set; }
+        public bool disabled { get; set; }
+        public string title { get; set; }
+        public string value { get; set; }
+        public string iconName { get; set; }
+        public string iconColor { get; set; }
+    }
+    public class ListData
+    {
+        public string format { get; set; }
+        public IList<Item> items { get; set; }
+        public bool hasDivider { get; set; }
+        public string title { get; set; }
+        public string value { get; set; }
+    }
 }

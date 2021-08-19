@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using EntityCache.Bussines;
 using EntityCache.ViewModels;
+using HtmlAgilityPack;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.Extensions;
 using Services;
@@ -2547,13 +2550,166 @@ namespace Advertise.Classes
             }
         }
         #endregion
+        private static List<Divar> GetDataFromUrl(string url)
+        {
+            var list = new List<Divar>();
+            try
+            {
+                var web = new HtmlWeb();
+                var doc = web.Load(url);
+                var o = doc.DocumentNode.SelectNodes("//script[@type='application/ld+json']")?.LastOrDefault();
+                var text = o?.InnerText;
+                list = JsonConvert.DeserializeObject<List<Divar>>(text);
+                foreach (var divar in list)
+                {
+                    var newDoc = web.Load(divar.Url);
+                    var o_ = newDoc.DocumentNode.SelectNodes("/html[1]/body[1]/script[1]")?.FirstOrDefault();
+                    if (o_ == null) continue;
+                    var text_ = o_.InnerText.Replace(@"\", "").Replace("window.production = true;", "")
+                        .Replace("window.__PRELOADED_STATE__ = \"{", "{")
+                        .Replace(",\"PERFORMANCE_MONITOR_RULE\":\"[0۰]$\"}\";", "}");
+                    var index = text_.IndexOf("  window.env");
+                    text_ = text_.Remove(index - 3);
+                    index = text_.IndexOf(",\"exitLinkWarn");
+                    var index2 = text_.IndexOf("u003Cu002Fau003Eu003Cu002Fpu003E\"");
+                    text_ = text_.Remove(index, index2 - index).Replace("u003Cu002Fau003Eu003Cu002Fpu003E\"", "");
+                    var root = JObject.Parse(text_);
+                    var guestValues = root["currentPost"]["post"]["widgets"]["listData"];
+                    divar.listData = JsonConvert.DeserializeObject<List<ListData>>(guestValues.ToString());
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
 
-        public async Task<List<WebScrapper>> GetAllRahnAsync()
+            return list;
+        }
+        public async Task<List<WebScrapper>> GetAllRentAppartmentAsync()
         {
             var list = new List<WebScrapper>();
             try
             {
+                var url = $"https://divar.ir/s/mashhad/rent-apartment&user_type=personal";
+                var listDivar = GetDataFromUrl(url);
+                if (listDivar == null || listDivar.Count <= 0) return list;
+                foreach (var item in listDivar)
+                {
+                    if (item.listData == null) continue;
+                    var web = new WebScrapper()
+                    {
+                        Masahat = item.listData[0].items[0].value.FixString().ParseToInt(),
+                        RahnPrice = item.listData[1].value.FixString().Replace("٫", "").Replace("تومان", "").ParseToDecimal() * 10,
+                        RoomCount = item.listData[0].items[2].value.FixString().ParseToInt(),
+                        SaleSakht = item.listData[0].items[1].value.FixString(),
+                        State = "خراسان رضوی",
+                        City = "مشهد",
+                        Guid = Guid.NewGuid(),
+                        SellPrice = 0,
+                        Balcony = false
+                    };
 
+                    if (item.listData[2].value == "مجانی") web.EjarePrice = 0;
+                    else
+                        web.EjarePrice = item.listData[2].value.FixString().Replace("٫", "").Replace("تومان", "").ParseToDecimal() *
+                                         10;
+                    if (item.listData[6].value.Contains("از"))
+                    {
+                        if (item.listData[6].value.Contains("همکف"))
+                        {
+                            var a = item.listData[6].value.Replace("همکف از", "");
+                            web.TabaqeNo = 0;
+                            web.TabaqeCount = a.FixString().ParseToInt();
+                        }
+                        else
+                        {
+                            var a = item.listData[6].value.Replace("از", "");
+                            web.TabaqeNo = a.Remove(1, 3).FixString().ParseToInt();
+                            web.TabaqeCount = a.Remove(0, 2).FixString().ParseToInt();
+                        }
+                    }
+                    else
+                    {
+                        web.TabaqeNo = item.listData[6].value.FixString().ParseToInt();
+                        web.TabaqeCount = web.TabaqeNo;
+                    }
+
+                    web.Evelator = item.listData[7].items[0].value.FixString()?.ParseToBoolean() ?? false;
+                    web.Parking = item.listData[7].items[1].value.FixString()?.ParseToBoolean() ?? false;
+                    web.Store = item.listData[7].items[2].value.FixString()?.ParseToBoolean() ?? false;
+
+                    _driver.Navigate().GoToUrl(item.Url);
+
+
+                    //Region
+                    var fullText = _driver.FindElement(By.ClassName("kt-page-title__subtitle"))?.Text;
+                    if (!string.IsNullOrEmpty(fullText))
+                    {
+                        var indexRemovedCity = fullText.IndexOf('،');
+                        var removedCity = fullText.Remove(0, indexRemovedCity + 1);
+                        var indexRemovedCat = removedCity.IndexOf('|');
+                        var regionName = removedCity.Remove(indexRemovedCat - 1,
+                            removedCity.Length - indexRemovedCat + 1);
+
+                        web.Region = regionName;
+
+
+                        //BuildingType
+                        var typeName = removedCity.Replace(regionName, "").Replace("اجاره", "")
+                            .Replace("|", "")
+                            .Trim();
+
+                        web.BuildingType = typeName;
+                    }
+
+                    var pList = _driver.FindElements(By.ClassName("kt-unexpandable-row__value"))
+                        .ToList();
+
+                    //Rental
+                    if (pList.Count >= 4)
+                    {
+                        var rent = pList[3]?.Text;
+                        if (!string.IsNullOrEmpty(rent))
+                            web.RentalAuthority = rent;
+                    }
+
+                    //Description
+                    web.Description = _driver.FindElement(By.ClassName("kt-description-row__text"))?.Text;
+
+                    var moreDetail = _driver.FindElements(By.ClassName("kt-selector-row__title"))
+                        .Any(q => q.Text == "نمایش همهٔ جزئیات");
+                    if (moreDetail)
+                    {
+                        _driver.FindElements(By.ClassName("kt-selector-row__title"))
+                            .FirstOrDefault(q => q.Text == "نمایش همهٔ جزئیات")?.Click();
+                        await Utility.Wait(2);
+
+
+                        var vahed = _driver.FindElements(By.ClassName("kt-base-row__title"))
+                                        .FirstOrDefault(q => q.Text == "تعداد واحد در طبقه")?.Text?
+                                        .ParseToInt() ?? 1;
+
+                        var side = _driver.FindElements(By.ClassName("kt-base-row__title"))
+                                               .FirstOrDefault(q => q.Text == "جهت ساختمان")?.Text ?? "";
+
+                        web.BuildingSide = side;
+                        web.VahedPerTabaqe = vahed;
+
+                        _driver.FindElement(By.ClassName("kt-modal__close-button"))?.Click();
+                    }
+
+                    //Images
+                    var imgElements = _driver.FindElements(By.TagName("img"));
+                    var imgList = new List<string>();
+                    foreach (var img in imgElements)
+                    {
+                        var src = img.GetAttribute("src");
+                        if (src.Contains("s100.divarcdn.com"))
+                            imgList.Add(src);
+                    }
+                    web.ImagesList = imgList.ToString();
+                    list.Add(web);
+                }
             }
             catch (Exception ex)
             {

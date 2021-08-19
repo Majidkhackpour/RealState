@@ -10,6 +10,7 @@ namespace WebHesabBussines
         public string City { get; set; }
         public string Region { get; set; }
         public string Category { get; set; }
+        public string Number { get; set; }
         public string BuildingType { get; set; }
         public int Masahat { get; set; }
         public string SaleSakht { get; set; }
