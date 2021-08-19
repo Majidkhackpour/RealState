@@ -1,5 +1,5 @@
 ﻿
-namespace Building.UserControls
+namespace Building
 {
     partial class ucBuildingFeatures
     {
@@ -30,13 +30,6 @@ namespace Building.UserControls
         private void InitializeComponent()
         {
             this.grpPanel = new DevComponents.DotNetBar.Controls.GroupPanel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.lblTell2 = new System.Windows.Forms.Label();
-            this.lblTell4 = new System.Windows.Forms.Label();
-            this.lblAddress = new System.Windows.Forms.Label();
-            this.lblTell1 = new System.Windows.Forms.Label();
-            this.lblTell3 = new System.Windows.Forms.Label();
-            this.lblNatCode = new System.Windows.Forms.Label();
             this.lblPicCount = new System.Windows.Forms.Label();
             this.lblTabaqeNo = new System.Windows.Forms.Label();
             this.lblBonBast = new System.Windows.Forms.Label();
@@ -46,6 +39,13 @@ namespace Building.UserControls
             this.lblMediaCount = new System.Windows.Forms.Label();
             this.lblVahedPerTabaqe = new System.Windows.Forms.Label();
             this.lblDong = new System.Windows.Forms.Label();
+            this.lblTell2 = new System.Windows.Forms.Label();
+            this.lblTell4 = new System.Windows.Forms.Label();
+            this.lblAddress = new System.Windows.Forms.Label();
+            this.lblTell1 = new System.Windows.Forms.Label();
+            this.lblTell3 = new System.Windows.Forms.Label();
+            this.lblNatCode = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.grpPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -97,77 +97,6 @@ namespace Building.UserControls
             // 
             this.grpPanel.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.grpPanel.TabIndex = 55732;
-            // 
-            // label1
-            // 
-            this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("B Yekan", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(303, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(159, 26);
-            this.label1.TabIndex = 55730;
-            this.label1.Text = "مشخصات مالک";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // lblTell2
-            // 
-            this.lblTell2.ForeColor = System.Drawing.Color.White;
-            this.lblTell2.Location = new System.Drawing.Point(179, 123);
-            this.lblTell2.Name = "lblTell2";
-            this.lblTell2.Size = new System.Drawing.Size(283, 21);
-            this.lblTell2.TabIndex = 55732;
-            this.lblTell2.Text = "label2";
-            this.lblTell2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // lblTell4
-            // 
-            this.lblTell4.ForeColor = System.Drawing.Color.White;
-            this.lblTell4.Location = new System.Drawing.Point(179, 165);
-            this.lblTell4.Name = "lblTell4";
-            this.lblTell4.Size = new System.Drawing.Size(283, 21);
-            this.lblTell4.TabIndex = 55733;
-            this.lblTell4.Text = "label2";
-            this.lblTell4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // lblAddress
-            // 
-            this.lblAddress.ForeColor = System.Drawing.Color.White;
-            this.lblAddress.Location = new System.Drawing.Point(179, 56);
-            this.lblAddress.Name = "lblAddress";
-            this.lblAddress.Size = new System.Drawing.Size(283, 46);
-            this.lblAddress.TabIndex = 55734;
-            this.lblAddress.Text = "label2";
-            // 
-            // lblTell1
-            // 
-            this.lblTell1.ForeColor = System.Drawing.Color.White;
-            this.lblTell1.Location = new System.Drawing.Point(179, 102);
-            this.lblTell1.Name = "lblTell1";
-            this.lblTell1.Size = new System.Drawing.Size(283, 21);
-            this.lblTell1.TabIndex = 55735;
-            this.lblTell1.Text = "label2";
-            this.lblTell1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // lblTell3
-            // 
-            this.lblTell3.ForeColor = System.Drawing.Color.White;
-            this.lblTell3.Location = new System.Drawing.Point(179, 144);
-            this.lblTell3.Name = "lblTell3";
-            this.lblTell3.Size = new System.Drawing.Size(283, 21);
-            this.lblTell3.TabIndex = 55736;
-            this.lblTell3.Text = "label2";
-            this.lblTell3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // lblNatCode
-            // 
-            this.lblNatCode.ForeColor = System.Drawing.Color.White;
-            this.lblNatCode.Location = new System.Drawing.Point(179, 35);
-            this.lblNatCode.Name = "lblNatCode";
-            this.lblNatCode.Size = new System.Drawing.Size(283, 21);
-            this.lblNatCode.TabIndex = 55737;
-            this.lblNatCode.Text = "label2";
-            this.lblNatCode.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblPicCount
             // 
@@ -258,6 +187,91 @@ namespace Building.UserControls
             this.lblDong.TabIndex = 55746;
             this.lblDong.Text = "label2";
             this.lblDong.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lblTell2
+            // 
+            this.lblTell2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblTell2.ForeColor = System.Drawing.Color.White;
+            this.lblTell2.Location = new System.Drawing.Point(179, 123);
+            this.lblTell2.Name = "lblTell2";
+            this.lblTell2.Size = new System.Drawing.Size(283, 21);
+            this.lblTell2.TabIndex = 55732;
+            this.lblTell2.Text = "label2";
+            this.lblTell2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lblTell4
+            // 
+            this.lblTell4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblTell4.ForeColor = System.Drawing.Color.White;
+            this.lblTell4.Location = new System.Drawing.Point(179, 165);
+            this.lblTell4.Name = "lblTell4";
+            this.lblTell4.Size = new System.Drawing.Size(283, 21);
+            this.lblTell4.TabIndex = 55733;
+            this.lblTell4.Text = "label2";
+            this.lblTell4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lblAddress
+            // 
+            this.lblAddress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblAddress.ForeColor = System.Drawing.Color.White;
+            this.lblAddress.Location = new System.Drawing.Point(179, 56);
+            this.lblAddress.Name = "lblAddress";
+            this.lblAddress.Size = new System.Drawing.Size(283, 46);
+            this.lblAddress.TabIndex = 55734;
+            this.lblAddress.Text = "label2";
+            // 
+            // lblTell1
+            // 
+            this.lblTell1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblTell1.ForeColor = System.Drawing.Color.White;
+            this.lblTell1.Location = new System.Drawing.Point(179, 102);
+            this.lblTell1.Name = "lblTell1";
+            this.lblTell1.Size = new System.Drawing.Size(283, 21);
+            this.lblTell1.TabIndex = 55735;
+            this.lblTell1.Text = "label2";
+            this.lblTell1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lblTell3
+            // 
+            this.lblTell3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblTell3.ForeColor = System.Drawing.Color.White;
+            this.lblTell3.Location = new System.Drawing.Point(179, 144);
+            this.lblTell3.Name = "lblTell3";
+            this.lblTell3.Size = new System.Drawing.Size(283, 21);
+            this.lblTell3.TabIndex = 55736;
+            this.lblTell3.Text = "label2";
+            this.lblTell3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lblNatCode
+            // 
+            this.lblNatCode.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblNatCode.ForeColor = System.Drawing.Color.White;
+            this.lblNatCode.Location = new System.Drawing.Point(179, 35);
+            this.lblNatCode.Name = "lblNatCode";
+            this.lblNatCode.Size = new System.Drawing.Size(283, 21);
+            this.lblNatCode.TabIndex = 55737;
+            this.lblNatCode.Text = "label2";
+            this.lblNatCode.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Font = new System.Drawing.Font("B Yekan", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(303, 9);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(159, 26);
+            this.label1.TabIndex = 55730;
+            this.label1.Text = "مشخصات مالک";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // ucBuildingFeatures
             // 

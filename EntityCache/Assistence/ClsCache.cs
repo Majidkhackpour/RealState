@@ -19,8 +19,6 @@ namespace EntityCache.Assistence
                 Cache.HardSerial = hardSerial;
                 if (!CheckConnectionString(Cache.ConnectionString)) return;
                 UpdateMigration();
-                var webService = new WebServiceHandlers();
-                webService.Init(appStart);
             }
             catch (Exception ex)
             {

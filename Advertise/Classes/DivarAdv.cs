@@ -547,6 +547,94 @@ namespace Advertise.Classes
             }
 
         }
+        public async Task<bool> LoginForScrappAsync(string token)
+        {
+            try
+            {
+                _driver = Utility.RefreshDriver(clsAdvertise.IsSilent);
+                if (!_driver.Url.Contains("divar.ir"))
+                    _driver.Navigate().GoToUrl("https://divar.ir");
+
+                var listLinkItems = _driver.FindElements(By.TagName("a"));
+                var isLogined = listLinkItems.Any(linkItem => linkItem.Text == @"خروج");
+                //اگر کاربر لاگین شده فعلی همان کاربر مورد نظر است نیازی به لاگین نیست 
+                if (isLogined)
+                {
+                    var currentTokenOnDivar = _driver.Manage().Cookies.GetCookieNamed("token").Value;
+                    if (!string.IsNullOrEmpty(currentTokenOnDivar) && currentTokenOnDivar == token)
+                        return true;
+                }
+
+                //اگر کاربرلاگین شده کاربر مد نظر ما نیست از آن کاربری خارج می شود
+                if (isLogined)
+                {
+                    _driver.Manage().Cookies.DeleteCookieNamed("_gat");
+                    _driver.Manage().Cookies.DeleteCookieNamed("token");
+                }
+
+                //در صورتیکه توکن قبلا ثبت شده باشد لاگین می کند
+                if (!string.IsNullOrEmpty(token))
+                {
+                    var token_ = new OpenQA.Selenium.Cookie("token", token);
+                    _driver.Manage().Cookies.AddCookie(token_);
+                    _driver.Navigate().Refresh();
+                }
+
+                //انتظار برای لاگین شدن
+                var repeat = 0;
+                //حدود 120 ثانیه فرصت لاگین دارد
+                while (repeat < 3)
+                {
+                    //تا زمانی که لاگین اوکی نشده باشد این حلقه تکرار می شود
+                    listLinkItems = _driver.FindElements(By.TagName("a"));
+                    if (listLinkItems.Count < 5) return false;
+                    var isLogin = listLinkItems.Any(linkItem => linkItem.Text == @"خروج");
+
+                    if (isLogin)
+                    {
+                        await Utility.Wait();
+                        return true;
+                    }
+                    else
+                    {
+                        var menu = _driver.FindElements(By.ClassName("menu")).Any();
+                        if (menu)
+                        {
+                            listLinkItems = _driver.FindElements(By.ClassName("item"));
+                            isLogin = listLinkItems.Any(linkItem => linkItem.Text == @"خروج");
+                            if (isLogin) return true;
+                        }
+
+                        var exMenu = _driver.FindElements(By.ClassName("sidebar")).Any();
+                        if (exMenu)
+                        {
+                            _driver.FindElements(By.ClassName("sidebar")).FirstOrDefault()?.Click();
+                            continue;
+                        }
+
+                        await Utility.Wait(3);
+                        try
+                        {
+                            await Utility.Wait(3);
+                            repeat++;
+                        }
+                        catch
+                        {
+                            await Utility.Wait(10);
+                        }
+                    }
+                }
+
+                return false;
+            }
+            catch (WebException) { return false; }
+            catch (Exception ex)
+            {
+                if (ex.Source != "WebDriver")
+                    WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                return false;
+            }
+        }
         private async Task RegisterAdv(AdvertiseLogBussines adv, bool isRaiseEvent)
         {
             var ret = new ReturnedSaveFuncInfo();
@@ -2460,7 +2548,7 @@ namespace Advertise.Classes
         }
         #endregion
 
-        public async Task<List<WebScrapper>> GetAllRahnAsync(long number)
+        public async Task<List<WebScrapper>> GetAllRahnAsync()
         {
             var list = new List<WebScrapper>();
             try

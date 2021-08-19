@@ -16,6 +16,7 @@ using System.Security.Principal;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using EntityCache.Bussines;
+using EntityCache.WebService;
 using RealState.LoginPanel;
 using User;
 
@@ -54,12 +55,12 @@ namespace RealState
 
             if (!VersionAccess.Building)
             {
-                var ret=new ReturnedSaveFuncInfo();
+                var ret = new ReturnedSaveFuncInfo();
                 ret.AddInformation("سریال نرم افزار شما، مجوز استفاده از نرم افزار را ندارد. لطفا جهت ارتقای نسخه نرم افزار خود اقدام نمایید");
-                new FrmShowErrorMessage(ret,"پیغام سیستم")?.ShowDialog();
+                new FrmShowErrorMessage(ret, "پیغام سیستم")?.ShowDialog();
                 return;
             }
-
+            WebServiceHandlers.Instance.Init(Cache.Path);
             new frmNewPlash().ShowDialog();
             _ = Task.Run(BuildingBussines.SetArchiveAsync);
             var frmMain = new frmNewMain();

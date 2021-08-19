@@ -111,6 +111,19 @@ namespace Peoples
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
+        private void SetAccess()
+        {
+            try
+            {
+                txtAccount_.Visible = VersionAccess.Accounting;
+                cmbAccount.Visible = VersionAccess.Accounting;
+                label16.Visible = VersionAccess.Accounting;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
         private void SetTxtPrice()
         {
             try

@@ -10,7 +10,6 @@ using WindowsSerivces;
 using Advertise.Classes;
 using Advertise.Forms.Simcard;
 using Building.BuildingMatchesItem;
-using Building.UserControls;
 using EntityCache.Bussines;
 using EntityCache.ViewModels;
 using MetroFramework.Forms;
@@ -383,17 +382,19 @@ namespace Building.Building
                         var bu = BuildingBussines.Get(guid);
                         if (bu == null) return;
                         if (token.IsCancellationRequested) return;
-                        var loc = DGrid.GetCellDisplayRectangle(dgCode.Index, DGrid.CurrentRow.Index, false);
+                        var loc = DGrid.GetCellDisplayRectangle(dgRoomCount.Index, DGrid.CurrentRow.Index, false);
                         if (token.IsCancellationRequested) return;
-                        var cont = new ucBuildingFeatures();
                         var wid = dgCode.Width;
-                        var p = new Point(loc.X + wid, loc.Y - cont.Height);
+                        ucFeatures.Size = new Size(469, 202);
+                        var p = new Point(loc.X + wid, loc.Y - ucFeatures.Height);
                         if (token.IsCancellationRequested) return;
-                        if (p.Y < DGrid.Top) p.Y += cont.Height + 30;
-                        cont.Location = p;
+                        if (p.Y < DGrid.Top) p.Y += ucFeatures.Height + 120;
+                        else p.Y += 95;
+                        ucFeatures.Location = p;
                         if (token.IsCancellationRequested) return;
-                        cont.Building = bu;
-                        cont.Show();
+                        ucFeatures.Building = bu;
+                        ucFeatures.BackColor = Color.Transparent;
+                        ucFeatures.Visible = true;
                     }
                     catch (Exception ex)
                     {
@@ -409,16 +410,24 @@ namespace Building.Building
 
         public frmShowBuildings(bool _isShowMode, bool? isArchive, bool status = true, Guid ownerGuid = default)
         {
-            InitializeComponent();
-            ucHeader.Text = "نمایش لیست املاک";
-            _st = status;
-            isShowMode = _isShowMode;
-            this.ownerGuid = ownerGuid;
-            _isArchive = isArchive;
-            ucPagger.OnBindDataReady += UcPagger_OnBindDataReady;
-            SetAccess();
-            SetColumns();
-            if (_isShowMode || (_isArchive != null && _isArchive.Value)) contextMenu.Enabled = false;
+            try
+            {
+                InitializeComponent();
+                ucFeatures.Visible = false;
+                ucHeader.Text = "نمایش لیست املاک";
+                _st = status;
+                isShowMode = _isShowMode;
+                this.ownerGuid = ownerGuid;
+                _isArchive = isArchive;
+                ucPagger.OnBindDataReady += UcPagger_OnBindDataReady;
+                SetAccess();
+                SetColumns();
+                if (_isShowMode || (_isArchive != null && _isArchive.Value)) contextMenu.Enabled = false;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
         }
 
         private async void UcPagger_OnBindDataReady(object sender, WindowsSerivces.Pagging.FooterBindingDataReadyEventArg e)
@@ -471,6 +480,11 @@ namespace Building.Building
                         if (!string.IsNullOrEmpty(txtSearch.Text))
                         {
                             txtSearch.Text = "";
+                            return;
+                        }
+                        if(ucFeatures.Visible)
+                        {
+                            ucFeatures.Visible = false;
                             return;
                         }
                         Close();
@@ -1411,6 +1425,7 @@ namespace Building.Building
         {
             try
             {
+                ucFeatures.Visible = false;
                 PicBox.Image = null;
                 if (DGrid.RowCount <= 0) return;
                 if (DGrid.CurrentRow == null) return;
@@ -1421,10 +1436,10 @@ namespace Building.Building
                 if (string.IsNullOrEmpty(bu.Image)) return;
                 var path = Path.Combine(Application.StartupPath + "\\Images", bu.Image);
                 PicBox.ImageLocation = path;
-                //await Task.Delay(3000);
-                //_token?.Cancel();
-                //_token = new CancellationTokenSource();
-                //_ = Task.Run(() => ShowDescAsync(_token.Token));
+                await Task.Delay(3000);
+                _token?.Cancel();
+                _token = new CancellationTokenSource();
+                _ = Task.Run(() => ShowDescAsync(_token.Token));
             }
             catch (Exception ex)
             {

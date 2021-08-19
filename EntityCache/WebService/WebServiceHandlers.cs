@@ -11,6 +11,8 @@ namespace EntityCache.WebService
     public class WebServiceHandlers
     {
         private string _appStart;
+        private static WebServiceHandlers _instance = null;
+        public static WebServiceHandlers Instance => _instance ?? (_instance = new WebServiceHandlers());
         public void Init(string appStart)
         {
             try
@@ -18,7 +20,7 @@ namespace EntityCache.WebService
                 _appStart = appStart;
                 if (!VersionAccess.WebService) return;
                 AddHandlers();
-                _ = Task.Run(() => StartSendToServerAsync(appStart));
+                _ = Task.Run(StartSendToServerAsync);
                 _ = Task.Run(StartFillTempAsync);
             }
             catch (Exception ex)
@@ -30,38 +32,6 @@ namespace EntityCache.WebService
         {
             try
             {
-                WebAdvisor.OnSaveResult -= WebAdvisorOnOnSaveResult;
-                WebBank.OnSaveResult -= WebBankOnOnSaveResult;
-                WebBuilding.OnSaveResult -= WebBuildingOnOnSaveResult;
-                WebBuildingAccountType.OnSaveResult -= WebBuildingAccountTypeOnOnSaveResult;
-                WebBuildingCondition.OnSaveResult -= WebBuildingConditionOnOnSaveResult;
-                WebBuildingOptions.OnSaveResult -= WebBuildingOptionsOnOnSaveResult;
-                WebBuildingRelatedOptions.OnSaveResult -= WebBuildingRelatedOptionsOnOnSaveResult;
-                WebBuildingRequest.OnSaveResult -= WebBuildingRequestOnOnSaveResult;
-                WebBuildingRequestRegion.OnSaveResult -= WebBuildingRequestRegionOnOnSaveResult;
-                WebBuildingType.OnSaveResult -= WebBuildingTypeOnOnSaveResult;
-                WebBuildingView.OnSaveResult -= WebBuildingViewOnOnSaveResult;
-                WebCity.OnSaveResult -= WebCityOnOnSaveResult;
-                WebContract.OnSaveResult -= WebContractOnOnSaveResult;
-                WebDocumentType.OnSaveResult -= WebDocumentTypeOnOnSaveResult;
-                WebFloorCover.OnSaveResult -= WebFloorCoverOnOnSaveResult;
-                WebKitchenService.OnSaveResult -= WebKitchenServiceOnOnSaveResult;
-                WebKol.OnSaveResult -= WebKolOnOnSaveResult;
-                WebMoein.OnSaveResult -= WebMoeinOnOnSaveResult;
-                WebPardakht.OnSaveResult -= WebPardakhtOnOnSaveResult;
-                WebPeople.OnSaveResult -= WebPeopleOnOnSaveResult;
-                WebPeopleGroup.OnSaveResult -= WebPeopleGroupOnOnSaveResult;
-                WebPhoneBook.OnSaveResult -= WebPhoneBookOnOnSaveResult;
-                WebReception.OnSaveResult -= WebReceptionOnOnSaveResult;
-                WebRegion.OnSaveResult -= WebRegionOnOnSaveResult;
-                WebRental.OnSaveResult -= WebRentalOnOnSaveResult;
-                WebSanad.OnSaveResult -= WebSanadOnOnSaveResult;
-                WebSanadDetail.OnSaveResult -= WebSanadDetailOnOnSaveResult;
-                WebStates.OnSaveResult -= WebStatesOnOnSaveResult;
-                WebTafsil.OnSaveResult -= WebTafsilOnOnSaveResult;
-                WebUser.OnSaveResult -= WebUserOnOnSaveResult;
-
-
                 WebAdvisor.OnSaveResult += WebAdvisorOnOnSaveResult;
                 WebBank.OnSaveResult += WebBankOnOnSaveResult;
                 WebBuilding.OnSaveResult += WebBuildingOnOnSaveResult;
@@ -188,13 +158,19 @@ namespace EntityCache.WebService
             => await TempBussines.UpdateEntityAsync(EnTemp.Bank, objGuid, st, dateM);
         private async Task WebAdvisorOnOnSaveResult(Guid objGuid, ServerStatus st, DateTime dateM)
             => await TempBussines.UpdateEntityAsync(EnTemp.Advisor, objGuid, st, dateM);
-        private async Task StartSendToServerAsync(string appStart)
+        private async Task StartSendToServerAsync()
         {
             try
             {
                 var list = await TempBussines.GetAllAsync();
                 while (true)
                 {
+                    var ping = await Utilities.PingHostAsync();
+                    if (ping.HasError)
+                    {
+                        await Task.Delay(2000);
+                        continue;
+                    }
                     if (list == null || list.Count <= 0)
                     {
                         await Task.Delay(2000);

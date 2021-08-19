@@ -1,6 +1,4 @@
-﻿using Building.UserControls;
-
-namespace Building.Building
+﻿namespace Building.Building
 {
     partial class frmShowBuildings
     {
@@ -168,6 +166,7 @@ namespace Building.Building
             this.docTypeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.ucPagger = new WindowsSerivces.Pagging.UC_FooterPaging();
             this.ucHeader = new WindowsSerivces.UC_Header();
+            this.ucFeatures = new ucBuildingFeatures();
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).BeginInit();
             this.contextMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BuildingBindingSource)).BeginInit();
@@ -1456,11 +1455,25 @@ namespace Building.Building
             this.ucHeader.Size = new System.Drawing.Size(1027, 34);
             this.ucHeader.TabIndex = 55772;
             // 
+            // ucFeatures
+            // 
+            this.ucFeatures.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.ucFeatures.BackColor = System.Drawing.Color.Transparent;
+            this.ucFeatures.Building = null;
+            this.ucFeatures.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.ucFeatures.Location = new System.Drawing.Point(553, 66);
+            this.ucFeatures.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ucFeatures.Name = "ucFeatures";
+            this.ucFeatures.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.ucFeatures.Size = new System.Drawing.Size(469, 202);
+            this.ucFeatures.TabIndex = 55776;
+            // 
             // frmShowBuildings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1021, 600);
+            this.Controls.Add(this.ucFeatures);
             this.Controls.Add(this.ucHeader);
             this.Controls.Add(this.grp);
             this.Controls.Add(this.txtSearch);
@@ -1624,5 +1637,6 @@ namespace Building.Building
         private System.Windows.Forms.DataGridViewTextBoxColumn dgGuid;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgPriority;
         private System.Windows.Forms.DataGridViewCheckBoxColumn dgIsArchive;
+        private ucBuildingFeatures ucFeatures;
     }
 }
