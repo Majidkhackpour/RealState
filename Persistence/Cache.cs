@@ -7,5 +7,6 @@
         public static string HardSerial { get; set; }
         public static bool IsSendToServer { get; set; } = false;
         public static string Path { get; set; }
+        public static bool IsClient { get; set; } = false;
     }
 }

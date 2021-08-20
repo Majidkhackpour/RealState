@@ -591,7 +591,22 @@ namespace Advertise.Classes
                     //تا زمانی که لاگین اوکی نشده باشد این حلقه تکرار می شود
                     listLinkItems = _driver.FindElements(By.TagName("a"));
                     if (listLinkItems.Count < 5) return false;
-                    var isLogin = listLinkItems.Any(linkItem => linkItem.Text == @"خروج");
+                    var loginList = _driver.FindElements(By.ClassName("kt-button--inlined"))
+                        ?.FirstOrDefault(q => q.Text == "دیوار من");
+                    var isLogin = false;
+                    if (loginList != null)
+                    {
+                        try
+                        {
+                            loginList?.Click();
+                            await Utility.Wait();
+                            isLogin = _driver.FindElements(By.ClassName("kt-fullwidth-link__title"))
+                                .Any(q => q.Text == "خروج");
+                        }
+                        catch
+                        {
+                        }
+                    }
 
                     if (isLogin)
                     {
@@ -2585,12 +2600,46 @@ namespace Advertise.Classes
 
             return list;
         }
+        private async Task<string> GetNumberAsync()
+        {
+            var res = "";
+            try
+            {
+                await Utility.Wait(2);
+                _driver.FindElement(By.ClassName("post-actions__get-contact")).Click();
+                await Utility.Wait(1.5);
+
+                var a = _driver.FindElements(By.ClassName("kt-button"))
+                    .FirstOrDefault(q => q.Text == "با قوانین دیوار موافقم");
+                if (a != null)
+                    _driver.FindElements(By.ClassName("kt-button"))
+                        .FirstOrDefault(q => q.Text == "با قوانین دیوار موافقم")?.Click();
+                await Utility.Wait(2);
+                var num = _driver.FindElements(By.ClassName("kt-unexpandable-row__action"))?.FirstOrDefault().Text.FixString();
+                if (num != "(پنهان‌شده؛ چت کنید)")
+                {
+                    if (num.ParseToLong() == 0)
+                    {
+                        _driver.Navigate().Back();
+                        res = "";
+                        return res;
+                    }
+                    res = num;
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+
+            return res;
+        }
         public async Task<List<WebScrapper>> GetAllRentAppartmentAsync()
         {
             var list = new List<WebScrapper>();
             try
             {
-                var url = $"https://divar.ir/s/mashhad/rent-apartment&user_type=personal";
+                var url = $"https://divar.ir/s/mashhad/rent-apartment?user_type=personal";
                 var listDivar = GetDataFromUrl(url);
                 if (listDivar == null || listDivar.Count <= 0) return list;
                 foreach (var item in listDivar)
@@ -2634,11 +2683,14 @@ namespace Advertise.Classes
                         web.TabaqeCount = web.TabaqeNo;
                     }
 
-                    web.Evelator = item.listData[7].items[0].value.FixString()?.ParseToBoolean() ?? false;
-                    web.Parking = item.listData[7].items[1].value.FixString()?.ParseToBoolean() ?? false;
-                    web.Store = item.listData[7].items[2].value.FixString()?.ParseToBoolean() ?? false;
+                    web.Evelator = !string.IsNullOrEmpty(item.listData[7].items[0].value.FixString());
+                    web.Parking = !string.IsNullOrEmpty(item.listData[7].items[1].value.FixString());
+                    web.Store = !string.IsNullOrEmpty(item.listData[7].items[2].value.FixString());
 
                     _driver.Navigate().GoToUrl(item.Url);
+
+                    //Title
+                    web.Title = _driver.FindElement(By.ClassName("kt-page-title__title--responsive-sized"))?.Text.FixString() ?? "";
 
 
                     //Region
@@ -2673,6 +2725,8 @@ namespace Advertise.Classes
                             web.RentalAuthority = rent;
                     }
 
+                    web.Number = await GetNumberAsync();
+
                     //Description
                     web.Description = _driver.FindElement(By.ClassName("kt-description-row__text"))?.Text;
 
@@ -2684,16 +2738,14 @@ namespace Advertise.Classes
                             .FirstOrDefault(q => q.Text == "نمایش همهٔ جزئیات")?.Click();
                         await Utility.Wait(2);
 
-
-                        var vahed = _driver.FindElements(By.ClassName("kt-base-row__title"))
-                                        .FirstOrDefault(q => q.Text == "تعداد واحد در طبقه")?.Text?
-                                        .ParseToInt() ?? 1;
-
-                        var side = _driver.FindElements(By.ClassName("kt-base-row__title"))
-                                               .FirstOrDefault(q => q.Text == "جهت ساختمان")?.Text ?? "";
-
-                        web.BuildingSide = side;
-                        web.VahedPerTabaqe = vahed;
+                        var moreList = _driver.FindElements(By.ClassName("kt-unexpandable-row__value-box"))?.ToList();
+                        if (moreList != null && moreList.Count > 0)
+                        {
+                            if (moreList.Count >= 8)
+                                web.VahedPerTabaqe = moreList[7]?.Text?.FixString().ParseToInt() ?? 1;
+                            if (moreList.Count >= 9)
+                                web.BuildingSide = moreList[8]?.Text.FixString() ?? "";
+                        }
 
                         _driver.FindElement(By.ClassName("kt-modal__close-button"))?.Click();
                     }
@@ -2707,9 +2759,25 @@ namespace Advertise.Classes
                         if (src.Contains("s100.divarcdn.com"))
                             imgList.Add(src);
                     }
-                    web.ImagesList = imgList.ToString();
+
+                    web.ImagesList = Json.ToStringJson(imgList);
+
                     list.Add(web);
                 }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+
+            return list;
+        }
+        public async Task<List<WebScrapper>> GetAllRentVillaAsync()
+        {
+            var list = new List<WebScrapper>();
+            try
+            {
+
             }
             catch (Exception ex)
             {

@@ -37,7 +37,6 @@ namespace RealState
             this.groupPanel8 = new DevComponents.DotNetBar.Controls.GroupPanel();
             this.txtSearch = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.lblUserName = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
             this.lblTitle = new System.Windows.Forms.Label();
             this.groupPanel1 = new DevComponents.DotNetBar.Controls.GroupPanel();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
@@ -311,7 +310,6 @@ namespace RealState
             this.pnlOk.Controls.Add(this.picSetting);
             this.pnlOk.Controls.Add(this.groupPanel8);
             this.pnlOk.Controls.Add(this.lblUserName);
-            this.pnlOk.Controls.Add(this.label6);
             this.pnlOk.Controls.Add(this.lblTitle);
             this.pnlOk.Cursor = System.Windows.Forms.Cursors.Default;
             this.pnlOk.DisabledBackColor = System.Drawing.Color.Empty;
@@ -417,23 +415,10 @@ namespace RealState
             this.lblUserName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(237)))), ((int)(((byte)(255)))));
             this.lblUserName.Location = new System.Drawing.Point(45, 10);
             this.lblUserName.Name = "lblUserName";
-            this.lblUserName.Size = new System.Drawing.Size(147, 20);
+            this.lblUserName.Size = new System.Drawing.Size(204, 20);
             this.lblUserName.TabIndex = 55728;
             this.lblUserName.Text = "محمد حسین خاکپور نورمحمد";
             this.lblUserName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.BackColor = System.Drawing.Color.Transparent;
-            this.label6.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(237)))), ((int)(((byte)(255)))));
-            this.label6.Location = new System.Drawing.Point(192, 10);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(57, 20);
-            this.label6.TabIndex = 55728;
-            this.label6.Text = "وقت بخیر";
-            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblTitle
             // 
@@ -4301,7 +4286,6 @@ namespace RealState
             this.Load += new System.EventHandler(this.frmNewMain_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmNewMain_KeyDown);
             this.pnlOk.ResumeLayout(false);
-            this.pnlOk.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picInfo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picSetting)).EndInit();
             this.groupPanel8.ResumeLayout(false);
@@ -4418,7 +4402,6 @@ namespace RealState
         private DevComponents.DotNetBar.Controls.GroupPanel groupPanel8;
         private DevComponents.DotNetBar.Controls.TextBoxX txtSearch;
         private System.Windows.Forms.Label lblUserName;
-        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label lblEconomyName;
         private System.Windows.Forms.Label label9;

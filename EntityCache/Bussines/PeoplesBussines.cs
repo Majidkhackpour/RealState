@@ -9,6 +9,7 @@ using EntityCache.Mppings;
 using Nito.AsyncEx;
 using Persistence;
 using Services;
+using Services.DefaultCoding;
 using Servicess.Interfaces.Building;
 using WebHesabBussines;
 
@@ -300,5 +301,6 @@ namespace EntityCache.Bussines
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
+        public static async Task<PeoplesBussines> GetDefaultPeopleAsync() => await GetAsync(ParentDefaults.TafsilCoding.DefualtCustomer);
     }
 }

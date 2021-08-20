@@ -249,7 +249,7 @@ namespace EntityCache.Assistence
                 {
                     var pe = new PeoplesBussines()
                     {
-                        Guid = Guid.Parse("e49a6e74-beec-489f-a720-28bf246b8e2a"),
+                        Guid = ParentDefaults.TafsilCoding.DefualtCustomer,
                         Modified = DateTime.Now,
                         Name = "مشتری عمومی",
                         Status = true,

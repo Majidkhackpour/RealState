@@ -54,6 +54,7 @@ using System.Windows.Forms;
 using User;
 using User.Advisor;
 using WindowsSerivces;
+using Persistence;
 
 namespace RealState
 {
@@ -530,7 +531,7 @@ namespace RealState
             try
             {
                 FileFormatter.Init();
-                DivarFiles.Init();
+                if (!Cache.IsClient) DivarFiles.Init();
                 AutoBackUp.Init(this);
                 var myCollection = new AutoCompleteStringCollection();
                 var list = _dic.Keys;

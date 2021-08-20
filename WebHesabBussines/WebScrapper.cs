@@ -6,10 +6,10 @@ namespace WebHesabBussines
     public class WebScrapper : IScrapper
     {
         public Guid Guid { get; set; }
+        public string Title { get; set; }
         public string State { get; set; }
         public string City { get; set; }
         public string Region { get; set; }
-        public string Category { get; set; }
         public string Number { get; set; }
         public string BuildingType { get; set; }
         public int Masahat { get; set; }
