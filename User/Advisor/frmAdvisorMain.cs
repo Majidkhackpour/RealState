@@ -14,6 +14,7 @@ namespace User.Advisor
         {
             try
             {
+                SetAccess();
                 FillCmbPrice();
                 SetTxtPrice();
                 txtName.Text = cls?.Name;
@@ -60,6 +61,18 @@ namespace User.Advisor
                     txtAccount_.TextDecimal = Math.Abs(cls?.AccountFirst ?? 0);
                     cmbAccount.SelectedIndex = 2;
                 }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private void SetAccess()
+        {
+            try
+            {
+                txtAccount_.Visible = cmbAccount.Visible = VersionAccess.Accounting;
+                label3.Visible = label6.Visible = VersionAccess.Accounting;
             }
             catch (Exception ex)
             {
@@ -147,7 +160,7 @@ namespace User.Advisor
             }
             finally
             {
-                if (res.HasError)  this.ShowError(res, "خطا در ثبت حساب مشاور");
+                if (res.HasError) this.ShowError(res, "خطا در ثبت حساب مشاور");
                 else
                 {
                     DialogResult = DialogResult.OK;

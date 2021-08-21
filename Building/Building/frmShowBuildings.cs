@@ -1433,9 +1433,12 @@ namespace Building.Building
                 if (guid == Guid.Empty) return;
                 var bu = await BuildingBussines.GetAsync(guid);
                 if (bu == null) return;
-                if (string.IsNullOrEmpty(bu.Image)) return;
-                var path = Path.Combine(Application.StartupPath + "\\Images", bu.Image);
-                PicBox.ImageLocation = path;
+                if (!string.IsNullOrEmpty(bu.Image))
+                {
+                    var path = Path.Combine(Application.StartupPath + "\\Images", bu.Image);
+                    PicBox.ImageLocation = path;
+                }
+
                 await Task.Delay(3000);
                 _token?.Cancel();
                 _token = new CancellationTokenSource();

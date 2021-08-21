@@ -34,7 +34,10 @@
             this.superTabControl1 = new DevComponents.DotNetBar.SuperTabControl();
             this.superTabControlPanel2 = new DevComponents.DotNetBar.SuperTabControlPanel();
             this.panelEx1 = new DevComponents.DotNetBar.PanelEx();
+            this.btnSearchMedia = new DevComponents.DotNetBar.ButtonX();
             this.btnSearchImagePath = new DevComponents.DotNetBar.ButtonX();
+            this.txtMediaPath = new System.Windows.Forms.TextBox();
+            this.label33 = new System.Windows.Forms.Label();
             this.txtImagePath = new System.Windows.Forms.TextBox();
             this.label32 = new System.Windows.Forms.Label();
             this.txtSetArchive = new System.Windows.Forms.NumericUpDown();
@@ -165,9 +168,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.superTabItem5 = new DevComponents.DotNetBar.SuperTabItem();
             this.btnFinish = new DevComponents.DotNetBar.ButtonX();
-            this.label33 = new System.Windows.Forms.Label();
-            this.txtMediaPath = new System.Windows.Forms.TextBox();
-            this.btnSearchMedia = new DevComponents.DotNetBar.ButtonX();
             ((System.ComponentModel.ISupportInitialize)(this.superTabControl1)).BeginInit();
             this.superTabControl1.SuspendLayout();
             this.superTabControlPanel2.SuspendLayout();
@@ -227,9 +227,9 @@
             this.superTabControl1.ControlBox.SubItems.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.superTabControl1.ControlBox.MenuBox,
             this.superTabControl1.ControlBox.CloseBox});
+            this.superTabControl1.Controls.Add(this.superTabControlPanel1);
             this.superTabControl1.Controls.Add(this.superTabControlPanel2);
             this.superTabControl1.Controls.Add(this.superTabControlPanel6);
-            this.superTabControl1.Controls.Add(this.superTabControlPanel1);
             this.superTabControl1.Controls.Add(this.superTabControlPanel11);
             this.superTabControl1.Controls.Add(this.superTabControlPanel8);
             this.superTabControl1.Controls.Add(this.superTabControlPanel7);
@@ -295,6 +295,23 @@
             this.panelEx1.Style.GradientAngle = 90;
             this.panelEx1.TabIndex = 14;
             // 
+            // btnSearchMedia
+            // 
+            this.btnSearchMedia.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnSearchMedia.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.btnSearchMedia.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnSearchMedia.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.btnSearchMedia.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSearchMedia.Location = new System.Drawing.Point(20, 341);
+            this.btnSearchMedia.Name = "btnSearchMedia";
+            this.btnSearchMedia.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
+            this.btnSearchMedia.Size = new System.Drawing.Size(35, 27);
+            this.btnSearchMedia.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
+            this.btnSearchMedia.TabIndex = 16;
+            this.btnSearchMedia.Text = "...";
+            this.btnSearchMedia.TextColor = System.Drawing.Color.White;
+            this.btnSearchMedia.Click += new System.EventHandler(this.btnSearchMedia_Click);
+            // 
             // btnSearchImagePath
             // 
             this.btnSearchImagePath.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
@@ -312,12 +329,27 @@
             this.btnSearchImagePath.TextColor = System.Drawing.Color.White;
             this.btnSearchImagePath.Click += new System.EventHandler(this.btnSearchImagePath_Click);
             // 
+            // txtMediaPath
+            // 
+            this.txtMediaPath.Location = new System.Drawing.Point(64, 341);
+            this.txtMediaPath.Name = "txtMediaPath";
+            this.txtMediaPath.Size = new System.Drawing.Size(390, 27);
+            this.txtMediaPath.TabIndex = 14;
+            // 
+            // label33
+            // 
+            this.label33.AutoSize = true;
+            this.label33.BackColor = System.Drawing.Color.Transparent;
+            this.label33.Location = new System.Drawing.Point(474, 344);
+            this.label33.Name = "label33";
+            this.label33.Size = new System.Drawing.Size(113, 20);
+            this.label33.TabIndex = 15;
+            this.label33.Text = "محل ذخیره سازی مدیا";
+            // 
             // txtImagePath
             // 
-            this.txtImagePath.Enabled = false;
             this.txtImagePath.Location = new System.Drawing.Point(64, 308);
             this.txtImagePath.Name = "txtImagePath";
-            this.txtImagePath.ReadOnly = true;
             this.txtImagePath.Size = new System.Drawing.Size(390, 27);
             this.txtImagePath.TabIndex = 14;
             // 
@@ -553,10 +585,8 @@
             // 
             // txtPath
             // 
-            this.txtPath.Enabled = false;
             this.txtPath.Location = new System.Drawing.Point(49, 18);
             this.txtPath.Name = "txtPath";
-            this.txtPath.ReadOnly = true;
             this.txtPath.Size = new System.Drawing.Size(409, 27);
             this.txtPath.TabIndex = 0;
             // 
@@ -2022,42 +2052,6 @@
             this.btnFinish.Text = "تایید (F5)";
             this.btnFinish.TextColor = System.Drawing.Color.Black;
             this.btnFinish.Click += new System.EventHandler(this.btnFinish_Click);
-            // 
-            // label33
-            // 
-            this.label33.AutoSize = true;
-            this.label33.BackColor = System.Drawing.Color.Transparent;
-            this.label33.Location = new System.Drawing.Point(474, 344);
-            this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(113, 20);
-            this.label33.TabIndex = 15;
-            this.label33.Text = "محل ذخیره سازی مدیا";
-            // 
-            // txtMediaPath
-            // 
-            this.txtMediaPath.Enabled = false;
-            this.txtMediaPath.Location = new System.Drawing.Point(64, 341);
-            this.txtMediaPath.Name = "txtMediaPath";
-            this.txtMediaPath.ReadOnly = true;
-            this.txtMediaPath.Size = new System.Drawing.Size(390, 27);
-            this.txtMediaPath.TabIndex = 14;
-            // 
-            // btnSearchMedia
-            // 
-            this.btnSearchMedia.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnSearchMedia.BackColor = System.Drawing.Color.DarkSlateGray;
-            this.btnSearchMedia.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnSearchMedia.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
-            this.btnSearchMedia.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnSearchMedia.Location = new System.Drawing.Point(20, 341);
-            this.btnSearchMedia.Name = "btnSearchMedia";
-            this.btnSearchMedia.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
-            this.btnSearchMedia.Size = new System.Drawing.Size(35, 27);
-            this.btnSearchMedia.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
-            this.btnSearchMedia.TabIndex = 16;
-            this.btnSearchMedia.Text = "...";
-            this.btnSearchMedia.TextColor = System.Drawing.Color.White;
-            this.btnSearchMedia.Click += new System.EventHandler(this.btnSearchMedia_Click);
             // 
             // frmSettings
             // 

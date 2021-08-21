@@ -101,6 +101,58 @@ namespace RealState
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
+        private void SetAccess()
+        {
+            try
+            {
+                var access = UserBussines.CurrentUser.UserAccess;
+
+                lblBuilding.Enabled = access?.Building.Building_ShowForm ?? false;
+                lblBuildingArchive.Enabled = access?.Building.Building_ShowForm ?? false;
+                lblBuildingAccountType.Enabled = access?.BuildingAccountType.Building_Acc_Type_ShowForm ?? false;
+                lblBuildingCondition.Enabled = access?.BuildingCondition.Building_Condition_ShowForm ?? false;
+                lblBuildingOptions.Enabled = access?.BuildingOption.Building_Option_ShowForm ?? false;
+                lblRequest.Enabled = access?.BuildingRequest.Building_Request_ShowForm ?? false;
+                lblBuildingSearch.Enabled = access?.BuildingSearch.Building_Search_ShowForm ?? false;
+                lblBuildingType.Enabled = access?.BuildingType.Building_Type_ShowForm ?? false;
+                lblBuildingView.Enabled = access?.BuildingView.Building_View_ShowForm ?? false;
+                lblCities.Enabled = access?.Cities.City_ShowForm ?? false;
+                lblContract.Enabled = access?.Contract.Contract_ShowForm ?? false;
+                lblDocumentType.Enabled = access?.DocumentType.Document_Type_ShowForm ?? false;
+                lblFloorCover.Enabled = access?.FloorCover.Floor_Cover_ShowForm ?? false;
+                lblHazine.Enabled = access?.Hazine.Hazine_ShowForm ?? false;
+                lblKitchenService.Enabled = access?.KitchenService.Kitchen_Service_ShowForm ?? false;
+                lblPardakht.Enabled = access?.Pardakht.Pardakht_ShowForm ?? false;
+                lblPeoples.Enabled = access?.Peoples.People_ShowForm ?? false;
+                lblPhoneBook.Enabled = access?.PhoneBook.PhoneBook_ShowForm ?? false;
+                lblReception.Enabled = access?.Reception.Reception_ShowForm ?? false;
+                lblRental.Enabled = access?.RentalAuthority.Rental_ShowForm ?? false;
+                lblSanad.Enabled = access?.Sanad.Sanad_Insert ?? false;
+                lblSendSms.Enabled = access?.SendSms.Sms_ShowForm ?? false;
+                lblSmsPanel.Enabled = access?.SmsPanel.Panel_ShowForm ?? false;
+                lblUsers.Enabled = access?.User.User_ShowForm ?? false;
+                lblUserAccess.Enabled = access?.UserAccLevel.User_Acc_ShowForm ?? false;
+                lblBuildingFast.Enabled = access?.Building.Building_Insert ?? false;
+                lblBuildingArchive.Enabled = access?.Building.Building_ShowForm ?? false;
+                lblBuildingMatches.Enabled = access?.Building.Building_Show_request ?? false;
+                lblBank.Enabled = access?.Bank.Bank_ShowForm ?? false;
+                lblReceptionCheck.Enabled = access?.CheckM.CheckM_ShowForm ?? false;
+                lblPardakhtCheck.Enabled = access?.CheckSh.CheckSh_ShowForm ?? false;
+                lblCheckBook.Enabled = access?.DasteCheck.DasteCheck_ShowForm ?? false;
+                lblTafsil.Enabled = access?.Tafsil.Tafsil_ShowForm ?? false;
+                lblSandouq.Enabled = access?.Sandouq.Sandouq_ShowForm ?? false;
+                lblAdvisor.Enabled = access?.Advisor.Advisor_ShowForm ?? false;
+
+                lblAccounting.Visible = VersionAccess.Accounting;
+                lblSmsPanel.Visible = VersionAccess.Sms;
+                lblSendSms.Visible = VersionAccess.Sms;
+                lblAdvertise.Visible = VersionAccess.Advertise;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
         private Form SelectForm(EnForms _form)
         {
             Form frm = null;
@@ -530,6 +582,7 @@ namespace RealState
         {
             try
             {
+                SetAccess();
                 FileFormatter.Init();
                 if (!Cache.IsClient) DivarFiles.Init();
                 AutoBackUp.Init(this);
