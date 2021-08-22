@@ -21,6 +21,7 @@ namespace Peoples
         {
             try
             {
+                SetAccess();
                 await LoadGroups();
                 LoadTells();
                 LoadBanks();

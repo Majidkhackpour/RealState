@@ -684,6 +684,11 @@ namespace RealState
         {
             try
             {
+                if(e.KeyCode==Keys.F5)
+                {
+                    LoadDashboard();
+                    return;
+                }
                 if (e.KeyCode == Keys.Escape && !string.IsNullOrEmpty(txtSearch.Text))
                     txtSearch.Text = "";
                 if (pnlInfo.Visible) pnlInfo.Visible = false;
