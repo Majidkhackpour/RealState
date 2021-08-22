@@ -523,6 +523,12 @@
     <Compile Include="Building\frmFilterForm.Designer.cs">
       <DependentUpon>frmFilterForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Building\frmShowBuildingDetail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Building\frmShowBuildingDetail.Designer.cs">
+      <DependentUpon>frmShowBuildingDetail.cs</DependentUpon>
+    </Compile>
     <Compile Include="Building\frmShowBuildings.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -753,6 +759,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Building\frmFilterForm.resx">
       <DependentUpon>frmFilterForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Building\frmShowBuildingDetail.resx">
+      <DependentUpon>frmShowBuildingDetail.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Building\frmShowBuildings.resx">
       <DependentUpon>frmShowBuildings.cs</DependentUpon>
