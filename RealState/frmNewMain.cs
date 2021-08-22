@@ -144,6 +144,7 @@ namespace RealState
                 lblAdvisor.Enabled = access?.Advisor.Advisor_ShowForm ?? false;
 
                 lblAccounting.Visible = VersionAccess.Accounting;
+                groupPanel7.Visible = VersionAccess.Accounting;
                 lblSmsPanel.Visible = VersionAccess.Sms;
                 lblSendSms.Visible = VersionAccess.Sms;
                 lblAdvertise.Visible = VersionAccess.Advertise;
