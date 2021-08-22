@@ -227,7 +227,7 @@ namespace Building.Building
             // 
             // 
             this.groupPanel2.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.groupPanel2.TabIndex = 2;
+            this.groupPanel2.TabIndex = 0;
             // 
             // lblDateNow
             // 
@@ -251,7 +251,7 @@ namespace Building.Building
             this.cmbUser.Location = new System.Drawing.Point(3, 39);
             this.cmbUser.Name = "cmbUser";
             this.cmbUser.Size = new System.Drawing.Size(269, 28);
-            this.cmbUser.TabIndex = 3;
+            this.cmbUser.TabIndex = 1;
             this.cmbUser.ValueMember = "Guid";
             // 
             // userBindingSource
@@ -265,7 +265,7 @@ namespace Building.Building
             this.txtCode.Location = new System.Drawing.Point(3, 4);
             this.txtCode.Name = "txtCode";
             this.txtCode.Size = new System.Drawing.Size(269, 27);
-            this.txtCode.TabIndex = 2;
+            this.txtCode.TabIndex = 0;
             // 
             // label15
             // 
@@ -343,7 +343,7 @@ namespace Building.Building
             // 
             // 
             this.groupPanel1.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.groupPanel1.TabIndex = 5;
+            this.groupPanel1.TabIndex = 1;
             this.groupPanel1.Text = "مشخصات مالک";
             // 
             // btnCreateOwner
@@ -390,7 +390,7 @@ namespace Building.Building
             this.txttxtOwnerCode.Name = "txttxtOwnerCode";
             this.txttxtOwnerCode.ReadOnly = true;
             this.txttxtOwnerCode.Size = new System.Drawing.Size(154, 27);
-            this.txttxtOwnerCode.TabIndex = 10;
+            this.txttxtOwnerCode.TabIndex = 0;
             // 
             // label1
             // 
@@ -458,7 +458,7 @@ namespace Building.Building
             // 
             // 
             this.groupPanel3.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.groupPanel3.TabIndex = 6;
+            this.groupPanel3.TabIndex = 2;
             // 
             // cmbBAccountType
             // 
@@ -472,7 +472,7 @@ namespace Building.Building
             this.cmbBAccountType.Location = new System.Drawing.Point(3, 205);
             this.cmbBAccountType.Name = "cmbBAccountType";
             this.cmbBAccountType.Size = new System.Drawing.Size(280, 28);
-            this.cmbBAccountType.TabIndex = 55758;
+            this.cmbBAccountType.TabIndex = 8;
             this.cmbBAccountType.ValueMember = "Guid";
             // 
             // batBindingSource
@@ -502,7 +502,7 @@ namespace Building.Building
             0});
             this.txtTedadOtaq.Name = "txtTedadOtaq";
             this.txtTedadOtaq.Size = new System.Drawing.Size(280, 27);
-            this.txtTedadOtaq.TabIndex = 55756;
+            this.txtTedadOtaq.TabIndex = 7;
             // 
             // label52
             // 
@@ -522,7 +522,7 @@ namespace Building.Building
             this.txtSaleSakht.Location = new System.Drawing.Point(3, 139);
             this.txtSaleSakht.Name = "txtSaleSakht";
             this.txtSaleSakht.Size = new System.Drawing.Size(280, 27);
-            this.txtSaleSakht.TabIndex = 55753;
+            this.txtSaleSakht.TabIndex = 6;
             // 
             // label58
             // 
@@ -547,7 +547,7 @@ namespace Building.Building
             this.cmbBuildingType.Location = new System.Drawing.Point(3, 105);
             this.cmbBuildingType.Name = "cmbBuildingType";
             this.cmbBuildingType.Size = new System.Drawing.Size(280, 28);
-            this.cmbBuildingType.TabIndex = 55752;
+            this.cmbBuildingType.TabIndex = 5;
             this.cmbBuildingType.ValueMember = "Guid";
             // 
             // bTypeBindingSource
@@ -577,7 +577,7 @@ namespace Building.Building
             this.cmbBuildingCondition.Location = new System.Drawing.Point(3, 71);
             this.cmbBuildingCondition.Name = "cmbBuildingCondition";
             this.cmbBuildingCondition.Size = new System.Drawing.Size(280, 28);
-            this.cmbBuildingCondition.TabIndex = 55750;
+            this.cmbBuildingCondition.TabIndex = 4;
             this.cmbBuildingCondition.ValueMember = "Guid";
             // 
             // bConditionBindingSource
@@ -604,7 +604,7 @@ namespace Building.Building
             this.cmbZirBana.Location = new System.Drawing.Point(3, 37);
             this.cmbZirBana.Name = "cmbZirBana";
             this.cmbZirBana.Size = new System.Drawing.Size(201, 28);
-            this.cmbZirBana.TabIndex = 55748;
+            this.cmbZirBana.TabIndex = 3;
             this.cmbZirBana.ValueMember = "Guid";
             this.cmbZirBana.SelectedIndexChanged += new System.EventHandler(this.cmbZirBana_SelectedIndexChanged);
             // 
@@ -625,7 +625,7 @@ namespace Building.Building
             0});
             this.txtZirBana.Name = "txtZirBana";
             this.txtZirBana.Size = new System.Drawing.Size(73, 27);
-            this.txtZirBana.TabIndex = 55747;
+            this.txtZirBana.TabIndex = 2;
             this.txtZirBana.ValueChanged += new System.EventHandler(this.txtZirBana_ValueChanged);
             // 
             // cmbMasahat
@@ -637,7 +637,7 @@ namespace Building.Building
             this.cmbMasahat.Location = new System.Drawing.Point(3, 3);
             this.cmbMasahat.Name = "cmbMasahat";
             this.cmbMasahat.Size = new System.Drawing.Size(201, 28);
-            this.cmbMasahat.TabIndex = 55746;
+            this.cmbMasahat.TabIndex = 1;
             this.cmbMasahat.ValueMember = "Guid";
             this.cmbMasahat.SelectedIndexChanged += new System.EventHandler(this.cmbMasahat_SelectedIndexChanged);
             // 
@@ -669,7 +669,7 @@ namespace Building.Building
             0});
             this.txtMasahat.Name = "txtMasahat";
             this.txtMasahat.Size = new System.Drawing.Size(73, 27);
-            this.txtMasahat.TabIndex = 55745;
+            this.txtMasahat.TabIndex = 0;
             this.txtMasahat.ValueChanged += new System.EventHandler(this.txtMasahat_ValueChanged);
             // 
             // label32
@@ -728,7 +728,7 @@ namespace Building.Building
             // 
             // 
             this.groupPanel4.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.groupPanel4.TabIndex = 7;
+            this.groupPanel4.TabIndex = 3;
             this.groupPanel4.Text = "رهن و اجاره";
             // 
             // txtEjarePrice1
@@ -744,7 +744,7 @@ namespace Building.Building
             this.txtEjarePrice1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtEjarePrice1.Name = "txtEjarePrice1";
             this.txtEjarePrice1.Size = new System.Drawing.Size(254, 31);
-            this.txtEjarePrice1.TabIndex = 22;
+            this.txtEjarePrice1.TabIndex = 1;
             this.txtEjarePrice1.TextDecimal = new decimal(new int[] {
             0,
             0,
@@ -764,7 +764,7 @@ namespace Building.Building
             this.txtRahnPrice1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtRahnPrice1.Name = "txtRahnPrice1";
             this.txtRahnPrice1.Size = new System.Drawing.Size(254, 31);
-            this.txtRahnPrice1.TabIndex = 21;
+            this.txtRahnPrice1.TabIndex = 0;
             this.txtRahnPrice1.TextDecimal = new decimal(new int[] {
             0,
             0,
@@ -783,7 +783,7 @@ namespace Building.Building
             this.cmbRentalAuthority.Location = new System.Drawing.Point(3, 78);
             this.cmbRentalAuthority.Name = "cmbRentalAuthority";
             this.cmbRentalAuthority.Size = new System.Drawing.Size(254, 28);
-            this.cmbRentalAuthority.TabIndex = 20;
+            this.cmbRentalAuthority.TabIndex = 2;
             this.cmbRentalAuthority.ValueMember = "Guid";
             // 
             // rentalBindingSource
@@ -878,7 +878,7 @@ namespace Building.Building
             // 
             // 
             this.groupPanel5.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.groupPanel5.TabIndex = 8;
+            this.groupPanel5.TabIndex = 4;
             this.groupPanel5.Text = "خرید و فروش";
             // 
             // lblPricePerZirBana
@@ -938,7 +938,7 @@ namespace Building.Building
             this.cmbSellTarakom.Location = new System.Drawing.Point(3, 167);
             this.cmbSellTarakom.Name = "cmbSellTarakom";
             this.cmbSellTarakom.Size = new System.Drawing.Size(254, 28);
-            this.cmbSellTarakom.TabIndex = 37;
+            this.cmbSellTarakom.TabIndex = 5;
             this.cmbSellTarakom.ValueMember = "Guid";
             // 
             // label25
@@ -964,7 +964,7 @@ namespace Building.Building
             this.cmbSellSanadType.Location = new System.Drawing.Point(3, 134);
             this.cmbSellSanadType.Name = "cmbSellSanadType";
             this.cmbSellSanadType.Size = new System.Drawing.Size(254, 28);
-            this.cmbSellSanadType.TabIndex = 35;
+            this.cmbSellSanadType.TabIndex = 4;
             this.cmbSellSanadType.ValueMember = "Guid";
             // 
             // sanadTypeBindingSource
@@ -987,7 +987,7 @@ namespace Building.Building
             0});
             this.txtDong.Name = "txtDong";
             this.txtDong.Size = new System.Drawing.Size(260, 27);
-            this.txtDong.TabIndex = 34;
+            this.txtDong.TabIndex = 3;
             this.txtDong.Value = new decimal(new int[] {
             1,
             0,
@@ -1007,7 +1007,7 @@ namespace Building.Building
             this.txtQestPrice.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtQestPrice.Name = "txtQestPrice";
             this.txtQestPrice.Size = new System.Drawing.Size(254, 31);
-            this.txtQestPrice.TabIndex = 33;
+            this.txtQestPrice.TabIndex = 2;
             this.txtQestPrice.TextDecimal = new decimal(new int[] {
             0,
             0,
@@ -1027,7 +1027,7 @@ namespace Building.Building
             this.txtVamPrice.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtVamPrice.Name = "txtVamPrice";
             this.txtVamPrice.Size = new System.Drawing.Size(254, 31);
-            this.txtVamPrice.TabIndex = 32;
+            this.txtVamPrice.TabIndex = 1;
             this.txtVamPrice.TextDecimal = new decimal(new int[] {
             0,
             0,
@@ -1047,7 +1047,7 @@ namespace Building.Building
             this.txtSellPrice.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtSellPrice.Name = "txtSellPrice";
             this.txtSellPrice.Size = new System.Drawing.Size(254, 31);
-            this.txtSellPrice.TabIndex = 31;
+            this.txtSellPrice.TabIndex = 0;
             this.txtSellPrice.TextDecimal = new decimal(new int[] {
             0,
             0,
@@ -1159,7 +1159,7 @@ namespace Building.Building
             // 
             // 
             this.groupPanel6.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.groupPanel6.TabIndex = 9;
+            this.groupPanel6.TabIndex = 5;
             // 
             // txtShortDesc
             // 
@@ -1170,7 +1170,7 @@ namespace Building.Building
             this.txtShortDesc.Name = "txtShortDesc";
             this.txtShortDesc.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.txtShortDesc.Size = new System.Drawing.Size(296, 335);
-            this.txtShortDesc.TabIndex = 55734;
+            this.txtShortDesc.TabIndex = 4;
             // 
             // label41
             // 
@@ -1191,7 +1191,7 @@ namespace Building.Building
             this.txtAddress.Name = "txtAddress";
             this.txtAddress.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.txtAddress.Size = new System.Drawing.Size(296, 186);
-            this.txtAddress.TabIndex = 67;
+            this.txtAddress.TabIndex = 3;
             // 
             // cmbRegion
             // 
@@ -1204,7 +1204,7 @@ namespace Building.Building
             this.cmbRegion.Location = new System.Drawing.Point(-3, 73);
             this.cmbRegion.Name = "cmbRegion";
             this.cmbRegion.Size = new System.Drawing.Size(296, 28);
-            this.cmbRegion.TabIndex = 66;
+            this.cmbRegion.TabIndex = 2;
             this.cmbRegion.ValueMember = "Guid";
             // 
             // RegionBindingSource
@@ -1233,7 +1233,7 @@ namespace Building.Building
             this.cmbCity.Location = new System.Drawing.Point(-3, 39);
             this.cmbCity.Name = "cmbCity";
             this.cmbCity.Size = new System.Drawing.Size(296, 28);
-            this.cmbCity.TabIndex = 65;
+            this.cmbCity.TabIndex = 1;
             this.cmbCity.ValueMember = "Guid";
             this.cmbCity.SelectedIndexChanged += new System.EventHandler(this.cmbCity_SelectedIndexChanged);
             // 
@@ -1252,7 +1252,7 @@ namespace Building.Building
             this.cmbState.Location = new System.Drawing.Point(-3, 5);
             this.cmbState.Name = "cmbState";
             this.cmbState.Size = new System.Drawing.Size(296, 28);
-            this.cmbState.TabIndex = 64;
+            this.cmbState.TabIndex = 0;
             this.cmbState.ValueMember = "Guid";
             this.cmbState.SelectedIndexChanged += new System.EventHandler(this.cmbState_SelectedIndexChanged);
             // 
@@ -1338,6 +1338,9 @@ namespace Building.Building
             // 
             // splitContainer1
             // 
+            this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.splitContainer1.Location = new System.Drawing.Point(5, 54);
             this.splitContainer1.Name = "splitContainer1";
             this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;

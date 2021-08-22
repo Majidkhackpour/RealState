@@ -546,6 +546,7 @@ namespace RealState
             try
             {
                 InitializeComponent();
+                ShowInTaskbar = true;
                 pnlInfo.Visible = false;
                 grpBuilding.Height = grpAccounting.Height = grpBaseInfo.Height = 48;
                 grpUsers.Height = grpOptions.Height = 48;
