@@ -511,12 +511,6 @@
     <Compile Include="Building\frmBuildingMain.Designer.cs">
       <DependentUpon>frmBuildingMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="Building\frmBuildingMainFast.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Building\frmBuildingMainFast.Designer.cs">
-      <DependentUpon>frmBuildingMainFast.cs</DependentUpon>
-    </Compile>
     <Compile Include="Building\frmBuilding_Fast.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -753,9 +747,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Building\frmBuildingMain.resx">
       <DependentUpon>frmBuildingMain.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Building\frmBuildingMainFast.resx">
-      <DependentUpon>frmBuildingMainFast.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Building\frmBuilding_Fast.resx">
       <DependentUpon>frmBuilding_Fast.cs</DependentUpon>

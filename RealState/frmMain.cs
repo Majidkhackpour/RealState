@@ -755,8 +755,8 @@ namespace RealState
         {
             try
             {
-                var frm = new frmBuildingMainFast();
-                frm.ShowDialog(this);
+                //var frm = new frmBuildingMainFast();
+                //frm.ShowDialog(this);
             }
             catch (Exception ex)
             {
