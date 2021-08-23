@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -22,6 +24,11 @@ namespace Building.Building
         private BuildingBussines cls;
         private PeoplesBussines owner;
         private CancellationTokenSource _token = new CancellationTokenSource();
+        private string _picNameJari = "";
+        private string _pictureNameForClick = null;
+        private PictureBox _orGpicBox;
+        private PictureBox _fakepicBox;
+        readonly List<string> lstList = new List<string>();
 
 
         private async Task SetDataAsync()
@@ -44,7 +51,6 @@ namespace Building.Building
                 await NextCodeAsync();
 
                 lblDateNow.Text = Calendar.MiladiToShamsi(DateTime.Now);
-                cmbUser.SelectedValue = UserBussines.CurrentUser?.Guid;
                 cmbRentalAuthority.SelectedIndex = 0;
 
                 cmbSellTarakom.SelectedIndex = 0;
@@ -106,6 +112,8 @@ namespace Building.Building
             {
                 var list = await UserBussines.GetAllAsync(token);
                 userBindingSource.DataSource = list.Where(q => q.Status).OrderBy(q => q.Name).ToList();
+                if (userBindingSource.Count > 0 && UserBussines.CurrentUser != null)
+                    cmbUser.SelectedValue = UserBussines.CurrentUser.Guid;
             }
             catch (Exception ex)
             {
@@ -239,66 +247,118 @@ namespace Building.Building
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private async Task<ReturnedSaveFuncInfo> SetObjectAsync()
+        private ReturnedSaveFuncInfo CheckValidation()
         {
             var res = new ReturnedSaveFuncInfo();
             try
             {
+                if (owner == null) res.AddError("لطفا مالک را انتخاب و یا تعریف نمایید");
+                if (cmbUser.SelectedValue == null)
+                    res.AddError("لطفا کاربر ثبت کننده ملک را وارد نمایید");
+                if (string.IsNullOrWhiteSpace(txtCode.Text) || txtCode.Text.ParseToLong() <= 0)
+                    res.AddError("کد ملک نمی تواند خالی باشد");
+                if (txtRahnPrice1.TextDecimal == 0 && txtEjarePrice1.TextDecimal == 0 && txtSellPrice.TextDecimal == 0)
+                    res.AddError("لطفا یکی از فیلدهای مبلغ را وارد نمایید");
+                if (txtMasahat.Value <= 0 && txtZirBana.Value <= 0)
+                    res.AddError("لطفا مساحت و زیربنا را وارد نمایید");
+                if (cmbState.SelectedValue == null)
+                    res.AddError("لطفا استان را انتخاب نمایید");
+                if (cmbCity.SelectedValue == null)
+                    res.AddError("لطفا شهرستان را انتخاب نمایید");
+                if (cmbRegion.SelectedValue == null)
+                    res.AddError("لطفا محدوده را انتخاب نمایید");
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+
+            return res;
+        }
+        private async Task<ReturnedSaveFuncInfo> SetObjectAsync()
+        {
+            var line = 1;
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                line = 2;
                 cls.Code = txtCode.Text;
                 cls.Modified = DateTime.Now;
+                line = 3;
                 cls.OwnerGuid = owner.Guid;
+                line = 4;
                 cls.UserGuid = (Guid)cmbUser.SelectedValue;
                 cls.Priority = EnBuildingPriority.Medium;
                 cls.IsArchive = false;
+                line = 5;
                 cls.SellPrice = txtSellPrice.TextDecimal;
+                line = 6;
                 cls.QestPrice = txtQestPrice.TextDecimal;
+                line = 7;
                 cls.VamPrice = txtVamPrice.TextDecimal;
+                line = 8;
                 cls.Dang = txtDong.Text.ParseToInt();
+                line = 9;
                 cls.DocumentType = (Guid)cmbSellSanadType.SelectedValue;
+                line = 10;
                 cls.Tarakom = (EnTarakom)cmbSellTarakom.SelectedIndex;
+                line = 11;
                 cls.RahnPrice1 = txtRahnPrice1.TextDecimal;
                 cls.RahnPrice2 = 0;
+                line = 12;
                 cls.EjarePrice1 = txtEjarePrice1.TextDecimal;
                 cls.EjarePrice2 = 0;
+                line = 13;
                 cls.RentalAutorityGuid = (Guid)cmbRentalAuthority.SelectedValue;
                 cls.IsShortTime = false;
                 cls.IsOwnerHere = false;
                 cls.PishTotalPrice = 0;
                 cls.PishPrice = 0;
                 cls.DeliveryDate = null;
-
+                line = 14;
                 if (cmbMasahat.SelectedIndex == 0)
                     cls.Masahat = txtMasahat.Text.ParseToInt();
+                line = 15;
                 if (cmbMasahat.SelectedIndex == 1)
                     cls.Masahat = txtMasahat.Text.ParseToInt() * 10000;
-
+                line = 16;
                 if (cmbZirBana.SelectedIndex == 0)
                     cls.ZirBana = txtZirBana.Text.ParseToInt();
+                line = 17;
                 if (cmbZirBana.SelectedIndex == 1)
                     cls.ZirBana = txtZirBana.Text.ParseToInt() * 10000;
-
+                line = 18;
                 cls.CityGuid = (Guid)cmbCity.SelectedValue;
+                line = 19;
                 cls.RegionGuid = (Guid)cmbRegion.SelectedValue;
+                line = 20;
                 cls.Address = txtAddress.Text;
+                line = 21;
                 cls.BuildingConditionGuid = (Guid)cmbBuildingCondition.SelectedValue;
                 cls.Side = EnBuildingSide.One;
+                line = 22;
                 cls.BuildingTypeGuid = (Guid)cmbBuildingType.SelectedValue;
                 cls.ShortDesc = txtShortDesc.Text;
+                line = 23;
                 cls.BuildingAccountTypeGuid = (Guid)cmbBAccountType.SelectedValue;
                 cls.MetrazhTejari = 0;
                 _token?.Cancel();
                 _token = new CancellationTokenSource();
                 var views = await BuildingViewBussines.GetAllAsync(_token.Token);
+                line = 24;
                 if (views.Count > 0)
                     cls.BuildingViewGuid = views[0].Guid;
                 _token?.Cancel();
                 _token = new CancellationTokenSource();
                 var fCover = await FloorCoverBussines.GetAllAsync(_token.Token);
+                line = 25;
                 if (fCover.Count > 0)
                     cls.FloorCoverGuid = fCover[0].Guid;
                 _token?.Cancel();
                 _token = new CancellationTokenSource();
                 var kService = await KitchenServiceBussines.GetAllAsync(_token.Token);
+                line = 26;
                 if (kService.Count > 0)
                     cls.KitchenServiceGuid = kService[0].Guid;
                 cls.Water = EnKhadamati.Mostaqel;
@@ -314,12 +374,13 @@ namespace Building.Building
                 cls.SaleSakht = txtSaleSakht.Text;
                 cls.BonBast = false;
                 cls.MamarJoda = true;
+                line = 27;
                 cls.RoomCount = txtTedadOtaq.Text.ParseToInt();
                 cls.Image = "";
             }
             catch (Exception ex)
             {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                WebErrorLog.ErrorInstence.StartErrorLog(ex, $"Error in Line:{line}");
                 res.AddReturnedValue(ex);
             }
 
@@ -389,6 +450,135 @@ namespace Building.Building
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
+        }
+        private void Make_Picture_Boxes(List<string> lst)
+        {
+            try
+            {
+                if (lst == null || lst.Count == 0) return;
+                fPanel.AutoScroll = true;
+                for (var i = fPanel.Controls.Count - 1; i >= 0; i--)
+                    fPanel.Controls[i].Dispose();
+                for (var i = 0; i < lst.Count; i++)
+                {
+                    try
+                    {
+                        var picbox = new PictureBox();
+                        Controls.Add(picbox);
+                        picbox.Size = new Size(62, 63);
+                        picbox.Load(lst[i]);
+                        picbox.Name = "pic" + i;
+                        picbox.Cursor = Cursors.Hand;
+                        picbox.SizeMode = PictureBoxSizeMode.StretchImage;
+                        picbox.Click += picbox_Click;
+                        fPanel.Controls.Add(picbox);
+                    }
+                    catch (Exception)
+                    {
+                        lst.RemoveAt(i);
+                    }
+                }
+            }
+            catch (Exception exception)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(exception);
+            }
+        }
+        private static void ShowBigSizePic(PictureBox pic)
+        {
+            try
+            {
+                pic.Size = new Size(190, 212);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private static void ShowNormalSizePic(PictureBox pic)
+        {
+            try
+            {
+                pic.Size = new Size(62, 63);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private ReturnedSaveFuncInfo SetImages()
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                var img = Path.Combine(Application.StartupPath, "Images");
+                foreach (var item in cls.GalleryList ?? new List<BuildingGalleryBussines>())
+                {
+                    var path = Path.Combine(img, item.ImageName + ".jpg");
+                    try
+                    {
+                        File.Delete(path);
+                    }
+                    catch
+                    {
+                    }
+                }
+
+                cls.GalleryList = new List<BuildingGalleryBussines>();
+
+                foreach (var item in lstList)
+                {
+                    var imagePath = Path.Combine(Application.StartupPath, "Temp");
+                    if (!Directory.Exists(imagePath)) Directory.CreateDirectory(imagePath);
+                    var name = Guid.NewGuid().ToString();
+                    var fileName = Path.Combine(imagePath, name + ".jpg");
+                    try
+                    {
+                        File.Copy(item, fileName);
+                    }
+                    catch
+                    {
+                    }
+
+
+                    var imagePath_ = Path.Combine(Application.StartupPath, "Images");
+                    if (!Directory.Exists(imagePath_)) Directory.CreateDirectory(imagePath_);
+
+                    var fileName_ = Path.Combine(imagePath_, name + ".jpg");
+                    try
+                    {
+                        File.Copy(item, fileName_);
+                    }
+                    catch
+                    {
+                    }
+
+
+                    var a = new BuildingGalleryBussines()
+                    {
+                        Guid = Guid.NewGuid(),
+                        ImageName = name,
+                        BuildingGuid = cls.Guid,
+                        Modified = DateTime.Now
+                    };
+                    cls.GalleryList.Add(a);
+                }
+
+                try
+                {
+                    var imagePath = Path.Combine(Application.StartupPath, "Temp");
+                    Directory.Delete(imagePath, true);
+                }
+                catch
+                {
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+            return res;
         }
 
 
@@ -487,6 +677,20 @@ namespace Building.Building
                     case Keys.Escape:
                         btnCancel.PerformClick();
                         break;
+                    case Keys.F8:
+                        if (_orGpicBox != null)
+                        {
+                            ShowBigSizePic(_orGpicBox);
+                            _fakepicBox = _orGpicBox;
+                            _orGpicBox = null;
+                        }
+                        else
+                        {
+                            ShowNormalSizePic(_fakepicBox);
+                            _orGpicBox = _fakepicBox;
+                        }
+
+                        break;
                 }
             }
             catch (Exception exception)
@@ -502,6 +706,7 @@ namespace Building.Building
         private async void btnFinish_Click(object sender, EventArgs e)
         {
             var res = new ReturnedSaveFuncInfo();
+            btnFinish.Enabled = false;
             try
             {
                 var isSendSms = false;
@@ -511,10 +716,16 @@ namespace Building.Building
                     isSendSms = true;
                 }
 
+                res.AddReturnedValue(CheckValidation());
+                if (res.HasError) return;
+
                 res.AddReturnedValue(await SetObjectAsync());
                 if (res.HasError) return;
 
                 res.AddReturnedValue(await SetOptionsAsync(cls.Guid));
+                if (res.HasError) return;
+
+                res.AddReturnedValue(SetImages());
                 if (res.HasError) return;
 
                 res.AddReturnedValue(await cls.SaveAsync());
@@ -539,7 +750,7 @@ namespace Building.Building
                 var list = await BuildingRequestViewModel.GetAllMatchesItemsAsync(cls, _token.Token);
                 if (list.Count <= 0)
                 {
-                    MessageBox.Show("فایل مطابقی جهت نمایش وجود ندارد");
+                    this.ShowMessage("فایل مطابقی جهت نمایش وجود ندارد");
                     return;
                 }
 
@@ -552,6 +763,7 @@ namespace Building.Building
             }
             finally
             {
+                btnFinish.Enabled = true;
                 if (res.HasError)
                     this.ShowError(res, "خطا در ذخیره سازی ملک");
                 else
@@ -566,5 +778,75 @@ namespace Building.Building
         private void cmbMasahat_SelectedIndexChanged(object sender, EventArgs e) => CalculateSellPrice();
         private void cmbZirBana_SelectedIndexChanged(object sender, EventArgs e) => CalculateSellPrice();
         private void txtSellPrice_OnTextChanged() => CalculateSellPrice();
+        private void btnInsImage_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (InvokeRequired)
+                {
+                    var t = new Thread(() =>
+                    {
+                        var ofd = new OpenFileDialog { Multiselect = true, RestoreDirectory = true };
+                        if (ofd.ShowDialog(this) != DialogResult.OK) return;
+                        foreach (var name in ofd.FileNames)
+                            lstList.Add(name);
+                    });
+
+                    t.SetApartmentState(ApartmentState.STA);
+                    t.Start();
+                    t.Join();
+                }
+                else
+                {
+                    var ofd = new OpenFileDialog { Multiselect = true, RestoreDirectory = true };
+                    if (ofd.ShowDialog(this) != DialogResult.OK) return;
+                    foreach (var name in ofd.FileNames)
+                        lstList.Add(name);
+                }
+                Make_Picture_Boxes(lstList);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private void btnDelImage_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Make_Picture_Boxes(lstList);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private void picbox_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var imageLocation = ((PictureBox)sender).ImageLocation;
+                _picNameJari = ((PictureBox)sender).Name;
+                if (_picNameJari == _pictureNameForClick)
+                {
+                    ((PictureBox)sender).BackColor = Color.Transparent;
+                    ((PictureBox)sender).Padding = new Padding(-1);
+                    _pictureNameForClick = null;
+                    lstList.Add(imageLocation);
+                    _orGpicBox = null;
+                    return;
+                }
+
+                ((PictureBox)sender).BackColor = Color.Red;
+                ((PictureBox)sender).Padding = new Padding(1);
+                _pictureNameForClick = ((PictureBox)sender).Name;
+                lstList.Remove(imageLocation);
+                _orGpicBox = (PictureBox)sender;
+            }
+            catch (Exception exception)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(exception);
+            }
+        }
     }
 }

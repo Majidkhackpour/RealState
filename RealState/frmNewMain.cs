@@ -586,8 +586,11 @@ namespace RealState
             {
                 SetAccess();
                 FileFormatter.Init();
-                if (!Cache.IsClient) DivarFiles.Init();
-                AutoBackUp.Init(this);
+                if (!Cache.IsClient)
+                {
+                    DivarFiles.Init();
+                    AutoBackUp.Init(this);
+                }
                 var myCollection = new AutoCompleteStringCollection();
                 var list = _dic.Keys;
                 foreach (var item in list.ToList())

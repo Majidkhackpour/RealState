@@ -121,6 +121,9 @@ namespace Building.Building
             this.dgOptionGuid = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.modifiedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.statusDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.fPanel = new System.Windows.Forms.FlowLayoutPanel();
+            this.btnInsImage = new DevComponents.DotNetBar.ButtonX();
+            this.btnDelImage = new DevComponents.DotNetBar.ButtonX();
             this.flowLayoutPanel1.SuspendLayout();
             this.groupPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).BeginInit();
@@ -143,6 +146,7 @@ namespace Building.Building
             ((System.ComponentModel.ISupportInitialize)(this.StateBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BuildingOptionBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+            this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).BeginInit();
@@ -1347,6 +1351,9 @@ namespace Building.Building
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.btnDelImage);
+            this.splitContainer1.Panel1.Controls.Add(this.btnInsImage);
+            this.splitContainer1.Panel1.Controls.Add(this.fPanel);
             this.splitContainer1.Panel1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             // 
             // splitContainer1.Panel2
@@ -1458,6 +1465,55 @@ namespace Building.Building
             this.statusDataGridViewCheckBoxColumn.Name = "statusDataGridViewCheckBoxColumn";
             this.statusDataGridViewCheckBoxColumn.Visible = false;
             // 
+            // fPanel
+            // 
+            this.fPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.fPanel.BackColor = System.Drawing.Color.Transparent;
+            this.fPanel.Location = new System.Drawing.Point(3, 3);
+            this.fPanel.Name = "fPanel";
+            this.fPanel.Size = new System.Drawing.Size(399, 210);
+            this.fPanel.TabIndex = 3;
+            // 
+            // btnInsImage
+            // 
+            this.btnInsImage.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnInsImage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnInsImage.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.btnInsImage.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnInsImage.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.btnInsImage.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnInsImage.Font = new System.Drawing.Font("B Yekan", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.btnInsImage.Location = new System.Drawing.Point(207, 219);
+            this.btnInsImage.Name = "btnInsImage";
+            this.btnInsImage.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
+            this.btnInsImage.Size = new System.Drawing.Size(195, 27);
+            this.btnInsImage.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
+            this.btnInsImage.TabIndex = 14;
+            this.btnInsImage.Text = "افزودن تصویر(های) جدید";
+            this.btnInsImage.TextColor = System.Drawing.Color.White;
+            this.btnInsImage.Click += new System.EventHandler(this.btnInsImage_Click);
+            // 
+            // btnDelImage
+            // 
+            this.btnDelImage.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnDelImage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnDelImage.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.btnDelImage.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnDelImage.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.btnDelImage.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnDelImage.Font = new System.Drawing.Font("B Yekan", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.btnDelImage.Location = new System.Drawing.Point(3, 219);
+            this.btnDelImage.Name = "btnDelImage";
+            this.btnDelImage.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
+            this.btnDelImage.Size = new System.Drawing.Size(198, 27);
+            this.btnDelImage.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
+            this.btnDelImage.TabIndex = 15;
+            this.btnDelImage.Text = "حذف تصویر(های) انتخاب شده";
+            this.btnDelImage.TextColor = System.Drawing.Color.White;
+            this.btnDelImage.Click += new System.EventHandler(this.btnDelImage_Click);
+            // 
             // frmBuilding_Fast
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -1507,6 +1563,7 @@ namespace Building.Building
             ((System.ComponentModel.ISupportInitialize)(this.CityBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.StateBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.BuildingOptionBindingSource)).EndInit();
+            this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
@@ -1602,5 +1659,8 @@ namespace Building.Building
         private System.Windows.Forms.DataGridViewTextBoxColumn dgOptionGuid;
         private System.Windows.Forms.DataGridViewTextBoxColumn modifiedDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewCheckBoxColumn statusDataGridViewCheckBoxColumn;
+        private System.Windows.Forms.FlowLayoutPanel fPanel;
+        private DevComponents.DotNetBar.ButtonX btnInsImage;
+        private DevComponents.DotNetBar.ButtonX btnDelImage;
     }
 }

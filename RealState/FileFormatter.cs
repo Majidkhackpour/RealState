@@ -30,6 +30,11 @@ namespace RealState
                 if (string.IsNullOrEmpty(clsGlobal.ImagePath)) return;
 
                 var localDir = Path.Combine(Application.StartupPath, "Images");
+                if (!Directory.Exists(localDir))
+                {
+                    Directory.CreateDirectory(localDir);
+                    return;
+                }
                 var localFiles = new DirectoryInfo(localDir).GetFiles()?.Select(o => o.Name)?.ToList();
                 if (!Directory.Exists(clsGlobal.ImagePath))
                     Directory.CreateDirectory(clsGlobal.ImagePath);
@@ -64,6 +69,11 @@ namespace RealState
                 if (string.IsNullOrEmpty(clsGlobal.MediaPath)) return;
 
                 var localDir = Path.Combine(Application.StartupPath, "Media");
+                if (!Directory.Exists(localDir))
+                {
+                    Directory.CreateDirectory(localDir);
+                    return;
+                }
                 var localFiles = new DirectoryInfo(localDir).GetFiles()?.Select(o => o.Name)?.ToList();
                 if (!Directory.Exists(clsGlobal.MediaPath))
                     Directory.CreateDirectory(clsGlobal.MediaPath);

@@ -1427,6 +1427,7 @@ namespace Building.Building
             try
             {
                 var pic = LoadFromFile();
+                if (string.IsNullOrEmpty(pic)) return;
                 var picPath = Path.Combine(Application.StartupPath + "\\Images", pic);
                 picImage.ImageLocation = picPath;
                 image = pic;

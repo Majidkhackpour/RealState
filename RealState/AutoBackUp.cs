@@ -1,16 +1,15 @@
-﻿using System;
+﻿using DataBaseUtilities;
+using EntityCache.Bussines;
+using Persistence;
+using Services;
+using Settings;
+using Settings.Classes;
+using System;
 using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using DataBaseUtilities;
-using EntityCache.Bussines;
-using Notification;
-using Persistence;
-using Services;
-using Settings;
-using Settings.Classes;
 using WebHesabBussines;
 
 namespace RealState
@@ -61,30 +60,47 @@ namespace RealState
         }
         public static async Task BackUpAsync(string path, bool isAuto, EnBackUpType type)
         {
+            var line = 0;
             try
             {
                 if (!isAuto)
                 {
+                    line = 1;
                     if (string.IsNullOrEmpty(clsBackUp.BackUpOpen) || !clsBackUp.BackUpOpen.ParseToBoolean()) return;
+                    line = 2;
                     path = Path.Combine(path, "AradBackUp");
                 }
 
+                line = 3;
                 if (!Directory.Exists(path)) Directory.CreateDirectory(path);
+                line = 4;
                 var file = Path.GetFileName(Assembly.GetEntryAssembly()?.Location)
                     ?.Replace(".exe", "__");
+                line = 5;
                 var d = Calendar.MiladiToShamsi(DateTime.Now).Replace("/", "_");
+                line = 6;
                 d += "__" + DateTime.Now.Hour + " - " + DateTime.Now.Minute;
+                line = 7;
                 file += d;
+                line = 8;
                 file = file.Replace(" ", "");
+                line = 9;
                 var newPath = Path.Combine(path, file + ".NPZ2");
+                line = 10;
                 await DataBase.BackUpStartAsync(_owner, AppSettings.DefaultConnectionString, ENSource.Building, type, newPath);
+                line = 11;
                 if (VersionAccess.AutoBackUp)
+                {
+                    line = 12;
                     await UploadBackUpAsync(newPath, file);
+                }
+
+                line = 13;
                 if (isAuto) await SendBackUpSmsAsync();
             }
             catch (Exception ex)
             {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                WebErrorLog.ErrorInstence.StartErrorLog(ex, $"Error in Line:{line}");
             }
         }
         private static async Task SendBackUpSmsAsync()

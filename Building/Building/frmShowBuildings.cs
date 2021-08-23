@@ -372,6 +372,7 @@ namespace Building.Building
             try
             {
                 if (token.IsCancellationRequested) return;
+                if (!IsHandleCreated) return;
                 Invoke(new MethodInvoker(() =>
                 {
                     try
