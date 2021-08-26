@@ -92,6 +92,7 @@ namespace Building.Building
         {
             try
             {
+                if (cmbDocType.SelectedValue == null) return;
                 _token?.Cancel();
                 _token = new CancellationTokenSource();
                 list = BuildingBussines

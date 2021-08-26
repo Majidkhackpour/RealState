@@ -4937,7 +4937,7 @@ ALTER PROCEDURE [dbo].[sp_Building_NextCode]
 AS
 BEGIN
 	declare @nextCode nvarchar(100)
-	select @nextCode = MAX(Code) From Buildings
+	select @nextCode =Max(CAST(Code AS bigint)) from Buildings 
 	set @nextCode = (isnull(@nextCode , 0))
 	set @nextCode = CAST(@nextCode AS bigint) + 1
 	select @nextCode
