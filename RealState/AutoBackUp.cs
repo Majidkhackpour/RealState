@@ -153,6 +153,7 @@ namespace RealState
         {
             try
             {
+                if (!File.Exists(newPath)) return;
                 var path = Path.Combine(Application.StartupPath, $"{fileName}_{Cache.HardSerial}");
                 if (!Directory.Exists(path)) Directory.CreateDirectory(path);
                 var inf = new FileInfo(newPath);

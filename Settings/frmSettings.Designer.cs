@@ -32,18 +32,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSettings));
             this.btnCancel = new DevComponents.DotNetBar.ButtonX();
             this.superTabControl1 = new DevComponents.DotNetBar.SuperTabControl();
-            this.superTabControlPanel1 = new DevComponents.DotNetBar.SuperTabControlPanel();
-            this.panelEx4 = new DevComponents.DotNetBar.PanelEx();
-            this.btnPath = new DevComponents.DotNetBar.ButtonX();
-            this.chbBackUpSms = new DevComponents.DotNetBar.Controls.CheckBoxX();
-            this.chbOpen = new DevComponents.DotNetBar.Controls.CheckBoxX();
-            this.chbAuto = new DevComponents.DotNetBar.Controls.CheckBoxX();
-            this.txtTime = new System.Windows.Forms.NumericUpDown();
-            this.txtPath = new System.Windows.Forms.TextBox();
-            this.label26 = new System.Windows.Forms.Label();
-            this.label27 = new System.Windows.Forms.Label();
-            this.label28 = new System.Windows.Forms.Label();
-            this.superTabItem1 = new DevComponents.DotNetBar.SuperTabItem();
             this.superTabControlPanel2 = new DevComponents.DotNetBar.SuperTabControlPanel();
             this.panelEx1 = new DevComponents.DotNetBar.PanelEx();
             this.btnSearchMedia = new DevComponents.DotNetBar.ButtonX();
@@ -57,10 +45,23 @@
             this.label31 = new System.Windows.Forms.Label();
             this.label30 = new System.Windows.Forms.Label();
             this.label29 = new System.Windows.Forms.Label();
+            this.chbShowDialog = new DevComponents.DotNetBar.Controls.CheckBoxX();
             this.chbPrintPreView = new DevComponents.DotNetBar.Controls.CheckBoxX();
             this.chbPrintDesign = new DevComponents.DotNetBar.Controls.CheckBoxX();
             this.superTabItem2 = new DevComponents.DotNetBar.SuperTabItem();
             this.superTabControlPanel6 = new DevComponents.DotNetBar.SuperTabControlPanel();
+            this.superTabControlPanel1 = new DevComponents.DotNetBar.SuperTabControlPanel();
+            this.panelEx4 = new DevComponents.DotNetBar.PanelEx();
+            this.btnPath = new DevComponents.DotNetBar.ButtonX();
+            this.chbBackUpSms = new DevComponents.DotNetBar.Controls.CheckBoxX();
+            this.chbOpen = new DevComponents.DotNetBar.Controls.CheckBoxX();
+            this.chbAuto = new DevComponents.DotNetBar.Controls.CheckBoxX();
+            this.txtTime = new System.Windows.Forms.NumericUpDown();
+            this.txtPath = new System.Windows.Forms.TextBox();
+            this.label26 = new System.Windows.Forms.Label();
+            this.label27 = new System.Windows.Forms.Label();
+            this.label28 = new System.Windows.Forms.Label();
+            this.superTabItem1 = new DevComponents.DotNetBar.SuperTabItem();
             this.superTabControlPanel11 = new DevComponents.DotNetBar.SuperTabControlPanel();
             this.pnlTelegram = new DevComponents.DotNetBar.PanelEx();
             this.txtChannel = new System.Windows.Forms.TextBox();
@@ -168,15 +169,14 @@
             this.label1 = new System.Windows.Forms.Label();
             this.superTabItem5 = new DevComponents.DotNetBar.SuperTabItem();
             this.btnFinish = new DevComponents.DotNetBar.ButtonX();
-            this.chbShowDialog = new DevComponents.DotNetBar.Controls.CheckBoxX();
             ((System.ComponentModel.ISupportInitialize)(this.superTabControl1)).BeginInit();
             this.superTabControl1.SuspendLayout();
-            this.superTabControlPanel1.SuspendLayout();
-            this.panelEx4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtTime)).BeginInit();
             this.superTabControlPanel2.SuspendLayout();
             this.panelEx1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtSetArchive)).BeginInit();
+            this.superTabControlPanel1.SuspendLayout();
+            this.panelEx4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtTime)).BeginInit();
             this.superTabControlPanel11.SuspendLayout();
             this.pnlTelegram.SuspendLayout();
             this.superTabControlPanel8.SuspendLayout();
@@ -202,7 +202,7 @@
             this.btnCancel.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Image = global::Settings.Properties.Resources.tab_close_;
-            this.btnCancel.Location = new System.Drawing.Point(10, 608);
+            this.btnCancel.Location = new System.Drawing.Point(10, 620);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
             this.btnCancel.Size = new System.Drawing.Size(125, 31);
@@ -235,7 +235,7 @@
             this.superTabControl1.Controls.Add(this.superTabControlPanel8);
             this.superTabControl1.Controls.Add(this.superTabControlPanel7);
             this.superTabControl1.Controls.Add(this.superTabControlPanel3);
-            this.superTabControl1.Location = new System.Drawing.Point(6, 14);
+            this.superTabControl1.Location = new System.Drawing.Point(6, 26);
             this.superTabControl1.Name = "superTabControl1";
             this.superTabControl1.ReorderTabsEnabled = true;
             this.superTabControl1.SelectedTabFont = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Bold);
@@ -253,170 +253,6 @@
             this.superTabItem1});
             this.superTabControl1.TabStyle = DevComponents.DotNetBar.eSuperTabStyle.OfficeMobile2014;
             this.superTabControl1.Text = "superTabControl1";
-            // 
-            // superTabControlPanel1
-            // 
-            this.superTabControlPanel1.Controls.Add(this.panelEx4);
-            this.superTabControlPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.superTabControlPanel1.Location = new System.Drawing.Point(0, 40);
-            this.superTabControlPanel1.Name = "superTabControlPanel1";
-            this.superTabControlPanel1.Size = new System.Drawing.Size(608, 548);
-            this.superTabControlPanel1.TabIndex = 0;
-            this.superTabControlPanel1.TabItem = this.superTabItem1;
-            // 
-            // panelEx4
-            // 
-            this.panelEx4.CanvasColor = System.Drawing.SystemColors.Control;
-            this.panelEx4.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.panelEx4.Controls.Add(this.btnPath);
-            this.panelEx4.Controls.Add(this.chbBackUpSms);
-            this.panelEx4.Controls.Add(this.chbOpen);
-            this.panelEx4.Controls.Add(this.chbAuto);
-            this.panelEx4.Controls.Add(this.txtTime);
-            this.panelEx4.Controls.Add(this.txtPath);
-            this.panelEx4.Controls.Add(this.label26);
-            this.panelEx4.Controls.Add(this.label27);
-            this.panelEx4.Controls.Add(this.label28);
-            this.panelEx4.DisabledBackColor = System.Drawing.Color.Empty;
-            this.panelEx4.Location = new System.Drawing.Point(4, 3);
-            this.panelEx4.Name = "panelEx4";
-            this.panelEx4.Size = new System.Drawing.Size(600, 149);
-            this.panelEx4.Style.Alignment = System.Drawing.StringAlignment.Center;
-            this.panelEx4.Style.BackColor1.Color = System.Drawing.Color.White;
-            this.panelEx4.Style.BackColor2.Color = System.Drawing.Color.White;
-            this.panelEx4.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
-            this.panelEx4.Style.BorderColor.Color = System.Drawing.Color.Silver;
-            this.panelEx4.Style.BorderWidth = 2;
-            this.panelEx4.Style.CornerType = DevComponents.DotNetBar.eCornerType.Rounded;
-            this.panelEx4.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText;
-            this.panelEx4.Style.GradientAngle = 90;
-            this.panelEx4.TabIndex = 10;
-            // 
-            // btnPath
-            // 
-            this.btnPath.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnPath.BackColor = System.Drawing.Color.DarkSlateGray;
-            this.btnPath.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnPath.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
-            this.btnPath.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnPath.Location = new System.Drawing.Point(8, 18);
-            this.btnPath.Name = "btnPath";
-            this.btnPath.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
-            this.btnPath.Size = new System.Drawing.Size(35, 27);
-            this.btnPath.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
-            this.btnPath.TabIndex = 9;
-            this.btnPath.Text = "...";
-            this.btnPath.TextColor = System.Drawing.Color.White;
-            this.btnPath.Click += new System.EventHandler(this.btnPath_Click);
-            // 
-            // chbBackUpSms
-            // 
-            this.chbBackUpSms.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.chbBackUpSms.BackColor = System.Drawing.Color.Transparent;
-            // 
-            // 
-            // 
-            this.chbBackUpSms.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.chbBackUpSms.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.chbBackUpSms.Location = new System.Drawing.Point(260, 110);
-            this.chbBackUpSms.Name = "chbBackUpSms";
-            this.chbBackUpSms.Size = new System.Drawing.Size(329, 23);
-            this.chbBackUpSms.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.chbBackUpSms.TabIndex = 9;
-            this.chbBackUpSms.Text = "ارسال پیامک به مدیر، پس از انجام عملیات پشتیبان گیری";
-            this.chbBackUpSms.CheckedChanged += new System.EventHandler(this.chbAuto_CheckedChanged);
-            // 
-            // chbOpen
-            // 
-            this.chbOpen.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.chbOpen.BackColor = System.Drawing.Color.Transparent;
-            // 
-            // 
-            // 
-            this.chbOpen.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.chbOpen.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.chbOpen.Location = new System.Drawing.Point(326, 81);
-            this.chbOpen.Name = "chbOpen";
-            this.chbOpen.Size = new System.Drawing.Size(263, 23);
-            this.chbOpen.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.chbOpen.TabIndex = 9;
-            this.chbOpen.Text = "پشتیبان گیری در لحظه اجرای برنامه فعال باشد";
-            this.chbOpen.CheckedChanged += new System.EventHandler(this.chbAuto_CheckedChanged);
-            // 
-            // chbAuto
-            // 
-            this.chbAuto.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.chbAuto.BackColor = System.Drawing.Color.Transparent;
-            // 
-            // 
-            // 
-            this.chbAuto.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.chbAuto.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.chbAuto.Location = new System.Drawing.Point(326, 53);
-            this.chbAuto.Name = "chbAuto";
-            this.chbAuto.Size = new System.Drawing.Size(263, 23);
-            this.chbAuto.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.chbAuto.TabIndex = 9;
-            this.chbAuto.Text = "پشتیبان گیری خودکار فعال باشد";
-            this.chbAuto.CheckedChanged += new System.EventHandler(this.chbAuto_CheckedChanged);
-            // 
-            // txtTime
-            // 
-            this.txtTime.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtTime.Location = new System.Drawing.Point(49, 51);
-            this.txtTime.Maximum = new decimal(new int[] {
-            10000,
-            0,
-            0,
-            0});
-            this.txtTime.Name = "txtTime";
-            this.txtTime.Size = new System.Drawing.Size(137, 27);
-            this.txtTime.TabIndex = 4;
-            // 
-            // txtPath
-            // 
-            this.txtPath.Location = new System.Drawing.Point(49, 18);
-            this.txtPath.Name = "txtPath";
-            this.txtPath.Size = new System.Drawing.Size(409, 27);
-            this.txtPath.TabIndex = 0;
-            // 
-            // label26
-            // 
-            this.label26.AutoSize = true;
-            this.label26.BackColor = System.Drawing.Color.Transparent;
-            this.label26.Location = new System.Drawing.Point(8, 53);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(38, 20);
-            this.label26.TabIndex = 6;
-            this.label26.Text = "دقیقه";
-            // 
-            // label27
-            // 
-            this.label27.AutoSize = true;
-            this.label27.BackColor = System.Drawing.Color.Transparent;
-            this.label27.Location = new System.Drawing.Point(192, 53);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(127, 20);
-            this.label27.TabIndex = 6;
-            this.label27.Text = "پشتیبان گیری خودکار هر";
-            // 
-            // label28
-            // 
-            this.label28.AutoSize = true;
-            this.label28.BackColor = System.Drawing.Color.Transparent;
-            this.label28.Location = new System.Drawing.Point(464, 21);
-            this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(129, 20);
-            this.label28.TabIndex = 8;
-            this.label28.Text = "محل ذخیره فایل پشتیبان";
-            // 
-            // superTabItem1
-            // 
-            this.superTabItem1.AttachedControl = this.superTabControlPanel1;
-            this.superTabItem1.GlobalItem = false;
-            this.superTabItem1.Name = "superTabItem1";
-            this.superTabItem1.Text = "پشتیبان گیری";
             // 
             // superTabControlPanel2
             // 
@@ -582,6 +418,22 @@
             this.label29.TabIndex = 11;
             this.label29.Text = "متن تبریک تولد";
             // 
+            // chbShowDialog
+            // 
+            this.chbShowDialog.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.chbShowDialog.BackColor = System.Drawing.Color.Transparent;
+            // 
+            // 
+            // 
+            this.chbShowDialog.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.chbShowDialog.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.chbShowDialog.Location = new System.Drawing.Point(75, 236);
+            this.chbShowDialog.Name = "chbShowDialog";
+            this.chbShowDialog.Size = new System.Drawing.Size(173, 23);
+            this.chbShowDialog.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.chbShowDialog.TabIndex = 9;
+            this.chbShowDialog.Text = "بازکردن چند پنجره همزمان";
+            // 
             // chbPrintPreView
             // 
             this.chbPrintPreView.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -628,6 +480,170 @@
             this.superTabControlPanel6.Name = "superTabControlPanel6";
             this.superTabControlPanel6.Size = new System.Drawing.Size(608, 588);
             this.superTabControlPanel6.TabIndex = 0;
+            // 
+            // superTabControlPanel1
+            // 
+            this.superTabControlPanel1.Controls.Add(this.panelEx4);
+            this.superTabControlPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.superTabControlPanel1.Location = new System.Drawing.Point(0, 40);
+            this.superTabControlPanel1.Name = "superTabControlPanel1";
+            this.superTabControlPanel1.Size = new System.Drawing.Size(608, 548);
+            this.superTabControlPanel1.TabIndex = 0;
+            this.superTabControlPanel1.TabItem = this.superTabItem1;
+            // 
+            // panelEx4
+            // 
+            this.panelEx4.CanvasColor = System.Drawing.SystemColors.Control;
+            this.panelEx4.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.panelEx4.Controls.Add(this.btnPath);
+            this.panelEx4.Controls.Add(this.chbBackUpSms);
+            this.panelEx4.Controls.Add(this.chbOpen);
+            this.panelEx4.Controls.Add(this.chbAuto);
+            this.panelEx4.Controls.Add(this.txtTime);
+            this.panelEx4.Controls.Add(this.txtPath);
+            this.panelEx4.Controls.Add(this.label26);
+            this.panelEx4.Controls.Add(this.label27);
+            this.panelEx4.Controls.Add(this.label28);
+            this.panelEx4.DisabledBackColor = System.Drawing.Color.Empty;
+            this.panelEx4.Location = new System.Drawing.Point(4, 3);
+            this.panelEx4.Name = "panelEx4";
+            this.panelEx4.Size = new System.Drawing.Size(600, 149);
+            this.panelEx4.Style.Alignment = System.Drawing.StringAlignment.Center;
+            this.panelEx4.Style.BackColor1.Color = System.Drawing.Color.White;
+            this.panelEx4.Style.BackColor2.Color = System.Drawing.Color.White;
+            this.panelEx4.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
+            this.panelEx4.Style.BorderColor.Color = System.Drawing.Color.Silver;
+            this.panelEx4.Style.BorderWidth = 2;
+            this.panelEx4.Style.CornerType = DevComponents.DotNetBar.eCornerType.Rounded;
+            this.panelEx4.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText;
+            this.panelEx4.Style.GradientAngle = 90;
+            this.panelEx4.TabIndex = 10;
+            // 
+            // btnPath
+            // 
+            this.btnPath.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnPath.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.btnPath.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnPath.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.btnPath.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnPath.Location = new System.Drawing.Point(8, 18);
+            this.btnPath.Name = "btnPath";
+            this.btnPath.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
+            this.btnPath.Size = new System.Drawing.Size(35, 27);
+            this.btnPath.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
+            this.btnPath.TabIndex = 9;
+            this.btnPath.Text = "...";
+            this.btnPath.TextColor = System.Drawing.Color.White;
+            this.btnPath.Click += new System.EventHandler(this.btnPath_Click);
+            // 
+            // chbBackUpSms
+            // 
+            this.chbBackUpSms.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.chbBackUpSms.BackColor = System.Drawing.Color.Transparent;
+            // 
+            // 
+            // 
+            this.chbBackUpSms.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.chbBackUpSms.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.chbBackUpSms.Location = new System.Drawing.Point(260, 110);
+            this.chbBackUpSms.Name = "chbBackUpSms";
+            this.chbBackUpSms.Size = new System.Drawing.Size(329, 23);
+            this.chbBackUpSms.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.chbBackUpSms.TabIndex = 9;
+            this.chbBackUpSms.Text = "ارسال پیامک به مدیر، پس از انجام عملیات پشتیبان گیری";
+            this.chbBackUpSms.CheckedChanged += new System.EventHandler(this.chbAuto_CheckedChanged);
+            // 
+            // chbOpen
+            // 
+            this.chbOpen.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.chbOpen.BackColor = System.Drawing.Color.Transparent;
+            // 
+            // 
+            // 
+            this.chbOpen.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.chbOpen.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.chbOpen.Location = new System.Drawing.Point(326, 81);
+            this.chbOpen.Name = "chbOpen";
+            this.chbOpen.Size = new System.Drawing.Size(263, 23);
+            this.chbOpen.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.chbOpen.TabIndex = 9;
+            this.chbOpen.Text = "پشتیبان گیری در لحظه اجرای برنامه فعال باشد";
+            this.chbOpen.CheckedChanged += new System.EventHandler(this.chbAuto_CheckedChanged);
+            // 
+            // chbAuto
+            // 
+            this.chbAuto.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.chbAuto.BackColor = System.Drawing.Color.Transparent;
+            // 
+            // 
+            // 
+            this.chbAuto.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.chbAuto.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.chbAuto.Location = new System.Drawing.Point(326, 53);
+            this.chbAuto.Name = "chbAuto";
+            this.chbAuto.Size = new System.Drawing.Size(263, 23);
+            this.chbAuto.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.chbAuto.TabIndex = 9;
+            this.chbAuto.Text = "پشتیبان گیری خودکار فعال باشد";
+            this.chbAuto.CheckedChanged += new System.EventHandler(this.chbAuto_CheckedChanged);
+            // 
+            // txtTime
+            // 
+            this.txtTime.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtTime.Location = new System.Drawing.Point(49, 51);
+            this.txtTime.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.txtTime.Name = "txtTime";
+            this.txtTime.Size = new System.Drawing.Size(137, 27);
+            this.txtTime.TabIndex = 4;
+            // 
+            // txtPath
+            // 
+            this.txtPath.Location = new System.Drawing.Point(49, 18);
+            this.txtPath.Name = "txtPath";
+            this.txtPath.Size = new System.Drawing.Size(409, 27);
+            this.txtPath.TabIndex = 0;
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.BackColor = System.Drawing.Color.Transparent;
+            this.label26.Location = new System.Drawing.Point(8, 53);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(38, 20);
+            this.label26.TabIndex = 6;
+            this.label26.Text = "دقیقه";
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.BackColor = System.Drawing.Color.Transparent;
+            this.label27.Location = new System.Drawing.Point(192, 53);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(127, 20);
+            this.label27.TabIndex = 6;
+            this.label27.Text = "پشتیبان گیری خودکار هر";
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.BackColor = System.Drawing.Color.Transparent;
+            this.label28.Location = new System.Drawing.Point(464, 21);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(129, 20);
+            this.label28.TabIndex = 8;
+            this.label28.Text = "محل ذخیره فایل پشتیبان";
+            // 
+            // superTabItem1
+            // 
+            this.superTabItem1.AttachedControl = this.superTabControlPanel1;
+            this.superTabItem1.GlobalItem = false;
+            this.superTabItem1.Name = "superTabItem1";
+            this.superTabItem1.Text = "پشتیبان گیری";
             // 
             // superTabControlPanel11
             // 
@@ -2045,7 +2061,7 @@
             this.btnFinish.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnFinish.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnFinish.Image = global::Settings.Properties.Resources.tab_checkbox__;
-            this.btnFinish.Location = new System.Drawing.Point(470, 608);
+            this.btnFinish.Location = new System.Drawing.Point(470, 620);
             this.btnFinish.Name = "btnFinish";
             this.btnFinish.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
             this.btnFinish.Size = new System.Drawing.Size(125, 31);
@@ -2055,28 +2071,11 @@
             this.btnFinish.TextColor = System.Drawing.Color.Black;
             this.btnFinish.Click += new System.EventHandler(this.btnFinish_Click);
             // 
-            // chbShowDialog
-            // 
-            this.chbShowDialog.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.chbShowDialog.BackColor = System.Drawing.Color.Transparent;
-            // 
-            // 
-            // 
-            this.chbShowDialog.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.chbShowDialog.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.chbShowDialog.Location = new System.Drawing.Point(75, 236);
-            this.chbShowDialog.Name = "chbShowDialog";
-            this.chbShowDialog.Size = new System.Drawing.Size(173, 23);
-            this.chbShowDialog.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.chbShowDialog.TabIndex = 9;
-            this.chbShowDialog.Text = "بازکردن چند پنجره همزمان";
-            // 
             // frmSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(618, 646);
-            this.ControlBox = false;
+            this.ClientSize = new System.Drawing.Size(618, 659);
             this.Controls.Add(this.btnFinish);
             this.Controls.Add(this.superTabControl1);
             this.Controls.Add(this.btnCancel);
@@ -2094,14 +2093,14 @@
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmSettings_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.superTabControl1)).EndInit();
             this.superTabControl1.ResumeLayout(false);
-            this.superTabControlPanel1.ResumeLayout(false);
-            this.panelEx4.ResumeLayout(false);
-            this.panelEx4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtTime)).EndInit();
             this.superTabControlPanel2.ResumeLayout(false);
             this.panelEx1.ResumeLayout(false);
             this.panelEx1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtSetArchive)).EndInit();
+            this.superTabControlPanel1.ResumeLayout(false);
+            this.panelEx4.ResumeLayout(false);
+            this.panelEx4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtTime)).EndInit();
             this.superTabControlPanel11.ResumeLayout(false);
             this.pnlTelegram.ResumeLayout(false);
             this.pnlTelegram.PerformLayout();

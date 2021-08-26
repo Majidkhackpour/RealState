@@ -409,7 +409,7 @@ namespace Building.Building
                 cls.Hashie = 0;
                 cls.ErtefaSaqf = 3;
                 var oldDate = DateTime.Now.AddYears(-cmbSaleSakht.SelectedIndex);
-                cls.SaleSakht = Calendar.MiladiToShamsi(oldDate);
+                cls.SaleSakht = Calendar.GetYearOfDateSh(Calendar.MiladiToShamsi(oldDate)).ToString();
                 cls.BonBast = false;
                 cls.MamarJoda = true;
                 line = 27;
@@ -632,7 +632,6 @@ namespace Building.Building
             }
             return res;
         }
-
 
         public frmBuilding_Fast()
         {

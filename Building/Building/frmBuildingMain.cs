@@ -225,7 +225,9 @@ namespace Building.Building
                 else
                 {
                     var year1 = Calendar.GetYearOfDateSh(Calendar.MiladiToShamsi(DateTime.Now));
-                    var year2 = Calendar.GetYearOfDateSh(cls.SaleSakht);
+                    var year2 = cls.SaleSakht.Length > 4
+                        ? Calendar.GetYearOfDateSh(cls.SaleSakht)
+                        : cls.SaleSakht.ParseToInt();
                     var dis = year1 - year2;
                     if (dis < 0) dis = 0;
                     if (dis > 36) dis = 35;
@@ -756,7 +758,7 @@ namespace Building.Building
                 cls.Lenght = txtHeight.Text.ParseTofloat();
                 cls.ErtefaSaqf = txtErtrfaSaqf.Text.ParseTofloat();
                 var oldDate = DateTime.Now.AddYears(-cmbSaleSakht.SelectedIndex);
-                cls.SaleSakht = Calendar.MiladiToShamsi(oldDate);
+                cls.SaleSakht = Calendar.GetYearOfDateSh(Calendar.MiladiToShamsi(oldDate)).ToString();
                 cls.DateParvane = txtSaleParvane.Text;
                 cls.ParvaneSerial = txtSerialParvane.Text;
                 cls.BonBast = chbIsBonBast.Checked;
