@@ -41,6 +41,7 @@ namespace Building.Building
                 LoadOwner();
                 FillCmbTarakom();
                 FillCmbMetr();
+                FillPriority();
                 await FillRentalAuthorityAsync(_token.Token);
                 await FillSanadTypeAsync(_token.Token);
                 await FillStateAsync(_token.Token);
@@ -49,6 +50,9 @@ namespace Building.Building
                 await FillBuildingAccountTypeAsync(_token.Token);
                 await FillOptionsAsync(_token.Token);
                 await NextCodeAsync();
+                await FillKitchenServiceAsync(_token.Token);
+                await FillBuildingViewAsync(_token.Token);
+                await FillFloorCoverAsync(_token.Token);
 
                 lblDateNow.Text = Calendar.MiladiToShamsi(DateTime.Now);
                 cmbRentalAuthority.SelectedIndex = 0;
@@ -90,6 +94,14 @@ namespace Building.Building
                     cmbCity.SelectedValue = Guid.Parse(clsEconomyUnit.EconomyCity);
                 if (!string.IsNullOrEmpty(clsEconomyUnit.ManagerRegion))
                     cmbRegion.SelectedValue = Guid.Parse(clsEconomyUnit.ManagerRegion);
+
+
+                cmbBView.SelectedIndex = 0;
+                cmbBFloorCover.SelectedIndex = 0;
+                cmbKitchenService.SelectedIndex = 0;
+                txtTedadVahed.Value = txtTedadTabaqe.Value = 0;
+                cmbPirority.SelectedIndex = 2;
+                cmbTabaqeNo.SelectedIndex = 3;
             }
             catch (Exception ex)
             {
@@ -248,6 +260,42 @@ namespace Building.Building
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
+        private async Task FillBuildingViewAsync(CancellationToken token)
+        {
+            try
+            {
+                var list = await BuildingViewBussines.GetAllAsync(token);
+                BuildingViewBindingSource.DataSource = list.Where(q => q.Status).ToList().OrderBy(q => q.Name);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private async Task FillFloorCoverAsync(CancellationToken token)
+        {
+            try
+            {
+                var list = await FloorCoverBussines.GetAllAsync(token);
+                FloorCoverBindingSource.DataSource = list.Where(q => q.Status).ToList().OrderBy(q => q.Name);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private async Task FillKitchenServiceAsync(CancellationToken token)
+        {
+            try
+            {
+                var list = await KitchenServiceBussines.GetAllAsync(token);
+                KitchenServiceBindingSource.DataSource = list.Where(q => q.Status).ToList().OrderBy(q => q.Name);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
         private ReturnedSaveFuncInfo CheckValidation()
         {
             var res = new ReturnedSaveFuncInfo();
@@ -290,7 +338,7 @@ namespace Building.Building
                 cls.OwnerGuid = owner.Guid;
                 line = 4;
                 cls.UserGuid = (Guid)cmbUser.SelectedValue;
-                cls.Priority = EnBuildingPriority.Medium;
+                cls.Priority = (EnBuildingPriority)cmbPirority.SelectedIndex; 
                 cls.IsArchive = false;
                 line = 5;
                 cls.SellPrice = txtSellPrice.TextDecimal;
@@ -344,31 +392,19 @@ namespace Building.Building
                 line = 23;
                 cls.BuildingAccountTypeGuid = (Guid)cmbBAccountType.SelectedValue;
                 cls.MetrazhTejari = 0;
-                _token?.Cancel();
-                _token = new CancellationTokenSource();
-                var views = await BuildingViewBussines.GetAllAsync(_token.Token);
                 line = 24;
-                if (views.Count > 0)
-                    cls.BuildingViewGuid = views[0].Guid;
-                _token?.Cancel();
-                _token = new CancellationTokenSource();
-                var fCover = await FloorCoverBussines.GetAllAsync(_token.Token);
+                cls.BuildingViewGuid = (Guid)cmbBView.SelectedValue;
                 line = 25;
-                if (fCover.Count > 0)
-                    cls.FloorCoverGuid = fCover[0].Guid;
-                _token?.Cancel();
-                _token = new CancellationTokenSource();
-                var kService = await KitchenServiceBussines.GetAllAsync(_token.Token);
+                cls.FloorCoverGuid = (Guid)cmbBFloorCover.SelectedValue;
                 line = 26;
-                if (kService.Count > 0)
-                    cls.KitchenServiceGuid = kService[0].Guid;
+                cls.KitchenServiceGuid = (Guid) cmbKitchenService.SelectedValue;
                 cls.Water = EnKhadamati.Mostaqel;
                 cls.Barq = EnKhadamati.Mostaqel;
                 cls.Gas = EnKhadamati.Mostaqel;
                 cls.Tell = EnKhadamati.Mostaqel;
-                cls.TedadTabaqe = 0;
-                cls.TabaqeNo = 0;
-                cls.VahedPerTabaqe = 0;
+                cls.TedadTabaqe = txtTedadTabaqe.Text.ParseToInt();
+                cls.TabaqeNo = cmbTabaqeNo.Text.ParseToInt();
+                cls.VahedPerTabaqe = txtTedadVahed.Text.ParseToInt();
                 cls.MetrazhKouche = 0;
                 cls.Hashie = 0;
                 cls.ErtefaSaqf = 3;
@@ -420,6 +456,20 @@ namespace Building.Building
             }
 
             return res;
+        }
+        private void FillPriority()
+        {
+            try
+            {
+                cmbPirority.Items.Add(EnBuildingPriority.SoHigh.GetDisplay());
+                cmbPirority.Items.Add(EnBuildingPriority.High.GetDisplay());
+                cmbPirority.Items.Add(EnBuildingPriority.Medium.GetDisplay());
+                cmbPirority.Items.Add(EnBuildingPriority.Low.GetDisplay());
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
         }
         private void CalculateSellPrice()
         {
