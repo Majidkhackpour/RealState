@@ -27,6 +27,7 @@ namespace Peoples
                 LoadBanks();
                 FillCmbPrice();
                 SetTxtPrice();
+                await FillPhoneBookTitleAsync();
 
                 txtCode.Text = cls?.Code;
                 txtNationalCode.Text = cls?.NationalCode;
@@ -79,7 +80,7 @@ namespace Peoples
             try
             {
                 txtTell.Text = "";
-                txtPhoneBookTitle.Text = "";
+                cmbTitles.Text = "";
                 phoneBookBindingSource.DataSource = cls?.TellList?.ToList();
             }
             catch (Exception ex)
@@ -146,6 +147,20 @@ namespace Peoples
                     txtAccount_.TextDecimal = Math.Abs(cls?.AccountFirst ?? 0);
                     cmbAccount.SelectedIndex = 2;
                 }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private async Task FillPhoneBookTitleAsync()
+        {
+            try
+            {
+                var list = await PhoneBookBussines.GetAllTitlesAsync();
+                cmbTitles.Items.Clear();
+                if (list == null || list.Count <= 0) return;
+                cmbTitles.Items.AddRange(list.ToArray());
             }
             catch (Exception ex)
             {
@@ -265,7 +280,7 @@ namespace Peoples
                             return;
                         }
 
-                        if (!btnFinish.Focused && !btnCancel.Focused)
+                        if (!btnFinish.Focused && !btnCancel.Focused && !txtAddress.Focused)
                             SendKeys.Send("{Tab}");
                         break;
                     case Keys.F5:
@@ -281,7 +296,7 @@ namespace Peoples
                 WebErrorLog.ErrorInstence.StartErrorLog(exception);
             }
         }
-        private void btnInsTell_Click(object sender, EventArgs e)
+        private async void btnInsTell_Click(object sender, EventArgs e)
         {
             try
             {
@@ -296,9 +311,10 @@ namespace Peoples
                     Tell = txtTell.Text,
                     Group = EnPhoneBookGroup.Peoples,
                     Name = txtName.Text,
-                    Title = txtPhoneBookTitle.Text
+                    Title = cmbTitles.Text
                 });
                 LoadTells();
+                await FillPhoneBookTitleAsync();
             }
             catch (Exception ex)
             {
@@ -429,7 +445,5 @@ namespace Peoples
             if (!char.IsLetter(e.KeyChar) && e.KeyChar != (char)Keys.Back && e.KeyChar != (char)Keys.Space)
                 e.Handled = true;
         }
-        private void txtPhoneBookTitle_Leave(object sender, EventArgs e) => txtSetter.Follow(txtPhoneBookTitle);
-        private void txtPhoneBookTitle_Enter(object sender, EventArgs e) => txtSetter.Focus(txtPhoneBookTitle);
     }
 }

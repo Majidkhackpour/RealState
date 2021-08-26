@@ -57,7 +57,6 @@ namespace Building.Building
             this.label42 = new System.Windows.Forms.Label();
             this.txtTedadOtaq = new System.Windows.Forms.NumericUpDown();
             this.label52 = new System.Windows.Forms.Label();
-            this.txtSaleSakht = new System.Windows.Forms.TextBox();
             this.label58 = new System.Windows.Forms.Label();
             this.cmbBuildingType = new System.Windows.Forms.ComboBox();
             this.bTypeBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -115,15 +114,16 @@ namespace Building.Building
             this.btnCancel = new DevComponents.DotNetBar.ButtonX();
             this.btnFinish = new DevComponents.DotNetBar.ButtonX();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.btnDelImage = new DevComponents.DotNetBar.ButtonX();
+            this.btnInsImage = new DevComponents.DotNetBar.ButtonX();
+            this.fPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.DGrid = new DevComponents.DotNetBar.Controls.DataGridViewX();
             this.dgChecked = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgOptionGuid = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.modifiedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.statusDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.fPanel = new System.Windows.Forms.FlowLayoutPanel();
-            this.btnInsImage = new DevComponents.DotNetBar.ButtonX();
-            this.btnDelImage = new DevComponents.DotNetBar.ButtonX();
+            this.cmbSaleSakht = new System.Windows.Forms.ComboBox();
             this.flowLayoutPanel1.SuspendLayout();
             this.groupPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).BeginInit();
@@ -413,11 +413,11 @@ namespace Building.Building
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupPanel3.CanvasColor = System.Drawing.SystemColors.Control;
             this.groupPanel3.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
+            this.groupPanel3.Controls.Add(this.cmbSaleSakht);
             this.groupPanel3.Controls.Add(this.cmbBAccountType);
             this.groupPanel3.Controls.Add(this.label42);
             this.groupPanel3.Controls.Add(this.txtTedadOtaq);
             this.groupPanel3.Controls.Add(this.label52);
-            this.groupPanel3.Controls.Add(this.txtSaleSakht);
             this.groupPanel3.Controls.Add(this.label58);
             this.groupPanel3.Controls.Add(this.cmbBuildingType);
             this.groupPanel3.Controls.Add(this.label40);
@@ -519,21 +519,12 @@ namespace Building.Building
             this.label52.TabIndex = 55755;
             this.label52.Text = "تعداد اتاق";
             // 
-            // txtSaleSakht
-            // 
-            this.txtSaleSakht.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtSaleSakht.Location = new System.Drawing.Point(3, 139);
-            this.txtSaleSakht.Name = "txtSaleSakht";
-            this.txtSaleSakht.Size = new System.Drawing.Size(280, 27);
-            this.txtSaleSakht.TabIndex = 6;
-            // 
             // label58
             // 
             this.label58.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label58.AutoSize = true;
             this.label58.BackColor = System.Drawing.Color.Transparent;
-            this.label58.Location = new System.Drawing.Point(284, 146);
+            this.label58.Location = new System.Drawing.Point(284, 144);
             this.label58.Name = "label58";
             this.label58.Size = new System.Drawing.Size(63, 20);
             this.label58.TabIndex = 55754;
@@ -1364,6 +1355,55 @@ namespace Building.Building
             this.splitContainer1.SplitterDistance = 249;
             this.splitContainer1.TabIndex = 55744;
             // 
+            // btnDelImage
+            // 
+            this.btnDelImage.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnDelImage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnDelImage.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.btnDelImage.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnDelImage.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.btnDelImage.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnDelImage.Font = new System.Drawing.Font("B Yekan", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.btnDelImage.Location = new System.Drawing.Point(3, 219);
+            this.btnDelImage.Name = "btnDelImage";
+            this.btnDelImage.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
+            this.btnDelImage.Size = new System.Drawing.Size(198, 27);
+            this.btnDelImage.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
+            this.btnDelImage.TabIndex = 15;
+            this.btnDelImage.Text = "حذف تصویر(های) انتخاب شده";
+            this.btnDelImage.TextColor = System.Drawing.Color.White;
+            this.btnDelImage.Click += new System.EventHandler(this.btnDelImage_Click);
+            // 
+            // btnInsImage
+            // 
+            this.btnInsImage.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnInsImage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnInsImage.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.btnInsImage.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnInsImage.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.btnInsImage.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnInsImage.Font = new System.Drawing.Font("B Yekan", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.btnInsImage.Location = new System.Drawing.Point(207, 219);
+            this.btnInsImage.Name = "btnInsImage";
+            this.btnInsImage.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
+            this.btnInsImage.Size = new System.Drawing.Size(195, 27);
+            this.btnInsImage.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
+            this.btnInsImage.TabIndex = 14;
+            this.btnInsImage.Text = "افزودن تصویر(های) جدید";
+            this.btnInsImage.TextColor = System.Drawing.Color.White;
+            this.btnInsImage.Click += new System.EventHandler(this.btnInsImage_Click);
+            // 
+            // fPanel
+            // 
+            this.fPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.fPanel.BackColor = System.Drawing.Color.Transparent;
+            this.fPanel.Location = new System.Drawing.Point(3, 3);
+            this.fPanel.Name = "fPanel";
+            this.fPanel.Size = new System.Drawing.Size(399, 210);
+            this.fPanel.TabIndex = 3;
+            // 
             // DGrid
             // 
             this.DGrid.AllowUserToAddRows = false;
@@ -1465,54 +1505,57 @@ namespace Building.Building
             this.statusDataGridViewCheckBoxColumn.Name = "statusDataGridViewCheckBoxColumn";
             this.statusDataGridViewCheckBoxColumn.Visible = false;
             // 
-            // fPanel
+            // cmbSaleSakht
             // 
-            this.fPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.cmbSaleSakht.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.fPanel.BackColor = System.Drawing.Color.Transparent;
-            this.fPanel.Location = new System.Drawing.Point(3, 3);
-            this.fPanel.Name = "fPanel";
-            this.fPanel.Size = new System.Drawing.Size(399, 210);
-            this.fPanel.TabIndex = 3;
-            // 
-            // btnInsImage
-            // 
-            this.btnInsImage.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnInsImage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnInsImage.BackColor = System.Drawing.Color.DarkSlateGray;
-            this.btnInsImage.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnInsImage.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
-            this.btnInsImage.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnInsImage.Font = new System.Drawing.Font("B Yekan", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.btnInsImage.Location = new System.Drawing.Point(207, 219);
-            this.btnInsImage.Name = "btnInsImage";
-            this.btnInsImage.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
-            this.btnInsImage.Size = new System.Drawing.Size(195, 27);
-            this.btnInsImage.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
-            this.btnInsImage.TabIndex = 14;
-            this.btnInsImage.Text = "افزودن تصویر(های) جدید";
-            this.btnInsImage.TextColor = System.Drawing.Color.White;
-            this.btnInsImage.Click += new System.EventHandler(this.btnInsImage_Click);
-            // 
-            // btnDelImage
-            // 
-            this.btnDelImage.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnDelImage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnDelImage.BackColor = System.Drawing.Color.DarkSlateGray;
-            this.btnDelImage.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnDelImage.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
-            this.btnDelImage.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnDelImage.Font = new System.Drawing.Font("B Yekan", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.btnDelImage.Location = new System.Drawing.Point(3, 219);
-            this.btnDelImage.Name = "btnDelImage";
-            this.btnDelImage.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
-            this.btnDelImage.Size = new System.Drawing.Size(198, 27);
-            this.btnDelImage.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
-            this.btnDelImage.TabIndex = 15;
-            this.btnDelImage.Text = "حذف تصویر(های) انتخاب شده";
-            this.btnDelImage.TextColor = System.Drawing.Color.White;
-            this.btnDelImage.Click += new System.EventHandler(this.btnDelImage_Click);
+            this.cmbSaleSakht.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cmbSaleSakht.DisplayMember = "Name";
+            this.cmbSaleSakht.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbSaleSakht.FormattingEnabled = true;
+            this.cmbSaleSakht.Items.AddRange(new object[] {
+            "نوساز",
+            "1 سال ساخت",
+            "2 سال ساخت",
+            "3 سال ساخت",
+            "4 سال ساخت",
+            "5 سال ساخت",
+            "6 سال ساخت",
+            "7 سال ساخت",
+            "8 سال ساخت",
+            "9 سال ساخت",
+            "10 سال ساخت",
+            "11 سال ساخت",
+            "12 سال ساخت",
+            "13 سال ساخت",
+            "14 سال ساخت",
+            "15 سال ساخت",
+            "16 سال ساخت",
+            "17 سال ساخت",
+            "18 سال ساخت",
+            "19 سال ساخت",
+            "20 سال ساخت",
+            "21 سال ساخت",
+            "22 سال ساخت",
+            "23 سال ساخت",
+            "24 سال ساخت",
+            "25 سال ساخت",
+            "26 سال ساخت",
+            "27 سال ساخت",
+            "28 سال ساخت",
+            "29 سال ساخت",
+            "30 سال ساخت",
+            "31 سال ساخت",
+            "32 سال ساخت",
+            "33 سال ساخت",
+            "34 سال ساخت",
+            "35 سال ساخت",
+            "بیش از 35 سال ساخت"});
+            this.cmbSaleSakht.Location = new System.Drawing.Point(3, 139);
+            this.cmbSaleSakht.Name = "cmbSaleSakht";
+            this.cmbSaleSakht.Size = new System.Drawing.Size(280, 28);
+            this.cmbSaleSakht.TabIndex = 55758;
+            this.cmbSaleSakht.ValueMember = "Guid";
             // 
             // frmBuilding_Fast
             // 
@@ -1595,7 +1638,6 @@ namespace Building.Building
         private System.Windows.Forms.Label label42;
         private System.Windows.Forms.NumericUpDown txtTedadOtaq;
         private System.Windows.Forms.Label label52;
-        private System.Windows.Forms.TextBox txtSaleSakht;
         private System.Windows.Forms.Label label58;
         private System.Windows.Forms.ComboBox cmbBuildingType;
         private System.Windows.Forms.Label label40;
@@ -1662,5 +1704,6 @@ namespace Building.Building
         private System.Windows.Forms.FlowLayoutPanel fPanel;
         private DevComponents.DotNetBar.ButtonX btnInsImage;
         private DevComponents.DotNetBar.ButtonX btnDelImage;
+        private System.Windows.Forms.ComboBox cmbSaleSakht;
     }
 }

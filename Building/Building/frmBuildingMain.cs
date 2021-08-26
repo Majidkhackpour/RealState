@@ -60,6 +60,7 @@ namespace Building.Building
                 await FillOptionsAsync();
                 SetRelatedOptions(cls.Guid);
                 FillPriority();
+                SetSaleSakht();
 
                 lblDateNow.Text = cls?.DateSh;
                 txtCode.Text = cls?.Code;
@@ -123,7 +124,6 @@ namespace Building.Building
                 chbIsMamarJoda.Checked = cls?.MamarJoda ?? false;
                 txtSaleParvane.Text = cls?.DateParvane;
                 txtSerialParvane.Text = cls?.ParvaneSerial;
-                txtSaleSakht.Text = cls?.SaleSakht;
                 if (cls.MediaList != null && cls.MediaList.Count != 0)
                     foreach (var item in cls.MediaList)
                     {
@@ -188,6 +188,8 @@ namespace Building.Building
                     cmbTell.SelectedIndex = 0;
                     cmbTabaqeNo.SelectedIndex = 3;
                     cmbPirority.SelectedIndex = 2;
+                    txtDong.Value = 6;
+                    txtMosharekatDong.Value = txtMoavezeDong.Value = txtPishDong.Value = 6;
                 }
 
                 image = cls?.Image;
@@ -207,6 +209,27 @@ namespace Building.Building
             try
             {
                 txtCode.Text = await BuildingBussines.NextCodeAsync() ?? "";
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private void SetSaleSakht()
+        {
+            try
+            {
+                if (cls == null || cls.Guid == Guid.Empty)
+                    cmbSaleSakht.SelectedIndex = 0;
+                else
+                {
+                    var year1 = Calendar.GetYearOfDateSh(Calendar.MiladiToShamsi(DateTime.Now));
+                    var year2 = Calendar.GetYearOfDateSh(cls.SaleSakht);
+                    var dis = year1 - year2;
+                    if (dis < 0) dis = 0;
+                    if (dis > 36) dis = 35;
+                    cmbSaleSakht.SelectedIndex = dis;
+                }
             }
             catch (Exception ex)
             {
@@ -730,7 +753,8 @@ namespace Building.Building
                 cls.MetrazhKouche = txtMetrazhKouche.Text.ParseTofloat();
                 cls.Hashie = txtHashie.Text.ParseTofloat();
                 cls.ErtefaSaqf = txtErtrfaSaqf.Text.ParseTofloat();
-                cls.SaleSakht = txtSaleSakht.Text;
+                var oldDate = DateTime.Now.AddYears(-cmbSaleSakht.SelectedIndex);
+                cls.SaleSakht = Calendar.MiladiToShamsi(oldDate);
                 cls.DateParvane = txtSaleParvane.Text;
                 cls.ParvaneSerial = txtSerialParvane.Text;
                 cls.BonBast = chbIsBonBast.Checked;
@@ -753,7 +777,7 @@ namespace Building.Building
             try
             {
                 var img = Path.Combine(Application.StartupPath, "Images");
-                foreach (var item in cls.GalleryList??new List<BuildingGalleryBussines>())
+                foreach (var item in cls.GalleryList ?? new List<BuildingGalleryBussines>())
                 {
                     var path = Path.Combine(img, item.ImageName + ".jpg");
                     try
@@ -1131,7 +1155,10 @@ namespace Building.Building
                 switch (e.KeyCode)
                 {
                     case Keys.Enter:
-                        if (!btnFinish.Focused && !btnCancel.Focused)
+                        if (!btnFinish.Focused && !btnCancel.Focused &&
+                            !txtMosharekatDesc.Focused && !txtMoavezeDesc.Focused &&
+                            !txtPishDesc.Focused && !txtShortDesc.Focused &&
+                            !txtAddress.Focused)
                             SendKeys.Send("{Tab}");
                         break;
                     case Keys.F5:
@@ -1351,38 +1378,12 @@ namespace Building.Building
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void txtCode_Enter(object sender, EventArgs e)
-        {
-            txtSetter.Focus(txtCode);
-        }
-        private void txtSaleSakht_Enter(object sender, EventArgs e)
-        {
-            txtSetter.Focus(txtSaleSakht);
-        }
-        private void txtSaleParvane_Enter(object sender, EventArgs e)
-        {
-            txtSetter.Focus(txtSaleParvane);
-        }
-        private void txtSerialParvane_Enter(object sender, EventArgs e)
-        {
-            txtSetter.Focus(txtSerialParvane);
-        }
-        private void txtSerialParvane_Leave(object sender, EventArgs e)
-        {
-            txtSetter.Follow(txtSerialParvane);
-        }
-        private void txtSaleParvane_Leave(object sender, EventArgs e)
-        {
-            txtSetter.Follow(txtSaleParvane);
-        }
-        private void txtSaleSakht_Leave(object sender, EventArgs e)
-        {
-            txtSetter.Follow(txtSaleSakht);
-        }
-        private void txtCode_Leave(object sender, EventArgs e)
-        {
-            txtSetter.Follow(txtCode);
-        }
+        private void txtCode_Enter(object sender, EventArgs e) => txtSetter.Focus(txtCode);
+        private void txtSaleParvane_Enter(object sender, EventArgs e) => txtSetter.Focus(txtSaleParvane);
+        private void txtSerialParvane_Enter(object sender, EventArgs e) => txtSetter.Focus(txtSerialParvane);
+        private void txtSerialParvane_Leave(object sender, EventArgs e) => txtSetter.Follow(txtSerialParvane);
+        private void txtSaleParvane_Leave(object sender, EventArgs e) => txtSetter.Follow(txtSaleParvane);
+        private void txtCode_Leave(object sender, EventArgs e) => txtSetter.Follow(txtCode);
         private async void chbGoogleMap_CheckedChanged(object sender, EventArgs e)
         {
             try

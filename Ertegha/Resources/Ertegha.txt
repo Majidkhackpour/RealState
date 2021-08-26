@@ -7462,6 +7462,7 @@ From [dbo].[Buildings]
 	 left outer join [dbo].[BuildingAccountTypes] on [dbo].[Buildings].BuildingAccountTypeGuid=[dbo].[BuildingAccountTypes].Guid
 	where Priority=0
 	and IsArchive='false'
+	and [dbo].[Buildings].Status='true'
 END
 GO
 --========================================================================================================
@@ -7484,4 +7485,15 @@ BEGIN
 		  (@ejare=0 or EjarePrice1=@ejare) and
 		  (@sellPrice=0 or SellPrice=@sellPrice) and
 		  (@tabaqeNo=0 or TabaqeNo=@tabaqeNo)
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_PhoneBook_GetTitles]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_PhoneBook_GetTitles]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_PhoneBook_GetTitles
+AS
+BEGIN
+	select Distinct Title from PhoneBooks
+	where ISNULL(Title,'')<>''
 END

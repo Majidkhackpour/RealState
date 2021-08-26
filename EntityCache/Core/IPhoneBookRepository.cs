@@ -18,5 +18,6 @@ namespace EntityCache.Core
         Task<ReturnedSaveFuncInfo> RemoveAsync(Guid guid, SqlTransaction tr);
         Task<ReturnedSaveFuncInfo> SaveAsync(PhoneBookBussines item, SqlTransaction tr);
         Task<ReturnedSaveFuncInfo> SaveRangeAsync(IEnumerable<PhoneBookBussines> items, SqlTransaction tr);
+        Task<List<string>> GetAllTitlesAsync(string connectionString);
     }
 }

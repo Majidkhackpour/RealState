@@ -55,7 +55,7 @@ namespace Building.Building
 
                 cmbSellTarakom.SelectedIndex = 0;
                 cmbSellSanadType.SelectedIndex = 0;
-                txtDong.Text = (cls?.Dang ?? 0).ToString();
+                txtDong.Value = 6;
 
                 cmbState.SelectedIndex = 0;
                 if (cmbState.SelectedValue != null && (Guid)cmbState.SelectedValue != Guid.Empty)
@@ -80,6 +80,7 @@ namespace Building.Building
                 txtQestPrice.TextDecimal = 0;
                 txtMasahat.Value = 0;
                 txtZirBana.Value = 0;
+                cmbSaleSakht.SelectedIndex = 0;
 
                 if (string.IsNullOrEmpty(clsEconomyUnit.EconomyState))
                     cmbState.SelectedIndex = 0;
@@ -371,7 +372,8 @@ namespace Building.Building
                 cls.MetrazhKouche = 0;
                 cls.Hashie = 0;
                 cls.ErtefaSaqf = 3;
-                cls.SaleSakht = txtSaleSakht.Text;
+                var oldDate = DateTime.Now.AddYears(-cmbSaleSakht.SelectedIndex);
+                cls.SaleSakht = Calendar.MiladiToShamsi(oldDate);
                 cls.BonBast = false;
                 cls.MamarJoda = true;
                 line = 27;
@@ -668,7 +670,8 @@ namespace Building.Building
                 switch (e.KeyCode)
                 {
                     case Keys.Enter:
-                        if (!btnFinish.Focused && !btnCancel.Focused)
+                        if (!btnFinish.Focused && !btnCancel.Focused &&
+                            !txtAddress.Focused && !txtShortDesc.Focused)
                             SendKeys.Send("{Tab}");
                         break;
                     case Keys.F5:

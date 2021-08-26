@@ -287,5 +287,6 @@ namespace EntityCache.Bussines
 
             return res;
         }
+        public static async Task<List<string>> GetAllTitlesAsync() => await UnitOfWork.PhoneBook.GetAllTitlesAsync(Cache.ConnectionString);
     }
 }

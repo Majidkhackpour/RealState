@@ -204,6 +204,29 @@ namespace EntityCache.SqlServerPersistence
             }
             return res;
         }
+        public async Task<List<string>> GetAllTitlesAsync(string connectionString)
+        {
+            var list = new List<string>();
+            try
+            {
+                using (var cn = new SqlConnection(connectionString))
+                {
+                    var cmd = new SqlCommand("sp_PhoneBook_GetTitles", cn) { CommandType = CommandType.StoredProcedure };
+
+                    await cn.OpenAsync();
+                    var dr = await cmd.ExecuteReaderAsync();
+                    while (dr.Read()) list.Add(dr["Title"].ToString());
+                    dr.Close();
+                    cn.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+
+            return list;
+        }
         private PhoneBookBussines LoadData(SqlDataReader dr)
         {
             var res = new PhoneBookBussines();
