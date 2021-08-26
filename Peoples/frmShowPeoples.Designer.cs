@@ -72,6 +72,8 @@
             this.dgRadif = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CodeInArchive = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgGroupName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgNatCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgFatherName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgAccount = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -142,6 +144,8 @@
             this.dgRadif,
             this.dgCode,
             this.dgName,
+            this.CodeInArchive,
+            this.dgGroupName,
             this.dgNatCode,
             this.dgFatherName,
             this.dgAccount,
@@ -493,6 +497,20 @@
             this.dgName.Name = "dgName";
             this.dgName.ReadOnly = true;
             // 
+            // CodeInArchive
+            // 
+            this.CodeInArchive.DataPropertyName = "CodeInArchive";
+            this.CodeInArchive.HeaderText = "شماره پرونده";
+            this.CodeInArchive.Name = "CodeInArchive";
+            this.CodeInArchive.ReadOnly = true;
+            // 
+            // dgGroupName
+            // 
+            this.dgGroupName.DataPropertyName = "GroupName";
+            this.dgGroupName.HeaderText = "گروه";
+            this.dgGroupName.Name = "dgGroupName";
+            this.dgGroupName.ReadOnly = true;
+            // 
             // dgNatCode
             // 
             this.dgNatCode.DataPropertyName = "NationalCode";
@@ -681,6 +699,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dgRadif;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgCode;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CodeInArchive;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgGroupName;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgNatCode;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgFatherName;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgAccount;

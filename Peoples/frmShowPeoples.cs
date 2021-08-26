@@ -70,6 +70,7 @@ namespace Peoples
                 _token?.Cancel();
                 _token = new CancellationTokenSource();
                 list = await PeoplesBussines.GetAllAsync(search, GroupGuid, _token.Token);
+                DGrid.Columns["dgGroupName"].Visible = GroupGuid == Guid.Empty;
                 _ = Task.Run(() => ucPagger.PagingAsync(new CancellationToken(),
                     list?.Where(q => q.Status == _st), 100, PagingPosition.GotoStartPage));
             }
@@ -291,9 +292,7 @@ namespace Peoples
             {
                 var node = trvGroup.SelectedNode;
                 if (node.Text == "همه گروه ها")
-                {
                     GroupGuid = Guid.Empty;
-                }
                 else
                 {
                     var group = await PeopleGroupBussines.GetAsync(Guid.Parse(node.Name));

@@ -34,6 +34,8 @@ namespace EntityCache.Bussines
         public string IssuedFrom { get; set; }
         public string PostalCode { get; set; }
         public Guid GroupGuid { get; set; }
+        public string GroupName { get; set; }
+        public string CodeInArchive { get; set; }
         public decimal Account { get; set; }
         public decimal AccountFirst { get; set; }
         public decimal Account_ => Math.Abs(Account);
@@ -176,7 +178,9 @@ namespace EntityCache.Bussines
                                                  x.Code.ToLower().Contains(item.ToLower()) ||
                                                  x.Address.ToLower().Contains(item.ToLower()) ||
                                                  x.FatherName.ToLower().Contains(item.ToLower()) ||
-                                                 x.NationalCode.ToLower().Contains(item.ToLower()));
+                                                 x.NationalCode.ToLower().Contains(item.ToLower()) ||
+                                                 x.GroupName.ToLower().Contains(item.ToLower()) ||
+                                                 (!string.IsNullOrEmpty(x.CodeInArchive) && x.CodeInArchive.ToLower().Contains(item.ToLower())));
                         }
                     }
 

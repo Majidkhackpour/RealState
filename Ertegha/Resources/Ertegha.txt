@@ -522,25 +522,37 @@ GO
 IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Peoples_GetAll]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
 	exec('Create Procedure [dbo].[sp_Peoples_GetAll]	As Begin print 11 end')
 GO
-Alter PROCEDURE sp_Peoples_GetAll
+ALTER PROCEDURE [dbo].[sp_Peoples_GetAll]
 AS
 BEGIN
-	Select Peoples.* , Tafsils.Account,Tafsils.AccountFirst
+Select    Peoples.* 
+			, Tafsils.Account
+			, Tafsils.AccountFirst
+			, PeopleGroups.Name As GroupName
+			, fCon.CodeInArchive As CodeInArchive
 	From Peoples inner join Tafsils on
-	Tafsils.Guid=Peoples.Guid
+	Tafsils.Guid=Peoples.Guid inner join PeopleGroups on
+	PeopleGroups.Guid=Peoples.GroupGuid left outer join Contracts as fCon on
+	fCon.FirstSideGuid=Peoples.Guid 
 END
 GO
 -- ==========================================================================================
 IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Peoples_SelectRow]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
 	exec('Create Procedure [dbo].[sp_Peoples_SelectRow]	As Begin print 11 end')
 GO
-Alter PROCEDURE sp_Peoples_SelectRow
+ALTER PROCEDURE [dbo].[sp_Peoples_SelectRow]
 	@Guid uniqueidentifier
 AS
 BEGIN
-	Select Peoples.* , Tafsils.Account,Tafsils.AccountFirst
+		Select    Peoples.* 
+			, Tafsils.Account
+			, Tafsils.AccountFirst
+			, PeopleGroups.Name As GroupName
+			, fCon.CodeInArchive As CodeInArchive
 	From Peoples inner join Tafsils on
-	Tafsils.Guid=Peoples.Guid
+	Tafsils.Guid=Peoples.Guid inner join PeopleGroups on
+	PeopleGroups.Guid=Peoples.GroupGuid left outer join Contracts as fCon on
+	fCon.FirstSideGuid=Peoples.Guid 
 	where Peoples.Guid=@Guid
 END
 GO
@@ -548,14 +560,20 @@ GO
 IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Peoples_SelectRowByGroupGuid]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
 	exec('Create Procedure [dbo].[sp_Peoples_SelectRowByGroupGuid]	As Begin print 11 end')
 GO
-Alter PROCEDURE sp_Peoples_SelectRowByGroupGuid
+ALTER PROCEDURE [dbo].[sp_Peoples_SelectRowByGroupGuid]
 	@GroupGuid uniqueidentifier,
 	@st bit
 AS
 BEGIN
-	Select Peoples.* , Tafsils.Account,Tafsils.AccountFirst
+		Select    Peoples.* 
+			, Tafsils.Account
+			, Tafsils.AccountFirst
+			, PeopleGroups.Name As GroupName
+			, fCon.CodeInArchive As CodeInArchive
 	From Peoples inner join Tafsils on
-	Tafsils.Guid=Peoples.Guid
+	Tafsils.Guid=Peoples.Guid inner join PeopleGroups on
+	PeopleGroups.Guid=Peoples.GroupGuid left outer join Contracts as fCon on
+	fCon.FirstSideGuid=Peoples.Guid 
 	where Peoples.GroupGuid=@GroupGuid and
 		  Peoples.Status=@st
 END
@@ -564,13 +582,19 @@ GO
 IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Peoples_GetAllBirthDay]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
 	exec('Create Procedure [dbo].[sp_Peoples_GetAllBirthDay]	As Begin print 11 end')
 GO
-Alter PROCEDURE sp_Peoples_GetAllBirthDay
+ALTER PROCEDURE [dbo].[sp_Peoples_GetAllBirthDay]
 	@dateSh nvarchar(20)
 AS
 BEGIN
-	Select Peoples.* , Tafsils.Account,Tafsils.AccountFirst
+		Select    Peoples.* 
+			, Tafsils.Account
+			, Tafsils.AccountFirst
+			, PeopleGroups.Name As GroupName
+			, fCon.CodeInArchive As CodeInArchive
 	From Peoples inner join Tafsils on
-	Tafsils.Guid=Peoples.Guid
+	Tafsils.Guid=Peoples.Guid inner join PeopleGroups on
+	PeopleGroups.Guid=Peoples.GroupGuid left outer join Contracts as fCon on
+	fCon.FirstSideGuid=Peoples.Guid 
 	where Peoples.DateBirth Like @dateSh
 END
 GO
