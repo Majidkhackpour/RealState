@@ -309,6 +309,7 @@ namespace Building.BuildingRequest
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
+
         public frmRequestMain()
         {
             InitializeComponent();
@@ -408,7 +409,7 @@ namespace Building.BuildingRequest
                 switch (e.KeyCode)
                 {
                     case Keys.Enter:
-                        if (!btnFinish.Focused && !btnCancel.Focused)
+                        if (!btnFinish.Focused && !btnCancel.Focused && !txtDesc.Focused)
                             SendKeys.Send("{Tab}");
                         break;
                     case Keys.F5:
@@ -432,6 +433,7 @@ namespace Building.BuildingRequest
         private async void btnFinish_Click(object sender, EventArgs e)
         {
             var res = new ReturnedSaveFuncInfo();
+            btnFinish.Enabled = false;
             try
             {
                 var isSendSms = false;
@@ -524,6 +526,7 @@ namespace Building.BuildingRequest
             }
             finally
             {
+                btnFinish.Enabled = true;
                 if (res.HasError) this.ShowError(res, "خطا در ثبت تقاضا");
                 else
                 {

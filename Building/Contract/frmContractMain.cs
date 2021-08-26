@@ -567,7 +567,8 @@ namespace Building.Contract
                 switch (e.KeyCode)
                 {
                     case Keys.Enter:
-                        if (!btnFinish.Focused && !btnCancel.Focused)
+                        if (!btnFinish.Focused && !btnCancel.Focused &&
+                            !txtSetDocAddress.Focused && !txtDesc.Focused)
                             SendKeys.Send("{Tab}");
                         break;
                     case Keys.F5:
@@ -594,6 +595,7 @@ namespace Building.Contract
         private async void btnSaveTemp_Click(object sender, EventArgs e)
         {
             var res = new ReturnedSaveFuncInfo();
+            btnFinish.Enabled = false;
             try
             {
                 if (MessageBox.Show("آیا از ثبت اطلاعات اطمینان دارید؟", "پیغام سیستم", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
@@ -608,6 +610,7 @@ namespace Building.Contract
             }
             finally
             {
+                btnFinish.Enabled = true;
                 if (res.HasError)
                     this.ShowError(res, "خطا در ثبت قولنامه به صورت موقت");
                 else

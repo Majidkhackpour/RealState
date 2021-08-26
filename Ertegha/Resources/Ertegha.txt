@@ -3972,7 +3972,7 @@ GO
 ALTER PROCEDURE [dbo].[sp_Contract_NextCode]
 AS
 BEGIN
-	declare @nextCode nvarchar(10)
+	declare @nextCode nvarchar(100)
 	select @nextCode = MAX(Code) From Contracts
 	set @nextCode = (isnull(@nextCode , 0))
 	set @nextCode = CAST(@nextCode AS bigint) + 1
@@ -4912,7 +4912,7 @@ GO
 ALTER PROCEDURE [dbo].[sp_Building_NextCode]
 AS
 BEGIN
-	declare @nextCode nvarchar(10)
+	declare @nextCode nvarchar(100)
 	select @nextCode = MAX(Code) From Buildings
 	set @nextCode = (isnull(@nextCode , 0))
 	set @nextCode = CAST(@nextCode AS bigint) + 1
