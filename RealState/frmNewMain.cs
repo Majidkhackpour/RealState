@@ -62,6 +62,7 @@ namespace RealState
     {
         private ConcurrentDictionary<string, EnForms> _dic = new ConcurrentDictionary<string, EnForms>();
         private Color foreColor = Color.FromArgb(228, 237, 255);
+        private bool _showDialog = false;
 
         private void FillDictionary()
         {
@@ -540,6 +541,26 @@ namespace RealState
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
+        private void DisplayFrm(EnForms frm) => DisplayFrm(frm, true);
+        private void DisplayFrm(EnForms enfrm, bool autoDispose)
+        {
+            try
+            {
+                var frm = SelectForm(enfrm);
+                if (!_showDialog)
+                {
+                    frm?.ShowDialog(this);
+                    if (autoDispose)
+                        frm?.Dispose();
+                }
+                else
+                {
+                    frm.ShowInTaskbar = true;
+                    frm?.Show(this);
+                }
+            }
+            catch (Exception ex) { WebErrorLog.ErrorInstence.StartErrorLog(ex); }
+        }
 
         public frmNewMain()
         {
@@ -599,6 +620,7 @@ namespace RealState
                 lblDate.Text = Calendar.GetFullCalendar();
                 lblSerial.Text = $@"شناسه فنی: {clsGlobalSetting.HardDriveSerial}";
                 SetClock();
+                _showDialog = clsGlobal.ShowDialog;
                 _ = Task.Run(() => AutoBackUp.BackUpAsync(@"C:\", false, EnBackUpType.Auto));
                 LoadDashboard();
                 SetButtomLables();
@@ -623,45 +645,45 @@ namespace RealState
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void lblPeoples_Click(object sender, EventArgs e) => SelectForm(EnForms.Peoples)?.ShowDialog(this);
-        private void lblCities_Click(object sender, EventArgs e) => SelectForm(EnForms.Cities)?.ShowDialog(this);
-        private void lblRegions_Click(object sender, EventArgs e) => SelectForm(EnForms.Regions)?.ShowDialog(this);
-        private void lblBuildingOptions_Click(object sender, EventArgs e) => SelectForm(EnForms.BuildingOptions)?.ShowDialog(this);
-        private void lblBuildingAccountType_Click(object sender, EventArgs e) => SelectForm(EnForms.BuildingAccountType)?.ShowDialog(this);
-        private void lblFloorCover_Click(object sender, EventArgs e) => SelectForm(EnForms.FloorCover)?.ShowDialog(this);
-        private void lblKitchenService_Click(object sender, EventArgs e) => SelectForm(EnForms.KitchenService)?.ShowDialog(this);
-        private void lblDocumentType_Click(object sender, EventArgs e) => SelectForm(EnForms.DocumentType)?.ShowDialog(this);
-        private void lblRental_Click(object sender, EventArgs e) => SelectForm(EnForms.RentalAouthority)?.ShowDialog(this);
-        private void lblBuildingView_Click(object sender, EventArgs e) => SelectForm(EnForms.BuildingView)?.ShowDialog(this);
-        private void lblBuildingCondition_Click(object sender, EventArgs e) => SelectForm(EnForms.BuildingCondition)?.ShowDialog(this);
-        private void lblBuildingType_Click(object sender, EventArgs e) => SelectForm(EnForms.BuildingType)?.ShowDialog(this);
-        private void lblBuilding_Click(object sender, EventArgs e) => SelectForm(EnForms.Building)?.ShowDialog(this);
-        private void lblBuildingFast_Click(object sender, EventArgs e) => SelectForm(EnForms.BuildingFast)?.ShowDialog(this);
-        private void lblBuildingSearch_Click(object sender, EventArgs e) => SelectForm(EnForms.AdvancedSearch)?.ShowDialog(this);
-        private void lblBuildingArchive_Click(object sender, EventArgs e) => SelectForm(EnForms.BuildingArchive)?.ShowDialog(this);
-        private void lblBuildingMatches_Click(object sender, EventArgs e) => SelectForm(EnForms.BuildingMatch)?.ShowDialog(this);
-        private void lblContract_Click(object sender, EventArgs e) => SelectForm(EnForms.Contract)?.ShowDialog(this);
-        private void lblRequest_Click(object sender, EventArgs e) => SelectForm(EnForms.Request)?.ShowDialog(this);
-        private void lblHazine_Click(object sender, EventArgs e) => SelectForm(EnForms.Hazine)?.ShowDialog(this);
-        private void lblReception_Click(object sender, EventArgs e) => SelectForm(EnForms.Daryaft)?.ShowDialog(this);
-        private void lblPardakht_Click(object sender, EventArgs e) => SelectForm(EnForms.Pardakht)?.ShowDialog(this);
-        private void lblSanad_Click(object sender, EventArgs e) => SelectForm(EnForms.Sanad)?.ShowDialog(this);
-        private void lblAccountingReport_Click(object sender, EventArgs e) => SelectForm(EnForms.AccountingReport)?.ShowDialog(this);
-        private void lblKolMoein_Click(object sender, EventArgs e) => SelectForm(EnForms.KolMoein)?.ShowDialog(this);
-        private void lblTafsil_Click(object sender, EventArgs e) => SelectForm(EnForms.Tafsil)?.ShowDialog(this);
-        private void lblSandouq_Click(object sender, EventArgs e) => SelectForm(EnForms.Sandouq)?.ShowDialog(this);
-        private void lblBank_Click(object sender, EventArgs e) => SelectForm(EnForms.Bank)?.ShowDialog(this);
-        private void lblCheckBook_Click(object sender, EventArgs e) => SelectForm(EnForms.CheckBook)?.ShowDialog(this);
-        private void lblReceptionCheck_Click(object sender, EventArgs e) => SelectForm(EnForms.ReceptionCheck)?.ShowDialog(this);
-        private void lblPardakhtCheck_Click(object sender, EventArgs e) => SelectForm(EnForms.PardakhtCheck)?.ShowDialog(this);
-        private void lblSetting_Click(object sender, EventArgs e) => SelectForm(EnForms.Setting)?.ShowDialog(this);
-        private void lblPhoneBook_Click(object sender, EventArgs e) => SelectForm(EnForms.Phonebook)?.ShowDialog(this);
-        private void lblNote_Click(object sender, EventArgs e) => SelectForm(EnForms.Note)?.ShowDialog(this);
-        private void lblSmsPanel_Click(object sender, EventArgs e) => SelectForm(EnForms.SmsPanel)?.ShowDialog(this);
-        private void lblSendSms_Click(object sender, EventArgs e) => SelectForm(EnForms.SendSms)?.ShowDialog(this);
-        private void lblAdvertise_Click(object sender, EventArgs e) => SelectForm(EnForms.Advertise)?.ShowDialog(this);
-        private void lblBackUp_Click(object sender, EventArgs e) => SelectForm(EnForms.BackUp)?.ShowDialog(this);
-        private void lblRestore_Click(object sender, EventArgs e) => SelectForm(EnForms.Restore)?.ShowDialog(this);
+        private void lblPeoples_Click(object sender, EventArgs e) => DisplayFrm(EnForms.Peoples);
+        private void lblCities_Click(object sender, EventArgs e) => DisplayFrm(EnForms.Cities);
+        private void lblRegions_Click(object sender, EventArgs e) => DisplayFrm(EnForms.Regions);
+        private void lblBuildingOptions_Click(object sender, EventArgs e) => DisplayFrm(EnForms.BuildingOptions);
+        private void lblBuildingAccountType_Click(object sender, EventArgs e) => DisplayFrm(EnForms.BuildingAccountType);
+        private void lblFloorCover_Click(object sender, EventArgs e) => DisplayFrm(EnForms.FloorCover);
+        private void lblKitchenService_Click(object sender, EventArgs e) => DisplayFrm(EnForms.KitchenService);
+        private void lblDocumentType_Click(object sender, EventArgs e) => DisplayFrm(EnForms.DocumentType);
+        private void lblRental_Click(object sender, EventArgs e) => DisplayFrm(EnForms.RentalAouthority);
+        private void lblBuildingView_Click(object sender, EventArgs e) => DisplayFrm(EnForms.BuildingView);
+        private void lblBuildingCondition_Click(object sender, EventArgs e) => DisplayFrm(EnForms.BuildingCondition);
+        private void lblBuildingType_Click(object sender, EventArgs e) => DisplayFrm(EnForms.BuildingType);
+        private void lblBuilding_Click(object sender, EventArgs e) => DisplayFrm(EnForms.Building);
+        private void lblBuildingFast_Click(object sender, EventArgs e) => DisplayFrm(EnForms.BuildingFast);
+        private void lblBuildingSearch_Click(object sender, EventArgs e) => DisplayFrm(EnForms.AdvancedSearch);
+        private void lblBuildingArchive_Click(object sender, EventArgs e) => DisplayFrm(EnForms.BuildingArchive);
+        private void lblBuildingMatches_Click(object sender, EventArgs e) => DisplayFrm(EnForms.BuildingMatch);
+        private void lblContract_Click(object sender, EventArgs e) => DisplayFrm(EnForms.Contract);
+        private void lblRequest_Click(object sender, EventArgs e) => DisplayFrm(EnForms.Request);
+        private void lblHazine_Click(object sender, EventArgs e) => DisplayFrm(EnForms.Hazine);
+        private void lblReception_Click(object sender, EventArgs e) => DisplayFrm(EnForms.Daryaft);
+        private void lblPardakht_Click(object sender, EventArgs e) => DisplayFrm(EnForms.Pardakht);
+        private void lblSanad_Click(object sender, EventArgs e) => DisplayFrm(EnForms.Sanad);
+        private void lblAccountingReport_Click(object sender, EventArgs e) => DisplayFrm(EnForms.AccountingReport);
+        private void lblKolMoein_Click(object sender, EventArgs e) => DisplayFrm(EnForms.KolMoein);
+        private void lblTafsil_Click(object sender, EventArgs e) => DisplayFrm(EnForms.Tafsil);
+        private void lblSandouq_Click(object sender, EventArgs e) => DisplayFrm(EnForms.Sandouq);
+        private void lblBank_Click(object sender, EventArgs e) => DisplayFrm(EnForms.Bank);
+        private void lblCheckBook_Click(object sender, EventArgs e) => DisplayFrm(EnForms.CheckBook);
+        private void lblReceptionCheck_Click(object sender, EventArgs e) => DisplayFrm(EnForms.ReceptionCheck);
+        private void lblPardakhtCheck_Click(object sender, EventArgs e) => DisplayFrm(EnForms.PardakhtCheck);
+        private void lblSetting_Click(object sender, EventArgs e) => DisplayFrm(EnForms.Setting);
+        private void lblPhoneBook_Click(object sender, EventArgs e) => DisplayFrm(EnForms.Phonebook);
+        private void lblNote_Click(object sender, EventArgs e) => DisplayFrm(EnForms.Note);
+        private void lblSmsPanel_Click(object sender, EventArgs e) => DisplayFrm(EnForms.SmsPanel);
+        private void lblSendSms_Click(object sender, EventArgs e) => DisplayFrm(EnForms.SendSms);
+        private void lblAdvertise_Click(object sender, EventArgs e) => DisplayFrm(EnForms.Advertise);
+        private void lblBackUp_Click(object sender, EventArgs e) => DisplayFrm(EnForms.BackUp);
+        private void lblRestore_Click(object sender, EventArgs e) => DisplayFrm(EnForms.Restore);
         private async void lblBazsazi_Click(object sender, EventArgs e)
         {
             try
@@ -680,16 +702,16 @@ namespace RealState
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void lblAdvance_Click(object sender, EventArgs e) => SelectForm(EnForms.Advance)?.ShowDialog(this);
-        private void lblTaqvim_Click(object sender, EventArgs e) => SelectForm(EnForms.Taqvim)?.ShowDialog(this);
-        private void lblUserManage_Click(object sender, EventArgs e) => SelectForm(EnForms.Users)?.ShowDialog(this);
-        private void lblAdvisor_Click(object sender, EventArgs e) => SelectForm(EnForms.Advisor)?.ShowDialog(this);
-        private void lblUserAccess_Click(object sender, EventArgs e) => SelectForm(EnForms.UserAccess)?.ShowDialog(this);
+        private void lblAdvance_Click(object sender, EventArgs e) => DisplayFrm(EnForms.Advance);
+        private void lblTaqvim_Click(object sender, EventArgs e) => DisplayFrm(EnForms.Taqvim);
+        private void lblUserManage_Click(object sender, EventArgs e) => DisplayFrm(EnForms.Users);
+        private void lblAdvisor_Click(object sender, EventArgs e) => DisplayFrm(EnForms.Advisor);
+        private void lblUserAccess_Click(object sender, EventArgs e) => DisplayFrm(EnForms.UserAccess);
         private void frmNewMain_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
-                if(e.KeyCode==Keys.F5)
+                if (e.KeyCode == Keys.F5)
                 {
                     LoadDashboard();
                     return;
@@ -718,7 +740,7 @@ namespace RealState
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void picSetting_Click(object sender, EventArgs e) => SelectForm(EnForms.Setting)?.ShowDialog(this);
+        private void picSetting_Click(object sender, EventArgs e) => DisplayFrm(EnForms.Setting);
         private void picInfo_Click(object sender, EventArgs e) => pnlInfo.Visible = !pnlInfo.Visible;
         private void lblExit_MouseEnter(object sender, EventArgs e) => lblExit.ForeColor = Color.Red;
         private void lblExit_MouseLeave(object sender, EventArgs e) => lblExit.ForeColor = foreColor;

@@ -474,6 +474,7 @@ namespace Settings
                 chbPrintPreView.Checked = clsPrint.ShowPreview;
                 txtImagePath.Text = clsGlobal.ImagePath;
                 txtMediaPath.Text = clsGlobal.MediaPath;
+                chbShowDialog.Checked = clsGlobal.ShowDialog;
             }
             catch (Exception ex)
             {
@@ -490,6 +491,7 @@ namespace Settings
                 clsPrint.ShowPreview = chbPrintPreView.Checked;
                 clsGlobal.ImagePath = txtImagePath.Text;
                 clsGlobal.MediaPath = txtMediaPath.Text;
+                clsGlobal.ShowDialog = chbShowDialog.Checked;
             }
             catch (Exception ex)
             {

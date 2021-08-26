@@ -68,5 +68,21 @@ namespace Settings.Classes
                 SettingsBussines.Save("MediaPath", _mediaPath);
             }
         }
+
+        private static bool? _showDialog = null;
+        public static bool ShowDialog
+        {
+            get
+            {
+                if (_showDialog != null) return _showDialog.Value;
+                var mem = SettingsBussines.Get("ShowDialog");
+                return mem?.Value.ParseToBoolean() ?? false;
+            }
+            set
+            {
+                _showDialog = value;
+                SettingsBussines.Save("ShowDialog", _showDialog.ToString());
+            }
+        }
     }
 }

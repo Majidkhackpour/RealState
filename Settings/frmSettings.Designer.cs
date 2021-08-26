@@ -32,6 +32,18 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSettings));
             this.btnCancel = new DevComponents.DotNetBar.ButtonX();
             this.superTabControl1 = new DevComponents.DotNetBar.SuperTabControl();
+            this.superTabControlPanel1 = new DevComponents.DotNetBar.SuperTabControlPanel();
+            this.panelEx4 = new DevComponents.DotNetBar.PanelEx();
+            this.btnPath = new DevComponents.DotNetBar.ButtonX();
+            this.chbBackUpSms = new DevComponents.DotNetBar.Controls.CheckBoxX();
+            this.chbOpen = new DevComponents.DotNetBar.Controls.CheckBoxX();
+            this.chbAuto = new DevComponents.DotNetBar.Controls.CheckBoxX();
+            this.txtTime = new System.Windows.Forms.NumericUpDown();
+            this.txtPath = new System.Windows.Forms.TextBox();
+            this.label26 = new System.Windows.Forms.Label();
+            this.label27 = new System.Windows.Forms.Label();
+            this.label28 = new System.Windows.Forms.Label();
+            this.superTabItem1 = new DevComponents.DotNetBar.SuperTabItem();
             this.superTabControlPanel2 = new DevComponents.DotNetBar.SuperTabControlPanel();
             this.panelEx1 = new DevComponents.DotNetBar.PanelEx();
             this.btnSearchMedia = new DevComponents.DotNetBar.ButtonX();
@@ -49,18 +61,6 @@
             this.chbPrintDesign = new DevComponents.DotNetBar.Controls.CheckBoxX();
             this.superTabItem2 = new DevComponents.DotNetBar.SuperTabItem();
             this.superTabControlPanel6 = new DevComponents.DotNetBar.SuperTabControlPanel();
-            this.superTabControlPanel1 = new DevComponents.DotNetBar.SuperTabControlPanel();
-            this.panelEx4 = new DevComponents.DotNetBar.PanelEx();
-            this.btnPath = new DevComponents.DotNetBar.ButtonX();
-            this.chbBackUpSms = new DevComponents.DotNetBar.Controls.CheckBoxX();
-            this.chbOpen = new DevComponents.DotNetBar.Controls.CheckBoxX();
-            this.chbAuto = new DevComponents.DotNetBar.Controls.CheckBoxX();
-            this.txtTime = new System.Windows.Forms.NumericUpDown();
-            this.txtPath = new System.Windows.Forms.TextBox();
-            this.label26 = new System.Windows.Forms.Label();
-            this.label27 = new System.Windows.Forms.Label();
-            this.label28 = new System.Windows.Forms.Label();
-            this.superTabItem1 = new DevComponents.DotNetBar.SuperTabItem();
             this.superTabControlPanel11 = new DevComponents.DotNetBar.SuperTabControlPanel();
             this.pnlTelegram = new DevComponents.DotNetBar.PanelEx();
             this.txtChannel = new System.Windows.Forms.TextBox();
@@ -168,14 +168,15 @@
             this.label1 = new System.Windows.Forms.Label();
             this.superTabItem5 = new DevComponents.DotNetBar.SuperTabItem();
             this.btnFinish = new DevComponents.DotNetBar.ButtonX();
+            this.chbShowDialog = new DevComponents.DotNetBar.Controls.CheckBoxX();
             ((System.ComponentModel.ISupportInitialize)(this.superTabControl1)).BeginInit();
             this.superTabControl1.SuspendLayout();
-            this.superTabControlPanel2.SuspendLayout();
-            this.panelEx1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtSetArchive)).BeginInit();
             this.superTabControlPanel1.SuspendLayout();
             this.panelEx4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtTime)).BeginInit();
+            this.superTabControlPanel2.SuspendLayout();
+            this.panelEx1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtSetArchive)).BeginInit();
             this.superTabControlPanel11.SuspendLayout();
             this.pnlTelegram.SuspendLayout();
             this.superTabControlPanel8.SuspendLayout();
@@ -227,9 +228,9 @@
             this.superTabControl1.ControlBox.SubItems.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.superTabControl1.ControlBox.MenuBox,
             this.superTabControl1.ControlBox.CloseBox});
-            this.superTabControl1.Controls.Add(this.superTabControlPanel1);
             this.superTabControl1.Controls.Add(this.superTabControlPanel2);
             this.superTabControl1.Controls.Add(this.superTabControlPanel6);
+            this.superTabControl1.Controls.Add(this.superTabControlPanel1);
             this.superTabControl1.Controls.Add(this.superTabControlPanel11);
             this.superTabControl1.Controls.Add(this.superTabControlPanel8);
             this.superTabControl1.Controls.Add(this.superTabControlPanel7);
@@ -252,216 +253,6 @@
             this.superTabItem1});
             this.superTabControl1.TabStyle = DevComponents.DotNetBar.eSuperTabStyle.OfficeMobile2014;
             this.superTabControl1.Text = "superTabControl1";
-            // 
-            // superTabControlPanel2
-            // 
-            this.superTabControlPanel2.Controls.Add(this.panelEx1);
-            this.superTabControlPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.superTabControlPanel2.Location = new System.Drawing.Point(0, 40);
-            this.superTabControlPanel2.Name = "superTabControlPanel2";
-            this.superTabControlPanel2.Size = new System.Drawing.Size(608, 548);
-            this.superTabControlPanel2.TabIndex = 0;
-            this.superTabControlPanel2.TabItem = this.superTabItem2;
-            // 
-            // panelEx1
-            // 
-            this.panelEx1.CanvasColor = System.Drawing.SystemColors.Control;
-            this.panelEx1.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.panelEx1.Controls.Add(this.btnSearchMedia);
-            this.panelEx1.Controls.Add(this.btnSearchImagePath);
-            this.panelEx1.Controls.Add(this.txtMediaPath);
-            this.panelEx1.Controls.Add(this.label33);
-            this.panelEx1.Controls.Add(this.txtImagePath);
-            this.panelEx1.Controls.Add(this.label32);
-            this.panelEx1.Controls.Add(this.txtSetArchive);
-            this.panelEx1.Controls.Add(this.txtBirthDayText);
-            this.panelEx1.Controls.Add(this.label31);
-            this.panelEx1.Controls.Add(this.label30);
-            this.panelEx1.Controls.Add(this.label29);
-            this.panelEx1.Controls.Add(this.chbPrintPreView);
-            this.panelEx1.Controls.Add(this.chbPrintDesign);
-            this.panelEx1.DisabledBackColor = System.Drawing.Color.Empty;
-            this.panelEx1.Location = new System.Drawing.Point(4, 4);
-            this.panelEx1.Name = "panelEx1";
-            this.panelEx1.Size = new System.Drawing.Size(600, 376);
-            this.panelEx1.Style.Alignment = System.Drawing.StringAlignment.Center;
-            this.panelEx1.Style.BackColor1.Color = System.Drawing.Color.White;
-            this.panelEx1.Style.BackColor2.Color = System.Drawing.Color.White;
-            this.panelEx1.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
-            this.panelEx1.Style.BorderColor.Color = System.Drawing.Color.Silver;
-            this.panelEx1.Style.BorderWidth = 2;
-            this.panelEx1.Style.CornerType = DevComponents.DotNetBar.eCornerType.Rounded;
-            this.panelEx1.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText;
-            this.panelEx1.Style.GradientAngle = 90;
-            this.panelEx1.TabIndex = 14;
-            // 
-            // btnSearchMedia
-            // 
-            this.btnSearchMedia.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnSearchMedia.BackColor = System.Drawing.Color.DarkSlateGray;
-            this.btnSearchMedia.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnSearchMedia.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
-            this.btnSearchMedia.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnSearchMedia.Location = new System.Drawing.Point(20, 341);
-            this.btnSearchMedia.Name = "btnSearchMedia";
-            this.btnSearchMedia.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
-            this.btnSearchMedia.Size = new System.Drawing.Size(35, 27);
-            this.btnSearchMedia.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
-            this.btnSearchMedia.TabIndex = 16;
-            this.btnSearchMedia.Text = "...";
-            this.btnSearchMedia.TextColor = System.Drawing.Color.White;
-            this.btnSearchMedia.Click += new System.EventHandler(this.btnSearchMedia_Click);
-            // 
-            // btnSearchImagePath
-            // 
-            this.btnSearchImagePath.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnSearchImagePath.BackColor = System.Drawing.Color.DarkSlateGray;
-            this.btnSearchImagePath.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnSearchImagePath.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
-            this.btnSearchImagePath.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnSearchImagePath.Location = new System.Drawing.Point(20, 308);
-            this.btnSearchImagePath.Name = "btnSearchImagePath";
-            this.btnSearchImagePath.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
-            this.btnSearchImagePath.Size = new System.Drawing.Size(35, 27);
-            this.btnSearchImagePath.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
-            this.btnSearchImagePath.TabIndex = 16;
-            this.btnSearchImagePath.Text = "...";
-            this.btnSearchImagePath.TextColor = System.Drawing.Color.White;
-            this.btnSearchImagePath.Click += new System.EventHandler(this.btnSearchImagePath_Click);
-            // 
-            // txtMediaPath
-            // 
-            this.txtMediaPath.Location = new System.Drawing.Point(64, 341);
-            this.txtMediaPath.Name = "txtMediaPath";
-            this.txtMediaPath.Size = new System.Drawing.Size(390, 27);
-            this.txtMediaPath.TabIndex = 14;
-            // 
-            // label33
-            // 
-            this.label33.AutoSize = true;
-            this.label33.BackColor = System.Drawing.Color.Transparent;
-            this.label33.Location = new System.Drawing.Point(474, 344);
-            this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(113, 20);
-            this.label33.TabIndex = 15;
-            this.label33.Text = "محل ذخیره سازی مدیا";
-            // 
-            // txtImagePath
-            // 
-            this.txtImagePath.Location = new System.Drawing.Point(64, 308);
-            this.txtImagePath.Name = "txtImagePath";
-            this.txtImagePath.Size = new System.Drawing.Size(390, 27);
-            this.txtImagePath.TabIndex = 14;
-            // 
-            // label32
-            // 
-            this.label32.AutoSize = true;
-            this.label32.BackColor = System.Drawing.Color.Transparent;
-            this.label32.Location = new System.Drawing.Point(460, 311);
-            this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(127, 20);
-            this.label32.TabIndex = 15;
-            this.label32.Text = "محل ذخیره سازی تصاویر";
-            // 
-            // txtSetArchive
-            // 
-            this.txtSetArchive.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtSetArchive.Location = new System.Drawing.Point(371, 270);
-            this.txtSetArchive.Maximum = new decimal(new int[] {
-            10000,
-            0,
-            0,
-            0});
-            this.txtSetArchive.Name = "txtSetArchive";
-            this.txtSetArchive.Size = new System.Drawing.Size(84, 27);
-            this.txtSetArchive.TabIndex = 13;
-            // 
-            // txtBirthDayText
-            // 
-            this.txtBirthDayText.Location = new System.Drawing.Point(20, 11);
-            this.txtBirthDayText.Multiline = true;
-            this.txtBirthDayText.Name = "txtBirthDayText";
-            this.txtBirthDayText.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtBirthDayText.Size = new System.Drawing.Size(473, 212);
-            this.txtBirthDayText.TabIndex = 12;
-            // 
-            // label31
-            // 
-            this.label31.AutoSize = true;
-            this.label31.BackColor = System.Drawing.Color.Transparent;
-            this.label31.Location = new System.Drawing.Point(284, 272);
-            this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(81, 20);
-            this.label31.TabIndex = 11;
-            this.label31.Text = "روز بعد از ثبت";
-            // 
-            // label30
-            // 
-            this.label30.AutoSize = true;
-            this.label30.BackColor = System.Drawing.Color.Transparent;
-            this.label30.Location = new System.Drawing.Point(461, 272);
-            this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(128, 20);
-            this.label30.TabIndex = 11;
-            this.label30.Text = "ارسال فایل ها به بایگانی";
-            // 
-            // label29
-            // 
-            this.label29.AutoSize = true;
-            this.label29.BackColor = System.Drawing.Color.Transparent;
-            this.label29.Location = new System.Drawing.Point(506, 14);
-            this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(83, 20);
-            this.label29.TabIndex = 11;
-            this.label29.Text = "متن تبریک تولد";
-            // 
-            // chbPrintPreView
-            // 
-            this.chbPrintPreView.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.chbPrintPreView.BackColor = System.Drawing.Color.Transparent;
-            // 
-            // 
-            // 
-            this.chbPrintPreView.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.chbPrintPreView.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.chbPrintPreView.Location = new System.Drawing.Point(122, 236);
-            this.chbPrintPreView.Name = "chbPrintPreView";
-            this.chbPrintPreView.Size = new System.Drawing.Size(173, 23);
-            this.chbPrintPreView.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.chbPrintPreView.TabIndex = 9;
-            this.chbPrintPreView.Text = "مشاهده پیش نمایش چاپ";
-            // 
-            // chbPrintDesign
-            // 
-            this.chbPrintDesign.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.chbPrintDesign.BackColor = System.Drawing.Color.Transparent;
-            // 
-            // 
-            // 
-            this.chbPrintDesign.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.chbPrintDesign.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.chbPrintDesign.Location = new System.Drawing.Point(412, 236);
-            this.chbPrintDesign.Name = "chbPrintDesign";
-            this.chbPrintDesign.Size = new System.Drawing.Size(173, 23);
-            this.chbPrintDesign.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.chbPrintDesign.TabIndex = 9;
-            this.chbPrintDesign.Text = "چاپ در حالت طراحی باز شود";
-            // 
-            // superTabItem2
-            // 
-            this.superTabItem2.AttachedControl = this.superTabControlPanel2;
-            this.superTabItem2.GlobalItem = false;
-            this.superTabItem2.Name = "superTabItem2";
-            this.superTabItem2.Text = "تنظیمات برنامه";
-            // 
-            // superTabControlPanel6
-            // 
-            this.superTabControlPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.superTabControlPanel6.Location = new System.Drawing.Point(0, 0);
-            this.superTabControlPanel6.Name = "superTabControlPanel6";
-            this.superTabControlPanel6.Size = new System.Drawing.Size(608, 588);
-            this.superTabControlPanel6.TabIndex = 0;
             // 
             // superTabControlPanel1
             // 
@@ -626,6 +417,217 @@
             this.superTabItem1.GlobalItem = false;
             this.superTabItem1.Name = "superTabItem1";
             this.superTabItem1.Text = "پشتیبان گیری";
+            // 
+            // superTabControlPanel2
+            // 
+            this.superTabControlPanel2.Controls.Add(this.panelEx1);
+            this.superTabControlPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.superTabControlPanel2.Location = new System.Drawing.Point(0, 40);
+            this.superTabControlPanel2.Name = "superTabControlPanel2";
+            this.superTabControlPanel2.Size = new System.Drawing.Size(608, 548);
+            this.superTabControlPanel2.TabIndex = 0;
+            this.superTabControlPanel2.TabItem = this.superTabItem2;
+            // 
+            // panelEx1
+            // 
+            this.panelEx1.CanvasColor = System.Drawing.SystemColors.Control;
+            this.panelEx1.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.panelEx1.Controls.Add(this.btnSearchMedia);
+            this.panelEx1.Controls.Add(this.btnSearchImagePath);
+            this.panelEx1.Controls.Add(this.txtMediaPath);
+            this.panelEx1.Controls.Add(this.label33);
+            this.panelEx1.Controls.Add(this.txtImagePath);
+            this.panelEx1.Controls.Add(this.label32);
+            this.panelEx1.Controls.Add(this.txtSetArchive);
+            this.panelEx1.Controls.Add(this.txtBirthDayText);
+            this.panelEx1.Controls.Add(this.label31);
+            this.panelEx1.Controls.Add(this.label30);
+            this.panelEx1.Controls.Add(this.label29);
+            this.panelEx1.Controls.Add(this.chbShowDialog);
+            this.panelEx1.Controls.Add(this.chbPrintPreView);
+            this.panelEx1.Controls.Add(this.chbPrintDesign);
+            this.panelEx1.DisabledBackColor = System.Drawing.Color.Empty;
+            this.panelEx1.Location = new System.Drawing.Point(4, 4);
+            this.panelEx1.Name = "panelEx1";
+            this.panelEx1.Size = new System.Drawing.Size(600, 376);
+            this.panelEx1.Style.Alignment = System.Drawing.StringAlignment.Center;
+            this.panelEx1.Style.BackColor1.Color = System.Drawing.Color.White;
+            this.panelEx1.Style.BackColor2.Color = System.Drawing.Color.White;
+            this.panelEx1.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
+            this.panelEx1.Style.BorderColor.Color = System.Drawing.Color.Silver;
+            this.panelEx1.Style.BorderWidth = 2;
+            this.panelEx1.Style.CornerType = DevComponents.DotNetBar.eCornerType.Rounded;
+            this.panelEx1.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText;
+            this.panelEx1.Style.GradientAngle = 90;
+            this.panelEx1.TabIndex = 14;
+            // 
+            // btnSearchMedia
+            // 
+            this.btnSearchMedia.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnSearchMedia.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.btnSearchMedia.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnSearchMedia.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.btnSearchMedia.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSearchMedia.Location = new System.Drawing.Point(20, 341);
+            this.btnSearchMedia.Name = "btnSearchMedia";
+            this.btnSearchMedia.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
+            this.btnSearchMedia.Size = new System.Drawing.Size(35, 27);
+            this.btnSearchMedia.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
+            this.btnSearchMedia.TabIndex = 16;
+            this.btnSearchMedia.Text = "...";
+            this.btnSearchMedia.TextColor = System.Drawing.Color.White;
+            this.btnSearchMedia.Click += new System.EventHandler(this.btnSearchMedia_Click);
+            // 
+            // btnSearchImagePath
+            // 
+            this.btnSearchImagePath.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnSearchImagePath.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.btnSearchImagePath.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnSearchImagePath.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.btnSearchImagePath.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSearchImagePath.Location = new System.Drawing.Point(20, 308);
+            this.btnSearchImagePath.Name = "btnSearchImagePath";
+            this.btnSearchImagePath.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
+            this.btnSearchImagePath.Size = new System.Drawing.Size(35, 27);
+            this.btnSearchImagePath.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
+            this.btnSearchImagePath.TabIndex = 16;
+            this.btnSearchImagePath.Text = "...";
+            this.btnSearchImagePath.TextColor = System.Drawing.Color.White;
+            this.btnSearchImagePath.Click += new System.EventHandler(this.btnSearchImagePath_Click);
+            // 
+            // txtMediaPath
+            // 
+            this.txtMediaPath.Location = new System.Drawing.Point(64, 341);
+            this.txtMediaPath.Name = "txtMediaPath";
+            this.txtMediaPath.Size = new System.Drawing.Size(390, 27);
+            this.txtMediaPath.TabIndex = 14;
+            // 
+            // label33
+            // 
+            this.label33.AutoSize = true;
+            this.label33.BackColor = System.Drawing.Color.Transparent;
+            this.label33.Location = new System.Drawing.Point(474, 344);
+            this.label33.Name = "label33";
+            this.label33.Size = new System.Drawing.Size(113, 20);
+            this.label33.TabIndex = 15;
+            this.label33.Text = "محل ذخیره سازی مدیا";
+            // 
+            // txtImagePath
+            // 
+            this.txtImagePath.Location = new System.Drawing.Point(64, 308);
+            this.txtImagePath.Name = "txtImagePath";
+            this.txtImagePath.Size = new System.Drawing.Size(390, 27);
+            this.txtImagePath.TabIndex = 14;
+            // 
+            // label32
+            // 
+            this.label32.AutoSize = true;
+            this.label32.BackColor = System.Drawing.Color.Transparent;
+            this.label32.Location = new System.Drawing.Point(460, 311);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(127, 20);
+            this.label32.TabIndex = 15;
+            this.label32.Text = "محل ذخیره سازی تصاویر";
+            // 
+            // txtSetArchive
+            // 
+            this.txtSetArchive.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtSetArchive.Location = new System.Drawing.Point(371, 270);
+            this.txtSetArchive.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.txtSetArchive.Name = "txtSetArchive";
+            this.txtSetArchive.Size = new System.Drawing.Size(84, 27);
+            this.txtSetArchive.TabIndex = 13;
+            // 
+            // txtBirthDayText
+            // 
+            this.txtBirthDayText.Location = new System.Drawing.Point(20, 11);
+            this.txtBirthDayText.Multiline = true;
+            this.txtBirthDayText.Name = "txtBirthDayText";
+            this.txtBirthDayText.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtBirthDayText.Size = new System.Drawing.Size(473, 212);
+            this.txtBirthDayText.TabIndex = 12;
+            // 
+            // label31
+            // 
+            this.label31.AutoSize = true;
+            this.label31.BackColor = System.Drawing.Color.Transparent;
+            this.label31.Location = new System.Drawing.Point(284, 272);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(81, 20);
+            this.label31.TabIndex = 11;
+            this.label31.Text = "روز بعد از ثبت";
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.BackColor = System.Drawing.Color.Transparent;
+            this.label30.Location = new System.Drawing.Point(461, 272);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(128, 20);
+            this.label30.TabIndex = 11;
+            this.label30.Text = "ارسال فایل ها به بایگانی";
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.BackColor = System.Drawing.Color.Transparent;
+            this.label29.Location = new System.Drawing.Point(506, 14);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(83, 20);
+            this.label29.TabIndex = 11;
+            this.label29.Text = "متن تبریک تولد";
+            // 
+            // chbPrintPreView
+            // 
+            this.chbPrintPreView.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.chbPrintPreView.BackColor = System.Drawing.Color.Transparent;
+            // 
+            // 
+            // 
+            this.chbPrintPreView.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.chbPrintPreView.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.chbPrintPreView.Location = new System.Drawing.Point(233, 236);
+            this.chbPrintPreView.Name = "chbPrintPreView";
+            this.chbPrintPreView.Size = new System.Drawing.Size(173, 23);
+            this.chbPrintPreView.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.chbPrintPreView.TabIndex = 9;
+            this.chbPrintPreView.Text = "مشاهده پیش نمایش چاپ";
+            // 
+            // chbPrintDesign
+            // 
+            this.chbPrintDesign.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.chbPrintDesign.BackColor = System.Drawing.Color.Transparent;
+            // 
+            // 
+            // 
+            this.chbPrintDesign.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.chbPrintDesign.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.chbPrintDesign.Location = new System.Drawing.Point(412, 236);
+            this.chbPrintDesign.Name = "chbPrintDesign";
+            this.chbPrintDesign.Size = new System.Drawing.Size(173, 23);
+            this.chbPrintDesign.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.chbPrintDesign.TabIndex = 9;
+            this.chbPrintDesign.Text = "چاپ در حالت طراحی باز شود";
+            // 
+            // superTabItem2
+            // 
+            this.superTabItem2.AttachedControl = this.superTabControlPanel2;
+            this.superTabItem2.GlobalItem = false;
+            this.superTabItem2.Name = "superTabItem2";
+            this.superTabItem2.Text = "تنظیمات برنامه";
+            // 
+            // superTabControlPanel6
+            // 
+            this.superTabControlPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.superTabControlPanel6.Location = new System.Drawing.Point(0, 0);
+            this.superTabControlPanel6.Name = "superTabControlPanel6";
+            this.superTabControlPanel6.Size = new System.Drawing.Size(608, 588);
+            this.superTabControlPanel6.TabIndex = 0;
             // 
             // superTabControlPanel11
             // 
@@ -2053,6 +2055,22 @@
             this.btnFinish.TextColor = System.Drawing.Color.Black;
             this.btnFinish.Click += new System.EventHandler(this.btnFinish_Click);
             // 
+            // chbShowDialog
+            // 
+            this.chbShowDialog.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.chbShowDialog.BackColor = System.Drawing.Color.Transparent;
+            // 
+            // 
+            // 
+            this.chbShowDialog.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.chbShowDialog.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.chbShowDialog.Location = new System.Drawing.Point(75, 236);
+            this.chbShowDialog.Name = "chbShowDialog";
+            this.chbShowDialog.Size = new System.Drawing.Size(173, 23);
+            this.chbShowDialog.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.chbShowDialog.TabIndex = 9;
+            this.chbShowDialog.Text = "بازکردن چند پنجره همزمان";
+            // 
             // frmSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -2076,14 +2094,14 @@
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmSettings_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.superTabControl1)).EndInit();
             this.superTabControl1.ResumeLayout(false);
-            this.superTabControlPanel2.ResumeLayout(false);
-            this.panelEx1.ResumeLayout(false);
-            this.panelEx1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtSetArchive)).EndInit();
             this.superTabControlPanel1.ResumeLayout(false);
             this.panelEx4.ResumeLayout(false);
             this.panelEx4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtTime)).EndInit();
+            this.superTabControlPanel2.ResumeLayout(false);
+            this.panelEx1.ResumeLayout(false);
+            this.panelEx1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtSetArchive)).EndInit();
             this.superTabControlPanel11.ResumeLayout(false);
             this.pnlTelegram.ResumeLayout(false);
             this.pnlTelegram.PerformLayout();
@@ -2245,5 +2263,6 @@
         private DevComponents.DotNetBar.ButtonX btnSearchMedia;
         private System.Windows.Forms.TextBox txtMediaPath;
         private System.Windows.Forms.Label label33;
+        private DevComponents.DotNetBar.Controls.CheckBoxX chbShowDialog;
     }
 }
