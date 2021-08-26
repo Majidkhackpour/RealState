@@ -109,6 +109,7 @@ namespace EntityCache.SqlServerPersistence
                 cmd.Parameters.AddWithValue("@isArchive", item.IsArchive);
                 cmd.Parameters.AddWithValue("@serverSt", (short)item.ServerStatus);
                 cmd.Parameters.AddWithValue("@serverDate", item.ServerDeliveryDate);
+                cmd.Parameters.AddWithValue("@lenght", item.Lenght);
 
                 await cmd.ExecuteNonQueryAsync();
             }
@@ -342,7 +343,7 @@ namespace EntityCache.SqlServerPersistence
                 res.VamPrice = (decimal)dr["VamPrice"];
                 res.QestPrice = (decimal)dr["QestPrice"];
                 res.Dang = (int)dr["Dang"];
-                if(dr["DocumentType"]!=DBNull.Value) res.DocumentType = (Guid)dr["DocumentType"];
+                if (dr["DocumentType"] != DBNull.Value) res.DocumentType = (Guid)dr["DocumentType"];
                 var tr = dr["Tarakom"].ToString().ParseToShort();
                 res.Tarakom = (EnTarakom?)tr;
                 res.RahnPrice1 = (decimal)dr["RahnPrice1"];
@@ -351,7 +352,7 @@ namespace EntityCache.SqlServerPersistence
                 res.EjarePrice2 = (decimal)dr["EjarePrice2"];
                 if (dr["RentalAutorityGuid"] != DBNull.Value) res.RentalAutorityGuid = (Guid?)dr["RentalAutorityGuid"];
                 res.IsShortTime = (bool)dr["IsShortTime"];
-                if(dr["IsOwnerHere"]!=DBNull.Value) res.IsOwnerHere = (bool)dr["IsOwnerHere"];
+                if (dr["IsOwnerHere"] != DBNull.Value) res.IsOwnerHere = (bool)dr["IsOwnerHere"];
                 res.PishTotalPrice = (decimal)dr["PishTotalPrice"];
                 res.PishPrice = (decimal)dr["PishPrice"];
                 if (dr["DeliveryDate"] != DBNull.Value) res.DeliveryDate = (DateTime?)dr["DeliveryDate"];
@@ -383,6 +384,7 @@ namespace EntityCache.SqlServerPersistence
                 res.MetrazhKouche = (float)dr["MetrazhKouche"];
                 res.ErtefaSaqf = (float)dr["ErtefaSaqf"];
                 res.Hashie = (float)dr["Hashie"];
+                if (dr["Lenght"] != DBNull.Value) res.Lenght = (float)dr["Lenght"];
                 res.SaleSakht = dr["SaleSakht"].ToString();
                 res.DateParvane = dr["DateParvane"].ToString();
                 res.ParvaneSerial = dr["ParvaneSerial"].ToString();

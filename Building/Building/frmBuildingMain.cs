@@ -119,6 +119,7 @@ namespace Building.Building
                 txtMetrazhKouche.Text = cls?.MetrazhKouche.ToString();
                 txtErtrfaSaqf.Text = cls?.ErtefaSaqf.ToString();
                 txtHashie.Text = cls?.Hashie.ToString();
+                txtHeight.Text = cls?.Lenght.ToString();
                 txtMetrazhTejari.Text = cls?.MetrazhTejari.ToString();
                 chbIsBonBast.Checked = cls?.BonBast ?? false;
                 chbIsMamarJoda.Checked = cls?.MamarJoda ?? false;
@@ -752,6 +753,7 @@ namespace Building.Building
                 cls.VahedPerTabaqe = txtTedadVahed.Text.ParseToInt();
                 cls.MetrazhKouche = txtMetrazhKouche.Text.ParseTofloat();
                 cls.Hashie = txtHashie.Text.ParseTofloat();
+                cls.Lenght = txtHeight.Text.ParseTofloat();
                 cls.ErtefaSaqf = txtErtrfaSaqf.Text.ParseTofloat();
                 var oldDate = DateTime.Now.AddYears(-cmbSaleSakht.SelectedIndex);
                 cls.SaleSakht = Calendar.MiladiToShamsi(oldDate);
@@ -1196,6 +1198,7 @@ namespace Building.Building
         private async void btnFinish_Click(object sender, EventArgs e)
         {
             var res = new ReturnedSaveFuncInfo();
+            btnFinish.Enabled = false;
             try
             {
                 res.AddReturnedValue(await SaveAsync());
@@ -1230,6 +1233,7 @@ namespace Building.Building
             }
             finally
             {
+                btnFinish.Enabled = true;
                 if (res.HasError) this.ShowError(res, "خطا در ذخیره سازی ملک");
                 else
                 {

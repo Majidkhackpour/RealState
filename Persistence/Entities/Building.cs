@@ -74,6 +74,8 @@ namespace Persistence.Entities
         public float MetrazhKouche { get; set; }
         public float ErtefaSaqf { get; set; }
         public float Hashie { get; set; }
+        public float Lenght { get; set; }
+
         [MaxLength(30)]
         public string SaleSakht { get; set; }
         [MaxLength(30)]

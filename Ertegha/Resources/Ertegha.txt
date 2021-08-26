@@ -4634,7 +4634,7 @@ GO
 IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Building_Save]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
 	exec('Create Procedure [dbo].[sp_Building_Save]	As Begin print 11 end')  
 GO
-Alter PROCEDURE sp_Building_Save
+ALTER PROCEDURE [dbo].[sp_Building_Save]
 	@guid uniqueidentifier,
 	@modif datetime,
 	@st bit,
@@ -4695,7 +4695,8 @@ Alter PROCEDURE sp_Building_Save
 	@priority smallint,
 	@isArchive bit,
 	@serverSt smallint,
-	@serverDate datetime
+	@serverDate datetime,
+	@lenght real
 AS
 BEGIN
 	UPDATE [dbo].[Buildings]
@@ -4757,6 +4758,7 @@ BEGIN
 		  ,[IsArchive] = @isArchive
 		  ,[ServerStatus] = @serverSt
 		  ,[ServerDeliveryDate] = @serverDate
+		  ,[Lenght] = @lenght
 	 WHERE [Guid] = @guid
 	if @@ROWCOUNT = 0
 	begin
@@ -4821,7 +4823,8 @@ BEGIN
            ,[Priority]
            ,[IsArchive]
 		   ,[ServerStatus]
-		   ,[ServerDeliveryDate])
+		   ,[ServerDeliveryDate]
+		   ,[Lenght])
 		VALUES
            (@guid
            ,@modif
@@ -4883,7 +4886,8 @@ BEGIN
            ,@priority
            ,@isArchive
 		   ,@serverSt
-		   ,@serverDate)
+		   ,@serverDate
+		   ,@lenght)
 	end
 END
 GO

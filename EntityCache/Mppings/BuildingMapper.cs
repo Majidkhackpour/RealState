@@ -75,7 +75,8 @@ namespace EntityCache.Mppings
                 HardSerial = cls.HardSerial,
                 Image = cls.Image,
                 ServerStatus = cls.ServerStatus,
-                ServerDeliveryDate = cls.ServerDeliveryDate
+                ServerDeliveryDate = cls.ServerDeliveryDate,
+                Lenght = cls.Lenght
             };
         }
         public List<WebBuilding> MapList(List<BuildingBussines> cls)

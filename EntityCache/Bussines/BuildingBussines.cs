@@ -88,6 +88,7 @@ namespace EntityCache.Bussines
         public float MetrazhKouche { get; set; }
         public float ErtefaSaqf { get; set; }
         public float Hashie { get; set; }
+        public float Lenght { get; set; }
         public string SaleSakht { get; set; }
         public string DateParvane { get; set; }
         public string ParvaneSerial { get; set; }
