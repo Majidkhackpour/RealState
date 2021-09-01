@@ -3812,7 +3812,276 @@ namespace Advertise.Classes
                         //Description
                         web.Description = _driver.FindElement(By.ClassName("kt-description-row__text"))?.Text;
                         web.Number = await GetNumberAsync();
-                        
+
+                        //Images
+                        var imgElements = _driver.FindElements(By.TagName("img"));
+                        var imgList = new List<string>();
+                        foreach (var img in imgElements)
+                        {
+                            var src = img.GetAttribute("src");
+                            if (src.Contains("s100.divarcdn.com"))
+                                imgList.Add(src);
+                        }
+
+                        web.ImagesList = Json.ToStringJson(imgList);
+
+                        list.Add(web);
+                    }
+                    catch (Exception ex)
+                    {
+                        WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+
+            return list;
+        }
+        public async Task<List<WebScrapper>> GetAllBuyIndustrialAsync()
+        {
+            var list = new List<WebScrapper>();
+            try
+            {
+                var url = $"https://divar.ir/s/mashhad/buy-industrial-agricultural-property?user_type=personal";
+                var listDivar = GetDataFromUrl(url);
+                if (listDivar == null || listDivar.Count <= 0) return list;
+                foreach (var item in listDivar)
+                {
+                    if (item.listData == null || (item.listData[0].items?.Count ?? 0) <= 1) continue;
+                    try
+                    {
+                        var web = new WebScrapper
+                        {
+                            Masahat = item.listData[0].items[0].value.FixString().ParseToInt(),
+                            RahnPrice = 0,
+                            SaleSakht = item.listData[0].items[1].value.FixString(),
+                            State = "خراسان رضوی",
+                            City = "مشهد",
+                            Guid = Guid.NewGuid(),
+                            SellPrice = item.listData[1].value.FixString().Replace("٫", "").Replace("تومان", "")
+                                .ParseToDecimal(),
+                            Balcony = false,
+                            DateM = DateTime.Now,
+                            Type = AdvertiseType.Divar,
+                            TabaqeNo = 1,
+                            TabaqeCount = 1,
+                            Evelator = false,
+                            Parking = false,
+                            Store = false,
+                            RoomCount = item.listData[0].items.Count == 3
+                                ? item.listData[0].items[2].value.FixString().ParseToInt()
+                                : 0,
+                        };
+                        _driver.Navigate().GoToUrl(item.Url);
+
+                        //Title
+                        web.Title = _driver.FindElement(By.ClassName("kt-page-title__title--responsive-sized"))?.Text.FixString() ?? "";
+
+
+                        //Region
+                        var fullText = _driver.FindElement(By.ClassName("kt-page-title__subtitle"))?.Text;
+                        if (!string.IsNullOrEmpty(fullText))
+                        {
+                            var indexRemovedCity = fullText.IndexOf('،');
+                            var removedCity = fullText.Remove(0, indexRemovedCity + 1);
+                            var indexRemovedCat = removedCity.IndexOf('|');
+                            var regionName = removedCity.Remove(indexRemovedCat - 1,
+                                removedCity.Length - indexRemovedCat + 1);
+
+                            web.Region = regionName;
+
+
+                            //BuildingType
+                            var typeName = removedCity.Replace(regionName, "").Replace("اجاره", "")
+                                .Replace("|", "").Trim();
+
+                            web.BuildingType = typeName.Replace("فروش ", "");
+                        }
+
+                        //Description
+                        web.Description = _driver.FindElement(By.ClassName("kt-description-row__text"))?.Text;
+                        web.Number = await GetNumberAsync();
+
+                        //Images
+                        var imgElements = _driver.FindElements(By.TagName("img"));
+                        var imgList = new List<string>();
+                        foreach (var img in imgElements)
+                        {
+                            var src = img.GetAttribute("src");
+                            if (src.Contains("s100.divarcdn.com"))
+                                imgList.Add(src);
+                        }
+
+                        web.ImagesList = Json.ToStringJson(imgList);
+
+                        list.Add(web);
+                    }
+                    catch (Exception ex)
+                    {
+                        WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+
+            return list;
+        }
+
+        public async Task<List<WebScrapper>> GetAllContributionConstructionAsync()
+        {
+            var list = new List<WebScrapper>();
+            try
+            {
+                var url = $"https://divar.ir/s/mashhad/contribution-construction?user_type=personal";
+                var listDivar = GetDataFromUrl(url);
+                if (listDivar == null || listDivar.Count <= 0) return list;
+                foreach (var item in listDivar)
+                {
+                    if (item.listData == null || listDivar.Count <= 0) continue;
+                    try
+                    {
+                        var web = new WebScrapper
+                        {
+                            Masahat = 0,
+                            RahnPrice = 0,
+                            SaleSakht = "",
+                            State = "خراسان رضوی",
+                            City = "مشهد",
+                            Guid = Guid.NewGuid(),
+                            SellPrice = 0,
+                            Balcony = false,
+                            DateM = DateTime.Now,
+                            Type = AdvertiseType.Divar,
+                            TabaqeNo = 1,
+                            TabaqeCount = 1,
+                            Evelator = false,
+                            Parking = false,
+                            Store = false,
+                            RoomCount = 0,
+                        };
+                        _driver.Navigate().GoToUrl(item.Url);
+
+                        //Title
+                        web.Title = _driver.FindElement(By.ClassName("kt-page-title__title--responsive-sized"))?.Text.FixString() ?? "";
+
+                        //Region
+                        var fullText = _driver.FindElement(By.ClassName("kt-page-title__subtitle"))?.Text;
+                        if (!string.IsNullOrEmpty(fullText))
+                        {
+                            var indexRemovedCity = fullText.IndexOf('،');
+                            var removedCity = fullText.Remove(0, indexRemovedCity + 1);
+                            var indexRemovedCat = removedCity.IndexOf('|');
+                            var regionName = removedCity.Remove(indexRemovedCat - 1,
+                                removedCity.Length - indexRemovedCat + 1);
+
+                            web.Region = regionName;
+
+
+                            //BuildingType
+                            var typeName = removedCity.Replace(regionName, "").Replace("اجاره", "")
+                                .Replace("|", "").Trim();
+
+                            web.BuildingType = typeName.Replace("فروش ", "");
+                        }
+
+                        //Description
+                        web.Description = _driver.FindElement(By.ClassName("kt-description-row__text"))?.Text;
+                        web.Number = await GetNumberAsync();
+
+                        //Images
+                        var imgElements = _driver.FindElements(By.TagName("img"));
+                        var imgList = new List<string>();
+                        foreach (var img in imgElements)
+                        {
+                            var src = img.GetAttribute("src");
+                            if (src.Contains("s100.divarcdn.com"))
+                                imgList.Add(src);
+                        }
+
+                        web.ImagesList = Json.ToStringJson(imgList);
+
+                        list.Add(web);
+                    }
+                    catch (Exception ex)
+                    {
+                        WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+
+            return list;
+        }
+        public async Task<List<WebScrapper>> GetAllPreSellAsync()
+        {
+            var list = new List<WebScrapper>();
+            try
+            {
+                var url = $"https://divar.ir/s/mashhad/pre-sell-home?user_type=personal";
+                var listDivar = GetDataFromUrl(url);
+                if (listDivar == null || listDivar.Count <= 0) return list;
+                foreach (var item in listDivar)
+                {
+                    if (item.listData == null || listDivar.Count <= 0) continue;
+                    try
+                    {
+                        var web = new WebScrapper
+                        {
+                            Masahat = 0,
+                            RahnPrice = 0,
+                            SaleSakht = "",
+                            State = "خراسان رضوی",
+                            City = "مشهد",
+                            Guid = Guid.NewGuid(),
+                            SellPrice = 0,
+                            Balcony = false,
+                            DateM = DateTime.Now,
+                            Type = AdvertiseType.Divar,
+                            TabaqeNo = 1,
+                            TabaqeCount = 1,
+                            Evelator = false,
+                            Parking = false,
+                            Store = false,
+                            RoomCount = 0,
+                        };
+                        _driver.Navigate().GoToUrl(item.Url);
+
+                        //Title
+                        web.Title = _driver.FindElement(By.ClassName("kt-page-title__title--responsive-sized"))?.Text.FixString() ?? "";
+
+                        //Region
+                        var fullText = _driver.FindElement(By.ClassName("kt-page-title__subtitle"))?.Text;
+                        if (!string.IsNullOrEmpty(fullText))
+                        {
+                            var indexRemovedCity = fullText.IndexOf('،');
+                            var removedCity = fullText.Remove(0, indexRemovedCity + 1);
+                            var indexRemovedCat = removedCity.IndexOf('|');
+                            var regionName = removedCity.Remove(indexRemovedCat - 1,
+                                removedCity.Length - indexRemovedCat + 1);
+
+                            web.Region = regionName;
+
+
+                            //BuildingType
+                            var typeName = removedCity.Replace(regionName, "").Replace("اجاره", "")
+                                .Replace("|", "").Trim();
+
+                            web.BuildingType = typeName.Replace("فروش ", "");
+                        }
+
+                        //Description
+                        web.Description = _driver.FindElement(By.ClassName("kt-description-row__text"))?.Text;
+                        web.Number = await GetNumberAsync();
+
                         //Images
                         var imgElements = _driver.FindElements(By.TagName("img"));
                         var imgList = new List<string>();
