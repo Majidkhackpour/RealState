@@ -1,4 +1,5 @@
 ﻿using System;
+using Services;
 using Services.Interfaces.Department;
 
 namespace WebHesabBussines
@@ -6,6 +7,7 @@ namespace WebHesabBussines
     public class WebScrapper : IScrapper
     {
         public Guid Guid { get; set; }
+        public DateTime DateM { get; set; } = DateTime.Now;
         public string Title { get; set; } = "";
         public string State { get; set; } = "";
         public string City { get; set; } = "";
@@ -29,5 +31,6 @@ namespace WebHesabBussines
         public int VahedPerTabaqe { get; set; } = 0;
         public string BuildingSide { get; set; } = "";
         public string ImagesList { get; set; } = "";
+        public AdvertiseType Type { get; set; }
     }
 }
