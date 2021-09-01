@@ -2577,20 +2577,24 @@ namespace Advertise.Classes
                 list = JsonConvert.DeserializeObject<List<Divar>>(text);
                 foreach (var divar in list)
                 {
-                    var newDoc = web.Load(divar.Url);
-                    var o_ = newDoc.DocumentNode.SelectNodes("/html[1]/body[1]/script[1]")?.FirstOrDefault();
-                    if (o_ == null) continue;
-                    var text_ = o_.InnerText.Replace(@"\", "").Replace("window.production = true;", "")
-                        .Replace("window.__PRELOADED_STATE__ = \"{", "{")
-                        .Replace(",\"PERFORMANCE_MONITOR_RULE\":\"[0۰]$\"}\";", "}");
-                    var index = text_.IndexOf("  window.env");
-                    text_ = text_.Remove(index - 3);
-                    index = text_.IndexOf(",\"exitLinkWarn");
-                    var index2 = text_.IndexOf("u003Cu002Fau003Eu003Cu002Fpu003E\"");
-                    text_ = text_.Remove(index, index2 - index).Replace("u003Cu002Fau003Eu003Cu002Fpu003E\"", "");
-                    var root = JObject.Parse(text_);
-                    var guestValues = root["currentPost"]["post"]["widgets"]["listData"];
-                    divar.listData = JsonConvert.DeserializeObject<List<ListData>>(guestValues.ToString());
+                    try
+                    {
+                        var newDoc = web.Load(divar.Url);
+                        var o_ = newDoc.DocumentNode.SelectNodes("/html[1]/body[1]/script[1]")?.FirstOrDefault();
+                        if (o_ == null) continue;
+                        var text_ = o_.InnerText.Replace(@"\", "").Replace("window.production = true;", "")
+                            .Replace("window.__PRELOADED_STATE__ = \"{", "{")
+                            .Replace(",\"PERFORMANCE_MONITOR_RULE\":\"[0۰]$\"}\";", "}");
+                        var index = text_.IndexOf("  window.env");
+                        text_ = text_.Remove(index - 3);
+                        index = text_.IndexOf(",\"exitLinkWarn");
+                        var index2 = text_.IndexOf("u003Cu002Fau003Eu003Cu002Fpu003E\"");
+                        text_ = text_.Remove(index, index2 - index).Replace("u003Cu002Fau003Eu003Cu002Fpu003E\"", "");
+                        var root = JObject.Parse(text_);
+                        var guestValues = root["currentPost"]["post"]["widgets"]["listData"];
+                        divar.listData = JsonConvert.DeserializeObject<List<ListData>>(guestValues.ToString());
+                    }
+                    catch { }
                 }
             }
             catch (Exception ex)
@@ -2784,6 +2788,7 @@ namespace Advertise.Classes
                         WebErrorLog.ErrorInstence.StartErrorLog(ex);
                     }
                 }
+                _driver.Navigate().GoToUrl("https://divar.ir");
             }
             catch (Exception ex)
             {
@@ -2920,6 +2925,7 @@ namespace Advertise.Classes
                         WebErrorLog.ErrorInstence.StartErrorLog(ex);
                     }
                 }
+                _driver.Navigate().GoToUrl("https://divar.ir");
             }
             catch (Exception ex)
             {
@@ -3068,6 +3074,7 @@ namespace Advertise.Classes
                         WebErrorLog.ErrorInstence.StartErrorLog(ex);
                     }
                 }
+                _driver.Navigate().GoToUrl("https://divar.ir");
             }
             catch (Exception ex)
             {
@@ -3158,6 +3165,7 @@ namespace Advertise.Classes
                         WebErrorLog.ErrorInstence.StartErrorLog(ex);
                     }
                 }
+                _driver.Navigate().GoToUrl("https://divar.ir");
             }
             catch (Exception ex)
             {
@@ -3249,6 +3257,7 @@ namespace Advertise.Classes
                         WebErrorLog.ErrorInstence.StartErrorLog(ex);
                     }
                 }
+                _driver.Navigate().GoToUrl("https://divar.ir");
             }
             catch (Exception ex)
             {
@@ -3396,6 +3405,7 @@ namespace Advertise.Classes
                         WebErrorLog.ErrorInstence.StartErrorLog(ex);
                     }
                 }
+                _driver.Navigate().GoToUrl("https://divar.ir");
             }
             catch (Exception ex)
             {
@@ -3515,6 +3525,7 @@ namespace Advertise.Classes
                         WebErrorLog.ErrorInstence.StartErrorLog(ex);
                     }
                 }
+                _driver.Navigate().GoToUrl("https://divar.ir");
             }
             catch (Exception ex)
             {
@@ -3605,6 +3616,7 @@ namespace Advertise.Classes
                         WebErrorLog.ErrorInstence.StartErrorLog(ex);
                     }
                 }
+                _driver.Navigate().GoToUrl("https://divar.ir");
             }
             catch (Exception ex)
             {
@@ -3741,6 +3753,7 @@ namespace Advertise.Classes
                         WebErrorLog.ErrorInstence.StartErrorLog(ex);
                     }
                 }
+                _driver.Navigate().GoToUrl("https://divar.ir");
             }
             catch (Exception ex)
             {
@@ -3832,6 +3845,7 @@ namespace Advertise.Classes
                         WebErrorLog.ErrorInstence.StartErrorLog(ex);
                     }
                 }
+                _driver.Navigate().GoToUrl("https://divar.ir");
             }
             catch (Exception ex)
             {
@@ -3924,6 +3938,7 @@ namespace Advertise.Classes
                         WebErrorLog.ErrorInstence.StartErrorLog(ex);
                     }
                 }
+                _driver.Navigate().GoToUrl("https://divar.ir");
             }
             catch (Exception ex)
             {
@@ -4013,6 +4028,7 @@ namespace Advertise.Classes
                         WebErrorLog.ErrorInstence.StartErrorLog(ex);
                     }
                 }
+                _driver.Navigate().GoToUrl("https://divar.ir");
             }
             catch (Exception ex)
             {
@@ -4101,6 +4117,7 @@ namespace Advertise.Classes
                         WebErrorLog.ErrorInstence.StartErrorLog(ex);
                     }
                 }
+                _driver.Navigate().GoToUrl("https://divar.ir");
             }
             catch (Exception ex)
             {
