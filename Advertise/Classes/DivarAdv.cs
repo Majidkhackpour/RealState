@@ -2618,7 +2618,18 @@ namespace Advertise.Classes
                 if (a != null)
                     _driver.FindElements(By.ClassName("kt-button"))
                         .FirstOrDefault(q => q.Text == "با قوانین دیوار موافقم")?.Click();
-                await Utility.Wait(2);
+                await Utility.Wait(3);
+
+                var block = _driver.FindElements(By.TagName("p")).Any(q =>
+                    q.Text == "دسترسی شما به اطلاعات تماس آگهی‌های دیوار موقتاً محدود شده است.");
+
+                if (block)
+                {
+                    _driver.FindElements(By.ClassName("no-pointer-event"))?.FirstOrDefault(q => q.Text == "باشه")
+                        ?.Click();
+                    return "";
+                }
+
                 var num = _driver.FindElements(By.ClassName("kt-unexpandable-row__action"))?.FirstOrDefault().Text.FixString();
                 if (num != "(پنهان‌شده؛ چت کنید)")
                 {
