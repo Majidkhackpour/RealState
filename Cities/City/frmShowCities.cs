@@ -44,6 +44,7 @@ namespace Cities.City
             {
                 _token?.Cancel();
                 _token = new CancellationTokenSource();
+                if (cmbState.SelectedValue == null) return;
                 var list = await CitiesBussines.GetAllAsync(search, (Guid)cmbState.SelectedValue, _token.Token);
                 Invoke(new MethodInvoker(() =>
                 {

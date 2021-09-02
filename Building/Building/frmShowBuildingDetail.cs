@@ -3,6 +3,7 @@ using MetroFramework.Forms;
 using Services;
 using System;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using WindowsSerivces;
 
 namespace Building.Building
@@ -105,6 +106,46 @@ namespace Building.Building
                 lblSide.Text = bu.Side.GetDisplay();
                 lblSaleSakht.Text = bu.SaleSakht;
                 lblAddress.Text = bu.Address;
+
+                lblBuildingType.Text = bu.BuildingTypeName;
+                lblAccountType.Text = bu.BuildingAccountTypeName;
+                lblView.Text = bu.BuildingViewName;
+                lblFloorCover.Text = bu.FloorCoverName;
+                lblKitchenService.Text = bu.KitchenServiceName;
+                lblDesc.Text = bu.ShortDesc;
+
+                lblWater.Text = bu.WaterName;
+                lblBarq.Text = bu.BarqName;
+                lblGas.Text = bu.GasName;
+                lblTell.Text = bu.TellName;
+                lblTabaqeNo.Text = bu.TabaqeNo.ToString();
+                lblVahedPerTabaqe.Text = bu.VahedPerTabaqe.ToString();
+                lblTabaqeCount.Text = bu.TedadTabaqe.ToString();
+                lblRoomCount.Text = bu.RoomCount.ToString();
+                if (bu.OptionList != null && bu.OptionList.Count > 0)
+                {
+                    var msg = "";
+                    foreach (var item in bu.OptionList)
+                    {
+                        if (item == null || string.IsNullOrEmpty(item.OptionName)) continue;
+                        msg += $"{item.OptionName} , ";
+                    }
+
+                    lblOptions.Text = msg;
+                }
+
+                lblMetrazhKuche.Text = bu.MetrazhKouche.ToString();
+                lblErtefaSaqf.Text = bu.ErtefaSaqf.ToString();
+                lblHashie.Text = bu.Hashie.ToString();
+                lblHieght.Text = bu.Lenght.ToString();
+                lblTejari.Text = bu.MetrazhTejari.ToString();
+                lblBonBast.Text = bu.BonBast ? "بله" : "خیر";
+                lblMamar.Text = bu.MamarJoda ? "بله" : "خیر";
+
+                if (bu.Masahat > 0)
+                    lblPricePerMetr.Text = (lblSellPrice.Text.ParseToDecimal() / bu.Masahat).ToString("N0");
+                if (bu.ZirBana > 0)
+                    lblPricePerZirBana.Text = (lblSellPrice.Text.ParseToDecimal() / bu.ZirBana).ToString("N0");
             }
             catch (Exception ex)
             {
@@ -119,5 +160,9 @@ namespace Building.Building
         }
 
         private async void frmShowBuildingDetail_Load(object sender, System.EventArgs e) => await SetDataAsync();
+        private void frmShowBuildingDetail_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape) Close();
+        }
     }
 }

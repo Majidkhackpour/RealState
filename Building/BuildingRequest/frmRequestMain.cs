@@ -323,7 +323,7 @@ namespace Building.BuildingRequest
             InitializeComponent();
             cls = BuildingRequestBussines.Get(guid);
             asker = PeoplesBussines.Get(cls.AskerGuid);
-            ucHeader.Text = !isShowMode ? $"ویرایش تقاضای {cls.AskerName}" : $"مشاهده تقاضای {cls.AskerGuid}";
+            ucHeader.Text = !isShowMode ? $"ویرایش تقاضای {cls.AskerName}" : $"مشاهده تقاضای {cls.AskerName}";
             ucHeader.IsModified = cls.IsModified;
             superTabControlPanel1.Enabled = !isShowMode;
             superTabControlPanel2.Enabled = !isShowMode;

@@ -287,7 +287,7 @@ namespace EntityCache.SqlServerPersistence
                     while (dr.Read())
                     {
                         if (token.IsCancellationRequested) return null;
-                        list.Add(LoadData(dr, false));
+                        list.Add(LoadData(dr, true));
                     }
                     dr.Close();
                     cn.Close();

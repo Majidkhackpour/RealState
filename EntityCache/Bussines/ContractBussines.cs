@@ -213,10 +213,19 @@ namespace EntityCache.Bussines
         }
         public static async Task<List<BuildingDischargeViewModel>> DischargeListAsync()
         {
-            var d1 = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, 0, 0);
-            var d2 = new DateTime(DateTime.Now.Year, DateTime.Now.Month + 1, DateTime.Now.Day, 23, 59, 59);
+            try
+            {
+                var nextMounth = DateTime.Now.AddMonths(1);
+                var d1 = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, 0, 0);
+                var d2 = new DateTime(nextMounth.Year, nextMounth.Month + 1, nextMounth.Day, 23, 59, 59);
 
-            return await UnitOfWork.Contract.DischargeListAsync(Cache.ConnectionString, d1, d2);
+                return await UnitOfWork.Contract.DischargeListAsync(Cache.ConnectionString, d1, d2);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                return null;
+            }
         }
         public static async Task<decimal> GetTotalBazaryabAsync(DateTime d1, DateTime d2) =>
             await UnitOfWork.Contract.GetTotalBazaryab(Cache.ConnectionString, d1, d2);

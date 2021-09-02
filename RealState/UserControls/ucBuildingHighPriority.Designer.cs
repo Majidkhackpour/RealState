@@ -29,6 +29,7 @@ namespace RealState.UserControls
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.groupPanel67 = new DevComponents.DotNetBar.Controls.GroupPanel();
             this.lblOwner = new System.Windows.Forms.Label();
             this.lblRegion = new System.Windows.Forms.Label();
@@ -36,7 +37,11 @@ namespace RealState.UserControls
             this.lblMasahat = new System.Windows.Forms.Label();
             this.lblCreateDate = new System.Windows.Forms.Label();
             this.lblCode = new System.Windows.Forms.Label();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.mnuEditMode = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuViewMode = new System.Windows.Forms.ToolStripMenuItem();
             this.groupPanel67.SuspendLayout();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupPanel67
@@ -153,6 +158,31 @@ namespace RealState.UserControls
             this.lblCode.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.lblCode.Click += new System.EventHandler(this.lblCode_Click);
             // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnuEditMode,
+            this.mnuViewMode});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 74);
+            // 
+            // mnuEditMode
+            // 
+            this.mnuEditMode.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.mnuEditMode.Name = "mnuEditMode";
+            this.mnuEditMode.Size = new System.Drawing.Size(180, 24);
+            this.mnuEditMode.Text = "حالت ویرایش";
+            this.mnuEditMode.Click += new System.EventHandler(this.mnuEditMode_Click);
+            // 
+            // mnuViewMode
+            // 
+            this.mnuViewMode.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.mnuViewMode.Name = "mnuViewMode";
+            this.mnuViewMode.Size = new System.Drawing.Size(180, 24);
+            this.mnuViewMode.Text = "مشاهده ریز اطلاعات";
+            this.mnuViewMode.Click += new System.EventHandler(this.mnuViewMode_Click);
+            // 
             // ucBuildingHighPriority
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -165,6 +195,7 @@ namespace RealState.UserControls
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.Size = new System.Drawing.Size(853, 35);
             this.groupPanel67.ResumeLayout(false);
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -178,5 +209,8 @@ namespace RealState.UserControls
         private System.Windows.Forms.Label lblRegion;
         private System.Windows.Forms.Label lblType;
         private System.Windows.Forms.Label lblMasahat;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem mnuEditMode;
+        private System.Windows.Forms.ToolStripMenuItem mnuViewMode;
     }
 }

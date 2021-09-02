@@ -28,7 +28,30 @@ namespace RealState.UserControls
         {
             try
             {
+                contextMenuStrip1.Show(Cursor.Position.X, Cursor.Position.Y);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private void mnuEditMode_Click(object sender, EventArgs e)
+        {
+            try
+            {
                 var frm = new frmBuildingMain(_bu.Guid, false);
+                frm.ShowDialog(this);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private void mnuViewMode_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var frm = new frmShowBuildingDetail(_bu);
                 frm.ShowDialog(this);
             }
             catch (Exception ex)
