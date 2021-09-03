@@ -89,6 +89,11 @@ namespace Persistence.Entities
         public bool IsArchive { get; set; }
         [MaxLength(100)]
         public string Image { get; set; }
+        public int TelegramCount { get; set; }
+        public int DivarCount { get; set; }
+        public int SheypoorCount { get; set; }
+        public AdvertiseType? AdvertiseType { get; set; }
+        public string DivarTitle { get; set; }
         public virtual Peoples Owner { get; set; }
         public virtual Users User { get; set; }
         public virtual RentalAuthority Rental { get; set; }

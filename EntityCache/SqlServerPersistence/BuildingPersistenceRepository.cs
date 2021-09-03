@@ -110,6 +110,12 @@ namespace EntityCache.SqlServerPersistence
                 cmd.Parameters.AddWithValue("@serverSt", (short)item.ServerStatus);
                 cmd.Parameters.AddWithValue("@serverDate", item.ServerDeliveryDate);
                 cmd.Parameters.AddWithValue("@lenght", item.Lenght);
+                cmd.Parameters.AddWithValue("@telegramCount", item.TelegramCount);
+                cmd.Parameters.AddWithValue("@divarCount", item.DivarCount);
+                cmd.Parameters.AddWithValue("@sheypoorCount", item.SheypoorCount);
+                if (item.AdvertiseType != null)
+                    cmd.Parameters.AddWithValue("@advType", (short)item.AdvertiseType);
+                cmd.Parameters.AddWithValue("@divarTitle", item.DivarTitle ?? "");
 
                 await cmd.ExecuteNonQueryAsync();
             }
@@ -416,6 +422,11 @@ namespace EntityCache.SqlServerPersistence
                 res.KitchenServiceName = dr["KitchenServiceName"].ToString();
                 res.BuildingAccountTypeName = dr["BuildingAccountTypeName"].ToString();
                 res.IsModified = true;
+                if (dr["TelegramCount"] != DBNull.Value) res.TelegramCount = (int)dr["TelegramCount"];
+                if (dr["DivarCount"] != DBNull.Value) res.DivarCount = (int)dr["DivarCount"];
+                if (dr["SheypoorCount"] != DBNull.Value) res.SheypoorCount = (int)dr["SheypoorCount"];
+                if (dr["AdvertiseType"] != DBNull.Value) res.AdvertiseType = (AdvertiseType)dr["AdvertiseType"];
+                if (dr["DivarTitle"] != DBNull.Value) res.DivarTitle = dr["DivarTitle"].ToString();
             }
             catch (Exception ex)
             {

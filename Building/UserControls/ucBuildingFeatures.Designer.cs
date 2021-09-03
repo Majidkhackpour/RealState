@@ -46,6 +46,7 @@ namespace Building
             this.lblTell3 = new System.Windows.Forms.Label();
             this.lblNatCode = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.lblTelegramCount = new System.Windows.Forms.Label();
             this.grpPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -59,6 +60,7 @@ namespace Building
             this.grpPanel.Controls.Add(this.lblTarakom);
             this.grpPanel.Controls.Add(this.lblMamarJoda);
             this.grpPanel.Controls.Add(this.lblAllTabaqe);
+            this.grpPanel.Controls.Add(this.lblTelegramCount);
             this.grpPanel.Controls.Add(this.lblMediaCount);
             this.grpPanel.Controls.Add(this.lblVahedPerTabaqe);
             this.grpPanel.Controls.Add(this.lblDong);
@@ -73,7 +75,7 @@ namespace Building
             this.grpPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.grpPanel.Location = new System.Drawing.Point(0, 0);
             this.grpPanel.Name = "grpPanel";
-            this.grpPanel.Size = new System.Drawing.Size(473, 206);
+            this.grpPanel.Size = new System.Drawing.Size(473, 222);
             // 
             // 
             // 
@@ -273,6 +275,16 @@ namespace Building
             this.label1.Text = "مشخصات مالک";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // lblTelegramCount
+            // 
+            this.lblTelegramCount.ForeColor = System.Drawing.Color.White;
+            this.lblTelegramCount.Location = new System.Drawing.Point(10, 201);
+            this.lblTelegramCount.Name = "lblTelegramCount";
+            this.lblTelegramCount.Size = new System.Drawing.Size(156, 21);
+            this.lblTelegramCount.TabIndex = 55744;
+            this.lblTelegramCount.Text = "label2";
+            this.lblTelegramCount.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // ucBuildingFeatures
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -283,7 +295,7 @@ namespace Building
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "ucBuildingFeatures";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.Size = new System.Drawing.Size(473, 206);
+            this.Size = new System.Drawing.Size(473, 222);
             this.grpPanel.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -308,5 +320,6 @@ namespace Building
         private System.Windows.Forms.Label lblMediaCount;
         private System.Windows.Forms.Label lblVahedPerTabaqe;
         private System.Windows.Forms.Label lblDong;
+        private System.Windows.Forms.Label lblTelegramCount;
     }
 }

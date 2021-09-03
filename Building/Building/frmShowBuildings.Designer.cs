@@ -624,7 +624,7 @@
             this.مدیریتستونهاToolStripMenuItem});
             this.contextMenu.Name = "contextMenu";
             this.contextMenu.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.contextMenu.Size = new System.Drawing.Size(246, 422);
+            this.contextMenu.Size = new System.Drawing.Size(246, 400);
             // 
             // mnuAdd
             // 
@@ -1458,7 +1458,7 @@
             this.ucFeatures.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ucFeatures.Name = "ucFeatures";
             this.ucFeatures.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.ucFeatures.Size = new System.Drawing.Size(469, 202);
+            this.ucFeatures.Size = new System.Drawing.Size(469, 225);
             this.ucFeatures.TabIndex = 55776;
             // 
             // frmShowBuildings

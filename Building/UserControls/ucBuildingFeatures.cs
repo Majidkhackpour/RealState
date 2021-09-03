@@ -29,6 +29,7 @@ namespace Building
                     lblMamarJoda.Text = $@"ورودی جدا: {(_bu.MamarJoda ? "بله" : "خیر")}";
                     lblPicCount.Text = $@"تعداد تصاویر: {_bu.GalleryList?.Count ?? 0}";
                     lblMediaCount.Text = $@"تعداد مدیا: {_bu.MediaList?.Count ?? 0}";
+                    lblTelegramCount.Text = $@"ارسال به تلگرام: {_bu.TelegramCount}";
 
 
                     lblTell1.Text = "";

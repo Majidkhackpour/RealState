@@ -387,7 +387,7 @@ namespace Building.Building
                         var loc = DGrid.GetCellDisplayRectangle(dgRoomCount.Index, DGrid.CurrentRow.Index, false);
                         if (token.IsCancellationRequested) return;
                         var wid = dgCode.Width;
-                        ucFeatures.Size = new Size(469, 202);
+                        ucFeatures.Size = new Size(469, 222);
                         var p = new Point(loc.X + wid, loc.Y - ucFeatures.Height);
                         if (token.IsCancellationRequested) return;
                         if (p.Y < DGrid.Top) p.Y += ucFeatures.Height + 120;
@@ -528,6 +528,7 @@ namespace Building.Building
             var res = new ReturnedSaveFuncInfo();
             try
             {
+                return;
                 if (DGrid.RowCount <= 0) return;
                 if (DGrid.CurrentRow == null) return;
                 var simList = new List<SimcardBussines>();
@@ -565,6 +566,7 @@ namespace Building.Building
             var res = new ReturnedSaveFuncInfo();
             try
             {
+                return;
                 if (DGrid.RowCount <= 0) return;
                 if (DGrid.CurrentRow == null) return;
                 var simList = new List<SimcardBussines>();
@@ -1482,8 +1484,8 @@ namespace Building.Building
                         Channel = clsTelegram.Channel
                     };
                     await telegram.SaveAsync();
-                    //bu.TelegramSendCount+=1;
-                    //await bu.SaveAsync();
+                    bu.TelegramCount += 1;
+                    await bu.SaveAsync();
                     this.ShowMessage("فایل مورد نظر به تلگرام ارسال شد");
                 }
 
@@ -1675,7 +1677,7 @@ namespace Building.Building
                         type = type.Replace("\r", "");
                         type = type.Replace(Replacor.TelegramBuilding.TabaqeNo, bu.TabaqeNo.ToString());
                         if (bu.TabaqeNo == 0)
-                            type.Replace(Replacor.TelegramBuilding.TabaqeNo, "همکف");
+                            list[index] = type.Replace("0", "همکف");
                         else
                             list[index] = type;
                     }

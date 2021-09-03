@@ -76,6 +76,11 @@ namespace WebHesabBussines
         public EnBuildingPriority Priority { get; set; }
         public bool IsArchive { get; set; }
         public string Image { get; set; }
+        public int TelegramCount { get; set; }
+        public int DivarCount { get; set; }
+        public int SheypoorCount { get; set; }
+        public AdvertiseType? AdvertiseType { get; set; }
+        public string DivarTitle { get; set; }
         public string HardSerial { get; set; }
         public List<WebBuildingRelatedOptions> OptionList { get; set; }
 

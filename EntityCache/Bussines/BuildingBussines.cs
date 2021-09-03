@@ -99,6 +99,11 @@ namespace EntityCache.Bussines
         public bool IsArchive { get; set; }
         public string HardSerial => Cache.HardSerial;
         public string Image { get; set; }
+        public int TelegramCount { get; set; }
+        public int DivarCount { get; set; }
+        public int SheypoorCount { get; set; }
+        public AdvertiseType? AdvertiseType { get; set; } = null;
+        public string DivarTitle { get; set; } = "";
         public bool IsModified { get; set; } = false;
         public List<BuildingRelatedOptionsBussines> OptionList { get; set; }
         public List<BuildingGalleryBussines> GalleryList { get; set; }

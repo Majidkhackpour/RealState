@@ -4720,7 +4720,12 @@ ALTER PROCEDURE [dbo].[sp_Building_Save]
 	@isArchive bit,
 	@serverSt smallint,
 	@serverDate datetime,
-	@lenght real
+	@lenght real,
+	@telegramCount int,
+	@divarCount int,
+	@sheypoorCount int,
+	@advType smallint=null,
+	@divarTitle nvarchar(500)=''
 AS
 BEGIN
 	UPDATE [dbo].[Buildings]
@@ -4783,6 +4788,11 @@ BEGIN
 		  ,[ServerStatus] = @serverSt
 		  ,[ServerDeliveryDate] = @serverDate
 		  ,[Lenght] = @lenght
+		  ,[TelegramCount] = @telegramCount
+		  ,[DivarCount] = @divarCount
+		  ,[SheypoorCount] = @sheypoorCount
+		  ,[AdvertiseType] = @advType
+		  ,[DivarTitle] = @divarTitle
 	 WHERE [Guid] = @guid
 	if @@ROWCOUNT = 0
 	begin
@@ -4848,7 +4858,12 @@ BEGIN
            ,[IsArchive]
 		   ,[ServerStatus]
 		   ,[ServerDeliveryDate]
-		   ,[Lenght])
+		   ,[Lenght]
+		   ,[TelegramCount]
+		   ,[DivarCount]
+		   ,[SheypoorCount]
+		   ,[AdvertiseType]
+		   ,[DivarTitle])
 		VALUES
            (@guid
            ,@modif
@@ -4911,7 +4926,12 @@ BEGIN
            ,@isArchive
 		   ,@serverSt
 		   ,@serverDate
-		   ,@lenght)
+		   ,@lenght
+		   ,@telegramCount
+		   ,@divarCount
+		   ,@sheypoorCount
+		   ,@advType
+		   ,@divarTitle)
 	end
 END
 GO
