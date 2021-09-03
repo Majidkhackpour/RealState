@@ -31,7 +31,6 @@ namespace Building.Building
 
                 Invoke(new MethodInvoker(() =>
                 {
-                    chbSystem.Checked = true;
                     cmbRahn1.SelectedIndex = 0;
                     cmbRahn2.SelectedIndex = 0;
                     cmbEjare1.SelectedIndex = 0;
@@ -143,30 +142,12 @@ namespace Building.Building
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void SetAccess()
-        {
-            try
-            {
-                var access = UserBussines.CurrentUser.UserAccess;
-
-                chbDivar.Visible = VersionAccess.Advertise;
-
-                chbDivar.Enabled = access?.BuildingSearch.Building_Search_Divar ?? false;
-                chbSystem.Enabled = access?.BuildingSearch.Building_Search_System ?? false;
-                //chbSheypoor.Enabled = access?.BuildingSearch.Building_Search_Sheypoor ?? false;
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
 
         public frmFilterForm()
         {
             InitializeComponent();
             ucHeader.Text = "فیلتر جستجوی ملک";
             Task.Run(SetDataAsync);
-            SetAccess();
         }
         public frmFilterForm(EnRequestType type, Guid buildingType, Guid accountType, int roomCount, int fMasahat,
             int sMasahat, decimal fPrice1, decimal sPrice1, decimal fPrice2, decimal sPrice2, List<Guid> regList)
@@ -185,7 +166,6 @@ namespace Building.Building
             SecondPrice1 = sPrice1;
             FirstPrice2 = fPrice2;
             SecondPrice2 = sPrice2;
-            SetAccess();
             btnRegion.Enabled = false;
         }
 
@@ -210,13 +190,6 @@ namespace Building.Building
                         cmbEjare1.Visible = cmbEjare2.Visible = false;
                         lblFPrice1.Text = "مبلغ از";
                     }
-
-                    if (cmbReqType.SelectedIndex > 1)
-                    {
-                        chbDivar.Enabled = false;
-                        chbDivar.Checked = false;
-                    }
-                    else chbDivar.Enabled = true;
                 }));
             }
             catch (Exception ex)
@@ -261,40 +234,36 @@ namespace Building.Building
                 if (cmbEjare2.SelectedIndex == 2)
                     sPrice2 = txtSPrice2.Text.ParseToDecimal() * 10000000000;
 
-                if (chbSystem.Checked)
-                {
-                    _token?.Cancel();
-                    _token = new CancellationTokenSource();
-                    list.AddRange(await BuildingBussines.GetAllAsync(txtCode.Text, _token.Token,
-                        (Guid)cmbBuildingType.SelectedValue,
-                        (Guid)cmbBuildingAccountType.SelectedValue, txtFMasahat.Text.ParseToInt(),
-                        txtSMasahat.Text.ParseToInt(), txtRoomCount.Text.ParseToInt(), fPrice1, fPrice2,
-                        sPrice1, sPrice2,
-                        (EnRequestType)cmbReqType.SelectedIndex, RegionList));
-                }
+                _token?.Cancel();
+                _token = new CancellationTokenSource();
+                list.AddRange(await BuildingBussines.GetAllAsync(txtCode.Text, _token.Token,
+                    (Guid)cmbBuildingType.SelectedValue,
+                    (Guid)cmbBuildingAccountType.SelectedValue, txtFMasahat.Text.ParseToInt(),
+                    txtSMasahat.Text.ParseToInt(), txtRoomCount.Text.ParseToInt(), fPrice1, fPrice2,
+                    sPrice1, sPrice2,
+                    (EnRequestType)cmbReqType.SelectedIndex, RegionList));
+                //if (chbDivar.Checked)
+                //{
+                //    var list_ = new List<string>();
+                //    foreach (var item in RegionList)
+                //    {
+                //        var related = await AdvertiseRelatedRegionBussines.GetByRegionGuidAsync(item);
+                //        if (related != null)
+                //        {
+                //            list_.Add(related.OnlineRegionName);
+                //            continue;
+                //        }
 
-                if (chbDivar.Checked)
-                {
-                    var list_ = new List<string>();
-                    foreach (var item in RegionList)
-                    {
-                        var related = await AdvertiseRelatedRegionBussines.GetByRegionGuidAsync(item);
-                        if (related != null)
-                        {
-                            list_.Add(related.OnlineRegionName);
-                            continue;
-                        }
+                //        var region = await RegionsBussines.GetAsync(item);
+                //        if (region != null) list_.Add(region.Name);
+                //    }
 
-                        var region = await RegionsBussines.GetAsync(item);
-                        if (region != null) list_.Add(region.Name);
-                    }
-
-                    list_ = list_.GroupBy(q => q).Select(q => q.Key).ToList();
-                    var divar = DivarAdv.GetInstance();
-                    list.AddRange(await divar.GetBuildingAsync((EnRequestType)cmbReqType.SelectedIndex, fPrice1,
-                        sPrice1, fPrice2, sPrice2, txtFMasahat.Text.ParseToInt(),
-                        txtSMasahat.Text.ParseToInt(), (int)txtMaxFile.Value, list_));
-                }
+                //    list_ = list_.GroupBy(q => q).Select(q => q.Key).ToList();
+                //    var divar = DivarAdv.GetInstance();
+                //    list.AddRange(await divar.GetBuildingAsync((EnRequestType)cmbReqType.SelectedIndex, fPrice1,
+                //        sPrice1, fPrice2, sPrice2, txtFMasahat.Text.ParseToInt(),
+                //        txtSMasahat.Text.ParseToInt(), (int)txtMaxFile.Value, list_));
+                //}
 
                 list = list?.OrderByDescending(q => q.CreateDate)?.Take((int)txtMaxFile.Value)?.ToList();
                 var frm = new frmBuildingAdvanceSearch(list);

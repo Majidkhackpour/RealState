@@ -408,8 +408,7 @@ namespace Settings
         => SetDataInTxt((ButtonX)sender, txtText);
         private void btnRoomCount_Click(object sender, EventArgs e)
         => SetDataInTxt((ButtonX)sender, txtText);
-        private void btnSaleSakht_Click(object sender, EventArgs e)
-        => SetDataInTxt((ButtonX)sender, txtText);
+        private void btnSaleSakht_Click(object sender, EventArgs e) => SetDataInTxt((ButtonX)sender, txtText);
         private void btnTejari_Click(object sender, EventArgs e)
         => SetDataInTxt((ButtonX)sender, txtText);
         private void btnChannel_Click(object sender, EventArgs e)
@@ -548,5 +547,8 @@ namespace Settings
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
+        private void btnAddress_Click(object sender, EventArgs e) => SetDataInTxt((ButtonX)sender, txtText);
+        private void btnTell_Click(object sender, EventArgs e) => SetDataInTxt((ButtonX)sender, txtText);
+        private void btnMobile_Click(object sender, EventArgs e) => SetDataInTxt((ButtonX)sender, txtText);
     }
 }

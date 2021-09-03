@@ -169,6 +169,9 @@
             this.label1 = new System.Windows.Forms.Label();
             this.superTabItem5 = new DevComponents.DotNetBar.SuperTabItem();
             this.btnFinish = new DevComponents.DotNetBar.ButtonX();
+            this.btnAddress = new DevComponents.DotNetBar.ButtonX();
+            this.btnTell = new DevComponents.DotNetBar.ButtonX();
+            this.btnMobile = new DevComponents.DotNetBar.ButtonX();
             ((System.ComponentModel.ISupportInitialize)(this.superTabControl1)).BeginInit();
             this.superTabControl1.SuspendLayout();
             this.superTabControlPanel2.SuspendLayout();
@@ -228,10 +231,10 @@
             this.superTabControl1.ControlBox.SubItems.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.superTabControl1.ControlBox.MenuBox,
             this.superTabControl1.ControlBox.CloseBox});
+            this.superTabControl1.Controls.Add(this.superTabControlPanel11);
             this.superTabControl1.Controls.Add(this.superTabControlPanel2);
             this.superTabControl1.Controls.Add(this.superTabControlPanel6);
             this.superTabControl1.Controls.Add(this.superTabControlPanel1);
-            this.superTabControl1.Controls.Add(this.superTabControlPanel11);
             this.superTabControl1.Controls.Add(this.superTabControlPanel8);
             this.superTabControl1.Controls.Add(this.superTabControlPanel7);
             this.superTabControl1.Controls.Add(this.superTabControlPanel3);
@@ -665,8 +668,11 @@
             this.pnlTelegram.Controls.Add(this.btnZirBana);
             this.pnlTelegram.Controls.Add(this.btnChannel);
             this.pnlTelegram.Controls.Add(this.btnMasahat);
+            this.pnlTelegram.Controls.Add(this.btnTell);
             this.pnlTelegram.Controls.Add(this.btnTejari);
             this.pnlTelegram.Controls.Add(this.btnEjare);
+            this.pnlTelegram.Controls.Add(this.btnMobile);
+            this.pnlTelegram.Controls.Add(this.btnAddress);
             this.pnlTelegram.Controls.Add(this.btnSaleSakht);
             this.pnlTelegram.Controls.Add(this.btnRahn);
             this.pnlTelegram.Controls.Add(this.btnRoomCount);
@@ -746,10 +752,10 @@
             this.btnChannel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnChannel.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnChannel.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnChannel.Location = new System.Drawing.Point(27, 377);
+            this.btnChannel.Location = new System.Drawing.Point(27, 410);
             this.btnChannel.Name = "btnChannel";
             this.btnChannel.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
-            this.btnChannel.Size = new System.Drawing.Size(164, 27);
+            this.btnChannel.Size = new System.Drawing.Size(79, 27);
             this.btnChannel.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
             this.btnChannel.TabIndex = 20;
             this.btnChannel.Text = "[آدرس کانال]";
@@ -2071,6 +2077,57 @@
             this.btnFinish.TextColor = System.Drawing.Color.Black;
             this.btnFinish.Click += new System.EventHandler(this.btnFinish_Click);
             // 
+            // btnAddress
+            // 
+            this.btnAddress.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnAddress.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.btnAddress.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnAddress.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.btnAddress.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnAddress.Location = new System.Drawing.Point(112, 377);
+            this.btnAddress.Name = "btnAddress";
+            this.btnAddress.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
+            this.btnAddress.Size = new System.Drawing.Size(79, 27);
+            this.btnAddress.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
+            this.btnAddress.TabIndex = 18;
+            this.btnAddress.Text = "[آدرس مجموعه]";
+            this.btnAddress.TextColor = System.Drawing.Color.White;
+            this.btnAddress.Click += new System.EventHandler(this.btnAddress_Click);
+            // 
+            // btnTell
+            // 
+            this.btnTell.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnTell.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.btnTell.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnTell.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.btnTell.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnTell.Location = new System.Drawing.Point(27, 377);
+            this.btnTell.Name = "btnTell";
+            this.btnTell.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
+            this.btnTell.Size = new System.Drawing.Size(79, 27);
+            this.btnTell.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
+            this.btnTell.TabIndex = 19;
+            this.btnTell.Text = "[تلفن ثابت]";
+            this.btnTell.TextColor = System.Drawing.Color.White;
+            this.btnTell.Click += new System.EventHandler(this.btnTell_Click);
+            // 
+            // btnMobile
+            // 
+            this.btnMobile.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnMobile.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.btnMobile.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnMobile.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.btnMobile.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnMobile.Location = new System.Drawing.Point(112, 410);
+            this.btnMobile.Name = "btnMobile";
+            this.btnMobile.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
+            this.btnMobile.Size = new System.Drawing.Size(79, 27);
+            this.btnMobile.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
+            this.btnMobile.TabIndex = 18;
+            this.btnMobile.Text = "[همراه]";
+            this.btnMobile.TextColor = System.Drawing.Color.White;
+            this.btnMobile.Click += new System.EventHandler(this.btnMobile_Click);
+            // 
             // frmSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -2263,5 +2320,8 @@
         private System.Windows.Forms.TextBox txtMediaPath;
         private System.Windows.Forms.Label label33;
         private DevComponents.DotNetBar.Controls.CheckBoxX chbShowDialog;
+        private DevComponents.DotNetBar.ButtonX btnTell;
+        private DevComponents.DotNetBar.ButtonX btnMobile;
+        private DevComponents.DotNetBar.ButtonX btnAddress;
     }
 }

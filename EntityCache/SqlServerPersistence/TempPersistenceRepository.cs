@@ -69,7 +69,8 @@ namespace EntityCache.SqlServerPersistence
             }
             catch (Exception ex)
             {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                if (!ex.Message.Contains("deadlocked"))
+                    WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
 
             return list;

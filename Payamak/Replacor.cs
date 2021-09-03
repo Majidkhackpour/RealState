@@ -52,6 +52,9 @@
             public static string SaleSakht => "[سال ساخت]".Trim();
             public static string Tejari => "[متراژ تجاری]".Trim();
             public static string Channel => "[آدرس کانال]".Trim();
+            public static string Address => "[آدرس مجموعه]".Trim();
+            public static string Tell => "[تلفن ثابت]".Trim();
+            public static string Mobile => "[همراه]".Trim();
         }
     }
 }

@@ -31,9 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmFilterForm));
             this.grp = new DevComponents.DotNetBar.PanelEx();
-            this.chbDivar = new DevComponents.DotNetBar.Controls.CheckBoxX();
             this.txtSPrice2 = new System.Windows.Forms.NumericUpDown();
-            this.chbSystem = new DevComponents.DotNetBar.Controls.CheckBoxX();
             this.lblSPrice2 = new System.Windows.Forms.Label();
             this.txtRoomCount = new System.Windows.Forms.NumericUpDown();
             this.txtMaxFile = new System.Windows.Forms.NumericUpDown();
@@ -83,9 +81,7 @@
             // 
             this.grp.CanvasColor = System.Drawing.SystemColors.Control;
             this.grp.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.grp.Controls.Add(this.chbDivar);
             this.grp.Controls.Add(this.txtSPrice2);
-            this.grp.Controls.Add(this.chbSystem);
             this.grp.Controls.Add(this.lblSPrice2);
             this.grp.Controls.Add(this.txtRoomCount);
             this.grp.Controls.Add(this.txtMaxFile);
@@ -114,9 +110,9 @@
             this.grp.Controls.Add(this.label3);
             this.grp.Controls.Add(this.txtFPrice2);
             this.grp.DisabledBackColor = System.Drawing.Color.Empty;
-            this.grp.Location = new System.Drawing.Point(6, 66);
+            this.grp.Location = new System.Drawing.Point(6, 63);
             this.grp.Name = "grp";
-            this.grp.Size = new System.Drawing.Size(535, 267);
+            this.grp.Size = new System.Drawing.Size(535, 241);
             this.grp.Style.Alignment = System.Drawing.StringAlignment.Center;
             this.grp.Style.BackColor1.Color = System.Drawing.Color.White;
             this.grp.Style.BackColor2.Color = System.Drawing.Color.White;
@@ -127,22 +123,6 @@
             this.grp.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText;
             this.grp.Style.GradientAngle = 90;
             this.grp.TabIndex = 0;
-            // 
-            // chbDivar
-            // 
-            this.chbDivar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.chbDivar.BackColor = System.Drawing.Color.Transparent;
-            // 
-            // 
-            // 
-            this.chbDivar.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.chbDivar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.chbDivar.Location = new System.Drawing.Point(272, 233);
-            this.chbDivar.Name = "chbDivar";
-            this.chbDivar.Size = new System.Drawing.Size(183, 23);
-            this.chbDivar.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.chbDivar.TabIndex = 16;
-            this.chbDivar.Text = "جستجو در فایل های دیوار";
             // 
             // txtSPrice2
             // 
@@ -155,22 +135,6 @@
             this.txtSPrice2.Name = "txtSPrice2";
             this.txtSPrice2.Size = new System.Drawing.Size(127, 27);
             this.txtSPrice2.TabIndex = 13;
-            // 
-            // chbSystem
-            // 
-            this.chbSystem.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.chbSystem.BackColor = System.Drawing.Color.Transparent;
-            // 
-            // 
-            // 
-            this.chbSystem.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.chbSystem.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.chbSystem.Location = new System.Drawing.Point(272, 204);
-            this.chbSystem.Name = "chbSystem";
-            this.chbSystem.Size = new System.Drawing.Size(183, 23);
-            this.chbSystem.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.chbSystem.TabIndex = 15;
-            this.chbSystem.Text = "جستجو در فال های سیستم";
             // 
             // lblSPrice2
             // 
@@ -197,14 +161,14 @@
             // 
             // txtMaxFile
             // 
-            this.txtMaxFile.Location = new System.Drawing.Point(24, 228);
+            this.txtMaxFile.Location = new System.Drawing.Point(264, 199);
             this.txtMaxFile.Maximum = new decimal(new int[] {
             250,
             0,
             0,
             0});
             this.txtMaxFile.Name = "txtMaxFile";
-            this.txtMaxFile.Size = new System.Drawing.Size(134, 27);
+            this.txtMaxFile.Size = new System.Drawing.Size(142, 27);
             this.txtMaxFile.TabIndex = 17;
             // 
             // txtSPrice1
@@ -224,7 +188,7 @@
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Location = new System.Drawing.Point(164, 231);
+            this.label2.Location = new System.Drawing.Point(412, 201);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(101, 20);
             this.label2.TabIndex = 55798;
@@ -515,7 +479,7 @@
             this.btnSeach.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnSeach.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnSeach.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.btnSeach.Location = new System.Drawing.Point(138, 371);
+            this.btnSeach.Location = new System.Drawing.Point(145, 311);
             this.btnSeach.Name = "btnSeach";
             this.btnSeach.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
             this.btnSeach.Size = new System.Drawing.Size(348, 31);
@@ -535,7 +499,7 @@
             this.btnRegion.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnRegion.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnRegion.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.btnRegion.Location = new System.Drawing.Point(30, 371);
+            this.btnRegion.Location = new System.Drawing.Point(37, 311);
             this.btnRegion.Name = "btnRegion";
             this.btnRegion.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
             this.btnRegion.Size = new System.Drawing.Size(102, 31);
@@ -567,7 +531,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(549, 412);
+            this.ClientSize = new System.Drawing.Size(549, 347);
             this.Controls.Add(this.ucHeader);
             this.Controls.Add(this.btnRegion);
             this.Controls.Add(this.btnSeach);
@@ -577,9 +541,9 @@
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(549, 412);
+            this.MaximumSize = new System.Drawing.Size(549, 347);
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(549, 412);
+            this.MinimumSize = new System.Drawing.Size(549, 347);
             this.Name = "frmFilterForm";
             this.Padding = new System.Windows.Forms.Padding(27, 92, 27, 31);
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -631,8 +595,6 @@
         private System.Windows.Forms.Label lblSPrice1;
         private System.Windows.Forms.ComboBox cmbEjare2;
         private System.Windows.Forms.ComboBox cmbEjare1;
-        private DevComponents.DotNetBar.Controls.CheckBoxX chbDivar;
-        private DevComponents.DotNetBar.Controls.CheckBoxX chbSystem;
         private DevComponents.DotNetBar.ButtonX btnSeach;
         private System.Windows.Forms.BindingSource bTypeBindingSource;
         private System.Windows.Forms.BindingSource batBindingSource;
