@@ -338,7 +338,7 @@ namespace Building.Building
                 cls.OwnerGuid = owner.Guid;
                 line = 4;
                 cls.UserGuid = (Guid)cmbUser.SelectedValue;
-                cls.Priority = (EnBuildingPriority)cmbPirority.SelectedIndex; 
+                cls.Priority = (EnBuildingPriority)cmbPirority.SelectedIndex;
                 cls.IsArchive = false;
                 line = 5;
                 cls.SellPrice = txtSellPrice.TextDecimal;
@@ -397,7 +397,7 @@ namespace Building.Building
                 line = 25;
                 cls.FloorCoverGuid = (Guid)cmbBFloorCover.SelectedValue;
                 line = 26;
-                cls.KitchenServiceGuid = (Guid) cmbKitchenService.SelectedValue;
+                cls.KitchenServiceGuid = (Guid)cmbKitchenService.SelectedValue;
                 cls.Water = EnKhadamati.Mostaqel;
                 cls.Barq = EnKhadamati.Mostaqel;
                 cls.Gas = EnKhadamati.Mostaqel;
@@ -489,14 +489,14 @@ namespace Building.Building
 
                 if (txtSellPrice.TextDecimal == 0)
                 {
-                    lblPricePerZirBana.Text = "0";
-                    lblPricePerMetr.Text = "0";
+                    txtPricePerZirBana.TextDecimal = 0;
+                    txtPricePerMasashat.TextDecimal = 0;
                     return;
                 }
                 if (masahat > 0)
-                    lblPricePerMetr.Text = (txtSellPrice.TextDecimal / masahat).ToString("N0") + " ریال";
+                    txtPricePerMasashat.TextDecimal = txtSellPrice.TextDecimal / masahat;
                 if (zirbana > 0)
-                    lblPricePerZirBana.Text = (txtSellPrice.TextDecimal / zirbana).ToString("N0") + " ریال";
+                    txtPricePerZirBana.TextDecimal = txtSellPrice.TextDecimal / zirbana;
             }
             catch (Exception ex)
             {
@@ -900,5 +900,7 @@ namespace Building.Building
                 WebErrorLog.ErrorInstence.StartErrorLog(exception);
             }
         }
+        private void txtPricePerMasashat_OnTextChanged() => CalculateSellPrice();
+        private void txtPricePerZirBana_OnTextChanged() => CalculateSellPrice();
     }
 }

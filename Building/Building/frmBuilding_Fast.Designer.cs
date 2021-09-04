@@ -80,10 +80,10 @@ namespace Building.Building
             this.label16 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.groupPanel5 = new DevComponents.DotNetBar.Controls.GroupPanel();
-            this.lblPricePerZirBana = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.lblPricePerMetr = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.txtPricePerZirBana = new WindowsSerivces.CurrencyTextBox();
+            this.txtPricePerMasashat = new WindowsSerivces.CurrencyTextBox();
             this.cmbSellTarakom = new System.Windows.Forms.ComboBox();
             this.label25 = new System.Windows.Forms.Label();
             this.cmbSellSanadType = new System.Windows.Forms.ComboBox();
@@ -129,6 +129,8 @@ namespace Building.Building
             this.cmbBView = new System.Windows.Forms.ComboBox();
             this.BuildingViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label43 = new System.Windows.Forms.Label();
+            this.groupPanel8 = new DevComponents.DotNetBar.Controls.GroupPanel();
+            this.buttonX1 = new DevComponents.DotNetBar.ButtonX();
             this.BuildingOptionBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.btnCancel = new DevComponents.DotNetBar.ButtonX();
             this.btnFinish = new DevComponents.DotNetBar.ButtonX();
@@ -168,6 +170,7 @@ namespace Building.Building
             ((System.ComponentModel.ISupportInitialize)(this.KitchenServiceBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.FloorCoverBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BuildingViewBindingSource)).BeginInit();
+            this.groupPanel8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BuildingOptionBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -206,6 +209,7 @@ namespace Building.Building
             this.flowLayoutPanel1.Controls.Add(this.groupPanel5);
             this.flowLayoutPanel1.Controls.Add(this.groupPanel6);
             this.flowLayoutPanel1.Controls.Add(this.groupPanel7);
+            this.flowLayoutPanel1.Controls.Add(this.groupPanel8);
             this.flowLayoutPanel1.Location = new System.Drawing.Point(416, 54);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(382, 498);
@@ -901,10 +905,10 @@ namespace Building.Building
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupPanel5.CanvasColor = System.Drawing.SystemColors.Control;
             this.groupPanel5.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
-            this.groupPanel5.Controls.Add(this.lblPricePerZirBana);
             this.groupPanel5.Controls.Add(this.label4);
-            this.groupPanel5.Controls.Add(this.lblPricePerMetr);
             this.groupPanel5.Controls.Add(this.label2);
+            this.groupPanel5.Controls.Add(this.txtPricePerZirBana);
+            this.groupPanel5.Controls.Add(this.txtPricePerMasashat);
             this.groupPanel5.Controls.Add(this.cmbSellTarakom);
             this.groupPanel5.Controls.Add(this.label25);
             this.groupPanel5.Controls.Add(this.cmbSellSanadType);
@@ -920,7 +924,7 @@ namespace Building.Building
             this.groupPanel5.DisabledBackColor = System.Drawing.Color.Empty;
             this.groupPanel5.Location = new System.Drawing.Point(5, 593);
             this.groupPanel5.Name = "groupPanel5";
-            this.groupPanel5.Size = new System.Drawing.Size(357, 328);
+            this.groupPanel5.Size = new System.Drawing.Size(357, 293);
             // 
             // 
             // 
@@ -953,51 +957,69 @@ namespace Building.Building
             this.groupPanel5.TabIndex = 4;
             this.groupPanel5.Text = "خرید و فروش";
             // 
-            // lblPricePerZirBana
-            // 
-            this.lblPricePerZirBana.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblPricePerZirBana.AutoSize = true;
-            this.lblPricePerZirBana.BackColor = System.Drawing.Color.Transparent;
-            this.lblPricePerZirBana.Font = new System.Drawing.Font("B Titr", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.lblPricePerZirBana.Location = new System.Drawing.Point(161, 273);
-            this.lblPricePerZirBana.Name = "lblPricePerZirBana";
-            this.lblPricePerZirBana.Size = new System.Drawing.Size(16, 23);
-            this.lblPricePerZirBana.TabIndex = 41;
-            this.lblPricePerZirBana.Text = "0";
-            // 
             // label4
             // 
             this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label4.AutoSize = true;
             this.label4.BackColor = System.Drawing.Color.Transparent;
-            this.label4.Location = new System.Drawing.Point(160, 250);
+            this.label4.Location = new System.Drawing.Point(274, 72);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(183, 20);
-            this.label4.TabIndex = 40;
-            this.label4.Text = "قیمت فروش هر متر بر اساس زیربنا";
-            // 
-            // lblPricePerMetr
-            // 
-            this.lblPricePerMetr.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblPricePerMetr.AutoSize = true;
-            this.lblPricePerMetr.BackColor = System.Drawing.Color.Transparent;
-            this.lblPricePerMetr.Font = new System.Drawing.Font("B Titr", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.lblPricePerMetr.Location = new System.Drawing.Point(161, 224);
-            this.lblPricePerMetr.Name = "lblPricePerMetr";
-            this.lblPricePerMetr.Size = new System.Drawing.Size(16, 23);
-            this.lblPricePerMetr.TabIndex = 39;
-            this.lblPricePerMetr.Text = "0";
+            this.label4.Size = new System.Drawing.Size(70, 20);
+            this.label4.TabIndex = 44;
+            this.label4.Text = "قیمت متر بنا";
             // 
             // label2
             // 
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Location = new System.Drawing.Point(149, 202);
+            this.label2.Location = new System.Drawing.Point(259, 39);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(192, 20);
-            this.label2.TabIndex = 38;
-            this.label2.Text = "قیمت فروش هر متر بر اساس مساحت";
+            this.label2.Size = new System.Drawing.Size(87, 20);
+            this.label2.TabIndex = 43;
+            this.label2.Text = "قیمت  متر زمین";
+            // 
+            // txtPricePerZirBana
+            // 
+            this.txtPricePerZirBana.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.txtPricePerZirBana.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtPricePerZirBana.BackColor = System.Drawing.Color.White;
+            this.txtPricePerZirBana.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.txtPricePerZirBana.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.txtPricePerZirBana.Font = new System.Drawing.Font("B Titr", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.txtPricePerZirBana.Location = new System.Drawing.Point(3, 68);
+            this.txtPricePerZirBana.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtPricePerZirBana.Name = "txtPricePerZirBana";
+            this.txtPricePerZirBana.Size = new System.Drawing.Size(254, 31);
+            this.txtPricePerZirBana.TabIndex = 41;
+            this.txtPricePerZirBana.TextDecimal = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.txtPricePerZirBana.OnTextChanged += new System.Action(this.txtPricePerZirBana_OnTextChanged);
+            // 
+            // txtPricePerMasashat
+            // 
+            this.txtPricePerMasashat.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.txtPricePerMasashat.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtPricePerMasashat.BackColor = System.Drawing.Color.White;
+            this.txtPricePerMasashat.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.txtPricePerMasashat.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.txtPricePerMasashat.Font = new System.Drawing.Font("B Titr", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.txtPricePerMasashat.Location = new System.Drawing.Point(3, 34);
+            this.txtPricePerMasashat.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtPricePerMasashat.Name = "txtPricePerMasashat";
+            this.txtPricePerMasashat.Size = new System.Drawing.Size(254, 31);
+            this.txtPricePerMasashat.TabIndex = 42;
+            this.txtPricePerMasashat.TextDecimal = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.txtPricePerMasashat.OnTextChanged += new System.Action(this.txtPricePerMasashat_OnTextChanged);
             // 
             // cmbSellTarakom
             // 
@@ -1007,7 +1029,7 @@ namespace Building.Building
             this.cmbSellTarakom.DisplayMember = "Name";
             this.cmbSellTarakom.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbSellTarakom.FormattingEnabled = true;
-            this.cmbSellTarakom.Location = new System.Drawing.Point(3, 167);
+            this.cmbSellTarakom.Location = new System.Drawing.Point(3, 234);
             this.cmbSellTarakom.Name = "cmbSellTarakom";
             this.cmbSellTarakom.Size = new System.Drawing.Size(254, 28);
             this.cmbSellTarakom.TabIndex = 5;
@@ -1018,7 +1040,7 @@ namespace Building.Building
             this.label25.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label25.AutoSize = true;
             this.label25.BackColor = System.Drawing.Color.Transparent;
-            this.label25.Location = new System.Drawing.Point(305, 170);
+            this.label25.Location = new System.Drawing.Point(305, 237);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(36, 20);
             this.label25.TabIndex = 36;
@@ -1033,7 +1055,7 @@ namespace Building.Building
             this.cmbSellSanadType.DisplayMember = "Name";
             this.cmbSellSanadType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbSellSanadType.FormattingEnabled = true;
-            this.cmbSellSanadType.Location = new System.Drawing.Point(3, 134);
+            this.cmbSellSanadType.Location = new System.Drawing.Point(3, 201);
             this.cmbSellSanadType.Name = "cmbSellSanadType";
             this.cmbSellSanadType.Size = new System.Drawing.Size(254, 28);
             this.cmbSellSanadType.TabIndex = 4;
@@ -1046,7 +1068,7 @@ namespace Building.Building
             // txtDong
             // 
             this.txtDong.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtDong.Location = new System.Drawing.Point(-3, 102);
+            this.txtDong.Location = new System.Drawing.Point(-3, 169);
             this.txtDong.Maximum = new decimal(new int[] {
             6,
             0,
@@ -1075,7 +1097,7 @@ namespace Building.Building
             this.txtQestPrice.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.txtQestPrice.Cursor = System.Windows.Forms.Cursors.Hand;
             this.txtQestPrice.Font = new System.Drawing.Font("B Titr", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.txtQestPrice.Location = new System.Drawing.Point(3, 68);
+            this.txtQestPrice.Location = new System.Drawing.Point(3, 135);
             this.txtQestPrice.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtQestPrice.Name = "txtQestPrice";
             this.txtQestPrice.Size = new System.Drawing.Size(254, 31);
@@ -1095,7 +1117,7 @@ namespace Building.Building
             this.txtVamPrice.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.txtVamPrice.Cursor = System.Windows.Forms.Cursors.Hand;
             this.txtVamPrice.Font = new System.Drawing.Font("B Titr", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.txtVamPrice.Location = new System.Drawing.Point(3, 35);
+            this.txtVamPrice.Location = new System.Drawing.Point(3, 102);
             this.txtVamPrice.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtVamPrice.Name = "txtVamPrice";
             this.txtVamPrice.Size = new System.Drawing.Size(254, 31);
@@ -1132,7 +1154,7 @@ namespace Building.Building
             this.label24.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label24.AutoSize = true;
             this.label24.BackColor = System.Drawing.Color.Transparent;
-            this.label24.Location = new System.Drawing.Point(293, 137);
+            this.label24.Location = new System.Drawing.Point(293, 204);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(49, 20);
             this.label24.TabIndex = 30;
@@ -1143,7 +1165,7 @@ namespace Building.Building
             this.label23.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label23.AutoSize = true;
             this.label23.BackColor = System.Drawing.Color.Transparent;
-            this.label23.Location = new System.Drawing.Point(279, 104);
+            this.label23.Location = new System.Drawing.Point(279, 171);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(63, 20);
             this.label23.TabIndex = 27;
@@ -1154,7 +1176,7 @@ namespace Building.Building
             this.label20.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label20.AutoSize = true;
             this.label20.BackColor = System.Drawing.Color.Transparent;
-            this.label20.Location = new System.Drawing.Point(293, 39);
+            this.label20.Location = new System.Drawing.Point(293, 106);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(49, 20);
             this.label20.TabIndex = 26;
@@ -1165,7 +1187,7 @@ namespace Building.Building
             this.label21.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label21.AutoSize = true;
             this.label21.BackColor = System.Drawing.Color.Transparent;
-            this.label21.Location = new System.Drawing.Point(271, 73);
+            this.label21.Location = new System.Drawing.Point(271, 140);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(71, 20);
             this.label21.TabIndex = 28;
@@ -1199,7 +1221,7 @@ namespace Building.Building
             this.groupPanel6.Controls.Add(this.label35);
             this.groupPanel6.Controls.Add(this.label34);
             this.groupPanel6.DisabledBackColor = System.Drawing.Color.Empty;
-            this.groupPanel6.Location = new System.Drawing.Point(5, 927);
+            this.groupPanel6.Location = new System.Drawing.Point(5, 892);
             this.groupPanel6.Name = "groupPanel6";
             this.groupPanel6.Size = new System.Drawing.Size(357, 650);
             // 
@@ -1391,7 +1413,7 @@ namespace Building.Building
             this.groupPanel7.Controls.Add(this.cmbBView);
             this.groupPanel7.Controls.Add(this.label43);
             this.groupPanel7.DisabledBackColor = System.Drawing.Color.Empty;
-            this.groupPanel7.Location = new System.Drawing.Point(5, 1583);
+            this.groupPanel7.Location = new System.Drawing.Point(5, 1548);
             this.groupPanel7.Name = "groupPanel7";
             this.groupPanel7.Size = new System.Drawing.Size(357, 255);
             // 
@@ -1649,6 +1671,67 @@ namespace Building.Building
             this.label43.Size = new System.Drawing.Size(22, 20);
             this.label43.TabIndex = 62;
             this.label43.Text = "نما";
+            // 
+            // groupPanel8
+            // 
+            this.groupPanel8.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupPanel8.CanvasColor = System.Drawing.SystemColors.Control;
+            this.groupPanel8.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
+            this.groupPanel8.Controls.Add(this.buttonX1);
+            this.groupPanel8.DisabledBackColor = System.Drawing.Color.Empty;
+            this.groupPanel8.Location = new System.Drawing.Point(5, 1809);
+            this.groupPanel8.Name = "groupPanel8";
+            this.groupPanel8.Size = new System.Drawing.Size(357, 39);
+            // 
+            // 
+            // 
+            this.groupPanel8.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(227)))), ((int)(((byte)(239)))), ((int)(((byte)(255)))));
+            this.groupPanel8.Style.BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+            this.groupPanel8.Style.BackColorGradientAngle = 90;
+            this.groupPanel8.Style.BorderBottom = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.groupPanel8.Style.BorderBottomWidth = 2;
+            this.groupPanel8.Style.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(198)))), ((int)(((byte)(195)))), ((int)(((byte)(198)))));
+            this.groupPanel8.Style.BorderColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(198)))), ((int)(((byte)(195)))), ((int)(((byte)(198)))));
+            this.groupPanel8.Style.BorderLeft = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.groupPanel8.Style.BorderLeftWidth = 2;
+            this.groupPanel8.Style.BorderRight = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.groupPanel8.Style.BorderRightWidth = 2;
+            this.groupPanel8.Style.BorderTop = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.groupPanel8.Style.BorderTopWidth = 2;
+            this.groupPanel8.Style.CornerDiameter = 4;
+            this.groupPanel8.Style.CornerType = DevComponents.DotNetBar.eCornerType.Rounded;
+            this.groupPanel8.Style.TextAlignment = DevComponents.DotNetBar.eStyleTextAlignment.Center;
+            this.groupPanel8.Style.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.groupPanel8.Style.TextLineAlignment = DevComponents.DotNetBar.eStyleTextAlignment.Near;
+            // 
+            // 
+            // 
+            this.groupPanel8.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.groupPanel8.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.groupPanel8.TabIndex = 55732;
+            // 
+            // buttonX1
+            // 
+            this.buttonX1.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.buttonX1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonX1.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.buttonX1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.buttonX1.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.buttonX1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonX1.Font = new System.Drawing.Font("B Yekan", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.buttonX1.Location = new System.Drawing.Point(3, 3);
+            this.buttonX1.Name = "buttonX1";
+            this.buttonX1.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
+            this.buttonX1.Size = new System.Drawing.Size(280, 27);
+            this.buttonX1.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
+            this.buttonX1.TabIndex = 0;
+            this.buttonX1.Text = "افزودن فایل های مشابه";
+            this.buttonX1.TextColor = System.Drawing.Color.White;
+            this.buttonX1.Click += new System.EventHandler(this.btnInsImage_Click);
             // 
             // BuildingOptionBindingSource
             // 
@@ -1922,6 +2005,7 @@ namespace Building.Building
             ((System.ComponentModel.ISupportInitialize)(this.KitchenServiceBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.FloorCoverBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.BuildingViewBindingSource)).EndInit();
+            this.groupPanel8.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.BuildingOptionBindingSource)).EndInit();
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
@@ -1986,10 +2070,6 @@ namespace Building.Building
         private System.Windows.Forms.ComboBox cmbSellSanadType;
         private System.Windows.Forms.ComboBox cmbSellTarakom;
         private System.Windows.Forms.Label label25;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label lblPricePerMetr;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label lblPricePerZirBana;
         private DevComponents.DotNetBar.Controls.GroupPanel groupPanel6;
         private System.Windows.Forms.TextBox txtAddress;
         private System.Windows.Forms.ComboBox cmbRegion;
@@ -2040,5 +2120,11 @@ namespace Building.Building
         private System.Windows.Forms.BindingSource KitchenServiceBindingSource;
         private System.Windows.Forms.BindingSource FloorCoverBindingSource;
         private System.Windows.Forms.BindingSource BuildingViewBindingSource;
+        private DevComponents.DotNetBar.Controls.GroupPanel groupPanel8;
+        private DevComponents.DotNetBar.ButtonX buttonX1;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label2;
+        private WindowsSerivces.CurrencyTextBox txtPricePerZirBana;
+        private WindowsSerivces.CurrencyTextBox txtPricePerMasashat;
     }
 }
