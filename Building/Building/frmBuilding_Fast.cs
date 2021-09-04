@@ -471,10 +471,12 @@ namespace Building.Building
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void CalculateSellPrice()
+        private void CalculateSellPrice(short type)
         {
             try
             {
+                //Type=0 ==> Masaht
+                //Type=1 ==> ZirBana
                 decimal masahat = 0, zirbana = 0;
 
                 if (cmbMasahat.SelectedIndex == 0)
@@ -487,16 +489,22 @@ namespace Building.Building
                 else
                     zirbana = txtZirBana.Value * 10000;
 
-                if (txtSellPrice.TextDecimal == 0)
+
+                if (type == 0)
+                    txtSellPrice.TextDecimal = txtPricePerMasashat.TextDecimal * masahat;
+                else if (type == 1)
+                    txtSellPrice.TextDecimal = txtPricePerZirBana.TextDecimal * zirbana;
+
+                if (masahat > 0)
+                {
+                    txtPricePerMasashat.TextDecimal = 0;
+                    txtPricePerMasashat.TextDecimal = txtSellPrice.TextDecimal / masahat;
+                }
+                if (zirbana > 0)
                 {
                     txtPricePerZirBana.TextDecimal = 0;
-                    txtPricePerMasashat.TextDecimal = 0;
-                    return;
-                }
-                if (masahat > 0)
-                    txtPricePerMasashat.TextDecimal = txtSellPrice.TextDecimal / masahat;
-                if (zirbana > 0)
                     txtPricePerZirBana.TextDecimal = txtSellPrice.TextDecimal / zirbana;
+                }
             }
             catch (Exception ex)
             {
@@ -825,11 +833,48 @@ namespace Building.Building
                 }
             }
         }
-        private void txtMasahat_ValueChanged(object sender, EventArgs e) => CalculateSellPrice();
-        private void txtZirBana_ValueChanged(object sender, EventArgs e) => CalculateSellPrice();
-        private void cmbMasahat_SelectedIndexChanged(object sender, EventArgs e) => CalculateSellPrice();
-        private void cmbZirBana_SelectedIndexChanged(object sender, EventArgs e) => CalculateSellPrice();
-        private void txtSellPrice_OnTextChanged() => CalculateSellPrice();
+        private void txtMasahat_ValueChanged(object sender, EventArgs e) => CalculateSellPrice(0);
+        private void txtZirBana_ValueChanged(object sender, EventArgs e) => CalculateSellPrice(1);
+        private void cmbMasahat_SelectedIndexChanged(object sender, EventArgs e) => CalculateSellPrice(0);
+        private void cmbZirBana_SelectedIndexChanged(object sender, EventArgs e) => CalculateSellPrice(1);
+        private void txtSellPrice_OnTextChanged()
+        {
+            try
+            {
+                var currentControl = ActiveControl?.Name;
+                if (string.IsNullOrEmpty(currentControl)) return;
+                if (currentControl != txtSellPrice.Name) return;
+                decimal masahat = 0, zirbana = 0;
+
+                if (cmbMasahat.SelectedIndex == 0)
+                    masahat = txtMasahat.Value;
+                else
+                    masahat = txtMasahat.Value * 10000;
+
+                if (cmbZirBana.SelectedIndex == 0)
+                    zirbana = txtZirBana.Value;
+                else
+                    zirbana = txtZirBana.Value * 10000;
+
+                txtPricePerMasashat.TextDecimal = txtPricePerZirBana.TextDecimal = 0;
+
+                if (masahat > 0)
+                {
+                    var m = Math.Truncate(txtSellPrice.TextDecimal / masahat);
+                    txtPricePerMasashat.TextDecimal = m;
+                }
+
+                if (zirbana > 0)
+                {
+                    var m = Math.Truncate(txtSellPrice.TextDecimal / zirbana);
+                    txtPricePerZirBana.TextDecimal = m;
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
         private void btnInsImage_Click(object sender, EventArgs e)
         {
             try
@@ -900,7 +945,67 @@ namespace Building.Building
                 WebErrorLog.ErrorInstence.StartErrorLog(exception);
             }
         }
-        private void txtPricePerMasashat_OnTextChanged() => CalculateSellPrice();
-        private void txtPricePerZirBana_OnTextChanged() => CalculateSellPrice();
+        private void txtPricePerMasashat_OnTextChanged()
+        {
+            try
+            {
+                var currentControl = ActiveControl?.Name;
+                if (string.IsNullOrEmpty(currentControl)) return;
+                if (currentControl != txtPricePerMasashat.Name) return;
+                decimal masahat = 0, zirbana = 0;
+
+                if (cmbMasahat.SelectedIndex == 0)
+                    masahat = txtMasahat.Value;
+                else
+                    masahat = txtMasahat.Value * 10000;
+
+                if (cmbZirBana.SelectedIndex == 0)
+                    zirbana = txtZirBana.Value;
+                else
+                    zirbana = txtZirBana.Value * 10000;
+
+                if (masahat > 0)
+                    txtSellPrice.TextDecimal = txtPricePerMasashat.TextDecimal * masahat;
+                if (zirbana <= 0) return;
+                txtPricePerZirBana.TextDecimal = 0;
+                var m = Math.Truncate(txtSellPrice.TextDecimal / zirbana);
+                txtPricePerZirBana.TextDecimal = m;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private void txtPricePerZirBana_OnTextChanged()
+        {
+            try
+            {
+                var currentControl = ActiveControl?.Name;
+                if (string.IsNullOrEmpty(currentControl)) return;
+                if (currentControl != txtPricePerZirBana.Name) return;
+                decimal masahat = 0, zirbana = 0;
+
+                if (cmbZirBana.SelectedIndex == 0)
+                    zirbana = txtZirBana.Value;
+                else
+                    zirbana = txtZirBana.Value * 10000;
+
+                if (cmbMasahat.SelectedIndex == 0)
+                    masahat = txtMasahat.Value;
+                else
+                    masahat = txtMasahat.Value * 10000;
+
+                if (zirbana > 0)
+                    txtSellPrice.TextDecimal = txtPricePerZirBana.TextDecimal * zirbana;
+                if (masahat <= 0) return;
+                txtPricePerMasashat.TextDecimal = 0;
+                var m = Math.Truncate(txtSellPrice.TextDecimal / masahat);
+                txtPricePerMasashat.TextDecimal = m;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
     }
 }
