@@ -131,6 +131,7 @@ namespace Building.UserControls
             // 
             // picClose
             // 
+            this.picClose.Cursor = System.Windows.Forms.Cursors.Hand;
             this.picClose.Dock = System.Windows.Forms.DockStyle.Fill;
             this.picClose.Image = global::Building.Properties.Resources.tab_close_;
             this.picClose.Location = new System.Drawing.Point(0, 0);
