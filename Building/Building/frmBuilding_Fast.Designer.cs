@@ -130,7 +130,8 @@ namespace Building.Building
             this.BuildingViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label43 = new System.Windows.Forms.Label();
             this.groupPanel8 = new DevComponents.DotNetBar.Controls.GroupPanel();
-            this.buttonX1 = new DevComponents.DotNetBar.ButtonX();
+            this.fPanelSimilar = new System.Windows.Forms.FlowLayoutPanel();
+            this.btnSimilar = new DevComponents.DotNetBar.ButtonX();
             this.BuildingOptionBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.btnCancel = new DevComponents.DotNetBar.ButtonX();
             this.btnFinish = new DevComponents.DotNetBar.ButtonX();
@@ -1678,11 +1679,12 @@ namespace Building.Building
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupPanel8.CanvasColor = System.Drawing.SystemColors.Control;
             this.groupPanel8.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
-            this.groupPanel8.Controls.Add(this.buttonX1);
+            this.groupPanel8.Controls.Add(this.fPanelSimilar);
+            this.groupPanel8.Controls.Add(this.btnSimilar);
             this.groupPanel8.DisabledBackColor = System.Drawing.Color.Empty;
             this.groupPanel8.Location = new System.Drawing.Point(5, 1809);
             this.groupPanel8.Name = "groupPanel8";
-            this.groupPanel8.Size = new System.Drawing.Size(357, 39);
+            this.groupPanel8.Size = new System.Drawing.Size(357, 79);
             // 
             // 
             // 
@@ -1714,24 +1716,36 @@ namespace Building.Building
             this.groupPanel8.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.groupPanel8.TabIndex = 55732;
             // 
-            // buttonX1
+            // fPanelSimilar
             // 
-            this.buttonX1.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.buttonX1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonX1.BackColor = System.Drawing.Color.DarkSlateGray;
-            this.buttonX1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.buttonX1.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
-            this.buttonX1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.buttonX1.Font = new System.Drawing.Font("B Yekan", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.buttonX1.Location = new System.Drawing.Point(3, 3);
-            this.buttonX1.Name = "buttonX1";
-            this.buttonX1.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
-            this.buttonX1.Size = new System.Drawing.Size(280, 27);
-            this.buttonX1.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
-            this.buttonX1.TabIndex = 0;
-            this.buttonX1.Text = "افزودن فایل های مشابه";
-            this.buttonX1.TextColor = System.Drawing.Color.White;
-            this.buttonX1.Click += new System.EventHandler(this.btnInsImage_Click);
+            this.fPanelSimilar.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.fPanelSimilar.BackColor = System.Drawing.Color.Transparent;
+            this.fPanelSimilar.Location = new System.Drawing.Point(3, 37);
+            this.fPanelSimilar.Name = "fPanelSimilar";
+            this.fPanelSimilar.Size = new System.Drawing.Size(345, 33);
+            this.fPanelSimilar.TabIndex = 4;
+            // 
+            // btnSimilar
+            // 
+            this.btnSimilar.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnSimilar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSimilar.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.btnSimilar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnSimilar.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.btnSimilar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSimilar.Font = new System.Drawing.Font("B Yekan", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.btnSimilar.Location = new System.Drawing.Point(3, 4);
+            this.btnSimilar.Name = "btnSimilar";
+            this.btnSimilar.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
+            this.btnSimilar.Size = new System.Drawing.Size(280, 27);
+            this.btnSimilar.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
+            this.btnSimilar.TabIndex = 0;
+            this.btnSimilar.Text = "افزودن فایل های مشابه";
+            this.btnSimilar.TextColor = System.Drawing.Color.White;
+            this.btnSimilar.Click += new System.EventHandler(this.btnSimilar_Click);
             // 
             // BuildingOptionBindingSource
             // 
@@ -2121,10 +2135,11 @@ namespace Building.Building
         private System.Windows.Forms.BindingSource FloorCoverBindingSource;
         private System.Windows.Forms.BindingSource BuildingViewBindingSource;
         private DevComponents.DotNetBar.Controls.GroupPanel groupPanel8;
-        private DevComponents.DotNetBar.ButtonX buttonX1;
+        private DevComponents.DotNetBar.ButtonX btnSimilar;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label2;
         private WindowsSerivces.CurrencyTextBox txtPricePerZirBana;
         private WindowsSerivces.CurrencyTextBox txtPricePerMasashat;
+        private System.Windows.Forms.FlowLayoutPanel fPanelSimilar;
     }
 }

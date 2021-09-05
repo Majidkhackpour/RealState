@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using WindowsSerivces;
 using Building.BuildingMatchesItem;
+using Building.UserControls;
 using EntityCache.Bussines;
 using EntityCache.ViewModels;
 using MetroFramework.Forms;
@@ -28,7 +29,8 @@ namespace Building.Building
         private string _pictureNameForClick = null;
         private PictureBox _orGpicBox;
         private PictureBox _fakepicBox;
-        readonly List<string> lstList = new List<string>();
+        readonly List<string> _lstList = new List<string>();
+        private List<clsBuildingSimilar> _lstSimilar = new List<clsBuildingSimilar>();
 
 
         private async Task SetDataAsync()
@@ -544,6 +546,41 @@ namespace Building.Building
                 WebErrorLog.ErrorInstence.StartErrorLog(exception);
             }
         }
+        private void MakeSimilarBuildings()
+        {
+            try
+            {
+                fPanelSimilar.AutoScroll = true;
+                for (var i = fPanelSimilar.Controls.Count - 1; i >= 0; i--)
+                    fPanelSimilar.Controls[i].Dispose();
+                fPanelSimilar.Height = 35;
+                groupPanel8.Height = 100;
+                foreach (var item in _lstSimilar)
+                {
+                    var c = new ucBuildingSimilar() { Building = item, Width = fPanelSimilar.Width - 10 };
+                    fPanelSimilar.Height += c.Height;
+                    c.OnClosed += COnOnClosed;
+                    fPanelSimilar.Controls.Add(c);
+                }
+                groupPanel8.Height = fPanelSimilar.Height + 90;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private async Task COnOnClosed(clsBuildingSimilar guid)
+        {
+            try
+            {
+                _lstSimilar.Remove(guid);
+                MakeSimilarBuildings();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
         private static void ShowBigSizePic(PictureBox pic)
         {
             try
@@ -586,7 +623,7 @@ namespace Building.Building
 
                 cls.GalleryList = new List<BuildingGalleryBussines>();
 
-                foreach (var item in lstList)
+                foreach (var item in _lstList)
                 {
                     var imagePath = Path.Combine(Application.StartupPath, "Temp");
                     if (!Directory.Exists(imagePath)) Directory.CreateDirectory(imagePath);
@@ -638,6 +675,79 @@ namespace Building.Building
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
                 res.AddReturnedValue(ex);
             }
+            return res;
+        }
+        private async Task<ReturnedSaveFuncInfo> SaveSimilarAsync()
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                foreach (var item in _lstSimilar)
+                {
+                    var bu = new BuildingBussines
+                    {
+                        Guid = Guid.NewGuid(),
+                        Code = await BuildingBussines.NextCodeAsync(),
+                        Modified = DateTime.Now,
+                        OwnerGuid = cls.OwnerGuid,
+                        UserGuid = cls.UserGuid,
+                        Priority = cls.Priority,
+                        IsArchive = cls.IsArchive,
+                        SellPrice = item.SellPrice,
+                        QestPrice = cls.QestPrice,
+                        VamPrice = cls.VamPrice,
+                        Dang = cls.Dang,
+                        DocumentType = cls.DocumentType,
+                        Tarakom = cls.Tarakom,
+                        RahnPrice1 = item.RahnPrice,
+                        RahnPrice2 = 0,
+                        EjarePrice1 = item.EjarePrice,
+                        EjarePrice2 = 0,
+                        RentalAutorityGuid = cls.RentalAutorityGuid,
+                        IsShortTime = cls.IsShortTime,
+                        IsOwnerHere = cls.IsOwnerHere,
+                        PishTotalPrice = cls.PishTotalPrice,
+                        PishPrice = cls.PishPrice,
+                        DeliveryDate = null,
+                        Masahat = item.Masahat,
+                        ZirBana = item.ZirBana,
+                        CityGuid = cls.CityGuid,
+                        RegionGuid = cls.RegionGuid,
+                        Address = cls.Address,
+                        BuildingConditionGuid = cls.BuildingConditionGuid,
+                        Side = cls.Side,
+                        BuildingTypeGuid = cls.BuildingTypeGuid,
+                        ShortDesc = cls.ShortDesc,
+                        BuildingAccountTypeGuid = cls.BuildingAccountTypeGuid,
+                        MetrazhTejari = cls.MetrazhTejari,
+                        BuildingViewGuid = cls.BuildingViewGuid,
+                        FloorCoverGuid = cls.FloorCoverGuid,
+                        KitchenServiceGuid = cls.KitchenServiceGuid,
+                        Water = cls.Water,
+                        Barq = cls.Barq,
+                        Gas = cls.Gas,
+                        Tell = cls.Tell,
+                        TedadTabaqe = cls.TedadTabaqe,
+                        TabaqeNo = item.TabaqeNo,
+                        VahedPerTabaqe = cls.VahedPerTabaqe,
+                        MetrazhKouche = cls.MetrazhKouche,
+                        Hashie = cls.Hashie,
+                        ErtefaSaqf = cls.ErtefaSaqf,
+                        SaleSakht = cls.SaleSakht,
+                        BonBast = cls.BonBast,
+                        MamarJoda = cls.MamarJoda,
+                        RoomCount = item.RoomCount,
+                        Image = cls.Image
+                    };
+                    res.AddReturnedValue(await bu.SaveAsync());
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+
             return res;
         }
 
@@ -791,6 +901,11 @@ namespace Building.Building
                 res.AddReturnedValue(await cls.SaveAsync());
                 if (res.HasError) return;
 
+                if (_lstSimilar != null && _lstSimilar.Count > 0)
+                {
+                    res.AddReturnedValue(await SaveSimilarAsync());
+                    if (res.HasError) return;
+                }
 
                 if (Settings.Classes.Payamak.IsSendToOwner.ParseToBoolean() && isSendSms)
                 {
@@ -886,7 +1001,7 @@ namespace Building.Building
                         var ofd = new OpenFileDialog { Multiselect = true, RestoreDirectory = true };
                         if (ofd.ShowDialog(this) != DialogResult.OK) return;
                         foreach (var name in ofd.FileNames)
-                            lstList.Add(name);
+                            _lstList.Add(name);
                     });
 
                     t.SetApartmentState(ApartmentState.STA);
@@ -898,9 +1013,9 @@ namespace Building.Building
                     var ofd = new OpenFileDialog { Multiselect = true, RestoreDirectory = true };
                     if (ofd.ShowDialog(this) != DialogResult.OK) return;
                     foreach (var name in ofd.FileNames)
-                        lstList.Add(name);
+                        _lstList.Add(name);
                 }
-                Make_Picture_Boxes(lstList);
+                Make_Picture_Boxes(_lstList);
             }
             catch (Exception ex)
             {
@@ -911,7 +1026,7 @@ namespace Building.Building
         {
             try
             {
-                Make_Picture_Boxes(lstList);
+                Make_Picture_Boxes(_lstList);
             }
             catch (Exception ex)
             {
@@ -929,7 +1044,7 @@ namespace Building.Building
                     ((PictureBox)sender).BackColor = Color.Transparent;
                     ((PictureBox)sender).Padding = new Padding(-1);
                     _pictureNameForClick = null;
-                    lstList.Add(imageLocation);
+                    _lstList.Add(imageLocation);
                     _orGpicBox = null;
                     return;
                 }
@@ -937,7 +1052,7 @@ namespace Building.Building
                 ((PictureBox)sender).BackColor = Color.Red;
                 ((PictureBox)sender).Padding = new Padding(1);
                 _pictureNameForClick = ((PictureBox)sender).Name;
-                lstList.Remove(imageLocation);
+                _lstList.Remove(imageLocation);
                 _orGpicBox = (PictureBox)sender;
             }
             catch (Exception exception)
@@ -1001,6 +1116,38 @@ namespace Building.Building
                 txtPricePerMasashat.TextDecimal = 0;
                 var m = Math.Truncate(txtSellPrice.TextDecimal / masahat);
                 txtPricePerMasashat.TextDecimal = m;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private void btnSimilar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var s = new clsBuildingSimilar()
+                {
+                    EjarePrice = txtEjarePrice1.TextDecimal,
+                    RahnPrice = txtRahnPrice1.TextDecimal,
+                    RoomCount = (int)txtTedadOtaq.Value,
+                    SellPrice = txtSellPrice.TextDecimal,
+                    TabaqeNo = 1
+                };
+                if (cmbMasahat.SelectedIndex == 0)
+                    s.Masahat = txtMasahat.Text.ParseToInt();
+                if (cmbMasahat.SelectedIndex == 1)
+                    s.Masahat = txtMasahat.Text.ParseToInt() * 10000;
+                if (cmbZirBana.SelectedIndex == 0)
+                    s.ZirBana = txtZirBana.Text.ParseToInt();
+                if (cmbZirBana.SelectedIndex == 1)
+                    s.ZirBana = txtZirBana.Text.ParseToInt() * 10000;
+
+                var frm = new frmBuildingSimilar(s);
+                if (frm.ShowDialog(this) != DialogResult.OK) return;
+                if (frm.BuildingSimilar == null) return;
+                _lstSimilar.Add(frm.BuildingSimilar);
+                MakeSimilarBuildings();
             }
             catch (Exception ex)
             {
