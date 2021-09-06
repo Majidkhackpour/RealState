@@ -49,7 +49,7 @@ namespace EntityCache.ViewModels
                         type = EnRequestType.Rahn;
                     }
                     var reqList = await BuildingRequestBussines.GetAllAsync(type, token, price1, price2, item.Masahat,
-                        item.RoomCount, item.BuildingAccountTypeGuid, item.BuildingConditionGuid, item.RegionGuid);
+                        item.RoomCount, item.BuildingAccountTypeGuid, item.RegionGuid);
                     if (reqList == null || reqList.Count <= 0) continue;
                     var a = new BuildingRequestViewModel()
                     {

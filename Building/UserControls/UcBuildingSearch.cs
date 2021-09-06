@@ -23,12 +23,11 @@ namespace UcBuildingSearch
             lblTabdil.Text = bu.Tabdil;
             lblMetrazh.Text = bu.Metrazh + " متر";
             lblParent.Text = bu.Parent;
-            lblPrice1.Text = bu.Price1.ToString("N0") + " ریال";
-            if (bu.Price2 == 0) lblPrice2.Text = "-";
-            else lblPrice2.Text = bu.Price2.ToString("N0") + " ریال";
+            lblPrice1.Text = bu.Price1.ToString("N0") ;
+            lblPrice2.Text = bu.Price2 == 0 ? "-" : bu.Price2.ToString("N0");
             lblRegion.Text = bu.Region;
             lblRentalAuthority.Text = bu.RentalAuthority;
-            lblRoomCount.Text = bu.RoomCount.ToString();
+            lblRoomCount.Text = bu.RoomCount;
             lblSaleSakht.Text = bu.SaleSakht;
             lblTabaqe.Text = bu.Tabaqe;
             foreach (var item in bu.Options)

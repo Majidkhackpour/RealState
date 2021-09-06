@@ -1,5 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Net.Http;
+using System.Threading.Tasks;
 using Services;
+using Services.AndroidViewModels;
 using Services.Interfaces.Department;
 
 namespace WebHesabBussines
@@ -32,5 +36,49 @@ namespace WebHesabBussines
         public string BuildingSide { get; set; } = "";
         public string ImagesList { get; set; } = "";
         public AdvertiseType Type { get; set; }
+
+
+        public static async Task<ReturnedSaveFuncInfo> Send2ServerAsync(List<WebScrapper> list)
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                var url = Utilities.WebApi + "/api/Scrapper/SaveAsync";
+                foreach (var item in list)
+                {
+                    var t = await Extentions.PostToApi<WebScrapper, WebScrapper>(item, url);
+                    if (t.ResponseStatus != ResponseStatus.Success)
+                        res.AddError("Error in Send To Server");
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+
+            return res;
+        }
+        public static async Task<List<WebScrapper>> GetAllAsync(DateTime? date)
+        {
+            var list = new List<WebScrapper>();
+            try
+            {
+                if (date == null) date = DateTime.Now.AddDays(-7);
+                date = new DateTime(date.Value.Year, date.Value.Month, date.Value.Day, 0, 0, 0);
+                using (var client = new HttpClient())
+                {
+                    client.DefaultRequestHeaders.Add("cusGuid", WebCustomer.Customer.Guid.ToString());
+                    var res = await client.GetStringAsync(Utilities.WebApi + "/Scrapper_GetAll/" + date);
+                    list = res.FromJson<List<WebScrapper>>();
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+
+            return list;
+        }
     }
 }

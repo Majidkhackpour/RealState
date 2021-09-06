@@ -344,6 +344,7 @@ namespace EntityCache.Bussines
                     if (token.IsCancellationRequested) return null;
                     if (lPrice1 != 0) res = res.Where(q => q.EjarePrice1 >= lPrice1);
                     if (lPrice2 != 0) res = res.Where(q => q.EjarePrice2 <= lPrice2);
+                    res = res.Where(q => q.SellPrice <= 0);
                 }
                 else
                 {
@@ -377,8 +378,8 @@ namespace EntityCache.Bussines
                     {
                         a.Price1 = item.RahnPrice1;
                         a.Price2 = item.EjarePrice1;
-                        if (item.RahnPrice2 != 0) a.Tabdil = item.RahnPrice2 + "ریال ودیعه";
-                        if (item.EjarePrice2 != 0) a.Tabdil = a.Tabdil + item.EjarePrice2 + "ریال ودیعه";
+                        if (item.RahnPrice2 != 0) a.Tabdil = item.RahnPrice2.ToString("N0") + " ودیعه";
+                        if (item.EjarePrice2 != 0) a.Tabdil =$"{a.Tabdil} {item.EjarePrice2:N0} اجاره";
                         if (item.RahnPrice2 == 0 && item.EjarePrice2 == 0) a.Tabdil = "غیرقابل تبدیل";
                         a.Type = EnRequestType.Rahn;
                     }

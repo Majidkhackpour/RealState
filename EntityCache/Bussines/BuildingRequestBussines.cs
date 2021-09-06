@@ -184,7 +184,7 @@ namespace EntityCache.Bussines
         public static async Task<int> DbCount(Guid userGuid) => await UnitOfWork.BuildingRequest.DbCount(Cache.ConnectionString, userGuid);
         public static async Task<List<BuildingRequestBussines>> GetAllAsync(EnRequestType type, CancellationToken token, decimal price1,
             decimal price2, int masahat,
-            int roomCount, Guid accountTypeGuid, Guid conditionGuid, Guid regionGuid)
+            int roomCount, Guid accountTypeGuid, Guid regionGuid)
         {
             try
             {
@@ -196,7 +196,10 @@ namespace EntityCache.Bussines
                 {
                     if (token.IsCancellationRequested) return null;
                     res = res.Where(q => q.RahnPrice1 <= price1 && q.RahnPrice2 >= price1);
-                    if (price2 != 0) res = res.Where(q => q.EjarePrice1 <= price2 && q.EjarePrice2 >= price2);
+                    if (price2 != 0)
+                        res = res.Where(q =>
+                            (q.EjarePrice1 == 0 && q.EjarePrice2 == 0) ||
+                            (q.EjarePrice1 <= price2 && q.EjarePrice2 >= price2));
                 }
                 if (token.IsCancellationRequested) return null;
                 if (masahat > 0) res = res.Where(q => q.Masahat1 <= masahat && q.Masahat2 >= masahat);
@@ -207,10 +210,6 @@ namespace EntityCache.Bussines
                     res = res.Where(q =>
                         q.BuildingAccountTypeGuid == Guid.Empty ||
                         q.BuildingAccountTypeGuid == accountTypeGuid);
-                if (token.IsCancellationRequested) return null;
-                if (conditionGuid != Guid.Empty)
-                    res = res.Where(q => q.BuildingConditionGuid == Guid.Empty ||
-                                         q.BuildingConditionGuid == conditionGuid);
                 if (token.IsCancellationRequested) return null;
                 if (res == null) return null;
                 if (regionGuid != Guid.Empty)
