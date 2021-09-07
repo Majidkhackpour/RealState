@@ -601,6 +601,7 @@ namespace Building.Building
             this.Padding = new System.Windows.Forms.Padding(27, 92, 27, 31);
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.Style = MetroFramework.MetroColorStyle.Teal;
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmBuildingSimilar_KeyDown);
             this.groupPanel3.ResumeLayout(false);
             this.groupPanel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtTedadOtaq)).EndInit();

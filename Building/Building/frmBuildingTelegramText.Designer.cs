@@ -119,6 +119,7 @@ namespace Building.Building
             this.Padding = new System.Windows.Forms.Padding(27, 92, 27, 31);
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.Style = MetroFramework.MetroColorStyle.Teal;
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmBuildingTelegramText_KeyDown);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -1786,6 +1786,45 @@ namespace Building.Building
                         else list[index] = "";
                     }
                 }
+                if (res.Contains(Replacor.TelegramBuilding.KitchenService))
+                {
+                    var type = list.FirstOrDefault(q => q.Contains(Replacor.TelegramBuilding.KitchenService));
+                    if (!string.IsNullOrEmpty(type))
+                    {
+                        var index = list.IndexOf(type);
+                        type = type.Replace("\r", "");
+                        type = type.Replace(Replacor.TelegramBuilding.KitchenService, bu.KitchenServiceName);
+                        if (!string.IsNullOrEmpty(bu.KitchenServiceName))
+                            list[index] = type;
+                        else list[index] = "";
+                    }
+                }
+                if (res.Contains(Replacor.TelegramBuilding.FloorCover))
+                {
+                    var type = list.FirstOrDefault(q => q.Contains(Replacor.TelegramBuilding.FloorCover));
+                    if (!string.IsNullOrEmpty(type))
+                    {
+                        var index = list.IndexOf(type);
+                        type = type.Replace("\r", "");
+                        type = type.Replace(Replacor.TelegramBuilding.FloorCover, bu.FloorCoverName);
+                        if (!string.IsNullOrEmpty(bu.FloorCoverName))
+                            list[index] = type;
+                        else list[index] = "";
+                    }
+                }
+                if (res.Contains(Replacor.TelegramBuilding.View))
+                {
+                    var type = list.FirstOrDefault(q => q.Contains(Replacor.TelegramBuilding.View));
+                    if (!string.IsNullOrEmpty(type))
+                    {
+                        var index = list.IndexOf(type);
+                        type = type.Replace("\r", "");
+                        type = type.Replace(Replacor.TelegramBuilding.View, bu.BuildingViewName);
+                        if (!string.IsNullOrEmpty(bu.BuildingViewName))
+                            list[index] = type;
+                        else list[index] = "";
+                    }
+                }
 
                 list = list.Where(q => !string.IsNullOrEmpty(q)).ToList();
                 res = string.Join(Environment.NewLine, list);

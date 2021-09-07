@@ -550,5 +550,8 @@ namespace Settings
         private void btnAddress_Click(object sender, EventArgs e) => SetDataInTxt((ButtonX)sender, txtText);
         private void btnTell_Click(object sender, EventArgs e) => SetDataInTxt((ButtonX)sender, txtText);
         private void btnMobile_Click(object sender, EventArgs e) => SetDataInTxt((ButtonX)sender, txtText);
+        private void btnFloorCover_Click(object sender, EventArgs e) => SetDataInTxt((ButtonX)sender, txtText);
+        private void btnKitchenService_Click(object sender, EventArgs e) => SetDataInTxt((ButtonX)sender, txtText);
+        private void btnView_Click(object sender, EventArgs e) => SetDataInTxt((ButtonX)sender, txtText);
     }
 }

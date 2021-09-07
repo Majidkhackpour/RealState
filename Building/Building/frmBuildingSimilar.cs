@@ -285,5 +285,10 @@ namespace Building.Building
             DialogResult = DialogResult.Cancel;
             Close();
         }
+        private void frmBuildingSimilar_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.F5) btnFinish.PerformClick();
+            if (e.KeyCode == Keys.Escape) btnCancel.PerformClick();
+        }
     }
 }

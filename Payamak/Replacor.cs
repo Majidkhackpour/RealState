@@ -55,6 +55,9 @@
             public static string Address => "[آدرس مجموعه]".Trim();
             public static string Tell => "[تلفن ثابت]".Trim();
             public static string Mobile => "[همراه]".Trim();
+            public static string FloorCover => "[کفپوش]".Trim();
+            public static string KitchenService => "[کابینت]".Trim();
+            public static string View => "[نما]".Trim();
         }
     }
 }
