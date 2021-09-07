@@ -206,5 +206,32 @@ namespace EntityCache.Bussines
             await UnitOfWork.Regions.GetAllAsync(Cache.ConnectionString, cityGuid, token);
         public static async Task<List<RegionReportViewModel>> GetAllBuildingReportAsync(CancellationToken token) => await UnitOfWork.Regions.GetAllBuildingReportAsync(Cache.ConnectionString, token);
         public static async Task<List<RegionReportViewModel>> GetAllRequestReportAsync(CancellationToken token) => await UnitOfWork.Regions.GetAllRequestReportAsync(Cache.ConnectionString, token);
+        public static async Task<RegionsBussines> GetDefualtAsync(string name, Guid cityGuid)
+        {
+            try
+            {
+                var reg = await GetAsync(name);
+                if (reg != null && reg.Guid != Guid.Empty) return reg;
+                var city = await CitiesBussines.GetAsync(cityGuid);
+                if (city == null) return null;
+                reg = new RegionsBussines()
+                {
+                    Guid = Guid.NewGuid(),
+                    Modified = DateTime.Now,
+                    Name = name,
+                    Status = true,
+                    ServerStatus = ServerStatus.None,
+                    ServerDeliveryDate = DateTime.Now,
+                    CityGuid = cityGuid,
+                    StateGuid = city.StateGuid
+                };
+                return reg;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                return null;
+            }
+        }
     }
 }

@@ -14,5 +14,6 @@ namespace EntityCache.Core
         Task<List<StatesBussines>> GetAllAsync(string _connectionString, CancellationToken token);
         Task<ReturnedSaveFuncInfo> SaveAsync(StatesBussines item, SqlTransaction tr);
         Task<ReturnedSaveFuncInfo> SaveRangeAsync(IEnumerable<StatesBussines> items, SqlTransaction tr);
+        Task<StatesBussines> GetAsync(string _connectionString, string name);
     }
 }

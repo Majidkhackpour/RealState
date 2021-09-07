@@ -105,6 +105,28 @@ namespace EntityCache.SqlServerPersistence
             }
             return res;
         }
+        public async Task<StatesBussines> GetAsync(string _connectionString, string name)
+        {
+            var obj = new StatesBussines();
+            try
+            {
+                using (var cn = new SqlConnection(_connectionString))
+                {
+                    var cmd = new SqlCommand("sp_State_GetByName", cn) { CommandType = CommandType.StoredProcedure };
+                    cmd.Parameters.AddWithValue("@name", name);
+                    await cn.OpenAsync();
+                    var dr = await cmd.ExecuteReaderAsync();
+                    if (dr.Read()) obj = LoadData(dr);
+                    cn.Close();
+                }
+            }
+            catch (Exception exception)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(exception);
+            }
+
+            return obj;
+        }
         private StatesBussines LoadData(SqlDataReader dr)
         {
             var item = new StatesBussines();

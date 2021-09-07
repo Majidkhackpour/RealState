@@ -172,6 +172,28 @@ namespace EntityCache.SqlServerPersistence
 
             return res;
         }
+        public async Task<CitiesBussines> GetAsync(string _connectionString, string name)
+        {
+            var obj = new CitiesBussines();
+            try
+            {
+                using (var cn = new SqlConnection(_connectionString))
+                {
+                    var cmd = new SqlCommand("sp_City_GetByName", cn) { CommandType = CommandType.StoredProcedure };
+                    cmd.Parameters.AddWithValue("@name", name);
+                    await cn.OpenAsync();
+                    var dr = await cmd.ExecuteReaderAsync();
+                    if (dr.Read()) obj = LoadData(dr);
+                    cn.Close();
+                }
+            }
+            catch (Exception exception)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(exception);
+            }
+
+            return obj;
+        }
         private CitiesBussines LoadData(SqlDataReader dr)
         {
             var item = new CitiesBussines();

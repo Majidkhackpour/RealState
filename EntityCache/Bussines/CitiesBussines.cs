@@ -100,6 +100,7 @@ namespace EntityCache.Bussines
             }
         }
         public static async Task<CitiesBussines> GetAsync(Guid guid) => await UnitOfWork.Cities.GetAsync(Cache.ConnectionString, guid);
+        public static async Task<CitiesBussines> GetAsync(string name) => await UnitOfWork.Cities.GetAsync(Cache.ConnectionString, name);
         public static CitiesBussines Get(Guid guid) => AsyncContext.Run(() => GetAsync(guid));
         public async Task<ReturnedSaveFuncInfo> SaveAsync(SqlTransaction tr = null)
         {
@@ -203,5 +204,32 @@ namespace EntityCache.Bussines
         }
         public static async Task<List<CitiesBussines>> GetAllAsync(Guid stateGuid, CancellationToken token) =>
             await UnitOfWork.Cities.GetAllAsync(Cache.ConnectionString, stateGuid, token);
+        public static async Task<CitiesBussines> GetDefualtAsync(string name, Guid stateGuid)
+        {
+            try
+            {
+                var c = await GetAsync(name);
+                if (c != null && c.Guid != Guid.Empty) return c;
+                var state = await StatesBussines.GetAsync(stateGuid);
+                if (state == null) return null;
+                c = new CitiesBussines()
+                {
+                    Guid = Guid.NewGuid(),
+                    Modified = DateTime.Now,
+                    Name = name,
+                    Status = true,
+                    ServerStatus = ServerStatus.None,
+                    ServerDeliveryDate = DateTime.Now,
+                    StateGuid = stateGuid
+                };
+                await c.SaveAsync();
+                return c;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                return null;
+            }
+        }
     }
 }

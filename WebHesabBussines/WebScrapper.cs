@@ -1,10 +1,9 @@
-﻿using System;
+﻿using Services;
+using Services.Interfaces.Department;
+using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
-using Services;
-using Services.AndroidViewModels;
-using Services.Interfaces.Department;
 
 namespace WebHesabBussines
 {
@@ -59,17 +58,17 @@ namespace WebHesabBussines
 
             return res;
         }
-        public static async Task<List<WebScrapper>> GetAllAsync(DateTime? date)
+        public static async Task<List<WebScrapper>> GetAllAsync(DateTime insertedDate)
         {
             var list = new List<WebScrapper>();
             try
             {
-                if (date == null) date = DateTime.Now.AddDays(-7);
-                date = new DateTime(date.Value.Year, date.Value.Month, date.Value.Day, 0, 0, 0);
+                var today = $"{insertedDate:ddd,' 'dd' 'MMM' 'yyyy' 'HH':'mm':'ss' 'K}";
                 using (var client = new HttpClient())
                 {
                     client.DefaultRequestHeaders.Add("cusGuid", WebCustomer.Customer.Guid.ToString());
-                    var res = await client.GetStringAsync(Utilities.WebApi + "/Scrapper_GetAll/" + date);
+                    client.DefaultRequestHeaders.Add("date", today);
+                    var res = await client.GetStringAsync(Utilities.WebApi + "/Scrapper_GetAll");
                     list = res.FromJson<List<WebScrapper>>();
                 }
             }

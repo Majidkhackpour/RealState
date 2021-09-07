@@ -308,19 +308,14 @@ namespace EntityCache.SqlServerPersistence
 
             return list;
         }
-        public async Task<bool> CheckDuplicateAsync(string connectionString, int masahat, int roomCount, decimal rahn, decimal ejare, decimal sellPrice, int tabaqeNo)
+        public async Task<bool> CheckDuplicateAsync(string connectionString, string divarTitle)
         {
             try
             {
                 using (var cn = new SqlConnection(connectionString))
                 {
                     var cmd = new SqlCommand("sp_Buildings_CheckDuplicate", cn) { CommandType = CommandType.StoredProcedure };
-                    cmd.Parameters.AddWithValue("@masahat", masahat);
-                    cmd.Parameters.AddWithValue("@roomCount", roomCount);
-                    cmd.Parameters.AddWithValue("@rahn", rahn);
-                    cmd.Parameters.AddWithValue("@ejare", ejare);
-                    cmd.Parameters.AddWithValue("@sellPrice", sellPrice);
-                    cmd.Parameters.AddWithValue("@tabaqeNo", tabaqeNo);
+                    cmd.Parameters.AddWithValue("@divarTitle", divarTitle ?? "");
 
                     await cn.OpenAsync();
                     var count = await cmd.ExecuteScalarAsync();

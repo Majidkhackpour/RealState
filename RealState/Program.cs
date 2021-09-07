@@ -19,6 +19,7 @@ using EntityCache.Bussines;
 using EntityCache.WebService;
 using RealState.LoginPanel;
 using User;
+using WebHesabBussines;
 
 namespace RealState
 {
@@ -74,7 +75,10 @@ namespace RealState
         {
             try
             {
-                var serial = clsRegistery.GetRegistery("U1001ML");
+                var serial = "";
+                if (WebCustomer.Customer != null && !string.IsNullOrEmpty(WebCustomer.Customer.AppSerial))
+                    serial = WebCustomer.Customer.AppSerial;
+                else serial = clsRegistery.GetRegistery("U1001ML");
 
                 if (string.IsNullOrEmpty(serial)) return;
                 var serialList = new List<string>();

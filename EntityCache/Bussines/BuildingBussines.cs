@@ -379,7 +379,7 @@ namespace EntityCache.Bussines
                         a.Price1 = item.RahnPrice1;
                         a.Price2 = item.EjarePrice1;
                         if (item.RahnPrice2 != 0) a.Tabdil = item.RahnPrice2.ToString("N0") + " ودیعه";
-                        if (item.EjarePrice2 != 0) a.Tabdil =$"{a.Tabdil} {item.EjarePrice2:N0} اجاره";
+                        if (item.EjarePrice2 != 0) a.Tabdil = $"{a.Tabdil} {item.EjarePrice2:N0} اجاره";
                         if (item.RahnPrice2 == 0 && item.EjarePrice2 == 0) a.Tabdil = "غیرقابل تبدیل";
                         a.Type = EnRequestType.Rahn;
                     }
@@ -471,9 +471,6 @@ namespace EntityCache.Bussines
             return res;
         }
         public static async Task<List<BuildingBussines>> GetAllHighPriorityAsync(CancellationToken token) => await UnitOfWork.Building.GetAllHighPriorityAsync(Cache.ConnectionString, token);
-        public static async Task<bool> CheckDuplicateAsync(int masahat = 0, int roomCount = 0,
-            decimal rahn = 0, decimal ejare = 0, decimal sellPrice = 0, int tabaqeNo = 0)
-            => await UnitOfWork.Building.CheckDuplicateAsync(Cache.ConnectionString, masahat, roomCount, rahn, ejare,
-                sellPrice, tabaqeNo);
+        public static async Task<bool> CheckDuplicateAsync(string divarTitle) => await UnitOfWork.Building.CheckDuplicateAsync(Cache.ConnectionString, divarTitle);
     }
 }
