@@ -10,6 +10,7 @@ using EntityCache.ViewModels;
 using Nito.AsyncEx;
 using Persistence;
 using Services;
+using Services.FilterObjects;
 using Servicess.Interfaces.Building;
 using WebHesabBussines;
 
@@ -250,38 +251,42 @@ namespace EntityCache.Bussines
             }
             return res;
         }
-        public static List<BuildingBussines> GetAll(string search, bool isLoadDets, CancellationToken token, bool? isArchive, bool status,
-            Guid buildingTypeGuid, Guid userGuid, Guid docTypeGuid, Guid accTypeGuid) => AsyncContext.Run(() =>
-            GetAllAsync(search, isLoadDets, token, isArchive, status, buildingTypeGuid, userGuid, docTypeGuid, accTypeGuid));
-        public static async Task<List<BuildingBussines>> GetAllAsync(string search, bool isLoadDets, CancellationToken token, bool? isArchive, bool status,
-            Guid buildingTypeGuid, Guid userGuid, Guid docTypeGuid, Guid accTypeGuid)
+        public static List<BuildingBussines> GetAll(BuildingFilter filters, bool isLoadDets, CancellationToken token) => AsyncContext.Run(() => GetAllAsync(filters, isLoadDets, token));
+        public static async Task<List<BuildingBussines>> GetAllAsync(BuildingFilter filters, bool isLoadDets, CancellationToken token)
         {
             try
             {
                 IEnumerable<BuildingBussines> res;
-                if (string.IsNullOrEmpty(search)) search = "";
+                if (string.IsNullOrEmpty(filters.Search)) filters.Search = "";
                 res = await GetAllAsync(token, isLoadDets);
                 if (token.IsCancellationRequested) return null;
                 if (res == null || !res.Any()) return res?.ToList();
+                res = res.Where(q => (!filters.IsRahn || q.RahnPrice1 > 0) &&
+                                     (!filters.IsSell || q.SellPrice > 0) &&
+                                     (!filters.IsFromDivar || (q.AdvertiseType != null && q.AdvertiseType == Services.AdvertiseType.Divar)) &&
+                                      (!filters.IsFromDivar || (q.AdvertiseType != null && q.AdvertiseType == Services.AdvertiseType.Sheypoor)));
+                if (token.IsCancellationRequested) return null;
+                res = res.Where(q => q.Status == filters.Status);
+                if (token.IsCancellationRequested) return null;
+                if (filters.OwnerGuid != Guid.Empty)
+                    res = res.Where(q => q.OwnerGuid == filters.OwnerGuid);
+                if (token.IsCancellationRequested) return null;
+                if (filters.IsArchive != null) res = res.Where(q => q.IsArchive == filters.IsArchive);
+                if (token.IsCancellationRequested) return null;
+                if (filters.BuildingTypeGuid != Guid.Empty)
+                    res = res.Where(q => q.BuildingTypeGuid == filters.BuildingTypeGuid);
+                if (token.IsCancellationRequested) return null;
+                if (filters.UserGuid != Guid.Empty)
+                    res = res.Where(q => q.UserGuid == filters.UserGuid);
+                if (token.IsCancellationRequested) return null;
+                if (filters.DocumentTypeGuid != Guid.Empty)
+                    res = res.Where(q => q.DocumentType != null && q.DocumentType.Value == filters.DocumentTypeGuid);
+                if (token.IsCancellationRequested) return null;
+                if (filters.BuildingAccountTypeGuid != Guid.Empty)
+                    res = res.Where(q => q.BuildingAccountTypeGuid == filters.BuildingAccountTypeGuid);
+                if (token.IsCancellationRequested) return null;
 
-                res = res.Where(q => q.Status == status);
-                if (token.IsCancellationRequested) return null;
-                if (isArchive != null) res = res.Where(q => q.IsArchive == isArchive);
-                if (token.IsCancellationRequested) return null;
-                if (buildingTypeGuid != Guid.Empty)
-                    res = res.Where(q => q.BuildingTypeGuid == buildingTypeGuid);
-                if (token.IsCancellationRequested) return null;
-                if (userGuid != Guid.Empty)
-                    res = res.Where(q => q.UserGuid == userGuid).ToList();
-                if (token.IsCancellationRequested) return null;
-                if (docTypeGuid != Guid.Empty)
-                    res = res.Where(q => q.DocumentType != null && q.DocumentType.Value == docTypeGuid);
-                if (token.IsCancellationRequested) return null;
-                if (accTypeGuid != Guid.Empty)
-                    res = res.Where(q => q.BuildingAccountTypeGuid == accTypeGuid);
-                if (token.IsCancellationRequested) return null;
-
-                var searchItems = search.SplitString();
+                var searchItems = filters.Search.SplitString();
                 if (searchItems?.Count > 0)
                     foreach (var item in searchItems)
                     {
@@ -313,44 +318,42 @@ namespace EntityCache.Bussines
         public static string NextCode() => AsyncContext.Run(NextCodeAsync);
         public static async Task<bool> CheckCodeAsync(string code, Guid guid) =>
             await UnitOfWork.Building.CheckCodeAsync(Cache.ConnectionString, code, guid);
-        public static async Task<List<BuildingViewModel>> GetAllAsync(string code, CancellationToken token, Guid buildingGuid,
-            Guid buildingAccountTypeGuid, int fMasahat, int lMasahat, int roomCount, decimal fPrice1, decimal lPrice1,
-            decimal fPrice2, decimal lPrice2, EnRequestType type, List<Guid> regionList)
+        public static async Task<List<BuildingViewModel>> GetAllAsync(BuildingMatchFilter filter, CancellationToken token)
         {
             try
             {
                 IEnumerable<BuildingBussines> res = await GetAllAsync(token, true);
                 if (token.IsCancellationRequested) return null;
-                if (regionList != null && regionList.Count > 0) res = res.Where(q => regionList.Contains(q.RegionGuid));
+                if (filter.RegionList != null && filter.RegionList.Count > 0) res = res.Where(q => filter.RegionList.Contains(q.RegionGuid));
                 if (token.IsCancellationRequested) return null;
-                if (!string.IsNullOrEmpty(code)) res = res.Where(q => q.Code.Contains(code));
+                if (!string.IsNullOrEmpty(filter.BuildingCode)) res = res.Where(q => q.Code.Contains(filter.BuildingCode));
                 if (token.IsCancellationRequested) return null;
-                if (buildingGuid != Guid.Empty) res = res.Where(q => q.BuildingTypeGuid == buildingGuid);
+                if (filter.BuildingTypeGuid != Guid.Empty) res = res.Where(q => q.BuildingTypeGuid == filter.BuildingTypeGuid);
                 if (token.IsCancellationRequested) return null;
-                if (buildingAccountTypeGuid != Guid.Empty)
-                    res = res.Where(q => q.BuildingAccountTypeGuid == buildingAccountTypeGuid);
+                if (filter.BuildingAccountTypeGuid != Guid.Empty)
+                    res = res.Where(q => q.BuildingAccountTypeGuid == filter.BuildingAccountTypeGuid);
                 if (token.IsCancellationRequested) return null;
-                if (fMasahat != 0) res = res.Where(q => q.Masahat >= fMasahat);
+                if (filter.Masahat1 != 0) res = res.Where(q => q.Masahat >= filter.Masahat1);
                 if (token.IsCancellationRequested) return null;
-                if (lMasahat != 0) res = res.Where(q => q.Masahat <= lMasahat);
+                if (filter.Masahat2 != 0) res = res.Where(q => q.Masahat <= filter.Masahat2);
                 if (token.IsCancellationRequested) return null;
-                if (roomCount != 0) res = res.Where(q => q.RoomCount <= roomCount);
+                if (filter.RoomCount != 0) res = res.Where(q => q.RoomCount <= filter.RoomCount);
                 if (token.IsCancellationRequested) return null;
-                if (type == EnRequestType.Rahn)
+                if (filter.RequestType == EnRequestType.Rahn)
                 {
                     if (token.IsCancellationRequested) return null;
-                    if (fPrice1 != 0) res = res.Where(q => q.RahnPrice1 >= fPrice1);
-                    if (fPrice2 != 0) res = res.Where(q => q.RahnPrice2 <= fPrice2);
+                    if (filter.FirstPrice1 != 0) res = res.Where(q => q.RahnPrice1 >= filter.FirstPrice1);
+                    if (filter.FirstPrice2 != 0) res = res.Where(q => q.RahnPrice2 <= filter.FirstPrice2);
                     if (token.IsCancellationRequested) return null;
-                    if (lPrice1 != 0) res = res.Where(q => q.EjarePrice1 >= lPrice1);
-                    if (lPrice2 != 0) res = res.Where(q => q.EjarePrice2 <= lPrice2);
+                    if (filter.LastPrice1 != 0) res = res.Where(q => q.EjarePrice1 >= filter.LastPrice1);
+                    if (filter.LastPrice2 != 0) res = res.Where(q => q.EjarePrice2 <= filter.LastPrice2);
                     res = res.Where(q => q.SellPrice <= 0);
                 }
                 else
                 {
                     if (token.IsCancellationRequested) return null;
-                    if (fPrice1 != 0) res = res.Where(q => q.SellPrice > 0 && q.SellPrice >= fPrice1);
-                    if (fPrice2 != 0) res = res.Where(q => q.SellPrice > 0 && q.SellPrice <= fPrice2);
+                    if (filter.FirstPrice1 != 0) res = res.Where(q => q.SellPrice > 0 && q.SellPrice >= filter.FirstPrice1);
+                    if (filter.FirstPrice2 != 0) res = res.Where(q => q.SellPrice > 0 && q.SellPrice <= filter.FirstPrice2);
                 }
                 if (token.IsCancellationRequested) return null;
                 var val = new List<BuildingViewModel>();
@@ -374,7 +377,7 @@ namespace EntityCache.Bussines
                         CreateDate = item.CreateDate
                     };
                     if (token.IsCancellationRequested) return null;
-                    if (type == EnRequestType.Rahn)
+                    if (filter.RequestType == EnRequestType.Rahn)
                     {
                         a.Price1 = item.RahnPrice1;
                         a.Price2 = item.EjarePrice1;

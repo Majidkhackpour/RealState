@@ -166,6 +166,11 @@
             this.ucPagger = new WindowsSerivces.Pagging.UC_FooterPaging();
             this.ucHeader = new WindowsSerivces.UC_Header();
             this.ucFeatures = new ucBuildingFeatures();
+            this.chbRahn = new DevComponents.DotNetBar.Controls.CheckBoxX();
+            this.chbForoush = new DevComponents.DotNetBar.Controls.CheckBoxX();
+            this.chbDivar = new DevComponents.DotNetBar.Controls.CheckBoxX();
+            this.chbSheypoor = new DevComponents.DotNetBar.Controls.CheckBoxX();
+            this.chbAll = new DevComponents.DotNetBar.Controls.CheckBoxX();
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).BeginInit();
             this.contextMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BuildingBindingSource)).BeginInit();
@@ -191,11 +196,11 @@
             // 
             this.txtSearch.Border.Class = "TextBoxBorder";
             this.txtSearch.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.txtSearch.Location = new System.Drawing.Point(46, 65);
+            this.txtSearch.Location = new System.Drawing.Point(453, 65);
             this.txtSearch.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.PreventEnterBeep = true;
-            this.txtSearch.Size = new System.Drawing.Size(931, 27);
+            this.txtSearch.Size = new System.Drawing.Size(524, 27);
             this.txtSearch.TabIndex = 55745;
             this.txtSearch.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtSearch.WatermarkText = "مورد جستجو را وارد نمایید ...";
@@ -1461,11 +1466,106 @@
             this.ucFeatures.Size = new System.Drawing.Size(469, 225);
             this.ucFeatures.TabIndex = 55776;
             // 
+            // chbRahn
+            // 
+            this.chbRahn.AutoSize = true;
+            this.chbRahn.BackColor = System.Drawing.Color.Transparent;
+            // 
+            // 
+            // 
+            this.chbRahn.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.chbRahn.CheckBoxStyle = DevComponents.DotNetBar.eCheckBoxStyle.RadioButton;
+            this.chbRahn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.chbRahn.Location = new System.Drawing.Point(319, 68);
+            this.chbRahn.Name = "chbRahn";
+            this.chbRahn.Size = new System.Drawing.Size(80, 22);
+            this.chbRahn.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.chbRahn.TabIndex = 55780;
+            this.chbRahn.Text = "رهن و اجاره";
+            this.chbRahn.CheckedChanged += new System.EventHandler(this.chbRahn_CheckedChanged);
+            // 
+            // chbForoush
+            // 
+            this.chbForoush.AutoSize = true;
+            this.chbForoush.BackColor = System.Drawing.Color.Transparent;
+            // 
+            // 
+            // 
+            this.chbForoush.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.chbForoush.CheckBoxStyle = DevComponents.DotNetBar.eCheckBoxStyle.RadioButton;
+            this.chbForoush.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.chbForoush.Location = new System.Drawing.Point(261, 69);
+            this.chbForoush.Name = "chbForoush";
+            this.chbForoush.Size = new System.Drawing.Size(54, 22);
+            this.chbForoush.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.chbForoush.TabIndex = 55780;
+            this.chbForoush.Text = "فروش";
+            this.chbForoush.CheckedChanged += new System.EventHandler(this.chbForoush_CheckedChanged);
+            // 
+            // chbDivar
+            // 
+            this.chbDivar.AutoSize = true;
+            this.chbDivar.BackColor = System.Drawing.Color.Transparent;
+            // 
+            // 
+            // 
+            this.chbDivar.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.chbDivar.CheckBoxStyle = DevComponents.DotNetBar.eCheckBoxStyle.RadioButton;
+            this.chbDivar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.chbDivar.Location = new System.Drawing.Point(139, 69);
+            this.chbDivar.Name = "chbDivar";
+            this.chbDivar.Size = new System.Drawing.Size(124, 22);
+            this.chbDivar.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.chbDivar.TabIndex = 55780;
+            this.chbDivar.Text = "دریافت شده از دیوار";
+            this.chbDivar.CheckedChanged += new System.EventHandler(this.chbDivar_CheckedChanged);
+            // 
+            // chbSheypoor
+            // 
+            this.chbSheypoor.AutoSize = true;
+            this.chbSheypoor.BackColor = System.Drawing.Color.Transparent;
+            // 
+            // 
+            // 
+            this.chbSheypoor.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.chbSheypoor.CheckBoxStyle = DevComponents.DotNetBar.eCheckBoxStyle.RadioButton;
+            this.chbSheypoor.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.chbSheypoor.Location = new System.Drawing.Point(12, 69);
+            this.chbSheypoor.Name = "chbSheypoor";
+            this.chbSheypoor.Size = new System.Drawing.Size(128, 22);
+            this.chbSheypoor.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.chbSheypoor.TabIndex = 55780;
+            this.chbSheypoor.Text = "دریافت شده از شیپور";
+            this.chbSheypoor.CheckedChanged += new System.EventHandler(this.chbSheypoor_CheckedChanged);
+            // 
+            // chbAll
+            // 
+            this.chbAll.AutoSize = true;
+            this.chbAll.BackColor = System.Drawing.Color.Transparent;
+            // 
+            // 
+            // 
+            this.chbAll.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.chbAll.CheckBoxStyle = DevComponents.DotNetBar.eCheckBoxStyle.RadioButton;
+            this.chbAll.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.chbAll.Location = new System.Drawing.Point(405, 68);
+            this.chbAll.Name = "chbAll";
+            this.chbAll.Size = new System.Drawing.Size(42, 22);
+            this.chbAll.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.chbAll.TabIndex = 55780;
+            this.chbAll.Text = "همه";
+            this.chbAll.CheckedChanged += new System.EventHandler(this.chbAll_CheckedChanged);
+            // 
             // frmShowBuildings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1021, 600);
+            this.Controls.Add(this.chbSheypoor);
+            this.Controls.Add(this.chbDivar);
+            this.Controls.Add(this.chbForoush);
+            this.Controls.Add(this.chbAll);
+            this.Controls.Add(this.chbRahn);
             this.Controls.Add(this.ucFeatures);
             this.Controls.Add(this.ucHeader);
             this.Controls.Add(this.grp);
@@ -1500,6 +1600,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.AccTypeBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.docTypeBindingSource)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -1630,5 +1731,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dgGuid;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgPriority;
         private System.Windows.Forms.DataGridViewCheckBoxColumn dgIsArchive;
+        private DevComponents.DotNetBar.Controls.CheckBoxX chbRahn;
+        private DevComponents.DotNetBar.Controls.CheckBoxX chbForoush;
+        private DevComponents.DotNetBar.Controls.CheckBoxX chbDivar;
+        private DevComponents.DotNetBar.Controls.CheckBoxX chbSheypoor;
+        private DevComponents.DotNetBar.Controls.CheckBoxX chbAll;
     }
 }

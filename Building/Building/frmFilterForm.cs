@@ -10,6 +10,7 @@ using EntityCache.Bussines;
 using EntityCache.ViewModels;
 using MetroFramework.Forms;
 using Services;
+using Services.FilterObjects;
 using Settings.Classes;
 using User;
 
@@ -234,14 +235,25 @@ namespace Building.Building
                 if (cmbEjare2.SelectedIndex == 2)
                     sPrice2 = txtSPrice2.Text.ParseToDecimal() * 10000000000;
 
+                var filter = new BuildingMatchFilter()
+                {
+                    RoomCount = txtRoomCount.Text.ParseToInt(),
+                    RegionList = RegionList,
+                    BuildingAccountTypeGuid = (Guid)cmbBuildingAccountType.SelectedValue,
+                    BuildingTypeGuid = (Guid)cmbBuildingType.SelectedValue,
+                    Masahat1 = txtFMasahat.Text.ParseToInt(),
+                    Masahat2 = txtSMasahat.Text.ParseToInt(),
+                    FirstPrice1 = fPrice1,
+                    FirstPrice2 = sPrice1,
+                    LastPrice1 = fPrice1,
+                    LastPrice2 = sPrice2,
+                    BuildingCode = txtCode.Text,
+                    RequestType = (EnRequestType)cmbReqType.SelectedIndex
+                };
+
                 _token?.Cancel();
                 _token = new CancellationTokenSource();
-                list.AddRange(await BuildingBussines.GetAllAsync(txtCode.Text, _token.Token,
-                    (Guid)cmbBuildingType.SelectedValue,
-                    (Guid)cmbBuildingAccountType.SelectedValue, txtFMasahat.Text.ParseToInt(),
-                    txtSMasahat.Text.ParseToInt(), txtRoomCount.Text.ParseToInt(), fPrice1, fPrice2,
-                    sPrice1, sPrice2,
-                    (EnRequestType)cmbReqType.SelectedIndex, RegionList));
+                list.AddRange(await BuildingBussines.GetAllAsync(filter, _token.Token));
                 //if (chbDivar.Checked)
                 //{
                 //    var list_ = new List<string>();

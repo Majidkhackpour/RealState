@@ -17,6 +17,7 @@ using Notification;
 using Payamak;
 using Print;
 using Services;
+using Services.FilterObjects;
 using Settings.Classes;
 using WebHesabBussines;
 
@@ -24,13 +25,12 @@ namespace Building.Building
 {
     public partial class frmShowBuildings : MetroForm
     {
-        private bool _st = true;
+        private bool _st = true, isShowMode = false, _isLoad = false;
         private CancellationTokenSource _token = new CancellationTokenSource();
         public Guid SelectedGuid { get; set; }
-        private bool isShowMode = false;
-        private IEnumerable<BuildingBussines> list;
-        private List<string> ColumnList;
-        private Guid ownerGuid = Guid.Empty;
+        private IEnumerable<BuildingBussines> _list;
+        private List<string> _columnList;
+        private Guid _ownerGuid = Guid.Empty;
         private bool? _isArchive;
 
 
@@ -92,28 +92,29 @@ namespace Building.Building
         {
             try
             {
+                if (!_isLoad) return;
                 if (cmbDocType.SelectedValue == null) return;
+                var filter = new BuildingFilter()
+                {
+                    Status = _st,
+                    UserGuid = (Guid)cmbUser.SelectedValue,
+                    BuildingAccountTypeGuid = (Guid)cmbAccType.SelectedValue,
+                    IsArchive = _isArchive,
+                    BuildingTypeGuid = (Guid)cmbBuildingType.SelectedValue,
+                    Search = search,
+                    IsFromDivar = chbDivar.Checked,
+                    IsSell = chbForoush.Checked,
+                    DocumentTypeGuid = (Guid)cmbDocType.SelectedValue,
+                    IsRahn = chbRahn.Checked,
+                    IsFromSheypoor = chbSheypoor.Checked,
+                    OwnerGuid = _ownerGuid
+                };
                 _token?.Cancel();
                 _token = new CancellationTokenSource();
-                list = BuildingBussines
-                    .GetAll(search, false, _token.Token, _isArchive, _st,
-                        (Guid)cmbBuildingType.SelectedValue,
-                        (Guid)cmbUser.SelectedValue,
-                        (Guid)cmbDocType.SelectedValue,
-                        (Guid)cmbAccType.SelectedValue);
-                if (ownerGuid == Guid.Empty)
-                {
-                    Task.Run(() => ucPagger.PagingAsync(new CancellationToken(),
-                        list?.OrderBy(q => q.IsArchive)?.ThenByDescending(q => q.CreateDate), 100,
-                        PagingPosition.GotoStartPage));
-                }
-                else
-                {
-                    Task.Run(() => ucPagger.PagingAsync(new CancellationToken(),
-                        list?.Where(q => q.OwnerGuid == ownerGuid)
-                            ?.OrderBy(q => q.IsArchive)?.ThenByDescending(q => q.CreateDate), 100,
-                        PagingPosition.GotoStartPage));
-                }
+                _list = BuildingBussines.GetAll(filter, false, _token.Token);
+                Task.Run(() => ucPagger.PagingAsync(new CancellationToken(),
+                    _list?.OrderBy(q => q.IsArchive)?.ThenByDescending(q => q.CreateDate), 100,
+                    PagingPosition.GotoStartPage));
             }
             catch (Exception ex)
             {
@@ -140,6 +141,7 @@ namespace Building.Building
                 mnuSendToDivar.Visible = VersionAccess.Advertise;
                 mnuSendToSheypoor.Visible = VersionAccess.Advertise;
                 mnuSendToTelegram.Visible = VersionAccess.Telegram;
+                chbDivar.Visible = chbSheypoor.Visible = VersionAccess.Advertise;
             }
             catch (Exception ex)
             {
@@ -150,12 +152,12 @@ namespace Building.Building
         {
             try
             {
-                ColumnList = Settings.Classes.clsBuilding.ColumnsList;
-                if (ColumnList == null || ColumnList.Count <= 0)
+                _columnList = Settings.Classes.clsBuilding.ColumnsList;
+                if (_columnList == null || _columnList.Count <= 0)
                 {
-                    ColumnList = new List<string> { "کد", "تاریخ ثبت", "مالک", "اتاق", "آدرس", "محدوده" };
+                    _columnList = new List<string> { "کد", "تاریخ ثبت", "مالک", "اتاق", "آدرس", "محدوده" };
 
-                    SaveColumns(ColumnList);
+                    SaveColumns(_columnList);
 
                     DGrid.Columns[dgCode.Index].Visible = true;
                     DGrid.Columns[dgDateSh.Index].Visible = true;
@@ -173,7 +175,7 @@ namespace Building.Building
                 }
                 else
                 {
-                    foreach (var item in ColumnList.ToList())
+                    foreach (var item in _columnList.ToList())
                     {
                         switch (item)
                         {
@@ -419,7 +421,7 @@ namespace Building.Building
                 ucHeader.Text = "نمایش لیست املاک";
                 _st = status;
                 isShowMode = _isShowMode;
-                this.ownerGuid = ownerGuid;
+                _ownerGuid = ownerGuid;
                 _isArchive = isArchive;
                 ucPagger.OnBindDataReady += UcPagger_OnBindDataReady;
                 SetAccess();
@@ -457,6 +459,8 @@ namespace Building.Building
         private async void frmShowBuildings_Load(object sender, EventArgs e)
         {
             await FillCmbAsync();
+            chbAll.Checked = true;
+            _isLoad = true;
             LoadData();
         }
         private void txtSearch_TextChanged(object sender, EventArgs e) => LoadData(txtSearch.Text);
@@ -608,12 +612,12 @@ namespace Building.Building
 
                 if (frm._PrintType != EnPrintType.Excel)
                 {
-                    var cls = new ReportGenerator(StiType.Building_List, frm._PrintType) { Lst = new List<object>(list) };
+                    var cls = new ReportGenerator(StiType.Building_List, frm._PrintType) { Lst = new List<object>(_list) };
                     cls.PrintNew();
                     return;
                 }
 
-                ExportToExcel.ExportBuilding(list, this);
+                ExportToExcel.ExportBuilding(_list, this);
             }
             catch (Exception ex)
             {
@@ -717,16 +721,16 @@ namespace Building.Building
             {
                 if (mnuCode.Checked)
                 {
-                    ColumnList.Add("کد");
+                    _columnList.Add("کد");
                     DGrid.Columns[dgCode.Index].Visible = true;
-                    SaveColumns(ColumnList);
+                    SaveColumns(_columnList);
                 }
                 else
                 {
-                    ColumnList = ColumnList.GroupBy(x => x).Select(x => x.First()).ToList();
-                    ColumnList.Remove("کد");
+                    _columnList = _columnList.GroupBy(x => x).Select(x => x.First()).ToList();
+                    _columnList.Remove("کد");
                     DGrid.Columns[dgCode.Index].Visible = false;
-                    SaveColumns(ColumnList);
+                    SaveColumns(_columnList);
                 }
             }
             catch (Exception ex)
@@ -740,16 +744,16 @@ namespace Building.Building
             {
                 if (mnuDate.Checked)
                 {
-                    ColumnList.Add("تاریخ");
+                    _columnList.Add("تاریخ");
                     DGrid.Columns[dgDateSh.Index].Visible = true;
-                    SaveColumns(ColumnList);
+                    SaveColumns(_columnList);
                 }
                 else
                 {
-                    ColumnList = ColumnList.GroupBy(x => x).Select(x => x.First()).ToList();
-                    ColumnList.Remove("تاریخ");
+                    _columnList = _columnList.GroupBy(x => x).Select(x => x.First()).ToList();
+                    _columnList.Remove("تاریخ");
                     DGrid.Columns[dgDateSh.Index].Visible = false;
-                    SaveColumns(ColumnList);
+                    SaveColumns(_columnList);
                 }
             }
             catch (Exception ex)
@@ -763,16 +767,16 @@ namespace Building.Building
             {
                 if (mnuOwner.Checked)
                 {
-                    ColumnList.Add("مالک");
+                    _columnList.Add("مالک");
                     DGrid.Columns[dgOwnerName.Index].Visible = true;
-                    SaveColumns(ColumnList);
+                    SaveColumns(_columnList);
                 }
                 else
                 {
-                    ColumnList = ColumnList.GroupBy(x => x).Select(x => x.First()).ToList();
-                    ColumnList.Remove("مالک");
+                    _columnList = _columnList.GroupBy(x => x).Select(x => x.First()).ToList();
+                    _columnList.Remove("مالک");
                     DGrid.Columns[dgOwnerName.Index].Visible = false;
-                    SaveColumns(ColumnList);
+                    SaveColumns(_columnList);
                 }
             }
             catch (Exception ex)
@@ -786,16 +790,16 @@ namespace Building.Building
             {
                 if (mnuType.Checked)
                 {
-                    ColumnList.Add("نوع ملک");
+                    _columnList.Add("نوع ملک");
                     DGrid.Columns[dgType.Index].Visible = true;
-                    SaveColumns(ColumnList);
+                    SaveColumns(_columnList);
                 }
                 else
                 {
-                    ColumnList = ColumnList.GroupBy(x => x).Select(x => x.First()).ToList();
-                    ColumnList.Remove("نوع ملک");
+                    _columnList = _columnList.GroupBy(x => x).Select(x => x.First()).ToList();
+                    _columnList.Remove("نوع ملک");
                     DGrid.Columns[dgType.Index].Visible = false;
-                    SaveColumns(ColumnList);
+                    SaveColumns(_columnList);
                 }
             }
             catch (Exception ex)
@@ -809,16 +813,16 @@ namespace Building.Building
             {
                 if (mnuRoom.Checked)
                 {
-                    ColumnList.Add("اتاق");
+                    _columnList.Add("اتاق");
                     DGrid.Columns[dgRoomCount.Index].Visible = true;
-                    SaveColumns(ColumnList);
+                    SaveColumns(_columnList);
                 }
                 else
                 {
-                    ColumnList = ColumnList.GroupBy(x => x).Select(x => x.First()).ToList();
-                    ColumnList.Remove("اتاق");
+                    _columnList = _columnList.GroupBy(x => x).Select(x => x.First()).ToList();
+                    _columnList.Remove("اتاق");
                     DGrid.Columns[dgRoomCount.Index].Visible = false;
-                    SaveColumns(ColumnList);
+                    SaveColumns(_columnList);
                 }
             }
             catch (Exception ex)
@@ -832,16 +836,16 @@ namespace Building.Building
             {
                 if (mnuMasahat.Checked)
                 {
-                    ColumnList.Add("مساحت");
+                    _columnList.Add("مساحت");
                     DGrid.Columns[dgMasahat.Index].Visible = true;
-                    SaveColumns(ColumnList);
+                    SaveColumns(_columnList);
                 }
                 else
                 {
-                    ColumnList = ColumnList.GroupBy(x => x).Select(x => x.First()).ToList();
-                    ColumnList.Remove("مساحت");
+                    _columnList = _columnList.GroupBy(x => x).Select(x => x.First()).ToList();
+                    _columnList.Remove("مساحت");
                     DGrid.Columns[dgMasahat.Index].Visible = false;
-                    SaveColumns(ColumnList);
+                    SaveColumns(_columnList);
                 }
             }
             catch (Exception ex)
@@ -855,16 +859,16 @@ namespace Building.Building
             {
                 if (mnuZirBana.Checked)
                 {
-                    ColumnList.Add("زیربنا");
+                    _columnList.Add("زیربنا");
                     DGrid.Columns[dgZirBana.Index].Visible = true;
-                    SaveColumns(ColumnList);
+                    SaveColumns(_columnList);
                 }
                 else
                 {
-                    ColumnList = ColumnList.GroupBy(x => x).Select(x => x.First()).ToList();
-                    ColumnList.Remove("زیربنا");
+                    _columnList = _columnList.GroupBy(x => x).Select(x => x.First()).ToList();
+                    _columnList.Remove("زیربنا");
                     DGrid.Columns[dgZirBana.Index].Visible = false;
-                    SaveColumns(ColumnList);
+                    SaveColumns(_columnList);
                 }
             }
             catch (Exception ex)
@@ -878,16 +882,16 @@ namespace Building.Building
             {
                 if (mnuRahn.Checked)
                 {
-                    ColumnList.Add("رهن");
+                    _columnList.Add("رهن");
                     DGrid.Columns[dgRahn.Index].Visible = true;
-                    SaveColumns(ColumnList);
+                    SaveColumns(_columnList);
                 }
                 else
                 {
-                    ColumnList = ColumnList.GroupBy(x => x).Select(x => x.First()).ToList();
-                    ColumnList.Remove("رهن");
+                    _columnList = _columnList.GroupBy(x => x).Select(x => x.First()).ToList();
+                    _columnList.Remove("رهن");
                     DGrid.Columns[dgRahn.Index].Visible = false;
-                    SaveColumns(ColumnList);
+                    SaveColumns(_columnList);
                 }
             }
             catch (Exception ex)
@@ -901,16 +905,16 @@ namespace Building.Building
             {
                 if (mnuEjare.Checked)
                 {
-                    ColumnList.Add("اجاره");
+                    _columnList.Add("اجاره");
                     DGrid.Columns[dgEjare.Index].Visible = true;
-                    SaveColumns(ColumnList);
+                    SaveColumns(_columnList);
                 }
                 else
                 {
-                    ColumnList = ColumnList.GroupBy(x => x).Select(x => x.First()).ToList();
-                    ColumnList.Remove("اجاره");
+                    _columnList = _columnList.GroupBy(x => x).Select(x => x.First()).ToList();
+                    _columnList.Remove("اجاره");
                     DGrid.Columns[dgEjare.Index].Visible = false;
-                    SaveColumns(ColumnList);
+                    SaveColumns(_columnList);
                 }
             }
             catch (Exception ex)
@@ -924,16 +928,16 @@ namespace Building.Building
             {
                 if (mnuSell.Checked)
                 {
-                    ColumnList.Add("فروش");
+                    _columnList.Add("فروش");
                     DGrid.Columns[dgSellPrice.Index].Visible = true;
-                    SaveColumns(ColumnList);
+                    SaveColumns(_columnList);
                 }
                 else
                 {
-                    ColumnList = ColumnList.GroupBy(x => x).Select(x => x.First()).ToList();
-                    ColumnList.Remove("فروش");
+                    _columnList = _columnList.GroupBy(x => x).Select(x => x.First()).ToList();
+                    _columnList.Remove("فروش");
                     DGrid.Columns[dgSellPrice.Index].Visible = false;
-                    SaveColumns(ColumnList);
+                    SaveColumns(_columnList);
                 }
             }
             catch (Exception ex)
@@ -947,16 +951,16 @@ namespace Building.Building
             {
                 if (mnuRegion.Checked)
                 {
-                    ColumnList.Add("محدوده");
+                    _columnList.Add("محدوده");
                     DGrid.Columns[dgRegionName.Index].Visible = true;
-                    SaveColumns(ColumnList);
+                    SaveColumns(_columnList);
                 }
                 else
                 {
-                    ColumnList = ColumnList.GroupBy(x => x).Select(x => x.First()).ToList();
-                    ColumnList.Remove("محدوده");
+                    _columnList = _columnList.GroupBy(x => x).Select(x => x.First()).ToList();
+                    _columnList.Remove("محدوده");
                     DGrid.Columns[dgRegionName.Index].Visible = false;
-                    SaveColumns(ColumnList);
+                    SaveColumns(_columnList);
                 }
             }
             catch (Exception ex)
@@ -970,16 +974,16 @@ namespace Building.Building
             {
                 if (mnuBStatus.Checked)
                 {
-                    ColumnList.Add("وضعیت");
+                    _columnList.Add("وضعیت");
                     DGrid.Columns[dgBuildingStatus.Index].Visible = true;
-                    SaveColumns(ColumnList);
+                    SaveColumns(_columnList);
                 }
                 else
                 {
-                    ColumnList = ColumnList.GroupBy(x => x).Select(x => x.First()).ToList();
-                    ColumnList.Remove("وضعیت");
+                    _columnList = _columnList.GroupBy(x => x).Select(x => x.First()).ToList();
+                    _columnList.Remove("وضعیت");
                     DGrid.Columns[dgBuildingStatus.Index].Visible = false;
-                    SaveColumns(ColumnList);
+                    SaveColumns(_columnList);
                 }
             }
             catch (Exception ex)
@@ -993,16 +997,16 @@ namespace Building.Building
             {
                 if (mnuAddress.Checked)
                 {
-                    ColumnList.Add("آدرس");
+                    _columnList.Add("آدرس");
                     DGrid.Columns[dgAddress.Index].Visible = true;
-                    SaveColumns(ColumnList);
+                    SaveColumns(_columnList);
                 }
                 else
                 {
-                    ColumnList = ColumnList.GroupBy(x => x).Select(x => x.First()).ToList();
-                    ColumnList.Remove("آدرس");
+                    _columnList = _columnList.GroupBy(x => x).Select(x => x.First()).ToList();
+                    _columnList.Remove("آدرس");
                     DGrid.Columns[dgAddress.Index].Visible = false;
-                    SaveColumns(ColumnList);
+                    SaveColumns(_columnList);
                 }
             }
             catch (Exception ex)
@@ -1016,16 +1020,16 @@ namespace Building.Building
             {
                 if (mnuUserName.Checked)
                 {
-                    ColumnList.Add("مشاور");
+                    _columnList.Add("مشاور");
                     DGrid.Columns[dgUserName.Index].Visible = true;
-                    SaveColumns(ColumnList);
+                    SaveColumns(_columnList);
                 }
                 else
                 {
-                    ColumnList = ColumnList.GroupBy(x => x).Select(x => x.First()).ToList();
-                    ColumnList.Remove("مشاور");
+                    _columnList = _columnList.GroupBy(x => x).Select(x => x.First()).ToList();
+                    _columnList.Remove("مشاور");
                     DGrid.Columns[dgUserName.Index].Visible = false;
-                    SaveColumns(ColumnList);
+                    SaveColumns(_columnList);
                 }
             }
             catch (Exception ex)
@@ -1039,16 +1043,16 @@ namespace Building.Building
             {
                 if (mnuVam.Checked)
                 {
-                    ColumnList.Add("وام");
+                    _columnList.Add("وام");
                     DGrid.Columns[dgVam.Index].Visible = true;
-                    SaveColumns(ColumnList);
+                    SaveColumns(_columnList);
                 }
                 else
                 {
-                    ColumnList = ColumnList.GroupBy(x => x).Select(x => x.First()).ToList();
-                    ColumnList.Remove("وام");
+                    _columnList = _columnList.GroupBy(x => x).Select(x => x.First()).ToList();
+                    _columnList.Remove("وام");
                     DGrid.Columns[dgVam.Index].Visible = false;
-                    SaveColumns(ColumnList);
+                    SaveColumns(_columnList);
                 }
             }
             catch (Exception ex)
@@ -1062,16 +1066,16 @@ namespace Building.Building
             {
                 if (mnuQest.Checked)
                 {
-                    ColumnList.Add("قسط");
+                    _columnList.Add("قسط");
                     DGrid.Columns[dgQest.Index].Visible = true;
-                    SaveColumns(ColumnList);
+                    SaveColumns(_columnList);
                 }
                 else
                 {
-                    ColumnList = ColumnList.GroupBy(x => x).Select(x => x.First()).ToList();
-                    ColumnList.Remove("قسط");
+                    _columnList = _columnList.GroupBy(x => x).Select(x => x.First()).ToList();
+                    _columnList.Remove("قسط");
                     DGrid.Columns[dgQest.Index].Visible = false;
-                    SaveColumns(ColumnList);
+                    SaveColumns(_columnList);
                 }
             }
             catch (Exception ex)
@@ -1085,16 +1089,16 @@ namespace Building.Building
             {
                 if (mnuTejari.Checked)
                 {
-                    ColumnList.Add("تجاری");
+                    _columnList.Add("تجاری");
                     DGrid.Columns[dgTejari.Index].Visible = true;
-                    SaveColumns(ColumnList);
+                    SaveColumns(_columnList);
                 }
                 else
                 {
-                    ColumnList = ColumnList.GroupBy(x => x).Select(x => x.First()).ToList();
-                    ColumnList.Remove("تجاری");
+                    _columnList = _columnList.GroupBy(x => x).Select(x => x.First()).ToList();
+                    _columnList.Remove("تجاری");
                     DGrid.Columns[dgTejari.Index].Visible = false;
-                    SaveColumns(ColumnList);
+                    SaveColumns(_columnList);
                 }
             }
             catch (Exception ex)
@@ -1108,16 +1112,16 @@ namespace Building.Building
             {
                 if (mnuSaleSakht.Checked)
                 {
-                    ColumnList.Add("سال");
+                    _columnList.Add("سال");
                     DGrid.Columns[dgSaleSakht.Index].Visible = true;
-                    SaveColumns(ColumnList);
+                    SaveColumns(_columnList);
                 }
                 else
                 {
-                    ColumnList = ColumnList.GroupBy(x => x).Select(x => x.First()).ToList();
-                    ColumnList.Remove("سال");
+                    _columnList = _columnList.GroupBy(x => x).Select(x => x.First()).ToList();
+                    _columnList.Remove("سال");
                     DGrid.Columns[dgSaleSakht.Index].Visible = false;
-                    SaveColumns(ColumnList);
+                    SaveColumns(_columnList);
                 }
             }
             catch (Exception ex)
@@ -1131,16 +1135,16 @@ namespace Building.Building
             {
                 if (mnuSide.Checked)
                 {
-                    ColumnList.Add("جهت");
+                    _columnList.Add("جهت");
                     DGrid.Columns[dgSide.Index].Visible = true;
-                    SaveColumns(ColumnList);
+                    SaveColumns(_columnList);
                 }
                 else
                 {
-                    ColumnList = ColumnList.GroupBy(x => x).Select(x => x.First()).ToList();
-                    ColumnList.Remove("جهت");
+                    _columnList = _columnList.GroupBy(x => x).Select(x => x.First()).ToList();
+                    _columnList.Remove("جهت");
                     DGrid.Columns[dgSide.Index].Visible = false;
-                    SaveColumns(ColumnList);
+                    SaveColumns(_columnList);
                 }
             }
             catch (Exception ex)
@@ -1154,16 +1158,16 @@ namespace Building.Building
             {
                 if (mnuDocType.Checked)
                 {
-                    ColumnList.Add("سند");
+                    _columnList.Add("سند");
                     DGrid.Columns[dgDocType.Index].Visible = true;
-                    SaveColumns(ColumnList);
+                    SaveColumns(_columnList);
                 }
                 else
                 {
-                    ColumnList = ColumnList.GroupBy(x => x).Select(x => x.First()).ToList();
-                    ColumnList.Remove("سند");
+                    _columnList = _columnList.GroupBy(x => x).Select(x => x.First()).ToList();
+                    _columnList.Remove("سند");
                     DGrid.Columns[dgDocType.Index].Visible = false;
-                    SaveColumns(ColumnList);
+                    SaveColumns(_columnList);
                 }
             }
             catch (Exception ex)
@@ -1177,16 +1181,16 @@ namespace Building.Building
             {
                 if (mnuRental.Checked)
                 {
-                    ColumnList.Add("ارجحیت");
+                    _columnList.Add("ارجحیت");
                     DGrid.Columns[dgRentalAuthorityName.Index].Visible = true;
-                    SaveColumns(ColumnList);
+                    SaveColumns(_columnList);
                 }
                 else
                 {
-                    ColumnList = ColumnList.GroupBy(x => x).Select(x => x.First()).ToList();
-                    ColumnList.Remove("ارجحیت");
+                    _columnList = _columnList.GroupBy(x => x).Select(x => x.First()).ToList();
+                    _columnList.Remove("ارجحیت");
                     DGrid.Columns[dgRentalAuthorityName.Index].Visible = false;
-                    SaveColumns(ColumnList);
+                    SaveColumns(_columnList);
                 }
             }
             catch (Exception ex)
@@ -1200,16 +1204,16 @@ namespace Building.Building
             {
                 if (mnuAccountType.Checked)
                 {
-                    ColumnList.Add("کاربری");
+                    _columnList.Add("کاربری");
                     DGrid.Columns[dgAccountType.Index].Visible = true;
-                    SaveColumns(ColumnList);
+                    SaveColumns(_columnList);
                 }
                 else
                 {
-                    ColumnList = ColumnList.GroupBy(x => x).Select(x => x.First()).ToList();
-                    ColumnList.Remove("کاربری");
+                    _columnList = _columnList.GroupBy(x => x).Select(x => x.First()).ToList();
+                    _columnList.Remove("کاربری");
                     DGrid.Columns[dgAccountType.Index].Visible = false;
-                    SaveColumns(ColumnList);
+                    SaveColumns(_columnList);
                 }
             }
             catch (Exception ex)
@@ -1223,16 +1227,16 @@ namespace Building.Building
             {
                 if (mnuCondition.Checked)
                 {
-                    ColumnList.Add("وضعیت ملک");
+                    _columnList.Add("وضعیت ملک");
                     DGrid.Columns[dgCondition.Index].Visible = true;
-                    SaveColumns(ColumnList);
+                    SaveColumns(_columnList);
                 }
                 else
                 {
-                    ColumnList = ColumnList.GroupBy(x => x).Select(x => x.First()).ToList();
-                    ColumnList.Remove("وضعیت ملک");
+                    _columnList = _columnList.GroupBy(x => x).Select(x => x.First()).ToList();
+                    _columnList.Remove("وضعیت ملک");
                     DGrid.Columns[dgCondition.Index].Visible = false;
-                    SaveColumns(ColumnList);
+                    SaveColumns(_columnList);
                 }
             }
             catch (Exception ex)
@@ -1246,16 +1250,16 @@ namespace Building.Building
             {
                 if (mnuBView.Checked)
                 {
-                    ColumnList.Add("نما");
+                    _columnList.Add("نما");
                     DGrid.Columns[dgView.Index].Visible = true;
-                    SaveColumns(ColumnList);
+                    SaveColumns(_columnList);
                 }
                 else
                 {
-                    ColumnList = ColumnList.GroupBy(x => x).Select(x => x.First()).ToList();
-                    ColumnList.Remove("نما");
+                    _columnList = _columnList.GroupBy(x => x).Select(x => x.First()).ToList();
+                    _columnList.Remove("نما");
                     DGrid.Columns[dgView.Index].Visible = false;
-                    SaveColumns(ColumnList);
+                    SaveColumns(_columnList);
                 }
             }
             catch (Exception ex)
@@ -1269,16 +1273,16 @@ namespace Building.Building
             {
                 if (mnuFloor.Checked)
                 {
-                    ColumnList.Add("کفپوش");
+                    _columnList.Add("کفپوش");
                     DGrid.Columns[dgFloorCover.Index].Visible = true;
-                    SaveColumns(ColumnList);
+                    SaveColumns(_columnList);
                 }
                 else
                 {
-                    ColumnList = ColumnList.GroupBy(x => x).Select(x => x.First()).ToList();
-                    ColumnList.Remove("کفپوش");
+                    _columnList = _columnList.GroupBy(x => x).Select(x => x.First()).ToList();
+                    _columnList.Remove("کفپوش");
                     DGrid.Columns[dgFloorCover.Index].Visible = false;
-                    SaveColumns(ColumnList);
+                    SaveColumns(_columnList);
                 }
             }
             catch (Exception ex)
@@ -1292,16 +1296,16 @@ namespace Building.Building
             {
                 if (mnuKitchen.Checked)
                 {
-                    ColumnList.Add("آشپزخانه");
+                    _columnList.Add("آشپزخانه");
                     DGrid.Columns[dgKitchenService.Index].Visible = true;
-                    SaveColumns(ColumnList);
+                    SaveColumns(_columnList);
                 }
                 else
                 {
-                    ColumnList = ColumnList.GroupBy(x => x).Select(x => x.First()).ToList();
-                    ColumnList.Remove("آشپزخانه");
+                    _columnList = _columnList.GroupBy(x => x).Select(x => x.First()).ToList();
+                    _columnList.Remove("آشپزخانه");
                     DGrid.Columns[dgKitchenService.Index].Visible = false;
-                    SaveColumns(ColumnList);
+                    SaveColumns(_columnList);
                 }
             }
             catch (Exception ex)
@@ -1315,16 +1319,16 @@ namespace Building.Building
             {
                 if (mnuWater.Checked)
                 {
-                    ColumnList.Add("آب");
+                    _columnList.Add("آب");
                     DGrid.Columns[dgWater.Index].Visible = true;
-                    SaveColumns(ColumnList);
+                    SaveColumns(_columnList);
                 }
                 else
                 {
-                    ColumnList = ColumnList.GroupBy(x => x).Select(x => x.First()).ToList();
-                    ColumnList.Remove("آب");
+                    _columnList = _columnList.GroupBy(x => x).Select(x => x.First()).ToList();
+                    _columnList.Remove("آب");
                     DGrid.Columns[dgWater.Index].Visible = false;
-                    SaveColumns(ColumnList);
+                    SaveColumns(_columnList);
                 }
             }
             catch (Exception ex)
@@ -1338,16 +1342,16 @@ namespace Building.Building
             {
                 if (mnuBarq.Checked)
                 {
-                    ColumnList.Add("برق");
+                    _columnList.Add("برق");
                     DGrid.Columns[dgBarq.Index].Visible = true;
-                    SaveColumns(ColumnList);
+                    SaveColumns(_columnList);
                 }
                 else
                 {
-                    ColumnList = ColumnList.GroupBy(x => x).Select(x => x.First()).ToList();
-                    ColumnList.Remove("برق");
+                    _columnList = _columnList.GroupBy(x => x).Select(x => x.First()).ToList();
+                    _columnList.Remove("برق");
                     DGrid.Columns[dgBarq.Index].Visible = false;
-                    SaveColumns(ColumnList);
+                    SaveColumns(_columnList);
                 }
             }
             catch (Exception ex)
@@ -1361,16 +1365,16 @@ namespace Building.Building
             {
                 if (mnuGas.Checked)
                 {
-                    ColumnList.Add("گاز");
+                    _columnList.Add("گاز");
                     DGrid.Columns[dgGas.Index].Visible = true;
-                    SaveColumns(ColumnList);
+                    SaveColumns(_columnList);
                 }
                 else
                 {
-                    ColumnList = ColumnList.GroupBy(x => x).Select(x => x.First()).ToList();
-                    ColumnList.Remove("گاز");
+                    _columnList = _columnList.GroupBy(x => x).Select(x => x.First()).ToList();
+                    _columnList.Remove("گاز");
                     DGrid.Columns[dgGas.Index].Visible = false;
-                    SaveColumns(ColumnList);
+                    SaveColumns(_columnList);
                 }
             }
             catch (Exception ex)
@@ -1384,16 +1388,16 @@ namespace Building.Building
             {
                 if (mnuTell.Checked)
                 {
-                    ColumnList.Add("تلفن");
+                    _columnList.Add("تلفن");
                     DGrid.Columns[dgTell.Index].Visible = true;
-                    SaveColumns(ColumnList);
+                    SaveColumns(_columnList);
                 }
                 else
                 {
-                    ColumnList = ColumnList.GroupBy(x => x).Select(x => x.First()).ToList();
-                    ColumnList.Remove("تلفن");
+                    _columnList = _columnList.GroupBy(x => x).Select(x => x.First()).ToList();
+                    _columnList.Remove("تلفن");
                     DGrid.Columns[dgTell.Index].Visible = false;
-                    SaveColumns(ColumnList);
+                    SaveColumns(_columnList);
                 }
             }
             catch (Exception ex)
@@ -2022,6 +2026,11 @@ namespace Building.Building
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
+        private void chbRahn_CheckedChanged(object sender, EventArgs e) => LoadData(txtSearch.Text);
+        private void chbForoush_CheckedChanged(object sender, EventArgs e) => LoadData(txtSearch.Text);
+        private void chbDivar_CheckedChanged(object sender, EventArgs e) => LoadData(txtSearch.Text);
+        private void chbSheypoor_CheckedChanged(object sender, EventArgs e) => LoadData(txtSearch.Text);
+        private void chbAll_CheckedChanged(object sender, EventArgs e) => LoadData(txtSearch.Text);
         private async void mnuPrintInherit_Click(object sender, EventArgs e)
         {
             try

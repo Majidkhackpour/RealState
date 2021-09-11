@@ -13,6 +13,7 @@ using MetroFramework.Forms;
 using Notification;
 using Peoples;
 using Services;
+using Services.FilterObjects;
 using Settings.Classes;
 using User;
 
@@ -502,13 +503,24 @@ namespace Building.BuildingRequest
                     sPrice2 = cls.EjarePrice2;
                 }
 
+                var filter = new BuildingMatchFilter()
+                {
+                    RoomCount = cls.RoomCount,
+                    RegionList = cls.RegionList?.Select(q => q.RegionGuid).ToList(),
+                    BuildingAccountTypeGuid = cls.BuildingAccountTypeGuid,
+                    BuildingTypeGuid = Guid.Empty,
+                    Masahat1 = cls.Masahat1,
+                    Masahat2 = cls.Masahat2,
+                    FirstPrice1 = fPrice1,
+                    FirstPrice2 = fPrice2,
+                    LastPrice1 = sPrice1,
+                    LastPrice2 = sPrice2,
+                    BuildingCode = "",
+                    RequestType = type
+                };
                 _token?.Cancel();
                 _token = new CancellationTokenSource();
-                list.AddRange(await BuildingBussines.GetAllAsync(null, _token.Token, Guid.Empty,
-                    cls.BuildingAccountTypeGuid, cls.Masahat1,
-                    cls.Masahat2, cls.RoomCount, fPrice1,
-                    sPrice1, fPrice2,
-                    sPrice2, type, cls.RegionList?.Select(q => q.RegionGuid).ToList()));
+                list.AddRange(await BuildingBussines.GetAllAsync(filter, _token.Token));
 
                 if (list.Count <= 0)
                 {
