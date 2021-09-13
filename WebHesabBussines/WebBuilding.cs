@@ -81,6 +81,8 @@ namespace WebHesabBussines
         public int SheypoorCount { get; set; }
         public AdvertiseType? AdvertiseType { get; set; }
         public string DivarTitle { get; set; }
+        public string Hiting { get; set; }
+        public string Colling { get; set; }
         public string HardSerial { get; set; }
         public List<WebBuildingRelatedOptions> OptionList { get; set; }
 

@@ -112,6 +112,10 @@ namespace Building.Building
             this.label35 = new System.Windows.Forms.Label();
             this.label34 = new System.Windows.Forms.Label();
             this.groupPanel7 = new DevComponents.DotNetBar.Controls.GroupPanel();
+            this.cmbColling = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.cmbHitting = new System.Windows.Forms.ComboBox();
+            this.label17 = new System.Windows.Forms.Label();
             this.cmbPirority = new System.Windows.Forms.ComboBox();
             this.label64 = new System.Windows.Forms.Label();
             this.txtTedadVahed = new System.Windows.Forms.NumericUpDown();
@@ -993,7 +997,7 @@ namespace Building.Building
             this.txtPricePerZirBana.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtPricePerZirBana.Name = "txtPricePerZirBana";
             this.txtPricePerZirBana.Size = new System.Drawing.Size(254, 31);
-            this.txtPricePerZirBana.TabIndex = 41;
+            this.txtPricePerZirBana.TabIndex = 2;
             this.txtPricePerZirBana.TextDecimal = new decimal(new int[] {
             0,
             0,
@@ -1014,7 +1018,7 @@ namespace Building.Building
             this.txtPricePerMasashat.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtPricePerMasashat.Name = "txtPricePerMasashat";
             this.txtPricePerMasashat.Size = new System.Drawing.Size(254, 31);
-            this.txtPricePerMasashat.TabIndex = 42;
+            this.txtPricePerMasashat.TabIndex = 1;
             this.txtPricePerMasashat.TextDecimal = new decimal(new int[] {
             0,
             0,
@@ -1033,7 +1037,7 @@ namespace Building.Building
             this.cmbSellTarakom.Location = new System.Drawing.Point(3, 234);
             this.cmbSellTarakom.Name = "cmbSellTarakom";
             this.cmbSellTarakom.Size = new System.Drawing.Size(254, 28);
-            this.cmbSellTarakom.TabIndex = 5;
+            this.cmbSellTarakom.TabIndex = 7;
             this.cmbSellTarakom.ValueMember = "Guid";
             // 
             // label25
@@ -1059,7 +1063,7 @@ namespace Building.Building
             this.cmbSellSanadType.Location = new System.Drawing.Point(3, 201);
             this.cmbSellSanadType.Name = "cmbSellSanadType";
             this.cmbSellSanadType.Size = new System.Drawing.Size(254, 28);
-            this.cmbSellSanadType.TabIndex = 4;
+            this.cmbSellSanadType.TabIndex = 6;
             this.cmbSellSanadType.ValueMember = "Guid";
             // 
             // sanadTypeBindingSource
@@ -1082,7 +1086,7 @@ namespace Building.Building
             0});
             this.txtDong.Name = "txtDong";
             this.txtDong.Size = new System.Drawing.Size(260, 27);
-            this.txtDong.TabIndex = 3;
+            this.txtDong.TabIndex = 5;
             this.txtDong.Value = new decimal(new int[] {
             1,
             0,
@@ -1102,7 +1106,7 @@ namespace Building.Building
             this.txtQestPrice.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtQestPrice.Name = "txtQestPrice";
             this.txtQestPrice.Size = new System.Drawing.Size(254, 31);
-            this.txtQestPrice.TabIndex = 2;
+            this.txtQestPrice.TabIndex = 4;
             this.txtQestPrice.TextDecimal = new decimal(new int[] {
             0,
             0,
@@ -1122,7 +1126,7 @@ namespace Building.Building
             this.txtVamPrice.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtVamPrice.Name = "txtVamPrice";
             this.txtVamPrice.Size = new System.Drawing.Size(254, 31);
-            this.txtVamPrice.TabIndex = 1;
+            this.txtVamPrice.TabIndex = 3;
             this.txtVamPrice.TextDecimal = new decimal(new int[] {
             0,
             0,
@@ -1399,6 +1403,10 @@ namespace Building.Building
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupPanel7.CanvasColor = System.Drawing.SystemColors.Control;
             this.groupPanel7.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
+            this.groupPanel7.Controls.Add(this.cmbColling);
+            this.groupPanel7.Controls.Add(this.label3);
+            this.groupPanel7.Controls.Add(this.cmbHitting);
+            this.groupPanel7.Controls.Add(this.label17);
             this.groupPanel7.Controls.Add(this.cmbPirority);
             this.groupPanel7.Controls.Add(this.label64);
             this.groupPanel7.Controls.Add(this.txtTedadVahed);
@@ -1416,7 +1424,7 @@ namespace Building.Building
             this.groupPanel7.DisabledBackColor = System.Drawing.Color.Empty;
             this.groupPanel7.Location = new System.Drawing.Point(5, 1548);
             this.groupPanel7.Name = "groupPanel7";
-            this.groupPanel7.Size = new System.Drawing.Size(357, 255);
+            this.groupPanel7.Size = new System.Drawing.Size(357, 325);
             // 
             // 
             // 
@@ -1447,6 +1455,42 @@ namespace Building.Building
             // 
             this.groupPanel7.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.groupPanel7.TabIndex = 6;
+            // 
+            // cmbColling
+            // 
+            this.cmbColling.FormattingEnabled = true;
+            this.cmbColling.Location = new System.Drawing.Point(3, 280);
+            this.cmbColling.Name = "cmbColling";
+            this.cmbColling.Size = new System.Drawing.Size(280, 28);
+            this.cmbColling.TabIndex = 8;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.Transparent;
+            this.label3.Location = new System.Drawing.Point(291, 283);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(51, 20);
+            this.label3.TabIndex = 55714;
+            this.label3.Text = "سرمایش";
+            // 
+            // cmbHitting
+            // 
+            this.cmbHitting.FormattingEnabled = true;
+            this.cmbHitting.Location = new System.Drawing.Point(3, 246);
+            this.cmbHitting.Name = "cmbHitting";
+            this.cmbHitting.Size = new System.Drawing.Size(280, 28);
+            this.cmbHitting.TabIndex = 7;
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.BackColor = System.Drawing.Color.Transparent;
+            this.label17.Location = new System.Drawing.Point(297, 249);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(47, 20);
+            this.label17.TabIndex = 55714;
+            this.label17.Text = "گرمایش";
             // 
             // cmbPirority
             // 
@@ -1682,7 +1726,7 @@ namespace Building.Building
             this.groupPanel8.Controls.Add(this.fPanelSimilar);
             this.groupPanel8.Controls.Add(this.btnSimilar);
             this.groupPanel8.DisabledBackColor = System.Drawing.Color.Empty;
-            this.groupPanel8.Location = new System.Drawing.Point(5, 1809);
+            this.groupPanel8.Location = new System.Drawing.Point(5, 1879);
             this.groupPanel8.Name = "groupPanel8";
             this.groupPanel8.Size = new System.Drawing.Size(357, 79);
             // 
@@ -1714,7 +1758,7 @@ namespace Building.Building
             // 
             // 
             this.groupPanel8.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.groupPanel8.TabIndex = 55732;
+            this.groupPanel8.TabIndex = 7;
             // 
             // fPanelSimilar
             // 
@@ -2141,5 +2185,9 @@ namespace Building.Building
         private WindowsSerivces.CurrencyTextBox txtPricePerZirBana;
         private WindowsSerivces.CurrencyTextBox txtPricePerMasashat;
         private System.Windows.Forms.FlowLayoutPanel fPanelSimilar;
+        private System.Windows.Forms.ComboBox cmbColling;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ComboBox cmbHitting;
+        private System.Windows.Forms.Label label17;
     }
 }

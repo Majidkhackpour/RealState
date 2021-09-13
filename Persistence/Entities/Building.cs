@@ -94,6 +94,10 @@ namespace Persistence.Entities
         public int SheypoorCount { get; set; }
         public AdvertiseType? AdvertiseType { get; set; }
         public string DivarTitle { get; set; }
+        [MaxLength(250)]
+        public string Hiting { get; set; }
+        [MaxLength(250)]
+        public string Colling { get; set; }
         public virtual Peoples Owner { get; set; }
         public virtual Users User { get; set; }
         public virtual RentalAuthority Rental { get; set; }

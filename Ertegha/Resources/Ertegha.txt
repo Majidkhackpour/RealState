@@ -4725,7 +4725,9 @@ ALTER PROCEDURE [dbo].[sp_Building_Save]
 	@divarCount int,
 	@sheypoorCount int,
 	@advType smallint=null,
-	@divarTitle nvarchar(500)=''
+	@divarTitle nvarchar(500)='',
+	@hitting nvarchar(250)='',
+	@colling nvarchar(250)=''
 AS
 BEGIN
 	UPDATE [dbo].[Buildings]
@@ -4793,6 +4795,8 @@ BEGIN
 		  ,[SheypoorCount] = @sheypoorCount
 		  ,[AdvertiseType] = @advType
 		  ,[DivarTitle] = @divarTitle
+		  ,[Hiting] = @hitting
+		  ,[Colling] = @colling
 	 WHERE [Guid] = @guid
 	if @@ROWCOUNT = 0
 	begin
@@ -4863,7 +4867,9 @@ BEGIN
 		   ,[DivarCount]
 		   ,[SheypoorCount]
 		   ,[AdvertiseType]
-		   ,[DivarTitle])
+		   ,[DivarTitle]
+		   ,[Hiting]
+		   ,[Colling])
 		VALUES
            (@guid
            ,@modif
@@ -4931,7 +4937,9 @@ BEGIN
 		   ,@divarCount
 		   ,@sheypoorCount
 		   ,@advType
-		   ,@divarTitle)
+		   ,@divarTitle
+		   ,@hitting
+		   ,@colling)
 	end
 END
 GO
@@ -7560,4 +7568,26 @@ BEGIN
 	from Cities inner join States 
 	on Cities.StateGuid=States.Guid
 	Where Cities.Name=@name
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Building_GetHitting]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Building_GetHitting]	As Begin print 11 end')  
+GO
+ALTER PROCEDURE [dbo].[sp_Building_GetHitting]
+AS
+BEGIN
+	select Distinct Hiting from Buildings
+	where ISNULL(Hiting,'')<>''
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Building_GetColling]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Building_GetColling]	As Begin print 11 end')  
+GO
+ALTER PROCEDURE [dbo].[sp_Building_GetColling]
+AS
+BEGIN
+	select Distinct Colling from Buildings
+	where ISNULL(Colling,'')<>''
 END

@@ -116,6 +116,8 @@ namespace EntityCache.SqlServerPersistence
                 if (item.AdvertiseType != null)
                     cmd.Parameters.AddWithValue("@advType", (short)item.AdvertiseType);
                 cmd.Parameters.AddWithValue("@divarTitle", item.DivarTitle ?? "");
+                cmd.Parameters.AddWithValue("@hitting", item.Hiting ?? "");
+                cmd.Parameters.AddWithValue("@colling", item.Colling ?? "");
 
                 await cmd.ExecuteNonQueryAsync();
             }
@@ -330,6 +332,52 @@ namespace EntityCache.SqlServerPersistence
                 return false;
             }
         }
+        public async Task<List<string>> GetAllHittingAsync(string connectionString)
+        {
+            var list = new List<string>();
+            try
+            {
+                using (var cn = new SqlConnection(connectionString))
+                {
+                    var cmd = new SqlCommand("sp_Building_GetHitting", cn) { CommandType = CommandType.StoredProcedure };
+
+                    await cn.OpenAsync();
+                    var dr = await cmd.ExecuteReaderAsync();
+                    while (dr.Read()) list.Add(dr["Hiting"].ToString());
+                    dr.Close();
+                    cn.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+
+            return list;
+        }
+        public async Task<List<string>> GetAllCollingAsync(string connectionString)
+        {
+            var list = new List<string>();
+            try
+            {
+                using (var cn = new SqlConnection(connectionString))
+                {
+                    var cmd = new SqlCommand("sp_Building_GetColling", cn) { CommandType = CommandType.StoredProcedure };
+
+                    await cn.OpenAsync();
+                    var dr = await cmd.ExecuteReaderAsync();
+                    while (dr.Read()) list.Add(dr["Colling"].ToString());
+                    dr.Close();
+                    cn.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+
+            return list;
+        }
         private BuildingBussines LoadData(SqlDataReader dr, bool isLoadDets)
         {
             var res = new BuildingBussines();
@@ -422,6 +470,8 @@ namespace EntityCache.SqlServerPersistence
                 if (dr["SheypoorCount"] != DBNull.Value) res.SheypoorCount = (int)dr["SheypoorCount"];
                 if (dr["AdvertiseType"] != DBNull.Value) res.AdvertiseType = (AdvertiseType)dr["AdvertiseType"];
                 if (dr["DivarTitle"] != DBNull.Value) res.DivarTitle = dr["DivarTitle"].ToString();
+                if (dr["Hiting"] != DBNull.Value) res.Hiting = dr["Hiting"].ToString();
+                if (dr["Colling"] != DBNull.Value) res.Colling = dr["Colling"].ToString();
             }
             catch (Exception ex)
             {

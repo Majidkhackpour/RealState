@@ -21,5 +21,7 @@ namespace EntityCache.Core
         Task<ReturnedSaveFuncInfo> SetArchiveAsync(string _connectionString, DateTime date);
         Task<List<BuildingBussines>> GetAllHighPriorityAsync(string _connectionString, CancellationToken token);
         Task<bool> CheckDuplicateAsync(string connectionString, string divarTitle);
+        Task<List<string>> GetAllCollingAsync(string connectionString);
+        Task<List<string>> GetAllHittingAsync(string connectionString);
     }
 }

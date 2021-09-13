@@ -105,6 +105,8 @@ namespace EntityCache.Bussines
         public int SheypoorCount { get; set; }
         public AdvertiseType? AdvertiseType { get; set; } = null;
         public string DivarTitle { get; set; } = "";
+        public string Hiting { get; set; }
+        public string Colling { get; set; }
         public bool IsModified { get; set; } = false;
         public List<BuildingRelatedOptionsBussines> OptionList { get; set; }
         public List<BuildingGalleryBussines> GalleryList { get; set; }
@@ -422,6 +424,7 @@ namespace EntityCache.Bussines
 
                 if (ZirBana == 0 && Masahat == 0) res.AddError("لطفا مساحت و زیربنا را وارد نمایید");
                 if (RegionGuid == Guid.Empty) res.AddError("لطفا محدوده ملک را وارد نمایید");
+                if (TedadTabaqe < TabaqeNo) res.AddError($"تعداد طبقات ({TedadTabaqe}) نمی تواند از شماره طبقه ({TabaqeNo}) کوچکتر باشد");
             }
             catch (Exception ex)
             {
@@ -475,5 +478,7 @@ namespace EntityCache.Bussines
         }
         public static async Task<List<BuildingBussines>> GetAllHighPriorityAsync(CancellationToken token) => await UnitOfWork.Building.GetAllHighPriorityAsync(Cache.ConnectionString, token);
         public static async Task<bool> CheckDuplicateAsync(string divarTitle) => await UnitOfWork.Building.CheckDuplicateAsync(Cache.ConnectionString, divarTitle);
+        public static async Task<List<string>> GetAllHittingAsync() => await UnitOfWork.Building.GetAllHittingAsync(Cache.ConnectionString);
+        public static async Task<List<string>> GetAllCollingAsync() => await UnitOfWork.Building.GetAllCollingAsync(Cache.ConnectionString);
     }
 }
