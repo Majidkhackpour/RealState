@@ -61,6 +61,7 @@ namespace Building.Building
                 SetRelatedOptions(cls.Guid);
                 FillPriority();
                 SetSaleSakht();
+                await FillHitting_CollingAsync();
 
                 lblDateNow.Text = cls?.DateSh;
                 txtCode.Text = cls?.Code;
@@ -766,6 +767,8 @@ namespace Building.Building
                 cls.RoomCount = txtTedadOtaq.Text.ParseToInt();
                 cls.Image = image ?? "";
                 cls.Modified = DateTime.Now;
+                cls.Hiting = cmbHitting.Text;
+                cls.Colling = cmbColling.Text;
             }
             catch (Exception ex)
             {
@@ -984,6 +987,25 @@ namespace Building.Building
                 return null;
             }
         }
+        private async Task FillHitting_CollingAsync()
+        {
+            try
+            {
+                var hittingList = await BuildingBussines.GetAllHittingAsync();
+                var collingList = await BuildingBussines.GetAllCollingAsync();
+                cmbHitting.Items.Clear();
+                cmbColling.Items.Clear();
+                if (hittingList != null && hittingList.Count > 0)
+                    cmbHitting.Items.AddRange(hittingList.ToArray());
+                if (collingList != null && collingList.Count > 0)
+                    cmbColling.Items.AddRange(collingList.ToArray());
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
 
         public frmBuildingMain()
         {

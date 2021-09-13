@@ -36,6 +36,7 @@ namespace Building
             this.lblTarakom = new System.Windows.Forms.Label();
             this.lblMamarJoda = new System.Windows.Forms.Label();
             this.lblAllTabaqe = new System.Windows.Forms.Label();
+            this.lblTelegramCount = new System.Windows.Forms.Label();
             this.lblMediaCount = new System.Windows.Forms.Label();
             this.lblVahedPerTabaqe = new System.Windows.Forms.Label();
             this.lblDong = new System.Windows.Forms.Label();
@@ -46,7 +47,8 @@ namespace Building
             this.lblTell3 = new System.Windows.Forms.Label();
             this.lblNatCode = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.lblTelegramCount = new System.Windows.Forms.Label();
+            this.lblHitting = new System.Windows.Forms.Label();
+            this.lblColling = new System.Windows.Forms.Label();
             this.grpPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -57,12 +59,14 @@ namespace Building
             this.grpPanel.Controls.Add(this.lblPicCount);
             this.grpPanel.Controls.Add(this.lblTabaqeNo);
             this.grpPanel.Controls.Add(this.lblBonBast);
+            this.grpPanel.Controls.Add(this.lblColling);
             this.grpPanel.Controls.Add(this.lblTarakom);
             this.grpPanel.Controls.Add(this.lblMamarJoda);
             this.grpPanel.Controls.Add(this.lblAllTabaqe);
             this.grpPanel.Controls.Add(this.lblTelegramCount);
             this.grpPanel.Controls.Add(this.lblMediaCount);
             this.grpPanel.Controls.Add(this.lblVahedPerTabaqe);
+            this.grpPanel.Controls.Add(this.lblHitting);
             this.grpPanel.Controls.Add(this.lblDong);
             this.grpPanel.Controls.Add(this.lblTell2);
             this.grpPanel.Controls.Add(this.lblTell4);
@@ -75,7 +79,7 @@ namespace Building
             this.grpPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.grpPanel.Location = new System.Drawing.Point(0, 0);
             this.grpPanel.Name = "grpPanel";
-            this.grpPanel.Size = new System.Drawing.Size(473, 222);
+            this.grpPanel.Size = new System.Drawing.Size(473, 258);
             // 
             // 
             // 
@@ -103,7 +107,7 @@ namespace Building
             // lblPicCount
             // 
             this.lblPicCount.ForeColor = System.Drawing.Color.White;
-            this.lblPicCount.Location = new System.Drawing.Point(10, 160);
+            this.lblPicCount.Location = new System.Drawing.Point(10, 195);
             this.lblPicCount.Name = "lblPicCount";
             this.lblPicCount.Size = new System.Drawing.Size(156, 21);
             this.lblPicCount.TabIndex = 55738;
@@ -113,7 +117,7 @@ namespace Building
             // lblTabaqeNo
             // 
             this.lblTabaqeNo.ForeColor = System.Drawing.Color.White;
-            this.lblTabaqeNo.Location = new System.Drawing.Point(10, 76);
+            this.lblTabaqeNo.Location = new System.Drawing.Point(10, 111);
             this.lblTabaqeNo.Name = "lblTabaqeNo";
             this.lblTabaqeNo.Size = new System.Drawing.Size(156, 21);
             this.lblTabaqeNo.TabIndex = 55739;
@@ -123,7 +127,7 @@ namespace Building
             // lblBonBast
             // 
             this.lblBonBast.ForeColor = System.Drawing.Color.White;
-            this.lblBonBast.Location = new System.Drawing.Point(10, 118);
+            this.lblBonBast.Location = new System.Drawing.Point(10, 153);
             this.lblBonBast.Name = "lblBonBast";
             this.lblBonBast.Size = new System.Drawing.Size(156, 21);
             this.lblBonBast.TabIndex = 55740;
@@ -133,7 +137,7 @@ namespace Building
             // lblTarakom
             // 
             this.lblTarakom.ForeColor = System.Drawing.Color.White;
-            this.lblTarakom.Location = new System.Drawing.Point(10, 34);
+            this.lblTarakom.Location = new System.Drawing.Point(10, 69);
             this.lblTarakom.Name = "lblTarakom";
             this.lblTarakom.Size = new System.Drawing.Size(156, 21);
             this.lblTarakom.TabIndex = 55741;
@@ -143,7 +147,7 @@ namespace Building
             // lblMamarJoda
             // 
             this.lblMamarJoda.ForeColor = System.Drawing.Color.White;
-            this.lblMamarJoda.Location = new System.Drawing.Point(10, 139);
+            this.lblMamarJoda.Location = new System.Drawing.Point(10, 174);
             this.lblMamarJoda.Name = "lblMamarJoda";
             this.lblMamarJoda.Size = new System.Drawing.Size(156, 21);
             this.lblMamarJoda.TabIndex = 55742;
@@ -153,17 +157,27 @@ namespace Building
             // lblAllTabaqe
             // 
             this.lblAllTabaqe.ForeColor = System.Drawing.Color.White;
-            this.lblAllTabaqe.Location = new System.Drawing.Point(10, 55);
+            this.lblAllTabaqe.Location = new System.Drawing.Point(10, 90);
             this.lblAllTabaqe.Name = "lblAllTabaqe";
             this.lblAllTabaqe.Size = new System.Drawing.Size(156, 21);
             this.lblAllTabaqe.TabIndex = 55743;
             this.lblAllTabaqe.Text = "label2";
             this.lblAllTabaqe.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // lblTelegramCount
+            // 
+            this.lblTelegramCount.ForeColor = System.Drawing.Color.White;
+            this.lblTelegramCount.Location = new System.Drawing.Point(10, 236);
+            this.lblTelegramCount.Name = "lblTelegramCount";
+            this.lblTelegramCount.Size = new System.Drawing.Size(156, 21);
+            this.lblTelegramCount.TabIndex = 55744;
+            this.lblTelegramCount.Text = "label2";
+            this.lblTelegramCount.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // lblMediaCount
             // 
             this.lblMediaCount.ForeColor = System.Drawing.Color.White;
-            this.lblMediaCount.Location = new System.Drawing.Point(10, 181);
+            this.lblMediaCount.Location = new System.Drawing.Point(10, 216);
             this.lblMediaCount.Name = "lblMediaCount";
             this.lblMediaCount.Size = new System.Drawing.Size(156, 21);
             this.lblMediaCount.TabIndex = 55744;
@@ -173,7 +187,7 @@ namespace Building
             // lblVahedPerTabaqe
             // 
             this.lblVahedPerTabaqe.ForeColor = System.Drawing.Color.White;
-            this.lblVahedPerTabaqe.Location = new System.Drawing.Point(10, 97);
+            this.lblVahedPerTabaqe.Location = new System.Drawing.Point(10, 132);
             this.lblVahedPerTabaqe.Name = "lblVahedPerTabaqe";
             this.lblVahedPerTabaqe.Size = new System.Drawing.Size(156, 21);
             this.lblVahedPerTabaqe.TabIndex = 55745;
@@ -183,7 +197,7 @@ namespace Building
             // lblDong
             // 
             this.lblDong.ForeColor = System.Drawing.Color.White;
-            this.lblDong.Location = new System.Drawing.Point(10, 13);
+            this.lblDong.Location = new System.Drawing.Point(10, 48);
             this.lblDong.Name = "lblDong";
             this.lblDong.Size = new System.Drawing.Size(156, 21);
             this.lblDong.TabIndex = 55746;
@@ -275,15 +289,25 @@ namespace Building
             this.label1.Text = "مشخصات مالک";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // lblTelegramCount
+            // lblHitting
             // 
-            this.lblTelegramCount.ForeColor = System.Drawing.Color.White;
-            this.lblTelegramCount.Location = new System.Drawing.Point(10, 201);
-            this.lblTelegramCount.Name = "lblTelegramCount";
-            this.lblTelegramCount.Size = new System.Drawing.Size(156, 21);
-            this.lblTelegramCount.TabIndex = 55744;
-            this.lblTelegramCount.Text = "label2";
-            this.lblTelegramCount.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblHitting.ForeColor = System.Drawing.Color.White;
+            this.lblHitting.Location = new System.Drawing.Point(10, 7);
+            this.lblHitting.Name = "lblHitting";
+            this.lblHitting.Size = new System.Drawing.Size(156, 21);
+            this.lblHitting.TabIndex = 55746;
+            this.lblHitting.Text = "label2";
+            this.lblHitting.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lblColling
+            // 
+            this.lblColling.ForeColor = System.Drawing.Color.White;
+            this.lblColling.Location = new System.Drawing.Point(10, 28);
+            this.lblColling.Name = "lblColling";
+            this.lblColling.Size = new System.Drawing.Size(156, 21);
+            this.lblColling.TabIndex = 55741;
+            this.lblColling.Text = "label2";
+            this.lblColling.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // ucBuildingFeatures
             // 
@@ -295,7 +319,7 @@ namespace Building
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "ucBuildingFeatures";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.Size = new System.Drawing.Size(473, 222);
+            this.Size = new System.Drawing.Size(473, 258);
             this.grpPanel.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -321,5 +345,7 @@ namespace Building
         private System.Windows.Forms.Label lblVahedPerTabaqe;
         private System.Windows.Forms.Label lblDong;
         private System.Windows.Forms.Label lblTelegramCount;
+        private System.Windows.Forms.Label lblColling;
+        private System.Windows.Forms.Label lblHitting;
     }
 }

@@ -389,7 +389,7 @@ namespace Building.Building
                         var loc = DGrid.GetCellDisplayRectangle(dgRoomCount.Index, DGrid.CurrentRow.Index, false);
                         if (token.IsCancellationRequested) return;
                         var wid = dgCode.Width;
-                        ucFeatures.Size = new Size(469, 222);
+                        ucFeatures.Size = new Size(469, 258);
                         var p = new Point(loc.X + wid, loc.Y - ucFeatures.Height);
                         if (token.IsCancellationRequested) return;
                         if (p.Y < DGrid.Top) p.Y += ucFeatures.Height + 120;
