@@ -266,7 +266,7 @@ namespace EntityCache.Bussines
                 res = res.Where(q => (!filters.IsRahn || q.RahnPrice1 > 0) &&
                                      (!filters.IsSell || q.SellPrice > 0) &&
                                      (!filters.IsFromDivar || (q.AdvertiseType != null && q.AdvertiseType == Services.AdvertiseType.Divar)) &&
-                                      (!filters.IsFromDivar || (q.AdvertiseType != null && q.AdvertiseType == Services.AdvertiseType.Sheypoor)));
+                                      (!filters.IsFromSheypoor || (q.AdvertiseType != null && q.AdvertiseType == Services.AdvertiseType.Sheypoor)));
                 if (token.IsCancellationRequested) return null;
                 res = res.Where(q => q.Status == filters.Status);
                 if (token.IsCancellationRequested) return null;

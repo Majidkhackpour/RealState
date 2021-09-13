@@ -41,6 +41,30 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmBuildingMain));
             this.superTabControl1 = new DevComponents.DotNetBar.SuperTabControl();
+            this.superTabControlPanel4 = new DevComponents.DotNetBar.SuperTabControlPanel();
+            this.cmbColling = new System.Windows.Forms.ComboBox();
+            this.label66 = new System.Windows.Forms.Label();
+            this.cmbHitting = new System.Windows.Forms.ComboBox();
+            this.label67 = new System.Windows.Forms.Label();
+            this.cmbSaleSakht = new System.Windows.Forms.ComboBox();
+            this.txtSaleParvane = new System.Windows.Forms.TextBox();
+            this.txtSerialParvane = new System.Windows.Forms.TextBox();
+            this.label60 = new System.Windows.Forms.Label();
+            this.label59 = new System.Windows.Forms.Label();
+            this.label58 = new System.Windows.Forms.Label();
+            this.chbIsMamarJoda = new DevComponents.DotNetBar.Controls.CheckBoxX();
+            this.chbIsBonBast = new DevComponents.DotNetBar.Controls.CheckBoxX();
+            this.label57 = new System.Windows.Forms.Label();
+            this.txtMetrazhTejari = new DevComponents.DotNetBar.Controls.TextBoxX();
+            this.label65 = new System.Windows.Forms.Label();
+            this.label56 = new System.Windows.Forms.Label();
+            this.txtHeight = new DevComponents.DotNetBar.Controls.TextBoxX();
+            this.txtHashie = new DevComponents.DotNetBar.Controls.TextBoxX();
+            this.label55 = new System.Windows.Forms.Label();
+            this.txtErtrfaSaqf = new DevComponents.DotNetBar.Controls.TextBoxX();
+            this.label54 = new System.Windows.Forms.Label();
+            this.txtMetrazhKouche = new DevComponents.DotNetBar.Controls.TextBoxX();
+            this.superTabItem4 = new DevComponents.DotNetBar.SuperTabItem();
             this.superTabControlPanel1 = new DevComponents.DotNetBar.SuperTabControlPanel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.groupPanel2 = new DevComponents.DotNetBar.Controls.GroupPanel();
@@ -132,26 +156,6 @@
             this.label22 = new System.Windows.Forms.Label();
             this.superTabItem7 = new DevComponents.DotNetBar.SuperTabItem();
             this.superTabItem1 = new DevComponents.DotNetBar.SuperTabItem();
-            this.superTabControlPanel4 = new DevComponents.DotNetBar.SuperTabControlPanel();
-            this.cmbSaleSakht = new System.Windows.Forms.ComboBox();
-            this.txtSaleParvane = new System.Windows.Forms.TextBox();
-            this.txtSerialParvane = new System.Windows.Forms.TextBox();
-            this.label60 = new System.Windows.Forms.Label();
-            this.label59 = new System.Windows.Forms.Label();
-            this.label58 = new System.Windows.Forms.Label();
-            this.chbIsMamarJoda = new DevComponents.DotNetBar.Controls.CheckBoxX();
-            this.chbIsBonBast = new DevComponents.DotNetBar.Controls.CheckBoxX();
-            this.label57 = new System.Windows.Forms.Label();
-            this.txtMetrazhTejari = new DevComponents.DotNetBar.Controls.TextBoxX();
-            this.label65 = new System.Windows.Forms.Label();
-            this.label56 = new System.Windows.Forms.Label();
-            this.txtHeight = new DevComponents.DotNetBar.Controls.TextBoxX();
-            this.txtHashie = new DevComponents.DotNetBar.Controls.TextBoxX();
-            this.label55 = new System.Windows.Forms.Label();
-            this.txtErtrfaSaqf = new DevComponents.DotNetBar.Controls.TextBoxX();
-            this.label54 = new System.Windows.Forms.Label();
-            this.txtMetrazhKouche = new DevComponents.DotNetBar.Controls.TextBoxX();
-            this.superTabItem4 = new DevComponents.DotNetBar.SuperTabItem();
             this.superTabControlPanel2 = new DevComponents.DotNetBar.SuperTabControlPanel();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.txtAddress = new System.Windows.Forms.TextBox();
@@ -245,12 +249,9 @@
             this.btnCancel = new DevComponents.DotNetBar.ButtonX();
             this.btnFinish = new DevComponents.DotNetBar.ButtonX();
             this.ucHeader = new WindowsSerivces.UC_Header();
-            this.cmbColling = new System.Windows.Forms.ComboBox();
-            this.label66 = new System.Windows.Forms.Label();
-            this.cmbHitting = new System.Windows.Forms.ComboBox();
-            this.label67 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.superTabControl1)).BeginInit();
             this.superTabControl1.SuspendLayout();
+            this.superTabControlPanel4.SuspendLayout();
             this.superTabControlPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -272,7 +273,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtPishDong)).BeginInit();
             this.superTabControlPanel7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtDong)).BeginInit();
-            this.superTabControlPanel4.SuspendLayout();
             this.superTabControlPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
             this.splitContainer2.Panel1.SuspendLayout();
@@ -351,6 +351,368 @@
             this.superTabItem4});
             this.superTabControl1.TabStyle = DevComponents.DotNetBar.eSuperTabStyle.OfficeMobile2014;
             this.superTabControl1.Text = "superTabControl1";
+            // 
+            // superTabControlPanel4
+            // 
+            this.superTabControlPanel4.Controls.Add(this.cmbColling);
+            this.superTabControlPanel4.Controls.Add(this.label66);
+            this.superTabControlPanel4.Controls.Add(this.cmbHitting);
+            this.superTabControlPanel4.Controls.Add(this.label67);
+            this.superTabControlPanel4.Controls.Add(this.cmbSaleSakht);
+            this.superTabControlPanel4.Controls.Add(this.txtSaleParvane);
+            this.superTabControlPanel4.Controls.Add(this.txtSerialParvane);
+            this.superTabControlPanel4.Controls.Add(this.label60);
+            this.superTabControlPanel4.Controls.Add(this.label59);
+            this.superTabControlPanel4.Controls.Add(this.label58);
+            this.superTabControlPanel4.Controls.Add(this.chbIsMamarJoda);
+            this.superTabControlPanel4.Controls.Add(this.chbIsBonBast);
+            this.superTabControlPanel4.Controls.Add(this.label57);
+            this.superTabControlPanel4.Controls.Add(this.txtMetrazhTejari);
+            this.superTabControlPanel4.Controls.Add(this.label65);
+            this.superTabControlPanel4.Controls.Add(this.label56);
+            this.superTabControlPanel4.Controls.Add(this.txtHeight);
+            this.superTabControlPanel4.Controls.Add(this.txtHashie);
+            this.superTabControlPanel4.Controls.Add(this.label55);
+            this.superTabControlPanel4.Controls.Add(this.txtErtrfaSaqf);
+            this.superTabControlPanel4.Controls.Add(this.label54);
+            this.superTabControlPanel4.Controls.Add(this.txtMetrazhKouche);
+            this.superTabControlPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.superTabControlPanel4.Location = new System.Drawing.Point(0, 40);
+            this.superTabControlPanel4.Name = "superTabControlPanel4";
+            this.superTabControlPanel4.Size = new System.Drawing.Size(789, 447);
+            this.superTabControlPanel4.TabIndex = 0;
+            this.superTabControlPanel4.TabItem = this.superTabItem4;
+            // 
+            // cmbColling
+            // 
+            this.cmbColling.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmbColling.FormattingEnabled = true;
+            this.cmbColling.Location = new System.Drawing.Point(400, 404);
+            this.cmbColling.Name = "cmbColling";
+            this.cmbColling.Size = new System.Drawing.Size(286, 28);
+            this.cmbColling.TabIndex = 55741;
+            // 
+            // label66
+            // 
+            this.label66.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label66.AutoSize = true;
+            this.label66.BackColor = System.Drawing.Color.Transparent;
+            this.label66.Location = new System.Drawing.Point(720, 407);
+            this.label66.Name = "label66";
+            this.label66.Size = new System.Drawing.Size(51, 20);
+            this.label66.TabIndex = 55742;
+            this.label66.Text = "سرمایش";
+            // 
+            // cmbHitting
+            // 
+            this.cmbHitting.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmbHitting.FormattingEnabled = true;
+            this.cmbHitting.Location = new System.Drawing.Point(400, 370);
+            this.cmbHitting.Name = "cmbHitting";
+            this.cmbHitting.Size = new System.Drawing.Size(286, 28);
+            this.cmbHitting.TabIndex = 55740;
+            // 
+            // label67
+            // 
+            this.label67.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label67.AutoSize = true;
+            this.label67.BackColor = System.Drawing.Color.Transparent;
+            this.label67.Location = new System.Drawing.Point(724, 373);
+            this.label67.Name = "label67";
+            this.label67.Size = new System.Drawing.Size(47, 20);
+            this.label67.TabIndex = 55743;
+            this.label67.Text = "گرمایش";
+            // 
+            // cmbSaleSakht
+            // 
+            this.cmbSaleSakht.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmbSaleSakht.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cmbSaleSakht.DisplayMember = "Name";
+            this.cmbSaleSakht.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbSaleSakht.FormattingEnabled = true;
+            this.cmbSaleSakht.Items.AddRange(new object[] {
+            "نوساز",
+            "1 سال ساخت",
+            "2 سال ساخت",
+            "3 سال ساخت",
+            "4 سال ساخت",
+            "5 سال ساخت",
+            "6 سال ساخت",
+            "7 سال ساخت",
+            "8 سال ساخت",
+            "9 سال ساخت",
+            "10 سال ساخت",
+            "11 سال ساخت",
+            "12 سال ساخت",
+            "13 سال ساخت",
+            "14 سال ساخت",
+            "15 سال ساخت",
+            "16 سال ساخت",
+            "17 سال ساخت",
+            "18 سال ساخت",
+            "19 سال ساخت",
+            "20 سال ساخت",
+            "21 سال ساخت",
+            "22 سال ساخت",
+            "23 سال ساخت",
+            "24 سال ساخت",
+            "25 سال ساخت",
+            "26 سال ساخت",
+            "27 سال ساخت",
+            "28 سال ساخت",
+            "29 سال ساخت",
+            "30 سال ساخت",
+            "31 سال ساخت",
+            "32 سال ساخت",
+            "33 سال ساخت",
+            "34 سال ساخت",
+            "35 سال ساخت",
+            "بیش از 35 سال ساخت"});
+            this.cmbSaleSakht.Location = new System.Drawing.Point(400, 274);
+            this.cmbSaleSakht.Name = "cmbSaleSakht";
+            this.cmbSaleSakht.Size = new System.Drawing.Size(286, 28);
+            this.cmbSaleSakht.TabIndex = 55739;
+            this.cmbSaleSakht.ValueMember = "Guid";
+            // 
+            // txtSaleParvane
+            // 
+            this.txtSaleParvane.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtSaleParvane.Location = new System.Drawing.Point(400, 307);
+            this.txtSaleParvane.Name = "txtSaleParvane";
+            this.txtSaleParvane.Size = new System.Drawing.Size(286, 27);
+            this.txtSaleParvane.TabIndex = 75;
+            this.txtSaleParvane.Enter += new System.EventHandler(this.txtSaleParvane_Enter);
+            this.txtSaleParvane.Leave += new System.EventHandler(this.txtSaleParvane_Leave);
+            // 
+            // txtSerialParvane
+            // 
+            this.txtSerialParvane.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtSerialParvane.Location = new System.Drawing.Point(400, 339);
+            this.txtSerialParvane.Name = "txtSerialParvane";
+            this.txtSerialParvane.Size = new System.Drawing.Size(286, 27);
+            this.txtSerialParvane.TabIndex = 76;
+            this.txtSerialParvane.Enter += new System.EventHandler(this.txtSerialParvane_Enter);
+            this.txtSerialParvane.Leave += new System.EventHandler(this.txtSerialParvane_Leave);
+            // 
+            // label60
+            // 
+            this.label60.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label60.AutoSize = true;
+            this.label60.BackColor = System.Drawing.Color.Transparent;
+            this.label60.Location = new System.Drawing.Point(699, 342);
+            this.label60.Name = "label60";
+            this.label60.Size = new System.Drawing.Size(74, 20);
+            this.label60.TabIndex = 55738;
+            this.label60.Text = "سریال پروانه";
+            // 
+            // label59
+            // 
+            this.label59.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label59.AutoSize = true;
+            this.label59.BackColor = System.Drawing.Color.Transparent;
+            this.label59.Location = new System.Drawing.Point(692, 310);
+            this.label59.Name = "label59";
+            this.label59.Size = new System.Drawing.Size(85, 20);
+            this.label59.TabIndex = 55736;
+            this.label59.Text = "سال اخذ پروانه";
+            // 
+            // label58
+            // 
+            this.label58.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label58.AutoSize = true;
+            this.label58.BackColor = System.Drawing.Color.Transparent;
+            this.label58.Location = new System.Drawing.Point(708, 277);
+            this.label58.Name = "label58";
+            this.label58.Size = new System.Drawing.Size(63, 20);
+            this.label58.TabIndex = 55736;
+            this.label58.Text = "سال ساخت";
+            // 
+            // chbIsMamarJoda
+            // 
+            this.chbIsMamarJoda.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            // 
+            // 
+            // 
+            this.chbIsMamarJoda.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.chbIsMamarJoda.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.chbIsMamarJoda.Location = new System.Drawing.Point(423, 240);
+            this.chbIsMamarJoda.Name = "chbIsMamarJoda";
+            this.chbIsMamarJoda.Size = new System.Drawing.Size(263, 23);
+            this.chbIsMamarJoda.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.chbIsMamarJoda.TabIndex = 73;
+            this.chbIsMamarJoda.Text = "ملک دارای ورودی جدا می باشد";
+            // 
+            // chbIsBonBast
+            // 
+            this.chbIsBonBast.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            // 
+            // 
+            // 
+            this.chbIsBonBast.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.chbIsBonBast.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.chbIsBonBast.Location = new System.Drawing.Point(423, 211);
+            this.chbIsBonBast.Name = "chbIsBonBast";
+            this.chbIsBonBast.Size = new System.Drawing.Size(263, 23);
+            this.chbIsBonBast.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.chbIsBonBast.TabIndex = 72;
+            this.chbIsBonBast.Text = "کوچه بن بست است";
+            // 
+            // label57
+            // 
+            this.label57.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label57.AutoSize = true;
+            this.label57.BackColor = System.Drawing.Color.Transparent;
+            this.label57.Location = new System.Drawing.Point(705, 170);
+            this.label57.Name = "label57";
+            this.label57.Size = new System.Drawing.Size(66, 20);
+            this.label57.TabIndex = 55732;
+            this.label57.Text = "متراژ تجاری";
+            // 
+            // txtMetrazhTejari
+            // 
+            this.txtMetrazhTejari.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            // 
+            // 
+            // 
+            this.txtMetrazhTejari.Border.Class = "TextBoxBorder";
+            this.txtMetrazhTejari.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.txtMetrazhTejari.Location = new System.Drawing.Point(400, 168);
+            this.txtMetrazhTejari.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtMetrazhTejari.Name = "txtMetrazhTejari";
+            this.txtMetrazhTejari.PreventEnterBeep = true;
+            this.txtMetrazhTejari.Size = new System.Drawing.Size(286, 27);
+            this.txtMetrazhTejari.TabIndex = 71;
+            this.txtMetrazhTejari.WatermarkImageAlignment = System.Drawing.ContentAlignment.BottomRight;
+            this.txtMetrazhTejari.WatermarkText = "بر حسب متر";
+            // 
+            // label65
+            // 
+            this.label65.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label65.AutoSize = true;
+            this.label65.BackColor = System.Drawing.Color.Transparent;
+            this.label65.Location = new System.Drawing.Point(741, 132);
+            this.label65.Name = "label65";
+            this.label65.Size = new System.Drawing.Size(30, 20);
+            this.label65.TabIndex = 55732;
+            this.label65.Text = "طول";
+            // 
+            // label56
+            // 
+            this.label56.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label56.AutoSize = true;
+            this.label56.BackColor = System.Drawing.Color.Transparent;
+            this.label56.Location = new System.Drawing.Point(731, 94);
+            this.label56.Name = "label56";
+            this.label56.Size = new System.Drawing.Size(40, 20);
+            this.label56.TabIndex = 55732;
+            this.label56.Text = "حاشیه";
+            // 
+            // txtHeight
+            // 
+            this.txtHeight.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            // 
+            // 
+            // 
+            this.txtHeight.Border.Class = "TextBoxBorder";
+            this.txtHeight.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.txtHeight.Location = new System.Drawing.Point(400, 130);
+            this.txtHeight.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtHeight.Name = "txtHeight";
+            this.txtHeight.PreventEnterBeep = true;
+            this.txtHeight.Size = new System.Drawing.Size(284, 27);
+            this.txtHeight.TabIndex = 70;
+            this.txtHeight.WatermarkImageAlignment = System.Drawing.ContentAlignment.BottomRight;
+            this.txtHeight.WatermarkText = "بر حسب متر";
+            // 
+            // txtHashie
+            // 
+            this.txtHashie.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            // 
+            // 
+            // 
+            this.txtHashie.Border.Class = "TextBoxBorder";
+            this.txtHashie.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.txtHashie.Location = new System.Drawing.Point(400, 92);
+            this.txtHashie.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtHashie.Name = "txtHashie";
+            this.txtHashie.PreventEnterBeep = true;
+            this.txtHashie.Size = new System.Drawing.Size(284, 27);
+            this.txtHashie.TabIndex = 70;
+            this.txtHashie.WatermarkImageAlignment = System.Drawing.ContentAlignment.BottomRight;
+            this.txtHashie.WatermarkText = "بر حسب متر";
+            // 
+            // label55
+            // 
+            this.label55.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label55.AutoSize = true;
+            this.label55.BackColor = System.Drawing.Color.Transparent;
+            this.label55.Location = new System.Drawing.Point(708, 54);
+            this.label55.Name = "label55";
+            this.label55.Size = new System.Drawing.Size(65, 20);
+            this.label55.TabIndex = 55732;
+            this.label55.Text = "ارتفاع سقف";
+            // 
+            // txtErtrfaSaqf
+            // 
+            this.txtErtrfaSaqf.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            // 
+            // 
+            // 
+            this.txtErtrfaSaqf.Border.Class = "TextBoxBorder";
+            this.txtErtrfaSaqf.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.txtErtrfaSaqf.Location = new System.Drawing.Point(400, 52);
+            this.txtErtrfaSaqf.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtErtrfaSaqf.Name = "txtErtrfaSaqf";
+            this.txtErtrfaSaqf.PreventEnterBeep = true;
+            this.txtErtrfaSaqf.Size = new System.Drawing.Size(284, 27);
+            this.txtErtrfaSaqf.TabIndex = 69;
+            this.txtErtrfaSaqf.WatermarkImageAlignment = System.Drawing.ContentAlignment.BottomRight;
+            this.txtErtrfaSaqf.WatermarkText = "بر حسب متر";
+            // 
+            // label54
+            // 
+            this.label54.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label54.AutoSize = true;
+            this.label54.BackColor = System.Drawing.Color.Transparent;
+            this.label54.Location = new System.Drawing.Point(708, 16);
+            this.label54.Name = "label54";
+            this.label54.Size = new System.Drawing.Size(63, 20);
+            this.label54.TabIndex = 55732;
+            this.label54.Text = "متراژ کوچه";
+            // 
+            // txtMetrazhKouche
+            // 
+            this.txtMetrazhKouche.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            // 
+            // 
+            // 
+            this.txtMetrazhKouche.Border.Class = "TextBoxBorder";
+            this.txtMetrazhKouche.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.txtMetrazhKouche.Location = new System.Drawing.Point(400, 14);
+            this.txtMetrazhKouche.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtMetrazhKouche.Name = "txtMetrazhKouche";
+            this.txtMetrazhKouche.PreventEnterBeep = true;
+            this.txtMetrazhKouche.Size = new System.Drawing.Size(284, 27);
+            this.txtMetrazhKouche.TabIndex = 68;
+            this.txtMetrazhKouche.WatermarkImageAlignment = System.Drawing.ContentAlignment.BottomRight;
+            this.txtMetrazhKouche.WatermarkText = "بر حسب متر";
+            // 
+            // superTabItem4
+            // 
+            this.superTabItem4.AttachedControl = this.superTabControlPanel4;
+            this.superTabItem4.GlobalItem = false;
+            this.superTabItem4.Name = "superTabItem4";
+            this.superTabItem4.Text = "سایر";
             // 
             // superTabControlPanel1
             // 
@@ -436,7 +798,7 @@
             this.lblDateNow.BackColor = System.Drawing.Color.Transparent;
             this.lblDateNow.Location = new System.Drawing.Point(3, 110);
             this.lblDateNow.Name = "lblDateNow";
-            this.lblDateNow.Size = new System.Drawing.Size(192, 20);
+            this.lblDateNow.Size = new System.Drawing.Size(186, 20);
             this.lblDateNow.TabIndex = 13;
             // 
             // cmbUser
@@ -450,7 +812,7 @@
             this.cmbUser.FormattingEnabled = true;
             this.cmbUser.Location = new System.Drawing.Point(3, 57);
             this.cmbUser.Name = "cmbUser";
-            this.cmbUser.Size = new System.Drawing.Size(188, 28);
+            this.cmbUser.Size = new System.Drawing.Size(182, 28);
             this.cmbUser.TabIndex = 3;
             this.cmbUser.ValueMember = "Guid";
             // 
@@ -464,7 +826,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtCode.Location = new System.Drawing.Point(3, 9);
             this.txtCode.Name = "txtCode";
-            this.txtCode.Size = new System.Drawing.Size(188, 27);
+            this.txtCode.Size = new System.Drawing.Size(182, 27);
             this.txtCode.TabIndex = 2;
             this.txtCode.Enter += new System.EventHandler(this.txtCode_Enter);
             this.txtCode.Leave += new System.EventHandler(this.txtCode_Leave);
@@ -474,7 +836,7 @@
             this.label15.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label15.AutoSize = true;
             this.label15.BackColor = System.Drawing.Color.Transparent;
-            this.label15.Location = new System.Drawing.Point(207, 110);
+            this.label15.Location = new System.Drawing.Point(201, 110);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(55, 20);
             this.label15.TabIndex = 12;
@@ -485,7 +847,7 @@
             this.label14.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label14.AutoSize = true;
             this.label14.BackColor = System.Drawing.Color.Transparent;
-            this.label14.Location = new System.Drawing.Point(222, 60);
+            this.label14.Location = new System.Drawing.Point(216, 60);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(39, 20);
             this.label14.TabIndex = 12;
@@ -496,7 +858,7 @@
             this.label12.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label12.AutoSize = true;
             this.label12.BackColor = System.Drawing.Color.Transparent;
-            this.label12.Location = new System.Drawing.Point(217, 12);
+            this.label12.Location = new System.Drawing.Point(211, 12);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(44, 20);
             this.label12.TabIndex = 12;
@@ -602,7 +964,7 @@
             this.txttxtOwnerCode.Location = new System.Drawing.Point(137, 3);
             this.txttxtOwnerCode.Name = "txttxtOwnerCode";
             this.txttxtOwnerCode.ReadOnly = true;
-            this.txttxtOwnerCode.Size = new System.Drawing.Size(53, 27);
+            this.txttxtOwnerCode.Size = new System.Drawing.Size(47, 27);
             this.txttxtOwnerCode.TabIndex = 10;
             // 
             // label6
@@ -610,7 +972,7 @@
             this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label6.AutoSize = true;
             this.label6.BackColor = System.Drawing.Color.Transparent;
-            this.label6.Location = new System.Drawing.Point(221, 191);
+            this.label6.Location = new System.Drawing.Point(215, 191);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(39, 20);
             this.label6.TabIndex = 9;
@@ -621,7 +983,7 @@
             this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label5.AutoSize = true;
             this.label5.BackColor = System.Drawing.Color.Transparent;
-            this.label5.Location = new System.Drawing.Point(204, 154);
+            this.label5.Location = new System.Drawing.Point(198, 154);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(56, 20);
             this.label5.TabIndex = 9;
@@ -632,7 +994,7 @@
             this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label4.AutoSize = true;
             this.label4.BackColor = System.Drawing.Color.Transparent;
-            this.label4.Location = new System.Drawing.Point(202, 117);
+            this.label4.Location = new System.Drawing.Point(196, 117);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(58, 20);
             this.label4.TabIndex = 9;
@@ -643,7 +1005,7 @@
             this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.Transparent;
-            this.label3.Location = new System.Drawing.Point(217, 80);
+            this.label3.Location = new System.Drawing.Point(211, 80);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(43, 20);
             this.label3.TabIndex = 9;
@@ -656,7 +1018,7 @@
             this.lblOwnerAddress.BackColor = System.Drawing.Color.Transparent;
             this.lblOwnerAddress.Location = new System.Drawing.Point(16, 191);
             this.lblOwnerAddress.Name = "lblOwnerAddress";
-            this.lblOwnerAddress.Size = new System.Drawing.Size(143, 83);
+            this.lblOwnerAddress.Size = new System.Drawing.Size(137, 83);
             this.lblOwnerAddress.TabIndex = 9;
             // 
             // lblOwnerDateBirth
@@ -666,7 +1028,7 @@
             this.lblOwnerDateBirth.BackColor = System.Drawing.Color.Transparent;
             this.lblOwnerDateBirth.Location = new System.Drawing.Point(16, 154);
             this.lblOwnerDateBirth.Name = "lblOwnerDateBirth";
-            this.lblOwnerDateBirth.Size = new System.Drawing.Size(143, 20);
+            this.lblOwnerDateBirth.Size = new System.Drawing.Size(137, 20);
             this.lblOwnerDateBirth.TabIndex = 9;
             // 
             // lblOwnerNCode
@@ -676,7 +1038,7 @@
             this.lblOwnerNCode.BackColor = System.Drawing.Color.Transparent;
             this.lblOwnerNCode.Location = new System.Drawing.Point(16, 117);
             this.lblOwnerNCode.Name = "lblOwnerNCode";
-            this.lblOwnerNCode.Size = new System.Drawing.Size(143, 20);
+            this.lblOwnerNCode.Size = new System.Drawing.Size(137, 20);
             this.lblOwnerNCode.TabIndex = 9;
             // 
             // lblOwnerFatherName
@@ -686,7 +1048,7 @@
             this.lblOwnerFatherName.BackColor = System.Drawing.Color.Transparent;
             this.lblOwnerFatherName.Location = new System.Drawing.Point(16, 80);
             this.lblOwnerFatherName.Name = "lblOwnerFatherName";
-            this.lblOwnerFatherName.Size = new System.Drawing.Size(143, 20);
+            this.lblOwnerFatherName.Size = new System.Drawing.Size(137, 20);
             this.lblOwnerFatherName.TabIndex = 9;
             // 
             // lblOwnerName
@@ -696,7 +1058,7 @@
             this.lblOwnerName.BackColor = System.Drawing.Color.Transparent;
             this.lblOwnerName.Location = new System.Drawing.Point(16, 43);
             this.lblOwnerName.Name = "lblOwnerName";
-            this.lblOwnerName.Size = new System.Drawing.Size(143, 20);
+            this.lblOwnerName.Size = new System.Drawing.Size(137, 20);
             this.lblOwnerName.TabIndex = 9;
             // 
             // label2
@@ -704,7 +1066,7 @@
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Location = new System.Drawing.Point(165, 43);
+            this.label2.Location = new System.Drawing.Point(159, 43);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(95, 20);
             this.label2.TabIndex = 9;
@@ -715,7 +1077,7 @@
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Location = new System.Drawing.Point(196, 6);
+            this.label1.Location = new System.Drawing.Point(190, 6);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(64, 20);
             this.label1.TabIndex = 9;
@@ -1663,326 +2025,6 @@
             this.superTabItem1.GlobalItem = false;
             this.superTabItem1.Name = "superTabItem1";
             this.superTabItem1.Text = "اطلاعات اصلی";
-            // 
-            // superTabControlPanel4
-            // 
-            this.superTabControlPanel4.Controls.Add(this.cmbColling);
-            this.superTabControlPanel4.Controls.Add(this.label66);
-            this.superTabControlPanel4.Controls.Add(this.cmbHitting);
-            this.superTabControlPanel4.Controls.Add(this.label67);
-            this.superTabControlPanel4.Controls.Add(this.cmbSaleSakht);
-            this.superTabControlPanel4.Controls.Add(this.txtSaleParvane);
-            this.superTabControlPanel4.Controls.Add(this.txtSerialParvane);
-            this.superTabControlPanel4.Controls.Add(this.label60);
-            this.superTabControlPanel4.Controls.Add(this.label59);
-            this.superTabControlPanel4.Controls.Add(this.label58);
-            this.superTabControlPanel4.Controls.Add(this.chbIsMamarJoda);
-            this.superTabControlPanel4.Controls.Add(this.chbIsBonBast);
-            this.superTabControlPanel4.Controls.Add(this.label57);
-            this.superTabControlPanel4.Controls.Add(this.txtMetrazhTejari);
-            this.superTabControlPanel4.Controls.Add(this.label65);
-            this.superTabControlPanel4.Controls.Add(this.label56);
-            this.superTabControlPanel4.Controls.Add(this.txtHeight);
-            this.superTabControlPanel4.Controls.Add(this.txtHashie);
-            this.superTabControlPanel4.Controls.Add(this.label55);
-            this.superTabControlPanel4.Controls.Add(this.txtErtrfaSaqf);
-            this.superTabControlPanel4.Controls.Add(this.label54);
-            this.superTabControlPanel4.Controls.Add(this.txtMetrazhKouche);
-            this.superTabControlPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.superTabControlPanel4.Location = new System.Drawing.Point(0, 40);
-            this.superTabControlPanel4.Name = "superTabControlPanel4";
-            this.superTabControlPanel4.Size = new System.Drawing.Size(789, 447);
-            this.superTabControlPanel4.TabIndex = 0;
-            this.superTabControlPanel4.TabItem = this.superTabItem4;
-            // 
-            // cmbSaleSakht
-            // 
-            this.cmbSaleSakht.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.cmbSaleSakht.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.cmbSaleSakht.DisplayMember = "Name";
-            this.cmbSaleSakht.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbSaleSakht.FormattingEnabled = true;
-            this.cmbSaleSakht.Items.AddRange(new object[] {
-            "نوساز",
-            "1 سال ساخت",
-            "2 سال ساخت",
-            "3 سال ساخت",
-            "4 سال ساخت",
-            "5 سال ساخت",
-            "6 سال ساخت",
-            "7 سال ساخت",
-            "8 سال ساخت",
-            "9 سال ساخت",
-            "10 سال ساخت",
-            "11 سال ساخت",
-            "12 سال ساخت",
-            "13 سال ساخت",
-            "14 سال ساخت",
-            "15 سال ساخت",
-            "16 سال ساخت",
-            "17 سال ساخت",
-            "18 سال ساخت",
-            "19 سال ساخت",
-            "20 سال ساخت",
-            "21 سال ساخت",
-            "22 سال ساخت",
-            "23 سال ساخت",
-            "24 سال ساخت",
-            "25 سال ساخت",
-            "26 سال ساخت",
-            "27 سال ساخت",
-            "28 سال ساخت",
-            "29 سال ساخت",
-            "30 سال ساخت",
-            "31 سال ساخت",
-            "32 سال ساخت",
-            "33 سال ساخت",
-            "34 سال ساخت",
-            "35 سال ساخت",
-            "بیش از 35 سال ساخت"});
-            this.cmbSaleSakht.Location = new System.Drawing.Point(400, 274);
-            this.cmbSaleSakht.Name = "cmbSaleSakht";
-            this.cmbSaleSakht.Size = new System.Drawing.Size(286, 28);
-            this.cmbSaleSakht.TabIndex = 55739;
-            this.cmbSaleSakht.ValueMember = "Guid";
-            // 
-            // txtSaleParvane
-            // 
-            this.txtSaleParvane.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtSaleParvane.Location = new System.Drawing.Point(400, 307);
-            this.txtSaleParvane.Name = "txtSaleParvane";
-            this.txtSaleParvane.Size = new System.Drawing.Size(286, 27);
-            this.txtSaleParvane.TabIndex = 75;
-            this.txtSaleParvane.Enter += new System.EventHandler(this.txtSaleParvane_Enter);
-            this.txtSaleParvane.Leave += new System.EventHandler(this.txtSaleParvane_Leave);
-            // 
-            // txtSerialParvane
-            // 
-            this.txtSerialParvane.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtSerialParvane.Location = new System.Drawing.Point(400, 339);
-            this.txtSerialParvane.Name = "txtSerialParvane";
-            this.txtSerialParvane.Size = new System.Drawing.Size(286, 27);
-            this.txtSerialParvane.TabIndex = 76;
-            this.txtSerialParvane.Enter += new System.EventHandler(this.txtSerialParvane_Enter);
-            this.txtSerialParvane.Leave += new System.EventHandler(this.txtSerialParvane_Leave);
-            // 
-            // label60
-            // 
-            this.label60.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label60.AutoSize = true;
-            this.label60.BackColor = System.Drawing.Color.Transparent;
-            this.label60.Location = new System.Drawing.Point(699, 342);
-            this.label60.Name = "label60";
-            this.label60.Size = new System.Drawing.Size(74, 20);
-            this.label60.TabIndex = 55738;
-            this.label60.Text = "سریال پروانه";
-            // 
-            // label59
-            // 
-            this.label59.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label59.AutoSize = true;
-            this.label59.BackColor = System.Drawing.Color.Transparent;
-            this.label59.Location = new System.Drawing.Point(692, 310);
-            this.label59.Name = "label59";
-            this.label59.Size = new System.Drawing.Size(85, 20);
-            this.label59.TabIndex = 55736;
-            this.label59.Text = "سال اخذ پروانه";
-            // 
-            // label58
-            // 
-            this.label58.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label58.AutoSize = true;
-            this.label58.BackColor = System.Drawing.Color.Transparent;
-            this.label58.Location = new System.Drawing.Point(708, 277);
-            this.label58.Name = "label58";
-            this.label58.Size = new System.Drawing.Size(63, 20);
-            this.label58.TabIndex = 55736;
-            this.label58.Text = "سال ساخت";
-            // 
-            // chbIsMamarJoda
-            // 
-            this.chbIsMamarJoda.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            // 
-            // 
-            // 
-            this.chbIsMamarJoda.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.chbIsMamarJoda.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.chbIsMamarJoda.Location = new System.Drawing.Point(423, 240);
-            this.chbIsMamarJoda.Name = "chbIsMamarJoda";
-            this.chbIsMamarJoda.Size = new System.Drawing.Size(263, 23);
-            this.chbIsMamarJoda.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.chbIsMamarJoda.TabIndex = 73;
-            this.chbIsMamarJoda.Text = "ملک دارای ورودی جدا می باشد";
-            // 
-            // chbIsBonBast
-            // 
-            this.chbIsBonBast.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            // 
-            // 
-            // 
-            this.chbIsBonBast.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.chbIsBonBast.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.chbIsBonBast.Location = new System.Drawing.Point(423, 211);
-            this.chbIsBonBast.Name = "chbIsBonBast";
-            this.chbIsBonBast.Size = new System.Drawing.Size(263, 23);
-            this.chbIsBonBast.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.chbIsBonBast.TabIndex = 72;
-            this.chbIsBonBast.Text = "کوچه بن بست است";
-            // 
-            // label57
-            // 
-            this.label57.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label57.AutoSize = true;
-            this.label57.BackColor = System.Drawing.Color.Transparent;
-            this.label57.Location = new System.Drawing.Point(705, 170);
-            this.label57.Name = "label57";
-            this.label57.Size = new System.Drawing.Size(66, 20);
-            this.label57.TabIndex = 55732;
-            this.label57.Text = "متراژ تجاری";
-            // 
-            // txtMetrazhTejari
-            // 
-            this.txtMetrazhTejari.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            // 
-            // 
-            // 
-            this.txtMetrazhTejari.Border.Class = "TextBoxBorder";
-            this.txtMetrazhTejari.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.txtMetrazhTejari.Location = new System.Drawing.Point(400, 168);
-            this.txtMetrazhTejari.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.txtMetrazhTejari.Name = "txtMetrazhTejari";
-            this.txtMetrazhTejari.PreventEnterBeep = true;
-            this.txtMetrazhTejari.Size = new System.Drawing.Size(286, 27);
-            this.txtMetrazhTejari.TabIndex = 71;
-            this.txtMetrazhTejari.WatermarkImageAlignment = System.Drawing.ContentAlignment.BottomRight;
-            this.txtMetrazhTejari.WatermarkText = "بر حسب متر";
-            // 
-            // label65
-            // 
-            this.label65.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label65.AutoSize = true;
-            this.label65.BackColor = System.Drawing.Color.Transparent;
-            this.label65.Location = new System.Drawing.Point(741, 132);
-            this.label65.Name = "label65";
-            this.label65.Size = new System.Drawing.Size(30, 20);
-            this.label65.TabIndex = 55732;
-            this.label65.Text = "طول";
-            // 
-            // label56
-            // 
-            this.label56.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label56.AutoSize = true;
-            this.label56.BackColor = System.Drawing.Color.Transparent;
-            this.label56.Location = new System.Drawing.Point(731, 94);
-            this.label56.Name = "label56";
-            this.label56.Size = new System.Drawing.Size(40, 20);
-            this.label56.TabIndex = 55732;
-            this.label56.Text = "حاشیه";
-            // 
-            // txtHeight
-            // 
-            this.txtHeight.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            // 
-            // 
-            // 
-            this.txtHeight.Border.Class = "TextBoxBorder";
-            this.txtHeight.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.txtHeight.Location = new System.Drawing.Point(400, 130);
-            this.txtHeight.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.txtHeight.Name = "txtHeight";
-            this.txtHeight.PreventEnterBeep = true;
-            this.txtHeight.Size = new System.Drawing.Size(284, 27);
-            this.txtHeight.TabIndex = 70;
-            this.txtHeight.WatermarkImageAlignment = System.Drawing.ContentAlignment.BottomRight;
-            this.txtHeight.WatermarkText = "بر حسب متر";
-            // 
-            // txtHashie
-            // 
-            this.txtHashie.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            // 
-            // 
-            // 
-            this.txtHashie.Border.Class = "TextBoxBorder";
-            this.txtHashie.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.txtHashie.Location = new System.Drawing.Point(400, 92);
-            this.txtHashie.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.txtHashie.Name = "txtHashie";
-            this.txtHashie.PreventEnterBeep = true;
-            this.txtHashie.Size = new System.Drawing.Size(284, 27);
-            this.txtHashie.TabIndex = 70;
-            this.txtHashie.WatermarkImageAlignment = System.Drawing.ContentAlignment.BottomRight;
-            this.txtHashie.WatermarkText = "بر حسب متر";
-            // 
-            // label55
-            // 
-            this.label55.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label55.AutoSize = true;
-            this.label55.BackColor = System.Drawing.Color.Transparent;
-            this.label55.Location = new System.Drawing.Point(708, 54);
-            this.label55.Name = "label55";
-            this.label55.Size = new System.Drawing.Size(65, 20);
-            this.label55.TabIndex = 55732;
-            this.label55.Text = "ارتفاع سقف";
-            // 
-            // txtErtrfaSaqf
-            // 
-            this.txtErtrfaSaqf.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            // 
-            // 
-            // 
-            this.txtErtrfaSaqf.Border.Class = "TextBoxBorder";
-            this.txtErtrfaSaqf.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.txtErtrfaSaqf.Location = new System.Drawing.Point(400, 52);
-            this.txtErtrfaSaqf.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.txtErtrfaSaqf.Name = "txtErtrfaSaqf";
-            this.txtErtrfaSaqf.PreventEnterBeep = true;
-            this.txtErtrfaSaqf.Size = new System.Drawing.Size(284, 27);
-            this.txtErtrfaSaqf.TabIndex = 69;
-            this.txtErtrfaSaqf.WatermarkImageAlignment = System.Drawing.ContentAlignment.BottomRight;
-            this.txtErtrfaSaqf.WatermarkText = "بر حسب متر";
-            // 
-            // label54
-            // 
-            this.label54.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label54.AutoSize = true;
-            this.label54.BackColor = System.Drawing.Color.Transparent;
-            this.label54.Location = new System.Drawing.Point(708, 16);
-            this.label54.Name = "label54";
-            this.label54.Size = new System.Drawing.Size(63, 20);
-            this.label54.TabIndex = 55732;
-            this.label54.Text = "متراژ کوچه";
-            // 
-            // txtMetrazhKouche
-            // 
-            this.txtMetrazhKouche.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            // 
-            // 
-            // 
-            this.txtMetrazhKouche.Border.Class = "TextBoxBorder";
-            this.txtMetrazhKouche.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.txtMetrazhKouche.Location = new System.Drawing.Point(400, 14);
-            this.txtMetrazhKouche.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.txtMetrazhKouche.Name = "txtMetrazhKouche";
-            this.txtMetrazhKouche.PreventEnterBeep = true;
-            this.txtMetrazhKouche.Size = new System.Drawing.Size(284, 27);
-            this.txtMetrazhKouche.TabIndex = 68;
-            this.txtMetrazhKouche.WatermarkImageAlignment = System.Drawing.ContentAlignment.BottomRight;
-            this.txtMetrazhKouche.WatermarkText = "بر حسب متر";
-            // 
-            // superTabItem4
-            // 
-            this.superTabItem4.AttachedControl = this.superTabControlPanel4;
-            this.superTabItem4.GlobalItem = false;
-            this.superTabItem4.Name = "superTabItem4";
-            this.superTabItem4.Text = "سایر";
             // 
             // superTabControlPanel2
             // 
@@ -3266,46 +3308,6 @@
             this.ucHeader.Size = new System.Drawing.Size(815, 34);
             this.ucHeader.TabIndex = 55739;
             // 
-            // cmbColling
-            // 
-            this.cmbColling.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.cmbColling.FormattingEnabled = true;
-            this.cmbColling.Location = new System.Drawing.Point(400, 404);
-            this.cmbColling.Name = "cmbColling";
-            this.cmbColling.Size = new System.Drawing.Size(286, 28);
-            this.cmbColling.TabIndex = 55741;
-            // 
-            // label66
-            // 
-            this.label66.AutoSize = true;
-            this.label66.BackColor = System.Drawing.Color.Transparent;
-            this.label66.Location = new System.Drawing.Point(720, 407);
-            this.label66.Name = "label66";
-            this.label66.Size = new System.Drawing.Size(51, 20);
-            this.label66.TabIndex = 55742;
-            this.label66.Text = "سرمایش";
-            // 
-            // cmbHitting
-            // 
-            this.cmbHitting.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.cmbHitting.FormattingEnabled = true;
-            this.cmbHitting.Location = new System.Drawing.Point(400, 370);
-            this.cmbHitting.Name = "cmbHitting";
-            this.cmbHitting.Size = new System.Drawing.Size(286, 28);
-            this.cmbHitting.TabIndex = 55740;
-            // 
-            // label67
-            // 
-            this.label67.AutoSize = true;
-            this.label67.BackColor = System.Drawing.Color.Transparent;
-            this.label67.Location = new System.Drawing.Point(724, 373);
-            this.label67.Name = "label67";
-            this.label67.Size = new System.Drawing.Size(47, 20);
-            this.label67.TabIndex = 55743;
-            this.label67.Text = "گرمایش";
-            // 
             // frmBuildingMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -3329,6 +3331,8 @@
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmBuildingMain_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.superTabControl1)).EndInit();
             this.superTabControl1.ResumeLayout(false);
+            this.superTabControlPanel4.ResumeLayout(false);
+            this.superTabControlPanel4.PerformLayout();
             this.superTabControlPanel1.ResumeLayout(false);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
@@ -3357,8 +3361,6 @@
             this.superTabControlPanel7.ResumeLayout(false);
             this.superTabControlPanel7.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtDong)).EndInit();
-            this.superTabControlPanel4.ResumeLayout(false);
-            this.superTabControlPanel4.PerformLayout();
             this.superTabControlPanel2.ResumeLayout(false);
             this.splitContainer2.Panel1.ResumeLayout(false);
             this.splitContainer2.Panel1.PerformLayout();

@@ -427,6 +427,8 @@ namespace Building.Building
                 SetAccess();
                 SetColumns();
                 if (_isShowMode || (_isArchive != null && _isArchive.Value)) contextMenu.Enabled = false;
+
+                chbDivar.Visible = chbSheypoor.Visible = false;
             }
             catch (Exception ex)
             {

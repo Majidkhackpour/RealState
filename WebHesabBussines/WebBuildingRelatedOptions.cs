@@ -32,7 +32,7 @@ namespace WebHesabBussines
             try
             {
                 var res = await Extentions.PostToApi<WebBuildingRelatedOptions, WebBuildingRelatedOptions>(this, Url);
-                if (res.ResponseStatus != ResponseStatus.Success)
+                if (res!=null&& res.ResponseStatus != ResponseStatus.Success)
                 {
 
                     RaiseEvent(Guid, ServerStatus.DeliveryError, DateTime.Now);

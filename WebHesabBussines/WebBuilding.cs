@@ -98,13 +98,13 @@ namespace WebHesabBussines
             try
             {
                 var res = await Extentions.PostToApi<WebBuilding, WebBuilding>(this, Url);
-                if (res.ResponseStatus != ResponseStatus.Success)
+                if (res!=null&& res.ResponseStatus != ResponseStatus.Success)
                 {
                     RaiseEvent(Guid, ServerStatus.DeliveryError, DateTime.Now);
                     return;
                 }
 
-                var bu = res.Data;
+                var bu = res?.Data;
                 if (bu == null) return;
 
                 RaiseEvent(Guid, ServerStatus.Delivered, DateTime.Now);

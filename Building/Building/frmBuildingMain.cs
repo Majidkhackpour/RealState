@@ -200,6 +200,9 @@ namespace Building.Building
                     var path = Path.Combine(Application.StartupPath + "\\Images", cls.Image);
                     picImage.ImageLocation = path;
                 }
+
+                cmbColling.Text = string.IsNullOrEmpty(cls.Colling) ? "" : cls.Colling;
+                cmbHitting.Text = string.IsNullOrEmpty(cls.Hiting) ? "" : cls.Hiting;
             }
             catch (Exception ex)
             {
