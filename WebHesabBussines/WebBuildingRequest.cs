@@ -54,7 +54,7 @@ namespace WebHesabBussines
             try
             {
                 var res = await Extentions.PostToApi<WebBuildingRequest, WebBuildingRequest>(this, Url);
-                if (res.ResponseStatus != ResponseStatus.Success)
+                if (res?.ResponseStatus != ResponseStatus.Success)
                 {
                     RaiseEvent(Guid, ServerStatus.DeliveryError, DateTime.Now);
                     return;

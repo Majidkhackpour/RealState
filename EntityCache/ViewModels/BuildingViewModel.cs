@@ -6,6 +6,7 @@ namespace EntityCache.ViewModels
 {
     public class BuildingViewModel
     {
+        public Guid Guid { get; set; }
         public string Region { get; set; }
         public int Metrazh { get; set; }
         public string SaleSakht { get; set; }

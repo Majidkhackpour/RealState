@@ -117,7 +117,7 @@ namespace Building.Building
                     ? Calendar.GetYearOfDateSh(bu.SaleSakht)
                     : bu.SaleSakht.ParseToInt();
                 var dis = year1 - year2;
-                lblSaleSakht.Text = dis < 0 ? "نوساز" : $@"{dis} سال ساخت";
+                lblSaleSakht.Text = dis <= 0 ? "نوساز" : $@"{dis} سال ساخت";
 
                 if (bu.OptionList != null && bu.OptionList.Count > 0)
                 {

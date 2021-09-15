@@ -118,10 +118,12 @@
             // 
             // lblParent
             // 
+            this.lblParent.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lblParent.Location = new System.Drawing.Point(552, 144);
             this.lblParent.Name = "lblParent";
             this.lblParent.Size = new System.Drawing.Size(181, 20);
             this.lblParent.TabIndex = 1;
+            this.lblParent.Click += new System.EventHandler(this.lblParent_Click);
             // 
             // label27
             // 

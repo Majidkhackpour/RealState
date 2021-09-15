@@ -376,7 +376,8 @@ namespace EntityCache.Bussines
                         Options = item.OptionList.Select(q => q.OptionName)?.ToList(),
                         Address = item.Address,
                         Mobile = PeoplesBussines.Get(item.OwnerGuid)?.FirstNumber,
-                        CreateDate = item.CreateDate
+                        CreateDate = item.CreateDate,
+                        Guid = item.Guid
                     };
                     if (token.IsCancellationRequested) return null;
                     if (filter.RequestType == EnRequestType.Rahn)
