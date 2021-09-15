@@ -76,7 +76,14 @@ namespace EntityCache.Mppings
                 Image = cls.Image,
                 ServerStatus = cls.ServerStatus,
                 ServerDeliveryDate = cls.ServerDeliveryDate,
-                Lenght = cls.Lenght
+                Lenght = cls.Lenght,
+                AdvertiseType = cls.AdvertiseType,
+                Hiting = cls.Hiting,
+                Colling = cls.Colling,
+                TelegramCount = cls.TelegramCount,
+                SheypoorCount = cls.SheypoorCount,
+                DivarCount = cls.DivarCount,
+                DivarTitle = cls.DivarTitle
             };
         }
         public List<WebBuilding> MapList(List<BuildingBussines> cls)
