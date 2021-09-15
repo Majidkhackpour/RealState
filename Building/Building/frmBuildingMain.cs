@@ -144,7 +144,7 @@ namespace Building.Building
                 if (cls.GalleryList != null && cls.GalleryList.Count != 0)
                     foreach (var image in cls.GalleryList)
                     {
-                        var a = Path.Combine(Application.StartupPath, "Temp");
+                        var a = Path.Combine(Application.StartupPath, "Images");
                         var b = Path.Combine(a, image.ImageName + ".jpg");
                         lstList.Add(b);
                     }

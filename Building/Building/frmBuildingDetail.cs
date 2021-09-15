@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WindowsSerivces;
@@ -11,6 +14,7 @@ namespace Building.Building
     public partial class frmBuildingDetail : MetroForm
     {
         private BuildingBussines bu;
+        readonly List<string> lstList = new List<string>();
 
         private async Task SetDataAsync()
         {
@@ -58,12 +62,13 @@ namespace Building.Building
                     lblPishTotalPrice.Text = bu.PishTotalPrice.ToString("N0");
                     lblDeliveryDate.Text = Calendar.MiladiToShamsi(bu.DeliveryDate);
                 }
-                lblTitle.Text = $@"{type} {bu.BuildingTypeName} {bu.Masahat} متری";
+                lblTitle.Text = $@"{type} {bu.BuildingTypeName}";
 
                 var city = await CitiesBussines.GetAsync(bu.CityGuid);
                 lblAddress.Text = $@"{city.Name} - {bu.RegionName} - {bu.Address}";
 
                 lblZirBana.Text = $@"{bu.ZirBana} متر";
+                lblMasahat.Text = $@"{bu.Masahat} متر";
                 lblTabaqeNo.Text = bu.TabaqeNo.ToString();
                 lblVahedPerTabaqe.Text = $@"{bu.VahedPerTabaqe} واحد";
                 lblTabaqeCount.Text = bu.TedadTabaqe.ToString();
@@ -146,19 +151,85 @@ namespace Building.Building
                     if (bu.OptionList?.Count >= 12)
                         lblOption12.Text = bu.OptionList[11].OptionName;
                 }
+
+                if (!string.IsNullOrEmpty(bu.Image))
+                {
+                    var picPath = Path.Combine(Application.StartupPath + "\\Images", bu.Image);
+                    picBox.ImageLocation = picPath;
+                }
+
+                if (bu.GalleryList != null && bu.GalleryList.Count > 0)
+                {
+                    fPanel.Controls.Clear();
+                    lstList.Clear();
+                    foreach (var image in bu.GalleryList)
+                    {
+                        var a = Path.Combine(Application.StartupPath, "Images");
+                        var b = Path.Combine(a, image.ImageName + ".jpg");
+                        lstList.Add(b);
+                    }
+
+                    if (!string.IsNullOrEmpty(bu.Image))
+                        lstList.Add(Path.Combine(Application.StartupPath + "\\Images", bu.Image));
+
+                    Make_Picture_Boxes(lstList);
+                }
             }
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-
+        private void Make_Picture_Boxes(List<string> lst)
+        {
+            try
+            {
+                if (lst == null || lst.Count == 0) return;
+                fPanel.AutoScroll = true;
+                for (var i = fPanel.Controls.Count - 1; i >= 0; i--)
+                    fPanel.Controls[i].Dispose();
+                for (var i = 0; i < lst.Count; i++)
+                {
+                    try
+                    {
+                        var picbox = new PictureBox();
+                        Controls.Add(picbox);
+                        picbox.Size = new Size(62, 63);
+                        picbox.Load(lst[i]);
+                        picbox.Name = lst[i];
+                        picbox.Cursor = Cursors.Hand;
+                        picbox.SizeMode = PictureBoxSizeMode.StretchImage;
+                        picbox.Click += picbox_Click;
+                        fPanel.Controls.Add(picbox);
+                    }
+                    catch (Exception)
+                    {
+                        lst.RemoveAt(i);
+                    }
+                }
+            }
+            catch (Exception exception)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(exception);
+            }
+        }
+        private void picbox_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                picBox.ImageLocation = ((PictureBox)sender).Name;
+            }
+            catch (Exception exception)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(exception);
+            }
+        }
         public frmBuildingDetail(BuildingBussines _bu)
         {
             InitializeComponent();
+            exPanel.Expanded = false;
             bu = _bu;
         }
-
         private async void frmBuildingDetail_Load(object sender, System.EventArgs e) => await SetDataAsync();
         private void frmBuildingDetail_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
         {

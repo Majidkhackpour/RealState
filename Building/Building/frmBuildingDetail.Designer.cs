@@ -1,4 +1,6 @@
 ﻿
+using DevComponents.DotNetBar;
+
 namespace Building.Building
 {
     partial class frmBuildingDetail
@@ -31,6 +33,9 @@ namespace Building.Building
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmBuildingDetail));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.exPanel = new DevComponents.DotNetBar.ExpandablePanel();
+            this.fPanel = new System.Windows.Forms.FlowLayoutPanel();
+            this.picBox = new System.Windows.Forms.PictureBox();
             this.pnlPishForoush = new DevComponents.DotNetBar.Controls.GroupPanel();
             this.label59 = new System.Windows.Forms.Label();
             this.label60 = new System.Windows.Forms.Label();
@@ -104,7 +109,9 @@ namespace Building.Building
             this.lblTabaqeCount = new System.Windows.Forms.Label();
             this.lblRoomCount = new System.Windows.Forms.Label();
             this.lblVahedPerTabaqe = new System.Windows.Forms.Label();
+            this.lblMasahat = new System.Windows.Forms.Label();
             this.lblZirBana = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.label27 = new System.Windows.Forms.Label();
             this.groupPanel2 = new DevComponents.DotNetBar.Controls.GroupPanel();
             this.lblCode = new System.Windows.Forms.Label();
@@ -113,6 +120,8 @@ namespace Building.Building
             this.lblAddress = new System.Windows.Forms.Label();
             this.lblTitle = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
+            this.exPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picBox)).BeginInit();
             this.pnlPishForoush.SuspendLayout();
             this.pnlSellInfo.SuspendLayout();
             this.pnlRahnInfo.SuspendLayout();
@@ -129,6 +138,7 @@ namespace Building.Building
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.AutoScroll = true;
+            this.panel1.Controls.Add(this.exPanel);
             this.panel1.Controls.Add(this.pnlPishForoush);
             this.panel1.Controls.Add(this.pnlSellInfo);
             this.panel1.Controls.Add(this.pnlRahnInfo);
@@ -142,6 +152,49 @@ namespace Building.Building
             this.panel1.Size = new System.Drawing.Size(794, 649);
             this.panel1.TabIndex = 0;
             // 
+            // exPanel
+            // 
+            this.exPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.exPanel.AnimationTime = 500;
+            this.exPanel.CollapseDirection = DevComponents.DotNetBar.eCollapseDirection.LeftToRight;
+            this.exPanel.Controls.Add(this.fPanel);
+            this.exPanel.Controls.Add(this.picBox);
+            this.exPanel.DisabledBackColor = System.Drawing.Color.Empty;
+            this.exPanel.Expanded = false;
+            this.exPanel.ExpandedBounds = new System.Drawing.Rectangle(8, 4, 785, 637);
+            this.exPanel.Location = new System.Drawing.Point(767, 4);
+            this.exPanel.Name = "exPanel";
+            this.exPanel.Size = new System.Drawing.Size(26, 637);
+            this.exPanel.Style.BackColor1.Color = System.Drawing.Color.White;
+            this.exPanel.Style.BackColor2.Color = System.Drawing.Color.White;
+            this.exPanel.Style.CornerType = DevComponents.DotNetBar.eCornerType.Rounded;
+            this.exPanel.TabIndex = 23;
+            this.exPanel.TitleStyle.BackColor1.Color = System.Drawing.Color.White;
+            this.exPanel.TitleStyle.BackColor2.Color = System.Drawing.Color.White;
+            this.exPanel.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Rounded;
+            this.exPanel.TitleText = "گالری تصاویر";
+            // 
+            // fPanel
+            // 
+            this.fPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.fPanel.BackColor = System.Drawing.Color.Transparent;
+            this.fPanel.Location = new System.Drawing.Point(8, 378);
+            this.fPanel.Name = "fPanel";
+            this.fPanel.Size = new System.Drawing.Size(0, 257);
+            this.fPanel.TabIndex = 5;
+            // 
+            // picBox
+            // 
+            this.picBox.BackColor = System.Drawing.Color.Transparent;
+            this.picBox.Location = new System.Drawing.Point(8, 29);
+            this.picBox.Name = "picBox";
+            this.picBox.Size = new System.Drawing.Size(748, 343);
+            this.picBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picBox.TabIndex = 4;
+            this.picBox.TabStop = false;
+            // 
             // pnlPishForoush
             // 
             this.pnlPishForoush.CanvasColor = System.Drawing.SystemColors.Control;
@@ -153,7 +206,7 @@ namespace Building.Building
             this.pnlPishForoush.Controls.Add(this.lblPishPrice);
             this.pnlPishForoush.Controls.Add(this.lblPishTotalPrice);
             this.pnlPishForoush.DisabledBackColor = System.Drawing.Color.Empty;
-            this.pnlPishForoush.Location = new System.Drawing.Point(17, 517);
+            this.pnlPishForoush.Location = new System.Drawing.Point(6, 517);
             this.pnlPishForoush.Name = "pnlPishForoush";
             this.pnlPishForoush.Size = new System.Drawing.Size(371, 123);
             // 
@@ -262,7 +315,7 @@ namespace Building.Building
             this.pnlSellInfo.Controls.Add(this.lblVamPrice);
             this.pnlSellInfo.Controls.Add(this.lblTarakom);
             this.pnlSellInfo.DisabledBackColor = System.Drawing.Color.Empty;
-            this.pnlSellInfo.Location = new System.Drawing.Point(16, 517);
+            this.pnlSellInfo.Location = new System.Drawing.Point(11, 517);
             this.pnlSellInfo.Name = "pnlSellInfo";
             this.pnlSellInfo.Size = new System.Drawing.Size(371, 123);
             // 
@@ -371,7 +424,7 @@ namespace Building.Building
             this.pnlRahnInfo.Controls.Add(this.lblShortTime);
             this.pnlRahnInfo.Controls.Add(this.lblRental);
             this.pnlRahnInfo.DisabledBackColor = System.Drawing.Color.Empty;
-            this.pnlRahnInfo.Location = new System.Drawing.Point(16, 518);
+            this.pnlRahnInfo.Location = new System.Drawing.Point(11, 518);
             this.pnlRahnInfo.Name = "pnlRahnInfo";
             this.pnlRahnInfo.Size = new System.Drawing.Size(371, 123);
             // 
@@ -475,7 +528,7 @@ namespace Building.Building
             this.groupPanel5.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
             this.groupPanel5.Controls.Add(this.lblDescription);
             this.groupPanel5.DisabledBackColor = System.Drawing.Color.Empty;
-            this.groupPanel5.Location = new System.Drawing.Point(390, 518);
+            this.groupPanel5.Location = new System.Drawing.Point(384, 516);
             this.groupPanel5.Name = "groupPanel5";
             this.groupPanel5.Size = new System.Drawing.Size(380, 123);
             // 
@@ -539,7 +592,7 @@ namespace Building.Building
             this.groupPanel4.Controls.Add(this.lblOption4);
             this.groupPanel4.Controls.Add(this.lblOption1);
             this.groupPanel4.DisabledBackColor = System.Drawing.Color.Empty;
-            this.groupPanel4.Location = new System.Drawing.Point(272, 365);
+            this.groupPanel4.Location = new System.Drawing.Point(266, 365);
             this.groupPanel4.Name = "groupPanel4";
             this.groupPanel4.Size = new System.Drawing.Size(498, 147);
             // 
@@ -706,7 +759,7 @@ namespace Building.Building
             this.groupPanel3.Controls.Add(this.lblTell1);
             this.groupPanel3.Controls.Add(this.lblOwnerName);
             this.groupPanel3.DisabledBackColor = System.Drawing.Color.Empty;
-            this.groupPanel3.Location = new System.Drawing.Point(16, 147);
+            this.groupPanel3.Location = new System.Drawing.Point(10, 147);
             this.groupPanel3.Name = "groupPanel3";
             this.groupPanel3.Size = new System.Drawing.Size(251, 365);
             // 
@@ -846,10 +899,12 @@ namespace Building.Building
             this.groupPanel1.Controls.Add(this.lblTabaqeCount);
             this.groupPanel1.Controls.Add(this.lblRoomCount);
             this.groupPanel1.Controls.Add(this.lblVahedPerTabaqe);
+            this.groupPanel1.Controls.Add(this.lblMasahat);
             this.groupPanel1.Controls.Add(this.lblZirBana);
+            this.groupPanel1.Controls.Add(this.label1);
             this.groupPanel1.Controls.Add(this.label27);
             this.groupPanel1.DisabledBackColor = System.Drawing.Color.Empty;
-            this.groupPanel1.Location = new System.Drawing.Point(272, 147);
+            this.groupPanel1.Location = new System.Drawing.Point(266, 147);
             this.groupPanel1.Name = "groupPanel1";
             this.groupPanel1.Size = new System.Drawing.Size(498, 212);
             // 
@@ -922,7 +977,7 @@ namespace Building.Building
             this.label23.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label23.AutoSize = true;
             this.label23.BackColor = System.Drawing.Color.Transparent;
-            this.label23.Location = new System.Drawing.Point(125, 6);
+            this.label23.Location = new System.Drawing.Point(434, 35);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(35, 20);
             this.label23.TabIndex = 14;
@@ -944,7 +999,7 @@ namespace Building.Building
             this.label24.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label24.AutoSize = true;
             this.label24.BackColor = System.Drawing.Color.Transparent;
-            this.label24.Location = new System.Drawing.Point(127, 35);
+            this.label24.Location = new System.Drawing.Point(127, 154);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(33, 20);
             this.label24.TabIndex = 21;
@@ -955,7 +1010,7 @@ namespace Building.Building
             this.label32.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label32.AutoSize = true;
             this.label32.BackColor = System.Drawing.Color.Transparent;
-            this.label32.Location = new System.Drawing.Point(260, 154);
+            this.label32.Location = new System.Drawing.Point(270, 154);
             this.label32.Name = "label32";
             this.label32.Size = new System.Drawing.Size(45, 20);
             this.label32.TabIndex = 22;
@@ -1010,7 +1065,7 @@ namespace Building.Building
             this.label25.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label25.AutoSize = true;
             this.label25.BackColor = System.Drawing.Color.Transparent;
-            this.label25.Location = new System.Drawing.Point(274, 6);
+            this.label25.Location = new System.Drawing.Point(118, 6);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(41, 20);
             this.label25.TabIndex = 22;
@@ -1021,7 +1076,7 @@ namespace Building.Building
             this.label26.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label26.AutoSize = true;
             this.label26.BackColor = System.Drawing.Color.Transparent;
-            this.label26.Location = new System.Drawing.Point(275, 35);
+            this.label26.Location = new System.Drawing.Point(120, 35);
             this.label26.Name = "label26";
             this.label26.Size = new System.Drawing.Size(40, 20);
             this.label26.TabIndex = 23;
@@ -1032,7 +1087,7 @@ namespace Building.Building
             this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label5.AutoSize = true;
             this.label5.BackColor = System.Drawing.Color.Transparent;
-            this.label5.Location = new System.Drawing.Point(421, 35);
+            this.label5.Location = new System.Drawing.Point(267, 35);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(48, 20);
             this.label5.TabIndex = 24;
@@ -1043,9 +1098,9 @@ namespace Building.Building
             this.lblAccountType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblAccountType.BackColor = System.Drawing.Color.Transparent;
             this.lblAccountType.Font = new System.Drawing.Font("B Yekan", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.lblAccountType.Location = new System.Drawing.Point(93, 151);
+            this.lblAccountType.Location = new System.Drawing.Point(159, 151);
             this.lblAccountType.Name = "lblAccountType";
-            this.lblAccountType.Size = new System.Drawing.Size(170, 29);
+            this.lblAccountType.Size = new System.Drawing.Size(113, 29);
             this.lblAccountType.TabIndex = 24;
             // 
             // lblKitchenService
@@ -1073,9 +1128,9 @@ namespace Building.Building
             this.lblCondition.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblCondition.BackColor = System.Drawing.Color.Transparent;
             this.lblCondition.Font = new System.Drawing.Font("B Yekan", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.lblCondition.Location = new System.Drawing.Point(313, 151);
+            this.lblCondition.Location = new System.Drawing.Point(319, 151);
             this.lblCondition.Name = "lblCondition";
-            this.lblCondition.Size = new System.Drawing.Size(107, 29);
+            this.lblCondition.Size = new System.Drawing.Size(101, 29);
             this.lblCondition.TabIndex = 24;
             // 
             // lblFloorCover
@@ -1133,7 +1188,7 @@ namespace Building.Building
             this.lblTabaqeNo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblTabaqeNo.BackColor = System.Drawing.Color.Transparent;
             this.lblTabaqeNo.Font = new System.Drawing.Font("B Yekan", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.lblTabaqeNo.Location = new System.Drawing.Point(11, 3);
+            this.lblTabaqeNo.Location = new System.Drawing.Point(320, 32);
             this.lblTabaqeNo.Name = "lblTabaqeNo";
             this.lblTabaqeNo.Size = new System.Drawing.Size(117, 29);
             this.lblTabaqeNo.TabIndex = 24;
@@ -1143,7 +1198,7 @@ namespace Building.Building
             this.lblDocumentType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblDocumentType.BackColor = System.Drawing.Color.Transparent;
             this.lblDocumentType.Font = new System.Drawing.Font("B Yekan", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.lblDocumentType.Location = new System.Drawing.Point(3, 32);
+            this.lblDocumentType.Location = new System.Drawing.Point(3, 151);
             this.lblDocumentType.Name = "lblDocumentType";
             this.lblDocumentType.Size = new System.Drawing.Size(127, 29);
             this.lblDocumentType.TabIndex = 24;
@@ -1153,7 +1208,7 @@ namespace Building.Building
             this.lblTabaqeCount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblTabaqeCount.BackColor = System.Drawing.Color.Transparent;
             this.lblTabaqeCount.Font = new System.Drawing.Font("B Yekan", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.lblTabaqeCount.Location = new System.Drawing.Point(166, 3);
+            this.lblTabaqeCount.Location = new System.Drawing.Point(10, 3);
             this.lblTabaqeCount.Name = "lblTabaqeCount";
             this.lblTabaqeCount.Size = new System.Drawing.Size(112, 29);
             this.lblTabaqeCount.TabIndex = 24;
@@ -1163,7 +1218,7 @@ namespace Building.Building
             this.lblRoomCount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblRoomCount.BackColor = System.Drawing.Color.Transparent;
             this.lblRoomCount.Font = new System.Drawing.Font("B Yekan", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.lblRoomCount.Location = new System.Drawing.Point(159, 32);
+            this.lblRoomCount.Location = new System.Drawing.Point(4, 32);
             this.lblRoomCount.Name = "lblRoomCount";
             this.lblRoomCount.Size = new System.Drawing.Size(119, 29);
             this.lblRoomCount.TabIndex = 24;
@@ -1173,27 +1228,48 @@ namespace Building.Building
             this.lblVahedPerTabaqe.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblVahedPerTabaqe.BackColor = System.Drawing.Color.Transparent;
             this.lblVahedPerTabaqe.Font = new System.Drawing.Font("B Yekan", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.lblVahedPerTabaqe.Location = new System.Drawing.Point(319, 32);
+            this.lblVahedPerTabaqe.Location = new System.Drawing.Point(165, 32);
             this.lblVahedPerTabaqe.Name = "lblVahedPerTabaqe";
             this.lblVahedPerTabaqe.Size = new System.Drawing.Size(105, 29);
             this.lblVahedPerTabaqe.TabIndex = 24;
+            // 
+            // lblMasahat
+            // 
+            this.lblMasahat.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblMasahat.BackColor = System.Drawing.Color.Transparent;
+            this.lblMasahat.Font = new System.Drawing.Font("B Yekan", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.lblMasahat.Location = new System.Drawing.Point(315, 3);
+            this.lblMasahat.Name = "lblMasahat";
+            this.lblMasahat.Size = new System.Drawing.Size(119, 29);
+            this.lblMasahat.TabIndex = 24;
             // 
             // lblZirBana
             // 
             this.lblZirBana.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblZirBana.BackColor = System.Drawing.Color.Transparent;
             this.lblZirBana.Font = new System.Drawing.Font("B Yekan", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.lblZirBana.Location = new System.Drawing.Point(315, 3);
+            this.lblZirBana.Location = new System.Drawing.Point(161, 3);
             this.lblZirBana.Name = "lblZirBana";
             this.lblZirBana.Size = new System.Drawing.Size(119, 29);
             this.lblZirBana.TabIndex = 24;
+            // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Location = new System.Drawing.Point(435, 6);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(38, 20);
+            this.label1.TabIndex = 24;
+            this.label1.Text = "زمین:";
             // 
             // label27
             // 
             this.label27.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label27.AutoSize = true;
             this.label27.BackColor = System.Drawing.Color.Transparent;
-            this.label27.Location = new System.Drawing.Point(429, 6);
+            this.label27.Location = new System.Drawing.Point(275, 6);
             this.label27.Name = "label27";
             this.label27.Size = new System.Drawing.Size(40, 20);
             this.label27.TabIndex = 24;
@@ -1211,7 +1287,7 @@ namespace Building.Building
             this.groupPanel2.Controls.Add(this.lblAddress);
             this.groupPanel2.Controls.Add(this.lblTitle);
             this.groupPanel2.DisabledBackColor = System.Drawing.Color.Empty;
-            this.groupPanel2.Location = new System.Drawing.Point(16, 3);
+            this.groupPanel2.Location = new System.Drawing.Point(10, 3);
             this.groupPanel2.Name = "groupPanel2";
             this.groupPanel2.Size = new System.Drawing.Size(754, 138);
             // 
@@ -1308,7 +1384,10 @@ namespace Building.Building
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.MinimumSize = new System.Drawing.Size(800, 600);
+            this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(800, 679);
+            this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(800, 679);
             this.Name = "frmBuildingDetail";
             this.Padding = new System.Windows.Forms.Padding(27, 92, 27, 31);
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -1316,6 +1395,8 @@ namespace Building.Building
             this.Load += new System.EventHandler(this.frmBuildingDetail_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmBuildingDetail_KeyDown);
             this.panel1.ResumeLayout(false);
+            this.exPanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.picBox)).EndInit();
             this.pnlPishForoush.ResumeLayout(false);
             this.pnlPishForoush.PerformLayout();
             this.pnlSellInfo.ResumeLayout(false);
@@ -1417,5 +1498,10 @@ namespace Building.Building
         private System.Windows.Forms.Label lblPishPrice;
         private System.Windows.Forms.Label lblPishTotalPrice;
         private System.Windows.Forms.Label lblZirBana;
+        private System.Windows.Forms.Label lblMasahat;
+        private System.Windows.Forms.Label label1;
+        private ExpandablePanel exPanel;
+        private System.Windows.Forms.PictureBox picBox;
+        private System.Windows.Forms.FlowLayoutPanel fPanel;
     }
 }
