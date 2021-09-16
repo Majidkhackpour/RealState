@@ -1833,6 +1833,146 @@ namespace Building.Building
                         else list[index] = "";
                     }
                 }
+                if (res.Contains(Replacor.TelegramBuilding.PricePerMetr))
+                {
+                    var type = list.FirstOrDefault(q => q.Contains(Replacor.TelegramBuilding.PricePerMetr));
+                    if (!string.IsNullOrEmpty(type))
+                    {
+                        var index = list.IndexOf(type);
+                        if (bu.SellPrice > 0 && bu.Masahat > 0)
+                        {
+                            type = type.Replace("\r", "");
+                            var p = bu.SellPrice / bu.Masahat;
+                            type = type.Replace(Replacor.TelegramBuilding.PricePerMetr, p.ToString("N0"));
+                            list[index] = type;
+                        }
+                        else list[index] = "";
+                    }
+                }
+                if (res.Contains(Replacor.TelegramBuilding.VahedPerTabaqe))
+                {
+                    var type = list.FirstOrDefault(q => q.Contains(Replacor.TelegramBuilding.VahedPerTabaqe));
+                    if (!string.IsNullOrEmpty(type))
+                    {
+                        var index = list.IndexOf(type);
+                        type = type.Replace("\r", "");
+                        type = type.Replace(Replacor.TelegramBuilding.VahedPerTabaqe, bu.VahedPerTabaqe.ToString());
+                        if (bu.VahedPerTabaqe > 0)
+                            list[index] = type;
+                        else list[index] = "";
+                    }
+                }
+                if (res.Contains(Replacor.TelegramBuilding.Hitting))
+                {
+                    var type = list.FirstOrDefault(q => q.Contains(Replacor.TelegramBuilding.Hitting));
+                    if (!string.IsNullOrEmpty(type))
+                    {
+                        var index = list.IndexOf(type);
+                        type = type.Replace("\r", "");
+                        type = type.Replace(Replacor.TelegramBuilding.Hitting, bu.Hiting);
+                        if (!string.IsNullOrEmpty(bu.Hiting))
+                            list[index] = type;
+                        else list[index] = "";
+                    }
+                }
+                if (res.Contains(Replacor.TelegramBuilding.Colling))
+                {
+                    var type = list.FirstOrDefault(q => q.Contains(Replacor.TelegramBuilding.Colling));
+                    if (!string.IsNullOrEmpty(type))
+                    {
+                        var index = list.IndexOf(type);
+                        type = type.Replace("\r", "");
+                        type = type.Replace(Replacor.TelegramBuilding.Colling, bu.Colling);
+                        if (!string.IsNullOrEmpty(bu.Colling))
+                            list[index] = type;
+                        else list[index] = "";
+                    }
+                }
+                if (res.Contains(Replacor.TelegramBuilding.Dong))
+                {
+                    var type = list.FirstOrDefault(q => q.Contains(Replacor.TelegramBuilding.Dong));
+                    if (!string.IsNullOrEmpty(type))
+                    {
+                        var index = list.IndexOf(type);
+                        type = type.Replace("\r", "");
+                        type = type.Replace(Replacor.TelegramBuilding.Dong, bu.Dang.ToString());
+                        if (bu.SellPrice > 0)
+                            list[index] = type;
+                        else list[index] = "";
+                    }
+                }
+                if (res.Contains(Replacor.TelegramBuilding.Parking))
+                {
+                    var type = list.FirstOrDefault(q => q.Contains(Replacor.TelegramBuilding.Parking));
+                    if (!string.IsNullOrEmpty(type))
+                    {
+                        var index = list.IndexOf(type);
+                        type = type.Replace("\r", "");
+                        var text = "";
+                        if (bu.OptionList == null || bu.OptionList.Count <= 0) text = "❌";
+                        else
+                        {
+                            var ev = bu.OptionList.Any(q => q.OptionName.Contains("پارکینگ"));
+                            text = ev ? "✅" : "❌";
+                        }
+                        type = type.Replace(Replacor.TelegramBuilding.Parking, text);
+                        list[index] = type;
+                    }
+                }
+                if (res.Contains(Replacor.TelegramBuilding.Elevator))
+                {
+                    var type = list.FirstOrDefault(q => q.Contains(Replacor.TelegramBuilding.Elevator));
+                    if (!string.IsNullOrEmpty(type))
+                    {
+                        var index = list.IndexOf(type);
+                        type = type.Replace("\r", "");
+                        var text = "";
+                        if (bu.OptionList == null || bu.OptionList.Count <= 0) text = "❌";
+                        else
+                        {
+                            var ev = bu.OptionList.Any(q => q.OptionName.Contains("سانسور"));
+                            text = ev ? "✅" : "❌";
+                        }
+                        type = type.Replace(Replacor.TelegramBuilding.Elevator, text);
+                        list[index] = type;
+                    }
+                }
+                if (res.Contains(Replacor.TelegramBuilding.Store))
+                {
+                    var type = list.FirstOrDefault(q => q.Contains(Replacor.TelegramBuilding.Store));
+                    if (!string.IsNullOrEmpty(type))
+                    {
+                        var index = list.IndexOf(type);
+                        type = type.Replace("\r", "");
+                        var text = "";
+                        if (bu.OptionList == null || bu.OptionList.Count <= 0) text = "❌";
+                        else
+                        {
+                            var ev = bu.OptionList.Any(q => q.OptionName.Contains("انبار"));
+                            text = ev ? "✅" : "❌";
+                        }
+                        type = type.Replace(Replacor.TelegramBuilding.Store, text);
+                        list[index] = type;
+                    }
+                }
+                if (res.Contains(Replacor.TelegramBuilding.Balcony))
+                {
+                    var type = list.FirstOrDefault(q => q.Contains(Replacor.TelegramBuilding.Balcony));
+                    if (!string.IsNullOrEmpty(type))
+                    {
+                        var index = list.IndexOf(type);
+                        type = type.Replace("\r", "");
+                        var text = "";
+                        if (bu.OptionList == null || bu.OptionList.Count <= 0) text = "❌";
+                        else
+                        {
+                            var ev = bu.OptionList.Any(q => q.OptionName.Contains("تراس") || q.OptionName.Contains("بالکن"));
+                            text = ev ? "✅" : "❌";
+                        }
+                        type = type.Replace(Replacor.TelegramBuilding.Balcony, text);
+                        list[index] = type;
+                    }
+                }
 
                 list = list.Where(q => !string.IsNullOrEmpty(q)).ToList();
                 res = string.Join(Environment.NewLine, list);

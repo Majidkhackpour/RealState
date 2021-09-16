@@ -161,7 +161,7 @@ namespace Building.Building
             this.exPanel.Controls.Add(this.picBox);
             this.exPanel.DisabledBackColor = System.Drawing.Color.Empty;
             this.exPanel.Expanded = false;
-            this.exPanel.ExpandedBounds = new System.Drawing.Rectangle(8, 4, 785, 637);
+            this.exPanel.ExpandedBounds = new System.Drawing.Rectangle(428, 4, 365, 637);
             this.exPanel.Location = new System.Drawing.Point(767, 4);
             this.exPanel.Name = "exPanel";
             this.exPanel.Size = new System.Drawing.Size(26, 637);
@@ -190,7 +190,7 @@ namespace Building.Building
             this.picBox.BackColor = System.Drawing.Color.Transparent;
             this.picBox.Location = new System.Drawing.Point(8, 29);
             this.picBox.Name = "picBox";
-            this.picBox.Size = new System.Drawing.Size(748, 343);
+            this.picBox.Size = new System.Drawing.Size(343, 343);
             this.picBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.picBox.TabIndex = 4;
             this.picBox.TabStop = false;

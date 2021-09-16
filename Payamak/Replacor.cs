@@ -58,6 +58,15 @@
             public static string FloorCover => "[کفپوش]".Trim();
             public static string KitchenService => "[کابینت]".Trim();
             public static string View => "[نما]".Trim();
+            public static string PricePerMetr => "[قیمت هر متر]".Trim();
+            public static string VahedPerTabaqe => "[تعداد واحد]".Trim();
+            public static string Hitting => "[گرمایش]".Trim();
+            public static string Colling => "[سرمایش]".Trim();
+            public static string Dong => "[تعداد دانگ]".Trim();
+            public static string Parking => "[پارکینگ]".Trim();
+            public static string Elevator => "[آسانسور]".Trim();
+            public static string Store => "[انباری]".Trim();
+            public static string Balcony => "[تراس]".Trim();
         }
     }
 }

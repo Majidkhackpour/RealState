@@ -553,5 +553,14 @@ namespace Settings
         private void btnFloorCover_Click(object sender, EventArgs e) => SetDataInTxt((ButtonX)sender, txtText);
         private void btnKitchenService_Click(object sender, EventArgs e) => SetDataInTxt((ButtonX)sender, txtText);
         private void btnView_Click(object sender, EventArgs e) => SetDataInTxt((ButtonX)sender, txtText);
+        private void btnDong_Click(object sender, EventArgs e) => SetDataInTxt((ButtonX)sender, txtText);
+        private void btnPricePerMeter_Click(object sender, EventArgs e) => SetDataInTxt((ButtonX)sender, txtText);
+        private void btnVahedPerTabaqe_Click(object sender, EventArgs e) => SetDataInTxt((ButtonX)sender, txtText);
+        private void btnHitting_Click(object sender, EventArgs e) => SetDataInTxt((ButtonX)sender, txtText);
+        private void btnParking_Click(object sender, EventArgs e) => SetDataInTxt((ButtonX)sender, txtText);
+        private void btnColling_Click(object sender, EventArgs e) => SetDataInTxt((ButtonX)sender, txtText);
+        private void btnEvelator_Click(object sender, EventArgs e) => SetDataInTxt((ButtonX)sender, txtText);
+        private void btnStore_Click(object sender, EventArgs e) => SetDataInTxt((ButtonX)sender, txtText);
+        private void btnBalcony_Click(object sender, EventArgs e) => SetDataInTxt((ButtonX)sender, txtText);
     }
 }

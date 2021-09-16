@@ -34,65 +34,48 @@
             this.superTabControl1 = new DevComponents.DotNetBar.SuperTabControl();
             this.superTabControlPanel11 = new DevComponents.DotNetBar.SuperTabControlPanel();
             this.pnlTelegram = new DevComponents.DotNetBar.PanelEx();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.btnType = new DevComponents.DotNetBar.ButtonX();
+            this.btnCode = new DevComponents.DotNetBar.ButtonX();
+            this.btnDocType = new DevComponents.DotNetBar.ButtonX();
+            this.btnSide = new DevComponents.DotNetBar.ButtonX();
+            this.btnConType = new DevComponents.DotNetBar.ButtonX();
+            this.btnTarakom = new DevComponents.DotNetBar.ButtonX();
+            this.btnAccType = new DevComponents.DotNetBar.ButtonX();
+            this.btnTabaqeNo = new DevComponents.DotNetBar.ButtonX();
+            this.btnRegion = new DevComponents.DotNetBar.ButtonX();
+            this.btnTabaqeCount = new DevComponents.DotNetBar.ButtonX();
+            this.btnSell = new DevComponents.DotNetBar.ButtonX();
+            this.btnRoomCount = new DevComponents.DotNetBar.ButtonX();
+            this.btnRahn = new DevComponents.DotNetBar.ButtonX();
+            this.btnSaleSakht = new DevComponents.DotNetBar.ButtonX();
+            this.btnAddress = new DevComponents.DotNetBar.ButtonX();
+            this.btnFloorCover = new DevComponents.DotNetBar.ButtonX();
+            this.btnMobile = new DevComponents.DotNetBar.ButtonX();
+            this.btnView = new DevComponents.DotNetBar.ButtonX();
+            this.btnEjare = new DevComponents.DotNetBar.ButtonX();
+            this.btnTejari = new DevComponents.DotNetBar.ButtonX();
+            this.btnTell = new DevComponents.DotNetBar.ButtonX();
+            this.btnKitchenService = new DevComponents.DotNetBar.ButtonX();
+            this.btnMasahat = new DevComponents.DotNetBar.ButtonX();
+            this.btnChannel = new DevComponents.DotNetBar.ButtonX();
+            this.btnZirBana = new DevComponents.DotNetBar.ButtonX();
+            this.btnDong = new DevComponents.DotNetBar.ButtonX();
+            this.btnPricePerMeter = new DevComponents.DotNetBar.ButtonX();
+            this.btnVahedPerTabaqe = new DevComponents.DotNetBar.ButtonX();
+            this.btnHitting = new DevComponents.DotNetBar.ButtonX();
+            this.btnParking = new DevComponents.DotNetBar.ButtonX();
+            this.btnColling = new DevComponents.DotNetBar.ButtonX();
+            this.btnEvelator = new DevComponents.DotNetBar.ButtonX();
+            this.btnStore = new DevComponents.DotNetBar.ButtonX();
+            this.btnBalcony = new DevComponents.DotNetBar.ButtonX();
             this.txtChannel = new System.Windows.Forms.TextBox();
             this.txtToken = new System.Windows.Forms.TextBox();
             this.txtText = new System.Windows.Forms.TextBox();
-            this.btnZirBana = new DevComponents.DotNetBar.ButtonX();
-            this.btnChannel = new DevComponents.DotNetBar.ButtonX();
-            this.btnMasahat = new DevComponents.DotNetBar.ButtonX();
-            this.btnTell = new DevComponents.DotNetBar.ButtonX();
-            this.btnTejari = new DevComponents.DotNetBar.ButtonX();
-            this.btnEjare = new DevComponents.DotNetBar.ButtonX();
-            this.btnMobile = new DevComponents.DotNetBar.ButtonX();
-            this.btnAddress = new DevComponents.DotNetBar.ButtonX();
-            this.btnSaleSakht = new DevComponents.DotNetBar.ButtonX();
-            this.btnRahn = new DevComponents.DotNetBar.ButtonX();
-            this.btnRoomCount = new DevComponents.DotNetBar.ButtonX();
-            this.btnSell = new DevComponents.DotNetBar.ButtonX();
-            this.btnTabaqeCount = new DevComponents.DotNetBar.ButtonX();
-            this.btnRegion = new DevComponents.DotNetBar.ButtonX();
-            this.btnTabaqeNo = new DevComponents.DotNetBar.ButtonX();
-            this.btnAccType = new DevComponents.DotNetBar.ButtonX();
-            this.btnTarakom = new DevComponents.DotNetBar.ButtonX();
-            this.btnConType = new DevComponents.DotNetBar.ButtonX();
-            this.btnSide = new DevComponents.DotNetBar.ButtonX();
-            this.btnType = new DevComponents.DotNetBar.ButtonX();
-            this.btnDocType = new DevComponents.DotNetBar.ButtonX();
-            this.btnCode = new DevComponents.DotNetBar.ButtonX();
             this.label23 = new System.Windows.Forms.Label();
             this.label24 = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
             this.superTabItem10 = new DevComponents.DotNetBar.SuperTabItem();
-            this.superTabControlPanel2 = new DevComponents.DotNetBar.SuperTabControlPanel();
-            this.panelEx1 = new DevComponents.DotNetBar.PanelEx();
-            this.btnSearchMedia = new DevComponents.DotNetBar.ButtonX();
-            this.btnSearchImagePath = new DevComponents.DotNetBar.ButtonX();
-            this.txtMediaPath = new System.Windows.Forms.TextBox();
-            this.label33 = new System.Windows.Forms.Label();
-            this.txtImagePath = new System.Windows.Forms.TextBox();
-            this.label32 = new System.Windows.Forms.Label();
-            this.txtSetArchive = new System.Windows.Forms.NumericUpDown();
-            this.txtBirthDayText = new System.Windows.Forms.TextBox();
-            this.label31 = new System.Windows.Forms.Label();
-            this.label30 = new System.Windows.Forms.Label();
-            this.label29 = new System.Windows.Forms.Label();
-            this.chbShowDialog = new DevComponents.DotNetBar.Controls.CheckBoxX();
-            this.chbPrintPreView = new DevComponents.DotNetBar.Controls.CheckBoxX();
-            this.chbPrintDesign = new DevComponents.DotNetBar.Controls.CheckBoxX();
-            this.superTabItem2 = new DevComponents.DotNetBar.SuperTabItem();
-            this.superTabControlPanel6 = new DevComponents.DotNetBar.SuperTabControlPanel();
-            this.superTabControlPanel1 = new DevComponents.DotNetBar.SuperTabControlPanel();
-            this.panelEx4 = new DevComponents.DotNetBar.PanelEx();
-            this.btnPath = new DevComponents.DotNetBar.ButtonX();
-            this.chbBackUpSms = new DevComponents.DotNetBar.Controls.CheckBoxX();
-            this.chbOpen = new DevComponents.DotNetBar.Controls.CheckBoxX();
-            this.chbAuto = new DevComponents.DotNetBar.Controls.CheckBoxX();
-            this.txtTime = new System.Windows.Forms.NumericUpDown();
-            this.txtPath = new System.Windows.Forms.TextBox();
-            this.label26 = new System.Windows.Forms.Label();
-            this.label27 = new System.Windows.Forms.Label();
-            this.label28 = new System.Windows.Forms.Label();
-            this.superTabItem1 = new DevComponents.DotNetBar.SuperTabItem();
             this.superTabControlPanel8 = new DevComponents.DotNetBar.SuperTabControlPanel();
             this.pnlSms = new DevComponents.DotNetBar.PanelEx();
             this.txtOwnerText = new System.Windows.Forms.TextBox();
@@ -128,6 +111,36 @@
             this.label21 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
             this.superTabItem7 = new DevComponents.DotNetBar.SuperTabItem();
+            this.superTabControlPanel2 = new DevComponents.DotNetBar.SuperTabControlPanel();
+            this.panelEx1 = new DevComponents.DotNetBar.PanelEx();
+            this.btnSearchMedia = new DevComponents.DotNetBar.ButtonX();
+            this.btnSearchImagePath = new DevComponents.DotNetBar.ButtonX();
+            this.txtMediaPath = new System.Windows.Forms.TextBox();
+            this.label33 = new System.Windows.Forms.Label();
+            this.txtImagePath = new System.Windows.Forms.TextBox();
+            this.label32 = new System.Windows.Forms.Label();
+            this.txtSetArchive = new System.Windows.Forms.NumericUpDown();
+            this.txtBirthDayText = new System.Windows.Forms.TextBox();
+            this.label31 = new System.Windows.Forms.Label();
+            this.label30 = new System.Windows.Forms.Label();
+            this.label29 = new System.Windows.Forms.Label();
+            this.chbShowDialog = new DevComponents.DotNetBar.Controls.CheckBoxX();
+            this.chbPrintPreView = new DevComponents.DotNetBar.Controls.CheckBoxX();
+            this.chbPrintDesign = new DevComponents.DotNetBar.Controls.CheckBoxX();
+            this.superTabItem2 = new DevComponents.DotNetBar.SuperTabItem();
+            this.superTabControlPanel6 = new DevComponents.DotNetBar.SuperTabControlPanel();
+            this.superTabControlPanel1 = new DevComponents.DotNetBar.SuperTabControlPanel();
+            this.panelEx4 = new DevComponents.DotNetBar.PanelEx();
+            this.btnPath = new DevComponents.DotNetBar.ButtonX();
+            this.chbBackUpSms = new DevComponents.DotNetBar.Controls.CheckBoxX();
+            this.chbOpen = new DevComponents.DotNetBar.Controls.CheckBoxX();
+            this.chbAuto = new DevComponents.DotNetBar.Controls.CheckBoxX();
+            this.txtTime = new System.Windows.Forms.NumericUpDown();
+            this.txtPath = new System.Windows.Forms.TextBox();
+            this.label26 = new System.Windows.Forms.Label();
+            this.label27 = new System.Windows.Forms.Label();
+            this.label28 = new System.Windows.Forms.Label();
+            this.superTabItem1 = new DevComponents.DotNetBar.SuperTabItem();
             this.superTabControlPanel7 = new DevComponents.DotNetBar.SuperTabControlPanel();
             this.pnlSandouq = new DevComponents.DotNetBar.PanelEx();
             this.txtSTabdil = new System.Windows.Forms.NumericUpDown();
@@ -172,22 +185,20 @@
             this.label1 = new System.Windows.Forms.Label();
             this.superTabItem5 = new DevComponents.DotNetBar.SuperTabItem();
             this.btnFinish = new DevComponents.DotNetBar.ButtonX();
-            this.btnFloorCover = new DevComponents.DotNetBar.ButtonX();
-            this.btnView = new DevComponents.DotNetBar.ButtonX();
-            this.btnKitchenService = new DevComponents.DotNetBar.ButtonX();
             ((System.ComponentModel.ISupportInitialize)(this.superTabControl1)).BeginInit();
             this.superTabControl1.SuspendLayout();
             this.superTabControlPanel11.SuspendLayout();
             this.pnlTelegram.SuspendLayout();
+            this.flowLayoutPanel1.SuspendLayout();
+            this.superTabControlPanel8.SuspendLayout();
+            this.pnlSms.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.defBindingSource)).BeginInit();
             this.superTabControlPanel2.SuspendLayout();
             this.panelEx1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtSetArchive)).BeginInit();
             this.superTabControlPanel1.SuspendLayout();
             this.panelEx4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtTime)).BeginInit();
-            this.superTabControlPanel8.SuspendLayout();
-            this.pnlSms.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.defBindingSource)).BeginInit();
             this.superTabControlPanel7.SuspendLayout();
             this.pnlSandouq.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtSTabdil)).BeginInit();
@@ -234,11 +245,11 @@
             this.superTabControl1.ControlBox.SubItems.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.superTabControl1.ControlBox.MenuBox,
             this.superTabControl1.ControlBox.CloseBox});
-            this.superTabControl1.Controls.Add(this.superTabControlPanel11);
             this.superTabControl1.Controls.Add(this.superTabControlPanel2);
             this.superTabControl1.Controls.Add(this.superTabControlPanel6);
-            this.superTabControl1.Controls.Add(this.superTabControlPanel1);
+            this.superTabControl1.Controls.Add(this.superTabControlPanel11);
             this.superTabControl1.Controls.Add(this.superTabControlPanel8);
+            this.superTabControl1.Controls.Add(this.superTabControlPanel1);
             this.superTabControl1.Controls.Add(this.superTabControlPanel7);
             this.superTabControl1.Controls.Add(this.superTabControlPanel3);
             this.superTabControl1.Location = new System.Drawing.Point(6, 26);
@@ -274,34 +285,10 @@
             // 
             this.pnlTelegram.CanvasColor = System.Drawing.SystemColors.Control;
             this.pnlTelegram.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.pnlTelegram.Controls.Add(this.flowLayoutPanel1);
             this.pnlTelegram.Controls.Add(this.txtChannel);
             this.pnlTelegram.Controls.Add(this.txtToken);
             this.pnlTelegram.Controls.Add(this.txtText);
-            this.pnlTelegram.Controls.Add(this.btnZirBana);
-            this.pnlTelegram.Controls.Add(this.btnChannel);
-            this.pnlTelegram.Controls.Add(this.btnMasahat);
-            this.pnlTelegram.Controls.Add(this.btnKitchenService);
-            this.pnlTelegram.Controls.Add(this.btnTell);
-            this.pnlTelegram.Controls.Add(this.btnTejari);
-            this.pnlTelegram.Controls.Add(this.btnEjare);
-            this.pnlTelegram.Controls.Add(this.btnView);
-            this.pnlTelegram.Controls.Add(this.btnMobile);
-            this.pnlTelegram.Controls.Add(this.btnFloorCover);
-            this.pnlTelegram.Controls.Add(this.btnAddress);
-            this.pnlTelegram.Controls.Add(this.btnSaleSakht);
-            this.pnlTelegram.Controls.Add(this.btnRahn);
-            this.pnlTelegram.Controls.Add(this.btnRoomCount);
-            this.pnlTelegram.Controls.Add(this.btnSell);
-            this.pnlTelegram.Controls.Add(this.btnTabaqeCount);
-            this.pnlTelegram.Controls.Add(this.btnRegion);
-            this.pnlTelegram.Controls.Add(this.btnTabaqeNo);
-            this.pnlTelegram.Controls.Add(this.btnAccType);
-            this.pnlTelegram.Controls.Add(this.btnTarakom);
-            this.pnlTelegram.Controls.Add(this.btnConType);
-            this.pnlTelegram.Controls.Add(this.btnSide);
-            this.pnlTelegram.Controls.Add(this.btnType);
-            this.pnlTelegram.Controls.Add(this.btnDocType);
-            this.pnlTelegram.Controls.Add(this.btnCode);
             this.pnlTelegram.Controls.Add(this.label23);
             this.pnlTelegram.Controls.Add(this.label24);
             this.pnlTelegram.Controls.Add(this.label25);
@@ -320,6 +307,626 @@
             this.pnlTelegram.Style.GradientAngle = 90;
             this.pnlTelegram.TabIndex = 4;
             // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.AutoScroll = true;
+            this.flowLayoutPanel1.Controls.Add(this.btnType);
+            this.flowLayoutPanel1.Controls.Add(this.btnCode);
+            this.flowLayoutPanel1.Controls.Add(this.btnDocType);
+            this.flowLayoutPanel1.Controls.Add(this.btnSide);
+            this.flowLayoutPanel1.Controls.Add(this.btnConType);
+            this.flowLayoutPanel1.Controls.Add(this.btnTarakom);
+            this.flowLayoutPanel1.Controls.Add(this.btnAccType);
+            this.flowLayoutPanel1.Controls.Add(this.btnTabaqeNo);
+            this.flowLayoutPanel1.Controls.Add(this.btnRegion);
+            this.flowLayoutPanel1.Controls.Add(this.btnTabaqeCount);
+            this.flowLayoutPanel1.Controls.Add(this.btnSell);
+            this.flowLayoutPanel1.Controls.Add(this.btnRoomCount);
+            this.flowLayoutPanel1.Controls.Add(this.btnRahn);
+            this.flowLayoutPanel1.Controls.Add(this.btnSaleSakht);
+            this.flowLayoutPanel1.Controls.Add(this.btnAddress);
+            this.flowLayoutPanel1.Controls.Add(this.btnFloorCover);
+            this.flowLayoutPanel1.Controls.Add(this.btnMobile);
+            this.flowLayoutPanel1.Controls.Add(this.btnView);
+            this.flowLayoutPanel1.Controls.Add(this.btnEjare);
+            this.flowLayoutPanel1.Controls.Add(this.btnTejari);
+            this.flowLayoutPanel1.Controls.Add(this.btnTell);
+            this.flowLayoutPanel1.Controls.Add(this.btnKitchenService);
+            this.flowLayoutPanel1.Controls.Add(this.btnMasahat);
+            this.flowLayoutPanel1.Controls.Add(this.btnChannel);
+            this.flowLayoutPanel1.Controls.Add(this.btnZirBana);
+            this.flowLayoutPanel1.Controls.Add(this.btnDong);
+            this.flowLayoutPanel1.Controls.Add(this.btnPricePerMeter);
+            this.flowLayoutPanel1.Controls.Add(this.btnVahedPerTabaqe);
+            this.flowLayoutPanel1.Controls.Add(this.btnHitting);
+            this.flowLayoutPanel1.Controls.Add(this.btnParking);
+            this.flowLayoutPanel1.Controls.Add(this.btnColling);
+            this.flowLayoutPanel1.Controls.Add(this.btnEvelator);
+            this.flowLayoutPanel1.Controls.Add(this.btnStore);
+            this.flowLayoutPanel1.Controls.Add(this.btnBalcony);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(11, 80);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(192, 441);
+            this.flowLayoutPanel1.TabIndex = 23;
+            // 
+            // btnType
+            // 
+            this.btnType.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnType.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.btnType.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnType.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.btnType.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnType.Location = new System.Drawing.Point(93, 3);
+            this.btnType.Name = "btnType";
+            this.btnType.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
+            this.btnType.Size = new System.Drawing.Size(79, 27);
+            this.btnType.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
+            this.btnType.TabIndex = 3;
+            this.btnType.Text = "[نوع ملک]";
+            this.btnType.TextColor = System.Drawing.Color.White;
+            this.btnType.Click += new System.EventHandler(this.btnType_Click);
+            // 
+            // btnCode
+            // 
+            this.btnCode.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnCode.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.btnCode.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnCode.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.btnCode.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCode.Location = new System.Drawing.Point(8, 3);
+            this.btnCode.Name = "btnCode";
+            this.btnCode.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
+            this.btnCode.Size = new System.Drawing.Size(79, 27);
+            this.btnCode.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
+            this.btnCode.TabIndex = 2;
+            this.btnCode.Text = "[کد ملک]";
+            this.btnCode.TextColor = System.Drawing.Color.White;
+            this.btnCode.Click += new System.EventHandler(this.btnCode_Click);
+            // 
+            // btnDocType
+            // 
+            this.btnDocType.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnDocType.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.btnDocType.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnDocType.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.btnDocType.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnDocType.Location = new System.Drawing.Point(93, 36);
+            this.btnDocType.Name = "btnDocType";
+            this.btnDocType.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
+            this.btnDocType.Size = new System.Drawing.Size(79, 27);
+            this.btnDocType.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
+            this.btnDocType.TabIndex = 12;
+            this.btnDocType.Text = "[نوع سند]";
+            this.btnDocType.TextColor = System.Drawing.Color.White;
+            this.btnDocType.Click += new System.EventHandler(this.btnDocType_Click);
+            // 
+            // btnSide
+            // 
+            this.btnSide.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnSide.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.btnSide.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnSide.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.btnSide.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSide.Location = new System.Drawing.Point(8, 36);
+            this.btnSide.Name = "btnSide";
+            this.btnSide.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
+            this.btnSide.Size = new System.Drawing.Size(79, 27);
+            this.btnSide.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
+            this.btnSide.TabIndex = 13;
+            this.btnSide.Text = "[جهت]";
+            this.btnSide.TextColor = System.Drawing.Color.White;
+            this.btnSide.Click += new System.EventHandler(this.btnSide_Click);
+            // 
+            // btnConType
+            // 
+            this.btnConType.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnConType.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.btnConType.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnConType.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.btnConType.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnConType.Location = new System.Drawing.Point(93, 69);
+            this.btnConType.Name = "btnConType";
+            this.btnConType.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
+            this.btnConType.Size = new System.Drawing.Size(79, 27);
+            this.btnConType.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
+            this.btnConType.TabIndex = 4;
+            this.btnConType.Text = "[نوع معامله]";
+            this.btnConType.TextColor = System.Drawing.Color.White;
+            this.btnConType.Click += new System.EventHandler(this.btnConType_Click);
+            // 
+            // btnTarakom
+            // 
+            this.btnTarakom.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnTarakom.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.btnTarakom.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnTarakom.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.btnTarakom.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnTarakom.Location = new System.Drawing.Point(8, 69);
+            this.btnTarakom.Name = "btnTarakom";
+            this.btnTarakom.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
+            this.btnTarakom.Size = new System.Drawing.Size(79, 27);
+            this.btnTarakom.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
+            this.btnTarakom.TabIndex = 14;
+            this.btnTarakom.Text = "[تراکم]";
+            this.btnTarakom.TextColor = System.Drawing.Color.White;
+            this.btnTarakom.Click += new System.EventHandler(this.btnTarakom_Click);
+            // 
+            // btnAccType
+            // 
+            this.btnAccType.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnAccType.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.btnAccType.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnAccType.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.btnAccType.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnAccType.Location = new System.Drawing.Point(93, 102);
+            this.btnAccType.Name = "btnAccType";
+            this.btnAccType.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
+            this.btnAccType.Size = new System.Drawing.Size(79, 27);
+            this.btnAccType.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
+            this.btnAccType.TabIndex = 5;
+            this.btnAccType.Text = "[نوع کاربری]";
+            this.btnAccType.TextColor = System.Drawing.Color.White;
+            this.btnAccType.Click += new System.EventHandler(this.btnAccType_Click);
+            // 
+            // btnTabaqeNo
+            // 
+            this.btnTabaqeNo.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnTabaqeNo.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.btnTabaqeNo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnTabaqeNo.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.btnTabaqeNo.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnTabaqeNo.Location = new System.Drawing.Point(8, 102);
+            this.btnTabaqeNo.Name = "btnTabaqeNo";
+            this.btnTabaqeNo.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
+            this.btnTabaqeNo.Size = new System.Drawing.Size(79, 27);
+            this.btnTabaqeNo.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
+            this.btnTabaqeNo.TabIndex = 15;
+            this.btnTabaqeNo.Text = "[ش طبقه]";
+            this.btnTabaqeNo.TextColor = System.Drawing.Color.White;
+            this.btnTabaqeNo.Click += new System.EventHandler(this.btnTabaqeNo_Click);
+            // 
+            // btnRegion
+            // 
+            this.btnRegion.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnRegion.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.btnRegion.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnRegion.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.btnRegion.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnRegion.Location = new System.Drawing.Point(93, 135);
+            this.btnRegion.Name = "btnRegion";
+            this.btnRegion.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
+            this.btnRegion.Size = new System.Drawing.Size(79, 27);
+            this.btnRegion.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
+            this.btnRegion.TabIndex = 6;
+            this.btnRegion.Text = "[محدوده]";
+            this.btnRegion.TextColor = System.Drawing.Color.White;
+            this.btnRegion.Click += new System.EventHandler(this.btnRegion_Click);
+            // 
+            // btnTabaqeCount
+            // 
+            this.btnTabaqeCount.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnTabaqeCount.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.btnTabaqeCount.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnTabaqeCount.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.btnTabaqeCount.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnTabaqeCount.Location = new System.Drawing.Point(8, 135);
+            this.btnTabaqeCount.Name = "btnTabaqeCount";
+            this.btnTabaqeCount.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
+            this.btnTabaqeCount.Size = new System.Drawing.Size(79, 27);
+            this.btnTabaqeCount.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
+            this.btnTabaqeCount.TabIndex = 16;
+            this.btnTabaqeCount.Text = "[تعداد طبقات]";
+            this.btnTabaqeCount.TextColor = System.Drawing.Color.White;
+            this.btnTabaqeCount.Click += new System.EventHandler(this.btnTabaqeCount_Click);
+            // 
+            // btnSell
+            // 
+            this.btnSell.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnSell.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.btnSell.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnSell.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.btnSell.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSell.Location = new System.Drawing.Point(93, 168);
+            this.btnSell.Name = "btnSell";
+            this.btnSell.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
+            this.btnSell.Size = new System.Drawing.Size(79, 27);
+            this.btnSell.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
+            this.btnSell.TabIndex = 7;
+            this.btnSell.Text = "[ق فروش]";
+            this.btnSell.TextColor = System.Drawing.Color.White;
+            this.btnSell.Click += new System.EventHandler(this.btnSell_Click);
+            // 
+            // btnRoomCount
+            // 
+            this.btnRoomCount.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnRoomCount.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.btnRoomCount.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnRoomCount.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.btnRoomCount.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnRoomCount.Location = new System.Drawing.Point(8, 168);
+            this.btnRoomCount.Name = "btnRoomCount";
+            this.btnRoomCount.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
+            this.btnRoomCount.Size = new System.Drawing.Size(79, 27);
+            this.btnRoomCount.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
+            this.btnRoomCount.TabIndex = 17;
+            this.btnRoomCount.Text = "[تعداد اتاق]";
+            this.btnRoomCount.TextColor = System.Drawing.Color.White;
+            this.btnRoomCount.Click += new System.EventHandler(this.btnRoomCount_Click);
+            // 
+            // btnRahn
+            // 
+            this.btnRahn.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnRahn.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.btnRahn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnRahn.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.btnRahn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnRahn.Location = new System.Drawing.Point(93, 201);
+            this.btnRahn.Name = "btnRahn";
+            this.btnRahn.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
+            this.btnRahn.Size = new System.Drawing.Size(79, 27);
+            this.btnRahn.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
+            this.btnRahn.TabIndex = 8;
+            this.btnRahn.Text = "[ق رهن]";
+            this.btnRahn.TextColor = System.Drawing.Color.White;
+            this.btnRahn.Click += new System.EventHandler(this.btnRahn_Click);
+            // 
+            // btnSaleSakht
+            // 
+            this.btnSaleSakht.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnSaleSakht.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.btnSaleSakht.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnSaleSakht.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.btnSaleSakht.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSaleSakht.Location = new System.Drawing.Point(8, 201);
+            this.btnSaleSakht.Name = "btnSaleSakht";
+            this.btnSaleSakht.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
+            this.btnSaleSakht.Size = new System.Drawing.Size(79, 27);
+            this.btnSaleSakht.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
+            this.btnSaleSakht.TabIndex = 18;
+            this.btnSaleSakht.Text = "[سال ساخت]";
+            this.btnSaleSakht.TextColor = System.Drawing.Color.White;
+            this.btnSaleSakht.Click += new System.EventHandler(this.btnSaleSakht_Click);
+            // 
+            // btnAddress
+            // 
+            this.btnAddress.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnAddress.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.btnAddress.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnAddress.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.btnAddress.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnAddress.Location = new System.Drawing.Point(93, 234);
+            this.btnAddress.Name = "btnAddress";
+            this.btnAddress.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
+            this.btnAddress.Size = new System.Drawing.Size(79, 27);
+            this.btnAddress.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
+            this.btnAddress.TabIndex = 18;
+            this.btnAddress.Text = "[آدرس مجموعه]";
+            this.btnAddress.TextColor = System.Drawing.Color.White;
+            this.btnAddress.Click += new System.EventHandler(this.btnAddress_Click);
+            // 
+            // btnFloorCover
+            // 
+            this.btnFloorCover.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnFloorCover.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.btnFloorCover.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnFloorCover.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.btnFloorCover.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnFloorCover.Location = new System.Drawing.Point(8, 234);
+            this.btnFloorCover.Name = "btnFloorCover";
+            this.btnFloorCover.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
+            this.btnFloorCover.Size = new System.Drawing.Size(79, 27);
+            this.btnFloorCover.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
+            this.btnFloorCover.TabIndex = 18;
+            this.btnFloorCover.Text = "[کفپوش]";
+            this.btnFloorCover.TextColor = System.Drawing.Color.White;
+            this.btnFloorCover.Click += new System.EventHandler(this.btnFloorCover_Click);
+            // 
+            // btnMobile
+            // 
+            this.btnMobile.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnMobile.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.btnMobile.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnMobile.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.btnMobile.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnMobile.Location = new System.Drawing.Point(93, 267);
+            this.btnMobile.Name = "btnMobile";
+            this.btnMobile.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
+            this.btnMobile.Size = new System.Drawing.Size(79, 27);
+            this.btnMobile.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
+            this.btnMobile.TabIndex = 18;
+            this.btnMobile.Text = "[همراه]";
+            this.btnMobile.TextColor = System.Drawing.Color.White;
+            this.btnMobile.Click += new System.EventHandler(this.btnMobile_Click);
+            // 
+            // btnView
+            // 
+            this.btnView.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnView.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.btnView.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnView.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.btnView.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnView.Location = new System.Drawing.Point(8, 267);
+            this.btnView.Name = "btnView";
+            this.btnView.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
+            this.btnView.Size = new System.Drawing.Size(79, 27);
+            this.btnView.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
+            this.btnView.TabIndex = 18;
+            this.btnView.Text = "[نما]";
+            this.btnView.TextColor = System.Drawing.Color.White;
+            this.btnView.Click += new System.EventHandler(this.btnView_Click);
+            // 
+            // btnEjare
+            // 
+            this.btnEjare.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnEjare.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.btnEjare.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnEjare.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.btnEjare.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnEjare.Location = new System.Drawing.Point(93, 300);
+            this.btnEjare.Name = "btnEjare";
+            this.btnEjare.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
+            this.btnEjare.Size = new System.Drawing.Size(79, 27);
+            this.btnEjare.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
+            this.btnEjare.TabIndex = 9;
+            this.btnEjare.Text = "[ق اجاره]";
+            this.btnEjare.TextColor = System.Drawing.Color.White;
+            this.btnEjare.Click += new System.EventHandler(this.btnEjare_Click);
+            // 
+            // btnTejari
+            // 
+            this.btnTejari.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnTejari.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.btnTejari.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnTejari.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.btnTejari.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnTejari.Location = new System.Drawing.Point(8, 300);
+            this.btnTejari.Name = "btnTejari";
+            this.btnTejari.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
+            this.btnTejari.Size = new System.Drawing.Size(79, 27);
+            this.btnTejari.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
+            this.btnTejari.TabIndex = 19;
+            this.btnTejari.Text = "[متراژ تجاری]";
+            this.btnTejari.TextColor = System.Drawing.Color.White;
+            this.btnTejari.Click += new System.EventHandler(this.btnTejari_Click);
+            // 
+            // btnTell
+            // 
+            this.btnTell.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnTell.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.btnTell.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnTell.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.btnTell.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnTell.Location = new System.Drawing.Point(93, 333);
+            this.btnTell.Name = "btnTell";
+            this.btnTell.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
+            this.btnTell.Size = new System.Drawing.Size(79, 27);
+            this.btnTell.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
+            this.btnTell.TabIndex = 19;
+            this.btnTell.Text = "[تلفن ثابت]";
+            this.btnTell.TextColor = System.Drawing.Color.White;
+            this.btnTell.Click += new System.EventHandler(this.btnTell_Click);
+            // 
+            // btnKitchenService
+            // 
+            this.btnKitchenService.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnKitchenService.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.btnKitchenService.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnKitchenService.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.btnKitchenService.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnKitchenService.Location = new System.Drawing.Point(8, 333);
+            this.btnKitchenService.Name = "btnKitchenService";
+            this.btnKitchenService.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
+            this.btnKitchenService.Size = new System.Drawing.Size(79, 27);
+            this.btnKitchenService.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
+            this.btnKitchenService.TabIndex = 19;
+            this.btnKitchenService.Text = "[کابینت]";
+            this.btnKitchenService.TextColor = System.Drawing.Color.White;
+            this.btnKitchenService.Click += new System.EventHandler(this.btnKitchenService_Click);
+            // 
+            // btnMasahat
+            // 
+            this.btnMasahat.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnMasahat.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.btnMasahat.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnMasahat.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.btnMasahat.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnMasahat.Location = new System.Drawing.Point(93, 366);
+            this.btnMasahat.Name = "btnMasahat";
+            this.btnMasahat.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
+            this.btnMasahat.Size = new System.Drawing.Size(79, 27);
+            this.btnMasahat.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
+            this.btnMasahat.TabIndex = 10;
+            this.btnMasahat.Text = "[مساحت]";
+            this.btnMasahat.TextColor = System.Drawing.Color.White;
+            this.btnMasahat.Click += new System.EventHandler(this.btnMasahat_Click);
+            // 
+            // btnChannel
+            // 
+            this.btnChannel.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnChannel.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.btnChannel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnChannel.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.btnChannel.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnChannel.Location = new System.Drawing.Point(8, 366);
+            this.btnChannel.Name = "btnChannel";
+            this.btnChannel.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
+            this.btnChannel.Size = new System.Drawing.Size(79, 27);
+            this.btnChannel.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
+            this.btnChannel.TabIndex = 20;
+            this.btnChannel.Text = "[آدرس کانال]";
+            this.btnChannel.TextColor = System.Drawing.Color.White;
+            this.btnChannel.Click += new System.EventHandler(this.btnChannel_Click);
+            // 
+            // btnZirBana
+            // 
+            this.btnZirBana.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnZirBana.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.btnZirBana.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnZirBana.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.btnZirBana.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnZirBana.Location = new System.Drawing.Point(93, 399);
+            this.btnZirBana.Name = "btnZirBana";
+            this.btnZirBana.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
+            this.btnZirBana.Size = new System.Drawing.Size(79, 27);
+            this.btnZirBana.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
+            this.btnZirBana.TabIndex = 11;
+            this.btnZirBana.Text = "[زیربنا]";
+            this.btnZirBana.TextColor = System.Drawing.Color.White;
+            this.btnZirBana.Click += new System.EventHandler(this.btnZirBana_Click);
+            // 
+            // btnDong
+            // 
+            this.btnDong.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnDong.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.btnDong.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnDong.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.btnDong.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnDong.Location = new System.Drawing.Point(8, 399);
+            this.btnDong.Name = "btnDong";
+            this.btnDong.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
+            this.btnDong.Size = new System.Drawing.Size(79, 27);
+            this.btnDong.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
+            this.btnDong.TabIndex = 20;
+            this.btnDong.Text = "[تعداد دانگ]";
+            this.btnDong.TextColor = System.Drawing.Color.White;
+            this.btnDong.Click += new System.EventHandler(this.btnDong_Click);
+            // 
+            // btnPricePerMeter
+            // 
+            this.btnPricePerMeter.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnPricePerMeter.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.btnPricePerMeter.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnPricePerMeter.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.btnPricePerMeter.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnPricePerMeter.Location = new System.Drawing.Point(93, 432);
+            this.btnPricePerMeter.Name = "btnPricePerMeter";
+            this.btnPricePerMeter.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
+            this.btnPricePerMeter.Size = new System.Drawing.Size(79, 27);
+            this.btnPricePerMeter.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
+            this.btnPricePerMeter.TabIndex = 20;
+            this.btnPricePerMeter.Text = "[قیمت هر متر]";
+            this.btnPricePerMeter.TextColor = System.Drawing.Color.White;
+            this.btnPricePerMeter.Click += new System.EventHandler(this.btnPricePerMeter_Click);
+            // 
+            // btnVahedPerTabaqe
+            // 
+            this.btnVahedPerTabaqe.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnVahedPerTabaqe.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.btnVahedPerTabaqe.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnVahedPerTabaqe.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.btnVahedPerTabaqe.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnVahedPerTabaqe.Location = new System.Drawing.Point(8, 432);
+            this.btnVahedPerTabaqe.Name = "btnVahedPerTabaqe";
+            this.btnVahedPerTabaqe.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
+            this.btnVahedPerTabaqe.Size = new System.Drawing.Size(79, 27);
+            this.btnVahedPerTabaqe.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
+            this.btnVahedPerTabaqe.TabIndex = 20;
+            this.btnVahedPerTabaqe.Text = "[تعداد واحد]";
+            this.btnVahedPerTabaqe.TextColor = System.Drawing.Color.White;
+            this.btnVahedPerTabaqe.Click += new System.EventHandler(this.btnVahedPerTabaqe_Click);
+            // 
+            // btnHitting
+            // 
+            this.btnHitting.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnHitting.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.btnHitting.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnHitting.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.btnHitting.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnHitting.Location = new System.Drawing.Point(93, 465);
+            this.btnHitting.Name = "btnHitting";
+            this.btnHitting.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
+            this.btnHitting.Size = new System.Drawing.Size(79, 27);
+            this.btnHitting.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
+            this.btnHitting.TabIndex = 20;
+            this.btnHitting.Text = "[گرمایش]";
+            this.btnHitting.TextColor = System.Drawing.Color.White;
+            this.btnHitting.Click += new System.EventHandler(this.btnHitting_Click);
+            // 
+            // btnParking
+            // 
+            this.btnParking.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnParking.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.btnParking.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnParking.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.btnParking.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnParking.Location = new System.Drawing.Point(8, 465);
+            this.btnParking.Name = "btnParking";
+            this.btnParking.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
+            this.btnParking.Size = new System.Drawing.Size(79, 27);
+            this.btnParking.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
+            this.btnParking.TabIndex = 20;
+            this.btnParking.Text = "[پارکینگ]";
+            this.btnParking.TextColor = System.Drawing.Color.White;
+            this.btnParking.Click += new System.EventHandler(this.btnParking_Click);
+            // 
+            // btnColling
+            // 
+            this.btnColling.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnColling.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.btnColling.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnColling.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.btnColling.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnColling.Location = new System.Drawing.Point(93, 498);
+            this.btnColling.Name = "btnColling";
+            this.btnColling.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
+            this.btnColling.Size = new System.Drawing.Size(79, 27);
+            this.btnColling.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
+            this.btnColling.TabIndex = 20;
+            this.btnColling.Text = "[سرمایش]";
+            this.btnColling.TextColor = System.Drawing.Color.White;
+            this.btnColling.Click += new System.EventHandler(this.btnColling_Click);
+            // 
+            // btnEvelator
+            // 
+            this.btnEvelator.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnEvelator.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.btnEvelator.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnEvelator.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.btnEvelator.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnEvelator.Location = new System.Drawing.Point(8, 498);
+            this.btnEvelator.Name = "btnEvelator";
+            this.btnEvelator.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
+            this.btnEvelator.Size = new System.Drawing.Size(79, 27);
+            this.btnEvelator.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
+            this.btnEvelator.TabIndex = 20;
+            this.btnEvelator.Text = "[آسانسور]";
+            this.btnEvelator.TextColor = System.Drawing.Color.White;
+            this.btnEvelator.Click += new System.EventHandler(this.btnEvelator_Click);
+            // 
+            // btnStore
+            // 
+            this.btnStore.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnStore.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.btnStore.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnStore.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.btnStore.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnStore.Location = new System.Drawing.Point(93, 531);
+            this.btnStore.Name = "btnStore";
+            this.btnStore.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
+            this.btnStore.Size = new System.Drawing.Size(79, 27);
+            this.btnStore.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
+            this.btnStore.TabIndex = 20;
+            this.btnStore.Text = "[انباری]";
+            this.btnStore.TextColor = System.Drawing.Color.White;
+            this.btnStore.Click += new System.EventHandler(this.btnStore_Click);
+            // 
+            // btnBalcony
+            // 
+            this.btnBalcony.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnBalcony.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.btnBalcony.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnBalcony.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.btnBalcony.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnBalcony.Location = new System.Drawing.Point(8, 531);
+            this.btnBalcony.Name = "btnBalcony";
+            this.btnBalcony.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
+            this.btnBalcony.Size = new System.Drawing.Size(79, 27);
+            this.btnBalcony.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
+            this.btnBalcony.TabIndex = 21;
+            this.btnBalcony.Text = "[تراس]";
+            this.btnBalcony.TextColor = System.Drawing.Color.White;
+            this.btnBalcony.Click += new System.EventHandler(this.btnBalcony_Click);
+            // 
             // txtChannel
             // 
             this.txtChannel.Location = new System.Drawing.Point(11, 43);
@@ -336,386 +943,12 @@
             // 
             // txtText
             // 
-            this.txtText.Location = new System.Drawing.Point(197, 80);
+            this.txtText.Location = new System.Drawing.Point(209, 80);
             this.txtText.Multiline = true;
             this.txtText.Name = "txtText";
             this.txtText.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtText.Size = new System.Drawing.Size(285, 427);
+            this.txtText.Size = new System.Drawing.Size(273, 427);
             this.txtText.TabIndex = 22;
-            // 
-            // btnZirBana
-            // 
-            this.btnZirBana.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnZirBana.BackColor = System.Drawing.Color.DarkSlateGray;
-            this.btnZirBana.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnZirBana.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
-            this.btnZirBana.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnZirBana.Location = new System.Drawing.Point(27, 212);
-            this.btnZirBana.Name = "btnZirBana";
-            this.btnZirBana.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
-            this.btnZirBana.Size = new System.Drawing.Size(79, 27);
-            this.btnZirBana.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
-            this.btnZirBana.TabIndex = 11;
-            this.btnZirBana.Text = "[زیربنا]";
-            this.btnZirBana.TextColor = System.Drawing.Color.White;
-            this.btnZirBana.Click += new System.EventHandler(this.btnZirBana_Click);
-            // 
-            // btnChannel
-            // 
-            this.btnChannel.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnChannel.BackColor = System.Drawing.Color.DarkSlateGray;
-            this.btnChannel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnChannel.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
-            this.btnChannel.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnChannel.Location = new System.Drawing.Point(27, 475);
-            this.btnChannel.Name = "btnChannel";
-            this.btnChannel.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
-            this.btnChannel.Size = new System.Drawing.Size(79, 27);
-            this.btnChannel.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
-            this.btnChannel.TabIndex = 20;
-            this.btnChannel.Text = "[آدرس کانال]";
-            this.btnChannel.TextColor = System.Drawing.Color.White;
-            this.btnChannel.Click += new System.EventHandler(this.btnChannel_Click);
-            // 
-            // btnMasahat
-            // 
-            this.btnMasahat.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnMasahat.BackColor = System.Drawing.Color.DarkSlateGray;
-            this.btnMasahat.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnMasahat.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
-            this.btnMasahat.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnMasahat.Location = new System.Drawing.Point(112, 212);
-            this.btnMasahat.Name = "btnMasahat";
-            this.btnMasahat.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
-            this.btnMasahat.Size = new System.Drawing.Size(79, 27);
-            this.btnMasahat.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
-            this.btnMasahat.TabIndex = 10;
-            this.btnMasahat.Text = "[مساحت]";
-            this.btnMasahat.TextColor = System.Drawing.Color.White;
-            this.btnMasahat.Click += new System.EventHandler(this.btnMasahat_Click);
-            // 
-            // btnTell
-            // 
-            this.btnTell.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnTell.BackColor = System.Drawing.Color.DarkSlateGray;
-            this.btnTell.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnTell.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
-            this.btnTell.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnTell.Location = new System.Drawing.Point(27, 442);
-            this.btnTell.Name = "btnTell";
-            this.btnTell.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
-            this.btnTell.Size = new System.Drawing.Size(79, 27);
-            this.btnTell.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
-            this.btnTell.TabIndex = 19;
-            this.btnTell.Text = "[تلفن ثابت]";
-            this.btnTell.TextColor = System.Drawing.Color.White;
-            this.btnTell.Click += new System.EventHandler(this.btnTell_Click);
-            // 
-            // btnTejari
-            // 
-            this.btnTejari.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnTejari.BackColor = System.Drawing.Color.DarkSlateGray;
-            this.btnTejari.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnTejari.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
-            this.btnTejari.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnTejari.Location = new System.Drawing.Point(27, 344);
-            this.btnTejari.Name = "btnTejari";
-            this.btnTejari.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
-            this.btnTejari.Size = new System.Drawing.Size(79, 27);
-            this.btnTejari.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
-            this.btnTejari.TabIndex = 19;
-            this.btnTejari.Text = "[متراژ تجاری]";
-            this.btnTejari.TextColor = System.Drawing.Color.White;
-            this.btnTejari.Click += new System.EventHandler(this.btnTejari_Click);
-            // 
-            // btnEjare
-            // 
-            this.btnEjare.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnEjare.BackColor = System.Drawing.Color.DarkSlateGray;
-            this.btnEjare.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnEjare.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
-            this.btnEjare.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnEjare.Location = new System.Drawing.Point(27, 179);
-            this.btnEjare.Name = "btnEjare";
-            this.btnEjare.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
-            this.btnEjare.Size = new System.Drawing.Size(79, 27);
-            this.btnEjare.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
-            this.btnEjare.TabIndex = 9;
-            this.btnEjare.Text = "[ق اجاره]";
-            this.btnEjare.TextColor = System.Drawing.Color.White;
-            this.btnEjare.Click += new System.EventHandler(this.btnEjare_Click);
-            // 
-            // btnMobile
-            // 
-            this.btnMobile.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnMobile.BackColor = System.Drawing.Color.DarkSlateGray;
-            this.btnMobile.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnMobile.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
-            this.btnMobile.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnMobile.Location = new System.Drawing.Point(112, 475);
-            this.btnMobile.Name = "btnMobile";
-            this.btnMobile.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
-            this.btnMobile.Size = new System.Drawing.Size(79, 27);
-            this.btnMobile.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
-            this.btnMobile.TabIndex = 18;
-            this.btnMobile.Text = "[همراه]";
-            this.btnMobile.TextColor = System.Drawing.Color.White;
-            this.btnMobile.Click += new System.EventHandler(this.btnMobile_Click);
-            // 
-            // btnAddress
-            // 
-            this.btnAddress.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnAddress.BackColor = System.Drawing.Color.DarkSlateGray;
-            this.btnAddress.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnAddress.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
-            this.btnAddress.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnAddress.Location = new System.Drawing.Point(112, 442);
-            this.btnAddress.Name = "btnAddress";
-            this.btnAddress.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
-            this.btnAddress.Size = new System.Drawing.Size(79, 27);
-            this.btnAddress.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
-            this.btnAddress.TabIndex = 18;
-            this.btnAddress.Text = "[آدرس مجموعه]";
-            this.btnAddress.TextColor = System.Drawing.Color.White;
-            this.btnAddress.Click += new System.EventHandler(this.btnAddress_Click);
-            // 
-            // btnSaleSakht
-            // 
-            this.btnSaleSakht.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnSaleSakht.BackColor = System.Drawing.Color.DarkSlateGray;
-            this.btnSaleSakht.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnSaleSakht.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
-            this.btnSaleSakht.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnSaleSakht.Location = new System.Drawing.Point(112, 344);
-            this.btnSaleSakht.Name = "btnSaleSakht";
-            this.btnSaleSakht.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
-            this.btnSaleSakht.Size = new System.Drawing.Size(79, 27);
-            this.btnSaleSakht.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
-            this.btnSaleSakht.TabIndex = 18;
-            this.btnSaleSakht.Text = "[سال ساخت]";
-            this.btnSaleSakht.TextColor = System.Drawing.Color.White;
-            this.btnSaleSakht.Click += new System.EventHandler(this.btnSaleSakht_Click);
-            // 
-            // btnRahn
-            // 
-            this.btnRahn.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnRahn.BackColor = System.Drawing.Color.DarkSlateGray;
-            this.btnRahn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnRahn.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
-            this.btnRahn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnRahn.Location = new System.Drawing.Point(112, 179);
-            this.btnRahn.Name = "btnRahn";
-            this.btnRahn.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
-            this.btnRahn.Size = new System.Drawing.Size(79, 27);
-            this.btnRahn.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
-            this.btnRahn.TabIndex = 8;
-            this.btnRahn.Text = "[ق رهن]";
-            this.btnRahn.TextColor = System.Drawing.Color.White;
-            this.btnRahn.Click += new System.EventHandler(this.btnRahn_Click);
-            // 
-            // btnRoomCount
-            // 
-            this.btnRoomCount.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnRoomCount.BackColor = System.Drawing.Color.DarkSlateGray;
-            this.btnRoomCount.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnRoomCount.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
-            this.btnRoomCount.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnRoomCount.Location = new System.Drawing.Point(27, 311);
-            this.btnRoomCount.Name = "btnRoomCount";
-            this.btnRoomCount.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
-            this.btnRoomCount.Size = new System.Drawing.Size(79, 27);
-            this.btnRoomCount.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
-            this.btnRoomCount.TabIndex = 17;
-            this.btnRoomCount.Text = "[تعداد اتاق]";
-            this.btnRoomCount.TextColor = System.Drawing.Color.White;
-            this.btnRoomCount.Click += new System.EventHandler(this.btnRoomCount_Click);
-            // 
-            // btnSell
-            // 
-            this.btnSell.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnSell.BackColor = System.Drawing.Color.DarkSlateGray;
-            this.btnSell.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnSell.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
-            this.btnSell.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnSell.Location = new System.Drawing.Point(27, 146);
-            this.btnSell.Name = "btnSell";
-            this.btnSell.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
-            this.btnSell.Size = new System.Drawing.Size(79, 27);
-            this.btnSell.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
-            this.btnSell.TabIndex = 7;
-            this.btnSell.Text = "[ق فروش]";
-            this.btnSell.TextColor = System.Drawing.Color.White;
-            this.btnSell.Click += new System.EventHandler(this.btnSell_Click);
-            // 
-            // btnTabaqeCount
-            // 
-            this.btnTabaqeCount.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnTabaqeCount.BackColor = System.Drawing.Color.DarkSlateGray;
-            this.btnTabaqeCount.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnTabaqeCount.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
-            this.btnTabaqeCount.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnTabaqeCount.Location = new System.Drawing.Point(112, 311);
-            this.btnTabaqeCount.Name = "btnTabaqeCount";
-            this.btnTabaqeCount.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
-            this.btnTabaqeCount.Size = new System.Drawing.Size(79, 27);
-            this.btnTabaqeCount.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
-            this.btnTabaqeCount.TabIndex = 16;
-            this.btnTabaqeCount.Text = "[تعداد طبقات]";
-            this.btnTabaqeCount.TextColor = System.Drawing.Color.White;
-            this.btnTabaqeCount.Click += new System.EventHandler(this.btnTabaqeCount_Click);
-            // 
-            // btnRegion
-            // 
-            this.btnRegion.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnRegion.BackColor = System.Drawing.Color.DarkSlateGray;
-            this.btnRegion.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnRegion.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
-            this.btnRegion.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnRegion.Location = new System.Drawing.Point(112, 146);
-            this.btnRegion.Name = "btnRegion";
-            this.btnRegion.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
-            this.btnRegion.Size = new System.Drawing.Size(79, 27);
-            this.btnRegion.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
-            this.btnRegion.TabIndex = 6;
-            this.btnRegion.Text = "[محدوده]";
-            this.btnRegion.TextColor = System.Drawing.Color.White;
-            this.btnRegion.Click += new System.EventHandler(this.btnRegion_Click);
-            // 
-            // btnTabaqeNo
-            // 
-            this.btnTabaqeNo.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnTabaqeNo.BackColor = System.Drawing.Color.DarkSlateGray;
-            this.btnTabaqeNo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnTabaqeNo.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
-            this.btnTabaqeNo.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnTabaqeNo.Location = new System.Drawing.Point(27, 278);
-            this.btnTabaqeNo.Name = "btnTabaqeNo";
-            this.btnTabaqeNo.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
-            this.btnTabaqeNo.Size = new System.Drawing.Size(79, 27);
-            this.btnTabaqeNo.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
-            this.btnTabaqeNo.TabIndex = 15;
-            this.btnTabaqeNo.Text = "[ش طبقه]";
-            this.btnTabaqeNo.TextColor = System.Drawing.Color.White;
-            this.btnTabaqeNo.Click += new System.EventHandler(this.btnTabaqeNo_Click);
-            // 
-            // btnAccType
-            // 
-            this.btnAccType.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnAccType.BackColor = System.Drawing.Color.DarkSlateGray;
-            this.btnAccType.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnAccType.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
-            this.btnAccType.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnAccType.Location = new System.Drawing.Point(27, 113);
-            this.btnAccType.Name = "btnAccType";
-            this.btnAccType.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
-            this.btnAccType.Size = new System.Drawing.Size(79, 27);
-            this.btnAccType.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
-            this.btnAccType.TabIndex = 5;
-            this.btnAccType.Text = "[نوع کاربری]";
-            this.btnAccType.TextColor = System.Drawing.Color.White;
-            this.btnAccType.Click += new System.EventHandler(this.btnAccType_Click);
-            // 
-            // btnTarakom
-            // 
-            this.btnTarakom.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnTarakom.BackColor = System.Drawing.Color.DarkSlateGray;
-            this.btnTarakom.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnTarakom.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
-            this.btnTarakom.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnTarakom.Location = new System.Drawing.Point(112, 278);
-            this.btnTarakom.Name = "btnTarakom";
-            this.btnTarakom.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
-            this.btnTarakom.Size = new System.Drawing.Size(79, 27);
-            this.btnTarakom.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
-            this.btnTarakom.TabIndex = 14;
-            this.btnTarakom.Text = "[تراکم]";
-            this.btnTarakom.TextColor = System.Drawing.Color.White;
-            this.btnTarakom.Click += new System.EventHandler(this.btnTarakom_Click);
-            // 
-            // btnConType
-            // 
-            this.btnConType.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnConType.BackColor = System.Drawing.Color.DarkSlateGray;
-            this.btnConType.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnConType.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
-            this.btnConType.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnConType.Location = new System.Drawing.Point(112, 113);
-            this.btnConType.Name = "btnConType";
-            this.btnConType.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
-            this.btnConType.Size = new System.Drawing.Size(79, 27);
-            this.btnConType.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
-            this.btnConType.TabIndex = 4;
-            this.btnConType.Text = "[نوع معامله]";
-            this.btnConType.TextColor = System.Drawing.Color.White;
-            this.btnConType.Click += new System.EventHandler(this.btnConType_Click);
-            // 
-            // btnSide
-            // 
-            this.btnSide.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnSide.BackColor = System.Drawing.Color.DarkSlateGray;
-            this.btnSide.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnSide.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
-            this.btnSide.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnSide.Location = new System.Drawing.Point(27, 245);
-            this.btnSide.Name = "btnSide";
-            this.btnSide.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
-            this.btnSide.Size = new System.Drawing.Size(79, 27);
-            this.btnSide.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
-            this.btnSide.TabIndex = 13;
-            this.btnSide.Text = "[جهت]";
-            this.btnSide.TextColor = System.Drawing.Color.White;
-            this.btnSide.Click += new System.EventHandler(this.btnSide_Click);
-            // 
-            // btnType
-            // 
-            this.btnType.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnType.BackColor = System.Drawing.Color.DarkSlateGray;
-            this.btnType.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnType.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
-            this.btnType.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnType.Location = new System.Drawing.Point(27, 80);
-            this.btnType.Name = "btnType";
-            this.btnType.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
-            this.btnType.Size = new System.Drawing.Size(79, 27);
-            this.btnType.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
-            this.btnType.TabIndex = 3;
-            this.btnType.Text = "[نوع ملک]";
-            this.btnType.TextColor = System.Drawing.Color.White;
-            this.btnType.Click += new System.EventHandler(this.btnType_Click);
-            // 
-            // btnDocType
-            // 
-            this.btnDocType.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnDocType.BackColor = System.Drawing.Color.DarkSlateGray;
-            this.btnDocType.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnDocType.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
-            this.btnDocType.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnDocType.Location = new System.Drawing.Point(112, 245);
-            this.btnDocType.Name = "btnDocType";
-            this.btnDocType.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
-            this.btnDocType.Size = new System.Drawing.Size(79, 27);
-            this.btnDocType.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
-            this.btnDocType.TabIndex = 12;
-            this.btnDocType.Text = "[نوع سند]";
-            this.btnDocType.TextColor = System.Drawing.Color.White;
-            this.btnDocType.Click += new System.EventHandler(this.btnDocType_Click);
-            // 
-            // btnCode
-            // 
-            this.btnCode.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnCode.BackColor = System.Drawing.Color.DarkSlateGray;
-            this.btnCode.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnCode.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
-            this.btnCode.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnCode.Location = new System.Drawing.Point(112, 80);
-            this.btnCode.Name = "btnCode";
-            this.btnCode.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
-            this.btnCode.Size = new System.Drawing.Size(79, 27);
-            this.btnCode.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
-            this.btnCode.TabIndex = 2;
-            this.btnCode.Text = "[کد ملک]";
-            this.btnCode.TextColor = System.Drawing.Color.White;
-            this.btnCode.Click += new System.EventHandler(this.btnCode_Click);
             // 
             // label23
             // 
@@ -753,397 +986,6 @@
             this.superTabItem10.GlobalItem = false;
             this.superTabItem10.Name = "superTabItem10";
             this.superTabItem10.Text = "ربات تلگرام";
-            // 
-            // superTabControlPanel2
-            // 
-            this.superTabControlPanel2.Controls.Add(this.panelEx1);
-            this.superTabControlPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.superTabControlPanel2.Location = new System.Drawing.Point(0, 40);
-            this.superTabControlPanel2.Name = "superTabControlPanel2";
-            this.superTabControlPanel2.Size = new System.Drawing.Size(608, 548);
-            this.superTabControlPanel2.TabIndex = 0;
-            this.superTabControlPanel2.TabItem = this.superTabItem2;
-            // 
-            // panelEx1
-            // 
-            this.panelEx1.CanvasColor = System.Drawing.SystemColors.Control;
-            this.panelEx1.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.panelEx1.Controls.Add(this.btnSearchMedia);
-            this.panelEx1.Controls.Add(this.btnSearchImagePath);
-            this.panelEx1.Controls.Add(this.txtMediaPath);
-            this.panelEx1.Controls.Add(this.label33);
-            this.panelEx1.Controls.Add(this.txtImagePath);
-            this.panelEx1.Controls.Add(this.label32);
-            this.panelEx1.Controls.Add(this.txtSetArchive);
-            this.panelEx1.Controls.Add(this.txtBirthDayText);
-            this.panelEx1.Controls.Add(this.label31);
-            this.panelEx1.Controls.Add(this.label30);
-            this.panelEx1.Controls.Add(this.label29);
-            this.panelEx1.Controls.Add(this.chbShowDialog);
-            this.panelEx1.Controls.Add(this.chbPrintPreView);
-            this.panelEx1.Controls.Add(this.chbPrintDesign);
-            this.panelEx1.DisabledBackColor = System.Drawing.Color.Empty;
-            this.panelEx1.Location = new System.Drawing.Point(4, 4);
-            this.panelEx1.Name = "panelEx1";
-            this.panelEx1.Size = new System.Drawing.Size(600, 376);
-            this.panelEx1.Style.Alignment = System.Drawing.StringAlignment.Center;
-            this.panelEx1.Style.BackColor1.Color = System.Drawing.Color.White;
-            this.panelEx1.Style.BackColor2.Color = System.Drawing.Color.White;
-            this.panelEx1.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
-            this.panelEx1.Style.BorderColor.Color = System.Drawing.Color.Silver;
-            this.panelEx1.Style.BorderWidth = 2;
-            this.panelEx1.Style.CornerType = DevComponents.DotNetBar.eCornerType.Rounded;
-            this.panelEx1.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText;
-            this.panelEx1.Style.GradientAngle = 90;
-            this.panelEx1.TabIndex = 14;
-            // 
-            // btnSearchMedia
-            // 
-            this.btnSearchMedia.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnSearchMedia.BackColor = System.Drawing.Color.DarkSlateGray;
-            this.btnSearchMedia.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnSearchMedia.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
-            this.btnSearchMedia.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnSearchMedia.Location = new System.Drawing.Point(20, 341);
-            this.btnSearchMedia.Name = "btnSearchMedia";
-            this.btnSearchMedia.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
-            this.btnSearchMedia.Size = new System.Drawing.Size(35, 27);
-            this.btnSearchMedia.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
-            this.btnSearchMedia.TabIndex = 16;
-            this.btnSearchMedia.Text = "...";
-            this.btnSearchMedia.TextColor = System.Drawing.Color.White;
-            this.btnSearchMedia.Click += new System.EventHandler(this.btnSearchMedia_Click);
-            // 
-            // btnSearchImagePath
-            // 
-            this.btnSearchImagePath.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnSearchImagePath.BackColor = System.Drawing.Color.DarkSlateGray;
-            this.btnSearchImagePath.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnSearchImagePath.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
-            this.btnSearchImagePath.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnSearchImagePath.Location = new System.Drawing.Point(20, 308);
-            this.btnSearchImagePath.Name = "btnSearchImagePath";
-            this.btnSearchImagePath.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
-            this.btnSearchImagePath.Size = new System.Drawing.Size(35, 27);
-            this.btnSearchImagePath.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
-            this.btnSearchImagePath.TabIndex = 16;
-            this.btnSearchImagePath.Text = "...";
-            this.btnSearchImagePath.TextColor = System.Drawing.Color.White;
-            this.btnSearchImagePath.Click += new System.EventHandler(this.btnSearchImagePath_Click);
-            // 
-            // txtMediaPath
-            // 
-            this.txtMediaPath.Location = new System.Drawing.Point(64, 341);
-            this.txtMediaPath.Name = "txtMediaPath";
-            this.txtMediaPath.Size = new System.Drawing.Size(390, 27);
-            this.txtMediaPath.TabIndex = 14;
-            // 
-            // label33
-            // 
-            this.label33.AutoSize = true;
-            this.label33.BackColor = System.Drawing.Color.Transparent;
-            this.label33.Location = new System.Drawing.Point(474, 344);
-            this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(113, 20);
-            this.label33.TabIndex = 15;
-            this.label33.Text = "محل ذخیره سازی مدیا";
-            // 
-            // txtImagePath
-            // 
-            this.txtImagePath.Location = new System.Drawing.Point(64, 308);
-            this.txtImagePath.Name = "txtImagePath";
-            this.txtImagePath.Size = new System.Drawing.Size(390, 27);
-            this.txtImagePath.TabIndex = 14;
-            // 
-            // label32
-            // 
-            this.label32.AutoSize = true;
-            this.label32.BackColor = System.Drawing.Color.Transparent;
-            this.label32.Location = new System.Drawing.Point(460, 311);
-            this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(127, 20);
-            this.label32.TabIndex = 15;
-            this.label32.Text = "محل ذخیره سازی تصاویر";
-            // 
-            // txtSetArchive
-            // 
-            this.txtSetArchive.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtSetArchive.Location = new System.Drawing.Point(371, 270);
-            this.txtSetArchive.Maximum = new decimal(new int[] {
-            10000,
-            0,
-            0,
-            0});
-            this.txtSetArchive.Name = "txtSetArchive";
-            this.txtSetArchive.Size = new System.Drawing.Size(84, 27);
-            this.txtSetArchive.TabIndex = 13;
-            // 
-            // txtBirthDayText
-            // 
-            this.txtBirthDayText.Location = new System.Drawing.Point(20, 11);
-            this.txtBirthDayText.Multiline = true;
-            this.txtBirthDayText.Name = "txtBirthDayText";
-            this.txtBirthDayText.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtBirthDayText.Size = new System.Drawing.Size(473, 212);
-            this.txtBirthDayText.TabIndex = 12;
-            // 
-            // label31
-            // 
-            this.label31.AutoSize = true;
-            this.label31.BackColor = System.Drawing.Color.Transparent;
-            this.label31.Location = new System.Drawing.Point(284, 272);
-            this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(81, 20);
-            this.label31.TabIndex = 11;
-            this.label31.Text = "روز بعد از ثبت";
-            // 
-            // label30
-            // 
-            this.label30.AutoSize = true;
-            this.label30.BackColor = System.Drawing.Color.Transparent;
-            this.label30.Location = new System.Drawing.Point(461, 272);
-            this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(128, 20);
-            this.label30.TabIndex = 11;
-            this.label30.Text = "ارسال فایل ها به بایگانی";
-            // 
-            // label29
-            // 
-            this.label29.AutoSize = true;
-            this.label29.BackColor = System.Drawing.Color.Transparent;
-            this.label29.Location = new System.Drawing.Point(506, 14);
-            this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(83, 20);
-            this.label29.TabIndex = 11;
-            this.label29.Text = "متن تبریک تولد";
-            // 
-            // chbShowDialog
-            // 
-            this.chbShowDialog.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.chbShowDialog.BackColor = System.Drawing.Color.Transparent;
-            // 
-            // 
-            // 
-            this.chbShowDialog.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.chbShowDialog.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.chbShowDialog.Location = new System.Drawing.Point(75, 236);
-            this.chbShowDialog.Name = "chbShowDialog";
-            this.chbShowDialog.Size = new System.Drawing.Size(173, 23);
-            this.chbShowDialog.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.chbShowDialog.TabIndex = 9;
-            this.chbShowDialog.Text = "بازکردن چند پنجره همزمان";
-            // 
-            // chbPrintPreView
-            // 
-            this.chbPrintPreView.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.chbPrintPreView.BackColor = System.Drawing.Color.Transparent;
-            // 
-            // 
-            // 
-            this.chbPrintPreView.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.chbPrintPreView.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.chbPrintPreView.Location = new System.Drawing.Point(233, 236);
-            this.chbPrintPreView.Name = "chbPrintPreView";
-            this.chbPrintPreView.Size = new System.Drawing.Size(173, 23);
-            this.chbPrintPreView.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.chbPrintPreView.TabIndex = 9;
-            this.chbPrintPreView.Text = "مشاهده پیش نمایش چاپ";
-            // 
-            // chbPrintDesign
-            // 
-            this.chbPrintDesign.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.chbPrintDesign.BackColor = System.Drawing.Color.Transparent;
-            // 
-            // 
-            // 
-            this.chbPrintDesign.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.chbPrintDesign.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.chbPrintDesign.Location = new System.Drawing.Point(412, 236);
-            this.chbPrintDesign.Name = "chbPrintDesign";
-            this.chbPrintDesign.Size = new System.Drawing.Size(173, 23);
-            this.chbPrintDesign.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.chbPrintDesign.TabIndex = 9;
-            this.chbPrintDesign.Text = "چاپ در حالت طراحی باز شود";
-            // 
-            // superTabItem2
-            // 
-            this.superTabItem2.AttachedControl = this.superTabControlPanel2;
-            this.superTabItem2.GlobalItem = false;
-            this.superTabItem2.Name = "superTabItem2";
-            this.superTabItem2.Text = "تنظیمات برنامه";
-            // 
-            // superTabControlPanel6
-            // 
-            this.superTabControlPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.superTabControlPanel6.Location = new System.Drawing.Point(0, 0);
-            this.superTabControlPanel6.Name = "superTabControlPanel6";
-            this.superTabControlPanel6.Size = new System.Drawing.Size(608, 588);
-            this.superTabControlPanel6.TabIndex = 0;
-            // 
-            // superTabControlPanel1
-            // 
-            this.superTabControlPanel1.Controls.Add(this.panelEx4);
-            this.superTabControlPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.superTabControlPanel1.Location = new System.Drawing.Point(0, 40);
-            this.superTabControlPanel1.Name = "superTabControlPanel1";
-            this.superTabControlPanel1.Size = new System.Drawing.Size(608, 548);
-            this.superTabControlPanel1.TabIndex = 0;
-            this.superTabControlPanel1.TabItem = this.superTabItem1;
-            // 
-            // panelEx4
-            // 
-            this.panelEx4.CanvasColor = System.Drawing.SystemColors.Control;
-            this.panelEx4.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.panelEx4.Controls.Add(this.btnPath);
-            this.panelEx4.Controls.Add(this.chbBackUpSms);
-            this.panelEx4.Controls.Add(this.chbOpen);
-            this.panelEx4.Controls.Add(this.chbAuto);
-            this.panelEx4.Controls.Add(this.txtTime);
-            this.panelEx4.Controls.Add(this.txtPath);
-            this.panelEx4.Controls.Add(this.label26);
-            this.panelEx4.Controls.Add(this.label27);
-            this.panelEx4.Controls.Add(this.label28);
-            this.panelEx4.DisabledBackColor = System.Drawing.Color.Empty;
-            this.panelEx4.Location = new System.Drawing.Point(4, 3);
-            this.panelEx4.Name = "panelEx4";
-            this.panelEx4.Size = new System.Drawing.Size(600, 149);
-            this.panelEx4.Style.Alignment = System.Drawing.StringAlignment.Center;
-            this.panelEx4.Style.BackColor1.Color = System.Drawing.Color.White;
-            this.panelEx4.Style.BackColor2.Color = System.Drawing.Color.White;
-            this.panelEx4.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
-            this.panelEx4.Style.BorderColor.Color = System.Drawing.Color.Silver;
-            this.panelEx4.Style.BorderWidth = 2;
-            this.panelEx4.Style.CornerType = DevComponents.DotNetBar.eCornerType.Rounded;
-            this.panelEx4.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText;
-            this.panelEx4.Style.GradientAngle = 90;
-            this.panelEx4.TabIndex = 10;
-            // 
-            // btnPath
-            // 
-            this.btnPath.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnPath.BackColor = System.Drawing.Color.DarkSlateGray;
-            this.btnPath.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnPath.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
-            this.btnPath.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnPath.Location = new System.Drawing.Point(8, 18);
-            this.btnPath.Name = "btnPath";
-            this.btnPath.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
-            this.btnPath.Size = new System.Drawing.Size(35, 27);
-            this.btnPath.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
-            this.btnPath.TabIndex = 9;
-            this.btnPath.Text = "...";
-            this.btnPath.TextColor = System.Drawing.Color.White;
-            this.btnPath.Click += new System.EventHandler(this.btnPath_Click);
-            // 
-            // chbBackUpSms
-            // 
-            this.chbBackUpSms.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.chbBackUpSms.BackColor = System.Drawing.Color.Transparent;
-            // 
-            // 
-            // 
-            this.chbBackUpSms.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.chbBackUpSms.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.chbBackUpSms.Location = new System.Drawing.Point(260, 110);
-            this.chbBackUpSms.Name = "chbBackUpSms";
-            this.chbBackUpSms.Size = new System.Drawing.Size(329, 23);
-            this.chbBackUpSms.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.chbBackUpSms.TabIndex = 9;
-            this.chbBackUpSms.Text = "ارسال پیامک به مدیر، پس از انجام عملیات پشتیبان گیری";
-            this.chbBackUpSms.CheckedChanged += new System.EventHandler(this.chbAuto_CheckedChanged);
-            // 
-            // chbOpen
-            // 
-            this.chbOpen.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.chbOpen.BackColor = System.Drawing.Color.Transparent;
-            // 
-            // 
-            // 
-            this.chbOpen.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.chbOpen.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.chbOpen.Location = new System.Drawing.Point(326, 81);
-            this.chbOpen.Name = "chbOpen";
-            this.chbOpen.Size = new System.Drawing.Size(263, 23);
-            this.chbOpen.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.chbOpen.TabIndex = 9;
-            this.chbOpen.Text = "پشتیبان گیری در لحظه اجرای برنامه فعال باشد";
-            this.chbOpen.CheckedChanged += new System.EventHandler(this.chbAuto_CheckedChanged);
-            // 
-            // chbAuto
-            // 
-            this.chbAuto.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.chbAuto.BackColor = System.Drawing.Color.Transparent;
-            // 
-            // 
-            // 
-            this.chbAuto.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.chbAuto.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.chbAuto.Location = new System.Drawing.Point(326, 53);
-            this.chbAuto.Name = "chbAuto";
-            this.chbAuto.Size = new System.Drawing.Size(263, 23);
-            this.chbAuto.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.chbAuto.TabIndex = 9;
-            this.chbAuto.Text = "پشتیبان گیری خودکار فعال باشد";
-            this.chbAuto.CheckedChanged += new System.EventHandler(this.chbAuto_CheckedChanged);
-            // 
-            // txtTime
-            // 
-            this.txtTime.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtTime.Location = new System.Drawing.Point(49, 51);
-            this.txtTime.Maximum = new decimal(new int[] {
-            10000,
-            0,
-            0,
-            0});
-            this.txtTime.Name = "txtTime";
-            this.txtTime.Size = new System.Drawing.Size(137, 27);
-            this.txtTime.TabIndex = 4;
-            // 
-            // txtPath
-            // 
-            this.txtPath.Location = new System.Drawing.Point(49, 18);
-            this.txtPath.Name = "txtPath";
-            this.txtPath.Size = new System.Drawing.Size(409, 27);
-            this.txtPath.TabIndex = 0;
-            // 
-            // label26
-            // 
-            this.label26.AutoSize = true;
-            this.label26.BackColor = System.Drawing.Color.Transparent;
-            this.label26.Location = new System.Drawing.Point(8, 53);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(38, 20);
-            this.label26.TabIndex = 6;
-            this.label26.Text = "دقیقه";
-            // 
-            // label27
-            // 
-            this.label27.AutoSize = true;
-            this.label27.BackColor = System.Drawing.Color.Transparent;
-            this.label27.Location = new System.Drawing.Point(192, 53);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(127, 20);
-            this.label27.TabIndex = 6;
-            this.label27.Text = "پشتیبان گیری خودکار هر";
-            // 
-            // label28
-            // 
-            this.label28.AutoSize = true;
-            this.label28.BackColor = System.Drawing.Color.Transparent;
-            this.label28.Location = new System.Drawing.Point(464, 21);
-            this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(129, 20);
-            this.label28.TabIndex = 8;
-            this.label28.Text = "محل ذخیره فایل پشتیبان";
-            // 
-            // superTabItem1
-            // 
-            this.superTabItem1.AttachedControl = this.superTabControlPanel1;
-            this.superTabItem1.GlobalItem = false;
-            this.superTabItem1.Name = "superTabItem1";
-            this.superTabItem1.Text = "پشتیبان گیری";
             // 
             // superTabControlPanel8
             // 
@@ -1667,6 +1509,397 @@
             this.superTabItem7.Name = "superTabItem7";
             this.superTabItem7.Text = "پیام رسانی";
             // 
+            // superTabControlPanel2
+            // 
+            this.superTabControlPanel2.Controls.Add(this.panelEx1);
+            this.superTabControlPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.superTabControlPanel2.Location = new System.Drawing.Point(0, 40);
+            this.superTabControlPanel2.Name = "superTabControlPanel2";
+            this.superTabControlPanel2.Size = new System.Drawing.Size(608, 548);
+            this.superTabControlPanel2.TabIndex = 0;
+            this.superTabControlPanel2.TabItem = this.superTabItem2;
+            // 
+            // panelEx1
+            // 
+            this.panelEx1.CanvasColor = System.Drawing.SystemColors.Control;
+            this.panelEx1.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.panelEx1.Controls.Add(this.btnSearchMedia);
+            this.panelEx1.Controls.Add(this.btnSearchImagePath);
+            this.panelEx1.Controls.Add(this.txtMediaPath);
+            this.panelEx1.Controls.Add(this.label33);
+            this.panelEx1.Controls.Add(this.txtImagePath);
+            this.panelEx1.Controls.Add(this.label32);
+            this.panelEx1.Controls.Add(this.txtSetArchive);
+            this.panelEx1.Controls.Add(this.txtBirthDayText);
+            this.panelEx1.Controls.Add(this.label31);
+            this.panelEx1.Controls.Add(this.label30);
+            this.panelEx1.Controls.Add(this.label29);
+            this.panelEx1.Controls.Add(this.chbShowDialog);
+            this.panelEx1.Controls.Add(this.chbPrintPreView);
+            this.panelEx1.Controls.Add(this.chbPrintDesign);
+            this.panelEx1.DisabledBackColor = System.Drawing.Color.Empty;
+            this.panelEx1.Location = new System.Drawing.Point(4, 4);
+            this.panelEx1.Name = "panelEx1";
+            this.panelEx1.Size = new System.Drawing.Size(600, 376);
+            this.panelEx1.Style.Alignment = System.Drawing.StringAlignment.Center;
+            this.panelEx1.Style.BackColor1.Color = System.Drawing.Color.White;
+            this.panelEx1.Style.BackColor2.Color = System.Drawing.Color.White;
+            this.panelEx1.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
+            this.panelEx1.Style.BorderColor.Color = System.Drawing.Color.Silver;
+            this.panelEx1.Style.BorderWidth = 2;
+            this.panelEx1.Style.CornerType = DevComponents.DotNetBar.eCornerType.Rounded;
+            this.panelEx1.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText;
+            this.panelEx1.Style.GradientAngle = 90;
+            this.panelEx1.TabIndex = 14;
+            // 
+            // btnSearchMedia
+            // 
+            this.btnSearchMedia.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnSearchMedia.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.btnSearchMedia.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnSearchMedia.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.btnSearchMedia.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSearchMedia.Location = new System.Drawing.Point(20, 341);
+            this.btnSearchMedia.Name = "btnSearchMedia";
+            this.btnSearchMedia.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
+            this.btnSearchMedia.Size = new System.Drawing.Size(35, 27);
+            this.btnSearchMedia.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
+            this.btnSearchMedia.TabIndex = 16;
+            this.btnSearchMedia.Text = "...";
+            this.btnSearchMedia.TextColor = System.Drawing.Color.White;
+            this.btnSearchMedia.Click += new System.EventHandler(this.btnSearchMedia_Click);
+            // 
+            // btnSearchImagePath
+            // 
+            this.btnSearchImagePath.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnSearchImagePath.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.btnSearchImagePath.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnSearchImagePath.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.btnSearchImagePath.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSearchImagePath.Location = new System.Drawing.Point(20, 308);
+            this.btnSearchImagePath.Name = "btnSearchImagePath";
+            this.btnSearchImagePath.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
+            this.btnSearchImagePath.Size = new System.Drawing.Size(35, 27);
+            this.btnSearchImagePath.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
+            this.btnSearchImagePath.TabIndex = 16;
+            this.btnSearchImagePath.Text = "...";
+            this.btnSearchImagePath.TextColor = System.Drawing.Color.White;
+            this.btnSearchImagePath.Click += new System.EventHandler(this.btnSearchImagePath_Click);
+            // 
+            // txtMediaPath
+            // 
+            this.txtMediaPath.Location = new System.Drawing.Point(64, 341);
+            this.txtMediaPath.Name = "txtMediaPath";
+            this.txtMediaPath.Size = new System.Drawing.Size(390, 27);
+            this.txtMediaPath.TabIndex = 14;
+            // 
+            // label33
+            // 
+            this.label33.AutoSize = true;
+            this.label33.BackColor = System.Drawing.Color.Transparent;
+            this.label33.Location = new System.Drawing.Point(474, 344);
+            this.label33.Name = "label33";
+            this.label33.Size = new System.Drawing.Size(113, 20);
+            this.label33.TabIndex = 15;
+            this.label33.Text = "محل ذخیره سازی مدیا";
+            // 
+            // txtImagePath
+            // 
+            this.txtImagePath.Location = new System.Drawing.Point(64, 308);
+            this.txtImagePath.Name = "txtImagePath";
+            this.txtImagePath.Size = new System.Drawing.Size(390, 27);
+            this.txtImagePath.TabIndex = 14;
+            // 
+            // label32
+            // 
+            this.label32.AutoSize = true;
+            this.label32.BackColor = System.Drawing.Color.Transparent;
+            this.label32.Location = new System.Drawing.Point(460, 311);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(127, 20);
+            this.label32.TabIndex = 15;
+            this.label32.Text = "محل ذخیره سازی تصاویر";
+            // 
+            // txtSetArchive
+            // 
+            this.txtSetArchive.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtSetArchive.Location = new System.Drawing.Point(371, 270);
+            this.txtSetArchive.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.txtSetArchive.Name = "txtSetArchive";
+            this.txtSetArchive.Size = new System.Drawing.Size(84, 27);
+            this.txtSetArchive.TabIndex = 13;
+            // 
+            // txtBirthDayText
+            // 
+            this.txtBirthDayText.Location = new System.Drawing.Point(20, 11);
+            this.txtBirthDayText.Multiline = true;
+            this.txtBirthDayText.Name = "txtBirthDayText";
+            this.txtBirthDayText.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtBirthDayText.Size = new System.Drawing.Size(473, 212);
+            this.txtBirthDayText.TabIndex = 12;
+            // 
+            // label31
+            // 
+            this.label31.AutoSize = true;
+            this.label31.BackColor = System.Drawing.Color.Transparent;
+            this.label31.Location = new System.Drawing.Point(284, 272);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(81, 20);
+            this.label31.TabIndex = 11;
+            this.label31.Text = "روز بعد از ثبت";
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.BackColor = System.Drawing.Color.Transparent;
+            this.label30.Location = new System.Drawing.Point(461, 272);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(128, 20);
+            this.label30.TabIndex = 11;
+            this.label30.Text = "ارسال فایل ها به بایگانی";
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.BackColor = System.Drawing.Color.Transparent;
+            this.label29.Location = new System.Drawing.Point(506, 14);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(83, 20);
+            this.label29.TabIndex = 11;
+            this.label29.Text = "متن تبریک تولد";
+            // 
+            // chbShowDialog
+            // 
+            this.chbShowDialog.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.chbShowDialog.BackColor = System.Drawing.Color.Transparent;
+            // 
+            // 
+            // 
+            this.chbShowDialog.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.chbShowDialog.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.chbShowDialog.Location = new System.Drawing.Point(75, 236);
+            this.chbShowDialog.Name = "chbShowDialog";
+            this.chbShowDialog.Size = new System.Drawing.Size(173, 23);
+            this.chbShowDialog.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.chbShowDialog.TabIndex = 9;
+            this.chbShowDialog.Text = "بازکردن چند پنجره همزمان";
+            // 
+            // chbPrintPreView
+            // 
+            this.chbPrintPreView.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.chbPrintPreView.BackColor = System.Drawing.Color.Transparent;
+            // 
+            // 
+            // 
+            this.chbPrintPreView.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.chbPrintPreView.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.chbPrintPreView.Location = new System.Drawing.Point(233, 236);
+            this.chbPrintPreView.Name = "chbPrintPreView";
+            this.chbPrintPreView.Size = new System.Drawing.Size(173, 23);
+            this.chbPrintPreView.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.chbPrintPreView.TabIndex = 9;
+            this.chbPrintPreView.Text = "مشاهده پیش نمایش چاپ";
+            // 
+            // chbPrintDesign
+            // 
+            this.chbPrintDesign.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.chbPrintDesign.BackColor = System.Drawing.Color.Transparent;
+            // 
+            // 
+            // 
+            this.chbPrintDesign.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.chbPrintDesign.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.chbPrintDesign.Location = new System.Drawing.Point(412, 236);
+            this.chbPrintDesign.Name = "chbPrintDesign";
+            this.chbPrintDesign.Size = new System.Drawing.Size(173, 23);
+            this.chbPrintDesign.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.chbPrintDesign.TabIndex = 9;
+            this.chbPrintDesign.Text = "چاپ در حالت طراحی باز شود";
+            // 
+            // superTabItem2
+            // 
+            this.superTabItem2.AttachedControl = this.superTabControlPanel2;
+            this.superTabItem2.GlobalItem = false;
+            this.superTabItem2.Name = "superTabItem2";
+            this.superTabItem2.Text = "تنظیمات برنامه";
+            // 
+            // superTabControlPanel6
+            // 
+            this.superTabControlPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.superTabControlPanel6.Location = new System.Drawing.Point(0, 0);
+            this.superTabControlPanel6.Name = "superTabControlPanel6";
+            this.superTabControlPanel6.Size = new System.Drawing.Size(608, 588);
+            this.superTabControlPanel6.TabIndex = 0;
+            // 
+            // superTabControlPanel1
+            // 
+            this.superTabControlPanel1.Controls.Add(this.panelEx4);
+            this.superTabControlPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.superTabControlPanel1.Location = new System.Drawing.Point(0, 40);
+            this.superTabControlPanel1.Name = "superTabControlPanel1";
+            this.superTabControlPanel1.Size = new System.Drawing.Size(608, 548);
+            this.superTabControlPanel1.TabIndex = 0;
+            this.superTabControlPanel1.TabItem = this.superTabItem1;
+            // 
+            // panelEx4
+            // 
+            this.panelEx4.CanvasColor = System.Drawing.SystemColors.Control;
+            this.panelEx4.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.panelEx4.Controls.Add(this.btnPath);
+            this.panelEx4.Controls.Add(this.chbBackUpSms);
+            this.panelEx4.Controls.Add(this.chbOpen);
+            this.panelEx4.Controls.Add(this.chbAuto);
+            this.panelEx4.Controls.Add(this.txtTime);
+            this.panelEx4.Controls.Add(this.txtPath);
+            this.panelEx4.Controls.Add(this.label26);
+            this.panelEx4.Controls.Add(this.label27);
+            this.panelEx4.Controls.Add(this.label28);
+            this.panelEx4.DisabledBackColor = System.Drawing.Color.Empty;
+            this.panelEx4.Location = new System.Drawing.Point(4, 3);
+            this.panelEx4.Name = "panelEx4";
+            this.panelEx4.Size = new System.Drawing.Size(600, 149);
+            this.panelEx4.Style.Alignment = System.Drawing.StringAlignment.Center;
+            this.panelEx4.Style.BackColor1.Color = System.Drawing.Color.White;
+            this.panelEx4.Style.BackColor2.Color = System.Drawing.Color.White;
+            this.panelEx4.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
+            this.panelEx4.Style.BorderColor.Color = System.Drawing.Color.Silver;
+            this.panelEx4.Style.BorderWidth = 2;
+            this.panelEx4.Style.CornerType = DevComponents.DotNetBar.eCornerType.Rounded;
+            this.panelEx4.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText;
+            this.panelEx4.Style.GradientAngle = 90;
+            this.panelEx4.TabIndex = 10;
+            // 
+            // btnPath
+            // 
+            this.btnPath.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnPath.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.btnPath.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnPath.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.btnPath.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnPath.Location = new System.Drawing.Point(8, 18);
+            this.btnPath.Name = "btnPath";
+            this.btnPath.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
+            this.btnPath.Size = new System.Drawing.Size(35, 27);
+            this.btnPath.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
+            this.btnPath.TabIndex = 9;
+            this.btnPath.Text = "...";
+            this.btnPath.TextColor = System.Drawing.Color.White;
+            this.btnPath.Click += new System.EventHandler(this.btnPath_Click);
+            // 
+            // chbBackUpSms
+            // 
+            this.chbBackUpSms.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.chbBackUpSms.BackColor = System.Drawing.Color.Transparent;
+            // 
+            // 
+            // 
+            this.chbBackUpSms.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.chbBackUpSms.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.chbBackUpSms.Location = new System.Drawing.Point(260, 110);
+            this.chbBackUpSms.Name = "chbBackUpSms";
+            this.chbBackUpSms.Size = new System.Drawing.Size(329, 23);
+            this.chbBackUpSms.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.chbBackUpSms.TabIndex = 9;
+            this.chbBackUpSms.Text = "ارسال پیامک به مدیر، پس از انجام عملیات پشتیبان گیری";
+            this.chbBackUpSms.CheckedChanged += new System.EventHandler(this.chbAuto_CheckedChanged);
+            // 
+            // chbOpen
+            // 
+            this.chbOpen.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.chbOpen.BackColor = System.Drawing.Color.Transparent;
+            // 
+            // 
+            // 
+            this.chbOpen.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.chbOpen.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.chbOpen.Location = new System.Drawing.Point(326, 81);
+            this.chbOpen.Name = "chbOpen";
+            this.chbOpen.Size = new System.Drawing.Size(263, 23);
+            this.chbOpen.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.chbOpen.TabIndex = 9;
+            this.chbOpen.Text = "پشتیبان گیری در لحظه اجرای برنامه فعال باشد";
+            this.chbOpen.CheckedChanged += new System.EventHandler(this.chbAuto_CheckedChanged);
+            // 
+            // chbAuto
+            // 
+            this.chbAuto.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.chbAuto.BackColor = System.Drawing.Color.Transparent;
+            // 
+            // 
+            // 
+            this.chbAuto.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.chbAuto.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.chbAuto.Location = new System.Drawing.Point(326, 53);
+            this.chbAuto.Name = "chbAuto";
+            this.chbAuto.Size = new System.Drawing.Size(263, 23);
+            this.chbAuto.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.chbAuto.TabIndex = 9;
+            this.chbAuto.Text = "پشتیبان گیری خودکار فعال باشد";
+            this.chbAuto.CheckedChanged += new System.EventHandler(this.chbAuto_CheckedChanged);
+            // 
+            // txtTime
+            // 
+            this.txtTime.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtTime.Location = new System.Drawing.Point(49, 51);
+            this.txtTime.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.txtTime.Name = "txtTime";
+            this.txtTime.Size = new System.Drawing.Size(137, 27);
+            this.txtTime.TabIndex = 4;
+            // 
+            // txtPath
+            // 
+            this.txtPath.Location = new System.Drawing.Point(49, 18);
+            this.txtPath.Name = "txtPath";
+            this.txtPath.Size = new System.Drawing.Size(409, 27);
+            this.txtPath.TabIndex = 0;
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.BackColor = System.Drawing.Color.Transparent;
+            this.label26.Location = new System.Drawing.Point(8, 53);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(38, 20);
+            this.label26.TabIndex = 6;
+            this.label26.Text = "دقیقه";
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.BackColor = System.Drawing.Color.Transparent;
+            this.label27.Location = new System.Drawing.Point(192, 53);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(127, 20);
+            this.label27.TabIndex = 6;
+            this.label27.Text = "پشتیبان گیری خودکار هر";
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.BackColor = System.Drawing.Color.Transparent;
+            this.label28.Location = new System.Drawing.Point(464, 21);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(129, 20);
+            this.label28.TabIndex = 8;
+            this.label28.Text = "محل ذخیره فایل پشتیبان";
+            // 
+            // superTabItem1
+            // 
+            this.superTabItem1.AttachedControl = this.superTabControlPanel1;
+            this.superTabItem1.GlobalItem = false;
+            this.superTabItem1.Name = "superTabItem1";
+            this.superTabItem1.Text = "پشتیبان گیری";
+            // 
             // superTabControlPanel7
             // 
             this.superTabControlPanel7.Controls.Add(this.pnlSandouq);
@@ -2134,57 +2367,6 @@
             this.btnFinish.TextColor = System.Drawing.Color.Black;
             this.btnFinish.Click += new System.EventHandler(this.btnFinish_Click);
             // 
-            // btnFloorCover
-            // 
-            this.btnFloorCover.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnFloorCover.BackColor = System.Drawing.Color.DarkSlateGray;
-            this.btnFloorCover.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnFloorCover.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
-            this.btnFloorCover.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnFloorCover.Location = new System.Drawing.Point(112, 377);
-            this.btnFloorCover.Name = "btnFloorCover";
-            this.btnFloorCover.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
-            this.btnFloorCover.Size = new System.Drawing.Size(79, 27);
-            this.btnFloorCover.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
-            this.btnFloorCover.TabIndex = 18;
-            this.btnFloorCover.Text = "[کفپوش]";
-            this.btnFloorCover.TextColor = System.Drawing.Color.White;
-            this.btnFloorCover.Click += new System.EventHandler(this.btnFloorCover_Click);
-            // 
-            // btnView
-            // 
-            this.btnView.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnView.BackColor = System.Drawing.Color.DarkSlateGray;
-            this.btnView.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnView.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
-            this.btnView.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnView.Location = new System.Drawing.Point(27, 410);
-            this.btnView.Name = "btnView";
-            this.btnView.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
-            this.btnView.Size = new System.Drawing.Size(164, 27);
-            this.btnView.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
-            this.btnView.TabIndex = 18;
-            this.btnView.Text = "[نما]";
-            this.btnView.TextColor = System.Drawing.Color.White;
-            this.btnView.Click += new System.EventHandler(this.btnView_Click);
-            // 
-            // btnKitchenService
-            // 
-            this.btnKitchenService.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnKitchenService.BackColor = System.Drawing.Color.DarkSlateGray;
-            this.btnKitchenService.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnKitchenService.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
-            this.btnKitchenService.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnKitchenService.Location = new System.Drawing.Point(27, 377);
-            this.btnKitchenService.Name = "btnKitchenService";
-            this.btnKitchenService.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
-            this.btnKitchenService.Size = new System.Drawing.Size(79, 27);
-            this.btnKitchenService.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
-            this.btnKitchenService.TabIndex = 19;
-            this.btnKitchenService.Text = "[کابینت]";
-            this.btnKitchenService.TextColor = System.Drawing.Color.White;
-            this.btnKitchenService.Click += new System.EventHandler(this.btnKitchenService_Click);
-            // 
             // frmSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -2210,6 +2392,11 @@
             this.superTabControlPanel11.ResumeLayout(false);
             this.pnlTelegram.ResumeLayout(false);
             this.pnlTelegram.PerformLayout();
+            this.flowLayoutPanel1.ResumeLayout(false);
+            this.superTabControlPanel8.ResumeLayout(false);
+            this.pnlSms.ResumeLayout(false);
+            this.pnlSms.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.defBindingSource)).EndInit();
             this.superTabControlPanel2.ResumeLayout(false);
             this.panelEx1.ResumeLayout(false);
             this.panelEx1.PerformLayout();
@@ -2218,10 +2405,6 @@
             this.panelEx4.ResumeLayout(false);
             this.panelEx4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtTime)).EndInit();
-            this.superTabControlPanel8.ResumeLayout(false);
-            this.pnlSms.ResumeLayout(false);
-            this.pnlSms.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.defBindingSource)).EndInit();
             this.superTabControlPanel7.ResumeLayout(false);
             this.pnlSandouq.ResumeLayout(false);
             this.pnlSandouq.PerformLayout();
@@ -2383,5 +2566,15 @@
         private DevComponents.DotNetBar.ButtonX btnKitchenService;
         private DevComponents.DotNetBar.ButtonX btnView;
         private DevComponents.DotNetBar.ButtonX btnFloorCover;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private DevComponents.DotNetBar.ButtonX btnDong;
+        private DevComponents.DotNetBar.ButtonX btnPricePerMeter;
+        private DevComponents.DotNetBar.ButtonX btnVahedPerTabaqe;
+        private DevComponents.DotNetBar.ButtonX btnHitting;
+        private DevComponents.DotNetBar.ButtonX btnParking;
+        private DevComponents.DotNetBar.ButtonX btnColling;
+        private DevComponents.DotNetBar.ButtonX btnEvelator;
+        private DevComponents.DotNetBar.ButtonX btnStore;
+        private DevComponents.DotNetBar.ButtonX btnBalcony;
     }
 }
