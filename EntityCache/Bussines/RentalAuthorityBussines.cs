@@ -137,6 +137,7 @@ namespace EntityCache.Bussines
             }
         }
         public static RentalAuthorityBussines Get(Guid guid) => AsyncContext.Run(() => GetAsync(guid));
+        public static RentalAuthorityBussines Get(string name) => AsyncContext.Run(() => GetAsync(name));
         public static async Task<bool> CheckNameAsync(string name, Guid guid) =>
             await UnitOfWork.RentalAuthority.CheckNameAsync(Cache.ConnectionString, name, guid);
         public async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(bool status, SqlTransaction tr = null)

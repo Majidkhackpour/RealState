@@ -195,5 +195,109 @@ namespace EntityCache.Bussines
 
             return res;
         }
+        public static async Task<Guid> GetEvelatorGuidAsync()
+        {
+            try
+            {
+                var list = await GetAllAsync("سانسور", new CancellationToken());
+                var def = list?.FirstOrDefault();
+                if (def != null && def.Guid != Guid.Empty) return def.Guid;
+                def = new BuildingOptionsBussines()
+                {
+                    Guid = Guid.NewGuid(),
+                    Modified = DateTime.Now,
+                    Name = "آسانسور",
+                    Status = true,
+                    ServerStatus = ServerStatus.None,
+                    ServerDeliveryDate = DateTime.Now
+                };
+                await def.SaveAsync();
+
+                return def.Guid;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                return Guid.Empty;
+            }
+        }
+        public static async Task<Guid> GetBalconyGuidAsync()
+        {
+            try
+            {
+                var list = await GetAllAsync("تراس", new CancellationToken());
+                var def = list?.FirstOrDefault();
+                if (def != null && def.Guid != Guid.Empty) return def.Guid;
+                def = new BuildingOptionsBussines()
+                {
+                    Guid = Guid.NewGuid(),
+                    Modified = DateTime.Now,
+                    Name = "تراس",
+                    Status = true,
+                    ServerStatus = ServerStatus.None,
+                    ServerDeliveryDate = DateTime.Now
+                };
+                await def.SaveAsync();
+
+                return def.Guid;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                return Guid.Empty;
+            }
+        }
+        public static async Task<Guid> GetStoreGuidAsync()
+        {
+            try
+            {
+                var list = await GetAllAsync("انبار", new CancellationToken());
+                var def = list?.FirstOrDefault();
+                if (def != null && def.Guid != Guid.Empty) return def.Guid;
+                def = new BuildingOptionsBussines()
+                {
+                    Guid = Guid.NewGuid(),
+                    Modified = DateTime.Now,
+                    Name = "انبار",
+                    Status = true,
+                    ServerStatus = ServerStatus.None,
+                    ServerDeliveryDate = DateTime.Now
+                };
+                await def.SaveAsync();
+
+                return def.Guid;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                return Guid.Empty;
+            }
+        }
+        public static async Task<Guid> GetParkingGuidAsync()
+        {
+            try
+            {
+                var list = await GetAllAsync("پارکینگ", new CancellationToken());
+                var def = list?.FirstOrDefault();
+                if (def != null && def.Guid != Guid.Empty) return def.Guid;
+                def = new BuildingOptionsBussines()
+                {
+                    Guid = Guid.NewGuid(),
+                    Modified = DateTime.Now,
+                    Name = "پارکینگ",
+                    Status = true,
+                    ServerStatus = ServerStatus.None,
+                    ServerDeliveryDate = DateTime.Now
+                };
+                await def.SaveAsync();
+
+                return def.Guid;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                return Guid.Empty;
+            }
+        }
     }
 }

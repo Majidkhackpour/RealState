@@ -194,5 +194,31 @@ namespace EntityCache.Bussines
 
             return res;
         }
+        public static async Task<Guid> GetDefultGuidAsync(string name)
+        {
+            try
+            {
+                var list = await GetAllAsync(name, new CancellationToken());
+                var def = list?.FirstOrDefault();
+                if (def != null && def.Guid != Guid.Empty) return def.Guid;
+                def = new KitchenServiceBussines()
+                {
+                    Guid = Guid.NewGuid(),
+                    Modified = DateTime.Now,
+                    Name = name,
+                    Status = true,
+                    ServerStatus = ServerStatus.None,
+                    ServerDeliveryDate = DateTime.Now
+                };
+                await def.SaveAsync();
+
+                return def.Guid;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                return Guid.Empty;
+            }
+        }
     }
 }

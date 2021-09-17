@@ -109,6 +109,11 @@ namespace Advertise.Classes
 
             return list;
         }
+        public static void DownloadImage(string src, string path)
+        {
+            var webClient = new WebClient();
+            webClient.DownloadFile(src, path);
+        }
     }
     public class Regions
     {

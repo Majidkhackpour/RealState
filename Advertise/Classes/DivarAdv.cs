@@ -1765,337 +1765,337 @@ namespace Advertise.Classes
         //            WebErrorLog.ErrorLogInstance.StartLog(ex);
         //    }
         //}
-        private async Task RemoveWaitForPayment()
-        {
-            try
-            {
-                _driver = Utility.RefreshDriver(clsAdvertise.IsSilent);
-                _driver.Navigate().GoToUrl("https://divar.ir/my-divar/my-posts");
+        //private async Task RemoveWaitForPayment()
+        //{
+        //    try
+        //    {
+        //        _driver = Utility.RefreshDriver(clsAdvertise.IsSilent);
+        //        _driver.Navigate().GoToUrl("https://divar.ir/my-divar/my-posts");
 
-                var allPost = _driver.FindElements(By.ClassName("my-post")).Where(q => q.Text.Contains("منتظر پرداخت"))
-                    .ToList();
-                await Utility.Wait(1);
-                var manageLinks = new List<string>();
-                foreach (var post in allPost)
-                {
-                    var url = post.GetAttribute("href");
+        //        var allPost = _driver.FindElements(By.ClassName("my-post")).Where(q => q.Text.Contains("منتظر پرداخت"))
+        //            .ToList();
+        //        await Utility.Wait(1);
+        //        var manageLinks = new List<string>();
+        //        foreach (var post in allPost)
+        //        {
+        //            var url = post.GetAttribute("href");
 
-                    if (url.Contains("manage")) manageLinks.Add(url);
-                }
-
-
-                foreach (var item in manageLinks)
-                {
-                    _driver.Navigate().GoToUrl(item);
-                    await Utility.Wait(1);
-                    var delAdv = _driver.FindElements(By.ClassName("kt-text-truncate"))
-                        .FirstOrDefault(q => q.Text == "حذف آگهی");
-                    delAdv?.Click();
-                    await Utility.Wait(1);
-                    var rbtn = _driver.FindElements(By.ClassName("kt-switch__input")).ToList();
-                    if (rbtn.Count <= 0) continue;
-                    rbtn[3]?.Click();
-                    await Utility.Wait(1);
-                    _driver.FindElements(By.ClassName("kt-text-truncate"))?.FirstOrDefault(q => q.Text == "تأیید")
-                        ?.Click();
-                    await Utility.Wait(1);
-                    _driver.FindElements(By.ClassName("kt-text-truncate"))?.FirstOrDefault(q => q.Text == "تأیید")
-                        ?.Click();
-                    await Utility.Wait(1);
+        //            if (url.Contains("manage")) manageLinks.Add(url);
+        //        }
 
 
-                    var adv = await AdvertiseLogBussines.GetAsync(item);
-                    if (adv == null) continue;
-                    adv.StatusCode = StatusCode.Deleted;
-                    adv.UpdateDesc = "حذف آگهی های منتظر پرداخت به صورت خودکار";
-                    adv.LastUpdate = DateTime.Now;
-
-                    await adv.SaveAsync();
-                }
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-        public async Task<List<BuildingViewModel>> GetBuildingAsync(EnRequestType reqType, decimal fPrice1, decimal sPrice1, decimal fPrice2, decimal sPrice2, int metrazh1, int metrazh2, int count, List<string> regionList)
-        {
-            var res = new List<BuildingViewModel>();
-            try
-            {
-                var allSim = await SimcardBussines.GetAllAsync();
-                var sim = allSim.FirstOrDefault(q => q.HasDivarToken);
-                if (sim == null) return res;
-
-                if (fPrice2 > 0) fPrice2 /= 10;
-                if (sPrice2 > 0) sPrice2 /= 10;
-                fPrice1 /= 10;
-                sPrice1 /= 10;
-
-                var city = await CitiesBussines.GetAsync(Guid.Parse(clsEconomyUnit.EconomyCity));
-
-                if (!await Login(sim.Number, false)) return res;
-
-                _driver.FindElement(By.ClassName("city-selector")).Click();
-                await Utility.Wait();
-                _driver.FindElements(By.TagName("a")).LastOrDefault(q => q.Text == city.Name)?.Click();
-                await Utility.Wait(2);
-
-                var p = _driver.FindElements(By.ClassName("category-dropdown__icon")).Any();
-                if (!p) return res;
-                await Utility.Wait(1);
-                _driver.FindElements(By.ClassName("category-dropdown__icon")).FirstOrDefault()?.Click();
-                await Utility.Wait();
-
-                var cat = await SetCategory(reqType);
-                if (string.IsNullOrEmpty(cat)) return res;
-
-                _driver.FindElements(By.ClassName("category-button")).FirstOrDefault(q => q.Text.Contains("املاک"))
-                    ?.Click();
-                await Utility.Wait(1);
-
-                _driver.FindElements(By.ClassName("category-button")).FirstOrDefault(q => q.Text == cat)
-                    ?.Click();
-
-                await Utility.Wait(1);
-
-                if (reqType == EnRequestType.Rahn)
-                {
-                    //محل
-                    if (regionList != null && regionList.Count > 0)
-                    {
-                        _driver.FindElements(By.ClassName("browse-accordion__title"))
-                            ?.FirstOrDefault(q => q.Text == "محل")?.Click();
-                        await Utility.Wait();
-                        _driver.FindElement(By.ClassName("browse-select-field__value-container"))?.Click();
-                        await Utility.Wait();
-                        foreach (var item in regionList)
-                        {
-                            _driver.FindElement(By.Id("react-select-location-select-input"))?.SendKeys(item + "\n");
-                            await Utility.Wait();
-                        }
-                    }
-
-                    var listVadiee = _driver.FindElements(By.Id("react-select-int-field-input")).ToList();
-                    //رهن
-                    if (fPrice1 != 0 || sPrice1 != 0)
-                    {
-                        _driver.FindElements(By.ClassName("browse-accordion__title"))
-                            ?.FirstOrDefault(q => q.Text == "ودیعه")?.Click();
-                        await Utility.Wait(1);
-                        listVadiee[0]?.SendKeys(fPrice1 + "\n");
-                        await Utility.Wait(1);
-                        listVadiee[1]?.SendKeys(sPrice1 + "\n");
-                    }
-
-                    //اجاره
-                    if (fPrice2 != 0 || sPrice2 != 0)
-                    {
-                        _driver.FindElements(By.ClassName("browse-accordion__title"))
-                            ?.FirstOrDefault(q => q.Text == "اجاره")?.Click();
-                        await Utility.Wait(1);
-                        listVadiee[2]?.SendKeys(fPrice2 + "\n");
-                        await Utility.Wait(1);
-                        listVadiee[3]?.SendKeys(sPrice2 + "\n");
-                    }
-
-                    //متراژ
-                    if (metrazh1 != 0 || metrazh2 != 0)
-                    {
-                        _driver.FindElements(By.ClassName("browse-accordion__title"))
-                            ?.FirstOrDefault(q => q.Text == "متراژ")?.Click();
-                        await Utility.Wait(1);
-                        listVadiee[4]?.SendKeys(metrazh1 + "\n");
-                        await Utility.Wait(1);
-                        listVadiee[5]?.SendKeys(metrazh2 + "\n");
-                    }
+        //        foreach (var item in manageLinks)
+        //        {
+        //            _driver.Navigate().GoToUrl(item);
+        //            await Utility.Wait(1);
+        //            var delAdv = _driver.FindElements(By.ClassName("kt-text-truncate"))
+        //                .FirstOrDefault(q => q.Text == "حذف آگهی");
+        //            delAdv?.Click();
+        //            await Utility.Wait(1);
+        //            var rbtn = _driver.FindElements(By.ClassName("kt-switch__input")).ToList();
+        //            if (rbtn.Count <= 0) continue;
+        //            rbtn[3]?.Click();
+        //            await Utility.Wait(1);
+        //            _driver.FindElements(By.ClassName("kt-text-truncate"))?.FirstOrDefault(q => q.Text == "تأیید")
+        //                ?.Click();
+        //            await Utility.Wait(1);
+        //            _driver.FindElements(By.ClassName("kt-text-truncate"))?.FirstOrDefault(q => q.Text == "تأیید")
+        //                ?.Click();
+        //            await Utility.Wait(1);
 
 
-                    var j = 0;
+        //            var adv = await AdvertiseLogBussines.GetAsync(item);
+        //            if (adv == null) continue;
+        //            adv.StatusCode = StatusCode.Deleted;
+        //            adv.UpdateDesc = "حذف آگهی های منتظر پرداخت به صورت خودکار";
+        //            adv.LastUpdate = DateTime.Now;
 
-                    for (var i = 0; j < count; i++)
-                    {
-                        if (j == count) return res;
+        //            await adv.SaveAsync();
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        WebErrorLog.ErrorInstence.StartErrorLog(ex);
+        //    }
+        //}
+        //public async Task<List<BuildingViewModel>> GetBuildingAsync(EnRequestType reqType, decimal fPrice1, decimal sPrice1, decimal fPrice2, decimal sPrice2, int metrazh1, int metrazh2, int count, List<string> regionList)
+        //{
+        //    var res = new List<BuildingViewModel>();
+        //    try
+        //    {
+        //        var allSim = await SimcardBussines.GetAllAsync();
+        //        var sim = allSim.FirstOrDefault(q => q.HasDivarToken);
+        //        if (sim == null) return res;
 
-                        if (_driver.Url.Contains("https://divar.ir/v/")) _driver.Navigate().Back();
+        //        if (fPrice2 > 0) fPrice2 /= 10;
+        //        if (sPrice2 > 0) sPrice2 /= 10;
+        //        fPrice1 /= 10;
+        //        sPrice1 /= 10;
 
-                        await Utility.Wait(1);
-                        var viewModel = new BuildingViewModel();
-                        _driver.FindElements(By.ClassName("kt-post-card__body"))[i + 1]?.Click();
-                        await Utility.Wait(2);
+        //        var city = await CitiesBussines.GetAsync(Guid.Parse(clsEconomyUnit.EconomyCity));
 
-                        _driver.FindElement(By.ClassName("post-actions__get-contact")).Click();
-                        await Utility.Wait(1.5);
+        //        if (!await Login(sim.Number, false)) return res;
 
-                        var a = _driver.FindElements(By.ClassName("kt-button"))
-                            .FirstOrDefault(q => q.Text == "با قوانین دیوار موافقم");
-                        await Utility.Wait();
-                        if (a != null)
-                            _driver.FindElements(By.ClassName("kt-button"))
-                                .FirstOrDefault(q => q.Text == "با قوانین دیوار موافقم")?.Click();
-                        await Utility.Wait();
+        //        _driver.FindElement(By.ClassName("city-selector")).Click();
+        //        await Utility.Wait();
+        //        _driver.FindElements(By.TagName("a")).LastOrDefault(q => q.Text == city.Name)?.Click();
+        //        await Utility.Wait(2);
 
-                        var num = _driver.FindElement(By.ClassName("kt-unexpandable-row__action")).Text.FixString();
-                        if (num != "(پنهان‌شده؛ چت کنید)") viewModel.Mobile = num;
+        //        var p = _driver.FindElements(By.ClassName("category-dropdown__icon")).Any();
+        //        if (!p) return res;
+        //        await Utility.Wait(1);
+        //        _driver.FindElements(By.ClassName("category-dropdown__icon")).FirstOrDefault()?.Click();
+        //        await Utility.Wait();
 
-                        var pList = _driver.FindElements(By.ClassName("kt-unexpandable-row__value")).ToList();
+        //        var cat = await SetCategory(reqType);
+        //        if (string.IsNullOrEmpty(cat)) return res;
 
-                        viewModel.Region = _driver.FindElements(By.ClassName("kt-unexpandable-row__action"))[1]?.Text.FixString();
-                        viewModel.Address = _driver.FindElements(By.ClassName("kt-unexpandable-row__action"))[1]?.Text.FixString();
-                        viewModel.Metrazh = (int)pList[1]?.Text?.FixString()
-                            .Replace("متر", "")?.ParseToInt();
-                        viewModel.SaleSakht = pList[2]?.Text.FixString();
-                        viewModel.RoomCount = pList[3]?.Text.FixString();
-                        var p1 = pList[4]?.Text.FixString()?.Replace("تومان", "")?.Replace("٫", "");
-                        var p2 = pList[5]?.Text.FixString()?.Replace("تومان", "")?.Replace("٫", "");
-                        viewModel.Price1 = p1.ParseToDecimal() * 10;
-                        viewModel.Price2 = p2.ParseToDecimal() * 10;
-                        viewModel.Tabdil = pList[6]?.Text;
-                        viewModel.RentalAuthority = pList[7]?.Text;
-                        var options = new List<string>();
-                        if (pList.Count == 12)
-                        {
-                            options.Add($"پارکینگ: {pList[9]?.Text}");
-                            options.Add($"انباری: {pList[10]?.Text}");
-                            options.Add($"بالکن: {pList[11]?.Text}");
+        //        _driver.FindElements(By.ClassName("category-button")).FirstOrDefault(q => q.Text.Contains("املاک"))
+        //            ?.Click();
+        //        await Utility.Wait(1);
 
-                        }
-                        else if (pList.Count == 13)
-                        {
-                            viewModel.Tabaqe = pList[9]?.Text?.FixString();
-                            options.Add($"پارکینگ: {pList[10]?.Text}");
-                            options.Add($"انباری: {pList[11]?.Text}");
-                            options.Add($"بالکن: {pList[12]?.Text}");
-                        }
+        //        _driver.FindElements(By.ClassName("category-button")).FirstOrDefault(q => q.Text == cat)
+        //            ?.Click();
 
-                        viewModel.Options = options;
-                        viewModel.Description = _driver
-                            .FindElement(By.ClassName("kt-description-row__text"))?.Text;
-                        viewModel.Parent = "سایت دیوار";
-                        viewModel.Type = EnRequestType.Rahn;
+        //        await Utility.Wait(1);
 
-                        res.Add(viewModel);
+        //        if (reqType == EnRequestType.Rahn)
+        //        {
+        //            //محل
+        //            if (regionList != null && regionList.Count > 0)
+        //            {
+        //                _driver.FindElements(By.ClassName("browse-accordion__title"))
+        //                    ?.FirstOrDefault(q => q.Text == "محل")?.Click();
+        //                await Utility.Wait();
+        //                _driver.FindElement(By.ClassName("browse-select-field__value-container"))?.Click();
+        //                await Utility.Wait();
+        //                foreach (var item in regionList)
+        //                {
+        //                    _driver.FindElement(By.Id("react-select-location-select-input"))?.SendKeys(item + "\n");
+        //                    await Utility.Wait();
+        //                }
+        //            }
 
-                        j++;
+        //            var listVadiee = _driver.FindElements(By.Id("react-select-int-field-input")).ToList();
+        //            //رهن
+        //            if (fPrice1 != 0 || sPrice1 != 0)
+        //            {
+        //                _driver.FindElements(By.ClassName("browse-accordion__title"))
+        //                    ?.FirstOrDefault(q => q.Text == "ودیعه")?.Click();
+        //                await Utility.Wait(1);
+        //                listVadiee[0]?.SendKeys(fPrice1 + "\n");
+        //                await Utility.Wait(1);
+        //                listVadiee[1]?.SendKeys(sPrice1 + "\n");
+        //            }
 
-                        _driver.Navigate().Back();
-                    }
-                }
-                else if (reqType == EnRequestType.Forush)
-                {
-                    //محل
-                    if (regionList != null && regionList.Count > 0)
-                    {
-                        _driver.FindElements(By.ClassName("browse-accordion__title"))
-                            ?.FirstOrDefault(q => q.Text == "محل")?.Click();
-                        await Utility.Wait();
-                        _driver.FindElement(By.ClassName("browse-select-field__value-container"))?.Click();
-                        await Utility.Wait();
-                        foreach (var item in regionList)
-                        {
-                            _driver.FindElement(By.Id("react-select-location-select-input"))?.SendKeys(item + "\n");
-                            await Utility.Wait();
-                        }
-                    }
+        //            //اجاره
+        //            if (fPrice2 != 0 || sPrice2 != 0)
+        //            {
+        //                _driver.FindElements(By.ClassName("browse-accordion__title"))
+        //                    ?.FirstOrDefault(q => q.Text == "اجاره")?.Click();
+        //                await Utility.Wait(1);
+        //                listVadiee[2]?.SendKeys(fPrice2 + "\n");
+        //                await Utility.Wait(1);
+        //                listVadiee[3]?.SendKeys(sPrice2 + "\n");
+        //            }
 
-                    var listVadiee = _driver.FindElements(By.Id("react-select-int-field-input")).ToList();
-                    //فی کل
-                    if (fPrice1 != 0 || sPrice1 != 0)
-                    {
-                        _driver.FindElements(By.ClassName("browse-accordion__title"))
-                            ?.FirstOrDefault(q => q.Text == "قیمت کل")?.Click();
-                        await Utility.Wait(1);
-                        listVadiee[0]?.SendKeys(fPrice1 + "\n");
-                        await Utility.Wait(1);
-                        listVadiee[1]?.SendKeys(sPrice1 + "\n");
-                    }
+        //            //متراژ
+        //            if (metrazh1 != 0 || metrazh2 != 0)
+        //            {
+        //                _driver.FindElements(By.ClassName("browse-accordion__title"))
+        //                    ?.FirstOrDefault(q => q.Text == "متراژ")?.Click();
+        //                await Utility.Wait(1);
+        //                listVadiee[4]?.SendKeys(metrazh1 + "\n");
+        //                await Utility.Wait(1);
+        //                listVadiee[5]?.SendKeys(metrazh2 + "\n");
+        //            }
 
-                    //متراژ
-                    if (metrazh1 != 0 || metrazh2 != 0)
-                    {
-                        _driver.FindElements(By.ClassName("browse-accordion__title"))
-                            ?.FirstOrDefault(q => q.Text == "متراژ")?.Click();
-                        await Utility.Wait(1);
-                        listVadiee[2]?.SendKeys(metrazh1 + "\n");
-                        await Utility.Wait(1);
-                        listVadiee[3]?.SendKeys(metrazh2 + "\n");
-                    }
 
-                    var j = 0;
+        //            var j = 0;
 
-                    for (var i = 0; j < count; i++)
-                    {
-                        if (j == count) return res;
+        //            for (var i = 0; j < count; i++)
+        //            {
+        //                if (j == count) return res;
 
-                        if (_driver.Url.Contains("https://divar.ir/v/")) _driver.Navigate().Back();
+        //                if (_driver.Url.Contains("https://divar.ir/v/")) _driver.Navigate().Back();
 
-                        await Utility.Wait(1);
-                        var viewModel = new BuildingViewModel();
-                        _driver.FindElements(By.ClassName("kt-post-card__body"))[i + 1]?.Click();
-                        await Utility.Wait(2);
+        //                await Utility.Wait(1);
+        //                var viewModel = new BuildingViewModel();
+        //                _driver.FindElements(By.ClassName("kt-post-card__body"))[i + 1]?.Click();
+        //                await Utility.Wait(2);
 
-                        _driver.FindElement(By.ClassName("post-actions__get-contact")).Click();
-                        await Utility.Wait(1.5);
+        //                _driver.FindElement(By.ClassName("post-actions__get-contact")).Click();
+        //                await Utility.Wait(1.5);
 
-                        var a = _driver.FindElements(By.ClassName("kt-button"))
-                            .FirstOrDefault(q => q.Text == "با قوانین دیوار موافقم");
-                        await Utility.Wait();
-                        if (a != null)
-                            _driver.FindElements(By.ClassName("kt-button"))
-                                .FirstOrDefault(q => q.Text == "با قوانین دیوار موافقم")?.Click();
-                        await Utility.Wait();
+        //                var a = _driver.FindElements(By.ClassName("kt-button"))
+        //                    .FirstOrDefault(q => q.Text == "با قوانین دیوار موافقم");
+        //                await Utility.Wait();
+        //                if (a != null)
+        //                    _driver.FindElements(By.ClassName("kt-button"))
+        //                        .FirstOrDefault(q => q.Text == "با قوانین دیوار موافقم")?.Click();
+        //                await Utility.Wait();
 
-                        var num = _driver.FindElement(By.ClassName("kt-unexpandable-row__action")).Text.FixString();
-                        if (num != "(پنهان‌شده؛ چت کنید)") viewModel.Mobile = num;
+        //                var num = _driver.FindElement(By.ClassName("kt-unexpandable-row__action")).Text.FixString();
+        //                if (num != "(پنهان‌شده؛ چت کنید)") viewModel.Mobile = num;
 
-                        var pList = _driver.FindElements(By.ClassName("kt-unexpandable-row__value")).ToList();
+        //                var pList = _driver.FindElements(By.ClassName("kt-unexpandable-row__value")).ToList();
 
-                        viewModel.Region = _driver.FindElements(By.ClassName("kt-unexpandable-row__action"))[1]?.Text.FixString();
-                        viewModel.Address = _driver.FindElements(By.ClassName("kt-unexpandable-row__action"))[1]?.Text.FixString();
-                        viewModel.Metrazh = (int)pList[1]?.Text?.FixString()
-                            .Replace("متر", "")?.ParseToInt();
-                        viewModel.SaleSakht = pList[2]?.Text.FixString();
-                        viewModel.RoomCount = pList[3]?.Text.FixString();
-                        var p1 = pList[4]?.Text.FixString()?.Replace("تومان", "")?.Replace("٫", "");
-                        viewModel.Price1 = p1.ParseToDecimal() * 10;
+        //                viewModel.Region = _driver.FindElements(By.ClassName("kt-unexpandable-row__action"))[1]?.Text.FixString();
+        //                viewModel.Address = _driver.FindElements(By.ClassName("kt-unexpandable-row__action"))[1]?.Text.FixString();
+        //                viewModel.Metrazh = (int)pList[1]?.Text?.FixString()
+        //                    .Replace("متر", "")?.ParseToInt();
+        //                viewModel.SaleSakht = pList[2]?.Text.FixString();
+        //                viewModel.RoomCount = pList[3]?.Text.FixString();
+        //                var p1 = pList[4]?.Text.FixString()?.Replace("تومان", "")?.Replace("٫", "");
+        //                var p2 = pList[5]?.Text.FixString()?.Replace("تومان", "")?.Replace("٫", "");
+        //                viewModel.Price1 = p1.ParseToDecimal() * 10;
+        //                viewModel.Price2 = p2.ParseToDecimal() * 10;
+        //                viewModel.Tabdil = pList[6]?.Text;
+        //                viewModel.RentalAuthority = pList[7]?.Text;
+        //                var options = new List<string>();
+        //                if (pList.Count == 12)
+        //                {
+        //                    options.Add($"پارکینگ: {pList[9]?.Text}");
+        //                    options.Add($"انباری: {pList[10]?.Text}");
+        //                    options.Add($"بالکن: {pList[11]?.Text}");
 
-                        var options = new List<string>();
-                        if (pList.Count == 10)
-                        {
-                            viewModel.Tabaqe = pList[6]?.Text?.FixString();
-                            options.Add($"پارکینگ: {pList[7]?.Text}");
-                            options.Add($"انباری: {pList[8]?.Text}");
-                            options.Add($"بالکن: {pList[9]?.Text}");
-                        }
-                        else if (pList.Count == 11)
-                        {
-                            viewModel.Tabaqe = pList[7]?.Text?.FixString();
-                            options.Add($"پارکینگ: {pList[8]?.Text}");
-                            options.Add($"انباری: {pList[9]?.Text}");
-                            options.Add($"بالکن: {pList[10]?.Text}");
-                        }
+        //                }
+        //                else if (pList.Count == 13)
+        //                {
+        //                    viewModel.Tabaqe = pList[9]?.Text?.FixString();
+        //                    options.Add($"پارکینگ: {pList[10]?.Text}");
+        //                    options.Add($"انباری: {pList[11]?.Text}");
+        //                    options.Add($"بالکن: {pList[12]?.Text}");
+        //                }
 
-                        viewModel.Options = options;
-                        viewModel.Description = _driver
-                            .FindElement(By.ClassName("kt-description-row__text"))?.Text;
-                        viewModel.Parent = "سایت دیوار";
-                        viewModel.Type = EnRequestType.Forush;
+        //                viewModel.Options = options;
+        //                viewModel.Description = _driver
+        //                    .FindElement(By.ClassName("kt-description-row__text"))?.Text;
+        //                viewModel.Parent = "سایت دیوار";
+        //                viewModel.Type = EnRequestType.Rahn;
 
-                        res.Add(viewModel);
+        //                res.Add(viewModel);
 
-                        j++;
+        //                j++;
 
-                        _driver.Navigate().Back();
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
+        //                _driver.Navigate().Back();
+        //            }
+        //        }
+        //        else if (reqType == EnRequestType.Forush)
+        //        {
+        //            //محل
+        //            if (regionList != null && regionList.Count > 0)
+        //            {
+        //                _driver.FindElements(By.ClassName("browse-accordion__title"))
+        //                    ?.FirstOrDefault(q => q.Text == "محل")?.Click();
+        //                await Utility.Wait();
+        //                _driver.FindElement(By.ClassName("browse-select-field__value-container"))?.Click();
+        //                await Utility.Wait();
+        //                foreach (var item in regionList)
+        //                {
+        //                    _driver.FindElement(By.Id("react-select-location-select-input"))?.SendKeys(item + "\n");
+        //                    await Utility.Wait();
+        //                }
+        //            }
 
-            return res;
-        }
+        //            var listVadiee = _driver.FindElements(By.Id("react-select-int-field-input")).ToList();
+        //            //فی کل
+        //            if (fPrice1 != 0 || sPrice1 != 0)
+        //            {
+        //                _driver.FindElements(By.ClassName("browse-accordion__title"))
+        //                    ?.FirstOrDefault(q => q.Text == "قیمت کل")?.Click();
+        //                await Utility.Wait(1);
+        //                listVadiee[0]?.SendKeys(fPrice1 + "\n");
+        //                await Utility.Wait(1);
+        //                listVadiee[1]?.SendKeys(sPrice1 + "\n");
+        //            }
+
+        //            //متراژ
+        //            if (metrazh1 != 0 || metrazh2 != 0)
+        //            {
+        //                _driver.FindElements(By.ClassName("browse-accordion__title"))
+        //                    ?.FirstOrDefault(q => q.Text == "متراژ")?.Click();
+        //                await Utility.Wait(1);
+        //                listVadiee[2]?.SendKeys(metrazh1 + "\n");
+        //                await Utility.Wait(1);
+        //                listVadiee[3]?.SendKeys(metrazh2 + "\n");
+        //            }
+
+        //            var j = 0;
+
+        //            for (var i = 0; j < count; i++)
+        //            {
+        //                if (j == count) return res;
+
+        //                if (_driver.Url.Contains("https://divar.ir/v/")) _driver.Navigate().Back();
+
+        //                await Utility.Wait(1);
+        //                var viewModel = new BuildingViewModel();
+        //                _driver.FindElements(By.ClassName("kt-post-card__body"))[i + 1]?.Click();
+        //                await Utility.Wait(2);
+
+        //                _driver.FindElement(By.ClassName("post-actions__get-contact")).Click();
+        //                await Utility.Wait(1.5);
+
+        //                var a = _driver.FindElements(By.ClassName("kt-button"))
+        //                    .FirstOrDefault(q => q.Text == "با قوانین دیوار موافقم");
+        //                await Utility.Wait();
+        //                if (a != null)
+        //                    _driver.FindElements(By.ClassName("kt-button"))
+        //                        .FirstOrDefault(q => q.Text == "با قوانین دیوار موافقم")?.Click();
+        //                await Utility.Wait();
+
+        //                var num = _driver.FindElement(By.ClassName("kt-unexpandable-row__action")).Text.FixString();
+        //                if (num != "(پنهان‌شده؛ چت کنید)") viewModel.Mobile = num;
+
+        //                var pList = _driver.FindElements(By.ClassName("kt-unexpandable-row__value")).ToList();
+
+        //                viewModel.Region = _driver.FindElements(By.ClassName("kt-unexpandable-row__action"))[1]?.Text.FixString();
+        //                viewModel.Address = _driver.FindElements(By.ClassName("kt-unexpandable-row__action"))[1]?.Text.FixString();
+        //                viewModel.Metrazh = (int)pList[1]?.Text?.FixString()
+        //                    .Replace("متر", "")?.ParseToInt();
+        //                viewModel.SaleSakht = pList[2]?.Text.FixString();
+        //                viewModel.RoomCount = pList[3]?.Text.FixString();
+        //                var p1 = pList[4]?.Text.FixString()?.Replace("تومان", "")?.Replace("٫", "");
+        //                viewModel.Price1 = p1.ParseToDecimal() * 10;
+
+        //                var options = new List<string>();
+        //                if (pList.Count == 10)
+        //                {
+        //                    viewModel.Tabaqe = pList[6]?.Text?.FixString();
+        //                    options.Add($"پارکینگ: {pList[7]?.Text}");
+        //                    options.Add($"انباری: {pList[8]?.Text}");
+        //                    options.Add($"بالکن: {pList[9]?.Text}");
+        //                }
+        //                else if (pList.Count == 11)
+        //                {
+        //                    viewModel.Tabaqe = pList[7]?.Text?.FixString();
+        //                    options.Add($"پارکینگ: {pList[8]?.Text}");
+        //                    options.Add($"انباری: {pList[9]?.Text}");
+        //                    options.Add($"بالکن: {pList[10]?.Text}");
+        //                }
+
+        //                viewModel.Options = options;
+        //                viewModel.Description = _driver
+        //                    .FindElement(By.ClassName("kt-description-row__text"))?.Text;
+        //                viewModel.Parent = "سایت دیوار";
+        //                viewModel.Type = EnRequestType.Forush;
+
+        //                res.Add(viewModel);
+
+        //                j++;
+
+        //                _driver.Navigate().Back();
+        //            }
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        WebErrorLog.ErrorInstence.StartErrorLog(ex);
+        //    }
+
+        //    return res;
+        //}
         private async Task<string> SetCategory(EnRequestType reqType)
         {
             try
@@ -2116,454 +2116,429 @@ namespace Advertise.Classes
                 return "";
             }
         }
-        public async Task GetBuildingFromDivarAsync(EnRequestType reqType, long number)
-        {
-            try
-            {
-                var login = await Login(number, false);
-                if (!login) return;
-
-                var city = await CitiesBussines.GetAsync(Guid.Parse(clsEconomyUnit.EconomyCity));
-
-                _driver.FindElement(By.ClassName("city-selector")).Click();
-                await Utility.Wait();
-                _driver.FindElements(By.TagName("a")).LastOrDefault(q => q.Text == city.Name)?.Click();
-                await Utility.Wait(2);
-
-                var p = _driver.FindElements(By.ClassName("category-dropdown__icon")).Any();
-                if (!p) return;
-                await Utility.Wait(1);
-                _driver.FindElements(By.ClassName("category-dropdown__icon")).FirstOrDefault()?.Click();
-                await Utility.Wait();
-
-                var cat = await SetCategory(reqType);
-                if (string.IsNullOrEmpty(cat)) return;
-
-                _driver.FindElements(By.ClassName("category-button")).FirstOrDefault(q => q.Text.Contains("املاک"))
-                    ?.Click();
-                await Utility.Wait(1);
-
-                _driver.FindElements(By.ClassName("category-button")).FirstOrDefault(q => q.Text == cat)
-                    ?.Click();
-
-                await Utility.Wait(1);
-
-
-
-                if (reqType == EnRequestType.Rahn)
-                {
-                    try
-                    {
-                        while (true)
-                        {
-                            var j = _driver.FindElements(By.ClassName("kt-post-card__body")).ToList();
-                            for (var i = 0; i < j.Count - 1; i++)
-                            {
-                                if (_driver.Url.Contains("https://divar.ir/v/")) _driver.Navigate().Back();
-
-                                await Utility.Wait(1);
-                                var viewModel = new BuildingBussines
-                                {
-                                    Guid = Guid.NewGuid(),
-                                    Modified = DateTime.Now,
-                                    Status = true,
-                                    CreateDate = DateTime.Now,
-                                    Code = await BuildingBussines.NextCodeAsync(),
-                                };
-
-                                _driver.FindElements(By.ClassName("kt-post-card__body"))[i]?.Click();
-                                await Utility.Wait(3);
-
-                                //Region
-                                var fullText = _driver.FindElement(By.ClassName("kt-page-title__subtitle"))?.Text;
-                                if (!string.IsNullOrEmpty(fullText))
-                                {
-                                    var indexRemovedCity = fullText.IndexOf('،');
-                                    var removedCity = fullText.Remove(0, indexRemovedCity + 1);
-                                    var indexRemovedCat = removedCity.IndexOf('|');
-                                    var regionName = removedCity.Remove(indexRemovedCat - 1,
-                                        removedCity.Length - indexRemovedCat + 1);
-
-                                    var region = await RegionsBussines.GetAsync(regionName);
-                                    if (region == null)
-                                    {
-                                        region = new RegionsBussines()
-                                        {
-                                            Guid = Guid.NewGuid(),
-                                            Name = regionName,
-                                            Modified = DateTime.Now,
-                                            Status = true,
-                                            CityGuid = city.Guid
-                                        };
-                                        await region.SaveAsync();
-                                    }
-
-                                    viewModel.RegionGuid = region.Guid;
-                                    viewModel.CityGuid = city.Guid;
-                                    viewModel.Address = regionName;
-
-
-                                    //BuildingType
-                                    var typeName = removedCity.Replace(regionName, "").Replace("اجاره", "")
-                                        .Replace("|", "")
-                                        .Trim();
-                                    var type = await BuildingTypeBussines.GetAsync(typeName);
-                                    if (type == null)
-                                    {
-                                        type = new BuildingTypeBussines()
-                                        {
-                                            Guid = Guid.NewGuid(),
-                                            Name = typeName,
-                                            Modified = DateTime.Now,
-                                            Status = true
-                                        };
-                                        await type.SaveAsync();
-                                    }
-
-                                    viewModel.BuildingTypeGuid = type.Guid;
-                                }
-
-
-
-                                var mList = _driver.FindElements(By.ClassName("kt-group-row-item__value")).ToList();
-
-                                //Metrazh
-                                viewModel.Masahat = mList[0].Text.FixString().ParseToInt();
-
-                                //SaleSakht
-                                viewModel.SaleSakht = mList[1].Text.FixString();
-
-                                //RoomCount
-                                viewModel.RoomCount = mList[2].Text.FixString().ParseToInt();
-
-                                if (mList.Count == 6)
-                                {
-                                    viewModel.OptionList = new List<BuildingRelatedOptionsBussines>();
-
-                                    //Asansor
-                                    if (!mList[3].Text.Contains("ندارد"))
-                                    {
-                                        var evelator = await BuildingOptionsBussines.GetAsync("آسانسور");
-                                        if (evelator == null)
-                                        {
-                                            evelator = new BuildingOptionsBussines()
-                                            {
-                                                Guid = Guid.NewGuid(),
-                                                Modified = DateTime.Now,
-                                                Name = "آسانسور",
-                                                Status = true
-                                            };
-                                            await evelator.SaveAsync();
-                                        }
-
-                                        var op1 = new BuildingRelatedOptionsBussines()
-                                        {
-                                            Guid = Guid.NewGuid(),
-                                            Modified = DateTime.Now,
-                                            BuildingOptionGuid = evelator.Guid,
-                                            BuildinGuid = viewModel.Guid
-                                        };
-                                        viewModel.OptionList.Add(op1);
-                                    }
-
-                                    //Parking
-                                    if (!mList[4].Text.Contains("ندارد"))
-                                    {
-                                        var parking = await BuildingOptionsBussines.GetAsync("پارکینگ");
-                                        if (parking == null)
-                                        {
-                                            parking = new BuildingOptionsBussines()
-                                            {
-                                                Guid = Guid.NewGuid(),
-                                                Modified = DateTime.Now,
-                                                Name = "پارکینگ",
-                                                Status = true
-                                            };
-                                            await parking.SaveAsync();
-                                        }
-
-                                        var op2 = new BuildingRelatedOptionsBussines()
-                                        {
-                                            Guid = Guid.NewGuid(),
-                                            Modified = DateTime.Now,
-                                            BuildingOptionGuid = parking.Guid,
-                                            BuildinGuid = viewModel.Guid
-                                        };
-                                        viewModel.OptionList.Add(op2);
-                                    }
-
-                                    //Anbari
-                                    if (!mList[5].Text.Contains("ندارد"))
-                                    {
-                                        var anbari = await BuildingOptionsBussines.GetAsync("انباری");
-                                        if (anbari == null)
-                                        {
-                                            anbari = new BuildingOptionsBussines()
-                                            {
-                                                Guid = Guid.NewGuid(),
-                                                Modified = DateTime.Now,
-                                                Name = "انباری",
-                                                Status = true
-                                            };
-                                            await anbari.SaveAsync();
-                                        }
-
-                                        var op3 = new BuildingRelatedOptionsBussines()
-                                        {
-                                            Guid = Guid.NewGuid(),
-                                            Modified = DateTime.Now,
-                                            BuildingOptionGuid = anbari.Guid,
-                                            BuildinGuid = viewModel.Guid
-                                        };
-                                        viewModel.OptionList.Add(op3);
-                                    }
-                                }
-
-                                var pList = _driver.FindElements(By.ClassName("kt-unexpandable-row__value"))
-                                    .ToList();
-
-                                //Rahn
-                                var p1 = pList[0]?.Text.FixString()?.Replace("تومان", "")?.Replace("٫", "");
-                                viewModel.RahnPrice1 = p1.ParseToDecimal() * 10;
-
-
-                                //Ejare
-                                if (pList[1]?.Text == "مجانی")
-                                    viewModel.EjarePrice1 = 0;
-                                else
-                                {
-                                    var p2 = pList[1]?.Text.FixString()?.Replace("تومان", "")?.Replace("٫", "");
-                                    viewModel.EjarePrice1 = p2.ParseToDecimal() * 10;
-                                }
-
-
-                                //Rental
-                                if (pList.Count >= 4)
-                                {
-                                    var rent = pList[3]?.Text;
-                                    if (!string.IsNullOrEmpty(rent))
-                                    {
-                                        var rental = await RentalAuthorityBussines.GetAsync(rent);
-                                        if (rental == null)
-                                        {
-                                            rental = new RentalAuthorityBussines()
-                                            {
-                                                Guid = Guid.NewGuid(),
-                                                Name = rent,
-                                                Modified = DateTime.Now,
-                                                Status = true
-                                            };
-
-                                            await rental.SaveAsync();
-                                        }
-
-                                        viewModel.RentalAutorityGuid = rental.Guid;
-                                    }
-                                }
-                                else
-                                {
-                                    var allrent = await RentalAuthorityBussines.GetAllAsync(new CancellationToken());
-                                    var rentRand = new Random().Next(0, allrent.Count);
-                                    viewModel.RentalAutorityGuid = allrent[rentRand].Guid;
-                                }
-
-                                //Tabaqe
-                                if (pList.Count == 6)
-                                {
-                                    if (pList[5].Text.Contains("از"))
-                                    {
-                                        if (pList[5].Text.Contains("همکف"))
-                                        {
-                                            var a = pList[5].Text.Replace("همکف از", "");
-                                            viewModel.TabaqeNo = 0;
-                                            viewModel.TedadTabaqe = a.FixString().ParseToInt();
-                                        }
-                                        else
-                                        {
-                                            var a = pList[5].Text.Replace("از", "");
-                                            viewModel.TabaqeNo = a.Remove(1, 3).FixString().ParseToInt();
-                                            viewModel.TedadTabaqe = a.Remove(0, 2).FixString().ParseToInt();
-                                        }
-                                    }
-                                    else
-                                    {
-                                        viewModel.TabaqeNo = pList[5].Text.FixString().ParseToInt();
-                                        viewModel.TedadTabaqe = viewModel.TabaqeNo;
-                                    }
-                                }
-                                else
-                                {
-                                    viewModel.TabaqeNo = 0;
-                                    viewModel.TedadTabaqe = 0;
-                                }
-
-
-                                //Description
-                                viewModel.ShortDesc = _driver.FindElement(By.ClassName("kt-description-row__text"))
-                                    ?.Text;
-
-                                var moreDetail = _driver.FindElements(By.ClassName("kt-selector-row__title"))
-                                    .Any(q => q.Text == "نمایش همهٔ جزئیات");
-                                if (moreDetail)
-                                {
-                                    _driver.FindElements(By.ClassName("kt-selector-row__title"))
-                                        .FirstOrDefault(q => q.Text == "نمایش همهٔ جزئیات")?.Click();
-                                    await Utility.Wait(2);
-
-
-                                    var vahed = _driver.FindElements(By.ClassName("kt-base-row__title"))
-                                                    .FirstOrDefault(q => q.Text == "تعداد واحد در طبقه")?.Text?
-                                                    .ParseToInt() ?? 1;
-
-                                    var side = GetSide(_driver.FindElements(By.ClassName("kt-base-row__title"))
-                                                           .FirstOrDefault(q => q.Text == "جهت ساختمان")?.Text ??
-                                                       "");
-
-                                    viewModel.Side = side;
-                                    viewModel.VahedPerTabaqe = vahed;
-
-                                    _driver.FindElement(By.ClassName("kt-modal__close-button"))?.Click();
-                                }
-
-
-                                //Images
-                                viewModel.GalleryList = new List<BuildingGalleryBussines>();
-                                var imgElements = _driver.FindElements(By.TagName("img"));
-                                foreach (var img in imgElements)
-                                {
-                                    var src = img.GetAttribute("src");
-                                    if (src.Contains("s100.divarcdn.com"))
-                                    {
-                                        var path = Path.Combine(Application.StartupPath, "Images");
-                                        if (!Directory.Exists(path)) Directory.CreateDirectory(path);
-                                        var name = Guid.NewGuid() + ".jpg";
-                                        var filePath = Path.Combine(path, name);
-                                        DownloadImage(src, filePath);
-                                        var im = new BuildingGalleryBussines()
-                                        {
-                                            Guid = Guid.NewGuid(),
-                                            Modified = DateTime.Now,
-                                            ImageName = name,
-                                            BuildingGuid = viewModel.Guid
-                                        };
-                                        viewModel.GalleryList.Add(im);
-                                    }
-                                }
-
-
-
-                                var allOwner = await PeoplesBussines.GetAllAsync(new CancellationToken());
-                                if (allOwner.Count > 0)
-                                {
-                                    var rand = new Random().Next(0, allOwner.Count);
-                                    viewModel.OwnerGuid = allOwner[rand].Guid;
-                                }
-
-                                viewModel.SellPrice = 0;
-                                viewModel.VamPrice = 0;
-                                viewModel.QestPrice = 0;
-                                viewModel.Dang = 6;
-
-                                var allDoc = await DocumentTypeBussines.GetAllAsync(new CancellationToken());
-                                var docRand = new Random().Next(0, allDoc.Count);
-                                viewModel.DocumentType = allDoc[docRand].Guid;
-
-                                viewModel.Tarakom = EnTarakom.Min;
-                                viewModel.RahnPrice2 = 0;
-                                viewModel.EjarePrice2 = 0;
-                                viewModel.IsShortTime = false;
-                                viewModel.IsOwnerHere = false;
-                                viewModel.PishPrice = 0;
-                                viewModel.PishTotalPrice = 0;
-                                viewModel.DeliveryDate = DateTime.Now;
-                                viewModel.PishDesc = "";
-                                viewModel.MoavezeDesc = "";
-                                viewModel.MosharekatDesc = "";
-                                viewModel.ZirBana = viewModel.Masahat + 15;
-
-                                var allCond = await BuildingConditionBussines.GetAllAsync(new CancellationToken());
-                                var condRand = new Random().Next(0, allCond.Count);
-                                viewModel.BuildingConditionGuid = allCond[condRand].Guid;
-
-                                var allAccType = await BuildingAccountTypeBussines.GetAllAsync(new CancellationToken());
-                                var accTypeRand = new Random().Next(0, allAccType.Count);
-                                viewModel.BuildingAccountTypeGuid = allAccType[accTypeRand].Guid;
-                                viewModel.MetrazhTejari = 0;
-
-                                var allView = await BuildingViewBussines.GetAllAsync(new CancellationToken());
-                                var viewRand = new Random().Next(0, allView.Count);
-                                viewModel.BuildingViewGuid = allView[viewRand].Guid;
-
-                                var allFloor = await FloorCoverBussines.GetAllAsync(new CancellationToken());
-                                var floorRand = new Random().Next(0, allFloor.Count);
-                                viewModel.FloorCoverGuid = allFloor[floorRand].Guid;
-
-                                var allKitchen = await KitchenServiceBussines.GetAllAsync(new CancellationToken());
-                                var kitchenRand = new Random().Next(0, allKitchen.Count);
-                                viewModel.KitchenServiceGuid = allKitchen[kitchenRand].Guid;
-
-                                viewModel.Water = EnKhadamati.Mostaqel;
-                                viewModel.Barq = EnKhadamati.Mostaqel;
-                                viewModel.Gas = EnKhadamati.Mostaqel;
-                                viewModel.Tell = EnKhadamati.Mostaqel;
-
-                                viewModel.MetrazhKouche = 0;
-                                viewModel.ErtefaSaqf = 0;
-                                viewModel.Hashie = 0;
-
-                                viewModel.DateParvane =
-                                    Calendar.MiladiToShamsi(Calendar.ShamsiToMiladi(viewModel.SaleSakht)
-                                        .AddYears(-1));
-                                viewModel.ParvaneSerial = "";
-
-                                viewModel.BonBast = false;
-                                viewModel.MamarJoda = true;
-
-                                var allUser = await UserBussines.GetAllAsync(new CancellationToken());
-                                var userRand = new Random().Next(0, allUser.Count);
-                                viewModel.UserGuid = allUser[userRand].Guid;
-
-
-                                await viewModel.SaveAsync();
-
-                                _driver.Navigate().Back();
-                            }
-
-                            ((IJavaScriptExecutor)_driver).ExecuteScript("window.scrollTo(0, document.body.scrollHeight)");
-                            await Utility.Wait();
-                        }
-                    }
-                    catch { }
-                }
-            }
-            catch { }
-        }
-        private void DownloadImage(string src, string path)
-        {
-            var webClient = new WebClient();
-            webClient.DownloadFile(src, path);
-        }
-        private EnBuildingSide GetSide(string sideName)
-        {
-            switch (sideName)
-            {
-                case "شمالی": return EnBuildingSide.One;
-                case "جنوبی": return EnBuildingSide.Tow;
-                case "شرقی": return EnBuildingSide.Three;
-                case "غربی": return EnBuildingSide.Four;
-                case "شمالی شرقی": return EnBuildingSide.Five;
-                case "شمالی غربی": return EnBuildingSide.Six;
-                case "جنوبی شرقی": return EnBuildingSide.Seven;
-                case "جنوبی غربی": return EnBuildingSide.Eight;
-                case "شمالی جنوبی دوکله": return EnBuildingSide.Nine;
-                case "شرقی غربی دوکله": return EnBuildingSide.Ten;
-                case "شمالی شرقی غربی": return EnBuildingSide.Eleven;
-                case "جنوبی شرقی غربی": return EnBuildingSide.Towelve;
-                case "شرقی شمالی جنوبی": return EnBuildingSide.Thirteen;
-                case "غربی شمالی جنوبی": return EnBuildingSide.Fourteen;
-                default: return EnBuildingSide.One;
-            }
-        }
+        //public async Task GetBuildingFromDivarAsync(EnRequestType reqType, long number)
+        //{
+        //    try
+        //    {
+        //        var login = await Login(number, false);
+        //        if (!login) return;
+
+        //        var city = await CitiesBussines.GetAsync(Guid.Parse(clsEconomyUnit.EconomyCity));
+
+        //        _driver.FindElement(By.ClassName("city-selector")).Click();
+        //        await Utility.Wait();
+        //        _driver.FindElements(By.TagName("a")).LastOrDefault(q => q.Text == city.Name)?.Click();
+        //        await Utility.Wait(2);
+
+        //        var p = _driver.FindElements(By.ClassName("category-dropdown__icon")).Any();
+        //        if (!p) return;
+        //        await Utility.Wait(1);
+        //        _driver.FindElements(By.ClassName("category-dropdown__icon")).FirstOrDefault()?.Click();
+        //        await Utility.Wait();
+
+        //        var cat = await SetCategory(reqType);
+        //        if (string.IsNullOrEmpty(cat)) return;
+
+        //        _driver.FindElements(By.ClassName("category-button")).FirstOrDefault(q => q.Text.Contains("املاک"))
+        //            ?.Click();
+        //        await Utility.Wait(1);
+
+        //        _driver.FindElements(By.ClassName("category-button")).FirstOrDefault(q => q.Text == cat)
+        //            ?.Click();
+
+        //        await Utility.Wait(1);
+
+
+
+        //        if (reqType == EnRequestType.Rahn)
+        //        {
+        //            try
+        //            {
+        //                while (true)
+        //                {
+        //                    var j = _driver.FindElements(By.ClassName("kt-post-card__body")).ToList();
+        //                    for (var i = 0; i < j.Count - 1; i++)
+        //                    {
+        //                        if (_driver.Url.Contains("https://divar.ir/v/")) _driver.Navigate().Back();
+
+        //                        await Utility.Wait(1);
+        //                        var viewModel = new BuildingBussines
+        //                        {
+        //                            Guid = Guid.NewGuid(),
+        //                            Modified = DateTime.Now,
+        //                            Status = true,
+        //                            CreateDate = DateTime.Now,
+        //                            Code = await BuildingBussines.NextCodeAsync(),
+        //                        };
+
+        //                        _driver.FindElements(By.ClassName("kt-post-card__body"))[i]?.Click();
+        //                        await Utility.Wait(3);
+
+        //                        //Region
+        //                        var fullText = _driver.FindElement(By.ClassName("kt-page-title__subtitle"))?.Text;
+        //                        if (!string.IsNullOrEmpty(fullText))
+        //                        {
+        //                            var indexRemovedCity = fullText.IndexOf('،');
+        //                            var removedCity = fullText.Remove(0, indexRemovedCity + 1);
+        //                            var indexRemovedCat = removedCity.IndexOf('|');
+        //                            var regionName = removedCity.Remove(indexRemovedCat - 1,
+        //                                removedCity.Length - indexRemovedCat + 1);
+
+        //                            var region = await RegionsBussines.GetAsync(regionName);
+        //                            if (region == null)
+        //                            {
+        //                                region = new RegionsBussines()
+        //                                {
+        //                                    Guid = Guid.NewGuid(),
+        //                                    Name = regionName,
+        //                                    Modified = DateTime.Now,
+        //                                    Status = true,
+        //                                    CityGuid = city.Guid
+        //                                };
+        //                                await region.SaveAsync();
+        //                            }
+
+        //                            viewModel.RegionGuid = region.Guid;
+        //                            viewModel.CityGuid = city.Guid;
+        //                            viewModel.Address = regionName;
+
+
+        //                            //BuildingType
+        //                            var typeName = removedCity.Replace(regionName, "").Replace("اجاره", "")
+        //                                .Replace("|", "")
+        //                                .Trim();
+        //                            var type = await BuildingTypeBussines.GetAsync(typeName);
+        //                            if (type == null)
+        //                            {
+        //                                type = new BuildingTypeBussines()
+        //                                {
+        //                                    Guid = Guid.NewGuid(),
+        //                                    Name = typeName,
+        //                                    Modified = DateTime.Now,
+        //                                    Status = true
+        //                                };
+        //                                await type.SaveAsync();
+        //                            }
+
+        //                            viewModel.BuildingTypeGuid = type.Guid;
+        //                        }
+
+
+
+        //                        var mList = _driver.FindElements(By.ClassName("kt-group-row-item__value")).ToList();
+
+        //                        //Metrazh
+        //                        viewModel.Masahat = mList[0].Text.FixString().ParseToInt();
+
+        //                        //SaleSakht
+        //                        viewModel.SaleSakht = mList[1].Text.FixString();
+
+        //                        //RoomCount
+        //                        viewModel.RoomCount = mList[2].Text.FixString().ParseToInt();
+
+        //                        if (mList.Count == 6)
+        //                        {
+        //                            viewModel.OptionList = new List<BuildingRelatedOptionsBussines>();
+
+        //                            //Asansor
+        //                            if (!mList[3].Text.Contains("ندارد"))
+        //                            {
+        //                                var evelator = await BuildingOptionsBussines.GetAsync("آسانسور");
+        //                                if (evelator == null)
+        //                                {
+        //                                    evelator = new BuildingOptionsBussines()
+        //                                    {
+        //                                        Guid = Guid.NewGuid(),
+        //                                        Modified = DateTime.Now,
+        //                                        Name = "آسانسور",
+        //                                        Status = true
+        //                                    };
+        //                                    await evelator.SaveAsync();
+        //                                }
+
+        //                                var op1 = new BuildingRelatedOptionsBussines()
+        //                                {
+        //                                    Guid = Guid.NewGuid(),
+        //                                    Modified = DateTime.Now,
+        //                                    BuildingOptionGuid = evelator.Guid,
+        //                                    BuildinGuid = viewModel.Guid
+        //                                };
+        //                                viewModel.OptionList.Add(op1);
+        //                            }
+
+        //                            //Parking
+        //                            if (!mList[4].Text.Contains("ندارد"))
+        //                            {
+        //                                var parking = await BuildingOptionsBussines.GetAsync("پارکینگ");
+        //                                if (parking == null)
+        //                                {
+        //                                    parking = new BuildingOptionsBussines()
+        //                                    {
+        //                                        Guid = Guid.NewGuid(),
+        //                                        Modified = DateTime.Now,
+        //                                        Name = "پارکینگ",
+        //                                        Status = true
+        //                                    };
+        //                                    await parking.SaveAsync();
+        //                                }
+
+        //                                var op2 = new BuildingRelatedOptionsBussines()
+        //                                {
+        //                                    Guid = Guid.NewGuid(),
+        //                                    Modified = DateTime.Now,
+        //                                    BuildingOptionGuid = parking.Guid,
+        //                                    BuildinGuid = viewModel.Guid
+        //                                };
+        //                                viewModel.OptionList.Add(op2);
+        //                            }
+
+        //                            //Anbari
+        //                            if (!mList[5].Text.Contains("ندارد"))
+        //                            {
+        //                                var anbari = await BuildingOptionsBussines.GetAsync("انباری");
+        //                                if (anbari == null)
+        //                                {
+        //                                    anbari = new BuildingOptionsBussines()
+        //                                    {
+        //                                        Guid = Guid.NewGuid(),
+        //                                        Modified = DateTime.Now,
+        //                                        Name = "انباری",
+        //                                        Status = true
+        //                                    };
+        //                                    await anbari.SaveAsync();
+        //                                }
+
+        //                                var op3 = new BuildingRelatedOptionsBussines()
+        //                                {
+        //                                    Guid = Guid.NewGuid(),
+        //                                    Modified = DateTime.Now,
+        //                                    BuildingOptionGuid = anbari.Guid,
+        //                                    BuildinGuid = viewModel.Guid
+        //                                };
+        //                                viewModel.OptionList.Add(op3);
+        //                            }
+        //                        }
+
+        //                        var pList = _driver.FindElements(By.ClassName("kt-unexpandable-row__value"))
+        //                            .ToList();
+
+        //                        //Rahn
+        //                        var p1 = pList[0]?.Text.FixString()?.Replace("تومان", "")?.Replace("٫", "");
+        //                        viewModel.RahnPrice1 = p1.ParseToDecimal() * 10;
+
+
+        //                        //Ejare
+        //                        if (pList[1]?.Text == "مجانی")
+        //                            viewModel.EjarePrice1 = 0;
+        //                        else
+        //                        {
+        //                            var p2 = pList[1]?.Text.FixString()?.Replace("تومان", "")?.Replace("٫", "");
+        //                            viewModel.EjarePrice1 = p2.ParseToDecimal() * 10;
+        //                        }
+
+
+        //                        //Rental
+        //                        if (pList.Count >= 4)
+        //                        {
+        //                            var rent = pList[3]?.Text;
+        //                            if (!string.IsNullOrEmpty(rent))
+        //                            {
+        //                                var rental = await RentalAuthorityBussines.GetAsync(rent);
+        //                                if (rental == null)
+        //                                {
+        //                                    rental = new RentalAuthorityBussines()
+        //                                    {
+        //                                        Guid = Guid.NewGuid(),
+        //                                        Name = rent,
+        //                                        Modified = DateTime.Now,
+        //                                        Status = true
+        //                                    };
+
+        //                                    await rental.SaveAsync();
+        //                                }
+
+        //                                viewModel.RentalAutorityGuid = rental.Guid;
+        //                            }
+        //                        }
+        //                        else
+        //                        {
+        //                            var allrent = await RentalAuthorityBussines.GetAllAsync(new CancellationToken());
+        //                            var rentRand = new Random().Next(0, allrent.Count);
+        //                            viewModel.RentalAutorityGuid = allrent[rentRand].Guid;
+        //                        }
+
+        //                        //Tabaqe
+        //                        if (pList.Count == 6)
+        //                        {
+        //                            if (pList[5].Text.Contains("از"))
+        //                            {
+        //                                if (pList[5].Text.Contains("همکف"))
+        //                                {
+        //                                    var a = pList[5].Text.Replace("همکف از", "");
+        //                                    viewModel.TabaqeNo = 0;
+        //                                    viewModel.TedadTabaqe = a.FixString().ParseToInt();
+        //                                }
+        //                                else
+        //                                {
+        //                                    var a = pList[5].Text.Replace("از", "");
+        //                                    viewModel.TabaqeNo = a.Remove(1, 3).FixString().ParseToInt();
+        //                                    viewModel.TedadTabaqe = a.Remove(0, 2).FixString().ParseToInt();
+        //                                }
+        //                            }
+        //                            else
+        //                            {
+        //                                viewModel.TabaqeNo = pList[5].Text.FixString().ParseToInt();
+        //                                viewModel.TedadTabaqe = viewModel.TabaqeNo;
+        //                            }
+        //                        }
+        //                        else
+        //                        {
+        //                            viewModel.TabaqeNo = 0;
+        //                            viewModel.TedadTabaqe = 0;
+        //                        }
+
+
+        //                        //Description
+        //                        viewModel.ShortDesc = _driver.FindElement(By.ClassName("kt-description-row__text"))
+        //                            ?.Text;
+
+        //                        var moreDetail = _driver.FindElements(By.ClassName("kt-selector-row__title"))
+        //                            .Any(q => q.Text == "نمایش همهٔ جزئیات");
+        //                        if (moreDetail)
+        //                        {
+        //                            _driver.FindElements(By.ClassName("kt-selector-row__title"))
+        //                                .FirstOrDefault(q => q.Text == "نمایش همهٔ جزئیات")?.Click();
+        //                            await Utility.Wait(2);
+
+
+        //                            var vahed = _driver.FindElements(By.ClassName("kt-base-row__title"))
+        //                                            .FirstOrDefault(q => q.Text == "تعداد واحد در طبقه")?.Text?
+        //                                            .ParseToInt() ?? 1;
+
+        //                            var side = GetSide(_driver.FindElements(By.ClassName("kt-base-row__title"))
+        //                                                   .FirstOrDefault(q => q.Text == "جهت ساختمان")?.Text ??
+        //                                               "");
+
+        //                            viewModel.Side = side;
+        //                            viewModel.VahedPerTabaqe = vahed;
+
+        //                            _driver.FindElement(By.ClassName("kt-modal__close-button"))?.Click();
+        //                        }
+
+
+        //                        //Images
+        //                        viewModel.GalleryList = new List<BuildingGalleryBussines>();
+        //                        var imgElements = _driver.FindElements(By.TagName("img"));
+        //                        foreach (var img in imgElements)
+        //                        {
+        //                            var src = img.GetAttribute("src");
+        //                            if (src.Contains("s100.divarcdn.com"))
+        //                            {
+        //                                var path = Path.Combine(Application.StartupPath, "Images");
+        //                                if (!Directory.Exists(path)) Directory.CreateDirectory(path);
+        //                                var name = Guid.NewGuid() + ".jpg";
+        //                                var filePath = Path.Combine(path, name);
+        //                                DownloadImage(src, filePath);
+        //                                var im = new BuildingGalleryBussines()
+        //                                {
+        //                                    Guid = Guid.NewGuid(),
+        //                                    Modified = DateTime.Now,
+        //                                    ImageName = name,
+        //                                    BuildingGuid = viewModel.Guid
+        //                                };
+        //                                viewModel.GalleryList.Add(im);
+        //                            }
+        //                        }
+
+
+
+        //                        var allOwner = await PeoplesBussines.GetAllAsync(new CancellationToken());
+        //                        if (allOwner.Count > 0)
+        //                        {
+        //                            var rand = new Random().Next(0, allOwner.Count);
+        //                            viewModel.OwnerGuid = allOwner[rand].Guid;
+        //                        }
+
+        //                        viewModel.SellPrice = 0;
+        //                        viewModel.VamPrice = 0;
+        //                        viewModel.QestPrice = 0;
+        //                        viewModel.Dang = 6;
+
+        //                        var allDoc = await DocumentTypeBussines.GetAllAsync(new CancellationToken());
+        //                        var docRand = new Random().Next(0, allDoc.Count);
+        //                        viewModel.DocumentType = allDoc[docRand].Guid;
+
+        //                        viewModel.Tarakom = EnTarakom.Min;
+        //                        viewModel.RahnPrice2 = 0;
+        //                        viewModel.EjarePrice2 = 0;
+        //                        viewModel.IsShortTime = false;
+        //                        viewModel.IsOwnerHere = false;
+        //                        viewModel.PishPrice = 0;
+        //                        viewModel.PishTotalPrice = 0;
+        //                        viewModel.DeliveryDate = DateTime.Now;
+        //                        viewModel.PishDesc = "";
+        //                        viewModel.MoavezeDesc = "";
+        //                        viewModel.MosharekatDesc = "";
+        //                        viewModel.ZirBana = viewModel.Masahat + 15;
+
+        //                        var allCond = await BuildingConditionBussines.GetAllAsync(new CancellationToken());
+        //                        var condRand = new Random().Next(0, allCond.Count);
+        //                        viewModel.BuildingConditionGuid = allCond[condRand].Guid;
+
+        //                        var allAccType = await BuildingAccountTypeBussines.GetAllAsync(new CancellationToken());
+        //                        var accTypeRand = new Random().Next(0, allAccType.Count);
+        //                        viewModel.BuildingAccountTypeGuid = allAccType[accTypeRand].Guid;
+        //                        viewModel.MetrazhTejari = 0;
+
+        //                        var allView = await BuildingViewBussines.GetAllAsync(new CancellationToken());
+        //                        var viewRand = new Random().Next(0, allView.Count);
+        //                        viewModel.BuildingViewGuid = allView[viewRand].Guid;
+
+        //                        var allFloor = await FloorCoverBussines.GetAllAsync(new CancellationToken());
+        //                        var floorRand = new Random().Next(0, allFloor.Count);
+        //                        viewModel.FloorCoverGuid = allFloor[floorRand].Guid;
+
+        //                        var allKitchen = await KitchenServiceBussines.GetAllAsync(new CancellationToken());
+        //                        var kitchenRand = new Random().Next(0, allKitchen.Count);
+        //                        viewModel.KitchenServiceGuid = allKitchen[kitchenRand].Guid;
+
+        //                        viewModel.Water = EnKhadamati.Mostaqel;
+        //                        viewModel.Barq = EnKhadamati.Mostaqel;
+        //                        viewModel.Gas = EnKhadamati.Mostaqel;
+        //                        viewModel.Tell = EnKhadamati.Mostaqel;
+
+        //                        viewModel.MetrazhKouche = 0;
+        //                        viewModel.ErtefaSaqf = 0;
+        //                        viewModel.Hashie = 0;
+
+        //                        viewModel.DateParvane =
+        //                            Calendar.MiladiToShamsi(Calendar.ShamsiToMiladi(viewModel.SaleSakht)
+        //                                .AddYears(-1));
+        //                        viewModel.ParvaneSerial = "";
+
+        //                        viewModel.BonBast = false;
+        //                        viewModel.MamarJoda = true;
+
+        //                        var allUser = await UserBussines.GetAllAsync(new CancellationToken());
+        //                        var userRand = new Random().Next(0, allUser.Count);
+        //                        viewModel.UserGuid = allUser[userRand].Guid;
+
+
+        //                        await viewModel.SaveAsync();
+
+        //                        _driver.Navigate().Back();
+        //                    }
+
+        //                    ((IJavaScriptExecutor)_driver).ExecuteScript("window.scrollTo(0, document.body.scrollHeight)");
+        //                    await Utility.Wait();
+        //                }
+        //            }
+        //            catch { }
+        //        }
+        //    }
+        //    catch { }
+        //}
+        
         #endregion
         private static List<Divar> GetDataFromUrl(string url)
         {
