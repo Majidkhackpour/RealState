@@ -51,5 +51,37 @@ namespace Settings.Classes
                 SettingsBussines.Save("Text", _text);
             }
         }
+
+        private static string _mngChannel = "";
+        public static string ManagerChannel
+        {
+            get
+            {
+                if (!string.IsNullOrEmpty(_mngChannel)) return _mngChannel;
+                var mem = SettingsBussines.Get("ManagerChannel");
+                return mem == null ? "" : mem.Value;
+            }
+            set
+            {
+                _mngChannel = value;
+                SettingsBussines.Save("ManagerChannel", _mngChannel);
+            }
+        }
+
+        private static string _mngText = "";
+        public static string ManagetText
+        {
+            get
+            {
+                if (!string.IsNullOrEmpty(_mngText)) return _mngText;
+                var mem = SettingsBussines.Get("ManagetText");
+                return mem == null ? "" : mem.Value;
+            }
+            set
+            {
+                _mngText = value;
+                SettingsBussines.Save("ManagetText", _mngText);
+            }
+        }
     }
 }

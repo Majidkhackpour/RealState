@@ -560,6 +560,7 @@
       <DependentUpon>frmSlideShow.cs</DependentUpon>
     </Compile>
     <Compile Include="clsBuildingSimilar.cs" />
+    <Compile Include="clsTelegramManager.cs" />
     <Compile Include="Contract\CalculateCommition.cs" />
     <Compile Include="Contract\frmContractMain.cs">
       <SubType>Form</SubType>

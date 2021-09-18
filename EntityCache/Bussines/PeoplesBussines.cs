@@ -40,8 +40,7 @@ namespace EntityCache.Bussines
         public decimal AccountFirst { get; set; }
         public decimal Account_ => Math.Abs(Account);
         public string AccountType => Account.AccountDiagnosis();
-        public string FirstNumber =>
-            AsyncContext.Run(() => PhoneBookBussines.GetAllAsync(Guid, true))?.FirstOrDefault()?.Tell ?? "";
+        public string FirstNumber => TellList?.FirstOrDefault()?.Tell ?? "";
         public bool IsChecked { get; set; }
         public string HardSerial => Cache.HardSerial;
         public List<PhoneBookBussines> TellList { get; set; }

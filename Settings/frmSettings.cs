@@ -562,5 +562,6 @@ namespace Settings
         private void btnEvelator_Click(object sender, EventArgs e) => SetDataInTxt((ButtonX)sender, txtText);
         private void btnStore_Click(object sender, EventArgs e) => SetDataInTxt((ButtonX)sender, txtText);
         private void btnBalcony_Click(object sender, EventArgs e) => SetDataInTxt((ButtonX)sender, txtText);
+        private void btnTelegramManager_Click(object sender, EventArgs e) => new frmTelegramManager().ShowDialog(this);
     }
 }

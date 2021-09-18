@@ -171,6 +171,9 @@
             this.chbDivar = new DevComponents.DotNetBar.Controls.CheckBoxX();
             this.chbSheypoor = new DevComponents.DotNetBar.Controls.CheckBoxX();
             this.chbAll = new DevComponents.DotNetBar.Controls.CheckBoxX();
+            this.cmbSendToCustomerChannel = new System.Windows.Forms.ToolStripMenuItem();
+            this.cmbSendToManagerChannel = new System.Windows.Forms.ToolStripMenuItem();
+            this.cmbSendToBothChannel = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).BeginInit();
             this.contextMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BuildingBindingSource)).BeginInit();
@@ -629,7 +632,7 @@
             this.مدیریتستونهاToolStripMenuItem});
             this.contextMenu.Name = "contextMenu";
             this.contextMenu.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.contextMenu.Size = new System.Drawing.Size(246, 400);
+            this.contextMenu.Size = new System.Drawing.Size(246, 422);
             // 
             // mnuAdd
             // 
@@ -738,11 +741,14 @@
             // 
             // mnuSendToTelegram
             // 
+            this.mnuSendToTelegram.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.cmbSendToCustomerChannel,
+            this.cmbSendToManagerChannel,
+            this.cmbSendToBothChannel});
             this.mnuSendToTelegram.Image = global::Building.Properties.Resources.icons8_telegram_app_24;
             this.mnuSendToTelegram.Name = "mnuSendToTelegram";
             this.mnuSendToTelegram.Size = new System.Drawing.Size(245, 24);
             this.mnuSendToTelegram.Text = "ارسال ملک در تلگرام";
-            this.mnuSendToTelegram.Click += new System.EventHandler(this.mnuSendToTelegram_Click);
             // 
             // toolStripMenuItem5
             // 
@@ -1556,6 +1562,27 @@
             this.chbAll.Text = "همه";
             this.chbAll.CheckedChanged += new System.EventHandler(this.chbAll_CheckedChanged);
             // 
+            // cmbSendToCustomerChannel
+            // 
+            this.cmbSendToCustomerChannel.Name = "cmbSendToCustomerChannel";
+            this.cmbSendToCustomerChannel.Size = new System.Drawing.Size(195, 24);
+            this.cmbSendToCustomerChannel.Text = "ارسال در کانال مشتریان";
+            this.cmbSendToCustomerChannel.Click += new System.EventHandler(this.cmbSendToCustomerChannel_Click);
+            // 
+            // cmbSendToManagerChannel
+            // 
+            this.cmbSendToManagerChannel.Name = "cmbSendToManagerChannel";
+            this.cmbSendToManagerChannel.Size = new System.Drawing.Size(195, 24);
+            this.cmbSendToManagerChannel.Text = "ارسال در کانال مدیریتی";
+            this.cmbSendToManagerChannel.Click += new System.EventHandler(this.cmbSendToManagerChannel_Click);
+            // 
+            // cmbSendToBothChannel
+            // 
+            this.cmbSendToBothChannel.Name = "cmbSendToBothChannel";
+            this.cmbSendToBothChannel.Size = new System.Drawing.Size(195, 24);
+            this.cmbSendToBothChannel.Text = "ارسال در هر دو کانال";
+            this.cmbSendToBothChannel.Click += new System.EventHandler(this.cmbSendToBothChannel_Click);
+            // 
             // frmShowBuildings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -1736,5 +1763,8 @@
         private DevComponents.DotNetBar.Controls.CheckBoxX chbDivar;
         private DevComponents.DotNetBar.Controls.CheckBoxX chbSheypoor;
         private DevComponents.DotNetBar.Controls.CheckBoxX chbAll;
+        private System.Windows.Forms.ToolStripMenuItem cmbSendToCustomerChannel;
+        private System.Windows.Forms.ToolStripMenuItem cmbSendToManagerChannel;
+        private System.Windows.Forms.ToolStripMenuItem cmbSendToBothChannel;
     }
 }
