@@ -25,7 +25,7 @@ namespace EntityCache.Bussines
         public string HardSerial => Cache.HardSerial;
 
 
-        public static async Task<List<PeopleGroupBussines>> GetAllAsync() => await UnitOfWork.PeopleGroup.GetAllAsync(Cache.ConnectionString);
+        public static async Task<List<PeopleGroupBussines>> GetAllAsync(Guid? parentGuid = null) => await UnitOfWork.PeopleGroup.GetAllAsync(Cache.ConnectionString, parentGuid);
         public static async Task<ReturnedSaveFuncInfo> SaveRangeAsync(List<PeopleGroupBussines> list, SqlTransaction tr = null)
         {
             var res = new ReturnedSaveFuncInfo();
@@ -111,7 +111,7 @@ namespace EntityCache.Bussines
                     tr = cn.BeginTransaction();
                 }
 
-                var list = await PeoplesBussines.GetAllAsync(Guid, false,new CancellationToken());
+                var list = await PeoplesBussines.GetAllAsync(Guid, false, new CancellationToken());
                 foreach (var item in list)
                 {
                     item.GroupGuid = Guid.Empty;

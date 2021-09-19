@@ -5825,9 +5825,11 @@ IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_PeopleGro
 GO
 
 ALTER PROCEDURE [dbo].[sp_PeopleGroup_GetAll] 
+	@parentGuid uniqueidentifier=null
 AS
 BEGIN
 	select * from PeopleGroups
+	where @parentGuid is null or ParentGuid=@parentGuid
 End
 GO
 -- ==========================================================================================

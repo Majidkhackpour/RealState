@@ -16,6 +16,7 @@ namespace Peoples
     {
         private PeoplesBussines cls;
         public Guid SelectedGuid { get; set; }
+        private List<Guid> _groupList;
 
         private async Task SetDataAsync()
         {
@@ -28,6 +29,7 @@ namespace Peoples
                 FillCmbPrice();
                 SetTxtPrice();
                 await FillPhoneBookTitleAsync();
+                await LoadSubGroups(cls?.GroupGuid ?? Guid.Empty);
 
                 txtCode.Text = cls?.Code;
                 txtNationalCode.Text = cls?.NationalCode;
@@ -39,12 +41,26 @@ namespace Peoples
                 txtPostalCode.Text = cls?.PostalCode;
                 txtAddress.Text = cls?.Address;
                 txtDateBirth.Text = cls?.DateBirth;
-                cmbGroup.SelectedValue = (Guid)cls?.GroupGuid;
 
                 if (cls?.Guid == Guid.Empty)
                 {
                     await NextCodeAsync();
                     cmbGroup.SelectedIndex = 1;
+                }
+                else
+                {
+                    if (_groupList.Contains(cls.GroupGuid))
+                    {
+                        cmbGroup.SelectedValue = cls.GroupGuid;
+                        await LoadSubGroups(cls.GroupGuid);
+                    }
+                    else
+                    {
+                        var grp = await PeopleGroupBussines.GetAsync(cls.GroupGuid);
+                        if (grp == null) return;
+                        cmbGroup.SelectedValue = grp.ParentGuid;
+                        cmbSubGroup.SelectedValue = cls.GroupGuid;
+                    }
                 }
             }
             catch (Exception ex)
@@ -68,7 +84,35 @@ namespace Peoples
             try
             {
                 var list = await PeopleGroupBussines.GetAllAsync();
-                groupBundingSource.DataSource = list.Where(q => q.Status).OrderBy(q => q.Name);
+                list = list?.Where(q => q.Status && q.ParentGuid == Guid.Empty)?.OrderBy(q => q.Name)?.ToList();
+                groupBundingSource.DataSource = list;
+                _groupList = list?.Select(q => q.Guid)?.ToList();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private async Task LoadSubGroups(Guid parentGuid)
+        {
+            try
+            {
+                if (parentGuid == Guid.Empty)
+                {
+                    subGroupBingingSource.DataSource = null;
+                    return;
+                }
+                var list = await PeopleGroupBussines.GetAllAsync(parentGuid);
+                list = list?.Where(q => q.Status)?.OrderBy(q => q.Name)?.ToList();
+                subGroupBingingSource.DataSource = list;
+
+                if (!_groupList.Contains(cls.GroupGuid))
+                {
+                    var grp = await PeopleGroupBussines.GetAsync(cls.GroupGuid);
+                    if (grp == null) return;
+                    //cmbGroup.SelectedValue = grp.ParentGuid;
+                    cmbSubGroup.SelectedValue = cls.GroupGuid;
+                }
             }
             catch (Exception ex)
             {
@@ -397,7 +441,9 @@ namespace Peoples
                 cls.NationalCode = txtNationalCode.Text.Trim();
                 cls.IdCode = txtIdCode.Text.Trim();
                 cls.FatherName = txtFatherName.Text;
-                cls.GroupGuid = (Guid)cmbGroup.SelectedValue;
+                if (cmbSubGroup.SelectedValue == null)
+                    cls.GroupGuid = (Guid)cmbGroup.SelectedValue;
+                else cls.GroupGuid = (Guid)cmbSubGroup.SelectedValue;
                 cls.PlaceBirth = txtPlaceBirth.Text;
                 cls.DateBirth = txtDateBirth.Text;
                 cls.IssuedFrom = txtIssuesFrom.Text;
@@ -445,5 +491,6 @@ namespace Peoples
             if (!char.IsLetter(e.KeyChar) && e.KeyChar != (char)Keys.Back && e.KeyChar != (char)Keys.Space)
                 e.Handled = true;
         }
+        private async void cmbGroup_SelectedIndexChanged(object sender, EventArgs e) => await LoadSubGroups((Guid)cmbGroup.SelectedValue);
     }
 }

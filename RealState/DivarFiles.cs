@@ -22,7 +22,7 @@ namespace RealState
         {
             try
             {
-                //return;
+                return;
                 if (!VersionAccess.Advertise) return;
                 //if (!clsAdvertise.IsGiveFile) return;
                 if (WebCustomer.Customer == null ||
@@ -189,12 +189,14 @@ namespace RealState
                                 pr = $"رهن: \r\n{item.RahnPrice:N0} تومان \r\n" +
                                      $"اجاره: \r\n{item.EjarePrice:N0} تومان";
                             }
-                            else if (item.SellPrice > 0)
+                            else if (item.SellPrice > 0 && item.Masahat > 0)
                                 pr = $"قیمت کل:\r\n {item.SellPrice:N0} تومان \r\n" +
                                      $"قیمت هر متر: \r\n{(item.SellPrice / item.Masahat):N0} تومان";
+                            else if (item.SellPrice > 0 && item.Masahat <= 0)
+                                pr = $"قیمت کل:\r\n {item.SellPrice:N0} تومان ";
                             else pr = "قیمت توافقی";
                             //ایجاد تصویر نهایی
-                            WriteTextOnImage(title, num, pr,clsEconomyUnit.EconomyName, pathsave, finnalPath);
+                            WriteTextOnImage(title, num, pr, clsEconomyUnit.EconomyName, pathsave, finnalPath);
                         }
                     }
                     catch (Exception ex)

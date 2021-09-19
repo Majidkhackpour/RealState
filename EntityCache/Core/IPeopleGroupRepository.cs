@@ -12,7 +12,7 @@ namespace EntityCache.Core
         Task<PeopleGroupBussines> GetAsync(string _connectionString, string name);
         Task<int> ChildCountAsync(string _connectionString, Guid guid);
         Task<PeopleGroupBussines> GetAsync(string _connectionString, Guid guid);
-        Task<List<PeopleGroupBussines>> GetAllAsync(string _connectionString);
+        Task<List<PeopleGroupBussines>> GetAllAsync(string _connectionString, Guid? parentGuid);
         Task<ReturnedSaveFuncInfo> SaveAsync(PeopleGroupBussines item, SqlTransaction tr);
         Task<ReturnedSaveFuncInfo> SaveRangeAsync(IEnumerable<PeopleGroupBussines> items, SqlTransaction tr);
         Task<ReturnedSaveFuncInfo> ChangeStatusAsync(PeopleGroupBussines item, bool status, SqlTransaction tr);

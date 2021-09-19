@@ -547,6 +547,7 @@ namespace RealState
             try
             {
                 var frm = SelectForm(enfrm);
+                frm.ShowInTaskbar = true;
                 if (!_showDialog)
                 {
                     frm?.ShowDialog(this);
@@ -554,10 +555,7 @@ namespace RealState
                         frm?.Dispose();
                 }
                 else
-                {
-                    frm.ShowInTaskbar = true;
                     frm?.Show(this);
-                }
             }
             catch (Exception ex) { WebErrorLog.ErrorInstence.StartErrorLog(ex); }
         }

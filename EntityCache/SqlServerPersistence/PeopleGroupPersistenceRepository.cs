@@ -77,7 +77,7 @@ namespace EntityCache.SqlServerPersistence
 
             return obj;
         }
-        public async Task<List<PeopleGroupBussines>> GetAllAsync(string _connectionString)
+        public async Task<List<PeopleGroupBussines>> GetAllAsync(string _connectionString, Guid? parentGuid)
         {
             var list = new List<PeopleGroupBussines>();
             try
@@ -85,7 +85,8 @@ namespace EntityCache.SqlServerPersistence
                 using (var cn = new SqlConnection(_connectionString))
                 {
                     var cmd = new SqlCommand("sp_PeopleGroup_GetAll", cn) { CommandType = CommandType.StoredProcedure };
-
+                    if (parentGuid != null && parentGuid != Guid.Empty)
+                        cmd.Parameters.AddWithValue("@parentGuid", parentGuid);
                     await cn.OpenAsync();
                     var dr = await cmd.ExecuteReaderAsync();
                     while (dr.Read()) list.Add(LoadData(dr));
