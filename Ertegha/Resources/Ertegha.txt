@@ -974,6 +974,7 @@ IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Buildings
 GO
 
 ALTER PROCEDURE [dbo].[sp_BuildingsReq_SelectAll] 
+	@st bit='true'
 AS
 BEGIN
 select [dbo].[BuildingRequests].*,[dbo].[Peoples].Name As AskerName,
@@ -981,6 +982,7 @@ select [dbo].[BuildingRequests].*,[dbo].[Peoples].Name As AskerName,
 	   From [dbo].[BuildingRequests] 
 	   inner join [dbo].[Peoples] on [dbo].[BuildingRequests].AskerGuid=[dbo].[Peoples].Guid
 	   inner join [dbo].[Users] on [dbo].[BuildingRequests].UserGuid=[dbo].[Users].Guid
+	   where [dbo].[BuildingRequests].Status=@st
 End
 GO
 -- ==========================================================================================
@@ -7590,4 +7592,17 @@ AS
 BEGIN
 	select Distinct Colling from Buildings
 	where ISNULL(Colling,'')<>''
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_BuildingRequest_DeleteAfter60Days]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_BuildingRequest_DeleteAfter60Days]	As Begin print 11 end')  
+GO
+Alter PROCEDURE [dbo].[sp_BuildingRequest_DeleteAfter60Days]
+	@date datetime
+AS
+BEGIN
+	update BuildingRequests
+	set Status='false',Modified=GETDATE()
+	where CreateDate<@date and Guid not in(select SecondSideGuid from Contracts)
 END

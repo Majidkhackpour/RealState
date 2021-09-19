@@ -9,6 +9,7 @@ using EntityCache.Mppings;
 using Nito.AsyncEx;
 using Persistence;
 using Services;
+using Services.FilterObjects;
 using Servicess.Interfaces.Building;
 using WebHesabBussines;
 
@@ -54,7 +55,7 @@ namespace EntityCache.Bussines
         public List<BuildingRequestRegionBussines> RegionList { get; set; }
         #endregion
 
-        public static async Task<List<BuildingRequestBussines>> GetAllAsync(CancellationToken token) => await UnitOfWork.BuildingRequest.GetAllAsync(Cache.ConnectionString, token);
+        public static async Task<List<BuildingRequestBussines>> GetAllAsync(bool status, CancellationToken token) => await UnitOfWork.BuildingRequest.GetAllAsync(Cache.ConnectionString, status, token);
         public static async Task<BuildingRequestBussines> GetAsync(Guid guid) => await UnitOfWork.BuildingRequest.GetAsync(Cache.ConnectionString, guid);
         public static BuildingRequestBussines Get(Guid guid) => AsyncContext.Run(() => GetAsync(guid));
         public async Task<ReturnedSaveFuncInfo> SaveAsync(SqlTransaction tr = null)
@@ -150,12 +151,12 @@ namespace EntityCache.Bussines
             }
             return res;
         }
-        public static async Task<List<BuildingRequestBussines>> GetAllAsync(string search, CancellationToken token)
+        public static async Task<List<BuildingRequestBussines>> GetAllAsync(string search, bool status, CancellationToken token)
         {
             try
             {
                 if (string.IsNullOrEmpty(search)) search = "";
-                var res = await GetAllAsync(token);
+                var res = await GetAllAsync(status, token);
                 if (token.IsCancellationRequested) return null;
                 var searchItems = search.SplitString();
                 if (searchItems?.Count > 0)
@@ -182,38 +183,36 @@ namespace EntityCache.Bussines
             }
         }
         public static async Task<int> DbCount(Guid userGuid) => await UnitOfWork.BuildingRequest.DbCount(Cache.ConnectionString, userGuid);
-        public static async Task<List<BuildingRequestBussines>> GetAllAsync(EnRequestType type, CancellationToken token, decimal price1,
-            decimal price2, int masahat,
-            int roomCount, Guid accountTypeGuid, Guid regionGuid)
+        public static async Task<List<BuildingRequestBussines>> GetAllAsync(RequestMatchFilter filter, CancellationToken token)
         {
             try
             {
-                IEnumerable<BuildingRequestBussines> res = await GetAllAsync(token);
+                IEnumerable<BuildingRequestBussines> res = await GetAllAsync(true, token);
                 if (token.IsCancellationRequested) return null;
-                if (type == EnRequestType.Forush)
-                    res = res.Where(q => q.SellPrice1 <= price1 && q.SellPrice2 >= price1);
-                else if (type == EnRequestType.Rahn)
+                if (filter.Type == EnRequestType.Forush)
+                    res = res.Where(q => q.SellPrice1 <= filter.Price1 && q.SellPrice2 >= filter.Price1);
+                else if (filter.Type == EnRequestType.Rahn)
                 {
                     if (token.IsCancellationRequested) return null;
-                    res = res.Where(q => q.RahnPrice1 <= price1 && q.RahnPrice2 >= price1);
-                    if (price2 != 0)
+                    res = res.Where(q => q.RahnPrice1 <= filter.Price1 && q.RahnPrice2 >= filter.Price1);
+                    if (filter.Price2 != 0)
                         res = res.Where(q =>
                             (q.EjarePrice1 == 0 && q.EjarePrice2 == 0) ||
-                            (q.EjarePrice1 <= price2 && q.EjarePrice2 >= price2));
+                            (q.EjarePrice1 <= filter.Price2 && q.EjarePrice2 >= filter.Price2));
                 }
                 if (token.IsCancellationRequested) return null;
-                if (masahat > 0) res = res.Where(q => q.Masahat1 <= masahat && q.Masahat2 >= masahat);
+                if (filter.Masahat > 0) res = res.Where(q => q.Masahat1 <= filter.Masahat && q.Masahat2 >= filter.Masahat);
                 if (token.IsCancellationRequested) return null;
-                if (roomCount > 0) res = res.Where(q => q.RoomCount <= roomCount);
+                if (filter.RoomCount > 0) res = res.Where(q => q.RoomCount <= filter.RoomCount);
                 if (token.IsCancellationRequested) return null;
-                if (accountTypeGuid != Guid.Empty)
+                if (filter.BuildingAccountTypeGuid != Guid.Empty)
                     res = res.Where(q =>
                         q.BuildingAccountTypeGuid == Guid.Empty ||
-                        q.BuildingAccountTypeGuid == accountTypeGuid);
+                        q.BuildingAccountTypeGuid == filter.BuildingAccountTypeGuid);
                 if (token.IsCancellationRequested) return null;
                 if (res == null) return null;
-                if (regionGuid != Guid.Empty)
-                    res = res.Where(q => q.RegionList == null || q.RegionList.Select(p => p.RegionGuid).Contains(regionGuid));
+                if (filter.RegionGuid != Guid.Empty)
+                    res = res.Where(q => q.RegionList == null || q.RegionList.Select(p => p.RegionGuid).Contains(filter.RegionGuid));
                 return token.IsCancellationRequested ? null : res?.ToList();
             }
             catch (Exception ex)
@@ -244,6 +243,25 @@ namespace EntityCache.Bussines
                     res.AddError("لطفا یکی از فیلدهای مبلغ را وارد نمایید");
 
                 if (Masahat1 == 0 && Masahat2 == 0) res.AddError("لطفا مساحت را وارد نمایید");
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+
+            return res;
+        }
+        public static async Task<ReturnedSaveFuncInfo> DeleteAfter60DaysAsync()
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                var isDelete = SettingsBussines.Get("DeleteRequest")?.Value.ParseToBoolean() ?? false;
+                if (!isDelete) return res;
+                var oldDate = DateTime.Now.AddDays(-60);
+                var date = new DateTime(oldDate.Year, oldDate.Month, oldDate.Day, 0, 0, 0);
+                res.AddReturnedValue(await UnitOfWork.BuildingRequest.DeleteAsync(Cache.ConnectionString, date));
             }
             catch (Exception ex)
             {

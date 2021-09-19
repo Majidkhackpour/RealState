@@ -13,7 +13,7 @@ namespace EntityCache.SqlServerPersistence
 {
     public class BuildingRequestPersistenceRepository : IBuildingRequestRepository
     {
-        public async Task<List<BuildingRequestBussines>> GetAllAsync(string _connectionString, CancellationToken token)
+        public async Task<List<BuildingRequestBussines>> GetAllAsync(string _connectionString, bool status, CancellationToken token)
         {
             var list = new List<BuildingRequestBussines>();
             try
@@ -21,6 +21,7 @@ namespace EntityCache.SqlServerPersistence
                 using (var cn = new SqlConnection(_connectionString))
                 {
                     var cmd = new SqlCommand("sp_BuildingsReq_SelectAll", cn) { CommandType = CommandType.StoredProcedure };
+                    cmd.Parameters.AddWithValue("@st", status);
                     if (token.IsCancellationRequested) return null;
                     await cn.OpenAsync();
                     var dr = await cmd.ExecuteReaderAsync();
@@ -138,6 +139,28 @@ namespace EntityCache.SqlServerPersistence
                 cmd.Parameters.AddWithValue("@serverDate", item.ServerDeliveryDate);
 
                 await cmd.ExecuteNonQueryAsync();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+
+            return res;
+        }
+        public async Task<ReturnedSaveFuncInfo> DeleteAsync(string connectionString, DateTime date)
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                using (var cn = new SqlConnection(connectionString))
+                {
+                    var cmd = new SqlCommand("sp_BuildingRequest_DeleteAfter60Days", cn) { CommandType = CommandType.StoredProcedure };
+                    cmd.Parameters.AddWithValue("@date", date);
+                    await cn.OpenAsync();
+                    await cmd.ExecuteNonQueryAsync();
+                    cn.Close();
+                }
             }
             catch (Exception ex)
             {

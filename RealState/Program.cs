@@ -68,6 +68,7 @@ namespace RealState
             WebServiceHandlers.Instance.Init(Cache.Path);
             new frmNewPlash().ShowDialog();
             _ = Task.Run(BuildingBussines.SetArchiveAsync);
+            _ = Task.Run(BuildingRequestBussines.DeleteAfter60DaysAsync);
             var frmMain = new frmNewMain();
             frmMain.ShowDialog();
         }

@@ -27,9 +27,9 @@ namespace Building.BuildingRequest
             {
                 _token?.Cancel();
                 _token = new CancellationTokenSource();
-                _list = await BuildingRequestBussines.GetAllAsync(search, _token.Token);
+                _list = await BuildingRequestBussines.GetAllAsync(search, _st, _token.Token);
                 Invoke(new MethodInvoker(() => reqBindingSource.DataSource =
-                    _list?.Where(q => q.Status == _st).OrderByDescending(q => q.CreateDate).ToSortableBindingList()));
+                    _list?.OrderByDescending(q => q.CreateDate).ToSortableBindingList()));
             }
             catch (Exception ex)
             {

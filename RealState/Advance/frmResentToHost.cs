@@ -168,7 +168,7 @@ namespace RealState.Advance
                 {
                     _token?.Cancel();
                     _token = new CancellationTokenSource();
-                    var list = await BuildingRequestBussines.GetAllAsync(_token.Token);
+                    var list = await BuildingRequestBussines.GetAllAsync(true,_token.Token);
                     if (list != null && list.Count > 0)
                         await WebBuildingRequest.SaveAsync(BuildingRequestMapper.Instance.MapList(list));
                 }

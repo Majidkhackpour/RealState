@@ -21,6 +21,8 @@ namespace Ertegha
                 res.AddReturnedValue(await clsFixBuilding.FixBuildingImage());
                 if (res.HasError) return res;
                 res.AddReturnedValue(await BuildingBussines.SetArchiveAsync());
+                if (res.HasError) return res;
+                res.AddReturnedValue(await BuildingRequestBussines.DeleteAfter60DaysAsync());
             }
             catch (Exception ex)
             {

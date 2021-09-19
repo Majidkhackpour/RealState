@@ -84,5 +84,21 @@ namespace Settings.Classes
                 SettingsBussines.Save("ShowDialog", _showDialog.ToString());
             }
         }
+
+        private static bool? _deleteRequest = null;
+        public static bool DeleteRequest
+        {
+            get
+            {
+                if (_deleteRequest != null) return _deleteRequest.Value;
+                var mem = SettingsBussines.Get("DeleteRequest");
+                return mem?.Value.ParseToBoolean() ?? false;
+            }
+            set
+            {
+                _deleteRequest = value;
+                SettingsBussines.Save("DeleteRequest", _deleteRequest.ToString());
+            }
+        }
     }
 }

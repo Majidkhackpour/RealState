@@ -474,6 +474,7 @@ namespace Settings
                 txtImagePath.Text = clsGlobal.ImagePath;
                 txtMediaPath.Text = clsGlobal.MediaPath;
                 chbShowDialog.Checked = clsGlobal.ShowDialog;
+                chbDeleteRequest.Checked = clsGlobal.DeleteRequest;
             }
             catch (Exception ex)
             {
@@ -491,6 +492,7 @@ namespace Settings
                 clsGlobal.ImagePath = txtImagePath.Text;
                 clsGlobal.MediaPath = txtMediaPath.Text;
                 clsGlobal.ShowDialog = chbShowDialog.Checked;
+                clsGlobal.DeleteRequest = chbDeleteRequest.Checked;
             }
             catch (Exception ex)
             {

@@ -5,6 +5,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using EntityCache.Bussines;
 using Services;
+using Services.FilterObjects;
 
 namespace EntityCache.ViewModels
 {
@@ -48,8 +49,18 @@ namespace EntityCache.ViewModels
                         price2 = item.EjarePrice1;
                         type = EnRequestType.Rahn;
                     }
-                    var reqList = await BuildingRequestBussines.GetAllAsync(type, token, price1, price2, item.Masahat,
-                        item.RoomCount, item.BuildingAccountTypeGuid, item.RegionGuid);
+
+                    var filter = new RequestMatchFilter()
+                    {
+                        Masahat = item.Masahat,
+                        RegionGuid = item.RegionGuid,
+                        RoomCount = item.RoomCount,
+                        BuildingAccountTypeGuid = item.BuildingAccountTypeGuid,
+                        Type = type,
+                        Price1 = price1,
+                        Price2 = price2
+                    };
+                    var reqList = await BuildingRequestBussines.GetAllAsync(filter, token);
                     if (reqList == null || reqList.Count <= 0) continue;
                     var a = new BuildingRequestViewModel()
                     {
