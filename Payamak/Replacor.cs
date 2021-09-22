@@ -70,6 +70,7 @@
             public static string OwnerName => "[نام مالک]".Trim();
             public static string OwnerTell => "[تلفن مالک]".Trim();
             public static string OwnerAddress => "[آدرس مالک]".Trim();
+            public static string OtherOptions => "[سایر امکانات]".Trim();
         }
     }
 }

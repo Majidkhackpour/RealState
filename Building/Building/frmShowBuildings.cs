@@ -439,6 +439,11 @@ namespace Building.Building
                     bu.TelegramCount += 1;
                     await bu.SaveAsync();
                     this.ShowMessage("فایل مورد نظر به تلگرام ارسال شد");
+                    if (WebCustomer.CheckCustomer())
+                    {
+                        var msg = $"ارسال ملک به کانال مشتریان \r\n {text}";
+                        _ = Task.Run(() => WebTelegramReporter.SendBuildingReport(WebCustomer.Customer.Guid, ""));
+                    }
                 }
                 frm.Dispose();
             }
@@ -475,6 +480,11 @@ namespace Building.Building
                     bu.TelegramCount += 1;
                     await bu.SaveAsync();
                     this.ShowMessage("فایل مورد نظر به تلگرام ارسال شد");
+                    if (WebCustomer.CheckCustomer())
+                    {
+                        var msg = $"ارسال ملک به کانال ادمین \r\n {text}";
+                        _ = Task.Run(() => WebTelegramReporter.SendBuildingReport(WebCustomer.Customer.Guid, ""));
+                    }
                 }
 
                 frm.Dispose();
@@ -523,6 +533,12 @@ namespace Building.Building
                 bu.TelegramCount += 1;
                 await bu.SaveAsync();
                 this.ShowMessage("فایل مورد نظر به تلگرام ارسال شد");
+
+                if (WebCustomer.CheckCustomer())
+                {
+                    var msg = $"ارسال ملک به کانال \r\n {text}";
+                    _ = Task.Run(() => WebTelegramReporter.SendBuildingReport(WebCustomer.Customer.Guid, ""));
+                }
             }
             catch (Exception ex)
             {

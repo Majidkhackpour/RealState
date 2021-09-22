@@ -77,5 +77,6 @@ namespace WebHesabBussines
         }
         public static WebCustomer GetByImei(string imei) => AsyncContext.Run(() => GetByImeiAsync(imei));
         public static WebCustomer GetByHardSerial(string hSerial) => AsyncContext.Run(() => GetByHardSerialAsync(hSerial));
+        public static bool CheckCustomer() => Customer != null && Customer.Guid != Guid.Empty;
     }
 }

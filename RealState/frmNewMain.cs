@@ -55,6 +55,7 @@ using User;
 using User.Advisor;
 using WindowsSerivces;
 using Persistence;
+using WebHesabBussines;
 
 namespace RealState
 {
@@ -609,6 +610,8 @@ namespace RealState
                 {
                     DivarFiles.Init();
                     AutoBackUp.Init(this);
+                    if (WebCustomer.CheckCustomer())
+                        _ = Task.Run(() => WebTelegramReporter.SendBuildingReport(WebCustomer.Customer.Guid, "ورود به نرم افزار"));
                 }
                 var myCollection = new AutoCompleteStringCollection();
                 var list = _dic.Keys;

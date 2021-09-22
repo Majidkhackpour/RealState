@@ -25,7 +25,7 @@ namespace RealState
                 return;
                 if (!VersionAccess.Advertise) return;
                 //if (!clsAdvertise.IsGiveFile) return;
-                if (WebCustomer.Customer == null ||
+                if (!WebCustomer.CheckCustomer()||
                     WebCustomer.Customer.isBlock ||
                     WebCustomer.Customer.isWebServiceBlock)
                     return;

@@ -518,6 +518,27 @@ namespace Building
                         else list[index] = "";
                     }
                 }
+                if (res.Contains(Replacor.TelegramBuilding.OtherOptions))
+                {
+                    var type = list.FirstOrDefault(q => q.Contains(Replacor.TelegramBuilding.OtherOptions));
+                    if (!string.IsNullOrEmpty(type))
+                    {
+                        var index = list.IndexOf(type);
+                        if(bu.OptionList==null||bu.OptionList.Count<=0)
+                            list[index] = "";
+                        else
+                        {
+                            var str = "";
+                            foreach (var item in bu.OptionList)
+                                str += item.OptionName + " 🔶 ";
+                            type = type.Replace("\r", "");
+                            type = type.Replace(Replacor.TelegramBuilding.OtherOptions, str);
+                            if (!string.IsNullOrEmpty(str))
+                                list[index] = type;
+                            else list[index] = "";
+                        }
+                    }
+                }
 
                 list = list.Where(q => !string.IsNullOrEmpty(q)).ToList();
                 res = string.Join(Environment.NewLine, list);

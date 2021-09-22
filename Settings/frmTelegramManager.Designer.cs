@@ -72,6 +72,7 @@ namespace Settings
             this.label25 = new System.Windows.Forms.Label();
             this.btnFinish = new DevComponents.DotNetBar.ButtonX();
             this.btnCancel = new DevComponents.DotNetBar.ButtonX();
+            this.btnOtherOptions = new DevComponents.DotNetBar.ButtonX();
             this.pnlTelegram.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -137,6 +138,7 @@ namespace Settings
             this.flowLayoutPanel1.Controls.Add(this.btnOwnerName);
             this.flowLayoutPanel1.Controls.Add(this.btnOwnerTell);
             this.flowLayoutPanel1.Controls.Add(this.btnOwnerAddress);
+            this.flowLayoutPanel1.Controls.Add(this.btnOtherOptions);
             this.flowLayoutPanel1.Location = new System.Drawing.Point(11, 10);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(192, 497);
@@ -793,6 +795,23 @@ namespace Settings
             this.btnCancel.TextColor = System.Drawing.Color.Black;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
+            // btnOtherOptions
+            // 
+            this.btnOtherOptions.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnOtherOptions.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.btnOtherOptions.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnOtherOptions.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.btnOtherOptions.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnOtherOptions.Location = new System.Drawing.Point(8, 564);
+            this.btnOtherOptions.Name = "btnOtherOptions";
+            this.btnOtherOptions.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
+            this.btnOtherOptions.Size = new System.Drawing.Size(164, 27);
+            this.btnOtherOptions.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
+            this.btnOtherOptions.TabIndex = 25;
+            this.btnOtherOptions.Text = "[سایر امکانات]";
+            this.btnOtherOptions.TextColor = System.Drawing.Color.White;
+            this.btnOtherOptions.Click += new System.EventHandler(this.btnOtherOptions_Click);
+            // 
             // frmTelegramManager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -864,5 +883,6 @@ namespace Settings
         private DevComponents.DotNetBar.ButtonX btnOwnerName;
         private DevComponents.DotNetBar.ButtonX btnOwnerTell;
         private DevComponents.DotNetBar.ButtonX btnOwnerAddress;
+        private DevComponents.DotNetBar.ButtonX btnOtherOptions;
     }
 }

@@ -77,7 +77,7 @@ namespace RealState
             try
             {
                 var serial = "";
-                if (WebCustomer.Customer != null && !string.IsNullOrEmpty(WebCustomer.Customer.AppSerial))
+                if (WebCustomer.CheckCustomer() && !string.IsNullOrEmpty(WebCustomer.Customer.AppSerial))
                     serial = WebCustomer.Customer.AppSerial;
                 else serial = clsRegistery.GetRegistery("U1001ML");
 

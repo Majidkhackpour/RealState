@@ -123,5 +123,6 @@ namespace Settings
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
+        private void btnOtherOptions_Click(object sender, EventArgs e) => SetDataInTxt((ButtonX)sender, txtText);
     }
 }
