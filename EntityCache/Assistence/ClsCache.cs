@@ -78,7 +78,7 @@ namespace EntityCache.Assistence
             }
             return ret;
         }
-        public static ReturnedSaveFuncInfo CommitTran(this SqlTransaction tr, SqlConnection cn = null)
+        private static ReturnedSaveFuncInfo CommitTran(this SqlTransaction tr, SqlConnection cn = null)
         {
             var ret = new ReturnedSaveFuncInfo();
             try
@@ -96,7 +96,7 @@ namespace EntityCache.Assistence
             }
             return ret;
         }
-        public static ReturnedSaveFuncInfo RollBackTran(this SqlTransaction tr, SqlConnection cn = null)
+        private static ReturnedSaveFuncInfo RollBackTran(this SqlTransaction tr, SqlConnection cn = null)
         {
             var ret = new ReturnedSaveFuncInfo();
             try

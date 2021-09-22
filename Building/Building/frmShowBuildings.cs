@@ -442,7 +442,7 @@ namespace Building.Building
                     if (WebCustomer.CheckCustomer())
                     {
                         var msg = $"ارسال ملک به کانال مشتریان \r\n {text}";
-                        _ = Task.Run(() => WebTelegramReporter.SendBuildingReport(WebCustomer.Customer.Guid, ""));
+                        _ = Task.Run(() => WebTelegramReporter.SendBuildingReport(WebCustomer.Customer.Guid, msg));
                     }
                 }
                 frm.Dispose();
@@ -483,7 +483,7 @@ namespace Building.Building
                     if (WebCustomer.CheckCustomer())
                     {
                         var msg = $"ارسال ملک به کانال ادمین \r\n {text}";
-                        _ = Task.Run(() => WebTelegramReporter.SendBuildingReport(WebCustomer.Customer.Guid, ""));
+                        _ = Task.Run(() => WebTelegramReporter.SendBuildingReport(WebCustomer.Customer.Guid, msg));
                     }
                 }
 
@@ -537,7 +537,7 @@ namespace Building.Building
                 if (WebCustomer.CheckCustomer())
                 {
                     var msg = $"ارسال ملک به کانال \r\n {text}";
-                    _ = Task.Run(() => WebTelegramReporter.SendBuildingReport(WebCustomer.Customer.Guid, ""));
+                    _ = Task.Run(() => WebTelegramReporter.SendBuildingReport(WebCustomer.Customer.Guid, msg));
                 }
             }
             catch (Exception ex)
