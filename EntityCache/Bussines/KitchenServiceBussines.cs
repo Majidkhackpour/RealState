@@ -16,6 +16,8 @@ namespace EntityCache.Bussines
 {
     public class KitchenServiceBussines : IKitchenService
     {
+        private static Guid _defaultGuid = Guid.Empty;
+
         public Guid Guid { get; set; }
         public DateTime Modified { get; set; } = DateTime.Now;
         public bool Status { get; set; } = true;
@@ -24,6 +26,15 @@ namespace EntityCache.Bussines
         public string Name { get; set; }
         public string HardSerial => Cache.HardSerial;
         public bool IsModified { get; set; } = false;
+        public static Guid DefualtGuid
+        {
+            get
+            {
+                if (_defaultGuid == Guid.Empty)
+                    _defaultGuid = AsyncContext.Run(() => GetDefultGuidAsync("تعیین نشده"));
+                return _defaultGuid;
+            }
+        }
 
 
         public static async Task<List<KitchenServiceBussines>> GetAllAsync(CancellationToken token) => await UnitOfWork.KitchenService.GetAllAsync(Cache.ConnectionString, token);
@@ -194,7 +205,7 @@ namespace EntityCache.Bussines
 
             return res;
         }
-        public static async Task<Guid> GetDefultGuidAsync(string name)
+        private static async Task<Guid> GetDefultGuidAsync(string name)
         {
             try
             {

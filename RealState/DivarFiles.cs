@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.Drawing.Text;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -22,13 +23,16 @@ namespace RealState
         {
             try
             {
-                return;
+                await Task.Delay(5000);
+                //return;
                 if (!VersionAccess.Advertise) return;
                 //if (!clsAdvertise.IsGiveFile) return;
-                if (!WebCustomer.CheckCustomer()||
+                if (!WebCustomer.CheckCustomer() ||
                     WebCustomer.Customer.isBlock ||
                     WebCustomer.Customer.isWebServiceBlock)
                     return;
+
+                var lstImagesForRemove = new List<string>();
 
                 var getDate = clsAdvertise.GetFileDate ?? DateTime.Now.AddDays(-7);
                 var newDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, 0, 0);
@@ -44,6 +48,9 @@ namespace RealState
                 {
                     try
                     {
+                        if (await BuildingBussines.CheckDuplicateAsync(item.Title.FixString()))
+                            continue;
+
                         var region = await RegionsBussines.GetDefualtAsync(item.Region, city.Guid);
                         var bu = new BuildingBussines
                         {
@@ -64,11 +71,10 @@ namespace RealState
                             AdvertiseType = item.Type,
                             Barq = EnKhadamati.Mostaqel,
                             BonBast = false,
-                            BuildingAccountTypeGuid =
-                                await BuildingAccountTypeBussines.GetDefultGuidAsync(GetAccountType(item.BuildingType)),
-                            BuildingConditionGuid = await BuildingViewBussines.GetDefultGuidAsync("تعیین نشده"),
+                            BuildingAccountTypeGuid = await BuildingAccountTypeBussines.GetDefultGuidAsync(GetAccountType(item.BuildingType)),
+                            BuildingConditionGuid = BuildingConditionBussines.DefualtGuid,
                             BuildingTypeGuid = await BuildingTypeBussines.GetDefultGuidAsync(item.BuildingType),
-                            BuildingViewGuid = await BuildingViewBussines.GetDefultGuidAsync("تعیین نشده"),
+                            BuildingViewGuid = BuildingViewBussines.DefualtGuid,
                             CityGuid = city.Guid,
                             CreateDate = DateTime.Now,
                             Dang = 6,
@@ -78,7 +84,7 @@ namespace RealState
                             EjarePrice2 = 0,
                             DateParvane = "",
                             ErtefaSaqf = 3,
-                            FloorCoverGuid = await FloorCoverBussines.GetDefultGuidAsync("تعیین نشده"),
+                            FloorCoverGuid = FloorCoverBussines.DefualtGuid,
                             Gas = EnKhadamati.Mostaqel,
                             Hashie = 0,
                             IsArchive = false,
@@ -86,7 +92,7 @@ namespace RealState
                             IsShortTime = false,
                             DivarTitle = item.Title,
                             Image = "",
-                            KitchenServiceGuid = await KitchenServiceBussines.GetDefultGuidAsync("تعیین نشده"),
+                            KitchenServiceGuid = KitchenServiceBussines.DefualtGuid,
                             Lenght = 0,
                             MamarJoda = true,
                             MetrazhKouche = 0,
@@ -115,8 +121,16 @@ namespace RealState
                             PishDesc = "",
                             OptionList = new List<BuildingRelatedOptionsBussines>(),
                             RentalAutorityGuid = RentalAuthorityBussines.Get(item.RentalAuthority)?.Guid ?? null,
-                            OwnerGuid = (await PeoplesBussines.GetDefaultPeopleAsync()).Guid
+                            OwnerGuid = PeoplesBussines.DefualtGuid
                         };
+
+                        if (item.BuildingType == "پیش‌فروش" || item.BuildingType == "پیش‌ فروش")
+                            bu.PishDesc = item.Description;
+                        if (item.BuildingType == "مشارکت در ساخت")
+                            bu.MosharekatDesc = item.Description;
+
+                        if (item.SaleSakht.Contains("از"))
+                            bu.SaleSakht = "1370";
 
                         if (item.Evelator)
                         {
@@ -126,7 +140,7 @@ namespace RealState
                                 Modified = DateTime.Now,
                                 ServerStatus = ServerStatus.None,
                                 ServerDeliveryDate = DateTime.Now,
-                                BuildingOptionGuid = await BuildingOptionsBussines.GetEvelatorGuidAsync(),
+                                BuildingOptionGuid = BuildingOptionsBussines.EveletorGuid,
                                 BuildinGuid = bu.Guid
                             });
                         }
@@ -138,7 +152,7 @@ namespace RealState
                                 Modified = DateTime.Now,
                                 ServerStatus = ServerStatus.None,
                                 ServerDeliveryDate = DateTime.Now,
-                                BuildingOptionGuid = await BuildingOptionsBussines.GetBalconyGuidAsync(),
+                                BuildingOptionGuid = BuildingOptionsBussines.BalconyGuid,
                                 BuildinGuid = bu.Guid
                             });
                         }
@@ -150,7 +164,7 @@ namespace RealState
                                 Modified = DateTime.Now,
                                 ServerStatus = ServerStatus.None,
                                 ServerDeliveryDate = DateTime.Now,
-                                BuildingOptionGuid = await BuildingOptionsBussines.GetParkingGuidAsync(),
+                                BuildingOptionGuid = BuildingOptionsBussines.ParkingGuid,
                                 BuildinGuid = bu.Guid
                             });
                         }
@@ -162,12 +176,15 @@ namespace RealState
                                 Modified = DateTime.Now,
                                 ServerStatus = ServerStatus.None,
                                 ServerDeliveryDate = DateTime.Now,
-                                BuildingOptionGuid = await BuildingOptionsBussines.GetParkingGuidAsync(),
+                                BuildingOptionGuid = BuildingOptionsBussines.StoreGuid,
                                 BuildinGuid = bu.Guid
                             });
                         }
+
+
                         var lstImage = item.ImagesList.FromJson<List<string>>();
                         if (lstImage == null || lstImage.Count <= 0) continue;
+                        bu.GalleryList = new List<BuildingGalleryBussines>();
                         foreach (var img in lstImage)
                         {
                             var bannerPath = Path.Combine(Application.StartupPath, "testBanner__.jpg");
@@ -180,30 +197,32 @@ namespace RealState
                             DivarAPI.DownloadImage(img, path);
                             //ایجاد تصویر با بنر
                             CreateNewImage(path, bannerPath, pathsave);
-                            var conType = item.RahnPrice > 0 ? "رهن و اجاره" : "فروش";
-                            var title = $"{conType} {item.BuildingType} {item.Masahat} متری";
-                            var num = clsEconomyUnit.ManagerMobile;
-                            var pr = "";
-                            if (item.RahnPrice > 0)
-                            {
-                                pr = $"رهن: \r\n{item.RahnPrice:N0} تومان \r\n" +
-                                     $"اجاره: \r\n{item.EjarePrice:N0} تومان";
-                            }
-                            else if (item.SellPrice > 0 && item.Masahat > 0)
-                                pr = $"قیمت کل:\r\n {item.SellPrice:N0} تومان \r\n" +
-                                     $"قیمت هر متر: \r\n{(item.SellPrice / item.Masahat):N0} تومان";
-                            else if (item.SellPrice > 0 && item.Masahat <= 0)
-                                pr = $"قیمت کل:\r\n {item.SellPrice:N0} تومان ";
-                            else pr = "قیمت توافقی";
                             //ایجاد تصویر نهایی
-                            WriteTextOnImage(title, num, pr, clsEconomyUnit.EconomyName, pathsave, finnalPath);
+                            WriteTextOnImage(clsEconomyUnit.EconomyName, clsEconomyUnit.ManagerMobile, pathsave, finnalPath);
+                            lstImagesForRemove.Add(path);
+                            lstImagesForRemove.Add(pathsave);
+
+                            bu.GalleryList.Add(new BuildingGalleryBussines()
+                            {
+                                Guid = Guid.NewGuid(),
+                                Modified = DateTime.Now,
+                                ServerStatus = ServerStatus.None,
+                                ServerDeliveryDate = DateTime.Now,
+                                BuildingGuid = bu.Guid,
+                                ImageName = finnalPath
+                            });
                         }
+
+                        await bu.SaveAsync(null, false);
                     }
                     catch (Exception ex)
                     {
                         WebErrorLog.ErrorInstence.StartErrorLog(ex);
                     }
                 }
+
+                RemoveUnusedFiles(lstImagesForRemove);
+                BuildingBussines.RaiseStaticEvent();
                 //clsAdvertise.GetFileDate = DateTime.Now;
             }
             catch (Exception ex)
@@ -291,13 +310,12 @@ namespace RealState
                 WebErrorLog.ErrorInstence.StartErrorLog(e);
             }
         }
-        private static void WriteTextOnImage(string text, string num, string pric, string link, string filePath, string savePath)
+        private static void WriteTextOnImage(string text, string num, string filePath, string savePath)
         {
             try
             {
                 var firstText = text;
                 var number = num;
-                var price = pric;
 
                 var imageFilePath = filePath;
                 var bitmap = (Bitmap)Image.FromFile(imageFilePath);
@@ -313,8 +331,6 @@ namespace RealState
                 else if (firstText.Length > 40)
                     firstLocation = new PointF(bitmap.Width - 435, bitmap.Height - 70);
                 var numberLocation = new PointF(number.Length * 20, bitmap.Height - 30);
-                var linkLocation = new PointF(bitmap.Width - 150, bitmap.Height - 20);
-                var priceLocation = new PointF(firstText.Length, bitmap.Height - 65);
 
                 if (firstText.Length > 40)
                     firstText = "..." + firstText.Remove(38, firstText.Length - 38);
@@ -324,19 +340,30 @@ namespace RealState
 
                 var arialFont = new Font("B Mehr", 18);
                 var numberFont = new Font("B Yekan", 14);
-                var linkFont = new Font("B Yekan", 8);
-                var priceFont = new Font("B Morvarid", 10);
-
-                if (pric == "قیمت توافقی")
-                    priceFont = new Font("B Morvarid", 18);
-
 
                 graphics.DrawString(firstText, arialFont, Brushes.Black, firstLocation);
                 graphics.DrawString(number, numberFont, Brushes.Red, numberLocation);
-                graphics.DrawString(link, linkFont, Brushes.Black, linkLocation);
-                graphics.DrawString(price, priceFont, Brushes.White, priceLocation);
 
                 bitmap.Save(savePath);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private static void RemoveUnusedFiles(List<string> fileName)
+        {
+            try
+            {
+                foreach (var item in fileName)
+                {
+                    try
+                    {
+                        if (File.Exists(item))
+                            File.Delete(item);
+                    }
+                    catch { }
+                }
             }
             catch (Exception ex)
             {

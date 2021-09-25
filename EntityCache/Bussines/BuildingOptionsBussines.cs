@@ -16,6 +16,11 @@ namespace EntityCache.Bussines
 {
     public class BuildingOptionsBussines : IBuildingOptions
     {
+        private static Guid _evelatorGuid = Guid.Empty;
+        private static Guid _balconyGuid = Guid.Empty;
+        private static Guid _parkingGuid = Guid.Empty;
+        private static Guid _storeGuid = Guid.Empty;
+
         public Guid Guid { get; set; }
         public DateTime Modified { get; set; } = DateTime.Now;
         public bool Status { get; set; } = true;
@@ -25,6 +30,42 @@ namespace EntityCache.Bussines
         public bool Checked { get; set; }
         public string HardSerial => Cache.HardSerial;
         public bool IsModified { get; set; } = false;
+        public static Guid EveletorGuid
+        {
+            get
+            {
+                if (_evelatorGuid == Guid.Empty)
+                    _evelatorGuid = AsyncContext.Run(GetEvelatorGuidAsync);
+                return _evelatorGuid;
+            }
+        }
+        public static Guid ParkingGuid
+        {
+            get
+            {
+                if (_parkingGuid == Guid.Empty)
+                    _parkingGuid = AsyncContext.Run(GetParkingGuidAsync);
+                return _parkingGuid;
+            }
+        }
+        public static Guid BalconyGuid
+        {
+            get
+            {
+                if (_balconyGuid == Guid.Empty)
+                    _balconyGuid = AsyncContext.Run(GetBalconyGuidAsync);
+                return _balconyGuid;
+            }
+        }
+        public static Guid StoreGuid
+        {
+            get
+            {
+                if (_storeGuid == Guid.Empty)
+                    _storeGuid = AsyncContext.Run(GetStoreGuidAsync);
+                return _storeGuid;
+            }
+        }
 
 
         public static async Task<List<BuildingOptionsBussines>> GetAllAsync(CancellationToken token) => await UnitOfWork.BuildingOption.GetAllAsync(Cache.ConnectionString, token);
@@ -195,7 +236,7 @@ namespace EntityCache.Bussines
 
             return res;
         }
-        public static async Task<Guid> GetEvelatorGuidAsync()
+        private static async Task<Guid> GetEvelatorGuidAsync()
         {
             try
             {
@@ -221,7 +262,7 @@ namespace EntityCache.Bussines
                 return Guid.Empty;
             }
         }
-        public static async Task<Guid> GetBalconyGuidAsync()
+        private static async Task<Guid> GetBalconyGuidAsync()
         {
             try
             {
@@ -247,7 +288,7 @@ namespace EntityCache.Bussines
                 return Guid.Empty;
             }
         }
-        public static async Task<Guid> GetStoreGuidAsync()
+        private static async Task<Guid> GetStoreGuidAsync()
         {
             try
             {
@@ -273,7 +314,7 @@ namespace EntityCache.Bussines
                 return Guid.Empty;
             }
         }
-        public static async Task<Guid> GetParkingGuidAsync()
+        private static async Task<Guid> GetParkingGuidAsync()
         {
             try
             {

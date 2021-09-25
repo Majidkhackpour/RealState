@@ -191,28 +191,6 @@ namespace EntityCache.Bussines
             }
             return res;
         }
-        public static async Task<ReturnedSaveFuncInfo> SaveRangeAsync(List<BuildingBussines> lst)
-        {
-            var res = new ReturnedSaveFuncInfo();
-            try
-            {
-                var code = lst.FirstOrDefault()?.Code.ParseToInt();
-                foreach (var item in lst)
-                {
-                    if (code > 0) item.Code = code.ToString();
-                    if (item == null) continue;
-                    res.AddReturnedValue(await item.SaveAsync(isRaiseEvent: false));
-                    code++;
-                }
-                RaiseStaticEvent();
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-                res.AddReturnedValue(ex);
-            }
-            return res;
-        }
         public async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(bool status, SqlTransaction tr = null)
         {
             var res = new ReturnedSaveFuncInfo();
@@ -446,7 +424,7 @@ namespace EntityCache.Bussines
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private static void RaiseStaticEvent()
+        public static void RaiseStaticEvent()
         {
             try
             {

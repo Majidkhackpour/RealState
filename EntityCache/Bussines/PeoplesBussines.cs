@@ -17,6 +17,8 @@ namespace EntityCache.Bussines
 {
     public class PeoplesBussines : IPeoples
     {
+        private static Guid _defaultGuid = Guid.Empty;
+
         public static event Func<Task> OnSaved;
         public Guid Guid { get; set; }
         public DateTime Modified { get; set; } = DateTime.Now;
@@ -46,6 +48,17 @@ namespace EntityCache.Bussines
         public List<PhoneBookBussines> TellList { get; set; }
         public List<PeoplesBankAccountBussines> BankList { get; set; }
         public bool IsModified { get; set; } = false;
+        public static Guid DefualtGuid
+        {
+            get
+            {
+                if (_defaultGuid != Guid.Empty) return _defaultGuid;
+                var def = AsyncContext.Run(GetDefaultPeopleAsync);
+                _defaultGuid = def?.Guid ?? Guid.Empty;
+                return _defaultGuid;
+            }
+        }
+
 
         public static async Task<List<PeoplesBussines>> GetAllAsync(CancellationToken token) => await UnitOfWork.Peoples.GetAllAsync(Cache.ConnectionString, token);
         public static async Task<PeoplesBussines> GetAsync(Guid guid) => await UnitOfWork.Peoples.GetAsync(Cache.ConnectionString, guid);
@@ -304,6 +317,6 @@ namespace EntityCache.Bussines
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        public static async Task<PeoplesBussines> GetDefaultPeopleAsync() => await GetAsync(ParentDefaults.TafsilCoding.DefualtCustomer);
+        private static async Task<PeoplesBussines> GetDefaultPeopleAsync() => await GetAsync(ParentDefaults.TafsilCoding.DefualtCustomer);
     }
 }

@@ -16,6 +16,8 @@ namespace EntityCache.Bussines
 {
     public class BuildingConditionBussines : IBuildingCondition
     {
+        private static Guid _defualtGuid = Guid.Empty;
+
         public Guid Guid { get; set; }
         public DateTime Modified { get; set; } = DateTime.Now;
         public bool Status { get; set; } = true;
@@ -24,6 +26,15 @@ namespace EntityCache.Bussines
         public string Name { get; set; }
         public string HardSerial => Cache.HardSerial;
         public bool IsModified { get; set; } = false;
+        public static Guid DefualtGuid
+        {
+            get
+            {
+                if (_defualtGuid == Guid.Empty)
+                    _defualtGuid = AsyncContext.Run(() => GetDefultGuidAsync("تعیین نشده"));
+                return _defualtGuid;
+            }
+        }
 
 
         public static async Task<List<BuildingConditionBussines>> GetAllAsync(CancellationToken token) => await UnitOfWork.BuildingCondition.GetAllAsync(Cache.ConnectionString, token);
@@ -193,7 +204,7 @@ namespace EntityCache.Bussines
 
             return res;
         }
-        public static async Task<Guid> GetDefultGuidAsync(string name)
+        private static async Task<Guid> GetDefultGuidAsync(string name)
         {
             try
             {
