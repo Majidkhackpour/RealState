@@ -116,7 +116,7 @@ namespace EntityCache.Bussines
         public static async Task<List<BuildingBussines>> GetAllAsync(CancellationToken token, bool isLoadDet) => await UnitOfWork.Building.GetAllAsync(Cache.ConnectionString, token, isLoadDet);
         public static async Task<BuildingBussines> GetAsync(Guid guid) => await UnitOfWork.Building.GetAsync(Cache.ConnectionString, guid);
         public static BuildingBussines Get(Guid guid) => AsyncContext.Run(() => GetAsync(guid));
-        public async Task<ReturnedSaveFuncInfo> SaveAsync(SqlTransaction tr = null, bool isRaiseEvent = true)
+        public async Task<ReturnedSaveFuncInfo> SaveAsync(SqlTransaction tr = null, bool isRaiseEvent = true, bool isFromServer = false)
         {
             var res = new ReturnedSaveFuncInfo();
             var autoTran = tr == null;
@@ -130,8 +130,11 @@ namespace EntityCache.Bussines
                     tr = cn.BeginTransaction();
                 }
 
-                res.AddReturnedValue(await CheckValidationAsync());
-                if (res.HasError) return res;
+                if (!isFromServer)
+                {
+                    res.AddReturnedValue(await CheckValidationAsync());
+                    if (res.HasError) return res;
+                }
 
                 res.AddReturnedValue(await UnitOfWork.Building.SaveAsync(this, tr));
                 if (res.HasError) return res;

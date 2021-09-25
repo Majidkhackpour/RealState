@@ -111,8 +111,12 @@ namespace Advertise.Classes
         }
         public static void DownloadImage(string src, string path)
         {
-            var webClient = new WebClient();
-            webClient.DownloadFile(src, path);
+            try
+            {
+                var webClient = new WebClient();
+                webClient.DownloadFile(src, path);
+            }
+            catch { }
         }
     }
     public class Regions

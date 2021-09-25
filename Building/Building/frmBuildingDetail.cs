@@ -8,6 +8,7 @@ using WindowsSerivces;
 using EntityCache.Bussines;
 using MetroFramework.Forms;
 using Services;
+using Telerik.WinControls.UI;
 
 namespace Building.Building
 {
@@ -165,7 +166,10 @@ namespace Building.Building
                     foreach (var image in bu.GalleryList)
                     {
                         var a = Path.Combine(Application.StartupPath, "Images");
-                        var b = Path.Combine(a, image.ImageName + ".jpg");
+                        var b = "";
+                        b = !image.ImageName.EndsWith(".jpg")
+                            ? Path.Combine(a, image.ImageName + ".jpg")
+                            : Path.Combine(a, image.ImageName);
                         lstList.Add(b);
                     }
 

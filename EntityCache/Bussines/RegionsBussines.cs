@@ -225,6 +225,7 @@ namespace EntityCache.Bussines
                     CityGuid = cityGuid,
                     StateGuid = city.StateGuid
                 };
+                await reg.SaveAsync();
                 return reg;
             }
             catch (Exception ex)

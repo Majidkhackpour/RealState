@@ -18,13 +18,17 @@ namespace RealState
 {
     public class DivarFiles
     {
-        public static event Func<Task> OnSavedFinished;
-        public static event Func<Task> OnSavedStarted;
+        private static bool _isInited = false;
+
+        public static event Func<int, Task> OnSavedFinished;
+        public static event Func<int, Task> OnSavedStarted;
+        public static event Func<int, Task> OnDataRecieved;
         public static void Init() => _ = Task.Run(GetFilesFromDivarAsync);
         private static async Task GetFilesFromDivarAsync()
         {
             try
             {
+                if (_isInited) return;
                 await Task.Delay(5000);
                 //return;
                 if (!VersionAccess.Advertise) return;
@@ -43,12 +47,13 @@ namespace RealState
                 var insertedDate = new DateTime(getDate.Year, getDate.Month, getDate.Day, 0, 0, 0);
                 var list = await WebScrapper.GetAllAsync(insertedDate);
                 if (list == null || list.Count <= 0) return;
+                _isInited = true;
                 var state = await StatesBussines.GetAsync("خراسان رضوی");
                 if (state == null) return;
                 var city = await CitiesBussines.GetDefualtAsync("مشهد", state.Guid);
 
-                RaiseStartedEvent();
-
+                RaiseStartedEvent(list.Count);
+                var _buildingCount = 0;
                 foreach (var item in list)
                 {
                     try
@@ -137,6 +142,9 @@ namespace RealState
                         if (item.SaleSakht.Contains("از"))
                             bu.SaleSakht = "1370";
 
+                        if (bu.RentalAutorityGuid == Guid.Empty)
+                            bu.RentalAutorityGuid = null;
+
                         if (item.Evelator)
                         {
                             bu.OptionList.Add(new BuildingRelatedOptionsBussines()
@@ -200,6 +208,7 @@ namespace RealState
                             var finnalPath = Path.Combine(savePathFile, Guid.NewGuid() + ".jpg");
                             //دانلود تصویر
                             DivarAPI.DownloadImage(img, path);
+                            if (!File.Exists(path)) continue;
                             //ایجاد تصویر با بنر
                             CreateNewImage(path, bannerPath, pathsave);
                             //ایجاد تصویر نهایی
@@ -218,7 +227,18 @@ namespace RealState
                             });
                         }
 
-                        await bu.SaveAsync(null, false);
+                        var res = await bu.SaveAsync(null, false, true);
+                        if (!res.HasError)
+                        {
+                            _buildingCount++;
+                            RaiseDataRecievedEvent(_buildingCount);
+                        }
+
+                        if (_buildingCount % 100 != 0) continue;
+                        if (!WebCustomer.CheckCustomer()) continue;
+                        var msg = "درحال دریافت \r\n" +
+                                  $"{_buildingCount} فایل دریافت شد";
+                        _ = Task.Run(() => WebTelegramReporter.SendBuildingReport(WebCustomer.Customer.Guid, msg));
                     }
                     catch (Exception ex)
                     {
@@ -228,7 +248,8 @@ namespace RealState
 
                 RemoveUnusedFiles(lstImagesForRemove);
                 BuildingBussines.RaiseStaticEvent();
-                RaiseFinishedEvent();
+                RaiseFinishedEvent(_buildingCount);
+                _isInited = false;
                 //clsAdvertise.GetFileDate = DateTime.Now;
             }
             catch (Exception ex)
@@ -376,24 +397,36 @@ namespace RealState
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        public static void RaiseFinishedEvent()
+        private static void RaiseFinishedEvent(int count)
         {
             try
             {
                 var handler = OnSavedFinished;
-                if (handler != null) OnSavedFinished?.Invoke();
+                if (handler != null) OnSavedFinished?.Invoke(count);
             }
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        public static void RaiseStartedEvent()
+        private static void RaiseStartedEvent(int count)
         {
             try
             {
                 var handler = OnSavedStarted;
-                if (handler != null) OnSavedStarted?.Invoke();
+                if (handler != null) OnSavedStarted?.Invoke(count);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private static void RaiseDataRecievedEvent(int count)
+        {
+            try
+            {
+                var handler = OnDataRecieved;
+                if (handler != null) OnDataRecieved?.Invoke(count);
             }
             catch (Exception ex)
             {

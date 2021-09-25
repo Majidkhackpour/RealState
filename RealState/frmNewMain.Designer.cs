@@ -39,6 +39,7 @@ namespace RealState
             this.lblUserName = new System.Windows.Forms.Label();
             this.lblTitle = new System.Windows.Forms.Label();
             this.groupPanel1 = new DevComponents.DotNetBar.Controls.GroupPanel();
+            this.lblDivar = new System.Windows.Forms.Label();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.grpBaseInfo = new DevComponents.DotNetBar.Controls.GroupPanel();
             this.groupPanel3 = new DevComponents.DotNetBar.Controls.GroupPanel();
@@ -438,6 +439,7 @@ namespace RealState
             this.groupPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupPanel1.CanvasColor = System.Drawing.Color.Transparent;
+            this.groupPanel1.Controls.Add(this.lblDivar);
             this.groupPanel1.Controls.Add(this.flowLayoutPanel1);
             this.groupPanel1.Controls.Add(this.lblSecond);
             this.groupPanel1.Controls.Add(this.lblMinute);
@@ -469,6 +471,18 @@ namespace RealState
             // 
             this.groupPanel1.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.groupPanel1.TabIndex = 55715;
+            // 
+            // lblDivar
+            // 
+            this.lblDivar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblDivar.BackColor = System.Drawing.Color.Transparent;
+            this.lblDivar.Font = new System.Drawing.Font("B Yekan", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.lblDivar.Location = new System.Drawing.Point(3, 63);
+            this.lblDivar.Name = "lblDivar";
+            this.lblDivar.Size = new System.Drawing.Size(278, 29);
+            this.lblDivar.TabIndex = 55728;
+            this.lblDivar.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // flowLayoutPanel1
             // 
@@ -2926,7 +2940,7 @@ namespace RealState
             this.lblSecond.AutoSize = true;
             this.lblSecond.BackColor = System.Drawing.Color.Transparent;
             this.lblSecond.Font = new System.Drawing.Font("B Yekan", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.lblSecond.Location = new System.Drawing.Point(131, 67);
+            this.lblSecond.Location = new System.Drawing.Point(131, 35);
             this.lblSecond.Name = "lblSecond";
             this.lblSecond.Size = new System.Drawing.Size(18, 29);
             this.lblSecond.TabIndex = 55722;
@@ -2939,7 +2953,7 @@ namespace RealState
             this.lblMinute.AutoSize = true;
             this.lblMinute.BackColor = System.Drawing.Color.Transparent;
             this.lblMinute.Font = new System.Drawing.Font("B Yekan", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.lblMinute.Location = new System.Drawing.Point(145, 67);
+            this.lblMinute.Location = new System.Drawing.Point(145, 35);
             this.lblMinute.Name = "lblMinute";
             this.lblMinute.Size = new System.Drawing.Size(35, 29);
             this.lblMinute.TabIndex = 55723;
@@ -2951,7 +2965,7 @@ namespace RealState
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblDate.BackColor = System.Drawing.Color.Transparent;
             this.lblDate.Font = new System.Drawing.Font("B Yekan", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.lblDate.Location = new System.Drawing.Point(3, 38);
+            this.lblDate.Location = new System.Drawing.Point(3, 6);
             this.lblDate.Name = "lblDate";
             this.lblDate.Size = new System.Drawing.Size(278, 29);
             this.lblDate.TabIndex = 55726;
@@ -2965,7 +2979,7 @@ namespace RealState
             this.lblHour.AutoSize = true;
             this.lblHour.BackColor = System.Drawing.Color.Transparent;
             this.lblHour.Font = new System.Drawing.Font("B Yekan", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.lblHour.Location = new System.Drawing.Point(104, 67);
+            this.lblHour.Location = new System.Drawing.Point(104, 35);
             this.lblHour.Name = "lblHour";
             this.lblHour.Size = new System.Drawing.Size(35, 29);
             this.lblHour.TabIndex = 55727;
@@ -4575,5 +4589,6 @@ namespace RealState
         private System.Windows.Forms.Label lblSerial;
         private System.Windows.Forms.Label lblInternet;
         private System.Windows.Forms.Timer timerCheckInternet;
+        private System.Windows.Forms.Label lblDivar;
     }
 }

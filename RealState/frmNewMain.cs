@@ -577,6 +577,7 @@ namespace RealState
                 if (Cache.IsClient || !VersionAccess.Advertise) return;
                 DivarFiles.OnSavedStarted += DivarFilesOnOnSavedStarted;
                 DivarFiles.OnSavedFinished += DivarFilesOnOnSavedFinished;
+                DivarFiles.OnDataRecieved+=DivarFilesOnOnDataRecieved;
             }
             catch (Exception ex)
             {
@@ -584,13 +585,56 @@ namespace RealState
             }
         }
 
-        private Task DivarFilesOnOnSavedFinished()
+        private async Task DivarFilesOnOnDataRecieved(int count)
         {
-            throw new NotImplementedException();
+            try
+            {
+                Invoke(new MethodInvoker(() => lblDivar.Text = $"درحال دریافت فایل از سرور ... ({count})"));
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
         }
-        private Task DivarFilesOnOnSavedStarted()
+        private async Task DivarFilesOnOnSavedFinished(int count)
         {
-            throw new NotImplementedException();
+            try
+            {
+                if (WebCustomer.CheckCustomer())
+                {
+                    var msg = "اتمام دریافت فایل از سرور \r\n" +
+                              $"تعداد فایل ذخیره شده: {count}";
+                    _ = Task.Run(() => WebTelegramReporter.SendBuildingReport(WebCustomer.Customer.Guid, msg));
+                }
+                Invoke(new MethodInvoker(() => lblDivar.Text = "اتمام دریافت فایل از سرور ..."));
+                await Task.Delay(10 * 6000);
+                Invoke(new MethodInvoker(() =>
+                {
+                    lblDivar.Text = "";
+                    lblDivar.Visible = false;
+                }));
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private async Task DivarFilesOnOnSavedStarted(int count)
+        {
+            try
+            {
+                if (WebCustomer.CheckCustomer())
+                {
+                    var msg = "آغاز دریافت فایل از سرور \r\n" +
+                              $"تعداد فایل دریافت شده: {count}";
+                    _ = Task.Run(() => WebTelegramReporter.SendBuildingReport(WebCustomer.Customer.Guid, msg));
+                }
+                Invoke(new MethodInvoker(() => lblDivar.Text = "درحال دریافت فایل از سرور ..."));
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
         }
         private Task BuildingRequestBussines_OnSaved() => _ = Task.Run(LoadDashboard);
         private async Task BuildingBussines_OnSaved()
