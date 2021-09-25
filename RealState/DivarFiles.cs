@@ -18,6 +18,8 @@ namespace RealState
 {
     public class DivarFiles
     {
+        public static event Func<Task> OnSavedFinished;
+        public static event Func<Task> OnSavedStarted;
         public static void Init() => _ = Task.Run(GetFilesFromDivarAsync);
         private static async Task GetFilesFromDivarAsync()
         {
@@ -44,6 +46,9 @@ namespace RealState
                 var state = await StatesBussines.GetAsync("خراسان رضوی");
                 if (state == null) return;
                 var city = await CitiesBussines.GetDefualtAsync("مشهد", state.Guid);
+
+                RaiseStartedEvent();
+
                 foreach (var item in list)
                 {
                     try
@@ -223,6 +228,7 @@ namespace RealState
 
                 RemoveUnusedFiles(lstImagesForRemove);
                 BuildingBussines.RaiseStaticEvent();
+                RaiseFinishedEvent();
                 //clsAdvertise.GetFileDate = DateTime.Now;
             }
             catch (Exception ex)
@@ -364,6 +370,30 @@ namespace RealState
                     }
                     catch { }
                 }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        public static void RaiseFinishedEvent()
+        {
+            try
+            {
+                var handler = OnSavedFinished;
+                if (handler != null) OnSavedFinished?.Invoke();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        public static void RaiseStartedEvent()
+        {
+            try
+            {
+                var handler = OnSavedStarted;
+                if (handler != null) OnSavedStarted?.Invoke();
             }
             catch (Exception ex)
             {

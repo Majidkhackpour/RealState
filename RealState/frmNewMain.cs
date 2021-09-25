@@ -574,6 +574,9 @@ namespace RealState
                 PeoplesBussines.OnSaved += PeoplesBussines_OnSaved;
                 BuildingBussines.OnSaved += BuildingBussines_OnSaved;
                 BuildingRequestBussines.OnSaved += BuildingRequestBussines_OnSaved;
+                if (Cache.IsClient || !VersionAccess.Advertise) return;
+                DivarFiles.OnSavedStarted += DivarFilesOnOnSavedStarted;
+                DivarFiles.OnSavedFinished += DivarFilesOnOnSavedFinished;
             }
             catch (Exception ex)
             {
@@ -581,6 +584,14 @@ namespace RealState
             }
         }
 
+        private Task DivarFilesOnOnSavedFinished()
+        {
+            throw new NotImplementedException();
+        }
+        private Task DivarFilesOnOnSavedStarted()
+        {
+            throw new NotImplementedException();
+        }
         private Task BuildingRequestBussines_OnSaved() => _ = Task.Run(LoadDashboard);
         private async Task BuildingBussines_OnSaved()
         {
