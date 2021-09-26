@@ -227,7 +227,7 @@ namespace RealState
                             });
                         }
 
-                        var res = await bu.SaveAsync(null, false, true);
+                        var res = await BuildingBussines.SaveFromHostAsync(bu, item.Number);
                         if (!res.HasError)
                         {
                             _buildingCount++;

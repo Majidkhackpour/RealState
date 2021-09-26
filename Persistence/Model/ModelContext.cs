@@ -84,5 +84,6 @@ namespace Persistence.Model
         public virtual DbSet<AdjectiveDescription> AdvDescription { get; set; }
         public virtual DbSet<Calendar> Calendar { get; set; }
         public virtual DbSet<WorkingRange> WorkingRange { get; set; }
+        public virtual DbSet<BuildingRelatedNumber> BuildingRelatedNumber { get; set; }
     }
 }

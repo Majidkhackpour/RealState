@@ -1,7 +1,5 @@
 ﻿using EntityCache.Bussines;
 using EntityCache.Core;
-using Persistence.Entities;
-using Persistence.Model;
 using Services;
 using System;
 using System.Collections.Generic;
@@ -58,7 +56,7 @@ namespace EntityCache.SqlServerPersistence
             var res = new ReturnedSaveFuncInfo();
             try
             {
-                var cmd = new SqlCommand("sp_BuildingRelatedOptopn_Save", tr.Connection,tr) { CommandType = CommandType.StoredProcedure };
+                var cmd = new SqlCommand("sp_BuildingRelatedOptopn_Save", tr.Connection, tr) { CommandType = CommandType.StoredProcedure };
                 cmd.Parameters.AddWithValue("@guid", item.Guid);
                 cmd.Parameters.AddWithValue("@buOptionGuid", item.BuildingOptionGuid);
                 cmd.Parameters.AddWithValue("@modif", item.Modified);

@@ -72,6 +72,7 @@
     <Compile Include="Entities\BuildingGallery.cs" />
     <Compile Include="Entities\BuildingMedia.cs" />
     <Compile Include="Entities\BuildingOptions.cs" />
+    <Compile Include="Entities\BuildingRelatedNumber.cs" />
     <Compile Include="Entities\BuildingRelatedOptions.cs" />
     <Compile Include="Entities\BuildingRequest.cs" />
     <Compile Include="Entities\BuildingRequestRegion.cs" />
@@ -524,6 +525,10 @@
     <Compile Include="Migrations\202109131355445__101.designer.cs">
       <DependentUpon>202109131355445__101.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202109261352555__102.cs" />
+    <Compile Include="Migrations\202109261352555__102.designer.cs">
+      <DependentUpon>202109261352555__102.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\ModelContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -841,6 +846,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202109131355445__101.resx">
       <DependentUpon>202109131355445__101.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202109261352555__102.resx">
+      <DependentUpon>202109261352555__102.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -119,6 +119,7 @@
     <Compile Include="Bussines\BuildingGalleryBussines.cs" />
     <Compile Include="Bussines\BuildingMediaBussines.cs" />
     <Compile Include="Bussines\BuildingOptionsBussines.cs" />
+    <Compile Include="Bussines\BuildingRelatedNumberBussines.cs" />
     <Compile Include="Bussines\BuildingRelatedOptionsBussines.cs" />
     <Compile Include="Bussines\BuildingRequestBussines.cs" />
     <Compile Include="Bussines\BuildingRequestRegionBussines.cs" />
@@ -181,6 +182,7 @@
     <Compile Include="Core\IBuildingGalleryRepository.cs" />
     <Compile Include="Core\IBuildingMediaRepository.cs" />
     <Compile Include="Core\IBuildingOptionRepository.cs" />
+    <Compile Include="Core\IBuildingRelatedNumberRepository.cs" />
     <Compile Include="Core\IBuildingRelatedOptionsRepository.cs" />
     <Compile Include="Core\IBuildingRepository.cs" />
     <Compile Include="Core\IBuildingRequestRegionRepository.cs" />
@@ -274,6 +276,7 @@
     <Compile Include="SqlServerPersistence\BuildingMediaPersistenceRepository.cs" />
     <Compile Include="SqlServerPersistence\BuildingOptionPersistenceRepository.cs" />
     <Compile Include="SqlServerPersistence\BuildingPersistenceRepository.cs" />
+    <Compile Include="SqlServerPersistence\BuildingRelatedNumberPersistenceRepository.cs" />
     <Compile Include="SqlServerPersistence\BuildingRelatedOptionsPersistenceRepository.cs" />
     <Compile Include="SqlServerPersistence\BuildingRequestPersistenceRepository.cs" />
     <Compile Include="SqlServerPersistence\BuildingRequestRegionPersistenceRepository.cs" />

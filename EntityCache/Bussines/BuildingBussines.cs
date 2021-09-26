@@ -462,5 +462,39 @@ namespace EntityCache.Bussines
         public static async Task<bool> CheckDuplicateAsync(string divarTitle) => await UnitOfWork.Building.CheckDuplicateAsync(Cache.ConnectionString, divarTitle);
         public static async Task<List<string>> GetAllHittingAsync() => await UnitOfWork.Building.GetAllHittingAsync(Cache.ConnectionString);
         public static async Task<List<string>> GetAllCollingAsync() => await UnitOfWork.Building.GetAllCollingAsync(Cache.ConnectionString);
+        public static async Task<ReturnedSaveFuncInfo> SaveFromHostAsync(BuildingBussines bu, string number)
+        {
+            var res = new ReturnedSaveFuncInfo();
+            SqlConnection cn = null;
+            SqlTransaction tr = null;
+            try
+            {
+                cn = new SqlConnection(Cache.ConnectionString);
+                await cn.OpenAsync();
+                tr = cn.BeginTransaction();
+
+                var relatedNumber = new BuildingRelatedNumberBussines()
+                {
+                    Number = number,
+                    BuildingGuid = bu.Guid
+                };
+                res.AddReturnedValue(await bu.SaveAsync(tr, false, true));
+                if (res.HasError) return res;
+
+                if (!string.IsNullOrEmpty(number))
+                    res.AddReturnedValue(await relatedNumber.SaveAsync(tr));
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+            finally
+            {
+                res.AddReturnedValue(tr.TransactionDestiny(res.HasError));
+                res.AddReturnedValue(cn.CloseConnection());
+            }
+            return res;
+        }
     }
 }

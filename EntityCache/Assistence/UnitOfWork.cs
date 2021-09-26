@@ -71,6 +71,7 @@ namespace EntityCache.Assistence
         private static IAdjectiveDescriptionRepository _adjectiveDescriptionRepository;
         private static ICalendarRepository _calendarRepository;
         private static IWorkingRangeRepository _workingRangeRepository;
+        private static IBuildingRelatedNumberRepository _buildingRelatedNumberRepository;
 
         public static void Dispose() => db?.Dispose();
         public static void Set_Save() => db.SaveChanges();
@@ -138,5 +139,6 @@ namespace EntityCache.Assistence
         public static IAdjectiveDescriptionRepository AdjectiveDescription => _adjectiveDescriptionRepository ?? (_adjectiveDescriptionRepository = new AdjectiveDescriptionPersistenceRepository());
         public static ICalendarRepository Calendar => _calendarRepository ?? (_calendarRepository = new CalendarPersistenceRepository());
         public static IWorkingRangeRepository WorkingRange => _workingRangeRepository ?? (_workingRangeRepository = new WorkingRangePersistenceRepository());
+        public static IBuildingRelatedNumberRepository BuildingRelatedNumber => _buildingRelatedNumberRepository ?? (_buildingRelatedNumberRepository = new BuildingRelatedNumberPersistenceRepository());
     }
 }

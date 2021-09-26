@@ -7608,3 +7608,32 @@ BEGIN
 	set Status='false',Modified=GETDATE()
 	where CreateDate<@date and Guid not in(select SecondSideGuid from Contracts)
 END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_BuildingRelatedNumber_Insert]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_BuildingRelatedNumber_Insert]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_BuildingRelatedNumber_Insert
+	@buGuid uniqueidentifier,
+	@number nvarchar(100)
+AS
+BEGIN
+	INSERT INTO [dbo].[BuildingRelatedNumbers]
+           ([BuildingGuid]
+           ,[Number])
+     VALUES
+           (@buGuid
+           ,@number)
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_BuildingRelatedNumber_Get]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_BuildingRelatedNumber_Get]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_BuildingRelatedNumber_Get
+	@buGuid uniqueidentifier
+AS
+BEGIN
+	Select number From BuildingRelatedNumbers
+	where BuildingGuid=@buGuid
+END
