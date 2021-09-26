@@ -58,7 +58,6 @@ namespace Building.Building
             this.lblShortTime = new System.Windows.Forms.Label();
             this.lblRental = new System.Windows.Forms.Label();
             this.groupPanel5 = new DevComponents.DotNetBar.Controls.GroupPanel();
-            this.lblDescription = new System.Windows.Forms.Label();
             this.groupPanel4 = new DevComponents.DotNetBar.Controls.GroupPanel();
             this.lblOption12 = new System.Windows.Forms.Label();
             this.lblOption9 = new System.Windows.Forms.Label();
@@ -119,6 +118,8 @@ namespace Building.Building
             this.lblPrice1 = new System.Windows.Forms.Label();
             this.lblAddress = new System.Windows.Forms.Label();
             this.lblTitle = new System.Windows.Forms.Label();
+            this.lblDescription = new System.Windows.Forms.Label();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.panel1.SuspendLayout();
             this.exPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picBox)).BeginInit();
@@ -130,6 +131,7 @@ namespace Building.Building
             this.groupPanel3.SuspendLayout();
             this.groupPanel1.SuspendLayout();
             this.groupPanel2.SuspendLayout();
+            this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -524,9 +526,11 @@ namespace Building.Building
             // 
             // groupPanel5
             // 
+            this.groupPanel5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupPanel5.CanvasColor = System.Drawing.SystemColors.Control;
             this.groupPanel5.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
-            this.groupPanel5.Controls.Add(this.lblDescription);
+            this.groupPanel5.Controls.Add(this.flowLayoutPanel1);
             this.groupPanel5.DisabledBackColor = System.Drawing.Color.Empty;
             this.groupPanel5.Location = new System.Drawing.Point(384, 516);
             this.groupPanel5.Name = "groupPanel5";
@@ -562,16 +566,6 @@ namespace Building.Building
             this.groupPanel5.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.groupPanel5.TabIndex = 18;
             this.groupPanel5.Text = "توضیحات";
-            // 
-            // lblDescription
-            // 
-            this.lblDescription.BackColor = System.Drawing.Color.Transparent;
-            this.lblDescription.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblDescription.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.lblDescription.Location = new System.Drawing.Point(0, 0);
-            this.lblDescription.Name = "lblDescription";
-            this.lblDescription.Size = new System.Drawing.Size(374, 95);
-            this.lblDescription.TabIndex = 24;
             // 
             // groupPanel4
             // 
@@ -1374,6 +1368,30 @@ namespace Building.Building
             this.lblTitle.TabIndex = 15;
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // lblDescription
+            // 
+            this.lblDescription.AutoSize = true;
+            this.lblDescription.BackColor = System.Drawing.Color.Transparent;
+            this.lblDescription.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.lblDescription.Location = new System.Drawing.Point(322, 0);
+            this.lblDescription.Name = "lblDescription";
+            this.lblDescription.Size = new System.Drawing.Size(49, 20);
+            this.lblDescription.TabIndex = 27;
+            this.lblDescription.Text = "54545";
+            // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.flowLayoutPanel1.AutoScroll = true;
+            this.flowLayoutPanel1.Controls.Add(this.lblDescription);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(374, 95);
+            this.flowLayoutPanel1.TabIndex = 28;
+            this.flowLayoutPanel1.WrapContents = false;
+            // 
             // frmBuildingDetail
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -1410,6 +1428,8 @@ namespace Building.Building
             this.groupPanel1.ResumeLayout(false);
             this.groupPanel1.PerformLayout();
             this.groupPanel2.ResumeLayout(false);
+            this.flowLayoutPanel1.ResumeLayout(false);
+            this.flowLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1475,7 +1495,6 @@ namespace Building.Building
         private System.Windows.Forms.Label lblOption4;
         private System.Windows.Forms.Label lblOption1;
         private DevComponents.DotNetBar.Controls.GroupPanel groupPanel5;
-        private System.Windows.Forms.Label lblDescription;
         private DevComponents.DotNetBar.Controls.GroupPanel pnlRahnInfo;
         private System.Windows.Forms.Label label56;
         private System.Windows.Forms.Label label58;
@@ -1503,5 +1522,7 @@ namespace Building.Building
         private ExpandablePanel exPanel;
         private System.Windows.Forms.PictureBox picBox;
         private System.Windows.Forms.FlowLayoutPanel fPanel;
+        private System.Windows.Forms.Label lblDescription;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
     }
 }

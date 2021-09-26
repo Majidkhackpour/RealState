@@ -1,14 +1,13 @@
-﻿using System;
+﻿using EntityCache.Bussines;
+using MetroFramework.Forms;
+using Services;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WindowsSerivces;
-using EntityCache.Bussines;
-using MetroFramework.Forms;
-using Services;
-using Telerik.WinControls.UI;
 
 namespace Building.Building
 {
@@ -28,6 +27,7 @@ namespace Building.Building
                     return;
                 }
 
+                groupPanel5.AutoScroll = true;
                 pnlPishForoush.Visible = pnlRahnInfo.Visible = pnlSellInfo.Visible = false;
 
                 lblCode.Text = $@"کد: {bu.Code}";
