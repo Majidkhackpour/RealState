@@ -44,11 +44,19 @@ namespace RealState
                     {
                         var getDate = clsAdvertise.GetFileDate ?? DateTime.Now.AddDays(-7);
                         var newDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, 0, 0);
-                        if (getDate != null && getDate > newDate) return;
+                        if (getDate != null && getDate > newDate)
+                        {
+                            await Delay();
+                            continue;
+                        }
 
                         var insertedDate = new DateTime(getDate.Year, getDate.Month, getDate.Day, 0, 0, 0);
                         var list = await WebScrapper.GetAllAsync(insertedDate);
-                        if (list == null || list.Count <= 0) return;
+                        if (list == null || list.Count <= 0)
+                        {
+                            await Delay();
+                            continue;
+                        }
                         _isInited = true;
                         var state = await StatesBussines.GetAsync("خراسان رضوی");
                         if (state == null) return;
@@ -67,7 +75,7 @@ namespace RealState
                         WebErrorLog.ErrorInstence.StartErrorLog(ex);
                     }
 
-                    await Task.Delay(60 * 1 * 1000); //Minutes For Rest
+                    await Delay();
                 }
             }
             catch (Exception ex)
@@ -228,12 +236,13 @@ namespace RealState
                         bu.GalleryList = new List<BuildingGalleryBussines>();
                         foreach (var img in lstImage)
                         {
+                            var newName = Guid.NewGuid() + ".jpg";
                             var bannerPath = Path.Combine(Application.StartupPath, "testBanner__.jpg");
                             var savePathFile = Path.Combine(Application.StartupPath, "Images");
                             if (!Directory.Exists(savePathFile)) Directory.CreateDirectory(savePathFile);
                             var path = Path.Combine(savePathFile, Guid.NewGuid() + ".jpg");
                             var pathsave = Path.Combine(savePathFile, Guid.NewGuid() + ".jpg");
-                            var finnalPath = Path.Combine(savePathFile, Guid.NewGuid() + ".jpg");
+                            var finnalPath = Path.Combine(savePathFile, newName);
                             //دانلود تصویر
                             DivarAPI.DownloadImage(img, path);
                             if (!File.Exists(path)) continue;
@@ -251,7 +260,7 @@ namespace RealState
                                 ServerStatus = ServerStatus.None,
                                 ServerDeliveryDate = DateTime.Now,
                                 BuildingGuid = bu.Guid,
-                                ImageName = finnalPath
+                                ImageName = newName
                             });
                         }
 
@@ -456,5 +465,6 @@ namespace RealState
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
+        private static async Task Delay() => await Task.Delay(60 * 60 * 1000); //1 Hour
     }
 }
