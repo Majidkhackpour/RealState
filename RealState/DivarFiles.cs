@@ -30,28 +30,57 @@ namespace RealState
             {
                 if (_isInited) return;
                 await Task.Delay(5000);
+
                 if (!VersionAccess.Advertise) return;
-                //if (!clsAdvertise.IsGiveFile) return;
+                if (!clsAdvertise.IsGiveFile) return;
                 if (!WebCustomer.CheckCustomer() ||
                     WebCustomer.Customer.isBlock ||
                     WebCustomer.Customer.isWebServiceBlock)
                     return;
 
+                while (true)
+                {
+                    try
+                    {
+                        var getDate = clsAdvertise.GetFileDate ?? DateTime.Now.AddDays(-7);
+                        var newDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, 0, 0);
+                        if (getDate != null && getDate > newDate) return;
+
+                        var insertedDate = new DateTime(getDate.Year, getDate.Month, getDate.Day, 0, 0, 0);
+                        var list = await WebScrapper.GetAllAsync(insertedDate);
+                        if (list == null || list.Count <= 0) return;
+                        _isInited = true;
+                        var state = await StatesBussines.GetAsync("خراسان رضوی");
+                        if (state == null) return;
+                        var city = await CitiesBussines.GetDefualtAsync("مشهد", state.Guid);
+
+                        RaiseStartedEvent(list.Count);
+
+                        await GetFilesFromDivarAsync_(list, city.Guid);
+
+                        _isInited = false;
+                        BuildingBussines.RaiseStaticEvent();
+                        clsAdvertise.GetFileDate = DateTime.Now;
+                    }
+                    catch (Exception ex)
+                    {
+                        WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                    }
+
+                    await Task.Delay(60 * 1 * 1000); //Minutes For Rest
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                clsAdvertise.GetFileDate = DateTime.Now.AddDays(-1);
+            }
+        }
+        private static async Task GetFilesFromDivarAsync_(List<WebScrapper> list, Guid cityGuid)
+        {
+            try
+            {
                 var lstImagesForRemove = new List<string>();
-
-                var getDate = clsAdvertise.GetFileDate ?? DateTime.Now.AddDays(-7);
-                var newDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, 0, 0);
-                if (getDate != null && getDate > newDate) return;
-
-                var insertedDate = new DateTime(getDate.Year, getDate.Month, getDate.Day, 0, 0, 0);
-                var list = await WebScrapper.GetAllAsync(insertedDate);
-                if (list == null || list.Count <= 0) return;
-                _isInited = true;
-                var state = await StatesBussines.GetAsync("خراسان رضوی");
-                if (state == null) return;
-                var city = await CitiesBussines.GetDefualtAsync("مشهد", state.Guid);
-
-                RaiseStartedEvent(list.Count);
                 var _buildingCount = 0;
                 foreach (var item in list)
                 {
@@ -60,7 +89,7 @@ namespace RealState
                         if (await BuildingBussines.CheckDuplicateAsync(item.Title.FixString()))
                             continue;
 
-                        var region = await RegionsBussines.GetDefualtAsync(item.Region, city.Guid);
+                        var region = await RegionsBussines.GetDefualtAsync(item.Region, cityGuid);
                         var bu = new BuildingBussines
                         {
                             Guid = Guid.NewGuid(),
@@ -84,7 +113,7 @@ namespace RealState
                             BuildingConditionGuid = BuildingConditionBussines.DefualtGuid,
                             BuildingTypeGuid = await BuildingTypeBussines.GetDefultGuidAsync(item.BuildingType),
                             BuildingViewGuid = BuildingViewBussines.DefualtGuid,
-                            CityGuid = city.Guid,
+                            CityGuid = cityGuid,
                             CreateDate = DateTime.Now,
                             Dang = 6,
                             DeliveryDate = DateTime.Now,
@@ -244,17 +273,12 @@ namespace RealState
                         WebErrorLog.ErrorInstence.StartErrorLog(ex);
                     }
                 }
-
-                RemoveUnusedFiles(lstImagesForRemove);
-                BuildingBussines.RaiseStaticEvent();
                 RaiseFinishedEvent(_buildingCount);
-                _isInited = false;
-                //clsAdvertise.GetFileDate = DateTime.Now;
+                RemoveUnusedFiles(lstImagesForRemove);
             }
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
-                clsAdvertise.GetFileDate = DateTime.Now.AddDays(-1);
             }
         }
         private static EnBuildingSide GetSide(string sideName)

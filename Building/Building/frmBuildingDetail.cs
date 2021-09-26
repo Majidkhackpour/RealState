@@ -37,7 +37,10 @@ namespace Building.Building
                 {
                     type = "فروش";
                     lblPrice1.Text = $@"قیمت کل: {bu.SellPrice:N0}";
-                    lblPrice2.Text = $@"قیمت هر متر زمین: {(bu.SellPrice / bu.Masahat):N0}";
+                    if (bu.Masahat > 0)
+                        lblPrice2.Text = $@"قیمت هر متر زمین: {(bu.SellPrice / bu.Masahat):N0}";
+                    else if (bu.ZirBana > 0)
+                        lblPrice2.Text = $@"قیمت هر متر بنا: {(bu.SellPrice / bu.ZirBana):N0}";
                     pnlSellInfo.Visible = true;
                     lblTarakom.Text = bu.Tarakom?.GetDisplay();
                     lblVamPrice.Text = bu.VamPrice.ToString("N0");
