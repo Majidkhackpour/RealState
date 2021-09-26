@@ -15,7 +15,7 @@ namespace Building
             try
             {
                 res = template;
-                var owner = PeoplesBussines.Get(bu.OwnerGuid);
+                var owner = PeoplesBussines.Get(bu.OwnerGuid, bu?.Guid);
                 var list = res.Split('\n').ToList();
 
                 if (res.Contains(Replacor.TelegramBuilding.Code))

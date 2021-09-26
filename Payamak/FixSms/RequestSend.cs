@@ -87,7 +87,7 @@ namespace Payamak.FixSms
                 if (res.Contains(Replacor.Request.DateSabt)) res = res.Replace(Replacor.Request.DateSabt, bu.DateSh);
                 if (res.Contains(Replacor.Request.Name))
                 {
-                    var owner = PeoplesBussines.Get(bu.AskerGuid);
+                    var owner = PeoplesBussines.Get(bu.AskerGuid,null);
                     res = res.Replace(Replacor.Request.Name, owner?.Name);
                 }
                 if (res.Contains(Replacor.Request.UserName))

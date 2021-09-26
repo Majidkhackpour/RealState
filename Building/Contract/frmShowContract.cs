@@ -153,8 +153,8 @@ namespace Building.Contract
                 if (contract == null) return;
                 var building = await BuildingBussines.GetAsync(contract.BuildingGuid);
                 var buildingAccountType = await BuildingAccountTypeBussines.GetAsync(building.BuildingAccountTypeGuid);
-                var fSide = await PeoplesBussines.GetAsync(contract.FirstSideGuid);
-                var sSide = await PeoplesBussines.GetAsync(contract.SecondSideGuid);
+                var fSide = await PeoplesBussines.GetAsync(contract.FirstSideGuid, building.Guid);
+                var sSide = await PeoplesBussines.GetAsync(contract.SecondSideGuid, building.Guid);
                 var unitCity = await CitiesBussines.GetAsync(Guid.Parse(Settings.Classes.clsEconomyUnit.EconomyCity));
                 if (contract.Type == EnRequestType.Rahn)
                 {
@@ -372,7 +372,7 @@ namespace Building.Contract
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
                 var con = await ContractBussines.GetAsync(guid);
                 if (con == null) return;
-                var customer = await PeoplesBussines.GetAsync(con.FirstSideGuid);
+                var customer = await PeoplesBussines.GetAsync(con.FirstSideGuid, null);
 
                 var view = new ContractOrderViewModel()
                 {
@@ -419,7 +419,7 @@ namespace Building.Contract
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
                 var con = await ContractBussines.GetAsync(guid);
                 if (con == null) return;
-                var customer = await PeoplesBussines.GetAsync(con.SecondSideGuid);
+                var customer = await PeoplesBussines.GetAsync(con.SecondSideGuid, null);
 
                 var view = new ContractOrderViewModel()
                 {

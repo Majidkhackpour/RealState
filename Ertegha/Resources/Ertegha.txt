@@ -7637,3 +7637,25 @@ BEGIN
 	Select number From BuildingRelatedNumbers
 	where BuildingGuid=@buGuid
 END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Peoples_SelectRowByBuildingGuid]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Peoples_SelectRowByBuildingGuid]	As Begin print 11 end')  
+GO
+Alter PROCEDURE [dbo].[sp_Peoples_SelectRowByBuildingGuid]
+	@Guid uniqueidentifier,
+	@buGuid uniqueidentifier
+AS
+BEGIN
+		Select    Peoples.* 
+			, Tafsils.Account
+			, Tafsils.AccountFirst
+			, PeopleGroups.Name As GroupName
+			, fCon.CodeInArchive As CodeInArchive
+			, (select Number from BuildingRelatedNumbers where BuildingGuid=@buGuid) As Number
+	From Peoples inner join Tafsils on
+	Tafsils.Guid=Peoples.Guid inner join PeopleGroups on
+	PeopleGroups.Guid=Peoples.GroupGuid left outer join Contracts as fCon on
+	fCon.FirstSideGuid=Peoples.Guid  
+	where Peoples.Guid=@Guid
+END

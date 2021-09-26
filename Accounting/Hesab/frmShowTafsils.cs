@@ -201,7 +201,7 @@ namespace Accounting.Hesab
                             MessageBoxIcon.Question) == DialogResult.No) return;
                     if (tafsil.HesabType == HesabType.Customer)
                     {
-                        var cus = await PeoplesBussines.GetAsync(tafsil.Guid);
+                        var cus = await PeoplesBussines.GetAsync(tafsil.Guid,null);
                         if (cus == null) return;
                         res.AddReturnedValue(await cus.ChangeStatusAsync(false));
                         return;
@@ -224,7 +224,7 @@ namespace Accounting.Hesab
                             MessageBoxIcon.Question) == DialogResult.No) return;
                     if (tafsil.HesabType == HesabType.Customer)
                     {
-                        var cus = await PeoplesBussines.GetAsync(tafsil.Guid);
+                        var cus = await PeoplesBussines.GetAsync(tafsil.Guid,null);
                         if (cus.GroupGuid == Guid.Empty)
                         {
                             var frm = new frmChangeGroup(cus);

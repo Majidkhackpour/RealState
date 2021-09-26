@@ -30,7 +30,7 @@ namespace EntityCache.SqlServerPersistence
                     while (dr.Read())
                     {
                         if (token.IsCancellationRequested) return null;
-                        list.Add(LoadData(dr, false));
+                        list.Add(LoadData(dr, false,false));
                     }
                     cn.Close();
                 }
@@ -58,7 +58,7 @@ namespace EntityCache.SqlServerPersistence
                     while (dr.Read())
                     {
                         if (token.IsCancellationRequested) return null;
-                        list.Add(LoadData(dr, false));
+                        list.Add(LoadData(dr, false,false));
                     }
                     cn.Close();
                 }
@@ -84,7 +84,31 @@ namespace EntityCache.SqlServerPersistence
 
                     await cn.OpenAsync();
                     var dr = await cmd.ExecuteReaderAsync();
-                    if (dr.Read()) res = LoadData(dr, true);
+                    if (dr.Read()) res = LoadData(dr, true,false);
+                    cn.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+
+            return res;
+        }
+        public async Task<PeoplesBussines> GetByBuildingGuidAsync(string _connectionString, Guid guid, Guid buildingGuid)
+        {
+            PeoplesBussines res = null;
+            try
+            {
+                using (var cn = new SqlConnection(_connectionString))
+                {
+                    var cmd = new SqlCommand("sp_Peoples_SelectRowByBuildingGuid", cn) { CommandType = CommandType.StoredProcedure };
+                    cmd.Parameters.AddWithValue("@guid", guid);
+                    cmd.Parameters.AddWithValue("@buGuid", buildingGuid);
+
+                    await cn.OpenAsync();
+                    var dr = await cmd.ExecuteReaderAsync();
+                    if (dr.Read()) res = LoadData(dr, true,true);
                     cn.Close();
                 }
             }
@@ -159,7 +183,7 @@ namespace EntityCache.SqlServerPersistence
 
                     await cn.OpenAsync();
                     var dr = await cmd.ExecuteReaderAsync();
-                    while (dr.Read()) list.Add(LoadData(dr, false));
+                    while (dr.Read()) list.Add(LoadData(dr, false,false));
                     cn.Close();
                 }
             }
@@ -170,7 +194,7 @@ namespace EntityCache.SqlServerPersistence
 
             return list;
         }
-        private PeoplesBussines LoadData(SqlDataReader dr, bool isLoadDet)
+        private PeoplesBussines LoadData(SqlDataReader dr, bool isLoadDet,bool isLoadRelatedNumber)
         {
             var item = new PeoplesBussines();
             try
@@ -200,6 +224,24 @@ namespace EntityCache.SqlServerPersistence
                 {
                     item.BankList = AsyncContext.Run(() => PeoplesBankAccountBussines.GetAllAsync(item.Guid));
                     item.TellList = PhoneBookBussines.GetAll(item.Guid, true);
+                }
+
+                if (isLoadRelatedNumber)
+                {
+                    if (item.TellList == null) item.TellList = new List<PhoneBookBussines>();
+                    item.TellList.Add(new PhoneBookBussines()
+                    {
+                        Guid = Guid.NewGuid(),
+                        Modified = DateTime.Now,
+                        Name = item.Name,
+                        Status = true,
+                        ServerStatus = ServerStatus.None,
+                        ServerDeliveryDate = DateTime.Now,
+                        Tell = dr["Number"].ToString(),
+                        ParentGuid = item.Guid,
+                        Title = "دریافت شده",
+                        Group = EnPhoneBookGroup.Divar
+                    });
                 }
             }
             catch (Exception ex)

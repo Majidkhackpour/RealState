@@ -356,7 +356,7 @@ namespace EntityCache.Bussines
                         Parent = $"فایل های سیستم کد {item.Code}",
                         Options = item.OptionList.Select(q => q.OptionName)?.ToList(),
                         Address = item.Address,
-                        Mobile = PeoplesBussines.Get(item.OwnerGuid)?.FirstNumber,
+                        Mobile = PeoplesBussines.Get(item.OwnerGuid, item.Guid)?.FirstNumber,
                         CreateDate = item.CreateDate,
                         Guid = item.Guid
                     };

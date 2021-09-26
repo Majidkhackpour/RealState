@@ -496,9 +496,9 @@ namespace Building.Contract
             InitializeComponent();
             WindowState = FormWindowState.Maximized;
             cls = ContractBussines.Get(guid);
-            fSide = PeoplesBussines.Get(cls.FirstSideGuid);
-            sSide = PeoplesBussines.Get(cls.SecondSideGuid);
             building = BuildingBussines.Get(cls.BuildingGuid);
+            fSide = PeoplesBussines.Get(cls.FirstSideGuid, building?.Guid);
+            sSide = PeoplesBussines.Get(cls.SecondSideGuid, building?.Guid);
             superTabControl1.SelectedTab = superTabItem5;
             superTabControl2.SelectedTab = superTabItem8;
             superTabControlPanel1.Enabled = !isShowMode;
@@ -524,7 +524,7 @@ namespace Building.Contract
             {
                 var frm = new frmShowPeoples(true);
                 if (frm.ShowDialog(this) != DialogResult.OK) return;
-                fSide = PeoplesBussines.Get(frm.SelectedGuid);
+                fSide = PeoplesBussines.Get(frm.SelectedGuid, building?.Guid);
                 LoadfSide();
             }
             catch (Exception ex)
@@ -538,7 +538,7 @@ namespace Building.Contract
             {
                 var frm = new frmShowPeoples(true);
                 if (frm.ShowDialog(this) != DialogResult.OK) return;
-                sSide = PeoplesBussines.Get(frm.SelectedGuid);
+                sSide = PeoplesBussines.Get(frm.SelectedGuid, building?.Guid);
                 LoadsSide();
             }
             catch (Exception ex)

@@ -1025,7 +1025,7 @@ namespace Building.Building
             InitializeComponent();
             WindowState = FormWindowState.Maximized;
             cls = BuildingBussines.Get(guid);
-            owner = PeoplesBussines.Get(cls.OwnerGuid);
+            owner = PeoplesBussines.Get(cls.OwnerGuid, cls?.Guid);
             ucHeader.Text = !isShowMode ? $"ویرایش ملک کد {cls.Code}" : $"مشاهده ملک کد {cls.Code}";
             ucHeader.IsModified = cls.IsModified;
             SaveImageToTemp();
@@ -1048,7 +1048,7 @@ namespace Building.Building
             {
                 var frm = new frmShowPeoples(true);
                 if (frm.ShowDialog(this) != DialogResult.OK) return;
-                owner = PeoplesBussines.Get(frm.SelectedGuid);
+                owner = PeoplesBussines.Get(frm.SelectedGuid, cls?.Guid);
                 LoadOwner();
             }
             catch (Exception ex)
@@ -1062,7 +1062,7 @@ namespace Building.Building
             {
                 var frm = new frmPeoples();
                 if (frm.ShowDialog(this) != DialogResult.OK) return;
-                owner = PeoplesBussines.Get(frm.SelectedGuid);
+                owner = PeoplesBussines.Get(frm.SelectedGuid, cls?.Guid);
                 LoadOwner();
             }
             catch (Exception ex)

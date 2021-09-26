@@ -61,7 +61,22 @@ namespace EntityCache.Bussines
 
 
         public static async Task<List<PeoplesBussines>> GetAllAsync(CancellationToken token) => await UnitOfWork.Peoples.GetAllAsync(Cache.ConnectionString, token);
-        public static async Task<PeoplesBussines> GetAsync(Guid guid) => await UnitOfWork.Peoples.GetAsync(Cache.ConnectionString, guid);
+        public static async Task<PeoplesBussines> GetAsync(Guid guid, Guid? buildingGuid)
+        {
+            PeoplesBussines pe = null;
+            try
+            {
+                if (buildingGuid == null || buildingGuid == Guid.Empty)
+                    pe = await UnitOfWork.Peoples.GetAsync(Cache.ConnectionString, guid);
+                else
+                    pe = await UnitOfWork.Peoples.GetByBuildingGuidAsync(Cache.ConnectionString, guid, buildingGuid.Value);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+            return pe;
+        }
         public static async Task<List<PeoplesBussines>> GetAllAsync(Guid parentGuid, bool status, CancellationToken token) =>
             await UnitOfWork.Peoples.GetAllAsync(Cache.ConnectionString, parentGuid, status, token);
         public async Task<ReturnedSaveFuncInfo> SaveAsync(SqlTransaction tr = null)
@@ -169,7 +184,7 @@ namespace EntityCache.Bussines
             }
             return res;
         }
-        public static PeoplesBussines Get(Guid guid) => AsyncContext.Run(() => GetAsync(guid));
+        public static PeoplesBussines Get(Guid guid, Guid? buildingGuid) => AsyncContext.Run(() => GetAsync(guid, buildingGuid));
         public static async Task<List<PeoplesBussines>> GetAllAsync(string search, Guid groupGuid, CancellationToken token)
         {
             try
@@ -317,6 +332,6 @@ namespace EntityCache.Bussines
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private static async Task<PeoplesBussines> GetDefaultPeopleAsync() => await GetAsync(ParentDefaults.TafsilCoding.DefualtCustomer);
+        private static async Task<PeoplesBussines> GetDefaultPeopleAsync() => await GetAsync(ParentDefaults.TafsilCoding.DefualtCustomer, null);
     }
 }

@@ -17,7 +17,7 @@ namespace Building
                 {
                     _bu = value;
                     if (_bu == null) return;
-                    var owner = PeoplesBussines.Get(_bu.OwnerGuid);
+                    var owner = PeoplesBussines.Get(_bu.OwnerGuid, _bu?.Guid);
                     lblNatCode.Text = $@"کدملی: {owner?.NationalCode}";
                     lblAddress.Text = $@"آدرس: {owner?.Address}";
                     lblDong.Text = $@"تعداد دانگ: {_bu.Dang}";

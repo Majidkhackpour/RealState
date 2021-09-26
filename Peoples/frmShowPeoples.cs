@@ -493,7 +493,7 @@ namespace Peoples
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
                 if (_st)
                 {
-                    var p = await PeoplesBussines.GetAsync(guid);
+                    var p = await PeoplesBussines.GetAsync(guid,null);
                     if (p == null) return;
                     if (p.Account != 0)
                     {
@@ -505,7 +505,7 @@ namespace Peoples
                             $@"آیا از حذف {DGrid[dgName.Index, DGrid.CurrentRow.Index].Value} اطمینان دارید؟", "حذف",
                             MessageBoxButtons.YesNo,
                             MessageBoxIcon.Question) == DialogResult.No) return;
-                    var prd = await PeoplesBussines.GetAsync(guid);
+                    var prd = await PeoplesBussines.GetAsync(guid,null);
                     res.AddReturnedValue(await prd.ChangeStatusAsync(false));
                 }
                 else
@@ -515,7 +515,7 @@ namespace Peoples
                             "حذف",
                             MessageBoxButtons.YesNo,
                             MessageBoxIcon.Question) == DialogResult.No) return;
-                    var prd = await PeoplesBussines.GetAsync(guid);
+                    var prd = await PeoplesBussines.GetAsync(guid,null);
 
                     if (prd.GroupGuid == Guid.Empty)
                     {

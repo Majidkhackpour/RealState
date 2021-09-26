@@ -13,6 +13,7 @@ namespace EntityCache.Core
         Task<List<PeoplesBussines>> GetAllAsync(string _connectionString, Guid parentGuid, bool status, CancellationToken token);
         Task<List<PeoplesBussines>> GetAllAsync(string _connectionString, CancellationToken token);
         Task<PeoplesBussines> GetAsync(string _connectionString, Guid guid);
+        Task<PeoplesBussines> GetByBuildingGuidAsync(string _connectionString, Guid guid, Guid buildingGuid);
         Task<ReturnedSaveFuncInfo> SaveAsync(PeoplesBussines item, SqlTransaction tr);
         Task<ReturnedSaveFuncInfo> ChangeStatusAsync(PeoplesBussines item, bool status, SqlTransaction tr);
         Task<List<PeoplesBussines>> GetAllBirthDayAsync(string _connectionString, string dateSh);

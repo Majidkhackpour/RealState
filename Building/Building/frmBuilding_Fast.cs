@@ -829,7 +829,7 @@ namespace Building.Building
             {
                 var frm = new frmShowPeoples(true);
                 if (frm.ShowDialog(this) != DialogResult.OK) return;
-                owner = PeoplesBussines.Get(frm.SelectedGuid);
+                owner = PeoplesBussines.Get(frm.SelectedGuid, cls?.Guid);
                 LoadOwner();
             }
             catch (Exception ex)
@@ -843,7 +843,7 @@ namespace Building.Building
             {
                 var frm = new frmPeoples();
                 if (frm.ShowDialog(this) != DialogResult.OK) return;
-                owner = PeoplesBussines.Get(frm.SelectedGuid);
+                owner = PeoplesBussines.Get(frm.SelectedGuid, cls?.Guid);
                 LoadOwner();
             }
             catch (Exception ex)

@@ -224,7 +224,7 @@ namespace Peoples
         public frmPeoples(Guid guid, bool isShowMode)
         {
             InitializeComponent();
-            cls = PeoplesBussines.Get(guid);
+            cls = PeoplesBussines.Get(guid,null);
             ucHeader.Text = !isShowMode ? $"ویرایش {cls.Name}" : $"مشاهده {cls.Name}";
             ucHeader.IsModified = cls.IsModified;
             superTabControlPanel1.Enabled = !isShowMode;

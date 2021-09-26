@@ -206,7 +206,7 @@ namespace EntityCache.WebService
                                     await WebPeopleGroup.SaveAsync(PeopleGroupMapper.Instance.Map(pg));
                                 break;
                             case EnTemp.Peoples:
-                                var p = await PeoplesBussines.GetAsync(item.ObjectGuid);
+                                var p = await PeoplesBussines.GetAsync(item.ObjectGuid,null);
                                 if (p != null)
                                     await WebPeople.SaveAsync(PeopleMapper.Instance.Map(p));
                                 break;

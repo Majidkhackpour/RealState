@@ -30,7 +30,6 @@ namespace RealState
             {
                 if (_isInited) return;
                 await Task.Delay(5000);
-                //return;
                 if (!VersionAccess.Advertise) return;
                 //if (!clsAdvertise.IsGiveFile) return;
                 if (!WebCustomer.CheckCustomer() ||

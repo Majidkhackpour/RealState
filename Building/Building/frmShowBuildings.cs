@@ -1752,7 +1752,7 @@ namespace Building.Building
                 };
                 if (cls.SellPrice > 0 && cls.Masahat > 0)
                     rpt.SellPricePerMetr = cls.SellPrice / cls.Masahat;
-                var people = PeoplesBussines.Get(cls.OwnerGuid);
+                var people = PeoplesBussines.Get(cls.OwnerGuid, cls.Guid);
                 if (people.TellList != null && people.TellList.Count > 0)
                 {
                     if (people.TellList.Count >= 2)

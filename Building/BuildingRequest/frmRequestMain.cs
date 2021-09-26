@@ -323,7 +323,7 @@ namespace Building.BuildingRequest
         {
             InitializeComponent();
             cls = BuildingRequestBussines.Get(guid);
-            asker = PeoplesBussines.Get(cls.AskerGuid);
+            asker = PeoplesBussines.Get(cls.AskerGuid,null);
             ucHeader.Text = !isShowMode ? $"ویرایش تقاضای {cls.AskerName}" : $"مشاهده تقاضای {cls.AskerName}";
             ucHeader.IsModified = cls.IsModified;
             superTabControlPanel1.Enabled = !isShowMode;
@@ -341,7 +341,7 @@ namespace Building.BuildingRequest
             {
                 var frm = new frmShowPeoples(true);
                 if (frm.ShowDialog(this) != DialogResult.OK) return;
-                asker = PeoplesBussines.Get(frm.SelectedGuid);
+                asker = PeoplesBussines.Get(frm.SelectedGuid, null);
                 LoadAsker();
             }
             catch (Exception ex)
@@ -355,7 +355,7 @@ namespace Building.BuildingRequest
             {
                 var frm = new frmPeoples();
                 if (frm.ShowDialog(this) != DialogResult.OK) return;
-                asker = PeoplesBussines.Get(frm.SelectedGuid);
+                asker = PeoplesBussines.Get(frm.SelectedGuid, null);
                 LoadAsker();
             }
             catch (Exception ex)

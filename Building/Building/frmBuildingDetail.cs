@@ -84,7 +84,7 @@ namespace Building.Building
                 lblCondition.Text = bu.BuildingConditionName;
                 lblAccountType.Text = bu.BuildingAccountTypeName;
 
-                var owner = await PeoplesBussines.GetAsync(bu.OwnerGuid);
+                var owner = await PeoplesBussines.GetAsync(bu.OwnerGuid, bu?.Guid);
                 if (owner != null)
                 {
                     lblOwnerName.Text = owner.Name;
