@@ -50,6 +50,7 @@ namespace WebHesabBussines
                     return user;
                 }
             }
+            catch (OperationCanceledException) { return new WebCustomer();}
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
