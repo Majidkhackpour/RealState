@@ -16,6 +16,8 @@ namespace EntityCache.Bussines
 {
     public class BuildingAccountTypeBussines : IBuildingAccountType
     {
+        private static Guid _defGuid = Guid.Empty;
+
         public Guid Guid { get; set; }
         public DateTime Modified { get; set; } = DateTime.Now;
         public bool Status { get; set; } = true;
@@ -24,6 +26,15 @@ namespace EntityCache.Bussines
         public string Name { get; set; }
         public string HardSerial => Cache.HardSerial;
         public bool IsModified { get; set; } = false;
+        public static Guid DefaultGuid
+        {
+            get
+            {
+                if (_defGuid == Guid.Empty)
+                    _defGuid = AsyncContext.Run(() => GetDefultGuidAsync("تعیین نشده"));
+                return _defGuid;
+            }
+        }
 
 
         public static async Task<List<BuildingAccountTypeBussines>> GetAllAsync(CancellationToken token) => await UnitOfWork.BuildingAccountType.GetAllAsync(Cache.ConnectionString, token);

@@ -208,6 +208,7 @@ namespace EntityCache.Bussines
                 if (filter.BuildingAccountTypeGuid != Guid.Empty)
                     res = res.Where(q =>
                         q.BuildingAccountTypeGuid == Guid.Empty ||
+                        q.BuildingAccountTypeGuid == BuildingAccountTypeBussines.DefaultGuid ||
                         q.BuildingAccountTypeGuid == filter.BuildingAccountTypeGuid);
                 if (token.IsCancellationRequested) return null;
                 if (res == null) return null;

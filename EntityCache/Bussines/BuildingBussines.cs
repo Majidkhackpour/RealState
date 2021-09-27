@@ -316,7 +316,7 @@ namespace EntityCache.Bussines
                 if (token.IsCancellationRequested) return null;
                 if (filter.BuildingTypeGuid != Guid.Empty) res = res.Where(q => q.BuildingTypeGuid == filter.BuildingTypeGuid);
                 if (token.IsCancellationRequested) return null;
-                if (filter.BuildingAccountTypeGuid != Guid.Empty)
+                if (filter.BuildingAccountTypeGuid != Guid.Empty && filter.BuildingAccountTypeGuid != BuildingAccountTypeBussines.DefaultGuid)
                     res = res.Where(q => q.BuildingAccountTypeGuid == filter.BuildingAccountTypeGuid);
                 if (token.IsCancellationRequested) return null;
                 if (filter.Masahat1 != 0) res = res.Where(q => q.Masahat >= filter.Masahat1);
@@ -343,7 +343,7 @@ namespace EntityCache.Bussines
                 }
                 if (token.IsCancellationRequested) return null;
                 var val = new List<BuildingViewModel>();
-
+                res = res.OrderByDescending(q => q.CreateDate);
                 foreach (var item in res)
                 {
                     if (token.IsCancellationRequested) return null;
@@ -356,7 +356,7 @@ namespace EntityCache.Bussines
                         Metrazh = item.Masahat,
                         Region = item.RegionName,
                         RentalAuthority = item.RentalAuthorityName,
-                        Parent = $"فایل های سیستم کد {item.Code}",
+                        Parent = $"کد {item.Code}",
                         Options = item.OptionList.Select(q => q.OptionName)?.ToList(),
                         Address = item.Address,
                         Mobile = PeoplesBussines.Get(item.OwnerGuid, item.Guid)?.FirstNumber,
@@ -364,6 +364,8 @@ namespace EntityCache.Bussines
                         Guid = item.Guid
                     };
                     if (token.IsCancellationRequested) return null;
+                    if (item.AdvertiseType != null)
+                        a.Parent += $" (دریافت شده)";
                     if (filter.RequestType == EnRequestType.Rahn)
                     {
                         a.Price1 = item.RahnPrice1;

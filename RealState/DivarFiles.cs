@@ -57,6 +57,15 @@ namespace RealState
                             await Delay();
                             continue;
                         }
+
+                        list = list.Where(q => !string.IsNullOrEmpty(q.Number) &&
+                                               !q.Description.Contains("املاک") &&
+                                               !q.Description.Contains("مسکن"))?.ToList();
+                        if (list.Count <= 0)
+                        {
+                            await Delay();
+                            continue;
+                        }
                         _isInited = true;
                         var state = await StatesBussines.GetAsync("خراسان رضوی");
                         if (state == null) return;

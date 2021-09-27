@@ -323,7 +323,7 @@ namespace Building.BuildingRequest
         {
             InitializeComponent();
             cls = BuildingRequestBussines.Get(guid);
-            asker = PeoplesBussines.Get(cls.AskerGuid,null);
+            asker = PeoplesBussines.Get(cls.AskerGuid, null);
             ucHeader.Text = !isShowMode ? $"ویرایش تقاضای {cls.AskerName}" : $"مشاهده تقاضای {cls.AskerName}";
             ucHeader.IsModified = cls.IsModified;
             superTabControlPanel1.Enabled = !isShowMode;
@@ -460,7 +460,8 @@ namespace Building.BuildingRequest
                 cls.HasOwner = chbHasOwner.Checked;
                 cls.ShortDate = chbShortDate.Checked;
                 cls.RentalAutorityGuid = (Guid?)cmbRentalAuthority.SelectedValue ?? Guid.Empty;
-                cls.CityGuid = (Guid)cmbCity.SelectedValue;
+                if (cmbCity.SelectedValue != null)
+                    cls.CityGuid = (Guid)cmbCity.SelectedValue;
                 cls.BuildingTypeGuid = (Guid)cmbBuildingType.SelectedValue;
                 cls.Masahat1 = txtMasahat1.Text.ParseToInt();
                 cls.Masahat2 = txtMasahat2.Text.ParseToInt();
