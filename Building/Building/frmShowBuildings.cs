@@ -769,7 +769,7 @@ namespace Building.Building
             var res = new ReturnedSaveFuncInfo();
             try
             {
-                return;
+                //return;
                 if (DGrid.RowCount <= 0) return;
                 if (DGrid.CurrentRow == null) return;
                 var simList = new List<SimcardBussines>();

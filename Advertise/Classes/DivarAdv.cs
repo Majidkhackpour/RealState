@@ -140,12 +140,26 @@ namespace Advertise.Classes
                     //حدود 120 ثانیه فرصت لاگین دارد
                     while (repeat < 20)
                     {
-                        //تا زمانی که لاگین اوکی نشده باشد این حلقه تکرار می شود
+
                         listLinkItems = _driver.FindElements(By.TagName("a"));
                         if (listLinkItems.Count < 5) return false;
-                        var isLogin = listLinkItems.Any(linkItem => linkItem.Text == @"خروج");
+                        var loginList = _driver.FindElements(By.ClassName("kt-button--inlined"))
+                            ?.FirstOrDefault(q => q.Text == "دیوار من");
+                        var isLogin = false;
+                        if (loginList != null)
+                        {
+                            try
+                            {
+                                loginList?.Click();
+                                await Utility.Wait();
+                                isLogin = _driver.FindElements(By.ClassName("kt-fullwidth-link__title"))
+                                    .Any(q => q.Text == "خروج");
+                            }
+                            catch
+                            {
+                            }
+                        }
                         var advToken = await AdvTokenBussines.GetTokenAsync(simCardNumber, AdvertiseType.Divar);
-
                         if (isLogin)
                         {
                             var token = _driver.Manage().Cookies.GetCookieNamed("token").Value;
@@ -167,13 +181,24 @@ namespace Advertise.Classes
                         }
                         else
                         {
-                            var message = $@"مالک: {sim.Owner} \r\nشماره: {simCardNumber}  \r\nلطفا لاگین نمائید ";
-                            _driver.ExecuteJavaScript($"alert('{message}');");
+                            var menu = _driver.FindElements(By.ClassName("menu")).Any();
+                            if (menu)
+                            {
+                                listLinkItems = _driver.FindElements(By.ClassName("item"));
+                                isLogin = listLinkItems.Any(linkItem => linkItem.Text == @"خروج");
+                                if (isLogin) return true;
+                            }
+
+                            var exMenu = _driver.FindElements(By.ClassName("sidebar")).Any();
+                            if (exMenu)
+                            {
+                                _driver.FindElements(By.ClassName("sidebar")).FirstOrDefault()?.Click();
+                                continue;
+                            }
 
                             await Utility.Wait(3);
                             try
                             {
-                                _driver.SwitchTo().Alert().Accept();
                                 await Utility.Wait(3);
                                 repeat++;
                             }
