@@ -136,6 +136,10 @@ namespace EntityCache.Bussines
                     if (res.HasError) return res;
                 }
 
+                if (GalleryList?.Count > 0)
+                    if (string.IsNullOrEmpty(Image))
+                        Image = GalleryList?.FirstOrDefault()?.ImageName;
+
                 res.AddReturnedValue(await UnitOfWork.Building.SaveAsync(this, tr));
                 if (res.HasError) return res;
 
@@ -159,9 +163,6 @@ namespace EntityCache.Bussines
 
                     res.AddReturnedValue(await BuildingGalleryBussines.SaveRangeAsync(GalleryList, tr));
                     if (res.HasError) return res;
-
-                    if (string.IsNullOrEmpty(Image))
-                        Image = GalleryList?.FirstOrDefault()?.ImageName;
                 }
                 if (MediaList?.Count > 0)
                 {
