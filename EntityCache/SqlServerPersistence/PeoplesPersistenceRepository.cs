@@ -228,6 +228,7 @@ namespace EntityCache.SqlServerPersistence
 
                 if (isLoadRelatedNumber)
                 {
+                    if (item.TellList != null && item.TellList.Count > 0) return item;
                     if (item.TellList == null) item.TellList = new List<PhoneBookBussines>();
                     item.TellList.Add(new PhoneBookBussines()
                     {

@@ -42,6 +42,40 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmShowBuildings));
             this.txtSearch = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.DGrid = new DevComponents.DotNetBar.Controls.DataGridViewX();
+            this.dgCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgDateSh = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgOwnerName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgRoomCount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgMasahat = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgZirBana = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgRahn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgEjare = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgRentalAuthorityName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgSellPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgVam = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgQest = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgTejari = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgRegionName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgBuildingStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgAddress = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgSaleSakht = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgUserName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgSide = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgDocType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgAccountType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgCondition = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgView = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgFloorCover = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgKitchenService = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgWater = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgBarq = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgGas = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgTell = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgGuid = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgPriority = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgIsArchive = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.dgAdvertiseType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.contextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.mnuAdd = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuEdit = new System.Windows.Forms.ToolStripMenuItem();
@@ -143,40 +177,7 @@
             this.chbPishForoush = new DevComponents.DotNetBar.Controls.CheckBoxX();
             this.chbMosharekat = new DevComponents.DotNetBar.Controls.CheckBoxX();
             this.chbAll = new DevComponents.DotNetBar.Controls.CheckBoxX();
-            this.dgCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgDateSh = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgOwnerName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgType = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgRoomCount = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgMasahat = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgZirBana = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgRahn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgEjare = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgRentalAuthorityName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgSellPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgVam = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgQest = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgTejari = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgRegionName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgBuildingStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgAddress = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgSaleSakht = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgUserName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgSide = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgDocType = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgAccountType = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgCondition = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgView = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgFloorCover = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgKitchenService = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgWater = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgBarq = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgGas = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgTell = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgGuid = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgPriority = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgIsArchive = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.dgAdvertiseType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.chbMine = new DevComponents.DotNetBar.Controls.CheckBoxX();
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).BeginInit();
             this.contextMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BuildingBindingSource)).BeginInit();
@@ -203,11 +204,11 @@
             // 
             this.txtSearch.Border.Class = "TextBoxBorder";
             this.txtSearch.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.txtSearch.Location = new System.Drawing.Point(409, 65);
+            this.txtSearch.Location = new System.Drawing.Point(4, 87);
             this.txtSearch.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.PreventEnterBeep = true;
-            this.txtSearch.Size = new System.Drawing.Size(568, 27);
+            this.txtSearch.Size = new System.Drawing.Size(844, 27);
             this.txtSearch.TabIndex = 55745;
             this.txtSearch.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtSearch.WatermarkText = "مورد جستجو را وارد نمایید ...";
@@ -285,7 +286,7 @@
             dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.DGrid.DefaultCellStyle = dataGridViewCellStyle8;
             this.DGrid.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
-            this.DGrid.Location = new System.Drawing.Point(4, 100);
+            this.DGrid.Location = new System.Drawing.Point(4, 120);
             this.DGrid.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.DGrid.Name = "DGrid";
             this.DGrid.ReadOnly = true;
@@ -308,11 +309,315 @@
             this.DGrid.RowsDefaultCellStyle = dataGridViewCellStyle10;
             this.DGrid.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             this.DGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DGrid.Size = new System.Drawing.Size(844, 527);
+            this.DGrid.Size = new System.Drawing.Size(844, 507);
             this.DGrid.TabIndex = 55744;
             this.DGrid.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGrid_CellEnter);
             this.DGrid.Scroll += new System.Windows.Forms.ScrollEventHandler(this.DGrid_Scroll);
             this.DGrid.DoubleClick += new System.EventHandler(this.DGrid_DoubleClick);
+            // 
+            // dgCode
+            // 
+            this.dgCode.DataPropertyName = "Code";
+            this.dgCode.HeaderText = "کد ملک";
+            this.dgCode.Name = "dgCode";
+            this.dgCode.ReadOnly = true;
+            this.dgCode.Width = 80;
+            // 
+            // dgDateSh
+            // 
+            this.dgDateSh.DataPropertyName = "DateSh";
+            this.dgDateSh.HeaderText = "تاریخ ثبت";
+            this.dgDateSh.Name = "dgDateSh";
+            this.dgDateSh.ReadOnly = true;
+            // 
+            // dgOwnerName
+            // 
+            this.dgOwnerName.DataPropertyName = "OwnerName";
+            this.dgOwnerName.HeaderText = "مالک";
+            this.dgOwnerName.Name = "dgOwnerName";
+            this.dgOwnerName.ReadOnly = true;
+            this.dgOwnerName.Width = 250;
+            // 
+            // dgType
+            // 
+            this.dgType.DataPropertyName = "BuildingTypeName";
+            this.dgType.HeaderText = "نوع ملک";
+            this.dgType.Name = "dgType";
+            this.dgType.ReadOnly = true;
+            this.dgType.Visible = false;
+            // 
+            // dgRoomCount
+            // 
+            this.dgRoomCount.DataPropertyName = "RoomCount";
+            this.dgRoomCount.HeaderText = "ت اتاق";
+            this.dgRoomCount.Name = "dgRoomCount";
+            this.dgRoomCount.ReadOnly = true;
+            this.dgRoomCount.Width = 66;
+            // 
+            // dgMasahat
+            // 
+            this.dgMasahat.DataPropertyName = "Masahat";
+            this.dgMasahat.HeaderText = "مساحت";
+            this.dgMasahat.Name = "dgMasahat";
+            this.dgMasahat.ReadOnly = true;
+            this.dgMasahat.Visible = false;
+            this.dgMasahat.Width = 80;
+            // 
+            // dgZirBana
+            // 
+            this.dgZirBana.DataPropertyName = "ZirBana";
+            this.dgZirBana.HeaderText = "زیربنا";
+            this.dgZirBana.Name = "dgZirBana";
+            this.dgZirBana.ReadOnly = true;
+            this.dgZirBana.Visible = false;
+            this.dgZirBana.Width = 80;
+            // 
+            // dgRahn
+            // 
+            this.dgRahn.DataPropertyName = "RahnPrice1";
+            dataGridViewCellStyle3.Format = "N0";
+            dataGridViewCellStyle3.NullValue = null;
+            this.dgRahn.DefaultCellStyle = dataGridViewCellStyle3;
+            this.dgRahn.HeaderText = "رهن";
+            this.dgRahn.Name = "dgRahn";
+            this.dgRahn.ReadOnly = true;
+            this.dgRahn.Visible = false;
+            // 
+            // dgEjare
+            // 
+            this.dgEjare.DataPropertyName = "EjarePrice1";
+            dataGridViewCellStyle4.Format = "N0";
+            dataGridViewCellStyle4.NullValue = null;
+            this.dgEjare.DefaultCellStyle = dataGridViewCellStyle4;
+            this.dgEjare.HeaderText = "اجاره";
+            this.dgEjare.Name = "dgEjare";
+            this.dgEjare.ReadOnly = true;
+            this.dgEjare.Visible = false;
+            // 
+            // dgRentalAuthorityName
+            // 
+            this.dgRentalAuthorityName.DataPropertyName = "RentalAuthorityName";
+            this.dgRentalAuthorityName.HeaderText = "ارجحیت اجاره";
+            this.dgRentalAuthorityName.Name = "dgRentalAuthorityName";
+            this.dgRentalAuthorityName.ReadOnly = true;
+            this.dgRentalAuthorityName.Visible = false;
+            this.dgRentalAuthorityName.Width = 102;
+            // 
+            // dgSellPrice
+            // 
+            this.dgSellPrice.DataPropertyName = "SellPrice";
+            dataGridViewCellStyle5.Format = "N0";
+            dataGridViewCellStyle5.NullValue = null;
+            this.dgSellPrice.DefaultCellStyle = dataGridViewCellStyle5;
+            this.dgSellPrice.HeaderText = "فروش";
+            this.dgSellPrice.Name = "dgSellPrice";
+            this.dgSellPrice.ReadOnly = true;
+            this.dgSellPrice.Visible = false;
+            this.dgSellPrice.Width = 120;
+            // 
+            // dgVam
+            // 
+            this.dgVam.DataPropertyName = "VamPrice";
+            dataGridViewCellStyle6.Format = "N0";
+            dataGridViewCellStyle6.NullValue = null;
+            this.dgVam.DefaultCellStyle = dataGridViewCellStyle6;
+            this.dgVam.HeaderText = "مبلغ وام";
+            this.dgVam.Name = "dgVam";
+            this.dgVam.ReadOnly = true;
+            this.dgVam.Visible = false;
+            // 
+            // dgQest
+            // 
+            this.dgQest.DataPropertyName = "QestPrice";
+            dataGridViewCellStyle7.Format = "N0";
+            dataGridViewCellStyle7.NullValue = null;
+            this.dgQest.DefaultCellStyle = dataGridViewCellStyle7;
+            this.dgQest.HeaderText = "قسط";
+            this.dgQest.Name = "dgQest";
+            this.dgQest.ReadOnly = true;
+            this.dgQest.Visible = false;
+            // 
+            // dgTejari
+            // 
+            this.dgTejari.DataPropertyName = "MetrazhTejari";
+            this.dgTejari.HeaderText = "تجاری";
+            this.dgTejari.Name = "dgTejari";
+            this.dgTejari.ReadOnly = true;
+            this.dgTejari.Visible = false;
+            this.dgTejari.Width = 62;
+            // 
+            // dgRegionName
+            // 
+            this.dgRegionName.DataPropertyName = "RegionName";
+            this.dgRegionName.HeaderText = "محدوده";
+            this.dgRegionName.Name = "dgRegionName";
+            this.dgRegionName.ReadOnly = true;
+            // 
+            // dgBuildingStatus
+            // 
+            this.dgBuildingStatus.DataPropertyName = "BuildingStatusName";
+            this.dgBuildingStatus.HeaderText = "وضعیت";
+            this.dgBuildingStatus.Name = "dgBuildingStatus";
+            this.dgBuildingStatus.ReadOnly = true;
+            this.dgBuildingStatus.Visible = false;
+            // 
+            // dgAddress
+            // 
+            this.dgAddress.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dgAddress.DataPropertyName = "Address";
+            this.dgAddress.FillWeight = 500F;
+            this.dgAddress.HeaderText = "آدرس";
+            this.dgAddress.MinimumWidth = 100;
+            this.dgAddress.Name = "dgAddress";
+            this.dgAddress.ReadOnly = true;
+            // 
+            // dgSaleSakht
+            // 
+            this.dgSaleSakht.DataPropertyName = "SaleSakht";
+            this.dgSaleSakht.HeaderText = "سال ساخت";
+            this.dgSaleSakht.Name = "dgSaleSakht";
+            this.dgSaleSakht.ReadOnly = true;
+            this.dgSaleSakht.Visible = false;
+            this.dgSaleSakht.Width = 88;
+            // 
+            // dgUserName
+            // 
+            this.dgUserName.DataPropertyName = "UserName";
+            this.dgUserName.HeaderText = "مشاور";
+            this.dgUserName.Name = "dgUserName";
+            this.dgUserName.ReadOnly = true;
+            this.dgUserName.Visible = false;
+            // 
+            // dgSide
+            // 
+            this.dgSide.DataPropertyName = "SideName";
+            this.dgSide.HeaderText = "جهت";
+            this.dgSide.Name = "dgSide";
+            this.dgSide.ReadOnly = true;
+            this.dgSide.Visible = false;
+            this.dgSide.Width = 70;
+            // 
+            // dgDocType
+            // 
+            this.dgDocType.DataPropertyName = "DocumentTypeName";
+            this.dgDocType.HeaderText = "سند";
+            this.dgDocType.Name = "dgDocType";
+            this.dgDocType.ReadOnly = true;
+            this.dgDocType.Visible = false;
+            this.dgDocType.Width = 80;
+            // 
+            // dgAccountType
+            // 
+            this.dgAccountType.DataPropertyName = "BuildingAccountTypeName";
+            this.dgAccountType.HeaderText = "کاربری";
+            this.dgAccountType.Name = "dgAccountType";
+            this.dgAccountType.ReadOnly = true;
+            this.dgAccountType.Visible = false;
+            this.dgAccountType.Width = 80;
+            // 
+            // dgCondition
+            // 
+            this.dgCondition.DataPropertyName = "BuildingConditionName";
+            this.dgCondition.HeaderText = "وضعیت ملک";
+            this.dgCondition.Name = "dgCondition";
+            this.dgCondition.ReadOnly = true;
+            this.dgCondition.Visible = false;
+            this.dgCondition.Width = 94;
+            // 
+            // dgView
+            // 
+            this.dgView.DataPropertyName = "BuildingViewName";
+            this.dgView.HeaderText = "نما";
+            this.dgView.Name = "dgView";
+            this.dgView.ReadOnly = true;
+            this.dgView.Visible = false;
+            this.dgView.Width = 80;
+            // 
+            // dgFloorCover
+            // 
+            this.dgFloorCover.DataPropertyName = "FloorCoverName";
+            this.dgFloorCover.HeaderText = "کفپوش";
+            this.dgFloorCover.Name = "dgFloorCover";
+            this.dgFloorCover.ReadOnly = true;
+            this.dgFloorCover.Visible = false;
+            this.dgFloorCover.Width = 80;
+            // 
+            // dgKitchenService
+            // 
+            this.dgKitchenService.DataPropertyName = "KitchenServiceName";
+            this.dgKitchenService.HeaderText = "آشپزخانه";
+            this.dgKitchenService.Name = "dgKitchenService";
+            this.dgKitchenService.ReadOnly = true;
+            this.dgKitchenService.Visible = false;
+            this.dgKitchenService.Width = 80;
+            // 
+            // dgWater
+            // 
+            this.dgWater.DataPropertyName = "WaterName";
+            this.dgWater.HeaderText = "آب";
+            this.dgWater.Name = "dgWater";
+            this.dgWater.ReadOnly = true;
+            this.dgWater.Visible = false;
+            this.dgWater.Width = 70;
+            // 
+            // dgBarq
+            // 
+            this.dgBarq.DataPropertyName = "BarqName";
+            this.dgBarq.HeaderText = "برق";
+            this.dgBarq.Name = "dgBarq";
+            this.dgBarq.ReadOnly = true;
+            this.dgBarq.Visible = false;
+            this.dgBarq.Width = 70;
+            // 
+            // dgGas
+            // 
+            this.dgGas.DataPropertyName = "GasName";
+            this.dgGas.HeaderText = "گاز";
+            this.dgGas.Name = "dgGas";
+            this.dgGas.ReadOnly = true;
+            this.dgGas.Visible = false;
+            this.dgGas.Width = 70;
+            // 
+            // dgTell
+            // 
+            this.dgTell.DataPropertyName = "TellName";
+            this.dgTell.HeaderText = "تلفن";
+            this.dgTell.Name = "dgTell";
+            this.dgTell.ReadOnly = true;
+            this.dgTell.Visible = false;
+            this.dgTell.Width = 70;
+            // 
+            // dgGuid
+            // 
+            this.dgGuid.DataPropertyName = "Guid";
+            this.dgGuid.HeaderText = "Guid";
+            this.dgGuid.Name = "dgGuid";
+            this.dgGuid.ReadOnly = true;
+            this.dgGuid.Visible = false;
+            // 
+            // dgPriority
+            // 
+            this.dgPriority.DataPropertyName = "Priority";
+            this.dgPriority.HeaderText = "Priority";
+            this.dgPriority.Name = "dgPriority";
+            this.dgPriority.ReadOnly = true;
+            this.dgPriority.Visible = false;
+            // 
+            // dgIsArchive
+            // 
+            this.dgIsArchive.DataPropertyName = "IsArchive";
+            this.dgIsArchive.HeaderText = "IsArchive";
+            this.dgIsArchive.Name = "dgIsArchive";
+            this.dgIsArchive.ReadOnly = true;
+            this.dgIsArchive.Visible = false;
+            // 
+            // dgAdvertiseType
+            // 
+            this.dgAdvertiseType.DataPropertyName = "AdvertiseType";
+            this.dgAdvertiseType.HeaderText = "AdvertiseType";
+            this.dgAdvertiseType.Name = "dgAdvertiseType";
+            this.dgAdvertiseType.ReadOnly = true;
+            this.dgAdvertiseType.Visible = false;
             // 
             // contextMenu
             // 
@@ -954,9 +1259,9 @@
             this.grp.Controls.Add(this.cmbBuildingType);
             this.grp.Controls.Add(this.label3);
             this.grp.DisabledBackColor = System.Drawing.Color.Empty;
-            this.grp.Location = new System.Drawing.Point(854, 100);
+            this.grp.Location = new System.Drawing.Point(854, 58);
             this.grp.Name = "grp";
-            this.grp.Size = new System.Drawing.Size(161, 527);
+            this.grp.Size = new System.Drawing.Size(161, 569);
             this.grp.Style.Alignment = System.Drawing.StringAlignment.Center;
             this.grp.Style.BackColor1.Color = System.Drawing.Color.White;
             this.grp.Style.BackColor2.Color = System.Drawing.Color.White;
@@ -972,7 +1277,7 @@
             // 
             this.pictureBox6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.pictureBox6.Location = new System.Drawing.Point(118, 498);
+            this.pictureBox6.Location = new System.Drawing.Point(118, 540);
             this.pictureBox6.Name = "pictureBox6";
             this.pictureBox6.Size = new System.Drawing.Size(19, 18);
             this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -983,7 +1288,7 @@
             // 
             this.pictureBox5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox5.BackColor = System.Drawing.Color.Silver;
-            this.pictureBox5.Location = new System.Drawing.Point(118, 475);
+            this.pictureBox5.Location = new System.Drawing.Point(118, 517);
             this.pictureBox5.Name = "pictureBox5";
             this.pictureBox5.Size = new System.Drawing.Size(19, 18);
             this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -994,7 +1299,7 @@
             // 
             this.pictureBox4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox4.BackColor = System.Drawing.Color.PaleTurquoise;
-            this.pictureBox4.Location = new System.Drawing.Point(118, 451);
+            this.pictureBox4.Location = new System.Drawing.Point(118, 493);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(19, 18);
             this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -1005,7 +1310,7 @@
             // 
             this.pictureBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox3.BackColor = System.Drawing.Color.Khaki;
-            this.pictureBox3.Location = new System.Drawing.Point(118, 427);
+            this.pictureBox3.Location = new System.Drawing.Point(118, 469);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(19, 18);
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -1016,7 +1321,7 @@
             // 
             this.pictureBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox2.BackColor = System.Drawing.Color.Orange;
-            this.pictureBox2.Location = new System.Drawing.Point(118, 403);
+            this.pictureBox2.Location = new System.Drawing.Point(118, 445);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(19, 18);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -1027,7 +1332,7 @@
             // 
             this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox1.BackColor = System.Drawing.Color.OrangeRed;
-            this.pictureBox1.Location = new System.Drawing.Point(118, 379);
+            this.pictureBox1.Location = new System.Drawing.Point(118, 421);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(19, 18);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -1039,7 +1344,7 @@
             this.label11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label11.AutoSize = true;
             this.label11.BackColor = System.Drawing.Color.Transparent;
-            this.label11.Location = new System.Drawing.Point(0, 496);
+            this.label11.Location = new System.Drawing.Point(0, 538);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(111, 20);
             this.label11.TabIndex = 55760;
@@ -1050,7 +1355,7 @@
             this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label10.AutoSize = true;
             this.label10.BackColor = System.Drawing.Color.Transparent;
-            this.label10.Location = new System.Drawing.Point(0, 473);
+            this.label10.Location = new System.Drawing.Point(0, 515);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(113, 20);
             this.label10.TabIndex = 55760;
@@ -1071,7 +1376,7 @@
             this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label9.AutoSize = true;
             this.label9.BackColor = System.Drawing.Color.Transparent;
-            this.label9.Location = new System.Drawing.Point(78, 448);
+            this.label9.Location = new System.Drawing.Point(78, 490);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(34, 20);
             this.label9.TabIndex = 55760;
@@ -1082,7 +1387,7 @@
             this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label8.AutoSize = true;
             this.label8.BackColor = System.Drawing.Color.Transparent;
-            this.label8.Location = new System.Drawing.Point(71, 424);
+            this.label8.Location = new System.Drawing.Point(71, 466);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(42, 20);
             this.label8.TabIndex = 55760;
@@ -1093,7 +1398,7 @@
             this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label7.AutoSize = true;
             this.label7.BackColor = System.Drawing.Color.Transparent;
-            this.label7.Location = new System.Drawing.Point(92, 401);
+            this.label7.Location = new System.Drawing.Point(92, 443);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(23, 20);
             this.label7.TabIndex = 55760;
@@ -1104,7 +1409,7 @@
             this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label6.AutoSize = true;
             this.label6.BackColor = System.Drawing.Color.Transparent;
-            this.label6.Location = new System.Drawing.Point(40, 378);
+            this.label6.Location = new System.Drawing.Point(40, 420);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(75, 20);
             this.label6.TabIndex = 55760;
@@ -1115,7 +1420,7 @@
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Location = new System.Drawing.Point(85, 356);
+            this.label1.Location = new System.Drawing.Point(85, 398);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(56, 20);
             this.label1.TabIndex = 55760;
@@ -1219,7 +1524,7 @@
             this.ucFeatures.BackColor = System.Drawing.Color.Transparent;
             this.ucFeatures.Building = null;
             this.ucFeatures.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.ucFeatures.Location = new System.Drawing.Point(553, 82);
+            this.ucFeatures.Location = new System.Drawing.Point(553, 49);
             this.ucFeatures.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ucFeatures.Name = "ucFeatures";
             this.ucFeatures.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -1228,6 +1533,7 @@
             // 
             // chbRahn
             // 
+            this.chbRahn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.chbRahn.AutoSize = true;
             this.chbRahn.BackColor = System.Drawing.Color.Transparent;
             // 
@@ -1236,7 +1542,7 @@
             this.chbRahn.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.chbRahn.CheckBoxStyle = DevComponents.DotNetBar.eCheckBoxStyle.RadioButton;
             this.chbRahn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.chbRahn.Location = new System.Drawing.Point(268, 69);
+            this.chbRahn.Location = new System.Drawing.Point(720, 58);
             this.chbRahn.Name = "chbRahn";
             this.chbRahn.Size = new System.Drawing.Size(80, 22);
             this.chbRahn.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -1246,6 +1552,7 @@
             // 
             // chbForoush
             // 
+            this.chbForoush.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.chbForoush.AutoSize = true;
             this.chbForoush.BackColor = System.Drawing.Color.Transparent;
             // 
@@ -1254,7 +1561,7 @@
             this.chbForoush.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.chbForoush.CheckBoxStyle = DevComponents.DotNetBar.eCheckBoxStyle.RadioButton;
             this.chbForoush.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.chbForoush.Location = new System.Drawing.Point(208, 69);
+            this.chbForoush.Location = new System.Drawing.Point(660, 58);
             this.chbForoush.Name = "chbForoush";
             this.chbForoush.Size = new System.Drawing.Size(54, 22);
             this.chbForoush.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -1264,6 +1571,7 @@
             // 
             // chbPishForoush
             // 
+            this.chbPishForoush.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.chbPishForoush.AutoSize = true;
             this.chbPishForoush.BackColor = System.Drawing.Color.Transparent;
             // 
@@ -1272,7 +1580,7 @@
             this.chbPishForoush.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.chbPishForoush.CheckBoxStyle = DevComponents.DotNetBar.eCheckBoxStyle.RadioButton;
             this.chbPishForoush.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.chbPishForoush.Location = new System.Drawing.Point(121, 69);
+            this.chbPishForoush.Location = new System.Drawing.Point(573, 58);
             this.chbPishForoush.Name = "chbPishForoush";
             this.chbPishForoush.Size = new System.Drawing.Size(81, 22);
             this.chbPishForoush.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -1282,6 +1590,7 @@
             // 
             // chbMosharekat
             // 
+            this.chbMosharekat.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.chbMosharekat.AutoSize = true;
             this.chbMosharekat.BackColor = System.Drawing.Color.Transparent;
             // 
@@ -1290,7 +1599,7 @@
             this.chbMosharekat.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.chbMosharekat.CheckBoxStyle = DevComponents.DotNetBar.eCheckBoxStyle.RadioButton;
             this.chbMosharekat.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.chbMosharekat.Location = new System.Drawing.Point(5, 69);
+            this.chbMosharekat.Location = new System.Drawing.Point(457, 58);
             this.chbMosharekat.Name = "chbMosharekat";
             this.chbMosharekat.Size = new System.Drawing.Size(110, 22);
             this.chbMosharekat.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -1300,6 +1609,7 @@
             // 
             // chbAll
             // 
+            this.chbAll.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.chbAll.AutoSize = true;
             this.chbAll.BackColor = System.Drawing.Color.Transparent;
             // 
@@ -1308,7 +1618,7 @@
             this.chbAll.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.chbAll.CheckBoxStyle = DevComponents.DotNetBar.eCheckBoxStyle.RadioButton;
             this.chbAll.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.chbAll.Location = new System.Drawing.Point(354, 69);
+            this.chbAll.Location = new System.Drawing.Point(806, 58);
             this.chbAll.Name = "chbAll";
             this.chbAll.Size = new System.Drawing.Size(42, 22);
             this.chbAll.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -1316,321 +1626,36 @@
             this.chbAll.Text = "همه";
             this.chbAll.CheckedChanged += new System.EventHandler(this.chbAll_CheckedChanged);
             // 
-            // dgCode
-            // 
-            this.dgCode.DataPropertyName = "Code";
-            this.dgCode.HeaderText = "کد ملک";
-            this.dgCode.Name = "dgCode";
-            this.dgCode.ReadOnly = true;
-            this.dgCode.Width = 80;
-            // 
-            // dgDateSh
-            // 
-            this.dgDateSh.DataPropertyName = "DateSh";
-            this.dgDateSh.HeaderText = "تاریخ ثبت";
-            this.dgDateSh.Name = "dgDateSh";
-            this.dgDateSh.ReadOnly = true;
-            // 
-            // dgOwnerName
-            // 
-            this.dgOwnerName.DataPropertyName = "OwnerName";
-            this.dgOwnerName.HeaderText = "مالک";
-            this.dgOwnerName.Name = "dgOwnerName";
-            this.dgOwnerName.ReadOnly = true;
-            this.dgOwnerName.Width = 250;
-            // 
-            // dgType
-            // 
-            this.dgType.DataPropertyName = "BuildingTypeName";
-            this.dgType.HeaderText = "نوع ملک";
-            this.dgType.Name = "dgType";
-            this.dgType.ReadOnly = true;
-            this.dgType.Visible = false;
-            // 
-            // dgRoomCount
-            // 
-            this.dgRoomCount.DataPropertyName = "RoomCount";
-            this.dgRoomCount.HeaderText = "ت اتاق";
-            this.dgRoomCount.Name = "dgRoomCount";
-            this.dgRoomCount.ReadOnly = true;
-            this.dgRoomCount.Width = 66;
-            // 
-            // dgMasahat
-            // 
-            this.dgMasahat.DataPropertyName = "Masahat";
-            this.dgMasahat.HeaderText = "مساحت";
-            this.dgMasahat.Name = "dgMasahat";
-            this.dgMasahat.ReadOnly = true;
-            this.dgMasahat.Visible = false;
-            this.dgMasahat.Width = 80;
-            // 
-            // dgZirBana
-            // 
-            this.dgZirBana.DataPropertyName = "ZirBana";
-            this.dgZirBana.HeaderText = "زیربنا";
-            this.dgZirBana.Name = "dgZirBana";
-            this.dgZirBana.ReadOnly = true;
-            this.dgZirBana.Visible = false;
-            this.dgZirBana.Width = 80;
-            // 
-            // dgRahn
-            // 
-            this.dgRahn.DataPropertyName = "RahnPrice1";
-            dataGridViewCellStyle3.Format = "N0";
-            dataGridViewCellStyle3.NullValue = null;
-            this.dgRahn.DefaultCellStyle = dataGridViewCellStyle3;
-            this.dgRahn.HeaderText = "رهن";
-            this.dgRahn.Name = "dgRahn";
-            this.dgRahn.ReadOnly = true;
-            this.dgRahn.Visible = false;
-            // 
-            // dgEjare
-            // 
-            this.dgEjare.DataPropertyName = "EjarePrice1";
-            dataGridViewCellStyle4.Format = "N0";
-            dataGridViewCellStyle4.NullValue = null;
-            this.dgEjare.DefaultCellStyle = dataGridViewCellStyle4;
-            this.dgEjare.HeaderText = "اجاره";
-            this.dgEjare.Name = "dgEjare";
-            this.dgEjare.ReadOnly = true;
-            this.dgEjare.Visible = false;
-            // 
-            // dgRentalAuthorityName
-            // 
-            this.dgRentalAuthorityName.DataPropertyName = "RentalAuthorityName";
-            this.dgRentalAuthorityName.HeaderText = "ارجحیت اجاره";
-            this.dgRentalAuthorityName.Name = "dgRentalAuthorityName";
-            this.dgRentalAuthorityName.ReadOnly = true;
-            this.dgRentalAuthorityName.Visible = false;
-            this.dgRentalAuthorityName.Width = 102;
-            // 
-            // dgSellPrice
-            // 
-            this.dgSellPrice.DataPropertyName = "SellPrice";
-            dataGridViewCellStyle5.Format = "N0";
-            dataGridViewCellStyle5.NullValue = null;
-            this.dgSellPrice.DefaultCellStyle = dataGridViewCellStyle5;
-            this.dgSellPrice.HeaderText = "فروش";
-            this.dgSellPrice.Name = "dgSellPrice";
-            this.dgSellPrice.ReadOnly = true;
-            this.dgSellPrice.Visible = false;
-            this.dgSellPrice.Width = 120;
-            // 
-            // dgVam
-            // 
-            this.dgVam.DataPropertyName = "VamPrice";
-            dataGridViewCellStyle6.Format = "N0";
-            dataGridViewCellStyle6.NullValue = null;
-            this.dgVam.DefaultCellStyle = dataGridViewCellStyle6;
-            this.dgVam.HeaderText = "مبلغ وام";
-            this.dgVam.Name = "dgVam";
-            this.dgVam.ReadOnly = true;
-            this.dgVam.Visible = false;
-            // 
-            // dgQest
-            // 
-            this.dgQest.DataPropertyName = "QestPrice";
-            dataGridViewCellStyle7.Format = "N0";
-            dataGridViewCellStyle7.NullValue = null;
-            this.dgQest.DefaultCellStyle = dataGridViewCellStyle7;
-            this.dgQest.HeaderText = "قسط";
-            this.dgQest.Name = "dgQest";
-            this.dgQest.ReadOnly = true;
-            this.dgQest.Visible = false;
-            // 
-            // dgTejari
-            // 
-            this.dgTejari.DataPropertyName = "MetrazhTejari";
-            this.dgTejari.HeaderText = "تجاری";
-            this.dgTejari.Name = "dgTejari";
-            this.dgTejari.ReadOnly = true;
-            this.dgTejari.Visible = false;
-            this.dgTejari.Width = 62;
-            // 
-            // dgRegionName
-            // 
-            this.dgRegionName.DataPropertyName = "RegionName";
-            this.dgRegionName.HeaderText = "محدوده";
-            this.dgRegionName.Name = "dgRegionName";
-            this.dgRegionName.ReadOnly = true;
-            // 
-            // dgBuildingStatus
-            // 
-            this.dgBuildingStatus.DataPropertyName = "BuildingStatusName";
-            this.dgBuildingStatus.HeaderText = "وضعیت";
-            this.dgBuildingStatus.Name = "dgBuildingStatus";
-            this.dgBuildingStatus.ReadOnly = true;
-            this.dgBuildingStatus.Visible = false;
-            // 
-            // dgAddress
-            // 
-            this.dgAddress.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dgAddress.DataPropertyName = "Address";
-            this.dgAddress.FillWeight = 500F;
-            this.dgAddress.HeaderText = "آدرس";
-            this.dgAddress.MinimumWidth = 100;
-            this.dgAddress.Name = "dgAddress";
-            this.dgAddress.ReadOnly = true;
-            // 
-            // dgSaleSakht
-            // 
-            this.dgSaleSakht.DataPropertyName = "SaleSakht";
-            this.dgSaleSakht.HeaderText = "سال ساخت";
-            this.dgSaleSakht.Name = "dgSaleSakht";
-            this.dgSaleSakht.ReadOnly = true;
-            this.dgSaleSakht.Visible = false;
-            this.dgSaleSakht.Width = 88;
-            // 
-            // dgUserName
-            // 
-            this.dgUserName.DataPropertyName = "UserName";
-            this.dgUserName.HeaderText = "مشاور";
-            this.dgUserName.Name = "dgUserName";
-            this.dgUserName.ReadOnly = true;
-            this.dgUserName.Visible = false;
-            // 
-            // dgSide
-            // 
-            this.dgSide.DataPropertyName = "SideName";
-            this.dgSide.HeaderText = "جهت";
-            this.dgSide.Name = "dgSide";
-            this.dgSide.ReadOnly = true;
-            this.dgSide.Visible = false;
-            this.dgSide.Width = 70;
-            // 
-            // dgDocType
-            // 
-            this.dgDocType.DataPropertyName = "DocumentTypeName";
-            this.dgDocType.HeaderText = "سند";
-            this.dgDocType.Name = "dgDocType";
-            this.dgDocType.ReadOnly = true;
-            this.dgDocType.Visible = false;
-            this.dgDocType.Width = 80;
-            // 
-            // dgAccountType
-            // 
-            this.dgAccountType.DataPropertyName = "BuildingAccountTypeName";
-            this.dgAccountType.HeaderText = "کاربری";
-            this.dgAccountType.Name = "dgAccountType";
-            this.dgAccountType.ReadOnly = true;
-            this.dgAccountType.Visible = false;
-            this.dgAccountType.Width = 80;
-            // 
-            // dgCondition
-            // 
-            this.dgCondition.DataPropertyName = "BuildingConditionName";
-            this.dgCondition.HeaderText = "وضعیت ملک";
-            this.dgCondition.Name = "dgCondition";
-            this.dgCondition.ReadOnly = true;
-            this.dgCondition.Visible = false;
-            this.dgCondition.Width = 94;
-            // 
-            // dgView
-            // 
-            this.dgView.DataPropertyName = "BuildingViewName";
-            this.dgView.HeaderText = "نما";
-            this.dgView.Name = "dgView";
-            this.dgView.ReadOnly = true;
-            this.dgView.Visible = false;
-            this.dgView.Width = 80;
-            // 
-            // dgFloorCover
-            // 
-            this.dgFloorCover.DataPropertyName = "FloorCoverName";
-            this.dgFloorCover.HeaderText = "کفپوش";
-            this.dgFloorCover.Name = "dgFloorCover";
-            this.dgFloorCover.ReadOnly = true;
-            this.dgFloorCover.Visible = false;
-            this.dgFloorCover.Width = 80;
-            // 
-            // dgKitchenService
-            // 
-            this.dgKitchenService.DataPropertyName = "KitchenServiceName";
-            this.dgKitchenService.HeaderText = "آشپزخانه";
-            this.dgKitchenService.Name = "dgKitchenService";
-            this.dgKitchenService.ReadOnly = true;
-            this.dgKitchenService.Visible = false;
-            this.dgKitchenService.Width = 80;
-            // 
-            // dgWater
-            // 
-            this.dgWater.DataPropertyName = "WaterName";
-            this.dgWater.HeaderText = "آب";
-            this.dgWater.Name = "dgWater";
-            this.dgWater.ReadOnly = true;
-            this.dgWater.Visible = false;
-            this.dgWater.Width = 70;
-            // 
-            // dgBarq
-            // 
-            this.dgBarq.DataPropertyName = "BarqName";
-            this.dgBarq.HeaderText = "برق";
-            this.dgBarq.Name = "dgBarq";
-            this.dgBarq.ReadOnly = true;
-            this.dgBarq.Visible = false;
-            this.dgBarq.Width = 70;
-            // 
-            // dgGas
-            // 
-            this.dgGas.DataPropertyName = "GasName";
-            this.dgGas.HeaderText = "گاز";
-            this.dgGas.Name = "dgGas";
-            this.dgGas.ReadOnly = true;
-            this.dgGas.Visible = false;
-            this.dgGas.Width = 70;
-            // 
-            // dgTell
-            // 
-            this.dgTell.DataPropertyName = "TellName";
-            this.dgTell.HeaderText = "تلفن";
-            this.dgTell.Name = "dgTell";
-            this.dgTell.ReadOnly = true;
-            this.dgTell.Visible = false;
-            this.dgTell.Width = 70;
-            // 
-            // dgGuid
-            // 
-            this.dgGuid.DataPropertyName = "Guid";
-            this.dgGuid.HeaderText = "Guid";
-            this.dgGuid.Name = "dgGuid";
-            this.dgGuid.ReadOnly = true;
-            this.dgGuid.Visible = false;
-            // 
-            // dgPriority
-            // 
-            this.dgPriority.DataPropertyName = "Priority";
-            this.dgPriority.HeaderText = "Priority";
-            this.dgPriority.Name = "dgPriority";
-            this.dgPriority.ReadOnly = true;
-            this.dgPriority.Visible = false;
-            // 
-            // dgIsArchive
-            // 
-            this.dgIsArchive.DataPropertyName = "IsArchive";
-            this.dgIsArchive.HeaderText = "IsArchive";
-            this.dgIsArchive.Name = "dgIsArchive";
-            this.dgIsArchive.ReadOnly = true;
-            this.dgIsArchive.Visible = false;
-            // 
-            // dgAdvertiseType
-            // 
-            this.dgAdvertiseType.DataPropertyName = "AdvertiseType";
-            this.dgAdvertiseType.HeaderText = "AdvertiseType";
-            this.dgAdvertiseType.Name = "dgAdvertiseType";
-            this.dgAdvertiseType.ReadOnly = true;
-            this.dgAdvertiseType.Visible = false;
+            // chbMine
+            // 
+            this.chbMine.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.chbMine.AutoSize = true;
+            this.chbMine.BackColor = System.Drawing.Color.Transparent;
+            // 
+            // 
+            // 
+            this.chbMine.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.chbMine.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.chbMine.Location = new System.Drawing.Point(276, 58);
+            this.chbMine.Name = "chbMine";
+            this.chbMine.Size = new System.Drawing.Size(175, 22);
+            this.chbMine.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.chbMine.TabIndex = 55780;
+            this.chbMine.Text = "فقط فایل های خودم را نشان بده";
+            this.chbMine.CheckedChanged += new System.EventHandler(this.chbMine_CheckedChanged);
             // 
             // frmShowBuildings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1021, 631);
+            this.Controls.Add(this.ucFeatures);
+            this.Controls.Add(this.chbMine);
             this.Controls.Add(this.chbMosharekat);
             this.Controls.Add(this.chbPishForoush);
             this.Controls.Add(this.chbForoush);
             this.Controls.Add(this.chbAll);
             this.Controls.Add(this.chbRahn);
-            this.Controls.Add(this.ucFeatures);
             this.Controls.Add(this.ucHeader);
             this.Controls.Add(this.grp);
             this.Controls.Add(this.txtSearch);
@@ -1807,5 +1832,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dgPriority;
         private System.Windows.Forms.DataGridViewCheckBoxColumn dgIsArchive;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgAdvertiseType;
+        private DevComponents.DotNetBar.Controls.CheckBoxX chbMine;
     }
 }

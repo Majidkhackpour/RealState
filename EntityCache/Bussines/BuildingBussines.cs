@@ -247,6 +247,7 @@ namespace EntityCache.Bussines
                 IEnumerable<BuildingBussines> res = await GetAllAsync(token, isLoadDets);
                 if (token.IsCancellationRequested) return null;
                 if (res == null || !res.Any()) return res?.ToList();
+                if (filters.IsOnlyMine) res = res?.Where(q => q.AdvertiseType == null);
                 if (filters.IsRahn) res = res?.Where(q => q.RahnPrice1 > 0);
                 if (filters.IsSell) res = res?.Where(q => q.SellPrice > 0);
                 if (filters.IsMosharekat) res = res?.Where(q => !string.IsNullOrEmpty(q.MosharekatDesc));

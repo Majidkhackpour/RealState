@@ -107,7 +107,8 @@ namespace Building.Building
                     DocumentTypeGuid = (Guid)cmbDocType.SelectedValue,
                     IsRahn = chbRahn.Checked,
                     IsMosharekat = chbMosharekat.Checked,
-                    OwnerGuid = _ownerGuid
+                    OwnerGuid = _ownerGuid,
+                    IsOnlyMine = chbMine.Checked
                 };
                 _token?.Cancel();
                 _token = new CancellationTokenSource();
@@ -404,7 +405,7 @@ namespace Building.Building
                         ucFeatures.Size = new Size(469, 258);
                         var p = new Point(loc.X + wid, loc.Y - ucFeatures.Height);
                         if (token.IsCancellationRequested) return;
-                        if (p.Y < DGrid.Top) p.Y += ucFeatures.Height + 120;
+                        if (p.Y < DGrid.Top) p.Y += ucFeatures.Height + 140;
                         else p.Y += 95;
                         ucFeatures.Location = p;
                         if (token.IsCancellationRequested) return;
@@ -1915,6 +1916,7 @@ namespace Building.Building
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
+        private void chbMine_CheckedChanged(object sender, EventArgs e) => LoadData(txtSearch.Text);
         private async void mnuPrintInherit_Click(object sender, EventArgs e)
         {
             try
