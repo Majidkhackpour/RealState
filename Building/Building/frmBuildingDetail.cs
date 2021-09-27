@@ -36,11 +36,17 @@ namespace Building.Building
                 if (bu.SellPrice > 0)
                 {
                     type = "فروش";
-                    lblPrice1.Text = $@"قیمت کل: {bu.SellPrice:N0}";
+                    lblPrice1.Text = $@"قیمت کل: {bu.SellPrice:N0} ** {NumberToString.Num2Str(((double)bu.SellPrice).ToString())} **";
                     if (bu.Masahat > 0)
-                        lblPrice2.Text = $@"قیمت هر متر زمین: {(bu.SellPrice / bu.Masahat):N0}";
+                    {
+                        var m = Math.Truncate(bu.SellPrice / bu.Masahat);
+                        lblPrice2.Text = $@"قیمت هر متر زمین: {m:N0} ** {NumberToString.Num2Str(((double)m).ToString())} **";
+                    }
                     else if (bu.ZirBana > 0)
-                        lblPrice2.Text = $@"قیمت هر متر بنا: {(bu.SellPrice / bu.ZirBana):N0}";
+                    {
+                        var m = Math.Truncate(bu.SellPrice / bu.ZirBana);
+                        lblPrice2.Text = $@"قیمت هر متر بنا: {m:N0} ** {NumberToString.Num2Str(((double)m).ToString())} **";
+                    }
                     pnlSellInfo.Visible = true;
                     lblTarakom.Text = bu.Tarakom?.GetDisplay();
                     lblVamPrice.Text = bu.VamPrice.ToString("N0");
@@ -49,8 +55,8 @@ namespace Building.Building
                 else if (bu.RahnPrice1 > 0 || bu.EjarePrice1 > 0)
                 {
                     type = "رهن و اجاره";
-                    lblPrice1.Text = $@"ودیعه: {bu.RahnPrice1:N0}";
-                    lblPrice2.Text = $@"اجاره: {bu.EjarePrice1:N0}";
+                    lblPrice1.Text = $@"ودیعه: {bu.RahnPrice1:N0} ** {NumberToString.Num2Str(((double)bu.RahnPrice1).ToString())} **";
+                    lblPrice2.Text = $@"اجاره: {bu.EjarePrice1:N0} ** {NumberToString.Num2Str(((double)bu.EjarePrice1).ToString())} **";
                     pnlRahnInfo.Visible = true;
                     lblShortTime.Text = (bu.IsShortTime ?? false) ? "بله" : "خیر";
                     lblOwnerHere.Text = (bu.IsOwnerHere ?? false) ? "بله" : "خیر";
@@ -59,8 +65,8 @@ namespace Building.Building
                 else if (bu.PishPrice > 0)
                 {
                     type = "پیش فروش";
-                    lblPrice1.Text = $@"قیمت کل: {bu.PishTotalPrice:N0}";
-                    lblPrice2.Text = $@"پیش پرداخت: {bu.PishPrice:N0}";
+                    lblPrice1.Text = $@"قیمت کل: {bu.PishTotalPrice:N0} ** {NumberToString.Num2Str(((double)bu.PishTotalPrice).ToString())} **";
+                    lblPrice2.Text = $@"پیش پرداخت: {bu.PishPrice:N0} ** {NumberToString.Num2Str(((double)bu.PishPrice).ToString())} **";
                     pnlPishForoush.Visible = true;
                     lblPishPrice.Text = bu.PishPrice.ToString("N0");
                     lblPishTotalPrice.Text = bu.PishTotalPrice.ToString("N0");

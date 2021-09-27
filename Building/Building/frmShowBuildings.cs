@@ -102,11 +102,11 @@ namespace Building.Building
                     IsArchive = _isArchive,
                     BuildingTypeGuid = (Guid)cmbBuildingType.SelectedValue,
                     Search = search,
-                    IsFromDivar = chbDivar.Checked,
+                    IsPishForoush = chbPishForoush.Checked,
                     IsSell = chbForoush.Checked,
                     DocumentTypeGuid = (Guid)cmbDocType.SelectedValue,
                     IsRahn = chbRahn.Checked,
-                    IsFromSheypoor = chbSheypoor.Checked,
+                    IsMosharekat = chbMosharekat.Checked,
                     OwnerGuid = _ownerGuid
                 };
                 _token?.Cancel();
@@ -141,7 +141,7 @@ namespace Building.Building
                 mnuSendToDivar.Visible = VersionAccess.Advertise;
                 mnuSendToSheypoor.Visible = VersionAccess.Advertise;
                 mnuSendToTelegram.Visible = VersionAccess.Telegram;
-                chbDivar.Visible = chbSheypoor.Visible = VersionAccess.Advertise;
+                chbPishForoush.Visible = chbMosharekat.Visible = VersionAccess.Advertise;
             }
             catch (Exception ex)
             {
@@ -345,6 +345,12 @@ namespace Building.Building
                     if ((bool)DGrid[dgIsArchive.Index, i].Value)
                     {
                         DGrid.Rows[i].DefaultCellStyle.BackColor = Color.Silver;
+                        continue;
+                    }
+                    if (DGrid[dgAdvertiseType.Index, i].Value != null)
+                    {
+                        var color = Color.FromArgb(255, 192, 255);
+                        DGrid.Rows[i].DefaultCellStyle.BackColor = color;
                         continue;
                     }
                     var priority = (EnBuildingPriority)DGrid[dgPriority.Index, i].Value;
@@ -561,8 +567,6 @@ namespace Building.Building
                 SetAccess();
                 SetColumns();
                 if (_isShowMode || (_isArchive != null && _isArchive.Value)) contextMenu.Enabled = false;
-
-                chbDivar.Visible = chbSheypoor.Visible = false;
             }
             catch (Exception ex)
             {

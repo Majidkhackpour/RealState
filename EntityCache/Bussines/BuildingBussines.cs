@@ -243,15 +243,14 @@ namespace EntityCache.Bussines
         {
             try
             {
-                IEnumerable<BuildingBussines> res;
                 if (string.IsNullOrEmpty(filters.Search)) filters.Search = "";
-                res = await GetAllAsync(token, isLoadDets);
+                IEnumerable<BuildingBussines> res = await GetAllAsync(token, isLoadDets);
                 if (token.IsCancellationRequested) return null;
                 if (res == null || !res.Any()) return res?.ToList();
-                res = res.Where(q => (!filters.IsRahn || q.RahnPrice1 > 0) &&
-                                     (!filters.IsSell || q.SellPrice > 0) &&
-                                     (!filters.IsFromDivar || (q.AdvertiseType != null && q.AdvertiseType == Services.AdvertiseType.Divar)) &&
-                                      (!filters.IsFromSheypoor || (q.AdvertiseType != null && q.AdvertiseType == Services.AdvertiseType.Sheypoor)));
+                if (filters.IsRahn) res = res?.Where(q => q.RahnPrice1 > 0);
+                if (filters.IsSell) res = res?.Where(q => q.SellPrice > 0);
+                if (filters.IsMosharekat) res = res?.Where(q => !string.IsNullOrEmpty(q.MosharekatDesc));
+                if (filters.IsPishForoush) res = res?.Where(q => !string.IsNullOrEmpty(q.PishDesc) || q.PishPrice > 0);
                 if (token.IsCancellationRequested) return null;
                 res = res.Where(q => q.Status == filters.Status);
                 if (token.IsCancellationRequested) return null;
