@@ -65,9 +65,7 @@ namespace Advertise.ViewModels.Divar.Sell.Office
                 await Utility.Wait();
                 cat.City()?.SendKeys(City + "\n");
                 await Utility.Wait(2);
-                cat.RegionSearcher()?.Click();
-                await Utility.Wait();
-                cat.Region()?.SendKeys(Region + "\n");
+                await cat.SetRegionAsync(Region);
 
                 cat.Masahat()?.SendKeys(Metrazh);
 
@@ -80,34 +78,34 @@ namespace Advertise.ViewModels.Divar.Sell.Office
                 if (!isGiveChat) cat.Chat()?.Click();
 
                 await Utility.Wait();
-                cat.RoomCount()?.Click();
+                cat.RoomCount(2)?.Click();
                 await Utility.Wait();
                 cat.SelectDropDown(RoomCount);
 
                 await Utility.Wait();
-                cat.SaleSakht()?.Click();
+                cat.SaleSakht(3)?.Click();
                 await Utility.Wait();
                 cat.SelectDropDown(SaleSakht);
 
                 if (SanadEdari) cat.SanadEdari()?.Click();
 
                 await Utility.Wait();
-                cat.Tabaqe()?.Click();
+                cat.Tabaqe(4)?.Click();
                 await Utility.Wait();
                 cat.SelectDropDown(Tabaqe);
 
                 await Utility.Wait();
-                cat.Parking()?.Click();
+                cat.Parking(5)?.Click();
                 await Utility.Wait();
                 cat.SelectDropDown(Parking);
 
                 await Utility.Wait();
-                cat.Asansor()?.Click();
+                cat.Asansor(6)?.Click();
                 await Utility.Wait();
                 cat.SelectDropDown(Asansor);
 
                 await Utility.Wait();
-                cat.Anbari()?.Click();
+                cat.Anbari(7)?.Click();
                 await Utility.Wait();
                 cat.SelectDropDown(Anbari);
 

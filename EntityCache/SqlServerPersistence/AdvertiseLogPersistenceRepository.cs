@@ -87,7 +87,6 @@ namespace EntityCache.SqlServerPersistence
                 cmd.Parameters.AddWithValue("@url", item.URL ?? "");
                 cmd.Parameters.AddWithValue("@updateDesc", item.UpdateDesc ?? "");
                 cmd.Parameters.AddWithValue("@statusCode", (int)item.StatusCode);
-                cmd.Parameters.AddWithValue("@cat", item.Category ?? "");
                 cmd.Parameters.AddWithValue("@ip", item.IP ?? "");
                 cmd.Parameters.AddWithValue("@lastUpdate", item.LastUpdate);
                 cmd.Parameters.AddWithValue("@visitCount", item.VisitCount);

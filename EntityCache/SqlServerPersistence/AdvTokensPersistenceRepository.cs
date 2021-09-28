@@ -60,7 +60,7 @@ namespace EntityCache.SqlServerPersistence
                 cmd.Parameters.AddWithValue("@guid", item.Guid);
                 cmd.Parameters.AddWithValue("@number", item.Number);
                 cmd.Parameters.AddWithValue("@type", (short)item.Type);
-                cmd.Parameters.AddWithValue("@token", item.Type);
+                cmd.Parameters.AddWithValue("@token", item.Token);
 
                 await cmd.ExecuteNonQueryAsync();
             }

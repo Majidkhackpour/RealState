@@ -63,9 +63,7 @@ namespace Advertise.ViewModels.Divar.Rent.Office
                 await Utility.Wait();
                 cat.City()?.SendKeys(City + "\n");
                 await Utility.Wait(2);
-                cat.RegionSearcher()?.Click();
-                await Utility.Wait();
-                cat.Region()?.SendKeys(Region + "\n");
+                await cat.SetRegionAsync(Region);
 
                 cat.Masahat()?.SendKeys(Metrazh);
 
@@ -76,17 +74,17 @@ namespace Advertise.ViewModels.Divar.Rent.Office
                 cat.Ejare()?.SendKeys(Ejare);
 
                 await Utility.Wait();
-                cat.Tabdil()?.Click();
+                cat.Tabdil(2)?.Click();
                 await Utility.Wait();
                 cat.SelectDropDown(Tabdil);
 
                 await Utility.Wait();
-                cat.RoomCount()?.Click();
+                cat.RoomCount(3)?.Click();
                 await Utility.Wait();
                 cat.SelectDropDown(RoomCount);
 
                 await Utility.Wait();
-                cat.SaleSakht()?.Click();
+                cat.SaleSakht(4)?.Click();
                 await Utility.Wait();
                 cat.SelectDropDown(SaleSakht);
 

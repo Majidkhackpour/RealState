@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using Advertise.Classes;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.PageObjects;
 using Services;
 
@@ -25,16 +27,31 @@ namespace Advertise.ViewModels.Divar
         public IWebElement SecondCategory(string cat)
             => _drivers.FindElements(By.ClassName("kt-selector-row__title")).FirstOrDefault(p => p.Text == cat);
         public IWebElement ThirdCategory(string cat)
-            =>_drivers.FindElements(By.ClassName("kt-selector-row__title")).FirstOrDefault(p => p.Text == cat);
+            => _drivers.FindElements(By.ClassName("kt-selector-row__title")).FirstOrDefault(p => p.Text == cat);
         public IWebElement ImageContainer()
             => _drivers.FindElement(By.ClassName("image-uploader__zone")).FindElement(By.TagName("input"));
         public IWebElement CitySearcher() => _drivers.FindElement(By.ClassName("kt-select--searchable"));
         public IWebElement City() => _drivers.FindElement(By.ClassName("kt-select__search-field"));
-        public IWebElement RegionSearcher() => _drivers.FindElements(By.ClassName("kt-select__field--placeholder-shown"))?[0];
-        public IWebElement Region()
+        public async Task SetRegionAsync(string regionName)
         {
-            var el = _drivers.FindElements(By.ClassName("text-field")).Any(q => q.Text == "محدودهٔ آگهی");
-            return el ? _drivers.FindElements(By.ClassName("kt-select__search-field"))?[1] : null;
+            var regEl = _drivers.FindElements(By.ClassName("text-field")).Any(q => q.Text == "محدودهٔ آگهی");
+            if (regEl)
+            {
+                var element = _drivers.FindElements(By.ClassName("text-field")).FirstOrDefault(q => q.Text == "محدودهٔ آگهی");
+                var actions = new Actions(_drivers);
+                actions.MoveToElement(element);
+                actions.Perform();
+
+                _drivers.FindElements(By.ClassName("kt-select__field-label--placeholder-shown"))?[0].Click();
+                await Utility.Wait(2);
+                if (!string.IsNullOrEmpty(regionName) && regionName != "-")
+                    _drivers.FindElements(By.ClassName("kt-dropdown-item"))?.FirstOrDefault(q => q.Text == regionName)?.Click();
+                else
+                {
+                    var list = _drivers.FindElements(By.ClassName("kt-dropdown-item")).ToList();
+                    if (list.Count > 1) list[1]?.Click();
+                }
+            }
         }
         public IWebElement Sender_Shakhsi() => _drivers.FindElements(By.TagName("input[type=radio]")).FirstOrDefault();
         public IWebElement Sender_Amlak() => _drivers.FindElements(By.TagName("input[type=radio]")).LastOrDefault();
@@ -42,15 +59,15 @@ namespace Advertise.ViewModels.Divar
         public IWebElement Rahn() => _drivers.FindElements(By.TagName("input[type=tel]"))[1];
         public IWebElement Sell() => _drivers.FindElements(By.TagName("input[type=tel]"))[1];
         public IWebElement Ejare() => _drivers.FindElements(By.TagName("input[type=tel]"))[2];
-        public IWebElement Tabdil() => _drivers.FindElement(By.Id("root_rent_credit_transform"));
-        public IWebElement RoomCount() => _drivers.FindElement(By.Id("root_rooms"));
-        public IWebElement SaleSakht() => _drivers.FindElement(By.Id("root_year"));
-        public IWebElement Tabaqe() => _drivers.FindElement(By.Id("root_floor"));
-        public IWebElement Asansor() => _drivers.FindElement(By.Id("root_elevator"));
-        public IWebElement Parking() => _drivers.FindElement(By.Id("root_parking"));
-        public IWebElement Anbari() => _drivers.FindElement(By.Id("root_warehouse"));
-        public IWebElement Balkon() => _drivers.FindElement(By.Id("root_balcony"));
-        public IWebElement Rental() => _drivers.FindElement(By.Id("root_rent_to_single"));
+        public IWebElement Tabdil(int index) => SelectDropDown(index);
+        public IWebElement RoomCount(int index) => SelectDropDown(index);
+        public IWebElement SaleSakht(int index) => SelectDropDown(index);
+        public IWebElement Tabaqe(int index) => SelectDropDown(index);
+        public IWebElement Asansor(int index) => SelectDropDown(index);
+        public IWebElement Parking(int index) => SelectDropDown(index);
+        public IWebElement Anbari(int index) => SelectDropDown(index);
+        public IWebElement Balkon(int index) => SelectDropDown(index);
+        public IWebElement Rental(int index) => SelectDropDown(index);
         public IWebElement Chat() => _drivers.FindElements(By.ClassName("kt-switch__label")).FirstOrDefault(q => q.Text == "چت دیوار فعال شود");
         public IWebElement Title() => _drivers.FindElements(By.TagName("input[type=text]")).Last();
         public IWebElement SanadEdari() => _drivers.FindElements(By.ClassName("kt-switch__label")).FirstOrDefault(q => q.Text == "سند اداری");
@@ -78,6 +95,7 @@ namespace Advertise.ViewModels.Divar
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
+        private IWebElement SelectDropDown(int index) => _drivers.FindElements(By.ClassName("kt-select"))?[index];
         public void SendAdv()
         {
             try

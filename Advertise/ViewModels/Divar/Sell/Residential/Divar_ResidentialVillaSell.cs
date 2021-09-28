@@ -63,9 +63,7 @@ namespace Advertise.ViewModels.Divar.Sell.Residential
                 await Utility.Wait();
                 cat.City()?.SendKeys(City + "\n");
                 await Utility.Wait(2);
-                cat.RegionSearcher()?.Click();
-                await Utility.Wait();
-                cat.Region()?.SendKeys(Region + "\n");
+                await cat.SetRegionAsync(Region);
 
                 cat.Masahat()?.SendKeys(Metrazh);
 
@@ -75,27 +73,27 @@ namespace Advertise.ViewModels.Divar.Sell.Residential
                 cat.Sell()?.SendKeys(Price);
 
                 await Utility.Wait();
-                cat.RoomCount()?.Click();
+                cat.RoomCount(2)?.Click();
                 await Utility.Wait();
                 cat.SelectDropDown(RoomCount);
 
                 await Utility.Wait();
-                cat.SaleSakht()?.Click();
+                cat.SaleSakht(3)?.Click();
                 await Utility.Wait();
                 cat.SelectDropDown(SaleSakht);
                 
                 await Utility.Wait();
-                cat.Parking()?.Click();
+                cat.Parking(4)?.Click();
                 await Utility.Wait();
                 cat.SelectDropDown(Parking);
 
                 await Utility.Wait();
-                cat.Anbari()?.Click();
+                cat.Anbari(5)?.Click();
                 await Utility.Wait();
                 cat.SelectDropDown(Anbari);
 
                 await Utility.Wait();
-                cat.Balkon()?.Click();
+                cat.Balkon(6)?.Click();
                 await Utility.Wait();
                 cat.SelectDropDown(Balkon);
 

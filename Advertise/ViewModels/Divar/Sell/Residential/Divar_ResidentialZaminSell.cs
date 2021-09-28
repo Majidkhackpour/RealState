@@ -58,9 +58,7 @@ namespace Advertise.ViewModels.Divar.Sell.Residential
                 await Utility.Wait();
                 cat.City()?.SendKeys(City + "\n");
                 await Utility.Wait(2);
-                cat.RegionSearcher()?.Click();
-                await Utility.Wait();
-                cat.Region()?.SendKeys(Region + "\n");
+                await cat.SetRegionAsync(Region);
 
                 cat.Masahat()?.SendKeys(Metrazh);
 

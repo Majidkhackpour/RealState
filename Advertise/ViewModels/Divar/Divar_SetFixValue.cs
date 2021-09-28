@@ -128,7 +128,7 @@ namespace Advertise.ViewModels.Divar
 
                 if (bu.RegionGuid != Guid.Empty) regionName = RegionsBussines.Get(bu.RegionGuid)?.Name ?? "";
 
-                return $"{type} ملک در {regionName}";
+                return $"{type} ملک در {regionName} ** {bu.Masahat} متری {bu.RoomCount} خواب";
             }
             catch (Exception ex)
             {
@@ -141,13 +141,15 @@ namespace Advertise.ViewModels.Divar
             try
             {
                 var content = new StringBuilder();
-                var reg = "";
-                if (bu.RegionGuid != Guid.Empty)
-                    reg = RegionsBussines.Get(bu.RegionGuid)?.Name ?? "";
 
-                content.AppendLine($"محدوده: {reg}");
+                content.AppendLine($"محدوده: {bu.RegionName}");
                 content.AppendLine($"متراژ: {bu.Masahat}");
                 content.AppendLine($"سال ساخت: {bu.SaleSakht}");
+                content.AppendLine($"زیربنا: {bu.ZirBana}");
+                content.AppendLine($"کفپوش: {bu.FloorCoverName}");
+                content.AppendLine($"آشپزخانه: {bu.KitchenServiceName}");
+                foreach (var item in bu.OptionList)
+                    content.AppendLine(item.OptionName);
 
                 return content.ToString();
             }

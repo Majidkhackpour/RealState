@@ -249,33 +249,47 @@ namespace Advertise.Classes
                         _driver.Manage().Cookies.AddCookie(token);
                         _driver.Navigate().Refresh();
                     }
-                    //اگر قبلا توکن نداشته وارد صفحه دریافت کد تائید لاگین می شود 
-                    else
-                    {
-                        _driver.Navigate().GoToUrl("https://divar.ir/my-divar/my-posts");
-                        //کلیک روی دکمه ورود و ثبت نام
-                        await Utility.Wait();
-                        _driver.FindElement(By.ClassName("login-message__login-btn")).Click();
-                        await Utility.Wait();
-                        var currentWindow = _driver.CurrentWindowHandle;
-                        _driver.SwitchTo().Window(currentWindow);
-                        if (_driver.FindElements(By.Name("mobile")).Count > 0)
-                            _driver.FindElement(By.Name("mobile")).SendKeys("0" + simCardNumber);
-                    }
-
                     //انتظار برای لاگین شدن
                     var repeat = 0;
                     //حدود 120 ثانیه فرصت لاگین دارد
-                    while (repeat < 3)
+                    while (repeat < 20)
                     {
-                        //تا زمانی که لاگین اوکی نشده باشد این حلقه تکرار می شود
                         listLinkItems = _driver.FindElements(By.TagName("a"));
                         if (listLinkItems.Count < 5) return false;
-                        var isLogin = listLinkItems.Any(linkItem => linkItem.Text == @"خروج");
-
+                        var loginList = _driver.FindElements(By.ClassName("kt-button--inlined"))
+                            ?.FirstOrDefault(q => q.Text == "دیوار من");
+                        var isLogin = false;
+                        if (loginList != null)
+                        {
+                            try
+                            {
+                                loginList?.Click();
+                                await Utility.Wait();
+                                isLogin = _driver.FindElements(By.ClassName("kt-fullwidth-link__title"))
+                                    .Any(q => q.Text == "خروج");
+                            }
+                            catch
+                            {
+                            }
+                        }
+                        var advToken = await AdvTokenBussines.GetTokenAsync(simCardNumber, AdvertiseType.Divar);
                         if (isLogin)
                         {
+                            var token = _driver.Manage().Cookies.GetCookieNamed("token").Value;
+                            if (advToken != null)
+                                advToken.Token = token;
+                            else
+                                advToken = new AdvTokenBussines()
+                                {
+                                    Type = AdvertiseType.Divar,
+                                    Token = token,
+                                    Number = simCardNumber,
+                                    Guid = Guid.NewGuid(),
+                                };
+                            await advToken.SaveAsync();
+                            _driver.ExecuteJavaScript(@"alert('لاگین انجام شد');");
                             await Utility.Wait();
+                            _driver.SwitchTo().Alert().Accept();
                             return true;
                         }
                         else
@@ -307,13 +321,6 @@ namespace Advertise.Classes
                             }
                         }
                     }
-
-                    var advToken = await AdvTokenBussines.GetTokenAsync(simCardNumber, AdvertiseType.Divar);
-                    await advToken?.RemoveAsync();
-                    TelegramSender.GetChatLog_bot().Send(
-                        $"#نداشتن_توکن \r\n سیستم مرجع: {await Utilities.GetNetworkIpAddress()} \r\n شماره {simCardNumber} به مالکیت {sim.Owner} توکن آگهی دیوار داشته، اما منقضی شده و موفق به لاگین آگهی نشد " +
-                        $"\r\n به همین سبب توکن آگهی دیوار این شماره از دیتابیس حذف خواهد شد " +
-                        $"\r\n لطفا نسبت به دریافت مجدد توکن اقدام گردد.");
                 }
 
                 return false;

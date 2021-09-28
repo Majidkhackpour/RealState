@@ -67,9 +67,7 @@ namespace Advertise.ViewModels.Divar.Rent.Residential
                 await Utility.Wait();
                 cat.City()?.SendKeys(City + "\n");
                 await Utility.Wait(2);
-                cat.RegionSearcher()?.Click();
-                await Utility.Wait();
-                cat.Region()?.SendKeys(Region + "\n");
+                await cat.SetRegionAsync(Region);
 
                 cat.Masahat()?.SendKeys(Metrazh);
 
@@ -80,42 +78,42 @@ namespace Advertise.ViewModels.Divar.Rent.Residential
                 cat.Ejare()?.SendKeys(Ejare);
 
                 await Utility.Wait();
-                cat.Tabdil()?.Click();
+                cat.Tabdil(2)?.Click();
                 await Utility.Wait();
                 cat.SelectDropDown(Tabdil);
 
                 await Utility.Wait();
-                cat.Rental()?.Click();
+                cat.Rental(3)?.Click();
                 await Utility.Wait();
                 cat.SelectDropDown(RentalAuthority);
 
                 await Utility.Wait();
-                cat.RoomCount()?.Click();
+                cat.RoomCount(4)?.Click();
                 await Utility.Wait();
                 cat.SelectDropDown(RoomCount);
 
                 await Utility.Wait();
-                cat.SaleSakht()?.Click();
+                cat.SaleSakht(5)?.Click();
                 await Utility.Wait();
                 cat.SelectDropDown(SaleSakht);
 
                 await Utility.Wait();
-                cat.Tabaqe()?.Click();
+                cat.Tabaqe(6)?.Click();
                 await Utility.Wait();
                 cat.SelectDropDown(Tabaqe);
 
                 await Utility.Wait();
-                cat.Asansor()?.Click();
+                cat.Asansor(7)?.Click();
                 await Utility.Wait();
                 cat.SelectDropDown(Asansor);
 
                 await Utility.Wait();
-                cat.Parking()?.Click();
+                cat.Parking(8)?.Click();
                 await Utility.Wait();
                 cat.SelectDropDown(Parking);
 
                 await Utility.Wait();
-                cat.Anbari()?.Click();
+                cat.Anbari(9)?.Click();
                 await Utility.Wait();
                 cat.SelectDropDown(Anbari);
 
