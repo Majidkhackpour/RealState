@@ -2777,6 +2777,7 @@ namespace Advertise.Classes
                                     web.BuildingSide = moreList[8]?.Text.FixString() ?? "";
                             }
 
+                            GetHitting_Colling(web);
                             _driver.FindElement(By.ClassName("kt-modal__close-button"))?.Click();
                         }
 
@@ -2914,6 +2915,7 @@ namespace Advertise.Classes
                                     web.BuildingSide = moreList[8]?.Text.FixString() ?? "";
                             }
 
+                            GetHitting_Colling(web);
                             _driver.FindElement(By.ClassName("kt-modal__close-button"))?.Click();
                         }
 
@@ -3063,6 +3065,7 @@ namespace Advertise.Classes
                                     web.BuildingSide = moreList[8]?.Text.FixString() ?? "";
                             }
 
+                            GetHitting_Colling(web);
                             _driver.FindElement(By.ClassName("kt-modal__close-button"))?.Click();
                         }
 
@@ -3393,7 +3396,7 @@ namespace Advertise.Classes
                                 if (moreList.Count >= 9)
                                     web.BuildingSide = moreList[8]?.Text.FixString() ?? "";
                             }
-
+                            GetHitting_Colling(web);
                             _driver.FindElement(By.ClassName("kt-modal__close-button"))?.Click();
                         }
 
@@ -3513,7 +3516,7 @@ namespace Advertise.Classes
                                 if (moreList.Count >= 9)
                                     web.BuildingSide = moreList[8]?.Text.FixString() ?? "";
                             }
-
+                            GetHitting_Colling(web);
                             _driver.FindElement(By.ClassName("kt-modal__close-button"))?.Click();
                         }
 
@@ -4136,6 +4139,31 @@ namespace Advertise.Classes
             }
 
             return list;
+        }
+
+        private void GetHitting_Colling(WebScrapper web)
+        {
+            try
+            {
+                var floor = _driver.FindElements(By.ClassName("kt-feature-row__title"))
+                    ?.FirstOrDefault(q => q.Text.Contains("جنس کف"));
+                if (floor != null)
+                    web.FloorCover = floor.Text.Replace("جنس کف ", "");
+
+                var hitting = _driver.FindElements(By.ClassName("kt-feature-row__title"))
+                    ?.FirstOrDefault(q => q.Text.Contains("گرمایش"));
+                if (hitting != null)
+                    web.Hitting = hitting.Text.Replace("گرمایش ", "");
+
+                var colling = _driver.FindElements(By.ClassName("kt-feature-row__title"))
+                    ?.FirstOrDefault(q => q.Text.Contains("سرمایش"));
+                if (colling != null)
+                    web.Colling = colling.Text.Replace("سرمایش ", "");
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
         }
     }
 }

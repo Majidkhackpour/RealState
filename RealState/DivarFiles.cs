@@ -139,7 +139,6 @@ namespace RealState
                             EjarePrice2 = 0,
                             DateParvane = "",
                             ErtefaSaqf = 3,
-                            FloorCoverGuid = FloorCoverBussines.DefualtGuid,
                             Gas = EnKhadamati.Mostaqel,
                             Hashie = 0,
                             IsArchive = false,
@@ -189,6 +188,13 @@ namespace RealState
 
                         if (bu.RentalAutorityGuid == Guid.Empty)
                             bu.RentalAutorityGuid = null;
+
+                        if (string.IsNullOrEmpty(item.FloorCover))
+                            bu.FloorCoverGuid = FloorCoverBussines.DefualtGuid;
+                        else bu.FloorCoverGuid = await FloorCoverBussines.GetDefultGuidAsync(item.FloorCover);
+
+                        bu.Hiting = item.Hitting;
+                        bu.Colling = item.Colling;
 
                         if (item.Evelator)
                         {

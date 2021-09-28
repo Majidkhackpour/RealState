@@ -205,7 +205,7 @@ namespace EntityCache.Bussines
 
             return res;
         }
-        private static async Task<Guid> GetDefultGuidAsync(string name)
+        public static async Task<Guid> GetDefultGuidAsync(string name)
         {
             try
             {

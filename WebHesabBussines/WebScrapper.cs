@@ -35,6 +35,9 @@ namespace WebHesabBussines
         public string BuildingSide { get; set; } = "";
         public string ImagesList { get; set; } = "";
         public AdvertiseType Type { get; set; }
+        public string FloorCover { get; set; } = "";
+        public string Colling { get; set; } = "";
+        public string Hitting { get; set; } = "";
 
 
         public static async Task<ReturnedSaveFuncInfo> Send2ServerAsync(List<WebScrapper> list)

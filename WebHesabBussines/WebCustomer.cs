@@ -44,13 +44,17 @@ namespace WebHesabBussines
             {
                 using (var client = new HttpClient())
                 {
-                    client.Timeout = new TimeSpan(0, 0, 10);
+                    client.Timeout = new TimeSpan(0, 2, 0);
                     var res = await client.GetStringAsync(Utilities.WebApi + "/Customer_GetByHardSerial/" + hSerial);
                     var user = res.FromJson<WebCustomer>();
                     return user;
                 }
             }
-            catch (OperationCanceledException) { return new WebCustomer();}
+            catch (OperationCanceledException)
+            {
+                var e = await GetByHardSerialAsync(hSerial);
+                return e ?? new WebCustomer();
+            }
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
