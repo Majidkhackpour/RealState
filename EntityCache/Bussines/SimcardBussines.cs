@@ -18,7 +18,7 @@ namespace EntityCache.Bussines
         public string Owner { get; set; }
         public string Operator { get; set; }
         public bool isSheypoorBlocked { get; set; }
-        public bool Status { get; set; }
+        public bool Status { get; set; } = true;
         public DateTime NextUseSheypoor { get; set; } = DateTime.Now;
         public DateTime NextUseDivar { get; set; } = DateTime.Now;
         public bool HasDivarToken

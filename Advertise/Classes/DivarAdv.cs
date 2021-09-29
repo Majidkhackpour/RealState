@@ -127,7 +127,7 @@ namespace Advertise.Classes
                         _driver.Navigate().GoToUrl("https://divar.ir/my-divar/my-posts");
                         //کلیک روی دکمه ورود و ثبت نام
                         await Utility.Wait();
-                        _driver.FindElement(By.ClassName("login-message__login-btn")).Click();
+                        _driver.FindElements(By.ClassName("kt-button--primary"))?.FirstOrDefault(q=>q.Text.Contains("کاربری"))?.Click();
                         await Utility.Wait();
                         var currentWindow = _driver.CurrentWindowHandle;
                         _driver.SwitchTo().Window(currentWindow);

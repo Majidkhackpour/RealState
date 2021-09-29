@@ -92,7 +92,7 @@ namespace Advertise.Forms
 
                 await SerializedDataBussines.SaveAsync("DivarRegions", serializedData_.Data);
 
-
+                this.ShowMessage("اطلاعات پایه دریافت شد");
 
 
                 //var sheypoor = SheypoorAdv.GetInstance();
