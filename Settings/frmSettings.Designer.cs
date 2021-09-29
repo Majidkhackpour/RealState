@@ -32,28 +32,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSettings));
             this.btnCancel = new DevComponents.DotNetBar.ButtonX();
             this.superTabControl1 = new DevComponents.DotNetBar.SuperTabControl();
-            this.superTabControlPanel2 = new DevComponents.DotNetBar.SuperTabControlPanel();
-            this.panelEx1 = new DevComponents.DotNetBar.PanelEx();
-            this.btnSearchMedia = new DevComponents.DotNetBar.ButtonX();
-            this.btnSearchImagePath = new DevComponents.DotNetBar.ButtonX();
-            this.txtMediaPath = new System.Windows.Forms.TextBox();
-            this.label33 = new System.Windows.Forms.Label();
-            this.txtImagePath = new System.Windows.Forms.TextBox();
-            this.label32 = new System.Windows.Forms.Label();
-            this.txtSetArchive = new System.Windows.Forms.NumericUpDown();
-            this.txtBirthDayText = new System.Windows.Forms.TextBox();
-            this.label31 = new System.Windows.Forms.Label();
-            this.label30 = new System.Windows.Forms.Label();
-            this.label29 = new System.Windows.Forms.Label();
-            this.chbShowDialog = new DevComponents.DotNetBar.Controls.CheckBoxX();
-            this.chbPrintPreView = new DevComponents.DotNetBar.Controls.CheckBoxX();
-            this.chbDeleteRequest = new DevComponents.DotNetBar.Controls.CheckBoxX();
-            this.chbPrintDesign = new DevComponents.DotNetBar.Controls.CheckBoxX();
-            this.superTabItem2 = new DevComponents.DotNetBar.SuperTabItem();
-            this.superTabControlPanel6 = new DevComponents.DotNetBar.SuperTabControlPanel();
             this.superTabControlPanel11 = new DevComponents.DotNetBar.SuperTabControlPanel();
             this.pnlTelegram = new DevComponents.DotNetBar.PanelEx();
-            this.btnTelegramManager = new DevComponents.DotNetBar.ButtonX();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.btnType = new DevComponents.DotNetBar.ButtonX();
             this.btnCode = new DevComponents.DotNetBar.ButtonX();
@@ -89,16 +69,46 @@
             this.btnEvelator = new DevComponents.DotNetBar.ButtonX();
             this.btnStore = new DevComponents.DotNetBar.ButtonX();
             this.btnBalcony = new DevComponents.DotNetBar.ButtonX();
+            this.btnOtherOptions = new DevComponents.DotNetBar.ButtonX();
             this.txtChannel = new System.Windows.Forms.TextBox();
             this.txtToken = new System.Windows.Forms.TextBox();
             this.txtText = new System.Windows.Forms.TextBox();
             this.label23 = new System.Windows.Forms.Label();
             this.label24 = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
+            this.btnTelegramManager = new DevComponents.DotNetBar.ButtonX();
             this.superTabItem10 = new DevComponents.DotNetBar.SuperTabItem();
+            this.superTabControlPanel2 = new DevComponents.DotNetBar.SuperTabControlPanel();
+            this.panelEx1 = new DevComponents.DotNetBar.PanelEx();
+            this.btnSearchMedia = new DevComponents.DotNetBar.ButtonX();
+            this.btnSearchImagePath = new DevComponents.DotNetBar.ButtonX();
+            this.txtMediaPath = new System.Windows.Forms.TextBox();
+            this.label33 = new System.Windows.Forms.Label();
+            this.txtImagePath = new System.Windows.Forms.TextBox();
+            this.label32 = new System.Windows.Forms.Label();
+            this.txtSetArchive = new System.Windows.Forms.NumericUpDown();
+            this.txtBirthDayText = new System.Windows.Forms.TextBox();
+            this.label31 = new System.Windows.Forms.Label();
+            this.label30 = new System.Windows.Forms.Label();
+            this.label29 = new System.Windows.Forms.Label();
+            this.chbShowDialog = new DevComponents.DotNetBar.Controls.CheckBoxX();
+            this.chbPrintPreView = new DevComponents.DotNetBar.Controls.CheckBoxX();
+            this.chbDeleteRequest = new DevComponents.DotNetBar.Controls.CheckBoxX();
+            this.chbPrintDesign = new DevComponents.DotNetBar.Controls.CheckBoxX();
+            this.superTabItem2 = new DevComponents.DotNetBar.SuperTabItem();
+            this.superTabControlPanel6 = new DevComponents.DotNetBar.SuperTabControlPanel();
+            this.superTabControlPanel4 = new DevComponents.DotNetBar.SuperTabControlPanel();
+            this.txtWhatsAppManagerText = new System.Windows.Forms.TextBox();
+            this.txtWhatsAppCustomerText = new System.Windows.Forms.TextBox();
+            this.txtWhatsAppNumber = new System.Windows.Forms.TextBox();
+            this.label35 = new System.Windows.Forms.Label();
+            this.txtWhatsAppToken = new System.Windows.Forms.TextBox();
+            this.label37 = new System.Windows.Forms.Label();
+            this.label36 = new System.Windows.Forms.Label();
+            this.label34 = new System.Windows.Forms.Label();
+            this.superTabItem3 = new DevComponents.DotNetBar.SuperTabItem();
             this.superTabControlPanel1 = new DevComponents.DotNetBar.SuperTabControlPanel();
             this.panelEx4 = new DevComponents.DotNetBar.PanelEx();
-            this.btnPath = new DevComponents.DotNetBar.ButtonX();
             this.chbBackUpSms = new DevComponents.DotNetBar.Controls.CheckBoxX();
             this.chbOpen = new DevComponents.DotNetBar.Controls.CheckBoxX();
             this.chbAuto = new DevComponents.DotNetBar.Controls.CheckBoxX();
@@ -107,6 +117,7 @@
             this.label26 = new System.Windows.Forms.Label();
             this.label27 = new System.Windows.Forms.Label();
             this.label28 = new System.Windows.Forms.Label();
+            this.btnPath = new DevComponents.DotNetBar.ButtonX();
             this.superTabItem1 = new DevComponents.DotNetBar.SuperTabItem();
             this.superTabControlPanel8 = new DevComponents.DotNetBar.SuperTabControlPanel();
             this.pnlSms = new DevComponents.DotNetBar.PanelEx();
@@ -187,15 +198,17 @@
             this.label1 = new System.Windows.Forms.Label();
             this.superTabItem5 = new DevComponents.DotNetBar.SuperTabItem();
             this.btnFinish = new DevComponents.DotNetBar.ButtonX();
-            this.btnOtherOptions = new DevComponents.DotNetBar.ButtonX();
+            this.btnWhatsAppCustomer = new DevComponents.DotNetBar.ButtonX();
+            this.btnWhatsAppManager = new DevComponents.DotNetBar.ButtonX();
             ((System.ComponentModel.ISupportInitialize)(this.superTabControl1)).BeginInit();
             this.superTabControl1.SuspendLayout();
-            this.superTabControlPanel2.SuspendLayout();
-            this.panelEx1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtSetArchive)).BeginInit();
             this.superTabControlPanel11.SuspendLayout();
             this.pnlTelegram.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
+            this.superTabControlPanel2.SuspendLayout();
+            this.panelEx1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtSetArchive)).BeginInit();
+            this.superTabControlPanel4.SuspendLayout();
             this.superTabControlPanel1.SuspendLayout();
             this.panelEx4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtTime)).BeginInit();
@@ -216,6 +229,7 @@
             // btnCancel
             // 
             this.btnCancel.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnCancel.BackColor = System.Drawing.Color.LightSteelBlue;
             this.btnCancel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnCancel.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
@@ -233,6 +247,9 @@
             // 
             // superTabControl1
             // 
+            this.superTabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             // 
             // 
             // 
@@ -248,11 +265,12 @@
             this.superTabControl1.ControlBox.SubItems.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.superTabControl1.ControlBox.MenuBox,
             this.superTabControl1.ControlBox.CloseBox});
-            this.superTabControl1.Controls.Add(this.superTabControlPanel11);
+            this.superTabControl1.Controls.Add(this.superTabControlPanel4);
+            this.superTabControl1.Controls.Add(this.superTabControlPanel8);
             this.superTabControl1.Controls.Add(this.superTabControlPanel2);
             this.superTabControl1.Controls.Add(this.superTabControlPanel6);
+            this.superTabControl1.Controls.Add(this.superTabControlPanel11);
             this.superTabControl1.Controls.Add(this.superTabControlPanel1);
-            this.superTabControl1.Controls.Add(this.superTabControlPanel8);
             this.superTabControl1.Controls.Add(this.superTabControlPanel7);
             this.superTabControl1.Controls.Add(this.superTabControlPanel3);
             this.superTabControl1.Location = new System.Drawing.Point(6, 26);
@@ -260,7 +278,7 @@
             this.superTabControl1.ReorderTabsEnabled = true;
             this.superTabControl1.SelectedTabFont = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Bold);
             this.superTabControl1.SelectedTabIndex = 0;
-            this.superTabControl1.Size = new System.Drawing.Size(608, 588);
+            this.superTabControl1.Size = new System.Drawing.Size(718, 588);
             this.superTabControl1.TabFont = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.superTabControl1.TabIndex = 50;
             this.superTabControl1.TabLayoutType = DevComponents.DotNetBar.eSuperTabLayoutType.MultiLine;
@@ -270,253 +288,10 @@
             this.superTabItem6,
             this.superTabItem7,
             this.superTabItem10,
-            this.superTabItem1});
+            this.superTabItem1,
+            this.superTabItem3});
             this.superTabControl1.TabStyle = DevComponents.DotNetBar.eSuperTabStyle.OfficeMobile2014;
             this.superTabControl1.Text = "superTabControl1";
-            // 
-            // superTabControlPanel2
-            // 
-            this.superTabControlPanel2.Controls.Add(this.panelEx1);
-            this.superTabControlPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.superTabControlPanel2.Location = new System.Drawing.Point(0, 40);
-            this.superTabControlPanel2.Name = "superTabControlPanel2";
-            this.superTabControlPanel2.Size = new System.Drawing.Size(608, 548);
-            this.superTabControlPanel2.TabIndex = 0;
-            this.superTabControlPanel2.TabItem = this.superTabItem2;
-            // 
-            // panelEx1
-            // 
-            this.panelEx1.CanvasColor = System.Drawing.SystemColors.Control;
-            this.panelEx1.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.panelEx1.Controls.Add(this.btnSearchMedia);
-            this.panelEx1.Controls.Add(this.btnSearchImagePath);
-            this.panelEx1.Controls.Add(this.txtMediaPath);
-            this.panelEx1.Controls.Add(this.label33);
-            this.panelEx1.Controls.Add(this.txtImagePath);
-            this.panelEx1.Controls.Add(this.label32);
-            this.panelEx1.Controls.Add(this.txtSetArchive);
-            this.panelEx1.Controls.Add(this.txtBirthDayText);
-            this.panelEx1.Controls.Add(this.label31);
-            this.panelEx1.Controls.Add(this.label30);
-            this.panelEx1.Controls.Add(this.label29);
-            this.panelEx1.Controls.Add(this.chbShowDialog);
-            this.panelEx1.Controls.Add(this.chbPrintPreView);
-            this.panelEx1.Controls.Add(this.chbDeleteRequest);
-            this.panelEx1.Controls.Add(this.chbPrintDesign);
-            this.panelEx1.DisabledBackColor = System.Drawing.Color.Empty;
-            this.panelEx1.Location = new System.Drawing.Point(4, 4);
-            this.panelEx1.Name = "panelEx1";
-            this.panelEx1.Size = new System.Drawing.Size(600, 410);
-            this.panelEx1.Style.Alignment = System.Drawing.StringAlignment.Center;
-            this.panelEx1.Style.BackColor1.Color = System.Drawing.Color.White;
-            this.panelEx1.Style.BackColor2.Color = System.Drawing.Color.White;
-            this.panelEx1.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
-            this.panelEx1.Style.BorderColor.Color = System.Drawing.Color.Silver;
-            this.panelEx1.Style.BorderWidth = 2;
-            this.panelEx1.Style.CornerType = DevComponents.DotNetBar.eCornerType.Rounded;
-            this.panelEx1.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText;
-            this.panelEx1.Style.GradientAngle = 90;
-            this.panelEx1.TabIndex = 14;
-            // 
-            // btnSearchMedia
-            // 
-            this.btnSearchMedia.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnSearchMedia.BackColor = System.Drawing.Color.DarkSlateGray;
-            this.btnSearchMedia.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnSearchMedia.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
-            this.btnSearchMedia.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnSearchMedia.Location = new System.Drawing.Point(20, 367);
-            this.btnSearchMedia.Name = "btnSearchMedia";
-            this.btnSearchMedia.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
-            this.btnSearchMedia.Size = new System.Drawing.Size(35, 27);
-            this.btnSearchMedia.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
-            this.btnSearchMedia.TabIndex = 16;
-            this.btnSearchMedia.Text = "...";
-            this.btnSearchMedia.TextColor = System.Drawing.Color.White;
-            this.btnSearchMedia.Click += new System.EventHandler(this.btnSearchMedia_Click);
-            // 
-            // btnSearchImagePath
-            // 
-            this.btnSearchImagePath.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnSearchImagePath.BackColor = System.Drawing.Color.DarkSlateGray;
-            this.btnSearchImagePath.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnSearchImagePath.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
-            this.btnSearchImagePath.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnSearchImagePath.Location = new System.Drawing.Point(20, 334);
-            this.btnSearchImagePath.Name = "btnSearchImagePath";
-            this.btnSearchImagePath.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
-            this.btnSearchImagePath.Size = new System.Drawing.Size(35, 27);
-            this.btnSearchImagePath.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
-            this.btnSearchImagePath.TabIndex = 16;
-            this.btnSearchImagePath.Text = "...";
-            this.btnSearchImagePath.TextColor = System.Drawing.Color.White;
-            this.btnSearchImagePath.Click += new System.EventHandler(this.btnSearchImagePath_Click);
-            // 
-            // txtMediaPath
-            // 
-            this.txtMediaPath.Location = new System.Drawing.Point(64, 367);
-            this.txtMediaPath.Name = "txtMediaPath";
-            this.txtMediaPath.Size = new System.Drawing.Size(390, 27);
-            this.txtMediaPath.TabIndex = 14;
-            // 
-            // label33
-            // 
-            this.label33.AutoSize = true;
-            this.label33.BackColor = System.Drawing.Color.Transparent;
-            this.label33.Location = new System.Drawing.Point(474, 370);
-            this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(113, 20);
-            this.label33.TabIndex = 15;
-            this.label33.Text = "محل ذخیره سازی مدیا";
-            // 
-            // txtImagePath
-            // 
-            this.txtImagePath.Location = new System.Drawing.Point(64, 334);
-            this.txtImagePath.Name = "txtImagePath";
-            this.txtImagePath.Size = new System.Drawing.Size(390, 27);
-            this.txtImagePath.TabIndex = 14;
-            // 
-            // label32
-            // 
-            this.label32.AutoSize = true;
-            this.label32.BackColor = System.Drawing.Color.Transparent;
-            this.label32.Location = new System.Drawing.Point(460, 337);
-            this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(127, 20);
-            this.label32.TabIndex = 15;
-            this.label32.Text = "محل ذخیره سازی تصاویر";
-            // 
-            // txtSetArchive
-            // 
-            this.txtSetArchive.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtSetArchive.Location = new System.Drawing.Point(371, 296);
-            this.txtSetArchive.Maximum = new decimal(new int[] {
-            10000,
-            0,
-            0,
-            0});
-            this.txtSetArchive.Name = "txtSetArchive";
-            this.txtSetArchive.Size = new System.Drawing.Size(84, 27);
-            this.txtSetArchive.TabIndex = 13;
-            // 
-            // txtBirthDayText
-            // 
-            this.txtBirthDayText.Location = new System.Drawing.Point(20, 11);
-            this.txtBirthDayText.Multiline = true;
-            this.txtBirthDayText.Name = "txtBirthDayText";
-            this.txtBirthDayText.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtBirthDayText.Size = new System.Drawing.Size(473, 212);
-            this.txtBirthDayText.TabIndex = 12;
-            // 
-            // label31
-            // 
-            this.label31.AutoSize = true;
-            this.label31.BackColor = System.Drawing.Color.Transparent;
-            this.label31.Location = new System.Drawing.Point(284, 298);
-            this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(81, 20);
-            this.label31.TabIndex = 11;
-            this.label31.Text = "روز بعد از ثبت";
-            // 
-            // label30
-            // 
-            this.label30.AutoSize = true;
-            this.label30.BackColor = System.Drawing.Color.Transparent;
-            this.label30.Location = new System.Drawing.Point(461, 298);
-            this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(128, 20);
-            this.label30.TabIndex = 11;
-            this.label30.Text = "ارسال فایل ها به بایگانی";
-            // 
-            // label29
-            // 
-            this.label29.AutoSize = true;
-            this.label29.BackColor = System.Drawing.Color.Transparent;
-            this.label29.Location = new System.Drawing.Point(506, 14);
-            this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(83, 20);
-            this.label29.TabIndex = 11;
-            this.label29.Text = "متن تبریک تولد";
-            // 
-            // chbShowDialog
-            // 
-            this.chbShowDialog.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.chbShowDialog.BackColor = System.Drawing.Color.Transparent;
-            // 
-            // 
-            // 
-            this.chbShowDialog.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.chbShowDialog.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.chbShowDialog.Location = new System.Drawing.Point(75, 236);
-            this.chbShowDialog.Name = "chbShowDialog";
-            this.chbShowDialog.Size = new System.Drawing.Size(173, 23);
-            this.chbShowDialog.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.chbShowDialog.TabIndex = 9;
-            this.chbShowDialog.Text = "بازکردن چند پنجره همزمان";
-            // 
-            // chbPrintPreView
-            // 
-            this.chbPrintPreView.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.chbPrintPreView.BackColor = System.Drawing.Color.Transparent;
-            // 
-            // 
-            // 
-            this.chbPrintPreView.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.chbPrintPreView.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.chbPrintPreView.Location = new System.Drawing.Point(233, 236);
-            this.chbPrintPreView.Name = "chbPrintPreView";
-            this.chbPrintPreView.Size = new System.Drawing.Size(173, 23);
-            this.chbPrintPreView.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.chbPrintPreView.TabIndex = 9;
-            this.chbPrintPreView.Text = "مشاهده پیش نمایش چاپ";
-            // 
-            // chbDeleteRequest
-            // 
-            this.chbDeleteRequest.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.chbDeleteRequest.BackColor = System.Drawing.Color.Transparent;
-            // 
-            // 
-            // 
-            this.chbDeleteRequest.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.chbDeleteRequest.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.chbDeleteRequest.Location = new System.Drawing.Point(344, 265);
-            this.chbDeleteRequest.Name = "chbDeleteRequest";
-            this.chbDeleteRequest.Size = new System.Drawing.Size(241, 23);
-            this.chbDeleteRequest.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.chbDeleteRequest.TabIndex = 9;
-            this.chbDeleteRequest.Text = "حذف تقاضا 60 روز پس از ثبت، فعال باشد";
-            // 
-            // chbPrintDesign
-            // 
-            this.chbPrintDesign.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.chbPrintDesign.BackColor = System.Drawing.Color.Transparent;
-            // 
-            // 
-            // 
-            this.chbPrintDesign.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.chbPrintDesign.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.chbPrintDesign.Location = new System.Drawing.Point(412, 236);
-            this.chbPrintDesign.Name = "chbPrintDesign";
-            this.chbPrintDesign.Size = new System.Drawing.Size(173, 23);
-            this.chbPrintDesign.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.chbPrintDesign.TabIndex = 9;
-            this.chbPrintDesign.Text = "چاپ در حالت طراحی باز شود";
-            // 
-            // superTabItem2
-            // 
-            this.superTabItem2.AttachedControl = this.superTabControlPanel2;
-            this.superTabItem2.GlobalItem = false;
-            this.superTabItem2.Name = "superTabItem2";
-            this.superTabItem2.Text = "تنظیمات برنامه";
-            // 
-            // superTabControlPanel6
-            // 
-            this.superTabControlPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.superTabControlPanel6.Location = new System.Drawing.Point(0, 0);
-            this.superTabControlPanel6.Name = "superTabControlPanel6";
-            this.superTabControlPanel6.Size = new System.Drawing.Size(608, 588);
-            this.superTabControlPanel6.TabIndex = 0;
             // 
             // superTabControlPanel11
             // 
@@ -524,7 +299,7 @@
             this.superTabControlPanel11.Dock = System.Windows.Forms.DockStyle.Fill;
             this.superTabControlPanel11.Location = new System.Drawing.Point(0, 40);
             this.superTabControlPanel11.Name = "superTabControlPanel11";
-            this.superTabControlPanel11.Size = new System.Drawing.Size(608, 548);
+            this.superTabControlPanel11.Size = new System.Drawing.Size(718, 548);
             this.superTabControlPanel11.TabIndex = 0;
             this.superTabControlPanel11.TabItem = this.superTabItem10;
             // 
@@ -532,7 +307,6 @@
             // 
             this.pnlTelegram.CanvasColor = System.Drawing.SystemColors.Control;
             this.pnlTelegram.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.pnlTelegram.Controls.Add(this.btnTelegramManager);
             this.pnlTelegram.Controls.Add(this.flowLayoutPanel1);
             this.pnlTelegram.Controls.Add(this.txtChannel);
             this.pnlTelegram.Controls.Add(this.txtToken);
@@ -540,10 +314,11 @@
             this.pnlTelegram.Controls.Add(this.label23);
             this.pnlTelegram.Controls.Add(this.label24);
             this.pnlTelegram.Controls.Add(this.label25);
+            this.pnlTelegram.Controls.Add(this.btnTelegramManager);
             this.pnlTelegram.DisabledBackColor = System.Drawing.Color.Empty;
             this.pnlTelegram.Location = new System.Drawing.Point(4, 12);
             this.pnlTelegram.Name = "pnlTelegram";
-            this.pnlTelegram.Size = new System.Drawing.Size(600, 524);
+            this.pnlTelegram.Size = new System.Drawing.Size(711, 524);
             this.pnlTelegram.Style.Alignment = System.Drawing.StringAlignment.Center;
             this.pnlTelegram.Style.BackColor1.Color = System.Drawing.Color.White;
             this.pnlTelegram.Style.BackColor2.Color = System.Drawing.Color.White;
@@ -554,23 +329,6 @@
             this.pnlTelegram.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText;
             this.pnlTelegram.Style.GradientAngle = 90;
             this.pnlTelegram.TabIndex = 4;
-            // 
-            // btnTelegramManager
-            // 
-            this.btnTelegramManager.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnTelegramManager.BackColor = System.Drawing.Color.DarkSlateGray;
-            this.btnTelegramManager.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnTelegramManager.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
-            this.btnTelegramManager.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnTelegramManager.Location = new System.Drawing.Point(11, 43);
-            this.btnTelegramManager.Name = "btnTelegramManager";
-            this.btnTelegramManager.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
-            this.btnTelegramManager.Size = new System.Drawing.Size(189, 27);
-            this.btnTelegramManager.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
-            this.btnTelegramManager.TabIndex = 24;
-            this.btnTelegramManager.Text = "ربات مدیریتی تلگرام";
-            this.btnTelegramManager.TextColor = System.Drawing.Color.White;
-            this.btnTelegramManager.Click += new System.EventHandler(this.btnTelegramManager_Click);
             // 
             // flowLayoutPanel1
             // 
@@ -1193,34 +951,58 @@
             this.btnBalcony.TextColor = System.Drawing.Color.White;
             this.btnBalcony.Click += new System.EventHandler(this.btnBalcony_Click);
             // 
+            // btnOtherOptions
+            // 
+            this.btnOtherOptions.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnOtherOptions.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.btnOtherOptions.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnOtherOptions.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.btnOtherOptions.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnOtherOptions.Location = new System.Drawing.Point(8, 564);
+            this.btnOtherOptions.Name = "btnOtherOptions";
+            this.btnOtherOptions.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
+            this.btnOtherOptions.Size = new System.Drawing.Size(164, 27);
+            this.btnOtherOptions.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
+            this.btnOtherOptions.TabIndex = 22;
+            this.btnOtherOptions.Text = "[سایر امکانات]";
+            this.btnOtherOptions.TextColor = System.Drawing.Color.White;
+            this.btnOtherOptions.Click += new System.EventHandler(this.btnOtherOptions_Click);
+            // 
             // txtChannel
             // 
+            this.txtChannel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtChannel.Location = new System.Drawing.Point(209, 43);
             this.txtChannel.Name = "txtChannel";
-            this.txtChannel.Size = new System.Drawing.Size(273, 27);
+            this.txtChannel.Size = new System.Drawing.Size(384, 27);
             this.txtChannel.TabIndex = 1;
             // 
             // txtToken
             // 
+            this.txtToken.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtToken.Location = new System.Drawing.Point(11, 10);
             this.txtToken.Name = "txtToken";
-            this.txtToken.Size = new System.Drawing.Size(471, 27);
+            this.txtToken.Size = new System.Drawing.Size(582, 27);
             this.txtToken.TabIndex = 0;
             // 
             // txtText
             // 
+            this.txtText.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtText.Location = new System.Drawing.Point(209, 80);
             this.txtText.Multiline = true;
             this.txtText.Name = "txtText";
             this.txtText.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtText.Size = new System.Drawing.Size(273, 427);
+            this.txtText.Size = new System.Drawing.Size(384, 427);
             this.txtText.TabIndex = 22;
             // 
             // label23
             // 
+            this.label23.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label23.AutoSize = true;
             this.label23.BackColor = System.Drawing.Color.Transparent;
-            this.label23.Location = new System.Drawing.Point(526, 46);
+            this.label23.Location = new System.Drawing.Point(637, 46);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(66, 20);
             this.label23.TabIndex = 5;
@@ -1228,9 +1010,10 @@
             // 
             // label24
             // 
+            this.label24.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label24.AutoSize = true;
             this.label24.BackColor = System.Drawing.Color.Transparent;
-            this.label24.Location = new System.Drawing.Point(492, 13);
+            this.label24.Location = new System.Drawing.Point(603, 13);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(100, 20);
             this.label24.TabIndex = 5;
@@ -1238,13 +1021,31 @@
             // 
             // label25
             // 
+            this.label25.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label25.AutoSize = true;
             this.label25.BackColor = System.Drawing.Color.Transparent;
-            this.label25.Location = new System.Drawing.Point(491, 83);
+            this.label25.Location = new System.Drawing.Point(602, 83);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(101, 20);
             this.label25.TabIndex = 7;
             this.label25.Text = "الگوی پست ارسالی";
+            // 
+            // btnTelegramManager
+            // 
+            this.btnTelegramManager.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnTelegramManager.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.btnTelegramManager.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnTelegramManager.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.btnTelegramManager.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnTelegramManager.Location = new System.Drawing.Point(11, 43);
+            this.btnTelegramManager.Name = "btnTelegramManager";
+            this.btnTelegramManager.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
+            this.btnTelegramManager.Size = new System.Drawing.Size(189, 27);
+            this.btnTelegramManager.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
+            this.btnTelegramManager.TabIndex = 24;
+            this.btnTelegramManager.Text = "ربات مدیریتی تلگرام";
+            this.btnTelegramManager.TextColor = System.Drawing.Color.White;
+            this.btnTelegramManager.Click += new System.EventHandler(this.btnTelegramManager_Click);
             // 
             // superTabItem10
             // 
@@ -1253,13 +1054,365 @@
             this.superTabItem10.Name = "superTabItem10";
             this.superTabItem10.Text = "ربات تلگرام";
             // 
+            // superTabControlPanel2
+            // 
+            this.superTabControlPanel2.Controls.Add(this.panelEx1);
+            this.superTabControlPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.superTabControlPanel2.Location = new System.Drawing.Point(0, 40);
+            this.superTabControlPanel2.Name = "superTabControlPanel2";
+            this.superTabControlPanel2.Size = new System.Drawing.Size(718, 548);
+            this.superTabControlPanel2.TabIndex = 0;
+            this.superTabControlPanel2.TabItem = this.superTabItem2;
+            // 
+            // panelEx1
+            // 
+            this.panelEx1.CanvasColor = System.Drawing.SystemColors.Control;
+            this.panelEx1.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.panelEx1.Controls.Add(this.btnSearchMedia);
+            this.panelEx1.Controls.Add(this.btnSearchImagePath);
+            this.panelEx1.Controls.Add(this.txtMediaPath);
+            this.panelEx1.Controls.Add(this.label33);
+            this.panelEx1.Controls.Add(this.txtImagePath);
+            this.panelEx1.Controls.Add(this.label32);
+            this.panelEx1.Controls.Add(this.txtSetArchive);
+            this.panelEx1.Controls.Add(this.txtBirthDayText);
+            this.panelEx1.Controls.Add(this.label31);
+            this.panelEx1.Controls.Add(this.label30);
+            this.panelEx1.Controls.Add(this.label29);
+            this.panelEx1.Controls.Add(this.chbShowDialog);
+            this.panelEx1.Controls.Add(this.chbPrintPreView);
+            this.panelEx1.Controls.Add(this.chbDeleteRequest);
+            this.panelEx1.Controls.Add(this.chbPrintDesign);
+            this.panelEx1.DisabledBackColor = System.Drawing.Color.Empty;
+            this.panelEx1.Location = new System.Drawing.Point(4, 4);
+            this.panelEx1.Name = "panelEx1";
+            this.panelEx1.Size = new System.Drawing.Size(711, 410);
+            this.panelEx1.Style.Alignment = System.Drawing.StringAlignment.Center;
+            this.panelEx1.Style.BackColor1.Color = System.Drawing.Color.White;
+            this.panelEx1.Style.BackColor2.Color = System.Drawing.Color.White;
+            this.panelEx1.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
+            this.panelEx1.Style.BorderColor.Color = System.Drawing.Color.Silver;
+            this.panelEx1.Style.BorderWidth = 2;
+            this.panelEx1.Style.CornerType = DevComponents.DotNetBar.eCornerType.Rounded;
+            this.panelEx1.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText;
+            this.panelEx1.Style.GradientAngle = 90;
+            this.panelEx1.TabIndex = 14;
+            // 
+            // btnSearchMedia
+            // 
+            this.btnSearchMedia.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnSearchMedia.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.btnSearchMedia.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnSearchMedia.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.btnSearchMedia.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSearchMedia.Location = new System.Drawing.Point(20, 367);
+            this.btnSearchMedia.Name = "btnSearchMedia";
+            this.btnSearchMedia.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
+            this.btnSearchMedia.Size = new System.Drawing.Size(35, 27);
+            this.btnSearchMedia.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
+            this.btnSearchMedia.TabIndex = 16;
+            this.btnSearchMedia.Text = "...";
+            this.btnSearchMedia.TextColor = System.Drawing.Color.White;
+            this.btnSearchMedia.Click += new System.EventHandler(this.btnSearchMedia_Click);
+            // 
+            // btnSearchImagePath
+            // 
+            this.btnSearchImagePath.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnSearchImagePath.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.btnSearchImagePath.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnSearchImagePath.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.btnSearchImagePath.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSearchImagePath.Location = new System.Drawing.Point(20, 334);
+            this.btnSearchImagePath.Name = "btnSearchImagePath";
+            this.btnSearchImagePath.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
+            this.btnSearchImagePath.Size = new System.Drawing.Size(35, 27);
+            this.btnSearchImagePath.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
+            this.btnSearchImagePath.TabIndex = 16;
+            this.btnSearchImagePath.Text = "...";
+            this.btnSearchImagePath.TextColor = System.Drawing.Color.White;
+            this.btnSearchImagePath.Click += new System.EventHandler(this.btnSearchImagePath_Click);
+            // 
+            // txtMediaPath
+            // 
+            this.txtMediaPath.Location = new System.Drawing.Point(61, 367);
+            this.txtMediaPath.Name = "txtMediaPath";
+            this.txtMediaPath.Size = new System.Drawing.Size(502, 27);
+            this.txtMediaPath.TabIndex = 14;
+            // 
+            // label33
+            // 
+            this.label33.AutoSize = true;
+            this.label33.BackColor = System.Drawing.Color.Transparent;
+            this.label33.Location = new System.Drawing.Point(583, 370);
+            this.label33.Name = "label33";
+            this.label33.Size = new System.Drawing.Size(113, 20);
+            this.label33.TabIndex = 15;
+            this.label33.Text = "محل ذخیره سازی مدیا";
+            // 
+            // txtImagePath
+            // 
+            this.txtImagePath.Location = new System.Drawing.Point(61, 334);
+            this.txtImagePath.Name = "txtImagePath";
+            this.txtImagePath.Size = new System.Drawing.Size(502, 27);
+            this.txtImagePath.TabIndex = 14;
+            // 
+            // label32
+            // 
+            this.label32.AutoSize = true;
+            this.label32.BackColor = System.Drawing.Color.Transparent;
+            this.label32.Location = new System.Drawing.Point(569, 337);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(127, 20);
+            this.label32.TabIndex = 15;
+            this.label32.Text = "محل ذخیره سازی تصاویر";
+            // 
+            // txtSetArchive
+            // 
+            this.txtSetArchive.Location = new System.Drawing.Point(480, 296);
+            this.txtSetArchive.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.txtSetArchive.Name = "txtSetArchive";
+            this.txtSetArchive.Size = new System.Drawing.Size(84, 27);
+            this.txtSetArchive.TabIndex = 13;
+            // 
+            // txtBirthDayText
+            // 
+            this.txtBirthDayText.Location = new System.Drawing.Point(20, 11);
+            this.txtBirthDayText.Multiline = true;
+            this.txtBirthDayText.Name = "txtBirthDayText";
+            this.txtBirthDayText.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtBirthDayText.Size = new System.Drawing.Size(544, 212);
+            this.txtBirthDayText.TabIndex = 12;
+            // 
+            // label31
+            // 
+            this.label31.AutoSize = true;
+            this.label31.BackColor = System.Drawing.Color.Transparent;
+            this.label31.Location = new System.Drawing.Point(284, 298);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(81, 20);
+            this.label31.TabIndex = 11;
+            this.label31.Text = "روز بعد از ثبت";
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.BackColor = System.Drawing.Color.Transparent;
+            this.label30.Location = new System.Drawing.Point(570, 298);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(128, 20);
+            this.label30.TabIndex = 11;
+            this.label30.Text = "ارسال فایل ها به بایگانی";
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.BackColor = System.Drawing.Color.Transparent;
+            this.label29.Location = new System.Drawing.Point(615, 14);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(83, 20);
+            this.label29.TabIndex = 11;
+            this.label29.Text = "متن تبریک تولد";
+            // 
+            // chbShowDialog
+            // 
+            this.chbShowDialog.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.chbShowDialog.BackColor = System.Drawing.Color.Transparent;
+            // 
+            // 
+            // 
+            this.chbShowDialog.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.chbShowDialog.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.chbShowDialog.Location = new System.Drawing.Point(186, 236);
+            this.chbShowDialog.Name = "chbShowDialog";
+            this.chbShowDialog.Size = new System.Drawing.Size(173, 23);
+            this.chbShowDialog.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.chbShowDialog.TabIndex = 9;
+            this.chbShowDialog.Text = "بازکردن چند پنجره همزمان";
+            // 
+            // chbPrintPreView
+            // 
+            this.chbPrintPreView.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.chbPrintPreView.BackColor = System.Drawing.Color.Transparent;
+            // 
+            // 
+            // 
+            this.chbPrintPreView.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.chbPrintPreView.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.chbPrintPreView.Location = new System.Drawing.Point(344, 236);
+            this.chbPrintPreView.Name = "chbPrintPreView";
+            this.chbPrintPreView.Size = new System.Drawing.Size(173, 23);
+            this.chbPrintPreView.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.chbPrintPreView.TabIndex = 9;
+            this.chbPrintPreView.Text = "مشاهده پیش نمایش چاپ";
+            // 
+            // chbDeleteRequest
+            // 
+            this.chbDeleteRequest.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.chbDeleteRequest.BackColor = System.Drawing.Color.Transparent;
+            // 
+            // 
+            // 
+            this.chbDeleteRequest.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.chbDeleteRequest.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.chbDeleteRequest.Location = new System.Drawing.Point(455, 265);
+            this.chbDeleteRequest.Name = "chbDeleteRequest";
+            this.chbDeleteRequest.Size = new System.Drawing.Size(241, 23);
+            this.chbDeleteRequest.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.chbDeleteRequest.TabIndex = 9;
+            this.chbDeleteRequest.Text = "حذف تقاضا 60 روز پس از ثبت، فعال باشد";
+            // 
+            // chbPrintDesign
+            // 
+            this.chbPrintDesign.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.chbPrintDesign.BackColor = System.Drawing.Color.Transparent;
+            // 
+            // 
+            // 
+            this.chbPrintDesign.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.chbPrintDesign.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.chbPrintDesign.Location = new System.Drawing.Point(523, 236);
+            this.chbPrintDesign.Name = "chbPrintDesign";
+            this.chbPrintDesign.Size = new System.Drawing.Size(173, 23);
+            this.chbPrintDesign.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.chbPrintDesign.TabIndex = 9;
+            this.chbPrintDesign.Text = "چاپ در حالت طراحی باز شود";
+            // 
+            // superTabItem2
+            // 
+            this.superTabItem2.AttachedControl = this.superTabControlPanel2;
+            this.superTabItem2.GlobalItem = false;
+            this.superTabItem2.Name = "superTabItem2";
+            this.superTabItem2.Text = "تنظیمات برنامه";
+            // 
+            // superTabControlPanel6
+            // 
+            this.superTabControlPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.superTabControlPanel6.Location = new System.Drawing.Point(0, 0);
+            this.superTabControlPanel6.Name = "superTabControlPanel6";
+            this.superTabControlPanel6.Size = new System.Drawing.Size(718, 588);
+            this.superTabControlPanel6.TabIndex = 0;
+            // 
+            // superTabControlPanel4
+            // 
+            this.superTabControlPanel4.Controls.Add(this.btnWhatsAppManager);
+            this.superTabControlPanel4.Controls.Add(this.btnWhatsAppCustomer);
+            this.superTabControlPanel4.Controls.Add(this.txtWhatsAppManagerText);
+            this.superTabControlPanel4.Controls.Add(this.txtWhatsAppCustomerText);
+            this.superTabControlPanel4.Controls.Add(this.txtWhatsAppNumber);
+            this.superTabControlPanel4.Controls.Add(this.label35);
+            this.superTabControlPanel4.Controls.Add(this.txtWhatsAppToken);
+            this.superTabControlPanel4.Controls.Add(this.label37);
+            this.superTabControlPanel4.Controls.Add(this.label36);
+            this.superTabControlPanel4.Controls.Add(this.label34);
+            this.superTabControlPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.superTabControlPanel4.Location = new System.Drawing.Point(0, 40);
+            this.superTabControlPanel4.Name = "superTabControlPanel4";
+            this.superTabControlPanel4.Size = new System.Drawing.Size(718, 548);
+            this.superTabControlPanel4.TabIndex = 0;
+            this.superTabControlPanel4.TabItem = this.superTabItem3;
+            // 
+            // txtWhatsAppManagerText
+            // 
+            this.txtWhatsAppManagerText.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtWhatsAppManagerText.Location = new System.Drawing.Point(4, 59);
+            this.txtWhatsAppManagerText.Multiline = true;
+            this.txtWhatsAppManagerText.Name = "txtWhatsAppManagerText";
+            this.txtWhatsAppManagerText.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtWhatsAppManagerText.Size = new System.Drawing.Size(346, 445);
+            this.txtWhatsAppManagerText.TabIndex = 23;
+            // 
+            // txtWhatsAppCustomerText
+            // 
+            this.txtWhatsAppCustomerText.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtWhatsAppCustomerText.Location = new System.Drawing.Point(356, 59);
+            this.txtWhatsAppCustomerText.Multiline = true;
+            this.txtWhatsAppCustomerText.Name = "txtWhatsAppCustomerText";
+            this.txtWhatsAppCustomerText.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtWhatsAppCustomerText.Size = new System.Drawing.Size(346, 445);
+            this.txtWhatsAppCustomerText.TabIndex = 23;
+            // 
+            // txtWhatsAppNumber
+            // 
+            this.txtWhatsAppNumber.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtWhatsAppNumber.Location = new System.Drawing.Point(4, 7);
+            this.txtWhatsAppNumber.Name = "txtWhatsAppNumber";
+            this.txtWhatsAppNumber.Size = new System.Drawing.Size(240, 27);
+            this.txtWhatsAppNumber.TabIndex = 6;
+            // 
+            // label35
+            // 
+            this.label35.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label35.AutoSize = true;
+            this.label35.BackColor = System.Drawing.Color.Transparent;
+            this.label35.Location = new System.Drawing.Point(254, 10);
+            this.label35.Name = "label35";
+            this.label35.Size = new System.Drawing.Size(100, 20);
+            this.label35.TabIndex = 7;
+            this.label35.Text = "شماره ارسال کننده";
+            // 
+            // txtWhatsAppToken
+            // 
+            this.txtWhatsAppToken.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtWhatsAppToken.Location = new System.Drawing.Point(356, 7);
+            this.txtWhatsAppToken.Name = "txtWhatsAppToken";
+            this.txtWhatsAppToken.Size = new System.Drawing.Size(240, 27);
+            this.txtWhatsAppToken.TabIndex = 6;
+            // 
+            // label37
+            // 
+            this.label37.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label37.AutoSize = true;
+            this.label37.BackColor = System.Drawing.Color.Transparent;
+            this.label37.Location = new System.Drawing.Point(255, 36);
+            this.label37.Name = "label37";
+            this.label37.Size = new System.Drawing.Size(99, 20);
+            this.label37.TabIndex = 7;
+            this.label37.Text = "الگوی متن مدیریت";
+            // 
+            // label36
+            // 
+            this.label36.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label36.AutoSize = true;
+            this.label36.BackColor = System.Drawing.Color.Transparent;
+            this.label36.Location = new System.Drawing.Point(606, 36);
+            this.label36.Name = "label36";
+            this.label36.Size = new System.Drawing.Size(103, 20);
+            this.label36.TabIndex = 7;
+            this.label36.Text = "الگوی متن مشتریان";
+            // 
+            // label34
+            // 
+            this.label34.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label34.AutoSize = true;
+            this.label34.BackColor = System.Drawing.Color.Transparent;
+            this.label34.Location = new System.Drawing.Point(606, 10);
+            this.label34.Name = "label34";
+            this.label34.Size = new System.Drawing.Size(100, 20);
+            this.label34.TabIndex = 7;
+            this.label34.Text = "توکن ارتباط با ربات";
+            // 
+            // superTabItem3
+            // 
+            this.superTabItem3.AttachedControl = this.superTabControlPanel4;
+            this.superTabItem3.GlobalItem = false;
+            this.superTabItem3.Name = "superTabItem3";
+            this.superTabItem3.Text = "تنظیمات واتساپ";
+            // 
             // superTabControlPanel1
             // 
             this.superTabControlPanel1.Controls.Add(this.panelEx4);
             this.superTabControlPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.superTabControlPanel1.Location = new System.Drawing.Point(0, 40);
             this.superTabControlPanel1.Name = "superTabControlPanel1";
-            this.superTabControlPanel1.Size = new System.Drawing.Size(608, 548);
+            this.superTabControlPanel1.Size = new System.Drawing.Size(718, 548);
             this.superTabControlPanel1.TabIndex = 0;
             this.superTabControlPanel1.TabItem = this.superTabItem1;
             // 
@@ -1267,7 +1420,6 @@
             // 
             this.panelEx4.CanvasColor = System.Drawing.SystemColors.Control;
             this.panelEx4.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.panelEx4.Controls.Add(this.btnPath);
             this.panelEx4.Controls.Add(this.chbBackUpSms);
             this.panelEx4.Controls.Add(this.chbOpen);
             this.panelEx4.Controls.Add(this.chbAuto);
@@ -1276,10 +1428,11 @@
             this.panelEx4.Controls.Add(this.label26);
             this.panelEx4.Controls.Add(this.label27);
             this.panelEx4.Controls.Add(this.label28);
+            this.panelEx4.Controls.Add(this.btnPath);
             this.panelEx4.DisabledBackColor = System.Drawing.Color.Empty;
             this.panelEx4.Location = new System.Drawing.Point(4, 3);
             this.panelEx4.Name = "panelEx4";
-            this.panelEx4.Size = new System.Drawing.Size(600, 149);
+            this.panelEx4.Size = new System.Drawing.Size(711, 149);
             this.panelEx4.Style.Alignment = System.Drawing.StringAlignment.Center;
             this.panelEx4.Style.BackColor1.Color = System.Drawing.Color.White;
             this.panelEx4.Style.BackColor2.Color = System.Drawing.Color.White;
@@ -1291,23 +1444,6 @@
             this.panelEx4.Style.GradientAngle = 90;
             this.panelEx4.TabIndex = 10;
             // 
-            // btnPath
-            // 
-            this.btnPath.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnPath.BackColor = System.Drawing.Color.DarkSlateGray;
-            this.btnPath.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnPath.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
-            this.btnPath.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnPath.Location = new System.Drawing.Point(8, 18);
-            this.btnPath.Name = "btnPath";
-            this.btnPath.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
-            this.btnPath.Size = new System.Drawing.Size(35, 27);
-            this.btnPath.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
-            this.btnPath.TabIndex = 9;
-            this.btnPath.Text = "...";
-            this.btnPath.TextColor = System.Drawing.Color.White;
-            this.btnPath.Click += new System.EventHandler(this.btnPath_Click);
-            // 
             // chbBackUpSms
             // 
             this.chbBackUpSms.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -1317,7 +1453,7 @@
             // 
             this.chbBackUpSms.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.chbBackUpSms.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.chbBackUpSms.Location = new System.Drawing.Point(260, 110);
+            this.chbBackUpSms.Location = new System.Drawing.Point(371, 110);
             this.chbBackUpSms.Name = "chbBackUpSms";
             this.chbBackUpSms.Size = new System.Drawing.Size(329, 23);
             this.chbBackUpSms.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -1334,7 +1470,7 @@
             // 
             this.chbOpen.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.chbOpen.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.chbOpen.Location = new System.Drawing.Point(326, 81);
+            this.chbOpen.Location = new System.Drawing.Point(437, 81);
             this.chbOpen.Name = "chbOpen";
             this.chbOpen.Size = new System.Drawing.Size(263, 23);
             this.chbOpen.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -1351,7 +1487,7 @@
             // 
             this.chbAuto.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.chbAuto.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.chbAuto.Location = new System.Drawing.Point(326, 53);
+            this.chbAuto.Location = new System.Drawing.Point(437, 53);
             this.chbAuto.Name = "chbAuto";
             this.chbAuto.Size = new System.Drawing.Size(263, 23);
             this.chbAuto.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -1370,14 +1506,16 @@
             0,
             0});
             this.txtTime.Name = "txtTime";
-            this.txtTime.Size = new System.Drawing.Size(137, 27);
+            this.txtTime.Size = new System.Drawing.Size(248, 27);
             this.txtTime.TabIndex = 4;
             // 
             // txtPath
             // 
+            this.txtPath.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtPath.Location = new System.Drawing.Point(49, 18);
             this.txtPath.Name = "txtPath";
-            this.txtPath.Size = new System.Drawing.Size(409, 27);
+            this.txtPath.Size = new System.Drawing.Size(520, 27);
             this.txtPath.TabIndex = 0;
             // 
             // label26
@@ -1402,13 +1540,31 @@
             // 
             // label28
             // 
+            this.label28.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label28.AutoSize = true;
             this.label28.BackColor = System.Drawing.Color.Transparent;
-            this.label28.Location = new System.Drawing.Point(464, 21);
+            this.label28.Location = new System.Drawing.Point(575, 21);
             this.label28.Name = "label28";
             this.label28.Size = new System.Drawing.Size(129, 20);
             this.label28.TabIndex = 8;
             this.label28.Text = "محل ذخیره فایل پشتیبان";
+            // 
+            // btnPath
+            // 
+            this.btnPath.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnPath.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.btnPath.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnPath.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.btnPath.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnPath.Location = new System.Drawing.Point(8, 18);
+            this.btnPath.Name = "btnPath";
+            this.btnPath.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
+            this.btnPath.Size = new System.Drawing.Size(35, 27);
+            this.btnPath.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
+            this.btnPath.TabIndex = 9;
+            this.btnPath.Text = "...";
+            this.btnPath.TextColor = System.Drawing.Color.White;
+            this.btnPath.Click += new System.EventHandler(this.btnPath_Click);
             // 
             // superTabItem1
             // 
@@ -1423,7 +1579,7 @@
             this.superTabControlPanel8.Dock = System.Windows.Forms.DockStyle.Fill;
             this.superTabControlPanel8.Location = new System.Drawing.Point(0, 40);
             this.superTabControlPanel8.Name = "superTabControlPanel8";
-            this.superTabControlPanel8.Size = new System.Drawing.Size(608, 548);
+            this.superTabControlPanel8.Size = new System.Drawing.Size(718, 548);
             this.superTabControlPanel8.TabIndex = 0;
             this.superTabControlPanel8.TabItem = this.superTabItem7;
             // 
@@ -1465,7 +1621,7 @@
             this.pnlSms.DisabledBackColor = System.Drawing.Color.Empty;
             this.pnlSms.Location = new System.Drawing.Point(4, 11);
             this.pnlSms.Name = "pnlSms";
-            this.pnlSms.Size = new System.Drawing.Size(600, 524);
+            this.pnlSms.Size = new System.Drawing.Size(711, 524);
             this.pnlSms.Style.Alignment = System.Drawing.StringAlignment.Center;
             this.pnlSms.Style.BackColor1.Color = System.Drawing.Color.White;
             this.pnlSms.Style.BackColor2.Color = System.Drawing.Color.White;
@@ -1479,7 +1635,8 @@
             // 
             // txtOwnerText
             // 
-            this.txtOwnerText.Location = new System.Drawing.Point(305, 76);
+            this.txtOwnerText.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtOwnerText.Location = new System.Drawing.Point(416, 76);
             this.txtOwnerText.Multiline = true;
             this.txtOwnerText.Name = "txtOwnerText";
             this.txtOwnerText.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
@@ -1497,7 +1654,7 @@
             // 
             // txtMatchTextRahn
             // 
-            this.txtMatchTextRahn.Location = new System.Drawing.Point(305, 285);
+            this.txtMatchTextRahn.Location = new System.Drawing.Point(416, 285);
             this.txtMatchTextRahn.Multiline = true;
             this.txtMatchTextRahn.Name = "txtMatchTextRahn";
             this.txtMatchTextRahn.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
@@ -1522,7 +1679,7 @@
             // 
             this.chbSendAfterMatch.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.chbSendAfterMatch.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.chbSendAfterMatch.Location = new System.Drawing.Point(225, 260);
+            this.chbSendAfterMatch.Location = new System.Drawing.Point(336, 260);
             this.chbSendAfterMatch.Name = "chbSendAfterMatch";
             this.chbSendAfterMatch.Size = new System.Drawing.Size(363, 23);
             this.chbSendAfterMatch.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -1538,7 +1695,7 @@
             // 
             this.chbSendSayer.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.chbSendSayer.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.chbSendSayer.Location = new System.Drawing.Point(47, 44);
+            this.chbSendSayer.Location = new System.Drawing.Point(158, 44);
             this.chbSendSayer.Name = "chbSendSayer";
             this.chbSendSayer.Size = new System.Drawing.Size(263, 23);
             this.chbSendSayer.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -1548,11 +1705,12 @@
             // btnOwner_UserName
             // 
             this.btnOwner_UserName.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnOwner_UserName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnOwner_UserName.BackColor = System.Drawing.Color.DarkSlateGray;
             this.btnOwner_UserName.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnOwner_UserName.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnOwner_UserName.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnOwner_UserName.Location = new System.Drawing.Point(497, 234);
+            this.btnOwner_UserName.Location = new System.Drawing.Point(608, 234);
             this.btnOwner_UserName.Name = "btnOwner_UserName";
             this.btnOwner_UserName.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
             this.btnOwner_UserName.Size = new System.Drawing.Size(79, 27);
@@ -1565,11 +1723,12 @@
             // btnRahn_Ejare
             // 
             this.btnRahn_Ejare.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnRahn_Ejare.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnRahn_Ejare.BackColor = System.Drawing.Color.DarkSlateGray;
             this.btnRahn_Ejare.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnRahn_Ejare.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnRahn_Ejare.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnRahn_Ejare.Location = new System.Drawing.Point(497, 470);
+            this.btnRahn_Ejare.Location = new System.Drawing.Point(608, 470);
             this.btnRahn_Ejare.Name = "btnRahn_Ejare";
             this.btnRahn_Ejare.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
             this.btnRahn_Ejare.Size = new System.Drawing.Size(79, 27);
@@ -1588,7 +1747,7 @@
             // 
             this.chbSendOwner.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.chbSendOwner.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.chbSendOwner.Location = new System.Drawing.Point(325, 44);
+            this.chbSendOwner.Location = new System.Drawing.Point(436, 44);
             this.chbSendOwner.Name = "chbSendOwner";
             this.chbSendOwner.Size = new System.Drawing.Size(263, 23);
             this.chbSendOwner.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -1615,11 +1774,12 @@
             // btnOwner_Region
             // 
             this.btnOwner_Region.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnOwner_Region.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnOwner_Region.BackColor = System.Drawing.Color.DarkSlateGray;
             this.btnOwner_Region.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnOwner_Region.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnOwner_Region.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnOwner_Region.Location = new System.Drawing.Point(497, 201);
+            this.btnOwner_Region.Location = new System.Drawing.Point(608, 201);
             this.btnOwner_Region.Name = "btnOwner_Region";
             this.btnOwner_Region.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
             this.btnOwner_Region.Size = new System.Drawing.Size(79, 27);
@@ -1648,6 +1808,8 @@
             // 
             // cmbPanel
             // 
+            this.cmbPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.cmbPanel.Cursor = System.Windows.Forms.Cursors.Hand;
             this.cmbPanel.DataSource = this.defBindingSource;
             this.cmbPanel.DisplayMember = "Sender";
@@ -1655,7 +1817,7 @@
             this.cmbPanel.FormattingEnabled = true;
             this.cmbPanel.Location = new System.Drawing.Point(63, 10);
             this.cmbPanel.Name = "cmbPanel";
-            this.cmbPanel.Size = new System.Drawing.Size(417, 28);
+            this.cmbPanel.Size = new System.Drawing.Size(528, 28);
             this.cmbPanel.TabIndex = 0;
             this.cmbPanel.ValueMember = "Guid";
             // 
@@ -1666,11 +1828,12 @@
             // btnRahn_Rahn
             // 
             this.btnRahn_Rahn.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnRahn_Rahn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnRahn_Rahn.BackColor = System.Drawing.Color.DarkSlateGray;
             this.btnRahn_Rahn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnRahn_Rahn.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnRahn_Rahn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnRahn_Rahn.Location = new System.Drawing.Point(497, 437);
+            this.btnRahn_Rahn.Location = new System.Drawing.Point(608, 437);
             this.btnRahn_Rahn.Name = "btnRahn_Rahn";
             this.btnRahn_Rahn.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
             this.btnRahn_Rahn.Size = new System.Drawing.Size(79, 27);
@@ -1700,11 +1863,12 @@
             // btnOwner_BuildingCode
             // 
             this.btnOwner_BuildingCode.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnOwner_BuildingCode.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnOwner_BuildingCode.BackColor = System.Drawing.Color.DarkSlateGray;
             this.btnOwner_BuildingCode.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnOwner_BuildingCode.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnOwner_BuildingCode.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnOwner_BuildingCode.Location = new System.Drawing.Point(497, 168);
+            this.btnOwner_BuildingCode.Location = new System.Drawing.Point(608, 168);
             this.btnOwner_BuildingCode.Name = "btnOwner_BuildingCode";
             this.btnOwner_BuildingCode.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
             this.btnOwner_BuildingCode.Size = new System.Drawing.Size(79, 27);
@@ -1717,11 +1881,12 @@
             // btnRahn_Region
             // 
             this.btnRahn_Region.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnRahn_Region.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnRahn_Region.BackColor = System.Drawing.Color.DarkSlateGray;
             this.btnRahn_Region.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnRahn_Region.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnRahn_Region.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnRahn_Region.Location = new System.Drawing.Point(497, 404);
+            this.btnRahn_Region.Location = new System.Drawing.Point(608, 404);
             this.btnRahn_Region.Name = "btnRahn_Region";
             this.btnRahn_Region.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
             this.btnRahn_Region.Size = new System.Drawing.Size(79, 27);
@@ -1751,11 +1916,12 @@
             // btnOwner_DateSh
             // 
             this.btnOwner_DateSh.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnOwner_DateSh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnOwner_DateSh.BackColor = System.Drawing.Color.DarkSlateGray;
             this.btnOwner_DateSh.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnOwner_DateSh.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnOwner_DateSh.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnOwner_DateSh.Location = new System.Drawing.Point(497, 135);
+            this.btnOwner_DateSh.Location = new System.Drawing.Point(608, 135);
             this.btnOwner_DateSh.Name = "btnOwner_DateSh";
             this.btnOwner_DateSh.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
             this.btnOwner_DateSh.Size = new System.Drawing.Size(79, 27);
@@ -1768,11 +1934,12 @@
             // btnRahn_DateSh
             // 
             this.btnRahn_DateSh.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnRahn_DateSh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnRahn_DateSh.BackColor = System.Drawing.Color.DarkSlateGray;
             this.btnRahn_DateSh.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnRahn_DateSh.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnRahn_DateSh.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnRahn_DateSh.Location = new System.Drawing.Point(497, 371);
+            this.btnRahn_DateSh.Location = new System.Drawing.Point(608, 371);
             this.btnRahn_DateSh.Name = "btnRahn_DateSh";
             this.btnRahn_DateSh.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
             this.btnRahn_DateSh.Size = new System.Drawing.Size(79, 27);
@@ -1802,11 +1969,12 @@
             // btnOwner_OwnerName
             // 
             this.btnOwner_OwnerName.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnOwner_OwnerName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnOwner_OwnerName.BackColor = System.Drawing.Color.DarkSlateGray;
             this.btnOwner_OwnerName.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnOwner_OwnerName.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnOwner_OwnerName.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnOwner_OwnerName.Location = new System.Drawing.Point(497, 102);
+            this.btnOwner_OwnerName.Location = new System.Drawing.Point(608, 102);
             this.btnOwner_OwnerName.Name = "btnOwner_OwnerName";
             this.btnOwner_OwnerName.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
             this.btnOwner_OwnerName.Size = new System.Drawing.Size(79, 27);
@@ -1819,11 +1987,12 @@
             // btnRahn_SayerName
             // 
             this.btnRahn_SayerName.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnRahn_SayerName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnRahn_SayerName.BackColor = System.Drawing.Color.DarkSlateGray;
             this.btnRahn_SayerName.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnRahn_SayerName.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnRahn_SayerName.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnRahn_SayerName.Location = new System.Drawing.Point(497, 338);
+            this.btnRahn_SayerName.Location = new System.Drawing.Point(608, 338);
             this.btnRahn_SayerName.Name = "btnRahn_SayerName";
             this.btnRahn_SayerName.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
             this.btnRahn_SayerName.Size = new System.Drawing.Size(79, 27);
@@ -1878,8 +2047,9 @@
             // 
             // label19
             // 
+            this.label19.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label19.BackColor = System.Drawing.Color.Transparent;
-            this.label19.Location = new System.Drawing.Point(488, 288);
+            this.label19.Location = new System.Drawing.Point(599, 288);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(104, 47);
             this.label19.TabIndex = 7;
@@ -1914,9 +2084,10 @@
             // 
             // label21
             // 
+            this.label21.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label21.AutoSize = true;
             this.label21.BackColor = System.Drawing.Color.Transparent;
-            this.label21.Location = new System.Drawing.Point(510, 13);
+            this.label21.Location = new System.Drawing.Point(621, 13);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(82, 20);
             this.label21.TabIndex = 5;
@@ -1924,9 +2095,10 @@
             // 
             // label22
             // 
+            this.label22.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label22.AutoSize = true;
             this.label22.BackColor = System.Drawing.Color.Transparent;
-            this.label22.Location = new System.Drawing.Point(488, 79);
+            this.label22.Location = new System.Drawing.Point(599, 79);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(104, 20);
             this.label22.TabIndex = 7;
@@ -1945,7 +2117,7 @@
             this.superTabControlPanel7.Dock = System.Windows.Forms.DockStyle.Fill;
             this.superTabControlPanel7.Location = new System.Drawing.Point(0, 40);
             this.superTabControlPanel7.Name = "superTabControlPanel7";
-            this.superTabControlPanel7.Size = new System.Drawing.Size(608, 548);
+            this.superTabControlPanel7.Size = new System.Drawing.Size(718, 548);
             this.superTabControlPanel7.TabIndex = 0;
             this.superTabControlPanel7.TabItem = this.superTabItem6;
             // 
@@ -1968,7 +2140,7 @@
             this.pnlSandouq.DisabledBackColor = System.Drawing.Color.Empty;
             this.pnlSandouq.Location = new System.Drawing.Point(4, 3);
             this.pnlSandouq.Name = "pnlSandouq";
-            this.pnlSandouq.Size = new System.Drawing.Size(600, 209);
+            this.pnlSandouq.Size = new System.Drawing.Size(711, 209);
             this.pnlSandouq.Style.Alignment = System.Drawing.StringAlignment.Center;
             this.pnlSandouq.Style.BackColor1.Color = System.Drawing.Color.White;
             this.pnlSandouq.Style.BackColor2.Color = System.Drawing.Color.White;
@@ -1982,8 +2154,7 @@
             // 
             // txtSTabdil
             // 
-            this.txtSTabdil.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtSTabdil.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtSTabdil.Location = new System.Drawing.Point(9, 165);
             this.txtSTabdil.Maximum = new decimal(new int[] {
             10000,
@@ -1991,59 +2162,67 @@
             0,
             0});
             this.txtSTabdil.Name = "txtSTabdil";
-            this.txtSTabdil.Size = new System.Drawing.Size(127, 27);
+            this.txtSTabdil.Size = new System.Drawing.Size(177, 27);
             this.txtSTabdil.TabIndex = 5;
             // 
             // txtSArzesh
             // 
-            this.txtSArzesh.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtSArzesh.Location = new System.Drawing.Point(342, 165);
+            this.txtSArzesh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtSArzesh.Location = new System.Drawing.Point(409, 165);
             this.txtSArzesh.Maximum = new decimal(new int[] {
             10000,
             0,
             0,
             0});
             this.txtSArzesh.Name = "txtSArzesh";
-            this.txtSArzesh.Size = new System.Drawing.Size(137, 27);
+            this.txtSArzesh.Size = new System.Drawing.Size(181, 27);
             this.txtSArzesh.TabIndex = 4;
             // 
             // txtSNatCode
             // 
+            this.txtSNatCode.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtSNatCode.Location = new System.Drawing.Point(9, 90);
             this.txtSNatCode.Name = "txtSNatCode";
-            this.txtSNatCode.Size = new System.Drawing.Size(471, 27);
+            this.txtSNatCode.Size = new System.Drawing.Size(582, 27);
             this.txtSNatCode.TabIndex = 2;
             // 
             // cmbSType
             // 
+            this.cmbSType.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.cmbSType.Cursor = System.Windows.Forms.Cursors.Hand;
             this.cmbSType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbSType.FormattingEnabled = true;
             this.cmbSType.Location = new System.Drawing.Point(9, 54);
             this.cmbSType.Name = "cmbSType";
-            this.cmbSType.Size = new System.Drawing.Size(471, 28);
+            this.cmbSType.Size = new System.Drawing.Size(582, 28);
             this.cmbSType.TabIndex = 1;
             // 
             // txtSIdCode
             // 
+            this.txtSIdCode.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtSIdCode.Location = new System.Drawing.Point(9, 126);
             this.txtSIdCode.Name = "txtSIdCode";
-            this.txtSIdCode.Size = new System.Drawing.Size(471, 27);
+            this.txtSIdCode.Size = new System.Drawing.Size(582, 27);
             this.txtSIdCode.TabIndex = 3;
             // 
             // txtSCode
             // 
+            this.txtSCode.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtSCode.Location = new System.Drawing.Point(9, 18);
             this.txtSCode.Name = "txtSCode";
-            this.txtSCode.Size = new System.Drawing.Size(471, 27);
+            this.txtSCode.Size = new System.Drawing.Size(582, 27);
             this.txtSCode.TabIndex = 0;
             // 
             // label9
             // 
+            this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label9.AutoSize = true;
             this.label9.BackColor = System.Drawing.Color.Transparent;
-            this.label9.Location = new System.Drawing.Point(507, 129);
+            this.label9.Location = new System.Drawing.Point(618, 129);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(85, 20);
             this.label9.TabIndex = 3;
@@ -2051,9 +2230,10 @@
             // 
             // label10
             // 
+            this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label10.AutoSize = true;
             this.label10.BackColor = System.Drawing.Color.Transparent;
-            this.label10.Location = new System.Drawing.Point(486, 57);
+            this.label10.Location = new System.Drawing.Point(597, 57);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(106, 20);
             this.label10.TabIndex = 5;
@@ -2063,7 +2243,7 @@
             // 
             this.label14.AutoSize = true;
             this.label14.BackColor = System.Drawing.Color.Transparent;
-            this.label14.Location = new System.Drawing.Point(142, 167);
+            this.label14.Location = new System.Drawing.Point(192, 167);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(131, 20);
             this.label14.TabIndex = 6;
@@ -2071,9 +2251,10 @@
             // 
             // label15
             // 
+            this.label15.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label15.AutoSize = true;
             this.label15.BackColor = System.Drawing.Color.Transparent;
-            this.label15.Location = new System.Drawing.Point(485, 167);
+            this.label15.Location = new System.Drawing.Point(596, 167);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(107, 20);
             this.label15.TabIndex = 6;
@@ -2081,9 +2262,10 @@
             // 
             // label16
             // 
+            this.label16.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label16.AutoSize = true;
             this.label16.BackColor = System.Drawing.Color.Transparent;
-            this.label16.Location = new System.Drawing.Point(552, 93);
+            this.label16.Location = new System.Drawing.Point(663, 93);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(41, 20);
             this.label16.TabIndex = 7;
@@ -2091,9 +2273,10 @@
             // 
             // label17
             // 
+            this.label17.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label17.AutoSize = true;
             this.label17.BackColor = System.Drawing.Color.Transparent;
-            this.label17.Location = new System.Drawing.Point(526, 21);
+            this.label17.Location = new System.Drawing.Point(637, 21);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(66, 20);
             this.label17.TabIndex = 8;
@@ -2112,7 +2295,7 @@
             this.superTabControlPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.superTabControlPanel3.Location = new System.Drawing.Point(0, 40);
             this.superTabControlPanel3.Name = "superTabControlPanel3";
-            this.superTabControlPanel3.Size = new System.Drawing.Size(608, 548);
+            this.superTabControlPanel3.Size = new System.Drawing.Size(718, 548);
             this.superTabControlPanel3.TabIndex = 0;
             this.superTabControlPanel3.TabItem = this.superTabItem5;
             // 
@@ -2145,7 +2328,7 @@
             this.pnlUnit.DisabledBackColor = System.Drawing.Color.Empty;
             this.pnlUnit.Location = new System.Drawing.Point(4, 3);
             this.pnlUnit.Name = "pnlUnit";
-            this.pnlUnit.Size = new System.Drawing.Size(601, 542);
+            this.pnlUnit.Size = new System.Drawing.Size(711, 542);
             this.pnlUnit.Style.Alignment = System.Drawing.StringAlignment.Center;
             this.pnlUnit.Style.BackColor1.Color = System.Drawing.Color.White;
             this.pnlUnit.Style.BackColor2.Color = System.Drawing.Color.White;
@@ -2159,6 +2342,8 @@
             // 
             // cmbEcRegion
             // 
+            this.cmbEcRegion.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.cmbEcRegion.Cursor = System.Windows.Forms.Cursors.Hand;
             this.cmbEcRegion.DataSource = this.RegionBindingSource;
             this.cmbEcRegion.DisplayMember = "Name";
@@ -2166,7 +2351,7 @@
             this.cmbEcRegion.FormattingEnabled = true;
             this.cmbEcRegion.Location = new System.Drawing.Point(20, 344);
             this.cmbEcRegion.Name = "cmbEcRegion";
-            this.cmbEcRegion.Size = new System.Drawing.Size(473, 28);
+            this.cmbEcRegion.Size = new System.Drawing.Size(583, 28);
             this.cmbEcRegion.TabIndex = 9;
             this.cmbEcRegion.ValueMember = "Guid";
             // 
@@ -2176,6 +2361,8 @@
             // 
             // cmbEcCity
             // 
+            this.cmbEcCity.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.cmbEcCity.Cursor = System.Windows.Forms.Cursors.Hand;
             this.cmbEcCity.DataSource = this.CityBindingSource;
             this.cmbEcCity.DisplayMember = "Name";
@@ -2183,7 +2370,7 @@
             this.cmbEcCity.FormattingEnabled = true;
             this.cmbEcCity.Location = new System.Drawing.Point(20, 308);
             this.cmbEcCity.Name = "cmbEcCity";
-            this.cmbEcCity.Size = new System.Drawing.Size(473, 28);
+            this.cmbEcCity.Size = new System.Drawing.Size(583, 28);
             this.cmbEcCity.TabIndex = 8;
             this.cmbEcCity.ValueMember = "Guid";
             this.cmbEcCity.SelectedIndexChanged += new System.EventHandler(this.cmbCity_SelectedIndexChanged);
@@ -2194,9 +2381,10 @@
             // 
             // label13
             // 
+            this.label13.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label13.AutoSize = true;
             this.label13.BackColor = System.Drawing.Color.Transparent;
-            this.label13.Location = new System.Drawing.Point(536, 311);
+            this.label13.Location = new System.Drawing.Point(646, 311);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(54, 20);
             this.label13.TabIndex = 10;
@@ -2204,6 +2392,8 @@
             // 
             // cmbEcState
             // 
+            this.cmbEcState.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.cmbEcState.Cursor = System.Windows.Forms.Cursors.Hand;
             this.cmbEcState.DataSource = this.StateBindingSource;
             this.cmbEcState.DisplayMember = "Name";
@@ -2211,7 +2401,7 @@
             this.cmbEcState.FormattingEnabled = true;
             this.cmbEcState.Location = new System.Drawing.Point(20, 271);
             this.cmbEcState.Name = "cmbEcState";
-            this.cmbEcState.Size = new System.Drawing.Size(473, 28);
+            this.cmbEcState.Size = new System.Drawing.Size(583, 28);
             this.cmbEcState.TabIndex = 7;
             this.cmbEcState.ValueMember = "Guid";
             this.cmbEcState.SelectedIndexChanged += new System.EventHandler(this.cmbState_SelectedIndexChanged);
@@ -2222,9 +2412,10 @@
             // 
             // label12
             // 
+            this.label12.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label12.AutoSize = true;
             this.label12.BackColor = System.Drawing.Color.Transparent;
-            this.label12.Location = new System.Drawing.Point(552, 274);
+            this.label12.Location = new System.Drawing.Point(662, 274);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(38, 20);
             this.label12.TabIndex = 10;
@@ -2232,70 +2423,87 @@
             // 
             // txtEcEmail
             // 
+            this.txtEcEmail.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtEcEmail.Location = new System.Drawing.Point(20, 234);
             this.txtEcEmail.Name = "txtEcEmail";
-            this.txtEcEmail.Size = new System.Drawing.Size(473, 27);
+            this.txtEcEmail.Size = new System.Drawing.Size(583, 27);
             this.txtEcEmail.TabIndex = 6;
             // 
             // txtEcMobile
             // 
+            this.txtEcMobile.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtEcMobile.Location = new System.Drawing.Point(20, 90);
             this.txtEcMobile.Name = "txtEcMobile";
-            this.txtEcMobile.Size = new System.Drawing.Size(473, 27);
+            this.txtEcMobile.Size = new System.Drawing.Size(583, 27);
             this.txtEcMobile.TabIndex = 2;
             // 
             // cmbEcType
             // 
+            this.cmbEcType.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.cmbEcType.Cursor = System.Windows.Forms.Cursors.Hand;
             this.cmbEcType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbEcType.FormattingEnabled = true;
             this.cmbEcType.Location = new System.Drawing.Point(20, 54);
             this.cmbEcType.Name = "cmbEcType";
-            this.cmbEcType.Size = new System.Drawing.Size(473, 28);
+            this.cmbEcType.Size = new System.Drawing.Size(583, 28);
             this.cmbEcType.TabIndex = 1;
             // 
             // txtEcAddress
             // 
+            this.txtEcAddress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtEcAddress.Location = new System.Drawing.Point(20, 381);
             this.txtEcAddress.Multiline = true;
             this.txtEcAddress.Name = "txtEcAddress";
             this.txtEcAddress.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtEcAddress.Size = new System.Drawing.Size(473, 145);
+            this.txtEcAddress.Size = new System.Drawing.Size(583, 145);
             this.txtEcAddress.TabIndex = 10;
             // 
             // txtEcManagerName
             // 
+            this.txtEcManagerName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtEcManagerName.Location = new System.Drawing.Point(20, 126);
             this.txtEcManagerName.Name = "txtEcManagerName";
-            this.txtEcManagerName.Size = new System.Drawing.Size(473, 27);
+            this.txtEcManagerName.Size = new System.Drawing.Size(583, 27);
             this.txtEcManagerName.TabIndex = 3;
             // 
             // txtEcFax
             // 
+            this.txtEcFax.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtEcFax.Location = new System.Drawing.Point(20, 198);
             this.txtEcFax.Name = "txtEcFax";
-            this.txtEcFax.Size = new System.Drawing.Size(473, 27);
+            this.txtEcFax.Size = new System.Drawing.Size(583, 27);
             this.txtEcFax.TabIndex = 5;
             // 
             // txtEcTell
             // 
+            this.txtEcTell.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtEcTell.Location = new System.Drawing.Point(20, 162);
             this.txtEcTell.Name = "txtEcTell";
-            this.txtEcTell.Size = new System.Drawing.Size(473, 27);
+            this.txtEcTell.Size = new System.Drawing.Size(583, 27);
             this.txtEcTell.TabIndex = 4;
             // 
             // txtEcName
             // 
+            this.txtEcName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtEcName.Location = new System.Drawing.Point(20, 18);
             this.txtEcName.Name = "txtEcName";
-            this.txtEcName.Size = new System.Drawing.Size(473, 27);
+            this.txtEcName.Size = new System.Drawing.Size(583, 27);
             this.txtEcName.TabIndex = 0;
             // 
             // label8
             // 
+            this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label8.AutoSize = true;
             this.label8.BackColor = System.Drawing.Color.Transparent;
-            this.label8.Location = new System.Drawing.Point(554, 201);
+            this.label8.Location = new System.Drawing.Point(664, 201);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(36, 20);
             this.label8.TabIndex = 1;
@@ -2303,9 +2511,10 @@
             // 
             // label5
             // 
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label5.AutoSize = true;
             this.label5.BackColor = System.Drawing.Color.Transparent;
-            this.label5.Location = new System.Drawing.Point(553, 237);
+            this.label5.Location = new System.Drawing.Point(663, 237);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(37, 20);
             this.label5.TabIndex = 2;
@@ -2313,9 +2522,10 @@
             // 
             // label11
             // 
+            this.label11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label11.AutoSize = true;
             this.label11.BackColor = System.Drawing.Color.Transparent;
-            this.label11.Location = new System.Drawing.Point(551, 384);
+            this.label11.Location = new System.Drawing.Point(661, 384);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(39, 20);
             this.label11.TabIndex = 4;
@@ -2323,9 +2533,10 @@
             // 
             // label4
             // 
+            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label4.AutoSize = true;
             this.label4.BackColor = System.Drawing.Color.Transparent;
-            this.label4.Location = new System.Drawing.Point(542, 129);
+            this.label4.Location = new System.Drawing.Point(652, 129);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(48, 20);
             this.label4.TabIndex = 3;
@@ -2333,9 +2544,10 @@
             // 
             // label7
             // 
+            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label7.AutoSize = true;
             this.label7.BackColor = System.Drawing.Color.Transparent;
-            this.label7.Location = new System.Drawing.Point(545, 347);
+            this.label7.Location = new System.Drawing.Point(655, 347);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(45, 20);
             this.label7.TabIndex = 4;
@@ -2343,9 +2555,10 @@
             // 
             // label2
             // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Location = new System.Drawing.Point(528, 57);
+            this.label2.Location = new System.Drawing.Point(638, 57);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(62, 20);
             this.label2.TabIndex = 5;
@@ -2353,9 +2566,10 @@
             // 
             // label6
             // 
+            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label6.AutoSize = true;
             this.label6.BackColor = System.Drawing.Color.Transparent;
-            this.label6.Location = new System.Drawing.Point(534, 165);
+            this.label6.Location = new System.Drawing.Point(644, 165);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(56, 20);
             this.label6.TabIndex = 6;
@@ -2363,9 +2577,10 @@
             // 
             // label3
             // 
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.Transparent;
-            this.label3.Location = new System.Drawing.Point(553, 93);
+            this.label3.Location = new System.Drawing.Point(663, 93);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(37, 20);
             this.label3.TabIndex = 7;
@@ -2373,9 +2588,10 @@
             // 
             // label1
             // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Location = new System.Drawing.Point(495, 21);
+            this.label1.Location = new System.Drawing.Point(605, 21);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(95, 20);
             this.label1.TabIndex = 8;
@@ -2391,12 +2607,13 @@
             // btnFinish
             // 
             this.btnFinish.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnFinish.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnFinish.BackColor = System.Drawing.Color.LightSteelBlue;
             this.btnFinish.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnFinish.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnFinish.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnFinish.Image = global::Settings.Properties.Resources.tab_checkbox__;
-            this.btnFinish.Location = new System.Drawing.Point(470, 620);
+            this.btnFinish.Location = new System.Drawing.Point(580, 620);
             this.btnFinish.Name = "btnFinish";
             this.btnFinish.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
             this.btnFinish.Size = new System.Drawing.Size(125, 31);
@@ -2406,28 +2623,45 @@
             this.btnFinish.TextColor = System.Drawing.Color.Black;
             this.btnFinish.Click += new System.EventHandler(this.btnFinish_Click);
             // 
-            // btnOtherOptions
+            // btnWhatsAppCustomer
             // 
-            this.btnOtherOptions.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnOtherOptions.BackColor = System.Drawing.Color.DarkSlateGray;
-            this.btnOtherOptions.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnOtherOptions.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
-            this.btnOtherOptions.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnOtherOptions.Location = new System.Drawing.Point(8, 564);
-            this.btnOtherOptions.Name = "btnOtherOptions";
-            this.btnOtherOptions.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
-            this.btnOtherOptions.Size = new System.Drawing.Size(164, 27);
-            this.btnOtherOptions.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
-            this.btnOtherOptions.TabIndex = 22;
-            this.btnOtherOptions.Text = "[سایر امکانات]";
-            this.btnOtherOptions.TextColor = System.Drawing.Color.White;
-            this.btnOtherOptions.Click += new System.EventHandler(this.btnOtherOptions_Click);
+            this.btnWhatsAppCustomer.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnWhatsAppCustomer.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.btnWhatsAppCustomer.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnWhatsAppCustomer.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.btnWhatsAppCustomer.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnWhatsAppCustomer.Location = new System.Drawing.Point(356, 510);
+            this.btnWhatsAppCustomer.Name = "btnWhatsAppCustomer";
+            this.btnWhatsAppCustomer.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
+            this.btnWhatsAppCustomer.Size = new System.Drawing.Size(346, 27);
+            this.btnWhatsAppCustomer.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
+            this.btnWhatsAppCustomer.TabIndex = 24;
+            this.btnWhatsAppCustomer.Text = "اطلاح الگوی پیام ارسال برای مشتریان";
+            this.btnWhatsAppCustomer.TextColor = System.Drawing.Color.White;
+            this.btnWhatsAppCustomer.Click += new System.EventHandler(this.btnWhatsAppCustomer_Click);
+            // 
+            // btnWhatsAppManager
+            // 
+            this.btnWhatsAppManager.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnWhatsAppManager.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.btnWhatsAppManager.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnWhatsAppManager.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.btnWhatsAppManager.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnWhatsAppManager.Location = new System.Drawing.Point(4, 510);
+            this.btnWhatsAppManager.Name = "btnWhatsAppManager";
+            this.btnWhatsAppManager.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
+            this.btnWhatsAppManager.Size = new System.Drawing.Size(346, 27);
+            this.btnWhatsAppManager.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
+            this.btnWhatsAppManager.TabIndex = 24;
+            this.btnWhatsAppManager.Text = "اصلاح الگوی پیام ارسالی برای مدیریت";
+            this.btnWhatsAppManager.TextColor = System.Drawing.Color.White;
+            this.btnWhatsAppManager.Click += new System.EventHandler(this.btnWhatsAppManager_Click);
             // 
             // frmSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(618, 659);
+            this.ClientSize = new System.Drawing.Size(728, 659);
             this.Controls.Add(this.btnFinish);
             this.Controls.Add(this.superTabControl1);
             this.Controls.Add(this.btnCancel);
@@ -2445,14 +2679,16 @@
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmSettings_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.superTabControl1)).EndInit();
             this.superTabControl1.ResumeLayout(false);
-            this.superTabControlPanel2.ResumeLayout(false);
-            this.panelEx1.ResumeLayout(false);
-            this.panelEx1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtSetArchive)).EndInit();
             this.superTabControlPanel11.ResumeLayout(false);
             this.pnlTelegram.ResumeLayout(false);
             this.pnlTelegram.PerformLayout();
             this.flowLayoutPanel1.ResumeLayout(false);
+            this.superTabControlPanel2.ResumeLayout(false);
+            this.panelEx1.ResumeLayout(false);
+            this.panelEx1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtSetArchive)).EndInit();
+            this.superTabControlPanel4.ResumeLayout(false);
+            this.superTabControlPanel4.PerformLayout();
             this.superTabControlPanel1.ResumeLayout(false);
             this.panelEx4.ResumeLayout(false);
             this.panelEx4.PerformLayout();
@@ -2635,5 +2871,17 @@
         private DevComponents.DotNetBar.ButtonX btnTelegramManager;
         private DevComponents.DotNetBar.Controls.CheckBoxX chbDeleteRequest;
         private DevComponents.DotNetBar.ButtonX btnOtherOptions;
+        private DevComponents.DotNetBar.SuperTabControlPanel superTabControlPanel4;
+        private DevComponents.DotNetBar.SuperTabItem superTabItem3;
+        private System.Windows.Forms.TextBox txtWhatsAppManagerText;
+        private System.Windows.Forms.TextBox txtWhatsAppCustomerText;
+        private System.Windows.Forms.TextBox txtWhatsAppNumber;
+        private System.Windows.Forms.Label label35;
+        private System.Windows.Forms.TextBox txtWhatsAppToken;
+        private System.Windows.Forms.Label label37;
+        private System.Windows.Forms.Label label36;
+        private System.Windows.Forms.Label label34;
+        private DevComponents.DotNetBar.ButtonX btnWhatsAppManager;
+        private DevComponents.DotNetBar.ButtonX btnWhatsAppCustomer;
     }
 }

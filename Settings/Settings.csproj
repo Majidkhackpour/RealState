@@ -154,6 +154,7 @@
     <Compile Include="Classes\clsSheypoorSetting.cs" />
     <Compile Include="Classes\clsTelegram.cs" />
     <Compile Include="Classes\clsDivarSetting.cs" />
+    <Compile Include="Classes\clsWhatsApp.cs" />
     <Compile Include="Classes\Payamak.cs" />
     <Compile Include="clsRegistery.cs" />
     <Compile Include="frmEconomyUnit.cs">
@@ -173,6 +174,18 @@
     </Compile>
     <Compile Include="frmTelegramManager.Designer.cs">
       <DependentUpon>frmTelegramManager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmWhatsAppCutomerText.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmWhatsAppCutomerText.Designer.cs">
+      <DependentUpon>frmWhatsAppCutomerText.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmWhatsAppManagerText.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmWhatsAppManagerText.Designer.cs">
+      <DependentUpon>frmWhatsAppManagerText.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -229,6 +242,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmTelegramManager.resx">
       <DependentUpon>frmTelegramManager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmWhatsAppCutomerText.resx">
+      <DependentUpon>frmWhatsAppCutomerText.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmWhatsAppManagerText.resx">
+      <DependentUpon>frmWhatsAppManagerText.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

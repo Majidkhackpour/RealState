@@ -4729,7 +4729,8 @@ ALTER PROCEDURE [dbo].[sp_Building_Save]
 	@advType smallint=null,
 	@divarTitle nvarchar(500)='',
 	@hitting nvarchar(250)='',
-	@colling nvarchar(250)=''
+	@colling nvarchar(250)='',
+	@whatsAppCount int=0
 AS
 BEGIN
 	UPDATE [dbo].[Buildings]
@@ -4799,6 +4800,7 @@ BEGIN
 		  ,[DivarTitle] = @divarTitle
 		  ,[Hiting] = @hitting
 		  ,[Colling] = @colling
+		  ,[WhatsAppCount] = @whatsAppCount
 	 WHERE [Guid] = @guid
 	if @@ROWCOUNT = 0
 	begin
@@ -4871,7 +4873,8 @@ BEGIN
 		   ,[AdvertiseType]
 		   ,[DivarTitle]
 		   ,[Hiting]
-		   ,[Colling])
+		   ,[Colling]
+		   ,[WhatsAppCount])
 		VALUES
            (@guid
            ,@modif
@@ -4941,7 +4944,8 @@ BEGIN
 		   ,@advType
 		   ,@divarTitle
 		   ,@hitting
-		   ,@colling)
+		   ,@colling
+		   ,@whatsAppCount)
 	end
 END
 GO

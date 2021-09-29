@@ -18,8 +18,8 @@ namespace Ertegha
                 res.AddReturnedValue(await DataBaseUtilities.RunScript.RunAsync(isShowUi, owner, Properties.Resources.ErteghaFunctions, cn));
                 res.AddReturnedValue(await DataBaseUtilities.RunScript.RunAsync(isShowUi, owner, Properties.Resources.Ertegha, cn));
                 if (res.HasError) return res;
-                res.AddReturnedValue(await clsFixBuilding.FixBuildingImage());
-                if (res.HasError) return res;
+                //res.AddReturnedValue(await clsFixBuilding.FixBuildingImage());
+                //if (res.HasError) return res;
                 res.AddReturnedValue(await BuildingBussines.SetArchiveAsync());
                 if (res.HasError) return res;
                 res.AddReturnedValue(await BuildingRequestBussines.DeleteAfter60DaysAsync());

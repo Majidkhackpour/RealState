@@ -577,7 +577,7 @@ namespace RealState
                 if (Cache.IsClient || !VersionAccess.Advertise) return;
                 DivarFiles.OnSavedStarted += DivarFilesOnOnSavedStarted;
                 DivarFiles.OnSavedFinished += DivarFilesOnOnSavedFinished;
-                DivarFiles.OnDataRecieved+=DivarFilesOnOnDataRecieved;
+                DivarFiles.OnDataRecieved += DivarFilesOnOnDataRecieved;
             }
             catch (Exception ex)
             {
@@ -665,7 +665,7 @@ namespace RealState
                 {
                     DivarFiles.Init();
                     AutoBackUp.Init(this);
-                    if (WebCustomer.CheckCustomer())
+                    if (WebCustomer.CheckCustomer() && WebCustomer.Customer.HardSerial != "265155255")
                         _ = Task.Run(() => WebTelegramReporter.SendBuildingReport(WebCustomer.Customer.Guid, "ورود به نرم افزار"));
                 }
                 var myCollection = new AutoCompleteStringCollection();

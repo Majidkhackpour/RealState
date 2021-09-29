@@ -118,6 +118,7 @@ namespace EntityCache.SqlServerPersistence
                 cmd.Parameters.AddWithValue("@divarTitle", item.DivarTitle ?? "");
                 cmd.Parameters.AddWithValue("@hitting", item.Hiting ?? "");
                 cmd.Parameters.AddWithValue("@colling", item.Colling ?? "");
+                cmd.Parameters.AddWithValue("@whatsAppCount", item.WhatsAppCount);
 
                 await cmd.ExecuteNonQueryAsync();
             }
@@ -472,6 +473,7 @@ namespace EntityCache.SqlServerPersistence
                 if (dr["DivarTitle"] != DBNull.Value) res.DivarTitle = dr["DivarTitle"].ToString();
                 if (dr["Hiting"] != DBNull.Value) res.Hiting = dr["Hiting"].ToString();
                 if (dr["Colling"] != DBNull.Value) res.Colling = dr["Colling"].ToString();
+                if (dr["WhatsAppCount"] != DBNull.Value) res.WhatsAppCount = (int)dr["WhatsAppCount"];
             }
             catch (Exception ex)
             {

@@ -64,6 +64,7 @@ namespace Settings
                 LoadTelegram();
                 LoadBackUp();
                 LoadGlobal();
+                LoadWhatsApp();
             }
             catch (Exception ex)
             {
@@ -415,6 +416,37 @@ namespace Settings
          => SetDataInTxt((ButtonX)sender, txtText);
         #endregion
 
+        #region WhatsApp
+        private void LoadWhatsApp()
+        {
+            try
+            {
+                txtWhatsAppCustomerText.Text = clsWhatsApp.CustomerMessage;
+                txtWhatsAppManagerText.Text = clsWhatsApp.ManagerMessage;
+                txtWhatsAppNumber.Text = clsWhatsApp.Number;
+                txtWhatsAppToken.Text = clsWhatsApp.ApiCode;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private void SaveWhatsApp()
+        {
+            try
+            {
+                clsWhatsApp.CustomerMessage = txtWhatsAppCustomerText.Text;
+                clsWhatsApp.ManagerMessage = txtWhatsAppManagerText.Text;
+                clsWhatsApp.Number = txtWhatsAppNumber.Text;
+                clsWhatsApp.ApiCode = txtWhatsAppToken.Text;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        #endregion
+
         #region BackUp
         private void LoadBackUp()
         {
@@ -505,6 +537,7 @@ namespace Settings
         private async void frmSettings_Load(object sender, EventArgs e) => await SetDataAsync();
         private async void btnFinish_Click(object sender, EventArgs e)
         {
+            btnFinish.Enabled = false;
             try
             {
                 SaveEconomy();
@@ -513,6 +546,7 @@ namespace Settings
                 SaveTelegram();
                 SaveBackUp();
                 SaveGlobal();
+                SaveWhatsApp();
 
                 frmNotification.PublicInfo.ShowMessage("تنظیمات با موفقیت ثبت شد");
 
@@ -521,6 +555,10 @@ namespace Settings
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+            finally
+            {
+                btnFinish.Enabled = true;
             }
         }
         private void btnSearchImagePath_Click(object sender, EventArgs e)
@@ -566,5 +604,31 @@ namespace Settings
         private void btnBalcony_Click(object sender, EventArgs e) => SetDataInTxt((ButtonX)sender, txtText);
         private void btnTelegramManager_Click(object sender, EventArgs e) => new frmTelegramManager().ShowDialog(this);
         private void btnOtherOptions_Click(object sender, EventArgs e) => SetDataInTxt((ButtonX)sender, txtText);
+        private void btnWhatsAppCustomer_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var frm = new frmWhatsAppCutomerText();
+                if (frm.ShowDialog(this) == DialogResult.OK)
+                    txtWhatsAppCustomerText.Text = clsWhatsApp.CustomerMessage;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private void btnWhatsAppManager_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var frm = new frmWhatsAppManagerText();
+                if (frm.ShowDialog(this) == DialogResult.OK)
+                    txtWhatsAppManagerText.Text = clsWhatsApp.ManagerMessage;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
     }
 }

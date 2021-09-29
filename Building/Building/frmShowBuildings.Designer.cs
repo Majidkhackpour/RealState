@@ -96,6 +96,10 @@
             this.cmbSendToCustomerChannel = new System.Windows.Forms.ToolStripMenuItem();
             this.cmbSendToManagerChannel = new System.Windows.Forms.ToolStripMenuItem();
             this.cmbSendToBothChannel = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuWhatsApp = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuWhatsAppCustomer = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuWhatsAppManager = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuWhatsAppBoth = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripSeparator();
             this.mnuMatchRequest = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem6 = new System.Windows.Forms.ToolStripSeparator();
@@ -637,6 +641,7 @@
             this.mnuSendToDivar,
             this.mnuSendToSheypoor,
             this.mnuSendToTelegram,
+            this.mnuWhatsApp,
             this.toolStripMenuItem5,
             this.mnuMatchRequest,
             this.toolStripMenuItem6,
@@ -646,7 +651,7 @@
             this.مدیریتستونهاToolStripMenuItem});
             this.contextMenu.Name = "contextMenu";
             this.contextMenu.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.contextMenu.Size = new System.Drawing.Size(246, 400);
+            this.contextMenu.Size = new System.Drawing.Size(246, 424);
             // 
             // mnuAdd
             // 
@@ -784,6 +789,38 @@
             this.cmbSendToBothChannel.Size = new System.Drawing.Size(195, 24);
             this.cmbSendToBothChannel.Text = "ارسال در هر دو کانال";
             this.cmbSendToBothChannel.Click += new System.EventHandler(this.cmbSendToBothChannel_Click);
+            // 
+            // mnuWhatsApp
+            // 
+            this.mnuWhatsApp.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnuWhatsAppCustomer,
+            this.mnuWhatsAppManager,
+            this.mnuWhatsAppBoth});
+            this.mnuWhatsApp.Image = global::Building.Properties.Resources._843786_whatsapp_icon;
+            this.mnuWhatsApp.Name = "mnuWhatsApp";
+            this.mnuWhatsApp.Size = new System.Drawing.Size(245, 24);
+            this.mnuWhatsApp.Text = "ارسال ملک در واتساپ";
+            // 
+            // mnuWhatsAppCustomer
+            // 
+            this.mnuWhatsAppCustomer.Name = "mnuWhatsAppCustomer";
+            this.mnuWhatsAppCustomer.Size = new System.Drawing.Size(220, 24);
+            this.mnuWhatsAppCustomer.Text = "ارسال متن مخصوص مشتریان";
+            this.mnuWhatsAppCustomer.Click += new System.EventHandler(this.mnuWhatsAppCustomer_Click);
+            // 
+            // mnuWhatsAppManager
+            // 
+            this.mnuWhatsAppManager.Name = "mnuWhatsAppManager";
+            this.mnuWhatsAppManager.Size = new System.Drawing.Size(220, 24);
+            this.mnuWhatsAppManager.Text = "ارسال متن مخصوص مدیریت";
+            this.mnuWhatsAppManager.Click += new System.EventHandler(this.mnuWhatsAppManager_Click);
+            // 
+            // mnuWhatsAppBoth
+            // 
+            this.mnuWhatsAppBoth.Name = "mnuWhatsAppBoth";
+            this.mnuWhatsAppBoth.Size = new System.Drawing.Size(220, 24);
+            this.mnuWhatsAppBoth.Text = "ارسال هر دو متن";
+            this.mnuWhatsAppBoth.Click += new System.EventHandler(this.mnuWhatsAppBoth_Click);
             // 
             // toolStripMenuItem5
             // 
@@ -1528,7 +1565,7 @@
             this.ucFeatures.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ucFeatures.Name = "ucFeatures";
             this.ucFeatures.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.ucFeatures.Size = new System.Drawing.Size(469, 225);
+            this.ucFeatures.Size = new System.Drawing.Size(469, 280);
             this.ucFeatures.TabIndex = 55776;
             // 
             // chbRahn
@@ -1833,5 +1870,9 @@
         private System.Windows.Forms.DataGridViewCheckBoxColumn dgIsArchive;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgAdvertiseType;
         private DevComponents.DotNetBar.Controls.CheckBoxX chbMine;
+        private System.Windows.Forms.ToolStripMenuItem mnuWhatsApp;
+        private System.Windows.Forms.ToolStripMenuItem mnuWhatsAppCustomer;
+        private System.Windows.Forms.ToolStripMenuItem mnuWhatsAppManager;
+        private System.Windows.Forms.ToolStripMenuItem mnuWhatsAppBoth;
     }
 }

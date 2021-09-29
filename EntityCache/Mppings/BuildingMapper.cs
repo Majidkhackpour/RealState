@@ -83,7 +83,8 @@ namespace EntityCache.Mppings
                 TelegramCount = cls.TelegramCount,
                 SheypoorCount = cls.SheypoorCount,
                 DivarCount = cls.DivarCount,
-                DivarTitle = cls.DivarTitle
+                DivarTitle = cls.DivarTitle,
+                WhatsAppCount = cls.WhatsAppCount
             };
         }
         public List<WebBuilding> MapList(List<BuildingBussines> cls)

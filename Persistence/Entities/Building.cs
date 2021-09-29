@@ -90,6 +90,7 @@ namespace Persistence.Entities
         [MaxLength(100)]
         public string Image { get; set; }
         public int TelegramCount { get; set; }
+        public int WhatsAppCount { get; set; }
         public int DivarCount { get; set; }
         public int SheypoorCount { get; set; }
         public AdvertiseType? AdvertiseType { get; set; }

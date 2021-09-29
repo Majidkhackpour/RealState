@@ -33,12 +33,14 @@ namespace Building
             this.lblPicCount = new System.Windows.Forms.Label();
             this.lblTabaqeNo = new System.Windows.Forms.Label();
             this.lblBonBast = new System.Windows.Forms.Label();
+            this.lblColling = new System.Windows.Forms.Label();
             this.lblTarakom = new System.Windows.Forms.Label();
             this.lblMamarJoda = new System.Windows.Forms.Label();
             this.lblAllTabaqe = new System.Windows.Forms.Label();
             this.lblTelegramCount = new System.Windows.Forms.Label();
             this.lblMediaCount = new System.Windows.Forms.Label();
             this.lblVahedPerTabaqe = new System.Windows.Forms.Label();
+            this.lblHitting = new System.Windows.Forms.Label();
             this.lblDong = new System.Windows.Forms.Label();
             this.lblTell2 = new System.Windows.Forms.Label();
             this.lblTell4 = new System.Windows.Forms.Label();
@@ -47,8 +49,7 @@ namespace Building
             this.lblTell3 = new System.Windows.Forms.Label();
             this.lblNatCode = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.lblHitting = new System.Windows.Forms.Label();
-            this.lblColling = new System.Windows.Forms.Label();
+            this.lblWhatsAppCount = new System.Windows.Forms.Label();
             this.grpPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -63,6 +64,7 @@ namespace Building
             this.grpPanel.Controls.Add(this.lblTarakom);
             this.grpPanel.Controls.Add(this.lblMamarJoda);
             this.grpPanel.Controls.Add(this.lblAllTabaqe);
+            this.grpPanel.Controls.Add(this.lblWhatsAppCount);
             this.grpPanel.Controls.Add(this.lblTelegramCount);
             this.grpPanel.Controls.Add(this.lblMediaCount);
             this.grpPanel.Controls.Add(this.lblVahedPerTabaqe);
@@ -79,7 +81,7 @@ namespace Building
             this.grpPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.grpPanel.Location = new System.Drawing.Point(0, 0);
             this.grpPanel.Name = "grpPanel";
-            this.grpPanel.Size = new System.Drawing.Size(473, 258);
+            this.grpPanel.Size = new System.Drawing.Size(473, 279);
             // 
             // 
             // 
@@ -133,6 +135,16 @@ namespace Building
             this.lblBonBast.TabIndex = 55740;
             this.lblBonBast.Text = "label2";
             this.lblBonBast.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lblColling
+            // 
+            this.lblColling.ForeColor = System.Drawing.Color.White;
+            this.lblColling.Location = new System.Drawing.Point(10, 28);
+            this.lblColling.Name = "lblColling";
+            this.lblColling.Size = new System.Drawing.Size(156, 21);
+            this.lblColling.TabIndex = 55741;
+            this.lblColling.Text = "label2";
+            this.lblColling.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblTarakom
             // 
@@ -193,6 +205,16 @@ namespace Building
             this.lblVahedPerTabaqe.TabIndex = 55745;
             this.lblVahedPerTabaqe.Text = "label2";
             this.lblVahedPerTabaqe.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lblHitting
+            // 
+            this.lblHitting.ForeColor = System.Drawing.Color.White;
+            this.lblHitting.Location = new System.Drawing.Point(10, 7);
+            this.lblHitting.Name = "lblHitting";
+            this.lblHitting.Size = new System.Drawing.Size(156, 21);
+            this.lblHitting.TabIndex = 55746;
+            this.lblHitting.Text = "label2";
+            this.lblHitting.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblDong
             // 
@@ -289,25 +311,15 @@ namespace Building
             this.label1.Text = "مشخصات مالک";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // lblHitting
+            // lblWhatsAppCount
             // 
-            this.lblHitting.ForeColor = System.Drawing.Color.White;
-            this.lblHitting.Location = new System.Drawing.Point(10, 7);
-            this.lblHitting.Name = "lblHitting";
-            this.lblHitting.Size = new System.Drawing.Size(156, 21);
-            this.lblHitting.TabIndex = 55746;
-            this.lblHitting.Text = "label2";
-            this.lblHitting.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // lblColling
-            // 
-            this.lblColling.ForeColor = System.Drawing.Color.White;
-            this.lblColling.Location = new System.Drawing.Point(10, 28);
-            this.lblColling.Name = "lblColling";
-            this.lblColling.Size = new System.Drawing.Size(156, 21);
-            this.lblColling.TabIndex = 55741;
-            this.lblColling.Text = "label2";
-            this.lblColling.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblWhatsAppCount.ForeColor = System.Drawing.Color.White;
+            this.lblWhatsAppCount.Location = new System.Drawing.Point(10, 257);
+            this.lblWhatsAppCount.Name = "lblWhatsAppCount";
+            this.lblWhatsAppCount.Size = new System.Drawing.Size(156, 21);
+            this.lblWhatsAppCount.TabIndex = 55744;
+            this.lblWhatsAppCount.Text = "label2";
+            this.lblWhatsAppCount.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // ucBuildingFeatures
             // 
@@ -319,7 +331,7 @@ namespace Building
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "ucBuildingFeatures";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.Size = new System.Drawing.Size(473, 258);
+            this.Size = new System.Drawing.Size(473, 279);
             this.grpPanel.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -347,5 +359,6 @@ namespace Building
         private System.Windows.Forms.Label lblTelegramCount;
         private System.Windows.Forms.Label lblColling;
         private System.Windows.Forms.Label lblHitting;
+        private System.Windows.Forms.Label lblWhatsAppCount;
     }
 }

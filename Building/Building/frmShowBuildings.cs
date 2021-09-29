@@ -402,7 +402,7 @@ namespace Building.Building
                         var loc = DGrid.GetCellDisplayRectangle(dgRoomCount.Index, DGrid.CurrentRow.Index, false);
                         if (token.IsCancellationRequested) return;
                         var wid = dgCode.Width;
-                        ucFeatures.Size = new Size(469, 258);
+                        ucFeatures.Size = new Size(469, 280);
                         var p = new Point(loc.X + wid, loc.Y - ucFeatures.Height);
                         if (token.IsCancellationRequested) return;
                         if (p.Y < DGrid.Top) p.Y += ucFeatures.Height + 140;
@@ -424,7 +424,7 @@ namespace Building.Building
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private async Task SendToCustomerChannelAsync(BuildingBussines bu)
+        private async Task SendToTelegramCustomerChannelAsync(BuildingBussines bu)
         {
             try
             {
@@ -465,7 +465,7 @@ namespace Building.Building
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private async Task SendToManagerChannelAsync(BuildingBussines bu)
+        private async Task SendToTelegramManagerChannelAsync(BuildingBussines bu)
         {
             try
             {
@@ -507,7 +507,7 @@ namespace Building.Building
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private async Task SendToBothChannelAsync(BuildingBussines bu)
+        private async Task SendToTelegramBothChannelAsync(BuildingBussines bu)
         {
             try
             {
@@ -550,6 +550,133 @@ namespace Building.Building
                 if (WebCustomer.CheckCustomer())
                 {
                     var msg = $"ارسال ملک به کانال \r\n {text}";
+                    _ = Task.Run(() => WebTelegramReporter.SendBuildingReport(WebCustomer.Customer.Guid, msg));
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private async Task SendToWhatsAppCustomerChannelAsync(BuildingBussines bu)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(clsWhatsApp.ApiCode) ||
+                    string.IsNullOrEmpty(clsWhatsApp.Number))
+                {
+                    frmNotification.PublicInfo.ShowMessage("لطفا ابتدا به تنظیمات برنامه، سربرگ واتساپ رفته و موارد خواسته شده را وارد نمایید");
+                    return;
+                }
+
+                var text = clsTelegramManager.TelegramText(bu, clsWhatsApp.CustomerMessage);
+                text = text.Trim();
+                var frm = new frmBuildingTelegramText(text);
+                if (frm.ShowDialog(this) == DialogResult.OK)
+                {
+                    text = frm.TelegramText;
+                    var telegram = new WebWhatsappBuilding()
+                    {
+                        Message = text,
+                        ApiCode = clsWhatsApp.ApiCode,
+                        Number = clsWhatsApp.Number
+                    };
+                    await telegram.SaveAsync();
+                    bu.WhatsAppCount += 1;
+                    await bu.SaveAsync();
+                    this.ShowMessage("فایل مورد نظر به واتساپ ارسال شد");
+                    if (WebCustomer.CheckCustomer())
+                    {
+                        var msg = $"ارسال ملک به واتساپ \r\n {text}";
+                        _ = Task.Run(() => WebTelegramReporter.SendBuildingReport(WebCustomer.Customer.Guid, msg));
+                    }
+                }
+                frm.Dispose();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private async Task SendToWhatsAppManagerChannelAsync(BuildingBussines bu)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(clsWhatsApp.ApiCode) ||
+                    string.IsNullOrEmpty(clsWhatsApp.Number))
+                {
+                    frmNotification.PublicInfo.ShowMessage("لطفا ابتدا به تنظیمات برنامه، سربرگ واتساپ رفته و موارد خواسته شده را وارد نمایید");
+                    return;
+                }
+
+                var text = clsTelegramManager.TelegramText(bu, clsWhatsApp.ManagerMessage);
+                text = text.Trim();
+                var frm = new frmBuildingTelegramText(text);
+                if (frm.ShowDialog(this) == DialogResult.OK)
+                {
+                    text = frm.TelegramText;
+                    var telegram = new WebWhatsappBuilding()
+                    {
+                        Message = text,
+                        ApiCode = clsWhatsApp.ApiCode,
+                        Number = clsWhatsApp.Number
+                    };
+                    await telegram.SaveAsync();
+                    bu.WhatsAppCount += 1;
+                    await bu.SaveAsync();
+                    this.ShowMessage("فایل مورد نظر به واتساپ ارسال شد");
+                    if (WebCustomer.CheckCustomer())
+                    {
+                        var msg = $"ارسال ملک به واتساپ \r\n {text}";
+                        _ = Task.Run(() => WebTelegramReporter.SendBuildingReport(WebCustomer.Customer.Guid, msg));
+                    }
+                }
+                frm.Dispose();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private async Task SendToWhatsAppBothChannelAsync(BuildingBussines bu)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(clsWhatsApp.ApiCode) ||
+                    string.IsNullOrEmpty(clsWhatsApp.Number))
+                {
+                    frmNotification.PublicInfo.ShowMessage("لطفا ابتدا به تنظیمات برنامه، سربرگ واتساپ رفته و موارد خواسته شده را وارد نمایید");
+                    return;
+                }
+
+                //Send2ManagerChannel
+                var text = clsTelegramManager.TelegramText(bu, clsWhatsApp.ManagerMessage);
+                text = text.Trim();
+                var telegram = new WebWhatsappBuilding()
+                {
+                    Message = text,
+                    ApiCode = clsWhatsApp.ApiCode,
+                    Number = clsWhatsApp.Number
+                };
+                _ = Task.Run(() => telegram.SaveAsync());
+
+                //Send2CustomerChannel
+                var text_ = clsTelegramManager.TelegramText(bu, clsWhatsApp.CustomerMessage);
+                text_ = text_.Trim();
+                var telegram_ = new WebWhatsappBuilding()
+                {
+                    Message = text_,
+                    ApiCode = clsWhatsApp.ApiCode,
+                    Number = clsWhatsApp.Number
+                };
+                _ = Task.Run(() => telegram_.SaveAsync());
+
+                bu.WhatsAppCount += 1;
+                await bu.SaveAsync();
+                this.ShowMessage("فایل مورد نظر به واتساپ ارسال شد");
+                if (WebCustomer.CheckCustomer())
+                {
+                    var msg = $"ارسال ملک به واتساپ \r\n {text}";
                     _ = Task.Run(() => WebTelegramReporter.SendBuildingReport(WebCustomer.Customer.Guid, msg));
                 }
             }
@@ -1865,7 +1992,7 @@ namespace Building.Building
                 if (guid == Guid.Empty) return;
                 var bu = await BuildingBussines.GetAsync(guid);
                 if (bu == null) return;
-                await SendToCustomerChannelAsync(bu);
+                await SendToTelegramCustomerChannelAsync(bu);
             }
             catch (Exception ex)
             {
@@ -1887,7 +2014,7 @@ namespace Building.Building
                 if (guid == Guid.Empty) return;
                 var bu = await BuildingBussines.GetAsync(guid);
                 if (bu == null) return;
-                await SendToManagerChannelAsync(bu);
+                await SendToTelegramManagerChannelAsync(bu);
             }
             catch (Exception ex)
             {
@@ -1909,7 +2036,7 @@ namespace Building.Building
                 if (guid == Guid.Empty) return;
                 var bu = await BuildingBussines.GetAsync(guid);
                 if (bu == null) return;
-                await SendToBothChannelAsync(bu);
+                await SendToTelegramBothChannelAsync(bu);
             }
             catch (Exception ex)
             {
@@ -1917,6 +2044,72 @@ namespace Building.Building
             }
         }
         private void chbMine_CheckedChanged(object sender, EventArgs e) => LoadData(txtSearch.Text);
+        private async void mnuWhatsAppCustomer_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var res = await Utilities.PingHostAsync();
+                if (res.HasError)
+                {
+                    this.ShowError(res);
+                    return;
+                }
+                if (DGrid.RowCount <= 0 || DGrid.CurrentRow == null) return;
+                var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
+                if (guid == Guid.Empty) return;
+                var bu = await BuildingBussines.GetAsync(guid);
+                if (bu == null) return;
+                await SendToWhatsAppCustomerChannelAsync(bu);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private async void mnuWhatsAppManager_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var res = await Utilities.PingHostAsync();
+                if (res.HasError)
+                {
+                    this.ShowError(res);
+                    return;
+                }
+                if (DGrid.RowCount <= 0 || DGrid.CurrentRow == null) return;
+                var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
+                if (guid == Guid.Empty) return;
+                var bu = await BuildingBussines.GetAsync(guid);
+                if (bu == null) return;
+                await SendToWhatsAppManagerChannelAsync(bu);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private async void mnuWhatsAppBoth_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var res = await Utilities.PingHostAsync();
+                if (res.HasError)
+                {
+                    this.ShowError(res);
+                    return;
+                }
+                if (DGrid.RowCount <= 0 || DGrid.CurrentRow == null) return;
+                var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
+                if (guid == Guid.Empty) return;
+                var bu = await BuildingBussines.GetAsync(guid);
+                if (bu == null) return;
+                await SendToWhatsAppBothChannelAsync(bu);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
         private async void mnuPrintInherit_Click(object sender, EventArgs e)
         {
             try

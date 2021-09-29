@@ -77,6 +77,7 @@ namespace WebHesabBussines
         public bool IsArchive { get; set; }
         public string Image { get; set; }
         public int TelegramCount { get; set; }
+        public int WhatsAppCount { get; set; }
         public int DivarCount { get; set; }
         public int SheypoorCount { get; set; }
         public AdvertiseType? AdvertiseType { get; set; }

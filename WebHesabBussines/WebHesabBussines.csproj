@@ -108,6 +108,7 @@
     <Compile Include="WebTafsil.cs" />
     <Compile Include="WebTelegramBuilding.cs" />
     <Compile Include="WebUser.cs" />
+    <Compile Include="WebWhatsappBuilding.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Services\Services\Services\Services.csproj">
