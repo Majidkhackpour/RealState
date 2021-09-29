@@ -659,7 +659,7 @@ namespace Building.Building
                     Number = clsWhatsApp.Number
                 };
                 _ = Task.Run(() => telegram.SaveAsync());
-
+                await Task.Delay(5000);
                 //Send2CustomerChannel
                 var text_ = clsTelegramManager.TelegramText(bu, clsWhatsApp.CustomerMessage);
                 text_ = text_.Trim();

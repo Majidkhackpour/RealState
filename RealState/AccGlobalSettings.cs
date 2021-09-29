@@ -55,7 +55,7 @@ namespace RealState
                     return;
                 }
                 MessageBox.Show("مشتری گرامی، مشخصه فنی شما مورد تایید نمی باشد. لطفا برای احراز هویت با تیم پشتیبانی تماس بگیرید");
-                SoftwareLock.clsRegistery.SetRegistery("", "U1001ML");
+                //SoftwareLock.clsRegistery.SetRegistery("", "U1001ML");
             }
         }
     }
