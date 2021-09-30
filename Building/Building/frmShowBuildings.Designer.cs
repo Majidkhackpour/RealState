@@ -182,6 +182,7 @@
             this.chbMosharekat = new DevComponents.DotNetBar.Controls.CheckBoxX();
             this.chbAll = new DevComponents.DotNetBar.Controls.CheckBoxX();
             this.chbMine = new DevComponents.DotNetBar.Controls.CheckBoxX();
+            this.chbRegion = new DevComponents.DotNetBar.Controls.CheckBoxX();
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).BeginInit();
             this.contextMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BuildingBindingSource)).BeginInit();
@@ -1681,12 +1682,31 @@
             this.chbMine.Text = "فقط فایل های خودم را نشان بده";
             this.chbMine.CheckedChanged += new System.EventHandler(this.chbMine_CheckedChanged);
             // 
+            // chbRegion
+            // 
+            this.chbRegion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.chbRegion.AutoSize = true;
+            this.chbRegion.BackColor = System.Drawing.Color.Transparent;
+            // 
+            // 
+            // 
+            this.chbRegion.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.chbRegion.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.chbRegion.Location = new System.Drawing.Point(140, 58);
+            this.chbRegion.Name = "chbRegion";
+            this.chbRegion.Size = new System.Drawing.Size(130, 22);
+            this.chbRegion.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.chbRegion.TabIndex = 55780;
+            this.chbRegion.Text = "فیلتر مناطق فعال باشد";
+            this.chbRegion.CheckedChanged += new System.EventHandler(this.chbRegion_CheckedChanged);
+            // 
             // frmShowBuildings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1021, 631);
             this.Controls.Add(this.ucFeatures);
+            this.Controls.Add(this.chbRegion);
             this.Controls.Add(this.chbMine);
             this.Controls.Add(this.chbMosharekat);
             this.Controls.Add(this.chbPishForoush);
@@ -1874,5 +1894,6 @@
         private System.Windows.Forms.ToolStripMenuItem mnuWhatsAppCustomer;
         private System.Windows.Forms.ToolStripMenuItem mnuWhatsAppManager;
         private System.Windows.Forms.ToolStripMenuItem mnuWhatsAppBoth;
+        private DevComponents.DotNetBar.Controls.CheckBoxX chbRegion;
     }
 }

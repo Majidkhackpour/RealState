@@ -31,7 +31,7 @@ namespace Advertise.ViewModels.Divar.Sell.Residential
         public string City => fixValue.City();
         public string Region => fixValue.Region();
         public string ImageList => fixValue.ImageList();
-        public string Metrazh => bu.Masahat.ToString();
+        public string Metrazh => fixValue.Metrazh;
         public string Price => bu.SellPrice.ToString("0.##");
 
 

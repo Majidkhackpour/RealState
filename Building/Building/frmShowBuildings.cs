@@ -11,6 +11,7 @@ using Advertise.Classes;
 using Advertise.Forms;
 using Advertise.Forms.Simcard;
 using Building.BuildingMatchesItem;
+using Cities.Region;
 using EntityCache.Bussines;
 using EntityCache.ViewModels;
 using MetroFramework.Forms;
@@ -33,6 +34,7 @@ namespace Building.Building
         private List<string> _columnList;
         private Guid _ownerGuid = Guid.Empty;
         private bool? _isArchive;
+        private List<Guid> _regList;
 
 
         private async Task FillCmbAsync()
@@ -109,7 +111,8 @@ namespace Building.Building
                     IsRahn = chbRahn.Checked,
                     IsMosharekat = chbMosharekat.Checked,
                     OwnerGuid = _ownerGuid,
-                    IsOnlyMine = chbMine.Checked
+                    IsOnlyMine = chbMine.Checked,
+                    RegionList = _regList
                 };
                 _token?.Cancel();
                 _token = new CancellationTokenSource();
@@ -754,6 +757,7 @@ namespace Building.Building
                 ucPagger.OnBindDataReady += UcPagger_OnBindDataReady;
                 SetAccess();
                 SetColumns();
+                chbRegion.Checked = false;
                 if (_isShowMode || (_isArchive != null && _isArchive.Value)) contextMenu.Enabled = false;
             }
             catch (Exception ex)
@@ -2110,6 +2114,34 @@ namespace Building.Building
                 var bu = await BuildingBussines.GetAsync(guid);
                 if (bu == null) return;
                 await SendToWhatsAppBothChannelAsync(bu);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private void chbRegion_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (!chbRegion.Checked&&!_isLoad) return;
+                if (!chbRegion.Checked && _isLoad)
+                {
+                    _regList = null;
+                    LoadData(txtSearch.Text);
+                    return;
+                }
+                var frm = new frmSelectRegion();
+                if (_regList != null && _regList.Count > 0)
+                    frm.Guids = _regList;
+                if (frm.ShowDialog(this) != DialogResult.OK)
+                {
+                    chbRegion.Checked = false;
+                    return;
+                }
+
+                _regList = frm.Guids;
+                LoadData(txtSearch.Text);
             }
             catch (Exception ex)
             {

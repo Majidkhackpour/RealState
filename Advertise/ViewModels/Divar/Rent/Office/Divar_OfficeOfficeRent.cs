@@ -31,7 +31,7 @@ namespace Advertise.ViewModels.Divar.Rent.Office
         public string City => fixValue.City();
         public string Region => fixValue.Region();
         public string ImageList => fixValue.ImageList();
-        public string Metrazh => bu.Masahat.ToString();
+        public string Metrazh => fixValue.Metrazh;
         public string Rahn => bu.RahnPrice1.ToString("0.##");
         public string Ejare => bu.EjarePrice1.ToString("0.##");
         public string Tabdil => fixValue.Tabdil();

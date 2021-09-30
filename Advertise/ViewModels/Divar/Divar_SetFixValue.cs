@@ -79,7 +79,7 @@ namespace Advertise.ViewModels.Divar
 
             return region;
         }
-
+        public string Metrazh => bu.Masahat > 0 ? bu.Masahat.ToString() : bu.ZirBana.ToString();
         public string City() => AsyncContext.Run(() => SetDivarCityAsync(bu));
         public string Region() => AsyncContext.Run(() => SetDivarRegionAsync(bu));
         public string State() => AsyncContext.Run(() => SetDivarStateAsync(bu));

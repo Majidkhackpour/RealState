@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using EntityCache.Bussines;
 using MetroFramework.Forms;
+using Nito.AsyncEx;
 using Services;
 using Settings.Classes;
 
@@ -13,7 +15,18 @@ namespace Cities.Region
 {
     public partial class frmSelectRegion : MetroForm
     {
-        public List<Guid> Guids { get; set; }
+        private List<Guid> _lst = new List<Guid>();
+
+        public List<Guid> Guids
+        {
+            get => _lst;
+            set
+            {
+                _lst = value;
+                SetGrid();
+            }
+        }
+
         private List<RegionsBussines> list;
         private CancellationTokenSource _token = new CancellationTokenSource();
 
@@ -28,6 +41,29 @@ namespace Cities.Region
                 list = await RegionsBussines.GetAllAsync(search, cityGuid, _token.Token);
                 Invoke(new MethodInvoker(() => RegionBindingSource.DataSource =
                     list.Where(q => q.Status).OrderBy(q => q.Name).ToSortableBindingList()));
+
+                SetGrid();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private void SetGrid()
+        {
+            try
+            {
+                var _list = AsyncContext.Run(WorkingRangeBussines.GetAllAsync);
+                if (_list != null && _list.Count > 0) 
+                    _lst.AddRange(_list.Select(q => q.RegionGuid));
+                if (Guids.Count <= 0) return;
+                for (var i = 0; i < DGrid.RowCount; i++)
+                    foreach (var item in Guids)
+                        if (item == (Guid)DGrid[dgGuid.Index, i].Value)
+                        {
+                            DGrid[dgIsChecked.Index, i].Value = true;
+                            DGrid.Rows[i].DefaultCellStyle.BackColor = Color.Khaki;
+                        }
             }
             catch (Exception ex)
             {
@@ -42,11 +78,11 @@ namespace Cities.Region
         {
             try
             {
-                if (Guids == null) Guids = new List<Guid>();
+                if (_lst == null) _lst = new List<Guid>();
                 for (var i = 0; i < DGrid.RowCount; i++)
                 {
                     if ((bool)DGrid[dgIsChecked.Index, i].Value)
-                        Guids.Add((Guid)DGrid[dgGuid.Index, i].Value);
+                        _lst.Add((Guid)DGrid[dgGuid.Index, i].Value);
                 }
 
                 DialogResult = DialogResult.OK;
