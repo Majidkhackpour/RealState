@@ -116,49 +116,6 @@ namespace Advertise.ViewModels.Divar
             }
         }
         public string SaleSakht() => bu.SaleSakht.ParseToInt() <= 1370 ? "قبل از 1370" : bu.SaleSakht;
-        public string Title()
-        {
-            try
-            {
-                var type = "";
-                var regionName = "";
-
-                if (bu.RahnPrice1 > 0 || bu.RahnPrice2 > 0) type = "رهن و اجاره";
-                else if (bu.SellPrice > 0) type = "فروش";
-
-                if (bu.RegionGuid != Guid.Empty) regionName = RegionsBussines.Get(bu.RegionGuid)?.Name ?? "";
-
-                return $"{type} ملک در {regionName} ** {bu.Masahat} متری {bu.RoomCount} خواب";
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-                return "";
-            }
-        }
-        public string Content()
-        {
-            try
-            {
-                var content = new StringBuilder();
-
-                content.AppendLine($"محدوده: {bu.RegionName}");
-                content.AppendLine($"متراژ: {bu.Masahat}");
-                content.AppendLine($"سال ساخت: {bu.SaleSakht}");
-                content.AppendLine($"زیربنا: {bu.ZirBana}");
-                content.AppendLine($"کفپوش: {bu.FloorCoverName}");
-                content.AppendLine($"آشپزخانه: {bu.KitchenServiceName}");
-                foreach (var item in bu.OptionList)
-                    content.AppendLine(item.OptionName);
-
-                return content.ToString();
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-                return "";
-            }
-        }
         private List<string> GetNextImages(BuildingBussines bu, int imgCount)
         {
             var resultImages = new List<string>();

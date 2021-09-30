@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using WindowsSerivces;
 using Advertise.Classes;
+using Advertise.Forms;
 using Advertise.Forms.Simcard;
 using Building.BuildingMatchesItem;
 using EntityCache.Bussines;
@@ -714,7 +715,7 @@ namespace Building.Building
                         DGrid.Columns[dgRahn.Index].Visible = false;
                         DGrid.Columns[dgEjare.Index].Visible = false;
                         DGrid.Columns[dgRentalAuthorityName.Index].Visible = false;
-                        break ;
+                        break;
                     case EnRequestType.Mosharekat:
                         DGrid.Columns[dgSellPrice.Index].Visible = false;
                         DGrid.Columns[dgVam.Index].Visible = false;
@@ -873,8 +874,8 @@ namespace Building.Building
                 if (frm.ShowDialog(this) == DialogResult.OK)
                     simList.Add(await SimcardBussines.GetAsync(frm.SelectedGuid));
 
-                res.AddReturnedValue(await Utility.ManageAdvSend(buList, simList, AdvertiseType.Sheypoor,
-                    clsAdvertise.IsGiveChat, clsAdvertise.Sender, clsAdvertise.Sheypoor_PicCountInPerAdv));
+                //res.AddReturnedValue(await Utility.ManageAdvSend(buList, simList, AdvertiseType.Sheypoor,
+                //    clsAdvertise.IsGiveChat, clsAdvertise.Sender, clsAdvertise.Sheypoor_PicCountInPerAdv));
             }
             catch (Exception ex)
             {
@@ -897,22 +898,28 @@ namespace Building.Building
             var res = new ReturnedSaveFuncInfo();
             try
             {
-                //return;
-                if (DGrid.RowCount <= 0) return;
-                if (DGrid.CurrentRow == null) return;
-                var simList = new List<SimcardBussines>();
-                var buList = new List<BuildingBussines>();
+                string title, content;
+                if (DGrid.RowCount <= 0 || DGrid.CurrentRow == null) return;
 
                 var bu = await BuildingBussines.GetAsync((Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value);
                 if (bu == null) return;
-                buList.Add(bu);
 
                 var frm = new frmShowSimcard(true);
-                if (frm.ShowDialog(this) == DialogResult.OK)
-                    simList.Add(await SimcardBussines.GetAsync(frm.SelectedGuid));
+                if (frm.ShowDialog(this) != DialogResult.OK) return;
 
-                res.AddReturnedValue(await Utility.ManageAdvSend(buList, simList, AdvertiseType.Divar,
-                    clsAdvertise.IsGiveChat, clsAdvertise.Sender, clsAdvertise.Divar_PicCountInPerAdv));
+                var sim = await SimcardBussines.GetAsync(frm.SelectedGuid);
+                if (sim == null) return;
+
+                var tc = new frmTitle(bu);
+                if (tc.ShowDialog(this) != DialogResult.OK) return;
+                title = tc.AdvTitle;
+                content = tc.AdvContent;
+
+                res.AddReturnedValue(await Utility.ManageAdvSend(bu, sim, AdvertiseType.Divar,
+                    clsAdvertise.IsGiveChat, clsAdvertise.Sender, clsAdvertise.Divar_PicCountInPerAdv, title, content));
+
+                if (!res.HasError)
+                    this.ShowMessage("آگهی شما باموفقیت در دیوار ثبت شد");
             }
             catch (Exception ex)
             {
@@ -923,11 +930,6 @@ namespace Building.Building
             {
                 if (res.HasError)
                     this.ShowError(res, "خطا در ارسال ملک به دیوار");
-                else
-                {
-                    frmNotification.PublicInfo.ShowMessage(
-                        "آگهی شما باموفقیت در دیوار ثبت شد");
-                }
             }
         }
         private void mnuPrint_Click(object sender, EventArgs e)

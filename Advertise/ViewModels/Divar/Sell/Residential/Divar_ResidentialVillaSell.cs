@@ -11,15 +11,17 @@ namespace Advertise.ViewModels.Divar.Sell.Residential
     {
         private BuildingBussines bu;
         private bool isGiveChat = true;
-        private string agahiDahande;
+        private string agahiDahande, title, content;
         private Divar_SetFixValue fixValue;
 
-        public Divar_ResidentialVillaSell(BuildingBussines building, int imgCount, bool giveChat, string ersalKonnade)
+        public Divar_ResidentialVillaSell(BuildingBussines building, int imgCount, bool giveChat, string ersalKonnade, string _title, string _content)
         {
             bu = building;
             fixValue = new Divar_SetFixValue(building, imgCount);
             isGiveChat = giveChat;
             agahiDahande = ersalKonnade;
+            title = _title;
+            content = _content;
         }
 
         public string FisrtCat => "املاک";
@@ -36,8 +38,6 @@ namespace Advertise.ViewModels.Divar.Sell.Residential
         public string Anbari => fixValue.Anbari();
         public string Parking => fixValue.Parking();
         public string Balkon => fixValue.Balkon();
-        public string Title => fixValue.Title();
-        public string Description => fixValue.Content();
 
 
         public async Task<ReturnedSaveFuncInfo> SendAsync(long number)
@@ -100,8 +100,8 @@ namespace Advertise.ViewModels.Divar.Sell.Residential
                 await Utility.Wait();
                 if (!isGiveChat) cat.Chat()?.Click();
 
-                cat.Title()?.SendKeys(Title);
-                cat.SendContent(Description);
+                cat.Title()?.SendKeys(title);
+                cat.SendContent(content);
 
                 await Utility.Wait();
 
@@ -109,7 +109,7 @@ namespace Advertise.ViewModels.Divar.Sell.Residential
 
                 res.AddReturnedValue(await Utility.SaveAdv(AdvertiseType.Divar, FisrtCat, SecondCat, ThirdCat, State,
                     City,
-                    Region, Title, Description, number, bu.SellPrice, 0, cat.Url));
+                    Region, title, content, number, bu.SellPrice, 0, cat.Url));
             }
             catch (Exception ex)
             {

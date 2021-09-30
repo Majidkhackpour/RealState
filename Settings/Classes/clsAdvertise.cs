@@ -54,7 +54,7 @@ namespace Settings.Classes
             }
         }
 
-        private static int _divarPicCount = 0;
+        private static int _divarPicCount = 3;
         public static int Divar_PicCountInPerAdv
         {
             get
@@ -118,7 +118,7 @@ namespace Settings.Classes
             }
         }
 
-        private static int _sheypoorPicCount = 0;
+        private static int _sheypoorPicCount = 3;
         public static int Sheypoor_PicCountInPerAdv
         {
             get

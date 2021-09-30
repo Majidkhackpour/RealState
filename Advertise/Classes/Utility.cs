@@ -392,7 +392,7 @@ namespace Advertise.Classes
         #endregion
 
 
-        private static async Task<ReturnedSaveFuncInfo> SendDivarAdv(BuildingBussines bu, long simCardNumber, bool isGiveChat, string sender, int imageCount)
+        private static async Task<ReturnedSaveFuncInfo> SendDivarAdv(BuildingBussines bu, long simCardNumber, bool isGiveChat, string sender, int imageCount, string title, string content)
         {
             var res = new ReturnedSaveFuncInfo();
             try
@@ -406,7 +406,7 @@ namespace Advertise.Classes
 
                 if (bu.RahnPrice1 > 0 || bu.RahnPrice2 > 0 || bu.EjarePrice1 > 0 || bu.EjarePrice2 > 0)
                 {
-                    if (accType.Name.Contains("مسکونی")&& !accType.Name.Contains("زمین"))
+                    if (accType.Name.Contains("مسکونی") && !accType.Name.Contains("زمین"))
                     {
                         var type = await BuildingTypeBussines.GetAsync(bu.BuildingTypeGuid);
                         if (type == null)
@@ -416,20 +416,20 @@ namespace Advertise.Classes
                         }
                         if (type.Name.Contains("پارتمان"))
                         {
-                            var ret = new Divar_ResidentialApartmentRent(bu, imageCount, isGiveChat, sender);
+                            var ret = new Divar_ResidentialApartmentRent(bu, imageCount, isGiveChat, sender, title, content);
                             res.AddReturnedValue(await ret.SendAsync(simCardNumber));
                             return res;
                         }
                         if (type.Name.Contains("خانه") || accType.Name.Contains("ویلا"))
                         {
-                            var ret = new Divar_ResidentialVillaRent(bu, imageCount, isGiveChat, sender);
+                            var ret = new Divar_ResidentialVillaRent(bu, imageCount, isGiveChat, sender, title, content);
                             res.AddReturnedValue(await ret.SendAsync(simCardNumber));
                             return res;
                         }
                     }
                     if (accType.Name.Contains("دفتر") || accType.Name.Contains("اداری") || accType.Name.Contains("مطب"))
                     {
-                        var ret = new Divar_OfficeOfficeRent(bu, imageCount, isGiveChat, sender);
+                        var ret = new Divar_OfficeOfficeRent(bu, imageCount, isGiveChat, sender, title, content);
                         res.AddReturnedValue(await ret.SendAsync(simCardNumber));
                         return res;
                     }
@@ -437,13 +437,13 @@ namespace Advertise.Classes
                         accType.Name.Contains("دامداری") || accType.Name.Contains("مرغداری") ||
                         accType.Name.Contains("زراعی"))
                     {
-                        var ret = new Divar_OfficeKeshavarziRent(bu, imageCount, isGiveChat, sender);
+                        var ret = new Divar_OfficeKeshavarziRent(bu, imageCount, isGiveChat, sender, title, content);
                         res.AddReturnedValue(await ret.SendAsync(simCardNumber));
                         return res;
                     }
                     if (accType.Name.Contains("مغازه") || accType.Name.Contains("غرفه") || accType.Name.Contains("تجاری"))
                     {
-                        var ret = new Divar_OfficeStoreRent(bu, imageCount, isGiveChat, sender);
+                        var ret = new Divar_OfficeStoreRent(bu, imageCount, isGiveChat, sender, title, content);
                         res.AddReturnedValue(await ret.SendAsync(simCardNumber));
                         return res;
                     }
@@ -461,32 +461,32 @@ namespace Advertise.Classes
                         }
                         if (type.Name.Contains("پارتمان"))
                         {
-                            var ret = new Divar_ResidentialApartmentSell(bu, imageCount, isGiveChat, sender);
+                            var ret = new Divar_ResidentialApartmentSell(bu, imageCount, isGiveChat, sender, title, content);
                             res.AddReturnedValue(await ret.SendAsync(simCardNumber));
                             return res;
                         }
                         if (type.Name.Contains("خانه") || accType.Name.Contains("ویلا"))
                         {
-                            var ret = new Divar_ResidentialVillaSell(bu, imageCount, isGiveChat, sender);
+                            var ret = new Divar_ResidentialVillaSell(bu, imageCount, isGiveChat, sender, title, content);
                             res.AddReturnedValue(await ret.SendAsync(simCardNumber));
                             return res;
                         }
                         if (type.Name.Contains("زمین") || type.Name.Contains("کلنگی"))
                         {
-                            var ret = new Divar_ResidentialZaminSell(bu, imageCount, isGiveChat, sender);
+                            var ret = new Divar_ResidentialZaminSell(bu, imageCount, isGiveChat, sender, title, content);
                             res.AddReturnedValue(await ret.SendAsync(simCardNumber));
                             return res;
                         }
                     }
                     if (accType.Name.Contains("زمین") || accType.Name.Contains("کلنگی"))
                     {
-                        var ret = new Divar_ResidentialZaminSell(bu, imageCount, isGiveChat, sender);
+                        var ret = new Divar_ResidentialZaminSell(bu, imageCount, isGiveChat, sender, title, content);
                         res.AddReturnedValue(await ret.SendAsync(simCardNumber));
                         return res;
                     }
                     if (accType.Name.Contains("دفتر") || accType.Name.Contains("اداری") || accType.Name.Contains("مطب"))
                     {
-                        var ret = new Divar_OfficeOfficeSell(bu, imageCount, isGiveChat, sender);
+                        var ret = new Divar_OfficeOfficeSell(bu, imageCount, isGiveChat, sender, title, content);
                         res.AddReturnedValue(await ret.SendAsync(simCardNumber));
                         return res;
                     }
@@ -494,13 +494,13 @@ namespace Advertise.Classes
                         accType.Name.Contains("دامداری") || accType.Name.Contains("مرغداری") ||
                         accType.Name.Contains("زراعی"))
                     {
-                        var ret = new Divar_OfficeKeshavarziSell(bu, imageCount, isGiveChat, sender);
+                        var ret = new Divar_OfficeKeshavarziSell(bu, imageCount, isGiveChat, sender, title, content);
                         res.AddReturnedValue(await ret.SendAsync(simCardNumber));
                         return res;
                     }
                     if (accType.Name.Contains("مغازه") || accType.Name.Contains("غرفه") || accType.Name.Contains("تجاری"))
                     {
-                        var ret = new Divar_OfficeStoreSell(bu, imageCount, isGiveChat, sender);
+                        var ret = new Divar_OfficeStoreSell(bu, imageCount, isGiveChat, sender, title, content);
                         res.AddReturnedValue(await ret.SendAsync(simCardNumber));
                         return res;
                     }
@@ -617,32 +617,25 @@ namespace Advertise.Classes
 
             return res;
         }
-        public static async Task<ReturnedSaveFuncInfo> ManageAdvSend(List<BuildingBussines> buList, List<SimcardBussines> simcardList, AdvertiseType type, bool isGiveChat, string sender, int imageCount)
+        public static async Task<ReturnedSaveFuncInfo> ManageAdvSend(BuildingBussines bu, SimcardBussines simcard, AdvertiseType type, bool isGiveChat, string sender, int imageCount, string title, string content)
         {
             var res = new ReturnedSaveFuncInfo();
             try
             {
-                foreach (var number in simcardList)
-                {
-                    var rand = new Random().Next(0, buList.Count);
-                    var bu = buList[rand];
+                if (type == AdvertiseType.Divar)
+                    res.AddReturnedValue(await SendDivarAdv(bu, simcard.Number, isGiveChat, sender, imageCount, title, content));
 
+                //if (type == AdvertiseType.Sheypoor)
+                //    res.AddReturnedValue(await SendAdv(adv.value, number.Number, AdvertiseType.Sheypoor));
 
-                    if (type == AdvertiseType.Divar)
-                        res.AddReturnedValue(await SendDivarAdv(bu, number.Number, isGiveChat, sender, imageCount));
+                //if (type == AdvertiseType.Both)
+                //{
+                //    var divarAdv = await GetNextAdv(bu, AdvertiseType.Divar, number.Number);
+                //    var sheypoorAdv = await GetNextAdv(bu, AdvertiseType.Sheypoor, number.Number);
 
-                    //if (type == AdvertiseType.Sheypoor)
-                    //    res.AddReturnedValue(await SendAdv(adv.value, number.Number, AdvertiseType.Sheypoor));
-
-                    //if (type == AdvertiseType.Both)
-                    //{
-                    //    var divarAdv = await GetNextAdv(bu, AdvertiseType.Divar, number.Number);
-                    //    var sheypoorAdv = await GetNextAdv(bu, AdvertiseType.Sheypoor, number.Number);
-
-                    //    res.AddReturnedValue(await SendAdv(divarAdv.value, number.Number, AdvertiseType.Divar));
-                    //    res.AddReturnedValue(await SendAdv(sheypoorAdv.value, number.Number, AdvertiseType.Sheypoor));
-                    //}
-                }
+                //    res.AddReturnedValue(await SendAdv(divarAdv.value, number.Number, AdvertiseType.Divar));
+                //    res.AddReturnedValue(await SendAdv(sheypoorAdv.value, number.Number, AdvertiseType.Sheypoor));
+                //}
 
                 CloseAllChromeWindows();
             }

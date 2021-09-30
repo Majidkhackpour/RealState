@@ -11,15 +11,17 @@ namespace Advertise.ViewModels.Divar.Rent.Office
     {
         private BuildingBussines bu;
         private bool isGiveChat = true;
-        private string agahiDahande;
+        private string agahiDahande, title, content;
         private Divar_SetFixValue fixValue;
 
-        public Divar_OfficeKeshavarziRent(BuildingBussines building, int imgCount, bool giveChat, string ersalKonnade)
+        public Divar_OfficeKeshavarziRent(BuildingBussines building, int imgCount, bool giveChat, string ersalKonnade, string _title, string _content)
         {
             fixValue = new Divar_SetFixValue(building, imgCount);
             bu = building;
             isGiveChat = giveChat;
             agahiDahande = ersalKonnade;
+            title = _title;
+            content = _content;
         }
 
         public string FisrtCat => "املاک";
@@ -35,8 +37,6 @@ namespace Advertise.ViewModels.Divar.Rent.Office
         public string Tabdil => fixValue.Tabdil();
         public string RoomCount => fixValue.RoomCount();
         public string SaleSakht => fixValue.SaleSakht().UpSideFixString();
-        public string Title => fixValue.Title();
-        public string Description => fixValue.Content();
 
 
 
@@ -91,8 +91,8 @@ namespace Advertise.ViewModels.Divar.Rent.Office
                 await Utility.Wait();
                 if (!isGiveChat) cat.Chat()?.Click();
 
-                cat.Title()?.SendKeys(Title);
-                cat.SendContent(Description);
+                cat.Title()?.SendKeys(title);
+                cat.SendContent(content);
 
                 await Utility.Wait();
 
@@ -100,7 +100,7 @@ namespace Advertise.ViewModels.Divar.Rent.Office
 
                 res.AddReturnedValue(await Utility.SaveAdv(AdvertiseType.Divar, FisrtCat, SecondCat, ThirdCat, State,
                     City,
-                    Region, Title, Description, number, bu.RahnPrice1, bu.EjarePrice1, cat.Url));
+                    Region, title, content, number, bu.RahnPrice1, bu.EjarePrice1, cat.Url));
             }
             catch (Exception ex)
             {
