@@ -918,8 +918,12 @@ namespace Building.Building
                 res.AddReturnedValue(await Utility.ManageAdvSend(bu, sim, AdvertiseType.Divar,
                     clsAdvertise.IsGiveChat, clsAdvertise.Sender, clsAdvertise.Divar_PicCountInPerAdv, title, content));
 
-                if (!res.HasError)
-                    this.ShowMessage("آگهی شما باموفقیت در دیوار ثبت شد");
+                if (res.HasError) return;
+
+                this.ShowMessage("آگهی شما باموفقیت در دیوار ثبت شد");
+                if (!WebCustomer.CheckCustomer()) return;
+                var msg = $"ارسال ملک به دیوار \r\n کدملک: {bu.Code} \r\n عنوان آگهی: {title} \r\n شرح آگهی: {content}";
+                _ = Task.Run(() => WebTelegramReporter.SendBuildingReport(WebCustomer.Customer.Guid, msg));
             }
             catch (Exception ex)
             {

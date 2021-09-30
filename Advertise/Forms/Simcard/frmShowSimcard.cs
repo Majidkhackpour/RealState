@@ -320,7 +320,9 @@ namespace Advertise.Forms.Simcard
                 if (res.HasError) return;
 
                 var sheypoor = SheypoorAdv.GetInstance();
-                await sheypoor.Login(number, true);
+                var login = await sheypoor.Login(number, true);
+                if (login)
+                    await LoadDataAsync(ST, txtSearch.Text);
             }
             catch (Exception ex)
             {
@@ -348,7 +350,9 @@ namespace Advertise.Forms.Simcard
                     res.AddError("شماره انتخاب شده صحیح نمی باشد");
                 if (res.HasError) return;
                 var divar = DivarAdv.GetInstance();
-                await divar.Login(number, true);
+                var login = await divar.Login(number, true);
+                if (login)
+                    await LoadDataAsync(ST, txtSearch.Text);
             }
             catch (Exception ex)
             {

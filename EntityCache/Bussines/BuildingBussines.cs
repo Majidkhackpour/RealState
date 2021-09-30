@@ -274,6 +274,9 @@ namespace EntityCache.Bussines
                     res = res.Where(q => q.BuildingAccountTypeGuid == filters.BuildingAccountTypeGuid);
                 if (token.IsCancellationRequested) return null;
 
+                if (filters.RegionList != null && filters.RegionList.Count > 0)
+                    res = res?.Where(q => filters.RegionList.Contains(q.RegionGuid));
+
                 var searchItems = filters.Search.SplitString();
                 if (searchItems?.Count > 0)
                     foreach (var item in searchItems)
