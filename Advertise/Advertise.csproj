@@ -156,6 +156,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\CookieStore.cs" />
     <Compile Include="Classes\DivarAdv.cs" />
     <Compile Include="Classes\DivarAPI.cs" />
     <Compile Include="Classes\ImageManager.cs" />

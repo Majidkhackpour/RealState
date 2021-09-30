@@ -140,7 +140,6 @@ namespace Advertise.Classes
                     //حدود 120 ثانیه فرصت لاگین دارد
                     while (repeat < 20)
                     {
-
                         listLinkItems = _driver.FindElements(By.TagName("a"));
                         if (listLinkItems.Count < 5) return false;
                         var loginList = _driver.FindElements(By.ClassName("kt-button--inlined"))

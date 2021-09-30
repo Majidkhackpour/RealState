@@ -290,54 +290,71 @@ namespace Advertise.Classes
         {
             try
             {
-                var sim_ = await SimcardBussines.GetAsync(simCardNumber);
+                var sim = await SimcardBussines.GetAsync(simCardNumber);
                 if (isFromSimcard)
                 {
                     _driver = Utility.RefreshDriver(clsAdvertise.IsSilent);
                     var simBusiness = await Utility.CheckToken(simCardNumber, AdvertiseType.Sheypoor);
-
                     //   در صورتیکه توکن قبلا ثبت شده باشد لاگین می کند
                     if (!simBusiness.HasError)
                     {
-
-                        // token = _driver.Manage().Cookies.GetCookieNamed("ts").ToString().Substring(3, 32);
                         _driver.Navigate().GoToUrl("https://www.sheypoor.com");
                         _driver.Manage().Cookies.DeleteCookieNamed("ts");
-
-                        var newToken = new OpenQA.Selenium.Cookie("ts", simBusiness.value);
-                        _driver.Manage().Cookies.AddCookie(newToken);
+                        _driver.Manage().Cookies.DeleteCookieNamed("user-logged-in");
+                        _driver.Manage().Cookies.DeleteCookieNamed("saved_items");
+                        _driver.Manage().Cookies.DeleteCookieNamed("searchKey");
+                        _driver.Manage().Cookies.DeleteCookieNamed("analytics_session_token");
+                        _driver.Manage().Cookies.DeleteCookieNamed("_yngt");
+                        var tsToken = new CookieStore("ts", simBusiness.value);
+                        var loginToken = new CookieStore("user-logged-in", "1", true, DateTime.Now.AddDays(30));
+                        var savedItemToken = new CookieStore("saved_items", "%5B%5D", true);
+                        var searchKeyToken = new CookieStore("searchKey", "eyJfdXJsIjoibXlhY2NvdW50LW15bGlzdGluZ3MifQ==");
+                        var analyticsToken = new CookieStore("analytics_session_token", Guid.NewGuid().ToString(), true);
+                        _driver.Manage().Cookies.AddCookie(savedItemToken);
+                        _driver.Manage().Cookies.AddCookie(searchKeyToken);
+                        _driver.Manage().Cookies.AddCookie(tsToken);
+                        _driver.Manage().Cookies.AddCookie(loginToken);
+                        _driver.Manage().Cookies.AddCookie(analyticsToken);
                         _driver.Navigate().GoToUrl("https://www.sheypoor.com/session/myListings");
-                        var linksElements = _driver.FindElements(By.TagName("a")).ToList();
-                        foreach (var link in linksElements)
+                        await Utility.Wait(2);
+                        if (_driver.FindElements(By.Name("username")).Count <= 0)
                         {
-                            if (link?.GetAttribute("href") == null || !link.GetAttribute("href").Contains("logout"))
-                                continue;
-                            _driver.ExecuteJavaScript(@"alert('لاگین انجام شد');");
-                            await Utility.Wait();
-                            _driver.SwitchTo().Alert().Accept();
-                            return true;
+                            var liCount = _driver?.FindElements(By.TagName("li"))
+                                .FirstOrDefault(q => q.Text == "حساب من");
+                            if (liCount != null)
+                            {
+                                liCount?.Click();
+                                await Utility.Wait();
+                                var exit = _driver?.FindElements(By.TagName("li")).FirstOrDefault(q => q.Text == "خروج");
+                                if (exit != null)
+                                {
+                                    _driver.ExecuteJavaScript(@"alert('لاگین انجام شد');");
+                                    await Utility.Wait();
+                                    _driver.SwitchTo().Alert().Accept();
+                                    var advToken = await AdvTokenBussines.GetTokenAsync(simCardNumber, AdvertiseType.Sheypoor);
+                                    var token = _driver.Manage().Cookies.GetCookieNamed("ts").ToString().Substring(3, 32);
+                                    advToken.Token = token;
+                                    await advToken.SaveAsync();
+                                    return true;
+                                }
+                            }
                         }
                     }
+
                     //اگر قبلا توکن نداشته و یا توکن اشتباه باشد وارد صفحه دریافت کد تائید لاگین می شود 
                     _driver.Manage().Timeouts().PageLoad = new TimeSpan(0, 2, 0);
                     _driver.Navigate().GoToUrl("https://www.sheypoor.com/session/myListings");
                     //var all = _driver.Manage().Cookies.AllCookies;
-                    if (_driver.FindElements(By.Id("username")).Count > 0)
-                        _driver.FindElement(By.Id("username")).SendKeys(simCardNumber + "\n");
-
+                    await Utility.Wait(2);
+                    if (_driver.FindElements(By.Name("username")).Count > 0)
+                        _driver.FindElement(By.Name("username")).SendKeys("0" + simCardNumber + "\n");
                     //انتظار برای لاگین شدن
                     int repeat = 0;
                     //حدود 120 ثانیه فرصت لاگین دارد
                     while (repeat < 20)
                     {
-                        //تا زمانی که لاگین اوکی نشده باشد این حلقه تکرار می شود
-                        var badGateWay = _driver.FindElements(By.TagName("h1"))
-                            .Any(q => q.Text == "502 Bad Gateway" || q.Text == "Error 503 Service Unavailable");
-                        if (badGateWay) return false;
-
-                        var message = $@"مالک: {sim_.Owner} \r\nشماره: {simCardNumber}  \r\nلطفا لاگین نمائید ";
+                        var message = $@"مالک: {sim.Owner} \r\nشماره: {simCardNumber}  \r\nلطفا لاگین نمائید ";
                         _driver.ExecuteJavaScript($"alert('{message}');");
-                        //Wait();
 
                         await Utility.Wait(5);
                         try
@@ -351,37 +368,35 @@ namespace Advertise.Classes
                             await Utility.Wait(15);
                         }
 
-                        var linksElements = _driver?.FindElements(By.TagName("a")).ToList() ?? null;
-
-                        AdvTokenBussines advToken = null;
-                        foreach (var link in linksElements)
+                        var liCount = _driver?.FindElements(By.TagName("li")).FirstOrDefault(q => q.Text == "حساب من");
+                        if (liCount == null) continue;
+                        liCount?.Click();
+                        await Utility.Wait();
+                        var exit = _driver?.FindElements(By.TagName("li")).FirstOrDefault(q => q.Text == "خروج");
+                        if (exit == null) continue;
+                        var advToken = await AdvTokenBussines.GetTokenAsync(simCardNumber, AdvertiseType.Sheypoor);
+                        var token = _driver.Manage().Cookies.GetCookieNamed("ts").ToString().Substring(3, 32);
+                        if (advToken != null)
+                            advToken.Token = token;
+                        else
                         {
-                            if (link?.GetAttribute("href") == null || !link.GetAttribute("href").Contains("logout"))
-                                continue;
-                            advToken = await AdvTokenBussines.GetTokenAsync(simCardNumber, AdvertiseType.Sheypoor);
-                            var token = _driver.Manage().Cookies.GetCookieNamed("ts").ToString().Substring(3, 32);
-                            if (advToken != null)
-                                advToken.Token = token;
-                            else
-                                advToken = new AdvTokenBussines()
-                                {
-                                    Type = AdvertiseType.Sheypoor,
-                                    Token = token,
-                                    Number = simCardNumber,
-                                    Guid = Guid.NewGuid(),
-                                };
-
-
-                            await advToken.SaveAsync();
-                            _driver.ExecuteJavaScript(@"alert('لاگین انجام شد');");
-                            await Utility.Wait();
-                            _driver.SwitchTo().Alert().Accept();
-                            return true;
+                            advToken = new AdvTokenBussines()
+                            {
+                                Type = AdvertiseType.Sheypoor,
+                                Token = token,
+                                Number = simCardNumber,
+                                Guid = Guid.NewGuid(),
+                            };
                         }
+
+                        await advToken.SaveAsync();
+                        _driver.ExecuteJavaScript(@"alert('لاگین انجام شد');");
+                        await Utility.Wait();
+                        _driver.SwitchTo().Alert().Accept();
+                        return true;
                     }
 
-                    var linksElements1 = _driver?.FindElements(By.TagName("a")).FirstOrDefault(q => q.Text == "خروج") ??
-                                         null;
+                    var linksElements1 = _driver?.FindElements(By.TagName("a")).FirstOrDefault(q => q.Text == "خروج") ?? null;
                     if (linksElements1 == null)
                     {
                         var msg = $@"فرصت لاگین کردن به اتمام رسید. لطفا دقایقی بعد مجددا امتحان نمایید";
@@ -389,49 +404,67 @@ namespace Advertise.Classes
                         _driver.SwitchTo().Alert().Accept();
                         await Utility.Wait(3);
                     }
-
                     await Utility.Wait();
                 }
                 else
                 {
                     _driver = Utility.RefreshDriver(clsAdvertise.IsSilent);
                     var simBusiness = await Utility.CheckToken(simCardNumber, AdvertiseType.Sheypoor);
-
                     //   در صورتیکه توکن قبلا ثبت شده باشد لاگین می کند
                     if (!simBusiness.HasError)
                     {
-
                         // token = _driver.Manage().Cookies.GetCookieNamed("ts").ToString().Substring(3, 32);
                         _driver.Navigate().GoToUrl("https://www.sheypoor.com");
                         _driver.Manage().Cookies.DeleteCookieNamed("ts");
-
-                        var newToken = new OpenQA.Selenium.Cookie("ts", simBusiness.value);
-                        _driver.Manage().Cookies.AddCookie(newToken);
+                        _driver.Manage().Cookies.DeleteCookieNamed("user-logged-in");
+                        _driver.Manage().Cookies.DeleteCookieNamed("saved_items");
+                        _driver.Manage().Cookies.DeleteCookieNamed("searchKey");
+                        _driver.Manage().Cookies.DeleteCookieNamed("analytics_session_token");
+                        _driver.Manage().Cookies.DeleteCookieNamed("_yngt");
+                        var tsToken = new CookieStore("ts", simBusiness.value);
+                        var loginToken = new CookieStore("user-logged-in", "1", true, DateTime.Now.AddDays(30));
+                        var savedItemToken = new CookieStore("saved_items", "%5B%5D");
+                        var searchKeyToken = new CookieStore("searchKey", "eyJfdXJsIjoibXlhY2NvdW50LW15bGlzdGluZ3MifQ==");
+                        var analyticsToken = new CookieStore("analytics_session_token", Guid.NewGuid().ToString(), true);
+                        _driver.Manage().Cookies.AddCookie(savedItemToken);
+                        _driver.Manage().Cookies.AddCookie(searchKeyToken);
+                        _driver.Manage().Cookies.AddCookie(tsToken);
+                        _driver.Manage().Cookies.AddCookie(loginToken);
+                        _driver.Manage().Cookies.AddCookie(analyticsToken);
                         _driver.Navigate().GoToUrl("https://www.sheypoor.com/session/myListings");
-                        var linksElements = _driver.FindElements(By.TagName("a")).ToList();
-                        foreach (var link in linksElements)
+                        await Utility.Wait(2);
+                        if (_driver.FindElements(By.Name("username")).Count <= 0)
                         {
-                            if (link?.GetAttribute("href") == null || !link.GetAttribute("href").Contains("logout"))
-                                continue;
-                            _driver.ExecuteJavaScript(@"alert('لاگین انجام شد');");
-                            await Utility.Wait();
-                            _driver.SwitchTo().Alert().Accept();
-                            return true;
+                            var liCount = _driver?.FindElements(By.TagName("li")).FirstOrDefault(q => q.Text == "حساب من");
+                            if (liCount != null)
+                            {
+                                liCount?.Click();
+                                await Utility.Wait();
+                                var exit = _driver?.FindElements(By.TagName("li"))
+                                    .FirstOrDefault(q => q.Text == "خروج");
+                                if (exit != null)
+                                {
+                                    _driver.ExecuteJavaScript(@"alert('لاگین انجام شد');");
+                                    await Utility.Wait();
+                                    _driver.SwitchTo().Alert().Accept();
+                                    var advToken = await AdvTokenBussines.GetTokenAsync(simCardNumber, AdvertiseType.Sheypoor);
+                                    var token = _driver.Manage().Cookies.GetCookieNamed("ts").ToString().Substring(3, 32);
+                                    advToken.Token = token;
+                                    await advToken.SaveAsync();
+                                    return true;
+                                }
+                            }
                         }
                     }
-                    _driver.Navigate().GoToUrl("https://www.sheypoor.com/session/myListings");
 
+                    _driver.Navigate().GoToUrl("https://www.sheypoor.com/session/myListings");
                     //انتظار برای لاگین شدن
                     int repeat = 0;
                     //حدود 120 ثانیه فرصت لاگین دارد
                     while (repeat < 5)
                     {
                         //تا زمانی که لاگین اوکی نشده باشد این حلقه تکرار می شود
-                        var badGateWay = _driver.FindElements(By.TagName("h1"))
-                            .Any(q => q.Text == "502 Bad Gateway" || q.Text == "Error 503 Service Unavailable");
-                        if (!badGateWay) return false;
-
-                        var message = $@"مالک: {sim_.Owner} \r\nشماره: {simCardNumber}  \r\nلطفا لاگین نمائید ";
+                        var message = $@"مالک: {sim.Owner} \r\nشماره: {simCardNumber}  \r\nلطفا لاگین نمائید ";
                         _driver.ExecuteJavaScript($"alert('{message}');");
                         //Wait();
 
@@ -447,27 +480,27 @@ namespace Advertise.Classes
                             await Utility.Wait(15);
                         }
 
-                        var linksElements = _driver?.FindElements(By.TagName("a")).ToList() ?? null;
+                        var liCount = _driver?.FindElements(By.TagName("li")).FirstOrDefault(q => q.Text == "حساب من");
+                        if (liCount == null) continue;
+                        liCount?.Click();
+                        await Utility.Wait();
+                        var exit = _driver?.FindElements(By.TagName("li")).FirstOrDefault(q => q.Text == "خروج");
+                        if (exit == null) continue;
 
-                        AdvTokenBussines advToken = null;
-                        foreach (var link in linksElements)
+                        var token = _driver.Manage().Cookies.GetCookieNamed("ts").ToString().Substring(3, 32);
+                        var advToken = await AdvTokenBussines.GetTokenAsync(simCardNumber, AdvertiseType.Sheypoor);
+                        if (advToken != null)
+                            advToken.Token = token;
+                        else
                         {
-                            if (link?.GetAttribute("href") == null || !link.GetAttribute("href").Contains("logout"))
-                                continue;
-                            var token = _driver.Manage().Cookies.GetCookieNamed("ts").ToString().Substring(3, 32);
-                            advToken = await AdvTokenBussines.GetTokenAsync(simCardNumber, AdvertiseType.Sheypoor);
-                            if (advToken != null)
-                                advToken.Token = token;
-                            else
-                                advToken = new AdvTokenBussines()
-                                {
-                                    Type = AdvertiseType.Sheypoor,
-                                    Token = token,
-                                    Number = simCardNumber,
-                                    Guid = Guid.NewGuid(),
-                                };
+                            advToken = new AdvTokenBussines()
+                            {
+                                Type = AdvertiseType.Sheypoor,
+                                Token = token,
+                                Number = simCardNumber,
+                                Guid = Guid.NewGuid(),
+                            };
                         }
-
                         await advToken?.SaveAsync();
                         _driver.ExecuteJavaScript(@"alert('لاگین انجام شد');");
                         await Utility.Wait();
@@ -476,16 +509,8 @@ namespace Advertise.Classes
                     }
                 }
 
-                await Utility.Wait();
-                TelegramSender.GetChatLog_bot().Send(
-                    $"#نداشتن_توکن \r\n سیستم مرجع: {await Utilities.GetNetworkIpAddress()} \r\n شماره {simCardNumber} به مالکیت {sim_.Owner} توکن ارسال آگهی شیپور داشته، اما منقضی شده و موفق به لاگین  نشد " +
-                    $"\r\n به همین سبب توکن شیپور این شماره از دیتابیس حذف خواهد شد " +
-                    $"\r\n لطفا نسبت به دریافت مجدد توکن اقدام گردد.");
-                var advTokens = await AdvTokenBussines.GetTokenAsync(simCardNumber, AdvertiseType.Sheypoor);
-                await advTokens?.RemoveAsync();
                 return false;
             }
-
             catch (WebException) { return false; }
             catch (Exception ex)
             {
