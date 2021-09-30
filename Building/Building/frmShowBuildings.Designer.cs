@@ -1276,6 +1276,7 @@
             this.grp.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.grp.Controls.Add(this.pictureBox6);
             this.grp.Controls.Add(this.pictureBox5);
+            this.grp.Controls.Add(this.chbRegion);
             this.grp.Controls.Add(this.pictureBox4);
             this.grp.Controls.Add(this.pictureBox3);
             this.grp.Controls.Add(this.pictureBox2);
@@ -1382,11 +1383,11 @@
             this.label11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label11.AutoSize = true;
             this.label11.BackColor = System.Drawing.Color.Transparent;
-            this.label11.Location = new System.Drawing.Point(0, 538);
+            this.label11.Location = new System.Drawing.Point(43, 538);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(111, 20);
+            this.label11.Size = new System.Drawing.Size(69, 20);
             this.label11.TabIndex = 55760;
-            this.label11.Text = "دریافت شده از دیوار";
+            this.label11.Text = "دریافت شده";
             // 
             // label10
             // 
@@ -1402,7 +1403,7 @@
             // PicBox
             // 
             this.PicBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.PicBox.Location = new System.Drawing.Point(11, 233);
+            this.PicBox.Location = new System.Drawing.Point(11, 278);
             this.PicBox.Name = "PicBox";
             this.PicBox.Size = new System.Drawing.Size(134, 122);
             this.PicBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -1562,7 +1563,7 @@
             this.ucFeatures.BackColor = System.Drawing.Color.Transparent;
             this.ucFeatures.Building = null;
             this.ucFeatures.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.ucFeatures.Location = new System.Drawing.Point(553, 49);
+            this.ucFeatures.Location = new System.Drawing.Point(551, 51);
             this.ucFeatures.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ucFeatures.Name = "ucFeatures";
             this.ucFeatures.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -1692,7 +1693,7 @@
             // 
             this.chbRegion.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.chbRegion.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.chbRegion.Location = new System.Drawing.Point(140, 58);
+            this.chbRegion.Location = new System.Drawing.Point(15, 239);
             this.chbRegion.Name = "chbRegion";
             this.chbRegion.Size = new System.Drawing.Size(130, 22);
             this.chbRegion.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -1706,7 +1707,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1021, 631);
             this.Controls.Add(this.ucFeatures);
-            this.Controls.Add(this.chbRegion);
             this.Controls.Add(this.chbMine);
             this.Controls.Add(this.chbMosharekat);
             this.Controls.Add(this.chbPishForoush);
