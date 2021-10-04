@@ -50,7 +50,7 @@ namespace UcBuildingSearch
             {
                 var bu = await BuildingBussines.GetAsync(_bu.Guid);
                 if (bu == null) return;
-                var frm = new frmBuildingDetail(bu);
+                var frm = new frmBuildingDetail(bu, false);
                 frm.ShowDialog(this);
             }
             catch (Exception ex)

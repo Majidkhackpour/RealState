@@ -38,11 +38,6 @@
             this.txtSearch = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.BOBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.DGrid = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.dgRadif = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgGuid = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.modifiedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.statusDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.contextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.mnuAdd = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuEdit = new System.Windows.Forms.ToolStripMenuItem();
@@ -50,6 +45,13 @@
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.mnuView = new System.Windows.Forms.ToolStripMenuItem();
             this.ucHeader = new WindowsSerivces.UC_Header();
+            this.mnuSave = new System.Windows.Forms.ToolStripMenuItem();
+            this.dgRadif = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgIsFullOption = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.dgName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgGuid = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.modifiedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.statusDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.BOBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).BeginInit();
             this.contextMenu.SuspendLayout();
@@ -106,6 +108,7 @@
             this.DGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dgRadif,
+            this.dgIsFullOption,
             this.dgName,
             this.dgGuid,
             this.modifiedDataGridViewTextBoxColumn,
@@ -124,7 +127,6 @@
             this.DGrid.Location = new System.Drawing.Point(4, 96);
             this.DGrid.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.DGrid.Name = "DGrid";
-            this.DGrid.ReadOnly = true;
             this.DGrid.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.DGrid.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
@@ -148,45 +150,6 @@
             this.DGrid.TabIndex = 55728;
             this.DGrid.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DGrid_CellFormatting);
             // 
-            // dgRadif
-            // 
-            this.dgRadif.HeaderText = "ردیف";
-            this.dgRadif.Name = "dgRadif";
-            this.dgRadif.ReadOnly = true;
-            this.dgRadif.Width = 50;
-            // 
-            // dgName
-            // 
-            this.dgName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dgName.DataPropertyName = "Name";
-            this.dgName.HeaderText = "عنوان";
-            this.dgName.Name = "dgName";
-            this.dgName.ReadOnly = true;
-            // 
-            // dgGuid
-            // 
-            this.dgGuid.DataPropertyName = "Guid";
-            this.dgGuid.HeaderText = "Guid";
-            this.dgGuid.Name = "dgGuid";
-            this.dgGuid.ReadOnly = true;
-            this.dgGuid.Visible = false;
-            // 
-            // modifiedDataGridViewTextBoxColumn
-            // 
-            this.modifiedDataGridViewTextBoxColumn.DataPropertyName = "Modified";
-            this.modifiedDataGridViewTextBoxColumn.HeaderText = "Modified";
-            this.modifiedDataGridViewTextBoxColumn.Name = "modifiedDataGridViewTextBoxColumn";
-            this.modifiedDataGridViewTextBoxColumn.ReadOnly = true;
-            this.modifiedDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // statusDataGridViewCheckBoxColumn
-            // 
-            this.statusDataGridViewCheckBoxColumn.DataPropertyName = "Status";
-            this.statusDataGridViewCheckBoxColumn.HeaderText = "Status";
-            this.statusDataGridViewCheckBoxColumn.Name = "statusDataGridViewCheckBoxColumn";
-            this.statusDataGridViewCheckBoxColumn.ReadOnly = true;
-            this.statusDataGridViewCheckBoxColumn.Visible = false;
-            // 
             // contextMenu
             // 
             this.contextMenu.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
@@ -195,16 +158,17 @@
             this.mnuEdit,
             this.mnuDelete,
             this.toolStripMenuItem1,
-            this.mnuView});
+            this.mnuView,
+            this.mnuSave});
             this.contextMenu.Name = "contextMenu";
             this.contextMenu.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.contextMenu.Size = new System.Drawing.Size(212, 106);
+            this.contextMenu.Size = new System.Drawing.Size(299, 130);
             // 
             // mnuAdd
             // 
             this.mnuAdd.Image = global::Building.Properties.Resources.add_2_;
             this.mnuAdd.Name = "mnuAdd";
-            this.mnuAdd.Size = new System.Drawing.Size(211, 24);
+            this.mnuAdd.Size = new System.Drawing.Size(298, 24);
             this.mnuAdd.Text = "افزودن امکانات جدید (Ins)";
             this.mnuAdd.Click += new System.EventHandler(this.mnuAdd_Click);
             // 
@@ -212,7 +176,7 @@
             // 
             this.mnuEdit.Image = global::Building.Properties.Resources.edit_1_;
             this.mnuEdit.Name = "mnuEdit";
-            this.mnuEdit.Size = new System.Drawing.Size(211, 24);
+            this.mnuEdit.Size = new System.Drawing.Size(298, 24);
             this.mnuEdit.Text = "ویرایش امکانات جاری (F7)";
             this.mnuEdit.Click += new System.EventHandler(this.mnuEdit_Click);
             // 
@@ -220,20 +184,20 @@
             // 
             this.mnuDelete.Image = global::Building.Properties.Resources.delete_1_;
             this.mnuDelete.Name = "mnuDelete";
-            this.mnuDelete.Size = new System.Drawing.Size(211, 24);
+            this.mnuDelete.Size = new System.Drawing.Size(298, 24);
             this.mnuDelete.Text = "حذف امکانات جاری (Del)";
             this.mnuDelete.Click += new System.EventHandler(this.mnuDelete_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(208, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(295, 6);
             // 
             // mnuView
             // 
             this.mnuView.Image = global::Building.Properties.Resources.article_1_;
             this.mnuView.Name = "mnuView";
-            this.mnuView.Size = new System.Drawing.Size(211, 24);
+            this.mnuView.Size = new System.Drawing.Size(298, 24);
             this.mnuView.Text = "مشاهده (F12)";
             this.mnuView.Click += new System.EventHandler(this.mnuView_Click);
             // 
@@ -254,6 +218,57 @@
             this.ucHeader.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.ucHeader.Size = new System.Drawing.Size(815, 34);
             this.ucHeader.TabIndex = 55747;
+            // 
+            // mnuSave
+            // 
+            this.mnuSave.Name = "mnuSave";
+            this.mnuSave.Size = new System.Drawing.Size(298, 24);
+            this.mnuSave.Text = "افزودن امکانات انتخابی به لیست فول امکانات";
+            this.mnuSave.Click += new System.EventHandler(this.mnuSave_Click);
+            // 
+            // dgRadif
+            // 
+            this.dgRadif.HeaderText = "ردیف";
+            this.dgRadif.Name = "dgRadif";
+            this.dgRadif.ReadOnly = true;
+            this.dgRadif.Width = 50;
+            // 
+            // dgIsFullOption
+            // 
+            this.dgIsFullOption.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dgIsFullOption.DataPropertyName = "IsFullOption";
+            this.dgIsFullOption.HeaderText = "فول امکانات";
+            this.dgIsFullOption.Name = "dgIsFullOption";
+            this.dgIsFullOption.Width = 74;
+            // 
+            // dgName
+            // 
+            this.dgName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dgName.DataPropertyName = "Name";
+            this.dgName.HeaderText = "عنوان";
+            this.dgName.Name = "dgName";
+            this.dgName.ReadOnly = true;
+            // 
+            // dgGuid
+            // 
+            this.dgGuid.DataPropertyName = "Guid";
+            this.dgGuid.HeaderText = "Guid";
+            this.dgGuid.Name = "dgGuid";
+            this.dgGuid.Visible = false;
+            // 
+            // modifiedDataGridViewTextBoxColumn
+            // 
+            this.modifiedDataGridViewTextBoxColumn.DataPropertyName = "Modified";
+            this.modifiedDataGridViewTextBoxColumn.HeaderText = "Modified";
+            this.modifiedDataGridViewTextBoxColumn.Name = "modifiedDataGridViewTextBoxColumn";
+            this.modifiedDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // statusDataGridViewCheckBoxColumn
+            // 
+            this.statusDataGridViewCheckBoxColumn.DataPropertyName = "Status";
+            this.statusDataGridViewCheckBoxColumn.HeaderText = "Status";
+            this.statusDataGridViewCheckBoxColumn.Name = "statusDataGridViewCheckBoxColumn";
+            this.statusDataGridViewCheckBoxColumn.Visible = false;
             // 
             // frmShowBuildingOption
             // 
@@ -286,11 +301,6 @@
         private DevComponents.DotNetBar.Controls.TextBoxX txtSearch;
         private System.Windows.Forms.BindingSource BOBindingSource;
         private DevComponents.DotNetBar.Controls.DataGridViewX DGrid;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgRadif;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgGuid;
-        private System.Windows.Forms.DataGridViewTextBoxColumn modifiedDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn statusDataGridViewCheckBoxColumn;
         private System.Windows.Forms.ContextMenuStrip contextMenu;
         private System.Windows.Forms.ToolStripMenuItem mnuAdd;
         private System.Windows.Forms.ToolStripMenuItem mnuEdit;
@@ -298,5 +308,12 @@
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem mnuView;
         private WindowsSerivces.UC_Header ucHeader;
+        private System.Windows.Forms.ToolStripMenuItem mnuSave;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgRadif;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn dgIsFullOption;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgGuid;
+        private System.Windows.Forms.DataGridViewTextBoxColumn modifiedDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn statusDataGridViewCheckBoxColumn;
     }
 }

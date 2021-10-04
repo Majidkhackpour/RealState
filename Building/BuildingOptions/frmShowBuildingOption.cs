@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -26,6 +28,7 @@ namespace Building.BuildingOptions
                 var list = await BuildingOptionsBussines.GetAllAsync(search, _token.Token);
                 Invoke(new MethodInvoker(() => BOBindingSource.DataSource =
                     list.Where(q => q.Status == _st).OrderBy(q => q.Name).ToSortableBindingList()));
+                await LoadFullOptionAsync();
             }
             catch (Exception ex)
             {
@@ -41,6 +44,28 @@ namespace Building.BuildingOptions
                 mnuEdit.Enabled = access?.BuildingOption.Building_Option_Update ?? false;
                 mnuDelete.Enabled = access?.BuildingOption.Building_Option_Delete ?? false;
                 mnuView.Enabled = access?.BuildingOption.Building_Option_View ?? false;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private async Task LoadFullOptionAsync()
+        {
+            try
+            {
+                if (InvokeRequired)
+                {
+                    Invoke(new MethodInvoker(() => LoadFullOptionAsync()));
+                    return;
+                }
+
+                for (var i = 0; i < DGrid.RowCount; i++)
+                {
+                    var val = DGrid[dgIsFullOption.Index, i].Value;
+                    if (val!=null&&(bool)val)
+                        DGrid.Rows[i].DefaultCellStyle.BackColor = Color.Khaki;
+                }
             }
             catch (Exception ex)
             {
@@ -194,6 +219,49 @@ namespace Building.BuildingOptions
                 if (res.HasError)
                     this.ShowError(res, "خطا در تغییر وضعیت امکانات ملک");
                 else await LoadDataAsync(txtSearch.Text);
+            }
+        }
+        private async void mnuSave_Click(object sender, EventArgs e)
+        {
+            var res = new ReturnedSaveFuncInfo();
+            var list = new List<BuildingOptionsBussines>();
+            try
+            {
+                for (var i = 0; i < DGrid.RowCount; i++)
+                {
+                    var val = DGrid[dgIsFullOption.Index, i].Value;
+                    if (val == null) continue;
+                    var guid = (Guid)DGrid[dgGuid.Index, i].Value;
+                    var op = await BuildingOptionsBussines.GetAsync(guid);
+                    if (op == null) continue;
+                    list.Add(new BuildingOptionsBussines()
+                    {
+                        Guid = op.Guid,
+                        Modified = DateTime.Now,
+                        Name = op.Name,
+                        Status = op.Status,
+                        ServerStatus = op.ServerStatus,
+                        ServerDeliveryDate = op.ServerDeliveryDate,
+                        IsFullOption = (bool)val
+                    });
+                }
+
+                if (list.Count <= 0) return;
+                res.AddReturnedValue(await BuildingOptionsBussines.SaveRangeAsync(list));
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+            finally
+            {
+                if (res.HasError) this.ShowError(res);
+                else
+                {
+                    this.ShowMessage("لیست فول امکانات به روزرسانی شد");
+                    await LoadDataAsync();
+                }
             }
         }
     }

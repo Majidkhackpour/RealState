@@ -15,6 +15,7 @@ namespace Building.Building
     {
         private BuildingBussines bu;
         readonly List<string> lstList = new List<string>();
+        private bool _loadForCustomer = false;
 
         private async Task SetDataAsync()
         {
@@ -74,8 +75,11 @@ namespace Building.Building
                 }
                 lblTitle.Text = $@"{type} {bu.BuildingTypeName}";
 
-                var city = await CitiesBussines.GetAsync(bu.CityGuid);
-                lblAddress.Text = $@"{city.Name} - {bu.RegionName} - {bu.Address}";
+                if (!_loadForCustomer)
+                {
+                    var city = await CitiesBussines.GetAsync(bu.CityGuid);
+                    lblAddress.Text = $@"{city.Name} - {bu.RegionName} - {bu.Address}";
+                }
 
                 lblZirBana.Text = $@"{bu.ZirBana} متر";
                 lblMasahat.Text = $@"{bu.Masahat} متر";
@@ -93,37 +97,45 @@ namespace Building.Building
                 lblCondition.Text = bu.BuildingConditionName;
                 lblAccountType.Text = bu.BuildingAccountTypeName;
 
-                var owner = await PeoplesBussines.GetAsync(bu.OwnerGuid, bu?.Guid);
-                if (owner != null)
+                if (!_loadForCustomer)
                 {
-                    lblOwnerName.Text = owner.Name;
-                    lblOwnerAddress.Text = owner.Address;
+                    grpOwner.Visible = true;
+                    var owner = await PeoplesBussines.GetAsync(bu.OwnerGuid, bu?.Guid);
+                    if (owner != null)
+                    {
+                        lblOwnerName.Text = owner.Name;
+                        lblOwnerAddress.Text = owner.Address;
 
-                    if (owner?.TellList?.Count >= 1)
-                    {
-                        var title1 = owner?.TellList[0]?.Title ?? "";
-                        var number1 = owner?.TellList[0]?.Tell ?? "";
-                        lblTell1.Text = $@"{title1}: {number1}";
-                    }
-                    if (owner?.TellList?.Count >= 2)
-                    {
-                        var title2 = owner?.TellList[1]?.Title ?? "";
-                        var number2 = owner?.TellList[1]?.Tell ?? "";
-                        lblTell2.Text = $@"{title2}: {number2}";
-                    }
-                    if (owner?.TellList?.Count >= 3)
-                    {
-                        var title3 = owner?.TellList[2]?.Title ?? "";
-                        var number3 = owner?.TellList[2]?.Tell ?? "";
-                        lblTell3.Text = $@"{title3}: {number3}";
-                    }
-                    if (owner?.TellList?.Count >= 4)
-                    {
-                        var title4 = owner?.TellList[3]?.Title ?? "";
-                        var number4 = owner?.TellList[3]?.Tell ?? "";
-                        lblTell4.Text = $@"{title4}: {number4}";
+                        if (owner?.TellList?.Count >= 1)
+                        {
+                            var title1 = owner?.TellList[0]?.Title ?? "";
+                            var number1 = owner?.TellList[0]?.Tell ?? "";
+                            lblTell1.Text = $@"{title1}: {number1}";
+                        }
+
+                        if (owner?.TellList?.Count >= 2)
+                        {
+                            var title2 = owner?.TellList[1]?.Title ?? "";
+                            var number2 = owner?.TellList[1]?.Tell ?? "";
+                            lblTell2.Text = $@"{title2}: {number2}";
+                        }
+
+                        if (owner?.TellList?.Count >= 3)
+                        {
+                            var title3 = owner?.TellList[2]?.Title ?? "";
+                            var number3 = owner?.TellList[2]?.Tell ?? "";
+                            lblTell3.Text = $@"{title3}: {number3}";
+                        }
+
+                        if (owner?.TellList?.Count >= 4)
+                        {
+                            var title4 = owner?.TellList[3]?.Title ?? "";
+                            var number4 = owner?.TellList[3]?.Tell ?? "";
+                            lblTell4.Text = $@"{title4}: {number4}";
+                        }
                     }
                 }
+                else grpOwner.Visible = false;
 
                 lblDescription.Text = bu.ShortDesc;
 
@@ -237,11 +249,12 @@ namespace Building.Building
                 WebErrorLog.ErrorInstence.StartErrorLog(exception);
             }
         }
-        public frmBuildingDetail(BuildingBussines _bu)
+        public frmBuildingDetail(BuildingBussines _bu,bool loadForCustomer)
         {
             InitializeComponent();
             exPanel.Expanded = false;
             bu = _bu;
+            _loadForCustomer = loadForCustomer;
         }
         private async void frmBuildingDetail_Load(object sender, System.EventArgs e) => await SetDataAsync();
         private void frmBuildingDetail_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)

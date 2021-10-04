@@ -62,7 +62,7 @@ namespace RealState.LoginPanel.FormsInPanel
             try
             {
                 var list = await UserBussines.GetAllAsync(new CancellationToken());
-                userBindingSource.DataSource = list?.ToList();
+                userBindingSource.DataSource = list?.Where(q => q.Status)?.ToList();
             }
             catch (Exception ex)
             {

@@ -58,6 +58,8 @@ namespace Building.Building
             this.lblShortTime = new System.Windows.Forms.Label();
             this.lblRental = new System.Windows.Forms.Label();
             this.groupPanel5 = new DevComponents.DotNetBar.Controls.GroupPanel();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.lblDescription = new System.Windows.Forms.Label();
             this.groupPanel4 = new DevComponents.DotNetBar.Controls.GroupPanel();
             this.lblOption12 = new System.Windows.Forms.Label();
             this.lblOption9 = new System.Windows.Forms.Label();
@@ -71,7 +73,7 @@ namespace Building.Building
             this.lblOption7 = new System.Windows.Forms.Label();
             this.lblOption4 = new System.Windows.Forms.Label();
             this.lblOption1 = new System.Windows.Forms.Label();
-            this.groupPanel3 = new DevComponents.DotNetBar.Controls.GroupPanel();
+            this.grpOwner = new DevComponents.DotNetBar.Controls.GroupPanel();
             this.label42 = new System.Windows.Forms.Label();
             this.lblOwnerAddress = new System.Windows.Forms.Label();
             this.lblTell4 = new System.Windows.Forms.Label();
@@ -118,8 +120,6 @@ namespace Building.Building
             this.lblPrice1 = new System.Windows.Forms.Label();
             this.lblAddress = new System.Windows.Forms.Label();
             this.lblTitle = new System.Windows.Forms.Label();
-            this.lblDescription = new System.Windows.Forms.Label();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.panel1.SuspendLayout();
             this.exPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picBox)).BeginInit();
@@ -127,11 +127,11 @@ namespace Building.Building
             this.pnlSellInfo.SuspendLayout();
             this.pnlRahnInfo.SuspendLayout();
             this.groupPanel5.SuspendLayout();
+            this.flowLayoutPanel1.SuspendLayout();
             this.groupPanel4.SuspendLayout();
-            this.groupPanel3.SuspendLayout();
+            this.grpOwner.SuspendLayout();
             this.groupPanel1.SuspendLayout();
             this.groupPanel2.SuspendLayout();
-            this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -146,7 +146,7 @@ namespace Building.Building
             this.panel1.Controls.Add(this.pnlRahnInfo);
             this.panel1.Controls.Add(this.groupPanel5);
             this.panel1.Controls.Add(this.groupPanel4);
-            this.panel1.Controls.Add(this.groupPanel3);
+            this.panel1.Controls.Add(this.grpOwner);
             this.panel1.Controls.Add(this.groupPanel1);
             this.panel1.Controls.Add(this.groupPanel2);
             this.panel1.Location = new System.Drawing.Point(4, 21);
@@ -567,6 +567,30 @@ namespace Building.Building
             this.groupPanel5.TabIndex = 18;
             this.groupPanel5.Text = "توضیحات";
             // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.flowLayoutPanel1.AutoScroll = true;
+            this.flowLayoutPanel1.Controls.Add(this.lblDescription);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(374, 95);
+            this.flowLayoutPanel1.TabIndex = 28;
+            this.flowLayoutPanel1.WrapContents = false;
+            // 
+            // lblDescription
+            // 
+            this.lblDescription.AutoSize = true;
+            this.lblDescription.BackColor = System.Drawing.Color.Transparent;
+            this.lblDescription.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.lblDescription.Location = new System.Drawing.Point(322, 0);
+            this.lblDescription.Name = "lblDescription";
+            this.lblDescription.Size = new System.Drawing.Size(49, 20);
+            this.lblDescription.TabIndex = 27;
+            this.lblDescription.Text = "54545";
+            // 
             // groupPanel4
             // 
             this.groupPanel4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -741,52 +765,52 @@ namespace Building.Building
             this.lblOption1.Size = new System.Drawing.Size(158, 29);
             this.lblOption1.TabIndex = 24;
             // 
-            // groupPanel3
+            // grpOwner
             // 
-            this.groupPanel3.CanvasColor = System.Drawing.SystemColors.Control;
-            this.groupPanel3.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
-            this.groupPanel3.Controls.Add(this.label42);
-            this.groupPanel3.Controls.Add(this.lblOwnerAddress);
-            this.groupPanel3.Controls.Add(this.lblTell4);
-            this.groupPanel3.Controls.Add(this.lblTell3);
-            this.groupPanel3.Controls.Add(this.lblTell2);
-            this.groupPanel3.Controls.Add(this.lblTell1);
-            this.groupPanel3.Controls.Add(this.lblOwnerName);
-            this.groupPanel3.DisabledBackColor = System.Drawing.Color.Empty;
-            this.groupPanel3.Location = new System.Drawing.Point(10, 147);
-            this.groupPanel3.Name = "groupPanel3";
-            this.groupPanel3.Size = new System.Drawing.Size(251, 365);
-            // 
-            // 
-            // 
-            this.groupPanel3.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(227)))), ((int)(((byte)(239)))), ((int)(((byte)(255)))));
-            this.groupPanel3.Style.BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
-            this.groupPanel3.Style.BackColorGradientAngle = 90;
-            this.groupPanel3.Style.BorderBottom = DevComponents.DotNetBar.eStyleBorderType.Solid;
-            this.groupPanel3.Style.BorderBottomWidth = 2;
-            this.groupPanel3.Style.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(198)))), ((int)(((byte)(195)))), ((int)(((byte)(198)))));
-            this.groupPanel3.Style.BorderColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(198)))), ((int)(((byte)(195)))), ((int)(((byte)(198)))));
-            this.groupPanel3.Style.BorderLeft = DevComponents.DotNetBar.eStyleBorderType.Solid;
-            this.groupPanel3.Style.BorderLeftWidth = 2;
-            this.groupPanel3.Style.BorderRight = DevComponents.DotNetBar.eStyleBorderType.Solid;
-            this.groupPanel3.Style.BorderRightWidth = 2;
-            this.groupPanel3.Style.BorderTop = DevComponents.DotNetBar.eStyleBorderType.Solid;
-            this.groupPanel3.Style.BorderTopWidth = 2;
-            this.groupPanel3.Style.CornerDiameter = 4;
-            this.groupPanel3.Style.CornerType = DevComponents.DotNetBar.eCornerType.Rounded;
-            this.groupPanel3.Style.TextAlignment = DevComponents.DotNetBar.eStyleTextAlignment.Center;
-            this.groupPanel3.Style.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.groupPanel3.Style.TextLineAlignment = DevComponents.DotNetBar.eStyleTextAlignment.Near;
+            this.grpOwner.CanvasColor = System.Drawing.SystemColors.Control;
+            this.grpOwner.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
+            this.grpOwner.Controls.Add(this.label42);
+            this.grpOwner.Controls.Add(this.lblOwnerAddress);
+            this.grpOwner.Controls.Add(this.lblTell4);
+            this.grpOwner.Controls.Add(this.lblTell3);
+            this.grpOwner.Controls.Add(this.lblTell2);
+            this.grpOwner.Controls.Add(this.lblTell1);
+            this.grpOwner.Controls.Add(this.lblOwnerName);
+            this.grpOwner.DisabledBackColor = System.Drawing.Color.Empty;
+            this.grpOwner.Location = new System.Drawing.Point(10, 147);
+            this.grpOwner.Name = "grpOwner";
+            this.grpOwner.Size = new System.Drawing.Size(251, 365);
             // 
             // 
             // 
-            this.groupPanel3.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.grpOwner.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(227)))), ((int)(((byte)(239)))), ((int)(((byte)(255)))));
+            this.grpOwner.Style.BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+            this.grpOwner.Style.BackColorGradientAngle = 90;
+            this.grpOwner.Style.BorderBottom = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.grpOwner.Style.BorderBottomWidth = 2;
+            this.grpOwner.Style.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(198)))), ((int)(((byte)(195)))), ((int)(((byte)(198)))));
+            this.grpOwner.Style.BorderColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(198)))), ((int)(((byte)(195)))), ((int)(((byte)(198)))));
+            this.grpOwner.Style.BorderLeft = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.grpOwner.Style.BorderLeftWidth = 2;
+            this.grpOwner.Style.BorderRight = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.grpOwner.Style.BorderRightWidth = 2;
+            this.grpOwner.Style.BorderTop = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.grpOwner.Style.BorderTopWidth = 2;
+            this.grpOwner.Style.CornerDiameter = 4;
+            this.grpOwner.Style.CornerType = DevComponents.DotNetBar.eCornerType.Rounded;
+            this.grpOwner.Style.TextAlignment = DevComponents.DotNetBar.eStyleTextAlignment.Center;
+            this.grpOwner.Style.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.grpOwner.Style.TextLineAlignment = DevComponents.DotNetBar.eStyleTextAlignment.Near;
             // 
             // 
             // 
-            this.groupPanel3.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.groupPanel3.TabIndex = 16;
-            this.groupPanel3.Text = "مشخصات مالک";
+            this.grpOwner.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.grpOwner.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.grpOwner.TabIndex = 16;
+            this.grpOwner.Text = "مشخصات مالک";
             // 
             // label42
             // 
@@ -1368,30 +1392,6 @@ namespace Building.Building
             this.lblTitle.TabIndex = 15;
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // lblDescription
-            // 
-            this.lblDescription.AutoSize = true;
-            this.lblDescription.BackColor = System.Drawing.Color.Transparent;
-            this.lblDescription.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.lblDescription.Location = new System.Drawing.Point(322, 0);
-            this.lblDescription.Name = "lblDescription";
-            this.lblDescription.Size = new System.Drawing.Size(49, 20);
-            this.lblDescription.TabIndex = 27;
-            this.lblDescription.Text = "54545";
-            // 
-            // flowLayoutPanel1
-            // 
-            this.flowLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.flowLayoutPanel1.AutoScroll = true;
-            this.flowLayoutPanel1.Controls.Add(this.lblDescription);
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(374, 95);
-            this.flowLayoutPanel1.TabIndex = 28;
-            this.flowLayoutPanel1.WrapContents = false;
-            // 
             // frmBuildingDetail
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -1422,14 +1422,14 @@ namespace Building.Building
             this.pnlRahnInfo.ResumeLayout(false);
             this.pnlRahnInfo.PerformLayout();
             this.groupPanel5.ResumeLayout(false);
+            this.flowLayoutPanel1.ResumeLayout(false);
+            this.flowLayoutPanel1.PerformLayout();
             this.groupPanel4.ResumeLayout(false);
-            this.groupPanel3.ResumeLayout(false);
-            this.groupPanel3.PerformLayout();
+            this.grpOwner.ResumeLayout(false);
+            this.grpOwner.PerformLayout();
             this.groupPanel1.ResumeLayout(false);
             this.groupPanel1.PerformLayout();
             this.groupPanel2.ResumeLayout(false);
-            this.flowLayoutPanel1.ResumeLayout(false);
-            this.flowLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1469,7 +1469,7 @@ namespace Building.Building
         private System.Windows.Forms.Label lblRoomCount;
         private System.Windows.Forms.Label lblVahedPerTabaqe;
         private System.Windows.Forms.Label label27;
-        private DevComponents.DotNetBar.Controls.GroupPanel groupPanel3;
+        private DevComponents.DotNetBar.Controls.GroupPanel grpOwner;
         private System.Windows.Forms.Label label42;
         private System.Windows.Forms.Label lblOwnerAddress;
         private System.Windows.Forms.Label lblTell4;

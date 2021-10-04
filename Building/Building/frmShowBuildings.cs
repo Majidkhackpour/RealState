@@ -742,6 +742,23 @@ namespace Building.Building
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
+        private void ShowBuildingDetailForm(bool loadForCustomer)
+        {
+            try
+            {
+                if (DGrid.RowCount <= 0) return;
+                if (DGrid.CurrentRow == null) return;
+                var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
+                var bu = BuildingBussines.Get(guid);
+                if (bu == null) return;
+                var frm = new frmBuildingDetail(bu, loadForCustomer);
+                frm.ShowDialog(this);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
 
         public frmShowBuildings(bool _isShowMode, bool? isArchive, bool status = true, Guid ownerGuid = default)
         {
@@ -813,6 +830,9 @@ namespace Building.Building
                         break;
                     case Keys.F12:
                         mnuView.PerformClick();
+                        break;
+                    case Keys.F11:
+                        mnuView2.PerformClick();
                         break;
                     case Keys.Escape:
                         if (!string.IsNullOrEmpty(txtSearch.Text))
@@ -961,23 +981,7 @@ namespace Building.Building
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private async void mnuView_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (DGrid.RowCount <= 0) return;
-                if (DGrid.CurrentRow == null) return;
-                var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
-                var bu = await BuildingBussines.GetAsync(guid);
-                if (bu == null) return;
-                var frm = new frmBuildingDetail(bu);
-                frm.ShowDialog(this);
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
+        private void mnuView_Click(object sender, EventArgs e) => ShowBuildingDetailForm(false);
         private void mnuEdit_Click(object sender, EventArgs e)
         {
             try
@@ -1786,6 +1790,7 @@ namespace Building.Building
                     PicBox.ImageLocation = path;
                 }
 
+                if (!chbBuildingDetail.Checked) return;
                 await Task.Delay(3000);
                 _token?.Cancel();
                 _token = new CancellationTokenSource();
@@ -2124,7 +2129,7 @@ namespace Building.Building
         {
             try
             {
-                if (!chbRegion.Checked&&!_isLoad) return;
+                if (!chbRegion.Checked && !_isLoad) return;
                 if (!chbRegion.Checked && _isLoad)
                 {
                     _regList = null;
@@ -2148,6 +2153,7 @@ namespace Building.Building
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
+        private void mnuView2_Click(object sender, EventArgs e) => ShowBuildingDetailForm(true);
         private async void mnuPrintInherit_Click(object sender, EventArgs e)
         {
             try
