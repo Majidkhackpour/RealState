@@ -27,6 +27,7 @@ namespace EntityCache.Bussines
         public ServerStatus ServerStatus { get; set; } = ServerStatus.None;
         public DateTime ServerDeliveryDate { get; set; } = DateTime.Now;
         public string Name { get; set; }
+        public bool IsFullOption { get; set; }
         public bool Checked { get; set; }
         public string HardSerial => Cache.HardSerial;
         public bool IsModified { get; set; } = false;

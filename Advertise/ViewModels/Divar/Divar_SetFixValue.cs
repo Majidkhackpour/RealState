@@ -87,7 +87,7 @@ namespace Advertise.ViewModels.Divar
         {
             try
             {
-                if (bu.RahnPrice2 > 0 || bu.EjarePrice2 > 0)
+                if (bu.Tabdil != null && bu.Tabdil == true)
                     return "قابل تبدیل";
                 return "غیر قابل تبدیل";
             }

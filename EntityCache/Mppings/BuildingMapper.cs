@@ -33,7 +33,6 @@ namespace EntityCache.Mppings
                 BuildingTypeGuid = cls.BuildingTypeGuid,
                 SaleSakht = cls.SaleSakht,
                 OwnerGuid = cls.OwnerGuid,
-                EjarePrice2 = cls.EjarePrice2,
                 RentalAutorityGuid = cls.RentalAutorityGuid,
                 Tell = cls.Tell,
                 TedadTabaqe = cls.TedadTabaqe,
@@ -41,7 +40,6 @@ namespace EntityCache.Mppings
                 TabaqeNo = cls.TabaqeNo,
                 ShortDesc = cls.ShortDesc,
                 CreateDate = cls.CreateDate,
-                RahnPrice2 = cls.RahnPrice2,
                 VahedPerTabaqe = cls.VahedPerTabaqe,
                 DocumentType = cls.DocumentType,
                 Dang = cls.Dang,
@@ -84,7 +82,18 @@ namespace EntityCache.Mppings
                 SheypoorCount = cls.SheypoorCount,
                 DivarCount = cls.DivarCount,
                 DivarTitle = cls.DivarTitle,
-                WhatsAppCount = cls.WhatsAppCount
+                WhatsAppCount = cls.WhatsAppCount,
+                Tabdil = cls.Tabdil,
+                ConstructionStage = cls.ConstructionStage,
+                CommericallLicense = cls.CommericallLicense,
+                BuildingPermits = cls.BuildingPermits,
+                ReformArea = cls.ReformArea,
+                SuitableFor = cls.SuitableFor,
+                TreeCount = cls.TreeCount,
+                VillaType = cls.VillaType,
+                WallCovering = cls.WallCovering,
+                WidthOfPassage = cls.WidthOfPassage,
+                Parent = cls.Parent
             };
         }
         public List<WebBuilding> MapList(List<BuildingBussines> cls)

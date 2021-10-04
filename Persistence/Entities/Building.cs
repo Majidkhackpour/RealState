@@ -29,11 +29,10 @@ namespace Persistence.Entities
         public Guid? DocumentType { get; set; }
         public EnTarakom? Tarakom { get; set; }
         public decimal RahnPrice1 { get; set; }
-        public decimal RahnPrice2 { get; set; }
         public decimal EjarePrice1 { get; set; }
-        public decimal EjarePrice2 { get; set; }
         [ForeignKey("Rental")]
         public Guid? RentalAutorityGuid { get; set; }
+        public bool? Tabdil { get; set; }
         public bool? IsShortTime { get; set; }
         public bool? IsOwnerHere { get; set; }
         public decimal PishTotalPrice { get; set; }
@@ -75,6 +74,9 @@ namespace Persistence.Entities
         public float ErtefaSaqf { get; set; }
         public float Hashie { get; set; }
         public float Lenght { get; set; }
+        public float ReformArea { get; set; }
+        public bool? BuildingPermits { get; set; }
+        public float WidthOfPassage { get; set; }
 
         [MaxLength(30)]
         public string SaleSakht { get; set; }
@@ -99,6 +101,14 @@ namespace Persistence.Entities
         public string Hiting { get; set; }
         [MaxLength(250)]
         public string Colling { get; set; }
+
+        public EnVillaType? VillaType { get; set; }
+        public EnCommericallLicense? CommericallLicense { get; set; }
+        public string SuitableFor { get; set; }
+        public string WallCovering { get; set; }
+        public int TreeCount { get; set; }
+        public EnConstructionStage? ConstructionStage { get; set; }
+        public EnBuildingParent? Parent { get; set; }
         public virtual Peoples Owner { get; set; }
         public virtual Users User { get; set; }
         public virtual RentalAuthority Rental { get; set; }

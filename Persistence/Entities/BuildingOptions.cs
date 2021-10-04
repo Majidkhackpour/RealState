@@ -16,6 +16,7 @@ namespace Persistence.Entities
         public DateTime ServerDeliveryDate { get; set; }
         [MaxLength(500)]
         public string Name { get; set; }
+        public bool IsFullOption { get; set; }
         public virtual ICollection<BuildingRelatedOptions> BuildingRelatedOptions { get; set; }
     }
 }

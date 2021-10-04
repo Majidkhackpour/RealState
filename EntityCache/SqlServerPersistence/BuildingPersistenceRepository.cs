@@ -59,9 +59,7 @@ namespace EntityCache.SqlServerPersistence
                 cmd.Parameters.AddWithValue("@docTypeGuid", item.DocumentType);
                 cmd.Parameters.AddWithValue("@tarakom", item.Tarakom);
                 cmd.Parameters.AddWithValue("@rahnPrice1", item.RahnPrice1);
-                cmd.Parameters.AddWithValue("@rahnPrice2", item.RahnPrice2);
                 cmd.Parameters.AddWithValue("@ejarePrice1", item.EjarePrice1);
-                cmd.Parameters.AddWithValue("@ejarePrice2", item.EjarePrice2);
                 cmd.Parameters.AddWithValue("@rentalGuid", item.RentalAutorityGuid);
                 cmd.Parameters.AddWithValue("@isShortTime", item.IsShortTime);
                 cmd.Parameters.AddWithValue("@isOwnerHere", item.IsOwnerHere);
@@ -119,6 +117,21 @@ namespace EntityCache.SqlServerPersistence
                 cmd.Parameters.AddWithValue("@hitting", item.Hiting ?? "");
                 cmd.Parameters.AddWithValue("@colling", item.Colling ?? "");
                 cmd.Parameters.AddWithValue("@whatsAppCount", item.WhatsAppCount);
+                cmd.Parameters.AddWithValue("@tabdil", item.Tabdil);
+                cmd.Parameters.AddWithValue("@reformArear", item.ReformArea);
+                cmd.Parameters.AddWithValue("@buildingPermits", item.BuildingPermits);
+                cmd.Parameters.AddWithValue("@widthOfPassage", item.WidthOfPassage);
+                if (item.VillaType != null)
+                    cmd.Parameters.AddWithValue("@villaType", (short)item.VillaType);
+                if (item.CommericallLicense != null)
+                    cmd.Parameters.AddWithValue("@commeriacallLicense", (short)item.CommericallLicense);
+                cmd.Parameters.AddWithValue("@suitableFor", item.SuitableFor ?? "");
+                cmd.Parameters.AddWithValue("@wallCovering", item.WallCovering ?? "");
+                cmd.Parameters.AddWithValue("@treeCount", item.TreeCount);
+                if (item.ConstructionStage != null)
+                    cmd.Parameters.AddWithValue("@constructionStage", (short)item.ConstructionStage);
+                if (item.Parent != null)
+                    cmd.Parameters.AddWithValue("@parent", (short)item.Parent);
 
                 await cmd.ExecuteNonQueryAsync();
             }
@@ -397,9 +410,7 @@ namespace EntityCache.SqlServerPersistence
                 var tr = dr["Tarakom"].ToString().ParseToShort();
                 res.Tarakom = (EnTarakom?)tr;
                 res.RahnPrice1 = (decimal)dr["RahnPrice1"];
-                res.RahnPrice2 = (decimal)dr["RahnPrice2"];
                 res.EjarePrice1 = (decimal)dr["EjarePrice1"];
-                res.EjarePrice2 = (decimal)dr["EjarePrice2"];
                 if (dr["RentalAutorityGuid"] != DBNull.Value) res.RentalAutorityGuid = (Guid?)dr["RentalAutorityGuid"];
                 res.IsShortTime = (bool)dr["IsShortTime"];
                 if (dr["IsOwnerHere"] != DBNull.Value) res.IsOwnerHere = (bool)dr["IsOwnerHere"];
@@ -474,6 +485,17 @@ namespace EntityCache.SqlServerPersistence
                 if (dr["Hiting"] != DBNull.Value) res.Hiting = dr["Hiting"].ToString();
                 if (dr["Colling"] != DBNull.Value) res.Colling = dr["Colling"].ToString();
                 if (dr["WhatsAppCount"] != DBNull.Value) res.WhatsAppCount = (int)dr["WhatsAppCount"];
+                if (dr["Tabdil"] != DBNull.Value) res.Tabdil = (bool)dr["Tabdil"];
+                if (dr["ReformArea"] != DBNull.Value) res.ReformArea = (float)dr["ReformArea"];
+                if (dr["BuildingPermits"] != DBNull.Value) res.BuildingPermits = (bool)dr["BuildingPermits"];
+                if (dr["WidthOfPassage"] != DBNull.Value) res.WidthOfPassage = (float)dr["WidthOfPassage"];
+                if (dr["VillaType"] != DBNull.Value) res.VillaType = (EnVillaType)dr["VillaType"];
+                if (dr["CommericallLicense"] != DBNull.Value) res.CommericallLicense = (EnCommericallLicense)dr["CommericallLicense"];
+                if (dr["SuitableFor"] != DBNull.Value) res.SuitableFor = dr["SuitableFor"].ToString();
+                if (dr["WallCovering"] != DBNull.Value) res.WallCovering = dr["WallCovering"].ToString();
+                if (dr["TreeCount"] != DBNull.Value) res.TreeCount = (int)dr["TreeCount"];
+                if (dr["ConstructionStage"] != DBNull.Value) res.ConstructionStage = (EnConstructionStage)dr["ConstructionStage"];
+                if (dr["Parent"] != DBNull.Value) res.Parent = (EnBuildingParent)dr["Parent"];
             }
             catch (Exception ex)
             {

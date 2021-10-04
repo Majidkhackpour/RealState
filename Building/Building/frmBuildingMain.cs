@@ -370,9 +370,7 @@ namespace Building.Building
             try
             {
                 txtRahnPrice1.TextDecimal = cls?.RahnPrice1 ?? 0;
-                txtRahnPrice2.TextDecimal = cls?.RahnPrice2 ?? 0;
                 txtEjarePrice1.TextDecimal = cls?.EjarePrice1 ?? 0;
-                txtEjarePrice2.TextDecimal = cls?.EjarePrice2 ?? 0;
                 txtSellPrice.TextDecimal = cls?.SellPrice ?? 0;
                 txtVamPrice.TextDecimal = cls?.VamPrice ?? 0;
                 txtQestPrice.TextDecimal = cls?.QestPrice ?? 0;
@@ -714,9 +712,7 @@ namespace Building.Building
                 cls.DocumentType = (Guid)cmbSellSanadType.SelectedValue;
                 cls.Tarakom = (EnTarakom)cmbSellTarakom.SelectedIndex;
                 cls.RahnPrice1 = txtRahnPrice1.TextDecimal;
-                cls.RahnPrice2 = txtRahnPrice2.TextDecimal;
                 cls.EjarePrice1 = txtEjarePrice1.TextDecimal;
-                cls.EjarePrice2 = txtEjarePrice2.TextDecimal;
                 cls.RentalAutorityGuid = (Guid)cmbRentalAuthority.SelectedValue;
                 cls.IsShortTime = chbShortRent.Checked;
                 cls.IsOwnerHere = chbOwnerHere.Checked;

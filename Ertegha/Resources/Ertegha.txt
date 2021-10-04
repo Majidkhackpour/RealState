@@ -1287,7 +1287,7 @@ BEGIN
 	end
 	else if(@type=1) --Rahn
 	begin
-		set @count=(select COUNT(*) from Buildings where RahnPrice1>0 or RahnPrice2>0 or EjarePrice1>0 or EjarePrice2>0)
+		set @count=(select COUNT(*) from Buildings where RahnPrice1>0 or EjarePrice1>0)
 		select @count
 		return @count
 	end
@@ -4594,38 +4594,42 @@ GO
 IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_BuildingOption_Save]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
 	exec('Create Procedure [dbo].[sp_BuildingOption_Save]	As Begin print 11 end')  
 GO
-Alter PROCEDURE sp_BuildingOption_Save
+ALTER PROCEDURE [dbo].[sp_BuildingOption_Save]
 	@guid uniqueidentifier,
 	@modif datetime,
 	@st bit,
 	@name nvarchar(250),
 	@serverSt smallint,
-	@serverDate datetime
+	@serverDate datetime,
+	@isFullOption bit='false'
 AS
 BEGIN
-	UPDATE [dbo].[BuildingOptions]
+	UPDATE [dbo].[Buildingoptions]
 	   SET [Modified] = @modif
 		  ,[Status] = @st
 		  ,[Name] = @name
 		  ,[ServerStatus] = @serverSt
 		  ,[ServerDeliveryDate] = @serverDate
+		  ,[IsFullOption] = @isFullOption
 	 WHERE [Guid] = @guid
 	 if @@ROWCOUNT = 0
 	 begin
-		INSERT INTO [dbo].[BuildingOptions]
+		INSERT INTO [dbo].[Buildingoptions]
            ([Guid]
            ,[Modified]
            ,[Status]
            ,[Name]
 		   ,[ServerStatus]
-		   ,[ServerDeliveryDate])
+		   ,[ServerDeliveryDate]
+		   ,[IsFullOption])
 		VALUES
            (@guid
            ,@modif
            ,@st
            ,@name
 		   ,@serverSt
-		   ,@serverDate)
+		   ,@serverDate
+		   ,@isFullOption)
 	 end
 END
 GO
@@ -4672,9 +4676,7 @@ ALTER PROCEDURE [dbo].[sp_Building_Save]
 	@docTypeGuid uniqueidentifier=null,
 	@tarakom smallint=null,
 	@rahnPrice1 decimal,
-	@rahnPrice2 decimal,
 	@ejarePrice1 decimal,
-	@ejarePrice2 decimal,
 	@rentalGuid uniqueidentifier=null,
 	@isShortTime bit=null,
 	@isOwnerHere bit=null,
@@ -4730,7 +4732,18 @@ ALTER PROCEDURE [dbo].[sp_Building_Save]
 	@divarTitle nvarchar(500)='',
 	@hitting nvarchar(250)='',
 	@colling nvarchar(250)='',
-	@whatsAppCount int=0
+	@whatsAppCount int=0,
+	@tabdil bit=null,
+	@reformArear float=0,
+	@buildingPermits bit=null,
+	@widthOfPassage float=0,
+	@villaType smallint=null,
+	@commeriacallLicense smallint=null,
+	@suitableFor nvarchar(max)='',
+	@wallCovering nvarchar(max)='',
+	@treeCount int=0,
+	@constructionStage smallint=null,
+	@parent smallint=null
 AS
 BEGIN
 	UPDATE [dbo].[Buildings]
@@ -4744,9 +4757,7 @@ BEGIN
 		  ,[DocumentType] = @docTypeGuid
 		  ,[Tarakom] = @tarakom
 		  ,[RahnPrice1] = @rahnPrice1
-		  ,[RahnPrice2] = @rahnPrice2
 		  ,[EjarePrice1] = @ejarePrice1
-		  ,[EjarePrice2] = @ejarePrice2
 		  ,[RentalAutorityGuid] = @rentalGuid
 		  ,[IsShortTime] = @isShortTime
 		  ,[IsOwnerHere] = @isOwnerHere
@@ -4801,6 +4812,17 @@ BEGIN
 		  ,[Hiting] = @hitting
 		  ,[Colling] = @colling
 		  ,[WhatsAppCount] = @whatsAppCount
+		  ,[Tabdil] = @tabdil
+		  ,[ReformArea] = @reformArear
+		  ,[BuildingPermits] = @buildingPermits
+		  ,[WidthOfPassage] = @widthOfPassage
+		  ,[VillaType] = @villaType
+		  ,[CommericallLicense] = @commeriacallLicense
+		  ,[SuitableFor] = @suitableFor
+		  ,[WallCovering] = @wallCovering
+		  ,[TreeCount] = @treeCount
+		  ,[ConstructionStage] = @constructionStage
+		  ,[Parent] = @parent
 	 WHERE [Guid] = @guid
 	if @@ROWCOUNT = 0
 	begin
@@ -4816,9 +4838,7 @@ BEGIN
            ,[DocumentType]
            ,[Tarakom]
            ,[RahnPrice1]
-           ,[RahnPrice2]
            ,[EjarePrice1]
-           ,[EjarePrice2]
            ,[RentalAutorityGuid]
            ,[IsShortTime]
            ,[IsOwnerHere]
@@ -4874,7 +4894,18 @@ BEGIN
 		   ,[DivarTitle]
 		   ,[Hiting]
 		   ,[Colling]
-		   ,[WhatsAppCount])
+		   ,[WhatsAppCount]
+		   ,[Tabdil] 
+		   ,[ReformArea] 
+		   ,[BuildingPermits] 
+		   ,[WidthOfPassage] 
+		   ,[VillaType] 
+		   ,[CommericallLicense] 
+		   ,[SuitableFor] 
+		   ,[WallCovering] 
+		   ,[TreeCount] 
+		   ,[ConstructionStage] 
+		   ,[Parent])
 		VALUES
            (@guid
            ,@modif
@@ -4887,9 +4918,7 @@ BEGIN
            ,@docTypeGuid
            ,@tarakom
            ,@rahnPrice1
-           ,@rahnPrice2
            ,@ejarePrice1
-           ,@ejarePrice2
            ,@rentalGuid
            ,@isShortTime
            ,@isOwnerHere
@@ -4945,7 +4974,18 @@ BEGIN
 		   ,@divarTitle
 		   ,@hitting
 		   ,@colling
-		   ,@whatsAppCount)
+		   ,@whatsAppCount
+		   ,@tabdil
+		   ,@reformArear
+		   ,@buildingPermits
+		   ,@widthOfPassage
+		   ,@villaType
+		   ,@commeriacallLicense
+		   ,@suitableFor
+		   ,@wallCovering
+		   ,@treeCount
+		   ,@constructionStage
+		   ,@parent)
 	end
 END
 GO

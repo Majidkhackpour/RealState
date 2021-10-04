@@ -121,6 +121,7 @@ namespace EntityCache.SqlServerPersistence
                 cmd.Parameters.AddWithValue("@modif", item.Modified);
                 cmd.Parameters.AddWithValue("@serverSt", (short)item.ServerStatus);
                 cmd.Parameters.AddWithValue("@serverDate", item.ServerDeliveryDate);
+                cmd.Parameters.AddWithValue("@isFullOption", item.IsFullOption);
 
                 await cmd.ExecuteNonQueryAsync();
             }
@@ -181,6 +182,7 @@ namespace EntityCache.SqlServerPersistence
                 res.ServerDeliveryDate = (DateTime)dr["ServerDeliveryDate"];
                 res.ServerStatus = (ServerStatus)dr["ServerStatus"];
                 res.IsModified = true;
+                if (dr["IsFullOption"] != DBNull.Value) res.IsFullOption = (bool) dr["IsFullOption"];
             }
             catch (Exception ex)
             {

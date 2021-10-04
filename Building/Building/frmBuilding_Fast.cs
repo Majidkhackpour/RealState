@@ -357,10 +357,7 @@ namespace Building.Building
                 cls.Tarakom = (EnTarakom)cmbSellTarakom.SelectedIndex;
                 line = 11;
                 cls.RahnPrice1 = txtRahnPrice1.TextDecimal;
-                cls.RahnPrice2 = 0;
-                line = 12;
                 cls.EjarePrice1 = txtEjarePrice1.TextDecimal;
-                cls.EjarePrice2 = 0;
                 line = 13;
                 cls.RentalAutorityGuid = (Guid)cmbRentalAuthority.SelectedValue;
                 cls.IsShortTime = false;
@@ -703,9 +700,7 @@ namespace Building.Building
                         DocumentType = cls.DocumentType,
                         Tarakom = cls.Tarakom,
                         RahnPrice1 = item.RahnPrice,
-                        RahnPrice2 = 0,
                         EjarePrice1 = item.EjarePrice,
-                        EjarePrice2 = 0,
                         RentalAutorityGuid = cls.RentalAutorityGuid,
                         IsShortTime = cls.IsShortTime,
                         IsOwnerHere = cls.IsOwnerHere,

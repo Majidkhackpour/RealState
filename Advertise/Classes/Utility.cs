@@ -404,7 +404,7 @@ namespace Advertise.Classes
                     return res;
                 }
 
-                if (bu.RahnPrice1 > 0 || bu.RahnPrice2 > 0 || bu.EjarePrice1 > 0 || bu.EjarePrice2 > 0)
+                if (bu.RahnPrice1 > 0 || bu.EjarePrice1 > 0)
                 {
                     if (accType.Name.Contains("مسکونی") && !accType.Name.Contains("زمین"))
                     {

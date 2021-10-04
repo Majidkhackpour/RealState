@@ -40,10 +40,9 @@ namespace EntityCache.Bussines
         public string DocumentTypeName { get; set; }
         public EnTarakom? Tarakom { get; set; }
         public decimal RahnPrice1 { get; set; }
-        public decimal RahnPrice2 { get; set; }
         public decimal EjarePrice1 { get; set; }
-        public decimal EjarePrice2 { get; set; }
         public Guid? RentalAutorityGuid { get; set; }
+        public bool? Tabdil { get; set; }
         public string RentalAuthorityName { get; set; }
         public bool? IsShortTime { get; set; }
         public bool? IsOwnerHere { get; set; }
@@ -90,6 +89,9 @@ namespace EntityCache.Bussines
         public float ErtefaSaqf { get; set; }
         public float Hashie { get; set; }
         public float Lenght { get; set; }
+        public float ReformArea { get; set; }
+        public bool? BuildingPermits { get; set; }
+        public float WidthOfPassage { get; set; }
         public string SaleSakht { get; set; }
         public string DateParvane { get; set; }
         public string ParvaneSerial { get; set; }
@@ -108,6 +110,13 @@ namespace EntityCache.Bussines
         public string DivarTitle { get; set; } = "";
         public string Hiting { get; set; }
         public string Colling { get; set; }
+        public EnVillaType? VillaType { get; set; }
+        public EnCommericallLicense? CommericallLicense { get; set; }
+        public string SuitableFor { get; set; }
+        public string WallCovering { get; set; }
+        public int TreeCount { get; set; }
+        public EnConstructionStage? ConstructionStage { get; set; }
+        public EnBuildingParent? Parent { get; set; }
         public bool IsModified { get; set; } = false;
         public List<BuildingRelatedOptionsBussines> OptionList { get; set; }
         public List<BuildingGalleryBussines> GalleryList { get; set; }
@@ -334,10 +343,10 @@ namespace EntityCache.Bussines
                 {
                     if (token.IsCancellationRequested) return null;
                     if (filter.FirstPrice1 != 0) res = res.Where(q => q.RahnPrice1 >= filter.FirstPrice1);
-                    if (filter.FirstPrice2 != 0) res = res.Where(q => q.RahnPrice2 <= filter.FirstPrice2);
+                    if (filter.FirstPrice2 != 0) res = res.Where(q => q.RahnPrice1 <= filter.FirstPrice2);
                     if (token.IsCancellationRequested) return null;
                     if (filter.LastPrice1 != 0) res = res.Where(q => q.EjarePrice1 >= filter.LastPrice1);
-                    if (filter.LastPrice2 != 0) res = res.Where(q => q.EjarePrice2 <= filter.LastPrice2);
+                    if (filter.LastPrice2 != 0) res = res.Where(q => q.EjarePrice1 <= filter.LastPrice2);
                     res = res.Where(q => q.SellPrice <= 0);
                 }
                 else
@@ -375,9 +384,9 @@ namespace EntityCache.Bussines
                     {
                         a.Price1 = item.RahnPrice1;
                         a.Price2 = item.EjarePrice1;
-                        if (item.RahnPrice2 != 0) a.Tabdil = item.RahnPrice2.ToString("N0") + " ودیعه";
-                        if (item.EjarePrice2 != 0) a.Tabdil = $"{a.Tabdil} {item.EjarePrice2:N0} اجاره";
-                        if (item.RahnPrice2 == 0 && item.EjarePrice2 == 0) a.Tabdil = "غیرقابل تبدیل";
+                        if (item.RahnPrice1 != 0) a.Tabdil = item.RahnPrice1.ToString("N0") + " ودیعه";
+                        if (item.EjarePrice1 != 0) a.Tabdil = $"{a.Tabdil} {item.EjarePrice1:N0} اجاره";
+                        if (item.Tabdil != null && item.Tabdil == false) a.Tabdil = "غیرقابل تبدیل";
                         a.Type = EnRequestType.Rahn;
                     }
                     else
@@ -411,7 +420,7 @@ namespace EntityCache.Bussines
                 if (string.IsNullOrWhiteSpace(Code)) res.AddError("کد ملک نمی تواند خالی باشد");
                 if (!await CheckCodeAsync(Code.Trim(), Guid)) res.AddError("کد ملک وارد شده تکراری است");
                 if (OwnerGuid == Guid.Empty) res.AddError("لطفا مالک را انتخاب نمایید");
-                if (RahnPrice1 == 0 && RahnPrice2 == 0 && EjarePrice1 == 0 && EjarePrice2 == 0 && SellPrice == 0 && PishTotalPrice == 0)
+                if (RahnPrice1 == 0 && EjarePrice1 == 0 && SellPrice == 0 && PishTotalPrice == 0)
                     res.AddError("لطفا یکی از فیلدهای مبلغ را وارد نمایید");
 
                 if (ZirBana == 0 && Masahat == 0) res.AddError("لطفا مساحت و زیربنا را وارد نمایید");
