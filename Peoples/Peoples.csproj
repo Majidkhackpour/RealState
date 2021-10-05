@@ -177,6 +177,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="UcPeopleSelect.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UcPeopleSelect.Designer.cs">
+      <DependentUpon>UcPeopleSelect.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -204,6 +210,9 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UcPeopleSelect.resx">
+      <DependentUpon>UcPeopleSelect.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

@@ -499,6 +499,12 @@
     <Compile Include="BuildingView\frmShowBuildingView.Designer.cs">
       <DependentUpon>frmShowBuildingView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Building\frmBuilding.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Building\frmBuilding.Designer.cs">
+      <DependentUpon>frmBuilding.cs</DependentUpon>
+    </Compile>
     <Compile Include="Building\frmBuildingAdvanceSearch.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -767,6 +773,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="BuildingView\frmShowBuildingView.resx">
       <DependentUpon>frmShowBuildingView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Building\frmBuilding.resx">
+      <DependentUpon>frmBuilding.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Building\frmBuildingAdvanceSearch.resx">
       <DependentUpon>frmBuildingAdvanceSearch.cs</DependentUpon>
