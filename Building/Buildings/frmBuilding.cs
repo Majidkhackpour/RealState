@@ -40,6 +40,8 @@ namespace Building.Buildings
                 UcHitting_Colling.Colling = cls.Colling;
 
                 UcOptions.OptionList = cls.OptionList;
+
+                txtShortDesc.Text = cls.ShortDesc;
             }
             catch (Exception ex)
             {

@@ -36,19 +36,19 @@ namespace Building.UserControls
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupPanel1 = new DevComponents.DotNetBar.Controls.GroupPanel();
-            this.BuildingOptionBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.DGrid = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.chbFullOption = new DevComponents.DotNetBar.Controls.CheckBoxX();
             this.txtSearch = new DevComponents.DotNetBar.Controls.TextBoxX();
+            this.chbFullOption = new DevComponents.DotNetBar.Controls.CheckBoxX();
+            this.DGrid = new DevComponents.DotNetBar.Controls.DataGridViewX();
             this.dgChecked = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgOptionGuid = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.modifiedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.statusDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.dgIsFullOption = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.BuildingOptionBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.groupPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.BuildingOptionBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BuildingOptionBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // groupPanel1
@@ -95,9 +95,41 @@ namespace Building.UserControls
             this.groupPanel1.TabIndex = 9;
             this.groupPanel1.Text = "امکانات و تجهیرات";
             // 
-            // BuildingOptionBindingSource
+            // txtSearch
             // 
-            this.BuildingOptionBindingSource.DataSource = typeof(EntityCache.Bussines.BuildingOptionsBussines);
+            this.txtSearch.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            // 
+            // 
+            // 
+            this.txtSearch.Border.Class = "TextBoxBorder";
+            this.txtSearch.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.txtSearch.Location = new System.Drawing.Point(102, 3);
+            this.txtSearch.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtSearch.Name = "txtSearch";
+            this.txtSearch.PreventEnterBeep = true;
+            this.txtSearch.Size = new System.Drawing.Size(312, 27);
+            this.txtSearch.TabIndex = 55734;
+            this.txtSearch.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtSearch.WatermarkText = "مورد جستجو را وارد نمایید ...";
+            this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
+            // 
+            // chbFullOption
+            // 
+            this.chbFullOption.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.chbFullOption.BackColor = System.Drawing.Color.Transparent;
+            // 
+            // 
+            // 
+            this.chbFullOption.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.chbFullOption.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.chbFullOption.Location = new System.Drawing.Point(420, 3);
+            this.chbFullOption.Name = "chbFullOption";
+            this.chbFullOption.Size = new System.Drawing.Size(108, 23);
+            this.chbFullOption.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.chbFullOption.TabIndex = 55733;
+            this.chbFullOption.Text = "فول امکانات";
+            this.chbFullOption.CheckedChanged += new System.EventHandler(this.chbFullOption_CheckedChanged);
             // 
             // DGrid
             // 
@@ -164,44 +196,8 @@ namespace Building.UserControls
             this.DGrid.RowsDefaultCellStyle = dataGridViewCellStyle5;
             this.DGrid.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             this.DGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DGrid.Size = new System.Drawing.Size(528, 209);
+            this.DGrid.Size = new System.Drawing.Size(528, 216);
             this.DGrid.TabIndex = 55732;
-            // 
-            // chbFullOption
-            // 
-            this.chbFullOption.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.chbFullOption.BackColor = System.Drawing.Color.Transparent;
-            // 
-            // 
-            // 
-            this.chbFullOption.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.chbFullOption.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.chbFullOption.Location = new System.Drawing.Point(420, 3);
-            this.chbFullOption.Name = "chbFullOption";
-            this.chbFullOption.Size = new System.Drawing.Size(108, 23);
-            this.chbFullOption.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.chbFullOption.TabIndex = 55733;
-            this.chbFullOption.Text = "فول امکانات";
-            this.chbFullOption.CheckedChanged += new System.EventHandler(this.chbFullOption_CheckedChanged);
-            // 
-            // txtSearch
-            // 
-            this.txtSearch.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            // 
-            // 
-            // 
-            this.txtSearch.Border.Class = "TextBoxBorder";
-            this.txtSearch.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.txtSearch.Location = new System.Drawing.Point(102, 3);
-            this.txtSearch.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.txtSearch.Name = "txtSearch";
-            this.txtSearch.PreventEnterBeep = true;
-            this.txtSearch.Size = new System.Drawing.Size(312, 27);
-            this.txtSearch.TabIndex = 55734;
-            this.txtSearch.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtSearch.WatermarkText = "مورد جستجو را وارد نمایید ...";
-            this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
             // 
             // dgChecked
             // 
@@ -246,6 +242,10 @@ namespace Building.UserControls
             this.dgIsFullOption.Name = "dgIsFullOption";
             this.dgIsFullOption.Visible = false;
             // 
+            // BuildingOptionBindingSource
+            // 
+            this.BuildingOptionBindingSource.DataSource = typeof(EntityCache.Bussines.BuildingOptionsBussines);
+            // 
             // UcBuildingOptions
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -257,8 +257,8 @@ namespace Building.UserControls
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.Size = new System.Drawing.Size(537, 273);
             this.groupPanel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.BuildingOptionBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BuildingOptionBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
