@@ -731,6 +731,12 @@
     <Compile Include="UserControls\Objects\UcZirBana.Designer.cs">
       <DependentUpon>UcZirBana.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\Sell\UcBuildingSell_Appartment.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Sell\UcBuildingSell_Appartment.Designer.cs">
+      <DependentUpon>UcBuildingSell_Appartment.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\UcBuildingCode.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -991,6 +997,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\Objects\UcZirBana.resx">
       <DependentUpon>UcZirBana.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Sell\UcBuildingSell_Appartment.resx">
+      <DependentUpon>UcBuildingSell_Appartment.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UcBuildingCode.resx">
       <DependentUpon>UcBuildingCode.cs</DependentUpon>
