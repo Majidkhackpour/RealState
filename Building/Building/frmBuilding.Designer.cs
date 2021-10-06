@@ -1,4 +1,5 @@
 ﻿
+using Building.UserControls;
 using Cities;
 using Peoples;
 
@@ -35,8 +36,9 @@ namespace Building.Building
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmBuilding));
             this.UcPeople = new Peoples.UcPeopleSelect();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.lblTitle = new System.Windows.Forms.Label();
+            this.UcBuildingCode = new UserControls.UcBuildingCode();
             this.UcCity = new Cities.UcCitySelect();
+            this.lblTitle = new System.Windows.Forms.Label();
             this.btnCancel = new DevComponents.DotNetBar.ButtonX();
             this.btnFinish = new DevComponents.DotNetBar.ButtonX();
             this.panel1.SuspendLayout();
@@ -62,6 +64,7 @@ namespace Building.Building
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.AutoScroll = true;
+            this.panel1.Controls.Add(this.UcBuildingCode);
             this.panel1.Controls.Add(this.UcCity);
             this.panel1.Controls.Add(this.UcPeople);
             this.panel1.Location = new System.Drawing.Point(4, 47);
@@ -69,17 +72,21 @@ namespace Building.Building
             this.panel1.Size = new System.Drawing.Size(791, 508);
             this.panel1.TabIndex = 2;
             // 
-            // lblTitle
+            // UcBuildingCode
             // 
-            this.lblTitle.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.UcBuildingCode.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblTitle.BackColor = System.Drawing.Color.Transparent;
-            this.lblTitle.Font = new System.Drawing.Font("B Yekan", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.lblTitle.Location = new System.Drawing.Point(4, 8);
-            this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(791, 30);
-            this.lblTitle.TabIndex = 55799;
-            this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.UcBuildingCode.BackColor = System.Drawing.Color.Transparent;
+            this.UcBuildingCode.Code = "3648";
+            this.UcBuildingCode.CreateDate = new System.DateTime(2021, 10, 6, 0, 0, 0, 0);
+            this.UcBuildingCode.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.UcBuildingCode.Location = new System.Drawing.Point(8, 317);
+            this.UcBuildingCode.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.UcBuildingCode.Name = "UcBuildingCode";
+            this.UcBuildingCode.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.UcBuildingCode.Size = new System.Drawing.Size(775, 43);
+            this.UcBuildingCode.TabIndex = 2;
+            this.UcBuildingCode.UserGuid = new System.Guid("00000000-0000-0000-0000-000000000000");
             // 
             // UcCity
             // 
@@ -92,11 +99,23 @@ namespace Building.Building
             this.UcCity.Location = new System.Drawing.Point(8, 146);
             this.UcCity.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.UcCity.Name = "UcCity";
-            this.UcCity.RegionGuid = new System.Guid("8885f4e3-a65c-4f3c-9201-c0ba95bf4141");
+            this.UcCity.RegionGuid = new System.Guid("b5f70143-1686-4c10-9504-b3aa518391f5");
             this.UcCity.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.UcCity.Size = new System.Drawing.Size(775, 167);
             this.UcCity.StateGuid = new System.Guid("c22580f8-619c-4eca-a4f2-09b662caf6bb");
             this.UcCity.TabIndex = 1;
+            // 
+            // lblTitle
+            // 
+            this.lblTitle.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblTitle.BackColor = System.Drawing.Color.Transparent;
+            this.lblTitle.Font = new System.Drawing.Font("B Yekan", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.lblTitle.Location = new System.Drawing.Point(4, 8);
+            this.lblTitle.Name = "lblTitle";
+            this.lblTitle.Size = new System.Drawing.Size(791, 30);
+            this.lblTitle.TabIndex = 55799;
+            this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // btnCancel
             // 
@@ -168,5 +187,6 @@ namespace Building.Building
         private UcCitySelect UcCity;
         private DevComponents.DotNetBar.ButtonX btnCancel;
         private DevComponents.DotNetBar.ButtonX btnFinish;
+        private UcBuildingCode UcBuildingCode;
     }
 }
