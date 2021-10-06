@@ -659,6 +659,18 @@
     <Compile Include="RentalAuthority\frmShowRentalAuthority.Designer.cs">
       <DependentUpon>frmShowRentalAuthority.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\Objects\UcRoomCount.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Objects\UcRoomCount.Designer.cs">
+      <DependentUpon>UcRoomCount.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Objects\UcZirBana.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Objects\UcZirBana.Designer.cs">
+      <DependentUpon>UcZirBana.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\UcBuildingCode.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -883,6 +895,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="RentalAuthority\frmShowRentalAuthority.resx">
       <DependentUpon>frmShowRentalAuthority.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Objects\UcRoomCount.resx">
+      <DependentUpon>UcRoomCount.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Objects\UcZirBana.resx">
+      <DependentUpon>UcZirBana.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UcBuildingCode.resx">
       <DependentUpon>UcBuildingCode.cs</DependentUpon>
