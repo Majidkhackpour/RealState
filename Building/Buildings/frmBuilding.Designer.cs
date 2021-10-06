@@ -36,9 +36,9 @@ namespace Building.Buildings
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmBuilding));
             this.UcPeople = new Peoples.UcPeopleSelect();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.ucCitySelect1 = new Building.UserControls.UcBuildingHitting();
+            this.UcHitting_Colling = new Building.UserControls.UcBuildingHitting();
             this.groupPanel1 = new DevComponents.DotNetBar.Controls.GroupPanel();
-            this.UcCode = new UcBuildingCode();
+            this.UcCode = new Building.UserControls.UcBuildingCode();
             this.UcCity = new Cities.UcCitySelect();
             this.lblTitle = new System.Windows.Forms.Label();
             this.btnCancel = new DevComponents.DotNetBar.ButtonX();
@@ -66,7 +66,7 @@ namespace Building.Buildings
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.AutoScroll = true;
-            this.panel1.Controls.Add(this.ucCitySelect1);
+            this.panel1.Controls.Add(this.UcHitting_Colling);
             this.panel1.Controls.Add(this.groupPanel1);
             this.panel1.Controls.Add(this.UcCode);
             this.panel1.Controls.Add(this.UcCity);
@@ -78,18 +78,18 @@ namespace Building.Buildings
             // 
             // ucCitySelect1
             // 
-            this.ucCitySelect1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.UcHitting_Colling.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.ucCitySelect1.BackColor = System.Drawing.Color.Transparent;
-            this.ucCitySelect1.Colling = "";
-            this.ucCitySelect1.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.ucCitySelect1.Hitting = "";
-            this.ucCitySelect1.Location = new System.Drawing.Point(8, 634);
-            this.ucCitySelect1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.ucCitySelect1.Name = "ucCitySelect1";
-            this.ucCitySelect1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.ucCitySelect1.Size = new System.Drawing.Size(758, 47);
-            this.ucCitySelect1.TabIndex = 3;
+            this.UcHitting_Colling.BackColor = System.Drawing.Color.Transparent;
+            this.UcHitting_Colling.Colling = "";
+            this.UcHitting_Colling.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.UcHitting_Colling.Hitting = "";
+            this.UcHitting_Colling.Location = new System.Drawing.Point(8, 634);
+            this.UcHitting_Colling.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.UcHitting_Colling.Name = "ucCitySelect1";
+            this.UcHitting_Colling.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.UcHitting_Colling.Size = new System.Drawing.Size(758, 47);
+            this.UcHitting_Colling.TabIndex = 3;
             // 
             // groupPanel1
             // 
@@ -249,6 +249,6 @@ namespace Building.Buildings
         private DevComponents.DotNetBar.ButtonX btnFinish;
         private UcBuildingCode UcCode;
         private DevComponents.DotNetBar.Controls.GroupPanel groupPanel1;
-        private UcBuildingHitting ucCitySelect1;
+        private UcBuildingHitting UcHitting_Colling;
     }
 }

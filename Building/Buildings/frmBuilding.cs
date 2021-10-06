@@ -31,6 +31,13 @@ namespace Building.Buildings
                 UcCode.CreateDate = cls.CreateDate;
                 UcCode.Pirority = cls.Priority;
                 UcCode.UserGuid = cls.UserGuid;
+
+                UcHitting_Colling.Barq = cls.Barq;
+                UcHitting_Colling.Water = cls.Water;
+                UcHitting_Colling.Gas = cls.Gas;
+                UcHitting_Colling.Tell = cls.Tell;
+                UcHitting_Colling.Hitting = cls.Hiting;
+                UcHitting_Colling.Colling = cls.Colling;
             }
             catch (Exception ex)
             {
