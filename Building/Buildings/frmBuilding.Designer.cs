@@ -37,6 +37,7 @@ namespace Building.Buildings
             this.UcPeople = new Peoples.UcPeopleSelect();
             this.panel1 = new System.Windows.Forms.Panel();
             this.groupPanel2 = new DevComponents.DotNetBar.Controls.GroupPanel();
+            this.txtShortDesc = new System.Windows.Forms.TextBox();
             this.UcOptions = new Building.UserControls.UcBuildingOptions();
             this.UcHitting_Colling = new Building.UserControls.UcBuildingHitting();
             this.groupPanel1 = new DevComponents.DotNetBar.Controls.GroupPanel();
@@ -45,9 +46,10 @@ namespace Building.Buildings
             this.lblTitle = new System.Windows.Forms.Label();
             this.btnCancel = new DevComponents.DotNetBar.ButtonX();
             this.btnFinish = new DevComponents.DotNetBar.ButtonX();
-            this.txtShortDesc = new System.Windows.Forms.TextBox();
+            this.pnlContent = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             this.groupPanel2.SuspendLayout();
+            this.groupPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // UcPeople
@@ -123,6 +125,16 @@ namespace Building.Buildings
             this.groupPanel2.TabIndex = 5;
             this.groupPanel2.Text = "توضیحات تکمیلی";
             // 
+            // txtShortDesc
+            // 
+            this.txtShortDesc.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtShortDesc.Location = new System.Drawing.Point(0, 0);
+            this.txtShortDesc.Multiline = true;
+            this.txtShortDesc.Name = "txtShortDesc";
+            this.txtShortDesc.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtShortDesc.Size = new System.Drawing.Size(348, 272);
+            this.txtShortDesc.TabIndex = 5;
+            // 
             // UcOptions
             // 
             this.UcOptions.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -157,6 +169,7 @@ namespace Building.Buildings
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupPanel1.CanvasColor = System.Drawing.SystemColors.Control;
             this.groupPanel1.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
+            this.groupPanel1.Controls.Add(this.pnlContent);
             this.groupPanel1.DisabledBackColor = System.Drawing.Color.Empty;
             this.groupPanel1.Location = new System.Drawing.Point(8, 304);
             this.groupPanel1.Name = "groupPanel1";
@@ -275,15 +288,14 @@ namespace Building.Buildings
             this.btnFinish.Text = "تایید (F5)";
             this.btnFinish.TextColor = System.Drawing.Color.Black;
             // 
-            // txtShortDesc
+            // pnlContent
             // 
-            this.txtShortDesc.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtShortDesc.Location = new System.Drawing.Point(0, 0);
-            this.txtShortDesc.Multiline = true;
-            this.txtShortDesc.Name = "txtShortDesc";
-            this.txtShortDesc.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtShortDesc.Size = new System.Drawing.Size(348, 272);
-            this.txtShortDesc.TabIndex = 5;
+            this.pnlContent.AutoScroll = true;
+            this.pnlContent.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlContent.Location = new System.Drawing.Point(0, 0);
+            this.pnlContent.Name = "pnlContent";
+            this.pnlContent.Size = new System.Drawing.Size(752, 256);
+            this.pnlContent.TabIndex = 0;
             // 
             // frmBuilding
             // 
@@ -308,6 +320,7 @@ namespace Building.Buildings
             this.panel1.ResumeLayout(false);
             this.groupPanel2.ResumeLayout(false);
             this.groupPanel2.PerformLayout();
+            this.groupPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -325,5 +338,6 @@ namespace Building.Buildings
         private UcBuildingOptions UcOptions;
         private DevComponents.DotNetBar.Controls.GroupPanel groupPanel2;
         private System.Windows.Forms.TextBox txtShortDesc;
+        private System.Windows.Forms.Panel pnlContent;
     }
 }

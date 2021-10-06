@@ -9,7 +9,16 @@ namespace Building.UserControls.Objects
 {
     public partial class UcDocumentType : UserControl
     {
-        public Guid? SanadTypeGuid { get => (Guid?)cmbSellSanadType.SelectedValue; set => cmbSellSanadType.SelectedValue = value; }
+        public Guid? SanadTypeGuid
+        {
+            get => (Guid?) cmbSellSanadType.SelectedValue;
+            set
+            {
+                if (value == null) return;
+                cmbSellSanadType.SelectedValue = value;
+            }
+        }
+
         public UcDocumentType()
         {
             InitializeComponent();

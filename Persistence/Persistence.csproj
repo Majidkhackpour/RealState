@@ -537,6 +537,10 @@
     <Compile Include="Migrations\202110041654121__104.designer.cs">
       <DependentUpon>202110041654121__104.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202110061702419__105.cs" />
+    <Compile Include="Migrations\202110061702419__105.designer.cs">
+      <DependentUpon>202110061702419__105.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\ModelContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -863,6 +867,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202110041654121__104.resx">
       <DependentUpon>202110041654121__104.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202110061702419__105.resx">
+      <DependentUpon>202110061702419__105.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Building.UserControls.Sell;
 using EntityCache.Bussines;
 using MetroFramework.Forms;
 using Services;
@@ -42,6 +43,97 @@ namespace Building.Buildings
                 UcOptions.OptionList = cls.OptionList;
 
                 txtShortDesc.Text = cls.ShortDesc;
+
+                GetContent();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private void GetContent()
+        {
+            try
+            {
+                UserControl uc = null;
+                switch (parent)
+                {
+                    case EnBuildingParent.SellAprtment:
+                        uc = new UcBuildingSell_Appartment() { Building = cls };
+                        break;
+                    case EnBuildingParent.SellHome:
+                        break;
+                    case EnBuildingParent.SellLand:
+                        break;
+                    case EnBuildingParent.SellVilla:
+                        break;
+                    case EnBuildingParent.SellStore:
+                        break;
+                    case EnBuildingParent.SellOffice:
+                        break;
+                    case EnBuildingParent.SellGarden:
+                        break;
+                    case EnBuildingParent.SellOldHouse:
+                        break;
+                    case EnBuildingParent.RentAprtment:
+                        break;
+                    case EnBuildingParent.RentHome:
+                        break;
+                    case EnBuildingParent.RentStore:
+                        break;
+                    case EnBuildingParent.RentOffice:
+                        break;
+                    case EnBuildingParent.FullRentAprtment:
+                        break;
+                    case EnBuildingParent.FullRentHome:
+                        break;
+                    case EnBuildingParent.FullRentStore:
+                        break;
+                    case EnBuildingParent.FullRentOffice:
+                        break;
+                    case EnBuildingParent.PreSellAprtment:
+                        break;
+                    case EnBuildingParent.PreSellHome:
+                        break;
+                    case EnBuildingParent.PreSellStore:
+                        break;
+                    case EnBuildingParent.PreSellOffice:
+                        break;
+                    case EnBuildingParent.MoavezeAprtment:
+                        break;
+                    case EnBuildingParent.MoavezeHome:
+                        break;
+                    case EnBuildingParent.MoavezeStore:
+                        break;
+                    case EnBuildingParent.MoavezeOffice:
+                        break;
+                    case EnBuildingParent.MosharekatAprtment:
+                        break;
+                    case EnBuildingParent.MosharekatHome:
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
+
+                if (uc != null)
+                    LoadContent(uc);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private void LoadContent(UserControl uc)
+        {
+            try
+            {
+                pnlContent.AutoScroll = true;
+                for (var i = pnlContent.Controls.Count - 1; i >= 0; i--)
+                    pnlContent.Controls[i].Dispose();
+
+                Controls.Add(uc);
+                uc.Dock = DockStyle.Fill;
+                pnlContent.Controls.Add(uc);
             }
             catch (Exception ex)
             {
