@@ -64,7 +64,7 @@ namespace Cities
             this.groupPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupPanel1.Location = new System.Drawing.Point(0, 0);
             this.groupPanel1.Name = "groupPanel1";
-            this.groupPanel1.Size = new System.Drawing.Size(709, 169);
+            this.groupPanel1.Size = new System.Drawing.Size(709, 108);
             // 
             // 
             // 
@@ -102,10 +102,9 @@ namespace Cities
             this.txtAddress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtAddress.Location = new System.Drawing.Point(4, 45);
-            this.txtAddress.Multiline = true;
             this.txtAddress.Name = "txtAddress";
             this.txtAddress.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtAddress.Size = new System.Drawing.Size(646, 90);
+            this.txtAddress.Size = new System.Drawing.Size(646, 27);
             this.txtAddress.TabIndex = 67;
             // 
             // cmbRegion
@@ -219,7 +218,7 @@ namespace Cities
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "UcCitySelect";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.Size = new System.Drawing.Size(709, 169);
+            this.Size = new System.Drawing.Size(709, 108);
             this.groupPanel1.ResumeLayout(false);
             this.groupPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.RegionBindingSource)).EndInit();

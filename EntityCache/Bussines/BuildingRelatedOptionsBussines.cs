@@ -12,7 +12,7 @@ using WebHesabBussines;
 
 namespace EntityCache.Bussines
 {
-    public class BuildingRelatedOptionsBussines : IBuildingRelatedOptions
+    public class BuildingRelatedOptionsBussines : Serializable<BuildingRelatedOptionsBussines>, IBuildingRelatedOptions
     {
         public Guid Guid { get; set; }
         public Guid BuildinGuid { get; set; }
@@ -25,7 +25,7 @@ namespace EntityCache.Bussines
 
 
         public static async Task<List<BuildingRelatedOptionsBussines>> GetAllAsync(Guid parentGuid) =>
-            await UnitOfWork.BuildingRelatedOptions.GetAllAsync(Cache.ConnectionString,parentGuid);
+            await UnitOfWork.BuildingRelatedOptions.GetAllAsync(Cache.ConnectionString, parentGuid);
         public static List<BuildingRelatedOptionsBussines> GetAll(Guid parentGuid) =>
             AsyncContext.Run(() => GetAllAsync(parentGuid));
         public static async Task<BuildingRelatedOptionsBussines> GetAsync(Guid guid) =>

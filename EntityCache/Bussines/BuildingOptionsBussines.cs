@@ -218,6 +218,8 @@ namespace EntityCache.Bussines
                 return new List<BuildingOptionsBussines>();
             }
         }
+        public static List<BuildingOptionsBussines> GetAll(string search, CancellationToken token = default) => AsyncContext.Run(() => GetAllAsync(search, token));
+        public static List<BuildingOptionsBussines> GetAll(CancellationToken token = default) => AsyncContext.Run(() => GetAllAsync(token));
         public static BuildingOptionsBussines Get(Guid guid) => AsyncContext.Run(() => GetAsync(guid));
         public static async Task<bool> CheckNameAsync(string name, Guid guid) =>
             await UnitOfWork.BuildingOption.CheckNameAsync(Cache.ConnectionString, name, guid);

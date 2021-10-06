@@ -38,6 +38,8 @@ namespace Building.Buildings
                 UcHitting_Colling.Tell = cls.Tell;
                 UcHitting_Colling.Hitting = cls.Hiting;
                 UcHitting_Colling.Colling = cls.Colling;
+
+                UcOptions.OptionList = cls.OptionList;
             }
             catch (Exception ex)
             {
