@@ -49,8 +49,8 @@ namespace Persistence.Entities
         public Guid RegionGuid { get; set; }
         public string Address { get; set; }
         [ForeignKey("Condition")]
-        public Guid BuildingConditionGuid { get; set; }
-        public EnBuildingSide Side { get; set; }
+        public Guid? BuildingConditionGuid { get; set; }
+        public EnBuildingSide? Side { get; set; }
         [ForeignKey("BType")]
         public Guid BuildingTypeGuid { get; set; }
         public string ShortDesc { get; set; }
@@ -58,11 +58,11 @@ namespace Persistence.Entities
         public Guid BuildingAccountTypeGuid { get; set; }
         public float MetrazhTejari { get; set; }
         [ForeignKey("BView")]
-        public Guid BuildingViewGuid { get; set; }
+        public Guid? BuildingViewGuid { get; set; }
         [ForeignKey("FloorCover")]
-        public Guid FloorCoverGuid { get; set; }
+        public Guid? FloorCoverGuid { get; set; }
         [ForeignKey("KitchenService")]
-        public Guid KitchenServiceGuid { get; set; }
+        public Guid? KitchenServiceGuid { get; set; }
         public EnKhadamati Water { get; set; }
         public EnKhadamati Barq { get; set; }
         public EnKhadamati Gas { get; set; }

@@ -659,17 +659,47 @@
     <Compile Include="RentalAuthority\frmShowRentalAuthority.Designer.cs">
       <DependentUpon>frmShowRentalAuthority.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\Objects\UcBuildingCondition.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Objects\UcBuildingCondition.Designer.cs">
+      <DependentUpon>UcBuildingCondition.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Objects\UcBuildingView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Objects\UcBuildingView.Designer.cs">
+      <DependentUpon>UcBuildingView.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\Objects\UcDocumentType.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="UserControls\Objects\UcDocumentType.Designer.cs">
       <DependentUpon>UcDocumentType.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\Objects\UcFloorCover.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Objects\UcFloorCover.Designer.cs">
+      <DependentUpon>UcFloorCover.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Objects\UcKitchenService.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Objects\UcKitchenService.Designer.cs">
+      <DependentUpon>UcKitchenService.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\Objects\UcNumericTitleValue.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="UserControls\Objects\UcNumericTitleValue.Designer.cs">
       <DependentUpon>UcNumericTitleValue.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Objects\UcPrice.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Objects\UcPrice.Designer.cs">
+      <DependentUpon>UcPrice.cs</DependentUpon>
     </Compile>
     <Compile Include="UserControls\Objects\UcRoomCount.cs">
       <SubType>UserControl</SubType>
@@ -682,6 +712,18 @@
     </Compile>
     <Compile Include="UserControls\Objects\UcSaleSakht.Designer.cs">
       <DependentUpon>UcSaleSakht.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Objects\UcSide.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Objects\UcSide.Designer.cs">
+      <DependentUpon>UcSide.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Objects\UcTabaqeNo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Objects\UcTabaqeNo.Designer.cs">
+      <DependentUpon>UcTabaqeNo.cs</DependentUpon>
     </Compile>
     <Compile Include="UserControls\Objects\UcZirBana.cs">
       <SubType>UserControl</SubType>
@@ -914,17 +956,38 @@
     <EmbeddedResource Include="RentalAuthority\frmShowRentalAuthority.resx">
       <DependentUpon>frmShowRentalAuthority.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Objects\UcBuildingCondition.resx">
+      <DependentUpon>UcBuildingCondition.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Objects\UcBuildingView.resx">
+      <DependentUpon>UcBuildingView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserControls\Objects\UcDocumentType.resx">
       <DependentUpon>UcDocumentType.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Objects\UcFloorCover.resx">
+      <DependentUpon>UcFloorCover.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Objects\UcKitchenService.resx">
+      <DependentUpon>UcKitchenService.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserControls\Objects\UcNumericTitleValue.resx">
       <DependentUpon>UcNumericTitleValue.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Objects\UcPrice.resx">
+      <DependentUpon>UcPrice.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\Objects\UcRoomCount.resx">
       <DependentUpon>UcRoomCount.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\Objects\UcSaleSakht.resx">
       <DependentUpon>UcSaleSakht.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Objects\UcSide.resx">
+      <DependentUpon>UcSide.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Objects\UcTabaqeNo.resx">
+      <DependentUpon>UcTabaqeNo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\Objects\UcZirBana.resx">
       <DependentUpon>UcZirBana.cs</DependentUpon>

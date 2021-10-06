@@ -58,9 +58,9 @@ namespace EntityCache.Bussines
         public Guid RegionGuid { get; set; }
         public string RegionName { get; set; }
         public string Address { get; set; }
-        public Guid BuildingConditionGuid { get; set; }
+        public Guid? BuildingConditionGuid { get; set; }
         public string BuildingConditionName { get; set; }
-        public EnBuildingSide Side { get; set; }
+        public EnBuildingSide? Side { get; set; }
         public string SideName => Side.GetDisplay();
         public Guid BuildingTypeGuid { get; set; }
         public string BuildingTypeName { get; set; }
@@ -68,11 +68,11 @@ namespace EntityCache.Bussines
         public Guid BuildingAccountTypeGuid { get; set; }
         public string BuildingAccountTypeName { get; set; }
         public float MetrazhTejari { get; set; }
-        public Guid BuildingViewGuid { get; set; }
+        public Guid? BuildingViewGuid { get; set; }
         public string BuildingViewName { get; set; }
-        public Guid FloorCoverGuid { get; set; }
+        public Guid? FloorCoverGuid { get; set; }
         public string FloorCoverName { get; set; }
-        public Guid KitchenServiceGuid { get; set; }
+        public Guid? KitchenServiceGuid { get; set; }
         public string KitchenServiceName { get; set; }
         public EnKhadamati Water { get; set; }
         public string WaterName => Water.GetDisplay();

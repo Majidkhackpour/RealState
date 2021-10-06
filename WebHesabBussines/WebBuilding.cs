@@ -46,15 +46,15 @@ namespace WebHesabBussines
         public Guid CityGuid { get; set; }
         public Guid RegionGuid { get; set; }
         public string Address { get; set; }
-        public Guid BuildingConditionGuid { get; set; }
-        public EnBuildingSide Side { get; set; }
+        public Guid? BuildingConditionGuid { get; set; }
+        public EnBuildingSide? Side { get; set; }
         public Guid BuildingTypeGuid { get; set; }
         public string ShortDesc { get; set; }
         public Guid BuildingAccountTypeGuid { get; set; }
         public float MetrazhTejari { get; set; }
-        public Guid BuildingViewGuid { get; set; }
-        public Guid FloorCoverGuid { get; set; }
-        public Guid KitchenServiceGuid { get; set; }
+        public Guid? BuildingViewGuid { get; set; }
+        public Guid? FloorCoverGuid { get; set; }
+        public Guid? KitchenServiceGuid { get; set; }
         public EnKhadamati Water { get; set; }
         public EnKhadamati Barq { get; set; }
         public EnKhadamati Gas { get; set; }
