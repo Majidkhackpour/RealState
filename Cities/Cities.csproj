@@ -176,6 +176,12 @@
     <Compile Include="Region\frmShowRegions.Designer.cs">
       <DependentUpon>frmShowRegions.cs</DependentUpon>
     </Compile>
+    <Compile Include="UcCitySelect.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UcCitySelect.Designer.cs">
+      <DependentUpon>UcCitySelect.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -204,6 +210,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Region\frmShowRegions.resx">
       <DependentUpon>frmShowRegions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UcCitySelect.resx">
+      <DependentUpon>UcCitySelect.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

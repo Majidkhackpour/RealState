@@ -32,6 +32,7 @@ namespace EntityCache.Bussines
         public bool IsModified { get; set; } = false;
 
         public static async Task<List<RegionsBussines>> GetAllAsync(CancellationToken token) => await UnitOfWork.Regions.GetAllAsync(Cache.ConnectionString, token);
+        public static List<RegionsBussines> GetAll(Guid cityGuid, CancellationToken token = default) => AsyncContext.Run(() => GetAllAsync(cityGuid, token));
         public static async Task<ReturnedSaveFuncInfo> SaveRangeAsync(List<RegionsBussines> list, SqlTransaction tr = null)
         {
             var res = new ReturnedSaveFuncInfo();

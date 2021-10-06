@@ -204,6 +204,7 @@ namespace EntityCache.Bussines
         }
         public static async Task<List<CitiesBussines>> GetAllAsync(Guid stateGuid, CancellationToken token) =>
             await UnitOfWork.Cities.GetAllAsync(Cache.ConnectionString, stateGuid, token);
+        public static List<CitiesBussines> GetAll(Guid stateGuid, CancellationToken token = default) => AsyncContext.Run(() => GetAllAsync(stateGuid, token));
         public static async Task<CitiesBussines> GetDefualtAsync(string name, Guid stateGuid)
         {
             try
