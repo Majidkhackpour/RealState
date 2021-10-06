@@ -54,6 +54,7 @@ using System.Windows.Forms;
 using User;
 using User.Advisor;
 using WindowsSerivces;
+using Building.Building.Selector;
 using Persistence;
 using WebHesabBussines;
 
@@ -176,7 +177,7 @@ namespace RealState
                     case EnForms.BuildingCondition: frm = new frmShowBuildingCondition(); break;
                     case EnForms.BuildingType: frm = new frmShowBuildingType(); break;
                     case EnForms.Building: frm = new frmShowBuildings(false, null); break;
-                    case EnForms.BuildingFast: frm = new frmBuilding_Fast(); break;
+                    case EnForms.BuildingFast: frm = new frmSelectBuildingType(this); break;
                     case EnForms.AdvancedSearch: frm = new frmFilterForm(); break;
                     case EnForms.BuildingArchive: frm = new frmShowBuildings(true, true); break;
                     case EnForms.BuildingMatch: frm = new frmStartBuildingMatches(); break;
