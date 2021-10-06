@@ -19,12 +19,18 @@ namespace Building.Building
                 lblTitle.Text = parent.GetDisplay();
 
                 UcPeople.Guid = cls.OwnerGuid;
+
                 var city = await CitiesBussines.GetAsync(cls.CityGuid);
                 if (city != null)
                     UcCity.StateGuid = city.StateGuid;
                 UcCity.CityGuid = cls.CityGuid;
                 UcCity.RegionGuid = cls.RegionGuid;
                 UcCity.Address = cls.Address;
+
+                UcCode.Code = cls.Code;
+                UcCode.CreateDate = cls.CreateDate;
+                UcCode.Pirority = cls.Priority;
+                UcCode.UserGuid = cls.UserGuid;
             }
             catch (Exception ex)
             {
