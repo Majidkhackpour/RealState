@@ -55,6 +55,7 @@ namespace Building.UserControls.Objects
             // 
             // label44
             // 
+            this.label44.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label44.AutoSize = true;
             this.label44.BackColor = System.Drawing.Color.Transparent;
             this.label44.Location = new System.Drawing.Point(131, 7);

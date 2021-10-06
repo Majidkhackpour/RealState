@@ -62,6 +62,7 @@ namespace Building.UserControls.Sell
                     ucTotalPrice.Price = _bu.SellPrice;
                     ucVam.Price = _bu.VamPrice;
                     ucQest.Price = _bu.QestPrice;
+                    if (_bu.Dang <= 0) UcDong.DefaultValue = 6;
                     if (_bu.Masahat <= 0) return;
                     var m = Math.Truncate(_bu.SellPrice / _bu.Masahat);
                     ucPricePerMasahat.Price = m;
@@ -102,8 +103,22 @@ namespace Building.UserControls.Sell
                 if (string.IsNullOrEmpty(currentControl)) return;
                 if (currentControl != ucPricePerMasahat.Name) return;
 
-                if (ucMasahat.Value> 0)
+                if (ucMasahat.Value > 0)
                     ucTotalPrice.Price = ucPricePerMasahat.Price * ucMasahat.Value;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private void ucMasahat_OnValueChanged()
+        {
+            try
+            {
+                ucTotalPrice.Price = ucPricePerMasahat.Price * ucMasahat.Value;
+                if (ucMasahat.Value <= 0) return;
+                ucPricePerMasahat.Price = 0;
+                ucPricePerMasahat.Price = ucTotalPrice.Price / ucMasahat.Value;
             }
             catch (Exception ex)
             {

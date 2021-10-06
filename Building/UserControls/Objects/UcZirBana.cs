@@ -7,33 +7,34 @@ namespace Building.UserControls.Objects
 {
     public partial class UcZirBana : UserControl
     {
+        public event Action OnValueChanged;
         public int Value
         {
             get
             {
                 if (cmbZirBana.SelectedIndex == 0)
-                    return txtZirBana.Text.ParseToInt();
+                    return (int)txtZirBana.Value;
                 if (cmbZirBana.SelectedIndex == 1)
-                    return txtZirBana.Text.ParseToInt() * 10000;
+                    return (int)txtZirBana.Value * 10000;
                 return 0;
             }
             set
             {
                 if (value == 0)
                 {
-                    txtZirBana.Text = value.ToString();
+                    txtZirBana.Value = value;
                     cmbZirBana.SelectedIndex = 0;
                 }
                 if (value != 0)
                 {
                     if (value >= 10000)
                     {
-                        txtZirBana.Text = (value / 10000).ToString();
+                        txtZirBana.Value = value / 10000;
                         cmbZirBana.SelectedIndex = 1;
                     }
                     if (value <= 9999)
                     {
-                        txtZirBana.Text = value.ToString();
+                        txtZirBana.Value = value;
                         cmbZirBana.SelectedIndex = 0;
                     }
                 }
@@ -60,5 +61,13 @@ namespace Building.UserControls.Objects
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
+        private void RaiseEvent()
+        {
+            var handler = OnValueChanged;
+            if (handler != null)
+                OnValueChanged?.Invoke();
+        }
+        private void txtZirBana_ValueChanged(object sender, EventArgs e) => RaiseEvent();
+        private void cmbZirBana_SelectedIndexChanged(object sender, EventArgs e) => RaiseEvent();
     }
 }

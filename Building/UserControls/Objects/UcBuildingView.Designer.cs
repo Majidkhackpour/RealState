@@ -31,8 +31,8 @@ namespace Building.UserControls.Objects
         {
             this.components = new System.ComponentModel.Container();
             this.cmbBView = new System.Windows.Forms.ComboBox();
-            this.label43 = new System.Windows.Forms.Label();
             this.BuildingViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.label43 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.BuildingViewBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -49,8 +49,13 @@ namespace Building.UserControls.Objects
             this.cmbBView.TabIndex = 63;
             this.cmbBView.ValueMember = "Guid";
             // 
+            // BuildingViewBindingSource
+            // 
+            this.BuildingViewBindingSource.DataSource = typeof(EntityCache.Bussines.BuildingViewBussines);
+            // 
             // label43
             // 
+            this.label43.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label43.AutoSize = true;
             this.label43.BackColor = System.Drawing.Color.Transparent;
             this.label43.Location = new System.Drawing.Point(128, 7);
@@ -58,10 +63,6 @@ namespace Building.UserControls.Objects
             this.label43.Size = new System.Drawing.Size(22, 20);
             this.label43.TabIndex = 64;
             this.label43.Text = "نما";
-            // 
-            // BuildingViewBindingSource
-            // 
-            this.BuildingViewBindingSource.DataSource = typeof(EntityCache.Bussines.BuildingViewBussines);
             // 
             // UcBuildingView
             // 

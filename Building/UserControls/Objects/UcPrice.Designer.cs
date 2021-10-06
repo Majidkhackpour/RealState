@@ -54,13 +54,14 @@ namespace Building.UserControls.Objects
             // 
             // lblTitle
             // 
+            this.lblTitle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblTitle.BackColor = System.Drawing.Color.Transparent;
             this.lblTitle.Location = new System.Drawing.Point(261, 0);
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(123, 34);
             this.lblTitle.TabIndex = 18;
             this.lblTitle.Text = "مبلغ رهن ";
-            this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // UcPrice
             // 

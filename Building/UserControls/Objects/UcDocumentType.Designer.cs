@@ -31,8 +31,8 @@ namespace Building.UserControls.Objects
         {
             this.components = new System.ComponentModel.Container();
             this.cmbSellSanadType = new System.Windows.Forms.ComboBox();
-            this.label24 = new System.Windows.Forms.Label();
             this.sanadTypeBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.label24 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.sanadTypeBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -49,8 +49,13 @@ namespace Building.UserControls.Objects
             this.cmbSellSanadType.TabIndex = 31;
             this.cmbSellSanadType.ValueMember = "Guid";
             // 
+            // sanadTypeBindingSource
+            // 
+            this.sanadTypeBindingSource.DataSource = typeof(EntityCache.Bussines.DocumentTypeBussines);
+            // 
             // label24
             // 
+            this.label24.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label24.AutoSize = true;
             this.label24.BackColor = System.Drawing.Color.Transparent;
             this.label24.Location = new System.Drawing.Point(131, 7);
@@ -58,10 +63,6 @@ namespace Building.UserControls.Objects
             this.label24.Size = new System.Drawing.Size(49, 20);
             this.label24.TabIndex = 32;
             this.label24.Text = "نوع سند";
-            // 
-            // sanadTypeBindingSource
-            // 
-            this.sanadTypeBindingSource.DataSource = typeof(EntityCache.Bussines.DocumentTypeBussines);
             // 
             // UcDocumentType
             // 

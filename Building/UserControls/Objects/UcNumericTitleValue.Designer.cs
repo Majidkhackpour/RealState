@@ -53,13 +53,14 @@ namespace Building.UserControls.Objects
             // 
             // lblTitle
             // 
+            this.lblTitle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblTitle.BackColor = System.Drawing.Color.Transparent;
             this.lblTitle.Location = new System.Drawing.Point(95, 8);
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(116, 20);
             this.lblTitle.TabIndex = 55745;
             this.lblTitle.Text = "زیربنا";
-            this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // UcNumericTitleValue
             // 

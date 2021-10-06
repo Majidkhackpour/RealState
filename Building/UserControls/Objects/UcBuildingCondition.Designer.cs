@@ -31,8 +31,8 @@ namespace Building.UserControls.Objects
         {
             this.components = new System.ComponentModel.Container();
             this.cmbBuildingCondition = new System.Windows.Forms.ComboBox();
-            this.label38 = new System.Windows.Forms.Label();
             this.bConditionBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.label38 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.bConditionBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -49,8 +49,13 @@ namespace Building.UserControls.Objects
             this.cmbBuildingCondition.TabIndex = 55750;
             this.cmbBuildingCondition.ValueMember = "Guid";
             // 
+            // bConditionBindingSource
+            // 
+            this.bConditionBindingSource.DataSource = typeof(EntityCache.Bussines.BuildingConditionBussines);
+            // 
             // label38
             // 
+            this.label38.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label38.AutoSize = true;
             this.label38.BackColor = System.Drawing.Color.Transparent;
             this.label38.Location = new System.Drawing.Point(131, 7);
@@ -58,10 +63,6 @@ namespace Building.UserControls.Objects
             this.label38.Size = new System.Drawing.Size(60, 20);
             this.label38.TabIndex = 55751;
             this.label38.Text = "وضعیت بنا";
-            // 
-            // bConditionBindingSource
-            // 
-            this.bConditionBindingSource.DataSource = typeof(EntityCache.Bussines.BuildingConditionBussines);
             // 
             // UcBuildingCondition
             // 

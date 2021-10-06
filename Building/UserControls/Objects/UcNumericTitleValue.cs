@@ -6,6 +6,14 @@ namespace Building.UserControls.Objects
     {
         public string Title { get => lblTitle.Text; set => lblTitle.Text = value; }
         public int Value { get => (int)txtValue.Value; set => txtValue.Value = value; }
+        public int DefaultValue
+        {
+            set
+            {
+                if (Value > 0) return;
+                txtValue.Value = value;
+            }
+        }
         public UcNumericTitleValue() => InitializeComponent();
     }
 }

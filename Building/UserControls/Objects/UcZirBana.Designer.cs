@@ -46,6 +46,7 @@ namespace Building.UserControls.Objects
             this.cmbZirBana.Size = new System.Drawing.Size(119, 28);
             this.cmbZirBana.TabIndex = 55745;
             this.cmbZirBana.ValueMember = "Guid";
+            this.cmbZirBana.SelectedIndexChanged += new System.EventHandler(this.cmbZirBana_SelectedIndexChanged);
             // 
             // txtZirBana
             // 
@@ -63,16 +64,18 @@ namespace Building.UserControls.Objects
             this.txtZirBana.Name = "txtZirBana";
             this.txtZirBana.Size = new System.Drawing.Size(73, 27);
             this.txtZirBana.TabIndex = 55744;
+            this.txtZirBana.ValueChanged += new System.EventHandler(this.txtZirBana_ValueChanged);
             // 
             // lblTitle
             // 
+            this.lblTitle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblTitle.BackColor = System.Drawing.Color.Transparent;
             this.lblTitle.Location = new System.Drawing.Point(208, 8);
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(65, 20);
             this.lblTitle.TabIndex = 55746;
             this.lblTitle.Text = "زیربنا";
-            this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // UcZirBana
             // 

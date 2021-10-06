@@ -59,7 +59,7 @@ namespace Building.UserControls.Sell
             this.ucBuildingCondition1.BackColor = System.Drawing.Color.Transparent;
             this.ucBuildingCondition1.BuildingConditionGuid = new System.Guid("6680e057-a47d-439f-8070-ddd8c9a57de5");
             this.ucBuildingCondition1.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.ucBuildingCondition1.Location = new System.Drawing.Point(17, 116);
+            this.ucBuildingCondition1.Location = new System.Drawing.Point(137, 110);
             this.ucBuildingCondition1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ucBuildingCondition1.Name = "ucBuildingCondition1";
             this.ucBuildingCondition1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -72,7 +72,7 @@ namespace Building.UserControls.Sell
             this.ucKitchenService1.BackColor = System.Drawing.Color.Transparent;
             this.ucKitchenService1.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.ucKitchenService1.KitchenServiceGuid = new System.Guid("5a3cc594-ce61-4334-a14f-3cb3a1d74769");
-            this.ucKitchenService1.Location = new System.Drawing.Point(222, 116);
+            this.ucKitchenService1.Location = new System.Drawing.Point(141, 146);
             this.ucKitchenService1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ucKitchenService1.Name = "ucKitchenService1";
             this.ucKitchenService1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -84,11 +84,11 @@ namespace Building.UserControls.Sell
             this.ucSide1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.ucSide1.BackColor = System.Drawing.Color.Transparent;
             this.ucSide1.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.ucSide1.Location = new System.Drawing.Point(17, 77);
+            this.ucSide1.Location = new System.Drawing.Point(555, 111);
             this.ucSide1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ucSide1.Name = "ucSide1";
             this.ucSide1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.ucSide1.Size = new System.Drawing.Size(173, 36);
+            this.ucSide1.Size = new System.Drawing.Size(192, 36);
             this.ucSide1.TabIndex = 9;
             // 
             // ucFloorCover1
@@ -97,7 +97,7 @@ namespace Building.UserControls.Sell
             this.ucFloorCover1.BackColor = System.Drawing.Color.Transparent;
             this.ucFloorCover1.FloorCoverGuid = new System.Guid("0d9bd742-a1fd-4e31-b3a2-87d77f8e315e");
             this.ucFloorCover1.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.ucFloorCover1.Location = new System.Drawing.Point(404, 116);
+            this.ucFloorCover1.Location = new System.Drawing.Point(365, 147);
             this.ucFloorCover1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ucFloorCover1.Name = "ucFloorCover1";
             this.ucFloorCover1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -110,7 +110,7 @@ namespace Building.UserControls.Sell
             this.ucBuildingView1.BackColor = System.Drawing.Color.Transparent;
             this.ucBuildingView1.BuildingViewGuid = new System.Guid("23f29860-3d3d-4837-a463-8dcdee19993c");
             this.ucBuildingView1.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.ucBuildingView1.Location = new System.Drawing.Point(591, 116);
+            this.ucBuildingView1.Location = new System.Drawing.Point(559, 148);
             this.ucBuildingView1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ucBuildingView1.Name = "ucBuildingView1";
             this.ucBuildingView1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -122,7 +122,7 @@ namespace Building.UserControls.Sell
             this.ucVahedPertabaqe.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.ucVahedPertabaqe.BackColor = System.Drawing.Color.Transparent;
             this.ucVahedPertabaqe.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.ucVahedPertabaqe.Location = new System.Drawing.Point(197, 77);
+            this.ucVahedPertabaqe.Location = new System.Drawing.Point(173, 42);
             this.ucVahedPertabaqe.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ucVahedPertabaqe.Name = "ucVahedPertabaqe";
             this.ucVahedPertabaqe.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -136,7 +136,7 @@ namespace Building.UserControls.Sell
             this.ucTabaqeNo1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.ucTabaqeNo1.BackColor = System.Drawing.Color.Transparent;
             this.ucTabaqeNo1.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.ucTabaqeNo1.Location = new System.Drawing.Point(388, 77);
+            this.ucTabaqeNo1.Location = new System.Drawing.Point(363, 42);
             this.ucTabaqeNo1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ucTabaqeNo1.Name = "ucTabaqeNo1";
             this.ucTabaqeNo1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -149,11 +149,11 @@ namespace Building.UserControls.Sell
             this.ucTabaqeCount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.ucTabaqeCount.BackColor = System.Drawing.Color.Transparent;
             this.ucTabaqeCount.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.ucTabaqeCount.Location = new System.Drawing.Point(589, 77);
+            this.ucTabaqeCount.Location = new System.Drawing.Point(586, 42);
             this.ucTabaqeCount.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ucTabaqeCount.Name = "ucTabaqeCount";
             this.ucTabaqeCount.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.ucTabaqeCount.Size = new System.Drawing.Size(158, 36);
+            this.ucTabaqeCount.Size = new System.Drawing.Size(164, 36);
             this.ucTabaqeCount.TabIndex = 6;
             this.ucTabaqeCount.Title = "تعداد طبقات";
             this.ucTabaqeCount.Value = 0;
@@ -163,12 +163,12 @@ namespace Building.UserControls.Sell
             this.ucSaleSakht1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.ucSaleSakht1.BackColor = System.Drawing.Color.Transparent;
             this.ucSaleSakht1.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.ucSaleSakht1.Location = new System.Drawing.Point(107, 41);
+            this.ucSaleSakht1.Location = new System.Drawing.Point(367, 111);
             this.ucSaleSakht1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ucSaleSakht1.Name = "ucSaleSakht1";
             this.ucSaleSakht1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.ucSaleSakht1.SaleSakht = "1400";
-            this.ucSaleSakht1.Size = new System.Drawing.Size(183, 36);
+            this.ucSaleSakht1.Size = new System.Drawing.Size(174, 35);
             this.ucSaleSakht1.TabIndex = 4;
             // 
             // ucDocumentType1
@@ -176,12 +176,12 @@ namespace Building.UserControls.Sell
             this.ucDocumentType1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.ucDocumentType1.BackColor = System.Drawing.Color.Transparent;
             this.ucDocumentType1.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.ucDocumentType1.Location = new System.Drawing.Point(298, 41);
+            this.ucDocumentType1.Location = new System.Drawing.Point(555, 76);
             this.ucDocumentType1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ucDocumentType1.Name = "ucDocumentType1";
             this.ucDocumentType1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.ucDocumentType1.SanadTypeGuid = new System.Guid("f2c7220f-d56a-46a3-92e4-03709400ac9e");
-            this.ucDocumentType1.Size = new System.Drawing.Size(185, 36);
+            this.ucDocumentType1.Size = new System.Drawing.Size(192, 36);
             this.ucDocumentType1.TabIndex = 2;
             // 
             // ucRoomCount1
@@ -189,7 +189,7 @@ namespace Building.UserControls.Sell
             this.ucRoomCount1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.ucRoomCount1.BackColor = System.Drawing.Color.Transparent;
             this.ucRoomCount1.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.ucRoomCount1.Location = new System.Drawing.Point(488, 41);
+            this.ucRoomCount1.Location = new System.Drawing.Point(102, 76);
             this.ucRoomCount1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ucRoomCount1.Name = "ucRoomCount1";
             this.ucRoomCount1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -202,7 +202,7 @@ namespace Building.UserControls.Sell
             this.ucZirBana1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.ucZirBana1.BackColor = System.Drawing.Color.Transparent;
             this.ucZirBana1.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.ucZirBana1.Location = new System.Drawing.Point(491, 5);
+            this.ucZirBana1.Location = new System.Drawing.Point(473, 5);
             this.ucZirBana1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ucZirBana1.Name = "ucZirBana1";
             this.ucZirBana1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -216,7 +216,7 @@ namespace Building.UserControls.Sell
             this.UcDong.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.UcDong.BackColor = System.Drawing.Color.Transparent;
             this.UcDong.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.UcDong.Location = new System.Drawing.Point(78, 5);
+            this.UcDong.Location = new System.Drawing.Point(367, 76);
             this.UcDong.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.UcDong.Name = "UcDong";
             this.UcDong.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -230,7 +230,7 @@ namespace Building.UserControls.Sell
             this.ucMasahat.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.ucMasahat.BackColor = System.Drawing.Color.Transparent;
             this.ucMasahat.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.ucMasahat.Location = new System.Drawing.Point(227, 5);
+            this.ucMasahat.Location = new System.Drawing.Point(62, 5);
             this.ucMasahat.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ucMasahat.Name = "ucMasahat";
             this.ucMasahat.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -238,6 +238,7 @@ namespace Building.UserControls.Sell
             this.ucMasahat.TabIndex = 5;
             this.ucMasahat.Title = "زمین";
             this.ucMasahat.Value = 0;
+            this.ucMasahat.OnValueChanged += new System.Action(this.ucMasahat_OnValueChanged);
             // 
             // عزِخدل
             // 
@@ -308,7 +309,7 @@ namespace Building.UserControls.Sell
             this.ucPricePerMasahat.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.ucPricePerMasahat.BackColor = System.Drawing.Color.Transparent;
             this.ucPricePerMasahat.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.ucPricePerMasahat.Location = new System.Drawing.Point(388, 153);
+            this.ucPricePerMasahat.Location = new System.Drawing.Point(388, 184);
             this.ucPricePerMasahat.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ucPricePerMasahat.Name = "ucPricePerMasahat";
             this.ucPricePerMasahat.Price = new decimal(new int[] {
@@ -327,7 +328,7 @@ namespace Building.UserControls.Sell
             this.ucTotalPrice.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.ucTotalPrice.BackColor = System.Drawing.Color.Transparent;
             this.ucTotalPrice.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.ucTotalPrice.Location = new System.Drawing.Point(18, 153);
+            this.ucTotalPrice.Location = new System.Drawing.Point(18, 184);
             this.ucTotalPrice.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ucTotalPrice.Name = "ucTotalPrice";
             this.ucTotalPrice.Price = new decimal(new int[] {
@@ -346,7 +347,7 @@ namespace Building.UserControls.Sell
             this.ucVam.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.ucVam.BackColor = System.Drawing.Color.Transparent;
             this.ucVam.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.ucVam.Location = new System.Drawing.Point(388, 199);
+            this.ucVam.Location = new System.Drawing.Point(388, 218);
             this.ucVam.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ucVam.Name = "ucVam";
             this.ucVam.Price = new decimal(new int[] {
@@ -364,7 +365,7 @@ namespace Building.UserControls.Sell
             this.ucQest.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.ucQest.BackColor = System.Drawing.Color.Transparent;
             this.ucQest.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.ucQest.Location = new System.Drawing.Point(18, 199);
+            this.ucQest.Location = new System.Drawing.Point(18, 218);
             this.ucQest.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ucQest.Name = "ucQest";
             this.ucQest.Price = new decimal(new int[] {
@@ -403,7 +404,7 @@ namespace Building.UserControls.Sell
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "UcBuildingSell_Appartment";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.Size = new System.Drawing.Size(751, 241);
+            this.Size = new System.Drawing.Size(751, 256);
             this.ResumeLayout(false);
 
         }

@@ -90,7 +90,7 @@ namespace Building.Buildings.Selector
             // 
             // timer1
             // 
-            this.timer1.Interval = 750;
+            this.timer1.Interval = 500;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // frmSelectBuildingType_
