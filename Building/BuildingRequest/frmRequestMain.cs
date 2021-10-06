@@ -1,21 +1,18 @@
-﻿using System;
+﻿using Building.Buildings;
+using EntityCache.Bussines;
+using EntityCache.ViewModels;
+using MetroFramework.Forms;
+using Peoples;
+using Services;
+using Services.FilterObjects;
+using Settings.Classes;
+using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WindowsSerivces;
-using Building.Building;
-using EntityCache.Bussines;
-using EntityCache.ViewModels;
-using MetroFramework.Forms;
-using Notification;
-using Peoples;
-using Services;
-using Services.FilterObjects;
-using Settings.Classes;
-using User;
 
 namespace Building.BuildingRequest
 {

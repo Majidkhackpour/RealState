@@ -480,6 +480,8 @@ namespace EntityCache.Bussines
         public static async Task<List<BuildingBussines>> GetAllHighPriorityAsync(CancellationToken token) => await UnitOfWork.Building.GetAllHighPriorityAsync(Cache.ConnectionString, token);
         public static async Task<bool> CheckDuplicateAsync(string divarTitle) => await UnitOfWork.Building.CheckDuplicateAsync(Cache.ConnectionString, divarTitle);
         public static async Task<List<string>> GetAllHittingAsync() => await UnitOfWork.Building.GetAllHittingAsync(Cache.ConnectionString);
+        public static List<string> GetAllHitting() => AsyncContext.Run(GetAllHittingAsync);
+        public static List<string> GetAllColling() => AsyncContext.Run(GetAllCollingAsync);
         public static async Task<List<string>> GetAllCollingAsync() => await UnitOfWork.Building.GetAllCollingAsync(Cache.ConnectionString);
         public static async Task<ReturnedSaveFuncInfo> SaveFromHostAsync(BuildingBussines bu, string number)
         {

@@ -23,7 +23,7 @@ using Services.FilterObjects;
 using Settings.Classes;
 using WebHesabBussines;
 
-namespace Building.Building
+namespace Building.Buildings
 {
     public partial class frmShowBuildings : MetroForm
     {

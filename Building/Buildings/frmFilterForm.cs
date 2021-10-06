@@ -1,20 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using Advertise.Classes;
-using Cities.Region;
+﻿using Cities.Region;
 using EntityCache.Bussines;
 using EntityCache.ViewModels;
 using MetroFramework.Forms;
 using Services;
 using Services.FilterObjects;
 using Settings.Classes;
-using User;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
-namespace Building.Building
+namespace Building.Buildings
 {
     public partial class frmFilterForm : MetroForm
     {
@@ -254,7 +252,7 @@ namespace Building.Building
                 _token?.Cancel();
                 _token = new CancellationTokenSource();
                 list.AddRange(await BuildingBussines.GetAllAsync(filter, _token.Token));
-               
+
                 list = list?.OrderByDescending(q => q.CreateDate)?.Take((int)txtMaxFile.Value)?.ToList();
                 var frm = new frmBuildingAdvanceSearch(list);
                 frm.ShowDialog(this);

@@ -1,7 +1,8 @@
-﻿using System;
+﻿using EntityCache.Bussines;
+using Services;
+using System;
 using System.Linq;
 using System.Windows.Forms;
-using Services;
 
 namespace Building.UserControls
 {
@@ -9,11 +10,11 @@ namespace Building.UserControls
     {
         public EnKhadamati Water
         {
-            get => (EnKhadamati) cmbWater.SelectedIndex;
+            get => (EnKhadamati)cmbWater.SelectedIndex;
             set
             {
-                if ((int) value < 0) return;
-                cmbWater.SelectedIndex = (int) value;
+                if ((int)value < 0) return;
+                cmbWater.SelectedIndex = (int)value;
             }
         }
         public EnKhadamati Barq
@@ -43,12 +44,16 @@ namespace Building.UserControls
                 cmbTell.SelectedIndex = (int)value;
             }
         }
+        public string Hitting { get => cmbHitting.Text; set => cmbHitting.Text = value; }
+        public string Colling { get => cmbColling.Text; set => cmbColling.Text = value; }
 
         public UcBuildingHitting()
         {
             InitializeComponent();
             FillCmbKhadamt();
+            FillHitting_Colling();
         }
+
         private void FillCmbKhadamt()
         {
             try
@@ -61,6 +66,24 @@ namespace Building.UserControls
                     cmbBarq.Items.Add(item.GetDisplay());
                     cmbTell.Items.Add(item.GetDisplay());
                 }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private void FillHitting_Colling()
+        {
+            try
+            {
+                var hittingList = BuildingBussines.GetAllHitting();
+                var collingList = BuildingBussines.GetAllColling();
+                cmbHitting.Items.Clear();
+                cmbColling.Items.Clear();
+                if (hittingList != null && hittingList.Count > 0)
+                    cmbHitting.Items.AddRange(hittingList.ToArray());
+                if (collingList != null && collingList.Count > 0)
+                    cmbColling.Items.AddRange(collingList.ToArray());
             }
             catch (Exception ex)
             {

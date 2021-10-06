@@ -1,7 +1,7 @@
 ﻿
 using DevComponents.DotNetBar;
 
-namespace Building.Building
+namespace Building.Buildings
 {
     partial class frmBuildingDetail
     {

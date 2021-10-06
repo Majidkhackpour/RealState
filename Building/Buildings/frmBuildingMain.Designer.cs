@@ -1,4 +1,4 @@
-﻿namespace Building.Building
+﻿namespace Building.Buildings
 {
     partial class frmBuildingMain
     {

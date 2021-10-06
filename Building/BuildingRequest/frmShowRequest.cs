@@ -5,7 +5,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WindowsSerivces;
-using Building.Building;
+using Building.Buildings;
 using EntityCache.Bussines;
 using MetroFramework.Forms;
 using Notification;

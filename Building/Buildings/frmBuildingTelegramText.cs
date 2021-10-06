@@ -1,7 +1,7 @@
 ﻿using System.Windows.Forms;
 using MetroFramework.Forms;
 
-namespace Building.Building
+namespace Building.Buildings
 {
     public partial class frmBuildingTelegramText : MetroForm
     {

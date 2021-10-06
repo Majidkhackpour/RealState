@@ -1,5 +1,5 @@
 ﻿
-namespace Building.Building.Selector
+namespace Building.Buildings.Selector
 {
     partial class frmSelectBuildingType_
     {

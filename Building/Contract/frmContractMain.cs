@@ -1,4 +1,4 @@
-﻿using Building.Building;
+﻿using Building.Buildings;
 using EntityCache.Bussines;
 using MetroFramework.Forms;
 using Peoples;

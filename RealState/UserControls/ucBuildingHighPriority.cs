@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
-using Building.Building;
+using Building.Buildings;
 using EntityCache.Bussines;
 using Services;
 

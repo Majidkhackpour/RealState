@@ -3,7 +3,7 @@ using Building.UserControls;
 using Cities;
 using Peoples;
 
-namespace Building.Building
+namespace Building.Buildings
 {
     partial class frmBuilding
     {
@@ -36,12 +36,13 @@ namespace Building.Building
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmBuilding));
             this.UcPeople = new Peoples.UcPeopleSelect();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.ucCitySelect1 = new Building.UserControls.UcBuildingHitting();
+            this.groupPanel1 = new DevComponents.DotNetBar.Controls.GroupPanel();
             this.UcCode = new UcBuildingCode();
             this.UcCity = new Cities.UcCitySelect();
             this.lblTitle = new System.Windows.Forms.Label();
             this.btnCancel = new DevComponents.DotNetBar.ButtonX();
             this.btnFinish = new DevComponents.DotNetBar.ButtonX();
-            this.groupPanel1 = new DevComponents.DotNetBar.Controls.GroupPanel();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -65,6 +66,7 @@ namespace Building.Building
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.AutoScroll = true;
+            this.panel1.Controls.Add(this.ucCitySelect1);
             this.panel1.Controls.Add(this.groupPanel1);
             this.panel1.Controls.Add(this.UcCode);
             this.panel1.Controls.Add(this.UcCity);
@@ -74,13 +76,69 @@ namespace Building.Building
             this.panel1.Size = new System.Drawing.Size(791, 508);
             this.panel1.TabIndex = 2;
             // 
+            // ucCitySelect1
+            // 
+            this.ucCitySelect1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ucCitySelect1.BackColor = System.Drawing.Color.Transparent;
+            this.ucCitySelect1.Colling = "";
+            this.ucCitySelect1.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.ucCitySelect1.Hitting = "";
+            this.ucCitySelect1.Location = new System.Drawing.Point(8, 634);
+            this.ucCitySelect1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ucCitySelect1.Name = "ucCitySelect1";
+            this.ucCitySelect1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.ucCitySelect1.Size = new System.Drawing.Size(758, 47);
+            this.ucCitySelect1.TabIndex = 3;
+            // 
+            // groupPanel1
+            // 
+            this.groupPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupPanel1.CanvasColor = System.Drawing.SystemColors.Control;
+            this.groupPanel1.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
+            this.groupPanel1.DisabledBackColor = System.Drawing.Color.Empty;
+            this.groupPanel1.Location = new System.Drawing.Point(8, 368);
+            this.groupPanel1.Name = "groupPanel1";
+            this.groupPanel1.Size = new System.Drawing.Size(758, 262);
+            // 
+            // 
+            // 
+            this.groupPanel1.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(227)))), ((int)(((byte)(239)))), ((int)(((byte)(255)))));
+            this.groupPanel1.Style.BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+            this.groupPanel1.Style.BackColorGradientAngle = 90;
+            this.groupPanel1.Style.BorderBottom = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.groupPanel1.Style.BorderBottomWidth = 2;
+            this.groupPanel1.Style.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(198)))), ((int)(((byte)(195)))), ((int)(((byte)(198)))));
+            this.groupPanel1.Style.BorderColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(198)))), ((int)(((byte)(195)))), ((int)(((byte)(198)))));
+            this.groupPanel1.Style.BorderLeft = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.groupPanel1.Style.BorderLeftWidth = 2;
+            this.groupPanel1.Style.BorderRight = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.groupPanel1.Style.BorderRightWidth = 2;
+            this.groupPanel1.Style.BorderTop = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.groupPanel1.Style.BorderTopWidth = 2;
+            this.groupPanel1.Style.CornerDiameter = 4;
+            this.groupPanel1.Style.CornerType = DevComponents.DotNetBar.eCornerType.Rounded;
+            this.groupPanel1.Style.TextAlignment = DevComponents.DotNetBar.eStyleTextAlignment.Center;
+            this.groupPanel1.Style.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.groupPanel1.Style.TextLineAlignment = DevComponents.DotNetBar.eStyleTextAlignment.Near;
+            // 
+            // 
+            // 
+            this.groupPanel1.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.groupPanel1.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.groupPanel1.TabIndex = 2;
+            // 
             // UcCode
             // 
             this.UcCode.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.UcCode.BackColor = System.Drawing.Color.Transparent;
-            this.UcCode.Code = "";
-            this.UcCode.CreateDate = new System.DateTime(2021, 10, 6, 15, 18, 42, 176);
+            this.UcCode.Code = "3648";
+            this.UcCode.CreateDate = new System.DateTime(2021, 10, 6, 0, 0, 0, 0);
             this.UcCode.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.UcCode.Location = new System.Drawing.Point(8, 317);
             this.UcCode.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -157,47 +215,6 @@ namespace Building.Building
             this.btnFinish.Text = "تایید (F5)";
             this.btnFinish.TextColor = System.Drawing.Color.Black;
             // 
-            // groupPanel1
-            // 
-            this.groupPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupPanel1.CanvasColor = System.Drawing.SystemColors.Control;
-            this.groupPanel1.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
-            this.groupPanel1.DisabledBackColor = System.Drawing.Color.Empty;
-            this.groupPanel1.Location = new System.Drawing.Point(8, 368);
-            this.groupPanel1.Name = "groupPanel1";
-            this.groupPanel1.Size = new System.Drawing.Size(758, 262);
-            // 
-            // 
-            // 
-            this.groupPanel1.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(227)))), ((int)(((byte)(239)))), ((int)(((byte)(255)))));
-            this.groupPanel1.Style.BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
-            this.groupPanel1.Style.BackColorGradientAngle = 90;
-            this.groupPanel1.Style.BorderBottom = DevComponents.DotNetBar.eStyleBorderType.Solid;
-            this.groupPanel1.Style.BorderBottomWidth = 2;
-            this.groupPanel1.Style.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(198)))), ((int)(((byte)(195)))), ((int)(((byte)(198)))));
-            this.groupPanel1.Style.BorderColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(198)))), ((int)(((byte)(195)))), ((int)(((byte)(198)))));
-            this.groupPanel1.Style.BorderLeft = DevComponents.DotNetBar.eStyleBorderType.Solid;
-            this.groupPanel1.Style.BorderLeftWidth = 2;
-            this.groupPanel1.Style.BorderRight = DevComponents.DotNetBar.eStyleBorderType.Solid;
-            this.groupPanel1.Style.BorderRightWidth = 2;
-            this.groupPanel1.Style.BorderTop = DevComponents.DotNetBar.eStyleBorderType.Solid;
-            this.groupPanel1.Style.BorderTopWidth = 2;
-            this.groupPanel1.Style.CornerDiameter = 4;
-            this.groupPanel1.Style.CornerType = DevComponents.DotNetBar.eCornerType.Rounded;
-            this.groupPanel1.Style.TextAlignment = DevComponents.DotNetBar.eStyleTextAlignment.Center;
-            this.groupPanel1.Style.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.groupPanel1.Style.TextLineAlignment = DevComponents.DotNetBar.eStyleTextAlignment.Near;
-            // 
-            // 
-            // 
-            this.groupPanel1.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // 
-            // 
-            this.groupPanel1.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.groupPanel1.TabIndex = 2;
-            // 
             // frmBuilding
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -232,5 +249,6 @@ namespace Building.Building
         private DevComponents.DotNetBar.ButtonX btnFinish;
         private UcBuildingCode UcCode;
         private DevComponents.DotNetBar.Controls.GroupPanel groupPanel1;
+        private UcBuildingHitting ucCitySelect1;
     }
 }

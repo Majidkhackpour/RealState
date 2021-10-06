@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using WindowsSerivces;
 
-namespace Building.Building.Selector
+namespace Building.Buildings.Selector
 {
     public partial class frmSelectBuildingType_ : MetroForm
     {

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using WindowsSerivces;
 
-namespace Building.Building
+namespace Building.Buildings
 {
     public partial class frmBuildingDetail : MetroForm
     {

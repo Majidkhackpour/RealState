@@ -1,5 +1,5 @@
 ﻿
-namespace Building.Building
+namespace Building.Buildings
 {
     partial class frmBuilding_Fast
     {

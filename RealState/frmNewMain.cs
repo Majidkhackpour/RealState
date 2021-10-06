@@ -10,7 +10,7 @@ using Accounting.Report;
 using Accounting.Sanad;
 using Accounting.Sandouq;
 using Advertise.Forms;
-using Building.Building;
+using Building.Buildings;
 using Building.BuildingAccountType;
 using Building.BuildingCondition;
 using Building.BuildingMatchesItem;
@@ -54,7 +54,7 @@ using System.Windows.Forms;
 using User;
 using User.Advisor;
 using WindowsSerivces;
-using Building.Building.Selector;
+using Building.Buildings.Selector;
 using Persistence;
 using WebHesabBussines;
 

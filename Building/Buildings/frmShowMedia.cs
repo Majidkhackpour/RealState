@@ -6,7 +6,7 @@ using EntityCache.Bussines;
 using MetroFramework.Forms;
 using Services;
 
-namespace Building.Building
+namespace Building.Buildings
 {
     public partial class frmShowMedia : MetroForm
     {

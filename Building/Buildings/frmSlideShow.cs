@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using EntityCache.Bussines;
+﻿using EntityCache.Bussines;
 using MetroFramework.Forms;
 using Services;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Windows.Forms;
 
-namespace Building.Building
+namespace Building.Buildings
 {
     public partial class frmSlideShow : MetroForm
     {
@@ -29,7 +28,7 @@ namespace Building.Building
                 var rand = new Random().Next(0, _imageList.Count - 1);
                 var a = Path.Combine(Application.StartupPath, "Images");
                 var fileName = _imageList[rand].ImageName;
-                if (!fileName.EndsWith(".jpg"))  fileName += ".jpg";
+                if (!fileName.EndsWith(".jpg")) fileName += ".jpg";
                 var b = Path.Combine(a, fileName);
                 picBox.Load(b);
             }

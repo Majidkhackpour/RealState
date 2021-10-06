@@ -499,82 +499,82 @@
     <Compile Include="BuildingView\frmShowBuildingView.Designer.cs">
       <DependentUpon>frmShowBuildingView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Building\frmBuilding.cs">
+    <Compile Include="Buildings\frmBuilding.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Building\frmBuilding.Designer.cs">
+    <Compile Include="Buildings\frmBuilding.Designer.cs">
       <DependentUpon>frmBuilding.cs</DependentUpon>
     </Compile>
-    <Compile Include="Building\frmBuildingAdvanceSearch.cs">
+    <Compile Include="Buildings\frmBuildingAdvanceSearch.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Building\frmBuildingAdvanceSearch.Designer.cs">
+    <Compile Include="Buildings\frmBuildingAdvanceSearch.Designer.cs">
       <DependentUpon>frmBuildingAdvanceSearch.cs</DependentUpon>
     </Compile>
-    <Compile Include="Building\frmBuildingDetail.cs">
+    <Compile Include="Buildings\frmBuildingDetail.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Building\frmBuildingDetail.Designer.cs">
+    <Compile Include="Buildings\frmBuildingDetail.Designer.cs">
       <DependentUpon>frmBuildingDetail.cs</DependentUpon>
     </Compile>
-    <Compile Include="Building\frmBuildingMain.cs">
+    <Compile Include="Buildings\frmBuildingMain.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Building\frmBuildingMain.Designer.cs">
+    <Compile Include="Buildings\frmBuildingMain.Designer.cs">
       <DependentUpon>frmBuildingMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="Building\frmBuildingSimilar.cs">
+    <Compile Include="Buildings\frmBuildingSimilar.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Building\frmBuildingSimilar.Designer.cs">
+    <Compile Include="Buildings\frmBuildingSimilar.Designer.cs">
       <DependentUpon>frmBuildingSimilar.cs</DependentUpon>
     </Compile>
-    <Compile Include="Building\frmBuildingTelegramText.cs">
+    <Compile Include="Buildings\frmBuildingTelegramText.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Building\frmBuildingTelegramText.Designer.cs">
+    <Compile Include="Buildings\frmBuildingTelegramText.Designer.cs">
       <DependentUpon>frmBuildingTelegramText.cs</DependentUpon>
     </Compile>
-    <Compile Include="Building\frmBuilding_Fast.cs">
+    <Compile Include="Buildings\frmBuilding_Fast.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Building\frmBuilding_Fast.Designer.cs">
+    <Compile Include="Buildings\frmBuilding_Fast.Designer.cs">
       <DependentUpon>frmBuilding_Fast.cs</DependentUpon>
     </Compile>
-    <Compile Include="Building\frmFilterForm.cs">
+    <Compile Include="Buildings\frmFilterForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Building\frmFilterForm.Designer.cs">
+    <Compile Include="Buildings\frmFilterForm.Designer.cs">
       <DependentUpon>frmFilterForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Building\frmShowBuildings.cs">
+    <Compile Include="Buildings\frmShowBuildings.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Building\frmShowBuildings.Designer.cs">
+    <Compile Include="Buildings\frmShowBuildings.Designer.cs">
       <DependentUpon>frmShowBuildings.cs</DependentUpon>
     </Compile>
-    <Compile Include="Building\frmShowMedia.cs">
+    <Compile Include="Buildings\frmShowMedia.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Building\frmShowMedia.Designer.cs">
+    <Compile Include="Buildings\frmShowMedia.Designer.cs">
       <DependentUpon>frmShowMedia.cs</DependentUpon>
     </Compile>
-    <Compile Include="Building\frmSlideShow.cs">
+    <Compile Include="Buildings\frmSlideShow.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Building\frmSlideShow.Designer.cs">
+    <Compile Include="Buildings\frmSlideShow.Designer.cs">
       <DependentUpon>frmSlideShow.cs</DependentUpon>
     </Compile>
-    <Compile Include="Building\Selector\frmSelectBuildingType.cs">
+    <Compile Include="Buildings\Selector\frmSelectBuildingType.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Building\Selector\frmSelectBuildingType.Designer.cs">
+    <Compile Include="Buildings\Selector\frmSelectBuildingType.Designer.cs">
       <DependentUpon>frmSelectBuildingType.cs</DependentUpon>
     </Compile>
-    <Compile Include="Building\Selector\frmSelectBuildingType_.cs">
+    <Compile Include="Buildings\Selector\frmSelectBuildingType_.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Building\Selector\frmSelectBuildingType_.Designer.cs">
+    <Compile Include="Buildings\Selector\frmSelectBuildingType_.Designer.cs">
       <DependentUpon>frmSelectBuildingType_.cs</DependentUpon>
     </Compile>
     <Compile Include="clsBuildingSimilar.cs" />
@@ -798,43 +798,43 @@
     <EmbeddedResource Include="BuildingView\frmShowBuildingView.resx">
       <DependentUpon>frmShowBuildingView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Building\frmBuilding.resx">
+    <EmbeddedResource Include="Buildings\frmBuilding.resx">
       <DependentUpon>frmBuilding.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Building\frmBuildingAdvanceSearch.resx">
+    <EmbeddedResource Include="Buildings\frmBuildingAdvanceSearch.resx">
       <DependentUpon>frmBuildingAdvanceSearch.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Building\frmBuildingDetail.resx">
+    <EmbeddedResource Include="Buildings\frmBuildingDetail.resx">
       <DependentUpon>frmBuildingDetail.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Building\frmBuildingMain.resx">
+    <EmbeddedResource Include="Buildings\frmBuildingMain.resx">
       <DependentUpon>frmBuildingMain.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Building\frmBuildingSimilar.resx">
+    <EmbeddedResource Include="Buildings\frmBuildingSimilar.resx">
       <DependentUpon>frmBuildingSimilar.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Building\frmBuildingTelegramText.resx">
+    <EmbeddedResource Include="Buildings\frmBuildingTelegramText.resx">
       <DependentUpon>frmBuildingTelegramText.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Building\frmBuilding_Fast.resx">
+    <EmbeddedResource Include="Buildings\frmBuilding_Fast.resx">
       <DependentUpon>frmBuilding_Fast.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Building\frmFilterForm.resx">
+    <EmbeddedResource Include="Buildings\frmFilterForm.resx">
       <DependentUpon>frmFilterForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Building\frmShowBuildings.resx">
+    <EmbeddedResource Include="Buildings\frmShowBuildings.resx">
       <DependentUpon>frmShowBuildings.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Building\frmShowMedia.resx">
+    <EmbeddedResource Include="Buildings\frmShowMedia.resx">
       <DependentUpon>frmShowMedia.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Building\frmSlideShow.resx">
+    <EmbeddedResource Include="Buildings\frmSlideShow.resx">
       <DependentUpon>frmSlideShow.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Building\Selector\frmSelectBuildingType.resx">
+    <EmbeddedResource Include="Buildings\Selector\frmSelectBuildingType.resx">
       <DependentUpon>frmSelectBuildingType.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Building\Selector\frmSelectBuildingType_.resx">
+    <EmbeddedResource Include="Buildings\Selector\frmSelectBuildingType_.resx">
       <DependentUpon>frmSelectBuildingType_.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Contract\frmContractMain.resx">

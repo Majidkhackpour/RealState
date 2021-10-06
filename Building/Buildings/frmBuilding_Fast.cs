@@ -18,7 +18,7 @@ using Peoples;
 using Services;
 using Settings.Classes;
 
-namespace Building.Building
+namespace Building.Buildings
 {
     public partial class frmBuilding_Fast : MetroForm
     {
