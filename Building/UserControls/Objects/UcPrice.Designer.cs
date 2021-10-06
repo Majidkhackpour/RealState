@@ -50,13 +50,14 @@ namespace Building.UserControls.Objects
             0,
             0,
             0});
+            this.txtPrice.OnTextChanged += new System.Action(this.txtPrice_OnTextChanged);
             // 
             // lblTitle
             // 
             this.lblTitle.BackColor = System.Drawing.Color.Transparent;
             this.lblTitle.Location = new System.Drawing.Point(261, 0);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(81, 34);
+            this.lblTitle.Size = new System.Drawing.Size(123, 34);
             this.lblTitle.TabIndex = 18;
             this.lblTitle.Text = "مبلغ رهن ";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -72,7 +73,7 @@ namespace Building.UserControls.Objects
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "UcPrice";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.Size = new System.Drawing.Size(343, 36);
+            this.Size = new System.Drawing.Size(387, 36);
             this.ResumeLayout(false);
 
         }

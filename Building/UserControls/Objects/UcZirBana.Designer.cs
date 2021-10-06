@@ -67,11 +67,12 @@ namespace Building.UserControls.Objects
             // lblTitle
             // 
             this.lblTitle.BackColor = System.Drawing.Color.Transparent;
-            this.lblTitle.Location = new System.Drawing.Point(210, 10);
+            this.lblTitle.Location = new System.Drawing.Point(208, 8);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(46, 20);
+            this.lblTitle.Size = new System.Drawing.Size(65, 20);
             this.lblTitle.TabIndex = 55746;
             this.lblTitle.Text = "زیربنا";
+            this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // UcZirBana
             // 
@@ -85,7 +86,7 @@ namespace Building.UserControls.Objects
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "UcZirBana";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.Size = new System.Drawing.Size(256, 36);
+            this.Size = new System.Drawing.Size(277, 36);
             ((System.ComponentModel.ISupportInitialize)(this.txtZirBana)).EndInit();
             this.ResumeLayout(false);
 

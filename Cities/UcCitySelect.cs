@@ -124,7 +124,18 @@ namespace Cities
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void cmbRegion_SelectedIndexChanged(object sender, EventArgs e) => _regionGuid = (Guid)cmbRegion.SelectedValue;
+        private void cmbRegion_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (cmbRegion.SelectedValue != null)
+                    _regionGuid = (Guid)cmbRegion.SelectedValue;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
         private void FillState()
         {
             try

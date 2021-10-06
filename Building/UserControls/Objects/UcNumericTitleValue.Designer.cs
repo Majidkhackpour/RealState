@@ -56,7 +56,7 @@ namespace Building.UserControls.Objects
             this.lblTitle.BackColor = System.Drawing.Color.Transparent;
             this.lblTitle.Location = new System.Drawing.Point(95, 8);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(84, 20);
+            this.lblTitle.Size = new System.Drawing.Size(116, 20);
             this.lblTitle.TabIndex = 55745;
             this.lblTitle.Text = "زیربنا";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -72,7 +72,7 @@ namespace Building.UserControls.Objects
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "UcNumericTitleValue";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.Size = new System.Drawing.Size(184, 36);
+            this.Size = new System.Drawing.Size(214, 36);
             ((System.ComponentModel.ISupportInitialize)(this.txtValue)).EndInit();
             this.ResumeLayout(false);
 
