@@ -41,12 +41,12 @@ namespace Building.Buildings
             this.UcOptions = new Building.UserControls.UcBuildingOptions();
             this.UcHitting_Colling = new Building.UserControls.UcBuildingHitting();
             this.groupPanel1 = new DevComponents.DotNetBar.Controls.GroupPanel();
+            this.pnlContent = new System.Windows.Forms.Panel();
             this.UcCode = new Building.UserControls.UcBuildingCode();
             this.UcCity = new Cities.UcCitySelect();
             this.lblTitle = new System.Windows.Forms.Label();
             this.btnCancel = new DevComponents.DotNetBar.ButtonX();
             this.btnFinish = new DevComponents.DotNetBar.ButtonX();
-            this.pnlContent = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             this.groupPanel2.SuspendLayout();
             this.groupPanel1.SuspendLayout();
@@ -205,6 +205,15 @@ namespace Building.Buildings
             this.groupPanel1.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.groupPanel1.TabIndex = 2;
             // 
+            // pnlContent
+            // 
+            this.pnlContent.AutoScroll = true;
+            this.pnlContent.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlContent.Location = new System.Drawing.Point(0, 0);
+            this.pnlContent.Name = "pnlContent";
+            this.pnlContent.Size = new System.Drawing.Size(752, 256);
+            this.pnlContent.TabIndex = 0;
+            // 
             // UcCode
             // 
             this.UcCode.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -288,15 +297,6 @@ namespace Building.Buildings
             this.btnFinish.Text = "تایید (F5)";
             this.btnFinish.TextColor = System.Drawing.Color.Black;
             // 
-            // pnlContent
-            // 
-            this.pnlContent.AutoScroll = true;
-            this.pnlContent.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlContent.Location = new System.Drawing.Point(0, 0);
-            this.pnlContent.Name = "pnlContent";
-            this.pnlContent.Size = new System.Drawing.Size(752, 256);
-            this.pnlContent.TabIndex = 0;
-            // 
             // frmBuilding
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -314,7 +314,6 @@ namespace Building.Buildings
             this.Padding = new System.Windows.Forms.Padding(27, 92, 27, 31);
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.Style = MetroFramework.MetroColorStyle.Teal;
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmBuilding_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmBuilding_KeyDown);
             this.panel1.ResumeLayout(false);

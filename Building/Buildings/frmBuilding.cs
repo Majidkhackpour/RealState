@@ -17,6 +17,9 @@ namespace Building.Buildings
         {
             try
             {
+                Width = 800;
+                Height = Screen.FromControl(this).Bounds.Height;
+
                 lblTitle.Text = parent.GetDisplay();
 
                 UcPeople.Guid = cls.OwnerGuid;
@@ -161,7 +164,7 @@ namespace Building.Buildings
                 switch (e.KeyCode)
                 {
                     case Keys.Enter:
-                        if (!btnFinish.Focused && !btnCancel.Focused)
+                        if (!btnFinish.Focused && !btnCancel.Focused && !txtShortDesc.Focused)
                             SendKeys.Send("{Tab}");
                         break;
                     case Keys.F5:
