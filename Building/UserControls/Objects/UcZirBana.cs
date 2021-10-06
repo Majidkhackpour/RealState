@@ -7,7 +7,7 @@ namespace Building.UserControls.Objects
 {
     public partial class UcZirBana : UserControl
     {
-        public int ZirBana
+        public int Value
         {
             get
             {
@@ -39,6 +39,7 @@ namespace Building.UserControls.Objects
                 }
             }
         }
+        public string Title { get => lblTitle.Text; set => lblTitle.Text = value; }
         public UcZirBana()
         {
             InitializeComponent();

@@ -659,11 +659,29 @@
     <Compile Include="RentalAuthority\frmShowRentalAuthority.Designer.cs">
       <DependentUpon>frmShowRentalAuthority.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\Objects\UcDocumentType.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Objects\UcDocumentType.Designer.cs">
+      <DependentUpon>UcDocumentType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Objects\UcNumericTitleValue.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Objects\UcNumericTitleValue.Designer.cs">
+      <DependentUpon>UcNumericTitleValue.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\Objects\UcRoomCount.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="UserControls\Objects\UcRoomCount.Designer.cs">
       <DependentUpon>UcRoomCount.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Objects\UcSaleSakht.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Objects\UcSaleSakht.Designer.cs">
+      <DependentUpon>UcSaleSakht.cs</DependentUpon>
     </Compile>
     <Compile Include="UserControls\Objects\UcZirBana.cs">
       <SubType>UserControl</SubType>
@@ -896,8 +914,17 @@
     <EmbeddedResource Include="RentalAuthority\frmShowRentalAuthority.resx">
       <DependentUpon>frmShowRentalAuthority.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Objects\UcDocumentType.resx">
+      <DependentUpon>UcDocumentType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Objects\UcNumericTitleValue.resx">
+      <DependentUpon>UcNumericTitleValue.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserControls\Objects\UcRoomCount.resx">
       <DependentUpon>UcRoomCount.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Objects\UcSaleSakht.resx">
+      <DependentUpon>UcSaleSakht.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\Objects\UcZirBana.resx">
       <DependentUpon>UcZirBana.cs</DependentUpon>
