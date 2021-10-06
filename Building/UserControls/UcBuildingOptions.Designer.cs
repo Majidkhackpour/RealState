@@ -39,13 +39,13 @@ namespace Building.UserControls
             this.txtSearch = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.chbFullOption = new DevComponents.DotNetBar.Controls.CheckBoxX();
             this.DGrid = new DevComponents.DotNetBar.Controls.DataGridViewX();
+            this.BuildingOptionBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dgChecked = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgOptionGuid = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.modifiedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.statusDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.dgIsFullOption = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.BuildingOptionBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.groupPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BuildingOptionBindingSource)).BeginInit();
@@ -138,7 +138,7 @@ namespace Building.UserControls
             this.DGrid.AllowUserToResizeColumns = false;
             this.DGrid.AllowUserToResizeRows = false;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Gainsboro;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
             dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Gainsboro;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
@@ -177,6 +177,7 @@ namespace Building.UserControls
             this.DGrid.Location = new System.Drawing.Point(0, 32);
             this.DGrid.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.DGrid.Name = "DGrid";
+            this.DGrid.ReadOnly = true;
             this.DGrid.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.DGrid.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
@@ -198,12 +199,18 @@ namespace Building.UserControls
             this.DGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DGrid.Size = new System.Drawing.Size(528, 216);
             this.DGrid.TabIndex = 55732;
+            this.DGrid.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGrid_CellClick);
+            // 
+            // BuildingOptionBindingSource
+            // 
+            this.BuildingOptionBindingSource.DataSource = typeof(EntityCache.Bussines.BuildingOptionsBussines);
             // 
             // dgChecked
             // 
             this.dgChecked.DataPropertyName = "Checked";
             this.dgChecked.HeaderText = "";
             this.dgChecked.Name = "dgChecked";
+            this.dgChecked.ReadOnly = true;
             this.dgChecked.Width = 30;
             // 
             // nameDataGridViewTextBoxColumn
@@ -219,6 +226,7 @@ namespace Building.UserControls
             this.dgOptionGuid.DataPropertyName = "Guid";
             this.dgOptionGuid.HeaderText = "Guid";
             this.dgOptionGuid.Name = "dgOptionGuid";
+            this.dgOptionGuid.ReadOnly = true;
             this.dgOptionGuid.Visible = false;
             // 
             // modifiedDataGridViewTextBoxColumn
@@ -226,6 +234,7 @@ namespace Building.UserControls
             this.modifiedDataGridViewTextBoxColumn.DataPropertyName = "Modified";
             this.modifiedDataGridViewTextBoxColumn.HeaderText = "Modified";
             this.modifiedDataGridViewTextBoxColumn.Name = "modifiedDataGridViewTextBoxColumn";
+            this.modifiedDataGridViewTextBoxColumn.ReadOnly = true;
             this.modifiedDataGridViewTextBoxColumn.Visible = false;
             // 
             // statusDataGridViewCheckBoxColumn
@@ -233,6 +242,7 @@ namespace Building.UserControls
             this.statusDataGridViewCheckBoxColumn.DataPropertyName = "Status";
             this.statusDataGridViewCheckBoxColumn.HeaderText = "Status";
             this.statusDataGridViewCheckBoxColumn.Name = "statusDataGridViewCheckBoxColumn";
+            this.statusDataGridViewCheckBoxColumn.ReadOnly = true;
             this.statusDataGridViewCheckBoxColumn.Visible = false;
             // 
             // dgIsFullOption
@@ -240,11 +250,8 @@ namespace Building.UserControls
             this.dgIsFullOption.DataPropertyName = "IsFullOption";
             this.dgIsFullOption.HeaderText = "IsFullOption";
             this.dgIsFullOption.Name = "dgIsFullOption";
+            this.dgIsFullOption.ReadOnly = true;
             this.dgIsFullOption.Visible = false;
-            // 
-            // BuildingOptionBindingSource
-            // 
-            this.BuildingOptionBindingSource.DataSource = typeof(EntityCache.Bussines.BuildingOptionsBussines);
             // 
             // UcBuildingOptions
             // 

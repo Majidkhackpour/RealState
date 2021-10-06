@@ -82,12 +82,11 @@ namespace Building.UserControls
                 for (var i = 0; i < DGrid.RowCount; i++)
                 {
                     var val = DGrid[dgIsFullOption.Index, i].Value;
-                    if (val != null && (bool) val)
-                    {
+                    if (val != null && (bool)val)
                         DGrid[dgChecked.Index, i].Value = true;
-                        DGrid.Rows[i].DefaultCellStyle.BackColor = Color.Khaki;
-                    }
                 }
+
+                HighLightGrid();
             }
             catch (Exception ex)
             {
@@ -100,6 +99,39 @@ namespace Building.UserControls
             {
                 if (chbFullOption.Checked) LoadFullOption();
                 else OptionList = _opList;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private void DGrid_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (DGrid.RowCount <= 0) return;
+                if (e.ColumnIndex != dgChecked.Index) return;
+                if (DGrid.CurrentRow == null) return;
+                DGrid[dgChecked.Index, DGrid.CurrentRow.Index].Value = !(bool)DGrid[dgChecked.Index, DGrid.CurrentRow.Index].Value;
+                HighLightGrid();
+            }
+            catch (Exception exception)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(exception);
+            }
+        }
+        private void HighLightGrid()
+        {
+            try
+            {
+                for (var i = 0; i < DGrid.RowCount; i++)
+                {
+                    var val = DGrid[dgChecked.Index, i].Value;
+                    if (val != null && (bool)val)
+                        DGrid.Rows[i].DefaultCellStyle.BackColor = Color.Khaki;
+                    else
+                        DGrid.Rows[i].DefaultCellStyle.BackColor = Color.White;
+                }
             }
             catch (Exception ex)
             {
