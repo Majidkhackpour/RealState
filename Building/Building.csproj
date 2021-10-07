@@ -732,6 +732,12 @@
     <Compile Include="UserControls\Objects\UcTarakom.Designer.cs">
       <DependentUpon>UcTarakom.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\Objects\UcVillaType.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Objects\UcVillaType.Designer.cs">
+      <DependentUpon>UcVillaType.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\Objects\UcZirBana.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -749,6 +755,18 @@
     </Compile>
     <Compile Include="UserControls\Sell\UcBuildingSell_Home.Designer.cs">
       <DependentUpon>UcBuildingSell_Home.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Sell\UcBuildingSell_Land.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Sell\UcBuildingSell_Land.Designer.cs">
+      <DependentUpon>UcBuildingSell_Land.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Sell\UcBuildingSell_Villa.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Sell\UcBuildingSell_Villa.Designer.cs">
+      <DependentUpon>UcBuildingSell_Villa.cs</DependentUpon>
     </Compile>
     <Compile Include="UserControls\UcBuildingCode.cs">
       <SubType>UserControl</SubType>
@@ -1011,6 +1029,9 @@
     <EmbeddedResource Include="UserControls\Objects\UcTarakom.resx">
       <DependentUpon>UcTarakom.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Objects\UcVillaType.resx">
+      <DependentUpon>UcVillaType.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserControls\Objects\UcZirBana.resx">
       <DependentUpon>UcZirBana.cs</DependentUpon>
     </EmbeddedResource>
@@ -1019,6 +1040,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\Sell\UcBuildingSell_Home.resx">
       <DependentUpon>UcBuildingSell_Home.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Sell\UcBuildingSell_Land.resx">
+      <DependentUpon>UcBuildingSell_Land.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Sell\UcBuildingSell_Villa.resx">
+      <DependentUpon>UcBuildingSell_Villa.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UcBuildingCode.resx">
       <DependentUpon>UcBuildingCode.cs</DependentUpon>

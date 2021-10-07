@@ -13,12 +13,13 @@ namespace Building.Buildings
         private EnBuildingParent parent;
         private BuildingBussines cls;
 
+
         private async Task SetDataAsync()
         {
             try
             {
-                Width = 800;
-                Height = Screen.FromControl(this).Bounds.Height;
+                Width = 930;
+                Height = Screen.FromControl(this).Bounds.Height - 80;
 
                 lblTitle.Text = parent.GetDisplay();
 
@@ -68,8 +69,10 @@ namespace Building.Buildings
                         uc = new UcBuildingSell_Home() { Building = cls };
                         break;
                     case EnBuildingParent.SellLand:
+                        uc = new UcBuildingSell_Land() { Building = cls };
                         break;
                     case EnBuildingParent.SellVilla:
+                        uc = new UcBuildingSell_Villa() { Building = cls };
                         break;
                     case EnBuildingParent.SellStore:
                         break;
