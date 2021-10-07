@@ -672,6 +672,12 @@
     <Compile Include="UserControls\Objects\UcBuildingView.Designer.cs">
       <DependentUpon>UcBuildingView.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\Objects\UcCommericallLicense.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Objects\UcCommericallLicense.Designer.cs">
+      <DependentUpon>UcCommericallLicense.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\Objects\UcDocumentType.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -732,6 +738,12 @@
     <Compile Include="UserControls\Objects\UcTarakom.Designer.cs">
       <DependentUpon>UcTarakom.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\Objects\UcTitleValue.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Objects\UcTitleValue.Designer.cs">
+      <DependentUpon>UcTitleValue.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\Objects\UcVillaType.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -761,6 +773,18 @@
     </Compile>
     <Compile Include="UserControls\Sell\UcBuildingSell_Land.Designer.cs">
       <DependentUpon>UcBuildingSell_Land.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Sell\UcBuildingSell_Office.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Sell\UcBuildingSell_Office.Designer.cs">
+      <DependentUpon>UcBuildingSell_Office.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Sell\UcBuildingSell_Store.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Sell\UcBuildingSell_Store.Designer.cs">
+      <DependentUpon>UcBuildingSell_Store.cs</DependentUpon>
     </Compile>
     <Compile Include="UserControls\Sell\UcBuildingSell_Villa.cs">
       <SubType>UserControl</SubType>
@@ -999,6 +1023,9 @@
     <EmbeddedResource Include="UserControls\Objects\UcBuildingView.resx">
       <DependentUpon>UcBuildingView.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Objects\UcCommericallLicense.resx">
+      <DependentUpon>UcCommericallLicense.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserControls\Objects\UcDocumentType.resx">
       <DependentUpon>UcDocumentType.cs</DependentUpon>
     </EmbeddedResource>
@@ -1029,6 +1056,9 @@
     <EmbeddedResource Include="UserControls\Objects\UcTarakom.resx">
       <DependentUpon>UcTarakom.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Objects\UcTitleValue.resx">
+      <DependentUpon>UcTitleValue.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserControls\Objects\UcVillaType.resx">
       <DependentUpon>UcVillaType.cs</DependentUpon>
     </EmbeddedResource>
@@ -1043,6 +1073,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\Sell\UcBuildingSell_Land.resx">
       <DependentUpon>UcBuildingSell_Land.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Sell\UcBuildingSell_Office.resx">
+      <DependentUpon>UcBuildingSell_Office.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Sell\UcBuildingSell_Store.resx">
+      <DependentUpon>UcBuildingSell_Store.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\Sell\UcBuildingSell_Villa.resx">
       <DependentUpon>UcBuildingSell_Villa.cs</DependentUpon>
