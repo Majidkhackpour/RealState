@@ -27,6 +27,7 @@ namespace EntityCache.Bussines
 
 
         public static async Task<List<RentalAuthorityBussines>> GetAllAsync(CancellationToken token) => await UnitOfWork.RentalAuthority.GetAllAsync(Cache.ConnectionString, token);
+        public static List<RentalAuthorityBussines> GetAll(CancellationToken token = default) => AsyncContext.Run(() => GetAllAsync(token));
         public static async Task<ReturnedSaveFuncInfo> SaveRangeAsync(List<RentalAuthorityBussines> list, SqlTransaction tr = null)
         {
             var res = new ReturnedSaveFuncInfo();

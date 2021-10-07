@@ -708,6 +708,12 @@
     <Compile Include="UserControls\Objects\UcPrice.Designer.cs">
       <DependentUpon>UcPrice.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\Objects\UcRentalAuthority.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Objects\UcRentalAuthority.Designer.cs">
+      <DependentUpon>UcRentalAuthority.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\Objects\UcRoomCount.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -755,6 +761,12 @@
     </Compile>
     <Compile Include="UserControls\Objects\UcZirBana.Designer.cs">
       <DependentUpon>UcZirBana.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Rahn\UcBuildingRahn_Appartment.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Rahn\UcBuildingRahn_Appartment.Designer.cs">
+      <DependentUpon>UcBuildingRahn_Appartment.cs</DependentUpon>
     </Compile>
     <Compile Include="UserControls\Sell\UcBuildingSell_Appartment.cs">
       <SubType>UserControl</SubType>
@@ -1053,6 +1065,9 @@
     <EmbeddedResource Include="UserControls\Objects\UcPrice.resx">
       <DependentUpon>UcPrice.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Objects\UcRentalAuthority.resx">
+      <DependentUpon>UcRentalAuthority.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserControls\Objects\UcRoomCount.resx">
       <DependentUpon>UcRoomCount.cs</DependentUpon>
     </EmbeddedResource>
@@ -1076,6 +1091,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\Objects\UcZirBana.resx">
       <DependentUpon>UcZirBana.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Rahn\UcBuildingRahn_Appartment.resx">
+      <DependentUpon>UcBuildingRahn_Appartment.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\Sell\UcBuildingSell_Appartment.resx">
       <DependentUpon>UcBuildingSell_Appartment.cs</DependentUpon>

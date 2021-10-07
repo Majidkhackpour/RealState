@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Building.UserControls.Rahn;
 using Building.UserControls.Sell;
 using EntityCache.Bussines;
 using MetroFramework.Forms;
@@ -87,6 +88,7 @@ namespace Building.Buildings
                         uc = new UcBuildingSell_OldHouse() { Building = cls };
                         break;
                     case EnBuildingParent.RentAprtment:
+                        uc = new UcBuildingRahn_Appartment() { IsFullRahn = false, Building = cls };
                         break;
                     case EnBuildingParent.RentHome:
                         break;
@@ -95,6 +97,7 @@ namespace Building.Buildings
                     case EnBuildingParent.RentOffice:
                         break;
                     case EnBuildingParent.FullRentAprtment:
+                        uc = new UcBuildingRahn_Appartment() { IsFullRahn = true, Building = cls };
                         break;
                     case EnBuildingParent.FullRentHome:
                         break;
