@@ -63,10 +63,10 @@ namespace Persistence.Entities
         public Guid? FloorCoverGuid { get; set; }
         [ForeignKey("KitchenService")]
         public Guid? KitchenServiceGuid { get; set; }
-        public EnKhadamati Water { get; set; }
-        public EnKhadamati Barq { get; set; }
-        public EnKhadamati Gas { get; set; }
-        public EnKhadamati Tell { get; set; }
+        public EnKhadamati? Water { get; set; }
+        public EnKhadamati? Barq { get; set; }
+        public EnKhadamati? Gas { get; set; }
+        public EnKhadamati? Tell { get; set; }
         public int TedadTabaqe { get; set; }
         public int TabaqeNo { get; set; }
         public int VahedPerTabaqe { get; set; }

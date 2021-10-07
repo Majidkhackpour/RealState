@@ -578,6 +578,7 @@
       <DependentUpon>frmSelectBuildingType_.cs</DependentUpon>
     </Compile>
     <Compile Include="clsBuildingSimilar.cs" />
+    <Compile Include="clsBuildingValidator.cs" />
     <Compile Include="clsTelegramManager.cs" />
     <Compile Include="Contract\CalculateCommition.cs" />
     <Compile Include="Contract\frmContractMain.cs">

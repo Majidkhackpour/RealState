@@ -74,13 +74,13 @@ namespace EntityCache.Bussines
         public string FloorCoverName { get; set; }
         public Guid? KitchenServiceGuid { get; set; }
         public string KitchenServiceName { get; set; }
-        public EnKhadamati Water { get; set; }
+        public EnKhadamati? Water { get; set; }
         public string WaterName => Water.GetDisplay();
-        public EnKhadamati Barq { get; set; }
+        public EnKhadamati? Barq { get; set; }
         public string BarqName => Barq.GetDisplay();
-        public EnKhadamati Gas { get; set; }
+        public EnKhadamati? Gas { get; set; }
         public string GasName => Gas.GetDisplay();
-        public EnKhadamati Tell { get; set; }
+        public EnKhadamati? Tell { get; set; }
         public string TellName => Tell.GetDisplay();
         public int TedadTabaqe { get; set; }
         public int TabaqeNo { get; set; }
@@ -412,7 +412,7 @@ namespace EntityCache.Bussines
         public static async Task<int> DbCount(Guid userGuid, short type) =>
             await UnitOfWork.Building.DbCount(Cache.ConnectionString, userGuid, type);
         public static async Task<ReturnedSaveFuncInfo> FixImageAsync() => await UnitOfWork.Building.FixImageAsync(Cache.ConnectionString);
-        private async Task<ReturnedSaveFuncInfo> CheckValidationAsync()
+        public async Task<ReturnedSaveFuncInfo> CheckValidationAsync()
         {
             var res = new ReturnedSaveFuncInfo();
             try

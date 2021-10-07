@@ -8,39 +8,39 @@ namespace Building.UserControls
 {
     public partial class UcBuildingHitting : UserControl
     {
-        public EnKhadamati Water
+        public EnKhadamati? Water
         {
             get => (EnKhadamati)cmbWater.SelectedIndex;
             set
             {
-                if ((int)value < 0) return;
+                if (value == null || (int)value < 0) return;
                 cmbWater.SelectedIndex = (int)value;
             }
         }
-        public EnKhadamati Barq
+        public EnKhadamati? Barq
         {
             get => (EnKhadamati)cmbBarq.SelectedIndex;
             set
             {
-                if ((int)value < 0) return;
+                if (value == null || (int)value < 0) return;
                 cmbBarq.SelectedIndex = (int)value;
             }
         }
-        public EnKhadamati Gas
+        public EnKhadamati? Gas
         {
             get => (EnKhadamati)cmbGas.SelectedIndex;
             set
             {
-                if ((int)value < 0) return;
+                if (value == null || (int)value < 0) return;
                 cmbGas.SelectedIndex = (int)value;
             }
         }
-        public EnKhadamati Tell
+        public EnKhadamati? Tell
         {
             get => (EnKhadamati)cmbTell.SelectedIndex;
             set
             {
-                if ((int)value < 0) return;
+                if (value == null || (int)value < 0) return;
                 cmbTell.SelectedIndex = (int)value;
             }
         }
