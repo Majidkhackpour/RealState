@@ -19,6 +19,7 @@ namespace Building
                         res.AddReturnedValue(SellApartmentValidation(bu));
                         break;
                     case EnBuildingParent.SellHome:
+                        res.AddReturnedValue(SellHomeValidation(bu));
                         break;
                     case EnBuildingParent.SellLand:
                         break;
@@ -88,6 +89,22 @@ namespace Building
                 if (bu.ZirBana <= 0) res.AddError("وارد کردن زیربنا اجباری می باشد");
                 if (bu.Masahat > bu.ZirBana) res.AddError($"متراژ زمین ({bu.Masahat}) از زیربنا ({bu.ZirBana}) بزرگتر است");
                 if (bu.TedadTabaqe <= 0) res.AddError("وارد کردن تعداد طبقات اجباری است");
+                if (bu.SellPrice <= 0) res.AddError("وارد کردن قیمت کل اجباری است");
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+
+            return res;
+        }
+        private static ReturnedSaveFuncInfo SellHomeValidation(BuildingBussines bu)
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                if (bu.Masahat <= 0) res.AddError("وارد کردن متراژ زمین اجباری می باشد");
                 if (bu.SellPrice <= 0) res.AddError("وارد کردن قیمت کل اجباری است");
             }
             catch (Exception ex)

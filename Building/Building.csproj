@@ -726,6 +726,12 @@
     <Compile Include="UserControls\Objects\UcTabaqeNo.Designer.cs">
       <DependentUpon>UcTabaqeNo.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\Objects\UcTarakom.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Objects\UcTarakom.Designer.cs">
+      <DependentUpon>UcTarakom.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\Objects\UcZirBana.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -737,6 +743,12 @@
     </Compile>
     <Compile Include="UserControls\Sell\UcBuildingSell_Appartment.Designer.cs">
       <DependentUpon>UcBuildingSell_Appartment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Sell\UcBuildingSell_Home.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Sell\UcBuildingSell_Home.Designer.cs">
+      <DependentUpon>UcBuildingSell_Home.cs</DependentUpon>
     </Compile>
     <Compile Include="UserControls\UcBuildingCode.cs">
       <SubType>UserControl</SubType>
@@ -996,11 +1008,17 @@
     <EmbeddedResource Include="UserControls\Objects\UcTabaqeNo.resx">
       <DependentUpon>UcTabaqeNo.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Objects\UcTarakom.resx">
+      <DependentUpon>UcTarakom.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserControls\Objects\UcZirBana.resx">
       <DependentUpon>UcZirBana.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\Sell\UcBuildingSell_Appartment.resx">
       <DependentUpon>UcBuildingSell_Appartment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Sell\UcBuildingSell_Home.resx">
+      <DependentUpon>UcBuildingSell_Home.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UcBuildingCode.resx">
       <DependentUpon>UcBuildingCode.cs</DependentUpon>
