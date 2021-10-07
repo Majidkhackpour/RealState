@@ -1,11 +1,11 @@
-﻿using EntityCache.Bussines;
-using Services;
+﻿using Services;
 using System;
 using System.Windows.Forms;
+using EntityCache.Bussines;
 
 namespace Building.UserControls.Sell
 {
-    public partial class UcBuildingSell_Land : UserControl
+    public partial class UcBuildingSell_OldHouse : UserControl
     {
         private BuildingBussines _bu;
 
@@ -67,8 +67,24 @@ namespace Building.UserControls.Sell
             }
         }
 
-        public UcBuildingSell_Land() => InitializeComponent();
+        public UcBuildingSell_OldHouse() => InitializeComponent();
 
+        private void ucPricePerMasahat_OnTextChanged()
+        {
+            try
+            {
+                var currentControl = ActiveControl?.Name;
+                if (string.IsNullOrEmpty(currentControl)) return;
+                if (currentControl != ucPricePerMasahat.Name) return;
+
+                if (ucMasahat.Value > 0)
+                    ucTotalPrice.Price = ucPricePerMasahat.Price * ucMasahat.Value;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
         private void ucTotalPrice_OnTextChanged()
         {
             try
@@ -82,22 +98,6 @@ namespace Building.UserControls.Sell
                 if (ucMasahat.Value <= 0) return;
                 var m = Math.Truncate(ucTotalPrice.Price / ucMasahat.Value);
                 ucPricePerMasahat.Price = m;
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-        private void ucPricePerMasahat_OnTextChanged()
-        {
-            try
-            {
-                var currentControl = ActiveControl?.Name;
-                if (string.IsNullOrEmpty(currentControl)) return;
-                if (currentControl != ucPricePerMasahat.Name) return;
-
-                if (ucMasahat.Value > 0)
-                    ucTotalPrice.Price = ucPricePerMasahat.Price * ucMasahat.Value;
             }
             catch (Exception ex)
             {

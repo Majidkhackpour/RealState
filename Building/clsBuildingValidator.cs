@@ -34,8 +34,10 @@ namespace Building
                         res.AddReturnedValue(SellOfficeValidation(bu));
                         break;
                     case EnBuildingParent.SellGarden:
+                        res.AddReturnedValue(SellGardenValidation(bu));
                         break;
                     case EnBuildingParent.SellOldHouse:
+                        res.AddReturnedValue(SellOldHouseValidation(bu));
                         break;
                     case EnBuildingParent.RentAprtment:
                         break;
@@ -177,6 +179,40 @@ namespace Building
                 if (bu.ZirBana <= 0) res.AddError("وارد کردن زیربنا اجباری می باشد");
                 if (bu.TedadTabaqe <= 0) res.AddError("وارد کردن تعداد طبقات اجباری است");
                 if (bu.TabaqeNo <= 0) res.AddError("وارد کردن شماره طبقه اجباری است");
+                if (bu.SellPrice <= 0) res.AddError("وارد کردن قیمت کل اجباری است");
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+
+            return res;
+        }
+        private static ReturnedSaveFuncInfo SellGardenValidation(BuildingBussines bu)
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                if (bu.ZirBana <= 0) res.AddError("وارد کردن زیربنا اجباری می باشد");
+                if (bu.Masahat <= 0) res.AddError("وارد کردن متراژ زمین اجباری می باشد");
+                if (bu.Masahat > bu.ZirBana) res.AddError($"متراژ زمین ({bu.Masahat}) از زیربنا ({bu.ZirBana}) بزرگتر است");
+                if (bu.SellPrice <= 0) res.AddError("وارد کردن قیمت کل اجباری است");
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+
+            return res;
+        }
+        private static ReturnedSaveFuncInfo SellOldHouseValidation(BuildingBussines bu)
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                if (bu.Masahat <= 0) res.AddError("وارد کردن متراژ زمین اجباری می باشد");
                 if (bu.SellPrice <= 0) res.AddError("وارد کردن قیمت کل اجباری است");
             }
             catch (Exception ex)

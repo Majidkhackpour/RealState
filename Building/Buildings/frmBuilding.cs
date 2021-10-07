@@ -81,8 +81,10 @@ namespace Building.Buildings
                         uc = new UcBuildingSell_Office() { Building = cls };
                         break;
                     case EnBuildingParent.SellGarden:
+                        uc = new UcBuildingSell_Garden() { Building = cls };
                         break;
                     case EnBuildingParent.SellOldHouse:
+                        uc = new UcBuildingSell_OldHouse() { Building = cls };
                         break;
                     case EnBuildingParent.RentAprtment:
                         break;

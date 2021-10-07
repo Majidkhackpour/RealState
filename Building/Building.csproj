@@ -762,6 +762,12 @@
     <Compile Include="UserControls\Sell\UcBuildingSell_Appartment.Designer.cs">
       <DependentUpon>UcBuildingSell_Appartment.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\Sell\UcBuildingSell_Garden.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Sell\UcBuildingSell_Garden.Designer.cs">
+      <DependentUpon>UcBuildingSell_Garden.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\Sell\UcBuildingSell_Home.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -779,6 +785,12 @@
     </Compile>
     <Compile Include="UserControls\Sell\UcBuildingSell_Office.Designer.cs">
       <DependentUpon>UcBuildingSell_Office.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Sell\UcBuildingSell_OldHouse.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Sell\UcBuildingSell_OldHouse.Designer.cs">
+      <DependentUpon>UcBuildingSell_OldHouse.cs</DependentUpon>
     </Compile>
     <Compile Include="UserControls\Sell\UcBuildingSell_Store.cs">
       <SubType>UserControl</SubType>
@@ -1068,6 +1080,9 @@
     <EmbeddedResource Include="UserControls\Sell\UcBuildingSell_Appartment.resx">
       <DependentUpon>UcBuildingSell_Appartment.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Sell\UcBuildingSell_Garden.resx">
+      <DependentUpon>UcBuildingSell_Garden.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserControls\Sell\UcBuildingSell_Home.resx">
       <DependentUpon>UcBuildingSell_Home.cs</DependentUpon>
     </EmbeddedResource>
@@ -1076,6 +1091,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\Sell\UcBuildingSell_Office.resx">
       <DependentUpon>UcBuildingSell_Office.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Sell\UcBuildingSell_OldHouse.resx">
+      <DependentUpon>UcBuildingSell_OldHouse.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\Sell\UcBuildingSell_Store.resx">
       <DependentUpon>UcBuildingSell_Store.cs</DependentUpon>

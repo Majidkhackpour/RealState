@@ -1,11 +1,11 @@
-﻿using EntityCache.Bussines;
-using Services;
+﻿using Services;
 using System;
 using System.Windows.Forms;
+using EntityCache.Bussines;
 
 namespace Building.UserControls.Sell
 {
-    public partial class UcBuildingSell_Land : UserControl
+    public partial class UcBuildingSell_Garden : UserControl
     {
         private BuildingBussines _bu;
 
@@ -15,16 +15,13 @@ namespace Building.UserControls.Sell
             {
                 try
                 {
+                    _bu.ZirBana = ucZirBana1.Value;
                     _bu.DocumentType = ucDocumentType1.SanadTypeGuid;
                     _bu.Dang = UcDong.Value;
+                    _bu.SaleSakht = ucSaleSakht1.SaleSakht;
                     _bu.Masahat = ucMasahat.Value;
+                    _bu.TreeCount = ucTreeCount.Value;
                     _bu.Hashie = UcWidth.Value;
-                    _bu.Lenght = UcHeight.Value;
-                    _bu.ReformArea = UcReformArea.Value;
-                    _bu.BuildingPermits = chbBuildingPermits.Checked;
-                    _bu.Tarakom = ucTarakom1.Tarakom;
-                    _bu.WidthOfPassage = UcWitdhOfPassage.Value;
-                    _bu.Side = ucSide1.Side;
                     _bu.SellPrice = ucTotalPrice.Price;
                     _bu.VamPrice = ucVam.Price;
                     _bu.QestPrice = ucQest.Price;
@@ -41,17 +38,13 @@ namespace Building.UserControls.Sell
                 {
                     if (value == null) return;
                     _bu = value;
+                    ucZirBana1.Value = _bu.ZirBana;
                     ucDocumentType1.SanadTypeGuid = _bu.DocumentType;
                     UcDong.Value = _bu.Dang;
+                    ucSaleSakht1.SaleSakht = _bu.SaleSakht;
                     ucMasahat.Value = _bu.Masahat;
                     UcWidth.Value = (int)_bu.Hashie;
-                    UcHeight.Value = (int)_bu.Lenght;
-                    UcReformArea.Value = (int)_bu.ReformArea;
-                    if (_bu.BuildingPermits != null)
-                        chbBuildingPermits.Checked = _bu.BuildingPermits.Value;
-                    ucTarakom1.Tarakom = _bu.Tarakom;
-                    UcWitdhOfPassage.Value = (int)_bu.WidthOfPassage;
-                    ucSide1.Side = _bu.Side;
+                    ucTreeCount.Value = _bu.TreeCount;
                     ucTotalPrice.Price = _bu.SellPrice;
                     ucVam.Price = _bu.VamPrice;
                     ucQest.Price = _bu.QestPrice;
@@ -67,8 +60,24 @@ namespace Building.UserControls.Sell
             }
         }
 
-        public UcBuildingSell_Land() => InitializeComponent();
+        public UcBuildingSell_Garden() => InitializeComponent();
 
+        private void ucPricePerMasahat_OnTextChanged()
+        {
+            try
+            {
+                var currentControl = ActiveControl?.Name;
+                if (string.IsNullOrEmpty(currentControl)) return;
+                if (currentControl != ucPricePerMasahat.Name) return;
+
+                if (ucMasahat.Value > 0)
+                    ucTotalPrice.Price = ucPricePerMasahat.Price * ucMasahat.Value;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
         private void ucTotalPrice_OnTextChanged()
         {
             try
@@ -82,22 +91,6 @@ namespace Building.UserControls.Sell
                 if (ucMasahat.Value <= 0) return;
                 var m = Math.Truncate(ucTotalPrice.Price / ucMasahat.Value);
                 ucPricePerMasahat.Price = m;
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-        private void ucPricePerMasahat_OnTextChanged()
-        {
-            try
-            {
-                var currentControl = ActiveControl?.Name;
-                if (string.IsNullOrEmpty(currentControl)) return;
-                if (currentControl != ucPricePerMasahat.Name) return;
-
-                if (ucMasahat.Value > 0)
-                    ucTotalPrice.Price = ucPricePerMasahat.Price * ucMasahat.Value;
             }
             catch (Exception ex)
             {
