@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WindowsSerivces;
 using Building.UserControls.Other;
 using Building.UserControls.Rahn;
 using Building.UserControls.Sell;
@@ -14,6 +15,7 @@ namespace Building.Buildings
     {
         private EnBuildingParent parent;
         private BuildingBussines cls;
+        private UserControl uc;
 
 
         private async Task SetDataAsync()
@@ -61,7 +63,6 @@ namespace Building.Buildings
         {
             try
             {
-                UserControl uc = null;
                 switch (parent)
                 {
                     case EnBuildingParent.SellAprtment:
@@ -146,15 +147,14 @@ namespace Building.Buildings
                         throw new ArgumentOutOfRangeException();
                 }
 
-                if (uc != null)
-                    LoadContent(uc);
+                if (uc != null) LoadContent();
             }
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void LoadContent(UserControl uc)
+        private void LoadContent()
         {
             try
             {
@@ -170,6 +170,20 @@ namespace Building.Buildings
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
+        }
+        private BuildingBussines GetObject()
+        {
+            BuildingBussines bu = null;
+            try
+            {
+                
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+
+            return bu;
         }
 
         public frmBuilding(EnBuildingParent _parent)
@@ -220,6 +234,28 @@ namespace Building.Buildings
             catch (Exception exception)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(exception);
+            }
+        }
+        private async void btnFinish_Click(object sender, EventArgs e)
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+            finally
+            {
+                if (res.HasError) this.ShowError(res);
+                else
+                {
+                    DialogResult = DialogResult.OK;
+                    Close();
+                }
             }
         }
     }

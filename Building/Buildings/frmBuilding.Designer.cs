@@ -296,6 +296,7 @@ namespace Building.Buildings
             this.btnFinish.TabIndex = 55800;
             this.btnFinish.Text = "تایید (F5)";
             this.btnFinish.TextColor = System.Drawing.Color.Black;
+            this.btnFinish.Click += new System.EventHandler(this.btnFinish_Click);
             // 
             // frmBuilding
             // 
