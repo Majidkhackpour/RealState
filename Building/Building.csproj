@@ -577,6 +577,9 @@
     <Compile Include="Buildings\Selector\frmSelectBuildingType_.Designer.cs">
       <DependentUpon>frmSelectBuildingType_.cs</DependentUpon>
     </Compile>
+    <Compile Include="clsBuildingColtrols.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="clsBuildingSimilar.cs" />
     <Compile Include="clsBuildingValidator.cs" />
     <Compile Include="clsTelegramManager.cs" />

@@ -420,10 +420,6 @@ namespace EntityCache.Bussines
                 if (string.IsNullOrWhiteSpace(Code)) res.AddError("کد ملک نمی تواند خالی باشد");
                 if (!await CheckCodeAsync(Code.Trim(), Guid)) res.AddError("کد ملک وارد شده تکراری است");
                 if (OwnerGuid == Guid.Empty) res.AddError("لطفا مالک را انتخاب نمایید");
-                if (RahnPrice1 == 0 && EjarePrice1 == 0 && SellPrice == 0 && PishTotalPrice == 0)
-                    res.AddError("لطفا یکی از فیلدهای مبلغ را وارد نمایید");
-
-                if (ZirBana == 0 && Masahat == 0) res.AddError("لطفا مساحت و زیربنا را وارد نمایید");
                 if (RegionGuid == Guid.Empty) res.AddError("لطفا محدوده ملک را وارد نمایید");
                 if (TedadTabaqe < TabaqeNo) res.AddError($"تعداد طبقات ({TedadTabaqe}) نمی تواند از شماره طبقه ({TabaqeNo}) کوچکتر باشد");
             }

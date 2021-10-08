@@ -1,11 +1,10 @@
-﻿using System;
-using System.Windows.Forms;
-using EntityCache.Bussines;
+﻿using EntityCache.Bussines;
 using Services;
+using System;
 
 namespace Building.UserControls.Other
 {
-    public partial class UcBuildingOther_Store : UserControl
+    public partial class UcBuildingOther_Store : clsBuildingColtrols
     {
         private BuildingBussines _bu;
         public bool IsPishForoush
@@ -18,7 +17,7 @@ namespace Building.UserControls.Other
                 label1.Visible = value;
             }
         }
-        public BuildingBussines Building
+        public override BuildingBussines Building
         {
             get
             {
@@ -83,7 +82,7 @@ namespace Building.UserControls.Other
             }
         }
 
-        public UcBuildingOther_Store()=>InitializeComponent();
+        public UcBuildingOther_Store() => InitializeComponent();
 
         private void ucPricePerMasahat_OnTextChanged()
         {

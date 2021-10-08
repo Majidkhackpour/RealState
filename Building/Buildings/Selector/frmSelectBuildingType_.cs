@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WindowsSerivces;
+using EntityCache.Bussines;
 
 namespace Building.Buildings.Selector
 {
@@ -164,7 +165,7 @@ namespace Building.Buildings.Selector
             }
         }
 
-        public frmSelectBuildingType_(IWin32Window _owner,EnContractType type, List<EnContractType_> lstItems)
+        public frmSelectBuildingType_(IWin32Window _owner, EnContractType type, List<EnContractType_> lstItems)
         {
             InitializeComponent();
             owner = _owner;
@@ -179,7 +180,7 @@ namespace Building.Buildings.Selector
             {
                 timer1.Stop();
                 Close();
-                new frmBuilding(TypeSwitcher()).ShowDialog(owner);
+                new frmBuilding(new BuildingBussines() { Parent = TypeSwitcher() }).ShowDialog(owner);
             }
             catch (Exception ex)
             {

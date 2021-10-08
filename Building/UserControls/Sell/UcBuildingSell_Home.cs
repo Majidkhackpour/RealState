@@ -5,11 +5,11 @@ using EntityCache.Bussines;
 
 namespace Building.UserControls.Sell
 {
-    public partial class UcBuildingSell_Home : UserControl
+    public partial class UcBuildingSell_Home : clsBuildingColtrols
     {
         private BuildingBussines _bu;
 
-        public BuildingBussines Building
+        public override BuildingBussines Building
         {
             get
             {

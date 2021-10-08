@@ -1,15 +1,14 @@
-﻿using Services;
+﻿using EntityCache.Bussines;
+using Services;
 using System;
-using System.Windows.Forms;
-using EntityCache.Bussines;
 
 namespace Building.UserControls.Sell
 {
-    public partial class UcBuildingSell_OldHouse : UserControl
+    public partial class UcBuildingSell_OldHouse : clsBuildingColtrols
     {
         private BuildingBussines _bu;
 
-        public BuildingBussines Building
+        public override BuildingBussines Building
         {
             get
             {

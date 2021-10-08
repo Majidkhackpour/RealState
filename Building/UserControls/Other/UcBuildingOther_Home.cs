@@ -5,7 +5,7 @@ using System.Windows.Forms;
 
 namespace Building.UserControls.Other
 {
-    public partial class UcBuildingOther_Home : UserControl
+    public partial class UcBuildingOther_Home : clsBuildingColtrols
     {
         private BuildingBussines _bu;
         public bool IsPishForoush
@@ -18,7 +18,7 @@ namespace Building.UserControls.Other
                 label1.Visible = value;
             }
         }
-        public BuildingBussines Building
+        public override BuildingBussines Building
         {
             get
             {

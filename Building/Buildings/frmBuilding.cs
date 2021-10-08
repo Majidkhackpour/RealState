@@ -1,21 +1,26 @@
 ﻿using System;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WindowsSerivces;
+using Building.BuildingMatchesItem;
 using Building.UserControls.Other;
 using Building.UserControls.Rahn;
 using Building.UserControls.Sell;
 using EntityCache.Bussines;
+using EntityCache.ViewModels;
 using MetroFramework.Forms;
+using Notification;
 using Services;
 
 namespace Building.Buildings
 {
     public partial class frmBuilding : MetroForm
     {
-        private EnBuildingParent parent;
         private BuildingBussines cls;
-        private UserControl uc;
+        private clsBuildingColtrols uc;
+        private bool isSendSms = false;
+        private CancellationTokenSource _token = new CancellationTokenSource();
 
 
         private async Task SetDataAsync()
@@ -25,7 +30,7 @@ namespace Building.Buildings
                 Width = 930;
                 Height = Screen.FromControl(this).Bounds.Height - 80;
 
-                lblTitle.Text = parent.GetDisplay();
+                lblTitle.Text = cls.Parent.GetDisplay();
 
                 UcPeople.Guid = cls.OwnerGuid;
 
@@ -63,7 +68,7 @@ namespace Building.Buildings
         {
             try
             {
-                switch (parent)
+                switch (cls.Parent)
                 {
                     case EnBuildingParent.SellAprtment:
                         uc = new UcBuildingSell_Appartment() { Building = cls };
@@ -171,26 +176,11 @@ namespace Building.Buildings
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private BuildingBussines GetObject()
-        {
-            BuildingBussines bu = null;
-            try
-            {
-                
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
 
-            return bu;
-        }
-
-        public frmBuilding(EnBuildingParent _parent)
+        public frmBuilding(BuildingBussines bu)
         {
             InitializeComponent();
-            parent = _parent;
-            cls = new BuildingBussines() { Parent = _parent };
+            cls = bu;
         }
 
         private async void frmBuilding_Load(object sender, EventArgs e) => await SetDataAsync();
@@ -241,7 +231,59 @@ namespace Building.Buildings
             var res = new ReturnedSaveFuncInfo();
             try
             {
-                
+                if (cls.Guid == Guid.Empty)
+                {
+                    uc.Building.Guid = Guid.NewGuid();
+                    isSendSms = true;
+                }
+                else uc.Building.Guid = cls.Guid;
+                cls = uc.Building;
+
+                cls.OwnerGuid = UcPeople.Guid;
+                cls.CityGuid = UcCity.CityGuid;
+                cls.RegionGuid = UcCity.RegionGuid;
+                cls.Address = UcCity.Address;
+                cls.Code = UcCode.Code;
+                cls.Priority = UcCode.Pirority;
+                cls.CreateDate = UcCode.CreateDate;
+                cls.UserGuid = UcCode.UserGuid;
+                cls.Hiting = UcHitting_Colling.Hitting;
+                cls.Colling = UcHitting_Colling.Colling;
+                cls.Water = UcHitting_Colling.Water;
+                cls.Barq = UcHitting_Colling.Barq;
+                cls.Gas = UcHitting_Colling.Gas;
+                cls.Tell = UcHitting_Colling.Tell;
+
+                cls.OptionList = UcOptions.OptionList;
+                cls.ShortDesc = txtShortDesc.Text;
+
+                res.AddReturnedValue(await clsBuildingValidator.CheckValidationAsync(cls));
+                if (res.HasError) return;
+
+                res.AddReturnedValue(await cls.SaveAsync());
+                if (res.HasError) return;
+
+                if (Settings.Classes.Payamak.IsSendToOwner.ParseToBoolean() && isSendSms)
+                {
+                    var tr = await Payamak.FixSms.OwnerSend.SendAsync(cls);
+                    frmNotification.PublicInfo.ShowMessage(tr.HasError
+                        ? tr.ErrorMessage
+                        : "ارسال پیامک به مالک با موفقیت انجام شد");
+                }
+
+                if (MessageBox.Show("آیا مایلید تقاضاهای مطابق با این ملک را مشاهده نمایید؟", "تطبیق املاک با تقاضا",
+                        MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.No)
+                    return;
+                _token?.Cancel();
+                _token = new CancellationTokenSource();
+                var list = await BuildingRequestViewModel.GetAllMatchesItemsAsync(cls, _token.Token);
+                if (list.Count <= 0)
+                {
+                    this.ShowMessage("فایل مطابقی جهت نمایش وجود ندارد");
+                    return;
+                }
+
+                new frmShowRequestMatches(list).ShowDialog(this);
             }
             catch (Exception ex)
             {

@@ -7,13 +7,13 @@ namespace Building
 {
     public static class clsBuildingValidator
     {
-        public static async Task<ReturnedSaveFuncInfo> CheckValidationAsync(BuildingBussines bu, EnBuildingParent parent)
+        public static async Task<ReturnedSaveFuncInfo> CheckValidationAsync(BuildingBussines bu)
         {
             var res = new ReturnedSaveFuncInfo();
             try
             {
                 res.AddReturnedValue(await bu.CheckValidationAsync());
-                switch (parent)
+                switch (bu.Parent)
                 {
                     case EnBuildingParent.SellAprtment:
                         res.AddReturnedValue(SellApartmentValidation(bu));
@@ -93,8 +93,6 @@ namespace Building
                     case EnBuildingParent.MosharekatHome:
                         res.AddReturnedValue(OtherHomeValidation(bu));
                         break;
-                    default:
-                        throw new ArgumentOutOfRangeException(nameof(parent), parent, null);
                 }
             }
             catch (Exception ex)

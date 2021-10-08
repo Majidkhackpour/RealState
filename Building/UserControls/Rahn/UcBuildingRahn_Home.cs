@@ -1,15 +1,14 @@
-﻿using System;
-using System.Windows.Forms;
-using EntityCache.Bussines;
+﻿using EntityCache.Bussines;
 using Services;
+using System;
 
 namespace Building.UserControls.Rahn
 {
-    public partial class UcBuildingRahn_Home : UserControl
+    public partial class UcBuildingRahn_Home : clsBuildingColtrols
     {
         private BuildingBussines _bu;
         public bool IsFullRahn { get => !ucEjare.Visible; set => ucEjare.Visible = !value; }
-        public BuildingBussines Building
+        public override BuildingBussines Building
         {
             get
             {

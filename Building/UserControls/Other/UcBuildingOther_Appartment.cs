@@ -5,7 +5,7 @@ using Services;
 
 namespace Building.UserControls.Other
 {
-    public partial class UcBuildingOther_Appartment : UserControl
+    public partial class UcBuildingOther_Appartment : clsBuildingColtrols
     {
         private BuildingBussines _bu;
         public bool IsPishForoush
@@ -18,7 +18,7 @@ namespace Building.UserControls.Other
                 label1.Visible = value;
             }
         }
-        public BuildingBussines Building
+        public override BuildingBussines Building
         {
             get
             {
