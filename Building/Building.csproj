@@ -678,6 +678,12 @@
     <Compile Include="UserControls\Objects\UcCommericallLicense.Designer.cs">
       <DependentUpon>UcCommericallLicense.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\Objects\UcConstructionStage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Objects\UcConstructionStage.Designer.cs">
+      <DependentUpon>UcConstructionStage.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\Objects\UcDocumentType.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -761,6 +767,30 @@
     </Compile>
     <Compile Include="UserControls\Objects\UcZirBana.Designer.cs">
       <DependentUpon>UcZirBana.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Other\UcBuildingOther_Appartment.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Other\UcBuildingOther_Appartment.Designer.cs">
+      <DependentUpon>UcBuildingOther_Appartment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Other\UcBuildingOther_Home.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Other\UcBuildingOther_Home.Designer.cs">
+      <DependentUpon>UcBuildingOther_Home.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Other\UcBuildingOther_Office.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Other\UcBuildingOther_Office.Designer.cs">
+      <DependentUpon>UcBuildingOther_Office.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Other\UcBuildingOther_Store.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Other\UcBuildingOther_Store.Designer.cs">
+      <DependentUpon>UcBuildingOther_Store.cs</DependentUpon>
     </Compile>
     <Compile Include="UserControls\Rahn\UcBuildingRahn_Appartment.cs">
       <SubType>UserControl</SubType>
@@ -1068,6 +1098,9 @@
     <EmbeddedResource Include="UserControls\Objects\UcCommericallLicense.resx">
       <DependentUpon>UcCommericallLicense.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Objects\UcConstructionStage.resx">
+      <DependentUpon>UcConstructionStage.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserControls\Objects\UcDocumentType.resx">
       <DependentUpon>UcDocumentType.cs</DependentUpon>
     </EmbeddedResource>
@@ -1109,6 +1142,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\Objects\UcZirBana.resx">
       <DependentUpon>UcZirBana.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Other\UcBuildingOther_Appartment.resx">
+      <DependentUpon>UcBuildingOther_Appartment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Other\UcBuildingOther_Home.resx">
+      <DependentUpon>UcBuildingOther_Home.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Other\UcBuildingOther_Office.resx">
+      <DependentUpon>UcBuildingOther_Office.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Other\UcBuildingOther_Store.resx">
+      <DependentUpon>UcBuildingOther_Store.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\Rahn\UcBuildingRahn_Appartment.resx">
       <DependentUpon>UcBuildingRahn_Appartment.cs</DependentUpon>

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Building.UserControls.Other;
 using Building.UserControls.Rahn;
 using Building.UserControls.Sell;
 using EntityCache.Bussines;
@@ -112,24 +113,34 @@ namespace Building.Buildings
                         uc = new UcBuildingRahn_Office() { IsFullRahn = true, Building = cls };
                         break;
                     case EnBuildingParent.PreSellAprtment:
+                        uc = new UcBuildingOther_Appartment() { IsPishForoush = true, Building = cls };
                         break;
                     case EnBuildingParent.PreSellHome:
+                        uc = new UcBuildingOther_Home() { IsPishForoush = true, Building = cls };
                         break;
                     case EnBuildingParent.PreSellStore:
+                        uc = new UcBuildingOther_Store() { IsPishForoush = true, Building = cls };
                         break;
                     case EnBuildingParent.PreSellOffice:
+                        uc = new UcBuildingOther_Office() { IsPishForoush = true, Building = cls };
                         break;
                     case EnBuildingParent.MoavezeAprtment:
+                        uc = new UcBuildingOther_Appartment() { IsPishForoush = false, Building = cls };
                         break;
                     case EnBuildingParent.MoavezeHome:
+                        uc = new UcBuildingOther_Home() { IsPishForoush = false, Building = cls };
                         break;
                     case EnBuildingParent.MoavezeStore:
+                        uc = new UcBuildingOther_Store() { IsPishForoush = false, Building = cls };
                         break;
                     case EnBuildingParent.MoavezeOffice:
+                        uc = new UcBuildingOther_Office() { IsPishForoush = true, Building = cls };
                         break;
                     case EnBuildingParent.MosharekatAprtment:
+                        uc = new UcBuildingOther_Appartment() { IsPishForoush = false, Building = cls };
                         break;
                     case EnBuildingParent.MosharekatHome:
+                        uc = new UcBuildingOther_Home() { IsPishForoush = false, Building = cls };
                         break;
                     default:
                         throw new ArgumentOutOfRangeException();
