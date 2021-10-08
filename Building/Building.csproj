@@ -885,6 +885,12 @@
     <Compile Include="UserControls\UcBuildingHitting.Designer.cs">
       <DependentUpon>UcBuildingHitting.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\UcBuildingImages.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UcBuildingImages.Designer.cs">
+      <DependentUpon>UcBuildingImages.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\UcBuildingOptions.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1202,6 +1208,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UcBuildingHitting.resx">
       <DependentUpon>UcBuildingHitting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UcBuildingImages.resx">
+      <DependentUpon>UcBuildingImages.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UcBuildingOptions.resx">
       <DependentUpon>UcBuildingOptions.cs</DependentUpon>
