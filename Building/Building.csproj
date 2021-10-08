@@ -768,6 +768,24 @@
     <Compile Include="UserControls\Rahn\UcBuildingRahn_Appartment.Designer.cs">
       <DependentUpon>UcBuildingRahn_Appartment.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\Rahn\UcBuildingRahn_Home.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Rahn\UcBuildingRahn_Home.Designer.cs">
+      <DependentUpon>UcBuildingRahn_Home.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Rahn\UcBuildingRahn_Office.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Rahn\UcBuildingRahn_Office.Designer.cs">
+      <DependentUpon>UcBuildingRahn_Office.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Rahn\UcBuildingRahn_Store.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Rahn\UcBuildingRahn_Store.Designer.cs">
+      <DependentUpon>UcBuildingRahn_Store.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\Sell\UcBuildingSell_Appartment.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1094,6 +1112,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\Rahn\UcBuildingRahn_Appartment.resx">
       <DependentUpon>UcBuildingRahn_Appartment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Rahn\UcBuildingRahn_Home.resx">
+      <DependentUpon>UcBuildingRahn_Home.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Rahn\UcBuildingRahn_Office.resx">
+      <DependentUpon>UcBuildingRahn_Office.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Rahn\UcBuildingRahn_Store.resx">
+      <DependentUpon>UcBuildingRahn_Store.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\Sell\UcBuildingSell_Appartment.resx">
       <DependentUpon>UcBuildingSell_Appartment.cs</DependentUpon>

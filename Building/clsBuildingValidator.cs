@@ -43,19 +43,25 @@ namespace Building
                         res.AddReturnedValue(RahnAppartmentValidation(bu, false));
                         break;
                     case EnBuildingParent.RentHome:
+                        res.AddReturnedValue(RahnHomeValidation(bu, false));
                         break;
                     case EnBuildingParent.RentStore:
+                        res.AddReturnedValue(RahnStoreValidation(bu, false));
                         break;
                     case EnBuildingParent.RentOffice:
+                        res.AddReturnedValue(RahnOfficeValidation(bu, false));
                         break;
                     case EnBuildingParent.FullRentAprtment:
                         res.AddReturnedValue(RahnAppartmentValidation(bu, true));
                         break;
                     case EnBuildingParent.FullRentHome:
+                        res.AddReturnedValue(RahnHomeValidation(bu, true));
                         break;
                     case EnBuildingParent.FullRentStore:
+                        res.AddReturnedValue(RahnStoreValidation(bu, true));
                         break;
                     case EnBuildingParent.FullRentOffice:
+                        res.AddReturnedValue(RahnOfficeValidation(bu, true));
                         break;
                     case EnBuildingParent.PreSellAprtment:
                         break;
@@ -226,6 +232,62 @@ namespace Building
             return res;
         }
         private static ReturnedSaveFuncInfo RahnAppartmentValidation(BuildingBussines bu, bool isFullRahn)
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                if (bu.ZirBana <= 0) res.AddError("وارد کردن زیربنا اجباری می باشد");
+                if (bu.TedadTabaqe <= 0) res.AddError("وارد کردن تعداد طبقات اجباری است");
+                if (bu.TabaqeNo <= 0) res.AddError("وارد کردن شماره طبقه اجباری است");
+                if (bu.RahnPrice1 <= 0) res.AddError("وارد کردن رهن اجباری است");
+                if (!isFullRahn)
+                    if (bu.EjarePrice1 <= 0) res.AddError("وارد کردن اجاره اجباری است");
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+
+            return res;
+        }
+        private static ReturnedSaveFuncInfo RahnHomeValidation(BuildingBussines bu, bool isFullRahn)
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                if (bu.Masahat <= 0) res.AddError("وارد کردن متراژ زمین اجباری می باشد");
+                if (bu.RahnPrice1 <= 0) res.AddError("وارد کردن رهن اجباری است");
+                if (!isFullRahn)
+                    if (bu.EjarePrice1 <= 0) res.AddError("وارد کردن اجاره اجباری است");
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+
+            return res;
+        }
+        private static ReturnedSaveFuncInfo RahnStoreValidation(BuildingBussines bu, bool isFullRahn)
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                if (bu.ZirBana <= 0) res.AddError("وارد کردن زیربنا اجباری می باشد");
+                if (bu.RahnPrice1 <= 0) res.AddError("وارد کردن رهن اجباری است");
+                if (!isFullRahn)
+                    if (bu.EjarePrice1 <= 0) res.AddError("وارد کردن اجاره اجباری است");
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+
+            return res;
+        }
+        private static ReturnedSaveFuncInfo RahnOfficeValidation(BuildingBussines bu, bool isFullRahn)
         {
             var res = new ReturnedSaveFuncInfo();
             try

@@ -91,19 +91,25 @@ namespace Building.Buildings
                         uc = new UcBuildingRahn_Appartment() { IsFullRahn = false, Building = cls };
                         break;
                     case EnBuildingParent.RentHome:
+                        uc = new UcBuildingRahn_Home() { IsFullRahn = false, Building = cls };
                         break;
                     case EnBuildingParent.RentStore:
+                        uc = new UcBuildingRahn_Store() { IsFullRahn = false, Building = cls };
                         break;
                     case EnBuildingParent.RentOffice:
+                        uc = new UcBuildingRahn_Office() { IsFullRahn = false, Building = cls };
                         break;
                     case EnBuildingParent.FullRentAprtment:
                         uc = new UcBuildingRahn_Appartment() { IsFullRahn = true, Building = cls };
                         break;
                     case EnBuildingParent.FullRentHome:
+                        uc = new UcBuildingRahn_Home() { IsFullRahn = true, Building = cls };
                         break;
                     case EnBuildingParent.FullRentStore:
+                        uc = new UcBuildingRahn_Store() { IsFullRahn = true, Building = cls };
                         break;
                     case EnBuildingParent.FullRentOffice:
+                        uc = new UcBuildingRahn_Office() { IsFullRahn = true, Building = cls };
                         break;
                     case EnBuildingParent.PreSellAprtment:
                         break;
