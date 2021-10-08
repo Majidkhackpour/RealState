@@ -36,6 +36,7 @@ namespace Building.Buildings
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmBuilding));
             this.UcPeople = new Peoples.UcPeopleSelect();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.ucBuildingHitting1 = new Building.UserControls.UcBuildingImages();
             this.groupPanel2 = new DevComponents.DotNetBar.Controls.GroupPanel();
             this.txtShortDesc = new System.Windows.Forms.TextBox();
             this.UcOptions = new Building.UserControls.UcBuildingOptions();
@@ -72,6 +73,7 @@ namespace Building.Buildings
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.AutoScroll = true;
+            this.panel1.Controls.Add(this.ucBuildingHitting1);
             this.panel1.Controls.Add(this.groupPanel2);
             this.panel1.Controls.Add(this.UcOptions);
             this.panel1.Controls.Add(this.UcHitting_Colling);
@@ -83,6 +85,19 @@ namespace Building.Buildings
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(791, 485);
             this.panel1.TabIndex = 2;
+            // 
+            // ucBuildingHitting1
+            // 
+            this.ucBuildingHitting1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ucBuildingHitting1.BackColor = System.Drawing.Color.Transparent;
+            this.ucBuildingHitting1.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.ucBuildingHitting1.Location = new System.Drawing.Point(369, 927);
+            this.ucBuildingHitting1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ucBuildingHitting1.Name = "ucBuildingHitting1";
+            this.ucBuildingHitting1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.ucBuildingHitting1.Size = new System.Drawing.Size(397, 300);
+            this.ucBuildingHitting1.TabIndex = 55802;
             // 
             // groupPanel2
             // 
@@ -339,5 +354,6 @@ namespace Building.Buildings
         private DevComponents.DotNetBar.Controls.GroupPanel groupPanel2;
         private System.Windows.Forms.TextBox txtShortDesc;
         private System.Windows.Forms.Panel pnlContent;
+        private UcBuildingImages ucBuildingHitting1;
     }
 }

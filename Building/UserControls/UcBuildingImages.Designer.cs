@@ -89,10 +89,10 @@ namespace Building.UserControls
             this.btnDelImage.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnDelImage.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnDelImage.Font = new System.Drawing.Font("B Yekan", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.btnDelImage.Location = new System.Drawing.Point(30, 299);
+            this.btnDelImage.Location = new System.Drawing.Point(163, 298);
             this.btnDelImage.Name = "btnDelImage";
             this.btnDelImage.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
-            this.btnDelImage.Size = new System.Drawing.Size(198, 27);
+            this.btnDelImage.Size = new System.Drawing.Size(150, 27);
             this.btnDelImage.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
             this.btnDelImage.TabIndex = 5;
             this.btnDelImage.Text = "حذف تصویر(های) انتخاب شده";
@@ -108,10 +108,10 @@ namespace Building.UserControls
             this.btnInsImage.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnInsImage.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnInsImage.Font = new System.Drawing.Font("B Yekan", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.btnInsImage.Location = new System.Drawing.Point(234, 299);
+            this.btnInsImage.Location = new System.Drawing.Point(319, 298);
             this.btnInsImage.Name = "btnInsImage";
             this.btnInsImage.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
-            this.btnInsImage.Size = new System.Drawing.Size(195, 27);
+            this.btnInsImage.Size = new System.Drawing.Size(134, 27);
             this.btnInsImage.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
             this.btnInsImage.TabIndex = 4;
             this.btnInsImage.Text = "افزودن تصویر(های) جدید";

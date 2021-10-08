@@ -57,6 +57,8 @@ namespace Building.Buildings
 
                 txtShortDesc.Text = cls.ShortDesc;
 
+                ucBuildingHitting1.GalleryList = cls.GalleryList;
+
                 GetContent();
             }
             catch (Exception ex)
@@ -256,6 +258,7 @@ namespace Building.Buildings
 
                 cls.OptionList = UcOptions.OptionList;
                 cls.ShortDesc = txtShortDesc.Text;
+                cls.GalleryList = ucBuildingHitting1.GalleryList;
 
                 res.AddReturnedValue(await clsBuildingValidator.CheckValidationAsync(cls));
                 if (res.HasError) return;
