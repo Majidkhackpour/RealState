@@ -42,6 +42,30 @@ namespace EntityCache.SqlServerPersistence
 
             return list;
         }
+        public async Task<List<BuildingBussines>> GetAllWithoutParentAsync(string connectionString)
+        {
+            var list = new List<BuildingBussines>();
+            try
+            {
+                using (var cn = new SqlConnection(connectionString))
+                {
+                    var cmd = new SqlCommand("sp_Building_GetAllWithoutParent", cn) { CommandType = CommandType.StoredProcedure };
+                    await cn.OpenAsync();
+                    var dr = await cmd.ExecuteReaderAsync();
+                    while (dr.Read()) list.Add(LoadData(dr, false));
+                    dr.Close();
+                    cn.Close();
+                }
+            }
+            catch (TaskCanceledException) { }
+            catch (OperationCanceledException) { }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+
+            return list;
+        }
         public async Task<ReturnedSaveFuncInfo> SaveAsync(BuildingBussines item, SqlTransaction tr)
         {
             var res = new ReturnedSaveFuncInfo();
@@ -137,6 +161,25 @@ namespace EntityCache.SqlServerPersistence
                     cmd.Parameters.AddWithValue("@constructionStage", (short)item.ConstructionStage);
                 if (item.Parent != null)
                     cmd.Parameters.AddWithValue("@parent", (short)item.Parent);
+
+                await cmd.ExecuteNonQueryAsync();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+
+            return res;
+        }
+        public async Task<ReturnedSaveFuncInfo> ChangeParentAsync(Guid guid, EnBuildingParent parent, SqlTransaction tr)
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                var cmd = new SqlCommand("sp_Building_ChangeParent", tr.Connection, tr) { CommandType = CommandType.StoredProcedure };
+                cmd.Parameters.AddWithValue("@Guid", guid);
+                cmd.Parameters.AddWithValue("@parent", (short)parent);
 
                 await cmd.ExecuteNonQueryAsync();
             }

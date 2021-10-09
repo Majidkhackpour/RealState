@@ -9,7 +9,7 @@ namespace Ertegha
 {
     public class clsErtegha
     {
-        public static async Task<ReturnedSaveFuncInfo> StartErteghaAsync(string connectionString, IWin32Window owner, bool isShowUi)
+        public static async Task<ReturnedSaveFuncInfo> StartErteghaAsync(string connectionString, IWin32Window owner, bool isShowUi,bool isFixBuilding)
         {
             var res = new ReturnedSaveFuncInfo();
             try
@@ -18,8 +18,14 @@ namespace Ertegha
                 res.AddReturnedValue(await DataBaseUtilities.RunScript.RunAsync(isShowUi, owner, Properties.Resources.ErteghaFunctions, cn));
                 res.AddReturnedValue(await DataBaseUtilities.RunScript.RunAsync(isShowUi, owner, Properties.Resources.Ertegha, cn));
                 if (res.HasError) return res;
-                //res.AddReturnedValue(await clsFixBuilding.FixBuildingImage());
-                //if (res.HasError) return res;
+                if (isFixBuilding)
+                {
+                    //res.AddReturnedValue(await clsFixBuilding.FixBuildingImage());
+                    //if (res.HasError) return res;
+                    res.AddReturnedValue(await clsFixBuilding.FixBuildingParentAsync());
+                    if (res.HasError) return res;
+                }
+
                 res.AddReturnedValue(await BuildingBussines.SetArchiveAsync());
                 if (res.HasError) return res;
                 res.AddReturnedValue(await BuildingRequestBussines.DeleteAfter60DaysAsync());

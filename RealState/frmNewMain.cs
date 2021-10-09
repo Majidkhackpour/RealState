@@ -745,7 +745,7 @@ namespace RealState
         {
             try
             {
-                var res = await clsErtegha.StartErteghaAsync(AppSettings.DefaultConnectionString, this, true);
+                var res = await clsErtegha.StartErteghaAsync(AppSettings.DefaultConnectionString, this, true, !Cache.IsClient);
                 if (!res.HasError)
                 {
                     this.ShowMessage("بازسازی اطلاعات با موفقیت انجام شد");

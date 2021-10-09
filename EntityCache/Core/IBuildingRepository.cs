@@ -11,7 +11,9 @@ namespace EntityCache.Core
     public interface IBuildingRepository
     {
         Task<List<BuildingBussines>> GetAllAsync(string _connectionString, CancellationToken token, bool isLoadDets);
+        Task<List<BuildingBussines>> GetAllWithoutParentAsync(string connectionString);
         Task<ReturnedSaveFuncInfo> SaveAsync(BuildingBussines item, SqlTransaction tr);
+        Task<ReturnedSaveFuncInfo> ChangeParentAsync(Guid guid, EnBuildingParent parent, SqlTransaction tr);
         Task<ReturnedSaveFuncInfo> ChangeStatusAsync(BuildingBussines item, bool status, SqlTransaction tr);
         Task<string> NextCodeAsync(string _connectionString);
         Task<bool> CheckCodeAsync(string _connectionString, string code, Guid guid);

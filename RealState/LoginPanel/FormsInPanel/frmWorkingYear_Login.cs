@@ -93,7 +93,7 @@ namespace RealState.LoginPanel.FormsInPanel
                 var dbVersion = clsGlobalSetting.ApplicationVersion.ParseToInt();
                 if (dbVersion <= 0 || currentVersion > dbVersion)
                 {
-                    res.AddReturnedValue(await clsErtegha.StartErteghaAsync(AppSettings.DefaultConnectionString, this, false));
+                    res.AddReturnedValue(await clsErtegha.StartErteghaAsync(AppSettings.DefaultConnectionString, this, false, !Cache.IsClient));
                     ClsCache.InserDefults();
                 }
             }

@@ -718,16 +718,16 @@ namespace RealState
         {
             try
             {
-                var res = await clsErtegha.StartErteghaAsync(AppSettings.DefaultConnectionString, this,true);
-                if (!res.HasError)
-                {
-                    MessageBox.Show(this, "بازسازی اطلاعات با موفقیت انجام شد", "پیغام سیستم", MessageBoxButtons.OK,
-                        MessageBoxIcon.Information);
-                    return;
-                }
+                //var res = await clsErtegha.StartErteghaAsync(AppSettings.DefaultConnectionString, this,true);
+                //if (!res.HasError)
+                //{
+                //    MessageBox.Show(this, "بازسازی اطلاعات با موفقیت انجام شد", "پیغام سیستم", MessageBoxButtons.OK,
+                //        MessageBoxIcon.Information);
+                //    return;
+                //}
 
-                MessageBox.Show(this, "خطا در بازسازی اطلاعات", "پیغام سیستم", MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
+                //MessageBox.Show(this, "خطا در بازسازی اطلاعات", "پیغام سیستم", MessageBoxButtons.OK,
+                //    MessageBoxIcon.Error);
             }
             catch (Exception ex)
             {

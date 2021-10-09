@@ -11,6 +11,7 @@ using Advertise.Classes;
 using Advertise.Forms;
 using Advertise.Forms.Simcard;
 using Building.BuildingMatchesItem;
+using Building.Buildings.Selector;
 using Cities.Region;
 using EntityCache.Bussines;
 using EntityCache.ViewModels;
@@ -966,7 +967,7 @@ namespace Building.Buildings
         {
             try
             {
-                var frm = new frmBuildingMain();
+                var frm = new frmSelectBuildingType(this);
                 if (frm.ShowDialog(this) == DialogResult.OK)
                     LoadData(txtSearch.Text);
             }

@@ -41,7 +41,8 @@ namespace RealState
             txtSetter.Switch_Language_To_Persian();
 
             new frmSplashCircle().ShowDialog();
-
+            var client = clsRegistery.GetRegistery("X1001MR");
+            Cache.IsClient = !string.IsNullOrEmpty(client) && client.ParseToBoolean();
             var res = frmLoginMain.Instance.Load_();
             if (res != DialogResult.OK)
             {
@@ -61,9 +62,6 @@ namespace RealState
                 new FrmShowErrorMessage(ret, "پیغام سیستم")?.ShowDialog();
                 return;
             }
-
-            var client = clsRegistery.GetRegistery("X1001MR");
-            Cache.IsClient = !string.IsNullOrEmpty(client) && client.ParseToBoolean();
 
             WebServiceHandlers.Instance.Init(Cache.Path);
             new frmNewPlash().ShowDialog();

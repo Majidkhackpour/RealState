@@ -9,7 +9,11 @@ namespace Building.UserControls.Objects
     {
         public EnBuildingSide? Side
         {
-            get => (EnBuildingSide?)cmbSide.SelectedIndex;
+            get
+            {
+                if (cmbSide.SelectedIndex < 0) return null;
+                return (EnBuildingSide?) cmbSide.SelectedIndex;
+            }
             set
             {
                 if (value == null) return;

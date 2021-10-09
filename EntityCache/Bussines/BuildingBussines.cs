@@ -61,7 +61,7 @@ namespace EntityCache.Bussines
         public Guid? BuildingConditionGuid { get; set; }
         public string BuildingConditionName { get; set; }
         public EnBuildingSide? Side { get; set; }
-        public string SideName => Side.GetDisplay();
+        public string SideName => Side?.GetDisplay();
         public Guid BuildingTypeGuid { get; set; }
         public string BuildingTypeName { get; set; }
         public string ShortDesc { get; set; }
@@ -75,13 +75,13 @@ namespace EntityCache.Bussines
         public Guid? KitchenServiceGuid { get; set; }
         public string KitchenServiceName { get; set; }
         public EnKhadamati? Water { get; set; }
-        public string WaterName => Water.GetDisplay();
+        public string WaterName => Water?.GetDisplay();
         public EnKhadamati? Barq { get; set; }
-        public string BarqName => Barq.GetDisplay();
+        public string BarqName => Barq?.GetDisplay();
         public EnKhadamati? Gas { get; set; }
-        public string GasName => Gas.GetDisplay();
+        public string GasName => Gas?.GetDisplay();
         public EnKhadamati? Tell { get; set; }
-        public string TellName => Tell.GetDisplay();
+        public string TellName => Tell?.GetDisplay();
         public int TedadTabaqe { get; set; }
         public int TabaqeNo { get; set; }
         public int VahedPerTabaqe { get; set; }
@@ -228,6 +228,42 @@ namespace EntityCache.Bussines
 
                 var action = status ? EnLogAction.Enable : EnLogAction.Delete;
                 res.AddReturnedValue(await UserLogBussines.SaveAsync(action, EnLogPart.Building, tr));
+                if (res.HasError) return res;
+
+                if (Cache.IsSendToServer)
+                    _ = Task.Run(() => WebBuilding.SaveAsync(BuildingMapper.Instance.Map(this)));
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+            finally
+            {
+                if (autoTran)
+                {
+                    res.AddReturnedValue(tr.TransactionDestiny(res.HasError));
+                    res.AddReturnedValue(cn.CloseConnection());
+                }
+            }
+            return res;
+        }
+        public async Task<ReturnedSaveFuncInfo> ChangeParentAsync(EnBuildingParent parent, SqlTransaction tr = null)
+        {
+            var res = new ReturnedSaveFuncInfo();
+            var autoTran = tr == null;
+            SqlConnection cn = null;
+            try
+            {
+                if (autoTran)
+                {
+                    cn = new SqlConnection(Cache.ConnectionString);
+                    await cn.OpenAsync();
+                    tr = cn.BeginTransaction();
+                }
+
+
+                res.AddReturnedValue(await UnitOfWork.Building.ChangeParentAsync(Guid, parent, tr));
                 if (res.HasError) return res;
 
                 if (Cache.IsSendToServer)
@@ -513,5 +549,6 @@ namespace EntityCache.Bussines
             }
             return res;
         }
+        public static async Task<List<BuildingBussines>> GetAllWithoutParentAsync() => await UnitOfWork.Building.GetAllWithoutParentAsync(Cache.ConnectionString);
     }
 }
