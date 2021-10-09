@@ -50,6 +50,8 @@ namespace Building.UserControls
                         for (var i = 0; i < DGrid.RowCount; i++)
                             if (item.BuildingOptionGuid == ((Guid?)DGrid[dgOptionGuid.Index, i].Value ?? Guid.Empty))
                                 DGrid[dgChecked.Index, i].Value = true;
+
+                    HighLightGrid();
                 }
                 catch (Exception ex)
                 {

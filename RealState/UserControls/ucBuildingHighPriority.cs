@@ -39,7 +39,7 @@ namespace RealState.UserControls
         {
             try
             {
-                var frm = new frmBuildingMain(_bu.Guid, false);
+                var frm = new frmBuilding(_bu);
                 frm.ShowDialog(this);
             }
             catch (Exception ex)

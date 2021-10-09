@@ -1197,7 +1197,7 @@ namespace RealState
             this.groupPanel23.Controls.Add(this.lblBuilding);
             this.groupPanel23.Cursor = System.Windows.Forms.Cursors.Hand;
             this.groupPanel23.DisabledBackColor = System.Drawing.Color.Empty;
-            this.groupPanel23.Location = new System.Drawing.Point(3, 49);
+            this.groupPanel23.Location = new System.Drawing.Point(3, 86);
             this.groupPanel23.Name = "groupPanel23";
             this.groupPanel23.Size = new System.Drawing.Size(169, 30);
             // 
@@ -1241,7 +1241,7 @@ namespace RealState
             this.groupPanel25.Controls.Add(this.lblBuildingFast);
             this.groupPanel25.Cursor = System.Windows.Forms.Cursors.Hand;
             this.groupPanel25.DisabledBackColor = System.Drawing.Color.Empty;
-            this.groupPanel25.Location = new System.Drawing.Point(3, 85);
+            this.groupPanel25.Location = new System.Drawing.Point(3, 51);
             this.groupPanel25.Name = "groupPanel25";
             this.groupPanel25.Size = new System.Drawing.Size(169, 30);
             // 
@@ -1273,7 +1273,7 @@ namespace RealState
             this.lblBuildingFast.Name = "lblBuildingFast";
             this.lblBuildingFast.Size = new System.Drawing.Size(169, 30);
             this.lblBuildingFast.TabIndex = 0;
-            this.lblBuildingFast.Text = "ثبت سریع ملک";
+            this.lblBuildingFast.Text = "ثبت ملک جدید";
             this.lblBuildingFast.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.lblBuildingFast.Click += new System.EventHandler(this.lblBuildingFast_Click);
             // 
