@@ -48,6 +48,7 @@ namespace Building.Buildings
             this.lblTitle = new System.Windows.Forms.Label();
             this.btnCancel = new DevComponents.DotNetBar.ButtonX();
             this.btnFinish = new DevComponents.DotNetBar.ButtonX();
+            this.groupPanel3 = new UcBuildingMedia();
             this.panel1.SuspendLayout();
             this.groupPanel2.SuspendLayout();
             this.groupPanel1.SuspendLayout();
@@ -73,6 +74,7 @@ namespace Building.Buildings
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.AutoScroll = true;
+            this.panel1.Controls.Add(this.groupPanel3);
             this.panel1.Controls.Add(this.ucBuildingHitting1);
             this.panel1.Controls.Add(this.groupPanel2);
             this.panel1.Controls.Add(this.UcOptions);
@@ -313,6 +315,13 @@ namespace Building.Buildings
             this.btnFinish.TextColor = System.Drawing.Color.Black;
             this.btnFinish.Click += new System.EventHandler(this.btnFinish_Click);
             // 
+            // groupPanel3
+            // 
+            this.groupPanel3.Location = new System.Drawing.Point(8, 928);
+            this.groupPanel3.Name = "groupPanel3";
+            this.groupPanel3.Size = new System.Drawing.Size(354, 300);
+            this.groupPanel3.TabIndex = 55803;
+            // 
             // frmBuilding
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -355,5 +364,6 @@ namespace Building.Buildings
         private System.Windows.Forms.TextBox txtShortDesc;
         private System.Windows.Forms.Panel pnlContent;
         private UcBuildingImages ucBuildingHitting1;
+        private UcBuildingMedia groupPanel3;
     }
 }

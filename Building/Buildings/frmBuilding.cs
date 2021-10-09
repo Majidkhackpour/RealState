@@ -54,9 +54,7 @@ namespace Building.Buildings
                 UcHitting_Colling.Colling = cls.Colling;
 
                 UcOptions.OptionList = cls.OptionList;
-
                 txtShortDesc.Text = cls.ShortDesc;
-
                 ucBuildingHitting1.GalleryList = cls.GalleryList;
 
                 GetContent();
