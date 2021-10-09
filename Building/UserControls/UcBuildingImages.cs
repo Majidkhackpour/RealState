@@ -131,10 +131,7 @@ namespace Building.UserControls
                 WebErrorLog.ErrorInstence.StartErrorLog(exception);
             }
         }
-        public UcBuildingImages()
-        {
-            InitializeComponent();
-        }
+        public UcBuildingImages() => InitializeComponent();
         private void picbox_Click(object sender, EventArgs e)
         {
             try

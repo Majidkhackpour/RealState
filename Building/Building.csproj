@@ -891,6 +891,12 @@
     <Compile Include="UserControls\UcBuildingImages.Designer.cs">
       <DependentUpon>UcBuildingImages.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\UcBuildingMedia.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UcBuildingMedia.Designer.cs">
+      <DependentUpon>UcBuildingMedia.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\UcBuildingOptions.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1211,6 +1217,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UcBuildingImages.resx">
       <DependentUpon>UcBuildingImages.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UcBuildingMedia.resx">
+      <DependentUpon>UcBuildingMedia.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UcBuildingOptions.resx">
       <DependentUpon>UcBuildingOptions.cs</DependentUpon>
