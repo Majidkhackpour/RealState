@@ -73,7 +73,7 @@ namespace Building.Buildings
                     lblPishTotalPrice.Text = bu.PishTotalPrice.ToString("N0");
                     lblDeliveryDate.Text = Calendar.MiladiToShamsi(bu.DeliveryDate);
                 }
-                lblTitle.Text = $@"{type} {bu.BuildingTypeName}";
+                lblTitle.Text = $@"{type} {bu.BuildingAccountTypeName} {bu.BuildingTypeName}";
 
                 if (!_loadForCustomer)
                 {

@@ -387,47 +387,6 @@ namespace Building.Buildings
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private async Task ShowDescAsync(CancellationToken token)
-        {
-            try
-            {
-                if (token.IsCancellationRequested) return;
-                if (!IsHandleCreated) return;
-                Invoke(new MethodInvoker(() =>
-                {
-                    try
-                    {
-                        if (token.IsCancellationRequested) return;
-                        if (DGrid.RowCount <= 0 || DGrid.CurrentRow == null) return;
-                        var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
-                        var bu = BuildingBussines.Get(guid);
-                        if (bu == null) return;
-                        if (token.IsCancellationRequested) return;
-                        var loc = DGrid.GetCellDisplayRectangle(dgRoomCount.Index, DGrid.CurrentRow.Index, false);
-                        if (token.IsCancellationRequested) return;
-                        var wid = dgCode.Width;
-                        ucFeatures.Size = new Size(469, 280);
-                        var p = new Point(loc.X + wid, loc.Y - ucFeatures.Height);
-                        if (token.IsCancellationRequested) return;
-                        if (p.Y < DGrid.Top) p.Y += ucFeatures.Height + 140;
-                        else p.Y += 95;
-                        ucFeatures.Location = p;
-                        if (token.IsCancellationRequested) return;
-                        ucFeatures.Building = bu;
-                        ucFeatures.BackColor = Color.Transparent;
-                        ucFeatures.Visible = true;
-                    }
-                    catch (Exception ex)
-                    {
-                        WebErrorLog.ErrorInstence.StartErrorLog(ex);
-                    }
-                }));
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
         private async Task SendToTelegramCustomerChannelAsync(BuildingBussines bu)
         {
             try
@@ -765,7 +724,6 @@ namespace Building.Buildings
             try
             {
                 InitializeComponent();
-                ucFeatures.Visible = false;
                 ucHeader.Text = "نمایش لیست املاک";
                 _st = status;
                 isShowMode = _isShowMode;
@@ -838,11 +796,6 @@ namespace Building.Buildings
                         if (!string.IsNullOrEmpty(txtSearch.Text))
                         {
                             txtSearch.Text = "";
-                            return;
-                        }
-                        if (ucFeatures.Visible)
-                        {
-                            ucFeatures.Visible = false;
                             return;
                         }
                         Close();
@@ -995,7 +948,12 @@ namespace Building.Buildings
                     return;
                 }
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
-                var frm = new frmBuildingMain(guid, false);
+                var bu = BuildingBussines.Get(guid);
+                if (bu == null)
+                {
+                    return;
+                }
+                var frm = new frmBuilding(bu);
                 if (frm.ShowDialog(this) == DialogResult.OK)
                     LoadData(txtSearch.Text);
             }
@@ -1776,7 +1734,6 @@ namespace Building.Buildings
         {
             try
             {
-                ucFeatures.Visible = false;
                 PicBox.Image = null;
                 if (DGrid.RowCount <= 0) return;
                 if (DGrid.CurrentRow == null) return;
@@ -1784,17 +1741,9 @@ namespace Building.Buildings
                 if (guid == Guid.Empty) return;
                 var bu = await BuildingBussines.GetAsync(guid);
                 if (bu == null) return;
-                if (!string.IsNullOrEmpty(bu.Image))
-                {
-                    var path = Path.Combine(Application.StartupPath + "\\Images", bu.Image);
-                    PicBox.ImageLocation = path;
-                }
-
-                if (!chbBuildingDetail.Checked) return;
-                await Task.Delay(3000);
-                _token?.Cancel();
-                _token = new CancellationTokenSource();
-                _ = Task.Run(() => ShowDescAsync(_token.Token));
+                if (string.IsNullOrEmpty(bu.Image)) return;
+                var path = Path.Combine(Application.StartupPath + "\\Images", bu.Image);
+                PicBox.ImageLocation = path;
             }
             catch (Exception ex)
             {
