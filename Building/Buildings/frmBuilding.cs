@@ -29,8 +29,11 @@ namespace Building.Buildings
             {
                 Width = 930;
                 Height = Screen.FromControl(this).Bounds.Height - 80;
-
-                lblTitle.Text = cls.Parent.GetDisplay();
+                if (cls.Parent != null)
+                {
+                    var val = cls.Parent.Value;
+                    lblTitle.Text = val.GetDisplay();
+                }
 
                 UcPeople.Guid = cls.OwnerGuid;
 
@@ -56,6 +59,7 @@ namespace Building.Buildings
                 UcOptions.OptionList = cls.OptionList;
                 txtShortDesc.Text = cls.ShortDesc;
                 ucBuildingHitting1.GalleryList = cls.GalleryList;
+                groupPanel3.MediaList = cls.MediaList;
 
                 GetContent();
             }
@@ -176,6 +180,123 @@ namespace Building.Buildings
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
+        private async Task SetType_AccTypeAsync()
+        {
+            try
+            {
+                switch (cls.Parent)
+                {
+                    case EnBuildingParent.SellAprtment:
+                        cls.BuildingAccountTypeGuid = await BuildingAccountTypeBussines.GetDefultGuidAsync("آپارتمان");
+                        cls.BuildingTypeGuid = await BuildingTypeBussines.GetDefultGuidAsync("مسکونی");
+                        break;
+                    case EnBuildingParent.SellHome:
+                        cls.BuildingAccountTypeGuid = await BuildingAccountTypeBussines.GetDefultGuidAsync("منزل مسکونی");
+                        cls.BuildingTypeGuid = await BuildingTypeBussines.GetDefultGuidAsync("مسکونی");
+                        break;
+                    case EnBuildingParent.SellLand:
+                        cls.BuildingAccountTypeGuid = await BuildingAccountTypeBussines.GetDefultGuidAsync("مسکونی");
+                        cls.BuildingTypeGuid = await BuildingTypeBussines.GetDefultGuidAsync("زمین مسکونی");
+                        break;
+                    case EnBuildingParent.SellVilla:
+                        cls.BuildingAccountTypeGuid = await BuildingAccountTypeBussines.GetDefultGuidAsync("مسکونی");
+                        cls.BuildingTypeGuid = await BuildingTypeBussines.GetDefultGuidAsync("ویلا");
+                        break;
+                    case EnBuildingParent.SellStore:
+                        cls.BuildingAccountTypeGuid = await BuildingAccountTypeBussines.GetDefultGuidAsync("مشاغل تجاری");
+                        cls.BuildingTypeGuid = await BuildingTypeBussines.GetDefultGuidAsync("واحد تجاری");
+                        break;
+                    case EnBuildingParent.SellOffice:
+                        cls.BuildingAccountTypeGuid = await BuildingAccountTypeBussines.GetDefultGuidAsync("دفترکار");
+                        cls.BuildingTypeGuid = await BuildingTypeBussines.GetDefultGuidAsync("واحد اداری");
+                        break;
+                    case EnBuildingParent.SellGarden:
+                        cls.BuildingAccountTypeGuid = await BuildingAccountTypeBussines.GetDefultGuidAsync("زراعی");
+                        cls.BuildingTypeGuid = await BuildingTypeBussines.GetDefultGuidAsync("باغ");
+                        break;
+                    case EnBuildingParent.SellOldHouse:
+                        cls.BuildingAccountTypeGuid = await BuildingAccountTypeBussines.GetDefultGuidAsync("");
+                        cls.BuildingTypeGuid = await BuildingTypeBussines.GetDefultGuidAsync("زمین و کلنگی");
+                        break;
+                    case EnBuildingParent.RentAprtment:
+                        cls.BuildingAccountTypeGuid = await BuildingAccountTypeBussines.GetDefultGuidAsync("آپارتمان");
+                        cls.BuildingTypeGuid = await BuildingTypeBussines.GetDefultGuidAsync("مسکونی");
+                        break;
+                    case EnBuildingParent.RentHome:
+                        cls.BuildingAccountTypeGuid = await BuildingAccountTypeBussines.GetDefultGuidAsync("منزل مسکونی");
+                        cls.BuildingTypeGuid = await BuildingTypeBussines.GetDefultGuidAsync("مسکونی");
+                        break;
+                    case EnBuildingParent.RentStore:
+                        cls.BuildingAccountTypeGuid = await BuildingAccountTypeBussines.GetDefultGuidAsync("مشاغل تجاری");
+                        cls.BuildingTypeGuid = await BuildingTypeBussines.GetDefultGuidAsync("واحد تجاری");
+                        break;
+                    case EnBuildingParent.RentOffice:
+                        cls.BuildingAccountTypeGuid = await BuildingAccountTypeBussines.GetDefultGuidAsync("دفترکار");
+                        cls.BuildingTypeGuid = await BuildingTypeBussines.GetDefultGuidAsync("واحد اداری");
+                        break;
+                    case EnBuildingParent.FullRentAprtment:
+                        cls.BuildingAccountTypeGuid = await BuildingAccountTypeBussines.GetDefultGuidAsync("آپارتمان");
+                        cls.BuildingTypeGuid = await BuildingTypeBussines.GetDefultGuidAsync("مسکونی");
+                        break;
+                    case EnBuildingParent.FullRentHome:
+                        cls.BuildingAccountTypeGuid = await BuildingAccountTypeBussines.GetDefultGuidAsync("منزل مسکونی");
+                        cls.BuildingTypeGuid = await BuildingTypeBussines.GetDefultGuidAsync("مسکونی");
+                        break;
+                    case EnBuildingParent.FullRentStore:
+                        cls.BuildingAccountTypeGuid = await BuildingAccountTypeBussines.GetDefultGuidAsync("مشاغل تجاری");
+                        cls.BuildingTypeGuid = await BuildingTypeBussines.GetDefultGuidAsync("واحد تجاری");
+                        break;
+                    case EnBuildingParent.FullRentOffice:
+                        cls.BuildingAccountTypeGuid = await BuildingAccountTypeBussines.GetDefultGuidAsync("دفترکار");
+                        cls.BuildingTypeGuid = await BuildingTypeBussines.GetDefultGuidAsync("واحد اداری");
+                        break;
+                    case EnBuildingParent.PreSellAprtment:
+                        cls.BuildingAccountTypeGuid = await BuildingAccountTypeBussines.GetDefultGuidAsync("آپارتمان");
+                        cls.BuildingTypeGuid = await BuildingTypeBussines.GetDefultGuidAsync("مسکونی");
+                        break;
+                    case EnBuildingParent.PreSellHome:
+                        cls.BuildingAccountTypeGuid = await BuildingAccountTypeBussines.GetDefultGuidAsync("منزل مسکونی");
+                        cls.BuildingTypeGuid = await BuildingTypeBussines.GetDefultGuidAsync("مسکونی");
+                        break;
+                    case EnBuildingParent.PreSellStore:
+                        cls.BuildingAccountTypeGuid = await BuildingAccountTypeBussines.GetDefultGuidAsync("مشاغل تجاری");
+                        cls.BuildingTypeGuid = await BuildingTypeBussines.GetDefultGuidAsync("واحد تجاری");
+                        break;
+                    case EnBuildingParent.PreSellOffice:
+                        cls.BuildingAccountTypeGuid = await BuildingAccountTypeBussines.GetDefultGuidAsync("دفترکار");
+                        cls.BuildingTypeGuid = await BuildingTypeBussines.GetDefultGuidAsync("واحد اداری");
+                        break;
+                    case EnBuildingParent.MoavezeAprtment:
+                        cls.BuildingAccountTypeGuid = await BuildingAccountTypeBussines.GetDefultGuidAsync("آپارتمان");
+                        cls.BuildingTypeGuid = await BuildingTypeBussines.GetDefultGuidAsync("مسکونی");
+                        break;
+                    case EnBuildingParent.MoavezeHome:
+                        cls.BuildingAccountTypeGuid = await BuildingAccountTypeBussines.GetDefultGuidAsync("منزل مسکونی");
+                        cls.BuildingTypeGuid = await BuildingTypeBussines.GetDefultGuidAsync("مسکونی");
+                        break;
+                    case EnBuildingParent.MoavezeStore:
+                        cls.BuildingAccountTypeGuid = await BuildingAccountTypeBussines.GetDefultGuidAsync("مشاغل تجاری");
+                        cls.BuildingTypeGuid = await BuildingTypeBussines.GetDefultGuidAsync("واحد تجاری");
+                        break;
+                    case EnBuildingParent.MoavezeOffice:
+                        cls.BuildingAccountTypeGuid = await BuildingAccountTypeBussines.GetDefultGuidAsync("دفترکار");
+                        cls.BuildingTypeGuid = await BuildingTypeBussines.GetDefultGuidAsync("واحد اداری");
+                        break;
+                    case EnBuildingParent.MosharekatAprtment:
+                        cls.BuildingAccountTypeGuid = await BuildingAccountTypeBussines.GetDefultGuidAsync("آپارتمان");
+                        cls.BuildingTypeGuid = await BuildingTypeBussines.GetDefultGuidAsync("مسکونی");
+                        break;
+                    case EnBuildingParent.MosharekatHome:
+                        cls.BuildingAccountTypeGuid = await BuildingAccountTypeBussines.GetDefultGuidAsync("منزل مسکونی");
+                        cls.BuildingTypeGuid = await BuildingTypeBussines.GetDefultGuidAsync("مسکونی");
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
 
         public frmBuilding(BuildingBussines bu)
         {
@@ -257,6 +378,9 @@ namespace Building.Buildings
                 cls.OptionList = UcOptions.OptionList;
                 cls.ShortDesc = txtShortDesc.Text;
                 cls.GalleryList = ucBuildingHitting1.GalleryList;
+                cls.MediaList = groupPanel3.MediaList;
+
+                await SetType_AccTypeAsync();
 
                 res.AddReturnedValue(await clsBuildingValidator.CheckValidationAsync(cls));
                 if (res.HasError) return;

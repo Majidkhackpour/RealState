@@ -232,6 +232,7 @@ namespace Building.UserControls.Rahn
             // 
             this.chbTabdil.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.chbTabdil.AutoSize = true;
+            this.chbTabdil.Cursor = System.Windows.Forms.Cursors.Hand;
             this.chbTabdil.Location = new System.Drawing.Point(596, 146);
             this.chbTabdil.Name = "chbTabdil";
             this.chbTabdil.Size = new System.Drawing.Size(81, 24);
@@ -243,6 +244,7 @@ namespace Building.UserControls.Rahn
             // 
             this.chbIsOwnerHere.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.chbIsOwnerHere.AutoSize = true;
+            this.chbIsOwnerHere.Cursor = System.Windows.Forms.Cursors.Hand;
             this.chbIsOwnerHere.Location = new System.Drawing.Point(196, 146);
             this.chbIsOwnerHere.Name = "chbIsOwnerHere";
             this.chbIsOwnerHere.Size = new System.Drawing.Size(168, 24);
@@ -254,6 +256,7 @@ namespace Building.UserControls.Rahn
             // 
             this.chbShortTime.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.chbShortTime.AutoSize = true;
+            this.chbShortTime.Cursor = System.Windows.Forms.Cursors.Hand;
             this.chbShortTime.Location = new System.Drawing.Point(35, 146);
             this.chbShortTime.Name = "chbShortTime";
             this.chbShortTime.Size = new System.Drawing.Size(104, 24);

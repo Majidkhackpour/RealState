@@ -52,7 +52,7 @@ namespace User
                 _token?.Cancel();
                 _token = new CancellationTokenSource();
                 var users = await UserBussines.GetAllAsync(_token.Token);
-                UserBindingSource.DataSource = users.Where(p => p.Guid != UserBussines.CurrentUser.Guid).ToSortableBindingList();
+                UserBindingSource.DataSource = users.Where(p => p.Guid != UserBussines.CurrentUser.Guid && p.Status).ToSortableBindingList();
             }
             catch (Exception ex)
             {
@@ -75,6 +75,7 @@ namespace User
                 }
                 else
                 {
+                    if (cmbUser.SelectedValue == null) return;
                     var user = await UserBussines.GetAsync((Guid)cmbUser.SelectedValue);
                     _currentAccessLevel = user.UserAccess;
                     LoadGrid();
