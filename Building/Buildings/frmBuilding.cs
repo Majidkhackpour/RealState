@@ -152,8 +152,6 @@ namespace Building.Buildings
                     case EnBuildingParent.MosharekatHome:
                         uc = new UcBuildingOther_Home() { IsPishForoush = false, Building = cls };
                         break;
-                    default:
-                        throw new ArgumentOutOfRangeException();
                 }
 
                 if (uc != null) LoadContent();

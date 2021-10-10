@@ -8,6 +8,9 @@ using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WindowsSerivces;
+using Building.UserControls.Other;
+using Building.UserControls.Rahn;
+using Building.UserControls.Sell;
 
 namespace Building.Buildings
 {
@@ -21,6 +24,7 @@ namespace Building.Buildings
         {
             try
             {
+                panel1.Focus();
                 if (bu == null)
                 {
                     this.ShowWarning("ملک موردنظر معتبر نمی باشد");
@@ -28,75 +32,43 @@ namespace Building.Buildings
                     return;
                 }
 
-                groupPanel5.AutoScroll = true;
-                pnlPishForoush.Visible = pnlRahnInfo.Visible = pnlSellInfo.Visible = false;
-
                 lblCode.Text = $@"کد: {bu.Code}";
 
-                var type = "رهن و اجاره";
                 if (bu.SellPrice > 0)
                 {
-                    type = "فروش";
                     lblPrice1.Text = $@"قیمت کل: {bu.SellPrice:N0} ** {NumberToString.Num2Str(((double)bu.SellPrice).ToString())} **";
                     if (bu.Masahat > 0)
                     {
                         var m = Math.Truncate(bu.SellPrice / bu.Masahat);
-                        lblPrice2.Text = $@"قیمت هر متر زمین: {m:N0} ** {NumberToString.Num2Str(((double)m).ToString())} **";
+                        lblPrice2.Text = $@"قیمت هر متر زمین: {m:N0}";
                     }
                     else if (bu.ZirBana > 0)
                     {
                         var m = Math.Truncate(bu.SellPrice / bu.ZirBana);
-                        lblPrice2.Text = $@"قیمت هر متر بنا: {m:N0} ** {NumberToString.Num2Str(((double)m).ToString())} **";
+                        lblPrice2.Text = $@"قیمت هر متر بنا: {m:N0}";
                     }
-                    pnlSellInfo.Visible = true;
-                    lblTarakom.Text = bu.Tarakom?.GetDisplay();
-                    lblVamPrice.Text = bu.VamPrice.ToString("N0");
-                    lblQestPrice.Text = bu.QestPrice.ToString("N0");
                 }
                 else if (bu.RahnPrice1 > 0 || bu.EjarePrice1 > 0)
                 {
-                    type = "رهن و اجاره";
                     lblPrice1.Text = $@"ودیعه: {bu.RahnPrice1:N0} ** {NumberToString.Num2Str(((double)bu.RahnPrice1).ToString())} **";
                     lblPrice2.Text = $@"اجاره: {bu.EjarePrice1:N0} ** {NumberToString.Num2Str(((double)bu.EjarePrice1).ToString())} **";
-                    pnlRahnInfo.Visible = true;
-                    lblShortTime.Text = (bu.IsShortTime ?? false) ? "بله" : "خیر";
-                    lblOwnerHere.Text = (bu.IsOwnerHere ?? false) ? "بله" : "خیر";
-                    lblRental.Text = bu.RentalAuthorityName;
                 }
                 else if (bu.PishPrice > 0)
                 {
-                    type = "پیش فروش";
                     lblPrice1.Text = $@"قیمت کل: {bu.PishTotalPrice:N0} ** {NumberToString.Num2Str(((double)bu.PishTotalPrice).ToString())} **";
                     lblPrice2.Text = $@"پیش پرداخت: {bu.PishPrice:N0} ** {NumberToString.Num2Str(((double)bu.PishPrice).ToString())} **";
-                    pnlPishForoush.Visible = true;
-                    lblPishPrice.Text = bu.PishPrice.ToString("N0");
-                    lblPishTotalPrice.Text = bu.PishTotalPrice.ToString("N0");
-                    lblDeliveryDate.Text = Calendar.MiladiToShamsi(bu.DeliveryDate);
                 }
 
                 lblTitle.Text = bu?.Parent?.GetDisplay();
+
+                GetContent();
+                BuildingOptionBindingSource.DataSource = bu?.OptionList;
 
                 if (!_loadForCustomer)
                 {
                     var city = await CitiesBussines.GetAsync(bu.CityGuid);
                     lblAddress.Text = $@"{city.Name} - {bu.RegionName} - {bu.Address}";
                 }
-
-                lblZirBana.Text = $@"{bu.ZirBana} متر";
-                lblMasahat.Text = $@"{bu.Masahat} متر";
-                lblTabaqeNo.Text = bu.TabaqeNo.ToString();
-                lblVahedPerTabaqe.Text = $@"{bu.VahedPerTabaqe} واحد";
-                lblTabaqeCount.Text = bu.TedadTabaqe.ToString();
-                lblRoomCount.Text = $@"{bu.RoomCount} خوابه";
-                lblDocumentType.Text = bu.DocumentTypeName;
-                lblSide.Text = bu.Side.GetDisplay();
-                lblView.Text = bu.BuildingViewName;
-                lblFloorCover.Text = bu.FloorCoverName;
-                lblKitchenService.Text = bu.KitchenServiceName;
-                lblHitting.Text = bu.Hiting;
-                lblColling.Text = bu.Colling;
-                lblCondition.Text = bu.BuildingConditionName;
-                lblAccountType.Text = bu.BuildingAccountTypeName;
 
                 if (!_loadForCustomer)
                 {
@@ -138,42 +110,7 @@ namespace Building.Buildings
                 }
                 else grpOwner.Visible = false;
 
-                lblDescription.Text = bu.ShortDesc;
-
-                var year1 = Calendar.GetYearOfDateSh(Calendar.MiladiToShamsi(DateTime.Now));
-                var year2 = bu.SaleSakht.Length > 4
-                    ? Calendar.GetYearOfDateSh(bu.SaleSakht)
-                    : bu.SaleSakht.ParseToInt();
-                var dis = year1 - year2;
-                lblSaleSakht.Text = dis <= 0 ? "نوساز" : $@"{dis} سال ساخت";
-
-                if (bu.OptionList != null && bu.OptionList.Count > 0)
-                {
-                    if (bu.OptionList?.Count >= 1)
-                        lblOption1.Text = bu.OptionList[0].OptionName;
-                    if (bu.OptionList?.Count >= 2)
-                        lblOption2.Text = bu.OptionList[1].OptionName;
-                    if (bu.OptionList?.Count >= 3)
-                        lblOption3.Text = bu.OptionList[2].OptionName;
-                    if (bu.OptionList?.Count >= 4)
-                        lblOption4.Text = bu.OptionList[3].OptionName;
-                    if (bu.OptionList?.Count >= 5)
-                        lblOption5.Text = bu.OptionList[4].OptionName;
-                    if (bu.OptionList?.Count >= 6)
-                        lblOption6.Text = bu.OptionList[5].OptionName;
-                    if (bu.OptionList?.Count >= 7)
-                        lblOption7.Text = bu.OptionList[6].OptionName;
-                    if (bu.OptionList?.Count >= 8)
-                        lblOption8.Text = bu.OptionList[7].OptionName;
-                    if (bu.OptionList?.Count >= 9)
-                        lblOption9.Text = bu.OptionList[8].OptionName;
-                    if (bu.OptionList?.Count >= 10)
-                        lblOption10.Text = bu.OptionList[9].OptionName;
-                    if (bu.OptionList?.Count >= 11)
-                        lblOption11.Text = bu.OptionList[10].OptionName;
-                    if (bu.OptionList?.Count >= 12)
-                        lblOption12.Text = bu.OptionList[11].OptionName;
-                }
+                txtShortDesc.Text = bu.ShortDesc;
 
                 if (!string.IsNullOrEmpty(bu.Image))
                 {
@@ -200,6 +137,117 @@ namespace Building.Buildings
 
                     Make_Picture_Boxes(lstList);
                 }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private void GetContent()
+        {
+            try
+            {
+                UserControl uc = null;
+                switch (bu.Parent)
+                {
+                    case EnBuildingParent.SellAprtment:
+                        uc = new UcBuildingSell_Appartment() { Building = bu };
+                        break;
+                    case EnBuildingParent.SellHome:
+                        uc = new UcBuildingSell_Home() { Building = bu };
+                        break;
+                    case EnBuildingParent.SellLand:
+                        uc = new UcBuildingSell_Land() { Building = bu };
+                        break;
+                    case EnBuildingParent.SellVilla:
+                        uc = new UcBuildingSell_Villa() { Building = bu };
+                        break;
+                    case EnBuildingParent.SellStore:
+                        uc = new UcBuildingSell_Store() { Building = bu };
+                        break;
+                    case EnBuildingParent.SellOffice:
+                        uc = new UcBuildingSell_Office() { Building = bu };
+                        break;
+                    case EnBuildingParent.SellGarden:
+                        uc = new UcBuildingSell_Garden() { Building = bu };
+                        break;
+                    case EnBuildingParent.SellOldHouse:
+                        uc = new UcBuildingSell_OldHouse() { Building = bu };
+                        break;
+                    case EnBuildingParent.RentAprtment:
+                        uc = new UcBuildingRahn_Appartment() { IsFullRahn = false, Building = bu };
+                        break;
+                    case EnBuildingParent.RentHome:
+                        uc = new UcBuildingRahn_Home() { IsFullRahn = false, Building = bu };
+                        break;
+                    case EnBuildingParent.RentStore:
+                        uc = new UcBuildingRahn_Store() { IsFullRahn = false, Building = bu };
+                        break;
+                    case EnBuildingParent.RentOffice:
+                        uc = new UcBuildingRahn_Office() { IsFullRahn = false, Building = bu };
+                        break;
+                    case EnBuildingParent.FullRentAprtment:
+                        uc = new UcBuildingRahn_Appartment() { IsFullRahn = true, Building = bu };
+                        break;
+                    case EnBuildingParent.FullRentHome:
+                        uc = new UcBuildingRahn_Home() { IsFullRahn = true, Building = bu };
+                        break;
+                    case EnBuildingParent.FullRentStore:
+                        uc = new UcBuildingRahn_Store() { IsFullRahn = true, Building = bu };
+                        break;
+                    case EnBuildingParent.FullRentOffice:
+                        uc = new UcBuildingRahn_Office() { IsFullRahn = true, Building = bu };
+                        break;
+                    case EnBuildingParent.PreSellAprtment:
+                        uc = new UcBuildingOther_Appartment() { IsPishForoush = true, Building = bu };
+                        break;
+                    case EnBuildingParent.PreSellHome:
+                        uc = new UcBuildingOther_Home() { IsPishForoush = true, Building = bu };
+                        break;
+                    case EnBuildingParent.PreSellStore:
+                        uc = new UcBuildingOther_Store() { IsPishForoush = true, Building = bu };
+                        break;
+                    case EnBuildingParent.PreSellOffice:
+                        uc = new UcBuildingOther_Office() { IsPishForoush = true, Building = bu };
+                        break;
+                    case EnBuildingParent.MoavezeAprtment:
+                        uc = new UcBuildingOther_Appartment() { IsPishForoush = false, Building = bu };
+                        break;
+                    case EnBuildingParent.MoavezeHome:
+                        uc = new UcBuildingOther_Home() { IsPishForoush = false, Building = bu };
+                        break;
+                    case EnBuildingParent.MoavezeStore:
+                        uc = new UcBuildingOther_Store() { IsPishForoush = false, Building = bu };
+                        break;
+                    case EnBuildingParent.MoavezeOffice:
+                        uc = new UcBuildingOther_Office() { IsPishForoush = true, Building = bu };
+                        break;
+                    case EnBuildingParent.MosharekatAprtment:
+                        uc = new UcBuildingOther_Appartment() { IsPishForoush = false, Building = bu };
+                        break;
+                    case EnBuildingParent.MosharekatHome:
+                        uc = new UcBuildingOther_Home() { IsPishForoush = false, Building = bu };
+                        break;
+                }
+
+                if (uc != null) LoadContent(uc);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private void LoadContent(UserControl uc)
+        {
+            try
+            {
+                pnlContent.AutoScroll = true;
+                for (var i = pnlContent.Controls.Count - 1; i >= 0; i--)
+                    pnlContent.Controls[i].Dispose();
+
+                Controls.Add(uc);
+                uc.Dock = DockStyle.Fill;
+                pnlContent.Controls.Add(uc);
             }
             catch (Exception ex)
             {
@@ -250,7 +298,7 @@ namespace Building.Buildings
                 WebErrorLog.ErrorInstence.StartErrorLog(exception);
             }
         }
-        public frmBuildingDetail(BuildingBussines _bu,bool loadForCustomer)
+        public frmBuildingDetail(BuildingBussines _bu, bool loadForCustomer)
         {
             InitializeComponent();
             exPanel.Expanded = false;
