@@ -31,11 +31,12 @@ namespace Building.Buildings
         private bool _st = true, isShowMode = false, _isLoad = false;
         private CancellationTokenSource _token = new CancellationTokenSource();
         public Guid SelectedGuid { get; set; }
-        private IEnumerable<BuildingBussines> _list;
+        private IEnumerable<BuildingReportBussines> _list;
         private List<string> _columnList;
         private Guid _ownerGuid = Guid.Empty;
         private bool? _isArchive;
         private List<Guid> _regList;
+        private BuildingFilter filter;
 
 
         private async Task FillCmbAsync()
@@ -98,14 +99,13 @@ namespace Building.Buildings
             {
                 if (!_isLoad) return;
                 if (cmbDocType.SelectedValue == null) return;
-                var filter = new BuildingFilter()
+                filter = new BuildingFilter()
                 {
                     Status = _st,
                     UserGuid = (Guid)cmbUser.SelectedValue,
                     BuildingAccountTypeGuid = (Guid)cmbAccType.SelectedValue,
                     IsArchive = _isArchive,
                     BuildingTypeGuid = (Guid)cmbBuildingType.SelectedValue,
-                    Search = search,
                     IsPishForoush = chbPishForoush.Checked,
                     IsSell = chbForoush.Checked,
                     DocumentTypeGuid = (Guid)cmbDocType.SelectedValue,
@@ -114,18 +114,45 @@ namespace Building.Buildings
                     OwnerGuid = _ownerGuid,
                     RegionList = _regList
                 };
+                _list = BuildingReportBussines.GetAll(filter);
+                Search(search);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private void Search(string srach = "")
+        {
+            try
+            {
+                if (!_isLoad) return;
+                var lst = _list;
                 _token?.Cancel();
                 _token = new CancellationTokenSource();
-                //_list = BuildingBussines.GetAll(filter, false, _token.Token);
-                //Task.Run(() => ucPagger.PagingAsync(new CancellationToken(),
-                //    _list?.OrderBy(q => q.IsArchive)?.ThenByDescending(q => q.CreateDate), 100,
-                //    PagingPosition.GotoStartPage));
+                var t = _token.Token;
+                if (string.IsNullOrEmpty(srach)) srach = "";
+                var searchItems = srach.SplitString();
+                if (searchItems?.Count > 0)
+                    foreach (var item in searchItems)
+                    {
+                        if (t.IsCancellationRequested) return;
+                        if (!string.IsNullOrEmpty(item) && item.Trim() != "")
+                        {
+                            lst = lst?.Where(x => x.Code.ToLower().Contains(item.ToLower()) ||
+                                                 x.OwnerName.ToLower().Contains(item.ToLower()) ||
+                                                 x.BuildingTypeName.ToLower().Contains(item.ToLower()) ||
+                                                 x.Masahat.ToString().ToLower().Contains(item.ToLower()) ||
+                                                 x.ZirBana.ToString().ToLower().Contains(item.ToLower()) ||
+                                                 x.UserName.ToLower().Contains(item.ToLower()) ||
+                                                 x.Address.ToLower().Contains(item.ToLower()) ||
+                                                 x.RegionName.ToLower().Contains(item.ToLower()))
+                                ?.ToList();
+                        }
+                    }
+                Task.Run(() => ucPagger.PagingAsync(new CancellationToken(), lst?.OrderBy(q => q.IsArchive)?.ThenByDescending(q => q.CreateDate), 100, PagingPosition.GotoStartPage));
 
-                if (filter.IsRahn) VisibleColumns(EnRequestType.Rahn);
-                else if (filter.IsSell) VisibleColumns(EnRequestType.Forush);
-                else if (filter.IsPishForoush) VisibleColumns(EnRequestType.PishForush);
-                else if (filter.IsMosharekat) VisibleColumns(EnRequestType.Mosharekat);
-                else VisibleColumns(EnRequestType.None);
+                VisibleColumns();
             }
             catch (Exception ex)
             {
@@ -163,7 +190,7 @@ namespace Building.Buildings
         {
             try
             {
-                _columnList = Settings.Classes.clsBuilding.ColumnsList;
+                _columnList = clsBuilding.ColumnsList;
                 if (_columnList == null || _columnList.Count <= 0)
                 {
                     _columnList = new List<string> { "کد", "تاریخ ثبت", "مالک", "اتاق", "آدرس", "محدوده" };
@@ -234,10 +261,6 @@ namespace Building.Buildings
                                 DGrid.Columns[dgRegionName.Index].Visible = true;
                                 mnuRegion.Checked = true;
                                 break;
-                            case "وضعیت":
-                                DGrid.Columns[dgBuildingStatus.Index].Visible = true;
-                                mnuBStatus.Checked = true;
-                                break;
                             case "آدرس":
                                 DGrid.Columns[dgAddress.Index].Visible = true;
                                 mnuAddress.Checked = true;
@@ -254,17 +277,9 @@ namespace Building.Buildings
                                 DGrid.Columns[dgQest.Index].Visible = true;
                                 mnuQest.Checked = true;
                                 break;
-                            case "تجاری":
-                                DGrid.Columns[dgTejari.Index].Visible = true;
-                                mnuTejari.Checked = true;
-                                break;
                             case "سال":
                                 DGrid.Columns[dgSaleSakht.Index].Visible = true;
                                 mnuSaleSakht.Checked = true;
-                                break;
-                            case "جهت":
-                                DGrid.Columns[dgSide.Index].Visible = true;
-                                mnuSide.Checked = true;
                                 break;
                             case "سند":
                                 DGrid.Columns[dgDocType.Index].Visible = true;
@@ -293,22 +308,6 @@ namespace Building.Buildings
                             case "آشپزخانه":
                                 DGrid.Columns[dgKitchenService.Index].Visible = true;
                                 mnuKitchen.Checked = true;
-                                break;
-                            case "آب":
-                                DGrid.Columns[dgWater.Index].Visible = true;
-                                mnuWater.Checked = true;
-                                break;
-                            case "برق":
-                                DGrid.Columns[dgBarq.Index].Visible = true;
-                                mnuBarq.Checked = true;
-                                break;
-                            case "گاز":
-                                DGrid.Columns[dgGas.Index].Visible = true;
-                                mnuGas.Checked = true;
-                                break;
-                            case "تلفن":
-                                DGrid.Columns[dgTell.Index].Visible = true;
-                                mnuTell.Checked = true;
                                 break;
                         }
                     }
@@ -701,6 +700,21 @@ namespace Building.Buildings
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
+        private void VisibleColumns()
+        {
+            try
+            {
+                if (filter.IsRahn) VisibleColumns(EnRequestType.Rahn);
+                else if (filter.IsSell) VisibleColumns(EnRequestType.Forush);
+                else if (filter.IsPishForoush) VisibleColumns(EnRequestType.PishForush);
+                else if (filter.IsMosharekat) VisibleColumns(EnRequestType.Mosharekat);
+                else VisibleColumns(EnRequestType.None);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
         private void ShowBuildingDetailForm(bool loadForCustomer)
         {
             try
@@ -770,7 +784,7 @@ namespace Building.Buildings
             _isLoad = true;
             LoadData();
         }
-        private void txtSearch_TextChanged(object sender, EventArgs e) => LoadData(txtSearch.Text);
+        private void txtSearch_TextChanged(object sender, EventArgs e) => Search(txtSearch.Text);
         private void frmShowBuildings_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -818,8 +832,8 @@ namespace Building.Buildings
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void cmbBuildingType_SelectedIndexChanged(object sender, EventArgs e) => LoadData(txtSearch.Text);
-        private void cmbUser_SelectedIndexChanged(object sender, EventArgs e) => LoadData(txtSearch.Text);
+        private void cmbBuildingType_SelectedIndexChanged(object sender, EventArgs e) => Search(txtSearch.Text);
+        private void cmbUser_SelectedIndexChanged(object sender, EventArgs e) => Search(txtSearch.Text);
         private void DGrid_DoubleClick(object sender, EventArgs e)
         {
             try
@@ -1269,29 +1283,6 @@ namespace Building.Buildings
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void mnuBStatus_CheckedChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                if (mnuBStatus.Checked)
-                {
-                    _columnList.Add("وضعیت");
-                    DGrid.Columns[dgBuildingStatus.Index].Visible = true;
-                    SaveColumns(_columnList);
-                }
-                else
-                {
-                    _columnList = _columnList.GroupBy(x => x).Select(x => x.First()).ToList();
-                    _columnList.Remove("وضعیت");
-                    DGrid.Columns[dgBuildingStatus.Index].Visible = false;
-                    SaveColumns(_columnList);
-                }
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
         private void mnuAddress_CheckedChanged(object sender, EventArgs e)
         {
             try
@@ -1384,29 +1375,6 @@ namespace Building.Buildings
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void mnuTejari_CheckedChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                if (mnuTejari.Checked)
-                {
-                    _columnList.Add("تجاری");
-                    DGrid.Columns[dgTejari.Index].Visible = true;
-                    SaveColumns(_columnList);
-                }
-                else
-                {
-                    _columnList = _columnList.GroupBy(x => x).Select(x => x.First()).ToList();
-                    _columnList.Remove("تجاری");
-                    DGrid.Columns[dgTejari.Index].Visible = false;
-                    SaveColumns(_columnList);
-                }
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
         private void mnuSaleSakht_CheckedChanged(object sender, EventArgs e)
         {
             try
@@ -1422,29 +1390,6 @@ namespace Building.Buildings
                     _columnList = _columnList.GroupBy(x => x).Select(x => x.First()).ToList();
                     _columnList.Remove("سال");
                     DGrid.Columns[dgSaleSakht.Index].Visible = false;
-                    SaveColumns(_columnList);
-                }
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-        private void mnuSide_CheckedChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                if (mnuSide.Checked)
-                {
-                    _columnList.Add("جهت");
-                    DGrid.Columns[dgSide.Index].Visible = true;
-                    SaveColumns(_columnList);
-                }
-                else
-                {
-                    _columnList = _columnList.GroupBy(x => x).Select(x => x.First()).ToList();
-                    _columnList.Remove("جهت");
-                    DGrid.Columns[dgSide.Index].Visible = false;
                     SaveColumns(_columnList);
                 }
             }
@@ -1614,100 +1559,8 @@ namespace Building.Buildings
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void mnuWater_CheckedChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                if (mnuWater.Checked)
-                {
-                    _columnList.Add("آب");
-                    DGrid.Columns[dgWater.Index].Visible = true;
-                    SaveColumns(_columnList);
-                }
-                else
-                {
-                    _columnList = _columnList.GroupBy(x => x).Select(x => x.First()).ToList();
-                    _columnList.Remove("آب");
-                    DGrid.Columns[dgWater.Index].Visible = false;
-                    SaveColumns(_columnList);
-                }
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-        private void mnuBarq_CheckedChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                if (mnuBarq.Checked)
-                {
-                    _columnList.Add("برق");
-                    DGrid.Columns[dgBarq.Index].Visible = true;
-                    SaveColumns(_columnList);
-                }
-                else
-                {
-                    _columnList = _columnList.GroupBy(x => x).Select(x => x.First()).ToList();
-                    _columnList.Remove("برق");
-                    DGrid.Columns[dgBarq.Index].Visible = false;
-                    SaveColumns(_columnList);
-                }
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-        private void mnuGas_CheckedChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                if (mnuGas.Checked)
-                {
-                    _columnList.Add("گاز");
-                    DGrid.Columns[dgGas.Index].Visible = true;
-                    SaveColumns(_columnList);
-                }
-                else
-                {
-                    _columnList = _columnList.GroupBy(x => x).Select(x => x.First()).ToList();
-                    _columnList.Remove("گاز");
-                    DGrid.Columns[dgGas.Index].Visible = false;
-                    SaveColumns(_columnList);
-                }
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-        private void mnuTell_CheckedChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                if (mnuTell.Checked)
-                {
-                    _columnList.Add("تلفن");
-                    DGrid.Columns[dgTell.Index].Visible = true;
-                    SaveColumns(_columnList);
-                }
-                else
-                {
-                    _columnList = _columnList.GroupBy(x => x).Select(x => x.First()).ToList();
-                    _columnList.Remove("تلفن");
-                    DGrid.Columns[dgTell.Index].Visible = false;
-                    SaveColumns(_columnList);
-                }
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-        private void cmbDocType_SelectedIndexChanged(object sender, EventArgs e) => LoadData(txtSearch.Text);
-        private void cmbAccType_SelectedIndexChanged(object sender, EventArgs e) => LoadData(txtSearch.Text);
+        private void cmbDocType_SelectedIndexChanged(object sender, EventArgs e) => Search(txtSearch.Text);
+        private void cmbAccType_SelectedIndexChanged(object sender, EventArgs e) => Search(txtSearch.Text);
         private void DGrid_Scroll(object sender, ScrollEventArgs e)
         {
             try
@@ -1936,11 +1789,11 @@ namespace Building.Buildings
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void chbRahn_CheckedChanged(object sender, EventArgs e) => LoadData(txtSearch.Text);
-        private void chbForoush_CheckedChanged(object sender, EventArgs e) => LoadData(txtSearch.Text);
-        private void chbDivar_CheckedChanged(object sender, EventArgs e) => LoadData(txtSearch.Text);
-        private void chbSheypoor_CheckedChanged(object sender, EventArgs e) => LoadData(txtSearch.Text);
-        private void chbAll_CheckedChanged(object sender, EventArgs e) => LoadData(txtSearch.Text);
+        private void chbRahn_CheckedChanged(object sender, EventArgs e) => Search(txtSearch.Text);
+        private void chbForoush_CheckedChanged(object sender, EventArgs e) => Search(txtSearch.Text);
+        private void chbDivar_CheckedChanged(object sender, EventArgs e) => Search(txtSearch.Text);
+        private void chbSheypoor_CheckedChanged(object sender, EventArgs e) => Search(txtSearch.Text);
+        private void chbAll_CheckedChanged(object sender, EventArgs e) => Search(txtSearch.Text);
         private async void cmbSendToCustomerChannel_Click(object sender, EventArgs e)
         {
             try
@@ -2007,7 +1860,7 @@ namespace Building.Buildings
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void chbMine_CheckedChanged(object sender, EventArgs e) => LoadData(txtSearch.Text);
+        private void chbMine_CheckedChanged(object sender, EventArgs e) => Search(txtSearch.Text);
         private async void mnuWhatsAppCustomer_Click(object sender, EventArgs e)
         {
             try
@@ -2082,7 +1935,7 @@ namespace Building.Buildings
                 if (!chbRegion.Checked && _isLoad)
                 {
                     _regList = null;
-                    LoadData(txtSearch.Text);
+                    Search(txtSearch.Text);
                     return;
                 }
                 var frm = new frmSelectRegion();
@@ -2095,7 +1948,7 @@ namespace Building.Buildings
                 }
 
                 _regList = frm.Guids;
-                LoadData(txtSearch.Text);
+                Search(txtSearch.Text);
             }
             catch (Exception ex)
             {

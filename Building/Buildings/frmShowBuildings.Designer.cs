@@ -42,40 +42,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmShowBuildings));
             this.txtSearch = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.DGrid = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.dgCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgDateSh = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgOwnerName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgType = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgRoomCount = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgMasahat = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgZirBana = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgRahn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgEjare = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgRentalAuthorityName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgSellPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgVam = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgQest = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgTejari = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgRegionName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgBuildingStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgAddress = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgSaleSakht = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgUserName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgSide = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgDocType = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgAccountType = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgCondition = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgView = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgFloorCover = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgKitchenService = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgWater = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgBarq = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgGas = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgTell = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgGuid = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgPriority = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgIsArchive = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.dgAdvertiseType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.contextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.mnuAdd = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuEdit = new System.Windows.Forms.ToolStripMenuItem();
@@ -122,14 +88,11 @@
             this.mnuEjare = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuSell = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuRegion = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuBStatus = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuAddress = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuUserName = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuVam = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuQest = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuTejari = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuSaleSakht = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuSide = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuDocType = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuRental = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuAccountType = new System.Windows.Forms.ToolStripMenuItem();
@@ -137,10 +100,6 @@
             this.mnuBView = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuFloor = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuKitchen = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuWater = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuBarq = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuGas = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuTell = new System.Windows.Forms.ToolStripMenuItem();
             this.BuildingBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label2 = new System.Windows.Forms.Label();
             this.cmbBuildingType = new System.Windows.Forms.ComboBox();
@@ -184,6 +143,33 @@
             this.chbMosharekat = new DevComponents.DotNetBar.Controls.CheckBoxX();
             this.chbAll = new DevComponents.DotNetBar.Controls.CheckBoxX();
             this.chbMine = new DevComponents.DotNetBar.Controls.CheckBoxX();
+            this.dgCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgDateSh = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgOwnerName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgRoomCount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgMasahat = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgZirBana = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgRahn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgEjare = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgRentalAuthorityName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgSellPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgVam = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgQest = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgRegionName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgAddress = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgSaleSakht = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgUserName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgDocType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgAccountType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgCondition = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgView = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgFloorCover = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgKitchenService = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgGuid = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgPriority = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgIsArchive = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.dgAdvertiseType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).BeginInit();
             this.contextMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BuildingBindingSource)).BeginInit();
@@ -260,23 +246,16 @@
             this.dgSellPrice,
             this.dgVam,
             this.dgQest,
-            this.dgTejari,
             this.dgRegionName,
-            this.dgBuildingStatus,
             this.dgAddress,
             this.dgSaleSakht,
             this.dgUserName,
-            this.dgSide,
             this.dgDocType,
             this.dgAccountType,
             this.dgCondition,
             this.dgView,
             this.dgFloorCover,
             this.dgKitchenService,
-            this.dgWater,
-            this.dgBarq,
-            this.dgGas,
-            this.dgTell,
             this.dgGuid,
             this.dgPriority,
             this.dgIsArchive,
@@ -321,310 +300,6 @@
             this.DGrid.Scroll += new System.Windows.Forms.ScrollEventHandler(this.DGrid_Scroll);
             this.DGrid.DoubleClick += new System.EventHandler(this.DGrid_DoubleClick);
             // 
-            // dgCode
-            // 
-            this.dgCode.DataPropertyName = "Code";
-            this.dgCode.HeaderText = "کد ملک";
-            this.dgCode.Name = "dgCode";
-            this.dgCode.ReadOnly = true;
-            this.dgCode.Width = 80;
-            // 
-            // dgDateSh
-            // 
-            this.dgDateSh.DataPropertyName = "DateSh";
-            this.dgDateSh.HeaderText = "تاریخ ثبت";
-            this.dgDateSh.Name = "dgDateSh";
-            this.dgDateSh.ReadOnly = true;
-            // 
-            // dgOwnerName
-            // 
-            this.dgOwnerName.DataPropertyName = "OwnerName";
-            this.dgOwnerName.HeaderText = "مالک";
-            this.dgOwnerName.Name = "dgOwnerName";
-            this.dgOwnerName.ReadOnly = true;
-            this.dgOwnerName.Width = 250;
-            // 
-            // dgType
-            // 
-            this.dgType.DataPropertyName = "BuildingTypeName";
-            this.dgType.HeaderText = "نوع ملک";
-            this.dgType.Name = "dgType";
-            this.dgType.ReadOnly = true;
-            this.dgType.Visible = false;
-            // 
-            // dgRoomCount
-            // 
-            this.dgRoomCount.DataPropertyName = "RoomCount";
-            this.dgRoomCount.HeaderText = "ت اتاق";
-            this.dgRoomCount.Name = "dgRoomCount";
-            this.dgRoomCount.ReadOnly = true;
-            this.dgRoomCount.Width = 66;
-            // 
-            // dgMasahat
-            // 
-            this.dgMasahat.DataPropertyName = "Masahat";
-            this.dgMasahat.HeaderText = "مساحت";
-            this.dgMasahat.Name = "dgMasahat";
-            this.dgMasahat.ReadOnly = true;
-            this.dgMasahat.Visible = false;
-            this.dgMasahat.Width = 80;
-            // 
-            // dgZirBana
-            // 
-            this.dgZirBana.DataPropertyName = "ZirBana";
-            this.dgZirBana.HeaderText = "زیربنا";
-            this.dgZirBana.Name = "dgZirBana";
-            this.dgZirBana.ReadOnly = true;
-            this.dgZirBana.Visible = false;
-            this.dgZirBana.Width = 80;
-            // 
-            // dgRahn
-            // 
-            this.dgRahn.DataPropertyName = "RahnPrice1";
-            dataGridViewCellStyle3.Format = "N0";
-            dataGridViewCellStyle3.NullValue = null;
-            this.dgRahn.DefaultCellStyle = dataGridViewCellStyle3;
-            this.dgRahn.HeaderText = "رهن";
-            this.dgRahn.Name = "dgRahn";
-            this.dgRahn.ReadOnly = true;
-            this.dgRahn.Visible = false;
-            // 
-            // dgEjare
-            // 
-            this.dgEjare.DataPropertyName = "EjarePrice1";
-            dataGridViewCellStyle4.Format = "N0";
-            dataGridViewCellStyle4.NullValue = null;
-            this.dgEjare.DefaultCellStyle = dataGridViewCellStyle4;
-            this.dgEjare.HeaderText = "اجاره";
-            this.dgEjare.Name = "dgEjare";
-            this.dgEjare.ReadOnly = true;
-            this.dgEjare.Visible = false;
-            // 
-            // dgRentalAuthorityName
-            // 
-            this.dgRentalAuthorityName.DataPropertyName = "RentalAuthorityName";
-            this.dgRentalAuthorityName.HeaderText = "ارجحیت اجاره";
-            this.dgRentalAuthorityName.Name = "dgRentalAuthorityName";
-            this.dgRentalAuthorityName.ReadOnly = true;
-            this.dgRentalAuthorityName.Visible = false;
-            this.dgRentalAuthorityName.Width = 102;
-            // 
-            // dgSellPrice
-            // 
-            this.dgSellPrice.DataPropertyName = "SellPrice";
-            dataGridViewCellStyle5.Format = "N0";
-            dataGridViewCellStyle5.NullValue = null;
-            this.dgSellPrice.DefaultCellStyle = dataGridViewCellStyle5;
-            this.dgSellPrice.HeaderText = "فروش";
-            this.dgSellPrice.Name = "dgSellPrice";
-            this.dgSellPrice.ReadOnly = true;
-            this.dgSellPrice.Visible = false;
-            this.dgSellPrice.Width = 120;
-            // 
-            // dgVam
-            // 
-            this.dgVam.DataPropertyName = "VamPrice";
-            dataGridViewCellStyle6.Format = "N0";
-            dataGridViewCellStyle6.NullValue = null;
-            this.dgVam.DefaultCellStyle = dataGridViewCellStyle6;
-            this.dgVam.HeaderText = "مبلغ وام";
-            this.dgVam.Name = "dgVam";
-            this.dgVam.ReadOnly = true;
-            this.dgVam.Visible = false;
-            // 
-            // dgQest
-            // 
-            this.dgQest.DataPropertyName = "QestPrice";
-            dataGridViewCellStyle7.Format = "N0";
-            dataGridViewCellStyle7.NullValue = null;
-            this.dgQest.DefaultCellStyle = dataGridViewCellStyle7;
-            this.dgQest.HeaderText = "قسط";
-            this.dgQest.Name = "dgQest";
-            this.dgQest.ReadOnly = true;
-            this.dgQest.Visible = false;
-            // 
-            // dgTejari
-            // 
-            this.dgTejari.DataPropertyName = "MetrazhTejari";
-            this.dgTejari.HeaderText = "تجاری";
-            this.dgTejari.Name = "dgTejari";
-            this.dgTejari.ReadOnly = true;
-            this.dgTejari.Visible = false;
-            this.dgTejari.Width = 62;
-            // 
-            // dgRegionName
-            // 
-            this.dgRegionName.DataPropertyName = "RegionName";
-            this.dgRegionName.HeaderText = "محدوده";
-            this.dgRegionName.Name = "dgRegionName";
-            this.dgRegionName.ReadOnly = true;
-            // 
-            // dgBuildingStatus
-            // 
-            this.dgBuildingStatus.DataPropertyName = "BuildingStatusName";
-            this.dgBuildingStatus.HeaderText = "وضعیت";
-            this.dgBuildingStatus.Name = "dgBuildingStatus";
-            this.dgBuildingStatus.ReadOnly = true;
-            this.dgBuildingStatus.Visible = false;
-            // 
-            // dgAddress
-            // 
-            this.dgAddress.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dgAddress.DataPropertyName = "Address";
-            this.dgAddress.FillWeight = 500F;
-            this.dgAddress.HeaderText = "آدرس";
-            this.dgAddress.MinimumWidth = 100;
-            this.dgAddress.Name = "dgAddress";
-            this.dgAddress.ReadOnly = true;
-            // 
-            // dgSaleSakht
-            // 
-            this.dgSaleSakht.DataPropertyName = "SaleSakht";
-            this.dgSaleSakht.HeaderText = "سال ساخت";
-            this.dgSaleSakht.Name = "dgSaleSakht";
-            this.dgSaleSakht.ReadOnly = true;
-            this.dgSaleSakht.Visible = false;
-            this.dgSaleSakht.Width = 88;
-            // 
-            // dgUserName
-            // 
-            this.dgUserName.DataPropertyName = "UserName";
-            this.dgUserName.HeaderText = "مشاور";
-            this.dgUserName.Name = "dgUserName";
-            this.dgUserName.ReadOnly = true;
-            this.dgUserName.Visible = false;
-            // 
-            // dgSide
-            // 
-            this.dgSide.DataPropertyName = "SideName";
-            this.dgSide.HeaderText = "جهت";
-            this.dgSide.Name = "dgSide";
-            this.dgSide.ReadOnly = true;
-            this.dgSide.Visible = false;
-            this.dgSide.Width = 70;
-            // 
-            // dgDocType
-            // 
-            this.dgDocType.DataPropertyName = "DocumentTypeName";
-            this.dgDocType.HeaderText = "سند";
-            this.dgDocType.Name = "dgDocType";
-            this.dgDocType.ReadOnly = true;
-            this.dgDocType.Visible = false;
-            this.dgDocType.Width = 80;
-            // 
-            // dgAccountType
-            // 
-            this.dgAccountType.DataPropertyName = "BuildingAccountTypeName";
-            this.dgAccountType.HeaderText = "کاربری";
-            this.dgAccountType.Name = "dgAccountType";
-            this.dgAccountType.ReadOnly = true;
-            this.dgAccountType.Visible = false;
-            this.dgAccountType.Width = 80;
-            // 
-            // dgCondition
-            // 
-            this.dgCondition.DataPropertyName = "BuildingConditionName";
-            this.dgCondition.HeaderText = "وضعیت ملک";
-            this.dgCondition.Name = "dgCondition";
-            this.dgCondition.ReadOnly = true;
-            this.dgCondition.Visible = false;
-            this.dgCondition.Width = 94;
-            // 
-            // dgView
-            // 
-            this.dgView.DataPropertyName = "BuildingViewName";
-            this.dgView.HeaderText = "نما";
-            this.dgView.Name = "dgView";
-            this.dgView.ReadOnly = true;
-            this.dgView.Visible = false;
-            this.dgView.Width = 80;
-            // 
-            // dgFloorCover
-            // 
-            this.dgFloorCover.DataPropertyName = "FloorCoverName";
-            this.dgFloorCover.HeaderText = "کفپوش";
-            this.dgFloorCover.Name = "dgFloorCover";
-            this.dgFloorCover.ReadOnly = true;
-            this.dgFloorCover.Visible = false;
-            this.dgFloorCover.Width = 80;
-            // 
-            // dgKitchenService
-            // 
-            this.dgKitchenService.DataPropertyName = "KitchenServiceName";
-            this.dgKitchenService.HeaderText = "آشپزخانه";
-            this.dgKitchenService.Name = "dgKitchenService";
-            this.dgKitchenService.ReadOnly = true;
-            this.dgKitchenService.Visible = false;
-            this.dgKitchenService.Width = 80;
-            // 
-            // dgWater
-            // 
-            this.dgWater.DataPropertyName = "WaterName";
-            this.dgWater.HeaderText = "آب";
-            this.dgWater.Name = "dgWater";
-            this.dgWater.ReadOnly = true;
-            this.dgWater.Visible = false;
-            this.dgWater.Width = 70;
-            // 
-            // dgBarq
-            // 
-            this.dgBarq.DataPropertyName = "BarqName";
-            this.dgBarq.HeaderText = "برق";
-            this.dgBarq.Name = "dgBarq";
-            this.dgBarq.ReadOnly = true;
-            this.dgBarq.Visible = false;
-            this.dgBarq.Width = 70;
-            // 
-            // dgGas
-            // 
-            this.dgGas.DataPropertyName = "GasName";
-            this.dgGas.HeaderText = "گاز";
-            this.dgGas.Name = "dgGas";
-            this.dgGas.ReadOnly = true;
-            this.dgGas.Visible = false;
-            this.dgGas.Width = 70;
-            // 
-            // dgTell
-            // 
-            this.dgTell.DataPropertyName = "TellName";
-            this.dgTell.HeaderText = "تلفن";
-            this.dgTell.Name = "dgTell";
-            this.dgTell.ReadOnly = true;
-            this.dgTell.Visible = false;
-            this.dgTell.Width = 70;
-            // 
-            // dgGuid
-            // 
-            this.dgGuid.DataPropertyName = "Guid";
-            this.dgGuid.HeaderText = "Guid";
-            this.dgGuid.Name = "dgGuid";
-            this.dgGuid.ReadOnly = true;
-            this.dgGuid.Visible = false;
-            // 
-            // dgPriority
-            // 
-            this.dgPriority.DataPropertyName = "Priority";
-            this.dgPriority.HeaderText = "Priority";
-            this.dgPriority.Name = "dgPriority";
-            this.dgPriority.ReadOnly = true;
-            this.dgPriority.Visible = false;
-            // 
-            // dgIsArchive
-            // 
-            this.dgIsArchive.DataPropertyName = "IsArchive";
-            this.dgIsArchive.HeaderText = "IsArchive";
-            this.dgIsArchive.Name = "dgIsArchive";
-            this.dgIsArchive.ReadOnly = true;
-            this.dgIsArchive.Visible = false;
-            // 
-            // dgAdvertiseType
-            // 
-            this.dgAdvertiseType.DataPropertyName = "AdvertiseType";
-            this.dgAdvertiseType.HeaderText = "AdvertiseType";
-            this.dgAdvertiseType.Name = "dgAdvertiseType";
-            this.dgAdvertiseType.ReadOnly = true;
-            this.dgAdvertiseType.Visible = false;
-            // 
             // contextMenu
             // 
             this.contextMenu.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
@@ -655,7 +330,7 @@
             this.مدیریتستونهاToolStripMenuItem});
             this.contextMenu.Name = "contextMenu";
             this.contextMenu.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.contextMenu.Size = new System.Drawing.Size(246, 472);
+            this.contextMenu.Size = new System.Drawing.Size(246, 494);
             // 
             // mnuAdd
             // 
@@ -909,25 +584,18 @@
             this.mnuEjare,
             this.mnuSell,
             this.mnuRegion,
-            this.mnuBStatus,
             this.mnuAddress,
             this.mnuUserName,
             this.mnuVam,
             this.mnuQest,
-            this.mnuTejari,
             this.mnuSaleSakht,
-            this.mnuSide,
             this.mnuDocType,
             this.mnuRental,
             this.mnuAccountType,
             this.mnuCondition,
             this.mnuBView,
             this.mnuFloor,
-            this.mnuKitchen,
-            this.mnuWater,
-            this.mnuBarq,
-            this.mnuGas,
-            this.mnuTell});
+            this.mnuKitchen});
             this.مدیریتستونهاToolStripMenuItem.Image = global::Building.Properties.Resources.technology_1;
             this.مدیریتستونهاToolStripMenuItem.Name = "مدیریتستونهاToolStripMenuItem";
             this.مدیریتستونهاToolStripMenuItem.Size = new System.Drawing.Size(245, 24);
@@ -937,7 +605,7 @@
             // 
             this.mnuCode.CheckOnClick = true;
             this.mnuCode.Name = "mnuCode";
-            this.mnuCode.Size = new System.Drawing.Size(166, 24);
+            this.mnuCode.Size = new System.Drawing.Size(180, 24);
             this.mnuCode.Text = "کد ملک";
             this.mnuCode.CheckedChanged += new System.EventHandler(this.mnuCode_CheckedChanged);
             // 
@@ -945,7 +613,7 @@
             // 
             this.mnuDate.CheckOnClick = true;
             this.mnuDate.Name = "mnuDate";
-            this.mnuDate.Size = new System.Drawing.Size(166, 24);
+            this.mnuDate.Size = new System.Drawing.Size(180, 24);
             this.mnuDate.Text = "تاریخ ثبت";
             this.mnuDate.CheckedChanged += new System.EventHandler(this.mnuDate_CheckedChanged);
             // 
@@ -953,7 +621,7 @@
             // 
             this.mnuOwner.CheckOnClick = true;
             this.mnuOwner.Name = "mnuOwner";
-            this.mnuOwner.Size = new System.Drawing.Size(166, 24);
+            this.mnuOwner.Size = new System.Drawing.Size(180, 24);
             this.mnuOwner.Text = "نام مالک";
             this.mnuOwner.CheckedChanged += new System.EventHandler(this.mnuOwner_CheckedChanged);
             // 
@@ -961,7 +629,7 @@
             // 
             this.mnuType.CheckOnClick = true;
             this.mnuType.Name = "mnuType";
-            this.mnuType.Size = new System.Drawing.Size(166, 24);
+            this.mnuType.Size = new System.Drawing.Size(180, 24);
             this.mnuType.Text = "نوع ملک";
             this.mnuType.CheckedChanged += new System.EventHandler(this.mnuType_CheckedChanged);
             // 
@@ -969,7 +637,7 @@
             // 
             this.mnuRoom.CheckOnClick = true;
             this.mnuRoom.Name = "mnuRoom";
-            this.mnuRoom.Size = new System.Drawing.Size(166, 24);
+            this.mnuRoom.Size = new System.Drawing.Size(180, 24);
             this.mnuRoom.Text = "تعداد اتاق";
             this.mnuRoom.CheckedChanged += new System.EventHandler(this.mnuRoom_CheckedChanged);
             // 
@@ -977,7 +645,7 @@
             // 
             this.mnuMasahat.CheckOnClick = true;
             this.mnuMasahat.Name = "mnuMasahat";
-            this.mnuMasahat.Size = new System.Drawing.Size(166, 24);
+            this.mnuMasahat.Size = new System.Drawing.Size(180, 24);
             this.mnuMasahat.Text = "مساحت";
             this.mnuMasahat.CheckedChanged += new System.EventHandler(this.mnuMasahat_CheckedChanged);
             // 
@@ -985,7 +653,7 @@
             // 
             this.mnuZirBana.CheckOnClick = true;
             this.mnuZirBana.Name = "mnuZirBana";
-            this.mnuZirBana.Size = new System.Drawing.Size(166, 24);
+            this.mnuZirBana.Size = new System.Drawing.Size(180, 24);
             this.mnuZirBana.Text = "زیربنا";
             this.mnuZirBana.CheckedChanged += new System.EventHandler(this.mnuZirBana_CheckedChanged);
             // 
@@ -993,7 +661,7 @@
             // 
             this.mnuRahn.CheckOnClick = true;
             this.mnuRahn.Name = "mnuRahn";
-            this.mnuRahn.Size = new System.Drawing.Size(166, 24);
+            this.mnuRahn.Size = new System.Drawing.Size(180, 24);
             this.mnuRahn.Text = "قیمت رهن";
             this.mnuRahn.CheckedChanged += new System.EventHandler(this.mnuRahn_CheckedChanged);
             // 
@@ -1001,7 +669,7 @@
             // 
             this.mnuEjare.CheckOnClick = true;
             this.mnuEjare.Name = "mnuEjare";
-            this.mnuEjare.Size = new System.Drawing.Size(166, 24);
+            this.mnuEjare.Size = new System.Drawing.Size(180, 24);
             this.mnuEjare.Text = "قیمت اجاره";
             this.mnuEjare.CheckedChanged += new System.EventHandler(this.mnuEjare_CheckedChanged);
             // 
@@ -1009,7 +677,7 @@
             // 
             this.mnuSell.CheckOnClick = true;
             this.mnuSell.Name = "mnuSell";
-            this.mnuSell.Size = new System.Drawing.Size(166, 24);
+            this.mnuSell.Size = new System.Drawing.Size(180, 24);
             this.mnuSell.Text = "قیمت فروش";
             this.mnuSell.CheckedChanged += new System.EventHandler(this.mnuSell_CheckedChanged);
             // 
@@ -1017,23 +685,15 @@
             // 
             this.mnuRegion.CheckOnClick = true;
             this.mnuRegion.Name = "mnuRegion";
-            this.mnuRegion.Size = new System.Drawing.Size(166, 24);
+            this.mnuRegion.Size = new System.Drawing.Size(180, 24);
             this.mnuRegion.Text = "محدوده";
             this.mnuRegion.CheckedChanged += new System.EventHandler(this.mnuRegion_CheckedChanged);
-            // 
-            // mnuBStatus
-            // 
-            this.mnuBStatus.CheckOnClick = true;
-            this.mnuBStatus.Name = "mnuBStatus";
-            this.mnuBStatus.Size = new System.Drawing.Size(166, 24);
-            this.mnuBStatus.Text = "وضعیت";
-            this.mnuBStatus.CheckedChanged += new System.EventHandler(this.mnuBStatus_CheckedChanged);
             // 
             // mnuAddress
             // 
             this.mnuAddress.CheckOnClick = true;
             this.mnuAddress.Name = "mnuAddress";
-            this.mnuAddress.Size = new System.Drawing.Size(166, 24);
+            this.mnuAddress.Size = new System.Drawing.Size(180, 24);
             this.mnuAddress.Text = "آدرس";
             this.mnuAddress.CheckedChanged += new System.EventHandler(this.mnuAddress_CheckedChanged);
             // 
@@ -1041,7 +701,7 @@
             // 
             this.mnuUserName.CheckOnClick = true;
             this.mnuUserName.Name = "mnuUserName";
-            this.mnuUserName.Size = new System.Drawing.Size(166, 24);
+            this.mnuUserName.Size = new System.Drawing.Size(180, 24);
             this.mnuUserName.Text = "مشاور";
             this.mnuUserName.CheckedChanged += new System.EventHandler(this.mnuUserName_CheckedChanged);
             // 
@@ -1049,7 +709,7 @@
             // 
             this.mnuVam.CheckOnClick = true;
             this.mnuVam.Name = "mnuVam";
-            this.mnuVam.Size = new System.Drawing.Size(166, 24);
+            this.mnuVam.Size = new System.Drawing.Size(180, 24);
             this.mnuVam.Text = "مبلغ وام";
             this.mnuVam.CheckedChanged += new System.EventHandler(this.mnuVam_CheckedChanged);
             // 
@@ -1057,39 +717,23 @@
             // 
             this.mnuQest.CheckOnClick = true;
             this.mnuQest.Name = "mnuQest";
-            this.mnuQest.Size = new System.Drawing.Size(166, 24);
+            this.mnuQest.Size = new System.Drawing.Size(180, 24);
             this.mnuQest.Text = "مبلغ قسط";
             this.mnuQest.CheckedChanged += new System.EventHandler(this.mnuQest_CheckedChanged);
-            // 
-            // mnuTejari
-            // 
-            this.mnuTejari.CheckOnClick = true;
-            this.mnuTejari.Name = "mnuTejari";
-            this.mnuTejari.Size = new System.Drawing.Size(166, 24);
-            this.mnuTejari.Text = "متراژ تجاری";
-            this.mnuTejari.CheckedChanged += new System.EventHandler(this.mnuTejari_CheckedChanged);
             // 
             // mnuSaleSakht
             // 
             this.mnuSaleSakht.CheckOnClick = true;
             this.mnuSaleSakht.Name = "mnuSaleSakht";
-            this.mnuSaleSakht.Size = new System.Drawing.Size(166, 24);
+            this.mnuSaleSakht.Size = new System.Drawing.Size(180, 24);
             this.mnuSaleSakht.Text = "سال ساخت";
             this.mnuSaleSakht.CheckedChanged += new System.EventHandler(this.mnuSaleSakht_CheckedChanged);
-            // 
-            // mnuSide
-            // 
-            this.mnuSide.CheckOnClick = true;
-            this.mnuSide.Name = "mnuSide";
-            this.mnuSide.Size = new System.Drawing.Size(166, 24);
-            this.mnuSide.Text = "جهت";
-            this.mnuSide.CheckedChanged += new System.EventHandler(this.mnuSide_CheckedChanged);
             // 
             // mnuDocType
             // 
             this.mnuDocType.CheckOnClick = true;
             this.mnuDocType.Name = "mnuDocType";
-            this.mnuDocType.Size = new System.Drawing.Size(166, 24);
+            this.mnuDocType.Size = new System.Drawing.Size(180, 24);
             this.mnuDocType.Text = "نوع سند";
             this.mnuDocType.CheckedChanged += new System.EventHandler(this.mnuDocType_CheckedChanged);
             // 
@@ -1097,7 +741,7 @@
             // 
             this.mnuRental.CheckOnClick = true;
             this.mnuRental.Name = "mnuRental";
-            this.mnuRental.Size = new System.Drawing.Size(166, 24);
+            this.mnuRental.Size = new System.Drawing.Size(180, 24);
             this.mnuRental.Text = "ارجحیت اجاره";
             this.mnuRental.CheckedChanged += new System.EventHandler(this.mnuRental_CheckedChanged);
             // 
@@ -1105,7 +749,7 @@
             // 
             this.mnuAccountType.CheckOnClick = true;
             this.mnuAccountType.Name = "mnuAccountType";
-            this.mnuAccountType.Size = new System.Drawing.Size(166, 24);
+            this.mnuAccountType.Size = new System.Drawing.Size(180, 24);
             this.mnuAccountType.Text = "نوع کاربری";
             this.mnuAccountType.CheckedChanged += new System.EventHandler(this.mnuAccountType_CheckedChanged);
             // 
@@ -1113,7 +757,7 @@
             // 
             this.mnuCondition.CheckOnClick = true;
             this.mnuCondition.Name = "mnuCondition";
-            this.mnuCondition.Size = new System.Drawing.Size(166, 24);
+            this.mnuCondition.Size = new System.Drawing.Size(180, 24);
             this.mnuCondition.Text = "وضعیت ملک";
             this.mnuCondition.CheckedChanged += new System.EventHandler(this.mnuCondition_CheckedChanged);
             // 
@@ -1121,7 +765,7 @@
             // 
             this.mnuBView.CheckOnClick = true;
             this.mnuBView.Name = "mnuBView";
-            this.mnuBView.Size = new System.Drawing.Size(166, 24);
+            this.mnuBView.Size = new System.Drawing.Size(180, 24);
             this.mnuBView.Text = "نما";
             this.mnuBView.CheckedChanged += new System.EventHandler(this.mnuBView_CheckedChanged);
             // 
@@ -1129,7 +773,7 @@
             // 
             this.mnuFloor.CheckOnClick = true;
             this.mnuFloor.Name = "mnuFloor";
-            this.mnuFloor.Size = new System.Drawing.Size(166, 24);
+            this.mnuFloor.Size = new System.Drawing.Size(180, 24);
             this.mnuFloor.Text = "کفپوش";
             this.mnuFloor.CheckedChanged += new System.EventHandler(this.mnuFloor_CheckedChanged);
             // 
@@ -1137,45 +781,13 @@
             // 
             this.mnuKitchen.CheckOnClick = true;
             this.mnuKitchen.Name = "mnuKitchen";
-            this.mnuKitchen.Size = new System.Drawing.Size(166, 24);
+            this.mnuKitchen.Size = new System.Drawing.Size(180, 24);
             this.mnuKitchen.Text = "سرویس آشپزخانه";
             this.mnuKitchen.CheckedChanged += new System.EventHandler(this.mnuKitchen_CheckedChanged);
             // 
-            // mnuWater
-            // 
-            this.mnuWater.CheckOnClick = true;
-            this.mnuWater.Name = "mnuWater";
-            this.mnuWater.Size = new System.Drawing.Size(166, 24);
-            this.mnuWater.Text = "آب";
-            this.mnuWater.CheckedChanged += new System.EventHandler(this.mnuWater_CheckedChanged);
-            // 
-            // mnuBarq
-            // 
-            this.mnuBarq.CheckOnClick = true;
-            this.mnuBarq.Name = "mnuBarq";
-            this.mnuBarq.Size = new System.Drawing.Size(166, 24);
-            this.mnuBarq.Text = "برق";
-            this.mnuBarq.CheckedChanged += new System.EventHandler(this.mnuBarq_CheckedChanged);
-            // 
-            // mnuGas
-            // 
-            this.mnuGas.CheckOnClick = true;
-            this.mnuGas.Name = "mnuGas";
-            this.mnuGas.Size = new System.Drawing.Size(166, 24);
-            this.mnuGas.Text = "گاز";
-            this.mnuGas.CheckedChanged += new System.EventHandler(this.mnuGas_CheckedChanged);
-            // 
-            // mnuTell
-            // 
-            this.mnuTell.CheckOnClick = true;
-            this.mnuTell.Name = "mnuTell";
-            this.mnuTell.Size = new System.Drawing.Size(166, 24);
-            this.mnuTell.Text = "تلفن";
-            this.mnuTell.CheckedChanged += new System.EventHandler(this.mnuTell_CheckedChanged);
-            // 
             // BuildingBindingSource
             // 
-            this.BuildingBindingSource.DataSource = typeof(EntityCache.Bussines.BuildingBussines);
+            this.BuildingBindingSource.DataSource = typeof(EntityCache.Bussines.BuildingReportBussines);
             // 
             // label2
             // 
@@ -1705,6 +1317,248 @@
             this.chbMine.Text = "فقط فایل های خودم را نشان بده";
             this.chbMine.CheckedChanged += new System.EventHandler(this.chbMine_CheckedChanged);
             // 
+            // dgCode
+            // 
+            this.dgCode.DataPropertyName = "Code";
+            this.dgCode.HeaderText = "کد ملک";
+            this.dgCode.Name = "dgCode";
+            this.dgCode.ReadOnly = true;
+            this.dgCode.Width = 80;
+            // 
+            // dgDateSh
+            // 
+            this.dgDateSh.DataPropertyName = "DateSh";
+            this.dgDateSh.HeaderText = "تاریخ ثبت";
+            this.dgDateSh.Name = "dgDateSh";
+            this.dgDateSh.ReadOnly = true;
+            // 
+            // dgOwnerName
+            // 
+            this.dgOwnerName.DataPropertyName = "OwnerName";
+            this.dgOwnerName.HeaderText = "مالک";
+            this.dgOwnerName.Name = "dgOwnerName";
+            this.dgOwnerName.ReadOnly = true;
+            this.dgOwnerName.Width = 250;
+            // 
+            // dgType
+            // 
+            this.dgType.DataPropertyName = "BuildingTypeName";
+            this.dgType.HeaderText = "نوع ملک";
+            this.dgType.Name = "dgType";
+            this.dgType.ReadOnly = true;
+            this.dgType.Visible = false;
+            // 
+            // dgRoomCount
+            // 
+            this.dgRoomCount.DataPropertyName = "RoomCount";
+            this.dgRoomCount.HeaderText = "ت اتاق";
+            this.dgRoomCount.Name = "dgRoomCount";
+            this.dgRoomCount.ReadOnly = true;
+            this.dgRoomCount.Width = 66;
+            // 
+            // dgMasahat
+            // 
+            this.dgMasahat.DataPropertyName = "Masahat";
+            this.dgMasahat.HeaderText = "مساحت";
+            this.dgMasahat.Name = "dgMasahat";
+            this.dgMasahat.ReadOnly = true;
+            this.dgMasahat.Visible = false;
+            this.dgMasahat.Width = 80;
+            // 
+            // dgZirBana
+            // 
+            this.dgZirBana.DataPropertyName = "ZirBana";
+            this.dgZirBana.HeaderText = "زیربنا";
+            this.dgZirBana.Name = "dgZirBana";
+            this.dgZirBana.ReadOnly = true;
+            this.dgZirBana.Visible = false;
+            this.dgZirBana.Width = 80;
+            // 
+            // dgRahn
+            // 
+            this.dgRahn.DataPropertyName = "RahnPrice1";
+            dataGridViewCellStyle3.Format = "N0";
+            dataGridViewCellStyle3.NullValue = null;
+            this.dgRahn.DefaultCellStyle = dataGridViewCellStyle3;
+            this.dgRahn.HeaderText = "رهن";
+            this.dgRahn.Name = "dgRahn";
+            this.dgRahn.ReadOnly = true;
+            this.dgRahn.Visible = false;
+            // 
+            // dgEjare
+            // 
+            this.dgEjare.DataPropertyName = "EjarePrice1";
+            dataGridViewCellStyle4.Format = "N0";
+            dataGridViewCellStyle4.NullValue = null;
+            this.dgEjare.DefaultCellStyle = dataGridViewCellStyle4;
+            this.dgEjare.HeaderText = "اجاره";
+            this.dgEjare.Name = "dgEjare";
+            this.dgEjare.ReadOnly = true;
+            this.dgEjare.Visible = false;
+            // 
+            // dgRentalAuthorityName
+            // 
+            this.dgRentalAuthorityName.DataPropertyName = "RentalAuthorityName";
+            this.dgRentalAuthorityName.HeaderText = "ارجحیت اجاره";
+            this.dgRentalAuthorityName.Name = "dgRentalAuthorityName";
+            this.dgRentalAuthorityName.ReadOnly = true;
+            this.dgRentalAuthorityName.Visible = false;
+            this.dgRentalAuthorityName.Width = 102;
+            // 
+            // dgSellPrice
+            // 
+            this.dgSellPrice.DataPropertyName = "SellPrice";
+            dataGridViewCellStyle5.Format = "N0";
+            dataGridViewCellStyle5.NullValue = null;
+            this.dgSellPrice.DefaultCellStyle = dataGridViewCellStyle5;
+            this.dgSellPrice.HeaderText = "فروش";
+            this.dgSellPrice.Name = "dgSellPrice";
+            this.dgSellPrice.ReadOnly = true;
+            this.dgSellPrice.Visible = false;
+            this.dgSellPrice.Width = 120;
+            // 
+            // dgVam
+            // 
+            this.dgVam.DataPropertyName = "VamPrice";
+            dataGridViewCellStyle6.Format = "N0";
+            dataGridViewCellStyle6.NullValue = null;
+            this.dgVam.DefaultCellStyle = dataGridViewCellStyle6;
+            this.dgVam.HeaderText = "مبلغ وام";
+            this.dgVam.Name = "dgVam";
+            this.dgVam.ReadOnly = true;
+            this.dgVam.Visible = false;
+            // 
+            // dgQest
+            // 
+            this.dgQest.DataPropertyName = "QestPrice";
+            dataGridViewCellStyle7.Format = "N0";
+            dataGridViewCellStyle7.NullValue = null;
+            this.dgQest.DefaultCellStyle = dataGridViewCellStyle7;
+            this.dgQest.HeaderText = "قسط";
+            this.dgQest.Name = "dgQest";
+            this.dgQest.ReadOnly = true;
+            this.dgQest.Visible = false;
+            // 
+            // dgRegionName
+            // 
+            this.dgRegionName.DataPropertyName = "RegionName";
+            this.dgRegionName.HeaderText = "محدوده";
+            this.dgRegionName.Name = "dgRegionName";
+            this.dgRegionName.ReadOnly = true;
+            // 
+            // dgAddress
+            // 
+            this.dgAddress.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dgAddress.DataPropertyName = "Address";
+            this.dgAddress.FillWeight = 500F;
+            this.dgAddress.HeaderText = "آدرس";
+            this.dgAddress.MinimumWidth = 100;
+            this.dgAddress.Name = "dgAddress";
+            this.dgAddress.ReadOnly = true;
+            // 
+            // dgSaleSakht
+            // 
+            this.dgSaleSakht.DataPropertyName = "SaleSakht";
+            this.dgSaleSakht.HeaderText = "سال ساخت";
+            this.dgSaleSakht.Name = "dgSaleSakht";
+            this.dgSaleSakht.ReadOnly = true;
+            this.dgSaleSakht.Visible = false;
+            this.dgSaleSakht.Width = 88;
+            // 
+            // dgUserName
+            // 
+            this.dgUserName.DataPropertyName = "UserName";
+            this.dgUserName.HeaderText = "مشاور";
+            this.dgUserName.Name = "dgUserName";
+            this.dgUserName.ReadOnly = true;
+            this.dgUserName.Visible = false;
+            // 
+            // dgDocType
+            // 
+            this.dgDocType.DataPropertyName = "DocumentTypeName";
+            this.dgDocType.HeaderText = "سند";
+            this.dgDocType.Name = "dgDocType";
+            this.dgDocType.ReadOnly = true;
+            this.dgDocType.Visible = false;
+            this.dgDocType.Width = 80;
+            // 
+            // dgAccountType
+            // 
+            this.dgAccountType.DataPropertyName = "BuildingAccountTypeName";
+            this.dgAccountType.HeaderText = "کاربری";
+            this.dgAccountType.Name = "dgAccountType";
+            this.dgAccountType.ReadOnly = true;
+            this.dgAccountType.Visible = false;
+            this.dgAccountType.Width = 80;
+            // 
+            // dgCondition
+            // 
+            this.dgCondition.DataPropertyName = "BuildingConditionName";
+            this.dgCondition.HeaderText = "وضعیت ملک";
+            this.dgCondition.Name = "dgCondition";
+            this.dgCondition.ReadOnly = true;
+            this.dgCondition.Visible = false;
+            this.dgCondition.Width = 94;
+            // 
+            // dgView
+            // 
+            this.dgView.DataPropertyName = "BuildingViewName";
+            this.dgView.HeaderText = "نما";
+            this.dgView.Name = "dgView";
+            this.dgView.ReadOnly = true;
+            this.dgView.Visible = false;
+            this.dgView.Width = 80;
+            // 
+            // dgFloorCover
+            // 
+            this.dgFloorCover.DataPropertyName = "FloorCoverName";
+            this.dgFloorCover.HeaderText = "کفپوش";
+            this.dgFloorCover.Name = "dgFloorCover";
+            this.dgFloorCover.ReadOnly = true;
+            this.dgFloorCover.Visible = false;
+            this.dgFloorCover.Width = 80;
+            // 
+            // dgKitchenService
+            // 
+            this.dgKitchenService.DataPropertyName = "KitchenServiceName";
+            this.dgKitchenService.HeaderText = "آشپزخانه";
+            this.dgKitchenService.Name = "dgKitchenService";
+            this.dgKitchenService.ReadOnly = true;
+            this.dgKitchenService.Visible = false;
+            this.dgKitchenService.Width = 80;
+            // 
+            // dgGuid
+            // 
+            this.dgGuid.DataPropertyName = "Guid";
+            this.dgGuid.HeaderText = "Guid";
+            this.dgGuid.Name = "dgGuid";
+            this.dgGuid.ReadOnly = true;
+            this.dgGuid.Visible = false;
+            // 
+            // dgPriority
+            // 
+            this.dgPriority.DataPropertyName = "Priority";
+            this.dgPriority.HeaderText = "Priority";
+            this.dgPriority.Name = "dgPriority";
+            this.dgPriority.ReadOnly = true;
+            this.dgPriority.Visible = false;
+            // 
+            // dgIsArchive
+            // 
+            this.dgIsArchive.DataPropertyName = "IsArchive";
+            this.dgIsArchive.HeaderText = "IsArchive";
+            this.dgIsArchive.Name = "dgIsArchive";
+            this.dgIsArchive.ReadOnly = true;
+            this.dgIsArchive.Visible = false;
+            // 
+            // dgAdvertiseType
+            // 
+            this.dgAdvertiseType.DataPropertyName = "AdvertiseType";
+            this.dgAdvertiseType.HeaderText = "AdvertiseType";
+            this.dgAdvertiseType.Name = "dgAdvertiseType";
+            this.dgAdvertiseType.ReadOnly = true;
+            this.dgAdvertiseType.Visible = false;
+            // 
             // frmShowBuildings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -1798,14 +1652,11 @@
         private System.Windows.Forms.ToolStripMenuItem mnuMatchRequest;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem6;
         private System.Windows.Forms.ToolStripMenuItem mnuRegion;
-        private System.Windows.Forms.ToolStripMenuItem mnuBStatus;
         private System.Windows.Forms.ToolStripMenuItem mnuAddress;
         private System.Windows.Forms.ToolStripMenuItem mnuUserName;
         private System.Windows.Forms.ToolStripMenuItem mnuVam;
         private System.Windows.Forms.ToolStripMenuItem mnuQest;
-        private System.Windows.Forms.ToolStripMenuItem mnuTejari;
         private System.Windows.Forms.ToolStripMenuItem mnuSaleSakht;
-        private System.Windows.Forms.ToolStripMenuItem mnuSide;
         private System.Windows.Forms.ToolStripMenuItem mnuDocType;
         private System.Windows.Forms.ToolStripMenuItem mnuRental;
         private System.Windows.Forms.ToolStripMenuItem mnuAccountType;
@@ -1813,10 +1664,6 @@
         private System.Windows.Forms.ToolStripMenuItem mnuBView;
         private System.Windows.Forms.ToolStripMenuItem mnuFloor;
         private System.Windows.Forms.ToolStripMenuItem mnuKitchen;
-        private System.Windows.Forms.ToolStripMenuItem mnuWater;
-        private System.Windows.Forms.ToolStripMenuItem mnuBarq;
-        private System.Windows.Forms.ToolStripMenuItem mnuGas;
-        private System.Windows.Forms.ToolStripMenuItem mnuTell;
         private DevComponents.DotNetBar.PanelEx grp;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
@@ -1857,6 +1704,14 @@
         private System.Windows.Forms.ToolStripMenuItem cmbSendToBothChannel;
         private System.Windows.Forms.PictureBox pictureBox6;
         private System.Windows.Forms.Label label11;
+        private DevComponents.DotNetBar.Controls.CheckBoxX chbMine;
+        private System.Windows.Forms.ToolStripMenuItem mnuWhatsApp;
+        private System.Windows.Forms.ToolStripMenuItem mnuWhatsAppCustomer;
+        private System.Windows.Forms.ToolStripMenuItem mnuWhatsAppManager;
+        private System.Windows.Forms.ToolStripMenuItem mnuWhatsAppBoth;
+        private DevComponents.DotNetBar.Controls.CheckBoxX chbRegion;
+        private System.Windows.Forms.ToolStripMenuItem مشاهدهبااطلاعاتمحدودToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mnuView2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgCode;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgDateSh;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgOwnerName;
@@ -1870,34 +1725,19 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dgSellPrice;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgVam;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgQest;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgTejari;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgRegionName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgBuildingStatus;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgAddress;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgSaleSakht;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgUserName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgSide;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgDocType;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgAccountType;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgCondition;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgView;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgFloorCover;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgKitchenService;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgWater;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgBarq;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgGas;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgTell;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgGuid;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgPriority;
         private System.Windows.Forms.DataGridViewCheckBoxColumn dgIsArchive;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgAdvertiseType;
-        private DevComponents.DotNetBar.Controls.CheckBoxX chbMine;
-        private System.Windows.Forms.ToolStripMenuItem mnuWhatsApp;
-        private System.Windows.Forms.ToolStripMenuItem mnuWhatsAppCustomer;
-        private System.Windows.Forms.ToolStripMenuItem mnuWhatsAppManager;
-        private System.Windows.Forms.ToolStripMenuItem mnuWhatsAppBoth;
-        private DevComponents.DotNetBar.Controls.CheckBoxX chbRegion;
-        private System.Windows.Forms.ToolStripMenuItem مشاهدهبااطلاعاتمحدودToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem mnuView2;
     }
 }

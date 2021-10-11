@@ -44,40 +44,7 @@ namespace EntityCache.Bussines
         public Guid RegionGuid { get; set; }
 
 
-        public static async Task<List<BuildingReportBussines>> GetAllAsync(BuildingFilter filters)
-        {
-            try
-            {
-                if (string.IsNullOrEmpty(filters.Search)) filters.Search = "";
-                var res = await UnitOfWork.Building.SearchAsync(Cache.ConnectionString, filters);
-                var searchItems = filters.Search.SplitString();
-                if (searchItems?.Count > 0)
-                    foreach (var item in searchItems)
-                    {
-                        if (!string.IsNullOrEmpty(item) && item.Trim() != "")
-                        {
-                            res = res.Where(x => x.Code.ToLower().Contains(item.ToLower()) ||
-                                                 x.OwnerName.ToLower().Contains(item.ToLower()) ||
-                                                 x.BuildingTypeName.ToLower().Contains(item.ToLower()) ||
-                                                 x.Masahat.ToString().ToLower().Contains(item.ToLower()) ||
-                                                 x.ZirBana.ToString().ToLower().Contains(item.ToLower()) ||
-                                                 x.UserName.ToLower().Contains(item.ToLower()) ||
-                                                 x.Address.ToLower().Contains(item.ToLower()) ||
-                                                 x.RegionName.ToLower().Contains(item.ToLower()))
-                                ?.ToList();
-                        }
-                    }
-
-                return res;
-            }
-            catch (TaskCanceledException) { return null; }
-            catch (OperationCanceledException) { return null; }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-                return new List<BuildingReportBussines>();
-            }
-        }
+        public static async Task<List<BuildingReportBussines>> GetAllAsync(BuildingFilter filters) => await UnitOfWork.Building.SearchAsync(Cache.ConnectionString, filters);
         public static List<BuildingReportBussines> GetAll(BuildingFilter filters) => AsyncContext.Run(() => GetAllAsync(filters));
     }
 }

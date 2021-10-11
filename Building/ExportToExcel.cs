@@ -104,8 +104,7 @@ namespace Building
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-
-        public static void ExportBuilding (IEnumerable<BuildingBussines> list,IWin32Window owner)
+        public static void ExportBuilding (IEnumerable<BuildingReportBussines> list,IWin32Window owner)
         {
             try
             {
