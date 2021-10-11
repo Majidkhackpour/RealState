@@ -127,11 +127,8 @@ namespace RealState
                             Barq = EnKhadamati.Mostaqel,
                             BonBast = false,
                             BuildingAccountTypeGuid = await BuildingAccountTypeBussines.GetDefultGuidAsync(GetAccountType(item.BuildingType)),
-                            BuildingAccountTypeName = GetAccountType(item.BuildingType),
                             BuildingConditionGuid = BuildingConditionBussines.DefualtGuid,
-                            BuildingConditionName = "تعیین نشده",
                             BuildingTypeGuid = await BuildingTypeBussines.GetDefultGuidAsync(item.BuildingType),
-                            BuildingTypeName = item.BuildingType,
                             BuildingViewGuid = BuildingViewBussines.DefualtGuid,
                             CityGuid = cityGuid,
                             CreateDate = item.DateM,
@@ -246,7 +243,7 @@ namespace RealState
                             });
                         }
 
-                        bu.Parent = GetParent(bu);
+                        bu.Parent = item.Parent;
 
                         var lstImage = item.ImagesList.FromJson<List<string>>();
                         if (lstImage == null || lstImage.Count <= 0) continue;
@@ -305,94 +302,6 @@ namespace RealState
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-        public static EnBuildingParent? GetParent(BuildingBussines bu)
-        {
-            try
-            {
-                if (bu.SellPrice > 0)
-                {
-                    if (bu.BuildingConditionName.Contains("کلنگی"))
-                        return EnBuildingParent.SellOldHouse;
-                    if (bu.BuildingAccountTypeName.Contains("دفتر") || bu.BuildingTypeName.Contains("دفتر"))
-                        return EnBuildingParent.SellOffice;
-                    if (bu.BuildingTypeName.Contains("مسکونی") || bu.BuildingTypeName.Contains("خانه") || bu.BuildingAccountTypeName.Contains("مسکونی"))
-                        return EnBuildingParent.SellHome;
-                    if (bu.BuildingTypeName.Contains("پارتمان"))
-                        return EnBuildingParent.SellAprtment;
-                    if (bu.BuildingTypeName.Contains("باغ"))
-                        return EnBuildingParent.SellGarden;
-                    if (bu.BuildingTypeName.Contains("زمین"))
-                        return EnBuildingParent.SellLand;
-                    if (bu.BuildingTypeName.Contains("تجاری"))
-                        return EnBuildingParent.SellStore;
-                    if (bu.BuildingTypeName.Contains("سوئیت") || bu.BuildingAccountTypeName.Contains("سوییت"))
-                        return EnBuildingParent.SellAprtment;
-                    if (bu.BuildingTypeName.Contains("ویلا"))
-                        return EnBuildingParent.SellVilla;
-                    if (bu.BuildingTypeName.Contains("مغازه"))
-                        return EnBuildingParent.SellStore;
-                }
-                else if (bu.RahnPrice1 > 0 && bu.EjarePrice1 > 0)
-                {
-                    if (bu.BuildingAccountTypeName.Contains("دفتر") || bu.BuildingTypeName.Contains("دفتر"))
-                        return EnBuildingParent.RentOffice;
-                    if (bu.BuildingTypeName.Contains("مسکونی") || bu.BuildingTypeName.Contains("خانه") || bu.BuildingAccountTypeName.Contains("مسکونی"))
-                        return EnBuildingParent.RentHome;
-                    if (bu.BuildingTypeName.Contains("پارتمان"))
-                        return EnBuildingParent.RentAprtment;
-                    if (bu.BuildingTypeName.Contains("تجاری"))
-                        return EnBuildingParent.RentStore;
-                    if (bu.BuildingTypeName.Contains("سوئیت") || bu.BuildingAccountTypeName.Contains("سوییت"))
-                        return EnBuildingParent.RentAprtment;
-                    if (bu.BuildingTypeName.Contains("مغازه"))
-                        return EnBuildingParent.RentStore;
-                }
-                else if (bu.RahnPrice1 > 0 && bu.EjarePrice1 <= 0)
-                {
-                    if (bu.BuildingAccountTypeName.Contains("دفتر") || bu.BuildingTypeName.Contains("دفتر"))
-                        return EnBuildingParent.FullRentOffice;
-                    if (bu.BuildingTypeName.Contains("مسکونی") || bu.BuildingTypeName.Contains("خانه") || bu.BuildingAccountTypeName.Contains("مسکونی"))
-                        return EnBuildingParent.FullRentHome;
-                    if (bu.BuildingTypeName.Contains("پارتمان"))
-                        return EnBuildingParent.FullRentAprtment;
-                    if (bu.BuildingTypeName.Contains("تجاری"))
-                        return EnBuildingParent.FullRentStore;
-                    if (bu.BuildingTypeName.Contains("سوئیت") || bu.BuildingTypeName.Contains("سوییت"))
-                        return EnBuildingParent.FullRentAprtment;
-                    if (bu.BuildingTypeName.Contains("مغازه"))
-                        return EnBuildingParent.FullRentStore;
-                }
-                else if (bu.PishTotalPrice > 0 || !string.IsNullOrEmpty(bu.PishDesc))
-                {
-                    if (bu.BuildingAccountTypeName.Contains("دفتر") || bu.BuildingTypeName.Contains("دفتر"))
-                        return EnBuildingParent.PreSellOffice;
-                    if (bu.BuildingTypeName.Contains("مسکونی") || bu.BuildingTypeName.Contains("خانه") || bu.BuildingAccountTypeName.Contains("مسکونی"))
-                        return EnBuildingParent.PreSellHome;
-                    if (bu.BuildingTypeName.Contains("پارتمان"))
-                        return EnBuildingParent.PreSellAprtment;
-                    if (bu.BuildingTypeName.Contains("تجاری"))
-                        return EnBuildingParent.PreSellStore;
-                    if (bu.BuildingTypeName.Contains("سوئیت") || bu.BuildingTypeName.Contains("سوییت"))
-                        return EnBuildingParent.PreSellAprtment;
-                    if (bu.BuildingTypeName.Contains("مغازه"))
-                        return EnBuildingParent.PreSellStore;
-                }
-                else if (!string.IsNullOrEmpty(bu.MosharekatDesc))
-                {
-                    if (bu.BuildingTypeName.Contains("مسکونی") || bu.BuildingTypeName.Contains("خانه") || bu.BuildingAccountTypeName.Contains("مسکونی"))
-                        return EnBuildingParent.MosharekatHome;
-                    if (bu.BuildingTypeName.Contains("پارتمان"))
-                        return EnBuildingParent.MosharekatAprtment;
-                }
-
-                return null;
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-                return null;
             }
         }
         private static EnBuildingSide GetSide(string sideName)

@@ -5,6 +5,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using EntityCache.Bussines;
 using Services;
+using Services.FilterObjects;
 
 namespace EntityCache.Core
 {
@@ -25,5 +26,6 @@ namespace EntityCache.Core
         Task<bool> CheckDuplicateAsync(string connectionString, string divarTitle);
         Task<List<string>> GetAllCollingAsync(string connectionString);
         Task<List<string>> GetAllHittingAsync(string connectionString);
+        Task<List<BuildingReportBussines>> SearchAsync(string connectionString, BuildingFilter filter);
     }
 }

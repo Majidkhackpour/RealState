@@ -112,15 +112,14 @@ namespace Building.Buildings
                     IsRahn = chbRahn.Checked,
                     IsMosharekat = chbMosharekat.Checked,
                     OwnerGuid = _ownerGuid,
-                    IsOnlyMine = chbMine.Checked,
                     RegionList = _regList
                 };
                 _token?.Cancel();
                 _token = new CancellationTokenSource();
-                _list = BuildingBussines.GetAll(filter, false, _token.Token);
-                Task.Run(() => ucPagger.PagingAsync(new CancellationToken(),
-                    _list?.OrderBy(q => q.IsArchive)?.ThenByDescending(q => q.CreateDate), 100,
-                    PagingPosition.GotoStartPage));
+                //_list = BuildingBussines.GetAll(filter, false, _token.Token);
+                //Task.Run(() => ucPagger.PagingAsync(new CancellationToken(),
+                //    _list?.OrderBy(q => q.IsArchive)?.ThenByDescending(q => q.CreateDate), 100,
+                //    PagingPosition.GotoStartPage));
 
                 if (filter.IsRahn) VisibleColumns(EnRequestType.Rahn);
                 else if (filter.IsSell) VisibleColumns(EnRequestType.Forush);

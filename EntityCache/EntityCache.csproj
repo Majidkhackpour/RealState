@@ -121,6 +121,7 @@
     <Compile Include="Bussines\BuildingOptionsBussines.cs" />
     <Compile Include="Bussines\BuildingRelatedNumberBussines.cs" />
     <Compile Include="Bussines\BuildingRelatedOptionsBussines.cs" />
+    <Compile Include="Bussines\BuildingReportBussines.cs" />
     <Compile Include="Bussines\BuildingRequestBussines.cs" />
     <Compile Include="Bussines\BuildingRequestRegionBussines.cs" />
     <Compile Include="Bussines\BuildingTypeBussines.cs" />

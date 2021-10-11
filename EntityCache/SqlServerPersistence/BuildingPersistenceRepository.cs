@@ -6,13 +6,52 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Services.FilterObjects;
 
 namespace EntityCache.SqlServerPersistence
 {
     public class BuildingPersistenceRepository : IBuildingRepository
     {
+        private List<EnBuildingParent> SellParentList = new List<EnBuildingParent>()
+        {
+            EnBuildingParent.SellAprtment,
+            EnBuildingParent.SellHome,
+            EnBuildingParent.SellOffice,
+            EnBuildingParent.SellStore,
+            EnBuildingParent.SellGarden,
+            EnBuildingParent.SellVilla,
+            EnBuildingParent.SellOldHouse,
+            EnBuildingParent.SellLand
+        };
+        private List<EnBuildingParent> RentParentList = new List<EnBuildingParent>()
+        {
+            EnBuildingParent.RentAprtment,
+            EnBuildingParent.RentHome,
+            EnBuildingParent.RentOffice,
+            EnBuildingParent.RentStore
+        };
+        private List<EnBuildingParent> FullRentParentList = new List<EnBuildingParent>()
+        {
+            EnBuildingParent.FullRentAprtment,
+            EnBuildingParent.FullRentHome,
+            EnBuildingParent.FullRentOffice,
+            EnBuildingParent.FullRentStore
+        };
+        private List<EnBuildingParent> MosharekatParentList = new List<EnBuildingParent>()
+        {
+            EnBuildingParent.MosharekatAprtment,
+            EnBuildingParent.MosharekatHome
+        };
+        private List<EnBuildingParent> MoavezeParentList = new List<EnBuildingParent>()
+        {
+            EnBuildingParent.MoavezeAprtment,
+            EnBuildingParent.MoavezeHome,
+            EnBuildingParent.MoavezeOffice,
+            EnBuildingParent.MoavezeStore
+        };
         public async Task<List<BuildingBussines>> GetAllAsync(string _connectionString, CancellationToken token, bool isLoadDets)
         {
             var list = new List<BuildingBussines>();
@@ -440,6 +479,66 @@ namespace EntityCache.SqlServerPersistence
 
             return list;
         }
+        public async Task<List<BuildingReportBussines>> SearchAsync(string connectionString, BuildingFilter filter)
+        {
+            var list = new List<BuildingReportBussines>();
+            try
+            {
+                using (var cn = new SqlConnection(connectionString))
+                {
+                    var cmd = new SqlCommand("sp_Buildings_Search", cn) { CommandType = CommandType.StoredProcedure };
+                    if (filter.AdvertiseType != null)
+                        cmd.Parameters.AddWithValue("@advType", (short)filter.AdvertiseType);
+                    if (filter.BuildingTypeGuid == Guid.Empty) filter.BuildingTypeGuid = null;
+                    cmd.Parameters.AddWithValue("@buildingTypeGuid", filter.BuildingTypeGuid);
+                    if (filter.BuildingAccountTypeGuid == Guid.Empty) filter.BuildingAccountTypeGuid = null;
+                    cmd.Parameters.AddWithValue("@accountTypeGuid", filter.BuildingAccountTypeGuid);
+                    if (filter.UserGuid == Guid.Empty) filter.UserGuid = null;
+                    cmd.Parameters.AddWithValue("@userGuid", filter.UserGuid);
+                    if (filter.DocumentTypeGuid == Guid.Empty) filter.DocumentTypeGuid = null;
+                    cmd.Parameters.AddWithValue("@docTypeGuid", filter.DocumentTypeGuid);
+                    if (filter.OwnerGuid == Guid.Empty) filter.OwnerGuid = null;
+                    cmd.Parameters.AddWithValue("@ownerGuid", filter.OwnerGuid);
+                    cmd.Parameters.AddWithValue("@roomCount1", filter.RoomCount1);
+                    cmd.Parameters.AddWithValue("@roomCount2", filter.RoomCount2);
+                    cmd.Parameters.AddWithValue("@masahat1", filter.Masahat1);
+                    cmd.Parameters.AddWithValue("@masahat2", filter.Masahat2);
+                    cmd.Parameters.AddWithValue("@zirbana", filter.ZirBana1);
+                    cmd.Parameters.AddWithValue("@zirbana2", filter.ZirBana2);
+                    cmd.Parameters.AddWithValue("@sell1", filter.SellPrice1);
+                    cmd.Parameters.AddWithValue("@sell2", filter.SellPrice2);
+                    cmd.Parameters.AddWithValue("@rahn1", filter.RahnPrice1);
+                    cmd.Parameters.AddWithValue("@rahn2", filter.RahnPrice2);
+                    cmd.Parameters.AddWithValue("@ejare1", filter.EjarePrice1);
+                    cmd.Parameters.AddWithValue("@ejare2", filter.EjarePrice2);
+                    cmd.Parameters.AddWithValue("@st", filter.Status);
+                    cmd.Parameters.AddWithValue("@isArchive", filter.IsArchive);
+                    await cn.OpenAsync();
+                    var dr = await cmd.ExecuteReaderAsync();
+                    while (dr.Read()) list.Add(LoadDataReport(dr));
+                    dr.Close();
+                    cn.Close();
+                }
+                if (!list.Any()) return list?.ToList();
+
+                if (filter.IsRahn) list = list?.Where(q => RentParentList.Contains(q.Parent))?.ToList();
+                if (filter.IsFullRahn) list = list?.Where(q => FullRentParentList.Contains(q.Parent))?.ToList();
+                if (filter.IsSell) list = list?.Where(q => SellParentList.Contains(q.Parent))?.ToList();
+                if (filter.IsMosharekat) list = list?.Where(q => MosharekatParentList.Contains(q.Parent))?.ToList();
+                if (filter.IsPishForoush) list = list?.Where(q => MoavezeParentList.Contains(q.Parent))?.ToList();
+
+                if (filter.RegionList != null && filter.RegionList.Count > 0)
+                    list = list?.Where(q => filter.RegionList.Contains(q.RegionGuid))?.ToList();
+            }
+            catch (TaskCanceledException) { }
+            catch (OperationCanceledException) { }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+
+            return list;
+        }
         private BuildingBussines LoadData(SqlDataReader dr, bool isLoadDets)
         {
             var res = new BuildingBussines();
@@ -545,6 +644,48 @@ namespace EntityCache.SqlServerPersistence
                 if (dr["WallCovering"] != DBNull.Value) res.WallCovering = dr["WallCovering"].ToString();
                 if (dr["TreeCount"] != DBNull.Value) res.TreeCount = (int)dr["TreeCount"];
                 if (dr["ConstructionStage"] != DBNull.Value) res.ConstructionStage = (EnConstructionStage)dr["ConstructionStage"];
+                if (dr["Parent"] != DBNull.Value) res.Parent = (EnBuildingParent)dr["Parent"];
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+
+            return res;
+        }
+        private BuildingReportBussines LoadDataReport(SqlDataReader dr)
+        {
+            var res = new BuildingReportBussines();
+            try
+            {
+                if (dr["Guid"] != DBNull.Value) res.Guid = (Guid)dr["Guid"];
+                if (dr["SellPrice"] != DBNull.Value) res.SellPrice = (decimal)dr["SellPrice"];
+                if (dr["Code"] != DBNull.Value) res.Code = dr["Code"].ToString();
+                if (dr["VamPrice"] != DBNull.Value) res.VamPrice = (decimal)dr["VamPrice"];
+                if (dr["QestPrice"] != DBNull.Value) res.QestPrice = (decimal)dr["QestPrice"];
+                if (dr["RahnPrice1"] != DBNull.Value) res.RahnPrice1 = (decimal)dr["RahnPrice1"];
+                if (dr["EjarePrice1"] != DBNull.Value) res.EjarePrice1 = (decimal)dr["EjarePrice1"];
+                if (dr["Masahat"] != DBNull.Value) res.Masahat = (int)dr["Masahat"];
+                if (dr["ZirBana"] != DBNull.Value) res.ZirBana = (int)dr["ZirBana"];
+                if (dr["RegionGuid"] != DBNull.Value) res.RegionGuid = (Guid)dr["RegionGuid"];
+                if (dr["Address"] != DBNull.Value) res.Address = dr["Address"].ToString();
+                if (dr["SaleSakht"] != DBNull.Value) res.SaleSakht = dr["SaleSakht"].ToString();
+                if (dr["RoomCount"] != DBNull.Value) res.RoomCount = (int)dr["RoomCount"];
+                if (dr["CreateDate"] != DBNull.Value) res.CreateDate = (DateTime)dr["CreateDate"];
+                if (dr["Priority"] != DBNull.Value) res.Priority = (EnBuildingPriority)dr["Priority"];
+                if (dr["IsArchive"] != DBNull.Value) res.IsArchive = (bool)dr["IsArchive"];
+                if (dr["OwnerName"] != DBNull.Value) res.OwnerName = dr["OwnerName"].ToString();
+                if (dr["BuildingTypeName"] != DBNull.Value) res.BuildingTypeName = dr["BuildingTypeName"].ToString();
+                if (dr["UserName"] != DBNull.Value) res.UserName = dr["UserName"].ToString();
+                if (dr["RegionName"] != DBNull.Value) res.RegionName = dr["RegionName"].ToString();
+                if (dr["RentalAuthorityName"] != DBNull.Value) res.RentalAuthorityName = dr["RentalAuthorityName"].ToString();
+                if (dr["DocumentTypeName"] != DBNull.Value) res.DocumentTypeName = dr["DocumentTypeName"].ToString();
+                if (dr["BuildingConditionName"] != DBNull.Value) res.BuildingConditionName = dr["BuildingConditionName"].ToString();
+                if (dr["BuildingViewName"] != DBNull.Value) res.BuildingViewName = dr["BuildingViewName"].ToString();
+                if (dr["FloorCoverName"] != DBNull.Value) res.FloorCoverName = dr["FloorCoverName"].ToString();
+                if (dr["KitchenServiceName"] != DBNull.Value) res.KitchenServiceName = dr["KitchenServiceName"].ToString();
+                if (dr["BuildingAccountTypeName"] != DBNull.Value) res.BuildingAccountTypeName = dr["BuildingAccountTypeName"].ToString();
+                if (dr["AdvertiseType"] != DBNull.Value) res.AdvertiseType = (AdvertiseType)dr["AdvertiseType"];
                 if (dr["Parent"] != DBNull.Value) res.Parent = (EnBuildingParent)dr["Parent"];
             }
             catch (Exception ex)

@@ -7751,3 +7751,70 @@ BEGIN
 	set Parent=@parent
 	where Guid=@guid
 END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Buildings_Search]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Buildings_Search]	As Begin print 11 end')  
+GO
+Alter PROCEDURE [dbo].[sp_Buildings_Search] 
+	@advType smallint=null,
+	@ownerGuid uniqueidentifier=null,
+	@buildingTypeGuid uniqueidentifier=null,
+	@accountTypeGuid uniqueidentifier=null,
+	@userGuid uniqueidentifier=null,
+	@docTypeGuid uniqueidentifier=null,
+	@roomCount1 int=0,
+	@roomCount2 int=0,
+	@masahat1 int=0,
+	@masahat2 int=0,
+	@zirbana int=0,
+	@zirbana2 int=0,
+	@sell1 decimal=0,
+	@sell2 decimal=0,
+	@rahn1 decimal=0,
+	@rahn2 decimal=0,
+	@ejare1 decimal=0,
+	@ejare2 decimal=0,
+	@st bit='true',
+	@isArchive bit=null
+AS
+BEGIN
+select [dbo].[Buildings].*,[dbo].[Peoples].Name As OwnerName,
+       [dbo].[BuildingTypes].Name As BuildingTypeName,
+	   [dbo].[Users].Name As UserName,
+	   [dbo].[Regions].Name As RegionName,
+	   [dbo].[RentalAuthorities].Name As RentalAuthorityName,
+	   [dbo].[DocumentTypes].Name As DocumentTypeName,
+	   [dbo].[BuildingConditions].Name As BuildingConditionName,
+	   [dbo].[BuildingViews].Name As BuildingViewName,
+	   [dbo].[FloorCovers].Name As FloorCoverName,
+	   [dbo].[KitchenServices].Name As KitchenServiceName,
+	   [dbo].[BuildingAccountTypes].Name As BuildingAccountTypeName
+From [dbo].[Buildings] 
+     inner join [dbo].[Peoples] on [dbo].[Buildings].OwnerGuid=[dbo].[Peoples].Guid
+	 left outer join [dbo].[BuildingTypes] on [dbo].[Buildings].BuildingTypeGuid=[dbo].[BuildingTypes].Guid
+	 inner join [dbo].[Users] on [dbo].[Buildings].UserGuid=[dbo].[Users].Guid
+	 inner join [dbo].[Regions] on [dbo].[Buildings].RegionGuid=[dbo].[Regions].Guid
+	 left outer join [dbo].[RentalAuthorities] on [dbo].[Buildings].RentalAutorityGuid=[dbo].[RentalAuthorities].Guid
+	 left outer join [dbo].[DocumentTypes] on [dbo].[Buildings].DocumentType=[dbo].[DocumentTypes].Guid
+	 left outer join [dbo].[BuildingConditions] on [dbo].[Buildings].BuildingConditionGuid=[dbo].[BuildingConditions].Guid
+	 left outer join [dbo].[BuildingViews] on [dbo].[Buildings].BuildingViewGuid=[dbo].[BuildingViews].Guid
+	 left outer join [dbo].[FloorCovers] on [dbo].[Buildings].FloorCoverGuid=[dbo].[FloorCovers].Guid
+	 left outer join [dbo].[KitchenServices] on [dbo].[Buildings].KitchenServiceGuid=[dbo].[KitchenServices].Guid
+	 left outer join [dbo].[BuildingAccountTypes] on [dbo].[Buildings].BuildingAccountTypeGuid=[dbo].[BuildingAccountTypes].Guid
+	 where (@ownerGuid is null or Buildings.OwnerGuid=@ownerGuid) and
+		   (@advType is null or Buildings.AdvertiseType=@advType) and
+		   (@buildingTypeGuid is null or Buildings.BuildingTypeGuid=@buildingTypeGuid) and
+		   (@accountTypeGuid is null or Buildings.BuildingAccountTypeGuid=@accountTypeGuid) and
+		   (@userGuid is null or Buildings.UserGuid=@userGuid) and
+		   (@docTypeGuid is null or Buildings.DocumentType=@docTypeGuid) and
+		   ((ISNULL(@roomCount1,0)>0 or ISNULL(@roomCount2,0)>0) and Buildings.RoomCount>=@roomCount1 and Buildings.RoomCount<=@roomCount2) and
+		   ((ISNULL(@masahat1,0)>0 or ISNULL(@masahat2,0)>0) and Buildings.Masahat>=@masahat1 and Buildings.Masahat<=@masahat2) and
+		   ((ISNULL(@zirbana,0)>0 or ISNULL(@zirbana2,0)>0) and Buildings.ZirBana>=@zirbana and Buildings.ZirBana<=@zirbana2) and
+		   ((ISNULL(@sell1,0)>0 or ISNULL(@sell2,0)>0) and Buildings.SellPrice>=@sell1 and Buildings.SellPrice<@sell2) and
+		   ((ISNULL(@rahn1,0)>0 or ISNULL(@rahn2,0)>0) and Buildings.RahnPrice1>=@rahn1 and Buildings.RahnPrice1<=@rahn2) and
+		   ((ISNULL(@ejare1,0)>0 or ISNULL(@ejare2,0)>0) and Buildings.EjarePrice1>=@ejare1 and Buildings.EjarePrice1<=@ejare2) and
+		   Buildings.Status=@st and
+		   (@isArchive is null or Buildings.IsArchive=@isArchive)
+	 Order By [dbo].[Buildings].CreateDate desc
+End
