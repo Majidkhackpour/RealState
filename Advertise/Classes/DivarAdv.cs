@@ -2680,7 +2680,8 @@ namespace Advertise.Classes
                             SellPrice = 0,
                             Balcony = false,
                             DateM = DateTime.Now,
-                            Type = AdvertiseType.Divar
+                            Type = AdvertiseType.Divar,
+                            Parent = EnBuildingParent.RentAprtment
                         };
 
                         if (item.listData[2].value == "مجانی") web.EjarePrice = 0;
@@ -2843,7 +2844,8 @@ namespace Advertise.Classes
                             DateM = DateTime.Now,
                             Type = AdvertiseType.Divar,
                             TabaqeCount = 1,
-                            TabaqeNo = 1
+                            TabaqeNo = 1,
+                            Parent = EnBuildingParent.RentHome
                         };
 
                         if (item.listData[2].value == "مجانی") web.EjarePrice = 0;
@@ -2978,7 +2980,8 @@ namespace Advertise.Classes
                             SellPrice = 0,
                             Balcony = false,
                             DateM = DateTime.Now,
-                            Type = AdvertiseType.Divar
+                            Type = AdvertiseType.Divar,
+                            Parent = EnBuildingParent.RentOffice
                         };
 
                         if (item.listData[2].value == "مجانی") web.EjarePrice = 0;
@@ -3129,7 +3132,8 @@ namespace Advertise.Classes
                             SellPrice = 0,
                             Balcony = false,
                             DateM = DateTime.Now,
-                            Type = AdvertiseType.Divar
+                            Type = AdvertiseType.Divar,
+                            Parent = EnBuildingParent.RentStore
                         };
 
                         if (item.listData[2].value == "مجانی") web.EjarePrice = 0;
@@ -3218,7 +3222,8 @@ namespace Advertise.Classes
                             SellPrice = 0,
                             Balcony = false,
                             DateM = DateTime.Now,
-                            Type = AdvertiseType.Divar
+                            Type = AdvertiseType.Divar,
+                            Parent = EnBuildingParent.RentStore
                         };
 
                         if (item.listData[0].items.Count >= 3)
@@ -3313,7 +3318,8 @@ namespace Advertise.Classes
                             SellPrice = item.listData[1].value.FixString().Replace("٫", "").Replace("تومان", "").ParseToDecimal(),
                             Balcony = false,
                             DateM = DateTime.Now,
-                            Type = AdvertiseType.Divar
+                            Type = AdvertiseType.Divar,
+                            Parent = EnBuildingParent.SellAprtment
                         };
 
                         if (item.listData[4].value.Contains("از"))
@@ -3461,7 +3467,8 @@ namespace Advertise.Classes
                             DateM = DateTime.Now,
                             Type = AdvertiseType.Divar,
                             TabaqeNo = 1,
-                            TabaqeCount = 1
+                            TabaqeCount = 1,
+                            Parent = EnBuildingParent.SellHome
                         };
 
                         if (item.listData[4].items[0].value.FixString().Contains("ندارد"))
@@ -3584,7 +3591,8 @@ namespace Advertise.Classes
                             TabaqeCount = 1,
                             Parking = false,
                             Balcony = false,
-                            Store = false
+                            Store = false,
+                            Parent = EnBuildingParent.SellOldHouse
                         };
 
                         _driver.Navigate().GoToUrl(item.Url);
@@ -3671,6 +3679,7 @@ namespace Advertise.Classes
                             Balcony = false,
                             DateM = DateTime.Now,
                             Type = AdvertiseType.Divar,
+                            Parent = EnBuildingParent.SellOffice
                         };
 
                         if (item.listData.Count > 6)
@@ -3814,6 +3823,7 @@ namespace Advertise.Classes
                             Evelator = false,
                             Parking = false,
                             Store = false,
+                            Parent = EnBuildingParent.SellStore
                         };
 
                         _driver.Navigate().GoToUrl(item.Url);
@@ -3908,6 +3918,7 @@ namespace Advertise.Classes
                             RoomCount = item.listData[0].items.Count == 3
                                 ? item.listData[0].items[2].value.FixString().ParseToInt()
                                 : 0,
+                            Parent = EnBuildingParent.SellStore
                         };
                         _driver.Navigate().GoToUrl(item.Url);
 
@@ -3999,6 +4010,7 @@ namespace Advertise.Classes
                             Parking = false,
                             Store = false,
                             RoomCount = 0,
+                            Parent = EnBuildingParent.MosharekatAprtment
                         };
                         _driver.Navigate().GoToUrl(item.Url);
 
@@ -4088,6 +4100,7 @@ namespace Advertise.Classes
                             Parking = false,
                             Store = false,
                             RoomCount = 0,
+                            Parent = EnBuildingParent.PreSellAprtment
                         };
                         _driver.Navigate().GoToUrl(item.Url);
 

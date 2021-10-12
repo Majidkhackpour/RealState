@@ -35,85 +35,16 @@ namespace Building.Buildings
         private List<string> _columnList;
         private Guid _ownerGuid = Guid.Empty;
         private bool? _isArchive;
-        private List<Guid> _regList;
         private BuildingFilter filter;
 
 
-        private async Task FillCmbAsync()
-        {
-            try
-            {
-                _token?.Cancel();
-                _token = new CancellationTokenSource();
-                var list = await BuildingTypeBussines.GetAllAsync(_token.Token);
-                list.Add(new BuildingTypeBussines()
-                {
-                    Guid = Guid.Empty,
-                    Name = "[همه]"
-                });
-                btBindingSource.DataSource = list.OrderBy(q => q.Name).ToList();
 
-                _token?.Cancel();
-                _token = new CancellationTokenSource();
-                var list2 = await UserBussines.GetAllAsync(_token.Token);
-                list2.Add(new UserBussines()
-                {
-                    Guid = Guid.Empty,
-                    Name = "[همه]"
-                });
-                userBindingSource.DataSource = list2.OrderBy(q => q.Name).ToList();
-
-                _token?.Cancel();
-                _token = new CancellationTokenSource();
-                var list3 = await DocumentTypeBussines.GetAllAsync(_token.Token);
-                list3.Add(new DocumentTypeBussines()
-                {
-                    Guid = Guid.Empty,
-                    Name = "[همه]"
-                });
-                docTypeBindingSource.DataSource = list3.OrderBy(q => q.Name).ToList();
-
-                _token?.Cancel();
-                _token = new CancellationTokenSource();
-                var list4 = await BuildingAccountTypeBussines.GetAllAsync(_token.Token);
-                list4.Add(new BuildingAccountTypeBussines()
-                {
-                    Guid = Guid.Empty,
-                    Name = "[همه]"
-                });
-                AccTypeBindingSource.DataSource = list4.OrderBy(q => q.Name).ToList();
-
-                cmbBuildingType.SelectedIndex = 0;
-                cmbUser.SelectedValue = UserBussines.CurrentUser.Guid;
-                cmbDocType.SelectedIndex = 0;
-                cmbAccType.SelectedIndex = 0;
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
         private void LoadData(string search = "")
         {
             try
             {
                 if (!_isLoad) return;
-                if (cmbDocType.SelectedValue == null) return;
-                filter = new BuildingFilter()
-                {
-                    Status = _st,
-                    UserGuid = (Guid)cmbUser.SelectedValue,
-                    BuildingAccountTypeGuid = (Guid)cmbAccType.SelectedValue,
-                    IsArchive = _isArchive,
-                    BuildingTypeGuid = (Guid)cmbBuildingType.SelectedValue,
-                    IsPishForoush = chbPishForoush.Checked,
-                    IsSell = chbForoush.Checked,
-                    DocumentTypeGuid = (Guid)cmbDocType.SelectedValue,
-                    IsRahn = chbRahn.Checked,
-                    IsMosharekat = chbMosharekat.Checked,
-                    OwnerGuid = _ownerGuid,
-                    RegionList = _regList
-                };
+                if (filter == null) filter = new BuildingFilter() { Status = _st };
                 _list = BuildingReportBussines.GetAll(filter);
                 Search(search);
             }
@@ -179,7 +110,6 @@ namespace Building.Buildings
                 mnuSendToDivar.Visible = VersionAccess.Advertise;
                 mnuSendToSheypoor.Visible = VersionAccess.Advertise;
                 mnuSendToTelegram.Visible = VersionAccess.Telegram;
-                chbPishForoush.Visible = chbMosharekat.Visible = VersionAccess.Advertise;
             }
             catch (Exception ex)
             {
@@ -746,7 +676,6 @@ namespace Building.Buildings
                 ucPagger.OnBindDataReady += UcPagger_OnBindDataReady;
                 SetAccess();
                 SetColumns();
-                chbRegion.Checked = false;
                 if (_isShowMode || (_isArchive != null && _isArchive.Value)) contextMenu.Enabled = false;
             }
             catch (Exception ex)
@@ -777,12 +706,19 @@ namespace Building.Buildings
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private async void frmShowBuildings_Load(object sender, EventArgs e)
+        private void frmShowBuildings_Load(object sender, EventArgs e)
         {
-            await FillCmbAsync();
-            chbAll.Checked = true;
-            _isLoad = true;
-            LoadData();
+            try
+            {
+                _isLoad = true;
+                var t = new ToolTip();
+                t.SetToolTip(picFilter, "فیلتر");
+                LoadData();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
         }
         private void txtSearch_TextChanged(object sender, EventArgs e) => Search(txtSearch.Text);
         private void frmShowBuildings_KeyDown(object sender, KeyEventArgs e)
@@ -832,8 +768,6 @@ namespace Building.Buildings
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void cmbBuildingType_SelectedIndexChanged(object sender, EventArgs e) => Search(txtSearch.Text);
-        private void cmbUser_SelectedIndexChanged(object sender, EventArgs e) => Search(txtSearch.Text);
         private void DGrid_DoubleClick(object sender, EventArgs e)
         {
             try
@@ -1559,8 +1493,6 @@ namespace Building.Buildings
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void cmbDocType_SelectedIndexChanged(object sender, EventArgs e) => Search(txtSearch.Text);
-        private void cmbAccType_SelectedIndexChanged(object sender, EventArgs e) => Search(txtSearch.Text);
         private void DGrid_Scroll(object sender, ScrollEventArgs e)
         {
             try
@@ -1577,26 +1509,6 @@ namespace Building.Buildings
                 }
 
                 SetGridColor();
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-        private async void DGrid_CellEnter(object sender, DataGridViewCellEventArgs e)
-        {
-            try
-            {
-                PicBox.Image = null;
-                if (DGrid.RowCount <= 0) return;
-                if (DGrid.CurrentRow == null) return;
-                var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
-                if (guid == Guid.Empty) return;
-                var bu = await BuildingBussines.GetAsync(guid);
-                if (bu == null) return;
-                if (string.IsNullOrEmpty(bu.Image)) return;
-                var path = Path.Combine(Application.StartupPath + "\\Images", bu.Image);
-                PicBox.ImageLocation = path;
             }
             catch (Exception ex)
             {
@@ -1752,7 +1664,7 @@ namespace Building.Buildings
                     FloorCoverName = cls.FloorCoverName,
                     KitchenServiceName = cls.KitchenServiceName,
                     SideName = cls.SideName,
-                    UserName = cmbUser.Text,
+                    UserName = cls.UserName,
                     TellName = cls.TellName,
                     Options = string.Join(", ", cls.OptionList?.Select(q => q.OptionName)),
                     DeliveryDateSh = Calendar.MiladiToShamsi(cls.DeliveryDate),
@@ -1789,11 +1701,6 @@ namespace Building.Buildings
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void chbRahn_CheckedChanged(object sender, EventArgs e) => Search(txtSearch.Text);
-        private void chbForoush_CheckedChanged(object sender, EventArgs e) => Search(txtSearch.Text);
-        private void chbDivar_CheckedChanged(object sender, EventArgs e) => Search(txtSearch.Text);
-        private void chbSheypoor_CheckedChanged(object sender, EventArgs e) => Search(txtSearch.Text);
-        private void chbAll_CheckedChanged(object sender, EventArgs e) => Search(txtSearch.Text);
         private async void cmbSendToCustomerChannel_Click(object sender, EventArgs e)
         {
             try
@@ -1860,7 +1767,6 @@ namespace Building.Buildings
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void chbMine_CheckedChanged(object sender, EventArgs e) => Search(txtSearch.Text);
         private async void mnuWhatsAppCustomer_Click(object sender, EventArgs e)
         {
             try
@@ -1927,35 +1833,22 @@ namespace Building.Buildings
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void chbRegion_CheckedChanged(object sender, EventArgs e)
+        private void mnuView2_Click(object sender, EventArgs e) => ShowBuildingDetailForm(true);
+        private void picFilter_Click(object sender, EventArgs e)
         {
             try
             {
-                if (!chbRegion.Checked && !_isLoad) return;
-                if (!chbRegion.Checked && _isLoad)
-                {
-                    _regList = null;
-                    Search(txtSearch.Text);
-                    return;
-                }
-                var frm = new frmSelectRegion();
-                if (_regList != null && _regList.Count > 0)
-                    frm.Guids = _regList;
-                if (frm.ShowDialog(this) != DialogResult.OK)
-                {
-                    chbRegion.Checked = false;
-                    return;
-                }
-
-                _regList = frm.Guids;
-                Search(txtSearch.Text);
+                var frm = new frmBuildingFilter { Filter = filter };
+                if (frm.ShowDialog(this) != DialogResult.OK) return;
+                filter = frm.Filter;
+                filter.Status = _st;
+                LoadData();
             }
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void mnuView2_Click(object sender, EventArgs e) => ShowBuildingDetailForm(true);
         private async void mnuPrintInherit_Click(object sender, EventArgs e)
         {
             try
@@ -1994,7 +1887,7 @@ namespace Building.Buildings
                     FloorCoverName = cls.FloorCoverName,
                     KitchenServiceName = cls.KitchenServiceName,
                     SideName = cls.SideName,
-                    UserName = cmbUser.Text,
+                    UserName = cls.UserName,
                     TellName = cls.TellName,
                     Options = string.Join(", ", cls.OptionList?.Select(q => q.OptionName)),
                     DeliveryDateSh = Calendar.MiladiToShamsi(cls.DeliveryDate),

@@ -7756,7 +7756,7 @@ GO
 IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Buildings_Search]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
 	exec('Create Procedure [dbo].[sp_Buildings_Search]	As Begin print 11 end')  
 GO
-Alter PROCEDURE [dbo].[sp_Buildings_Search] 
+ALTER PROCEDURE [dbo].[sp_Buildings_Search] 
 	@advType smallint=null,
 	@ownerGuid uniqueidentifier=null,
 	@buildingTypeGuid uniqueidentifier=null,
@@ -7808,12 +7808,12 @@ From [dbo].[Buildings]
 		   (@accountTypeGuid is null or Buildings.BuildingAccountTypeGuid=@accountTypeGuid) and
 		   (@userGuid is null or Buildings.UserGuid=@userGuid) and
 		   (@docTypeGuid is null or Buildings.DocumentType=@docTypeGuid) and
-		   ((ISNULL(@roomCount1,0)<=0 and ISNULL(@roomCount2,0)<=0) or Buildings.RoomCount>=@roomCount1 and Buildings.RoomCount<=@roomCount2) and
-		   ((ISNULL(@masahat1,0)<=0 and ISNULL(@masahat2,0)<=0) or Buildings.Masahat>=@masahat1 and Buildings.Masahat<=@masahat2) and
-		   ((ISNULL(@zirbana,0)<=0 and ISNULL(@zirbana2,0)<=0) or Buildings.ZirBana>=@zirbana and Buildings.ZirBana<=@zirbana2) and
-		   ((ISNULL(@sell1,0)<=0 and ISNULL(@sell2,0)<=0) or Buildings.SellPrice>=@sell1 and Buildings.SellPrice<@sell2) and
-		   ((ISNULL(@rahn1,0)<=0 and ISNULL(@rahn2,0)<=0) or Buildings.RahnPrice1>=@rahn1 and Buildings.RahnPrice1<=@rahn2) and
-		   ((ISNULL(@ejare1,0)<=0 and ISNULL(@ejare2,0)<=0) or Buildings.EjarePrice1>=@ejare1 and Buildings.EjarePrice1<=@ejare2) and
+		   ((ISNULL(@roomCount1,0)=0 and ISNULL(@roomCount2,0)=0) or Buildings.RoomCount between @roomCount1 and @roomCount2) and
+		   ((ISNULL(@masahat1,0)=0 and ISNULL(@masahat2,0)=0) or Buildings.Masahat between @masahat1 and @masahat2) and
+		   ((ISNULL(@zirbana,0)=0 and ISNULL(@zirbana2,0)=0) or Buildings.ZirBana between @zirbana and @zirbana2) and
+		   ((ISNULL(@sell1,0)=0 and ISNULL(@sell2,0)=0) or Buildings.SellPrice between @sell1 and @sell2) and
+		   ((ISNULL(@rahn1,0)=0 and ISNULL(@rahn2,0)=0) or Buildings.RahnPrice1 between @rahn1 and @rahn2) and
+		   ((ISNULL(@ejare1,0)=0 and ISNULL(@ejare2,0)=0) or Buildings.EjarePrice1 between @ejare1 and @ejare2) and
 		   Buildings.Status=@st and
 		   (@isArchive is null or Buildings.IsArchive=@isArchive)
 	 Order By [dbo].[Buildings].CreateDate desc

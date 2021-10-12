@@ -475,6 +475,12 @@
     <Compile Include="BuildingRequest\frmShowRequest.Designer.cs">
       <DependentUpon>frmShowRequest.cs</DependentUpon>
     </Compile>
+    <Compile Include="Buildings\frmBuildingFilter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Buildings\frmBuildingFilter.Designer.cs">
+      <DependentUpon>frmBuildingFilter.cs</DependentUpon>
+    </Compile>
     <Compile Include="BuildingType\frmBuildingTypeMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1000,6 +1006,9 @@
     <EmbeddedResource Include="BuildingRequest\frmShowRequest.resx">
       <DependentUpon>frmShowRequest.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Buildings\frmBuildingFilter.resx">
+      <DependentUpon>frmBuildingFilter.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="BuildingType\frmBuildingTypeMain.resx">
       <DependentUpon>frmBuildingTypeMain.cs</DependentUpon>
     </EmbeddedResource>
@@ -1319,7 +1328,9 @@
   <ItemGroup>
     <None Include="Resources\843786_whatsapp_icon.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\cogwheel-1.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
