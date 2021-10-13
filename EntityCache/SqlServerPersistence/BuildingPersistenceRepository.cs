@@ -487,7 +487,7 @@ namespace EntityCache.SqlServerPersistence
                 using (var cn = new SqlConnection(connectionString))
                 {
                     var cmd = new SqlCommand("sp_Buildings_Search", cn) { CommandType = CommandType.StoredProcedure };
-                    if (filter.AdvertiseType != null)
+                    if (filter.AdvertiseType != null && filter.AdvertiseType != AdvertiseType.None)
                         cmd.Parameters.AddWithValue("@advType", (short)filter.AdvertiseType);
                     if (filter.BuildingTypeGuid == Guid.Empty) filter.BuildingTypeGuid = null;
                     cmd.Parameters.AddWithValue("@buildingTypeGuid", filter.BuildingTypeGuid);
@@ -520,7 +520,8 @@ namespace EntityCache.SqlServerPersistence
                     cn.Close();
                 }
                 if (!list.Any()) return list?.ToList();
-
+                if (filter.AdvertiseType != null && filter.AdvertiseType == AdvertiseType.None)
+                    list = list?.Where(q => q.AdvertiseType == null)?.ToList();
                 if (filter.IsRahn) list = list?.Where(q => RentParentList.Contains(q.Parent))?.ToList();
                 if (filter.IsFullRahn) list = list?.Where(q => FullRentParentList.Contains(q.Parent))?.ToList();
                 if (filter.IsSell) list = list?.Where(q => SellParentList.Contains(q.Parent))?.ToList();

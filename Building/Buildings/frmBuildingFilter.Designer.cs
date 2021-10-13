@@ -58,6 +58,7 @@ namespace Building.Buildings
             this.label6 = new System.Windows.Forms.Label();
             this.groupPanel5 = new DevComponents.DotNetBar.Controls.GroupPanel();
             this.rbtnMosharekat = new DevComponents.DotNetBar.Controls.CheckBoxX();
+            this.rbtnFullRahn = new DevComponents.DotNetBar.Controls.CheckBoxX();
             this.rbtnPishForoush = new DevComponents.DotNetBar.Controls.CheckBoxX();
             this.rbtnSell = new DevComponents.DotNetBar.Controls.CheckBoxX();
             this.rbtnAll = new DevComponents.DotNetBar.Controls.CheckBoxX();
@@ -90,7 +91,7 @@ namespace Building.Buildings
             this.ucHeader = new WindowsSerivces.UC_Header();
             this.btnCancel = new DevComponents.DotNetBar.ButtonX();
             this.btnFinish = new DevComponents.DotNetBar.ButtonX();
-            this.rbtnFullRahn = new DevComponents.DotNetBar.Controls.CheckBoxX();
+            this.lblRegionCount = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.groupPanel10.SuspendLayout();
             this.groupPanel8.SuspendLayout();
@@ -659,6 +660,24 @@ namespace Building.Buildings
             this.rbtnMosharekat.TabIndex = 55781;
             this.rbtnMosharekat.Text = "مشارکت در ساخت";
             // 
+            // rbtnFullRahn
+            // 
+            this.rbtnFullRahn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.rbtnFullRahn.AutoSize = true;
+            this.rbtnFullRahn.BackColor = System.Drawing.Color.Transparent;
+            // 
+            // 
+            // 
+            this.rbtnFullRahn.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.rbtnFullRahn.CheckBoxStyle = DevComponents.DotNetBar.eCheckBoxStyle.RadioButton;
+            this.rbtnFullRahn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.rbtnFullRahn.Location = new System.Drawing.Point(266, 6);
+            this.rbtnFullRahn.Name = "rbtnFullRahn";
+            this.rbtnFullRahn.Size = new System.Drawing.Size(70, 22);
+            this.rbtnFullRahn.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.rbtnFullRahn.TabIndex = 55785;
+            this.rbtnFullRahn.Text = "رهن کامل";
+            // 
             // rbtnPishForoush
             // 
             this.rbtnPishForoush.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -921,6 +940,7 @@ namespace Building.Buildings
             this.groupPanel3.CanvasColor = System.Drawing.SystemColors.Control;
             this.groupPanel3.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
             this.groupPanel3.Controls.Add(this.chbRegion);
+            this.groupPanel3.Controls.Add(this.lblRegionCount);
             this.groupPanel3.DisabledBackColor = System.Drawing.Color.Empty;
             this.groupPanel3.Location = new System.Drawing.Point(15, 207);
             this.groupPanel3.Name = "groupPanel3";
@@ -1229,23 +1249,15 @@ namespace Building.Buildings
             this.btnFinish.TextColor = System.Drawing.Color.Black;
             this.btnFinish.Click += new System.EventHandler(this.btnFinish_Click);
             // 
-            // rbtnFullRahn
+            // lblRegionCount
             // 
-            this.rbtnFullRahn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.rbtnFullRahn.AutoSize = true;
-            this.rbtnFullRahn.BackColor = System.Drawing.Color.Transparent;
-            // 
-            // 
-            // 
-            this.rbtnFullRahn.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.rbtnFullRahn.CheckBoxStyle = DevComponents.DotNetBar.eCheckBoxStyle.RadioButton;
-            this.rbtnFullRahn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.rbtnFullRahn.Location = new System.Drawing.Point(266, 6);
-            this.rbtnFullRahn.Name = "rbtnFullRahn";
-            this.rbtnFullRahn.Size = new System.Drawing.Size(70, 22);
-            this.rbtnFullRahn.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.rbtnFullRahn.TabIndex = 55785;
-            this.rbtnFullRahn.Text = "رهن کامل";
+            this.lblRegionCount.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblRegionCount.BackColor = System.Drawing.Color.Transparent;
+            this.lblRegionCount.Location = new System.Drawing.Point(34, 8);
+            this.lblRegionCount.Name = "lblRegionCount";
+            this.lblRegionCount.Size = new System.Drawing.Size(290, 20);
+            this.lblRegionCount.TabIndex = 55800;
             // 
             // frmBuildingFilter
             // 
@@ -1268,7 +1280,6 @@ namespace Building.Buildings
             this.Padding = new System.Windows.Forms.Padding(27, 92, 27, 31);
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.Style = MetroFramework.MetroColorStyle.Teal;
-            this.Load += new System.EventHandler(this.frmBuildingFilter_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmBuildingFilter_KeyDown);
             this.panel1.ResumeLayout(false);
             this.groupPanel10.ResumeLayout(false);
@@ -1367,5 +1378,6 @@ namespace Building.Buildings
         private DevComponents.DotNetBar.ButtonX btnFinish;
         private DevComponents.DotNetBar.ButtonX btnCancel;
         private DevComponents.DotNetBar.Controls.CheckBoxX rbtnFullRahn;
+        private System.Windows.Forms.Label lblRegionCount;
     }
 }
