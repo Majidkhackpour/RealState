@@ -1,9 +1,7 @@
-﻿using System;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using EntityCache.Bussines;
-using Payamak.PhoneBook;
+﻿using EntityCache.Bussines;
 using Services;
+using System;
+using System.Windows.Forms;
 
 namespace Peoples
 {
@@ -77,6 +75,6 @@ namespace Peoples
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void btnShowNumbers_Click(object sender, EventArgs e) => RaiseShowNumber();
+        private void picTellList_Click(object sender, EventArgs e) => RaiseShowNumber();
     }
 }

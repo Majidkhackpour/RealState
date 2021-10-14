@@ -454,8 +454,12 @@ namespace Building.Buildings
         {
             try
             {
-                var owner = PeoplesBussines.Get(cls.OwnerGuid, cls?.Guid);
-                if (owner?.TellList == null || owner.TellList.Count <= 0) return;
+                var owner = PeoplesBussines.Get(UcPeople.Guid, cls?.Guid);
+                if (owner?.TellList == null || owner.TellList.Count <= 0)
+                {
+                    this.ShowWarning($"برای {owner?.Name} شماره ای ثبت نشده است");
+                    return;
+                }
 
                 var frm = new frmShowPhoneBook(owner.TellList);
                 frm.ShowDialog(this);

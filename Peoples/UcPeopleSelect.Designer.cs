@@ -30,7 +30,6 @@ namespace Peoples
         private void InitializeComponent()
         {
             this.groupPanel1 = new DevComponents.DotNetBar.Controls.GroupPanel();
-            this.btnShowNumbers = new DevComponents.DotNetBar.ButtonX();
             this.btnCreateOwner = new DevComponents.DotNetBar.ButtonX();
             this.btnSearchOwner = new DevComponents.DotNetBar.ButtonX();
             this.txttxtOwnerCode = new System.Windows.Forms.TextBox();
@@ -43,14 +42,16 @@ namespace Peoples
             this.lblOwnerName = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.picTellList = new System.Windows.Forms.PictureBox();
             this.groupPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picTellList)).BeginInit();
             this.SuspendLayout();
             // 
             // groupPanel1
             // 
             this.groupPanel1.CanvasColor = System.Drawing.SystemColors.Control;
             this.groupPanel1.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
-            this.groupPanel1.Controls.Add(this.btnShowNumbers);
+            this.groupPanel1.Controls.Add(this.picTellList);
             this.groupPanel1.Controls.Add(this.btnCreateOwner);
             this.groupPanel1.Controls.Add(this.btnSearchOwner);
             this.groupPanel1.Controls.Add(this.txttxtOwnerCode);
@@ -99,25 +100,6 @@ namespace Peoples
             this.groupPanel1.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.groupPanel1.TabIndex = 5;
             this.groupPanel1.Text = "مشخصات مالک";
-            // 
-            // btnShowNumbers
-            // 
-            this.btnShowNumbers.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnShowNumbers.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnShowNumbers.BackColor = System.Drawing.Color.MintCream;
-            this.btnShowNumbers.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnShowNumbers.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
-            this.btnShowNumbers.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnShowNumbers.Font = new System.Drawing.Font("B Yekan", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.btnShowNumbers.Image = global::Peoples.Properties.Resources.add_2_;
-            this.btnShowNumbers.Location = new System.Drawing.Point(3, 103);
-            this.btnShowNumbers.Name = "btnShowNumbers";
-            this.btnShowNumbers.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
-            this.btnShowNumbers.Size = new System.Drawing.Size(31, 41);
-            this.btnShowNumbers.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
-            this.btnShowNumbers.TabIndex = 11;
-            this.btnShowNumbers.TextColor = System.Drawing.Color.White;
-            this.btnShowNumbers.Click += new System.EventHandler(this.btnShowNumbers_Click);
             // 
             // btnCreateOwner
             // 
@@ -261,6 +243,19 @@ namespace Peoples
             this.label1.TabIndex = 9;
             this.label1.Text = "کد شناسایی";
             // 
+            // picTellList
+            // 
+            this.picTellList.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.picTellList.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.picTellList.Image = global::Peoples.Properties.Resources._28;
+            this.picTellList.Location = new System.Drawing.Point(3, 109);
+            this.picTellList.Name = "picTellList";
+            this.picTellList.Size = new System.Drawing.Size(39, 32);
+            this.picTellList.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picTellList.TabIndex = 12;
+            this.picTellList.TabStop = false;
+            this.picTellList.Click += new System.EventHandler(this.picTellList_Click);
+            // 
             // UcPeopleSelect
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -274,6 +269,7 @@ namespace Peoples
             this.Size = new System.Drawing.Size(651, 169);
             this.groupPanel1.ResumeLayout(false);
             this.groupPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picTellList)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -293,6 +289,6 @@ namespace Peoples
         private System.Windows.Forms.Label lblOwnerName;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private DevComponents.DotNetBar.ButtonX btnShowNumbers;
+        private System.Windows.Forms.PictureBox picTellList;
     }
 }

@@ -60,7 +60,7 @@ namespace Building
                         var index = list.IndexOf(type);
                         type = type.Replace("\r", "");
                         type = type.Replace(Replacor.TelegramBuilding.AccountType, bu.BuildingAccountTypeName);
-                        if (!string.IsNullOrEmpty(bu.BuildingAccountTypeName))
+                        if (!string.IsNullOrEmpty(bu.BuildingAccountTypeName) && bu.BuildingAccountTypeName != "تعیین نشده")
                             list[index] = type;
                         else list[index] = "";
                     }
@@ -151,7 +151,7 @@ namespace Building
                         var index = list.IndexOf(type);
                         type = type.Replace("\r", "");
                         type = type.Replace(Replacor.TelegramBuilding.DocumentType, bu.DocumentTypeName);
-                        if (!string.IsNullOrEmpty(bu.DocumentTypeName) && bu.SellPrice > 0)
+                        if ((!string.IsNullOrEmpty(bu.DocumentTypeName) && bu.DocumentTypeName != "تعیین نشده") && bu.SellPrice > 0)
                             list[index] = type;
                         else list[index] = "";
                     }
@@ -308,7 +308,7 @@ namespace Building
                         var index = list.IndexOf(type);
                         type = type.Replace("\r", "");
                         type = type.Replace(Replacor.TelegramBuilding.KitchenService, bu.KitchenServiceName);
-                        if (!string.IsNullOrEmpty(bu.KitchenServiceName))
+                        if (!string.IsNullOrEmpty(bu.KitchenServiceName) && bu.KitchenServiceName != "تعیین نشده")
                             list[index] = type;
                         else list[index] = "";
                     }
@@ -321,7 +321,7 @@ namespace Building
                         var index = list.IndexOf(type);
                         type = type.Replace("\r", "");
                         type = type.Replace(Replacor.TelegramBuilding.FloorCover, bu.FloorCoverName);
-                        if (!string.IsNullOrEmpty(bu.FloorCoverName))
+                        if (!string.IsNullOrEmpty(bu.FloorCoverName) && bu.FloorCoverName != "تعیین نشده")
                             list[index] = type;
                         else list[index] = "";
                     }
@@ -334,7 +334,7 @@ namespace Building
                         var index = list.IndexOf(type);
                         type = type.Replace("\r", "");
                         type = type.Replace(Replacor.TelegramBuilding.View, bu.BuildingViewName);
-                        if (!string.IsNullOrEmpty(bu.BuildingViewName))
+                        if (!string.IsNullOrEmpty(bu.BuildingViewName) && bu.BuildingViewName != "تعیین نشده")
                             list[index] = type;
                         else list[index] = "";
                     }
@@ -524,7 +524,7 @@ namespace Building
                     if (!string.IsNullOrEmpty(type))
                     {
                         var index = list.IndexOf(type);
-                        if(bu.OptionList==null||bu.OptionList.Count<=0)
+                        if (bu.OptionList == null || bu.OptionList.Count <= 0)
                             list[index] = "";
                         else
                         {
