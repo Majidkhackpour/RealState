@@ -75,8 +75,6 @@ namespace RealState
             this.lblBuilding = new System.Windows.Forms.Label();
             this.groupPanel25 = new DevComponents.DotNetBar.Controls.GroupPanel();
             this.lblBuildingFast = new System.Windows.Forms.Label();
-            this.groupPanel27 = new DevComponents.DotNetBar.Controls.GroupPanel();
-            this.lblBuildingSearch = new System.Windows.Forms.Label();
             this.groupPanel29 = new DevComponents.DotNetBar.Controls.GroupPanel();
             this.lblBuildingArchive = new System.Windows.Forms.Label();
             this.groupPanel31 = new DevComponents.DotNetBar.Controls.GroupPanel();
@@ -240,7 +238,6 @@ namespace RealState
             this.groupPanel22.SuspendLayout();
             this.groupPanel23.SuspendLayout();
             this.groupPanel25.SuspendLayout();
-            this.groupPanel27.SuspendLayout();
             this.groupPanel29.SuspendLayout();
             this.groupPanel31.SuspendLayout();
             this.groupPanel33.SuspendLayout();
@@ -439,8 +436,8 @@ namespace RealState
             this.groupPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupPanel1.CanvasColor = System.Drawing.Color.Transparent;
-            this.groupPanel1.Controls.Add(this.lblDivar);
             this.groupPanel1.Controls.Add(this.flowLayoutPanel1);
+            this.groupPanel1.Controls.Add(this.lblDivar);
             this.groupPanel1.Controls.Add(this.lblSecond);
             this.groupPanel1.Controls.Add(this.lblMinute);
             this.groupPanel1.Controls.Add(this.lblDate);
@@ -491,12 +488,12 @@ namespace RealState
             this.flowLayoutPanel1.Controls.Add(this.grpBaseInfo);
             this.flowLayoutPanel1.Controls.Add(this.grpBuilding);
             this.flowLayoutPanel1.Controls.Add(this.grpUsers);
-            this.flowLayoutPanel1.Controls.Add(this.grpAccounting);
             this.flowLayoutPanel1.Controls.Add(this.grpOptions);
+            this.flowLayoutPanel1.Controls.Add(this.grpAccounting);
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 100);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 95);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(276, 531);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(276, 536);
             this.flowLayoutPanel1.TabIndex = 55717;
             this.flowLayoutPanel1.WrapContents = false;
             // 
@@ -522,7 +519,7 @@ namespace RealState
             this.grpBaseInfo.DisabledBackColor = System.Drawing.Color.Empty;
             this.grpBaseInfo.Location = new System.Drawing.Point(3, 3);
             this.grpBaseInfo.Name = "grpBaseInfo";
-            this.grpBaseInfo.Size = new System.Drawing.Size(253, 481);
+            this.grpBaseInfo.Size = new System.Drawing.Size(253, 480);
             // 
             // 
             // 
@@ -1119,16 +1116,15 @@ namespace RealState
             this.grpBuilding.Controls.Add(this.groupPanel22);
             this.grpBuilding.Controls.Add(this.groupPanel23);
             this.grpBuilding.Controls.Add(this.groupPanel25);
-            this.grpBuilding.Controls.Add(this.groupPanel27);
             this.grpBuilding.Controls.Add(this.groupPanel29);
             this.grpBuilding.Controls.Add(this.groupPanel31);
             this.grpBuilding.Controls.Add(this.groupPanel33);
             this.grpBuilding.Controls.Add(this.groupPanel34);
             this.grpBuilding.Cursor = System.Windows.Forms.Cursors.Default;
             this.grpBuilding.DisabledBackColor = System.Drawing.Color.Empty;
-            this.grpBuilding.Location = new System.Drawing.Point(3, 490);
+            this.grpBuilding.Location = new System.Drawing.Point(3, 489);
             this.grpBuilding.Name = "grpBuilding";
-            this.grpBuilding.Size = new System.Drawing.Size(253, 304);
+            this.grpBuilding.Size = new System.Drawing.Size(253, 266);
             // 
             // 
             // 
@@ -1277,50 +1273,6 @@ namespace RealState
             this.lblBuildingFast.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.lblBuildingFast.Click += new System.EventHandler(this.lblBuildingFast_Click);
             // 
-            // groupPanel27
-            // 
-            this.groupPanel27.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupPanel27.CanvasColor = System.Drawing.Color.Transparent;
-            this.groupPanel27.Controls.Add(this.lblBuildingSearch);
-            this.groupPanel27.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.groupPanel27.DisabledBackColor = System.Drawing.Color.Empty;
-            this.groupPanel27.Location = new System.Drawing.Point(3, 121);
-            this.groupPanel27.Name = "groupPanel27";
-            this.groupPanel27.Size = new System.Drawing.Size(169, 30);
-            // 
-            // 
-            // 
-            this.groupPanel27.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(115)))), ((int)(((byte)(231)))));
-            this.groupPanel27.Style.BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(115)))), ((int)(((byte)(231)))));
-            this.groupPanel27.Style.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(81)))), ((int)(((byte)(219)))));
-            this.groupPanel27.Style.BorderColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(81)))), ((int)(((byte)(219)))));
-            this.groupPanel27.Style.CornerDiameter = 10;
-            this.groupPanel27.Style.CornerType = DevComponents.DotNetBar.eCornerType.Rounded;
-            // 
-            // 
-            // 
-            this.groupPanel27.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // 
-            // 
-            this.groupPanel27.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.groupPanel27.TabIndex = 55721;
-            // 
-            // lblBuildingSearch
-            // 
-            this.lblBuildingSearch.BackColor = System.Drawing.Color.Transparent;
-            this.lblBuildingSearch.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblBuildingSearch.Font = new System.Drawing.Font("B Yekan", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.lblBuildingSearch.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.lblBuildingSearch.Location = new System.Drawing.Point(0, 0);
-            this.lblBuildingSearch.Name = "lblBuildingSearch";
-            this.lblBuildingSearch.Size = new System.Drawing.Size(169, 30);
-            this.lblBuildingSearch.TabIndex = 0;
-            this.lblBuildingSearch.Text = "جستجوی پیشرفته ملک";
-            this.lblBuildingSearch.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblBuildingSearch.Click += new System.EventHandler(this.lblBuildingSearch_Click);
-            // 
             // groupPanel29
             // 
             this.groupPanel29.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -1329,7 +1281,7 @@ namespace RealState
             this.groupPanel29.Controls.Add(this.lblBuildingArchive);
             this.groupPanel29.Cursor = System.Windows.Forms.Cursors.Hand;
             this.groupPanel29.DisabledBackColor = System.Drawing.Color.Empty;
-            this.groupPanel29.Location = new System.Drawing.Point(3, 157);
+            this.groupPanel29.Location = new System.Drawing.Point(3, 119);
             this.groupPanel29.Name = "groupPanel29";
             this.groupPanel29.Size = new System.Drawing.Size(169, 30);
             // 
@@ -1373,7 +1325,7 @@ namespace RealState
             this.groupPanel31.Controls.Add(this.lblBuildingMatches);
             this.groupPanel31.Cursor = System.Windows.Forms.Cursors.Hand;
             this.groupPanel31.DisabledBackColor = System.Drawing.Color.Empty;
-            this.groupPanel31.Location = new System.Drawing.Point(3, 193);
+            this.groupPanel31.Location = new System.Drawing.Point(3, 155);
             this.groupPanel31.Name = "groupPanel31";
             this.groupPanel31.Size = new System.Drawing.Size(169, 30);
             // 
@@ -1417,7 +1369,7 @@ namespace RealState
             this.groupPanel33.Controls.Add(this.lblContract);
             this.groupPanel33.Cursor = System.Windows.Forms.Cursors.Hand;
             this.groupPanel33.DisabledBackColor = System.Drawing.Color.Empty;
-            this.groupPanel33.Location = new System.Drawing.Point(3, 229);
+            this.groupPanel33.Location = new System.Drawing.Point(3, 191);
             this.groupPanel33.Name = "groupPanel33";
             this.groupPanel33.Size = new System.Drawing.Size(169, 30);
             // 
@@ -1461,7 +1413,7 @@ namespace RealState
             this.groupPanel34.Controls.Add(this.lblRequest);
             this.groupPanel34.Cursor = System.Windows.Forms.Cursors.Hand;
             this.groupPanel34.DisabledBackColor = System.Drawing.Color.Empty;
-            this.groupPanel34.Location = new System.Drawing.Point(3, 265);
+            this.groupPanel34.Location = new System.Drawing.Point(3, 227);
             this.groupPanel34.Name = "groupPanel34";
             this.groupPanel34.Size = new System.Drawing.Size(169, 30);
             // 
@@ -1508,7 +1460,7 @@ namespace RealState
             this.grpUsers.Controls.Add(this.groupPanel28);
             this.grpUsers.Cursor = System.Windows.Forms.Cursors.Default;
             this.grpUsers.DisabledBackColor = System.Drawing.Color.Empty;
-            this.grpUsers.Location = new System.Drawing.Point(3, 800);
+            this.grpUsers.Location = new System.Drawing.Point(3, 761);
             this.grpUsers.Name = "grpUsers";
             this.grpUsers.Size = new System.Drawing.Size(253, 156);
             // 
@@ -1733,7 +1685,7 @@ namespace RealState
             this.grpAccounting.Controls.Add(this.groupPanel44);
             this.grpAccounting.Cursor = System.Windows.Forms.Cursors.Default;
             this.grpAccounting.DisabledBackColor = System.Drawing.Color.Empty;
-            this.grpAccounting.Location = new System.Drawing.Point(3, 962);
+            this.grpAccounting.Location = new System.Drawing.Point(3, 1410);
             this.grpAccounting.Name = "grpAccounting";
             this.grpAccounting.Size = new System.Drawing.Size(253, 481);
             // 
@@ -2342,7 +2294,7 @@ namespace RealState
             this.grpOptions.Controls.Add(this.groupPanel56);
             this.grpOptions.Cursor = System.Windows.Forms.Cursors.Default;
             this.grpOptions.DisabledBackColor = System.Drawing.Color.Empty;
-            this.grpOptions.Location = new System.Drawing.Point(3, 1449);
+            this.grpOptions.Location = new System.Drawing.Point(3, 923);
             this.grpOptions.Name = "grpOptions";
             this.grpOptions.Size = new System.Drawing.Size(253, 481);
             // 
@@ -4324,7 +4276,6 @@ namespace RealState
             this.groupPanel22.ResumeLayout(false);
             this.groupPanel23.ResumeLayout(false);
             this.groupPanel25.ResumeLayout(false);
-            this.groupPanel27.ResumeLayout(false);
             this.groupPanel29.ResumeLayout(false);
             this.groupPanel31.ResumeLayout(false);
             this.groupPanel33.ResumeLayout(false);
@@ -4457,8 +4408,6 @@ namespace RealState
         private System.Windows.Forms.Label lblBuilding;
         private DevComponents.DotNetBar.Controls.GroupPanel groupPanel25;
         private System.Windows.Forms.Label lblBuildingFast;
-        private DevComponents.DotNetBar.Controls.GroupPanel groupPanel27;
-        private System.Windows.Forms.Label lblBuildingSearch;
         private DevComponents.DotNetBar.Controls.GroupPanel groupPanel29;
         private System.Windows.Forms.Label lblBuildingArchive;
         private DevComponents.DotNetBar.Controls.GroupPanel groupPanel31;

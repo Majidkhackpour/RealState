@@ -117,7 +117,6 @@ namespace RealState
                 lblBuildingCondition.Enabled = access?.BuildingCondition.Building_Condition_ShowForm ?? false;
                 lblBuildingOptions.Enabled = access?.BuildingOption.Building_Option_ShowForm ?? false;
                 lblRequest.Enabled = access?.BuildingRequest.Building_Request_ShowForm ?? false;
-                lblBuildingSearch.Enabled = access?.BuildingSearch.Building_Search_ShowForm ?? false;
                 lblBuildingType.Enabled = access?.BuildingType.Building_Type_ShowForm ?? false;
                 lblBuildingView.Enabled = access?.BuildingView.Building_View_ShowForm ?? false;
                 lblCities.Enabled = access?.Cities.City_ShowForm ?? false;
@@ -653,7 +652,7 @@ namespace RealState
         }
         private Task PeoplesBussines_OnSaved() => _ = Task.Run(LoadDashboard);
         private void lblBaseInfo_Click(object sender, System.EventArgs e) => grpBaseInfo.Height = grpBaseInfo.Height == 48 ? 481 : 48;
-        private void lblBuildingMenu_Click(object sender, EventArgs e) => grpBuilding.Height = grpBuilding.Height == 48 ? 304 : 48;
+        private void lblBuildingMenu_Click(object sender, EventArgs e) => grpBuilding.Height = grpBuilding.Height == 48 ? 266 : 48;
         private void lblUsers_Click(object sender, EventArgs e) => grpUsers.Height = grpUsers.Height == 48 ? 156 : 48;
         private void lblAccounting_Click(object sender, EventArgs e) => grpAccounting.Height = grpAccounting.Height == 48 ? 481 : 48;
         private void lblOptions_Click(object sender, EventArgs e) => grpOptions.Height = grpOptions.Height == 48 ? 481 : 48;
