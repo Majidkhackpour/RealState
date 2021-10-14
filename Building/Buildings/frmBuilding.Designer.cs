@@ -50,6 +50,7 @@ namespace Building.Buildings
             this.lblTitle = new System.Windows.Forms.Label();
             this.btnCancel = new DevComponents.DotNetBar.ButtonX();
             this.btnFinish = new DevComponents.DotNetBar.ButtonX();
+            this.btnSavePersonal = new DevComponents.DotNetBar.ButtonX();
             this.panel1.SuspendLayout();
             this.groupPanel2.SuspendLayout();
             this.groupPanel1.SuspendLayout();
@@ -343,11 +344,31 @@ namespace Building.Buildings
             this.btnFinish.TextColor = System.Drawing.Color.Black;
             this.btnFinish.Click += new System.EventHandler(this.btnFinish_Click);
             // 
+            // btnSavePersonal
+            // 
+            this.btnSavePersonal.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnSavePersonal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSavePersonal.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.btnSavePersonal.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnSavePersonal.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.btnSavePersonal.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSavePersonal.Image = global::Building.Properties.Resources.tab_checkbox__;
+            this.btnSavePersonal.Location = new System.Drawing.Point(499, 561);
+            this.btnSavePersonal.Name = "btnSavePersonal";
+            this.btnSavePersonal.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
+            this.btnSavePersonal.Size = new System.Drawing.Size(160, 31);
+            this.btnSavePersonal.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
+            this.btnSavePersonal.TabIndex = 55802;
+            this.btnSavePersonal.Text = "ثبت به عنوان فایل شخصی";
+            this.btnSavePersonal.TextColor = System.Drawing.Color.Black;
+            this.btnSavePersonal.Click += new System.EventHandler(this.btnSavePersonal_Click);
+            // 
             // frmBuilding
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 600);
+            this.Controls.Add(this.btnSavePersonal);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnFinish);
             this.Controls.Add(this.lblTitle);
@@ -387,5 +408,6 @@ namespace Building.Buildings
         private UcBuildingImages ucBuildingHitting1;
         private UcBuildingMedia groupPanel3;
         private UcBuildingType ucType;
+        private DevComponents.DotNetBar.ButtonX btnSavePersonal;
     }
 }

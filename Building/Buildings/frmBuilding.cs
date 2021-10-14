@@ -68,6 +68,9 @@ namespace Building.Buildings
 
                 ucType.BuildingAccountTypeGuid = cls.BuildingAccountTypeGuid;
                 ucType.BuildingTypeGuid = cls.BuildingTypeGuid;
+
+                if (cls.AdvertiseType == null || cls.AdvertiseType == AdvertiseType.None)
+                    btnSavePersonal.Visible = false;
             }
             catch (Exception ex)
             {
@@ -301,6 +304,101 @@ namespace Building.Buildings
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
+        private async Task<ReturnedSaveFuncInfo> SaveAsync(AdvertiseType? advType)
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                if (cls.Guid == Guid.Empty)
+                {
+                    uc.Building.Guid = Guid.NewGuid();
+                    isSendSms = true;
+                }
+                else uc.Building.Guid = cls.Guid;
+                cls = uc.Building;
+
+                cls.OwnerGuid = UcPeople.Guid;
+                cls.CityGuid = UcCity.CityGuid;
+                cls.RegionGuid = UcCity.RegionGuid;
+                cls.Address = UcCity.Address;
+                cls.Code = UcCode.Code;
+                cls.Priority = UcCode.Pirority;
+                cls.CreateDate = UcCode.CreateDate;
+                cls.UserGuid = UcCode.UserGuid;
+                cls.Hiting = UcHitting_Colling.Hitting;
+                cls.Colling = UcHitting_Colling.Colling;
+                cls.Water = UcHitting_Colling.Water;
+                cls.Barq = UcHitting_Colling.Barq;
+                cls.Gas = UcHitting_Colling.Gas;
+                cls.Tell = UcHitting_Colling.Tell;
+
+                cls.OptionList = UcOptions.OptionList;
+                cls.ShortDesc = txtShortDesc.Text;
+                cls.GalleryList = ucBuildingHitting1.GalleryList;
+                cls.MediaList = groupPanel3.MediaList;
+
+                cls.BuildingAccountTypeGuid = ucType.BuildingAccountTypeGuid;
+                cls.BuildingTypeGuid = ucType.BuildingTypeGuid;
+                cls.AdvertiseType = advType;
+
+                res.AddReturnedValue(await clsBuildingValidator.CheckValidationAsync(cls));
+                if (res.HasError) return res;
+
+                res.AddReturnedValue(await cls.SaveAsync());
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+
+            return res;
+        }
+        private async Task SaveAsync_(AdvertiseType? advType)
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                res.AddReturnedValue(await SaveAsync(advType));
+                if (res.HasError) return;
+
+                if (Settings.Classes.Payamak.IsSendToOwner.ParseToBoolean() && isSendSms)
+                {
+                    var tr = await Payamak.FixSms.OwnerSend.SendAsync(cls);
+                    frmNotification.PublicInfo.ShowMessage(tr.HasError
+                        ? tr.ErrorMessage
+                        : "ارسال پیامک به مالک با موفقیت انجام شد");
+                }
+
+                if (MessageBox.Show("آیا مایلید تقاضاهای مطابق با این ملک را مشاهده نمایید؟", "تطبیق املاک با تقاضا",
+                        MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.No)
+                    return;
+                _token?.Cancel();
+                _token = new CancellationTokenSource();
+                var list = await BuildingRequestViewModel.GetAllMatchesItemsAsync(cls, _token.Token);
+                if (list.Count <= 0)
+                {
+                    this.ShowMessage("فایل مطابقی جهت نمایش وجود ندارد");
+                    return;
+                }
+
+                new frmShowRequestMatches(list).ShowDialog(this);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+            finally
+            {
+                if (res.HasError) this.ShowError(res);
+                else
+                {
+                    DialogResult = DialogResult.OK;
+                    Close();
+                }
+            }
+        }
 
         public frmBuilding(BuildingBussines bu)
         {
@@ -351,85 +449,7 @@ namespace Building.Buildings
                 WebErrorLog.ErrorInstence.StartErrorLog(exception);
             }
         }
-        private async void btnFinish_Click(object sender, EventArgs e)
-        {
-            var res = new ReturnedSaveFuncInfo();
-            try
-            {
-                if (cls.Guid == Guid.Empty)
-                {
-                    uc.Building.Guid = Guid.NewGuid();
-                    isSendSms = true;
-                }
-                else uc.Building.Guid = cls.Guid;
-                cls = uc.Building;
-
-                cls.OwnerGuid = UcPeople.Guid;
-                cls.CityGuid = UcCity.CityGuid;
-                cls.RegionGuid = UcCity.RegionGuid;
-                cls.Address = UcCity.Address;
-                cls.Code = UcCode.Code;
-                cls.Priority = UcCode.Pirority;
-                cls.CreateDate = UcCode.CreateDate;
-                cls.UserGuid = UcCode.UserGuid;
-                cls.Hiting = UcHitting_Colling.Hitting;
-                cls.Colling = UcHitting_Colling.Colling;
-                cls.Water = UcHitting_Colling.Water;
-                cls.Barq = UcHitting_Colling.Barq;
-                cls.Gas = UcHitting_Colling.Gas;
-                cls.Tell = UcHitting_Colling.Tell;
-
-                cls.OptionList = UcOptions.OptionList;
-                cls.ShortDesc = txtShortDesc.Text;
-                cls.GalleryList = ucBuildingHitting1.GalleryList;
-                cls.MediaList = groupPanel3.MediaList;
-
-                cls.BuildingAccountTypeGuid = ucType.BuildingAccountTypeGuid;
-                cls.BuildingTypeGuid = ucType.BuildingTypeGuid;
-
-                res.AddReturnedValue(await clsBuildingValidator.CheckValidationAsync(cls));
-                if (res.HasError) return;
-
-                res.AddReturnedValue(await cls.SaveAsync());
-                if (res.HasError) return;
-
-                if (Settings.Classes.Payamak.IsSendToOwner.ParseToBoolean() && isSendSms)
-                {
-                    var tr = await Payamak.FixSms.OwnerSend.SendAsync(cls);
-                    frmNotification.PublicInfo.ShowMessage(tr.HasError
-                        ? tr.ErrorMessage
-                        : "ارسال پیامک به مالک با موفقیت انجام شد");
-                }
-
-                if (MessageBox.Show("آیا مایلید تقاضاهای مطابق با این ملک را مشاهده نمایید؟", "تطبیق املاک با تقاضا",
-                        MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.No)
-                    return;
-                _token?.Cancel();
-                _token = new CancellationTokenSource();
-                var list = await BuildingRequestViewModel.GetAllMatchesItemsAsync(cls, _token.Token);
-                if (list.Count <= 0)
-                {
-                    this.ShowMessage("فایل مطابقی جهت نمایش وجود ندارد");
-                    return;
-                }
-
-                new frmShowRequestMatches(list).ShowDialog(this);
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-                res.AddReturnedValue(ex);
-            }
-            finally
-            {
-                if (res.HasError) this.ShowError(res);
-                else
-                {
-                    DialogResult = DialogResult.OK;
-                    Close();
-                }
-            }
-        }
+        private async void btnFinish_Click(object sender, EventArgs e) => await SaveAsync_(cls.AdvertiseType);
         private void UcPeople_OnShowNumbers()
         {
             try
@@ -445,5 +465,6 @@ namespace Building.Buildings
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
+        private async void btnSavePersonal_Click(object sender, EventArgs e) => await SaveAsync_(null);
     }
 }

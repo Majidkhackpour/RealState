@@ -1,28 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using WindowsSerivces;
-using Advertise.Classes;
+﻿using Advertise.Classes;
 using Advertise.Forms;
 using Advertise.Forms.Simcard;
 using Building.BuildingMatchesItem;
 using Building.Buildings.Selector;
-using Cities.Region;
 using EntityCache.Bussines;
 using EntityCache.ViewModels;
 using MetroFramework.Forms;
 using Notification;
-using Payamak;
 using Print;
 using Services;
 using Services.FilterObjects;
 using Settings.Classes;
+using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 using WebHesabBussines;
+using WindowsSerivces;
 
 namespace Building.Buildings
 {
@@ -108,6 +105,7 @@ namespace Building.Buildings
                 mnuSendToDivar.Visible = VersionAccess.Advertise;
                 mnuSendToSheypoor.Visible = VersionAccess.Advertise;
                 mnuSendToTelegram.Visible = VersionAccess.Telegram;
+                mnuChangeAdvType.Visible = VersionAccess.Advertise;
             }
             catch (Exception ex)
             {
@@ -753,6 +751,7 @@ namespace Building.Buildings
                         break;
                     case Keys.F:
                         if (e.Control) txtSearch.Focus();
+                        else if (e.Alt) picFilter_Click(null, null);
                         break;
                     case Keys.Enter:
                         if (!isShowMode) mnuEdit.PerformClick();
@@ -1854,6 +1853,35 @@ namespace Building.Buildings
                 filter = frm.Filter;
                 filter.Status = _st;
                 LoadData();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private async void mnuChangeAdvType_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (DGrid.RowCount <= 0 || DGrid.CurrentRow == null) return;
+                var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
+                var cls = await BuildingBussines.GetAsync(guid);
+                if (cls == null) return;
+
+                if (cls.AdvertiseType == null || cls.AdvertiseType == AdvertiseType.None)
+                {
+                    this.ShowMessage("فایل موردنظر جزو فایل های شخصی می باشد");
+                    return;
+                }
+
+                cls.AdvertiseType = null;
+                var res = await cls.SaveAsync();
+                if (res.HasError) this.ShowError(res);
+                else
+                {
+                    this.ShowMessage("فایل موردنظر به فایل های شخصی اضافه شد");
+                    LoadData(txtSearch.Text);
+                }
             }
             catch (Exception ex)
             {
