@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using EntityCache.Bussines;
+using Payamak.PhoneBook;
 using Services;
 
 namespace Peoples
@@ -8,6 +10,7 @@ namespace Peoples
     public partial class UcPeopleSelect : UserControl
     {
         private Guid _guid;
+        public event Action OnShowNumbers;
         public Guid Guid
         {
             get => _guid;
@@ -29,6 +32,18 @@ namespace Peoples
                 lblOwnerFatherName.Text = owner?.FatherName;
                 lblOwnerNCode.Text = owner?.NationalCode;
                 lblOwnerName.Text = owner?.Name;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private void RaiseShowNumber()
+        {
+            try
+            {
+                var handler = OnShowNumbers;
+                if (handler != null) OnShowNumbers?.Invoke();
             }
             catch (Exception ex)
             {
@@ -62,5 +77,6 @@ namespace Peoples
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
+        private void btnShowNumbers_Click(object sender, EventArgs e) => RaiseShowNumber();
     }
 }

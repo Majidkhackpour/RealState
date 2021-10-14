@@ -70,7 +70,7 @@ namespace Peoples
                 _token?.Cancel();
                 _token = new CancellationTokenSource();
                 list = await PeoplesBussines.GetAllAsync(search, GroupGuid, _token.Token);
-                DGrid.Columns["dgGroupName"].Visible = GroupGuid == Guid.Empty;
+                dgGroupName.Visible = GroupGuid == Guid.Empty;
                 _ = Task.Run(() => ucPagger.PagingAsync(new CancellationToken(),
                     list?.Where(q => q.Status == _st), 100, PagingPosition.GotoStartPage));
             }
@@ -223,14 +223,14 @@ namespace Peoples
             SetAccess();
         }
 
-        private void UcPagger_OnBindDataReady(object sender, WindowsSerivces.Pagging.FooterBindingDataReadyEventArg e)
+        private async void UcPagger_OnBindDataReady(object sender, WindowsSerivces.Pagging.FooterBindingDataReadyEventArg e)
         {
             try
             {
                 var count = e?.ListData?.Count ?? 0;
                 if (count <= 0) count = 50;
-                Invoke(new MethodInvoker(() =>
-                    peopleBindingSource.DataSource = e?.ListData?.Take(count)?.ToSortableBindingList()));
+                while (!IsHandleCreated) await Task.Delay(100);
+                Invoke(new MethodInvoker(() => peopleBindingSource.DataSource = e?.ListData?.Take(count)?.ToSortableBindingList()));
             }
             catch (Exception ex)
             {

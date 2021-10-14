@@ -68,6 +68,7 @@ namespace Building.Buildings
             this.UcPeople.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.UcPeople.Size = new System.Drawing.Size(758, 138);
             this.UcPeople.TabIndex = 0;
+            this.UcPeople.OnShowNumbers += new System.Action(this.UcPeople_OnShowNumbers);
             // 
             // panel1
             // 

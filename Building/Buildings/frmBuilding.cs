@@ -11,6 +11,7 @@ using EntityCache.Bussines;
 using EntityCache.ViewModels;
 using MetroFramework.Forms;
 using Notification;
+using Payamak.PhoneBook;
 using Services;
 
 namespace Building.Buildings
@@ -427,6 +428,21 @@ namespace Building.Buildings
                     DialogResult = DialogResult.OK;
                     Close();
                 }
+            }
+        }
+        private void UcPeople_OnShowNumbers()
+        {
+            try
+            {
+                var owner = PeoplesBussines.Get(cls.OwnerGuid, cls?.Guid);
+                if (owner?.TellList == null || owner.TellList.Count <= 0) return;
+
+                var frm = new frmShowPhoneBook(owner.TellList);
+                frm.ShowDialog(this);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
     }

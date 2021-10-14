@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -14,7 +15,7 @@ namespace Payamak.PhoneBook
     public partial class frmShowPhoneBook : MetroForm
     {
         public Guid ParentGuid { get; set; }
-        private bool _st = true;
+        private bool _st = true, _isLoadData = true;
 
         private void SetAccess()
         {
@@ -35,11 +36,11 @@ namespace Payamak.PhoneBook
         {
             try
             {
+                if (!_isLoadData) return;
                 Invoke(new MethodInvoker(async () =>
                 {
                     var list = await PhoneBookBussines.GetAllAsync(ParentGuid, search, (EnPhoneBookGroup)cmbGroup.SelectedIndex);
-                    phoneBookBindingSource.DataSource =
-                        list.Where(q => q.Status == _st).OrderBy(q => q.Name).ToSortableBindingList();
+                    phoneBookBindingSource.DataSource = list?.Where(q => q.Status == _st)?.OrderBy(q => q.Name)?.ToSortableBindingList();
                 }));
             }
             catch (Exception ex)
@@ -80,6 +81,21 @@ namespace Payamak.PhoneBook
             _st = status;
             ParentGuid = Guid.Empty;
             SetAccess();
+        }
+        public frmShowPhoneBook(List<PhoneBookBussines> lst)
+        {
+            try
+            {
+                InitializeComponent();
+                ucHeader.Text = "نمایش شماره های دفترچه تلفن";
+                phoneBookBindingSource.DataSource = lst?.Where(q => q.Status == _st)?.OrderBy(q => q.Name)?.ToSortableBindingList();
+                _isLoadData = false;
+                txtSearch.Enabled = cmbGroup.Enabled = contextMenu.Enabled = false;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
         }
 
         private async void frmShowPhoneBook_Load(object sender, EventArgs e)
