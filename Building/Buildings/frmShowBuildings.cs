@@ -33,8 +33,6 @@ namespace Building.Buildings
         public Guid SelectedGuid { get; set; }
         private IEnumerable<BuildingReportBussines> _list;
         private List<string> _columnList;
-        private Guid _ownerGuid = Guid.Empty;
-        private bool? _isArchive;
         private BuildingFilter filter;
 
 
@@ -663,20 +661,19 @@ namespace Building.Buildings
             }
         }
 
-        public frmShowBuildings(bool _isShowMode, bool? isArchive, bool status = true, Guid ownerGuid = default)
+        public frmShowBuildings(bool _isShowMode,  BuildingFilter _filter)
         {
             try
             {
                 InitializeComponent();
+                filter = _filter;
                 ucHeader.Text = "نمایش لیست املاک";
-                _st = status;
+                _st = filter.Status;
                 isShowMode = _isShowMode;
-                _ownerGuid = ownerGuid;
-                _isArchive = isArchive;
                 ucPagger.OnBindDataReady += UcPagger_OnBindDataReady;
                 SetAccess();
                 SetColumns();
-                if (_isShowMode || (_isArchive != null && _isArchive.Value)) contextMenu.Enabled = false;
+                if (_isShowMode || (filter.IsArchive != null && filter.IsArchive.Value)) contextMenu.Enabled = false;
             }
             catch (Exception ex)
             {

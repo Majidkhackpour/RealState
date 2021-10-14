@@ -7776,7 +7776,8 @@ ALTER PROCEDURE [dbo].[sp_Buildings_Search]
 	@ejare1 decimal=0,
 	@ejare2 decimal=0,
 	@st bit='true',
-	@isArchive bit=null
+	@isArchive bit=null,
+	@maxTabaqeNo int=0
 AS
 BEGIN
 select [dbo].[Buildings].*,[dbo].[Peoples].Name As OwnerName,
@@ -7814,6 +7815,7 @@ From [dbo].[Buildings]
 		   ((ISNULL(@sell1,0)=0 and ISNULL(@sell2,0)=0) or Buildings.SellPrice between @sell1 and @sell2) and
 		   ((ISNULL(@rahn1,0)=0 and ISNULL(@rahn2,0)=0) or Buildings.RahnPrice1 between @rahn1 and @rahn2) and
 		   ((ISNULL(@ejare1,0)=0 and ISNULL(@ejare2,0)=0) or Buildings.EjarePrice1 between @ejare1 and @ejare2) and
+		   (ISNULL(@maxTabaqeNo,0)=0 or Buildings.TabaqeNo<=@maxTabaqeNo) and
 		   Buildings.Status=@st and
 		   (@isArchive is null or Buildings.IsArchive=@isArchive)
 	 Order By [dbo].[Buildings].CreateDate desc

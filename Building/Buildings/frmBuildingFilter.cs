@@ -17,61 +17,63 @@ namespace Building.Buildings
     {
         private CancellationTokenSource _token = new CancellationTokenSource();
         private List<Guid> _regList;
+        private BuildingFilter _filter;
 
         public BuildingFilter Filter
         {
             get
             {
-                var filter = new BuildingFilter();
                 try
                 {
                     if (cmbBuildingType.SelectedValue != null)
-                        filter.BuildingTypeGuid = (Guid?)cmbBuildingType.SelectedValue;
+                        _filter.BuildingTypeGuid = (Guid?)cmbBuildingType.SelectedValue;
                     if (cmbUser.SelectedValue != null)
-                        filter.UserGuid = (Guid?)cmbUser.SelectedValue;
+                        _filter.UserGuid = (Guid?)cmbUser.SelectedValue;
                     if (cmbAccType.SelectedValue != null)
-                        filter.BuildingAccountTypeGuid = (Guid?)cmbAccType.SelectedValue;
+                        _filter.BuildingAccountTypeGuid = (Guid?)cmbAccType.SelectedValue;
                     if (cmbDocType.SelectedValue != null)
-                        filter.DocumentTypeGuid = (Guid?)cmbDocType.SelectedValue;
+                        _filter.DocumentTypeGuid = (Guid?)cmbDocType.SelectedValue;
 
                     if (rbtnAdvType_All.Checked)
-                        filter.AdvertiseType = null;
+                        _filter.AdvertiseType = null;
                     else if (rbtnAdvType_None.Checked)
-                        filter.AdvertiseType = AdvertiseType.None;
+                        _filter.AdvertiseType = AdvertiseType.None;
                     else if (rbtnAdvType_Recieved.Checked)
-                        filter.AdvertiseType = AdvertiseType.Divar;
+                        _filter.AdvertiseType = AdvertiseType.Divar;
 
-                    filter.IsFullRahn = rbtnFullRahn.Checked;
-                    filter.IsRahn = rbtnRahn.Checked;
-                    filter.IsSell = rbtnSell.Checked;
-                    filter.IsPishForoush = rbtnPishForoush.Checked;
-                    filter.IsMosharekat = rbtnMosharekat.Checked;
+                    _filter.IsFullRahn = rbtnFullRahn.Checked;
+                    _filter.IsRahn = rbtnRahn.Checked;
+                    _filter.IsSell = rbtnSell.Checked;
+                    _filter.IsPishForoush = rbtnPishForoush.Checked;
+                    _filter.IsMosharekat = rbtnMosharekat.Checked;
 
-                    if (chbRegion.Checked) filter.RegionList = _regList;
+                    if (chbRegion.Checked) _filter.RegionList = _regList;
 
-                    filter.RoomCount1 = (int)txtRoomCount1.Value;
-                    filter.RoomCount2 = (int)txtRoomCount2.Value;
-                    filter.Masahat1 = (int)txtFMasahat.Value;
-                    filter.Masahat2 = (int)txtSMasahat.Value;
-                    filter.ZirBana1 = (int)txtZirBana1.Value;
-                    filter.ZirBana2 = (int)txtZirBana2.Value;
-                    filter.SellPrice1 = txtSell1.TextDecimal;
-                    filter.SellPrice2 = txtSell2.TextDecimal;
-                    filter.RahnPrice1 = txtRahn1.TextDecimal;
-                    filter.RahnPrice2 = txtRahn2.TextDecimal;
-                    filter.EjarePrice1 = txtEjare1.TextDecimal;
-                    filter.EjarePrice2 = txtEjare2.TextDecimal;
+                    _filter.RoomCount1 = (int)txtRoomCount1.Value;
+                    _filter.RoomCount2 = (int)txtRoomCount2.Value;
+                    _filter.Masahat1 = (int)txtFMasahat.Value;
+                    _filter.Masahat2 = (int)txtSMasahat.Value;
+                    _filter.ZirBana1 = (int)txtZirBana1.Value;
+                    _filter.ZirBana2 = (int)txtZirBana2.Value;
+                    _filter.SellPrice1 = txtSell1.TextDecimal;
+                    _filter.SellPrice2 = txtSell2.TextDecimal;
+                    _filter.RahnPrice1 = txtRahn1.TextDecimal;
+                    _filter.RahnPrice2 = txtRahn2.TextDecimal;
+                    _filter.EjarePrice1 = txtEjare1.TextDecimal;
+                    _filter.EjarePrice2 = txtEjare2.TextDecimal;
+                    _filter.MaxTabaqeNo = (int) txtTabaqeNo.Value;
                 }
                 catch (Exception ex)
                 {
                     WebErrorLog.ErrorInstence.StartErrorLog(ex);
                 }
-                return filter;
+                return _filter;
             }
             set
             {
                 try
                 {
+                    _filter = value;
                     if (value.BuildingTypeGuid != null)
                         cmbBuildingType.SelectedValue = value.BuildingTypeGuid;
                     if (value.BuildingAccountTypeGuid != null)
@@ -115,6 +117,7 @@ namespace Building.Buildings
                     txtRahn2.TextDecimal = value.RahnPrice2;
                     txtEjare1.TextDecimal = value.EjarePrice1;
                     txtEjare2.TextDecimal = value.EjarePrice2;
+                    txtTabaqeNo.Value = value.MaxTabaqeNo;
                 }
                 catch (Exception ex)
                 {

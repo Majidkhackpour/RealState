@@ -56,6 +56,7 @@ using User.Advisor;
 using WindowsSerivces;
 using Building.Buildings.Selector;
 using Persistence;
+using Services.FilterObjects;
 using WebHesabBussines;
 
 namespace RealState
@@ -176,10 +177,10 @@ namespace RealState
                     case EnForms.BuildingView: frm = new frmShowBuildingView(); break;
                     case EnForms.BuildingCondition: frm = new frmShowBuildingCondition(); break;
                     case EnForms.BuildingType: frm = new frmShowBuildingType(); break;
-                    case EnForms.Building: frm = new frmShowBuildings(false, null); break;
+                    case EnForms.Building: frm = new frmShowBuildings(false, new BuildingFilter() { Status = true }); break;
                     case EnForms.BuildingFast: frm = new frmSelectBuildingType(this); break;
                     case EnForms.AdvancedSearch: frm = new frmFilterForm(); break;
-                    case EnForms.BuildingArchive: frm = new frmShowBuildings(true, true); break;
+                    case EnForms.BuildingArchive: frm = new frmShowBuildings(true, new BuildingFilter() { Status = true, IsArchive = true }); break;
                     case EnForms.BuildingMatch: frm = new frmStartBuildingMatches(); break;
                     case EnForms.Contract: frm = new frmShowContract(); break;
                     case EnForms.Request: frm = new frmShowRequest(); break;

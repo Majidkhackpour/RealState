@@ -229,20 +229,23 @@ namespace EntityCache.SqlServerPersistence
                 if (isLoadRelatedNumber)
                 {
                     if (item.TellList != null && item.TellList.Count > 0) return item;
-                    if (item.TellList == null) item.TellList = new List<PhoneBookBussines>();
-                    item.TellList.Add(new PhoneBookBussines()
+                    if (dr["Number"] != DBNull.Value && !string.IsNullOrEmpty(dr["Number"].ToString()))
                     {
-                        Guid = Guid.NewGuid(),
-                        Modified = DateTime.Now,
-                        Name = item.Name,
-                        Status = true,
-                        ServerStatus = ServerStatus.None,
-                        ServerDeliveryDate = DateTime.Now,
-                        Tell = dr["Number"].ToString(),
-                        ParentGuid = item.Guid,
-                        Title = "دریافت شده",
-                        Group = EnPhoneBookGroup.Divar
-                    });
+                        if (item.TellList == null) item.TellList = new List<PhoneBookBussines>();
+                        item.TellList.Add(new PhoneBookBussines()
+                        {
+                            Guid = Guid.NewGuid(),
+                            Modified = DateTime.Now,
+                            Name = item.Name,
+                            Status = true,
+                            ServerStatus = ServerStatus.None,
+                            ServerDeliveryDate = DateTime.Now,
+                            Tell = dr["Number"].ToString(),
+                            ParentGuid = item.Guid,
+                            Title = "دریافت شده",
+                            Group = EnPhoneBookGroup.Divar
+                        });
+                    }
                 }
             }
             catch (Exception ex)

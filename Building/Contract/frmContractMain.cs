@@ -12,6 +12,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WindowsSerivces;
+using Services.FilterObjects;
 
 namespace Building.Contract
 {
@@ -550,7 +551,8 @@ namespace Building.Contract
         {
             try
             {
-                var frm = new frmShowBuildings(true, null, true, fSide?.Guid ?? Guid.Empty);
+                var filter = new BuildingFilter() { Status = true, IsArchive = null, OwnerGuid = fSide?.Guid };
+                var frm = new frmShowBuildings(true, filter);
                 if (frm.ShowDialog(this) != DialogResult.OK) return;
                 building = BuildingBussines.Get(frm.SelectedGuid);
                 LoadBuilding();

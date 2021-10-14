@@ -502,8 +502,8 @@ namespace RealState
         {
             try
             {
-                var frm = new frmShowBuildings(false, false);
-                frm.ShowDialog(this);
+                //var frm = new frmShowBuildings(false, false);
+                //frm.ShowDialog(this);
             }
             catch (Exception ex)
             {
@@ -831,8 +831,8 @@ namespace RealState
         {
             try
             {
-                var frm = new frmShowBuildings(false, true);
-                frm.ShowDialog(this);
+                //var frm = new frmShowBuildings(false, true);
+                //frm.ShowDialog(this);
             }
             catch (Exception ex)
             {

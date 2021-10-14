@@ -74,6 +74,7 @@ namespace Building.Buildings
             this.label9 = new System.Windows.Forms.Label();
             this.groupPanel3 = new DevComponents.DotNetBar.Controls.GroupPanel();
             this.chbRegion = new DevComponents.DotNetBar.Controls.CheckBoxX();
+            this.lblRegionCount = new System.Windows.Forms.Label();
             this.groupPanel1 = new DevComponents.DotNetBar.Controls.GroupPanel();
             this.cmbDocType = new System.Windows.Forms.ComboBox();
             this.docTypeBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -91,7 +92,9 @@ namespace Building.Buildings
             this.ucHeader = new WindowsSerivces.UC_Header();
             this.btnCancel = new DevComponents.DotNetBar.ButtonX();
             this.btnFinish = new DevComponents.DotNetBar.ButtonX();
-            this.lblRegionCount = new System.Windows.Forms.Label();
+            this.groupPanel11 = new DevComponents.DotNetBar.Controls.GroupPanel();
+            this.txtTabaqeNo = new System.Windows.Forms.NumericUpDown();
+            this.label18 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.groupPanel10.SuspendLayout();
             this.groupPanel8.SuspendLayout();
@@ -113,6 +116,8 @@ namespace Building.Buildings
             this.groupPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.AccTypeBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btBindingSource)).BeginInit();
+            this.groupPanel11.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtTabaqeNo)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -120,6 +125,7 @@ namespace Building.Buildings
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.AutoScroll = true;
+            this.panel1.Controls.Add(this.groupPanel11);
             this.panel1.Controls.Add(this.groupPanel10);
             this.panel1.Controls.Add(this.groupPanel8);
             this.panel1.Controls.Add(this.groupPanel9);
@@ -144,7 +150,7 @@ namespace Building.Buildings
             this.groupPanel10.Controls.Add(this.label15);
             this.groupPanel10.Controls.Add(this.label16);
             this.groupPanel10.DisabledBackColor = System.Drawing.Color.Empty;
-            this.groupPanel10.Location = new System.Drawing.Point(13, 487);
+            this.groupPanel10.Location = new System.Drawing.Point(13, 532);
             this.groupPanel10.Name = "groupPanel10";
             this.groupPanel10.Size = new System.Drawing.Size(473, 48);
             // 
@@ -245,7 +251,7 @@ namespace Building.Buildings
             this.groupPanel8.Controls.Add(this.label13);
             this.groupPanel8.Controls.Add(this.label14);
             this.groupPanel8.DisabledBackColor = System.Drawing.Color.Empty;
-            this.groupPanel8.Location = new System.Drawing.Point(14, 435);
+            this.groupPanel8.Location = new System.Drawing.Point(14, 480);
             this.groupPanel8.Name = "groupPanel8";
             this.groupPanel8.Size = new System.Drawing.Size(473, 48);
             // 
@@ -346,7 +352,7 @@ namespace Building.Buildings
             this.groupPanel9.Controls.Add(this.label11);
             this.groupPanel9.Controls.Add(this.label12);
             this.groupPanel9.DisabledBackColor = System.Drawing.Color.Empty;
-            this.groupPanel9.Location = new System.Drawing.Point(15, 381);
+            this.groupPanel9.Location = new System.Drawing.Point(15, 426);
             this.groupPanel9.Name = "groupPanel9";
             this.groupPanel9.Size = new System.Drawing.Size(473, 48);
             // 
@@ -994,6 +1000,16 @@ namespace Building.Buildings
             this.chbRegion.Text = "فیلتر مناطق فعال باشد";
             this.chbRegion.CheckedChanged += new System.EventHandler(this.chbRegion_CheckedChanged);
             // 
+            // lblRegionCount
+            // 
+            this.lblRegionCount.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblRegionCount.BackColor = System.Drawing.Color.Transparent;
+            this.lblRegionCount.Location = new System.Drawing.Point(34, 8);
+            this.lblRegionCount.Name = "lblRegionCount";
+            this.lblRegionCount.Size = new System.Drawing.Size(290, 20);
+            this.lblRegionCount.TabIndex = 55800;
+            // 
             // groupPanel1
             // 
             this.groupPanel1.CanvasColor = System.Drawing.SystemColors.Control;
@@ -1249,15 +1265,69 @@ namespace Building.Buildings
             this.btnFinish.TextColor = System.Drawing.Color.Black;
             this.btnFinish.Click += new System.EventHandler(this.btnFinish_Click);
             // 
-            // lblRegionCount
+            // groupPanel11
             // 
-            this.lblRegionCount.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblRegionCount.BackColor = System.Drawing.Color.Transparent;
-            this.lblRegionCount.Location = new System.Drawing.Point(34, 8);
-            this.lblRegionCount.Name = "lblRegionCount";
-            this.lblRegionCount.Size = new System.Drawing.Size(290, 20);
-            this.lblRegionCount.TabIndex = 55800;
+            this.groupPanel11.CanvasColor = System.Drawing.SystemColors.Control;
+            this.groupPanel11.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
+            this.groupPanel11.Controls.Add(this.txtTabaqeNo);
+            this.groupPanel11.Controls.Add(this.label18);
+            this.groupPanel11.DisabledBackColor = System.Drawing.Color.Empty;
+            this.groupPanel11.Location = new System.Drawing.Point(16, 380);
+            this.groupPanel11.Name = "groupPanel11";
+            this.groupPanel11.Size = new System.Drawing.Size(473, 42);
+            // 
+            // 
+            // 
+            this.groupPanel11.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(227)))), ((int)(((byte)(239)))), ((int)(((byte)(255)))));
+            this.groupPanel11.Style.BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+            this.groupPanel11.Style.BackColorGradientAngle = 90;
+            this.groupPanel11.Style.BorderBottom = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.groupPanel11.Style.BorderBottomWidth = 2;
+            this.groupPanel11.Style.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(198)))), ((int)(((byte)(195)))), ((int)(((byte)(198)))));
+            this.groupPanel11.Style.BorderColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(198)))), ((int)(((byte)(195)))), ((int)(((byte)(198)))));
+            this.groupPanel11.Style.BorderLeft = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.groupPanel11.Style.BorderLeftWidth = 2;
+            this.groupPanel11.Style.BorderRight = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.groupPanel11.Style.BorderRightWidth = 2;
+            this.groupPanel11.Style.BorderTop = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.groupPanel11.Style.BorderTopWidth = 2;
+            this.groupPanel11.Style.CornerDiameter = 4;
+            this.groupPanel11.Style.CornerType = DevComponents.DotNetBar.eCornerType.Rounded;
+            this.groupPanel11.Style.TextAlignment = DevComponents.DotNetBar.eStyleTextAlignment.Center;
+            this.groupPanel11.Style.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.groupPanel11.Style.TextLineAlignment = DevComponents.DotNetBar.eStyleTextAlignment.Near;
+            // 
+            // 
+            // 
+            this.groupPanel11.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.groupPanel11.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.groupPanel11.TabIndex = 21;
+            // 
+            // txtTabaqeNo
+            // 
+            this.txtTabaqeNo.Location = new System.Drawing.Point(210, 5);
+            this.txtTabaqeNo.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.txtTabaqeNo.Name = "txtTabaqeNo";
+            this.txtTabaqeNo.Size = new System.Drawing.Size(142, 27);
+            this.txtTabaqeNo.TabIndex = 55799;
+            // 
+            // label18
+            // 
+            this.label18.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label18.AutoSize = true;
+            this.label18.BackColor = System.Drawing.Color.Transparent;
+            this.label18.Location = new System.Drawing.Point(358, 7);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(100, 20);
+            this.label18.TabIndex = 55800;
+            this.label18.Text = "حداکثر شماره طبقه";
             // 
             // frmBuildingFilter
             // 
@@ -1312,6 +1382,9 @@ namespace Building.Buildings
             this.groupPanel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.AccTypeBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btBindingSource)).EndInit();
+            this.groupPanel11.ResumeLayout(false);
+            this.groupPanel11.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtTabaqeNo)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1379,5 +1452,8 @@ namespace Building.Buildings
         private DevComponents.DotNetBar.ButtonX btnCancel;
         private DevComponents.DotNetBar.Controls.CheckBoxX rbtnFullRahn;
         private System.Windows.Forms.Label lblRegionCount;
+        private DevComponents.DotNetBar.Controls.GroupPanel groupPanel11;
+        private System.Windows.Forms.NumericUpDown txtTabaqeNo;
+        private System.Windows.Forms.Label label18;
     }
 }

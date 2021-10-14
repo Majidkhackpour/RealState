@@ -513,6 +513,7 @@ namespace EntityCache.SqlServerPersistence
                     cmd.Parameters.AddWithValue("@ejare2", filter.EjarePrice2);
                     cmd.Parameters.AddWithValue("@st", filter.Status);
                     cmd.Parameters.AddWithValue("@isArchive", filter.IsArchive);
+                    cmd.Parameters.AddWithValue("@maxTabaqeNo", filter.MaxTabaqeNo);
                     await cn.OpenAsync();
                     var dr = await cmd.ExecuteReaderAsync();
                     while (dr.Read()) list.Add(LoadDataReport(dr));
