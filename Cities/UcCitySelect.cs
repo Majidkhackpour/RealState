@@ -1,11 +1,9 @@
-﻿using System;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using EntityCache.Bussines;
+﻿using EntityCache.Bussines;
 using Services;
 using Settings.Classes;
+using System;
+using System.Linq;
+using System.Windows.Forms;
 
 namespace Cities
 {

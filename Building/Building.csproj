@@ -909,6 +909,12 @@
     <Compile Include="UserControls\ucBuildingSimilar.Designer.cs">
       <DependentUpon>ucBuildingSimilar.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\UcBuildingType.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UcBuildingType.Designer.cs">
+      <DependentUpon>UcBuildingType.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -1220,6 +1226,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\ucBuildingSimilar.resx">
       <DependentUpon>ucBuildingSimilar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UcBuildingType.resx">
+      <DependentUpon>UcBuildingType.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

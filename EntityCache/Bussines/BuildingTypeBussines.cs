@@ -27,7 +27,7 @@ namespace EntityCache.Bussines
 
 
 
-        public static async Task<List<BuildingTypeBussines>> GetAllAsync(CancellationToken token) => await UnitOfWork.BuildingType.GetAllAsync(Cache.ConnectionString,token);
+        public static async Task<List<BuildingTypeBussines>> GetAllAsync(CancellationToken token) => await UnitOfWork.BuildingType.GetAllAsync(Cache.ConnectionString, token);
         public static async Task<ReturnedSaveFuncInfo> SaveRangeAsync(List<BuildingTypeBussines> list, SqlTransaction tr = null)
         {
             var res = new ReturnedSaveFuncInfo();
@@ -146,7 +146,7 @@ namespace EntityCache.Bussines
             }
             return res;
         }
-        public static async Task<List<BuildingTypeBussines>> GetAllAsync(string search,CancellationToken token)
+        public static async Task<List<BuildingTypeBussines>> GetAllAsync(string search, CancellationToken token)
         {
             try
             {
@@ -176,6 +176,7 @@ namespace EntityCache.Bussines
                 return new List<BuildingTypeBussines>();
             }
         }
+        public static List<BuildingTypeBussines> GetAll(string search = "", CancellationToken token = default) => AsyncContext.Run(() => GetAllAsync(search, token));
         public static BuildingTypeBussines Get(Guid guid) => AsyncContext.Run(() => GetAsync(guid));
         public static BuildingTypeBussines Get(string name) => AsyncContext.Run(() => GetAsync(name));
         public static async Task<bool> CheckNameAsync(string name, Guid guid) =>
