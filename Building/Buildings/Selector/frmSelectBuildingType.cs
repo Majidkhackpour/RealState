@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 using WindowsSerivces;
+using EntityCache.Bussines;
 
 namespace Building.Buildings.Selector
 {
@@ -11,6 +12,7 @@ namespace Building.Buildings.Selector
     {
         private EnContractType type = EnContractType.None;
         private IWin32Window owner;
+        private BuildingBussines bu;
         private void SwitchSelect(UcButton uc)
         {
             try
@@ -65,10 +67,11 @@ namespace Building.Buildings.Selector
             }
         }
 
-        public frmSelectBuildingType(IWin32Window _owner)
+        public frmSelectBuildingType(IWin32Window _owner, BuildingBussines _bu)
         {
             InitializeComponent();
             owner = _owner;
+            bu = _bu;
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -103,7 +106,7 @@ namespace Building.Buildings.Selector
                     list.Add(EnContractType_.Office);
                 }
 
-                new frmSelectBuildingType_(owner, type, list).ShowDialog();
+                new frmSelectBuildingType_(owner, type, list, bu).ShowDialog();
             }
             catch (Exception ex)
             {

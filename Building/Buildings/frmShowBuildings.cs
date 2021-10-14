@@ -643,7 +643,7 @@ namespace Building.Buildings
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void ShowBuildingDetailForm(bool loadForCustomer)
+        private async Task ShowBuildingDetailFormAsync(bool loadForCustomer)
         {
             try
             {
@@ -652,6 +652,10 @@ namespace Building.Buildings
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
                 var bu = BuildingBussines.Get(guid);
                 if (bu == null) return;
+
+                if (bu.Parent == null || bu.Parent == EnBuildingParent.None)
+                    await Ertegha.clsFixBuilding.FixBuildingParentAsync_(bu);
+
                 var frm = new frmBuildingDetail(bu, loadForCustomer);
                 frm.ShowDialog(this);
             }
@@ -661,7 +665,7 @@ namespace Building.Buildings
             }
         }
 
-        public frmShowBuildings(bool _isShowMode,  BuildingFilter _filter)
+        public frmShowBuildings(bool _isShowMode, BuildingFilter _filter)
         {
             try
             {
@@ -879,8 +883,8 @@ namespace Building.Buildings
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void mnuView_Click(object sender, EventArgs e) => ShowBuildingDetailForm(false);
-        private void mnuEdit_Click(object sender, EventArgs e)
+        private async void mnuView_Click(object sender, EventArgs e) => await ShowBuildingDetailFormAsync(false);
+        private async void mnuEdit_Click(object sender, EventArgs e)
         {
             try
             {
@@ -894,13 +898,23 @@ namespace Building.Buildings
                 }
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
                 var bu = BuildingBussines.Get(guid);
-                if (bu == null)
+                if (bu == null) return;
+
+                if (bu.Parent == null || bu.Parent == EnBuildingParent.None)
+                    await Ertegha.clsFixBuilding.FixBuildingParentAsync_(bu);
+
+                if (bu.Parent != null && bu.Parent != EnBuildingParent.None)
                 {
-                    return;
+                    var frm = new frmBuilding(bu);
+                    if (frm.ShowDialog(this) == DialogResult.OK)
+                        LoadData(txtSearch.Text);
                 }
-                var frm = new frmBuilding(bu);
-                if (frm.ShowDialog(this) == DialogResult.OK)
-                    LoadData(txtSearch.Text);
+                else
+                {
+                    var frm = new frmSelectBuildingType(this, bu);
+                    if (frm.ShowDialog(this) == DialogResult.OK)
+                        LoadData(txtSearch.Text);
+                }
             }
             catch (Exception ex)
             {
@@ -911,7 +925,7 @@ namespace Building.Buildings
         {
             try
             {
-                var frm = new frmSelectBuildingType(this);
+                var frm = new frmSelectBuildingType(this, new BuildingBussines());
                 if (frm.ShowDialog(this) == DialogResult.OK)
                     LoadData(txtSearch.Text);
             }
@@ -1830,7 +1844,7 @@ namespace Building.Buildings
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void mnuView2_Click(object sender, EventArgs e) => ShowBuildingDetailForm(true);
+        private async void mnuView2_Click(object sender, EventArgs e) => await ShowBuildingDetailFormAsync(true);
         private void picFilter_Click(object sender, EventArgs e)
         {
             try

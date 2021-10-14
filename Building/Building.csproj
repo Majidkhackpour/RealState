@@ -945,6 +945,10 @@
       <Project>{cc417799-f38c-4997-8491-510eb1c15f74}</Project>
       <Name>EntityCache</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Ertegha\Ertegha.csproj">
+      <Project>{5da0bf3c-deb8-4075-aa1b-8f5a17e17823}</Project>
+      <Name>Ertegha</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Notification\Notification.csproj">
       <Project>{44a0f109-df64-482c-befb-df20038ee4df}</Project>
       <Name>Notification</Name>

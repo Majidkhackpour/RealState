@@ -177,7 +177,7 @@ namespace RealState
                     case EnForms.BuildingCondition: frm = new frmShowBuildingCondition(); break;
                     case EnForms.BuildingType: frm = new frmShowBuildingType(); break;
                     case EnForms.Building: frm = new frmShowBuildings(false, new BuildingFilter() { Status = true }); break;
-                    case EnForms.BuildingFast: frm = new frmSelectBuildingType(this); break;
+                    case EnForms.BuildingFast: frm = new frmSelectBuildingType(this, new BuildingBussines()); break;
                     case EnForms.AdvancedSearch: frm = new frmFilterForm(); break;
                     case EnForms.BuildingArchive: frm = new frmShowBuildings(true, new BuildingFilter() { Status = true, IsArchive = true }); break;
                     case EnForms.BuildingMatch: frm = new frmStartBuildingMatches(); break;

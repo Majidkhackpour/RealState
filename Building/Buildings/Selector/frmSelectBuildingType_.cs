@@ -16,6 +16,7 @@ namespace Building.Buildings.Selector
         private EnContractType_ _type2;
         private List<EnContractType_> _lstItems;
         private IWin32Window owner;
+        private BuildingBussines bu;
 
         private void Make_Buttons()
         {
@@ -165,12 +166,13 @@ namespace Building.Buildings.Selector
             }
         }
 
-        public frmSelectBuildingType_(IWin32Window _owner, EnContractType type, List<EnContractType_> lstItems)
+        public frmSelectBuildingType_(IWin32Window _owner, EnContractType type, List<EnContractType_> lstItems,BuildingBussines _bu)
         {
             InitializeComponent();
             owner = _owner;
             _type = type;
             _lstItems = lstItems;
+            bu = _bu;
             Make_Buttons();
         }
 
@@ -180,7 +182,8 @@ namespace Building.Buildings.Selector
             {
                 timer1.Stop();
                 Close();
-                new frmBuilding(new BuildingBussines() { Parent = TypeSwitcher() }).ShowDialog(owner);
+                bu.Parent = TypeSwitcher();
+                new frmBuilding(bu).ShowDialog(owner);
             }
             catch (Exception ex)
             {

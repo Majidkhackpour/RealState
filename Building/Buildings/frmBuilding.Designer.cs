@@ -36,10 +36,12 @@ namespace Building.Buildings
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmBuilding));
             this.UcPeople = new Peoples.UcPeopleSelect();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.groupPanel3 = new Building.UserControls.UcBuildingMedia();
             this.ucBuildingHitting1 = new Building.UserControls.UcBuildingImages();
             this.groupPanel2 = new DevComponents.DotNetBar.Controls.GroupPanel();
             this.txtShortDesc = new System.Windows.Forms.TextBox();
             this.UcOptions = new Building.UserControls.UcBuildingOptions();
+            this.ucType = new Building.UserControls.UcBuildingType();
             this.UcHitting_Colling = new Building.UserControls.UcBuildingHitting();
             this.groupPanel1 = new DevComponents.DotNetBar.Controls.GroupPanel();
             this.pnlContent = new System.Windows.Forms.Panel();
@@ -48,7 +50,6 @@ namespace Building.Buildings
             this.lblTitle = new System.Windows.Forms.Label();
             this.btnCancel = new DevComponents.DotNetBar.ButtonX();
             this.btnFinish = new DevComponents.DotNetBar.ButtonX();
-            this.groupPanel3 = new UcBuildingMedia();
             this.panel1.SuspendLayout();
             this.groupPanel2.SuspendLayout();
             this.groupPanel1.SuspendLayout();
@@ -78,6 +79,7 @@ namespace Building.Buildings
             this.panel1.Controls.Add(this.ucBuildingHitting1);
             this.panel1.Controls.Add(this.groupPanel2);
             this.panel1.Controls.Add(this.UcOptions);
+            this.panel1.Controls.Add(this.ucType);
             this.panel1.Controls.Add(this.UcHitting_Colling);
             this.panel1.Controls.Add(this.groupPanel1);
             this.panel1.Controls.Add(this.UcCode);
@@ -88,13 +90,23 @@ namespace Building.Buildings
             this.panel1.Size = new System.Drawing.Size(791, 485);
             this.panel1.TabIndex = 2;
             // 
+            // groupPanel3
+            // 
+            this.groupPanel3.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.groupPanel3.Location = new System.Drawing.Point(8, 980);
+            this.groupPanel3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.groupPanel3.Name = "groupPanel3";
+            this.groupPanel3.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.groupPanel3.Size = new System.Drawing.Size(354, 300);
+            this.groupPanel3.TabIndex = 55803;
+            // 
             // ucBuildingHitting1
             // 
             this.ucBuildingHitting1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ucBuildingHitting1.BackColor = System.Drawing.Color.Transparent;
             this.ucBuildingHitting1.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.ucBuildingHitting1.Location = new System.Drawing.Point(369, 927);
+            this.ucBuildingHitting1.Location = new System.Drawing.Point(369, 979);
             this.ucBuildingHitting1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ucBuildingHitting1.Name = "ucBuildingHitting1";
             this.ucBuildingHitting1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -107,7 +119,7 @@ namespace Building.Buildings
             this.groupPanel2.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
             this.groupPanel2.Controls.Add(this.txtShortDesc);
             this.groupPanel2.DisabledBackColor = System.Drawing.Color.Empty;
-            this.groupPanel2.Location = new System.Drawing.Point(8, 622);
+            this.groupPanel2.Location = new System.Drawing.Point(8, 676);
             this.groupPanel2.Name = "groupPanel2";
             this.groupPanel2.Size = new System.Drawing.Size(354, 300);
             // 
@@ -158,12 +170,27 @@ namespace Building.Buildings
             | System.Windows.Forms.AnchorStyles.Right)));
             this.UcOptions.BackColor = System.Drawing.Color.Transparent;
             this.UcOptions.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.UcOptions.Location = new System.Drawing.Point(369, 622);
+            this.UcOptions.Location = new System.Drawing.Point(369, 676);
             this.UcOptions.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.UcOptions.Name = "UcOptions";
             this.UcOptions.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.UcOptions.Size = new System.Drawing.Size(397, 300);
             this.UcOptions.TabIndex = 4;
+            // 
+            // ucType
+            // 
+            this.ucType.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ucType.BackColor = System.Drawing.Color.Transparent;
+            this.ucType.BuildingAccountTypeGuid = new System.Guid("3497ca54-5ef1-4449-be84-540838ee78c4");
+            this.ucType.BuildingTypeGuid = new System.Guid("b9566d92-40bc-4789-a9e2-66ac3c0e022d");
+            this.ucType.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.ucType.Location = new System.Drawing.Point(8, 623);
+            this.ucType.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ucType.Name = "ucType";
+            this.ucType.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.ucType.Size = new System.Drawing.Size(758, 47);
+            this.ucType.TabIndex = 3;
             // 
             // UcHitting_Colling
             // 
@@ -315,13 +342,6 @@ namespace Building.Buildings
             this.btnFinish.TextColor = System.Drawing.Color.Black;
             this.btnFinish.Click += new System.EventHandler(this.btnFinish_Click);
             // 
-            // groupPanel3
-            // 
-            this.groupPanel3.Location = new System.Drawing.Point(8, 928);
-            this.groupPanel3.Name = "groupPanel3";
-            this.groupPanel3.Size = new System.Drawing.Size(354, 300);
-            this.groupPanel3.TabIndex = 55803;
-            // 
             // frmBuilding
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -365,5 +385,6 @@ namespace Building.Buildings
         private System.Windows.Forms.Panel pnlContent;
         private UcBuildingImages ucBuildingHitting1;
         private UcBuildingMedia groupPanel3;
+        private UcBuildingType ucType;
     }
 }

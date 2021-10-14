@@ -62,6 +62,11 @@ namespace Building.Buildings
                 groupPanel3.MediaList = cls.MediaList;
 
                 GetContent();
+
+                if (cls.Guid == Guid.Empty) await SetType_AccTypeAsync();
+
+                ucType.BuildingAccountTypeGuid = cls.BuildingAccountTypeGuid;
+                ucType.BuildingTypeGuid = cls.BuildingTypeGuid;
             }
             catch (Exception ex)
             {
@@ -378,7 +383,8 @@ namespace Building.Buildings
                 cls.GalleryList = ucBuildingHitting1.GalleryList;
                 cls.MediaList = groupPanel3.MediaList;
 
-                await SetType_AccTypeAsync();
+                cls.BuildingAccountTypeGuid = ucType.BuildingAccountTypeGuid;
+                cls.BuildingTypeGuid = ucType.BuildingTypeGuid;
 
                 res.AddReturnedValue(await clsBuildingValidator.CheckValidationAsync(cls));
                 if (res.HasError) return;
