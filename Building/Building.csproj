@@ -463,11 +463,11 @@
     <Compile Include="BuildingOptions\frmShowBuildingOption.Designer.cs">
       <DependentUpon>frmShowBuildingOption.cs</DependentUpon>
     </Compile>
-    <Compile Include="BuildingRequest\frmRequestMain.cs">
+    <Compile Include="BuildingRequest\frmBuildingRequestsMain.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="BuildingRequest\frmRequestMain.Designer.cs">
-      <DependentUpon>frmRequestMain.cs</DependentUpon>
+    <Compile Include="BuildingRequest\frmBuildingRequestsMain.Designer.cs">
+      <DependentUpon>frmBuildingRequestsMain.cs</DependentUpon>
     </Compile>
     <Compile Include="BuildingRequest\frmShowRequest.cs">
       <SubType>Form</SubType>
@@ -511,12 +511,6 @@
     <Compile Include="Buildings\frmBuilding.Designer.cs">
       <DependentUpon>frmBuilding.cs</DependentUpon>
     </Compile>
-    <Compile Include="Buildings\frmBuildingAdvanceSearch.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Buildings\frmBuildingAdvanceSearch.Designer.cs">
-      <DependentUpon>frmBuildingAdvanceSearch.cs</DependentUpon>
-    </Compile>
     <Compile Include="Buildings\frmBuildingDetail.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -534,12 +528,6 @@
     </Compile>
     <Compile Include="Buildings\frmBuildingTelegramText.Designer.cs">
       <DependentUpon>frmBuildingTelegramText.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Buildings\frmFilterForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Buildings\frmFilterForm.Designer.cs">
-      <DependentUpon>frmFilterForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Buildings\frmShowBuildings.cs">
       <SubType>Form</SubType>
@@ -897,12 +885,6 @@
     <Compile Include="UserControls\UcBuildingOptions.Designer.cs">
       <DependentUpon>UcBuildingOptions.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\UcBuildingSearch.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UserControls\UcBuildingSearch.designer.cs">
-      <DependentUpon>UcBuildingSearch.cs</DependentUpon>
-    </Compile>
     <Compile Include="UserControls\ucBuildingSimilar.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1010,8 +992,8 @@
     <EmbeddedResource Include="BuildingOptions\frmShowBuildingOption.resx">
       <DependentUpon>frmShowBuildingOption.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="BuildingRequest\frmRequestMain.resx">
-      <DependentUpon>frmRequestMain.cs</DependentUpon>
+    <EmbeddedResource Include="BuildingRequest\frmBuildingRequestsMain.resx">
+      <DependentUpon>frmBuildingRequestsMain.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="BuildingRequest\frmShowRequest.resx">
       <DependentUpon>frmShowRequest.cs</DependentUpon>
@@ -1034,9 +1016,6 @@
     <EmbeddedResource Include="Buildings\frmBuilding.resx">
       <DependentUpon>frmBuilding.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Buildings\frmBuildingAdvanceSearch.resx">
-      <DependentUpon>frmBuildingAdvanceSearch.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Buildings\frmBuildingDetail.resx">
       <DependentUpon>frmBuildingDetail.cs</DependentUpon>
     </EmbeddedResource>
@@ -1045,9 +1024,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Buildings\frmBuildingTelegramText.resx">
       <DependentUpon>frmBuildingTelegramText.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Buildings\frmFilterForm.resx">
-      <DependentUpon>frmFilterForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Buildings\frmShowBuildings.resx">
       <DependentUpon>frmShowBuildings.cs</DependentUpon>
@@ -1224,9 +1200,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UcBuildingOptions.resx">
       <DependentUpon>UcBuildingOptions.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UserControls\UcBuildingSearch.resx">
-      <DependentUpon>UcBuildingSearch.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\ucBuildingSimilar.resx">
       <DependentUpon>ucBuildingSimilar.cs</DependentUpon>

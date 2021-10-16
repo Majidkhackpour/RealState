@@ -79,6 +79,7 @@ namespace Building.Buildings
                 Task.Run(() => ucPagger.PagingAsync(new CancellationToken(), lst?.OrderBy(q => q.IsArchive)?.ThenByDescending(q => q.CreateDate), 100, PagingPosition.GotoStartPage));
 
                 VisibleColumns();
+                lblCounter.Text = (lst?.Count() ?? 0).ToString();
             }
             catch (Exception ex)
             {
@@ -1852,7 +1853,7 @@ namespace Building.Buildings
                 if (frm.ShowDialog(this) != DialogResult.OK) return;
                 filter = frm.Filter;
                 filter.Status = _st;
-                LoadData();
+                LoadData(txtSearch.Text);
             }
             catch (Exception ex)
             {

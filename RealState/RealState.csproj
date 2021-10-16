@@ -305,12 +305,6 @@
     </Compile>
     <Compile Include="DivarFiles.cs" />
     <Compile Include="FileFormatter.cs" />
-    <Compile Include="frmMain.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmMain.Designer.cs">
-      <DependentUpon>frmMain.cs</DependentUpon>
-    </Compile>
     <Compile Include="frmNewMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -411,9 +405,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CalendarForms\frmCalendar.resx">
       <DependentUpon>frmCalendar.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmMain.resx">
-      <DependentUpon>frmMain.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmNewMain.resx">
       <DependentUpon>frmNewMain.cs</DependentUpon>

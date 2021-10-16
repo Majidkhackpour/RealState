@@ -11,6 +11,7 @@ using MetroFramework.Forms;
 using Notification;
 using Print;
 using Services;
+using Services.FilterObjects;
 
 namespace Building.BuildingRequest
 {
@@ -237,27 +238,38 @@ namespace Building.BuildingRequest
                 var req = BuildingRequestBussines.Get(guid);
                 if (req == null) return;
 
-                var type = EnRequestType.Rahn;
-                decimal fPrice1 = 0, sPrice1 = 0, fPrice2 = 0, sPrice2 = 0;
 
-                if (req.SellPrice1 > 0) type = EnRequestType.Forush;
-                if (req.RahnPrice1 > 0) type = EnRequestType.Rahn;
-
-                if (type == EnRequestType.Forush)
+                var filter = new BuildingFilter()
                 {
-                    fPrice1 = req.SellPrice1;
-                    fPrice2 = req.SellPrice2;
-                }
-                else
-                {
-                    fPrice1 = req.RahnPrice1;
-                    fPrice2 = req.RahnPrice2;
-                    sPrice1 = req.EjarePrice1;
-                    sPrice2 = req.EjarePrice2;
-                }
-
-                var frm = new frmFilterForm(type, req.BuildingTypeGuid, req.BuildingAccountTypeGuid, req.RoomCount,
-                    req.Masahat1, req.Masahat2, fPrice1, sPrice1, fPrice2, sPrice2, null);
+                    Status = true,
+                    RahnPrice1 = req.RahnPrice1,
+                    EjarePrice1 = req.EjarePrice1,
+                    RegionList = req.RegionList?.Select(q => q.RegionGuid).ToList(),
+                    BuildingAccountTypeGuid = req.BuildingAccountTypeGuid,
+                    UserGuid = null,
+                    OwnerGuid = null,
+                    BuildingTypeGuid = null,
+                    AdvertiseType = null,
+                    IsArchive = null,
+                    SellPrice2 = req.SellPrice2,
+                    SellPrice1 = req.SellPrice1,
+                    Masahat1 = req.Masahat1,
+                    EjarePrice2 = req.EjarePrice2,
+                    DocumentTypeGuid = null,
+                    IsFullRahn = false,
+                    IsPishForoush = false,
+                    RahnPrice2 = req.RahnPrice2,
+                    Masahat2 = req.Masahat2,
+                    IsSell = false,
+                    IsRahn = false,
+                    IsMosharekat = false,
+                    MaxTabaqeNo = 0,
+                    RoomCount1 = 0,
+                    RoomCount2 = req.RoomCount,
+                    ZirBana1 = 0,
+                    ZirBana2 = 0
+                };
+                var frm = new frmShowBuildings(false, filter);
                 frm.ShowDialog(this);
             }
             catch (Exception ex)
@@ -272,7 +284,7 @@ namespace Building.BuildingRequest
                 if (DGrid.RowCount <= 0) return;
                 if (DGrid.CurrentRow == null) return;
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
-                var frm = new frmRequestMain(guid, true);
+                var frm = new frmBuildingRequestsMain(guid, true);
                 frm.ShowDialog(this);
             }
             catch (Exception ex)
@@ -293,7 +305,7 @@ namespace Building.BuildingRequest
                     return;
                 }
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
-                var frm = new frmRequestMain(guid, false);
+                var frm = new frmBuildingRequestsMain(guid, false);
                 if (frm.ShowDialog(this) == DialogResult.OK)
                     await LoadDataAsync(txtSearch.Text);
             }
@@ -306,7 +318,7 @@ namespace Building.BuildingRequest
         {
             try
             {
-                var frm = new frmRequestMain();
+                var frm = new frmBuildingRequestsMain();
                 if (frm.ShowDialog(this) == DialogResult.OK)
                     await LoadDataAsync();
             }

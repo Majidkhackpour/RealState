@@ -81,6 +81,7 @@
             this.بایگانیToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuAddToArchive = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuRemoveFromArchive = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuChangeAdvType = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuSlideShow = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuMedia = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
@@ -149,7 +150,8 @@
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.mnuChangeAdvType = new System.Windows.Forms.ToolStripMenuItem();
+            this.label1 = new System.Windows.Forms.Label();
+            this.lblCounter = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).BeginInit();
             this.contextMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BuildingBindingSource)).BeginInit();
@@ -547,7 +549,7 @@
             this.مدیریتستونهاToolStripMenuItem});
             this.contextMenu.Name = "contextMenu";
             this.contextMenu.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.contextMenu.Size = new System.Drawing.Size(246, 518);
+            this.contextMenu.Size = new System.Drawing.Size(246, 496);
             // 
             // mnuAdd
             // 
@@ -617,16 +619,23 @@
             // mnuAddToArchive
             // 
             this.mnuAddToArchive.Name = "mnuAddToArchive";
-            this.mnuAddToArchive.Size = new System.Drawing.Size(180, 24);
+            this.mnuAddToArchive.Size = new System.Drawing.Size(164, 24);
             this.mnuAddToArchive.Text = "افزودن به بایگانی";
             this.mnuAddToArchive.Click += new System.EventHandler(this.mnuAddToArchive_Click);
             // 
             // mnuRemoveFromArchive
             // 
             this.mnuRemoveFromArchive.Name = "mnuRemoveFromArchive";
-            this.mnuRemoveFromArchive.Size = new System.Drawing.Size(180, 24);
+            this.mnuRemoveFromArchive.Size = new System.Drawing.Size(164, 24);
             this.mnuRemoveFromArchive.Text = "حذف از بایگانی";
             this.mnuRemoveFromArchive.Click += new System.EventHandler(this.mnuRemoveFromArchive_Click);
+            // 
+            // mnuChangeAdvType
+            // 
+            this.mnuChangeAdvType.Name = "mnuChangeAdvType";
+            this.mnuChangeAdvType.Size = new System.Drawing.Size(245, 24);
+            this.mnuChangeAdvType.Text = "تبدیل فایل به فایل های شخصی";
+            this.mnuChangeAdvType.Click += new System.EventHandler(this.mnuChangeAdvType_Click);
             // 
             // mnuSlideShow
             // 
@@ -1231,12 +1240,24 @@
             this.pictureBox1.TabIndex = 55761;
             this.pictureBox1.TabStop = false;
             // 
-            // mnuChangeAdvType
+            // label1
             // 
-            this.mnuChangeAdvType.Name = "mnuChangeAdvType";
-            this.mnuChangeAdvType.Size = new System.Drawing.Size(245, 24);
-            this.mnuChangeAdvType.Text = "تبدیل فایل به فایل های شخصی";
-            this.mnuChangeAdvType.Click += new System.EventHandler(this.mnuChangeAdvType_Click);
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Location = new System.Drawing.Point(94, 91);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(135, 20);
+            this.label1.TabIndex = 55760;
+            this.label1.Text = "تعداد فایلهای قابل نمایش:";
+            // 
+            // lblCounter
+            // 
+            this.lblCounter.AutoSize = true;
+            this.lblCounter.BackColor = System.Drawing.Color.Transparent;
+            this.lblCounter.Location = new System.Drawing.Point(15, 91);
+            this.lblCounter.Name = "lblCounter";
+            this.lblCounter.Size = new System.Drawing.Size(0, 20);
+            this.lblCounter.TabIndex = 55760;
             // 
             // frmShowBuildings
             // 
@@ -1245,6 +1266,8 @@
             this.ClientSize = new System.Drawing.Size(1021, 631);
             this.Controls.Add(this.picFilter);
             this.Controls.Add(this.pictureBox6);
+            this.Controls.Add(this.lblCounter);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.pictureBox5);
             this.Controls.Add(this.ucHeader);
@@ -1398,5 +1421,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dgAdvertiseType;
         private System.Windows.Forms.PictureBox picFilter;
         private System.Windows.Forms.ToolStripMenuItem mnuChangeAdvType;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblCounter;
     }
 }
