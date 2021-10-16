@@ -11,7 +11,7 @@ namespace Building.UserControls
         public string Code
         {
             get => txtCode.Text;
-            set => txtCode.Text = string.IsNullOrEmpty(value) ? BuildingBussines.NextCode() : value;
+            set => txtCode.Text = string.IsNullOrEmpty(value.RemoveNoNumbers()) ? BuildingBussines.NextCode() : value.RemoveNoNumbers();
         }
         public EnBuildingPriority Pirority
         {
@@ -45,6 +45,19 @@ namespace Building.UserControls
                 cmbPirority.Items.Add(EnBuildingPriority.High.GetDisplay());
                 cmbPirority.Items.Add(EnBuildingPriority.Medium.GetDisplay());
                 cmbPirority.Items.Add(EnBuildingPriority.Low.GetDisplay());
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private void txtCode_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (!e.Shift) return;
+                if (e.KeyCode != Keys.N) return;
+                Code = BuildingBussines.NextCode();
             }
             catch (Exception ex)
             {
