@@ -651,6 +651,12 @@
     <Compile Include="UserControls\Objects\UcBuildingCondition.Designer.cs">
       <DependentUpon>UcBuildingCondition.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\Objects\UcBuildingNoteDetails.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Objects\UcBuildingNoteDetails.Designer.cs">
+      <DependentUpon>UcBuildingNoteDetails.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\Objects\UcBuildingView.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -879,6 +885,12 @@
     <Compile Include="UserControls\UcBuildingMedia.Designer.cs">
       <DependentUpon>UcBuildingMedia.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\UcBuildingNote.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UcBuildingNote.Designer.cs">
+      <DependentUpon>UcBuildingNote.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\UcBuildingOptions.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1084,6 +1096,9 @@
     <EmbeddedResource Include="UserControls\Objects\UcBuildingCondition.resx">
       <DependentUpon>UcBuildingCondition.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Objects\UcBuildingNoteDetails.resx">
+      <DependentUpon>UcBuildingNoteDetails.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserControls\Objects\UcBuildingView.resx">
       <DependentUpon>UcBuildingView.cs</DependentUpon>
     </EmbeddedResource>
@@ -1197,6 +1212,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UcBuildingMedia.resx">
       <DependentUpon>UcBuildingMedia.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UcBuildingNote.resx">
+      <DependentUpon>UcBuildingNote.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UcBuildingOptions.resx">
       <DependentUpon>UcBuildingOptions.cs</DependentUpon>
@@ -1316,6 +1334,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\cogwheel-1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add1.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

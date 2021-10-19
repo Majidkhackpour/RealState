@@ -6,10 +6,11 @@ namespace Building.Buildings
     public partial class frmBuildingTelegramText : MetroForm
     {
         public string TelegramText { get => txtText.Text; set => txtText.Text = value; }
-        public frmBuildingTelegramText(string text)
+        public frmBuildingTelegramText(string text, string title = "متن ارسال در تلگرام")
         {
             InitializeComponent();
             TelegramText = text;
+            lblTitle.Text = title;
         }
         private void btnFinish_Click(object sender, System.EventArgs e)
         {

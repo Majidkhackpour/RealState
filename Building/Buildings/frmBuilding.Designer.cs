@@ -36,6 +36,7 @@ namespace Building.Buildings
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmBuilding));
             this.UcPeople = new Peoples.UcPeopleSelect();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.UcNotes = new Building.UserControls.UcBuildingNote();
             this.groupPanel3 = new Building.UserControls.UcBuildingMedia();
             this.ucBuildingHitting1 = new Building.UserControls.UcBuildingImages();
             this.groupPanel2 = new DevComponents.DotNetBar.Controls.GroupPanel();
@@ -77,6 +78,7 @@ namespace Building.Buildings
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.AutoScroll = true;
+            this.panel1.Controls.Add(this.UcNotes);
             this.panel1.Controls.Add(this.groupPanel3);
             this.panel1.Controls.Add(this.ucBuildingHitting1);
             this.panel1.Controls.Add(this.groupPanel2);
@@ -91,6 +93,20 @@ namespace Building.Buildings
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(791, 485);
             this.panel1.TabIndex = 2;
+            // 
+            // UcNotes
+            // 
+            this.UcNotes.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.UcNotes.BackColor = System.Drawing.Color.Transparent;
+            this.UcNotes.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.UcNotes.Location = new System.Drawing.Point(8, 1307);
+            this.UcNotes.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.UcNotes.Name = "UcNotes";
+            this.UcNotes.Notes = null;
+            this.UcNotes.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.UcNotes.Size = new System.Drawing.Size(761, 237);
+            this.UcNotes.TabIndex = 55804;
             // 
             // groupPanel3
             // 
@@ -409,5 +425,6 @@ namespace Building.Buildings
         private UcBuildingMedia groupPanel3;
         private UcBuildingType ucType;
         private DevComponents.DotNetBar.ButtonX btnSavePersonal;
+        private UcBuildingNote UcNotes;
     }
 }

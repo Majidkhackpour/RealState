@@ -69,6 +69,8 @@ namespace Building.Buildings
                 ucType.BuildingAccountTypeGuid = cls.BuildingAccountTypeGuid;
                 ucType.BuildingTypeGuid = cls.BuildingTypeGuid;
 
+                UcNotes.Notes = cls.NoteList;
+
                 if (cls.AdvertiseType == null || cls.AdvertiseType == AdvertiseType.None)
                     btnSavePersonal.Visible = false;
             }
@@ -340,6 +342,7 @@ namespace Building.Buildings
                 cls.BuildingAccountTypeGuid = ucType.BuildingAccountTypeGuid;
                 cls.BuildingTypeGuid = ucType.BuildingTypeGuid;
                 cls.AdvertiseType = advType;
+                cls.NoteList = UcNotes.Notes;
 
                 res.AddReturnedValue(await clsBuildingValidator.CheckValidationAsync(cls));
                 if (res.HasError) return res;

@@ -30,23 +30,24 @@ namespace Building.Buildings
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmBuildingTelegramText));
-            this.label8 = new System.Windows.Forms.Label();
+            this.lblTitle = new System.Windows.Forms.Label();
             this.txtText = new System.Windows.Forms.TextBox();
             this.btnFinish = new DevComponents.DotNetBar.ButtonX();
             this.btnCancel = new DevComponents.DotNetBar.ButtonX();
             this.SuspendLayout();
             // 
-            // label8
+            // lblTitle
             // 
-            this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label8.AutoSize = true;
-            this.label8.BackColor = System.Drawing.Color.Transparent;
-            this.label8.Font = new System.Drawing.Font("B Yekan", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.label8.Location = new System.Drawing.Point(164, 15);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(159, 29);
-            this.label8.TabIndex = 55777;
-            this.label8.Text = "متن ارسال در تلگرام";
+            this.lblTitle.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblTitle.BackColor = System.Drawing.Color.Transparent;
+            this.lblTitle.Font = new System.Drawing.Font("B Yekan", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.lblTitle.Location = new System.Drawing.Point(10, 15);
+            this.lblTitle.Name = "lblTitle";
+            this.lblTitle.Size = new System.Drawing.Size(457, 29);
+            this.lblTitle.TabIndex = 55777;
+            this.lblTitle.Text = "متن ارسال در تلگرام";
+            this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // txtText
             // 
@@ -105,7 +106,7 @@ namespace Building.Buildings
             this.ClientSize = new System.Drawing.Size(481, 484);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnFinish);
-            this.Controls.Add(this.label8);
+            this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.txtText);
             this.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -127,7 +128,7 @@ namespace Building.Buildings
 
         #endregion
 
-        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.TextBox txtText;
         private DevComponents.DotNetBar.ButtonX btnFinish;
         private DevComponents.DotNetBar.ButtonX btnCancel;
