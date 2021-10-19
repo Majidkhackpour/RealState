@@ -123,6 +123,7 @@ namespace Persistence.Entities
         public virtual ICollection<Contract> Contract { get; set; }
         public virtual ICollection<BuildingGallery> BuildingGallery { get; set; }
         public virtual ICollection<BuildingMedia> BuildingMedia { get; set; }
+        public virtual ICollection<BuildingNotes> BuildingNote { get; set; }
         public virtual ICollection<BuildingRelatedOptions> BuildingRelatedOptions { get; set; }
     }
 }

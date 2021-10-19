@@ -49,6 +49,7 @@ namespace WebHesabBussines
                 var url = Utilities.WebApi + "/api/Scrapper/SaveAsync";
                 foreach (var item in list)
                 {
+                    item.DateM = item.DateM.AddDays(1);
                     var t = await Extentions.PostToApi<WebScrapper, WebScrapper>(item, url);
                     if (t.ResponseStatus != ResponseStatus.Success)
                         res.AddError("Error in Send To Server");

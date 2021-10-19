@@ -613,6 +613,7 @@ namespace EntityCache.SqlServerPersistence
                     res.GalleryList = AsyncContext.Run(() => BuildingGalleryBussines.GetAllAsync(res.Guid));
                     res.MediaList = AsyncContext.Run(() => BuildingMediaBussines.GetAllAsync(res.Guid));
                     res.OptionList = BuildingRelatedOptionsBussines.GetAll(res.Guid);
+                    res.NoteList = AsyncContext.Run(() => BuildingNoteBussines.GetAllAsync(res.Guid));
                 }
                 if (dr["ServerDeliveryDate"] != DBNull.Value) res.ServerDeliveryDate = (DateTime)dr["ServerDeliveryDate"];
                 if (dr["ServerStatus"] != DBNull.Value) res.ServerStatus = (ServerStatus)dr["ServerStatus"];

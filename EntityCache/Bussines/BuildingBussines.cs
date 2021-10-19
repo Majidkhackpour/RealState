@@ -121,6 +121,7 @@ namespace EntityCache.Bussines
         public List<BuildingRelatedOptionsBussines> OptionList { get; set; }
         public List<BuildingGalleryBussines> GalleryList { get; set; }
         public List<BuildingMediaBussines> MediaList { get; set; }
+        public List<BuildingNoteBussines> NoteList { get; set; }
         #endregion
 
         public static async Task<List<BuildingBussines>> GetAllAsync(CancellationToken token, bool isLoadDet) => await UnitOfWork.Building.GetAllAsync(Cache.ConnectionString, token, isLoadDet);
@@ -185,10 +186,25 @@ namespace EntityCache.Bussines
                     res.AddReturnedValue(await BuildingMediaBussines.SaveRangeAsync(MediaList, tr));
                     if (res.HasError) return res;
                 }
+                if (NoteList?.Count > 0)
+                {
+                    res.AddReturnedValue(await BuildingNoteBussines.RemoveRangeAsync(Guid, tr));
+                    if (res.HasError) return res;
 
-                var action = IsModified ? EnLogAction.Update : EnLogAction.Insert;
-                res.AddReturnedValue(await UserLogBussines.SaveAsync(action, EnLogPart.Building, tr));
-                if (res.HasError) return res;
+                    foreach (var item in NoteList)
+                        item.BuildingGuid = Guid;
+
+                    res.AddReturnedValue(await BuildingNoteBussines.SaveRangeAsync(NoteList, tr));
+                    if (res.HasError) return res;
+                }
+
+                if (!isFromServer)
+                {
+                    var action = IsModified ? EnLogAction.Update : EnLogAction.Insert;
+                    res.AddReturnedValue(await UserLogBussines.SaveAsync(action, EnLogPart.Building, tr));
+                    if (res.HasError) return res;
+                }
+
                 if (isRaiseEvent) RaiseEvent();
                 if (Cache.IsSendToServer)
                     _ = Task.Run(() => WebBuilding.SaveAsync(BuildingMapper.Instance.Map(this)));
