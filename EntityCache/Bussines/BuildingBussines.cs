@@ -154,11 +154,17 @@ namespace EntityCache.Bussines
                 res.AddReturnedValue(await UnitOfWork.Building.SaveAsync(this, tr));
                 if (res.HasError) return res;
 
+                res.AddReturnedValue(await BuildingRelatedOptionsBussines.RemoveRangeAsync(Guid, tr));
+                if (res.HasError) return res;
+                res.AddReturnedValue(await BuildingGalleryBussines.RemoveRangeAsync(Guid, tr));
+                if (res.HasError) return res;
+                res.AddReturnedValue(await BuildingMediaBussines.RemoveRangeAsync(Guid, tr));
+                if (res.HasError) return res;
+                res.AddReturnedValue(await BuildingNoteBussines.RemoveRangeAsync(Guid, tr));
+                if (res.HasError) return res;
+
                 if (OptionList?.Count > 0)
                 {
-                    res.AddReturnedValue(await BuildingRelatedOptionsBussines.RemoveRangeAsync(Guid, tr));
-                    if (res.HasError) return res;
-
                     foreach (var item in OptionList)
                         item.BuildinGuid = Guid;
                     res.AddReturnedValue(await BuildingRelatedOptionsBussines.SaveRangeAsync(OptionList, tr));
@@ -166,9 +172,6 @@ namespace EntityCache.Bussines
                 }
                 if (GalleryList?.Count > 0)
                 {
-                    res.AddReturnedValue(await BuildingGalleryBussines.RemoveRangeAsync(Guid, tr));
-                    if (res.HasError) return res;
-
                     foreach (var item in GalleryList)
                         item.BuildingGuid = Guid;
 
@@ -177,9 +180,6 @@ namespace EntityCache.Bussines
                 }
                 if (MediaList?.Count > 0)
                 {
-                    res.AddReturnedValue(await BuildingMediaBussines.RemoveRangeAsync(Guid, tr));
-                    if (res.HasError) return res;
-
                     foreach (var item in MediaList)
                         item.BuildingGuid = Guid;
 
@@ -188,9 +188,6 @@ namespace EntityCache.Bussines
                 }
                 if (NoteList?.Count > 0)
                 {
-                    res.AddReturnedValue(await BuildingNoteBussines.RemoveRangeAsync(Guid, tr));
-                    if (res.HasError) return res;
-
                     foreach (var item in NoteList)
                         item.BuildingGuid = Guid;
 

@@ -762,6 +762,9 @@ namespace Building.Buildings
                         if (txtSearch.Focused)
                             DGrid.Focus();
                         break;
+                    case Keys.F5:
+                        LoadData();
+                        break;
                 }
             }
             catch (Exception ex)

@@ -109,7 +109,7 @@ namespace Building
             try
             {
                 if (bu.ZirBana <= 0) res.AddError("وارد کردن زیربنا اجباری می باشد");
-                if (bu.Masahat > bu.ZirBana) res.AddError($"متراژ زمین ({bu.Masahat}) از زیربنا ({bu.ZirBana}) بزرگتر است");
+                //if (bu.Masahat > bu.ZirBana) res.AddError($"متراژ زمین ({bu.Masahat}) از زیربنا ({bu.ZirBana}) بزرگتر است");
                 if (bu.TedadTabaqe <= 0) res.AddError("وارد کردن تعداد طبقات اجباری است");
                 if (bu.SellPrice <= 0) res.AddError("وارد کردن قیمت کل اجباری است");
             }
@@ -160,7 +160,7 @@ namespace Building
             {
                 if (bu.ZirBana <= 0) res.AddError("وارد کردن زیربنا اجباری می باشد");
                 if (bu.Masahat <= 0) res.AddError("وارد کردن متراژ زمین اجباری می باشد");
-                if (bu.Masahat > bu.ZirBana) res.AddError($"متراژ زمین ({bu.Masahat}) از زیربنا ({bu.ZirBana}) بزرگتر است");
+                //if (bu.Masahat > bu.ZirBana) res.AddError($"متراژ زمین ({bu.Masahat}) از زیربنا ({bu.ZirBana}) بزرگتر است");
                 if (bu.SellPrice <= 0) res.AddError("وارد کردن قیمت کل اجباری است");
             }
             catch (Exception ex)
@@ -212,7 +212,7 @@ namespace Building
             {
                 if (bu.ZirBana <= 0) res.AddError("وارد کردن زیربنا اجباری می باشد");
                 if (bu.Masahat <= 0) res.AddError("وارد کردن متراژ زمین اجباری می باشد");
-                if (bu.Masahat > bu.ZirBana) res.AddError($"متراژ زمین ({bu.Masahat}) از زیربنا ({bu.ZirBana}) بزرگتر است");
+                //if (bu.Masahat > bu.ZirBana) res.AddError($"متراژ زمین ({bu.Masahat}) از زیربنا ({bu.ZirBana}) بزرگتر است");
                 if (bu.SellPrice <= 0) res.AddError("وارد کردن قیمت کل اجباری است");
             }
             catch (Exception ex)

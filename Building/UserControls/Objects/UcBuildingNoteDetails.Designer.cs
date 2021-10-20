@@ -83,6 +83,7 @@ namespace Building.UserControls.Objects
             this.picDelete.Size = new System.Drawing.Size(24, 27);
             this.picDelete.TabIndex = 1;
             this.picDelete.TabStop = false;
+            this.picDelete.Click += new System.EventHandler(this.picDelete_Click);
             // 
             // picEdit
             // 
@@ -94,6 +95,7 @@ namespace Building.UserControls.Objects
             this.picEdit.Size = new System.Drawing.Size(24, 27);
             this.picEdit.TabIndex = 1;
             this.picEdit.TabStop = false;
+            this.picEdit.Click += new System.EventHandler(this.picEdit_Click);
             // 
             // lblDesc
             // 

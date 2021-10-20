@@ -36,11 +36,6 @@ namespace Building.UserControls.Objects
             // 
             // txtValue
             // 
-            this.txtValue.Increment = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
             this.txtValue.Location = new System.Drawing.Point(3, 4);
             this.txtValue.Maximum = new decimal(new int[] {
             10000,

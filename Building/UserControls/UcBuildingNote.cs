@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using Building.Buildings;
 using Building.UserControls.Objects;
@@ -13,16 +15,48 @@ namespace Building.UserControls
         private List<BuildingNoteBussines> _list;
         public List<BuildingNoteBussines> Notes
         {
-            get => _list;
+            get
+            {
+                try
+                {
+                    _list?.Clear();
+                    var controls = fPanel.Controls;
+                    foreach (Control c in controls)
+                        if (c is UcBuildingNoteDetails item)
+                        {
+                            if (_list == null) _list = new List<BuildingNoteBussines>();
+                            _list.Add(new BuildingNoteBussines()
+                            {
+                                Guid = Guid.NewGuid(),
+                                Modified = DateTime.Now,
+                                ServerStatus = ServerStatus.None,
+                                ServerDeliveryDate = DateTime.Now,
+                                Note = item.Note
+                            });
+                        }
+                }
+                catch (Exception ex)
+                {
+                    WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                }
+                return _list;
+            }
             set
             {
                 try
                 {
                     _list = value;
-                    if (_list == null || _list.Count <= 0) return;
+                    if (_list == null || _list.Count <= 0)
+                    {
+                        fPanel.Controls.Clear();
+                        return;
+                    }
+                    fPanel.Controls.Clear();
                     foreach (var item in _list)
                     {
                         var c = new UcBuildingNoteDetails() { Note = item.Note, Width = fPanel.Width - 30 };
+                        c.OnEdited += COnOnEdited;
+                        c.OnDeleted += COnOnDeleted;
                         fPanel.Controls.Add(c);
                     }
                 }
@@ -30,6 +64,44 @@ namespace Building.UserControls
                 {
                     WebErrorLog.ErrorInstence.StartErrorLog(ex);
                 }
+            }
+        }
+        private async Task COnOnDeleted(string note)
+        {
+            try
+            {
+                var n = Notes.FirstOrDefault(q => q.Note == note);
+                if (n == null) return;
+                _list.Remove(n);
+                Notes = _list;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private async Task COnOnEdited(string note)
+        {
+            try
+            {
+                var n = Notes.FirstOrDefault(q => q.Note == note);
+                if (n == null) return;
+                var frm = new frmBuildingTelegramText(note, "یادداشت");
+                if (frm.ShowDialog(this) != DialogResult.OK) return;
+                _list.Remove(n);
+                _list.Add(new BuildingNoteBussines()
+                {
+                    Guid = Guid.NewGuid(),
+                    Modified = DateTime.Now,
+                    ServerStatus = ServerStatus.None,
+                    ServerDeliveryDate = DateTime.Now,
+                    Note = frm.TelegramText
+                });
+                Notes = _list;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
         public UcBuildingNote() => InitializeComponent();
@@ -47,8 +119,7 @@ namespace Building.UserControls
                     ServerDeliveryDate = DateTime.Now,
                     Note = frm.TelegramText
                 });
-                var c = new UcBuildingNoteDetails() { Note = frm.TelegramText, Width = fPanel.Width - 30 };
-                fPanel.Controls.Add(c);
+                Notes = _list;
             }
             catch (Exception ex)
             {
