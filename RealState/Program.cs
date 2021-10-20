@@ -108,13 +108,13 @@ namespace RealState
                         case EnAppSerial.Building: VersionAccess.Building = true; break;
                         case EnAppSerial.Sms: VersionAccess.Sms = true; break;
                         case EnAppSerial.Advertise: VersionAccess.Advertise = true; break;
-                        case EnAppSerial.Telegram: VersionAccess.Telegram = true; Cache.IsSendToServer = true; break;
+                        case EnAppSerial.Telegram: VersionAccess.Telegram = true; break;
                         case EnAppSerial.WhatsApp: VersionAccess.WhatsApp = true; break;
                         case EnAppSerial.Excel: VersionAccess.Excel = true; break;
                         case EnAppSerial.AutoBackUp: VersionAccess.AutoBackUp = true; break;
                         case EnAppSerial.Accounting: VersionAccess.Accounting = true; break;
-                        case EnAppSerial.WebSite: Cache.IsSendToServer = true; break;
-                        case EnAppSerial.MobileApp: Cache.IsSendToServer = true; break;
+                        case EnAppSerial.WebSite: break;
+                        case EnAppSerial.MobileApp: break;
                         case EnAppSerial.WebService:
                             VersionAccess.WebService = true;
                             Cache.IsSendToServer = true;
